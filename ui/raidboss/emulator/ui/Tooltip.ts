@@ -23,12 +23,10 @@ type TemplatesType = {[Property in ValidDirection]: HTMLTemplateElement};
 const toPx = (px: number): string => `${px}px`;
 
 export default class Tooltip {
-  private offset = {
+  public offset = {
     x: 0,
     y: 0,
   };
-  private target: HTMLElement;
-  private direction: ValidDirection;
   private tooltip: HTMLElement;
   private inner: HTMLElement;
   private arrow: HTMLElement;
@@ -36,29 +34,19 @@ export default class Tooltip {
   private static templates: TemplatesType;
 
   constructor(
-      // @TODO: Refactor this to only accept HTMLElement after upstream classes are converted
-      targetRef: string | HTMLElement,
-      direction: ValidDirection,
+      private target: HTMLElement,
+      private direction: ValidDirection,
       text: string,
       autoShow = true,
       autoHide = true) {
     Tooltip.initializeTemplates();
 
-    let target: HTMLElement | null;
-
-    if (typeof targetRef === 'string')
-      target = document.querySelector(targetRef);
-    else
-      target = targetRef;
-
     if (!(target instanceof HTMLElement)) {
-      const msg = 'Invalid selector or element passed to Tooltip';
+      const msg = 'Invalid element passed to Tooltip';
       console.error(msg);
       throw new Error(msg);
     }
 
-    this.target = target;
-    this.direction = direction;
     this.tooltip = Tooltip.cloneTemplate(direction);
     const innerElem = this.tooltip.querySelector('.tooltip-inner');
     if (!(innerElem instanceof HTMLElement))
