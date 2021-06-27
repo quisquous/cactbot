@@ -885,8 +885,15 @@ export class PopupText {
     let groups: Matches = {};
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if (matches && matches.groups)
+    if (matches && matches.groups) {
       groups = matches.groups;
+    } else if (matches) {
+      // If there are no matching groups, reproduce the old js logic where
+      // groups ended up as the original RegExpExecArray object
+      matches.forEach((value, idx) => {
+        groups[idx] = value;
+      });
+    }
 
     // Set up a helper object so we don't have to throw
     // a ton of info back and forth between subfunctions
