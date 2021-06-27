@@ -1,3 +1,8 @@
+import { UnreachableCode } from '../../resources/not_reached';
+import { EventResponses } from '../../types/event';
+
+import { OopsyOptions } from './oopsy_options';
+
 const kCopiedMessage = {
   en: 'Copied!',
   de: 'Kopiert!',
@@ -8,15 +13,22 @@ const kCopiedMessage = {
 };
 
 export class OopsyLiveList {
-  constructor(options, element) {
-    this.options = options;
-    this.scroller = element;
-    this.container = element.children[0];
+  private container: Element;
+  private inCombat = false;
+  private numItems = 0;
+  private items: HTMLElement[] = [];
+
+  constructor(private options: OopsyOptions, private scroller: HTMLElement) {
+    const container = this.scroller.children[0];
+    if (!container)
+      throw new UnreachableCode();
+    this.container = container;
+
     this.Reset();
     this.SetInCombat(false);
   }
 
-  SetInCombat(inCombat) {
+  SetInCombat(inCombat: boolean): void {
     if (this.inCombat === inCombat)
       return;
     this.inCombat = inCombat;
@@ -30,13 +42,13 @@ export class OopsyLiveList {
     }
   }
 
-  AddLine(iconClass, text, time) {
+  AddLine(iconClass: string, text: string, time: string): void {
     const maxItems = this.options.NumLiveListItemsInCombat;
 
     let rowDiv;
     if (this.numItems < this.items.length)
       rowDiv = this.items[this.numItems];
-    else
+    if (!rowDiv)
       rowDiv = this.MakeRow();
 
     this.numItems++;
@@ -57,7 +69,7 @@ export class OopsyLiveList {
     // Hide anything over the limit from the past.
     if (this.inCombat) {
       if (this.numItems > maxItems)
-        this.items[this.numItems - maxItems - 1].classList.add('hide');
+        this.items[this.numItems - maxItems - 1]?.classList.add('hide');
     }
 
     // Show and scroll to bottom.
@@ -65,14 +77,14 @@ export class OopsyLiveList {
     this.scroller.scrollTop = this.scroller.scrollHeight;
   }
 
-  MakeRow() {
+  MakeRow(): HTMLElement {
     const div = document.createElement('div');
     div.classList.add('mistake-row');
 
     // click-to-copy function
     div.addEventListener('click', () => {
-      const mistakeText = div.childNodes[1].textContent;
-      const mistakeTime = div.childNodes[2].textContent;
+      const mistakeText = div.childNodes[1]?.textContent ?? '';
+      const mistakeTime = div.childNodes[2]?.textContent;
       const str = mistakeTime ? `[${mistakeTime}] ${mistakeText}` : mistakeText;
       const el = document.createElement('textarea');
       el.value = str;
@@ -95,31 +107,31 @@ export class OopsyLiveList {
     return div;
   }
 
-  ShowAllItems() {
-    for (let i = 0; i < this.items.length; ++i)
-      this.items[i].classList.remove('hide');
+  ShowAllItems(): void {
+    for (const item of this.items)
+      item.classList.remove('hide');
 
     this.scroller.scrollTop = this.scroller.scrollHeight;
   }
 
-  HideOldItems() {
+  HideOldItems(): void {
     const maxItems = this.options.NumLiveListItemsInCombat;
     for (let i = 0; i < this.items.length - maxItems; ++i)
-      this.items[i].classList.add('hide');
+      this.items[i]?.classList.add('hide');
   }
 
-  Reset() {
+  Reset(): void {
     this.container.classList.add('hide');
     this.items = [];
     this.numItems = 0;
     this.container.innerHTML = '';
   }
 
-  StartNewACTCombat() {
+  StartNewACTCombat(): void {
     this.Reset();
   }
 
-  OnChangeZone(e) {
+  OnChangeZone(_e: EventResponses['ChangeZone']): void {
     this.Reset();
   }
 }

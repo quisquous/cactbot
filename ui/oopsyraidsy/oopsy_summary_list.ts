@@ -1,26 +1,28 @@
-export class OopsySummaryList {
-  constructor(options, container) {
-    this.options = options;
-    this.container = container;
-    this.container.classList.remove('hide');
+import { EventResponses } from '../../types/event';
 
-    this.pullIdx = 0;
-    this.zoneName = null;
-    this.currentDiv = null;
+import { OopsyOptions } from './oopsy_options';
+
+export class OopsySummaryList {
+  private pullIdx = 0;
+  private zoneName?: string;
+  private currentDiv: HTMLElement | null = null;
+
+  constructor(_options: OopsyOptions, private container: HTMLElement) {
+    this.container.classList.remove('hide');
   }
 
-  GetTimeStr(d) {
+  GetTimeStr(d: Date): string {
     // ISO-8601 or death.
-    const month = ('0' + (d.getMonth() + 1)).slice(-2);
-    const day = ('0' + d.getDate()).slice(-2);
-    const hours = ('00' + d.getHours()).slice(-2);
-    const minutes = ('00' + d.getMinutes()).slice(-2);
+    const month = `0${d.getMonth() + 1}`.slice(-2);
+    const day = `0${d.getDate()}`.slice(-2);
+    const hours = `00${d.getHours()}`.slice(-2);
+    const minutes = `00${d.getMinutes()}`.slice(-2);
     return `${d.getFullYear()}-${month}-${day} ${hours}:${minutes}`;
   }
 
-  StartNewSectionIfNeeded() {
+  StartNewSectionIfNeeded(): HTMLElement {
     if (this.currentDiv)
-      return;
+      return this.currentDiv;
 
     const section = document.createElement('div');
     section.classList.add('section');
@@ -50,18 +52,19 @@ export class OopsySummaryList {
     section.appendChild(rowContainer);
 
     this.currentDiv = rowContainer;
+    return this.currentDiv;
   }
 
-  EndSection() {
+  EndSection(): void {
     this.currentDiv = null;
   }
 
-  AddLine(iconClass, text, time) {
-    this.StartNewSectionIfNeeded();
+  AddLine(iconClass: string, text: string, time: string): void {
+    const currentSection = this.StartNewSectionIfNeeded();
 
     const rowDiv = document.createElement('div');
     rowDiv.classList.add('mistake-row');
-    this.currentDiv.appendChild(rowDiv);
+    currentSection.appendChild(rowDiv);
 
     // TODO: maybe combine this with OopsyLiveList.
     const iconDiv = document.createElement('div');
@@ -78,16 +81,16 @@ export class OopsySummaryList {
     rowDiv.appendChild(timeDiv);
   }
 
-  SetInCombat(inCombat) {
+  SetInCombat(_inCombat: boolean): void {
     // noop
   }
 
-  StartNewACTCombat() {
+  StartNewACTCombat(): void {
     this.EndSection();
     this.StartNewSectionIfNeeded();
   }
 
-  OnChangeZone(e) {
+  OnChangeZone(e: EventResponses['ChangeZone']): void {
     this.zoneName = e.zoneName;
   }
 }
