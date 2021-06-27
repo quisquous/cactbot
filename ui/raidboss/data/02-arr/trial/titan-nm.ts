@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavel,
   timelineFile: 'titan-nm.txt',
   timelineTriggers: [
@@ -18,6 +22,7 @@ export default {
   triggers: [
     {
       id: 'TitanNm Tumult',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
@@ -31,12 +36,13 @@ export default {
     {
       // Gaol callout for both yourself and others
       id: 'TitanNm Gaols',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '124' }),
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.breakGaolOn({ player: data.ShortName(matches.target) });
+          return output.breakGaolOn!({ player: data.ShortName(matches.target) });
 
-        return output.gaolOnYou();
+        return output.gaolOnYou!();
       },
       outputStrings: {
         breakGaolOn: {
@@ -139,3 +145,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
