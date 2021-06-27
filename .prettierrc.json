@@ -4,5 +4,16 @@
   "requirePragma": true,
   "quoteProps": "preserve",
   "trailingComma": "all",
-  "singleQuote": true
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": [
+        "**/oopsyraidsy/data/**/*",
+        "**/raidboss/data/**/*"
+      ],
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ]
 }

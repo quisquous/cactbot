@@ -1,3 +1,6 @@
+/**
+ * @prettier
+ */
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
 import Util from '../../../../resources/util';
@@ -19,26 +22,26 @@ export default {
     'alarmtext "Death" before 3',
     'alertall "Long Castbar" before 1 speak "voice" "long"',
     (data) => {
-      if (data.role !== 'tank' && data.role !== 'healer')
+      if (data.role !== 'tank' && data.role !== 'healer') {
         return 'hideall "Super Tankbuster"';
+      }
       return 'alarmtext "Super Tankbuster" before 2';
     },
     (data) => {
-      if (!data.role.startsWith('dps'))
+      if (!data.role.startsWith('dps')) {
         return 'hideall "Pentacle Sac (DPS)"';
+      }
     },
     (data) => {
-      if (data.role !== 'healer')
+      if (data.role !== 'healer') {
         return 'hideall "Almagest"';
+      }
       return 'alarmtext "Almagest" before 0';
     },
     (data) => {
       // <_<
       const shortName = data.me.indexOf(' ') >= 0 ? data.me.substring(0, data.me.indexOf(' ')) : data.me;
-      return [
-        '40 "Death To ' + shortName + '!!"',
-        'hideall "Death"',
-      ];
+      return ['40 "Death To ' + shortName + '!!"', 'hideall "Death"'];
     },
   ],
   timelineStyles: [
@@ -250,32 +253,33 @@ export default {
     {
       id: 'Test Watch',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
-      promise: (data) => Util.watchCombatant({
-        names: [
-          data.me,
-          strikingDummyNames[data.lang] || strikingDummyNames['en'],
-        ],
-        // 50 seconds
-        maxDuration: 50000,
-      },
-      (ret) => {
-        const me = ret.combatants.find((c) => c.Name === data.me);
-        const dummyName = strikingDummyNames[data.lang] || strikingDummyNames['en'];
-        const dummies = ret.combatants.filter((c) => c.Name === dummyName);
-        if (me && dummies) {
-          for (const dummy of dummies) {
-            const distX = Math.abs(me.PosX - dummy.PosX);
-            const distY = Math.abs(me.PosY - dummy.PosY);
-            const dist = Math.hypot(distX, distY);
-            console.log(`test watch: distX = ${distX}; distY = ${distY}; dist = ${dist}`);
-            if (dist < 5)
-              return true;
-          }
-          return false;
-        }
-        console.log(`test watch: me = ${me ? 'true' : 'false'}; ${dummy ? 'true' : 'false'}`);
-        return false;
-      }),
+      promise: (data) =>
+        Util.watchCombatant(
+          {
+            names: [data.me, strikingDummyNames[data.lang] || strikingDummyNames['en']],
+            // 50 seconds
+            maxDuration: 50000,
+          },
+          (ret) => {
+            const me = ret.combatants.find((c) => c.Name === data.me);
+            const dummyName = strikingDummyNames[data.lang] || strikingDummyNames['en'];
+            const dummies = ret.combatants.filter((c) => c.Name === dummyName);
+            if (me && dummies) {
+              for (const dummy of dummies) {
+                const distX = Math.abs(me.PosX - dummy.PosX);
+                const distY = Math.abs(me.PosY - dummy.PosY);
+                const dist = Math.hypot(distX, distY);
+                console.log(`test watch: distX = ${distX}; distY = ${distY}; dist = ${dist}`);
+                if (dist < 5) {
+                  return true;
+                }
+              }
+              return false;
+            }
+            console.log(`test watch: me = ${me ? 'true' : 'false'}; ${dummy ? 'true' : 'false'}`);
+            return false;
+          },
+        ),
       infoText: (_data, _matches, output) => output.close(),
       outputStrings: {
         close: {
