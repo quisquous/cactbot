@@ -132,7 +132,7 @@ export type RegexTrigger<Data extends RaidbossData> =
 
 export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None'> & {
   regex: RegExp;
-  beforeSeconds: number;
+  beforeSeconds?: number;
 };
 
 // Because timeline functions run during loading, they only support the base RaidbossData.
@@ -141,6 +141,8 @@ export type TimelineField = string | (string | TimelineFunc)[] | TimelineFunc | 
 
 export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, keyof RaidbossData>;
 
+export type DisabledTrigger = { id: string; disabled: true };
+
 export type TriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
@@ -148,8 +150,8 @@ export type TriggerSet<Data extends RaidbossData> = {
   overrideTimelineFile?: boolean;
   timelineFile?: string;
   timeline?: TimelineField;
-  triggers?: NetRegexTrigger<Data>[];
-  timelineTriggers?: TimelineTrigger<Data>[];
+  triggers?: (NetRegexTrigger<Data> | DisabledTrigger)[];
+  timelineTriggers?: (TimelineTrigger<Data> | DisabledTrigger)[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
   initData?: DataInitializeFunc<Data>;
