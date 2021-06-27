@@ -839,7 +839,7 @@ export class PopupText {
   OnLog(e: LogEvent): void {
     // This could conceivably be determined based on the line's contents as well, but
     // not sure if that's worth the effort
-    const currentTime = +new Date();
+    const currentTime = Date.now();
     for (const log of e.detail.logs) {
       if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
@@ -856,7 +856,7 @@ export class PopupText {
     const log = e.rawLine;
     // This could conceivably be determined based on `new Date(e.line[1])` as well, but
     // not sure if that's worth the effort
-    const currentTime = +new Date();
+    const currentTime = Date.now();
     for (const trigger of this.netTriggers) {
       const r = trigger.localNetRegex?.exec(log);
       if (r)

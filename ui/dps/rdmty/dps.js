@@ -600,7 +600,7 @@ function onOverlayDataUpdate(e) {
       }),
       container,
   );
-  // console.log('rendered in ' + (+new Date() - start) + 'ms');
+  // console.log('rendered in ' + (Date.now() - start) + 'ms');
 }
 
 function hideOverlay() {
