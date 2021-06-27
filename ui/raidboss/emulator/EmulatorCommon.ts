@@ -1,6 +1,6 @@
-import { LocaleNetRegex } from '../../../resources/translations';
-import NetRegexes from '../../../resources/netregexes';
 import { Lang } from '../../../resources/languages';
+import NetRegexes from '../../../resources/netregexes';
+import { LocaleNetRegex } from '../../../resources/translations';
 import { CactbotBaseRegExp, CactbotRegExpExecArray, TriggerTypes } from '../../../types/net_trigger';
 
 // Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.

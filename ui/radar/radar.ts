@@ -1,12 +1,12 @@
-import { BaseOptions } from '../../types/data';
-import { EventMap } from '../../types/event';
-import { Lang } from '../../resources/languages';
-
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
+import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
+import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
+import { BaseOptions } from '../../types/data';
+import { EventMap } from '../../types/event';
+import { NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import arrowImage from './arrow.png';
@@ -15,7 +15,6 @@ import './radar_config';
 
 import '../../resources/defaults.css';
 import './radar.css';
-import { NetMatches } from '../../types/net_matches';
 
 type RadarType = 'mob' | 'any';
 

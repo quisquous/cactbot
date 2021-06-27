@@ -1,8 +1,8 @@
 00-misc/general.js
-00-misc/test.js
+00-misc/test.ts
 00-misc/test.txt
-02-arr/dungeon/brayfloxs_longstop.js
-02-arr/dungeon/haukke_manor.js
+02-arr/dungeon/brayfloxs_longstop.ts
+02-arr/dungeon/haukke_manor.ts
 02-arr/raid/t1.ts
 02-arr/raid/t10.ts
 02-arr/raid/t10.txt
@@ -15,7 +15,7 @@
 02-arr/raid/t2.ts
 02-arr/raid/t4.ts
 02-arr/raid/t4.txt
-02-arr/raid/t5.js
+02-arr/raid/t5.ts
 02-arr/raid/t5.txt
 02-arr/raid/t6.js
 02-arr/raid/t6.txt

@@ -130,7 +130,7 @@ const kDirectoryToCategory = {
     fr: 'Missions d\'exploration',
     ja: '特殊フィールド探索',
     cn: '特殊场景探索',
-    ko: '특수 필드 탐색',
+    ko: '특수 필드 임무',
   },
   raid: {
     en: 'Raid',

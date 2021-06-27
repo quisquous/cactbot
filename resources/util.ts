@@ -1,5 +1,6 @@
 import { GetCombatantsCall, GetCombatantsRet } from '../types/event';
 import { Job, Role } from '../types/job';
+
 import { callOverlayHandler } from './overlay_plugin_api';
 
 // TODO: it'd be nice to not repeat job names, but at least Record enforces that all are set.
@@ -88,7 +89,7 @@ type WatchCombatantParams = {
 };
 
 type WatchCombatantFunc = (params: WatchCombatantParams,
-  func: (ret: GetCombatantsRet) => boolean) => Promise<boolean>;
+  func: (ret: GetCombatantsRet) => boolean) => Promise<void>;
 
 type WatchCombatantMapEntry = {
   cancel: boolean;
@@ -107,7 +108,7 @@ const shouldCancelWatch =
   };
 
 const watchCombatant: WatchCombatantFunc = (params, func) => {
-  return new Promise<boolean>((res, rej) => {
+  return new Promise<void>((res, rej) => {
     const delay = params.delay ?? 1000;
 
     const call: GetCombatantsCall = {
@@ -141,7 +142,7 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
           return;
         }
         if (func(response))
-          res(true);
+          res();
         else
           window.setTimeout(checkFunc, delay);
       });

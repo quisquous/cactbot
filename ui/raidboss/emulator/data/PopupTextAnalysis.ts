@@ -1,14 +1,15 @@
-import EmulatorCommon, { DataType } from '../EmulatorCommon';
-import StubbedPopupText from '../overrides/StubbedPopupText';
-import LineEvent from './network_log_converter/LineEvent';
-import { LooseTrigger } from '../../../../types/trigger';
-import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
-import { EventResponses, LogEvent } from '../../../../types/event';
 import { UnreachableCode } from '../../../../resources/not_reached';
+import { EventResponses, LogEvent } from '../../../../types/event';
 import { Matches } from '../../../../types/net_matches';
+import { LooseTrigger } from '../../../../types/trigger';
 import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
+import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
 import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineLoader } from '../../timeline';
+import EmulatorCommon, { DataType } from '../EmulatorCommon';
+import StubbedPopupText from '../overrides/StubbedPopupText';
+
+import LineEvent from './network_log_converter/LineEvent';
 
 type ResolverFunc = () => void;
 
@@ -84,9 +85,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   triggerResolvers: Resolver[] = [];
   currentResolver?: Resolver;
   public callback?: (log: LineEvent,
-      triggerHelper: EmulatorTriggerHelper | undefined,
-      currentTriggerStatus: ResolverStatus,
-      finalData: DataType) => void;
+    triggerHelper: EmulatorTriggerHelper | undefined,
+    currentTriggerStatus: ResolverStatus,
+    finalData: DataType) => void;
 
   constructor(
       options: RaidbossOptions,
@@ -259,14 +260,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     if (triggerHelper.resolver) {
       // If we already have text and this is a default alert sound, don't override that info
       if (triggerHelper.resolver.status.responseType) {
-        if (triggerHelper.resolver.status.responseType === 'info' &&
-            url === this.options.InfoSound)
-          return;
-        if (triggerHelper.resolver.status.responseType === 'alert' &&
-            url === this.options.AlertSound)
-          return;
-        if (triggerHelper.resolver.status.responseType === 'alarm' &&
-            url === this.options.AlarmSound)
+        if (
+          ['info', 'alert', 'alarm'].includes(triggerHelper.resolver.status.responseType) &&
+          [this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound].includes(url))
           return;
       }
       triggerHelper.resolver.status.responseType = 'audiofile';

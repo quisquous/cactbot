@@ -1,9 +1,8 @@
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   landmines: { [playerName: string]: boolean };
@@ -56,16 +55,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
       netRegexKo: NetRegexes.ability({ id: '7D1', source: '알라그 지뢰' }),
       infoText: (data, matches, output) => {
-        if (matches.target && matches.target in data.landmines)
+        if (matches.target in data.landmines)
           return;
         const num = Object.keys(data.landmines).length + 1;
-        return output.landmine!({ num: `${num}` });
+        return output.landmine!({ num: num });
       },
       tts: (data, matches, output) => {
-        if (matches.target && matches.target in data.landmines)
+        if (matches.target in data.landmines)
           return;
         const num = Object.keys(data.landmines).length + 1;
-        return output.landmineTTS!({ num: `${num}` });
+        return output.landmineTTS!({ num: num });
       },
       run: (data, matches) => {
         if (matches.target)

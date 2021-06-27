@@ -1,9 +1,9 @@
+import PartyTracker from '../../../../resources/party';
+import { RaidbossData } from '../../../../types/data';
+import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
+import { PopupText } from '../../popup-text';
 import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineLoader } from '../../timeline';
-import { PopupText } from '../../popup-text';
-import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
-import { RaidbossData } from '../../../../types/data';
-import PartyTracker from '../../../../resources/party';
 
 export default class StubbedPopupText extends PopupText {
   constructor(

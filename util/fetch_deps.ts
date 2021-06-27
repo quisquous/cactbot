@@ -1,16 +1,17 @@
 // execute this script with `npm run fetch-deps`
+import crypto from 'crypto';
 import { createReadStream } from 'fs';
 import fs from 'fs/promises';
 import path from 'path';
-import crypto from 'crypto';
 
-import _ from 'lodash';
-import tar from 'tar-fs';
 import chalk from 'chalk';
-import JSZip from 'jszip';
 import json5 from 'json5';
+import JSZip from 'jszip';
+import _ from 'lodash';
 import fetch from 'node-fetch';
 import ProxyAgent from 'proxy-agent';
+import tar from 'tar-fs';
+
 import { UnreachableCode } from '../resources/not_reached';
 
 type Meta = {
