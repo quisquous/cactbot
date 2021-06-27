@@ -17,7 +17,6 @@ import { setup as setupSmn, reset as resetSmn } from './smn';
 import { setup as setupRdm, reset as resetRdm } from './rdm';
 import { setup as setupBlu, reset as resetBlu } from './blu';
 
-
 export function getSetup(job) {
   return {
     'PLD': setupPld,

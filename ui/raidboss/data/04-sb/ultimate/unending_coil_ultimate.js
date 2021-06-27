@@ -947,7 +947,7 @@ export default {
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7
-        const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        const dir = Math.round(4 - (4 * Math.atan2(x, y)) / Math.PI) % 8;
 
         // naelDragons[direction 0-7 (N-NW)] => boolean
         data.naelDragons = data.naelDragons || [0, 0, 0, 0, 0, 0, 0, 0];
@@ -1306,7 +1306,7 @@ export default {
       id: 'UCU Megaflare Tower',
       netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
       infoText: (data, _matches, output) => {
-        if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
+        if ((data.trio !== 'blackfire' && data.trio !== 'octet') || data.megaStack.length !== 4)
           return;
 
         if (data.megaStack.includes(data.me))
@@ -1321,7 +1321,7 @@ export default {
         return output.octetTower();
       },
       tts: (data, _matches, output) => {
-        if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
+        if ((data.trio !== 'blackfire' && data.trio !== 'octet') || data.megaStack.length !== 4)
           return;
 
         if (!data.megaStack.includes(data.me))
@@ -1368,7 +1368,7 @@ export default {
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
+        if ((data.trio !== 'blackfire' && data.trio !== 'octet') || data.megaStack.length !== 4)
           return;
         if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
           return;
@@ -1633,6 +1633,7 @@ export default {
               dragons.push(i);
           }
 
+
           if (dragons.length !== 5)
             return ret;
 
@@ -1775,10 +1776,10 @@ export default {
         'Morn Afah': 'Morn Afah',
         'Nael Marker': 'Nael Marker',
         'Pepperoni': 'Salami',
-        'Plummet(?!\/)': 'Herabstürzen',
+        'Plummet(?!/)': 'Herabstürzen',
         'Quickmarch Trio': 'Todesmarsch-Trio',
         'Random Combo Attack': 'Zufälliger Komboangriff',
-        '(?<!\/)Ravensbeak': 'Bradamante',
+        '(?<!/)Ravensbeak': 'Bradamante',
         'Seventh Umbral Era': 'Siebte Ära des Schattens',
         'Spread': 'Verteilen',
         'Stack': 'Sammeln',
@@ -1853,10 +1854,10 @@ export default {
         'Morn Afah': 'Morn Afah',
         'Nael Marker': 'Marqueur de Nael',
         'Pepperoni': 'Zones au sol',
-        'Plummet(?!\/)': 'Piqué',
+        'Plummet(?!/)': 'Piqué',
         'Quickmarch Trio': 'Trio de la marche militaire',
         'Random Combo Attack': 'Attaque combo aléatoire',
-        '(?<!\/)Ravensbeak': 'Bec du rapace',
+        '(?<!/)Ravensbeak': 'Bec du rapace',
         'Seventh Umbral Era': '7e fléau',
         'Spread': 'Se disperser',
         'Stack': 'Se rassembler',
@@ -1930,10 +1931,10 @@ export default {
         'Morn Afah': 'モーン・アファー',
         'Nael Marker': 'ネール マーク',
         'Pepperoni': '輪',
-        'Plummet(?!\/)': 'プラメット',
+        'Plummet(?!/)': 'プラメット',
         'Quickmarch Trio': '進軍の三重奏',
         'Random Combo Attack': 'ランダムコンボ',
-        '(?<!\/)Ravensbeak': 'レイヴェンズビーク',
+        '(?<!/)Ravensbeak': 'レイヴェンズビーク',
         'Seventh Umbral Era': '第七霊災',
         'Spread': '散開',
         'Stack': '集合',
@@ -2021,10 +2022,10 @@ export default {
         'Morn Afah': '无尽顿悟',
         'Nael Marker': '奈尔标记',
         'Pepperoni': '大圈',
-        'Plummet(?!\/)': '垂直下落',
+        'Plummet(?!/)': '垂直下落',
         'Quickmarch Trio': '进军的三重奏',
         'Random Combo Attack': '随机连招',
-        '(?<!\/)Ravensbeak': '凶鸟尖喙',
+        '(?<!/)Ravensbeak': '凶鸟尖喙',
         'Seventh Umbral Era': '第七灵灾',
         'Spread': '分散',
         'Stack': '集合',
@@ -2099,10 +2100,10 @@ export default {
         'Morn Afah': '몬 아파',
         'Nael Marker': '넬 징',
         'Pepperoni': '메가플레어 장판',
-        'Plummet(?!\/)': '곤두박질',
+        'Plummet(?!/)': '곤두박질',
         'Quickmarch Trio': '진군의 3중주',
         'Random Combo Attack': '랜덤 콤보 공격',
-        '(?<!\/)Ravensbeak': '흉조의 부리',
+        '(?<!/)Ravensbeak': '흉조의 부리',
         'Seventh Umbral Era': '제7재해',
         'Spread': '산개',
         'Stack': '모이기',

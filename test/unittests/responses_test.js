@@ -1,4 +1,9 @@
-import { Responses, severityMap, triggerFunctions, builtInResponseStr } from '../../resources/responses';
+import {
+  Responses,
+  severityMap,
+  triggerFunctions,
+  builtInResponseStr,
+} from '../../resources/responses';
 import chai from 'chai';
 const { assert } = chai;
 // test_trigger.js will validate the field names, so no need to do that here.
@@ -51,12 +56,7 @@ describe('response tests', () => {
   });
   it('responses with a double explicit severities are valid', () => {
     // TODO: we could figure out which has multiple parameters programmatically.
-    const doubleFuncs = [
-      'tankBuster',
-      'tankBusterSwap',
-      'knockbackOn',
-      'preyOn',
-    ];
+    const doubleFuncs = ['tankBuster', 'tankBusterSwap', 'knockbackOn', 'preyOn'];
 
     for (let i = 0; i < doubleFuncs.length; ++i) {
       for (const sev1 in severityMap) {

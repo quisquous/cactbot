@@ -3,8 +3,7 @@ import ZoneId from '../../../../../resources/zone_id';
 export default {
   zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',
-  triggers: [
-  ],
+  triggers: [],
   timelineReplace: [
     {
       'locale': 'de',

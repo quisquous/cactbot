@@ -579,7 +579,7 @@ export default {
     {
       id: 'WOLEx Katon: San',
       netRegex: NetRegexes.headMarker({ id: '00A1', capture: false }),
-      condition: (data) => data.ultimateSeen && data.ninja || data.isAddPhase,
+      condition: (data) => (data.ultimateSeen && data.ninja) || data.isAddPhase,
       suppressSeconds: 2,
       response: Responses.stackMarker(),
     },

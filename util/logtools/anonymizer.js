@@ -16,7 +16,7 @@ export default class Anonymizer {
     // uppercase hex real player id -> uppercase hex fake player id
     this.anonMap = {};
 
-    this.lastPlayerIdx = 0x10FF0000;
+    this.lastPlayerIdx = 0x10ff0000;
 
     // About 20% of any log is hashes, so just clear instead of faking.
     this.fakeHash = '';
@@ -81,7 +81,6 @@ export default class Anonymizer {
     // Drop any lines that can't be handled.
     if (!canAnonymizeSubField && !type.canAnonymize)
       return;
-
 
     // If nothing to anonymize, we're done.
     if (!type.playerIds)
@@ -151,6 +150,7 @@ export default class Anonymizer {
       for (let idx = type.firstUnknownField; idx < splitLine.length - 1; ++idx)
         splitLine[idx] = '';
     }
+
 
     return splitLine.join('|');
   }

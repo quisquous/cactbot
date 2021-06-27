@@ -249,7 +249,6 @@ export default {
         if (data.role === 'healer')
           return output.text();
 
-
         // Note: this doesn't cleave, so don't say anything about avoiding it.
       },
       run: (data) => delete data.busterTargets,
@@ -371,14 +370,16 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
       preRun: (data, matches) => {
         data.swipe = data.swipe || [];
-        data.swipe.push({
-          '4FAC': 'right',
-          '4FAD': 'left',
-          '550D': 'right',
-          '550E': 'left',
-          '550F': 'right',
-          '5510': 'left',
-        }[matches.id]);
+        data.swipe.push(
+            {
+              '4FAC': 'right',
+              '4FAD': 'left',
+              '550D': 'right',
+              '550E': 'left',
+              '550F': 'right',
+              '5510': 'left',
+            }[matches.id],
+        );
       },
       durationSeconds: 6,
       alertText: (data, _matches, output) => {
@@ -691,7 +692,6 @@ export default {
 
         if (data.role === 'healer')
           return output.text();
-
 
         // Note: do not call out "avoid tank" here because there's a lot of markers going out.
       },

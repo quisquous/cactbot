@@ -148,8 +148,8 @@ class PullCounter {
     this.bosses = [];
 
     this.resetRegex = Regexes.echo({ line: '.*pullcounter reset.*?' });
-    this.countdownEngageRegex = LocaleRegex.countdownEngage[this.options.ParserLanguage] ||
-      LocaleRegex.countdownEngage['en'];
+    this.countdownEngageRegex =
+      LocaleRegex.countdownEngage[this.options.ParserLanguage] || LocaleRegex.countdownEngage['en'];
 
     callOverlayHandler({
       call: 'cactbotLoadData',
@@ -215,11 +215,14 @@ class PullCounter {
     // TODO: add some backwards compatible way to turn zone names into
     // zone ids when we load that zone and a pull count exists?
     // Proper-case zone names to match ACT.
-    this.zoneName = this.zoneName.split(' ').map((word) => {
-      if (!word || word.length === 0)
-        return '';
-      return word[0].toUpperCase() + word.substr(1);
-    }).join(' ');
+    this.zoneName = this.zoneName
+      .split(' ')
+      .map((word) => {
+        if (!word || word.length === 0)
+          return '';
+        return word[0].toUpperCase() + word.substr(1);
+      })
+      .join(' ');
 
     this.ReloadTriggers();
   }

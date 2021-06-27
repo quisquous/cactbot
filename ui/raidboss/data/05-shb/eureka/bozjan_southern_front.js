@@ -139,10 +139,7 @@ export default {
       // that we can do here, like in BA.
       const regex = Regexes.ability({ id: '51FD', target: data.me });
       const line = `20036.9 "--helldiver--" sync /${regex.source}/ window 100,100 jump 30036.9`;
-      return [
-        'hideall "--helldiver--"',
-        line,
-      ];
+      return ['hideall "--helldiver--"', line];
     },
   ],
   timelineTriggers: [
@@ -500,7 +497,9 @@ export default {
       infoText: (data, _matches, output) => {
         // Let your actor id memes be dreams!
         // Orbs go off from highest actor id to lowest actor id, in pairs of two.
-        const sortedOrbs = Object.keys(data.orbs || {}).sort().reverse();
+        const sortedOrbs = Object.keys(data.orbs || {})
+          .sort()
+          .reverse();
         const orbIdToNameId = data.orbs;
         delete data.orbs;
 
@@ -520,15 +519,19 @@ export default {
             data.orbOutput = [data.orbOutput[0]];
         }
 
+
         // Special case, fire + earth = stop far outside.
         if (data.orbOutput.length >= 2) {
           if (data.orbOutput[0] === 'stop' && data.orbOutput[1] === 'rings')
             data.orbOutput[0] = 'stopOutside';
         }
+
+
         if (data.orbOutput.length === 4) {
           if (data.orbOutput[2] === 'stop' && data.orbOutput[3] === 'rings')
             data.orbOutput[2] = 'stopOutside';
         }
+
 
         // Don't bother outputting a single one, as it'll come up shortly.
         // This could get confusing saying "knockback" far enough ahead

@@ -55,17 +55,14 @@ export default {
 
         // if we could not retrieve combatant data, the
         // trigger will not work, so just resume promise here.
-        if (!(combatantData !== null &&
-          combatantData.combatants &&
-          combatantData.combatants.length)) {
+        if (!(combatantData !== null && combatantData.combatants && combatantData.combatants.length)) {
           data.safeZone = null;
           return;
         }
 
         // we need to filter for the Ifrit with the highest ID
         // since that one is always the safe spot.
-        const currentHighestCombatant =
-          combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
+        const currentHighestCombatant = combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
 
         // all variation ranges for all the 9 ball positions for the kicking actors
         // north      x: 96-104   y: 85-93
@@ -86,12 +83,10 @@ export default {
         else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116)
           safeZone1 = output.south();
 
-
         if (currentHighestCombatant.PosX > 84 && currentHighestCombatant.PosX < 94)
           safeZone2 = output.west();
         else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116)
           safeZone2 = output.east();
-
 
         if (safeZone1 && safeZone2)
           data.safeZone = output.twoDirs({ dir1: safeZone1, dir2: safeZone2 });

@@ -11,7 +11,10 @@ const testManifestFile = (file) => {
   before(async () => {
     const contents = fs.readFileSync(file) + '';
     // Split into lines, skipping any blank lines and trimming whitespace.
-    manifestLines = contents.split('\n').filter((x) => !/^\s*$/.test(x)).map((x) => x.trim());
+    manifestLines = contents
+      .split('\n')
+      .filter((x) => !/^\s*$/.test(x))
+      .map((x) => x.trim());
 
     const basePath = path.dirname(file);
     walkDirSync(basePath, (filePath) => {
@@ -22,16 +25,15 @@ const testManifestFile = (file) => {
     });
   });
 
-  const ignorePathRegexes = [
-    /(?:^|\/)\w*_manifest\.txt$/,
-    /(?:^|\/)readme\.\w*$/i,
-  ];
+  const ignorePathRegexes = [/(?:^|\/)\w*_manifest\.txt$/, /(?:^|\/)readme\.\w*$/i];
 
   const shouldIgnoreFile = (file) => {
     for (const regex of ignorePathRegexes) {
       if (regex.test(file))
         return true;
     }
+
+
     return false;
   };
 

@@ -9,10 +9,13 @@ import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { Bars } from './bar';
 import { kMeleeWithMpJobs, kLevelMod } from './constants';
 
-const getLocaleRegex = (locale: string, regexes: {
-  'en': RegExp;
-  [x: string]: RegExp;
-}): RegExp => regexes[locale] ?? regexes['en'];
+const getLocaleRegex = (
+    locale: string,
+    regexes: {
+      'en': RegExp;
+      [x: string]: RegExp;
+    },
+): RegExp => regexes[locale] ?? regexes['en'];
 
 export class RegexesHolder {
   StatsRegex: CactbotBaseRegExp<'PlayerStats'>;
@@ -57,14 +60,12 @@ export class RegexesHolder {
     const getCurrentRegex = getLocaleRegex.bind(this, lang);
     this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
     this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
-    this.craftingStartRegexes = [
-      LocaleRegex.craftingStart,
-      LocaleRegex.trialCraftingStart,
-    ].map(getCurrentRegex);
-    this.craftingFinishRegexes = [
-      LocaleRegex.craftingFinish,
-      LocaleRegex.trialCraftingFinish,
-    ].map(getCurrentRegex);
+    this.craftingStartRegexes = [LocaleRegex.craftingStart, LocaleRegex.trialCraftingStart].map(
+        getCurrentRegex,
+    );
+    this.craftingFinishRegexes = [LocaleRegex.craftingFinish, LocaleRegex.trialCraftingFinish].map(
+        getCurrentRegex,
+    );
     this.craftingStopRegexes = [
       LocaleRegex.craftingFail,
       LocaleRegex.craftingCancel,
@@ -82,7 +83,6 @@ export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): n
   // If stats haven't been updated, use a reasonable default value.
   if (stat === 0)
     return actionDelay / 1000;
-
 
   let type1Buffs = 0;
   let type2Buffs = 0;
@@ -126,10 +126,11 @@ export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): n
   const mod = kLevelMod[bars.level];
   if (!mod)
     throw new UnreachableCode();
-  const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - mod[0]) / mod[1])) * actionDelay / 1000;
+  const gcdMs =
+    (Math.floor(1000 - Math.floor((130 * (stat - mod[0])) / mod[1])) * actionDelay) / 1000;
   const a = (100 - type1Buffs) / 100;
   const b = (100 - type2Buffs) / 100;
-  const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
+  const gcdC = Math.floor((Math.floor((a * b * gcdMs) / 10) * astralUmbralMod) / 100);
   return gcdC / 100;
 };
 

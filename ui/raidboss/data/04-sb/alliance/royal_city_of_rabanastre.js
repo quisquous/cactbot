@@ -41,7 +41,7 @@ export default {
       },
       infoText: (data, _matches, output) => {
         if (data.breathless >= 7)
-          return output.breathless({ num: (data.breathless + 1) });
+          return output.breathless({ num: data.breathless + 1 });
       },
       tts: (data, _matches, output) => {
         if (data.breathless === 6)
@@ -113,7 +113,6 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '25D7', source: '统治者哈修马利姆' }),
       netRegexKo: NetRegexes.startsUsing({ id: '25D7', source: '통제자 하쉬말림' }),
       response: Responses.tankCleave(),
-
     },
     {
       id: 'Rab Hashmal Earth Hammer',

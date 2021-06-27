@@ -18,8 +18,10 @@ describe('resource tests', () => {
     let prevValue = '';
     for (let idx = 0; idx < contentList.length; ++idx) {
       const zoneValue = contentList[idx];
-      assert(zoneValue in zoneValueToId,
-          `Bad ZoneId in content_list.ts, idx: ${idx}, prev: ${prevValue}`);
+      assert(
+          zoneValue in zoneValueToId,
+          `Bad ZoneId in content_list.ts, idx: ${idx}, prev: ${prevValue}`,
+      );
       prevValue = zoneValue in zoneValueToId ? zoneValueToId[zoneValue] : '';
     }
   });
@@ -29,16 +31,20 @@ describe('resource tests', () => {
       // MatchAll is the one synthetic zone id, so does not count here.
       if (zoneValue === ZoneId.MatchAll)
         continue;
-      assert(zoneValue in ZoneInfo,
-          `Missing ZoneInfo for content_list.ts, idx: ${idx}, id: ${zoneValueToId[zoneValue]}`);
+      assert(
+          zoneValue in ZoneInfo,
+          `Missing ZoneInfo for content_list.ts, idx: ${idx}, id: ${zoneValueToId[zoneValue]}`,
+      );
     }
   });
   it('content list is unique', () => {
     const seenZoneValues = new Set();
     for (let idx = 0; idx < contentList.length; ++idx) {
       const zoneValue = contentList[idx];
-      assert(!seenZoneValues.has(zoneValue),
-          `Duplicate ZoneId in content_list.ts, idx: ${idx}, id: ${zoneValueToId[zoneValue]}`);
+      assert(
+          !seenZoneValues.has(zoneValue),
+          `Duplicate ZoneId in content_list.ts, idx: ${idx}, id: ${zoneValueToId[zoneValue]}`,
+      );
       seenZoneValues.add(zoneValue);
     }
   });

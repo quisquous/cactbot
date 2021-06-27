@@ -55,11 +55,7 @@ export function setup(bars) {
     }
   });
 
-  bars.onUseAbility([
-    kAbility.Bio,
-    kAbility.Bio2,
-    kAbility.Biolysis,
-  ], () => {
+  bars.onUseAbility([kAbility.Bio, kAbility.Bio2, kAbility.Biolysis], () => {
     bioBox.duration = 30;
   });
 

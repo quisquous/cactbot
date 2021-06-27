@@ -33,9 +33,9 @@ const getWeatherChanceValue = (timeMs: number) => {
   const totalDays = (unix / 4200) >>> 0;
 
   // The following math all needs to be done as unsigned integers.
-  const calcBase = ((totalDays * 0x64) + increment) >>> 0;
+  const calcBase = (totalDays * 0x64 + increment) >>> 0;
 
-  const step1 = ((calcBase << 0xB) ^ calcBase) >>> 0;
+  const step1 = ((calcBase << 0xb) ^ calcBase) >>> 0;
   const step2 = ((step1 >>> 8) ^ step1) >>> 0;
 
   return step2 % 0x64;
@@ -46,8 +46,12 @@ const floorTimeToStartOfWeather = (timeMs: number) => {
   return Math.floor(timeMs / eightHours) * eightHours;
 };
 
-export const findNextWeather = (timeMs: number, zoneId: number, searchWeather: string,
-    maxTimeMs?: number): number | undefined => {
+export const findNextWeather = (
+    timeMs: number,
+    zoneId: number,
+    searchWeather: string,
+    maxTimeMs?: number,
+): number | undefined => {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
@@ -58,8 +62,12 @@ export const findNextWeather = (timeMs: number, zoneId: number, searchWeather: s
   return undefined;
 };
 
-export const findNextWeatherNot = (timeMs: number, zoneId: number, searchWeather: string,
-    maxTimeMs?: number): number | undefined => {
+export const findNextWeatherNot = (
+    timeMs: number,
+    zoneId: number,
+    searchWeather: string,
+    maxTimeMs?: number,
+): number | undefined => {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {

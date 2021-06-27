@@ -56,6 +56,7 @@ const findDragonMarks = function(array) {
       dragons.push(i);
   }
 
+
   if (dragons.length !== 5)
     return ret;
 
@@ -128,7 +129,6 @@ const findDragonMarks = function(array) {
 
 // End copy and paste
 
-
 // Test functions
 
 function testModDistance() {
@@ -151,6 +151,8 @@ function testBadSpots() {
       if (a[i] !== b[i])
         return false;
     }
+
+
     return true;
   };
 
@@ -181,6 +183,8 @@ function testFindDragonMarks(array, output) {
     if (array[i])
       dragons.push(i);
   }
+
+
   console.assert(dragons.length === 5);
 
   const dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];

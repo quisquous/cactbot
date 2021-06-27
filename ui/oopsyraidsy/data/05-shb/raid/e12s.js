@@ -83,7 +83,7 @@ export default {
 
           // decOffset is 0-7, so map 0-3 to 1-4 and 4-7 to 1-4.
           data.laserNameToNum = data.laserNameToNum || {};
-          data.laserNameToNum[matches.target] = decOffset % 4 + 1;
+          data.laserNameToNum[matches.target] = (decOffset % 4) + 1;
         }
       },
     },

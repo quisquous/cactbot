@@ -170,7 +170,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Flamethrowers',
-      netRegex: NetRegexes.message({ line: 'The wall-mounted flamethrowers activate\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The wall-mounted flamethrowers activate..*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die wandmontierten Flammenwerfer sind aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Les lance-flammes muraux s\'activent!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '壁面の火炎放射器が稼働を始めた……！.*?', capture: false }),
@@ -815,7 +815,7 @@ export default {
         'Warehouse B': 'Warenlager B',
         'Warehouse C': 'Warenlager C',
         'The wall-mounted right arm begins to move': 'Der wandmontierte rechte Arm ist aktiv!',
-        'The wall-mounted flamethrowers activate\.': 'Die wandmontierten Flammenwerfer sind aktiv!',
+        'The wall-mounted flamethrowers activate.': 'Die wandmontierten Flammenwerfer sind aktiv!',
         'The wall-mounted left arm begins to move': 'Der wandmontierte linke Arm ist aktiv!',
         'You hear frenzied movement from machines beneath': 'Die Maschinenwesen zu deinen Füßen bewegen sich!',
         'The conveyer belts whirr to life!': 'Die Fließbänder sind aktiv!',

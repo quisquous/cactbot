@@ -20,10 +20,7 @@ const defaultOptions = {
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
-  IgnoreContentTypes: [
-    ContentType.Pvp,
-    ContentType.Eureka,
-  ],
+  IgnoreContentTypes: [ContentType.Pvp, ContentType.Eureka],
   IgnoreZoneIds: [
     // Bozja zones have an (unnamed) content type of 29 which also applies
     // to Delubrum Reginae (which we want oopsy on).  So, ignore by zone.
@@ -327,6 +324,7 @@ class OopsyLiveList {
         this.items[this.numItems - maxItems - 1].classList.add('hide');
     }
 
+
     // Show and scroll to bottom.
     this.container.classList.remove('hide');
     this.scroller.scrollTop = this.scroller.scrollHeight;
@@ -582,7 +580,7 @@ class MistakeCollector {
       this.StartCombat();
       return;
     }
-    const seconds = ((Date.now() - this.startTime) / 1000);
+    const seconds = (Date.now() - this.startTime) / 1000;
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
       const text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
       if (IsTriggerEnabled(this.options, kEarlyPullId))
@@ -600,7 +598,7 @@ class MistakeCollector {
         this.firstPuller = '???';
 
       this.StartCombat();
-      const seconds = ((Date.now() - this.engageTime) / 1000);
+      const seconds = (Date.now() - this.engageTime) / 1000;
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
         const text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
         if (IsTriggerEnabled(this.options, kEarlyPullId))
@@ -708,12 +706,12 @@ class DamageTracker {
     });
 
     const lang = this.options.ParserLanguage;
-    this.countdownEngageRegex = LocaleNetRegex.countdownEngage[lang] ||
-      LocaleNetRegex.countdownEngage['en'];
-    this.countdownStartRegex = LocaleNetRegex.countdownStart[lang] ||
-      LocaleNetRegex.countdownStart['en'];
-    this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang] ||
-      LocaleNetRegex.countdownCancel['en'];
+    this.countdownEngageRegex =
+      LocaleNetRegex.countdownEngage[lang] || LocaleNetRegex.countdownEngage['en'];
+    this.countdownStartRegex =
+      LocaleNetRegex.countdownStart[lang] || LocaleNetRegex.countdownStart['en'];
+    this.countdownCancelRegex =
+      LocaleNetRegex.countdownCancel[lang] || LocaleNetRegex.countdownCancel['en'];
     this.defeatedRegex = NetRegexes.wasDefeated();
     this.abilityFullRegex = NetRegexes.abilityFull();
 
@@ -964,11 +962,13 @@ class DamageTracker {
         return;
     }
 
+
     const ValueOrFunction = (f, events, matches) => {
-      return (typeof f === 'function') ? f(events, this.data, matches) : f;
+      return typeof f === 'function' ? f(events, this.data, matches) : f;
     };
 
-    const collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
+    const collectSeconds =
+      'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
     const collectMultipleEvents = 'collectSeconds' in trigger;
     if (collectMultipleEvents && trigger.id in this.activeTriggers) {
       this.activeTriggers[trigger.id].events.push(evt);
@@ -983,9 +983,9 @@ class DamageTracker {
 
     const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
     if (trigger.id && suppress > 0)
-      this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
+      this.triggerSuppress[trigger.id] = triggerTime + suppress * 1000;
 
-    const f = (function() {
+    const f = function() {
       let eventParam = evt;
       let matchesParam = matches;
       if (collectMultipleEvents) {
@@ -1012,7 +1012,7 @@ class DamageTracker {
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, eventParam, matchesParam);
-    }).bind(this);
+    }.bind(this);
 
     // Even if delay = 0, if collectMultipleEvents is specified,
     // then set this here so that events can be passed as an array for consistency.
@@ -1130,14 +1130,19 @@ class DamageTracker {
     this.healTriggers = [];
     this.netTriggers = [];
 
-    this.ignoreZone = this.options.IgnoreContentTypes.includes(this.contentType) ||
+    this.ignoreZone =
+      this.options.IgnoreContentTypes.includes(this.contentType) ||
       this.options.IgnoreZoneIds.includes(this.zoneId);
     if (this.ignoreZone)
       return;
 
     for (const set of this.triggerSets) {
       if ('zoneId' in set) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
+        if (
+          set.zoneId !== ZoneId.MatchAll &&
+          set.zoneId !== this.zoneId &&
+          !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId))
+        )
           continue;
       } else if ('zoneRegex' in set) {
         const zoneError = (s) => {
@@ -1247,7 +1252,7 @@ class DamageTracker {
       }
       const hasZoneRegex = 'zoneRegex' in json;
       const hasZoneId = 'zoneId' in json;
-      if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
+      if ((!hasZoneRegex && !hasZoneId) || (hasZoneRegex && hasZoneId)) {
         console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
         continue;
       }

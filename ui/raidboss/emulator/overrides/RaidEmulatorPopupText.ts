@@ -22,7 +22,6 @@ type ScheduledTrigger = {
   rejecter: ScheduledFunc;
 };
 
-
 export default class RaidEmulatorPopupText extends StubbedPopupText {
   $popupTextContainerWrapper: HTMLElement;
   emulatedOffset: number;
@@ -33,9 +32,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   $textElementTemplate: HTMLElement;
   audioDebugTextDuration: number;
 
-  constructor(options: RaidbossOptions,
+  constructor(
+      options: RaidbossOptions,
       timelineLoader: TimelineLoader,
-      raidbossFileData: RaidbossFileData) {
+      raidbossFileData: RaidbossFileData,
+  ) {
     super(options, timelineLoader, raidbossFileData);
     const popupElem = document.querySelector('.popup-text-container-outer');
     if (!(popupElem instanceof HTMLElement))
@@ -51,7 +52,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
 
     const templateElement = document.querySelector('template.textElement');
     if (!(templateElement instanceof HTMLTemplateElement))
-      throw new UnreachableCode;
+      throw new UnreachableCode();
 
     const textElement = templateElement.content.firstElementChild;
 
@@ -184,14 +185,18 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
       text: string,
       textType: Text,
       _lowerTextKey: TextText,
-      duration: number): void {
+      duration: number,
+  ): void {
     const textElementClass = textType + '-text';
     const e = this._makeTextElement(triggerHelper, text, textElementClass);
-    this.addDisplayText(e, this.emulatedOffset + (duration * 1000));
+    this.addDisplayText(e, this.emulatedOffset + duration * 1000);
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
-    const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
+    const delay =
+      'delaySeconds' in triggerHelper.trigger
+        ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds)
+        : 0;
 
     if (!delay || delay <= 0 || typeof delay !== 'number')
       return;
@@ -202,7 +207,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     // eslint-disable-next-line prefer-const
     ret = new Promise<void>((res, rej) => {
       this.scheduledTriggers.push({
-        expires: this.emulatedOffset + (delay * 1000),
+        expires: this.emulatedOffset + delay * 1000,
         promise: ret,
         resolver: res,
         rejecter: rej,
@@ -212,8 +217,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   }
 
   _playAudioFile(triggerHelper: TriggerHelper, url: string, volume?: number): void {
-    if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
-      .includes(url)) {
+    if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound].includes(url)) {
       const div = this._makeTextElement(triggerHelper, url, 'audio-file');
       this.addDisplayText(div, this.emulatedOffset + this.audioDebugTextDuration);
     }
@@ -223,9 +227,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     super._playAudioFile(triggerHelper, url, volume);
   }
 
-  _makeTextElement(triggerHelper: TriggerHelper | undefined,
+  _makeTextElement(
+      triggerHelper: TriggerHelper | undefined,
       text: string,
-      className: string): HTMLElement {
+      className: string,
+  ): HTMLElement {
     const $ret = this.$textElementTemplate.cloneNode(true);
     if (!($ret instanceof HTMLElement))
       throw new UnreachableCode();

@@ -123,12 +123,14 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB[89AB]' }),
       preRun: (data, matches) => {
         data.charges = data.charges || [];
-        data.charges.push({
-          '1AB8': 'getIn',
-          '1AB9': 'getOut',
-          '1ABA': 'spread',
-          '1ABB': 'stackMarker',
-        }[matches.id]);
+        data.charges.push(
+            {
+              '1AB8': 'getIn',
+              '1AB9': 'getOut',
+              '1ABA': 'spread',
+              '1ABB': 'stackMarker',
+            }[matches.id],
+        );
       },
       response: (data, _matches, output) => {
         // cactbot-builtin-response

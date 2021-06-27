@@ -58,15 +58,12 @@ const customMapping = {
   'EmboldenSelf': '1239',
 } as const;
 
-
 const printError = (
     header: string,
     what: string,
     map: Record<string | number, unknown>,
     key: string,
-) =>
-  console.error(`${header} ${what}: ${JSON.stringify(map[key])}`);
-
+) => console.error(`${header} ${what}: ${JSON.stringify(map[key])}`);
 
 const makeEffectMap = (table: Table<'#', 'Name'>) => {
   const foundNames = new Set();
@@ -119,7 +116,6 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
 
   return Object.fromEntries(map);
 };
-
 
 void (async () => {
   const table = await getIntlTable('Status', ['#', 'Name', 'Icon', 'PartyListPriority']);

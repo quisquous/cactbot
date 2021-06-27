@@ -306,6 +306,6 @@ export type NetFields = {
   'ActionSync': NetActionSyncFields;
   'StatusEffect': NetStatusEffectFields;
   'None': Fields;
-}
+};
 
 export type NetAnyFields = NetFields[keyof NetFields];

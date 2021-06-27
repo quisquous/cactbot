@@ -1,13 +1,6 @@
 const { generateValidList, generateValidObject } = require('./eslint-utils');
 
-const defaultOrderList = [
-  'en',
-  'de',
-  'fr',
-  'ja',
-  'cn',
-  'ko',
-];
+const defaultOrderList = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
 
 let orderList = [];
 
@@ -38,7 +31,8 @@ const ruleModule = {
       },
     ],
     messages: {
-      sortKeys: 'Expected locale object keys ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
+      sortKeys:
+        'Expected locale object keys ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
     },
   },
   create: function(context) {

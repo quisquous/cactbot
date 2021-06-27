@@ -29,7 +29,8 @@ const fields = {
 } as const;
 
 // Ability hit single target event
-export class LineEvent0x15 extends LineEvent
+export class LineEvent0x15
+  extends LineEvent
   implements LineEventSource, LineEventTarget, LineEventAbility {
   public readonly damage: number;
   public readonly id: string;
@@ -92,7 +93,6 @@ export class LineEvent0x15 extends LineEvent
     this.y = parseFloat(parts[fields.y + fieldOffset] ?? '');
     this.z = parseFloat(parts[fields.z + fieldOffset] ?? '');
     this.heading = parseFloat(parts[fields.heading + fieldOffset] ?? '');
-
 
     repo.updateCombatant(this.id, {
       job: undefined,

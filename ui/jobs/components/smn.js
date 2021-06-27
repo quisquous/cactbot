@@ -79,7 +79,7 @@ export function setup(bars) {
     // turn red when you have too much stacks before EnergyDrain ready.
     aetherflowStackBox.innerText = stack;
     const s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
-    if ((stack === 2) && (s <= 8))
+    if (stack === 2 && s <= 8)
       aetherflowStackBox.parentNode.classList.add('too-much-stacks');
     else
       aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
@@ -110,17 +110,10 @@ export function setup(bars) {
       demiSummoningBox.parentNode.classList.remove('last');
   });
 
-  bars.onUseAbility([
-    kAbility.Miasma,
-    kAbility.Miasma3,
-  ], () => {
+  bars.onUseAbility([kAbility.Miasma, kAbility.Miasma3], () => {
     miasmaBox.duration = 30;
   });
-  bars.onUseAbility([
-    kAbility.BioSmn,
-    kAbility.BioSmn2,
-    kAbility.Bio3,
-  ], () => {
+  bars.onUseAbility([kAbility.BioSmn, kAbility.BioSmn2, kAbility.Bio3], () => {
     bioSmnBox.duration = 30;
   });
   // Tridisaster refresh miasma and bio both, so repeat below.
@@ -129,20 +122,14 @@ export function setup(bars) {
     miasmaBox.duration = 30;
     bioSmnBox.duration = 30;
   });
-  bars.onUseAbility([
-    kAbility.EnergyDrain,
-    kAbility.EnergySiphon,
-  ], () => {
+  bars.onUseAbility([kAbility.EnergyDrain, kAbility.EnergySiphon], () => {
     energyDrainBox.duration = 30;
     aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
   });
   // Trance cooldown is 55s,
   // but wait till 60s will be better on matching raidbuffs.
   // Threshold will be used to tell real cooldown.
-  bars.onUseAbility([
-    kAbility.DreadwyrmTrance,
-    kAbility.FirebirdTrance,
-  ], () => {
+  bars.onUseAbility([kAbility.DreadwyrmTrance, kAbility.FirebirdTrance], () => {
     tranceBox.duration = 60;
   });
 

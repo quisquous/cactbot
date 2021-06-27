@@ -73,8 +73,8 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
 const defaultRaidbossConfigOptions = {
   Debug: false,
   DefaultAlertOutput: 'textAndSound',
-  AlertsLanguage: undefined as (Lang | undefined),
-  TimelineLanguage: undefined as (Lang | undefined),
+  AlertsLanguage: undefined as Lang | undefined,
+  TimelineLanguage: undefined as Lang | undefined,
   TimelineEnabled: true,
   AlertsEnabled: true,
   ShowTimerBarsAtSeconds: 30,
@@ -95,7 +95,9 @@ const defaultRaidbossConfigOptions = {
 type RaidbossConfigOptions = typeof defaultRaidbossConfigOptions;
 
 export interface RaidbossOptions
-  extends BaseOptions, RaidbossNonConfigOptions, RaidbossConfigOptions {}
+  extends BaseOptions,
+  RaidbossNonConfigOptions,
+  RaidbossConfigOptions {}
 
 // See user/raidboss-example.js for documentation.
 const Options: RaidbossOptions = {

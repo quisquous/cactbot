@@ -3,8 +3,7 @@ import ZoneId from '../../../../../resources/zone_id';
 export default {
   zoneId: ZoneId.ThokAstThokExtreme,
   timelineFile: 'ravana-ex.txt',
-  triggers: [
-  ],
+  triggers: [],
   timelineReplace: [
     {
       'locale': 'de',

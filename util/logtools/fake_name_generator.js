@@ -55,7 +55,24 @@ export default class FakeNameGenerator {
   makeLalaSyl1() {
     // Skip v, x?
     const consonants = [
-      'b', 'ch', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'w', 'z',
+      'b',
+      'ch',
+      'd',
+      'f',
+      'g',
+      'h',
+      'j',
+      'k',
+      'l',
+      'm',
+      'n',
+      'p',
+      'q',
+      'r',
+      's',
+      't',
+      'w',
+      'z',
     ];
     const vowels = ['a', 'e', 'i', 'o', 'u'];
 
@@ -79,46 +96,54 @@ export default class FakeNameGenerator {
     // * AAB CCB (A, C 1 syllable; B is 2)
     // * AAB AB (always 1 syllable)
 
-    const makeName = () => randomFromArray([
-      () => {
-        const a = this.makeLalaSyl1Or2();
-        const b = this.makeLalaSyl1Or2();
-        const c = this.makeLalaSyl1Or2();
-        return a + b + ' ' + c + b;
-      },
-      () => {
-        const a = this.makeLalaSyl1();
-        const b = this.makeLalaSyl1();
-        return a + b + b + ' ' + a + b;
-      },
-      () => {
-        const a = this.makeLalaSyl1();
-        const b = this.makeLalaSyl2();
-        const c = this.makeLalaSyl1();
-        return a + a + b + ' ' + c + c + b;
-      },
-      () => {
-        const a = this.makeLalaSyl1();
-        const b = this.makeLalaSyl1();
-        const c = this.makeLalaSyl1();
-        return a + a + b + ' ' + a + b;
-      },
-    ])();
+    const makeName = () =>
+      randomFromArray([
+        () => {
+          const a = this.makeLalaSyl1Or2();
+          const b = this.makeLalaSyl1Or2();
+          const c = this.makeLalaSyl1Or2();
+          return a + b + ' ' + c + b;
+        },
+        () => {
+          const a = this.makeLalaSyl1();
+          const b = this.makeLalaSyl1();
+          return a + b + b + ' ' + a + b;
+        },
+        () => {
+          const a = this.makeLalaSyl1();
+          const b = this.makeLalaSyl2();
+          const c = this.makeLalaSyl1();
+          return a + a + b + ' ' + c + c + b;
+        },
+        () => {
+          const a = this.makeLalaSyl1();
+          const b = this.makeLalaSyl1();
+          const c = this.makeLalaSyl1();
+          return a + a + b + ' ' + a + b;
+        },
+      ])();
 
-    return makeName().split(' ').map((str) => {
-      return str[0].toUpperCase() + str.slice(1);
-    }).join(' ');
+    return makeName()
+      .split(' ')
+      .map((str) => {
+        return str[0].toUpperCase() + str.slice(1);
+      })
+      .join(' ');
   }
 
   makeUniqueMiqoteName(id) {
     // Turn id into a lowercase string of letters.
-    const randomStr = id.toString(26).split('').map((c) => {
-      // shift [0-9] to [a-j]
-      if (c.match(/\d/) !== null)
-        return String.fromCharCode(parseInt(c) + 'a'.charCodeAt());
-      // shift [a-p] to [k-z]
-      return String.fromCharCode(c.charCodeAt() + 10);
-    }).join('');
+    const randomStr = id
+      .toString(26)
+      .split('')
+      .map((c) => {
+        // shift [0-9] to [a-j]
+        if (c.match(/\d/) !== null)
+          return String.fromCharCode(parseInt(c) + 'a'.charCodeAt());
+        // shift [a-p] to [k-z]
+        return String.fromCharCode(c.charCodeAt() + 10);
+      })
+      .join('');
     return 'X\'' + randomStr + ' Tia';
   }
 }

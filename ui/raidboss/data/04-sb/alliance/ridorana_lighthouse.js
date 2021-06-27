@@ -10,13 +10,7 @@ const mathDirection = (mathBaseValue, correctMath, output) => {
     console.error('Bad math: ' + mathBaseValue);
     return;
   }
-  return [
-    output.stayOut(),
-    output.standIn1(),
-    output.standIn2(),
-    output.standIn3(),
-    output.standIn4(),
-  ][correctMath[mathBaseValue]];
+  return [output.stayOut(), output.standIn1(), output.standIn2(), output.standIn3(), output.standIn4()][correctMath[mathBaseValue]];
 };
 
 const mathOutputStrings = {

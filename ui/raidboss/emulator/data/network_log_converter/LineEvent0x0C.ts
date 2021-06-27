@@ -59,9 +59,14 @@ export class LineEvent0x0C extends LineEvent {
     this.spellSpeed = parts[fields.spellSpeed] ?? '';
     this.tenacity = parts[fields.tenacity] ?? '';
 
-    this.convertedLine = this.prefix() +
-      'Player Stats: ' + parts.slice(2, parts.length - 1).join(':').replace(/\|/g, ':');
+    this.convertedLine =
+      this.prefix() +
+      'Player Stats: ' +
+      parts
+        .slice(2, parts.length - 1)
+        .join(':')
+        .replace(/\|/g, ':');
   }
 }
 
-export class LineEvent12 extends LineEvent0x0C { }
+export class LineEvent12 extends LineEvent0x0C {}

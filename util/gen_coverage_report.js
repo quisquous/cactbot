@@ -10,7 +10,12 @@ import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields';
 import Regexes from '../resources/regexes';
 import NetRegexes from '../resources/netregexes';
 import Conditions from '../resources/conditions';
-import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../resources/responses';
+import {
+  Responses,
+  triggerFunctions,
+  triggerOutputFunctions,
+  builtInResponseStr,
+} from '../resources/responses';
 
 // Paths are relative to current file.
 // We can't import the manifest directly from util/ because that's webpack magic,
@@ -227,6 +232,7 @@ const writeCoverageReport = async (outputFileName, coverage, totals) => {
     `export const coverage = ${JSON.stringify(coverage, undefined, 2)};\n\n` +
     `export const coverageTotals = ${JSON.stringify(totals, undefined, 2)};\n`;
 
+  // TODO: update this to prettier-eslint
   const linter = new eslint.ESLint({ fix: true });
   const results = await linter.lintText(str, { filePath: outputFileName });
 
@@ -247,7 +253,6 @@ const writeCoverageReport = async (outputFileName, coverage, totals) => {
 
   writer.write(lintResult.output);
 };
-
 
 (async () => {
   process.chdir(path.dirname(process.argv[1]));

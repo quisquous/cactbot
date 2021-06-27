@@ -35,7 +35,8 @@ export default class AnalyzedEncounter extends EventBus {
   constructor(
       public options: RaidbossOptions,
       public encounter: Encounter,
-      public emulator: RaidEmulator) {
+      public emulator: RaidEmulator,
+  ) {
     super();
   }
 
@@ -71,7 +72,8 @@ export default class AnalyzedEncounter extends EventBus {
   updateState(
       combatant: Combatant,
       timestamp: number,
-      popupText: PopupTextAnalysis | RaidEmulatorPopupText): void {
+      popupText: PopupTextAnalysis | RaidEmulatorPopupText,
+  ): void {
     const job = combatant.job;
     if (!job)
       throw new UnreachableCode();
@@ -110,6 +112,7 @@ export default class AnalyzedEncounter extends EventBus {
         await this.analyzeFor(id);
     }
 
+
     return this.dispatch('analyzed');
   }
 
@@ -131,12 +134,18 @@ export default class AnalyzedEncounter extends EventBus {
     }
 
     const timelineUI = new RaidEmulatorAnalysisTimelineUI(this.options);
-    const timelineController =
-        new RaidEmulatorTimelineController(this.options, timelineUI, raidbossFileData);
+    const timelineController = new RaidEmulatorTimelineController(
+        this.options,
+        timelineUI,
+        raidbossFileData,
+    );
     timelineController.bindTo(this.emulator);
 
     const popupText = new PopupTextAnalysis(
-        this.options, new TimelineLoader(timelineController), raidbossFileData);
+        this.options,
+        new TimelineLoader(timelineController),
+        raidbossFileData,
+    );
 
     const generator = new PopupTextGenerator(popupText);
     timelineUI.SetPopupTextInterface(generator);
@@ -156,11 +165,11 @@ export default class AnalyzedEncounter extends EventBus {
           suppressed: false,
           executed: false,
         });
-        resolver.triggerHelper =
-          popupText._onTriggerInternalGetHelper(
-              trigger,
-              matches?.groups ?? {},
-              currentLine?.timestamp);
+        resolver.triggerHelper = popupText._onTriggerInternalGetHelper(
+            trigger,
+            matches?.groups ?? {},
+            currentLine?.timestamp,
+        );
         popupText.triggerResolvers.push(resolver);
 
         if (!currentLine)
@@ -172,8 +181,12 @@ export default class AnalyzedEncounter extends EventBus {
           resolver.status.finalData = EmulatorCommon.cloneData(popupText.getData());
           delete resolver.triggerHelper?.resolver;
           if (popupText.callback) {
-            popupText.callback(currentLine, resolver.triggerHelper,
-                resolver.status, popupText.getData());
+            popupText.callback(
+                currentLine,
+                resolver.triggerHelper,
+                resolver.status,
+                popupText.getData(),
+            );
           }
         });
       });
@@ -190,8 +203,7 @@ export default class AnalyzedEncounter extends EventBus {
         triggerHelper: triggerHelper,
         status: currentTriggerStatus,
         logLine: log,
-        resolvedOffset: (log.timestamp - this.encounter.startTimestamp) +
-          (delay * 1000),
+        resolvedOffset: log.timestamp - this.encounter.startTimestamp + delay * 1000,
       });
     };
     popupText.triggerResolvers = [];

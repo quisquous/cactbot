@@ -42,17 +42,15 @@ function update(dps, tracker) {
   if (!isNaN(rdps) && rdps !== Infinity)
     rdpsMax = Math.max(rdpsMax, rdps);
 
-
   const header = template.clone();
   if (encounter.encdps.length <= 7)
     header.find('.dps').text(encounter.encdps);
   else
     header.find('.dps').text(encounter.ENCDPS);
 
-
   header.find('.name').text(tracker.title || '');
   header.find('.number').text(encounter.duration);
-  header.find('.bar').css('width', ((rdps / rdpsMax) * 100) + '%');
+  header.find('.bar').css('width', (rdps / rdpsMax) * 100 + '%');
 
   container.append(header);
 
@@ -68,7 +66,6 @@ function update(dps, tracker) {
     if (!maxdps)
       maxdps = parseFloat(combatant.encdps);
 
-
     if (combatant.name === 'YOU')
       row.addClass('you');
 
@@ -78,7 +75,7 @@ function update(dps, tracker) {
     row.find('.name').text(combatant.Job.toUpperCase() + ' ' + combatant.name);
     row.find('.number').text(combatant.damage);
     row.find('.misses').text(combatant.misses > 0 ? '(' + combatant.misses + ')' : '');
-    row.find('.bar').css('width', ((parseFloat(combatant.encdps) / maxdps) * 100) + '%');
+    row.find('.bar').css('width', (parseFloat(combatant.encdps) / maxdps) * 100 + '%');
 
     container.append(row);
   }
@@ -87,8 +84,10 @@ function update(dps, tracker) {
 
   if (tracker.phases.length >= 1) {
     // Don't show the first phase if it starts immediately with the encounter.
-    if (tracker.phases[0].start && tracker.phases[0].start.Encounter.DURATION > 1 ||
-        tracker.phases.length >= 2) {
+    if (
+      (tracker.phases[0].start && tracker.phases[0].start.Encounter.DURATION > 1) ||
+      tracker.phases.length >= 2
+    ) {
       for (let i = 0; i < tracker.phases.length; ++i)
         updatePhase(tracker.phases[i], dpsOrder);
     }
@@ -98,7 +97,6 @@ function update(dps, tracker) {
 function updatePhase(phase, dpsOrder) {
   if (!phase.diff)
     return;
-
 
   if (!phase.element) {
     const container = $('#phasesource ol').clone();

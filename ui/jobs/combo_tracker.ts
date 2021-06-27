@@ -85,125 +85,42 @@ export default class ComboTracker {
   static setup(callback: ComboCallback): ComboTracker {
     const comboTracker = new ComboTracker(kComboBreakers, callback);
     // PLD
-    comboTracker.AddCombo([
-      kAbility.FastBlade,
-      kAbility.RiotBlade,
-      kAbility.GoringBlade,
-    ]);
+    comboTracker.AddCombo([kAbility.FastBlade, kAbility.RiotBlade, kAbility.GoringBlade]);
     // WAR
-    comboTracker.AddCombo([
-      kAbility.HeavySwing,
-      kAbility.Maim,
-      kAbility.StormsEye,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.HeavySwing,
-      kAbility.Maim,
-      kAbility.StormsPath,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.Overpower,
-      kAbility.MythrilTempest,
-    ]);
+    comboTracker.AddCombo([kAbility.HeavySwing, kAbility.Maim, kAbility.StormsEye]);
+    comboTracker.AddCombo([kAbility.HeavySwing, kAbility.Maim, kAbility.StormsPath]);
+    comboTracker.AddCombo([kAbility.Overpower, kAbility.MythrilTempest]);
     // DRK
-    comboTracker.AddCombo([
-      kAbility.HardSlash,
-      kAbility.SyphonStrike,
-      kAbility.Souleater,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.Unleash,
-      kAbility.StalwartSoul,
-    ]);
+    comboTracker.AddCombo([kAbility.HardSlash, kAbility.SyphonStrike, kAbility.Souleater]);
+    comboTracker.AddCombo([kAbility.Unleash, kAbility.StalwartSoul]);
     // GNB
-    comboTracker.AddCombo([
-      kAbility.KeenEdge,
-      kAbility.BrutalShell,
-      kAbility.SolidBarrel,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.DemonSlice,
-      kAbility.DemonSlaughter,
-    ]);
+    comboTracker.AddCombo([kAbility.KeenEdge, kAbility.BrutalShell, kAbility.SolidBarrel]);
+    comboTracker.AddCombo([kAbility.DemonSlice, kAbility.DemonSlaughter]);
     // DRG
-    comboTracker.AddCombo([
-      kAbility.TrueThrust,
-      kAbility.Disembowel,
-      kAbility.ChaosThrust,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.RaidenThrust,
-      kAbility.Disembowel,
-      kAbility.ChaosThrust,
-    ]);
+    comboTracker.AddCombo([kAbility.TrueThrust, kAbility.Disembowel, kAbility.ChaosThrust]);
+    comboTracker.AddCombo([kAbility.RaidenThrust, kAbility.Disembowel, kAbility.ChaosThrust]);
     // NIN
-    comboTracker.AddCombo([
-      kAbility.SpinningEdge,
-      kAbility.GustSlash,
-      kAbility.AeolianEdge,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.SpinningEdge,
-      kAbility.GustSlash,
-      kAbility.ArmorCrush,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.DeathBlossom,
-      kAbility.HakkeMujinsatsu,
-    ]);
+    comboTracker.AddCombo([kAbility.SpinningEdge, kAbility.GustSlash, kAbility.AeolianEdge]);
+    comboTracker.AddCombo([kAbility.SpinningEdge, kAbility.GustSlash, kAbility.ArmorCrush]);
+    comboTracker.AddCombo([kAbility.DeathBlossom, kAbility.HakkeMujinsatsu]);
     // SAM
-    comboTracker.AddCombo([
-      kAbility.Hakaze,
-      kAbility.Jinpu,
-      kAbility.Gekko,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.Hakaze,
-      kAbility.Shifu,
-      kAbility.Kasha,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.Hakaze,
-      kAbility.Yukikaze,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.Fuga,
-      kAbility.Mangetsu,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.Fuga,
-      kAbility.Oka,
-    ]);
+    comboTracker.AddCombo([kAbility.Hakaze, kAbility.Jinpu, kAbility.Gekko]);
+    comboTracker.AddCombo([kAbility.Hakaze, kAbility.Shifu, kAbility.Kasha]);
+    comboTracker.AddCombo([kAbility.Hakaze, kAbility.Yukikaze]);
+    comboTracker.AddCombo([kAbility.Fuga, kAbility.Mangetsu]);
+    comboTracker.AddCombo([kAbility.Fuga, kAbility.Oka]);
     // MCH
-    comboTracker.AddCombo([
-      kAbility.SplitShot,
-      kAbility.SlugShot,
-      kAbility.CleanShot,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.HeatedSplitShot,
-      kAbility.SlugShot,
-      kAbility.CleanShot,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.HeatedSplitShot,
-      kAbility.HeatedSlugShot,
-      kAbility.CleanShot,
-    ]);
+    comboTracker.AddCombo([kAbility.SplitShot, kAbility.SlugShot, kAbility.CleanShot]);
+    comboTracker.AddCombo([kAbility.HeatedSplitShot, kAbility.SlugShot, kAbility.CleanShot]);
+    comboTracker.AddCombo([kAbility.HeatedSplitShot, kAbility.HeatedSlugShot, kAbility.CleanShot]);
     comboTracker.AddCombo([
       kAbility.HeatedSplitShot,
       kAbility.HeatedSlugShot,
       kAbility.HeatedCleanShot,
     ]);
     // DNC
-    comboTracker.AddCombo([
-      kAbility.Cascade,
-      kAbility.Fountain,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.Windmill,
-      kAbility.Bladeshower,
-    ]);
+    comboTracker.AddCombo([kAbility.Cascade, kAbility.Fountain]);
+    comboTracker.AddCombo([kAbility.Windmill, kAbility.Bladeshower]);
     return comboTracker;
   }
 }

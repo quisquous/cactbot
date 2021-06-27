@@ -287,11 +287,13 @@ const buildZoneGrid = (container, lang, coverage) => {
       if (zone.exVersion.toString() !== exVersion)
         continue;
 
-      const zoneCoverage = coverage[zoneId] ? coverage[zoneId] : {
-        oopsy: {},
-        triggers: {},
-        timeline: {},
-      };
+      const zoneCoverage = coverage[zoneId]
+        ? coverage[zoneId]
+        : {
+          oopsy: {},
+          triggers: {},
+          timeline: {},
+        };
 
       // Build in order of zone grid headers, so the headers can be rearranged
       // and the data will follow.

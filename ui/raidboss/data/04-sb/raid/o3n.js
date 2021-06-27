@@ -69,6 +69,8 @@ export default {
           if (data.holyTargets[i] === data.me)
             return output.out();
         }
+
+
         return output.stackOnHolytargets({ player: data.holyTargets[0] });
       },
       run: (data) => delete data.holyTargets,
@@ -98,7 +100,7 @@ export default {
         if (data.phaseNumber < 3)
           return false;
         data.holyCounter = data.holyCounter || 0;
-        return (data.holyCounter % 2 === 0);
+        return data.holyCounter % 2 === 0;
       },
       response: Responses.stackMarkerOn(),
       run: (data) => {

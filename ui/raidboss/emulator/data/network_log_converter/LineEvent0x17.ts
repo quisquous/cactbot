@@ -10,8 +10,7 @@ const fields = {
 } as const;
 
 // Cancel ability event
-export class LineEvent0x17 extends LineEvent
-  implements LineEventSource, LineEventAbility {
+export class LineEvent0x17 extends LineEvent implements LineEventSource, LineEventAbility {
   public readonly id: string;
   public readonly name: string;
   public readonly abilityId: number;

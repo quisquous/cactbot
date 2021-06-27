@@ -12,12 +12,15 @@ export default {
     return (data: Data, matches: TargetedMatches) => data.me !== matches?.target;
   },
   caresAboutAOE(): (data: Data) => boolean {
-    return (data: Data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
+    return (data: Data) =>
+      data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
   },
   caresAboutMagical(): (data: Data) => boolean {
-    return (data: Data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
+    return (data: Data) =>
+      data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
   },
   caresAboutPhysical(): (data: Data) => boolean {
-    return (data: Data) => data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.job === 'BLU';
+    return (data: Data) =>
+      data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.job === 'BLU';
   },
 };

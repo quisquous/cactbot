@@ -128,7 +128,7 @@ const summonDirectionOutputStrings = {
 
 const convertBossHeadingToClonePosition = (boss) => {
   // Snap heading to closest card/intercard (aka PI/4).  N = PI, E = PI/2.
-  const closestRad = Math.round(boss.Heading * 4 / Math.PI) / 4 * Math.PI;
+  const closestRad = (Math.round((boss.Heading * 4) / Math.PI) / 4) * Math.PI;
   // Find position opposite of the boss facing, centered on 100,100.
   return {
     PosX: 100 - 20 * Math.round(Math.sin(closestRad)),
@@ -139,9 +139,9 @@ const convertBossHeadingToClonePosition = (boss) => {
 const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
   // Convert coordinates to 8 cardinal / intercardinal positions:
   // N at 0, NE at 1, ... NW at 7
-  const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
-  const c1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
-  const c2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
+  const b = Math.round(4 - (4 * Math.atan2(boss.PosX - 100, boss.PosY - 100)) / Math.PI);
+  const c1 = Math.round(4 - (4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100)) / Math.PI);
+  const c2 = Math.round(4 - (4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100)) / Math.PI);
 
   const directions = {
     '0': 'NNE',
@@ -161,7 +161,7 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
       // Swiping her right
       if (abilityId === '561E') {
         // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
-        newPosition = ((position - i % 8) + 7) % 8;
+        newPosition = (position - (i % 8) + 7) % 8;
       } else {
         newPosition = (position + i) % 8;
       }
@@ -169,9 +169,7 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
         badZones.push(newPosition);
     }
   }
-  const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
-    .filter((pos) => !badZones.includes(pos))
-    .map((pos) => directions[pos]);
+  const safeZones = [0, 1, 2, 3, 4, 5, 6, 7].filter((pos) => !badZones.includes(pos)).map((pos) => directions[pos]);
 
   if (safeZones.length !== 1)
     return 'unknown';

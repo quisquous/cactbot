@@ -101,7 +101,6 @@ const primalOutputStrings = {
   },
 };
 
-
 export default {
   zoneId: ZoneId.EdensPromiseEternity,
   timelineFile: 'e12n.txt',

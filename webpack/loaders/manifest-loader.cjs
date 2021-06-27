@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-module.exports = function(content, map, meta) {
+module.exports = function (content, map, meta) {
   this.cacheable(true);
   const contents = fs.readFileSync(this.resourcePath).toString();
   const lines = contents.trim().split(/\s*[\r\n]+\s*/);

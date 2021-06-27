@@ -120,7 +120,8 @@ export default {
         },
       },
     },
-    { // Stack marker
+    {
+      // Stack marker
       id: 'LakshmiEx Pall of Light',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       alertText: (data, matches, output) => {

@@ -201,7 +201,7 @@ export default {
       // 1C9F:Aether is the circle AoE, 1CA0:Aetherial Chakram is the donut AoE
       id: 'Dun Scaith Atomos Compile',
       netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'] }),
-      delaySeconds: .5,
+      delaySeconds: 0.5,
       run: (data, matches) => {
         data.sphere = data.sphere || [];
         data.donut = data.donut || [];

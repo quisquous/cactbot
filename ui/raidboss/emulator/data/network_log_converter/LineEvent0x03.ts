@@ -101,16 +101,30 @@ export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEve
     if (this.worldName !== '')
       combatantName = combatantName + '(' + this.worldName + ')';
 
-    this.convertedLine = this.prefix() + this.id.toUpperCase() +
-      ':Added new combatant ' + combatantName +
-      '.  Job: ' + this.job +
-      ' Level: ' + this.levelString +
-      ' Max HP: ' + this.maxHpString +
-      ' Max MP: ' + this.maxMpString +
-      ' Pos: (' + this.xString + ',' + this.yString + ',' + this.zString + ')';
+    this.convertedLine =
+      this.prefix() +
+      this.id.toUpperCase() +
+      ':Added new combatant ' +
+      combatantName +
+      '.  Job: ' +
+      this.job +
+      ' Level: ' +
+      this.levelString +
+      ' Max HP: ' +
+      this.maxHpString +
+      ' Max MP: ' +
+      this.maxMpString +
+      ' Pos: (' +
+      this.xString +
+      ',' +
+      this.yString +
+      ',' +
+      this.zString +
+      ')';
 
     // This last part is guesswork for the area between 9 and 10.
-    const unknownValue = this.npcNameId +
+    const unknownValue =
+      this.npcNameId +
       EmulatorCommon.zeroPad(this.npcBaseId, 8 + Math.max(0, 6 - this.npcNameId.length));
 
     if (unknownValue !== '00000000000000')
@@ -120,4 +134,4 @@ export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEve
   }
 }
 
-export class LineEvent03 extends LineEvent0x03 { }
+export class LineEvent03 extends LineEvent0x03 {}

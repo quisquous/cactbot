@@ -95,7 +95,7 @@ export default {
     {
       // Nobody with a different marker should be told to stack.
       id: 'Lakshmi Headmarker Collect',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       run: (data, matches) => {
         data.avoidStack = data.avoidStack || [];
         if (matches.id !== '003E')
@@ -116,7 +116,8 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: ['2486', '2487', '2488'], source: '락슈미', capture: false }),
       run: (data) => delete data.avoidStack,
     },
-    { // Stack marker
+    {
+      // Stack marker
       id: 'Lakshmi Pall of Light',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       delaySeconds: 0.5,
@@ -235,7 +236,7 @@ export default {
         'Inner Demons': 'Dämonen in dir',
         'Jagadishwari': 'Jagadishwari',
         'Stotram': 'Stotram',
-        '\/Spear': '/Speer',
+        '/Spear': '/Speer',
         'Tail Slap': 'Schwanzklapser',
         'The Pall Of Light': 'Flut des Lichts',
         'The Path Of Light': 'Pfad des Lichts',

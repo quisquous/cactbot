@@ -26,7 +26,8 @@ describe('regex tests', () => {
       '[12:48:31.881] 16:4004D36E:Necropsyche:46A8:Neuro Squama:4004D3F1:Lefse:750003:74E0000:1C:46A88000:0:0:0:0:0:0:0:0:0:0:0:0:46373:48662:7000:7000:0:1000:-528.4657:387.2892:45.88464:0.6611078:2074788:4874688:10000:10000:0:1000:-525.4445:391.1954:46.67033:-1.60059:005286B5',
     ];
 
-    const testBadMatch = '[20:29:39.392] 15:107B9AC8:Tako Yaki:07:Attack:40017D58:Daxio:710003:DC0000:1E:50000:1C:1B60000:550003:2CA000:0:0:0:0:0:0:0:0:8207:24837:7230:7230:0:1000:527.5806:-362.7833:-19.61513:2.898741:8998:8998:10000:10000:0:1000:528.6487:-365.8656:-22.08109:-0.3377206:000AD7BF';
+    const testBadMatch =
+      '[20:29:39.392] 15:107B9AC8:Tako Yaki:07:Attack:40017D58:Daxio:710003:DC0000:1E:50000:1C:1B60000:550003:2CA000:0:0:0:0:0:0:0:0:8207:24837:7230:7230:0:1000:527.5806:-362.7833:-19.61513:2.898741:8998:8998:10000:10000:0:1000:528.6487:-365.8656:-22.08109:-0.3377206:000AD7BF';
     // Bad match is an ability line too.
     lines.push(testBadMatch);
 
@@ -229,9 +230,7 @@ describe('regex tests', () => {
     matches = dialogLines[2].match(Regexes.gameLog()).groups;
     assert.equal(matches.line, 'Byakko:There is no turning back!');
 
-    const namedLines = [
-      '[17:56:54.000] 00:001d:Potato Chippy:You clap for the striking dummy.',
-    ];
+    const namedLines = ['[17:56:54.000] 00:001d:Potato Chippy:You clap for the striking dummy.'];
     regexCaptureTest(Regexes.gameNameLog, namedLines);
     regexCaptureTest(Regexes.gameNameLog, dialogLines);
 

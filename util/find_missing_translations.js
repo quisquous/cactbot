@@ -22,14 +22,7 @@ parser.addArgument(['-f', '--filter'], {
 });
 
 // Directory names to ignore when looking for JavaScript files.
-const ignoreDirs = [
-  '.git',
-  'dist',
-  'node_modules',
-  'publish',
-  'ThirdParty',
-  'user',
-];
+const ignoreDirs = ['.git', 'dist', 'node_modules', 'publish', 'ThirdParty', 'user'];
 
 // All valid two letter locale names.
 const allLocales = new Set(['en', 'cn', 'de', 'fr', 'ja', 'ko']);
@@ -38,9 +31,11 @@ const allLocales = new Set(['en', 'cn', 'de', 'fr', 'ja', 'ko']);
 const zoneregexLocales = new Set(['en', 'cn', 'ko']);
 
 // Locales that are not in zoneRegex object blocks.
-const nonZoneregexLocales = new Set([...allLocales].filter((locale) => {
-  return !zoneregexLocales.has(locale);
-}));
+const nonZoneregexLocales = new Set(
+    [...allLocales].filter((locale) => {
+      return !zoneregexLocales.has(locale);
+    }),
+);
 
 // Where to start looking for files.
 const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -66,7 +61,11 @@ const findAllJavascriptFiles = (filter) => {
 const parseJavascriptFile = (file, locales) => {
   locales = new Set(locales);
 
-  const lineCounter = ((i = 0) => () => i++)();
+  const lineCounter = (
+    (i = 0) =>
+      () =>
+        i++
+  )();
 
   const lineReader = readline.createInterface({
     input: fs.createReadStream(file),
@@ -110,9 +109,11 @@ const parseJavascriptFile = (file, locales) => {
     if (line.match(`${openMatch[1]}}`)) {
       // Check if these keys look like a translation block.
       if (keys.includes('en')) {
-        const missingKeys = new Set([...locales].filter((locale) => {
-          return !keys.includes(locale) || fixme.includes(locale);
-        }));
+        const missingKeys = new Set(
+            [...locales].filter((locale) => {
+              return !keys.includes(locale) || fixme.includes(locale);
+            }),
+        );
 
         const openStr = openMatch[2];
         // Only some locales care about zoneRegex, so special case.

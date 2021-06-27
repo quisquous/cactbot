@@ -6,8 +6,13 @@ import RaidEmulator from '../data/RaidEmulator';
 export default class RaidEmulatorTimeline extends Timeline {
   emulatedStatus = 'pause';
   emulator?: RaidEmulator;
-  constructor(text: string, replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
-      styles: TimelineStyle[], options: RaidbossOptions) {
+  constructor(
+      text: string,
+      replacements: TimelineReplacement[],
+      triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[],
+      options: RaidbossOptions,
+  ) {
     super(text, replacements, triggers, styles, options);
   }
 
@@ -28,7 +33,8 @@ export default class RaidEmulatorTimeline extends Timeline {
     // This is a bit complicated due to jumps in timelines. If we've already got a timebase,
     // fightNow needs to be calculated based off of that instead of initialOffset
     // timebase = 0 when not set
-    const baseTimestamp = this.timebase ||
+    const baseTimestamp =
+      this.timebase ||
       this.emulator?.currentEncounter?.encounter?.initialTimestamp ||
       currentLogTime;
     const fightNow = (currentLogTime - baseTimestamp) / 1000;

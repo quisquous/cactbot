@@ -49,13 +49,16 @@ export class LineEvent0x19 extends LineEvent {
     if (this.targetId !== '00')
       resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
 
-    const defeatedName = (resolvedName ?? this.name);
-    const killerName = (resolvedTargetName ?? this.targetName);
-    this.convertedLine = this.prefix() + defeatedName +
-      ' was defeated by ' + killerName + '.';
-    this.properCaseConvertedLine = this.prefix() + EmulatorCommon.properCase(defeatedName) +
-      ' was defeated by ' + EmulatorCommon.properCase(killerName) + '.';
+    const defeatedName = resolvedName ?? this.name;
+    const killerName = resolvedTargetName ?? this.targetName;
+    this.convertedLine = this.prefix() + defeatedName + ' was defeated by ' + killerName + '.';
+    this.properCaseConvertedLine =
+      this.prefix() +
+      EmulatorCommon.properCase(defeatedName) +
+      ' was defeated by ' +
+      EmulatorCommon.properCase(killerName) +
+      '.';
   }
 }
 
-export class LineEvent25 extends LineEvent0x19 { }
+export class LineEvent25 extends LineEvent0x19 {}

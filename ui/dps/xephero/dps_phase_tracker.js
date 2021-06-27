@@ -33,8 +33,8 @@ export default class DpsPhaseTracker {
 
     this.areaSealRegex = LocaleRegex.areaSeal[this.lang] || LocaleRegex.areaSeal['en'];
     this.areaUnsealRegex = LocaleRegex.areaUnseal[this.lang] || LocaleRegex.areaUnseal['en'];
-    this.countdownStartRegex = LocaleRegex.countdownStart[this.lang] ||
-      LocaleRegex.countdownStart['en'];
+    this.countdownStartRegex =
+      LocaleRegex.countdownStart[this.lang] || LocaleRegex.countdownStart['en'];
   }
 
   onLogEvent(logs) {
@@ -86,8 +86,7 @@ export default class DpsPhaseTracker {
     this.title = boss.id;
   }
 
-  onFightEnd() {
-  }
+  onFightEnd() {}
 
   inCombatChanged(inCombat) {
     if (this.inCombat === inCombat)
@@ -164,6 +163,7 @@ export default class DpsPhaseTracker {
         return;
     }
 
+
     const diffProps = function(start, end, props, out) {
       for (let i = 0; i < props.length; ++i) {
         const prop = props[i];
@@ -196,10 +196,7 @@ export default class DpsPhaseTracker {
       'healstaken',
       'deaths',
     ];
-    const combatantCopyProps = [
-      'name',
-      'Job',
-    ];
+    const combatantCopyProps = ['name', 'Job'];
     const combatantDiffProps = [
       'DURATION',
       'damage',

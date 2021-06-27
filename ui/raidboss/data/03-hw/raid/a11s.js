@@ -320,7 +320,6 @@ export default {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
 
-
         if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
           return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
       },

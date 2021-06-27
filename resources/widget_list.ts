@@ -301,14 +301,14 @@ export default class WidgetList extends HTMLElement {
       container.style.left = x.toString();
       container.style.top = y.toString();
 
-      x = x + (this._xinc1 * this._elementwidth);
-      y = y + (this._yinc1 * this._elementheight);
+      x = x + this._xinc1 * this._elementwidth;
+      y = y + this._yinc1 * this._elementheight;
       rowColIndex = rowColIndex + 1;
       if (rowColIndex === this._rowcolsize) {
-        x = x - (this._xinc1 * this._elementwidth) * rowColIndex;
-        y = y - (this._yinc1 * this._elementheight) * rowColIndex;
-        x = x + (this._xinc2 * this._elementwidth);
-        y = y + (this._yinc2 * this._elementheight);
+        x = x - this._xinc1 * this._elementwidth * rowColIndex;
+        y = y - this._yinc1 * this._elementheight * rowColIndex;
+        x = x + this._xinc2 * this._elementwidth;
+        y = y + this._yinc2 * this._elementheight;
         rowColIndex = 0;
       }
     });
@@ -317,8 +317,8 @@ export default class WidgetList extends HTMLElement {
   test(): void {
     for (let i = 0; i < 8; ++i) {
       const div = document.createElement('div');
-      div.style.width = String(this._elementwidth * 3 / 4);
-      div.style.height = String(this._elementheight * 3 / 4);
+      div.style.width = String((this._elementwidth * 3) / 4);
+      div.style.height = String((this._elementheight * 3) / 4);
       div.style.overflow = 'hidden';
       div.style.backgroundColor = `#${getRandomInt(9)}${getRandomInt(9)}${getRandomInt(9)}`;
       div.style.textAlign = 'center';
