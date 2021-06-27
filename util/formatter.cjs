@@ -10,7 +10,6 @@ const prettier = require('prettier');
 const path = require('path');
 
 const format = async (code, filepath) => {
-  const text = fs.readFileSync(filepath, 'utf8');
   const options = await prettier.resolveConfig(filepath);
   return prettier.format(code, { filepath, ...options });
 };
