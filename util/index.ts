@@ -34,7 +34,7 @@ const run = () => {
       return generateDataFiles();
     if (answer.action === 'Translate Raidboss timeline')
       return translateTimelineFunc();
-    if (answer.action == 'Find Raidboss missing translations')
+    if (answer.action === 'Find Raidboss missing translations')
       return findMissingTranslationsFunc();
   }).catch(console.error);
 };
@@ -99,9 +99,8 @@ const findMissingTranslationsFunc = () => {
       ],
     },
   ]).then((answers: Answers) => {
-    if (answers.filter && answers.locale) {
+    if (answers.filter && answers.locale)
       return findMissingTranslations(answers);
-    }
   });
 };
 
