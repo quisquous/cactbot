@@ -1,8 +1,9 @@
 import { EventResponses } from '../../types/event';
 
+import { OopsyListView } from './oopsy_list_view';
 import { OopsyOptions } from './oopsy_options';
 
-export class OopsySummaryList {
+export class OopsySummaryList implements OopsyListView {
   private pullIdx = 0;
   private zoneName?: string;
   private currentDiv: HTMLElement | null = null;
@@ -11,7 +12,7 @@ export class OopsySummaryList {
     this.container.classList.remove('hide');
   }
 
-  GetTimeStr(d: Date): string {
+  private GetTimeStr(d: Date): string {
     // ISO-8601 or death.
     const month = `0${d.getMonth() + 1}`.slice(-2);
     const day = `0${d.getDate()}`.slice(-2);
@@ -20,7 +21,7 @@ export class OopsySummaryList {
     return `${d.getFullYear()}-${month}-${day} ${hours}:${minutes}`;
   }
 
-  StartNewSectionIfNeeded(): HTMLElement {
+  private StartNewSectionIfNeeded(): HTMLElement {
     if (this.currentDiv)
       return this.currentDiv;
 
@@ -55,7 +56,7 @@ export class OopsySummaryList {
     return this.currentDiv;
   }
 
-  EndSection(): void {
+  private EndSection(): void {
     this.currentDiv = null;
   }
 

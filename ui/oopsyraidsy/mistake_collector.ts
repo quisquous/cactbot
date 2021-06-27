@@ -1,5 +1,10 @@
-import { DamageTracker } from './damage_tracker';
+import { EventResponses } from '../../types/event';
+import { NetMatches } from '../../types/net_matches';
+import { LocaleText } from '../../types/trigger';
+
 import { ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled, kFlagInstantDeath } from './oopsy_common';
+import { OopsyListView } from './oopsy_list_view';
+import { OopsyOptions } from './oopsy_options';
 
 const kEarlyPullText = {
   en: 'early pull',
@@ -31,28 +36,40 @@ const kPartyWipeText = {
 // Internal trigger id for early pull
 const kEarlyPullId = 'General Early Pull';
 
+export type OopsyMistake = {
+  type: 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe';
+  name?: string;
+  // TODO: docs say blame can be an array but the code does not support that.
+  blame?: string;
+  text?: string;
+  // TODO: remove fullText.
+  fullText?: string;
+};
+
 // Collector:
 // * processes mistakes, adds lines to the live list
 // * handles timing issues with starting/stopping/early pulls
 export class MistakeCollector {
-  constructor(options, listView) {
-    this.options = options;
-    this.parserLang = this.options.ParserLanguage || 'en';
-    this.listView = listView;
-    this.baseTime = null;
-    this.inACTCombat = false;
-    this.inGameCombat = false;
+  private inACTCombat = false;
+  private inGameCombat = false;
+  private baseTime?: number;
+  private startTime?: number;
+  private stopTime?: number;
+  private engageTime?: number;
+  private firstPuller?: string;
+
+  constructor(private options: OopsyOptions, private listView: OopsyListView) {
     this.Reset();
   }
 
-  Reset() {
-    this.startTime = null;
-    this.stopTime = null;
-    this.firstPuller = null;
-    this.engageTime = null;
+  Reset(): void {
+    this.startTime = undefined;
+    this.stopTime = undefined;
+    this.firstPuller = undefined;
+    this.engageTime = undefined;
   }
 
-  GetFormattedTime(time) {
+  GetFormattedTime(time?: number): string {
     if (!this.baseTime)
       return '';
     if (!time)
@@ -60,10 +77,10 @@ export class MistakeCollector {
     const totalSeconds = Math.floor((time - this.baseTime) / 1000);
     const seconds = totalSeconds % 60;
     const minutes = Math.floor(totalSeconds / 60);
-    return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   }
 
-  StartCombat() {
+  StartCombat(): void {
     // Wiping / in combat state / damage are all racy with each other.
     // One potential ordering:
     //   -in combat: false
@@ -82,25 +99,23 @@ export class MistakeCollector {
     if (this.stopTime && now - this.stopTime < 1000 * kMinimumSecondsAfterWipe)
       return;
     this.startTime = now;
-    this.stopTime = null;
+    this.stopTime = undefined;
   }
 
-  StopCombat() {
-    this.startTime = null;
+  StopCombat(): void {
+    this.startTime = undefined;
     this.stopTime = Date.now();
-    this.firstPuller = null;
-    this.engageTime = null;
+    this.firstPuller = undefined;
+    this.engageTime = undefined;
   }
 
-  Translate(obj) {
-    if (obj !== Object(obj))
+  Translate(obj: LocaleText | string | undefined): string | undefined {
+    if (typeof obj !== 'object')
       return obj;
-    if (this.options.DisplayLanguage in obj)
-      return obj[this.options.DisplayLanguage];
-    return obj['en'];
+    return obj[this.options.DisplayLanguage] ?? obj['en'];
   }
 
-  OnMistakeObj(m) {
+  OnMistakeObj(m?: OopsyMistake): void {
     if (!m)
       return;
     if (m.fullText)
@@ -109,20 +124,23 @@ export class MistakeCollector {
       this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
   }
 
-  OnMistakeText(type, blame, text, time) {
+  OnMistakeText(type: string, blame?: string, text?: string, time?: number): void {
     if (!text)
       return;
     const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
     this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
-  OnFullMistakeText(type, blame, text, time) {
+  OnFullMistakeText(type: string, blame?: string, text?: string, time?: number): void {
     if (!text)
       return;
     this.listView.AddLine(type, text, this.GetFormattedTime(time));
   }
 
-  AddEngage() {
+  AddEngage(): void {
+    if (!this.startTime)
+      throw new Error('Must StartCombat before AddEngage');
+
     this.engageTime = Date.now();
     if (!this.firstPuller) {
       this.StartCombat();
@@ -130,13 +148,13 @@ export class MistakeCollector {
     }
     const seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      const text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
+      const text = `${this.Translate(kEarlyPullText) ?? ''} (${seconds.toFixed(1)}s)`;
       if (IsTriggerEnabled(this.options, kEarlyPullId))
         this.OnMistakeText('pull', this.firstPuller, text);
     }
   }
 
-  AddDamage(matches) {
+  AddDamage(matches: NetMatches['Ability']): void {
     if (!this.firstPuller) {
       if (IsPlayerId(matches.sourceId))
         this.firstPuller = matches.source;
@@ -146,16 +164,18 @@ export class MistakeCollector {
         this.firstPuller = '???';
 
       this.StartCombat();
-      const seconds = ((Date.now() - this.engageTime) / 1000);
-      if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
-        const text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
-        if (IsTriggerEnabled(this.options, kEarlyPullId))
-          this.OnMistakeText('pull', this.firstPuller, text);
+      if (this.engageTime) {
+        const seconds = ((Date.now() - this.engageTime) / 1000);
+        if (seconds >= this.options.MinimumTimeForPullMistake) {
+          const text = `${this.Translate(kLatePullText) ?? ''} (${seconds.toFixed(1)}s)`;
+          if (IsTriggerEnabled(this.options, kEarlyPullId))
+            this.OnMistakeText('pull', this.firstPuller, text);
+        }
       }
     }
   }
 
-  AddDeath(name, matches) {
+  AddDeath(name: string, matches: NetMatches['Ability']): void {
     let text;
     if (matches) {
       // Note: ACT just evaluates independently what the hp of everybody
@@ -171,9 +191,9 @@ export class MistakeCollector {
       if (matches.flags === kFlagInstantDeath) {
         // TODO: show something for infinite damage?
       } else if ('targetCurrentHp' in matches) {
-        hp = ' (' + UnscrambleDamage(matches.damage) + '/' + matches.targetCurrentHp + ')';
+        hp = ` (${UnscrambleDamage(matches.damage)}/${matches.targetCurrentHp})`;
       }
-      text = matches.ability + hp;
+      text = `${matches.ability}${hp}`;
     }
     this.OnMistakeText('death', name, text);
 
@@ -182,18 +202,18 @@ export class MistakeCollector {
     // defeated.  Maybe the unparsed log entries have this??
   }
 
-  OnPartyWipeEvent(e) {
+  OnPartyWipeEvent(_e: EventResponses['onPartyWipe']): void {
     // TODO: record the time that StopCombat occurs and throw the party
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
-    this.OnFullMistakeText('wipe', null, this.Translate(kPartyWipeText));
+    this.OnFullMistakeText('wipe', undefined, this.Translate(kPartyWipeText));
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();
   }
 
-  OnInCombatChangedEvent(e) {
+  OnInCombatChangedEvent(e: EventResponses['onInCombatChangedEvent']): void {
     // For usability sake:
     //   - to avoid dungeon trash starting stopping combat and resetting the
     //     list repeatedly, only reset when ACT starts a new encounter.
@@ -227,7 +247,7 @@ export class MistakeCollector {
     }
   }
 
-  OnChangeZone(e) {
+  OnChangeZone(_e: EventResponses['ChangeZone']): void {
     this.Reset();
   }
 }
