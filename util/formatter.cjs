@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const { ArgumentParser } = require('argparse');
 const eslint = require('eslint');
 const prettier = require('prettier');
 
@@ -31,7 +32,7 @@ const lint = async (code, filePath) => {
   return results[0];
 };
 
-const processFile = async (filename) => {
+const processFile = async (filename, check) => {
   // const ignore = fs.readFileSync(.toString().split('\n');
   const ignorePath = path.join(path.dirname(__dirname), '.prettierignore');
   const info = await prettier.getFileInfo(filename, { ignorePath });
@@ -55,16 +56,33 @@ const processFile = async (filename) => {
     lintResult = await lint(formatted, filename);
 
   if (lintResult.output && lintResult.output !== originalContents) {
-    fs.writeFileSync(filename, lintResult.output);
+    if (!check)
+      fs.writeFileSync(filename, lintResult.output);
     return 1;
   }
   return 0;
 };
 
-const processAllFiles = async () => {
-  const ret = await Promise.all(process.argv.slice(2).map(processFile));
+const processAllFiles = async (files, check) => {
+  const ret = await Promise.all(files.map((f) => processFile(f, check)));
   if (ret.filter((x) => x !== 0).length)
     process.exit(1);
 };
+const main = async () => {
+  const parser = new ArgumentParser({
+    description: 'Argparse example',
+  });
 
-void processAllFiles();
+  parser.addArgument(['-c', '--check'], { action: 'storeTrue' });
+  parser.addArgument(['files'], {
+    nargs: '+',
+    defaultValue: '',
+    type: 'string',
+    help: 'Limits the results to only match specific files/path',
+  });
+
+  const { check, files } = parser.parseArgs();
+  await processAllFiles(files, check);
+};
+
+void main();
