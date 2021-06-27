@@ -109,6 +109,7 @@
   "dependencies": {
     "@fast-csv/parse": "^4.3.6",
     "argparse": "^1.0.10",
-    "dexie": "^3.0.3"
+    "dexie": "^3.0.3",
+    "dexie-export-import": "^1.0.0"
   }
 }

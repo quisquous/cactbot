@@ -224,79 +224,86 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   const checkFile = async (file) => {
-    // Assume it's a log file
-    const importModal = showModal('.importProgressModal');
-    const bar = importModal.querySelector('.progress-bar');
-    bar.style.width = '0px';
-    const label = importModal.querySelector('.label');
-    label.innerText = '';
-    const encLabel = importModal.querySelector('.encounterLabel');
-    encLabel.innerText = 'N/A';
+    if (file.type === 'application/json') {
+      // Import a DB file by passing it to Persistor
+      persistor.importDB(file).then(() => {
+        encounterTab.refresh();
+      });
+    } else {
+      // Assume it's a log file
+      const importModal = showModal('.importProgressModal');
+      const bar = importModal.querySelector('.progress-bar');
+      bar.style.width = '0px';
+      const label = importModal.querySelector('.label');
+      label.innerText = '';
+      const encLabel = importModal.querySelector('.encounterLabel');
+      encLabel.innerText = 'N/A';
 
-    const doneButton = importModal.querySelector('.btn');
-    doneButton.disabled = true;
+      const doneButton = importModal.querySelector('.btn');
+      doneButton.disabled = true;
 
-    const doneButtonTimeout = doneButton.querySelector('.doneBtnTimeout');
+      const doneButtonTimeout = doneButton.querySelector('.doneBtnTimeout');
 
-    let promise = undefined;
+      let promise = undefined;
 
-    logConverterWorker.onmessage = (msg) => {
-      switch (msg.data.type) {
-      case 'progress':
-        {
-          const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
-          bar.style.width = percent + '%';
-          label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
-        }
-        break;
-      case 'encounter':
-        {
-          const enc = msg.data.encounter;
-
-          encLabel.innerText = `
-          Zone: ${enc.encounterZoneName}
-          Encounter: ${msg.data.name}
-          Start: ${new Date(enc.startTimestamp)}
-          End: ${new Date(enc.endTimestamp)}
-          Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
-          Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
-          Started By: ${enc.startStatus}
-          End Status: ${enc.endStatus}
-          Line Count: ${enc.logLines.length}
-          `;
-          // Objects sent via message are raw objects, not typed.
-          // Need to get the name another way and override for Persistor.
-          enc.combatantTracker.getMainCombatantName = () => msg.data.name;
-          if (promise) {
-            promise.then(() => {
-              promise = persistor.persistEncounter(enc);
-            });
-          } else {
-            promise = persistor.persistEncounter(enc);
+      logConverterWorker.onmessage = (msg) => {
+        switch (msg.data.type) {
+        case 'progress':
+          {
+            const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
+            bar.style.width = percent + '%';
+            label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
           }
-        }
-        break;
-      case 'done':
-        Promise.all([promise]).then(() => {
-          encounterTab.refresh();
-          doneButton.disabled = false;
-          let seconds = 5;
-          doneButtonTimeout.innerText = ` (${seconds})`;
-          const interval = window.setInterval(() => {
-            --seconds;
-            doneButtonTimeout.innerText = ` (${seconds})`;
-            if (seconds === 0) {
-              window.clearInterval(interval);
-              hideModal('.importProgressModal');
+          break;
+        case 'encounter':
+          {
+            const enc = msg.data.encounter;
+
+            encLabel.innerText = `
+            Zone: ${enc.encounterZoneName}
+            Encounter: ${msg.data.name}
+            Start: ${new Date(enc.startTimestamp)}
+            End: ${new Date(enc.endTimestamp)}
+            Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
+            Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
+            Started By: ${enc.startStatus}
+            End Status: ${enc.endStatus}
+            Line Count: ${enc.logLines.length}
+            `;
+            // Objects sent via message are raw objects, not typed.
+            // Need to get the name another way and override for Persistor.
+            enc.combatantTracker.getMainCombatantName = () => msg.data.name;
+            if (promise) {
+              promise.then(() => {
+                promise = persistor.persistEncounter(enc);
+              });
+            } else {
+              promise = persistor.persistEncounter(enc);
             }
-          }, 1000);
-        });
-        break;
-      }
-    };
-    file.arrayBuffer().then((b) => {
-      logConverterWorker.postMessage(b, [b]);
-    });
+          }
+          break;
+        case 'done':
+          Promise.all([promise]).then(() => {
+            encounterTab.refresh();
+            doneButton.disabled = false;
+            let seconds = 5;
+            doneButtonTimeout.innerText = ` (${seconds})`;
+            const interval = window.setInterval(() => {
+              --seconds;
+              doneButtonTimeout.innerText = ` (${seconds})`;
+              if (seconds === 0) {
+                window.clearInterval(interval);
+                hideModal('.importProgressModal');
+              }
+            }, 1000);
+          });
+          break;
+        }
+      };
+      file.arrayBuffer().then((b) => {
+        logConverterWorker.postMessage(b, [b]);
+      });
+    }
   };
 
   const ignoreEvent = (e) => {
@@ -321,7 +328,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const $exportButton = document.querySelector('.exportDBButton');
 
-  new Tooltip($exportButton, 'bottom', 'Export the DB as a network log file.');
+  new Tooltip($exportButton, 'bottom', 'Export the DB (slow).');
 
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
@@ -339,15 +346,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Handle DB export
   $exportButton.addEventListener('click', (e) => {
-    persistor.exportDB().then((lines) => {
-      // Convert encounter DB to json, then base64 encode it
-      // Encounters can have unicode, can't use btoa for base64 encode
-      const blob = new Blob([lines], { type: 'text/plain' });
-      lines = null;
+    persistor.exportDB().then((blob) => {
       // Offer download to user
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.setAttribute('download', 'RaidEmulator_DBExport_' + (+new Date()) + '.txt');
+      a.setAttribute('download', 'RaidEmulator_DBExport_' + Date.now() + '.json');
       a.click();
       URL.revokeObjectURL(a.href);
     });

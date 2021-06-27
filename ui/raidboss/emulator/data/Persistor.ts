@@ -1,6 +1,5 @@
 import Dexie from 'dexie';
-
-import { UnreachableCode } from '../../../../resources/not_reached';
+import 'dexie-export-import';
 
 import Encounter from './Encounter';
 import LineEvent from './network_log_converter/LineEvent';
@@ -77,20 +76,11 @@ export default class Persistor extends Dexie {
     await this.encounterSummaries.clear();
   }
 
-  async exportDB(): Promise<string> {
-    let ret = '';
-    await this.encounters.each((enc, _cursor) => {
-      const firstLine = enc.logLines[0]?.networkLine;
-      if (!firstLine)
-        throw new UnreachableCode();
-      const parts = firstLine.split('|');
-      // Build a zone change line if the first line isn't a zone change line
-      if (parts[0] !== '01') {
-        const ts = parts[1] ?? '';
-        ret += `01|${ts}|${enc.encounterZoneId}|${enc.encounterZoneName}|0123456789abcdef0123456789abcdef\r\n`;
-      }
-      ret += enc.logLines.map((l) => l.networkLine).join('\r\n') + '\r\n';
-    }).catch((err) => console.log(err));
-    return ret;
+  async exportDB(): Promise<Blob> {
+    return this.export();
+  }
+
+  async importDB(file: File): Promise<void> {
+    return this.import(file);
   }
 }
