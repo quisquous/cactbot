@@ -62,7 +62,7 @@ export class LineEvent0x1F extends LineEvent {
       ':' + this.dataBytes3 +
       ':' + this.dataBytes4;
     this.properCaseConvertedLine = this.prefix() +
-      this.id + ':' + (EmulatorCommon.properCase(this.name)) +
+      this.id + ':' + EmulatorCommon.properCase(this.name) +
       ':' + this.dataBytes1 +
       ':' + this.dataBytes2 +
       ':' + this.dataBytes3 +

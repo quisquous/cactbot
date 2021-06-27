@@ -236,7 +236,7 @@ const matchedPositionToDir = (matches) => {
   // Advanced Relativity party splits.
   // Map NW = 0, N = 1, ..., W = 7
 
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
 // Convert dir to Output
@@ -251,7 +251,7 @@ const dirToOutput = (dir, output) => {
     6: output.southwest(),
     7: output.west(),
   };
-  return (dirs[dir]);
+  return dirs[dir];
 };
 
 export default {

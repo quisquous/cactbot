@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Offer download to user
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.setAttribute('download', 'RaidEmulator_DBExport_' + (Date.now()) + '.json');
+      a.setAttribute('download', 'RaidEmulator_DBExport_' + Date.now() + '.json');
       a.click();
       // After a second (so after user accepts/declines)
       // remove the object URL to avoid memory issues

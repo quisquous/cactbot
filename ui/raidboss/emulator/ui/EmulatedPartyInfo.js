@@ -292,14 +292,14 @@ export default class EmulatedPartyInfo extends EventBus {
   getTriggerLabelText(trigger) {
     let ret = trigger.status.responseLabel;
 
-    if (typeof (ret) === 'object')
+    if (typeof ret === 'object')
       ret = trigger.triggerHelper.valueOrFunction(ret);
 
-    if (typeof (ret) === 'boolean')
+    if (typeof ret === 'boolean')
       ret = undefined;
-    else if (typeof (ret) === 'undefined')
+    else if (typeof ret === 'undefined')
       ret = undefined;
-    else if (typeof (ret) !== 'string')
+    else if (typeof ret !== 'string')
       ret = 'Invalid Result?';
 
     if (ret === '')
@@ -385,7 +385,7 @@ export default class EmulatedPartyInfo extends EventBus {
         $wrapper.classList.remove('d-none');
       else
         $wrapper.classList.add('d-none');
-      typeof (params.onclick) === 'function' && params.onclick();
+      typeof params.onclick === 'function' && params.onclick();
     });
     $wrapper.append(params.$obj);
     return $ret;

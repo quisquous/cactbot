@@ -582,7 +582,7 @@ class MistakeCollector {
       this.StartCombat();
       return;
     }
-    const seconds = ((Date.now() - this.startTime) / 1000);
+    const seconds = (Date.now() - this.startTime) / 1000;
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
       const text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
       if (IsTriggerEnabled(this.options, kEarlyPullId))
@@ -600,7 +600,7 @@ class MistakeCollector {
         this.firstPuller = '???';
 
       this.StartCombat();
-      const seconds = ((Date.now() - this.engageTime) / 1000);
+      const seconds = (Date.now() - this.engageTime) / 1000;
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
         const text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
         if (IsTriggerEnabled(this.options, kEarlyPullId))
@@ -965,7 +965,7 @@ class DamageTracker {
     }
 
     const ValueOrFunction = (f, events, matches) => {
-      return (typeof f === 'function') ? f(events, this.data, matches) : f;
+      return typeof f === 'function' ? f(events, this.data, matches) : f;
     };
 
     const collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
@@ -985,7 +985,7 @@ class DamageTracker {
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
 
-    const f = (function() {
+    const f = function() {
       let eventParam = evt;
       let matchesParam = matches;
       if (collectMultipleEvents) {
@@ -1012,7 +1012,7 @@ class DamageTracker {
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, eventParam, matchesParam);
-    }).bind(this);
+    }.bind(this);
 
     // Even if delay = 0, if collectMultipleEvents is specified,
     // then set this here so that events can be passed as an array for consistency.

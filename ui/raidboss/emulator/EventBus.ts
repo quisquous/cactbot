@@ -36,7 +36,7 @@ export default class EventBus {
       const events: EventMapEntry[] = this.listeners[event] ??= [];
       if (callback !== undefined)
         events.push({ event: event, scope: scope, callback: callback });
-      ret.push(...(this.listeners[event] ?? []));
+      ret.push(...this.listeners[event] ?? []);
     }
     return ret;
   }

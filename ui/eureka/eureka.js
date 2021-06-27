@@ -4164,7 +4164,7 @@ class EurekaTracker {
     let respawnTimeMs = 120 * 60 * 1000;
     if ('respawnMinutes' in nm)
       respawnTimeMs = nm.respawnMinutes * 60 * 1000;
-    return respawnTimeMs + (Date.now());
+    return respawnTimeMs + Date.now();
   }
 
   DebugPrint(str) {
@@ -4409,7 +4409,7 @@ class EurekaTracker {
       const time = m[2];
       const nm = trackerToNM[name.toLowerCase()];
       if (nm)
-        nm.respawnTimeMsTracker = (time * 60 * 1000) + (Date.now());
+        nm.respawnTimeMsTracker = (time * 60 * 1000) + Date.now();
       else
         console.error('Invalid NM Import: ' + name);
     }

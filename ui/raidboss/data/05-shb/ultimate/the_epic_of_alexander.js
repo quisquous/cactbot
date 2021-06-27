@@ -2446,7 +2446,7 @@ export default {
         const x = matches.x - 100;
         const y = 100 - matches.y;
         // 0 = N, 1 = E, 2 = S, 3 = W
-        const idx = Math.round((Math.atan2(x, y) / Math.PI * 2 + 4)) % 4;
+        const idx = Math.round(Math.atan2(x, y) / Math.PI * 2 + 4) % 4;
         data.radiantOutputStringKey = {
           // North shouldn't be possible.
           // But, leaving this here in case my math is wrong.

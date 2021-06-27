@@ -98,7 +98,7 @@ export default {
         if (data.phaseNumber < 3)
           return false;
         data.holyCounter = data.holyCounter || 0;
-        return (data.holyCounter % 2 === 0);
+        return data.holyCounter % 2 === 0;
       },
       response: Responses.stackMarkerOn(),
       run: (data) => {

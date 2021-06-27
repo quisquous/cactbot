@@ -567,7 +567,7 @@ export class PopupText {
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    const addTimeline = (function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
+    const addTimeline = function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
       if (Array.isArray(obj)) {
         for (const objVal of obj)
           addTimeline(objVal);
@@ -576,7 +576,7 @@ export class PopupText {
       } else if (obj) {
         timelines.push(obj);
       }
-    }).bind(this);
+    }.bind(this);
 
     // construct something like regexDe or regexFr.
     const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
