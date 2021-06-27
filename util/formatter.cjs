@@ -22,7 +22,10 @@ const linter = new eslint.ESLint({
       'max-len': 'off',
       'curly': 'error',
       'brace-style': ['error'],
-      'no-extra-parens': 'error',
+      'no-extra-parens': ['error', 'all', {
+        'conditionalAssign': false,
+        'nestedBinaryExpressions': false,
+      }],
     },
   },
 });
