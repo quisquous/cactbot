@@ -101,7 +101,7 @@
   },
   "lint-staged": {
     "*.{js,cjs,mjs,ts}": "node util/formatter.cjs",
-    "*.{,html,json,yml,yaml}": "prettier --write",
+    "*.{html,json,yml,yaml}": "prettier --write",
     "*.css": "stylelint",
     "*.{js,cjs,mjs}": "eslint --max-warnings=0",
     "*.ts": "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",
