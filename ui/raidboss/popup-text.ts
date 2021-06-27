@@ -11,7 +11,7 @@ import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
 import {
-  LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
+  LooseTrigger, OutputStrings, TriggerSet, TimelineField, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
   Output, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
   GeneralNetRegexTrigger, RegexTrigger,
@@ -567,7 +567,7 @@ export class PopupText {
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    const addTimeline = (function(this: PopupText, obj: TimelineFunc) {
+    const addTimeline = (function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
       if (Array.isArray(obj)) {
         for (const objVal of obj)
           addTimeline(objVal);
@@ -1121,8 +1121,8 @@ export class PopupText {
       this.triggerSuppress[triggerHelper.trigger.id] = triggerHelper.now + (suppress * 1000);
   }
 
-  _onTriggerInternalPromise(triggerHelper: TriggerHelper): Promise<void | boolean> | undefined {
-    let promise: Promise<void | boolean> | undefined;
+  _onTriggerInternalPromise(triggerHelper: TriggerHelper): Promise<void> | undefined {
+    let promise: Promise<void> | undefined;
     if ('promise' in triggerHelper.trigger) {
       const id = triggerHelper.trigger.id ?? 'Unknown';
       if (typeof triggerHelper.trigger.promise === 'function') {
