@@ -75,7 +75,7 @@ const activeText = {
 };
 
 export type TimelineReplacement = {
-  locale: string;
+  locale: Lang;
   missingTranslations?: boolean;
   replaceSync?: { [regexString: string]: string };
   replaceText?: { [timelineText: string]: string };
