@@ -192,7 +192,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: (data, matches) => {
         data.levinbolt = matches.target;
-        return (matches.target !== data.me);
+        return matches.target !== data.me;
       },
     },
     {

@@ -87,7 +87,7 @@ export function setup(bars) {
     EffectId.FlourishingWindmill,
     EffectId.FlourishingFanDance,
   ], (effect) => {
-    if (!(flourishEffect.includes(effect)))
+    if (!flourishEffect.includes(effect))
       flourishEffect.push(effect);
     if (flourishEffect.length === 5 && flourishIsActive) {
       flourish.duration = 60 - flourish.elapsed;

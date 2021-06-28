@@ -49,8 +49,8 @@ export class LineEvent0x19 extends LineEvent {
     if (this.targetId !== '00')
       resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
 
-    const defeatedName = (resolvedName ?? this.name);
-    const killerName = (resolvedTargetName ?? this.targetName);
+    const defeatedName = resolvedName ?? this.name;
+    const killerName = resolvedTargetName ?? this.targetName;
     this.convertedLine = this.prefix() + defeatedName +
       ' was defeated by ' + killerName + '.';
     this.properCaseConvertedLine = this.prefix() + EmulatorCommon.properCase(defeatedName) +

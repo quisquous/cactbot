@@ -138,6 +138,9 @@ const rules = {
   'no-duplicate-imports': 'error',
   'no-else-return': 'error',
   'no-eval': 'error',
+  'no-extra-parens': ['error', 'all', {
+    'nestedBinaryExpressions': false,
+  }],
   'no-implied-eval': 'error',
   'no-sequences': 'error',
   'no-undef': 'off',
@@ -236,12 +239,16 @@ const tsOverrides = {
     }],
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-extra-parens': ['error', 'all', {
+      'nestedBinaryExpressions': false,
+    }],
     '@typescript-eslint/no-non-null-assertion': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': ['error', { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' }],
     'indent': 'off',
+    'no-extra-parens': 'off',
     'object-shorthand': ['error', 'consistent'],
   },
 };

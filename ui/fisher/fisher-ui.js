@@ -34,7 +34,7 @@ export default class FisherUI {
   }
 
   draw() {
-    const timeMs = (new Date() - this.castStart);
+    const timeMs = new Date() - this.castStart;
     const time = (timeMs / 1000).toFixed(1);
 
     this.timeEl.innerHTML = time;
@@ -87,7 +87,7 @@ export default class FisherUI {
           bar.duration = (max - min) / 1000;
           timeouts.push(setTimeout(() => {
             row.style.opacity = 0.5;
-          }, (max - min)));
+          }, max - min));
         }, min));
       } else {
         bar.duration = 0;

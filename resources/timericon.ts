@@ -364,7 +364,7 @@ export default class TimerIcon extends HTMLElement {
     if (!this._connected)
       return;
 
-    this.startTimeMs = +new Date();
+    this.startTimeMs = Date.now();
 
     this.rootElement.style.display = 'block';
     clearTimeout(this._hideTimer ?? 0);

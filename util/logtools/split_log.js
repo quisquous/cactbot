@@ -225,7 +225,7 @@ const printCollectedFights = (collector) => {
       leftExtendStr(row, lengths, 2) + ' ' +
       leftExtendStr(row, lengths, 3) + ' ' +
       rightExtendStr(row, lengths, 4) +
-      (row[5] ? (' ' + '[' + row[5] + ']') : ''));
+      (row[5] ? ' ' + '[' + row[5] + ']' : ''));
   }
 };
 

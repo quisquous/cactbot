@@ -41,7 +41,7 @@ export default {
       },
       infoText: (data, _matches, output) => {
         if (data.breathless >= 7)
-          return output.breathless({ num: (data.breathless + 1) });
+          return output.breathless({ num: data.breathless + 1 });
       },
       tts: (data, _matches, output) => {
         if (data.breathless === 6)

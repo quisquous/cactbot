@@ -567,7 +567,7 @@ export class PopupText {
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    const addTimeline = (function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
+    const addTimeline = function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
       if (Array.isArray(obj)) {
         for (const objVal of obj)
           addTimeline(objVal);
@@ -576,7 +576,7 @@ export class PopupText {
       } else if (obj) {
         timelines.push(obj);
       }
-    }).bind(this);
+    }.bind(this);
 
     // construct something like regexDe or regexFr.
     const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
@@ -839,7 +839,7 @@ export class PopupText {
   OnLog(e: LogEvent): void {
     // This could conceivably be determined based on the line's contents as well, but
     // not sure if that's worth the effort
-    const currentTime = +new Date();
+    const currentTime = Date.now();
     for (const log of e.detail.logs) {
       if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
@@ -856,7 +856,7 @@ export class PopupText {
     const log = e.rawLine;
     // This could conceivably be determined based on `new Date(e.line[1])` as well, but
     // not sure if that's worth the effort
-    const currentTime = +new Date();
+    const currentTime = Date.now();
     for (const trigger of this.netTriggers) {
       const r = trigger.localNetRegex?.exec(log);
       if (r)

@@ -627,7 +627,7 @@ class RaidbossConfigurator {
 
   // This duplicates the raidboss function of the same name.
   valueOrFunction(f, data, matches, output) {
-    const result = (typeof f === 'function') ? f(data, matches, output) : f;
+    const result = typeof f === 'function' ? f(data, matches, output) : f;
     if (result !== Object(result))
       return result;
     if (result[this.alertsLang])
