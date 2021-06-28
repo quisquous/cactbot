@@ -22,7 +22,7 @@ const linter = new eslint.ESLint({
   overrideConfig: {
     rules: {
       'max-len': 'off',
-      'indent': ['error', 2],
+      'indent': ['error', 2 , { offsetTernaryExpressions: true }],
     },
   },
 });
