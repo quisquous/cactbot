@@ -87,16 +87,6 @@ const rules = {
     'error',
     2,
     {
-      'ArrayExpression': 1,
-      'CallExpression': {
-        'arguments': 2,
-      },
-      'FunctionDeclaration': {
-        'parameters': 2,
-      },
-      'FunctionExpression': {
-        'parameters': 2,
-      },
       'ignoreComments': false,
       'ignoredNodes': [
         // The indent rule does a poor job with TypeScript type declarations, so disable.
@@ -104,7 +94,7 @@ const rules = {
         'TSTypeAliasDeclaration *',
         'TSUnionType *',
       ],
-      'ObjectExpression': 1,
+      'SwitchCase': 1,
     },
   ],
   'linebreak-style': [
