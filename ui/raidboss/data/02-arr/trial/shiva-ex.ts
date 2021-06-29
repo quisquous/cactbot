@@ -6,7 +6,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  currentTank: string;
+  currentTank?: string;
   blunt: { [playerName: string]: boolean };
   slashing: { [playerName: string]: boolean };
   soonAfterWeaponChange: boolean;
@@ -21,7 +21,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'shiva-ex.txt',
   initData: () => {
     return {
-      currentTank: '',
       blunt: {},
       slashing: {},
       soonAfterWeaponChange: false,
