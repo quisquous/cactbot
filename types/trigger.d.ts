@@ -143,7 +143,12 @@ export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, key
 
 export type DisabledTrigger = { id: string; disabled: true };
 
-export type TriggerSet<Data extends RaidbossData> = {
+type Required<Type> =
+  {
+    [key in keyof Type]-?: Record<string, never> extends Pick<Type, key> ? never : key
+  }[keyof Type];
+
+export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
   resetWhenOutOfCombat?: boolean;
@@ -154,8 +159,18 @@ export type TriggerSet<Data extends RaidbossData> = {
   timelineTriggers?: (TimelineTrigger<Data> | DisabledTrigger)[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
-  initData?: DataInitializeFunc<Data>;
 }
+
+// If Data contains required properties that are not on RaidbossData, require initData
+export type TriggerSet<Data extends RaidbossData> = BaseTriggerSet<Data> &
+  (Required<RaidbossData> extends Required<Data> ? Required<Data> extends Required<RaidbossData> ?
+  {
+    initData?: DataInitializeFunc<Data>;
+  } : {
+    initData: DataInitializeFunc<Data>;
+  } : {
+    initData: DataInitializeFunc<Data>;
+  });
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
