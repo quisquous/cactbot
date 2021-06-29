@@ -1,6 +1,6 @@
 // TODO: Fix import/order
 /* eslint-disable import/order */
-import { Lang } from './languages';
+import { isLang, Lang } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleText } from '../types/trigger';
@@ -246,10 +246,12 @@ class UserConfig {
       // System Language
       if (e.detail.systemLocale) {
         options.SystemLocale = e.detail.systemLocale;
-        options.ShortLocale = e.detail.systemLocale.substring(0, 2);
-        if (options.ShortLocale === 'zh')
-          options.ShortLocale = 'cn';
-        if (!supportedLanguage.includes(options.ShortLocale))
+        let shortLocale = e.detail.systemLocale.substring(0, 2);
+        if (shortLocale === 'zh')
+          shortLocale = 'cn';
+        if (isLang(shortLocale))
+          options.ShortLocale = shortLocale;
+        else
           options.ShortLocale = options.ParserLanguage;
       }
       // User's setting Language
