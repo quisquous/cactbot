@@ -110,10 +110,10 @@ export class CoinachReader {
       throw new CoinachError('Unknown output', cmd, output);
 
     const csvFilename = path.join(
-        this.coinachPath,
-        m[1] ?? '',
-        coinachCmd,
-        `${table}.csv`,
+      this.coinachPath,
+      m[1] ?? '',
+      coinachCmd,
+      `${table}.csv`,
     );
 
     if (this.verbose) {
@@ -122,10 +122,12 @@ export class CoinachReader {
     }
     // # Read the whole file immediately,
     // # as future commands with different langs will overwrite.
-    const lines = String(await promisify(fs.readFile)(csvFilename, {
-      flag: 'r',
-      encoding: 'utf-8',
-    })).split(/\r?\n/);
+    const lines = String(
+      await promisify(fs.readFile)(csvFilename, {
+        flag: 'r',
+        encoding: 'utf-8',
+      }),
+    ).split(/\r?\n/);
 
     if (this.verbose)
       console.log(`csv lines: ${lines.length}`);
@@ -153,7 +155,10 @@ export class CoinachWriter {
   }
 
   async write(
-      filename: string, scriptname: string, variable: string | null, d: unknown[],
+    filename: string,
+    scriptname: string,
+    variable: string | null,
+    d: unknown[],
   ): Promise<void> {
     const fullPath = path.join(this.cactbotPath, filename);
 
@@ -192,12 +197,12 @@ export default ${str}`;
   }
 
   async writeTypeScript(
-      filename: string,
-      scriptname: string,
-      header: string | null,
-      type: string | null,
-      asConst: boolean | null,
-      data: { [s: string]: unknown },
+    filename: string,
+    scriptname: string,
+    header: string | null,
+    type: string | null,
+    asConst: boolean | null,
+    data: { [s: string]: unknown },
   ): Promise<void> {
     const fullPath = path.join(this.cactbotPath, filename);
 

@@ -11,7 +11,6 @@ Options.DisabledTriggers = {
   'Test Bootshine': true,
 };
 
-
 // A set of nicknames to use for players.  By default, first names are used to
 // make the mistake lines shorter.  If a player's name appears in this map,
 // their nickname will be used instead of their first name.
@@ -21,14 +20,12 @@ Options.PlayerNicks = {
   'Pipira Pira': '&#x1F41F;',
 };
 
-
 // A set of ability ids (in hex) to other ability names.  This is primarily
 // used for abillity names that ACT doesn't know yet (e.g. Unknown_26B4).
 //
 // For example: Rename wings of salvation to White Swirly because that's what
 // everybody in your raid group calls it.
 Options.AbilityIdNameMap['26CA'] = 'White Swirly';
-
 
 // An array of user-defined triggers, in the format defined in the readme:
 // https://github.com/quisquous/cactbot/tree/main/docs/OopsyraidsyGuide.md

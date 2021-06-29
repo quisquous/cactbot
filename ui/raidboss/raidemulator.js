@@ -28,7 +28,6 @@ import defaultOptions from './raidboss_options';
 import '../../resources/defaults.css';
 import './raidemulator.css';
 
-
 function showModal(selector) {
   const modal = document.querySelector(selector);
   const body = document.body;
@@ -116,11 +115,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize the Raidboss components, bind them to the emulator for event listeners
   const timelineUI = new RaidEmulatorTimelineUI(options);
   timelineUI.bindTo(emulator);
-  const timelineController =
-      new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
+  const timelineController = new RaidEmulatorTimelineController(
+    options,
+    timelineUI,
+    raidbossFileData,
+  );
   timelineController.bindTo(emulator);
   const popupText = new RaidEmulatorPopupText(
-      options, new TimelineLoader(timelineController), raidbossFileData);
+    options,
+    new TimelineLoader(timelineController),
+    raidbossFileData,
+  );
   popupText.bindTo(emulator);
 
   timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
@@ -172,7 +177,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       const firstTimestamp = enc.logLines[0].timestamp;
       for (let i = 0; i < enc.logLines.length; ++i)
         enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
-
 
       enc.firstLineIndex = 0;
 
@@ -252,18 +256,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       logConverterWorker.onmessage = (msg) => {
         switch (msg.data.type) {
-        case 'progress':
-          {
-            const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
-            bar.style.width = percent + '%';
-            label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
-          }
-          break;
-        case 'encounter':
-          {
-            const enc = msg.data.encounter;
+          case 'progress':
+            {
+              const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
+              bar.style.width = percent + '%';
+              label.innerText =
+                `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
+            }
+            break;
+          case 'encounter':
+            {
+              const enc = msg.data.encounter;
 
-            encLabel.innerText = `
+              encLabel.innerText = `
             Zone: ${enc.encounterZoneName}
             Encounter: ${msg.data.name}
             Start: ${new Date(enc.startTimestamp)}
@@ -274,28 +279,28 @@ document.addEventListener('DOMContentLoaded', async () => {
             End Status: ${enc.endStatus}
             Line Count: ${enc.logLines.length}
             `;
-            // Objects sent via message are raw objects, not typed.
-            // Need to get the name another way and override for Persistor.
-            enc.combatantTracker.getMainCombatantName = () => msg.data.name;
-            promises.push(persistor.persistEncounter(enc));
-          }
-          break;
-        case 'done':
-          Promise.all(promises).then(() => {
-            encounterTab.refresh();
-            doneButton.disabled = false;
-            let seconds = 5;
-            doneButtonTimeout.innerText = ` (${seconds})`;
-            const interval = window.setInterval(() => {
-              --seconds;
+              // Objects sent via message are raw objects, not typed.
+              // Need to get the name another way and override for Persistor.
+              enc.combatantTracker.getMainCombatantName = () => msg.data.name;
+              promises.push(persistor.persistEncounter(enc));
+            }
+            break;
+          case 'done':
+            Promise.all(promises).then(() => {
+              encounterTab.refresh();
+              doneButton.disabled = false;
+              let seconds = 5;
               doneButtonTimeout.innerText = ` (${seconds})`;
-              if (seconds === 0) {
-                window.clearInterval(interval);
-                hideModal('.importProgressModal');
-              }
-            }, 1000);
-          });
-          break;
+              const interval = window.setInterval(() => {
+                --seconds;
+                doneButtonTimeout.innerText = ` (${seconds})`;
+                if (seconds === 0) {
+                  window.clearInterval(interval);
+                  hideModal('.importProgressModal');
+                }
+              }, 1000);
+            });
+            break;
         }
       };
       file.arrayBuffer().then((b) => {
@@ -326,8 +331,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const $exportButton = document.querySelector('.exportDBButton');
 
-  new Tooltip($exportButton, 'bottom',
-      'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
+  new Tooltip(
+    $exportButton,
+    'bottom',
+    'Export DB is very slow and shows a 0 byte download, but it does work eventually.',
+  );
 
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {

@@ -50,14 +50,11 @@ export default class SeaBase {
         else
           objectStore = tx.objectStore(this._storeName);
 
-
         if (!objectStore.indexNames.contains('fish'))
           objectStore.createIndex('fish', 'fish', { unique: false });
 
-
         if (!objectStore.indexNames.contains('fishbaitchum'))
           objectStore.createIndex('fishbaitchum', ['fish', 'bait', 'chum'], { unique: false });
-
 
         tx.oncomplete = (event) => {
           resolve(db);
@@ -99,7 +96,6 @@ export default class SeaBase {
     else
       q1 = (times[q1Index] + times[q1Index - 1]) / 2;
 
-
     // find q2 (median of second half)
     const q3Index = q1Index + q2Index;
 
@@ -107,7 +103,6 @@ export default class SeaBase {
       q3 = times[q3Index];
     else
       q3 = (times[q3Index] + times[q3Index - 1]) / 2;
-
 
     const iqr = q3 - q1;
 
@@ -152,11 +147,22 @@ export default class SeaBase {
     let commit = true;
 
     // Make sure we have complete data before recording
-    const keys = ['fish', 'bait', 'place', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
+    const keys = [
+      'fish',
+      'bait',
+      'place',
+      'castTimestamp',
+      'hookTime',
+      'reelTime',
+      'chum',
+      'snagging',
+    ];
 
     for (const index in keys) {
-      if (!Object.prototype.hasOwnProperty.call(data, keys[index]) ||
-          data[keys[index]] === null) {
+      if (
+        !Object.prototype.hasOwnProperty.call(data, keys[index]) ||
+        data[keys[index]] === null
+      ) {
         commit = false;
         console.log(keys[index] + 'missing in catch');
       }
@@ -252,7 +258,6 @@ export default class SeaBase {
     const placeFish = [];
     for (const fishID in fishList)
       placeFish.push(this.getFish(fishList[fishID]));
-
 
     return placeFish;
   }
@@ -360,7 +365,6 @@ export default class SeaBase {
               tug = 3;
             else
               tug = 2;
-
 
             resolve(tug);
           });

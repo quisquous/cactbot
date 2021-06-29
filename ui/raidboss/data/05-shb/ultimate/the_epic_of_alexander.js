@@ -29,7 +29,6 @@ import ZoneId from '../../../../../resources/zone_id';
 // * inception orb tethers (likely some "new combatant" flag, like suzex birbs?)
 // * escape/contact regulator/prohibition headmarkers
 
-
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
@@ -53,14 +52,14 @@ const nisiToString = (nisiNum, output) => {
   // nisiNum is 0-3
   // assume output is using nisiTypes.
   switch (nisiNum) {
-  case 0:
-    return output.blueAlpha();
-  case 1:
-    return output.orangeBeta();
-  case 2:
-    return output.purpleGamma();
-  case 3:
-    return output.greenDelta();
+    case 0:
+      return output.blueAlpha();
+    case 1:
+      return output.orangeBeta();
+    case 2:
+      return output.purpleGamma();
+    case 3:
+      return output.greenDelta();
   }
 };
 
@@ -682,7 +681,7 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
@@ -744,7 +743,7 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: (data) => data.limitCutDelay - 5,
@@ -869,7 +868,7 @@ export default {
     },
     {
       id: 'TEA Ice Marker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -907,7 +906,7 @@ export default {
     },
     {
       id: 'TEA Enumeration YOU',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -923,7 +922,7 @@ export default {
     },
     {
       id: 'TEA Enumeration Everyone',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '0041',
       preRun: (data, matches) => {
         data.enumerations = data.enumerations || [];
@@ -1385,7 +1384,7 @@ export default {
     },
     {
       id: 'TEA Judgment Crystal',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -1560,7 +1559,7 @@ export default {
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1692,7 +1691,7 @@ export default {
     },
     {
       id: 'TEA Incinerating Heat',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '005D',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -1784,7 +1783,7 @@ export default {
     },
     {
       id: 'TEA Perfect Optical Sight Stack',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '003E',
       preRun: (data, matches) => {
         data.opticalStack = data.opticalStack || [];
@@ -2625,11 +2624,13 @@ export default {
       preRun: (data, matches) => {
         data.trine = data.trine || [];
         // See: https://imgur.com/a/l1n9MhS
-        data.trine.push({
-          92: 'r',
-          100: 'g',
-          108: 'y',
-        }[matches.y]);
+        data.trine.push(
+          {
+            92: 'r',
+            100: 'g',
+            108: 'y',
+          }[matches.y],
+        );
       },
       alertText: (data, _matches, output) => {
         // Call out after two, because that's when the mechanic is fully known.
@@ -2692,24 +2693,24 @@ export default {
         // once the first has happened.
 
         switch (threeOne) {
-        case 'gr':
-          data.secondTrineResponse = 'north';
-          return output.waitMiddleDodgeNorth();
-        case 'rg':
-          data.secondTrineResponse = 'south';
-          return output.goNorthDodgeSouth();
-        case 'ry':
-          data.secondTrineResponse = 'west';
-          return output.goNorthDodgeWest();
-        case 'yr':
-          data.secondTrineResponse = 'east';
-          return output.goSouthDodgeEast();
-        case 'gy':
-          data.secondTrineResponse = 'south';
-          return output.waitMiddleDodgeSouth();
-        case 'yg':
-          data.secondTrineResponse = 'north';
-          return output.goSouthDodgeNorth();
+          case 'gr':
+            data.secondTrineResponse = 'north';
+            return output.waitMiddleDodgeNorth();
+          case 'rg':
+            data.secondTrineResponse = 'south';
+            return output.goNorthDodgeSouth();
+          case 'ry':
+            data.secondTrineResponse = 'west';
+            return output.goNorthDodgeWest();
+          case 'yr':
+            data.secondTrineResponse = 'east';
+            return output.goSouthDodgeEast();
+          case 'gy':
+            data.secondTrineResponse = 'south';
+            return output.waitMiddleDodgeSouth();
+          case 'yg':
+            data.secondTrineResponse = 'north';
+            return output.goSouthDodgeNorth();
         }
       },
       outputStrings: {

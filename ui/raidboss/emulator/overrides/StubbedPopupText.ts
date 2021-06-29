@@ -7,9 +7,10 @@ import { TimelineLoader } from '../../timeline';
 
 export default class StubbedPopupText extends PopupText {
   constructor(
-      options: RaidbossOptions,
-      timelineLoader: TimelineLoader,
-      raidbossFileData: RaidbossFileData) {
+    options: RaidbossOptions,
+    timelineLoader: TimelineLoader,
+    raidbossFileData: RaidbossFileData,
+  ) {
     super(options, timelineLoader, raidbossFileData);
   }
 

@@ -13,8 +13,10 @@ export class LineEvent0x1E extends LineEvent0x1A {
     super(repo, line, parts);
 
     let stackCountText = '';
-    if (this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.abilityId))
+    if (
+      this.stacks > 0 && this.stacks < 20 &&
+      LineEvent0x1A.showStackCountFor.includes(this.abilityId)
+    )
       stackCountText = ' (' + this.stacks.toString() + ')';
 
     this.convertedLine = this.prefix() + this.targetId +
@@ -31,4 +33,4 @@ export class LineEvent0x1E extends LineEvent0x1A {
   }
 }
 
-export class LineEvent30 extends LineEvent0x1E { }
+export class LineEvent30 extends LineEvent0x1E {}

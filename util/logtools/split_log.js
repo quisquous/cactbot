@@ -172,11 +172,13 @@ const printCollectedZones = (collector) => {
       console.log(lastDate);
     }
 
-    console.log('  ' +
-      leftExtendStr(row, lengths, 0) + ') ' +
-      leftExtendStr(row, lengths, 2) + ' ' +
-      leftExtendStr(row, lengths, 3) + ' ' +
-      rightExtendStr(row, lengths, 4));
+    console.log(
+      '  ' +
+        leftExtendStr(row, lengths, 0) + ') ' +
+        leftExtendStr(row, lengths, 2) + ' ' +
+        leftExtendStr(row, lengths, 3) + ' ' +
+        rightExtendStr(row, lengths, 4),
+    );
   }
 };
 
@@ -220,12 +222,14 @@ const printCollectedFights = (collector) => {
       console.log(lastDate);
     }
 
-    console.log('  ' +
-      leftExtendStr(row, lengths, 0) + (row[0] ? ') ' : '  ') +
-      leftExtendStr(row, lengths, 2) + ' ' +
-      leftExtendStr(row, lengths, 3) + ' ' +
-      rightExtendStr(row, lengths, 4) +
-      (row[5] ? (' ' + '[' + row[5] + ']') : ''));
+    console.log(
+      '  ' +
+        leftExtendStr(row, lengths, 0) + (row[0] ? ') ' : '  ') +
+        leftExtendStr(row, lengths, 2) + ' ' +
+        leftExtendStr(row, lengths, 3) + ' ' +
+        rightExtendStr(row, lengths, 4) +
+        (row[5] ? (' ' + '[' + row[5] + ']') : ''),
+    );
   }
 };
 

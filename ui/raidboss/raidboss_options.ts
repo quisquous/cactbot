@@ -95,7 +95,8 @@ const defaultRaidbossConfigOptions = {
 type RaidbossConfigOptions = typeof defaultRaidbossConfigOptions;
 
 export interface RaidbossOptions
-  extends BaseOptions, RaidbossNonConfigOptions, RaidbossConfigOptions {}
+  extends BaseOptions, RaidbossNonConfigOptions, RaidbossConfigOptions
+{}
 
 // See user/raidboss-example.js for documentation.
 const Options: RaidbossOptions = {

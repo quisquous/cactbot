@@ -25,7 +25,6 @@ export function setup(bars) {
     return 4;
   };
 
-
   bars.onJobDetailUpdate((jobDetail) => {
     const chakra = jobDetail.chakraStacks;
     if (textBox.innerText !== chakra) {

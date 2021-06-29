@@ -37,7 +37,6 @@ declare global {
   }
 }
 
-
 type IAddOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
 type IRemoveOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
 
@@ -52,8 +51,8 @@ let inited = false;
 let wsUrl: RegExpExecArray | null = null;
 let ws: WebSocket | null = null;
 let queue: (
-  { [s: string]: unknown } |
-  [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
+  | { [s: string]: unknown }
+  | [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
 )[] | null = [];
 let rseqCounter = 0;
 const responsePromises: Record<number, (value: unknown) => void> = {};
@@ -61,8 +60,8 @@ const responsePromises: Record<number, (value: unknown) => void> = {};
 const subscribers: Subscriber<VoidFunc<unknown>> = {};
 
 const sendMessage = (
-    msg: { [s: string]: unknown },
-    cb?: (value: string | null) => unknown,
+  msg: { [s: string]: unknown },
+  cb?: (value: string | null) => unknown,
 ): void => {
   if (ws) {
     if (queue)
@@ -116,8 +115,8 @@ export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void =
 };
 
 const callOverlayHandlerInternal: IOverlayHandler = (
-    _msg: { [s: string]: unknown },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _msg: { [s: string]: unknown },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
 
@@ -148,13 +147,13 @@ const callOverlayHandlerInternal: IOverlayHandler = (
 let callOverlayHandlerOverride: IOverlayHandler | undefined;
 
 export const callOverlayHandler: IOverlayHandler = (
-    _msg: { [s: string]: unknown },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _msg: { [s: string]: unknown },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
   if (callOverlayHandlerOverride) {
     return callOverlayHandlerOverride(
-        _msg as Parameters<IOverlayHandler>[0],
+      _msg as Parameters<IOverlayHandler>[0],
     ) as Promise<unknown>;
   }
   return callOverlayHandlerInternal(_msg as Parameters<IOverlayHandler>[0]);

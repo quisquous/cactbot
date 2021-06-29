@@ -98,16 +98,19 @@ const getLabels = async (github, owner, repo, pullNumber) => {
    * @typedef {{ filename: string, from: string, to: string }} ChangedFileContent
    * @type {ChangedFileContent[]}
    */
-  const changedFilesContent = await Promise.all(changedFiles.map((f) => async () => {
-    const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename),
-    );
-    const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
-    return {
-      filename: f.filename,
-      from: await readBody(from),
-      to: await readBody(to),
-    };
-  }).map((f) => f()));
+  const changedFilesContent = await Promise.all(
+    changedFiles.map((f) =>
+      async () => {
+        const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename));
+        const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
+        return {
+          filename: f.filename,
+          from: await readBody(from),
+          to: await readBody(to),
+        };
+      }
+    ).map((f) => f()),
+  );
 
   const changedLang = getTimelineReplaceChanges(changedFilesContent);
   changedLang.push(...nonNullUnique(lodash.flatten(changedFiles.map((f) => {
@@ -160,7 +163,7 @@ const parseChangedLang = (patch) => {
     return [];
   const set = new Set();
   for (const lang of validLanguages) {
-    const pattern = new RegExp(String.raw`^\+\s*(?:${lang}|'${lang}'): `);
+    const pattern = new RegExp(String.raw `^\+\s*(?:${lang}|'${lang}'): `);
     for (const line of patch.split('\n')) {
       if (pattern.test(line)) {
         // TODO: it'd be nice to add the file/line number here.
@@ -265,7 +268,10 @@ const run = async () => {
   const labels = await getLabels(octokit, owner, repo, pullNumber);
   if (labels && labels.length) {
     console.log(`apply: ${JSON.stringify(labels)}`);
-    const res = await octokit.request(`PUT /repos/${owner}/${repo}/issues/${pullNumber}/labels`, { labels });
+    const res = await octokit.request(
+      `PUT /repos/${owner}/${repo}/issues/${pullNumber}/labels`,
+      { labels },
+    );
     if (res.status !== 200)
       console.log(res);
   }

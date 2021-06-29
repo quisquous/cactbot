@@ -64,4 +64,4 @@ export class LineEvent0x0C extends LineEvent {
   }
 }
 
-export class LineEvent12 extends LineEvent0x0C { }
+export class LineEvent12 extends LineEvent0x0C {}

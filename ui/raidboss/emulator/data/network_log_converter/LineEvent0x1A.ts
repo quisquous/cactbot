@@ -70,12 +70,18 @@ export class LineEvent0x1A extends LineEvent implements LineEventAbility {
     this.resolvedName = repo.resolveName(this.id, this.name);
     this.resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
 
-    this.fallbackResolvedTargetName =
-      repo.resolveName(this.id, this.name, this.targetId, this.targetName);
+    this.fallbackResolvedTargetName = repo.resolveName(
+      this.id,
+      this.name,
+      this.targetId,
+      this.targetName,
+    );
 
     let stackCountText = '';
-    if (this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.abilityId))
+    if (
+      this.stacks > 0 && this.stacks < 20 &&
+      LineEvent0x1A.showStackCountFor.includes(this.abilityId)
+    )
       stackCountText = ' (' + this.stacks.toString() + ')';
 
     this.convertedLine = this.prefix() + this.targetId +

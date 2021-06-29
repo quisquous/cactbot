@@ -116,15 +116,16 @@ const orbOutputStrings = {
 };
 
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (ceName) => (data, matches) => {
-  if (ceName && data.ce !== ceName)
-    return false;
-  if (matches.target === data.me)
-    return true;
-  if (data.role !== 'healer')
-    return false;
-  return data.party.inParty(matches.target);
-};
+const tankBusterOnParty = (ceName) =>
+  (data, matches) => {
+    if (ceName && data.ce !== ceName)
+      return false;
+    if (matches.target === data.me)
+      return true;
+    if (data.role !== 'healer')
+      return false;
+    return data.party.inParty(matches.target);
+  };
 
 export default {
   zoneId: ZoneId.TheBozjanSouthernFront,

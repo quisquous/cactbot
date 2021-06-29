@@ -25,7 +25,6 @@ Options.LongSound = '../../resources/sounds/BigWigs/Long.ogg';
 // specified as the sound name.
 Options.PullSound = '../../resources/sounds/freesound/sonar.ogg';
 
-
 // A set of nicknames to use for players, when trying to shorten names.
 // See: https://github.com/quisquous/cactbot/blob/main/docs/CactbotCustomization.md#customizing-behavior
 Options.PlayerNicks = {
@@ -47,8 +46,15 @@ Options.Triggers.push({
     {
       id: 'Test Poke',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?', capture: false }),
-      netRegexDe: NetRegexes.gameNameLog({ line: 'Du stupst die Trainingspuppe an.*?', capture: false }),
-      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?', capture: false }),
+      netRegexDe: NetRegexes.gameNameLog(
+        { line: 'Du stupst die Trainingspuppe an.*?', capture: false },
+      ),
+      netRegexFr: NetRegexes.gameNameLog(
+        {
+          line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?',
+          capture: false,
+        },
+      ),
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?', capture: false }),
@@ -62,7 +68,6 @@ Options.Triggers.push({
   ],
 });
 
-
 // Here's an example of overriding a timeline.
 // This overrides the test timeline that you normally play with a `/countdown 5` in Middle La Noscea
 // with an updated one from `user/test-override.txt`.
@@ -73,7 +78,6 @@ Options.Triggers.push({
   // This file is in the same directory as this JavaScript file.
   timelineFile: 'test-override.txt',
 });
-
 
 // Here's an example of a adding a custom regen trigger.
 // It reminds you to use regen again when you are in Sastasha (unsynced).

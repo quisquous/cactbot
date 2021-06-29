@@ -113,7 +113,6 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '25D7', source: '统治者哈修马利姆' }),
       netRegexKo: NetRegexes.startsUsing({ id: '25D7', source: '통제자 하쉬말림' }),
       response: Responses.tankCleave(),
-
     },
     {
       id: 'Rab Hashmal Earth Hammer',

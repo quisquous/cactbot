@@ -28,9 +28,13 @@ const fields = {
   heading: 43,
 } as const;
 
+// Shorten a few types so dprint doesn't complain when the line gets too long.
+type LESource = LineEventSource;
+type LETarget = LineEventTarget;
+type LEAbility = LineEventAbility;
+
 // Ability hit single target event
-export class LineEvent0x15 extends LineEvent
-  implements LineEventSource, LineEventTarget, LineEventAbility {
+export class LineEvent0x15 extends LineEvent implements LESource, LETarget, LEAbility {
   public readonly damage: number;
   public readonly id: string;
   public readonly name: string;
@@ -92,8 +96,6 @@ export class LineEvent0x15 extends LineEvent
     this.y = parseFloat(parts[fields.y + fieldOffset] ?? '');
     this.z = parseFloat(parts[fields.z + fieldOffset] ?? '');
     this.heading = parseFloat(parts[fields.heading + fieldOffset] ?? '');
-
-
     repo.updateCombatant(this.id, {
       job: undefined,
       name: this.name,

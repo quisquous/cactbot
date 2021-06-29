@@ -715,4 +715,3 @@ export default {
   num8: numberToOutputString(8),
   num9: numberToOutputString(9),
 } as const;
-

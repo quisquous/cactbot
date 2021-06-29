@@ -82,7 +82,6 @@ const boundOfFaithHolyTetherResponse = (data, _matches, output) => {
   return { infoText: output.awayFromPlayer({ player: data.ShortName(targets[0]) }) };
 };
 
-
 export default {
   zoneId: ZoneId.EdensPromiseAnamorphosis,
   timelineFile: 'e11n.txt',

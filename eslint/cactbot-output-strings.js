@@ -66,8 +66,11 @@ const ruleModule = {
       if (node.properties === undefined)
         return;
       const outputTemplateKey = {};
-      for (const outputString of
-        node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))) {
+      for (
+        const outputString of node.properties.filter((s) =>
+          !t.isSpreadElement(s) && !t.isMemberExpression(s.value)
+        )
+      ) {
         // For each outputString...
         const properties = outputString.value.properties;
         // This could just be a literal, e.g. `outputStrings: { text: 'string' }`.
@@ -104,13 +107,16 @@ const ruleModule = {
         if (props.find((prop) => prop === 'outputStrings')) {
           stack.inTriggerFunc = true;
           stack.outputParam = node.params[2] && node.params[2].name;
-          const outputValue = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'outputStrings').value;
+          const outputValue = node.parent.parent.properties.find((prop) =>
+            prop.key && prop.key.name === 'outputStrings'
+          ).value;
           stack.outputTemplates = extractTemplate(outputValue);
-          stack.outputProperties =
-            t.isIdentifier(outputValue)
-              ? (globalVars.get(outputValue.name) || [])
-              : getAllKeys(outputValue.properties);
-          stack.triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id')?.value?.value;
+          stack.outputProperties = t.isIdentifier(outputValue)
+            ? (globalVars.get(outputValue.name) || [])
+            : getAllKeys(outputValue.properties);
+          stack.triggerID = node.parent.parent.properties.find((prop) =>
+            prop.key && prop.key.name === 'id'
+          )?.value?.value;
           return;
         }
         context.report({
@@ -131,11 +137,17 @@ const ruleModule = {
        *
        * @param node {t.MemberExpression}
        */
-      [`Property[key.name=/${textProps.join('|')}/] > :function[params.length=3] CallExpression > MemberExpression`](node) {
-        if (node.object.name === stack.outputParam &&
+      [
+        `Property[key.name=/${
+          textProps.join('|')
+        }/] > :function[params.length=3] CallExpression > MemberExpression`
+      ](node) {
+        if (
+          node.object.name === stack.outputParam &&
           node.computed === false &&
           t.isIdentifier(node.property) &&
-          !stack.outputProperties.includes(node.property.name)) {
+          !stack.outputProperties.includes(node.property.name)
+        ) {
           context.report({
             node: node,
             messageId: 'notFoundProperty',

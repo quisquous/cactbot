@@ -7,6 +7,57 @@ const path = require('path');
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
 
+const dprintConfig = {
+  'arrowFunction.useParentheses': 'force',
+  'binaryExpression.linePerExpression': false,
+  'binaryExpression.spaceSurroundingBitwiseAndArithmeticOperator': true,
+  'commentLine.forceSpaceAfterSlashes': true,
+  'constructor.spaceBeforeParentheses': false,
+  'constructorType.spaceAfterNewKeyword': false,
+  'constructSignature.spaceAfterNewKeyword': false,
+  'doWhileStatement.spaceAfterWhileKeyword': true,
+  'enumDeclaration.memberSpacing': 'maintain',
+  'exportDeclaration.spaceSurroundingNamedExports': true,
+  'forInStatement.spaceAfterForKeyword': true,
+  'forOfStatement.spaceAfterForKeyword': true,
+  'forStatement.spaceAfterForKeyword': true,
+  'forStatement.spaceAfterSemiColons': true,
+  'functionDeclaration.spaceBeforeParentheses': false,
+  'functionExpression.spaceAfterFunctionKeyword': false,
+  'functionExpression.spaceBeforeParentheses': false,
+  'getAccessor.spaceBeforeParentheses': false,
+  'ifStatement.spaceAfterIfKeyword': true,
+  'ignoreFileCommentText': 'dprint-ignore-file',
+  'ignoreNodeCommentText': 'dprint-ignore',
+  'importDeclaration.spaceSurroundingNamedImports': true,
+  'indentWidth': 2,
+  'jsx.quoteStyle': 'preferDouble',
+  'jsxExpressionContainer.spaceSurroundingExpression': false,
+  'memberExpression.linePerExpression': false,
+  'method.spaceBeforeParentheses': false,
+  'newLineKind': 'crlf',
+  'nextControlFlowPosition': 'maintain',
+  'objectExpression.spaceSurroundingProperties': true,
+  'objectPattern.spaceSurroundingProperties': true,
+  'operatorPosition': 'maintain',
+  'preferHanging': false,
+  'preferSingleLine': false,
+  'quoteStyle': 'alwaysSingle',
+  'semiColons': 'prefer',
+  'setAccessor.spaceBeforeParentheses': false,
+  'singleBodyPosition': 'maintain',
+  'spaceSurroundingProperties': true,
+  'taggedTemplate.spaceBeforeLiteral': true,
+  'trailingCommas': 'onlyMultiLine',
+  'typeAnnotation.spaceBeforeColon': false,
+  'typeAssertion.spaceBeforeExpression': true,
+  'typeLiteral.separatorKind': 'semiColon',
+  'typeLiteral.spaceSurroundingProperties': true,
+  'useBraces': 'maintain',
+  'useTabs': false,
+  'whileStatement.spaceAfterWhileKeyword': true,
+};
+
 const settings = {
   'env': {
     'browser': true,
@@ -22,16 +73,21 @@ const settings = {
     '!.*',
     '.git/',
     '.venv/',
+    'bin/',
     'dist/',
+    'docs/',
+    'node_modules/',
     'plugin/',
     'publish/',
     'resources/lib/',
+    'ui/raidboss/emulator/data/CombatantJobSearch.ts',
   ],
   'parserOptions': {
     'ecmaVersion': 2020,
     'sourceType': 'module',
   },
   'plugins': [
+    'dprint',
     'import',
     'rulesdir',
   ],
@@ -49,8 +105,23 @@ const settings = {
   },
 };
 
+const dprintRule = (width) => {
+  return {
+    'dprint/dprint': [
+      'warn',
+      {
+        config: {
+          ...dprintConfig,
+          'lineWidth': width,
+        },
+      },
+    ],
+  };
+};
+
 // General rules for all files.
 const rules = {
+  ...dprintRule(100),
   'arrow-spacing': [
     'error',
     {
@@ -64,6 +135,8 @@ const rules = {
       'properties': 'always',
     },
   ],
+  // Handled by dprint.
+  'comma-dangle': 'off',
   'curly': [
     'error',
     'multi-or-nest',
@@ -83,30 +156,8 @@ const rules = {
     },
   ],
   'import/no-webpack-loader-syntax': 'error',
-  'indent': [
-    'error',
-    2,
-    {
-      'ArrayExpression': 1,
-      'CallExpression': {
-        'arguments': 2,
-      },
-      'FunctionDeclaration': {
-        'parameters': 2,
-      },
-      'FunctionExpression': {
-        'parameters': 2,
-      },
-      'ignoreComments': false,
-      'ignoredNodes': [
-        // The indent rule does a poor job with TypeScript type declarations, so disable.
-        'TSIntersectionType *',
-        'TSTypeAliasDeclaration *',
-        'TSUnionType *',
-      ],
-      'ObjectExpression': 1,
-    },
-  ],
+  // Handled by dprint.
+  'indent': 'off',
   'linebreak-style': [
     'error',
     'windows',
@@ -217,13 +268,16 @@ const tsOverrides = {
   'plugins': ['@typescript-eslint', 'prefer-arrow'],
   'rules': {
     '@typescript-eslint/consistent-type-assertions': [
-      'error', {
+      'error',
+      {
         assertionStyle: 'as',
         objectLiteralTypeAssertions: 'never',
       },
     ],
-    '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
-    '@typescript-eslint/indent': rules.indent,
+    '@typescript-eslint/explicit-module-boundary-types': [
+      'error',
+      { 'allowHigherOrderFunctions': false },
+    ],
     '@typescript-eslint/member-delimiter-style': ['error', {
       'multiline': {
         'delimiter': 'semi',
@@ -240,8 +294,10 @@ const tsOverrides = {
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
-    'import/order': ['error', { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' }],
-    'indent': 'off',
+    'import/order': [
+      'error',
+      { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' },
+    ],
     'object-shorthand': ['error', 'consistent'],
   },
 };
@@ -264,10 +320,17 @@ const overrides = [
   {
     'files': ['**/oopsyraidsy/data/**/*', '**/raidboss/data/**/*'],
     'rules': {
+      ...dprintRule(300),
       // Raidboss data files always export a trigger set, and explicit types are noisy.
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       // Only meant to be used for `output` parameters!
       '@typescript-eslint/no-non-null-assertion': 'off',
+      'max-len': [
+        'warn',
+        {
+          'code': 300,
+        },
+      ],
       'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
       'prefer-arrow/prefer-arrow-functions': 'warn',
       'rulesdir/cactbot-output-strings': 'error',

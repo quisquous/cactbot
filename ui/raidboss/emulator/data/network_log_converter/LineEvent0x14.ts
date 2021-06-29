@@ -13,9 +13,13 @@ const fields = {
   duration: 8,
 } as const;
 
+// Shorten a few types so dprint doesn't complain when the line gets too long.
+type LESource = LineEventSource;
+type LETarget = LineEventTarget;
+type LEAbility = LineEventAbility;
+
 // Ability use event
-export class LineEvent0x14 extends LineEvent
-  implements LineEventSource, LineEventTarget, LineEventAbility {
+export class LineEvent0x14 extends LineEvent implements LESource, LETarget, LEAbility {
   public readonly properCaseConvertedLine: string;
 
   public readonly id: string;
@@ -69,4 +73,4 @@ export class LineEvent0x14 extends LineEvent
   }
 }
 
-export class LineEvent20 extends LineEvent0x14 { }
+export class LineEvent20 extends LineEvent0x14 {}

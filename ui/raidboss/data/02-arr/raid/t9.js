@@ -339,10 +339,11 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
-      infoText: (data, _matches, output) => output.marks({
-        dir1: output[data.naelMarks[0]](),
-        dir2: output[data.naelMarks[1]](),
-      }),
+      infoText: (data, _matches, output) =>
+        output.marks({
+          dir1: output[data.naelMarks[0]](),
+          dir2: output[data.naelMarks[1]](),
+        }),
       outputStrings: {
         ...diveDirections,
         marks: {

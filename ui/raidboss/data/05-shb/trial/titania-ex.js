@@ -335,7 +335,6 @@ export default {
         if (data.me === matches.target)
           return output.stackOnYou();
 
-
         if (data.bomb && data.bomb[data.me])
           return;
 

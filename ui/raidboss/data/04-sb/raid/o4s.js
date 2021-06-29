@@ -622,14 +622,12 @@ export default {
         if (data.phase !== 'omega')
           return;
 
-
         // See comments in shouldDieOnLaser.  Beyond Death
         // doesn't get removed until after the 2nd laser
         // appears.  However, colors (THANKFULLY) apply
         // before the next laser appears.
         if (data.shouldDieOnLaser())
           data.omegaProbablyDiedOnLaser = true;
-
 
         data.omegaLaserCount++;
       },

@@ -1,4 +1,4 @@
-import { InitDpsModule, defaultOptions } from '../dps_common';
+import { defaultOptions, InitDpsModule } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
 
 import '../../../resources/defaults.css';
@@ -595,10 +595,10 @@ function onOverlayDataUpdate(e) {
   container.style.display = 'block';
 
   React.render(
-      React.createElement(DamageMeter, {
-        parseData: e.detail,
-      }),
-      container,
+    React.createElement(DamageMeter, {
+      parseData: e.detail,
+    }),
+    container,
   );
   // console.log('rendered in ' + (+new Date() - start) + 'ms');
 }

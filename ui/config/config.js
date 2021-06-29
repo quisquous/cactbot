@@ -631,6 +631,7 @@ const defaultOptions = {};
 UserConfig.getUserConfigLocation('config', defaultOptions, () => {
   const options = { ...defaultOptions };
   const configurator = new CactbotConfigurator(
-      options,
-      UserConfig.savedConfig);
+    options,
+    UserConfig.savedConfig,
+  );
 });

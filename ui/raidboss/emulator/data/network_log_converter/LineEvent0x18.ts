@@ -103,4 +103,4 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
   };
 }
 
-export class LineEvent24 extends LineEvent0x18 { }
+export class LineEvent24 extends LineEvent0x18 {}

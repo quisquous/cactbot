@@ -111,8 +111,17 @@ export class Buff {
       this.addReady(source);
     };
 
-    this.cooldown[source] = this.makeAura(cooldownKey, this.cooldownList, showSeconds,
-        secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
+    this.cooldown[source] = this.makeAura(
+      cooldownKey,
+      this.cooldownList,
+      showSeconds,
+      secondsUntilShow,
+      this.cooldownSortKeyBase,
+      'grey',
+      '',
+      0.5,
+      addReadyCallback,
+    );
   }
 
   addReady(source: string): void {
@@ -130,8 +139,16 @@ export class Buff {
     const color = this.info.borderColor;
 
     const readyKey = 'r:' + this.name + ':' + source;
-    this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
-        this.readySortKeyBase, color, txt, 0.6);
+    this.ready[source] = this.makeAura(
+      readyKey,
+      this.readyList,
+      -1,
+      0,
+      this.readySortKeyBase,
+      color,
+      txt,
+      0.6,
+    );
 
     // if a readied raidbuff not be used in 3min, we can assume that
     // this player has left the battlefield, or at least his raidbuff is unexpectable.
@@ -141,15 +158,15 @@ export class Buff {
   }
 
   makeAura(
-      key: string,
-      list: WidgetList,
-      seconds: number,
-      secondsUntilShow: number,
-      adjustSort: number,
-      textColor: string,
-      txt: string,
-      opacity: number,
-      expireCallback?: () => void,
+    key: string,
+    list: WidgetList,
+    seconds: number,
+    secondsUntilShow: number,
+    adjustSort: number,
+    textColor: string,
+    txt: string,
+    opacity: number,
+    expireCallback?: () => void,
   ): Aura {
     const aura: Aura = {
       removeCallback: () => {
@@ -166,14 +183,20 @@ export class Buff {
 
       addCallback: () => {
         const elem = makeAuraTimerIcon(
-            key, seconds, opacity,
-            this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-            txt,
-            this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-            textColor,
-            this.options.BigBuffBorderSize,
-            this.info.borderColor, this.info.borderColor,
-            this.info.icon);
+          key,
+          seconds,
+          opacity,
+          this.options.BigBuffIconWidth,
+          this.options.BigBuffIconHeight,
+          txt,
+          this.options.BigBuffBarHeight,
+          this.options.BigBuffTextHeight,
+          textColor,
+          this.options.BigBuffBorderSize,
+          this.info.borderColor,
+          this.info.borderColor,
+          this.info.icon,
+        );
         list.addElement(key, elem, this.info.sortKey + adjustSort);
         aura.addTimeout = null;
 
@@ -194,7 +217,6 @@ export class Buff {
       aura.addTimeout = window.setTimeout(aura.addCallback, secondsUntilShow * 1000);
     else
       aura.addCallback();
-
 
     return aura;
   }
@@ -253,11 +275,11 @@ export class BuffTracker {
   mobLosesEffectMap: { [s: string]: BuffInfo[] };
 
   constructor(
-      options: JobsOptions,
-      playerName: string,
-      leftBuffDiv: WidgetList,
-      rightBuffDiv: WidgetList,
-      partyTracker: PartyTracker,
+    options: JobsOptions,
+    playerName: string,
+    leftBuffDiv: WidgetList,
+    rightBuffDiv: WidgetList,
+    partyTracker: PartyTracker,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -663,8 +685,8 @@ export class BuffTracker {
   }
 
   onGainEffect(
-      buffs: BuffInfo[] | undefined,
-      matches: NetMatches['GainsEffect'],
+    buffs: BuffInfo[] | undefined,
+    matches: NetMatches['GainsEffect'],
   ): void {
     if (!buffs)
       return;
@@ -685,8 +707,8 @@ export class BuffTracker {
   }
 
   onLoseEffect(
-      buffs: BuffInfo[] | undefined,
-      _matches: NetMatches['LosesEffect'],
+    buffs: BuffInfo[] | undefined,
+    _matches: NetMatches['LosesEffect'],
   ): void {
     if (!buffs)
       return;
@@ -710,7 +732,13 @@ export class BuffTracker {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name: string, seconds = 0, info: BuffInfo, source = '', option: 'active' | 'cooldown'): void {
+  onBigBuff(
+    name: string,
+    seconds = 0,
+    info: BuffInfo,
+    source = '',
+    option: 'active' | 'cooldown',
+  ): void {
     let list = this.rightBuffDiv;
     if (info.side === 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;

@@ -35,12 +35,14 @@ type CommonReplacement = {
     [replaceKey: string]: { [key in Lang]?: string };
   };
   replaceText: {
-    [replaceKey: string]: {
-      [key in NonEnLang]?: string;
-    } & {
-      // don't set this key, but allow us to ask if it exists
-      en?: never;
-    };
+    [replaceKey: string]:
+      & {
+        [key in NonEnLang]?: string;
+      }
+      & {
+        // don't set this key, but allow us to ask if it exists
+        en?: never;
+      };
   };
 };
 
@@ -48,7 +50,8 @@ export const commonReplacement: CommonReplacement = {
   replaceSync: {
     [syncKeys.seal]: {
       en: '$1 will be sealed off',
-      de: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
+      de:
+        'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
       fr: 'Fermeture d(?:e|u|es) $1 dans',
       ja: '$1の封鎖まであと',
       cn: '距$1被封锁还有',

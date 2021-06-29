@@ -1,4 +1,4 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
 import ContentType from '../../resources/content_type';
 import { LocaleNetRegex } from '../../resources/translations';
 import NetRegexes from '../../resources/netregexes';
@@ -968,7 +968,9 @@ class DamageTracker {
       return (typeof f === 'function') ? f(events, this.data, matches) : f;
     };
 
-    const collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
+    const collectSeconds = 'collectSeconds' in trigger
+      ? ValueOrFunction(trigger.collectSeconds, matches)
+      : 0;
     const collectMultipleEvents = 'collectSeconds' in trigger;
     if (collectMultipleEvents && trigger.id in this.activeTriggers) {
       this.activeTriggers[trigger.id].events.push(evt);
@@ -1137,7 +1139,10 @@ class DamageTracker {
 
     for (const set of this.triggerSets) {
       if ('zoneId' in set) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
+        if (
+          set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId &&
+          !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId))
+        )
           continue;
       } else if ('zoneRegex' in set) {
         const zoneError = (s) => {

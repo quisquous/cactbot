@@ -35,15 +35,21 @@ const ZoneInfo = _ZoneInfo;
 
 // Convince TypeScript and eslint that these are used.  TypeScript doesn't have a great way
 // to disable individual rules, so this is safer than disabling all rules.
-console.assert(Conditions && ContentType && NetRegexes && Regexes &&
-    Responses && Outputs && Util && ZoneId && ZoneInfo);
+console.assert(
+  Conditions && ContentType && NetRegexes && Regexes &&
+    Responses && Outputs && Util && ZoneId && ZoneInfo,
+);
 
 // TODO: this type is in config.js.
 type CactbotConfigurator = unknown;
 
 // TODO: move all of these to config.js?
-type UserFileCallback = (jsFile: string, localFiles: { [filename: string]: string },
-  options: BaseOptions, basePath: string) => void;
+type UserFileCallback = (
+  jsFile: string,
+  localFiles: { [filename: string]: string },
+  options: BaseOptions,
+  basePath: string,
+) => void;
 type ConfigValue = string | number | boolean;
 type ConfigEntry = {
   id: string;
@@ -56,7 +62,7 @@ type ConfigEntry = {
   options?: {
     [lang in Lang]?: {
       [selectText: string]: string;
-    }
+    };
   };
   setterFunc?: (options: BaseOptions, value: SavedConfigEntry) => void;
 };
@@ -97,8 +103,11 @@ class UserConfig {
     /* eslint-enable no-eval */
   }
 
-  registerOptions(overlayName: string, optionTemplate: OptionsTemplate,
-      userFileCallback?: UserFileCallback) {
+  registerOptions(
+    overlayName: string,
+    optionTemplate: OptionsTemplate,
+    userFileCallback?: UserFileCallback,
+  ) {
     this.optionTemplates[overlayName] = optionTemplate;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
@@ -266,9 +275,9 @@ class UserConfig {
       // any userOptions saved, as it sets up the defaults.
       this.savedConfig = (await readOptions)?.data ?? {};
       this.processOptions(
-          options,
-          this.savedConfig[overlayName] ?? {},
-          this.optionTemplates[overlayName],
+        options,
+        this.savedConfig[overlayName] ?? {},
+        this.optionTemplates[overlayName],
       );
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
@@ -311,7 +320,9 @@ class UserConfig {
               if (variableTracker[field] && variableTracker[field] !== options[field]) {
                 // Ideally users should do something like `Options.Triggers.push([etc]);`
                 // instead of `Options.Triggers = [etc];`
-                console.log(`*** WARNING: ${basePath}${jsFile} overwrites Options.${field} from previous files.`);
+                console.log(
+                  `*** WARNING: ${basePath}${jsFile} overwrites Options.${field} from previous files.`,
+                );
               }
               variableTracker[field] = options[field];
             }
@@ -474,7 +485,6 @@ class UserConfig {
 }
 
 export default new UserConfig();
-
 
 if (typeof document !== 'undefined') {
   // This event comes early and is not cached, so set up event listener immediately.

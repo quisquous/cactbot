@@ -1,4 +1,9 @@
-import { callOverlayHandler, addOverlayListener, removeOverlayListener, setCallOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
+import {
+  addOverlayListener,
+  callOverlayHandler,
+  removeOverlayListener,
+  setCallOverlayHandlerOverride,
+} from '../../../../resources/overlay_plugin_api';
 
 const excludedReqProps = ['source'];
 const excludedRespProps = ['rseq'];

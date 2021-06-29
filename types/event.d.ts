@@ -150,8 +150,9 @@ export interface EventMap {
 
   'OnlineStatusChanged': (ev: {
     type: 'OnlineStatusChanged';
-    target: string; rawStatus:
-    number; status: string;
+    target: string;
+    rawStatus: number;
+    status: string;
   }) => void;
 
   'PartyChanged': (ev: {
@@ -288,8 +289,9 @@ interface CactbotLoadUserRet {
 }
 
 // Structured JSON data saved in OverlayPlugin config files.
-export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
-   { [nestedName: string]: SavedConfigEntry };
+export type SavedConfigEntry = string | number | boolean | [SavedConfigEntry] | {
+  [nestedName: string]: SavedConfigEntry;
+};
 export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
@@ -300,7 +302,7 @@ type PlayerChangedJobDetails<T> = {
 } | {
   job: Job;
   jobDetail: null;
-}
+};
 
 type PlayerChangedBase = {
   name: string;
@@ -324,8 +326,9 @@ type PlayerChangedBase = {
   debugJob: string;
 };
 
-type PlayerChangedRet = Job extends infer T ? T extends Job ?
-  PlayerChangedJobDetails<T> & PlayerChangedBase : never : never;
+type PlayerChangedRet = Job extends infer T
+  ? T extends Job ? PlayerChangedJobDetails<T> & PlayerChangedBase : never
+  : never;
 
 // Member names taken from OverlayPlugin's MiniParse.cs
 // Types taken from FFXIV parser plugin

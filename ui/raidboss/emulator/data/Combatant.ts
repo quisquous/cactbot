@@ -56,8 +56,10 @@ export default class Combatant {
       return this.getStateByIndex(index + 1);
     // If timestamp is the last significant state or the timestamp is past the last significant
     // state, return the last significant state
-    else if (index === lastSignificantStateIndex ||
-        timestamp > (this.significantStates[lastSignificantStateIndex] ?? 0))
+    else if (
+      index === lastSignificantStateIndex ||
+      timestamp > (this.significantStates[lastSignificantStateIndex] ?? 0)
+    )
       return this.getStateByIndex(lastSignificantStateIndex);
 
     for (let i = 0; i < this.significantStates.length; ++i) {
@@ -89,8 +91,7 @@ export default class Combatant {
     }
     this.latestTimestamp = Math.max(this.latestTimestamp, timestamp);
 
-    const lastSignificantStateTimestamp =
-      this.significantStates[this.significantStates.length - 1];
+    const lastSignificantStateTimestamp = this.significantStates[this.significantStates.length - 1];
     if (!lastSignificantStateTimestamp)
       throw new UnreachableCode();
     const oldStateJSON = JSON.stringify(this.states[lastSignificantStateTimestamp]);
