@@ -3,12 +3,14 @@ import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
 import { TriggerSet } from '../../../../types/trigger';
 
+export type Data = RaidbossData;
+
 const caresAboutTankStuff = (data: RaidbossData) => {
   return data.role === 'tank' || data.role === 'healer' || data.job === 'BLU';
 };
 
 // Triggers for all occasions and zones.
-const triggerSet: TriggerSet<RaidbossData> = {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
