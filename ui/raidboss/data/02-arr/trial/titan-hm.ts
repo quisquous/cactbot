@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavelHard,
   timelineFile: 'titan-hm.txt',
   timelineTriggers: [
@@ -38,9 +42,10 @@ export default {
   triggers: [
     {
       id: 'TitanHm Damage Down',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E' }),
       condition: (data) => data.CanCleanse(),
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Cleanse ${player}',
@@ -164,3 +169,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
