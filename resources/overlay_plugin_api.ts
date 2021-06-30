@@ -198,6 +198,10 @@ export const init = (): void => {
 
         ws.addEventListener('message', (_msg) => {
           try {
+            if (typeof _msg.data !== 'string') {
+              console.error('Invalid message data received: ', _msg);
+              return;
+            }
             const msg = JSON.parse(_msg.data) as EventParameter & { rseq?: number };
 
             if (msg.rseq !== undefined && responsePromises[msg.rseq]) {

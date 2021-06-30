@@ -4,6 +4,7 @@ import path from 'path';
 import { ArgumentParser } from 'argparse';
 
 import { Lang } from '../resources/languages';
+import { LooseTriggerSet } from '../types/trigger';
 import Options from '../ui/raidboss/raidboss_options';
 import { Event, Sync, Timeline } from '../ui/raidboss/timeline';
 
@@ -75,9 +76,9 @@ const run = async (args: { locale: Lang; timeline: string }) => {
   // TODO: this block is very duplicated with a number of other scripts.
   const importPath = '../' + path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
   // TODO: Fix dynamic imports in TypeScript
-  // eslint-disable-next-line max-len
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const replacements = (await import(importPath)).default?.timelineReplace;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const triggerSet = (await import(importPath))?.default as LooseTriggerSet;
+  const replacements = triggerSet.timelineReplace ?? [];
   const timelineText = fs.readFileSync(timelineFile).toString();
 
   // Use Timeline to figure out what the replacements will look like in game.
