@@ -86,5 +86,32 @@ namespace Cactbot {
         general["CactbotUserDirectory"] = value;
       }
     }
+
+    [JsonIgnore]
+    public bool DisableAutomaticOpcodeUpdates {
+      get {
+        if (!OverlayData.TryGetValue("options", out JToken options))
+          return false;
+        var general = options["general"];
+        if (general == null)
+          return false;
+        var disableRemoteOpcodes = general["DisableAutomaticOpcodeUpdates"];
+        if (disableRemoteOpcodes == null)
+          return false;
+        return disableRemoteOpcodes.ToObject<bool>();
+      }
+      set {
+        if (!OverlayData.TryGetValue("options", out JToken options)) {
+          options = new JObject();
+          OverlayData.Add("options", options);
+        }
+        var general = options["general"];
+        if (general == null) {
+          general = new JObject();
+          options["general"] = general;
+        }
+        general["DisableAutomaticOpcodeUpdates"] = value;
+      }
+    }
   }
 }

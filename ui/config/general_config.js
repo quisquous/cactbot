@@ -103,5 +103,13 @@ UserConfig.registerOptions('general', {
         options['DisplayLanguage'] = value;
       },
     },
+    {
+      id: 'DisableAutomaticOpcodeUpdates',
+      name: {
+        en: 'Disable automatic FATE/CE opcode updates',
+      },
+      type: 'checkbox',
+      default: false,
+    },
   ],
 });
