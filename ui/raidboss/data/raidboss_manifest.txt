@@ -1,4 +1,4 @@
-00-misc/general.js
+00-misc/general.ts
 00-misc/test.ts
 00-misc/test.txt
 02-arr/dungeon/brayfloxs_longstop.ts

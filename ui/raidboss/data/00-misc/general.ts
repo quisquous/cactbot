@@ -1,23 +1,28 @@
 import NetRegexes from '../../../../resources/netregexes';
 import ZoneId from '../../../../resources/zone_id';
+import { RaidbossData } from '../../../../types/data';
+import { TriggerSet } from '../../../../types/trigger';
 
-const caresAboutTankStuff = (data) => {
+export type Data = RaidbossData;
+
+const caresAboutTankStuff = (data: RaidbossData) => {
   return data.role === 'tank' || data.role === 'healer' || data.job === 'BLU';
 };
 
 // Triggers for all occasions and zones.
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
       id: 'General Provoke',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1D6D' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Provoke: ${player}',
@@ -31,6 +36,7 @@ export default {
     },
     {
       id: 'General Frog Legs',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4783' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
@@ -40,8 +46,8 @@ export default {
       suppressSeconds: 0.5,
       infoText: (data, matches, output) => {
         if (matches.targetId === 'E0000000')
-          return output.noTarget({ player: data.ShortName(matches.source) });
-        return output.text({ player: data.ShortName(matches.source) });
+          return output.noTarget!({ player: data.ShortName(matches.source) });
+        return output.text!({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
@@ -63,13 +69,14 @@ export default {
     },
     {
       id: 'General Shirk',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1D71' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Shirk: ${player}',
@@ -83,13 +90,14 @@ export default {
     },
     {
       id: 'General Holmgang',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2B' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Holmgang: ${player}',
@@ -103,13 +111,14 @@ export default {
     },
     {
       id: 'General Hallowed',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1E' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Hallowed: ${player}',
@@ -123,13 +132,14 @@ export default {
     },
     {
       id: 'General Superbolide',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3F18' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Bolide: ${player}',
@@ -143,13 +153,14 @@ export default {
     },
     {
       id: 'General Living',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'E36' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Living: ${player}',
@@ -163,13 +174,14 @@ export default {
     },
     {
       id: 'General Walking',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '32B' }),
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Walking: ${player}',
@@ -194,3 +206,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
