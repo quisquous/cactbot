@@ -237,6 +237,7 @@ const tsOverrides = {
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
+    '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],

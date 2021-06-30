@@ -28,12 +28,16 @@ export default class EmulatorCommon {
       if (exclude.includes(i))
         continue;
 
-      if (typeof data[i] === 'object')
+      if (typeof data[i] === 'object') {
+        // Cloning any. See DataType definition above for reasoning.
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         ret[i] = EmulatorCommon._cloneData(data[i]);
-      else
-        // Assignment of any to any. See DataType definition above for reasoning.
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        ret[i] = data[i];
+        continue;
+      }
+
+      // Assignment of any to any. See DataType definition above for reasoning.
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      ret[i] = data[i];
     }
     return ret;
   }
@@ -42,8 +46,11 @@ export default class EmulatorCommon {
     if (typeof data === 'object') {
       if (Array.isArray(data)) {
         const ret = [];
-        for (let i = 0; i < data.length; ++i)
+        for (let i = 0; i < data.length; ++i) {
+          // Cloning any. See DataType definition above for reasoning.
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           ret[i] = EmulatorCommon._cloneData(data[i]);
+        }
 
         return ret;
       }
@@ -55,8 +62,11 @@ export default class EmulatorCommon {
         return new RegExp(data);
 
       const ret: DataType = {};
-      for (const i in data)
+      for (const i in data) {
+        // Cloning any. See DataType definition above for reasoning.
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         ret[i] = EmulatorCommon._cloneData(data[i]);
+      }
 
       return ret;
     }

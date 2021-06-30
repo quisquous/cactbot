@@ -404,11 +404,6 @@ class UserConfig {
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
     // exist in savedConfig.
-    if (Array.isArray(template)) {
-      for (let i = 0; i < template.length; ++i)
-        this.processOptions(options, savedConfig, template[i]);
-      return;
-    }
 
     // Not all overlays have option templates.
     if (!template)

@@ -1,17 +1,26 @@
 import Encounter from './Encounter';
 import LogEventHandler from './LogEventHandler';
+import LineEvent from './network_log_converter/LineEvent';
 import LogRepository from './network_log_converter/LogRepository';
 import NetworkLogConverter from './NetworkLogConverter';
 
 const ctx: Worker = self as unknown as Worker;
 
 ctx.addEventListener('message', (msg) => {
+  // TODO: should this just throw an exception? Or return an error?
+  if (!(msg.data instanceof ArrayBuffer)) {
+    ctx.postMessage({
+      type: 'done',
+    });
+    return;
+  }
+
   const logConverter = new NetworkLogConverter();
   const localLogHandler = new LogEventHandler();
   const repo = new LogRepository();
 
   // Listen for LogEventHandler to dispatch fights and persist them
-  localLogHandler.on('fight', (day, zoneId, zoneName, lines) => {
+  localLogHandler.on('fight', (day: string, zoneId: string, zoneName: string, lines: LineEvent[]) => {
     const enc = new Encounter(day, zoneId, zoneName, lines);
     enc.initialize();
     if (enc.shouldPersistFight()) {
