@@ -14,9 +14,7 @@
     "strict": true,
     "declaration": false,
     "declarationMap": false,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "moduleResolution": "node",
     "skipLibCheck": true,
     "esModuleInterop": true,

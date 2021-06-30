@@ -1,3 +1,6 @@
+/**
+ * @prettier
+ */
 'use strict';
 
 const path = require('path');
@@ -12,11 +15,7 @@ const settings = {
     'browser': true,
     'es6': true,
   },
-  'extends': [
-    'eslint:recommended',
-    'google',
-    'plugin:import/errors',
-  ],
+  'extends': ['eslint:recommended', 'google', 'plugin:import/errors'],
   'ignorePatterns': [
     // Do not ignore dot files.  /o\
     '!.*',
@@ -31,10 +30,7 @@ const settings = {
     'ecmaVersion': 2020,
     'sourceType': 'module',
   },
-  'plugins': [
-    'import',
-    'rulesdir',
-  ],
+  'plugins': ['import', 'rulesdir'],
   'root': true,
   'settings': {
     'import/resolver': {
@@ -83,34 +79,8 @@ const rules = {
     },
   ],
   'import/no-webpack-loader-syntax': 'error',
-  'indent': [
-    'error',
-    2,
-    {
-      'ArrayExpression': 1,
-      'CallExpression': {
-        'arguments': 2,
-      },
-      'FunctionDeclaration': {
-        'parameters': 2,
-      },
-      'FunctionExpression': {
-        'parameters': 2,
-      },
-      'ignoreComments': false,
-      'ignoredNodes': [
-        // The indent rule does a poor job with TypeScript type declarations, so disable.
-        'TSIntersectionType *',
-        'TSTypeAliasDeclaration *',
-        'TSUnionType *',
-      ],
-      'ObjectExpression': 1,
-    },
-  ],
-  'linebreak-style': [
-    'error',
-    'windows',
-  ],
+  'indent': 'off',
+  'linebreak-style': ['error', 'windows'],
   'max-len': [
     'warn',
     {
@@ -130,10 +100,7 @@ const rules = {
       'properties': false,
     },
   ],
-  'no-cond-assign': [
-    'error',
-    'always',
-  ],
+  'no-cond-assign': ['error', 'always'],
   'no-console': 'off',
   'no-duplicate-imports': 'error',
   'no-else-return': 'error',
@@ -151,10 +118,7 @@ const rules = {
       'multiline': true,
     },
   ],
-  'object-curly-spacing': [
-    'error',
-    'always',
-  ],
+  'object-curly-spacing': ['error', 'always'],
   'object-property-newline': [
     'error',
     {
@@ -174,14 +138,10 @@ const rules = {
     },
   ],
   'require-jsdoc': 'off',
-  'rulesdir/cactbot-locale-order': [
-    'warn',
-    ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
-  ],
-  'space-in-parens': [
-    'error',
-    'never',
-  ],
+  'rulesdir/cactbot-locale-order': ['warn', ['en', 'de', 'fr', 'ja', 'cn', 'ko']],
+  // enable this after all file is formatted by prettier
+  'space-before-function-paren': 'off',
+  'space-in-parens': ['error', 'never'],
   'space-infix-ops': 'error',
   'space-unary-ops': [
     'error',
@@ -190,15 +150,9 @@ const rules = {
       'words': true,
     },
   ],
-  'strict': [
-    'error',
-    'global',
-  ],
+  'strict': ['error', 'global'],
   'template-curly-spacing': 'error',
-  'unicode-bom': [
-    'error',
-    'never',
-  ],
+  'unicode-bom': ['error', 'never'],
   'valid-jsdoc': 'off',
 };
 
@@ -217,31 +171,39 @@ const tsOverrides = {
   'plugins': ['@typescript-eslint', 'prefer-arrow'],
   'rules': {
     '@typescript-eslint/consistent-type-assertions': [
-      'error', {
+      'error',
+      {
         assertionStyle: 'as',
         objectLiteralTypeAssertions: 'never',
       },
     ],
-    '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
-    '@typescript-eslint/indent': rules.indent,
-    '@typescript-eslint/member-delimiter-style': ['error', {
-      'multiline': {
-        'delimiter': 'semi',
-        'requireLast': true,
+    '@typescript-eslint/explicit-module-boundary-types': [
+      'error',
+      { 'allowHigherOrderFunctions': false },
+    ],
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      {
+        'multiline': {
+          'delimiter': 'semi',
+          'requireLast': true,
+        },
+        'singleline': {
+          'delimiter': 'semi',
+          'requireLast': false,
+        },
       },
-      'singleline': {
-        'delimiter': 'semi',
-        'requireLast': false,
-      },
-    }],
+    ],
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
-    'import/order': ['error', { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' }],
-    'indent': 'off',
+    'import/order': ['error', {
+      'alphabetize': { 'caseInsensitive': true, 'order': 'asc' },
+      'newlines-between': 'always',
+    }],
     'object-shorthand': ['error', 'consistent'],
   },
 };

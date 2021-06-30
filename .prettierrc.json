@@ -1,0 +1,19 @@
+{
+  "endOfLine": "crlf",
+  "printWidth": 100,
+  "requirePragma": true,
+  "quoteProps": "preserve",
+  "trailingComma": "all",
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": [
+        "**/oopsyraidsy/data/**/*",
+        "**/raidboss/data/**/*"
+      ],
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ]
+}

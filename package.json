@@ -69,6 +69,8 @@
     "mocha": "^8.2.1",
     "node-fetch": "^2.6.1",
     "postcss": "^8.3.5",
+    "prettier": "^2.3.2",
+    "prettier-plugin-jsdoc": "^0.3.23",
     "proxy-agent": "^4.0.1",
     "raw-loader": "^4.0.2",
     "recast": "^0.20.4",
@@ -99,6 +101,8 @@
     }
   },
   "lint-staged": {
+    "*.{js,cjs,mjs,ts}": "node util/formatter.cjs",
+    "*.{html,json,yml,yaml}": "prettier --write",
     "*.css": "stylelint",
     "*.{js,cjs,mjs}": "eslint --max-warnings=0",
     "*.ts": "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",
