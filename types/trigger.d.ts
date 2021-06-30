@@ -143,7 +143,16 @@ export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, key
 
 export type DisabledTrigger = { id: string; disabled: true };
 
-export type TriggerSet<Data extends RaidbossData> = {
+// This helper takes all of the properties in Type and checks to see if they can be assigned to a
+// blank object, and if so excludes them from the returned union. The `-?` syntax removes the
+// optional modifier from the attribute which prevents `undefined` from being included in the union
+// See also: https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#mapping-modifiers
+type RequiredFieldsAsUnion<Type> =
+  {
+    [key in keyof Type]-?: Record<string, never> extends Pick<Type, key> ? never : key
+  }[keyof Type];
+
+export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
   resetWhenOutOfCombat?: boolean;
@@ -154,8 +163,16 @@ export type TriggerSet<Data extends RaidbossData> = {
   timelineTriggers?: (TimelineTrigger<Data> | DisabledTrigger)[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
-  initData?: DataInitializeFunc<Data>;
 }
+
+// If Data contains required properties that are not on RaidbossData, require initData
+export type TriggerSet<Data extends RaidbossData> = BaseTriggerSet<Data> &
+  (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ?
+  {
+    initData?: DataInitializeFunc<Data>;
+  } : {
+    initData: DataInitializeFunc<Data>;
+  });
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
