@@ -18,7 +18,7 @@ const showEvents = [
   'focus',
 ] as const;
 
-type TemplatesType = {[Property in ValidDirection]: HTMLTemplateElement};
+type TemplatesType = { [Property in ValidDirection]: HTMLTemplateElement };
 
 const toPx = (px: number): string => `${px}px`;
 
