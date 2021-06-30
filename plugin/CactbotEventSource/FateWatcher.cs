@@ -45,6 +45,7 @@ namespace Cactbot {
     private static readonly string remoteOpcodeURL = "https://katttails.github.io/TestRepo/FATEOpcodes.json";
 
     bool opcodesLoaded = false;
+    List<string> errors = new List<string>();
     private Region OpCodes;
 
     public struct AC143Category {
@@ -68,6 +69,7 @@ namespace Cactbot {
     }
 
     public struct CEOpcodeList {
+      public uint version;
       public Region intl;
       public Region cn;
       public Region ko;
@@ -122,37 +124,93 @@ namespace Cactbot {
     private static Dictionary<int, int> fates;
     private static Dictionary<int, CEDirectorData> ces;
 
-    private static bool GetRemoteOpcodes(out CEOpcodeList OpCodeList) {
+    private static string GetRemoteOpcodeJSON(string url) {
+      string json = null;
       using (HttpClient http = new HttpClient()) {
-        string json = null;
-        var opcodeTask = http.GetStringAsync(remoteOpcodeURL);
+        var opcodeTask = http.GetStringAsync(url);
         json = opcodeTask.GetAwaiter().GetResult();
-
-        OpCodeList = JsonConvert.DeserializeObject<CEOpcodeList>(json);
-        return true;
       }
+      return json;
     }
 
-    public FateWatcher(CactbotEventSource client, string language) {
+    public FateWatcher(CactbotEventSource client, CactbotEventSourceConfig Config, string language) {
       client_ = client;
-      CEOpcodeList OpCodeList = new CEOpcodeList();
+      CEOpcodeList localOpcodeList = new CEOpcodeList();
 
-      try {
-        opcodesLoaded = GetRemoteOpcodes(out OpCodeList);
-      } catch (HttpRequestException) {
-        client_.LogError("Error fetching remote opcodes, FATE/CE detection will not work for this session.");
+      if (!Config.DisableAutomaticOpcodeUpdates) {
 
+        CEOpcodeList remoteOpcodeList = new CEOpcodeList();
+        string remoteOpcodeJSON = null;
+
+        try {
+          // Do update check
+          if (Config.UseCustomOpcodeSource && Config.CustomOpcodeSourceUrl != null) {
+            remoteOpcodeJSON = GetRemoteOpcodeJSON(Config.CustomOpcodeSourceUrl);
+
+          // Default url
+          } else {
+            remoteOpcodeJSON = GetRemoteOpcodeJSON(remoteOpcodeURL);
+          }
+        } catch (HttpRequestException ex) {
+          client_.LogError("Error fetching remote opcodes, using local cache (may be outdated).\r\n" +
+            "Exception: {0}", ex.Message);
+
+          if (Config.UseCustomOpcodeSource) {
+            client_.LogWarning("The custom url may be invalid.\r\n" +
+              "Custom URL: {0}", Config.CustomOpcodeSourceUrl);
+          }
+        };
+        remoteOpcodeList = JsonConvert.DeserializeObject<CEOpcodeList>(remoteOpcodeJSON,
+          new JsonSerializerSettings {
+            Error = delegate (object sender, Newtonsoft.Json.Serialization.ErrorEventArgs args) {
+              errors.Add(args.ErrorContext.Error.Message);
+              args.ErrorContext.Handled = true;
+            }
+          });
+
+        // Successfully got remote opcodes
+        if (errors.Count == 0) {
+
+          if (Config.OverlayData["options"]["opcodes"] != null) {
+            localOpcodeList = JsonConvert.DeserializeObject<CEOpcodeList>(Config.OverlayData["options"]["opcodes"].ToString());
+          }
+          if (Config.OverlayData["options"]["opcodes"] == null || remoteOpcodeList.version > localOpcodeList.version) {
+            // update local storage
+            Config.OverlayData["options"]["opcodes"] = JToken.Parse(JsonConvert.SerializeObject(remoteOpcodeList));
+          }
+
+        } else {
+          client_.LogError("There were errors encountered parsing the remote opcodes, the local cache has not been updated:\r\n" +
+            "{0}", String.Join("\n", errors));
+        }
+        errors.Clear();
+        // We finished the update check and updated our local file if necessary
+      }
+
+      localOpcodeList = JsonConvert.DeserializeObject<CEOpcodeList>(Config.OverlayData["options"]["opcodes"].ToString(),
+          new JsonSerializerSettings {
+            Error = delegate (object sender, Newtonsoft.Json.Serialization.ErrorEventArgs args) {
+              errors.Add(args.ErrorContext.Error.Message);
+              args.ErrorContext.Handled = true;
+            }
+          });
+
+      if (errors.Count > 0) {
+        client_.LogError("There were errors encountered parsing the local opcodes:\r\n" +
+          "{0}" +
+          "FATE/CE data is unavailable.", String.Join("\n", errors));
         return;
       }
 
       if (language == "ko")
-        OpCodes = OpCodeList.ko;
+        OpCodes = localOpcodeList.ko;
       else if (language == "cn")
-        OpCodes = OpCodeList.cn;
+        OpCodes = localOpcodeList.cn;
       else
-        OpCodes = OpCodeList.intl;
+        OpCodes = localOpcodeList.intl;
 
-      client_.LogInfo("Successfully fetched remote opcodes.");
+      opcodesLoaded = true;
+      client_.LogInfo("Opcode version: {0}", localOpcodeList.version);
 
       fateSemaphore = new SemaphoreSlim(0, 1);
       ceSemaphore = new SemaphoreSlim(0, 1);
