@@ -143,7 +143,11 @@ export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, key
 
 export type DisabledTrigger = { id: string; disabled: true };
 
-type Required<Type> =
+// This helper takes all of the properties in Type and checks to see if they can be assigned to a
+// blank object, and if so excludes them from the returned union. The `-?` syntax removes the
+// optional modifier from the attribute which prevents `undefined` from being included in the union
+// See also: https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#mapping-modifiers
+type RequiredFieldsAsUnion<Type> =
   {
     [key in keyof Type]-?: Record<string, never> extends Pick<Type, key> ? never : key
   }[keyof Type];
@@ -163,11 +167,9 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
 
 // If Data contains required properties that are not on RaidbossData, require initData
 export type TriggerSet<Data extends RaidbossData> = BaseTriggerSet<Data> &
-  (Required<RaidbossData> extends Required<Data> ? Required<Data> extends Required<RaidbossData> ?
+  (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ?
   {
     initData?: DataInitializeFunc<Data>;
-  } : {
-    initData: DataInitializeFunc<Data>;
   } : {
     initData: DataInitializeFunc<Data>;
   });
