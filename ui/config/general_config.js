@@ -111,5 +111,23 @@ UserConfig.registerOptions('general', {
       type: 'checkbox',
       default: false,
     },
+    {
+      id: 'UseCustomOpcodeSource',
+      name: {
+        en: 'Use custom opcode source',
+      },
+      type: 'checkbox',
+      default: false,
+      debugOnly: true,
+    },
+    {
+      id: 'CustomOpcodeSourceUrl',
+      name: {
+        en: 'Custom opcode source URL',
+      },
+      type: 'url',
+      default: null,
+      debugOnly: true,
+    },
   ],
 });

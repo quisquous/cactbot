@@ -113,5 +113,59 @@ namespace Cactbot {
         general["DisableAutomaticOpcodeUpdates"] = value;
       }
     }
+
+    [JsonIgnore]
+    public bool UseCustomOpcodeSource {
+      get {
+        if (!OverlayData.TryGetValue("options", out JToken options))
+          return false;
+        var general = options["general"];
+        if (general == null)
+          return false;
+        var disableRemoteOpcodes = general["UseCustomOpcodeSource"];
+        if (disableRemoteOpcodes == null)
+          return false;
+        return disableRemoteOpcodes.ToObject<bool>();
+      }
+      set {
+        if (!OverlayData.TryGetValue("options", out JToken options)) {
+          options = new JObject();
+          OverlayData.Add("options", options);
+        }
+        var general = options["general"];
+        if (general == null) {
+          general = new JObject();
+          options["general"] = general;
+        }
+        general["UseCustomOpcodeSource"] = value;
+      }
+    }
+
+    [JsonIgnore]
+    public string CustomOpcodeSourceUrl {
+      get {
+        if (!OverlayData.TryGetValue("options", out JToken options))
+          return null;
+        var general = options["general"];
+        if (general == null)
+          return null;
+        var url = general["CustomOpcodeSourceUrl"];
+        if (url == null)
+          return null;
+        return url.ToString();
+      }
+      set {
+        if (!OverlayData.TryGetValue("options", out JToken options)) {
+          options = new JObject();
+          OverlayData.Add("options", options);
+        }
+        var general = options["general"];
+        if (general == null) {
+          general = new JObject();
+          options["general"] = general;
+        }
+        general["CustomOpcodeSourceUrl"] = value;
+      }
+    }
   }
 }

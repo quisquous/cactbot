@@ -317,6 +317,7 @@ export default class CactbotConfigurator {
           const buildFunc = {
             checkbox: this.buildCheckbox,
             html: this.buildHtml,
+            url: this.buildUrl,
             select: this.buildSelect,
             float: this.buildFloat,
             integer: this.buildInteger,
@@ -388,6 +389,22 @@ export default class CactbotConfigurator {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
     div.innerHTML = this.translate(opt.html);
+
+    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(div);
+  }
+
+  buildUrl(parent, opt, group) {
+    const div = document.createElement('div');
+    div.classList.add('option-input-container');
+
+    const input = document.createElement('input');
+    div.appendChild(input);
+    input.type = 'url';
+    input.value = this.getOption(group, opt.id, opt.default);
+    const setFunc = () => this.setOption(group, opt.id, input.value);
+    input.onchange = setFunc;
+    input.oninput = setFunc;
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);

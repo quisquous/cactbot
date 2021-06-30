@@ -273,6 +273,12 @@ input[type=text] {
   text-align: right;
 }
 
+input[type=url] {
+  padding: 3px;
+  width: 80%;
+  text-align: left;
+}
+
 .trigger-duration > input[type=text] {
   width: 75px;
   text-align: left;
