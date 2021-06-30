@@ -13,6 +13,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'TitanNm Tumult',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
@@ -26,6 +27,7 @@ Options.Triggers.push({
     {
       // Gaol callout for both yourself and others
       id: 'TitanNm Gaols',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '124' }),
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)

@@ -3,6 +3,14 @@
 Options.Triggers.push({
   zoneId: ZoneId.TheAkhAfahAmphitheatreExtreme,
   timelineFile: 'shiva-ex.txt',
+  initData: () => {
+    return {
+      blunt: {},
+      slashing: {},
+      soonAfterWeaponChange: false,
+      seenDiamondDust: false,
+    };
+  },
   timelineTriggers: [
     {
       id: 'ShivaEx Absolute Zero',
@@ -42,6 +50,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'ShivaEx Staff Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '995', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '995', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '995', capture: false }),
@@ -69,7 +78,7 @@ Options.Triggers.push({
           },
         };
         if (data.role === 'tank') {
-          if (data.currentTank && data.blunt && data.blunt[data.currentTank])
+          if (data.currentTank && data.blunt[data.currentTank])
             return { alertText: output.staffTankSwap() };
         }
         return { infoText: output.staff() };
@@ -78,6 +87,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Sword Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '993', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '993', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '993', capture: false }),
@@ -105,7 +115,7 @@ Options.Triggers.push({
           },
         };
         if (data.role === 'tank') {
-          if (data.currentTank && data.slashing && data.slashing[data.currentTank])
+          if (data.currentTank && data.slashing[data.currentTank])
             return { alertText: output.swordTankSwap() };
         }
         return { infoText: output.sword() };
@@ -114,6 +124,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Weapon Change Delayed',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: ['993', '995'], capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: ['993', '995'], capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: ['993', '995'], capture: false }),
@@ -125,38 +136,31 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Slashing Resistance Down Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '23C' }),
-      run: (data, matches) => {
-        data.slashing = data.slashing || {};
-        data.slashing[matches.target] = true;
-      },
+      run: (data, matches) => data.slashing[matches.target] = true,
     },
     {
       id: 'ShivaEx Slashing Resistance Down Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '23C' }),
-      run: (data, matches) => {
-        data.slashing = data.slashing || {};
-        data.slashing[matches.target] = false;
-      },
+      run: (data, matches) => data.slashing[matches.target] = false,
     },
     {
       id: 'ShivaEx Blunt Resistance Down Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '23D' }),
-      run: (data, matches) => {
-        data.blunt = data.blunt || {};
-        data.blunt[matches.target] = true;
-      },
+      run: (data, matches) => data.blunt[matches.target] = true,
     },
     {
       id: 'ShivaEx Blunt Resistance Down Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '23D' }),
-      run: (data, matches) => {
-        data.blunt = data.blunt || {};
-        data.blunt[matches.target] = false;
-      },
+      run: (data, matches) => data.blunt[matches.target] = false,
     },
     {
       id: 'ShivaEx Current Tank',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: 'BE5' }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: 'BE5' }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: 'BE5' }),
@@ -167,22 +171,26 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Hailstorm Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001D' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'ShivaEx Glacier Bash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BE9', capture: false }),
       response: Responses.getBehind('info'),
     },
     {
       id: 'ShivaEx Whiteout',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BEC', capture: false }),
       response: Responses.getIn(),
     },
     {
       id: 'ShivaEx Diamond Dust',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '98A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '98A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '98A', capture: false }),
@@ -193,6 +201,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Frost Bow',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: 'BDD', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: 'BDD', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: 'BDD', capture: false }),
@@ -207,6 +216,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Avalanche Marker Me',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
@@ -224,6 +234,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Avalanche Marker Other',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsNotYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -240,6 +251,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Shiva Circles',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Shiva', id: 'BEB' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Shiva', id: 'BEB' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Shiva', id: 'BEB' }),
@@ -260,11 +272,13 @@ Options.Triggers.push({
     },
     {
       id: 'ShivaEx Permafrost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BE3', capture: false }),
       response: Responses.stopMoving('alert'),
     },
     {
       id: 'ShivaEx Ice Boulder',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'C8A' }),
       condition: Conditions.targetIsNotYou(),
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),

@@ -10,9 +10,17 @@
 Options.Triggers.push({
   zoneId: ZoneId.TheWhorleaterExtreme,
   timelineFile: 'levi-ex.txt',
+  initData: () => {
+    return {
+      converter: false,
+      diveCounter: 0,
+      slamLevis: [],
+    };
+  },
   triggers: [
     {
       id: 'LeviEx Dive Counter Tidal Wave Reset',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan', id: '82E', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '82E', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '82E', capture: false }),
@@ -29,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Dive Counter Body Slam Reset',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan', id: '82A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '82A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '82A', capture: false }),
@@ -40,6 +49,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Dive Counter Wave Spume Adjust',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -53,6 +63,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Slam Location',
+      type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Léviathan', toggle: '00', capture: false }),
@@ -60,8 +71,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.nameToggle({ name: '利维亚桑', toggle: '00', capture: false }),
       netRegexKo: NetRegexes.nameToggle({ name: '리바이어선', toggle: '00', capture: false }),
       condition: (data) => {
-        data.diveCounter = (data.diveCounter || 0) + 1;
-        return data.diveCounter % 3 === 1;
+        return ++data.diveCounter % 3 === 1;
       },
       // Actor moves between 4.6s and 4.7s; add a tiny bit of time for certainty.
       delaySeconds: 5,
@@ -86,7 +96,7 @@ Options.Triggers.push({
         if (filtered.length !== 1)
           return;
         const levi = filtered[0];
-        if (levi.PosY > 0)
+        if (levi && levi.PosY > 0)
           return output.north();
         return output.south();
       },
@@ -97,6 +107,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Veil of the Whorl',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan', id: '875', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '875', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '875', capture: false }),
@@ -119,6 +130,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Mantle of the Whorl',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan\'s Tail', id: '874', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathans Schwanz', id: '874', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Queue De Léviathan', id: '874', capture: false }),
@@ -141,6 +153,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Wavespine Sahagin Add',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellendorn-Sahagin', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Épine-Du-Ressac', capture: false }),
@@ -155,6 +168,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Wavetooth Sahagin Add',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac', capture: false }),
@@ -175,6 +189,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Wavetooth Sahagin Stun',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin' }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin' }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac' }),
@@ -190,6 +205,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Gyre Spume',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtblase', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Concentrique', capture: false }),
@@ -211,6 +227,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Wave Spume',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -232,6 +249,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Wave Spume Explosion',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -257,6 +275,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Elemental Converter',
+      type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ name: 'Elemental Converter' }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Elementarumwandler' }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Activateur De La Barrière' }),
@@ -267,6 +286,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviEx Hit The Button',
+      type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Léviathan', toggle: '00', capture: false }),
