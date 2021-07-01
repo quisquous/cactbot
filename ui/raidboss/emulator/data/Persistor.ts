@@ -57,18 +57,16 @@ export default class Persistor extends Dexie {
     });
   }
 
-  persistEncounter(baseEncounter: Encounter): Promise<[number, number]> {
+  async persistEncounter(baseEncounter: Encounter): Promise<unknown> {
     const summary = new PersistorEncounter(baseEncounter);
     if (baseEncounter.id !== undefined) {
-      return Promise.all([
-        this.encounterSummaries.put(summary, baseEncounter.id),
-        this.encounters.put(baseEncounter, baseEncounter.id),
-      ]);
+      await this.encounterSummaries.put(summary, baseEncounter.id);
+      return this.encounters.put(baseEncounter, baseEncounter.id);
     }
-    return Promise.all([
-      this.encounterSummaries.add(summary, baseEncounter.id),
-      this.encounters.add(baseEncounter, baseEncounter.id),
-    ]);
+    const id = await this.encounters.add(baseEncounter);
+    baseEncounter.id = id;
+    summary.id = id;
+    return this.encounterSummaries.add(summary, id);
   }
 
   async clearDB(): Promise<void> {

@@ -27,6 +27,7 @@ import defaultOptions from './raidboss_options';
 
 import '../../resources/defaults.css';
 import './raidemulator.css';
+import CombatantTracker from './emulator/data/CombatantTracker';
 
 
 function showModal(selector) {
@@ -270,9 +271,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             End Status: ${enc.endStatus}
             Line Count: ${enc.logLines.length}
             `;
-            // Objects sent via message are raw objects, not typed.
-            // Need to get the name another way and override for Persistor.
-            enc.combatantTracker.getMainCombatantName = () => msg.data.name;
+            // Objects sent via message are raw objects, not typed. Apply prototype chain
+            Object.setPrototypeOf(enc.combatantTracker, CombatantTracker.prototype);
             if (promise) {
               promise.then(() => {
                 promise = persistor.persistEncounter(enc);
