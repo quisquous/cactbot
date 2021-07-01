@@ -127,6 +127,12 @@ class Bars {
     this.isPVPZone = false;
     this.crafting = false;
 
+    // Don't add any notifications if only the buff tracker is being shown.
+    if (this.options.JustBuffTracker) {
+      this.options.NotifyExpiredProcsInCombatSound = false;
+      this.options.NotifyExpiredProcsInCombat = false;
+    }
+
     this.updateProcBoxNotifyRepeat();
   }
 
