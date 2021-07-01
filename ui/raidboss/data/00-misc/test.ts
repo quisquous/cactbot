@@ -318,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
         'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
+        'cactbot test watch': 'cactbot test beobachten',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
