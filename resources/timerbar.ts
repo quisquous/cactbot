@@ -1,3 +1,5 @@
+import { UnreachableCode } from './not_reached';
+
 export default class TimerBar extends HTMLElement {
   rootElement: HTMLElement;
   foregroundElement: HTMLElement;
@@ -491,9 +493,14 @@ export default class TimerBar extends HTMLElement {
       return `${k}:${styles?.[k] ?? ''};`;
     }).join('');
 
-    (this.shadowRoot?.getElementById('lefttext') as HTMLDivElement).style.cssText += s;
-    (this.shadowRoot?.getElementById('centertext') as HTMLDivElement).style.cssText += s;
-    (this.shadowRoot?.getElementById('righttext') as HTMLDivElement).style.cssText += s;
+    const left = this.shadowRoot?.getElementById('lefttext');
+    const center = this.shadowRoot?.getElementById('centertext');
+    const right = this.shadowRoot?.getElementById('righttext');
+    if (!left || !center || !right)
+      throw new UnreachableCode();
+    left.style.cssText += s;
+    center.style.cssText += s;
+    right.style.cssText += s;
   }
 
   setvalue(remainSec: number): void {

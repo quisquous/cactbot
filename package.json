@@ -40,8 +40,8 @@
     "@types/tar-fs": "^2.0.0",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^3.11.4",
-    "@typescript-eslint/eslint-plugin": "^4.15.0",
-    "@typescript-eslint/parser": "^4.15.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "babel-loader": "^8.2.2",
     "chai": "^4.2.0",
@@ -108,6 +108,8 @@
   },
   "dependencies": {
     "@fast-csv/parse": "^4.3.6",
-    "argparse": "^1.0.10"
+    "argparse": "^1.0.10",
+    "dexie": "^3.0.3",
+    "dexie-export-import": "^1.0.0"
   }
 }
