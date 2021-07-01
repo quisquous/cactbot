@@ -995,6 +995,7 @@ const templateOptions = {
       id: 'Coverage',
       name: {
         en: 'Supported content (latest version)',
+        de: 'Unterstützte Inhalte (aktuellste Version)',
         ja: '対応コンテンツ一覧 (最新バージョン)',
         cn: '支持副本一览 (含未发布更新)',
         ko: '지원하는 컨텐츠 (릴리즈버전보다 최신)',

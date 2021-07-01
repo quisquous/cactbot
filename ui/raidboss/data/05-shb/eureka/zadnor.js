@@ -768,6 +768,7 @@ export default {
           // trigger text.  However, given that we explain two clocks, it feels wrong to not
           // have a trigger for three clocks.  "Mechanics Are Happening <se.6>"
           en: 'Dodge Three Clocks',
+          de: 'Weiche den 3 Uhren aus',
         },
       },
     },
