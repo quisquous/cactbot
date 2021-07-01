@@ -1,5 +1,6 @@
 const strikingDummyNames = {
   en: 'Striking Dummy',
+  de: 'Trainingspuppe',
 };
 Options.Triggers.push({
   zoneId: ZoneId.MiddleLaNoscea,
@@ -257,6 +258,7 @@ Options.Triggers.push({
       id: 'Test Watch',
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
       promise: (data) => {
         let _a;
         return Util.watchCombatant({
@@ -290,6 +292,7 @@ Options.Triggers.push({
       outputStrings: {
         close: {
           en: 'Dummy close!',
+          de: 'Puppe beendet!',
         },
       },
     },
@@ -304,6 +307,7 @@ Options.Triggers.push({
         'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
+        'cactbot test watch': 'cactbot test beobachten',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',

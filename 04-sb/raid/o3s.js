@@ -11,6 +11,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Dragon Cleave',
+          de: 'Drachen-Cleave',
         },
       },
     },
@@ -292,6 +293,7 @@ Options.Triggers.push({
       outputStrings: {
         kill: {
           en: 'Kill ${name}',
+          de: 'Töte ${name}',
         },
       },
     },
@@ -303,6 +305,7 @@ Options.Triggers.push({
       outputStrings: {
         kill: {
           en: 'Kill Giant + Ninjas',
+          de: 'Töte Riese + Ninjas',
         },
       },
     },
@@ -328,7 +331,7 @@ Options.Triggers.push({
       outputStrings: {
         books: {
           en: 'Books (One Per Square)',
-          de: 'Tanz der Königin: Bücher',
+          de: 'Bücher (Eins pro Feld)',
           fr: 'Danse de la reine : Livres',
           ja: '女王の舞い: 本',
           cn: '中间两排分格站位',
@@ -336,6 +339,7 @@ Options.Triggers.push({
         },
         magicHammer: {
           en: 'Books + Magic Hammer',
+          de: 'Bücher + Zauberhammer',
         },
       },
     },
@@ -351,7 +355,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Clock',
-          de: 'Tanz der Königin: Uhr',
+          de: 'Himmelsrichtungen',
           fr: 'Danse de la reine : Position',
           ja: '女王の舞い: 散開',
           cn: '万变水波站位',
@@ -371,7 +375,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Be On Blue Square',
-          de: 'Tanz der Königin: Kristallfeld',
+          de: 'Stehe auf einem blauem Feld',
           fr: 'Danse de la reine : Carré de cristal',
           ja: '女王の舞い: 床',
           cn: '站在蓝地板',
@@ -391,7 +395,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Tethers',
-          de: 'Tanz der Königin: Ranken',
+          de: 'Dornenranken-Verbindungen',
           fr: 'Danse de la reine : Liens',
           ja: '女王の舞い: 茨',
           cn: '先集中后扯线',
@@ -411,6 +415,7 @@ Options.Triggers.push({
       outputStrings: {
         breakTether: {
           en: 'Break Tether (${player})',
+          de: 'Verbindung trennen (${player})',
           ko: '가시줄 끊기 ("${player}")',
         },
       },
@@ -454,15 +459,19 @@ Options.Triggers.push({
         unknown: Outputs.unknown,
         nwOutside: {
           en: 'NW Outside',
+          de: 'NW Außen',
         },
         nwInside: {
           en: 'NW Inside',
+          de: 'NW Innen',
         },
         seInside: {
           en: 'SE Inside',
+          de: 'SO Innen',
         },
         seOutside: {
           en: 'SE Outside',
+          de: 'SO Außen',
         },
       },
     },

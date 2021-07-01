@@ -786,7 +786,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         '9S-Operated Flight Unit': '9S\' Flugeinheit',
         '9S-Operated Walking Fortress': '9S\' mehrbeinig(?:e|er|es|en) Panzer',
@@ -857,6 +856,8 @@ Options.Triggers.push({
         'Marx Crush': 'Marxsche Offensive',
         'Marx Impact': 'Marxscher Sturz',
         'Marx Smash': 'Marxscher Schlag',
+        '(?<= )Back': 'Hinten',
+        '(?<= )Front': 'Vorne',
         'Marx Thrust': 'Marxscher Ansturm',
         'Neutralization': 'Unterwerfung',
         'Precision Guided Missile': 'Schwere Lenkrakete',
