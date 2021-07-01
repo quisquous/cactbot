@@ -346,7 +346,7 @@ export default {
       outputStrings: {
         books: {
           en: 'Books (One Per Square)',
-          de: 'Tanz der Königin: Bücher',
+          de: 'Bücher (Eins pro Feld)',
           fr: 'Danse de la reine : Livres', // FIXME
           ja: '女王の舞い: 本', // FIXME
           cn: '中间两排分格站位', // FIXME
@@ -370,7 +370,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Clock',
-          de: 'Tanz der Königin: Himmelsrichtungen',
+          de: 'Himmelsrichtungen',
           fr: 'Danse de la reine : Position', // FIXME
           ja: '女王の舞い: 散開', // FIXME
           cn: '万变水波站位', // FIXME
@@ -390,7 +390,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Be On Blue Square',
-          de: 'Tanz der Königin: Kristallfeld',
+          de: 'Stehe auf einem blauem Feld',
           fr: 'Danse de la reine : Carré de cristal', // FIXME
           ja: '女王の舞い: 床', // FIXME
           cn: '站在蓝地板', // FIXME
@@ -410,7 +410,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Tethers',
-          de: 'Tanz der Königin: Dornenranken',
+          de: 'Dornenranken-Verbindungen',
           fr: 'Danse de la reine : Liens', // FIXME
           ja: '女王の舞い: 茨', // FIXME
           cn: '先集中后扯线', // FIXME
