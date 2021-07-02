@@ -375,8 +375,8 @@ export default {
         }
 
         const numAdds = Object.keys(colorToAction).length;
-        let suffix = '';
-        let actionId = null;
+        let suffix;
+        let actionId;
         if (numAdds === 2 && colorToAction['blue'] === colorToAction['red']) {
           actionId = colorToAction['blue'];
           suffix = output.bothSuffix();
