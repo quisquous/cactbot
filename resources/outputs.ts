@@ -332,7 +332,7 @@ export default {
     ko: '앞으로 => 뒤로',
   },
   goIntoMiddle: {
-    en: 'Go Middle',
+    en: 'go into middle',
     de: 'in die Mitte gehen',
     fr: 'Allez au milieu',
     ja: '中へ',
