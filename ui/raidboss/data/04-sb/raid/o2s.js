@@ -83,9 +83,11 @@ export default {
         output.responseOutputStrings = {
           onYou: {
             en: '100Gs on YOU',
+            ko: '중력 100 대상자',
           },
           beIn: {
             en: 'Be in 100Gs Circle',
+            ko: '중력 100 원 안에 있기',
           },
         };
 
@@ -300,6 +302,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Probe on YOU',
+          ko: '촉수 대상자',
         },
       },
     },
@@ -311,6 +314,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Elevate (Unstable Gravity)',
+          ko: '공중부양하기 (중력 폭발)',
         },
       },
     },
