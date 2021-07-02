@@ -326,7 +326,7 @@ export default {
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Move Slightly Outside Stack',
+          en: 'Get Knocked to Edge',
         },
       },
     },
