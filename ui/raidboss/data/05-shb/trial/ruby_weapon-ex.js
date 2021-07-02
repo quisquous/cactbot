@@ -78,6 +78,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away From Line Ends',
+          ko: '선 끝나는 곳 피하기',
         },
       },
     },
@@ -139,6 +140,7 @@ export default {
         getMiddle: Outputs.goIntoMiddle,
         outOfMiddle: {
           en: 'Out Of Middle',
+          ko: '가운데 피하기',
         },
       },
     },
@@ -344,12 +346,15 @@ export default {
           in: Outputs.in,
           blueSuffix: {
             en: 'blue',
+            ko: '파랑',
           },
           redSuffix: {
             en: 'red',
+            ko: '빨강',
           },
           bothSuffix: {
             en: 'both',
+            ko: '둘 다',
           },
         };
 
@@ -452,6 +457,7 @@ export default {
         output.responseOutputStrings = {
           text: {
             en: 'Blue Head (Go East)',
+            ko: '파란색 (동쪽)',
           },
         };
 
@@ -472,6 +478,7 @@ export default {
         output.responseOutputStrings = {
           text: {
             en: 'Red Head (Go West)',
+            ko: '빨간색 (서쪽)',
           },
         };
 
