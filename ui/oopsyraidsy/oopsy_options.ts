@@ -2,6 +2,7 @@ import ContentType from '../../resources/content_type';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import { BaseOptions } from '../../types/data';
+import { LooseOopsyCollectTrigger, LooseOopsyTrigger } from '../../types/oopsy';
 // TODO: do we need a different name for this?
 // TODO: Should zone_id.ts export this type??
 import { ZoneId as ZoneIdType } from '../../types/trigger';
@@ -13,8 +14,7 @@ export type TriggerAutoConfig = { enabled: boolean };
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
 
 type OopsyNonConfigOptions = {
-  // TODO: add a type for oopsy triggers and trigger sets
-  Triggers: never[];
+  Triggers: (LooseOopsyTrigger | LooseOopsyCollectTrigger)[];
   PlayerNicks: { [gameName: string]: string };
   DisabledTriggers: DisabledTriggers;
   // TODO: should content_type export what type it is?

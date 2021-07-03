@@ -1,11 +1,12 @@
 import ZoneId from '../../../../../resources/zone_id';
+import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
 // TODO: check tethers being cut (when they shouldn't)
 // TODO: check for concussed debuff
 // TODO: check for taking tankbuster with lightheaded
 // TODO: check for one person taking multiple Storm Of Fury Tethers (4C01/4C08)
 
-export default {
+const triggerSet: SimpleOopsyTriggerSet = {
   zoneId: ZoneId.EdensVerseFurorSavage,
   damageWarn: {
     // It's common to just ignore futbol mechanics, so don't warn on Strike Spark.
@@ -39,3 +40,5 @@ export default {
     'E6S Air Bump': '4BF9',
   },
 };
+
+export default triggerSet;

@@ -1,6 +1,7 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: missing an orb during tornado phase
@@ -10,7 +11,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: taking explosion from the wrong Chiaro/Scuro orb
 // TODO: handle 4C89 Silver Stake tankbuster 2nd hit, as it's ok to have two in.
 
-const wrongBuff = (str) => {
+const wrongBuff = (str: string) => {
   return {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
@@ -21,7 +22,7 @@ const wrongBuff = (str) => {
   };
 };
 
-const noBuff = (str) => {
+const noBuff = (str: string) => {
   return {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',
@@ -32,7 +33,12 @@ const noBuff = (str) => {
   };
 };
 
-export default {
+export interface Data extends OopsyData {
+  hasAstral?: { [name: string]: boolean };
+  hasUmbral?: { [name: string]: boolean };
+}
+
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   damageWarn: {
     'E7S Silver Sword': '4C8E', // ground aoe
@@ -58,6 +64,7 @@ export default {
     {
       // Interrupt
       id: 'E7S Advent Of Light',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4C6E' }),
       mistake: (_e, _data, matches) => {
         // TODO: is this blame correct? does this have a target?
@@ -66,6 +73,7 @@ export default {
     },
     {
       id: 'E7S Astral Effect Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       run: (_e, data, matches) => {
         data.hasAstral = data.hasAstral || {};
@@ -74,6 +82,7 @@ export default {
     },
     {
       id: 'E7S Astral Effect Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
       run: (_e, data, matches) => {
         data.hasAstral = data.hasAstral || {};
@@ -82,6 +91,7 @@ export default {
     },
     {
       id: 'E7S Umbral Effect Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       run: (_e, data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
@@ -90,6 +100,7 @@ export default {
     },
     {
       id: 'E7S Umbral Effect Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
       run: (_e, data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
@@ -98,6 +109,7 @@ export default {
     },
     {
       id: 'E7S Light\'s Course',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: ['4C62', '4C63', '4C64', '4C5B', '4C5F'], ...playerDamageFields }),
       condition: (_e, data, matches) => {
         return !data.hasUmbral || !data.hasUmbral[matches.target];
@@ -110,6 +122,7 @@ export default {
     },
     {
       id: 'E7S Darks\'s Course',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: ['4C65', '4C66', '4C67', '4C5A', '4C60'], ...playerDamageFields }),
       condition: (_e, data, matches) => {
         return !data.hasAstral || !data.hasAstral[matches.target];
@@ -125,6 +138,7 @@ export default {
     },
     {
       id: 'E7S Crusade Knockback',
+      type: 'Ability',
       // 4C76 is the knockback damage, 4C58 is the damage for standing on the puck.
       netRegex: NetRegexes.abilityFull({ id: '4C76', ...playerDamageFields }),
       deathReason: (_e, _data, matches) => {
@@ -143,3 +157,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
