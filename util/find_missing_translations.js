@@ -1,25 +1,9 @@
-import argparse from 'argparse';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
 import { findMissing } from './find_missing_timeline_translations';
 import { walkDirSync } from './file_utils';
-
-const parser = new argparse.ArgumentParser({
-  addHelp: true,
-  description: 'Prints out a list of missing translations',
-});
-parser.addArgument(['-l', '--locale'], {
-  required: true,
-  help: 'The locale to find missing translations for, e.g. de',
-});
-parser.addArgument(['-f', '--filter'], {
-  nargs: '?',
-  defaultValue: '',
-  type: 'string',
-  help: 'Limits the results to only match specific files/path',
-});
 
 // Directory names to ignore when looking for JavaScript files.
 const ignoreDirs = [
@@ -159,8 +143,3 @@ export const run = async (args) => {
     parseJavascriptFile(file, [args['locale']]);
   }
 };
-
-if (fileURLToPath(import.meta.url) === process.argv[1]) {
-  const args = parser.parseArgs();
-  run(args);
-}

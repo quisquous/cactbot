@@ -1,8 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-import { ArgumentParser } from 'argparse';
 
 import { Lang } from '../resources/languages';
 import Options from '../ui/raidboss/raidboss_options';
@@ -10,21 +7,6 @@ import { Event, Sync, Timeline } from '../ui/raidboss/timeline';
 
 import { walkDirSync } from './file_utils';
 import { findMissing } from './find_missing_timeline_translations';
-
-const parser = new ArgumentParser({
-  addHelp: true,
-  description: 'Prints out a translated timeline, with annotations on missing texts and syncs',
-});
-parser.addArgument(['-l', '--locale'], {
-  required: true,
-  type: 'string',
-  help: 'The locale to translate the timeline for, e.g. de',
-});
-parser.addArgument(['-t', '--timeline'], {
-  required: true,
-  type: 'string',
-  help: 'The timeline file to match, e.g. "a12s"',
-});
 
 const rootDir = 'ui/raidboss/data';
 
@@ -41,12 +23,6 @@ const findTriggersFile = (shortName: string): string | undefined => {
 };
 
 export const run = async (args: { locale: Lang; timeline: string }): Promise<void> => {
-  if (!process.argv[1]) {
-    console.error('Unable to determine current process filepath, aborting.');
-    process.exit(-2);
-  }
-  process.chdir(path.join(path.dirname(process.argv[1]), '..'));
-
   const triggersFile = findTriggersFile(args.timeline);
   if (!triggersFile) {
     console.error(`Couldn\'t find '${args.timeline}', aborting.`);
@@ -114,8 +90,3 @@ export const run = async (args: { locale: Lang; timeline: string }): Promise<voi
     console.log(line);
   });
 };
-
-if (fileURLToPath(import.meta.url) === process.argv[1]) {
-  const args = parser.parseArgs() as { locale: Lang; timeline: string };
-  void run(args);
-}
