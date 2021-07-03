@@ -29,6 +29,7 @@ export default (
       'oopsyraidsySummary',
       'radar',
       'raidboss',
+      'raidemulator',
       'test',
       'timerbarTest',
     ].includes(key))
