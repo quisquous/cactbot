@@ -6,25 +6,6 @@ import LineEvent from './network_log_converter/LineEvent';
 import LogRepository from './network_log_converter/LogRepository';
 import NetworkLogConverter from './NetworkLogConverter';
 
-export type DoneMessage = {
-  type: 'done';
-};
-
-export type EncounterMessage = {
-  type: 'encounter';
-  encounter: Encounter;
-  name: string;
-};
-
-export type ProgressMessage = {
-  type: 'progress';
-  lines: number;
-  bytes: number;
-  totalBytes: number;
-};
-
-export type ConverterWorkerMessage = DoneMessage | EncounterMessage | ProgressMessage;
-
 const ctx: Worker = self as unknown as Worker;
 
 ctx.addEventListener('message', (msg) => {
@@ -102,9 +83,3 @@ ctx.addEventListener('message', (msg) => {
     type: 'done',
   });
 });
-
-// For typescript to pick up the proper typings here, have to do some weird casting for export
-const expVar = {};
-const exp = expVar as (new () => Worker);
-
-export default exp;

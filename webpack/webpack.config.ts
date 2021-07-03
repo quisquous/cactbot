@@ -78,14 +78,6 @@ export default (
     module: {
       rules: [
         {
-          // Worker has to go before normal js
-          test: /\.worker\.ts$/,
-          loader: 'worker-loader',
-          resolve: {
-            fullySpecified: false,
-          },
-        },
-        {
           // this will allow importing without extension in js files.
           test: /\.m?js$/,
           exclude: /(node_modules|bower_components)/,

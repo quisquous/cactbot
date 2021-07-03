@@ -4,13 +4,13 @@ import { isLang, langMap } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
+import { ConverterWorkerMessage } from '../../types/worker';
 
 import raidbossFileData from './data/raidboss_manifest.txt';
 import AnalyzedEncounter from './emulator/data/AnalyzedEncounter';
 import CombatantTracker from './emulator/data/CombatantTracker';
 import Encounter from './emulator/data/Encounter';
 import LineEvent from './emulator/data/network_log_converter/LineEvent';
-import NetworkLogConverterWorker, { ConverterWorkerMessage } from './emulator/data/NetworkLogConverter.worker';
 import Persistor from './emulator/data/Persistor';
 import RaidEmulator from './emulator/data/RaidEmulator';
 import EmulatorCommon, { querySelectorSafe } from './emulator/EmulatorCommon';
@@ -125,7 +125,7 @@ const raidEmulatorOnLoad = async () => {
   const emulatedPartyInfo = new EmulatedPartyInfo(emulator);
   const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
   emulatedWebSocket.connected = websocketConnected;
-  const logConverterWorker = new NetworkLogConverterWorker();
+  const logConverterWorker = new Worker(new URL('./emulator/data/NetworkLogConverter.worker.ts', import.meta.url));
 
   // Initialize the Raidboss components, bind them to the emulator for event listeners
   const timelineUI = new RaidEmulatorTimelineUI(options);
