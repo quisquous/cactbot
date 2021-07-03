@@ -27,7 +27,7 @@ const run = () => {
     choices: [
       'Generate common data files',
       'Translate Raidboss timeline',
-      'Find Raidboss missing translations',
+      'Find missing translations',
     ],
   }]).then((answer: Answers) => {
     if (answer.action === 'Generate common data files')
