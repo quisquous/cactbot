@@ -1,5 +1,6 @@
 import { Lang } from '../../../resources/languages';
 import NetRegexes from '../../../resources/netregexes';
+import { UnreachableCode } from '../../../resources/not_reached';
 import { LocaleNetRegex } from '../../../resources/translations';
 import { CactbotBaseRegExp, CactbotRegExpExecArray, TriggerTypes } from '../../../types/net_trigger';
 
@@ -16,6 +17,41 @@ export type MatchStartInfo = {
 export type MatchEndInfo = {
   EndType: string;
   language?: string | undefined;
+};
+
+export const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
+  const ret = node.querySelector(sel);
+  if (!(ret instanceof HTMLElement))
+    throw new UnreachableCode();
+  return ret;
+};
+
+export const querySelectorAllSafe = (node: ParentNode, sel: string): HTMLElement[] => {
+  const ret = [...node.querySelectorAll(sel)].map((elem) => {
+    if (!(elem instanceof HTMLElement))
+      throw new UnreachableCode();
+    return elem;
+  });
+  return ret;
+};
+
+export const getTemplateChild = (node: ParentNode, sel: string): HTMLElement => {
+  const template = querySelectorSafe(node, sel);
+  if (!(template instanceof HTMLTemplateElement))
+    throw new UnreachableCode();
+  const ret = template.content.firstElementChild;
+  if (!ret)
+    throw new UnreachableCode();
+  if (!(ret instanceof HTMLElement))
+    throw new UnreachableCode();
+  return ret;
+};
+
+export const cloneSafe = (node: HTMLElement): HTMLElement => {
+  const cloned = node.cloneNode(true);
+  if (!(cloned instanceof HTMLElement))
+    throw new UnreachableCode();
+  return cloned;
 };
 
 export default class EmulatorCommon {
