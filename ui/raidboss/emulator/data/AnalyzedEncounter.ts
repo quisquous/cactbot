@@ -140,7 +140,7 @@ export default class AnalyzedEncounter extends EventBus {
 
     this.selectPerspective(id, popupText);
 
-    if (timelineController.activeTimeline && timelineController.activeTimeline.ui) {
+    if (timelineController.activeTimeline?.ui) {
       timelineController.activeTimeline.ui.OnTrigger = (trigger: LooseTrigger, matches) => {
         const currentLine = this.encounter.logLines[currentLogIndex];
         const resolver = popupText.currentResolver = new Resolver({
