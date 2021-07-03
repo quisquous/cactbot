@@ -69,9 +69,9 @@ export default {
     {
       // Interrupt
       id: 'E8S Stoneskin',
-      abilityRegex: '4D85',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.ability({ id: '4D85' }),
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
   ],

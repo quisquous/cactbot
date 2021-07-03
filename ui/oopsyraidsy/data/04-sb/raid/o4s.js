@@ -15,21 +15,21 @@ export default {
   triggers: [
     {
       id: 'O4S2 Decisive Battle',
-      abilityRegex: '2408',
+      netRegex: NetRegexes.ability({ id: '2408', capture: false }),
       run: (_e, data) => {
         data.isDecisiveBattleElement = true;
       },
     },
     {
       id: 'O4S1 Vacuum Wave',
-      abilityRegex: '23FE',
+      netRegex: NetRegexes.ability({ id: '23FE', capture: false }),
       run: (_e, data) => {
         data.isDecisiveBattleElement = false;
       },
     },
     {
       id: 'O4S2 Almagest',
-      abilityRegex: '2417',
+      netRegex: NetRegexes.ability({ id: '2417', capture: false }),
       run: (_e, data) => {
         data.isNeoExdeath = true;
       },
