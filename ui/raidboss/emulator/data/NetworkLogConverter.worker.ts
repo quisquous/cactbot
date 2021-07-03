@@ -1,3 +1,5 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+
 import Encounter from './Encounter';
 import LogEventHandler from './LogEventHandler';
 import LineEvent from './network_log_converter/LineEvent';
@@ -7,12 +9,12 @@ import NetworkLogConverter from './NetworkLogConverter';
 const ctx: Worker = self as unknown as Worker;
 
 ctx.addEventListener('message', (msg) => {
-  // TODO: should this just throw an exception? Or return an error?
   if (!(msg.data instanceof ArrayBuffer)) {
+    // TODO: should this return an 'error' instead?
     ctx.postMessage({
       type: 'done',
     });
-    return;
+    throw new UnreachableCode();
   }
 
   const logConverter = new NetworkLogConverter();
