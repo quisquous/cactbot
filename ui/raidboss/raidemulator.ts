@@ -8,8 +8,6 @@ import UserConfig from '../../resources/user_config';
 import raidbossFileData from './data/raidboss_manifest.txt';
 import AnalyzedEncounter from './emulator/data/AnalyzedEncounter';
 import CombatantTracker from './emulator/data/CombatantTracker';
-// eslint can't detect the custom loader for the worker
-// eslint-disable-next-line import/default
 import Encounter from './emulator/data/Encounter';
 import LineEvent from './emulator/data/network_log_converter/LineEvent';
 import NetworkLogConverterWorker, { ConverterWorkerMessage } from './emulator/data/NetworkLogConverter.worker';
@@ -163,7 +161,7 @@ const raidEmulatorOnLoad = async () => {
     // Attempt to set the current emulated encounter
     if (!emulator.setCurrentByID(id)) {
       // If that encounter isn't loaded, load it
-      void persistor.encounters.get(id).then((enc: Encounter | undefined) => {
+      void persistor.encounters.get(id).then((enc?: Encounter) => {
         if (enc) {
           emulator.addEncounter(enc);
           emulator.setCurrentByID(id);
@@ -174,7 +172,7 @@ const raidEmulatorOnLoad = async () => {
 
   // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
   encounterTab.on('parse', (id: number) => {
-    void persistor.encounters.get(id).then(async (enc: Encounter | undefined) => {
+    void persistor.encounters.get(id).then(async (enc?: Encounter) => {
       if (enc) {
         enc.initialize();
         await persistor.encounters.put(enc, enc.id);
@@ -185,7 +183,7 @@ const raidEmulatorOnLoad = async () => {
 
   // Listen for the user to select prune on the encounters tab
   encounterTab.on('prune', (id: number) => {
-    void persistor.encounters.get(id).then(async (enc: Encounter | undefined) => {
+    void persistor.encounters.get(id).then(async (enc?: Encounter) => {
       if (enc) {
         // Trim log lines
         enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
@@ -268,7 +266,7 @@ const raidEmulatorOnLoad = async () => {
 
       const doneButtonTimeout = querySelectorSafe(doneButton, '.doneBtnTimeout');
 
-      let promise: Promise<unknown> | undefined = undefined;
+      let promise: Promise<unknown> | undefined;
 
       logConverterWorker.onmessage = (msg: MessageEvent<ConverterWorkerMessage>) => {
         switch (msg.data.type) {
@@ -414,7 +412,7 @@ const raidEmulatorOnLoad = async () => {
       // Find the parent modal from the close button and close it
       let target = e.currentTarget;
       while (!target.classList.contains('modal') && target !== document.body)
-        target = target.parentElement || target;
+        target = target.parentElement ?? target;
 
       if (target !== document.body)
         hideModal('.' + [...target.classList].join('.'));
@@ -458,7 +456,6 @@ const raidEmulatorOnLoad = async () => {
   };
 };
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 document.addEventListener('DOMContentLoaded', () => {
   void raidEmulatorOnLoad();
 });

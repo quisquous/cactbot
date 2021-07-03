@@ -105,6 +105,6 @@ ctx.addEventListener('message', (msg) => {
 
 // For typescript to pick up the proper typings here, have to do some weird casting for export
 const expVar = {};
-const exp = expVar as typeof Worker & (new () => Worker);
+const exp = expVar as (new () => Worker);
 
 export default exp;
