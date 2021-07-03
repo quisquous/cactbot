@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
+using CactbotEventSource.loc;
 
 namespace Cactbot {
   public class FFXIVProcessKo : FFXIVProcess {
@@ -130,7 +131,7 @@ namespace Cactbot {
       // They both point to the same spot, so verify these have the same value.
       p = SigScan(kCharmapSignature, kCharmapSignatureOffset, kCharmapSignatureRIP);
       if (p.Count == 0) {
-        logger_.LogError("Charmap signature found " + p.Count + " matches");
+        logger_.LogError(Strings.CharmapSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         IntPtr player_ptr_value = IntPtr.Zero;
         foreach (IntPtr ptr in p) {
@@ -140,26 +141,26 @@ namespace Cactbot {
             player_ptr_value = value;
             player_ptr_addr_ = addr;
           } else {
-            logger_.LogError("Charmap signature found, but conflicting match");
+            logger_.LogError(Strings.CharmapSignatureConflictingMatchErrorMessage);
           }
         }
       }
 
       p = SigScan(kJobDataSignature, kJobDataSignatureOffset, kJobDataSignatureRIP);
       if (p.Count != 1) {
-        logger_.LogError("Job signature found " + p.Count + " matches");
+        logger_.LogError(Strings.JobSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
       }
 
       p = SigScan(kInCombatSignature, kInCombatBaseOffset, kInCombatBaseRIP);
       if (p.Count != 1) {
-        logger_.LogError("In combat signature found " + p.Count + " matches");
+        logger_.LogError(Strings.InCombatSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         var baseAddress = p[0];
         p = SigScan(kInCombatSignature, kInCombatOffsetOffset, kInCombatOffsetRIP);
         if (p.Count != 1) {
-          logger_.LogError("In combat offset signature found " + p.Count + " matches");
+          logger_.LogError(Strings.InCombatOffsetSignatureFoundMultipleMatchesErrorMessage, p.Count);
         } else {
           // Abuse sigscan here to return 64-bit "pointer" which we will mask into the 32-bit immediate integer we need.
           // TODO: maybe sigscan should be able to return different types?
@@ -170,7 +171,7 @@ namespace Cactbot {
 
       p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
       if (p.Count != 1) {
-        logger_.LogError("Bait signature found " + p.Count + " matches");
+        logger_.LogError(Strings.BaitSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         bait_addr_ = p[0];
       }

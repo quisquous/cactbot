@@ -2,6 +2,7 @@
 using RainbowMage.OverlayPlugin.Updater;
 using System;
 using System.IO;
+using CactbotEventSource.loc;
 
 namespace Cactbot {
 
@@ -99,12 +100,12 @@ namespace Cactbot {
     public async void DoUpdateCheck(CactbotEventSourceConfig config) {
       var pluginDirectory = GetCactbotDirectory();
       if (pluginDirectory == "") {
-        logger_.LogError("Unable to auto-update due to unknown cactbot directory");
+        logger_.LogError(Strings.UnableUpdateDueToUnknownDirectoryErrorMessage);
         return;
       }
 
       if (Directory.Exists(Path.Combine(pluginDirectory, ".git"))) {
-        logger_.LogInfo("Ignoring auto-update due to cactbot directory being a .git repo.");
+        logger_.LogInfo(Strings.IgnoreUpdateDueToDotGitDirectoryMessage);
         return;
       }
 
