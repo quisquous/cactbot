@@ -71,10 +71,8 @@ export default {
       id: 'O3N The Game',
       // Guess what you just lost?
       netRegex: NetRegexes.ability({ id: '246D' }),
-      condition: (_e, data, matches) => {
-        // If the player takes no damage, they did the mechanic correctly.
-        return data.DamageFromMatches(matches) > 0;
-      },
+      // If the player takes no damage, they did the mechanic correctly.
+      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },

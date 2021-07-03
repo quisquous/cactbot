@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 export default {
   zoneId: ZoneId.AlexanderTheSoulOfTheCreator,
   damageWarn: {
@@ -25,7 +27,7 @@ export default {
     {
       // It is a failure for a Severity marker to stack with the Solidarity group.
       id: 'A12N Assault Failure',
-      damageRegex: '1AF2',
+      netRegex: NetRegexes.abilityFull({ id: '1AF2', ...playerDamageFields }),
       condition: (_e, data, matches) => data.assault.includes(matches.target),
       mistake: (_e, _data, matches) => {
         return {

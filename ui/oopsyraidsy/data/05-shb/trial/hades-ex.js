@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // Hades Ex
 export default {
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
@@ -46,13 +48,11 @@ export default {
     },
     {
       id: 'HadesEx Dark II',
-      damageRegex: '47BA',
-      condition: (e, data) => {
-        // Don't blame people who don't have tethers.
-        return e.type !== '15' && data.me in data.hasDark;
-      },
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.abilityFull({ type: '22', id: '47BA', ...playerDamageFields }),
+      // Don't blame people who don't have tethers.
+      condition: (_e, data, matches) => data.hasDark && data.hasDark.includes(matches.target),
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
     {
@@ -72,10 +72,10 @@ export default {
     },
     {
       id: 'HadesEx Death Shriek',
-      damageRegex: '47CB',
-      condition: (e) => e.damage > 0,
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.abilityFull({ id: '47CB', ...playerDamageFields }),
+      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
     {

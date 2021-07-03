@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: missing an orb during tornado phase
 // TODO: jumping in the tornado damage??
 // TODO: taking sungrace(4C80) or moongrace(4C82) with wrong debuff
@@ -96,39 +98,39 @@ export default {
     },
     {
       id: 'E7S Light\'s Course',
-      damageRegex: ['4C62', '4C63', '4C64', '4C5B', '4C5F'],
-      condition: (e, data) => {
-        return !data.hasUmbral || !data.hasUmbral[e.targetName];
+      netRegex: NetRegexes.abilityFull({ id: ['4C62', '4C63', '4C64', '4C5B', '4C5F'], ...playerDamageFields }),
+      condition: (_e, data, matches) => {
+        return !data.hasUmbral || !data.hasUmbral[matches.target];
       },
-      mistake: (e, data) => {
-        if (data.hasAstral && data.hasAstral[e.targetName])
-          return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
-        return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
+      mistake: (_e, data, matches) => {
+        if (data.hasAstral && data.hasAstral[matches.target])
+          return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
+        return { type: 'warn', blame: matches.target, text: noBuff(matches.ability) };
       },
     },
     {
       id: 'E7S Darks\'s Course',
-      damageRegex: ['4C65', '4C66', '4C67', '4C5A', '4C60'],
-      condition: (e, data) => {
-        return !data.hasAstral || !data.hasAstral[e.targetName];
+      netRegex: NetRegexes.abilityFull({ id: ['4C65', '4C66', '4C67', '4C5A', '4C60'], ...playerDamageFields }),
+      condition: (_e, data, matches) => {
+        return !data.hasAstral || !data.hasAstral[matches.target];
       },
-      mistake: (e, data) => {
-        if (data.hasUmbral && data.hasUmbral[e.targetName])
-          return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
+      mistake: (_e, data, matches) => {
+        if (data.hasUmbral && data.hasUmbral[matches.target])
+          return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
         // This case is probably impossible, as the debuff ticks after death,
         // but leaving it here in case there's some rez or disconnect timing
         // that could lead to this.
-        return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
+        return { type: 'warn', blame: matches.target, text: noBuff(matches.ability) };
       },
     },
     {
       id: 'E7S Crusade Knockback',
       // 4C76 is the knockback damage, 4C58 is the damage for standing on the puck.
-      damageRegex: '4C76',
-      deathReason: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '4C76', ...playerDamageFields }),
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
-          name: e.targetName,
+          name: matches.target,
           reason: {
             en: 'Knocked off',
             de: 'Runtergefallen',

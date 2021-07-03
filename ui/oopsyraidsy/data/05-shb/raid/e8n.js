@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 export default {
   zoneId: ZoneId.EdensVerseRefulgence,
   damageWarn: {
@@ -28,11 +30,11 @@ export default {
     },
     {
       id: 'E8N Heavenly Strike',
-      damageRegex: '4DD8',
-      deathReason: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '4DD8', ...playerDamageFields }),
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
-          name: e.targetName,
+          name: matches.target,
           reason: {
             en: 'Pushed off!',
             de: 'Runter gestoßen!',

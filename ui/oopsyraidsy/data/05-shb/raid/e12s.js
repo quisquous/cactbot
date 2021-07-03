@@ -2,6 +2,8 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: add separate damageWarn-esque icon for damage downs?
 // TODO: 58A6 Under The Weight / 58B2 Classical Sculpture missing somebody in party warning?
 // TODO: 58CA Dark Water III / 58C5 Shell Crusher should hit everyone in party
@@ -67,8 +69,8 @@ export default {
       // Big circle ground aoes during Shiva junction.
       // This can be shielded through as long as that person doesn't stack.
       id: 'E12S Icicle Impact',
-      damageRegex: '4E5A',
-      condition: (e) => e.damage > 0,
+      netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
+      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
@@ -416,8 +418,8 @@ export default {
     },
     {
       id: 'E12S Oracle Shadoweye',
-      damageRegex: '58D2',
-      condition: (e) => e.damage > 0,
+      netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
+      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },

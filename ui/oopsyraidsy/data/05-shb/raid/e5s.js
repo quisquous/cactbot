@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: is there a different ability if the shield duty action isn't used properly?
 // TODO: is there an ability from Raiden (the bird) if you get eaten?
 // TODO: maybe chain lightning warning if you get hit while you have system shock (8B8)
@@ -54,42 +56,42 @@ export default {
     },
     {
       id: 'E5S Divine Judgement Volts',
-      damageRegex: '4BB7',
-      condition: (e, data) => !data.hasOrb || !data.hasOrb[e.targetName],
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
+      netRegex: NetRegexes.abilityFull({ id: '4BB7', ...playerDamageFields }),
+      condition: (_e, data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: noOrb(matches.ability) };
       },
     },
     {
       id: 'E5S Volt Strike Orb',
-      damageRegex: '4BC3',
-      condition: (e, data) => !data.hasOrb || !data.hasOrb[e.targetName],
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
+      netRegex: NetRegexes.abilityFull({ id: '4BC3', ...playerDamageFields }),
+      condition: (_e, data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: noOrb(matches.ability) };
       },
     },
     {
       id: 'E5S Deadly Discharge Big Knockback',
-      damageRegex: '4BB2',
-      condition: (e, data) => !data.hasOrb || !data.hasOrb[e.targetName],
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
+      netRegex: NetRegexes.abilityFull({ id: '4BB2', ...playerDamageFields }),
+      condition: (_e, data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: noOrb(matches.ability) };
       },
     },
     {
       id: 'E5S Lightning Bolt',
-      damageRegex: '4BB9',
-      condition: (e, data) => {
+      netRegex: NetRegexes.abilityFull({ id: '4BB9', ...playerDamageFields }),
+      condition: (_e, data, matches) => {
         // Having a non-idempotent condition function is a bit <_<
         // Only consider lightning bolt damage if you have a debuff to clear.
-        if (!data.hated || !data.hated[e.targetName])
+        if (!data.hated || !data.hated[matches.target])
           return true;
 
-        delete data.hated[e.targetName];
+        delete data.hated[matches.target];
         return false;
       },
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
     {
@@ -111,19 +113,19 @@ export default {
     {
       // This ability is seen only if players stacked the clouds instead of spreading them.
       id: 'E5S The Parting Clouds',
-      damageRegex: '4BBA',
+      netRegex: NetRegexes.abilityFull({ id: '4BBA', ...playerDamageFields }),
       suppressSeconds: 30,
-      mistake: (e, data) => {
+      mistake: (_e, data, matches) => {
         for (const m of data.cloudMarkers) {
           return {
             type: 'fail',
             blame: data.cloudMarkers[m],
             text: {
-              en: e.abilityName + '(clouds too close)',
-              de: e.abilityName + '(Wolken zu nahe)',
-              fr: e.abilityName + '(nuages trop proches)',
-              ja: e.abilityName + '(雲近すぎ)',
-              cn: e.abilityName + '(雷云重叠)',
+              en: `${matches.ability} (clouds too close)`,
+              de: `${matches.ability} (Wolken zu nahe)`,
+              fr: `${matches.ability} (nuages trop proches)`,
+              ja: `${matches.ability} (雲近すぎ)`,
+              cn: `${matches.ability} (雷云重叠)`,
             },
           };
         }

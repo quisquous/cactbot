@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: could track people get hitting by markers they shouldn't
 // TODO: could track non-tanks getting hit by tankbusters, megaliths
 // TODO: could track non-target getting hit by tankbuster
@@ -41,19 +43,19 @@ export default {
     },
     {
       id: 'E4S Fault Line',
-      damageRegex: '411E',
-      condition: (e, data) => data.faultLineTarget !== e.targetName,
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '411E', ...playerDamageFields }),
+      condition: (_e, data, matches) => data.faultLineTarget !== matches.target,
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'Run Over',
-            de: e.abilityName,
+            de: matches.ability, // FIXME
             fr: 'A été écrasé(e)',
-            ja: e.abilityName,
-            cn: e.abilityName,
-            ko: e.abilityName,
+            ja: matches.ability, // FIXME
+            cn: matches.ability, // FIXME
+            ko: matches.ability, // FIXME
           },
         };
       },

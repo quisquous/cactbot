@@ -36,8 +36,8 @@ export default {
       id: 'WOLEx True Walking Dead',
       netRegex: NetRegexes.gainsEffect({ effectId: '8FF' }),
       delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 0.5,
-      deathReason: (e, _data, matches) => {
-        return { type: 'fail', name: e.target, reason: matches.effect };
+      deathReason: (_e, _data, matches) => {
+        return { type: 'fail', name: matches.target, reason: matches.effect };
       },
     },
     {

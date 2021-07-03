@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: hitting shadow of the hero with abilities can cause you to take damage, list those?
 //       e.g. picking up your first pitch bog puddle will cause you to die to the damage
 //       your shadow takes from Deepshadow Nova or Distant Scream.
@@ -64,8 +66,8 @@ export default {
       // Shadow Warrior 4 dog room cleave
       // This can be mitigated by the whole group, so add a damage condition.
       id: 'E10S Barbs Of Agony',
-      damageRegex: ['572A', '5B27'],
-      condition: (e) => e.damage > 0,
+      netRegex: NetRegexes.abilityFull({ id: ['572A', '5B27'], ...playerDamageFields }),
+      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },

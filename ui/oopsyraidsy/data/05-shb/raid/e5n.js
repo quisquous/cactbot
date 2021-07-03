@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 export default {
   zoneId: ZoneId.EdensVerseFulmination,
   damageWarn: {
@@ -41,18 +43,18 @@ export default {
     },
     {
       id: 'E5N Divine Judgement Volts',
-      damageRegex: '4B9A',
-      condition: (e, data) => !data.hasOrb[e.targetName],
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '4B9A', ...playerDamageFields }),
+      condition: (_e, data, matches) => !data.hasOrb[matches.target],
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
-            en: e.abilityName + ' (no orb)',
-            de: e.abilityName + ' (kein Orb)',
-            fr: e.abilityName + '(pas d\'orbe)',
-            ja: e.abilityName + '(雷玉無し)',
-            cn: e.abilityName + '(没吃球)',
+            en: `${matches.ability} (no orb)`,
+            de: `${matches.ability} (kein Orb)`,
+            fr: `${matches.ability} (pas d'orbe)`,
+            ja: `${matches.ability} (雷玉無し)`,
+            cn: `${matches.ability} (没吃球)`,
           },
         };
       },
@@ -68,19 +70,19 @@ export default {
     {
       // This ability is seen only if players stacked the clouds instead of spreading them.
       id: 'E5N The Parting Clouds',
-      damageRegex: '4B9D',
+      netRegex: NetRegexes.abilityFull({ id: '4B9D', ...playerDamageFields }),
       suppressSeconds: 30,
-      mistake: (e, data) => {
+      mistake: (_e, data, matches) => {
         for (const m of data.cloudMarkers) {
           return {
             type: 'fail',
             blame: data.cloudMarkers[m],
             text: {
-              en: e.abilityName + '(clouds too close)',
-              de: e.abilityName + '(Wolken zu nahe)',
-              fr: e.abilityName + '(nuages trop proches)',
-              ja: e.abilityName + '(雲近すぎ)',
-              cn: e.abilityName + '(雷云重叠)',
+              en: `${matches.ability} (clouds too close)`,
+              de: `${matches.ability} (Wolken zu nahe)`,
+              fr: `${matches.ability} (nuages trop proches)`,
+              ja: `${matches.ability} (雲近すぎ)`,
+              cn: `${matches.ability} (雷云重叠)`,
             },
           };
         }
