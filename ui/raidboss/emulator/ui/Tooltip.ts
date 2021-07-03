@@ -119,6 +119,10 @@ export default class Tooltip {
     this.tooltip.removeAttribute('data-show');
   }
 
+  delete(): void {
+    this.tooltip.remove();
+  }
+
   static initializeTemplates(): void {
     if (Tooltip.templates)
       return;

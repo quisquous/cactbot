@@ -17,7 +17,7 @@ import LineEvent from './network_log_converter/LineEvent';
 import PopupTextAnalysis, { ResolverStatus, Resolver } from './PopupTextAnalysis';
 import RaidEmulator from './RaidEmulator';
 
-type PerspectiveTrigger = {
+export type PerspectiveTrigger = {
   triggerHelper: TriggerHelper;
   status: ResolverStatus;
   logLine: LineEvent;
