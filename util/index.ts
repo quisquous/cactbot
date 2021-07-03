@@ -25,16 +25,16 @@ const run = () => {
     name: 'action',
     message: 'What do you want to do?',
     choices: [
-      'Generate common data files',
-      'Translate Raidboss timeline',
-      'Find missing translations',
+      { name: 'Generate common data files', value: 'generate' },
+      { name: 'Translate Raidboss timeline', value: 'translateTimeline' },
+      { name: 'Find missing translations', value: 'findTranslations' },
     ],
   }]).then((answer: Answers) => {
-    if (answer.action === 'Generate common data files')
+    if (answer.action === 'generate')
       return generateDataFiles();
-    if (answer.action === 'Translate Raidboss timeline')
+    if (answer.action === 'translateTimeline')
       return translateTimelineFunc();
-    if (answer.action === 'Find Raidboss missing translations')
+    if (answer.action === 'findTranslations')
       return findMissingTranslationsFunc();
   }).catch(console.error);
 };
