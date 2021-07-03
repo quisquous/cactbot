@@ -131,15 +131,6 @@ type ParsedText = ParsedPopupText | ParsedTriggerText;
 
 type Text = ParsedText & { time: number };
 
-type AddTimerCallback = (fightNow: number, durationEvent: Event, channeling: boolean) => void;
-type RemoveTimerCallback = (e: Event, expired: boolean, force?: boolean) => void;
-type PopupTextCallback = (text: string, currentTime: number) => void;
-type TriggerCallback =
-    (trigger: LooseTimelineTrigger,
-    matches: RegExpExecArray | null,
-    currentTime: number) => void;
-type SyncTimeCallback = (fightNow: number, running: boolean) => void;
-
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
   const div = document.createElement('div');
@@ -176,16 +167,9 @@ export class Timeline {
   private nextSyncStart = 0;
   private nextSyncEnd = 0;
 
-  public addTimerCallback?: AddTimerCallback;
-  public removeTimerCallback?: RemoveTimerCallback;
-  public showInfoTextCallback?: PopupTextCallback;
-  public showAlertTextCallback?: PopupTextCallback;
-  public showAlarmTextCallback?: PopupTextCallback;
-  public speakTTSCallback?: PopupTextCallback;
-  public triggerCallback?: TriggerCallback;
-  public syncTimeCallback?: SyncTimeCallback;
-
   private updateTimer = 0;
+
+  public ui?: TimelineUI;
 
   constructor(text: string, replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
       styles: TimelineStyle[], options: RaidbossOptions) {
@@ -545,8 +529,7 @@ export class Timeline {
     this._ClearTimers();
     this._CancelUpdate();
 
-    if (this.syncTimeCallback)
-      this.syncTimeCallback(fightNow, false);
+    this.ui?.OnSyncTime(fightNow, false);
   }
 
   protected SyncTo(fightNow: number, currentTime: number): void {
@@ -581,8 +564,7 @@ export class Timeline {
     this._CancelUpdate();
     this._ScheduleUpdate(fightNow);
 
-    if (this.syncTimeCallback)
-      this.syncTimeCallback(fightNow, true);
+    this.ui?.OnSyncTime(fightNow, true);
   }
 
   private _CollectActiveSyncs(fightNow: number): void {
@@ -626,10 +608,8 @@ export class Timeline {
   }
 
   private _ClearTimers(): void {
-    if (this.removeTimerCallback) {
-      for (const activeEvent of this.activeEvents)
-        this.removeTimerCallback(activeEvent, false);
-    }
+    for (const activeEvent of this.activeEvents)
+      this.ui?.OnRemoveTimer(activeEvent, false);
     this.activeEvents = [];
   }
 
@@ -640,8 +620,7 @@ export class Timeline {
         durationEvents.push(event);
         continue;
       }
-      if (this.removeTimerCallback)
-        this.removeTimerCallback(event, false, true);
+      this.ui?.OnRemoveTimer(event, false, true);
     }
 
     this.activeEvents = durationEvents;
@@ -650,8 +629,7 @@ export class Timeline {
   private _RemoveExpiredTimers(fightNow: number): void {
     let activeEvent = this.activeEvents[0];
     while (this.activeEvents.length && activeEvent && activeEvent.time <= fightNow) {
-      if (this.removeTimerCallback)
-        this.removeTimerCallback(activeEvent, true);
+      this.ui?.OnRemoveTimer(activeEvent, true);
       this.activeEvents.splice(0, 1);
       activeEvent = this.activeEvents[0];
     }
@@ -672,8 +650,7 @@ export class Timeline {
         };
         events.push(durationEvent);
         this.activeEvents.splice(i, 1);
-        if (this.addTimerCallback)
-          this.addTimerCallback(fightNow, durationEvent, true);
+        this.ui?.OnAddTimer(fightNow, durationEvent, true);
         --i;
       }
     }
@@ -694,8 +671,7 @@ export class Timeline {
         break;
       if (fightNow < e.time && !(e.name in this.ignores)) {
         this.activeEvents.push(e);
-        if (this.addTimerCallback)
-          this.addTimerCallback(fightNow, e, false);
+        this.ui?.OnAddTimer(fightNow, e, false);
       }
       ++this.nextEvent;
     }
@@ -708,22 +684,16 @@ export class Timeline {
         break;
       if (t.time > fightNow)
         break;
-      if (t.type === 'info') {
-        if (this.showInfoTextCallback)
-          this.showInfoTextCallback(t.text, this.timebase);
-      } else if (t.type === 'alert') {
-        if (this.showAlertTextCallback)
-          this.showAlertTextCallback(t.text, this.timebase);
-      } else if (t.type === 'alarm') {
-        if (this.showAlarmTextCallback)
-          this.showAlarmTextCallback(t.text, this.timebase);
-      } else if (t.type === 'tts') {
-        if (this.speakTTSCallback)
-          this.speakTTSCallback(t.text, this.timebase);
-      } else if (t.type === 'trigger') {
-        if (this.triggerCallback)
-          this.triggerCallback(t.trigger, t.matches, this.timebase);
-      }
+      if (t.type === 'info')
+        this.ui?.OnShowInfoText(t.text, this.timebase);
+      else if (t.type === 'alert')
+        this.ui?.OnShowAlertText(t.text, this.timebase);
+      else if (t.type === 'alarm')
+        this.ui?.OnShowAlarmText(t.text, this.timebase);
+      else if (t.type === 'tts')
+        this.ui?.OnSpeakTTS(t.text, this.timebase);
+      else if (t.type === 'trigger')
+        this.ui?.OnTrigger(t.trigger, t.matches, this.timebase);
       ++this.nextText;
     }
   }
@@ -905,14 +875,7 @@ export class TimelineUI {
   public SetTimeline(timeline: Timeline | null): void {
     this.Init();
     if (this.timeline) {
-      delete this.timeline.addTimerCallback;
-      delete this.timeline.removeTimerCallback;
-      delete this.timeline.showInfoTextCallback;
-      delete this.timeline.showAlertTextCallback;
-      delete this.timeline.showAlarmTextCallback;
-      delete this.timeline.speakTTSCallback;
-      delete this.timeline.triggerCallback;
-      delete this.timeline.syncTimeCallback;
+      delete this.timeline.ui;
       while (this.timerlist && this.timerlist.lastChild)
         this.timerlist.removeChild(this.timerlist.lastChild);
       if (this.debugElement)
@@ -922,19 +885,11 @@ export class TimelineUI {
     }
 
     this.timeline = timeline;
-    if (this.timeline) {
-      this.timeline.addTimerCallback = this.OnAddTimer.bind(this);
-      this.timeline.removeTimerCallback = this.OnRemoveTimer.bind(this);
-      this.timeline.showInfoTextCallback = this.OnShowInfoText.bind(this);
-      this.timeline.showAlertTextCallback = this.OnShowAlertText.bind(this);
-      this.timeline.showAlarmTextCallback = this.OnShowAlarmText.bind(this);
-      this.timeline.speakTTSCallback = this.OnSpeakTTS.bind(this);
-      this.timeline.triggerCallback = this.OnTrigger.bind(this);
-      this.timeline.syncTimeCallback = this.OnSyncTime.bind(this);
-    }
+    if (this.timeline)
+      this.timeline.ui = this;
   }
 
-  protected OnAddTimer(fightNow: number, e: Event, channeling: boolean): void {
+  public OnAddTimer(fightNow: number, e: Event, channeling: boolean): void {
     const div = document.createElement('div');
     const bar = document.createElement('timer-bar');
     div.classList.add('timer-bar');
@@ -976,13 +931,13 @@ export class TimelineUI {
     }
   }
 
-  private OnTimerExpiresSoon(id: number): void {
+  public OnTimerExpiresSoon(id: number): void {
     const bar = this.activeBars[id];
     if (bar)
       bar.fg = this.barExpiresSoonColor;
   }
 
-  protected OnRemoveTimer(e: Event, expired: boolean, force = false): void {
+  public OnRemoveTimer(e: Event, expired: boolean, force = false): void {
     if (!force && expired && this.options.KeepExpiredTimerBarsForSeconds) {
       this.expireTimers[e.id] = window.setTimeout(
           this.OnRemoveTimer.bind(this, e, false),
@@ -1017,27 +972,27 @@ export class TimelineUI {
     }
   }
 
-  private OnShowInfoText(text: string, currentTime: number): void {
+  public OnShowInfoText(text: string, currentTime: number): void {
     if (this.popupText)
       this.popupText.Info(text, currentTime);
   }
 
-  private OnShowAlertText(text: string, currentTime: number): void {
+  public OnShowAlertText(text: string, currentTime: number): void {
     if (this.popupText)
       this.popupText.Alert(text, currentTime);
   }
 
-  private OnShowAlarmText(text: string, currentTime: number): void {
+  public OnShowAlarmText(text: string, currentTime: number): void {
     if (this.popupText)
       this.popupText.Alarm(text, currentTime);
   }
 
-  private OnSpeakTTS(text: string, currentTime: number): void {
+  public OnSpeakTTS(text: string, currentTime: number): void {
     if (this.popupText)
       this.popupText.TTS(text, currentTime);
   }
 
-  private OnTrigger(
+  public OnTrigger(
       trigger: LooseTimelineTrigger,
       matches: RegExpExecArray | null,
       currentTime: number): void {
@@ -1045,7 +1000,7 @@ export class TimelineUI {
       this.popupText.Trigger(trigger, matches, currentTime);
   }
 
-  private OnSyncTime(fightNow: number, running: boolean): void {
+  public OnSyncTime(fightNow: number, running: boolean): void {
     if (!this.options.Debug || !this.debugElement)
       return;
 

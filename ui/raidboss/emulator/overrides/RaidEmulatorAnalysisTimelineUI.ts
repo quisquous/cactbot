@@ -12,7 +12,7 @@ export default class RaidEmulatorAnalysisTimelineUI extends RaidEmulatorTimeline
   updateBar(_bar: EmulatorTimerBar, _currentLogTime: number): void {
     // Stubbed out for performance
   }
-  protected OnAddTimer(_fightNow: number, _e: Event, _channeling: boolean): void {
+  OnAddTimer(_fightNow: number, _e: Event, _channeling: boolean): void {
     // Stubbed out for performance
   }
 
