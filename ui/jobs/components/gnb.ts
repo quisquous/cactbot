@@ -1,7 +1,7 @@
+import { JobDetail } from '../../../types/event';
 import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
-import { JobDetail } from '../../../types/event';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
 let tid1: ReturnType<typeof setTimeout>;

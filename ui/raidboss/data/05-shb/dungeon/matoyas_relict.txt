@@ -83,7 +83,7 @@ hideall "--sync--"
 3086.5 "Minced Meat" sync /:Mother Porxie:5911:/ window 50,10
 3093.6 "--untargetable--"
 
-3096.6 "Huff And Puff" sync /:591A:Mother Porxie/ window 96.6,5 duration 49.70
+3096.6 "Huff And Puff" sync /:591A:Mother Porxie/ window 96.6,5 duration 33.7
 3101.6 "Buffet" sync /:Aeolian Cave Sprite:5926:/
 3107.3 "Buffet" sync /:Aeolian Cave Sprite:5926:/
 3112.8 "Buffet" sync /:Aeolian Cave Sprite:5926:/

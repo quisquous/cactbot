@@ -1,5 +1,6 @@
-import LineEvent from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
+
+import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
 const fields = {

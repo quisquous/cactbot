@@ -23,12 +23,12 @@
     "./types",
     "./resources",
     "./util",
-    "./test"
+    "./test",
+    "./webpack"
   ],
   "exclude": [
     "./eslint",
     "./.eslintrc.cjs",
-    "./webpack",
     "./dist",
     "**/*.spec.ts"
   ]

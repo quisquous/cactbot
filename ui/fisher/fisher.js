@@ -7,7 +7,7 @@ import UserConfig from '../../resources/user_config';
 import '../../resources/defaults.css';
 import './fisher.css';
 
-const Options = {
+const defaultOptions = {
   IQRHookQuantity: 100,
   IQRTugQuantity: 10,
   Colors: {
@@ -18,10 +18,9 @@ const Options = {
   },
 };
 
-let gFisher;
-
 class Fisher {
-  constructor(element) {
+  constructor(options, element) {
+    this.options = options;
     this.element = element;
 
     this.zone = null;
@@ -147,8 +146,8 @@ class Fisher {
       },
     };
 
-    this.ui = new FisherUI(element, Options);
-    this.seaBase = new SeaBase(Options);
+    this.ui = new FisherUI(this.options, element);
+    this.seaBase = new SeaBase(this.options);
   }
 
   getActiveBait() {
@@ -225,7 +224,7 @@ class Fisher {
     this.fishing = true;
 
     // undiscovered fishing hole
-    if (this.regex[Options.ParserLanguage]['undiscovered'].test(place)) {
+    if (this.regex[this.options.ParserLanguage]['undiscovered'].test(place)) {
       // store this for now
       // if we catch anything we'll pull the data then
       // "data on 'x' is added to your fishing log" is printed before the catch
@@ -342,8 +341,8 @@ class Fisher {
   parseLine(log) {
     let result = null;
 
-    for (const type in this.regex[Options.ParserLanguage]) {
-      result = this.regex[Options.ParserLanguage][type].exec(log);
+    for (const type in this.regex[this.options.ParserLanguage]) {
+      result = this.regex[this.options.ParserLanguage][type].exec(log);
       if (result) {
         switch (type) {
         // case 'bait': this.handleBait(result[1]); break;
@@ -386,18 +385,19 @@ class Fisher {
   }
 }
 
-UserConfig.getUserConfigLocation('fisher', Options, () => {
-  gFisher = new Fisher(document.getElementById('fisher'));
+UserConfig.getUserConfigLocation('fisher', defaultOptions, () => {
+  const options = { ...defaultOptions };
+  const fisher = new Fisher(options, document.getElementById('fisher'));
 
   addOverlayListener('onLogEvent', (e) => {
-    gFisher.OnLogEvent(e);
+    fisher.OnLogEvent(e);
   });
 
   addOverlayListener('ChangeZone', (e) => {
-    gFisher.OnChangeZone(e);
+    fisher.OnChangeZone(e);
   });
 
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    gFisher.OnPlayerChange(e);
+    fisher.OnPlayerChange(e);
   });
 });

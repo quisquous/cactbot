@@ -1,10 +1,8 @@
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
 import Conditions from '../../../../../resources/conditions';
-import { MatchesGainsEffect, MatchesStartsUsing } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   phase: number;
@@ -21,6 +19,7 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'T12 Phase 3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B96', source: 'Phönix', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'B96', source: 'Phénix', capture: false }),
@@ -32,6 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T12 Bennu',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Bénou', capture: false }),
@@ -55,17 +55,18 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T12 Revelation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B87', source: 'Phoenix' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B87', source: 'Phönix' }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B87', source: 'Phénix' }),
       netRegexJa: NetRegexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B87', source: '不死鸟' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B87', source: '피닉스' }),
-      alertText: (data, matches: MatchesStartsUsing, output) => {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.revelationOnYou!();
       },
-      infoText: (data, matches: MatchesStartsUsing, output) => {
+      infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
       },
@@ -90,6 +91,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T12 Blackfire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B8C', source: 'Phoenix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B8C', source: 'Phönix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B8C', source: 'Phénix', capture: false }),
@@ -110,6 +112,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T12 Whitefire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
@@ -126,6 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T12 Bluefire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
@@ -143,12 +147,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       // Chain Of Purgatory
       id: 'T12 Chain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
-      alertText: (data, matches: MatchesGainsEffect, output) => {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.chainOnYou!();
       },
-      infoText: (data, matches: MatchesGainsEffect, output) => {
+      infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.chainOn!({ player: data.ShortName(matches.target) });
       },

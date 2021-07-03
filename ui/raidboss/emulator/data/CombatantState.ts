@@ -1,27 +1,4 @@
-// Member names taken from OverlayPlugin's MiniParse.cs
-// Types taken from FFXIV parser plugin
-export interface PluginState {
-  CurrentWorldID?: number;
-  WorldID?: number;
-  WorldName?: string;
-  BNpcID?: number;
-  BNpcNameID?: number;
-  PartyType?: number;
-  ID?: number;
-  OwnerID?: number;
-  type?: number;
-  Job?: number;
-  Level?: number;
-  Name?: string;
-  CurrentHP: number;
-  MaxHP: number;
-  CurrentMP: number;
-  MaxMP: number;
-  PosX: number;
-  PosY: number;
-  PosZ: number;
-  Heading: number;
-}
+import { PluginCombatantState } from '../../../../types/event';
 
 export default class CombatantState {
   posX: number;
@@ -61,7 +38,7 @@ export default class CombatantState {
         props.maxMp ?? this.maxMp);
   }
 
-  toPluginState(): PluginState {
+  toPluginState(): PluginCombatantState {
     return {
       PosX: this.posX,
       PosY: this.posY,

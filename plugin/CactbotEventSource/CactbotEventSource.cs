@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using CactbotEventSource.loc;
 
 namespace Cactbot {
 
@@ -216,9 +217,9 @@ namespace Cactbot {
           timer_interval = SendFastRateEvents();
         } catch (Exception e) {
           // SendFastRateEvents holds this semaphore until it exits.
-          LogError("Exception in SendFastRateEvents: " + e.Message);
-          LogError("Stack: " + e.StackTrace);
-          LogError("Source: " + e.Source);
+          LogError(Strings.SendFastRateEventsException, e.Message);
+          LogError(Strings.Stack, e.StackTrace);
+          LogError(Strings.Source, e.Source);
         }
         fast_update_timer_.Interval = timer_interval;
       };
@@ -236,36 +237,36 @@ namespace Cactbot {
       Version act = versions.GetACTVersion();
 
       // Print out version strings and locations to help users debug.
-      LogInfo("cactbot: {0} {1} (dir: {2})", local.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
-      LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
-      LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
-      LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
+      LogInfo(Strings.CactbotBaseInfo, local.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
+      LogInfo(Strings.OverlayPluginBaseInfo, overlay.ToString(), versions.GetOverlayPluginLocation());
+      LogInfo(Strings.FFXIVPluginBaseInfo, ffxiv.ToString(), versions.GetFFXIVPluginLocation());
+      LogInfo(Strings.ACTBaseInfo, act.ToString(), versions.GetACTLocation());
       if (language_ == null) {
-        LogInfo("Parsing Plugin Language: {0}", "(unknown)");
+        LogInfo(Strings.ParsingPluginLanguage, "(unknown)");
       } else {
-        LogInfo("Parsing Plugin Language: {0}", language_);
+        LogInfo(Strings.ParsingPluginLanguage, language_);
       }
       if (pc_locale_ == null) {
-        LogInfo("System Locale: {0}", "(unknown)");
+        LogInfo(Strings.SystemLocale, "(unknown)");
       } else {
-        LogInfo("System Locale: {0}", pc_locale_);
+        LogInfo(Strings.SystemLocale, pc_locale_);
       }
 
       // This will be set explicitly, so if it's not set now, it will be set after reloading ACT.
       // Log this for now as there will likely be a lot of questions, re: user directories.
       if (Config.UserConfigFile != null)
-        LogInfo("cactbot user directory: {0}", Config.UserConfigFile);
+        LogInfo(Strings.CactbotUserDirectory, Config.UserConfigFile);
 
       // Temporarily target cn if plugin is old v2.0.4.0
       if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
         ffxiv_ = new FFXIVProcessCn(this);
-        LogInfo("Version: cn");
+        LogInfo(Strings.Version, "cn");
       } else if (language_ == "ko") {
         ffxiv_ = new FFXIVProcessKo(this);
-        LogInfo("Version: ko");
+        LogInfo(Strings.Version, "ko");
       } else {
         ffxiv_ = new FFXIVProcessIntl(this);
-        LogInfo("Version: intl");
+        LogInfo(Strings.Version, "intl");
       }
       wipe_detector_ = new WipeDetector(this);
       fate_watcher_ = new FateWatcher(this, language_);
@@ -294,7 +295,7 @@ namespace Cactbot {
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
-        LogError("Requires .NET 4.6 or above. Using " + net_version_str);
+        LogError(Strings.RequireDotNetVersion, net_version_str);
 
       versions.DoUpdateCheck(Config);
     }
@@ -525,7 +526,7 @@ namespace Cactbot {
          }
 
       } catch (Exception e) {
-        LogError("Error checking directory: {0}", e.ToString());
+        LogError(Strings.CheckDirectoryErrorMessage, e.ToString());
         return null;
       }
 
@@ -555,7 +556,7 @@ namespace Cactbot {
           user_files[GetRelativePath(top_dir, filename)] = File.ReadAllText(filename);
         }
       } catch (Exception e) {
-        LogError("User error file exception: {0}", e.ToString());
+        LogError(Strings.UserErrorFileException, e.ToString());
       }
 
       return user_files;
@@ -579,7 +580,7 @@ namespace Cactbot {
             config_dir = Path.GetFullPath(url_dir + "\\..\\..\\user\\");
             local_files = GetLocalUserFiles(config_dir, overlay_name);
           } catch (Exception e) {
-            LogError("Error checking html rel dir: {0}: {1}", source, e.ToString());
+            LogError(Strings.CheckingHtmlRelDirErrorMessage, source, e.ToString());
             config_dir = null;
             local_files = null;
           }
@@ -591,7 +592,7 @@ namespace Cactbot {
             local_files = GetLocalUserFiles(config_dir, overlay_name);
           } catch (Exception e) {
             // Accessing CactbotEventSourceConfig.CactbotDllRelativeUserUri can throw an exception so don't.
-            LogError("Error checking dll rel dir: {0}: {1}", config_dir, e.ToString());
+            LogError(Strings.CheckingDllRelDirErrorMessage, config_dir, e.ToString());
             config_dir = null;
             local_files = null;
           }
@@ -672,21 +673,21 @@ namespace Cactbot {
     }
 
     private void RegisterPresets() {
-      RegisterPreset("Raidboss", width:1100, height:300, "Raidboss (Combined Alerts & Timeline)", "raidboss");
-      RegisterPreset("Raidboss", width:1100, height:300, "Raidboss Alerts Only", "raidboss_alerts_only");
-      RegisterPreset("Raidboss", width:320, height:220, "Raidboss Timeline Only", "raidboss_timeline_only");
-      RegisterPreset("Jobs", width:600, height:300);
-      RegisterPreset("Eureka", width:400, height:400);
-      RegisterPreset("Fisher", width:500, height:500);
-      RegisterPreset("OopsyRaidsy", width:400, height:400);
-      RegisterPreset("PullCounter", width:200, height:200);
-      RegisterPreset("Radar", width:300, height:400);
-      RegisterPreset("Test", width:300, height:300);
+      RegisterPreset("Raidboss", width:1100, height:300, Strings.PresetRaidbossCombined, "raidboss");
+      RegisterPreset("Raidboss", width:1100, height:300, Strings.PresetRaidbossAlertOnly, "raidboss_alerts_only");
+      RegisterPreset("Raidboss", width:320, height:220, Strings.PresetRaidbossTimelineOnly, "raidboss_timeline_only");
+      RegisterPreset("Jobs", width:600, height:300, Strings.PresetJobs);
+      RegisterPreset("Eureka", width:400, height:400, Strings.PresetEureka);
+      RegisterPreset("Fisher", width:500, height:500, Strings.PresetFisher);
+      RegisterPreset("OopsyRaidsy", width:400, height:400, Strings.PresetOopsyRaidsy);
+      RegisterPreset("PullCounter", width:200, height:200, Strings.PresetPullCounter);
+      RegisterPreset("Radar", width:300, height:400, Strings.PresetRadar);
+      RegisterPreset("Test", width:300, height:300, Strings.PresetTest);
       // FIXME: these should be consistently named.
-      RegisterDpsPreset("Xephero", "xephero-cactbot", width:600, height:400);
-      RegisterDpsPreset("Rdmty", "dps", width:600, height:400);
+      RegisterDpsPreset(Strings.PresetXephero, "xephero-cactbot", width:600, height:400);
+      RegisterDpsPreset(Strings.PresetRdmty, "dps", width:600, height:400);
       // External Overlays using Cactbot Plugin
-      RegisterExternalPreset("ZeffUI", "https://zeffuro.github.io/ZeffUI/", width: 800, height: 600);
+      RegisterExternalPreset(Strings.PresetZeffUI, "https://zeffuro.github.io/ZeffUI/", width: 800, height: 600);
     }
 
     // State that is tracked and sent to JS when it changes.

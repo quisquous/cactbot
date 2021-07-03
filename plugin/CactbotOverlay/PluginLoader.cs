@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
+using Cactbot.loc;
 
 namespace Cactbot
 {
@@ -24,15 +25,18 @@ namespace Cactbot
                 asmResolver = new AssemblyResolver(new List<string>{GetPluginDirectory()});
             }
 
-            pluginStatusText.Text = "Ready.";
+            pluginStatusText.Text = Strings.Ready;
 
             // We don't need a tab here.
             ((TabControl)pluginScreenSpace.Parent).TabPages.Remove(pluginScreenSpace);
 
             if (GetOverlayPluginVersion() < kMinOverlayPluginVersion) {
-                throw new Exception($"Cactbot requires OverlayPlugin {kMinOverlayPluginVersion.ToString()}, " +
-                    $"found {GetOverlayPluginVersion().ToString()}");
-            }
+              throw new Exception(String.Format(
+                Strings.CactbotRequireOverlayPluginError,
+                kMinOverlayPluginVersion.ToString(),
+                GetOverlayPluginVersion().ToString()
+              ));
+      }
         }
 
         public void Init()
@@ -49,7 +53,7 @@ namespace Cactbot
             }
             else
             {
-                throw new Exception("Could not find ourselves in the plugin list!");
+                throw new Exception(Strings.CouldNotFoundItSelf);
             }
         }
 

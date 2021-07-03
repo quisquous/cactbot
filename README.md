@@ -300,18 +300,29 @@ This currently can only be loaded in a browser and not as an overlay.
 This will work in current version of Chrome,
 and should work in other browsers as well but this is less tested.
 
-Instructions:
+If you want the emulator to use your ACT settings and user triggers,
+you will need to enable the OverlayPlugin WS Server via the following instructions:
 
 1. Start ACT.
-1. Make sure the WS Server is started via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
-1. Select `Cactbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
-1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
-1. Copy and paste this edited url into Chrome.
+1. Start the WS Server via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
+
+If you're developing triggers for the cactbot repository,
+you can start a local development server via `npm run start`
+and load the overlay in Chrome via `http://127.0.0.1:8080/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+
+If you're developing user triggers,
+you can load the overlay in Chrome via `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+
+If you're trying to reproduce an issue,
+you can load the overlay in Chrome via `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html`.
+You don't need the WS Server running in this case.
+
+Once you've got the overlay loaded, you can follow these instructions to use the emulator.
+
 1. Drag and drop a [network log](/docs/FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
 1. Select the zone and encounter, and then click `Load Encounter`.
 
 If the emulator is not working, check the console log in the inspector for errors.
-No buttons will work until it is connected to ACT via websocket.
 
 ![raidboss emulator screenshot](screenshots/raidboss_emulator.png)
 

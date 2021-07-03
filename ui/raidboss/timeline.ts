@@ -1,13 +1,16 @@
-import { commonReplacement } from './common_replacement';
-import Regexes, { Regex, Network6dParams } from '../../resources/regexes';
-import { LocaleRegex } from '../../resources/translations';
-import { UnreachableCode } from '../../resources/not_reached';
-import { RaidbossOptions } from './raidboss_options';
 import { Lang } from '../../resources/languages';
+import NetRegexes from '../../resources/netregexes';
+import { UnreachableCode } from '../../resources/not_reached';
+import Regexes from '../../resources/regexes';
 import TimerBar from '../../resources/timerbar';
+import { LocaleRegex } from '../../resources/translations';
 import { LogEvent } from '../../types/event';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
+
+import { commonReplacement } from './common_replacement';
 import { PopupTextGenerator } from './popup-text';
+import { RaidbossOptions } from './raidboss_options';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -72,7 +75,7 @@ const activeText = {
 };
 
 export type TimelineReplacement = {
-  locale: string;
+  locale: Lang;
   missingTranslations?: boolean;
   replaceSync?: { [regexString: string]: string };
   replaceText?: { [timelineText: string]: string };
@@ -677,7 +680,7 @@ export class Timeline {
     }
   }
 
-  private _AddPassedTexts(fightNow: number): void {
+  private _AddPassedTexts(fightNow: number, currentTime: number): void {
     while (this.nextText < this.texts.length) {
       const t = this.texts[this.nextText];
       if (!t)
@@ -685,15 +688,15 @@ export class Timeline {
       if (t.time > fightNow)
         break;
       if (t.type === 'info')
-        this.ui?.OnShowInfoText(t.text, this.timebase);
+        this.ui?.OnShowInfoText(t.text, currentTime);
       else if (t.type === 'alert')
-        this.ui?.OnShowAlertText(t.text, this.timebase);
+        this.ui?.OnShowAlertText(t.text, currentTime);
       else if (t.type === 'alarm')
-        this.ui?.OnShowAlarmText(t.text, this.timebase);
+        this.ui?.OnShowAlarmText(t.text, currentTime);
       else if (t.type === 'tts')
-        this.ui?.OnSpeakTTS(t.text, this.timebase);
+        this.ui?.OnSpeakTTS(t.text, currentTime);
       else if (t.type === 'trigger')
-        this.ui?.OnTrigger(t.trigger, t.matches, this.timebase);
+        this.ui?.OnTrigger(t.trigger, t.matches, currentTime);
       ++this.nextText;
     }
   }
@@ -773,7 +776,7 @@ export class Timeline {
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
     const fightNow = (currentTime - this.timebase) / 1000;
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
-    this._AddPassedTexts(fightNow);
+    this._AddPassedTexts(fightNow, currentTime);
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
@@ -1034,7 +1037,7 @@ export class TimelineController {
   protected timelines: { [filename: string]: string };
 
   private suppressNextEngage: boolean;
-  private wipeRegex: Regex<Network6dParams>;
+  private wipeRegex: CactbotBaseRegExp<'ActorControl'>;
   protected activeTimeline: Timeline | null = null;
 
   constructor(protected options: RaidbossOptions, protected ui: TimelineUI,
@@ -1051,7 +1054,7 @@ export class TimelineController {
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
-    this.wipeRegex = Regexes.network6d({ command: '40000010' });
+    this.wipeRegex = NetRegexes.network6d({ command: '40000010' });
   }
 
   public SetPopupTextInterface(popupText: PopupTextGenerator): void {

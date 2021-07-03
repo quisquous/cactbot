@@ -1,13 +1,11 @@
-import { RaidbossData as Data } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
 import Conditions from '../../../../../resources/conditions';
-import { MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export { RaidbossData as Data } from '../../../../../types/data';
+export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavelExtreme,
@@ -71,13 +69,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       // Doesn't seem like this happens twice, but let's be safe.
       id: 'TitanEx Rock Throw',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,
-      alertText: (data, matches: MatchesTether, output) => {
+      alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)
           return output.jailOnYou!();
       },
-      infoText: (data, matches: MatchesTether, output) => {
+      infoText: (data, matches, output) => {
         if (matches.source !== data.me && matches.target !== data.me)
           return output.jails!();
       },

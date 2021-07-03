@@ -1,10 +1,15 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+import { EventResponses, LogEvent } from '../../../../types/event';
+import { Matches } from '../../../../types/net_matches';
+import { LooseTrigger } from '../../../../types/trigger';
+import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
+import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
+import { RaidbossOptions } from '../../raidboss_options';
+import { TimelineLoader } from '../../timeline';
 import EmulatorCommon, { DataType } from '../EmulatorCommon';
 import StubbedPopupText from '../overrides/StubbedPopupText';
+
 import LineEvent from './network_log_converter/LineEvent';
-import { LooseTrigger, MatchesAny } from '../../../../types/trigger';
-import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
-import { EventResponses, LogEvent } from '../../../../types/event';
-import { UnreachableCode } from '../../../../resources/not_reached';
 
 type ResolverFunc = () => void;
 
@@ -80,9 +85,19 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   triggerResolvers: Resolver[] = [];
   currentResolver?: Resolver;
   public callback?: (log: LineEvent,
-      triggerHelper: EmulatorTriggerHelper | undefined,
-      currentTriggerStatus: ResolverStatus,
-      finalData: DataType) => void;
+    triggerHelper: EmulatorTriggerHelper | undefined,
+    currentTriggerStatus: ResolverStatus,
+    finalData: DataType) => void;
+
+  constructor(
+      options: RaidbossOptions,
+      timelineLoader: TimelineLoader,
+      raidbossFileData: RaidbossFileData) {
+    super(options, timelineLoader, raidbossFileData);
+    this.ttsSay = (_text: string) => {
+      return;
+    };
+  }
 
   // Override `OnTrigger` so we can use our own exception handler
   OnTrigger(trigger: LooseTrigger, matches: RegExpExecArray | null, currentTime: number): void {
@@ -196,7 +211,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       return ret;
     if (triggerHelper.resolver)
       triggerHelper.resolver.setPromise(ret);
-    return;
+    return ret;
   }
 
   _onTriggerInternalTTS(triggerHelper: EmulatorTriggerHelper): void {
@@ -245,14 +260,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     if (triggerHelper.resolver) {
       // If we already have text and this is a default alert sound, don't override that info
       if (triggerHelper.resolver.status.responseType) {
-        if (triggerHelper.resolver.status.responseType === 'info' &&
-            url === this.options.InfoSound)
-          return;
-        if (triggerHelper.resolver.status.responseType === 'alert' &&
-            url === this.options.AlertSound)
-          return;
-        if (triggerHelper.resolver.status.responseType === 'alarm' &&
-            url === this.options.AlarmSound)
+        if (
+          ['info', 'alert', 'alarm'].includes(triggerHelper.resolver.status.responseType) &&
+          [this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound].includes(url))
           return;
       }
       triggerHelper.resolver.status.responseType = 'audiofile';
@@ -262,7 +272,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   _onTriggerInternalGetHelper(
       trigger: ProcessedTrigger,
-      matches: MatchesAny,
+      matches: Matches,
       now: number): EmulatorTriggerHelper {
     const ret: EmulatorTriggerHelper = {
       ...super._onTriggerInternalGetHelper(trigger, matches, now),

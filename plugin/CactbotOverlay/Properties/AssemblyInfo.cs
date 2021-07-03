@@ -20,5 +20,5 @@ using System.Runtime.InteropServices;
 // - Build Number
 // - Revision
 // GitHub has only 3 version components, so Revision should always be 0.
-[assembly: AssemblyVersion("0.22.11.0")]
-[assembly: AssemblyFileVersion("0.22.11.0")]
+[assembly: AssemblyVersion("0.22.12.0")]
+[assembly: AssemblyFileVersion("0.22.12.0")]

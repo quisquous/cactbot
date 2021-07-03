@@ -53,8 +53,8 @@ export default {
       netRegexDe: NetRegexes.addedCombatant({ name: 'Schwarz(?:e|er|es|en) Katze', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Chat-Noir', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: 'シャノア', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '샤노아', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '夏诺雅', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '샤노아', capture: false }),
       run: (data) => {
         data.phase = data.phase || 0;
         data.phase++;
@@ -96,8 +96,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '万能のクイックシンクス', id: '16F8', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F8', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -107,8 +107,8 @@ export default {
       netRegexDe: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
       netRegexFr: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
       netRegexJa: NetRegexes.tether({ source: '爆弾', id: '001F' }),
-      netRegexKo: NetRegexes.tether({ source: '폭탄', id: '001F' }),
       netRegexCn: NetRegexes.tether({ source: '炸弹', id: '001F' }),
+      netRegexKo: NetRegexes.tether({ source: '폭탄', id: '001F' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -146,8 +146,8 @@ export default {
       netRegexDe: NetRegexes.tether({ source: 'Gob-Stampfer VII-L', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'gobblindé magitek G-VII Lamineur', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: 'VII号ゴブリウォーカーL型', id: '0011' }),
-      netRegexKo: NetRegexes.tether({ source: 'VII호 고블린워커 L형', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '7号哥布林战车L型', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ source: 'VII호 고블린워커 L형', id: '0011' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -168,8 +168,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Sturmpuppe', id: '16FE' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Poupée Sturm', id: '16FE' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'シュツルムドール', id: '16FE' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '인형 폭기병', id: '16FE' }),
       netRegexCn: NetRegexes.startsUsing({ source: '风暴人偶', id: '16FE' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '인형 폭기병', id: '16FE' }),
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
@@ -179,8 +179,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '万能のクイックシンクス', id: '16F4', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F4', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F4', capture: false }),
       run: (data) => {
         delete data.grabbed;
         delete data.stickyloom;
@@ -192,8 +192,8 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Denkfix', id: '15C0' }),
       netRegexFr: NetRegexes.ability({ source: 'Quickthinx Le Cerveau', id: '15C0' }),
       netRegexJa: NetRegexes.ability({ source: '万能のクイックシンクス', id: '15C0' }),
-      netRegexKo: NetRegexes.ability({ source: '만능의 퀵싱크스', id: '15C0' }),
       netRegexCn: NetRegexes.ability({ source: '万事通 奎克辛克斯', id: '15C0' }),
+      netRegexKo: NetRegexes.ability({ source: '만능의 퀵싱크스', id: '15C0' }),
       run: (data, matches) => {
         data.grabbed = data.grabbed || [];
         data.grabbed.push(matches.target);
@@ -205,8 +205,8 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Gob-Stampfer VII-L', id: '16F2' }),
       netRegexFr: NetRegexes.ability({ source: 'gobblindé magitek G-VII Lamineur', id: '16F2' }),
       netRegexJa: NetRegexes.ability({ source: 'VII号ゴブリウォーカーL型', id: '16F2' }),
-      netRegexKo: NetRegexes.ability({ source: 'VII호 고블린워커 L형', id: '16F2' }),
       netRegexCn: NetRegexes.ability({ source: '7号哥布林战车L型', id: '16F2' }),
+      netRegexKo: NetRegexes.ability({ source: 'VII호 고블린워커 L형', id: '16F2' }),
       run: (data, matches) => data.stickyloom = matches.target,
     },
     {
@@ -215,8 +215,8 @@ export default {
       netRegexDe: NetRegexes.addedCombatant({ name: 'Vorhängeschloss', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cadenas', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: '錠前', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '자물쇠', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '牢门的锁', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '자물쇠', capture: false }),
       condition: (data) => {
         if (!data.grabbed)
           return false;
@@ -241,8 +241,8 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Schwarz(?:e|er|es|en) Katze', id: '15EC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Chat-Noir', id: '15EC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'シャノア', id: '15EC', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '샤노아', id: '15EC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '夏诺雅', id: '15EC', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '샤노아', id: '15EC', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

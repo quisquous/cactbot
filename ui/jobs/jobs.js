@@ -28,7 +28,7 @@ import '../../resources/defaults.css';
 import './jobs.css';
 
 // See user/jobs-example.js for documentation.
-const Options = {
+const defaultOptions = {
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'BLM', 'BLU'],
 
@@ -126,6 +126,12 @@ class Bars {
     this.contentType = 0;
     this.isPVPZone = false;
     this.crafting = false;
+
+    // Don't add any notifications if only the buff tracker is being shown.
+    if (this.options.JustBuffTracker) {
+      this.options.NotifyExpiredProcsInCombatSound = false;
+      this.options.NotifyExpiredProcsInCombat = false;
+    }
 
     this.updateProcBoxNotifyRepeat();
   }
@@ -1048,9 +1054,9 @@ class Bars {
     e.detail.logs.forEach((log) => {
       // TODO: only consider this when not in battle.
       if (log[15] === '0') {
-        const r = this.regexes.countdownStartRegex.exec(log);
-        if (r) {
-          const seconds = parseFloat(r.groups.time);
+        const m = this.regexes.countdownStartRegex.exec(log);
+        if (m) {
+          const seconds = parseFloat(m.groups.time);
           this._setPullCountdown(seconds);
           return;
         }
@@ -1063,11 +1069,14 @@ class Bars {
           return;
         }
         if (log[16] === 'C') {
-          const stats = this.regexes.StatsRegex.exec(log).groups;
-          this.skillSpeed = parseInt(stats.skillSpeed);
-          this.spellSpeed = parseInt(stats.spellSpeed);
-          this._updateJobBarGCDs();
-          return;
+          const m = this.regexes.StatsRegex.exec(log);
+          if (m) {
+            const stats = m.groups;
+            this.skillSpeed = parseInt(stats.skillSpeed);
+            this.spellSpeed = parseInt(stats.spellSpeed);
+            this._updateJobBarGCDs();
+            return;
+          }
         }
         if (Util.isCraftingJob(this.job))
           this._onCraftingLog(log);
@@ -1107,33 +1116,32 @@ class Bars {
   }
 }
 
-let gBars;
+UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
+  const options = { ...defaultOptions };
+  const bars = new Bars(options);
 
-UserConfig.getUserConfigLocation('jobs', Options, () => {
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    gBars._onPlayerChanged(e);
+    bars._onPlayerChanged(e);
   });
   addOverlayListener('EnmityTargetData', (e) => {
-    gBars._updateEnmityTargetData(e);
+    bars._updateEnmityTargetData(e);
   });
   addOverlayListener('onPartyWipe', (e) => {
-    gBars._onPartyWipe(e);
+    bars._onPartyWipe(e);
   });
   addOverlayListener('onInCombatChangedEvent', (e) => {
-    gBars._onInCombatChanged(e);
+    bars._onInCombatChanged(e);
   });
   addOverlayListener('ChangeZone', (e) => {
-    gBars._onChangeZone(e);
+    bars._onChangeZone(e);
   });
   addOverlayListener('onLogEvent', (e) => {
-    gBars._onLogEvent(e);
+    bars._onLogEvent(e);
   });
   addOverlayListener('LogLine', (e) => {
-    gBars._onNetLog(e);
+    bars._onNetLog(e);
   });
   addOverlayListener('PartyChanged', (e) => {
-    gBars._onPartyChanged(e);
+    bars._onPartyChanged(e);
   });
-
-  gBars = new Bars(Options);
 });

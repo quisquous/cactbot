@@ -2,6 +2,7 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import { RaidbossOptions } from '../../../../ui/raidboss/raidboss_options';
 import { TimelineUI, Event } from '../../timeline';
 import RaidEmulator from '../data/RaidEmulator';
+
 import RaidEmulatorTimeline from './RaidEmulatorTimeline';
 
 export interface EmulatorTimerBar {
@@ -52,7 +53,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     });
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
-      if (this.timeline instanceof RaidEmulatorTimeline)
+      if (this.timeline instanceof RaidEmulatorTimeline && emulator.currentLogTime !== undefined)
         this.timeline.emulatedSync(emulator.currentLogTime);
     });
     emulator.on('pause', () => {
@@ -65,7 +66,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
 
       this.emulatedTimerBars = [];
     });
-    emulator.on('postSeek', (currentLogTime) => {
+    emulator.on('postSeek', (currentLogTime: number) => {
       if (this.timeline instanceof RaidEmulatorTimeline)
         this.timeline.emulatedSync(currentLogTime);
 

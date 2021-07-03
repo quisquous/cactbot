@@ -26,7 +26,7 @@ const bunnyLabel = {
   ko: '토끼',
 };
 
-const Options = {
+const defaultOptions = {
   Debug: false,
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/freesound/water_drop.ogg',
@@ -1741,104 +1741,528 @@ const Options = {
       fieldNotes: [
         {
           id: 1,
-          name: 'Bajsaljen Ulgasch',
-          shortName: 'Bajsalen',
+          name: {
+            en: 'Bajsaljen Ulgasch',
+            de: 'Bajsaljen Ulgasch',
+            ja: 'バイシャーエン・ウルガッシュ',
+            cn: '白沙恩·乌尔嘉失',
+            ko: '바이샤엔 울가쉬',
+          },
+          shortName: {
+            en: 'Bajsalen',
+            de: 'Bajsaljen',
+            ja: 'バイシャーエン',
+            cn: '白沙恩',
+            ko: '바이샤엔',
+          },
           rarity: 1,
         },
         {
           id: 2,
-          name: 'Marsak Apella',
-          shortName: 'Marsak',
+          name: {
+            en: 'Marsak Apella',
+            de: 'Marsak Apella',
+            ja: 'マルシャーク・アペッラ',
+            cn: '马尔夏克·亚佩拉',
+            ko: '마르샤크 아펠라',
+          },
+          shortName: {
+            en: 'Marsak',
+            de: 'Marsak',
+            ja: 'マルシャーク',
+            cn: '马尔夏克',
+            ko: '마르샤크',
+          },
           rarity: 1,
         },
         {
           id: 3,
-          name: 'Xeven Scanasch',
-          shortName: 'Xeven',
+          name: {
+            en: 'Xeven Svanasch',
+            de: 'Xeven Svanasch',
+            ja: 'ゼヴェン・スヴァナシュ',
+            cn: '泽文·斯瓦楠失',
+            ko: '제벤 스바나쉬',
+          },
+          shortName: {
+            en: 'Xeven',
+            de: 'Xeven',
+            ja: 'ゼヴェン',
+            cn: '泽文',
+            ko: '제벤',
+          },
           rarity: 1,
         },
         {
           id: 4,
-          name: 'Isolde Covey',
-          shortName: 'Isolde',
+          name: {
+            en: 'Isolde Covey',
+            de: 'Isolde Covey',
+            ja: 'イソルデ・コヴィー',
+            cn: '伊索尔德·科维',
+            ko: '이솔데 코비',
+          },
+          shortName: {
+            en: 'Isolde',
+            de: 'Isolde',
+            ja: 'イソルデ',
+            cn: '伊索尔德',
+            ko: '이솔데',
+          },
           rarity: 2,
         },
         {
           id: 5,
-          name: 'Stanik Alubov',
-          shortName: 'Stanik',
+          name: {
+            en: 'Stanik Alubov',
+            de: 'Stanik Alubov',
+            ja: 'スタニック・アルボフ',
+            cn: '斯塔尼克·亚柳波芙',
+            ko: '스타니크 알루보프',
+          },
+          shortName: {
+            en: 'Stanik',
+            de: 'Stanik',
+            ja: 'スタニック',
+            cn: '斯塔尼克',
+            ko: '스타니크',
+          },
           rarity: 1,
         },
         {
           id: 6,
-          name: 'Blaz Azetina',
-          shortName: 'Blaz',
+          name: {
+            en: 'Blaz Azetina',
+            de: 'Blaz Azetina',
+            ja: 'ブラズ・アゼティナ',
+            cn: '布拉兹·亚泽缇娜',
+            ko: '블라즈 아제티나',
+          },
+          shortName: {
+            en: 'Blaz',
+            de: 'Blaz',
+            ja: 'ブラズ',
+            cn: '布拉兹',
+            ko: '블라즈',
+          },
           rarity: 3,
         },
         {
           id: 7,
-          name: 'Velibor Azetina',
-          shortName: 'Velibor',
+          name: {
+            en: 'Velibor Azetina',
+            de: 'Velibor Azetina',
+            ja: 'ヴェリボル・アゼティナ',
+            cn: '韦利博尔·亚泽缇娜',
+            ko: '벨리보르 아제티나',
+          },
+          shortName: {
+            en: 'Velibor',
+            de: 'Velibor',
+            ja: 'ヴェリボル',
+            cn: '韦利博尔',
+            ko: '벨리보르',
+          },
           rarity: 3,
         },
         {
           id: 8,
-          name: 'Aggie Glover',
-          shortName: 'Aggie',
+          name: {
+            en: 'Aggie Glover',
+            de: 'Aggie Glover',
+            ja: 'アギー・グローヴァー',
+            cn: '阿姬·格洛弗',
+            ko: '애지 글러버',
+          },
+          shortName: {
+            en: 'Aggie',
+            de: 'Aggie',
+            ja: 'アギー',
+            cn: '阿姬',
+            ko: '애지',
+          },
           rarity: 1,
         },
         {
           id: 9,
-          name: 'Llofii pyr Potitus',
-          shortName: 'Llofii',
+          name: {
+            en: 'Llofii pyr Potitus',
+            de: 'Llofii pyr Potitus',
+            ja: 'ロフィー・ピル・ポティトゥス',
+            cn: '罗菲·皮尔·珀提图斯',
+            ko: '로피 피르 포티투스',
+          },
+          shortName: {
+            en: 'Llofii',
+            de: 'Llofii',
+            ja: 'ロフィー',
+            cn: '罗菲',
+            ko: '로피',
+          },
           rarity: 2,
         },
         {
           id: 10,
-          name: 'Hernais pyr Longus',
-          shortName: 'Hernais',
+          name: {
+            en: 'Hernais pyr Longus',
+            de: 'Hernais pyr Longus',
+            ja: 'エルネイス・ピル・ロングス',
+            cn: '艾尔内斯·皮尔·隆古斯',
+            ko: '에르네이스 피르 롱구스',
+          },
+          shortName: {
+            en: 'Hernais',
+            de: 'Hernais',
+            ja: 'エルネイス',
+            cn: '艾尔内斯',
+            ko: '에르네이스',
+          },
           rarity: 3,
         },
         {
           id: 11,
-          name: 'Dabog aan Inivisch',
-          shortName: 'Dabog',
+          name: {
+            en: 'Dabog aan Inivisch',
+            de: 'Dabog aan Inivisch',
+            ja: 'ダボグ・アン・イニヴァシュ',
+            cn: '达波格·安·因尼维失',
+            ko: '다보그 안 이니비쉬',
+          },
+          shortName: {
+            en: 'Dabog',
+            de: 'Dabog',
+            ja: 'ダボグ',
+            cn: '达波格',
+            ko: '다보그',
+          },
           rarity: 5,
         },
         {
           id: 12,
-          name: 'Dyunbu pyr Potitus',
-          shortName: 'Dyunbu',
+          name: {
+            en: 'Dyunbu pyr Potitus',
+            de: 'Dyunbu pyr Potitus',
+            ja: 'ユンブ・ピル・ポティトゥス',
+            cn: '尤恩布·皮尔·珀提图斯',
+            ko: '윤부 피르 포티투스',
+          },
+          shortName: {
+            en: 'Dyunbu',
+            de: 'Dyunbu',
+            ja: 'ユンブ',
+            cn: '尤恩布',
+            ko: '윤부',
+          },
           rarity: 4,
         },
         {
           id: 13,
-          name: 'Clarricie quo Priscus',
-          shortName: 'Clarricie',
+          name: {
+            en: 'Clarricie quo Priscus',
+            de: 'Clarricie quo Priscus',
+            ja: 'クラリシー・クォ・プリスクス',
+            cn: '克拉莉西·库奥·普利斯克斯',
+            ko: '클라리시 쿠오 프리스쿠스',
+          },
+          shortName: {
+            en: 'Clarricie',
+            de: 'Clarricie',
+            ja: 'クラリシー',
+            cn: '克拉莉西',
+            ko: '클라리시',
+          },
           rarity: 2,
         },
         {
           id: 14,
-          name: 'Sartauvoir quo Soranus',
-          shortName: 'Sartauvoir',
+          name: {
+            en: 'Sartauvoir quo Soranus',
+            de: 'Sartauvoir quo Soranus',
+            ja: 'サルトヴォアール・クォ・ソラノス',
+            cn: '萨托瓦尔·库奥·索拉努斯',
+            ko: '사르토부아르 쿠오 소라누스',
+          },
+          shortName: {
+            en: 'Sartauvoir',
+            de: 'Sartauvoir',
+            ja: 'サルトヴォアール',
+            cn: '萨托瓦尔',
+            ko: '사르토부아르',
+          },
           rarity: 5,
         },
         {
           id: 15,
-          name: 'Sicinius mal Vellutus',
-          shortName: 'Sicinius',
+          name: {
+            en: 'Sicinius mal Vellutus',
+            de: 'Sicinius mal Vellutus',
+            ja: 'シシニアス・マル・ヴェリュータス',
+            cn: '西西尼乌斯·玛尔·维琉图斯',
+            ko: '시시니우스 말 벨루투스',
+          },
+          shortName: {
+            en: 'Sicinius',
+            de: 'Sicinius',
+            ja: 'シシニアス',
+            cn: '西西尼乌斯',
+            ko: '시시니우스',
+          },
           rarity: 3,
         },
         {
           id: 16,
-          name: 'Sadr rem Albeleo',
-          shortName: 'Albeleo',
+          name: {
+            en: 'Sadr rem Albeleo',
+            de: 'Sadr rem Albeleo',
+            ja: 'サドル・レム・アルビレオ',
+            cn: '萨德尔·雷姆·阿尔贝雷欧',
+            ko: '사드르 렘 알비레오',
+          },
+          shortName: {
+            en: 'Albeleo',
+            de: 'Albeleo',
+            ja: 'アルビレオ',
+            cn: '阿尔贝雷欧',
+            ko: '사드르 렘 알비레오', // FIX-ME
+          },
           rarity: 3,
         },
         {
           id: 17,
-          name: 'Lyon rem Helsos',
-          shortName: 'Lyon',
+          name: {
+            en: 'Lyon rem Helsos',
+            de: 'Lyon rem Helsos',
+            ja: 'ライアン・レム・ヘルソス',
+            cn: '莱昂·雷姆·赫尔索斯',
+            ko: '라이언 렘 헬소스',
+          },
+          shortName: {
+            en: 'Lyon',
+            de: 'Lyon',
+            ja: 'ライアン',
+            cn: '莱昂',
+            ko: '라이언',
+          },
+          rarity: 5,
+        },
+        {
+          id: 18,
+          name: {
+            en: 'Menenius sas Lanatus',
+            de: 'Menenius sas Lanatus',
+            ja: 'メネニウス・サス・ラナトゥス',
+            cn: '梅内纽斯·萨斯·拉那图斯',
+            ko: '메네니우스 사스 라나투스',
+          },
+          shortName: {
+            en: 'Menenius', // FIX-ME
+            de: 'Menenius',
+            ja: 'メネニウス',
+            cn: '梅内纽斯',
+            ko: '메네니우스 사스 라나투스', // FIX-ME
+          },
+          rarity: 3,
+        },
+        {
+          id: 19,
+          name: {
+            en: 'Misija Votyasch',
+            de: 'Misija Votyasch',
+            ja: 'ミーシィヤ・ヴォートヤシュ',
+            cn: '米希亚·博特雅失',
+            ko: '미시야 보트야쉬',
+          },
+          shortName: {
+            en: 'Misija', // FIX-ME
+            de: 'Misija',
+            ja: 'ミーシィヤ',
+            cn: '米希亚',
+            ko: '미시야 보트야쉬', // FIX-ME
+          },
+          rarity: 3,
+        },
+        {
+          id: 20,
+          name: {
+            en: 'Gunnhildr',
+            de: 'Gunnhildr',
+            ja: 'グンヒルド',
+            cn: '贡希尔德',
+            ko: '군힐드',
+          },
+          shortName: {
+            en: 'Gunnhildr',
+            de: 'Gunnhildr',
+            ja: 'グンヒルド',
+            cn: '贡希尔德',
+            ko: '군힐드',
+          },
+          rarity: 3,
+        },
+        {
+          id: 21,
+          name: {
+            en: 'Lilja Sjasaris',
+            de: 'Lilja Sjasaris',
+            ja: 'リリヤ・シアサリス',
+            cn: '莉莉娅·希雅萨里斯',
+          },
+          shortName: {
+            en: 'Lilja Sjasaris', // FIX-ME
+            de: 'Lilja',
+            ja: 'リリヤ',
+            cn: '莉莉娅',
+          },
+          rarity: 3,
+        },
+        {
+          id: 22,
+          name: {
+            en: 'Bwagi Ennze Panca',
+            de: 'Bwagi Ennze Panca',
+            ja: 'ブワジ・エンゼ・パンチャ',
+            cn: '布瓦基·恩泽·潘卡',
+          },
+          shortName: {
+            en: 'Bwagi Ennze Panca', // FIX-ME
+            de: 'Bwagi',
+            ja: 'ブワジ',
+            cn: '布瓦基',
+          },
+          rarity: 3,
+        },
+        {
+          id: 23,
+          name: {
+            en: 'Rostik Liubasch',
+            de: 'Rostik Liubasch',
+            ja: 'ロスティック・リュバシュ',
+            cn: '罗斯提克·琉芭失',
+          },
+          shortName: {
+            en: 'Rostik Liubasch', // FIX-ME
+            de: 'Rostik',
+            ja: 'ロスティック',
+            cn: '罗斯提克',
+          },
+          rarity: 3,
+        },
+        {
+          id: 24,
+          name: {
+            en: 'Mikoto Jinba',
+            de: 'Mikoto',
+            ja: 'ミコト・ジンバ',
+            cn: '神庭水琴',
+          },
+          shortName: {
+            en: 'Mikoto Jinba', // FIX-ME
+            de: 'Mikoto',
+            ja: 'ミコト',
+            cn: '水琴',
+          },
+          rarity: 3,
+        },
+        {
+          id: 25,
+          name: {
+            en: 'Misija Votyasch',
+            de: 'Misija Votyasch',
+            ja: 'ミーシィヤ・ヴォートヤシュ',
+            cn: '米希亚·博特雅失',
+            ko: '미시야 보트야쉬',
+          },
+          shortName: {
+            en: 'Misija Votyasch', // FIX-ME
+            de: 'Misija',
+            ja: 'ミーシィヤ',
+            cn: '米希亚',
+            ko: '미시야 보트야쉬',
+          },
+          rarity: 3,
+        },
+        {
+          id: 26,
+          name: {
+            en: 'Gunnhildr',
+            de: 'Gunnhildr',
+            ja: 'グンヒルド',
+            cn: '贡希尔德',
+            ko: '군힐드',
+          },
+          shortName: {
+            en: 'Gunnhildr',
+            de: 'Gunnhildr',
+            ja: 'グンヒルド',
+            cn: '贡希尔德',
+            ko: '군힐드',
+          },
+          rarity: 3,
+        },
+        {
+          id: 27,
+          name: {
+            en: 'Trinity Seeker',
+            de: 'Trinität der Sucher',
+            ja: 'トリニティ・シーカー',
+            cn: '求道之三位一体',
+          },
+          shortName: {
+            en: 'Seeker', // FIX-ME
+            de: 'Sucher',
+            ja: 'シーカー',
+            cn: '求道之三位一体',
+          },
+          rarity: 4,
+        },
+        {
+          id: 28,
+          name: {
+            en: 'Queen\'s Guard',
+            de: 'Die Königinnenwache',
+            ja: 'クイーンズ・ガード',
+            cn: '女王护卫',
+          },
+          shortName: {
+            en: 'Guard', // FIX-ME
+            de: 'Königinnenwache',
+            ja: 'ガード',
+            cn: '女王护卫',
+          },
+          rarity: 4,
+        },
+        {
+          id: 29,
+          name: {
+            en: 'Trinity Avowed',
+            de: 'Trinität der Eingeschworenen',
+            ja: 'トリニティ・アヴァウド',
+            cn: '誓约之三位一体',
+          },
+          shortName: {
+            en: 'Trinity Avowed', // FIX-ME
+            de: 'Eingeschworene',
+            ja: 'アヴァウド',
+            cn: '誓约之三位一体',
+          },
+          rarity: 4,
+        },
+        {
+          id: 30,
+          name: {
+            en: 'Save the Queen',
+            de: 'Die heilige Klinge',
+            ja: 'セイブ・ザ・クイーン',
+            cn: '天佑女王',
+            ko: '세이브 더 퀸',
+          },
+          shortName: {
+            en: 'Save the Queen', // FIX-ME
+            de: 'Heilige Klinge',
+            ja: 'セイブ・ザ・クイーン',
+            cn: '天佑女王',
+            ko: '세이브 더 퀸',
+          },
           rarity: 5,
         },
       ],
@@ -1854,6 +2278,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Sneak',
+            de: 'Gemetzel',
             fr: 'Yeux',
           },
           x: 20.3,
@@ -1872,6 +2297,7 @@ const Options = {
           fieldNotes: 8,
           shortLabel: {
             en: 'Robots',
+            de: 'Schrott',
             fr: 'Araignées',
           },
           x: 24.8,
@@ -1890,6 +2316,7 @@ const Options = {
           fieldNotes: 3,
           shortLabel: {
             en: 'Beasts',
+            de: 'Körbchen',
             fr: 'Museler',
           },
           x: 20.3,
@@ -1907,6 +2334,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Unrest',
+            de: 'Wer rastet..',
             fr: 'Pas de quartier',
           },
           x: 24.8,
@@ -1926,6 +2354,7 @@ const Options = {
           fieldNotes: 1,
           shortLabel: {
             en: 'Machine',
+            de: 'Gegenangriff',
             fr: 'Machine',
           },
           x: 28.4,
@@ -1935,7 +2364,7 @@ const Options = {
         plants: {
           label: {
             en: 'Can Carnivorous Plants Bloom Even on a Battlefield?',
-            de: 'Linientreue',
+            de: 'Linientreue um jeden Preis',
             fr: 'Des Racines et des Crocs',
             ja: '野生生物を排除せよ',
             cn: '排除野生生物',
@@ -1944,6 +2373,7 @@ const Options = {
           fieldNotes: 5,
           shortLabel: {
             en: 'Plants',
+            de: 'Linientreue',
             fr: 'Racines',
           },
           x: 34.4,
@@ -1961,6 +2391,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Seeq',
+            de: 'Rüpel',
             fr: 'Ménagerie',
           },
           x: 28.9,
@@ -1980,6 +2411,7 @@ const Options = {
           fieldNotes: 2,
           shortLabel: {
             en: 'Pets',
+            de: 'Ungeheuerlich',
             fr: 'Plantes',
           },
           x: 17.3,
@@ -1989,7 +2421,7 @@ const Options = {
         firstlaw: {
           label: {
             en: 'Conflicting with the First Law',
-            de: 'Schufter-10',
+            de: 'Schufter-10 wird verschrottet',
             fr: 'Que des numéros dix',
             ja: '労働十号破壊命令',
             cn: '破坏劳动十号',
@@ -1998,6 +2430,7 @@ const Options = {
           fieldNotes: 4,
           shortLabel: {
             en: 'First Law',
+            de: 'Schufter',
             fr: 'Numéros dix',
           },
           x: 34.4,
@@ -2007,7 +2440,7 @@ const Options = {
         heal: {
           label: {
             en: 'Brought to Heal',
-            de: 'Nächstenliebe',
+            de: 'Nächstenliebe, Nächstenhiebe',
             fr: 'Miséricorde impériale',
             ja: '恩徳の術士たち',
             cn: '施恩布德的术师队',
@@ -2015,6 +2448,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Heal',
+            de: 'Nächstenliebe',
             fr: 'Miséricorde',
           },
           x: 28.9,
@@ -2033,6 +2467,7 @@ const Options = {
           fieldNotes: 10,
           shortLabel: {
             en: 'Mash',
+            de: 'Rache',
             fr: 'Retour du chien',
           },
           x: 31.3,
@@ -2051,6 +2486,7 @@ const Options = {
           isCEPrecursor: true,
           shortLabel: {
             en: 'Alert',
+            de: 'Federlassen',
             fr: 'Chocobos',
           },
           x: 27.3,
@@ -2060,7 +2496,7 @@ const Options = {
         unicorn: {
           label: {
             en: 'Unicorn Flakes',
-            de: 'Llofii',
+            de: 'Llofii die Ausgebüxte',
             fr: 'La licorne des plaines',
             ja: '潔白の脱走兵',
             cn: '洁白心的逃脱战',
@@ -2070,6 +2506,7 @@ const Options = {
           fieldNotes: 13,
           shortLabel: {
             en: 'Unicorn',
+            de: 'Llofii',
             fr: 'Licorne',
           },
           x: 32.3,
@@ -2079,7 +2516,7 @@ const Options = {
         recreation: {
           label: {
             en: 'Parts and Recreation',
-            de: 'Aufräumen im Dienst',
+            de: 'Aufräumen im Dienst der Wissenschaft',
             fr: 'La bataille de l\'innovation',
             ja: '敵新兵器を調査せよ',
             cn: '调查敌方新兵器',
@@ -2087,6 +2524,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Recreation',
+            de: 'Aufräumen',
             fr: 'Innovation',
           },
           x: 25.6,
@@ -2104,6 +2542,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Supplies',
+            de: 'Wartung',
             fr: 'Vivres',
           },
           x: 17.5,
@@ -2113,7 +2552,7 @@ const Options = {
         heavyboots: {
           label: {
             en: 'Heavy Boots of Lead',
-            de: 'Arbeitsniederlegung',
+            de: 'Gewaltsame Arbeitsniederlegung',
             fr: 'Force ouvrière',
             ja: '魔導レイバー破壊命令',
             cn: '破坏魔导劳工',
@@ -2122,6 +2561,7 @@ const Options = {
           fieldNotes: 15,
           shortLabel: {
             en: 'Boots',
+            de: 'Niederlegung',
             fr: 'Force',
           },
           x: 31.3,
@@ -2140,6 +2580,7 @@ const Options = {
           fieldNotes: 6,
           shortLabel: {
             en: 'Camping',
+            de: 'Besuch',
             fr: 'Idéaux',
           },
           x: 17.5,
@@ -2158,6 +2599,7 @@ const Options = {
           fieldNotes: 7,
           shortLabel: {
             en: 'Scavengers',
+            de: 'Zurück',
             fr: 'Dévoreurs',
           },
           x: 25.6,
@@ -2175,6 +2617,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Help',
+            de: 'Jedes Leben',
             fr: 'Résister',
           },
           x: 18.3,
@@ -2184,7 +2627,7 @@ const Options = {
         pyromancer: {
           label: {
             en: 'Pyromancer Supreme',
-            de: 'Pyromant',
+            de: 'Der stärkste aller Pyromanten',
             fr: 'Duel brûlant',
             ja: '最強のパイロマンサー',
             cn: '最强的火焰法师',
@@ -2193,6 +2636,7 @@ const Options = {
           fieldNotes: 7,
           shortLabel: {
             en: 'Pyromancer',
+            de: 'Pyromant',
             fr: 'Brûlant',
           },
           x: 18.3,
@@ -2202,7 +2646,7 @@ const Options = {
         rainbow: {
           label: {
             en: 'Waste the Rainbow',
-            de: 'Ende einer ... Karriere',
+            de: 'Das Ende einer schillernden Karriere',
             fr: 'De toutes les couleurs',
             ja: '華麗なるお気に入り',
             cn: '华丽魔女与心爱珍兽',
@@ -2211,6 +2655,7 @@ const Options = {
           fieldNotes: 13,
           shortLabel: {
             en: 'Rainbow',
+            de: 'Karriere',
             fr: 'Couleurs',
           },
           x: 25.1,
@@ -2228,6 +2673,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Wild Bunch',
+            de: 'Revierkämpfe',
             fr: 'Sans maîtres',
           },
           x: 21.0,
@@ -2237,7 +2683,7 @@ const Options = {
         familyotheranimals: {
           label: {
             en: 'My Family and Other Animals',
-            de: 'rüpelhaftes Großmaul',
+            de: 'Ein rüpelhaftes Großmaul',
             fr: 'L\'incorruptible',
             ja: '豚面の勧誘者',
             cn: '兽性兽心的劝诱',
@@ -2245,6 +2691,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Family',
+            de: 'Großmaul',
             fr: 'Incorruptible',
           },
           x: 11.0,
@@ -2254,7 +2701,7 @@ const Options = {
         mechanicalman: {
           label: {
             en: 'I\'m a Mechanical Man',
-            de: 'Arbeitsniederlegung - Plan B',
+            de: 'Gewaltsame Arbeitsniederlegung - Plan B',
             fr: 'Plan B',
             ja: '魔導レイバーB型破壊命令',
             cn: '破坏魔导劳工B型',
@@ -2263,6 +2710,7 @@ const Options = {
           isCEPrecursor: true,
           shortLabel: {
             en: 'Mechanical',
+            de: 'Plan B',
             fr: 'Plan B',
           },
           x: 20.8,
@@ -2281,6 +2729,7 @@ const Options = {
           fieldNotes: 11,
           shortLabel: {
             en: 'Murder',
+            de: 'Neu und besser',
             fr: 'Des Machines',
           },
           x: 14.0,
@@ -2290,7 +2739,7 @@ const Options = {
         seeking: {
           label: {
             en: 'Desperately Seeking Something',
-            de: 'fällt selbst hinein',
+            de: '... fällt selbst hinein',
             fr: 'Ceux qui creusent',
             ja: '戦場の盗掘者',
             cn: '战场的偷盗者',
@@ -2298,6 +2747,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Seeking',
+            de: 'fällt',
             fr: 'Creusent',
           },
           x: 24.8,
@@ -2316,6 +2766,7 @@ const Options = {
           fieldNotes: 5,
           shortLabel: {
             en: 'Supplies',
+            de: 'Deins',
             fr: 'Casser',
           },
           x: 21.0,
@@ -2333,6 +2784,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Demonic',
+            de: 'Geruch',
             fr: 'Hémoglobine',
           },
           x: 11.1,
@@ -2351,6 +2803,7 @@ const Options = {
           fieldNotes: 12,
           shortLabel: {
             en: 'Absent',
+            de: 'Unordnung',
             fr: 'Vengeresse',
           },
           isCEPrecursor: true,
@@ -2371,6 +2824,7 @@ const Options = {
           fieldNotes: 14,
           shortLabel: {
             en: 'Steel',
+            de: 'Auf und ab',
             fr: 'Fer & Feu',
           },
           x: 13.8,
@@ -2389,6 +2843,7 @@ const Options = {
           fieldNotes: 4,
           shortLabel: {
             en: 'Dogs',
+            de: 'Hunde',
             fr: 'Brigade',
           },
           x: 14.0,
@@ -2407,6 +2862,7 @@ const Options = {
           fieldNotes: 3,
           shortLabel: {
             en: 'War',
+            de: 'Ende Gelände',
             fr: 'Cent Mille',
           },
           x: 11.1,
@@ -2419,7 +2875,7 @@ const Options = {
             de: 'Castrum Lacus Litore',
             fr: 'Castrum Lacus Litore',
             ja: 'カストルム',
-            cn: '湖岸堡',
+            cn: '帝国湖岸堡攻城战',
             ko: '공성전',
           },
           shortLabel: {
@@ -2427,7 +2883,7 @@ const Options = {
             de: 'Castrum',
             fr: 'Castrum',
             ja: 'カストルム',
-            cn: '湖岸堡',
+            cn: '攻城',
             ko: '공성전',
           },
           x: 18.9,
@@ -2440,16 +2896,18 @@ const Options = {
         killitwithfire: {
           label: {
             en: 'Kill It With Fire',
-            de: 'Peeriefool',
+            de: 'Peeriefool, das faule Gemüse',
             fr: 'Grandeur et pestilence',
             ja: 'ピーリフール',
-            cn: '皮里福尔',
+            cn: '腐烂蔬菜——皮里福尔',
             ko: '피어리풀',
           },
           fieldNotes: 13,
           shortLabel: {
             en: 'Kill it',
+            de: 'Peeriefool',
             fr: 'Pestilence',
+            cn: '皮里福尔',
           },
           x: 17.4,
           y: 26.9,
@@ -2459,15 +2917,17 @@ const Options = {
         bayinghounds: {
           label: {
             en: 'The Baying of the Hound(s)',
-            de: 'Canis dirus',
+            de: 'Die drei Mäuler des Canis dirus',
             fr: 'Le chien des enfers',
             ja: 'カニスディルス',
-            cn: '恐惧妖犬',
+            cn: '战争妖犬——恐惧妖犬',
             ko: '카니스 디루스',
           },
           shortLabel: {
             en: 'Hounds',
+            de: 'Canis dirus',
             fr: 'Chien',
+            cn: '恐惧妖犬',
           },
           x: 22.8,
           y: 28.8,
@@ -2477,15 +2937,17 @@ const Options = {
         vigilforthelost: {
           label: {
             en: 'Vigil for the Lost',
-            de: 'Vigil',
+            de: 'Vigil, Feuerkraft hoch zehn',
             fr: 'Vigile de feu',
             ja: 'ヴィジル',
-            cn: '守夜',
+            cn: '高火力陆战魔导兵器——守夜',
             ko: '비질',
           },
           shortLabel: {
             en: 'Vigil',
+            de: 'Vigil',
             fr: 'Vigile',
+            cn: '守夜',
           },
           x: 28.4,
           y: 29.5,
@@ -2496,16 +2958,18 @@ const Options = {
         aceshigh: {
           label: {
             en: 'Aces High',
-            de: 'Gabriel',
+            de: 'Gabriel, die stählerne Schwinge',
             fr: 'Force divine',
             ja: 'ガブリエル',
-            cn: '加百列',
+            cn: '新型飞行型魔导装甲——加百列',
             ko: '가브리엘',
           },
           fieldNotes: 11,
           shortLabel: {
             en: 'Aces High',
+            de: 'Gabriel',
             fr: 'Force divine',
+            cn: '加百列',
           },
           x: 32.3,
           y: 26.8,
@@ -2517,16 +2981,18 @@ const Options = {
         shadowdeathshand: {
           label: {
             en: 'The Shadow of Death\'s Hand',
-            de: 'Akbaba',
+            de: 'Akbaba, Tod von oben',
             fr: 'Les ailes noires de la mort',
             ja: '黒アクババ',
-            cn: '阿库巴巴',
+            cn: '黑死鸟——阿克巴巴',
             ko: '아크바바',
           },
           fieldNotes: 3,
           shortLabel: {
             en: 'Shadow',
+            de: 'Akbaba',
             fr: 'Ailes noires',
+            cn: '阿克巴巴',
           },
           x: 36.5,
           y: 25.8,
@@ -2536,16 +3002,18 @@ const Options = {
         finalfurlong: {
           label: {
             en: 'The Final Furlong',
-            de: 'Spartoi',
+            de: 'Spartoi der Gefürchtete',
             fr: 'Menace spectrale',
             ja: 'スパルトイ',
-            cn: '地生人',
+            cn: '怨念死灵——地生人',
             ko: '스파르토이',
           },
           fieldNotes: 9,
           shortLabel: {
             en: 'Furlong',
+            de: 'Spartoi',
             fr: 'Menace',
+            cn: '地生人',
           },
           x: 33.3,
           y: 17.5,
@@ -2555,15 +3023,17 @@ const Options = {
         choctober: {
           label: {
             en: 'The Hunt for Red Choctober',
-            de: 'Roter Meteor',
+            de: 'Der Rote Meteor und seine Meute',
             fr: 'Une ruée en rouge',
             ja: '赤レッドコメット',
-            cn: '红色彗星',
+            cn: '红陆行鸟之王——红色彗星',
             ko: '붉은 혜성',
           },
           shortLabel: {
             en: 'Choctober',
+            de: 'Roter Meteor',
             fr: 'Ruée en Rouge',
+            cn: '红色彗星',
           },
           x: 27.3,
           y: 17.7,
@@ -2574,16 +3044,18 @@ const Options = {
         beastofman: {
           label: {
             en: 'Beast of Man',
-            de: 'Lyon',
+            de: 'Lyon der Bestienkönig',
             fr: 'Le Roi bestial',
             ja: '獣王ライアン',
-            cn: '兽王莱昂',
+            cn: '百兽之王——兽王莱昂',
             ko: '마수왕 라이언',
           },
           fieldNotes: 17,
           shortLabel: {
             en: 'Beast of Man',
+            de: 'Lyon',
             fr: 'Roi Bestial',
+            cn: '兽王',
           },
           x: 23.3,
           y: 20.4,
@@ -2595,15 +3067,17 @@ const Options = {
         firesofwar: {
           label: {
             en: 'The Fires of War',
-            de: 'Flammenden Hundert',
+            de: 'Die Flammenden Hundert',
             fr: 'Brasier de guerre',
             ja: '火焔百人隊',
-            cn: '火焰百夫队',
+            cn: '炎兽训练师——火焰百夫队',
             ko: '화염백인대',
           },
           shortLabel: {
             en: 'Fires of War',
+            de: 'Flammenden Hundert',
             fr: 'Brasier',
+            cn: '火焰百夫队',
           },
           x: 20.8,
           y: 23.9,
@@ -2613,15 +3087,17 @@ const Options = {
         patriotgames: {
           label: {
             en: 'Patriot Games',
-            de: 'Verteidigungsmaschine',
+            de: 'Verteidigungsmaschine Patriot',
             fr: 'Les fusils du patriote',
             ja: 'パトリオット',
-            cn: '爱国者',
+            cn: '据点防卫魔导兵器——爱国者',
             ko: '패트리어트',
           },
           shortLabel: {
             en: 'Patriot',
+            de: 'Patriot',
             fr: 'Patriote',
+            cn: '爱国者',
           },
           x: 14.2,
           y: 21.2,
@@ -2634,12 +3110,14 @@ const Options = {
             de: 'Die bösen Blicke der Eale',
             fr: 'L\'œil du malin',
             ja: '邪エアレー',
-            cn: '耶鲁',
+            cn: '邪眼妖兽——耶鲁',
             ko: '에알레',
           },
           shortLabel: {
             en: 'Trampled',
+            de: 'Eale',
             fr: 'Œil du malin',
+            cn: '耶鲁',
           },
           x: 9.9,
           y: 18.1,
@@ -2649,16 +3127,18 @@ const Options = {
         flameswenthigher: {
           label: {
             en: 'And the Flames Went Higher',
-            de: 'Sartauvoir',
+            de: 'Sartauvoir Eisenfeuer',
             fr: 'L\'envol du phénix',
             ja: 'サルトヴォアール',
-            cn: '萨托瓦尔',
+            cn: '老练魔法师——铁胆狱火萨托瓦尔',
             ko: '사르토부아르',
           },
           fieldNotes: 14,
           shortLabel: {
             en: 'Flames',
+            de: 'Sartauvoir',
             fr: 'Phénix',
+            cn: '铁火',
           },
           x: 18.8,
           y: 15.9,
@@ -2670,15 +3150,17 @@ const Options = {
         metalfoxchaos: {
           label: {
             en: 'Metal Fox Chaos',
-            de: 'Dáinsleif',
+            de: 'Dáinsleif, Bestie aus Eisen',
             fr: 'Le guerrier de métal',
             ja: 'ダーインスレイヴ',
-            cn: '达因斯莱瓦',
+            cn: '钢铁魔兽——达因斯莱瓦',
             ko: '다인슬라이프',
           },
           shortLabel: {
             en: 'Metal Fox',
+            de: 'Dáinsleif',
             fr: 'Guerrier de Métal',
+            cn: '钢铁魔兽',
           },
           x: 13.8,
           y: 18.3,
@@ -2689,16 +3171,18 @@ const Options = {
         riseoftherobots: {
           label: {
             en: 'Rise of the Robots',
-            de: 'Modell X',
+            de: 'Im Schatten von Modell X',
             fr: 'Le soulèvement des machines',
             ja: '魔導レイバーX型',
-            cn: '魔导劳工X式',
+            cn: '新型铁巨人——魔导劳工X式',
             ko: '마도 노동자 X형',
           },
           fieldNotes: 15,
           shortLabel: {
             en: 'Rise',
+            de: 'Modell X',
             fr: 'Soulèvement',
+            cn: '劳动X号',
           },
           x: 21.2,
           y: 17.6,
@@ -2711,12 +3195,14 @@ const Options = {
             de: 'Der untote Chlevnik',
             fr: 'Le mastodonte enragé',
             ja: 'チルヴニク',
-            cn: '奇尔维尼克',
+            cn: '战栗之角——奇尔维尼克',
             ko: '칠레브니크',
           },
           shortLabel: {
             en: 'Behemoth',
+            de: 'Chlevnik',
             fr: 'Mastodonte',
+            cn: '贝爷',
           },
           x: 24.2,
           y: 14.9,
@@ -2740,98 +3226,194 @@ const Options = {
       fieldNotes: [
         {
           id: 31,
-          name: 'Atori Moribe',
-          shortName: 'Atori',
+          name: {
+            en: 'Atori Moribe',
+            de: 'Atori Moribe',
+          },
+          shortName: {
+            en: 'Atori',
+            de: 'Atori',
+          },
           rarity: 1,
         },
         {
           id: 32,
-          name: 'Kosyu',
-          shortName: 'Kosyu',
+          name: {
+            en: 'Kosyu',
+            de: 'Kosyu',
+          },
+          shortName: {
+            en: 'Kosyu',
+            de: 'Kosyu',
+          },
           rarity: 2,
         },
         {
           id: 33,
-          name: 'Oboro Torioi',
-          shortName: 'Oboro',
+          name: {
+            en: 'Oboro Torioi',
+            de: 'Oboro Torioi',
+          },
+          shortName: {
+            en: 'Oboro',
+            de: 'Oboro',
+          },
           rarity: 1,
         },
         {
           id: 34,
-          name: 'Tsubame',
-          shortName: 'Tsubame Oshidari',
+          name: {
+            en: 'Tsubame',
+            de: 'Tsubame',
+          },
+          shortName: {
+            en: 'Tsubame Oshidari',
+            de: 'Tsubame Oshidari',
+          },
           rarity: 3,
         },
         {
           id: 35,
-          name: 'Meryall Miller',
-          shortName: 'Meryall',
+          name: {
+            en: 'Meryall Miller',
+            de: 'Meryall Miller',
+          },
+          shortName: {
+            en: 'Meryall',
+            de: 'Meryall',
+          },
           rarity: 2,
         },
         {
           id: 36,
-          name: 'Lovro aan Slanasch',
-          shortName: 'Lovro',
+          name: {
+            en: 'Lovro aan Slanasch',
+            de: 'Lovro aan Slanasch',
+          },
+          shortName: {
+            en: 'Lovro',
+            de: 'Lovro',
+          },
           rarity: 3,
         },
         {
           id: 37,
-          name: 'Llofii pyr Potitus',
-          shortName: 'Llofii',
+          name: {
+            en: 'Llofii pyr Potitus',
+            de: 'Llofii pyr Potitus',
+          },
+          shortName: {
+            en: 'Llofii',
+            de: 'Llofii',
+          },
           rarity: 4,
         },
         {
           id: 38,
-          name: 'Fabineau quo Soranus',
-          shortName: 'Fabineau',
+          name: {
+            en: 'Fabineau quo Soranus',
+            de: 'Fabineau quo Soranus',
+          },
+          shortName: {
+            en: 'Fabineau',
+            de: 'Fabineau',
+          },
           rarity: 2,
         },
         {
           id: 39,
-          name: 'Yamatsumi pyr Urabe',
-          shortName: 'Yamatsumi',
+          name: {
+            en: 'Yamatsumi pyr Urabe',
+            de: 'Yamatsumi pyr Urabe',
+          },
+          shortName: {
+            en: 'Yamatsumi',
+            de: 'Yamatsumi',
+          },
           rarity: 3,
         },
         {
           id: 40,
-          name: 'Pagaga quo Vochstein',
-          shortName: 'Pagaga',
+          name: {
+            en: 'Pagaga quo Vochstein',
+            de: 'Pagaga quo Vochstein',
+          },
+          shortName: {
+            en: 'Pagaga',
+            de: 'Pagaga',
+          },
           rarity: 1,
         },
         {
           id: 41,
-          name: 'Daguza oen Sus',
-          shortName: 'Daguza',
+          name: {
+            en: 'Daguza oen Sus',
+            de: 'Daguza oen Sus',
+          },
+          shortName: {
+            en: 'Daguza',
+            de: 'Daguza',
+          },
           rarity: 1,
         },
         {
           id: 42,
-          name: 'Gilbrisbert quo Buteo',
-          shortName: 'Gilbrisbert',
+          name: {
+            en: 'Gilbrisbert quo Buteo',
+            de: 'Gilbrisbert quo Buteo',
+          },
+          shortName: {
+            en: 'Gilbrisbert',
+            de: 'Gilbrisbert',
+          },
           rarity: 2,
         },
         {
           id: 43,
-          name: 'Dabog aan Inivisch',
-          shortName: 'Dabog',
+          name: {
+            en: 'Dabog aan Inivisch',
+            de: 'Dabog aan Inivisch',
+          },
+          shortName: {
+            en: 'Dabog',
+            de: 'Dabog',
+          },
           rarity: 5,
         },
         {
           id: 44,
-          name: 'Lyon quo Helsos',
-          shortName: 'Lyon',
+          name: {
+            en: 'Lyon quo Helsos',
+            de: 'Lyon quo Helsos',
+          },
+          shortName: {
+            en: 'Lyon',
+            de: 'Lyon',
+          },
           rarity: 5,
         },
         {
           id: 45,
-          name: 'Menenius sas Lanatus',
-          shortName: 'Menenius',
+          name: {
+            en: 'Menenius sas Lanatus',
+            de: 'Menenius sas Lanatus',
+          },
+          shortName: {
+            en: 'Menenius',
+            de: 'Menenius',
+          },
           rarity: 5,
         },
         {
           id: 46,
-          name: 'Diablo',
-          shortName: 'Diablo',
+          name: {
+            en: 'Diablo',
+            de: 'Diablo-Armament',
+          },
+          shortName: {
+            en: 'Diablo',
+            de: 'Diablo',
+          },
           rarity: 3,
         },
       ],
@@ -2839,12 +3421,13 @@ const Options = {
         ofbeastsandbraggadocio: {
           label: {
             en: 'Of Beasts and Braggadocio',
-            de: 'Bestienbändigerin',
+            de: 'Die allergrößte Bestienbändigerin aller Zeiten',
             fr: 'Un jour, je serai la meilleure dresseuse',
           },
           fieldNotes: 31,
           shortLabel: {
             en: 'Beasts',
+            de: 'Bestienbändigerin',
             fr: 'Dresseuse',
           },
           x: 24.1,
@@ -2854,12 +3437,13 @@ const Options = {
         partsandparcel: {
           label: {
             en: 'Parts and Parcel',
-            de: 'Oboro',
+            de: 'Oboro auf der Jagd',
             fr: 'Les astres du jour et de la nuit',
           },
           fieldNotes: 33,
           shortLabel: {
             en: 'Parcel',
+            de: 'Oboro',
             fr: 'Astres',
           },
           x: 22.8,
@@ -2869,13 +3453,14 @@ const Options = {
         animmoraldilemma: {
           label: {
             en: 'An Immoral Dilemma',
-            de: 'Ketzer Fabineau',
+            de: 'Ketzer Fabineau gibt sich die Ehre',
             fr: 'Malheureuses retrouvailles',
           },
           isCEPrecursor: true,
           fieldNotes: 37,
           shortLabel: {
             en: 'Dilemma',
+            de: 'Ketzer Fabineau',
             fr: 'Retrouvailles',
           },
           x: 22.7,
@@ -2890,6 +3475,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Divination',
+            de: 'Mörderischer Onmyoji',
             fr: 'Prêtre',
           },
           x: 24.8,
@@ -2904,6 +3490,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Wrench',
+            de: 'Beobachten verboten',
             fr: 'Ni vu ni connu',
           },
           x: 29.4,
@@ -2913,12 +3500,13 @@ const Options = {
         anotherpilotepisode: {
           label: {
             en: 'Another Pilot episode',
-            de: 'Magitek-Soldaten',
+            de: 'Rückkehr des Magitek-Soldaten',
             fr: 'Dabog, soldat augmenté',
           },
           isCEPrecursor: true,
           shortLabel: {
             en: 'Pilot',
+            de: 'Magitek-Soldaten',
             fr: 'Dabog',
           },
           x: 28.0,
@@ -2928,11 +3516,12 @@ const Options = {
         breakingtheice: {
           label: {
             en: 'Breaking the Ice',
-            de: 'Eiskalt',
+            de: 'Eiskalte Begegnung',
             fr: 'Qui s\'y frotte s\'y pique',
           },
           shortLabel: {
             en: 'Ice',
+            de: 'Eiskalt',
             fr: 'Pique',
           },
           x: 24.8,
@@ -2942,12 +3531,13 @@ const Options = {
         meetthepuppetmaster: {
           label: {
             en: 'Meet the Puppetmaster',
-            de: 'Puppen',
+            de: 'Lass die Puppen tanzen',
             fr: 'Celui qui tire les ficelles',
           },
           fieldNotes: 42,
           shortLabel: {
             en: 'Puppet',
+            de: 'Puppen',
             fr: 'Ficelles',
           },
           x: 24.1,
@@ -2957,12 +3547,13 @@ const Options = {
         challengeaccepted: {
           label: {
             en: 'Challenge Accepted',
-            de: 'Größtmöglicher',
+            de: 'Größtmöglicher anzunehmender Unfall',
             fr: 'Un problème de taille',
           },
           fieldNotes: 40,
           shortLabel: {
             en: 'Challenge',
+            de: 'Größtmöglicher',
             fr: 'Problème',
           },
           x: 7.2,
@@ -2972,11 +3563,12 @@ const Options = {
         thubantheterrible: {
           label: {
             en: 'Th\'uban the Terrible',
-            de: 'Bestien',
+            de: 'Bestien aus der Vorzeit',
             fr: 'Le dernier dinosaure',
           },
           shortLabel: {
             en: 'T\'huban',
+            de: 'Bestien',
             fr: 'Dinosaure',
           },
           x: 8.6,
@@ -2986,13 +3578,14 @@ const Options = {
         anendtoatrocities: {
           label: {
             en: 'An End to Atrocities',
-            de: 'Endkampf (Ketzer)',
+            de: 'Endkampf mit dem Ketzer',
             fr: 'L\'immaculée contre le malsain',
           },
           isCEPrecursor: true,
           fieldNotes: 38,
           shortLabel: {
             en: 'Atrocities',
+            de: 'Endkampf (Ketzer)',
             fr: 'Le malsain',
           },
           x: 4.9,
@@ -3002,12 +3595,13 @@ const Options = {
         ajustpursuit: {
           label: {
             en: 'A Just Pursuit',
-            de: 'mörderische Meister',
+            de: 'Gesucht: Der mörderische Meister',
             fr: 'Recherché dans deux pays',
           },
           fieldNotes: 34,
           shortLabel: {
             en: 'Pursuit',
+            de: 'mörderische Meister',
             fr: 'Recherché',
           },
           x: 11.6,
@@ -3017,12 +3611,13 @@ const Options = {
         tankingup: {
           label: {
             en: 'Tanking Up',
-            de: 'Seiryu Zwo',
+            de: 'Energie für Seiryu Zwo',
             fr: 'Y\'a qu\'à se baisser',
           },
           isCEPrecursor: true,
           shortLabel: {
             en: 'Tanking',
+            de: 'Seiryu Zwo',
             fr: 'Se baisser',
           },
           x: 8.1,
@@ -3032,12 +3627,13 @@ const Options = {
         supersolderrising: {
           label: {
             en: 'Supersoldier Rising',
-            de: 'Magitek-Soldat',
+            de: 'Der Magitek-Soldat schlägt zurück',
             fr: 'Guet-apens magitek',
           },
           fieldNotes: 43,
           shortLabel: {
             en: 'Supersoldier',
+            de: 'Magitek-Soldat',
             fr: 'Guet-apens',
           },
           x: 8.1,
@@ -3053,6 +3649,7 @@ const Options = {
           fieldNotes: 36,
           shortLabel: {
             en: 'Demented',
+            de: 'Rettende Hiebe',
             fr: 'Magie',
           },
           x: 7.2,
@@ -3062,12 +3659,13 @@ const Options = {
         severthestrings: {
           label: {
             en: 'Sever the Strings',
-            de: 'Endkampf (Puppenspieler)',
+            de: 'Endkampf mit dem Puppenspieler',
             fr: 'Ainsi font les petites marionnettes',
           },
           fieldNotes: 32,
           shortLabel: {
             en: 'Sever',
+            de: 'Endkampf (Puppenspieler)',
             fr: 'Marionnettes',
           },
           x: 11.6,
@@ -3077,12 +3675,13 @@ const Options = {
         thebeastsareback: {
           label: {
             en: 'The Beasts are Back',
-            de: 'Allergrößte gibt nicht auf',
+            de: 'Die Allergrößte gibt nicht auf',
             fr: 'Des bêtes en pagagaille',
           },
           isCEPrecursor: true,
           shortLabel: {
             en: 'Beasts',
+            de: 'Allergrößte gibt nicht auf',
             fr: 'Pagagaille',
           },
           x: 25.4,
@@ -3092,11 +3691,12 @@ const Options = {
         stillonlycountsasone: {
           label: {
             en: 'Still Only Counts as One',
-            de: 'Schillernde ',
+            de: 'Die Schillernde und ihr Schoßhund',
             fr: 'Clarricie, sans défense ou presque',
           },
           shortLabel: {
             en: 'Still',
+            de: 'Schillernde ',
             fr: 'Sans défense',
           },
           x: 14.5,
@@ -3106,12 +3706,13 @@ const Options = {
         seeqandyouwillfind: {
           label: {
             en: 'Seeq and You Will Find',
-            de: 'Farbe des Blutes',
+            de: 'Die Farbe des Blutes',
             fr: 'Non, c\'est non !',
           },
           fieldNotes: 41,
           shortLabel: {
             en: 'Seeq',
+            de: 'Farbe des Blutes',
             fr: 'Non !',
           },
           x: 20.3,
@@ -3121,12 +3722,13 @@ const Options = {
         meanspirited: {
           label: {
             en: 'Mean-spirited',
-            de: 'Onmyoji!',
+            de: 'Haltet den Onmyoji!',
             fr: 'Le trésor du clan Urabe',
           },
           fieldNotes: 39,
           shortLabel: {
             en: 'Mean',
+            de: 'Onmyoji!',
             fr: 'Trésor',
           },
           x: 25.4,
@@ -3136,12 +3738,13 @@ const Options = {
         arelicunleashed: {
           label: {
             en: 'A Relic Unleashed',
-            de: 'Famfrit',
+            de: 'Dunkelfürst Famfrit',
             fr: 'Sans issue',
           },
           fieldNotes: 32,
           shortLabel: {
             en: 'Relic',
+            de: 'Famfrit',
             fr: 'Sans issue',
           },
           x: 25.4,
@@ -3156,6 +3759,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Mages',
+            de: 'Was du heute kannst besorgen',
             fr: 'Cailloux',
           },
           x: 20.3,
@@ -3165,13 +3769,14 @@ const Options = {
         hypertunedhavoc: {
           label: {
             en: 'Hypertuned Havoc',
-            de: 'Goldene Gelegenheit',
+            de: 'Eine goldene Gelegenheit',
             fr: 'Une opportunité en or',
           },
           isCEPrecursor: true,
           fieldNotes: 43,
           shortLabel: {
             en: 'Hyper',
+            de: 'Goldene Gelegenheit',
             fr: 'Opportunité',
           },
           x: 16.6,
@@ -3181,13 +3786,14 @@ const Options = {
         attackofthesupersoldiers: {
           label: {
             en: 'Attack of the Supersoldiers',
-            de: 'Verstärkung .. Mech-Einheit',
+            de: 'Verstärkung für die Mech-Einheit',
             fr: 'Il est plus d\'un',
           },
           isCEPrecursor: true,
           fieldNotes: 35,
           shortLabel: {
             en: 'Supersoldiers',
+            de: 'Verstärkung .. Mech-Einheit',
             fr: 'Plus d\'un',
           },
           x: 16.6,
@@ -3197,12 +3803,13 @@ const Options = {
         thestudentbecalmsthemaster: {
           label: {
             en: 'The Student Becalms the Master',
-            de: 'Rettende Hiebe 2',
+            de: 'Rettende Hiebe Teil 2',
             fr: 'L\'élève dépasse le maître',
           },
           fieldNotes: 36,
           shortLabel: {
             en: 'Student',
+            de: 'Rettende Hiebe 2',
             fr: 'Élève',
           },
           x: 14.5,
@@ -3217,6 +3824,7 @@ const Options = {
           },
           shortLabel: {
             en: 'Machines',
+            de: 'Magitek-Maschinen en masse',
             fr: 'En série',
           },
           x: 12.1,
@@ -3226,11 +3834,12 @@ const Options = {
         dalriada: {
           label: {
             en: 'The Dalriada',
-            de: 'The Dalriada',
+            de: 'Sturm auf die Dalriada',
             fr: 'Le Dal\'riada',
           },
           shortLabel: {
             en: 'Dalriada',
+            de: 'The Dalriada',
             fr: 'Dal\'riada',
           },
           x: 25.9,
@@ -3243,11 +3852,12 @@ const Options = {
         onserpentswings: {
           label: {
             en: 'On Serpents\' Wings',
-            de: 'Geistertrupp',
+            de: 'Der Geistertrupp',
             fr: 'Zirnitrop',
           },
           shortLabel: {
             en: 'Serpents',
+            de: 'Geistertrupp',
             fr: 'Zirnitrop',
           },
           x: 31.4,
@@ -3258,12 +3868,13 @@ const Options = {
         feelingtheburn: {
           label: {
             en: 'Feeling the Burn',
-            de: 'Schwarzbrands',
+            de: 'Schwarzbrands Testflug',
             fr: 'On arrête le progrès',
           },
           fieldNotes: 35,
           shortLabel: {
             en: 'Burn',
+            de: 'Schwarzbrands',
             fr: 'Progrès',
           },
           x: 16.6,
@@ -3275,12 +3886,13 @@ const Options = {
         thebrokenblade: {
           label: {
             en: 'The Broken Blade',
-            de: 'Hyper-Dabog',
+            de: 'Hyper-Dabog, Stärkster unter Stärksten',
             fr: 'Dabog, l\'hyper-renforcé',
           },
           fieldNotes: 43,
           shortLabel: {
             en: 'Blade',
+            de: 'Hyper-Dabog',
             fr: 'Dabog',
           },
           x: 26.5,
@@ -3293,12 +3905,13 @@ const Options = {
         frombeyondthegrave: {
           label: {
             en: 'From Beyond the Grave',
-            de: 'Shemhazai',
+            de: 'Shemhazai der Verräter',
             fr: 'Le Sycophante',
           },
           fieldNotes: 37,
           shortLabel: {
             en: 'Grave',
+            de: 'Shemhazai',
             fr: 'Sycophante',
           },
           x: 20.2,
@@ -3309,11 +3922,12 @@ const Options = {
         withdiremiteandmain: {
           label: {
             en: 'With Diremite and Main',
-            de: 'Hedetet',
+            de: 'Hedetet, Stachel des Karglands',
             fr: 'C\'est dans ma nature',
           },
           shortLabel: {
             en: 'Diremite',
+            de: 'Hedetet',
             fr: 'Ma nature',
           },
           x: 17.0,
@@ -3324,11 +3938,12 @@ const Options = {
         herecomesthecavalry: {
           label: {
             en: 'Here Comes the Cavalry',
-            de: 'Halb Pferd',
+            de: 'Halb Pferd, halb Garlear',
             fr: 'Un cavalier qui surgit hors de la nuit',
           },
           shortLabel: {
             en: 'Cavalry',
+            de: 'Halb Pferd',
             fr: 'Cavalier',
           },
           x: 6.4,
@@ -3339,12 +3954,13 @@ const Options = {
         headofthesnake: {
           label: {
             en: 'Head of the Snake',
-            de: 'Menenius',
+            de: 'Menenius, Tribunus der IV. Legion',
             fr: 'Mener par l\'exemple',
           },
           fieldNotes: 45,
           shortLabel: {
             en: 'Snake',
+            de: 'Menenius',
             fr: 'Par l\'exemple',
           },
           x: 5.3,
@@ -3357,11 +3973,12 @@ const Options = {
         therewouldbeblood: {
           label: {
             en: 'There Would Be Blood',
-            de: 'Hanbi',
+            de: 'Hanbi, König im Exil',
             fr: 'Le Roi des Cendres',
           },
           shortLabel: {
             en: 'Blood',
+            de: 'Hanbi',
             fr: 'Cendres',
           },
           x: 13.7,
@@ -3372,11 +3989,12 @@ const Options = {
         nevercrywolf: {
           label: {
             en: 'Never Cry Wolf',
-            de: 'Hrodvitnir',
+            de: 'Eiswolf Hrodvitnir',
             fr: 'Et n\'y Hród\'viens plus !',
           },
           shortLabel: {
             en: 'Wolf',
+            de: 'Hrodvitnir',
             fr: 'Hród\'vnir',
           },
           x: 4.9,
@@ -3388,11 +4006,12 @@ const Options = {
         timetoburn: {
           label: {
             en: 'Time to Burn',
-            de: 'Belias',
+            de: 'Dämonid Belias',
             fr: 'Le Titan',
           },
           shortLabel: {
             en: 'Time',
+            de: 'Belias',
             fr: 'Titan',
           },
           x: 10.5,
@@ -3403,11 +4022,12 @@ const Options = {
         leanmeanmagitekmachines: {
           label: {
             en: 'Lean, Mean, Magitek Machines',
-            de: 'Gepanzerte Zenturie',
+            de: 'Die Gepanzerte Zenturie',
             fr: 'Réusinage de code',
           },
           shortLabel: {
             en: 'Lean, Mean',
+            de: 'Gepanzerte Zenturie',
             fr: 'Réusinage',
           },
           x: 15.2,
@@ -3418,11 +4038,12 @@ const Options = {
         worntoashadow: {
           label: {
             en: 'Worn to a Shadow',
-            de: 'Alkonost',
+            de: 'Alkonost, schrecklich und gefiedert',
             fr: 'Oiseau d\'enfer',
           },
           shortLabel: {
             en: 'Shadow',
+            de: 'Alkonost',
             fr: 'Oiseau',
           },
           x: 11.8,
@@ -3433,11 +4054,12 @@ const Options = {
         afamiliarface: {
           label: {
             en: 'A Familiar Face',
-            de: 'Hashmallim',
+            de: 'Hashmallim der Einiger',
             fr: 'Le Grand Ordonnateur',
           },
           shortLabel: {
             en: 'Familiar',
+            de: 'Hashmallim',
             fr: 'Ordonnateur',
           },
           x: 28.0,
@@ -3449,11 +4071,12 @@ const Options = {
         lookstodiefor: {
           label: {
             en: 'Looks to Die For',
-            de: 'Ayda',
+            de: 'Regenbogenschlange Ayda',
             fr: 'Écaillage en règle',
           },
           shortLabel: {
             en: 'Looks',
+            de: 'Ayda',
             fr: 'Écaillage',
           },
           x: 17.4,
@@ -3464,12 +4087,13 @@ const Options = {
         takingthelyonsshare: {
           label: {
             en: 'Taking the Lyon\'s Share',
-            de: 'Revanche: Lyon',
+            de: 'Revanche: Lyon der Bestienkönig',
             fr: 'La revanche de Lyon',
           },
           fieldNotes: 44,
           shortLabel: {
             en: 'Lyon\'s',
+            de: 'Revanche: Lyon',
             fr: 'Lyon',
           },
           x: 22.5,
@@ -3502,7 +4126,6 @@ const gDayIcon = '&#x263C;';
 // ✭ for rarity for field notes listing
 const gRarityIcon = '&#x272D;';
 
-let gTracker;
 class EurekaTracker {
   constructor(options) {
     this.options = options;
@@ -3596,10 +4219,16 @@ class EurekaTracker {
     // Changes names' length depending on users options
     // If no strings are available, the english short ones will be the default ones
     if (this.zoneInfo.treatNMsAsSkirmishes) {
-      if (this.options.CompleteNamesSTQ)
+      if (this.options.CompleteNamesSTQ) {
         name.innerText = this.TransByDispLang(nm.label);
-      if (!name.innerText)
-        name.innerText = this.TransByDispLang(nm.shortLabel);
+      } else {
+        const shortLabel = nm.shortLabel[this.options.DisplayLanguage];
+        if (shortLabel !== undefined)
+          name.innerText = shortLabel;
+        // If the short label is not set, fall back to the full label.
+        else
+          name.innerText = this.TransByDispLang(nm.label);
+      }
     } else {
       name.innerText = this.TransByDispLang(nm.label);
     }
@@ -3623,7 +4252,7 @@ class EurekaTracker {
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
       for (const note of fieldNotesList) {
         if (note.id === nm.fieldNotes)
-          enriched.innerHTML = `#${note.id}: ${note.shortName} ${gRarityIcon.repeat(note.rarity)}`;
+          enriched.innerHTML = `#${note.id}: ${this.TransByDispLang(note.shortName)} ${gRarityIcon.repeat(note.rarity)}`;
       }
     }
 
@@ -4165,22 +4794,22 @@ class EurekaTracker {
   }
 }
 
-UserConfig.getUserConfigLocation('eureka', Options, (e) => {
+UserConfig.getUserConfigLocation('eureka', defaultOptions, () => {
+  const options = { ...defaultOptions };
+  const tracker = new EurekaTracker(options);
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    gTracker.OnPlayerChange(e);
+    tracker.OnPlayerChange(e);
   });
   addOverlayListener('ChangeZone', (e) => {
-    gTracker.OnChangeZone(e);
+    tracker.OnChangeZone(e);
   });
   addOverlayListener('onLogEvent', (e) => {
-    gTracker.OnLog(e);
+    tracker.OnLog(e);
   });
   addOverlayListener('onFateEvent', (e) => {
-    gTracker.OnFate(e);
+    tracker.OnFate(e);
   });
   addOverlayListener('onCEEvent', (e) => {
-    gTracker.OnCE(e);
+    tracker.OnCE(e);
   });
-
-  gTracker = new EurekaTracker(Options);
 });

@@ -238,8 +238,8 @@ hideall "--sync--"
 2055.8 "Incendiary Bombing" sync /:Engels:4739:/
 2070.5 "Guided Missile" sync /:Engels:4736:/ duration 3.4
 2078.8 "Diffuse Laser" sync /:Engels:4755:/
-2097.3 "Marx Smash F/B" sync /:Engels:472[AE]:/
-2115.9 "Marx Smash B/F" sync /:Engels:472[AE]:/
+2097.3 "Marx Smash Back" sync /:Engels:472[AE]:/
+2115.9 "Marx Smash Front" sync /:Engels:472[AE]:/
 2135.6 "Energy Barrage" sync /:Engels:473C:/
 2143.4 "Laser Sight" sync /:Engels:473A:/
 2154.1 "Energy Blast" sync /:Engels:473E:/

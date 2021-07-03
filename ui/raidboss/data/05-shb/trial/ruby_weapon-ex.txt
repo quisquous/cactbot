@@ -54,7 +54,7 @@ hideall "--sync--"
 261.8 "Ruby Sphere" sync /:The Ruby Weapon:4AC9:/
 267.9 "Flexiclaw" sync /:The Ruby Weapon:4A92:/
 277.5 "Ravensclaw" sync /:The Ruby Weapon:4ACC:/
-102.0 "Undermine?/Liquefaction?" sync /:The Ruby Weapon:(4ACF|4AD0):/
+283.6 "Undermine?/Liquefaction?" sync /:The Ruby Weapon:(4ACF|4AD0):/
 286.9 "Ruby Sphere 1" #sync /:The Ruby Weapon:4ACA:/
 289.9 "Ruby Sphere 2" #sync /:The Ruby Weapon:4ACA:/
 292.9 "Ruby Sphere 3" #sync /:The Ruby Weapon:4ACA:/

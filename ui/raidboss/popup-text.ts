@@ -1,25 +1,27 @@
+import { Lang } from '../../resources/languages';
+import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
-
-import AutoplayHelper from './autoplay_helper';
-import BrowserTTSEngine from './browser_tts_engine';
-import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import PartyTracker from '../../resources/party';
+import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
+import { RaidbossData } from '../../types/data';
+import { EventResponses, LogEvent } from '../../types/event';
+import { Job, Role } from '../../types/job';
+import { Matches } from '../../types/net_matches';
 import {
-  LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
-  ResponseField, TriggerAutoConfig, MatchesAny, TriggerField, TriggerOutput,
-  Output, ResponseOutput, NetRegexTrigger, RegexTrigger, PartialTriggerOutput, DataInitializeFunc,
+  LooseTrigger, OutputStrings, TriggerSet, TimelineField, TimelineFunc, LooseTriggerSet,
+  ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
+  Output, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
+  GeneralNetRegexTrigger, RegexTrigger,
 } from '../../types/trigger';
-import { UnreachableCode } from '../../resources/not_reached';
-import { Lang } from '../../resources/languages';
+
+import AutoplayHelper from './autoplay_helper';
+import BrowserTTSEngine from './browser_tts_engine';
+import { RaidbossFileData } from './data/raidboss_manifest.txt';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
 import { TimelineReplacement, TimelineLoader } from './timeline';
-import { RaidbossFileData } from './data/raidboss_manifest.txt';
-import { RaidbossData } from '../../types/data';
-import { Job, Role } from '../../types/job';
-import { EventResponses, LogEvent } from '../../types/event';
 
 const isRaidbossLooseTimelineTrigger =
   (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
@@ -27,7 +29,7 @@ const isRaidbossLooseTimelineTrigger =
   };
 
 export const isNetRegexTrigger = (trigger?: LooseTrigger):
-    trigger is Partial<NetRegexTrigger<RaidbossData>> => {
+    trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
@@ -366,10 +368,10 @@ class TriggerOutputProxy {
 }
 
 export type RaidbossTriggerField =
-  TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>> |
-  TriggerField<RaidbossData, PartialTriggerOutput<RaidbossData, MatchesAny>>;
-export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny> |
-  PartialTriggerOutput<RaidbossData, MatchesAny>;
+  TriggerField<RaidbossData, Matches, TriggerOutput<RaidbossData, Matches>> |
+  TriggerField<RaidbossData, Matches, PartialTriggerOutput<RaidbossData, Matches>>;
+export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, Matches> |
+  PartialTriggerOutput<RaidbossData, Matches>;
 
 const defaultOutput = TriggerOutputProxy.makeOutput({}, 'en');
 
@@ -381,8 +383,8 @@ export interface TriggerHelper {
   triggerAutoConfig: TriggerAutoConfig;
   // This setting only suppresses output, trigger still runs for data/logic purposes
   userSuppressedOutput: boolean;
-  matches: MatchesAny;
-  response?: ResponseOutput<RaidbossData, MatchesAny>;
+  matches: Matches;
+  response?: ResponseOutput<RaidbossData, Matches>;
   // Default options
   soundUrl?: string;
   soundVol?: number;
@@ -529,10 +531,11 @@ export class PopupText {
         console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
         continue;
       }
-      this.triggerSets.push({
+      const processedSet = {
         filename: filename,
         ...json,
-      });
+      };
+      this.triggerSets.push(processedSet as ProcessedTriggerSet);
     }
 
     // User triggers must come last so that they override built-in files.
@@ -564,7 +567,7 @@ export class PopupText {
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    const addTimeline = (function(this: PopupText, obj: TimelineFunc) {
+    const addTimeline = (function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
       if (Array.isArray(obj)) {
         for (const objVal of obj)
           addTimeline(objVal);
@@ -794,7 +797,8 @@ export class PopupText {
     // TODO: make this unique among the party in case of first name collisions.
     // TODO: probably this should be a general cactbot utility.
     if (typeof name !== 'string') {
-      console.error('called ShortNamify with non-string');
+      if (typeof name !== 'undefined')
+        console.error('called ShortNamify with non-string');
       return '???';
     }
 
@@ -808,6 +812,7 @@ export class PopupText {
   }
 
   Reset(): void {
+    Util.clearWatchCombatants();
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
@@ -877,11 +882,18 @@ export class PopupText {
     if (this._onTriggerInternalCheckSuppressed(trigger, currentTime))
       return;
 
-    let groups: MatchesAny = {};
+    let groups: Matches = {};
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if (matches && matches.groups)
+    if (matches && matches.groups) {
       groups = matches.groups;
+    } else if (matches) {
+      // If there are no matching groups, reproduce the old js logic where
+      // groups ended up as the original RegExpExecArray object
+      matches.forEach((value, idx) => {
+        groups[idx] = value;
+      });
+    }
 
     // Set up a helper object so we don't have to throw
     // a ton of info back and forth between subfunctions
@@ -950,7 +962,7 @@ export class PopupText {
   // Build a default triggerHelper object for this trigger
   _onTriggerInternalGetHelper(
       trigger: ProcessedTrigger,
-      matches: MatchesAny,
+      matches: Matches,
       now: number): TriggerHelper {
     const id = trigger.id;
     let options: PerTriggerOption = {};
@@ -1151,7 +1163,7 @@ export class PopupText {
   }
 
   _onTriggerInternalResponse(triggerHelper: TriggerHelper): void {
-    let response: ResponseField<RaidbossData> = {};
+    let response: ResponseField<RaidbossData, Matches> = {};
     const trigger = triggerHelper.trigger;
     if (trigger.response) {
       // Can't use ValueOrFunction here as r returns a non-localizable object.
@@ -1183,15 +1195,16 @@ export class PopupText {
       let result = undefined;
       if (triggerHelper.triggerOptions.TTSText) {
         result = triggerHelper.valueOrFunction(triggerHelper.triggerOptions.TTSText);
-      } else if (triggerHelper.trigger.tts) {
+      } else if (triggerHelper.trigger.tts !== undefined) {
+        // Allow null/false/NaN/0/'' in this branch.
         result = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
       } else if (triggerHelper.response) {
-        const resp: ResponseField<RaidbossData> = triggerHelper.response;
+        const resp: ResponseField<RaidbossData, Matches> = triggerHelper.response;
         if (resp.tts)
           result = triggerHelper.valueOrFunction(resp.tts);
       }
 
-      // Allow false or null to disable tts entirely
+      // Allow falsey values to disable tts entirely
       // Undefined will fall back to defaultTTSText
       if (result !== undefined) {
         if (result)

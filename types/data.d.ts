@@ -1,10 +1,11 @@
-import PartyTracker from '../resources/party';
 import { Lang } from '../resources/languages';
+import PartyTracker from '../resources/party';
+
 import { Job, Role } from './job';
 
 export interface BaseOptions {
   ParserLanguage: Lang;
-  ShortLocale: string;
+  ShortLocale: Lang;
   DisplayLanguage: Lang;
   TextAlertsEnabled: boolean;
   SoundAlertsEnabled: boolean;

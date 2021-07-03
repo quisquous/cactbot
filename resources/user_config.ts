@@ -1,4 +1,6 @@
-import { Lang } from './languages';
+// TODO: Fix import/order
+/* eslint-disable import/order */
+import { isLang, Lang } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleText } from '../types/trigger';
@@ -46,7 +48,7 @@ type ConfigValue = string | number | boolean;
 type ConfigEntry = {
   id: string;
   name: LocaleText;
-  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory';
+  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory' | 'html';
   default: ConfigValue;
   debug?: boolean;
   debugOnly?: boolean;
@@ -240,20 +242,23 @@ class UserConfig {
         // Backward compatibility, everything "Language" should be changed to "ParserLanguage"
         options.Language = e.detail.parserLanguage;
       }
-      const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
       // System Language
       if (e.detail.systemLocale) {
         options.SystemLocale = e.detail.systemLocale;
-        options.ShortLocale = e.detail.systemLocale.substring(0, 2);
-        if (options.ShortLocale === 'zh')
-          options.ShortLocale = 'cn';
-        if (!supportedLanguage.includes(options.ShortLocale))
+        let shortLocale = e.detail.systemLocale.substring(0, 2);
+        if (shortLocale === 'zh')
+          shortLocale = 'cn';
+        if (isLang(shortLocale))
+          options.ShortLocale = shortLocale;
+        else
           options.ShortLocale = options.ParserLanguage;
       }
       // User's setting Language
-      options.DisplayLanguage = e.detail.displayLanguage;
-      if (!supportedLanguage.includes(options.DisplayLanguage))
-        options.DisplayLanguage = options.ParserLanguage || 'en';
+      const displayLang = e.detail.displayLanguage;
+      if (isLang(displayLang))
+        options.DisplayLanguage = displayLang;
+      else
+        options.DisplayLanguage = 'en';
 
       document.body.classList.add(`lang-${options.DisplayLanguage}`);
       this.addUnlockText(options.DisplayLanguage);
@@ -399,11 +404,6 @@ class UserConfig {
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
     // exist in savedConfig.
-    if (Array.isArray(template)) {
-      for (let i = 0; i < template.length; ++i)
-        this.processOptions(options, savedConfig, template[i]);
-      return;
-    }
 
     // Not all overlays have option templates.
     if (!template)

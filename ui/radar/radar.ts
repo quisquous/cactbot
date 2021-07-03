@@ -1,13 +1,13 @@
-import { BaseOptions } from '../../types/data';
-import { EventMap } from '../../types/event';
-import { Lang } from '../../resources/languages';
-
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
-import { MatchesAddedCombatantFull } from '../../resources/matches';
+import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
+import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
+import { BaseOptions } from '../../types/data';
+import { EventMap } from '../../types/event';
+import { NetMatches } from '../../types/net_matches';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import arrowImage from './arrow.png';
 
@@ -64,7 +64,7 @@ type Monster = {
   skipPuller: boolean;
 }
 
-const Options: RadarOptions = {
+const defaultOptions: RadarOptions = {
   ...UserConfig.getDefaultBaseOptions(),
   ...defaultRadarConfigOptions,
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
@@ -167,25 +167,21 @@ class Radar {
   private targetMonsters: { [mobKey: string]: Monster };
   private playerPos: Point2DWithZ | null;
   private playerRotation: number;
-  private table: HTMLElement;
-  private options: RadarOptions;
   private hunts: HuntMap;
   private lang: Lang;
   private nameToHuntEntry: HuntMap;
   private regexes: {
-    abilityFull: RegExp;
-    addedCombatantFull: RegExp;
-    instanceChanged: RegExp;
-    wasDefeated: RegExp;
+    abilityFull: CactbotBaseRegExp<'Ability'>;
+    addedCombatantFull: CactbotBaseRegExp<'AddedCombatant'>;
+    instanceChanged: CactbotBaseRegExp<'GameLog'>;
+    wasDefeated: CactbotBaseRegExp<'WasDefeated'>;
   };
 
-  constructor(element: HTMLElement) {
+  constructor(private options: RadarOptions, private table: HTMLElement) {
     this.targetMonsters = {};
     this.playerPos = null;
     this.playerRotation = 0;
-    this.table = element;
-    this.options = Options;
-    this.hunts = Object.assign({}, HuntData, Options.CustomMonsters);
+    this.hunts = Object.assign({}, HuntData, this.options.CustomMonsters);
     this.lang = this.options.ParserLanguage ?? 'en';
     this.nameToHuntEntry = {};
     this.regexes = {
@@ -210,7 +206,7 @@ class Radar {
   }
 
   AddMonster(log: string, hunt: HuntEntry,
-      matches: MatchesAddedCombatantFull) {
+      matches: NetMatches['AddedCombatant']) {
     if (!this.playerPos)
       return;
     if (!matches)
@@ -484,11 +480,12 @@ class Radar {
   }
 }
 
-UserConfig.getUserConfigLocation('radar', Options, () => {
+UserConfig.getUserConfigLocation('radar', defaultOptions, () => {
+  const options = { ...defaultOptions };
   const elem = document.getElementById('radar-table');
   if (!elem)
     throw new Error('missing radar element');
-  const radar = new Radar(elem);
+  const radar = new Radar(options, elem);
 
   addOverlayListener('LogLine', (e) => {
     radar.OnNetLog(e);

@@ -1,6 +1,5 @@
-import { Job } from '../../types/job';
 import ContentType from '../../resources/content_type';
-
+import { Job } from '../../types/job';
 
 export const kMeleeWithMpJobs: Job[] = ['PLD', 'DRK'];
 
@@ -204,7 +203,7 @@ export const kAbility = {
   Flourish: '3E8D',
   // BLM
   Thunder1: '90',
-  Thunder2: '94',
+  Thunder2: '1D17',
   Thunder3: '99',
   Thunder4: '1CFC',
   // SMN

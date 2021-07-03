@@ -8,7 +8,7 @@ import ZoneId from '../../resources/zone_id';
 import '../../resources/defaults.css';
 import './pullcounter.css';
 
-const Options = {
+const defaultOptions = {
   Language: 'en',
 };
 
@@ -138,11 +138,9 @@ const gBossFightTriggers = [
   },
 ];
 
-
-let gPullCounter;
-
 class PullCounter {
-  constructor(element) {
+  constructor(options, element) {
+    this.options = options;
     this.element = element;
     this.zoneName = null;
     this.bossStarted = false;
@@ -150,13 +148,13 @@ class PullCounter {
     this.bosses = [];
 
     this.resetRegex = Regexes.echo({ line: '.*pullcounter reset.*?' });
-    this.countdownEngageRegex = LocaleRegex.countdownEngage[Options.ParserLanguage] ||
+    this.countdownEngageRegex = LocaleRegex.countdownEngage[this.options.ParserLanguage] ||
       LocaleRegex.countdownEngage['en'];
 
     callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'pullcounter',
-    }).then((data) => gPullCounter.SetSaveData(data));
+    }).then((data) => this.SetSaveData(data));
 
     this.ReloadTriggers();
   }
@@ -316,12 +314,13 @@ class PullCounter {
   }
 }
 
-UserConfig.getUserConfigLocation('pullcounter', Options, () => {
-  gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
+UserConfig.getUserConfigLocation('pullcounter', defaultOptions, () => {
+  const options = { ...defaultOptions };
+  const pullcounter = new PullCounter(options, document.getElementById('pullcounttext'));
 
-  addOverlayListener('onLogEvent', (e) => gPullCounter.OnLogEvent(e));
-  addOverlayListener('ChangeZone', (e) => gPullCounter.OnChangeZone(e));
-  addOverlayListener('onInCombatChangedEvent', (e) => gPullCounter.OnInCombatChange(e));
-  addOverlayListener('onPartyWipe', () => gPullCounter.OnPartyWipe());
-  addOverlayListener('PartyChanged', (e) => gPullCounter.OnPartyChange(e));
+  addOverlayListener('onLogEvent', (e) => pullcounter.OnLogEvent(e));
+  addOverlayListener('ChangeZone', (e) => pullcounter.OnChangeZone(e));
+  addOverlayListener('onInCombatChangedEvent', (e) => pullcounter.OnInCombatChange(e));
+  addOverlayListener('onPartyWipe', () => pullcounter.OnPartyWipe());
+  addOverlayListener('PartyChanged', (e) => pullcounter.OnPartyChange(e));
 });

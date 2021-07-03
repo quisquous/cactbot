@@ -63,6 +63,7 @@
 ```javascript
 {
   id: 'id string',
+  type: 'StartsUsing',
   disabled: false,
   // 提示：推荐使用 [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts) 中的工具函数自动生成正则表达式
   netRegex: /trigger-regex-for-network-log-lines/,
