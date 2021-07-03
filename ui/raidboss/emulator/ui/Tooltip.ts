@@ -18,7 +18,7 @@ const showEvents = [
   'focus',
 ] as const;
 
-type TemplatesType = {[Property in ValidDirection]: HTMLTemplateElement};
+type TemplatesType = { [Property in ValidDirection]: HTMLTemplateElement };
 
 const toPx = (px: number): string => `${px}px`;
 
@@ -117,6 +117,10 @@ export default class Tooltip {
   hide(): void {
     this.tooltip.classList.remove('show');
     this.tooltip.removeAttribute('data-show');
+  }
+
+  delete(): void {
+    this.tooltip.remove();
   }
 
   static initializeTemplates(): void {

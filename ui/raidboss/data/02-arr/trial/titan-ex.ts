@@ -2,10 +2,10 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData as Data } from '../../../../../types/data';
+import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export { RaidbossData as Data } from '../../../../../types/data';
+export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavelExtreme,

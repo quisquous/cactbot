@@ -24,6 +24,13 @@ export default {
         },
       },
     },
+    {
+      id: 'O2S Paranormal Wave',
+      regex: /Paranormal Wave/,
+      beforeSeconds: 5,
+      suppressSeconds: 10,
+      response: Responses.tankCleave(),
+    },
   ],
   triggers: [
     {
@@ -53,6 +60,47 @@ export default {
       run: (data) => data.levitating = false,
     },
     {
+      id: 'O2S Evilsphere',
+      netRegex: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2371', source: 'Katastroph' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2371', source: 'カタストロフィー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2371', source: '灾变者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2371', source: '카타스트로피' }),
+      condition: Conditions.caresAboutMagical(),
+      response: Responses.tankBusterSwap(),
+    },
+    {
+      id: 'O2S 100Gs',
+      netRegex: NetRegexes.headMarker({ id: '0069' }),
+      preRun: (data, matches) => {
+        data.blueCircle = data.blueCircle || [];
+        data.blueCircle.push(matches.target);
+      },
+      delaySeconds: 0.3,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          onYou: {
+            en: '100Gs on YOU',
+            ko: '중력 100 대상자',
+          },
+          beIn: {
+            en: 'Be in 100Gs Circle',
+            ko: '중력 100 원 안에 있기',
+          },
+        };
+
+        if (!data.blueCircle)
+          return;
+
+        if (data.blueCircle.includes(data.me))
+          return { alertText: output.onYou() };
+        return { infoText: output.beIn() };
+      },
+      run: (data) => delete data.blueCircle,
+    },
+    {
       id: 'O2S -100Gs',
       netRegex: NetRegexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '235E', source: 'Katastroph', capture: false }),
@@ -80,7 +128,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '236F', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '236F', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '236F', source: '카타스트로피', capture: false }),
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'O2S Earthquake',
@@ -132,6 +180,7 @@ export default {
     {
       id: 'O2S Elevated',
       netRegex: NetRegexes.gainsEffect({ effectId: '54E', capture: false }),
+      condition: (data) => data.job !== 'BLU',
       alarmText: (data, _matches, output) => {
         if (data.role.startsWith('dps') && !data.levitating)
           return output.dpsLevitate();
@@ -187,6 +236,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
+      condition: (data) => data.job !== 'BLU',
       alertText: (data, _matches, output) => {
         if (data.myProbe) {
           if (!data.dpsProbe)
@@ -245,28 +295,38 @@ export default {
       },
     },
     {
+      id: 'O2S Maniacal Probe You',
+      netRegex: NetRegexes.headMarker({ id: '0005 ' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Probe on YOU',
+          ko: '촉수 대상자',
+        },
+      },
+    },
+    {
       id: 'O2S Unstable Gravity',
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: 9,
-      alarmText: (_data, _matches, output) => output.elevateOutsideStack(),
-      tts: (_data, _matches, output) => output.floatForBomb(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
-        elevateOutsideStack: {
-          en: 'Unstable Gravity: Elevate and outside stack',
-          de: 'Schwerkraftschwankung: Schweben und außen stacken',
-          fr: 'Gravité instable : Lévitez et packez-vous à l\'extérieur',
-          ja: 'グラビティバースト: 浮上集合',
-          cn: '升起并分摊',
-          ko: '중력 폭탄: 공중부양 및 쉐어',
+        text: {
+          en: 'Elevate (Unstable Gravity)',
+          ko: '공중부양하기 (중력 폭발)',
         },
-        floatForBomb: {
-          en: 'float for bomb',
-          de: 'schweben für bombe',
-          fr: 'Flottez pour la bombe',
-          ja: '浮上集合',
-          cn: '升起并分摊',
-          ko: '중력 폭탄',
+      },
+    },
+    {
+      id: 'O2S Unstable Gravity Delayed',
+      netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 9,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Knocked to Edge',
         },
       },
     },

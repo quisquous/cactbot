@@ -1,5 +1,6 @@
 import { Lang } from '../../../resources/languages';
 import NetRegexes from '../../../resources/netregexes';
+import { UnreachableCode } from '../../../resources/not_reached';
 import { LocaleNetRegex } from '../../../resources/translations';
 import { CactbotBaseRegExp, CactbotRegExpExecArray, TriggerTypes } from '../../../types/net_trigger';
 
@@ -18,6 +19,41 @@ export type MatchEndInfo = {
   language?: string | undefined;
 };
 
+export const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
+  const ret = node.querySelector(sel);
+  if (!(ret instanceof HTMLElement))
+    throw new UnreachableCode();
+  return ret;
+};
+
+export const querySelectorAllSafe = (node: ParentNode, sel: string): HTMLElement[] => {
+  const ret = [...node.querySelectorAll(sel)].map((elem) => {
+    if (!(elem instanceof HTMLElement))
+      throw new UnreachableCode();
+    return elem;
+  });
+  return ret;
+};
+
+export const getTemplateChild = (node: ParentNode, sel: string): HTMLElement => {
+  const template = querySelectorSafe(node, sel);
+  if (!(template instanceof HTMLTemplateElement))
+    throw new UnreachableCode();
+  const ret = template.content.firstElementChild;
+  if (!ret)
+    throw new UnreachableCode();
+  if (!(ret instanceof HTMLElement))
+    throw new UnreachableCode();
+  return ret;
+};
+
+export const cloneSafe = (node: HTMLElement): HTMLElement => {
+  const cloned = node.cloneNode(true);
+  if (!(cloned instanceof HTMLElement))
+    throw new UnreachableCode();
+  return cloned;
+};
+
 export default class EmulatorCommon {
   static cloneData(data: DataType, exclude = ['options', 'party']): DataType {
     const ret: DataType = {};
@@ -28,12 +64,16 @@ export default class EmulatorCommon {
       if (exclude.includes(i))
         continue;
 
-      if (typeof data[i] === 'object')
+      if (typeof data[i] === 'object') {
+        // Cloning any. See DataType definition above for reasoning.
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         ret[i] = EmulatorCommon._cloneData(data[i]);
-      else
-        // Assignment of any to any. See DataType definition above for reasoning.
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        ret[i] = data[i];
+        continue;
+      }
+
+      // Assignment of any to any. See DataType definition above for reasoning.
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      ret[i] = data[i];
     }
     return ret;
   }
@@ -42,8 +82,11 @@ export default class EmulatorCommon {
     if (typeof data === 'object') {
       if (Array.isArray(data)) {
         const ret = [];
-        for (let i = 0; i < data.length; ++i)
+        for (let i = 0; i < data.length; ++i) {
+          // Cloning any. See DataType definition above for reasoning.
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           ret[i] = EmulatorCommon._cloneData(data[i]);
+        }
 
         return ret;
       }
@@ -55,8 +98,11 @@ export default class EmulatorCommon {
         return new RegExp(data);
 
       const ret: DataType = {};
-      for (const i in data)
+      for (const i in data) {
+        // Cloning any. See DataType definition above for reasoning.
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         ret[i] = EmulatorCommon._cloneData(data[i]);
+      }
 
       return ret;
     }

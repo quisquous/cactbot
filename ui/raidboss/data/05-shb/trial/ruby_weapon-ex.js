@@ -1,11 +1,10 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: ravensflight calls
-// TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
-// TODO: there's no 23: message for tethers, so is likely part of add spawn?
+// TODO: ravensflight calls would be nice
 
 export default {
   zoneId: ZoneId.CinderDriftExtreme,
@@ -68,6 +67,22 @@ export default {
       response: Responses.tankBusterSwap(),
     },
     {
+      id: 'RubyEx Ravensclaw',
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ACC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ACC', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ACC', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4ACC', capture: false }),
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Line Ends',
+          ko: '선 끝나는 곳 피하기',
+        },
+      },
+    },
+    {
       id: 'RubyEx Undermine',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD0', capture: false }),
@@ -108,6 +123,28 @@ export default {
       },
     },
     {
+      id: 'RubyEx Liquefaction Ravensflight',
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AEC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AEC', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AEC', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AEC', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.seenFlight)
+          return output.outOfMiddle();
+        return output.getMiddle();
+      },
+      run: (data) => data.seenFlight = true,
+      outputStrings: {
+        getMiddle: Outputs.goIntoMiddle,
+        outOfMiddle: {
+          en: 'Out Of Middle',
+          ko: '가운데 피하기',
+        },
+      },
+    },
+    {
       id: 'RubyEx Ruby Ray',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B02', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B02', capture: false }),
@@ -139,26 +176,6 @@ export default {
       response: Responses.stackMarker(),
     },
     {
-      id: 'RubyEx Raven\'s Image',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Raven\'s Image' }),
-      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Naels Trugbild' }),
-      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Spectre De Nael' }),
-      netRegexJa: NetRegexes.addedCombatantFull({ name: 'ネールの幻影' }),
-      netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
-      netRegexKo: NetRegexes.addedCombatantFull({ name: '넬의 환영' }),
-      run: (data, matches) => {
-        // 112,108 (east)
-        // 88,108 (west)
-        // TODO: it's impossible to do anything with this now,
-        // as there's no actor id in the startsUsing line.  T_T
-        data.ravens = data.ravens || {};
-        if (matches.x < 100)
-          data.ravens.red = matches.id;
-        else
-          data.ravens.blue = matches.id;
-      },
-    },
-    {
       // Enrage can start casting before Ruby Weapon has finished their rotation
       // Give a friendly reminder to pop LB3 if you haven't already
       id: 'RubyEx Optimized Ultima Enrage',
@@ -181,15 +198,36 @@ export default {
       },
     },
     {
+      id: 'RubyEx Raven\'s Image',
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Raven\'s Image' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Naels Trugbild' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Spectre De Nael' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'ネールの幻影' }),
+      netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
+      netRegexKo: NetRegexes.addedCombatantFull({ name: '넬의 환영' }),
+      run: (data, matches) => {
+        // 112,108 (east)
+        // 88,108 (west)
+        // TODO: it's impossible to do anything with this now,
+        // as there's no actor id in the startsUsing line.  T_T
+        data.ravens = data.ravens || {};
+        if (matches.x < 100)
+          data.ravens.red = matches.id;
+        else
+          data.ravens.blue = matches.id;
+      },
+    },
+    {
       id: 'RubyEx Pall of Rage',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A2' }),
-      preRun: (data, matches) => {
-        data.colors = data.colors || {};
-        data.colors[matches.target] = 'blue';
-      },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
+      },
+      run: (data, matches) => {
+        // data.colors is the color of the add you are attacking (this debuff is red).
+        data.colors = data.colors || {};
+        data.colors[matches.target] = 'blue';
       },
       outputStrings: {
         text: {
@@ -205,13 +243,14 @@ export default {
     {
       id: 'RubyEx Pall of Grief',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A3' }),
-      preRun: (data, matches) => {
-        data.colors = data.colors || {};
-        data.colors[matches.target] = 'red';
-      },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
+      },
+      run: (data, matches) => {
+        // data.colors is the color of the add you are attacking (this debuff is blue).
+        data.colors = data.colors || {};
+        data.colors[matches.target] = 'red';
       },
       outputStrings: {
         text: {
@@ -243,6 +282,7 @@ export default {
           return false;
         if (data.colors[data.me] === data.colors[matches.target])
           return true;
+        return data.me === matches.target;
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),
@@ -259,6 +299,108 @@ export default {
       },
     },
     {
+      id: 'RubyEx Image Colors',
+      // Blind to Rage: 8A0
+      // Blind to Grief: 8A1
+      netRegex: NetRegexes.gainsEffect({ effectId: ['8A0', '8A1'] }),
+      run: (data, matches) => {
+        const isBlue = matches.effectId.toUpperCase() === '8A1';
+        data.colorToImageId = data.colorToImageId || {};
+        data.colorToImageId[isBlue ? 'blue' : 'red'] = matches.targetId;
+      },
+    },
+    {
+      id: 'RubyEx Image Chariot Dynamo Collect',
+      // Lunar Dynamo = 4EB0
+      // Iron Chariot = 4EB1
+      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: ['4EB0', '4EB1'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Naels Trugbild', id: ['4EB0', '4EB1'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Nael', id: ['4EB0', '4EB1'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ネールの幻影', id: ['4EB0', '4EB1'] }),
+      netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: ['4EB0', '4EB1'] }),
+      netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: ['4EB0', '4EB1'] }),
+      run: (data, matches) => {
+        data.imageIdToAction = data.imageIdToAction || {};
+        data.imageIdToAction[matches.sourceId] = matches.id;
+      },
+    },
+    {
+      id: 'RubyEx Image Chariot Dynamo',
+      // Lunar Dynamo = 4EB0
+      // Iron Chariot = 4EB1
+      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: ['4EB0', '4EB1'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Naels Trugbild', id: ['4EB0', '4EB1'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Nael', id: ['4EB0', '4EB1'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ネールの幻影', id: ['4EB0', '4EB1'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: ['4EB0', '4EB1'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: ['4EB0', '4EB1'], capture: false }),
+      delaySeconds: 0.1,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          text: {
+            en: '${dir} (${suffix})',
+          },
+          out: Outputs.out,
+          in: Outputs.in,
+          blueSuffix: {
+            en: 'blue',
+            ko: '파랑',
+          },
+          redSuffix: {
+            en: 'red',
+            ko: '빨강',
+          },
+          bothSuffix: {
+            en: 'both',
+            ko: '둘 다',
+          },
+        };
+
+        if (!data.colorToImageId || !data.imageIdToAction)
+          return;
+
+        const myColor = data.colors && data.colors[data.me];
+
+        const colorToAction = {};
+        for (const color of ['blue', 'red']) {
+          const id = data.colorToImageId[color];
+          if (!id)
+            continue;
+          const action = data.imageIdToAction[id];
+          if (!action)
+            continue;
+          colorToAction[color] = action;
+        }
+
+        const numAdds = Object.keys(colorToAction).length;
+        let suffix;
+        let actionId;
+        if (numAdds === 2 && colorToAction['blue'] === colorToAction['red']) {
+          actionId = colorToAction['blue'];
+          suffix = output.bothSuffix();
+        } else if (numAdds === 1) {
+          const color = Object.keys(color)[0];
+          suffix = color === 'blue' ? output.blueSuffix() : output.redSuffix();
+          actionId = colorToAction[color];
+        } else if (colorToAction[myColor]) {
+          suffix = myColor === 'blue' ? output.blueSuffix() : output.redSuffix();
+          actionId = colorToAction[myColor];
+        } else {
+          // Two adds doing different things but somehow you died and don't have a color.
+          // Don't call anything out, because it'd be confusing.
+          return;
+        }
+
+        const isDynamo = actionId === '4EB0';
+        const text = isDynamo ? 'alertText' : 'alarmText';
+        const actionStr = isDynamo ? output.in() : output.out();
+        return { [text]: output.text({ dir: actionStr, suffix: suffix }) };
+      },
+      run: (data) => delete data.imageIdToAction,
+    },
+    {
       id: 'RubyEx Change of Heart',
       netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
@@ -267,8 +409,6 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AFC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
       preRun: (data) => {
-        for (const id in data.colors)
-          data.colors[id] = data.colors[id] === 'red' ? 'blue' : 'red';
         data.ravens = data.ravens || {};
 
         const tmp = data.ravens.red;
@@ -306,6 +446,48 @@ export default {
       },
     },
     {
+      id: 'RubyEx White Agony Tether',
+      // White Agony is the blue head.
+      // This trigger doesn't run for the initial tether because the add
+      // spawns with the tether, but will run if somebody dies.
+      netRegex: NetRegexes.tether({ source: 'White Agony', id: '0011' }),
+      condition: Conditions.targetIsYou(),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          text: {
+            en: 'Blue Head (Go East)',
+            ko: '파란색 (동쪽)',
+          },
+        };
+
+        // Use alarm if you have to go to the opposite color of the one you would be attacking.
+        const textType = data.colors && data.colors[data.me] === 'blue' ? 'alarmText' : 'alertText';
+        return { [textType]: output.text() };
+      },
+    },
+    {
+      id: 'RubyEx White Fury Tether',
+      // White Fury is the red head.
+      // This trigger doesn't run for the initial tether because the add
+      // spawns with the tether, but will run if somebody dies.
+      netRegex: NetRegexes.tether({ source: 'White Fury', id: '0011' }),
+      condition: Conditions.targetIsYou(),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          text: {
+            en: 'Red Head (Go West)',
+            ko: '빨간색 (서쪽)',
+          },
+        };
+
+        // Use alarm if you have to go to the opposite color of the one you would be attacking.
+        const textType = data.colors && data.colors[data.me] === 'red' ? 'alarmText' : 'alertText';
+        return { [textType]: output.text() };
+      },
+    },
+    {
       id: 'RubyEx Negative Aura',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AFE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AFE', capture: false }),
@@ -313,7 +495,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AFE', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AFE', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AFE', capture: false }),
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'RubyEx Meteor',

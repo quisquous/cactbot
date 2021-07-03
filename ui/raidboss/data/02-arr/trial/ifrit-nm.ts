@@ -1,7 +1,11 @@
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBowlOfEmbers,
   timelineFile: 'ifrit-nm.txt',
   timelineTriggers: [
@@ -21,7 +25,7 @@ export default {
       id: 'IfritNM Nail Add',
       regex: /Nail Add/,
       beforeSeconds: 0.5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Kill Nail',
@@ -109,3 +113,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

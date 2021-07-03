@@ -1,5 +1,6 @@
 ﻿using Advanced_Combat_Tracker;
 using System;
+using CactbotEventSource.loc;
 
 namespace Cactbot {
   public class FFXIVPlugin {
@@ -37,14 +38,14 @@ namespace Cactbot {
         var file = plugin.pluginFile.Name;
         if (file == "FFXIV_ACT_Plugin.dll") {
           if (ffxiv_plugin != null) {
-            logger_.LogWarning("Multiple FFXIV_ACT_Plugin.dll plugins loaded");
+            logger_.LogWarning(Strings.MultiplePluginsLoadedErrorMessage);
           }
           ffxiv_plugin = plugin.pluginObj;
         }
       }
 
       if (ffxiv_plugin == null) {
-        logger_.LogError("No FFXIV_ACT_Plugin.dll found? Can't set language automatically.");
+        logger_.LogError(Strings.NoFFXIVACTPluginFoundErrorMessage);
         return 0;
       }
 
@@ -67,7 +68,7 @@ namespace Cactbot {
         dynamic plugin_derived = ffxiv_plugin;
         return (int)plugin_derived.DataRepository.GetSelectedLanguageID();
       } catch (Exception e) {
-        logger_.LogError("Error while determining language: {0}", e.ToString());
+        logger_.LogError(Strings.DeterminingLanguageErrorMessage, e.ToString());
         return 0;
       }
     }

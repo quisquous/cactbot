@@ -7,6 +7,7 @@ import { LocaleText, TriggerSet } from '../../../../types/trigger';
 
 const strikingDummyNames: LocaleText = {
   en: 'Striking Dummy',
+  de: 'Trainingspuppe',
 };
 
 export interface Data extends RaidbossData {
@@ -271,6 +272,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Watch',
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
       promise: (data) => Util.watchCombatant({
         names: [
           data.me,
@@ -301,6 +303,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         close: {
           en: 'Dummy close!',
+          de: 'Puppe beendet!',
         },
       },
     },
@@ -315,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
         'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
+        'cactbot test watch': 'cactbot test beobachten',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',

@@ -17,6 +17,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dragon Cleave',
+          de: 'Drachen-Cleave',
         },
       },
     },
@@ -307,6 +308,7 @@ export default {
       outputStrings: {
         kill: {
           en: 'Kill ${name}',
+          de: 'Töte ${name}',
         },
       },
     },
@@ -318,6 +320,7 @@ export default {
       outputStrings: {
         kill: {
           en: 'Kill Giant + Ninjas',
+          de: 'Töte Riese + Ninjas',
         },
       },
     },
@@ -343,7 +346,7 @@ export default {
       outputStrings: {
         books: {
           en: 'Books (One Per Square)',
-          de: 'Tanz der Königin: Bücher', // FIXME
+          de: 'Bücher (Eins pro Feld)',
           fr: 'Danse de la reine : Livres', // FIXME
           ja: '女王の舞い: 本', // FIXME
           cn: '中间两排分格站位', // FIXME
@@ -351,6 +354,7 @@ export default {
         },
         magicHammer: {
           en: 'Books + Magic Hammer',
+          de: 'Bücher + Zauberhammer',
         },
       },
     },
@@ -366,7 +370,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Clock',
-          de: 'Tanz der Königin: Uhr', // FIXME
+          de: 'Himmelsrichtungen',
           fr: 'Danse de la reine : Position', // FIXME
           ja: '女王の舞い: 散開', // FIXME
           cn: '万变水波站位', // FIXME
@@ -386,7 +390,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Be On Blue Square',
-          de: 'Tanz der Königin: Kristallfeld', // FIXME
+          de: 'Stehe auf einem blauem Feld',
           fr: 'Danse de la reine : Carré de cristal', // FIXME
           ja: '女王の舞い: 床', // FIXME
           cn: '站在蓝地板', // FIXME
@@ -406,7 +410,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Tethers',
-          de: 'Tanz der Königin: Ranken', // FIXME
+          de: 'Dornenranken-Verbindungen',
           fr: 'Danse de la reine : Liens', // FIXME
           ja: '女王の舞い: 茨', // FIXME
           cn: '先集中后扯线', // FIXME
@@ -426,6 +430,7 @@ export default {
       outputStrings: {
         breakTether: {
           en: 'Break Tether (${player})',
+          de: 'Verbindung trennen (${player})',
           ko: '가시줄 끊기 ("${player}")',
         },
       },
@@ -476,15 +481,19 @@ export default {
         unknown: Outputs.unknown,
         nwOutside: {
           en: 'NW Outside',
+          de: 'NW Außen',
         },
         nwInside: {
           en: 'NW Inside',
+          de: 'NW Innen',
         },
         seInside: {
           en: 'SE Inside',
+          de: 'SO Innen',
         },
         seOutside: {
           en: 'SE Outside',
+          de: 'SO Außen',
         },
       },
     },

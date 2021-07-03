@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using CactbotEventSource.loc;
 
 namespace Cactbot {
 
@@ -244,7 +245,7 @@ namespace Cactbot {
                            where !x.HasExited && x.MainModule != null && x.MainModule.ModuleName == "ffxiv.exe"
                            select x).Count();
         if (found_32bit > 0) {
-          logger_.LogError("Found DirectX9 FFXIV process. Requires DirectX11.");
+          logger_.LogError(Strings.FoundDX9FFXIVErrorMessage);
           showed_dx9_error_ = true;
         }
       }
@@ -382,7 +383,7 @@ namespace Cactbot {
       List<IntPtr> matches_list = new List<IntPtr>();
 
       if (pattern == null || pattern.Length % 2 != 0) {
-        logger_.LogError("Invalid signature pattern: " + pattern);
+        logger_.LogError(Strings.InvalidSignaturePatternErrorMessage, pattern);
         return matches_list;
       }
 

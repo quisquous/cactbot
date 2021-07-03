@@ -27,6 +27,7 @@ import defaultOptions from './raidboss_options';
 
 import '../../resources/defaults.css';
 import './raidemulator.css';
+import CombatantTracker from './emulator/data/CombatantTracker';
 
 
 function showModal(selector) {
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let options = { ...defaultOptions };
 
   // Wait for the DB to be ready before doing anything that might invoke the DB
-  await persistor.initializeDB();
+  await persistor.open();
 
   if (window.location.href.indexOf('OVERLAY_WS') > 0) {
     // Give the websocket 500ms to connect, then abort.
@@ -146,7 +147,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Attempt to set the current emulated encounter
     if (!emulator.setCurrentByID(id)) {
       // If that encounter isn't loaded, load it
-      persistor.loadEncounter(id).then((enc) => {
+      persistor.encounters.get(id).then((enc) => {
         emulator.addEncounter(enc);
         emulator.setCurrentByID(id);
       });
@@ -155,16 +156,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
   encounterTab.on('parse', (id) => {
-    persistor.loadEncounter(id).then(async (enc) => {
+    persistor.encounters.get(id).then(async (enc) => {
       enc.initialize();
-      await persistor.persistEncounter(enc);
+      await persistor.encounters.put(enc, enc.id);
       encounterTab.refresh();
     });
   });
 
   // Listen for the user to select prune on the encounters tab
   encounterTab.on('prune', (id) => {
-    persistor.loadEncounter(id).then(async (enc) => {
+    persistor.encounters.get(id).then(async (enc) => {
       // Trim log lines
       enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
 
@@ -177,14 +178,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       enc.firstLineIndex = 0;
 
       enc.initialize();
-      await persistor.persistEncounter(enc);
+      await persistor.encounters.put(enc, enc.id);
       encounterTab.refresh();
     });
   });
 
   // Listen for the user to select delete on the encounters tab, then do it.
   encounterTab.on('delete', (id) => {
-    persistor.deleteEncounter(id).then(() => {
+    persistor.encounters.delete(id).then(() => {
       encounterTab.refresh();
     });
   });
@@ -199,7 +200,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   encounterTab.refresh();
 
   // If we don't have any encounters stored, show the intro modal
-  persistor.listEncounters().then((encounters) => {
+  persistor.encounterSummaries.toArray().then((encounters) => {
     if (encounters.length === 0) {
       showModal('.introModal');
     } else {
@@ -226,15 +227,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const checkFile = async (file) => {
     if (file.type === 'application/json') {
       // Import a DB file by passing it to Persistor
-      // DB files are just json representations of the DB
-      file.text().then((txt) => {
-        const DB = JSON.parse(txt);
-        persistor.importDB(DB).then(() => {
-          encounterTab.refresh();
-        });
+      persistor.importDB(file).then(() => {
+        encounterTab.refresh();
       });
     } else {
-      // Assume it's a log file?
+      // Assume it's a log file
       const importModal = showModal('.importProgressModal');
       const bar = importModal.querySelector('.progress-bar');
       bar.style.width = '0px';
@@ -248,7 +245,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const doneButtonTimeout = doneButton.querySelector('.doneBtnTimeout');
 
-      const promises = [];
+      let promise = undefined;
 
       logConverterWorker.onmessage = (msg) => {
         switch (msg.data.type) {
@@ -274,14 +271,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             End Status: ${enc.endStatus}
             Line Count: ${enc.logLines.length}
             `;
-            // Objects sent via message are raw objects, not typed.
-            // Need to get the name another way and override for Persistor.
-            enc.combatantTracker.getMainCombatantName = () => msg.data.name;
-            promises.push(persistor.persistEncounter(enc));
+            // Objects sent via message are raw objects, not typed. Apply prototype chain
+            Object.setPrototypeOf(enc.combatantTracker, CombatantTracker.prototype);
+            if (promise) {
+              promise.then(() => {
+                promise = persistor.persistEncounter(enc);
+              });
+            } else {
+              promise = persistor.persistEncounter(enc);
+            }
           }
           break;
         case 'done':
-          Promise.all(promises).then(() => {
+          Promise.all([promise]).then(() => {
             encounterTab.refresh();
             doneButton.disabled = false;
             let seconds = 5;
@@ -326,8 +328,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const $exportButton = document.querySelector('.exportDBButton');
 
-  new Tooltip($exportButton, 'bottom',
-      'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
+  new Tooltip($exportButton, 'bottom', 'Export the DB (slow).');
 
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
@@ -345,21 +346,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Handle DB export
   $exportButton.addEventListener('click', (e) => {
-    persistor.exportDB().then((obj) => {
-      // Convert encounter DB to json, then base64 encode it
-      // Encounters can have unicode, can't use btoa for base64 encode
-      const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
-      obj = null;
+    persistor.exportDB().then((blob) => {
       // Offer download to user
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.setAttribute('download', 'RaidEmulator_DBExport_' + (+new Date()) + '.json');
+      a.setAttribute('download', 'RaidEmulator_DBExport_' + Date.now() + '.json');
       a.click();
-      // After a second (so after user accepts/declines)
-      // remove the object URL to avoid memory issues
-      window.setTimeout(() => {
-        URL.revokeObjectURL(a.href);
-      }, 1000);
+      URL.revokeObjectURL(a.href);
     });
   });
 
@@ -373,9 +366,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Prompt user to select files if they click the `Load Network Log` or `Import DB` buttons.
-  // These buttons really do the same thing.
-  document.querySelectorAll('.importDBButton, .loadNetworkLogButton').forEach((n) => {
+  // Prompt user to select files if they click the `Load Network Log` button.
+  document.querySelectorAll('.loadNetworkLogButton').forEach((n) => {
     n.addEventListener('click', (e) => {
       $fileInput.click();
     });

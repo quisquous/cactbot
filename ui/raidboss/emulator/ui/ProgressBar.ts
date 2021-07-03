@@ -1,16 +1,9 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
 import AnalyzedEncounter from '../data/AnalyzedEncounter';
 import RaidEmulator from '../data/RaidEmulator';
-import EmulatorCommon from '../EmulatorCommon';
+import EmulatorCommon, { querySelectorSafe } from '../EmulatorCommon';
 
 import Tooltip from './Tooltip';
-
-const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
-  const ret = node.querySelector(sel);
-  if (!(ret instanceof HTMLElement))
-    throw new UnreachableCode();
-  return ret;
-};
 
 export default class ProgressBar {
   $progressBarTooltip: Tooltip;

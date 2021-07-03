@@ -792,7 +792,6 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true, // needs 'Back' and 'Front(?!al)' translation
       'replaceSync': {
         '9S-Operated Flight Unit': '9S\' Flugeinheit',
         '9S-Operated Walking Fortress': '9S\' mehrbeinig(?:e|er|es|en) Panzer',
@@ -863,6 +862,8 @@ export default {
         'Marx Crush': 'Marxsche Offensive',
         'Marx Impact': 'Marxscher Sturz',
         'Marx Smash': 'Marxscher Schlag',
+        '(?<= )Back': 'Hinten',
+        '(?<= )Front': 'Vorne',
         'Marx Thrust': 'Marxscher Ansturm',
         'Neutralization': 'Unterwerfung',
         'Precision Guided Missile': 'Schwere Lenkrakete',
