@@ -66,7 +66,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
 
       this.emulatedTimerBars = [];
     });
-    emulator.on('postSeek', (currentLogTime) => {
+    emulator.on('postSeek', (currentLogTime: number) => {
       if (this.timeline instanceof RaidEmulatorTimeline)
         this.timeline.emulatedSync(currentLogTime);
 

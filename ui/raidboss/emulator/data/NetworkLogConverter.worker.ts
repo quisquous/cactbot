@@ -1,17 +1,28 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+
 import Encounter from './Encounter';
 import LogEventHandler from './LogEventHandler';
+import LineEvent from './network_log_converter/LineEvent';
 import LogRepository from './network_log_converter/LogRepository';
 import NetworkLogConverter from './NetworkLogConverter';
 
 const ctx: Worker = self as unknown as Worker;
 
 ctx.addEventListener('message', (msg) => {
+  if (!(msg.data instanceof ArrayBuffer)) {
+    // TODO: should this return an 'error' instead?
+    ctx.postMessage({
+      type: 'done',
+    });
+    throw new UnreachableCode();
+  }
+
   const logConverter = new NetworkLogConverter();
   const localLogHandler = new LogEventHandler();
   const repo = new LogRepository();
 
   // Listen for LogEventHandler to dispatch fights and persist them
-  localLogHandler.on('fight', (day, zoneId, zoneName, lines) => {
+  localLogHandler.on('fight', (day: string, zoneId: string, zoneName: string, lines: LineEvent[]) => {
     const enc = new Encounter(day, zoneId, zoneName, lines);
     enc.initialize();
     if (enc.shouldPersistFight()) {

@@ -110,20 +110,20 @@ export default class EmulatedPartyInfo extends EventBus {
     for (let i = 0; i < 8; ++i)
       this.triggerBars[i] = querySelectorSafe(this.$triggerBar, '.player' + i.toString());
 
-    emulator.on('tick', (currentLogTime, lastLogLineTime) => {
+    emulator.on('tick', (_currentLogTime, lastLogLineTime: number) => {
       if (lastLogLineTime) {
         this.updatePartyInfo(emulator, lastLogLineTime);
         this.latestDisplayedState = Math.max(this.latestDisplayedState, lastLogLineTime);
       }
     });
-    emulator.on('currentEncounterChanged', (encounter) => {
+    emulator.on('currentEncounterChanged', (encounter: AnalyzedEncounter) => {
       this.resetPartyInfo(encounter);
     });
 
     emulator.on('preSeek', () => {
       this.latestDisplayedState = 0;
     });
-    emulator.on('postSeek', (time) => {
+    emulator.on('postSeek', (time: number) => {
       this.updatePartyInfo(emulator, time);
       this.latestDisplayedState = Math.max(this.latestDisplayedState, time);
     });
@@ -185,7 +185,7 @@ export default class EmulatedPartyInfo extends EventBus {
     const tracker = enc.combatantTracker;
     if (!enc || !tracker)
       throw new UnreachableCode();
-    this.tooltips.map((tt) => {
+    this.tooltips.map((tt: Tooltip) => {
       tt.delete();
       return null;
     });
