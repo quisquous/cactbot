@@ -36,27 +36,10 @@ export default {
   gainsEffectWarn: {
     'E9S Stygian Tendrils': '952', // standing in the brambles
   },
+  soloWarn: {
+    'E9S Multi-Pronged Particle Beam': '5600', // Art Of Darkness Partner Stack
+  },
   triggers: [
-    {
-      // Art Of Darkness Partner Stack
-      id: 'E9S Multi-Pronged Particle Beam',
-      damageRegex: '5600',
-      condition: (e) => e.type === '15',
-      mistake: (_e, _data, matches) => {
-        return {
-          type: 'warn',
-          blame: matches.target,
-          text: {
-            en: `${matches.ability} (alone)`,
-            de: `${matches.ability} (allein)`,
-            fr: `${matches.ability} (seul(e))`,
-            ja: `${matches.ability} (一人)`,
-            cn: `${matches.ability} (单吃)`,
-            ko: `${matches.ability} (혼자 맞음)`,
-          },
-        };
-      },
-    },
     {
       // Anti-air "tank spread".  This can be stacked by two tanks invulning.
       // Note: this will still show something for holmgang/living, but

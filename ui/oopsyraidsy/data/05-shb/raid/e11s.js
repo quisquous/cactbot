@@ -44,26 +44,10 @@ export default {
     'E11S Sinsight 2': '5BC7', // Holy Bound Of Faith tether from Fatebreaker's Image
     'E11S Sinsight 3': '56A0', // Holy Bound Of Faith tether during Cycle
   },
+  soloFail: {
+    'E11S Holy Sinsight Group Share': '5669',
+  },
   triggers: [
-    {
-      id: 'E11S Holy Sinsight Group Share',
-      damageRegex: '5669',
-      condition: (e) => e.type === '15',
-      mistake: (_e, _data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          text: {
-            en: `${matches.ability} (alone)`,
-            de: `${matches.ability} (allein)`,
-            fr: `${matches.ability} (seul(e))`,
-            ja: `${matches.ability} (一人)`,
-            cn: `${matches.ability} (单吃)`,
-            ko: `${matches.ability} (혼자 맞음)`,
-          },
-        };
-      },
-    },
     {
       id: 'E11S Blastburn Knocked Off',
       // 5653 = Burnt Strike fire followup during most of the fight

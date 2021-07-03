@@ -46,6 +46,8 @@ module.exports = {
       'gainsEffectFail',
       'shareWarn',
       'shareFail',
+      'soloWarn',
+      'soloFail',
       'triggers',
     ];
     const optionModule = context.options[0] ? context.options[0].module : undefined;

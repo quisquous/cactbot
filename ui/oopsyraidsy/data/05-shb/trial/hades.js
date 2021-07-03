@@ -17,39 +17,10 @@ export default {
     'Hades Echo 1': '4163',
     'Hades Echo 2': '4164',
   },
-  triggers: [
-    // Things that should only hit one person.
-    {
-      id: 'Hades Nether Blast',
-      damageRegex: '4163',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Hades Ravenous Assault',
-      damageRegex: '4158',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Hades Ancient Darkness',
-      damageRegex: '4593',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Hades Dual Strike',
-      damageRegex: '4162',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareFail: {
+    'Hades Nether Blast': '4163',
+    'Hades Ravenous Assault': '4158',
+    'Hades Ancient Darkness': '4593',
+    'Hades Dual Strike': '4162',
+  },
 };
