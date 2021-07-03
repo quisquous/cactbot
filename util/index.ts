@@ -13,7 +13,7 @@ declare module 'inquirer' {
   }
 }
 
-const dataFilesMap: { readonly [filename: string]: Promise<void> } = {
+const dataFilesMap: { readonly [filename: string]: () => Promise<void> } = {
   'effect_id.ts': generateEffectIds,
 };
 
@@ -45,9 +45,9 @@ const generateDataFiles = () => {
     name: 'choice',
     message: 'Which data file do you want to generate?',
     choices: Object.keys(dataFilesMap),
-  }]).then((answers: Answers) => {
-    if (answers.choice in dataFilesMap)
-      return dataFilesMap[answers.choice]?.();
+  }]).then(async (answers: Answers) => {
+    if (typeof answers.choice === 'string' && answers.choice in dataFilesMap)
+      return await dataFilesMap[answers.choice]?.();
   });
 };
 
