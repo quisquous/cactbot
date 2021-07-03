@@ -145,8 +145,8 @@ export default class AnalyzedEncounter extends EventBus {
 
     this.selectPerspective(id, popupText);
 
-    if (timelineController.activeTimeline) {
-      timelineController.activeTimeline.SetTrigger((trigger: LooseTrigger, matches) => {
+    if (timelineController.activeTimeline?.ui) {
+      timelineController.activeTimeline.ui.OnTrigger = (trigger: LooseTrigger, matches) => {
         const currentLine = this.encounter.logLines[currentLogIndex];
         if (!currentLine)
           throw new UnreachableCode();
@@ -176,7 +176,7 @@ export default class AnalyzedEncounter extends EventBus {
                 resolver.status, popupText.getData());
           }
         });
-      });
+      };
     }
 
     popupText.callback = (log, triggerHelper, currentTriggerStatus) => {
