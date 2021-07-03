@@ -1,7 +1,7 @@
 import inquirer, { Answers } from 'inquirer';
 import inquirerFuzzyPath, { FuzzyPathQuestionOptions } from 'inquirer-fuzzy-path';
 
-import { Lang } from '../resources/languages';
+import { Lang, languages } from '../resources/languages';
 
 import { run as findMissingTranslations } from './find_missing_translations';
 import { default as generateEffectIds } from './gen_effect_id';
@@ -63,13 +63,7 @@ const translateTimelineFunc = () => {
       type: 'list',
       name: 'locale',
       message: 'Select a locale: ',
-      choices: [
-        'de',
-        'fr',
-        'ja',
-        'cn',
-        'ko',
-      ],
+      choices: languages,
     },
   ]).then((answers: Answers) => {
     if (answers.timeline && answers.locale)
@@ -89,14 +83,7 @@ const findMissingTranslationsFunc = () => {
       type: 'list',
       name: 'locale',
       message: 'Select a locale: ',
-      choices: [
-        'en',
-        'de',
-        'fr',
-        'ja',
-        'cn',
-        'ko',
-      ],
+      choices: languages,
     },
   ]).then((answers: Answers) => {
     if (answers.filter && answers.locale)
