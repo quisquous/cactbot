@@ -2,7 +2,7 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import Util from '../../../../resources/util';
 import AnalyzedEncounter, { PerspectiveTrigger } from '../data/AnalyzedEncounter';
 import RaidEmulator from '../data/RaidEmulator';
-import EmulatorCommon from '../EmulatorCommon';
+import EmulatorCommon, { cloneSafe, getTemplateChild, querySelectorSafe } from '../EmulatorCommon';
 import EventBus from '../EventBus';
 
 import Tooltip from './Tooltip';
@@ -47,32 +47,6 @@ type CollapseParams = {
   icon?: string;
   text?: string;
   onclick?: CallableFunction;
-};
-
-const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
-  const ret = node.querySelector(sel);
-  if (!(ret instanceof HTMLElement))
-    throw new UnreachableCode();
-  return ret;
-};
-
-const getTemplateChild = (node: ParentNode, sel: string): HTMLElement => {
-  const template = querySelectorSafe(node, sel);
-  if (!(template instanceof HTMLTemplateElement))
-    throw new UnreachableCode();
-  const ret = template.content.firstElementChild;
-  if (!ret)
-    throw new UnreachableCode();
-  if (!(ret instanceof HTMLElement))
-    throw new UnreachableCode();
-  return ret;
-};
-
-const cloneSafe = (node: HTMLElement): HTMLElement => {
-  const cloned = node.cloneNode(true);
-  if (!(cloned instanceof HTMLElement))
-    throw new UnreachableCode();
-  return cloned;
 };
 
 export default class EmulatedPartyInfo extends EventBus {

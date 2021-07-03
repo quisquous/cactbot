@@ -1,7 +1,7 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
 import Persistor from '../data/Persistor';
 import PersistorEncounter from '../data/PersistorEncounter';
-import EmulatorCommon from '../EmulatorCommon';
+import EmulatorCommon, { getTemplateChild, querySelectorAllSafe, querySelectorSafe } from '../EmulatorCommon';
 import EventBus from '../EventBus';
 
 type DateMap = {
@@ -17,34 +17,6 @@ type ZoneMap = {
 
 type EncounterMap = {
   [zone: string]: ZoneMap;
-};
-
-const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
-  const ret = node.querySelector(sel);
-  if (!(ret instanceof HTMLElement))
-    throw new UnreachableCode();
-  return ret;
-};
-
-const querySelectorAllSafe = (node: ParentNode, sel: string): HTMLElement[] => {
-  const ret = [...node.querySelectorAll(sel)].map((elem) => {
-    if (!(elem instanceof HTMLElement))
-      throw new UnreachableCode();
-    return elem;
-  });
-  return ret;
-};
-
-const getTemplateChild = (node: ParentNode, sel: string): HTMLElement => {
-  const template = querySelectorSafe(node, sel);
-  if (!(template instanceof HTMLTemplateElement))
-    throw new UnreachableCode();
-  const ret = template.content.firstElementChild;
-  if (!ret)
-    throw new UnreachableCode();
-  if (!(ret instanceof HTMLElement))
-    throw new UnreachableCode();
-  return ret;
 };
 
 export default class EncounterTab extends EventBus {
