@@ -1,62 +1,75 @@
 import './raidboss_config';
 
-import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
-import EmulatorCommon from './emulator/EmulatorCommon';
+import { isLang, langMap } from '../../resources/languages';
+import { UnreachableCode } from '../../resources/not_reached';
+import { callOverlayHandler } from '../../resources/overlay_plugin_api';
+import UserConfig from '../../resources/user_config';
+import { ConverterWorkerMessage } from '../../types/worker';
+
+import raidbossFileData from './data/raidboss_manifest.txt';
+import AnalyzedEncounter from './emulator/data/AnalyzedEncounter';
+import CombatantTracker from './emulator/data/CombatantTracker';
 import Encounter from './emulator/data/Encounter';
-import EncounterTab from './emulator/ui/EncounterTab';
-import LogEventHandler from './emulator/data/LogEventHandler';
+import LineEvent from './emulator/data/network_log_converter/LineEvent';
 import Persistor from './emulator/data/Persistor';
-import { PopupTextGenerator } from './popup-text';
-import ProgressBar from './emulator/ui/ProgressBar';
 import RaidEmulator from './emulator/data/RaidEmulator';
+import EmulatorCommon, { querySelectorSafe } from './emulator/EmulatorCommon';
 import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook';
 import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
 import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
-import { TimelineLoader } from './timeline';
+import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
+import EncounterTab from './emulator/ui/EncounterTab';
+import ProgressBar from './emulator/ui/ProgressBar';
 import Tooltip from './emulator/ui/Tooltip';
-import UserConfig from '../../resources/user_config';
-import { isLang, Lang, langMap } from '../../resources/languages';
-import raidbossFileData from './data/raidboss_manifest.txt';
-// eslint can't detect the custom loader for the worker
-// eslint-disable-next-line import/default
-import NetworkLogConverterWorker from './emulator/data/NetworkLogConverter.worker';
-import { callOverlayHandler } from '../../resources/overlay_plugin_api';
-
+import { PopupTextGenerator } from './popup-text';
 import defaultOptions from './raidboss_options';
-
+import { TimelineLoader } from './timeline';
 import '../../resources/defaults.css';
 import './raidemulator.css';
-import CombatantTracker from './emulator/data/CombatantTracker';
 
-
-function showModal(selector) {
-  const modal = document.querySelector(selector);
+declare global {
+  interface Window {
+    raidEmulator: {
+      emulator: RaidEmulator;
+      progressBar: ProgressBar;
+      timelineController: RaidEmulatorTimelineController;
+      popupText: RaidEmulatorPopupText;
+      persistor: Persistor;
+      encounterTab: EncounterTab;
+      emulatedPartyInfo: EmulatedPartyInfo;
+      emulatedWebSocket: RaidEmulatorOverlayApiHook;
+      timelineUI: RaidEmulatorTimelineUI;
+    };
+  }
+}
+const showModal = (selector: string): HTMLElement => {
+  const modal = querySelectorSafe(document, selector);
   const body = document.body;
-  const backdrop = document.querySelector('.modal-backdrop');
+  const backdrop = querySelectorSafe(document, '.modal-backdrop');
   body.classList.add('modal-open');
   backdrop.classList.add('show');
   backdrop.classList.remove('hide');
   modal.classList.add('show');
   modal.style.display = 'block';
   return modal;
-}
+};
 
-function hideModal(selector = '.modal.show') {
-  const modal = document.querySelector(selector);
+const hideModal = (selector = '.modal.show'): HTMLElement => {
+  const modal = querySelectorSafe(document, selector);
   const body = document.body;
-  const backdrop = document.querySelector('.modal-backdrop');
+  const backdrop = querySelectorSafe(document, '.modal-backdrop');
   body.classList.remove('modal-open');
   backdrop.classList.remove('show');
   backdrop.classList.add('hide');
   modal.classList.remove('show');
   modal.style.display = '';
   return modal;
-}
+};
 
-document.addEventListener('DOMContentLoaded', async () => {
+const raidEmulatorOnLoad = async () => {
   const persistor = new Persistor();
-  let websocketConnected = undefined;
+  let websocketConnected = false;
   let options = { ...defaultOptions };
 
   // Wait for the DB to be ready before doing anything that might invoke the DB
@@ -64,9 +77,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (window.location.href.indexOf('OVERLAY_WS') > 0) {
     // Give the websocket 500ms to connect, then abort.
-    websocketConnected = await Promise.race([
+    websocketConnected = await Promise.race<Promise<boolean>>([
       new Promise((res) => {
-        callOverlayHandler({ call: 'cactbotRequestState' }).then(() => {
+        void callOverlayHandler({ call: 'cactbotRequestState' }).then(() => {
           res(true);
         });
       }),
@@ -77,12 +90,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       }),
     ]);
     if (websocketConnected) {
-      await new Promise((res) => {
-        UserConfig.getUserConfigLocation('raidboss', defaultOptions, (e) => {
+      await new Promise<void>((res) => {
+        UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
           // Update options from anything changed via getUserConfigLocation.
           options = { ...defaultOptions };
-          document.querySelector('.websocketConnected').classList.remove('d-none');
-          document.querySelector('.websocketDisconnected').classList.add('d-none');
+          querySelectorSafe(document, '.websocketConnected').classList.remove('d-none');
+          querySelectorSafe(document, '.websocketDisconnected').classList.add('d-none');
           res();
         });
       });
@@ -92,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!websocketConnected) {
     // Find the most appropriate lang code to use based on browser language priority
     const browserLang = [...navigator.languages, 'en']
-      .map((l) => l.split('-')[0].toLowerCase())
+      .map((l) => l.substr(0, 2))
       // Remap `zh` to `cn` to match cactbot languages
       .map((l) => l === 'zh' ? 'cn' : l)
       .filter((l) => ['en', 'de', 'fr', 'ja', 'cn', 'ko'].includes(l))[0];
@@ -112,7 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const emulatedPartyInfo = new EmulatedPartyInfo(emulator);
   const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
   emulatedWebSocket.connected = websocketConnected;
-  const logConverterWorker = new NetworkLogConverterWorker();
+  const logConverterWorker = new Worker(new URL('./emulator/data/NetworkLogConverter.worker.ts', import.meta.url));
 
   // Initialize the Raidboss components, bind them to the emulator for event listeners
   const timelineUI = new RaidEmulatorTimelineUI(options);
@@ -130,69 +143,75 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Listen for the user to click a player in the party list on the right
   // and persist that over to the emulator
-  emulatedPartyInfo.on('selectPerspective', (id) => {
+  emulatedPartyInfo.on('selectPerspective', (id: string) => {
     emulator.selectPerspective(id);
   });
 
-  emulator.on('currentEncounterChanged', (enc) => {
+  emulator.on('currentEncounterChanged', (enc: AnalyzedEncounter) => {
     // Store our current loaded encounter to auto-load next time
-    window.localStorage.setItem('currentEncounter', enc.encounter.id);
+    if (enc.encounter.id)
+      window.localStorage.setItem('currentEncounter', enc.encounter.id.toString());
     // Once we've loaded the encounter, seek to the start of the encounter
     if (!isNaN(enc.encounter.initialOffset))
-      emulator.seek(enc.encounter.initialOffset);
+      void emulator.seek(enc.encounter.initialOffset);
   });
 
   // Listen for the user to attempt to load an encounter from the encounters pane
-  encounterTab.on('load', (id) => {
+  encounterTab.on('load', (id: number) => {
     // Attempt to set the current emulated encounter
     if (!emulator.setCurrentByID(id)) {
       // If that encounter isn't loaded, load it
-      persistor.encounters.get(id).then((enc) => {
-        emulator.addEncounter(enc);
-        emulator.setCurrentByID(id);
+      void persistor.encounters.get(id).then((enc?: Encounter) => {
+        if (enc) {
+          emulator.addEncounter(enc);
+          emulator.setCurrentByID(id);
+        }
       });
     }
   });
 
   // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
-  encounterTab.on('parse', (id) => {
-    persistor.encounters.get(id).then(async (enc) => {
-      enc.initialize();
-      await persistor.encounters.put(enc, enc.id);
-      encounterTab.refresh();
+  encounterTab.on('parse', (id: number) => {
+    void persistor.encounters.get(id).then(async (enc?: Encounter) => {
+      if (enc) {
+        enc.initialize();
+        await persistor.encounters.put(enc, enc.id);
+        encounterTab.refresh();
+      }
     });
   });
 
   // Listen for the user to select prune on the encounters tab
-  encounterTab.on('prune', (id) => {
-    persistor.encounters.get(id).then(async (enc) => {
-      // Trim log lines
-      enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
+  encounterTab.on('prune', (id: number) => {
+    void persistor.encounters.get(id).then(async (enc?: Encounter) => {
+      if (enc) {
+        // Trim log lines
+        enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
 
-      // Update precalculated offsets
-      const firstTimestamp = enc.logLines[0].timestamp;
-      for (let i = 0; i < enc.logLines.length; ++i)
-        enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
+        // Update precalculated offsets
+        const firstTimestamp = enc.logLines[0]?.timestamp ?? 0;
+        for (const line of enc.logLines)
+          line.offset = line.timestamp - firstTimestamp;
 
+        enc.firstLineIndex = 0;
 
-      enc.firstLineIndex = 0;
-
-      enc.initialize();
-      await persistor.encounters.put(enc, enc.id);
-      encounterTab.refresh();
+        enc.initialize();
+        await persistor.encounters.put(enc, enc.id);
+        encounterTab.refresh();
+      }
     });
   });
 
   // Listen for the user to select delete on the encounters tab, then do it.
-  encounterTab.on('delete', (id) => {
-    persistor.encounters.delete(id).then(() => {
+  encounterTab.on('delete', (id: number) => {
+    void persistor.encounters.delete(id).then(() => {
       encounterTab.refresh();
     });
   });
 
   // Listen for the emulator to event log lines, then dispatch them to the timeline controller
   // @TODO: Probably a better place to listen for this?
-  emulator.on('emitLogs', (e) => {
+  emulator.on('emitLogs', (e: { logs: LineEvent[] }) => {
     timelineController.onEmulatorLogEvent(e.logs);
   });
 
@@ -200,54 +219,56 @@ document.addEventListener('DOMContentLoaded', async () => {
   encounterTab.refresh();
 
   // If we don't have any encounters stored, show the intro modal
-  persistor.encounterSummaries.toArray().then((encounters) => {
+  void persistor.encounterSummaries.toArray().then((encounters) => {
     if (encounters.length === 0) {
       showModal('.introModal');
     } else {
-      let lastEncounter = window.localStorage.getItem('currentEncounter');
-      if (lastEncounter !== undefined) {
+      let lastEncounter: string | number | null = window.localStorage.getItem('currentEncounter');
+      if (lastEncounter) {
         lastEncounter = parseInt(lastEncounter);
         const matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
         if (matchedEncounters.length)
-          encounterTab.dispatch('load', lastEncounter);
+          void encounterTab.dispatch('load', lastEncounter);
       }
       if (!websocketConnected) {
         const dispLang = langMap[options.ParserLanguage][options.ParserLanguage];
         const discModal = showModal('.disconnectedModal');
-        const indicator = document.querySelector('.connectionIndicator');
-        indicator.querySelector('.connectedIndicator').classList.add('d-none');
-        indicator.querySelector('.disconnectedIndicator').classList.remove('d-none');
-        discModal.querySelector('.discLangDisplay').innerText = dispLang;
-        discModal.querySelector('.discLangAlerts').innerText = dispLang;
-        discModal.querySelector('.discLangTimeline').innerText = dispLang;
+        const indicator = querySelectorSafe(document, '.connectionIndicator');
+        querySelectorSafe(indicator, '.connectedIndicator').classList.add('d-none');
+        querySelectorSafe(indicator, '.disconnectedIndicator').classList.remove('d-none');
+        querySelectorSafe(discModal, '.discLangDisplay').innerText = dispLang;
+        querySelectorSafe(discModal, '.discLangAlerts').innerText = dispLang;
+        querySelectorSafe(discModal, '.discLangTimeline').innerText = dispLang;
       }
     }
   });
 
-  const checkFile = async (file) => {
+  const checkFile = (file: File) => {
     if (file.type === 'application/json') {
       // Import a DB file by passing it to Persistor
-      persistor.importDB(file).then(() => {
+      void persistor.importDB(file).then(() => {
         encounterTab.refresh();
       });
     } else {
       // Assume it's a log file
       const importModal = showModal('.importProgressModal');
-      const bar = importModal.querySelector('.progress-bar');
+      const bar = querySelectorSafe(importModal, '.progress-bar');
       bar.style.width = '0px';
-      const label = importModal.querySelector('.label');
+      const label = querySelectorSafe(importModal, '.label');
       label.innerText = '';
-      const encLabel = importModal.querySelector('.encounterLabel');
+      const encLabel = querySelectorSafe(importModal, '.encounterLabel');
       encLabel.innerText = 'N/A';
 
-      const doneButton = importModal.querySelector('.btn');
+      const doneButton = querySelectorSafe(importModal, '.btn');
+      if (!(doneButton instanceof HTMLButtonElement))
+        throw new UnreachableCode();
       doneButton.disabled = true;
 
-      const doneButtonTimeout = doneButton.querySelector('.doneBtnTimeout');
+      const doneButtonTimeout = querySelectorSafe(doneButton, '.doneBtnTimeout');
 
-      let promise = undefined;
+      let promise: Promise<unknown> | undefined;
 
-      logConverterWorker.onmessage = (msg) => {
+      logConverterWorker.onmessage = (msg: MessageEvent<ConverterWorkerMessage>) => {
         switch (msg.data.type) {
         case 'progress':
           {
@@ -263,8 +284,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             encLabel.innerText = `
             Zone: ${enc.encounterZoneName}
             Encounter: ${msg.data.name}
-            Start: ${new Date(enc.startTimestamp)}
-            End: ${new Date(enc.endTimestamp)}
+            Start: ${new Date(enc.startTimestamp).toString()}
+            End: ${new Date(enc.endTimestamp).toString()}
             Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
             Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
             Started By: ${enc.startStatus}
@@ -274,7 +295,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Objects sent via message are raw objects, not typed. Apply prototype chain
             Object.setPrototypeOf(enc.combatantTracker, CombatantTracker.prototype);
             if (promise) {
-              promise.then(() => {
+              void promise.then(() => {
                 promise = persistor.persistEncounter(enc);
               });
             } else {
@@ -283,7 +304,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
           break;
         case 'done':
-          Promise.all([promise]).then(() => {
+          void Promise.all([promise]).then(() => {
             encounterTab.refresh();
             doneButton.disabled = false;
             let seconds = 5;
@@ -300,13 +321,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           break;
         }
       };
-      file.arrayBuffer().then((b) => {
+      void file.arrayBuffer().then((b) => {
         logConverterWorker.postMessage(b, [b]);
       });
     }
   };
 
-  const ignoreEvent = (e) => {
+  const ignoreEvent = (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
   };
@@ -315,24 +336,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.body.addEventListener('dragenter', ignoreEvent);
   document.body.addEventListener('dragover', ignoreEvent);
 
-  document.body.addEventListener('drop', async (e) => {
+  const dropHandler = (e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     const dt = e.dataTransfer;
-    const files = dt.files;
-    for (let i = 0; i < files.length; ++i) {
-      const file = files[i];
-      await checkFile(file);
+    if (dt) {
+      const files = dt.files;
+      for (const file of files)
+        checkFile(file);
     }
-  });
+  };
 
-  const $exportButton = document.querySelector('.exportDBButton');
+  document.body.addEventListener('drop', dropHandler);
+
+  const $exportButton = querySelectorSafe(document, '.exportDBButton');
 
   new Tooltip($exportButton, 'bottom', 'Export the DB (slow).');
 
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
-    const target = document.querySelector(n.getAttribute('data-target'));
+    const targetSel = n.getAttribute('data-target');
+    if (!targetSel)
+      throw new UnreachableCode();
+    const target = querySelectorSafe(document, targetSel);
     n.addEventListener('click', () => {
       if (n.getAttribute('aria-expanded') === 'false') {
         n.setAttribute('aria-expanded', 'true');
@@ -345,30 +371,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Handle DB export
-  $exportButton.addEventListener('click', (e) => {
-    persistor.exportDB().then((blob) => {
+  $exportButton.addEventListener('click', () => {
+    void persistor.exportDB().then((blob) => {
       // Offer download to user
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.setAttribute('download', 'RaidEmulator_DBExport_' + Date.now() + '.json');
+      a.setAttribute('download', `RaidEmulator_DBExport_${Date.now()}.json`);
       a.click();
       URL.revokeObjectURL(a.href);
     });
   });
 
-  const $fileInput = document.querySelector('.loadFileInput');
+  const $fileInput = querySelectorSafe(document, '.loadFileInput');
 
   // Handle the `Load Network Log` button when user selects files
-  $fileInput.addEventListener('change', async (e) => {
-    for (let i = 0; i < e.target.files.length; ++i) {
-      const file = e.target.files[i];
-      checkFile(file);
+  $fileInput.addEventListener('change', (e: Event) => {
+    if (e.target) {
+      const target = e.target;
+      if (target instanceof HTMLInputElement && target.files) {
+        for (const file of target.files)
+          checkFile(file);
+      }
     }
   });
 
   // Prompt user to select files if they click the `Load Network Log` button.
   document.querySelectorAll('.loadNetworkLogButton').forEach((n) => {
-    n.addEventListener('click', (e) => {
+    n.addEventListener('click', () => {
       $fileInput.click();
     });
   });
@@ -376,10 +405,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Handle all modal close buttons
   document.querySelectorAll('.modal button.close, [data-dismiss="modal"]').forEach((n) => {
     n.addEventListener('click', (e) => {
+      if (!(e instanceof MouseEvent))
+        return;
+      if (!(e.currentTarget instanceof HTMLElement))
+        return;
       // Find the parent modal from the close button and close it
       let target = e.currentTarget;
       while (!target.classList.contains('modal') && target !== document.body)
-        target = target.parentElement;
+        target = target.parentElement ?? target;
 
       if (target !== document.body)
         hideModal('.' + [...target.classList].join('.'));
@@ -396,14 +429,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Ask the user if they're really sure they want to clear the DB
-  document.querySelector('.clearDBButton').addEventListener('click', (e) => {
+  querySelectorSafe(document, '.clearDBButton').addEventListener('click', () => {
     showModal('.deleteDBModal');
   });
 
   // Handle user saying they're really sure they want to clear the DB by wiping it then
   // refreshing the encounter tab
-  document.querySelector('.deleteDBModal .btn-primary').addEventListener('click', (e) => {
-    persistor.clearDB().then(() => {
+  querySelectorSafe(document, '.deleteDBModal .btn-primary').addEventListener('click', () => {
+    void persistor.clearDB().then(() => {
       encounterTab.refresh();
       hideModal('.deleteDBModal');
     });
@@ -421,4 +454,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     emulatedWebSocket: emulatedWebSocket,
     timelineUI: timelineUI,
   };
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  void raidEmulatorOnLoad();
 });

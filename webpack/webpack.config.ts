@@ -29,6 +29,7 @@ export default (
       'oopsyraidsySummary',
       'radar',
       'raidboss',
+      'raidemulator',
       'test',
       'timerbarTest',
     ].includes(key))
@@ -76,14 +77,6 @@ export default (
     },
     module: {
       rules: [
-        {
-          // Worker has to go before normal js
-          test: /\.worker\.ts$/,
-          loader: 'worker-loader',
-          resolve: {
-            fullySpecified: false,
-          },
-        },
         {
           // this will allow importing without extension in js files.
           test: /\.m?js$/,
