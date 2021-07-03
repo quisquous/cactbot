@@ -13,9 +13,9 @@ declare module 'inquirer' {
   }
 }
 
-const dataFilesMap = {
+const dataFilesMap: { readonly [filename: string]: Promise<void> } = {
   'effect_id.ts': generateEffectIds,
-} as const;
+};
 
 inquirer.registerPrompt('fuzzypath', inquirerFuzzyPath);
 
@@ -47,7 +47,7 @@ const generateDataFiles = () => {
     choices: Object.keys(dataFilesMap),
   }]).then((answers: Answers) => {
     if (answers.choice in dataFilesMap)
-      return dataFilesMap[answers.choice as keyof typeof dataFilesMap]?.();
+      return dataFilesMap[answers.choice]?.();
   });
 };
 
