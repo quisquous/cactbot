@@ -1,6 +1,6 @@
 import './raidboss_config';
 
-import { isLang, langMap } from '../../resources/languages';
+import { isLang, Lang, langMap } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
@@ -13,11 +13,16 @@ import Encounter from './emulator/data/Encounter';
 import LineEvent from './emulator/data/network_log_converter/LineEvent';
 import Persistor from './emulator/data/Persistor';
 import RaidEmulator from './emulator/data/RaidEmulator';
-import EmulatorCommon, { querySelectorSafe } from './emulator/EmulatorCommon';
+import EmulatorCommon, { getTemplateChild, querySelectorAllSafe, querySelectorSafe } from './emulator/EmulatorCommon';
 import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook';
 import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
 import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
+import {
+  defaultLocale, emulatorButtons, emulatorDeleteModal, emulatorDisconnectedModal,
+  emulatorEncounterInfo, emulatorImportModal, emulatorIntroModal, emulatorTitle,
+  emulatorTooltips, lookupEndStatus, lookupStartStatuses,
+} from './emulator/translations';
 import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
 import EncounterTab from './emulator/ui/EncounterTab';
 import ProgressBar from './emulator/ui/ProgressBar';
@@ -66,6 +71,108 @@ const hideModal = (selector = '.modal.show'): HTMLElement => {
   modal.style.display = '';
   return modal;
 };
+
+const applyTranslation = (lang: Lang) => {
+  document.title = defaultLocale(lang, emulatorTitle);
+
+  // Top-right connected indicator tooltips
+  querySelectorSafe(document, '.connectedIndicator').title =
+    defaultLocale(lang, emulatorTooltips.connectedIndicator);
+  querySelectorSafe(document, '.disconnectedIndicator').title =
+    defaultLocale(lang, emulatorTooltips.disconnectedIndicator);
+
+  // Trigger detail area checkboxes
+  querySelectorSafe(document, '.triggerHideSkippedContainer').title =
+    defaultLocale(lang, emulatorTooltips.hideSkippedTooltip);
+  querySelectorSafe(document, 'label[for=hideSkipped]').innerHTML =
+    defaultLocale(lang, emulatorTooltips.hideSkipped);
+  querySelectorSafe(document, '.triggerHideCollectorContainer').title =
+    defaultLocale(lang, emulatorTooltips.hideCollectorsTooltip);
+  querySelectorSafe(document, 'label[for=hideCollector]').innerHTML =
+    defaultLocale(lang, emulatorTooltips.hideCollectors);
+
+  // Buttons
+  querySelectorSafe(document, '.loadNetworkLogButton').innerHTML =
+    defaultLocale(lang, emulatorButtons.loadNetworkLog);
+  querySelectorSafe(document, '.exportDBButton').innerHTML =
+    defaultLocale(lang, emulatorButtons.exportDatabase);
+  querySelectorSafe(document, '.importDBButton').innerHTML =
+    defaultLocale(lang, emulatorButtons.importDatabase);
+  querySelectorSafe(document, '.clearDBButton').innerHTML =
+    defaultLocale(lang, emulatorButtons.clearDatabase);
+  querySelectorSafe(document, '.doneButton').innerHTML =
+    defaultLocale(lang, emulatorButtons.done);
+
+  // Repeated buttons
+  querySelectorAllSafe(document, '.yesButton').forEach(
+      (btn) => {
+        btn.innerHTML = defaultLocale(lang, emulatorButtons.yes);
+      });
+  querySelectorAllSafe(document, '.noButton').forEach(
+      (btn) => {
+        btn.innerHTML = defaultLocale(lang, emulatorButtons.no);
+      });
+  querySelectorAllSafe(document, '.closeButton').forEach(
+      (btn) => {
+        btn.innerHTML = defaultLocale(lang, emulatorButtons.close);
+      });
+
+  // Intro modal
+  const introModal = querySelectorSafe(document, '.introModal');
+  querySelectorSafe(introModal, '.modal-title').innerHTML =
+    defaultLocale(lang, emulatorIntroModal.title);
+  querySelectorSafe(introModal, '.modal-body').innerHTML =
+    defaultLocale(lang, emulatorIntroModal.body);
+
+  // Import modal
+  const importModal = querySelectorSafe(document, '.importProgressModal');
+  querySelectorSafe(importModal, '.modal-title').innerHTML =
+    defaultLocale(lang, emulatorImportModal.title);
+  querySelectorSafe(importModal, '.modal-body-contents').innerHTML =
+    defaultLocale(lang, emulatorImportModal.body);
+
+  // Delete database modal
+  const deleteModal = querySelectorSafe(document, '.deleteDBModal');
+  querySelectorSafe(deleteModal, '.modal-title').innerHTML =
+    defaultLocale(lang, emulatorDeleteModal.title);
+  querySelectorSafe(deleteModal, '.modal-body').innerHTML =
+    defaultLocale(lang, emulatorDeleteModal.body);
+
+  // Disconnected modal
+  const discModal = querySelectorSafe(document, '.disconnectedModal');
+  querySelectorSafe(discModal, '.modal-title').innerHTML =
+    defaultLocale(lang, emulatorDisconnectedModal.title);
+  querySelectorSafe(discModal, '.modal-body').innerHTML =
+    defaultLocale(lang, emulatorDisconnectedModal.body);
+
+  // Encounter info template
+  const infoDiv = getTemplateChild(document, 'template.encounterInfo');
+  querySelectorSafe(infoDiv, '.encounterLoad').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.loadEncounter);
+  querySelectorSafe(infoDiv, '.encounterParse').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.reparseEncounter);
+  querySelectorSafe(infoDiv, '.encounterPrune').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.pruneEncounter);
+  querySelectorSafe(infoDiv, '.encounterDelete').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.deleteEncounter);
+  querySelectorSafe(infoDiv, '.encounterZone').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.zone);
+  querySelectorSafe(infoDiv, '.encounterStart').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.start);
+  querySelectorSafe(infoDiv, '.encounterDuration').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.duration);
+  querySelectorSafe(infoDiv, '.encounterOffset').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.pullAt);
+  querySelectorSafe(infoDiv, '.encounterName').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.name);
+  querySelectorSafe(infoDiv, '.encounterStartStatus').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.startStatus);
+  querySelectorSafe(infoDiv, '.encounterEndStatus').innerHTML =
+    defaultLocale(lang, emulatorEncounterInfo.endStatus);
+};
+
+// Default language to en until we know what language to use
+applyTranslation('en');
 
 const raidEmulatorOnLoad = async () => {
   const persistor = new Persistor();
@@ -118,6 +225,10 @@ const raidEmulatorOnLoad = async () => {
     options.SpokenAlertsEnabled = false;
     options.GroupSpokenAlertsEnabled = false;
   }
+
+  // If DisplayLanguage isn't English, switch to correct lang for emulator display
+  if (options.DisplayLanguage !== 'en')
+    applyTranslation(options.DisplayLanguage);
 
   const emulator = new RaidEmulator(options);
   const progressBar = new ProgressBar(emulator);
@@ -256,8 +367,8 @@ const raidEmulatorOnLoad = async () => {
       bar.style.width = '0px';
       const label = querySelectorSafe(importModal, '.label');
       label.innerText = '';
-      const encLabel = querySelectorSafe(importModal, '.encounterLabel');
-      encLabel.innerText = 'N/A';
+      const encLabel = querySelectorSafe(importModal, '.modal-body-contents');
+      encLabel.classList.add('d-none');
 
       const doneButton = querySelectorSafe(importModal, '.btn');
       if (!(doneButton instanceof HTMLButtonElement))
@@ -279,21 +390,40 @@ const raidEmulatorOnLoad = async () => {
           break;
         case 'encounter':
           {
+            encLabel.classList.remove('d-none');
             const enc = msg.data.encounter;
 
-            encLabel.innerText = `
-            Zone: ${enc.encounterZoneName}
-            Encounter: ${msg.data.name}
-            Start: ${new Date(enc.startTimestamp).toString()}
-            End: ${new Date(enc.endTimestamp).toString()}
-            Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
-            Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
-            Started By: ${enc.startStatus}
-            End Status: ${enc.endStatus}
-            Line Count: ${enc.logLines.length}
-            `;
             // Objects sent via message are raw objects, not typed. Apply prototype chain
             Object.setPrototypeOf(enc.combatantTracker, CombatantTracker.prototype);
+
+            querySelectorSafe(encLabel, '.zone').innerText = enc.encounterZoneName;
+            querySelectorSafe(encLabel, '.encounter').innerText = msg.data.name;
+            querySelectorSafe(encLabel, '.start').innerText =
+              new Date(enc.startTimestamp).toString();
+            querySelectorSafe(encLabel, '.end').innerText =
+              new Date(enc.endTimestamp).toString();
+
+            const duration =
+              EmulatorCommon.timeToString(enc.endTimestamp - enc.startTimestamp, false)
+                .split(':');
+            const durationMins = duration[0] ?? '0';
+            const durationSecs = duration[1] ?? '00';
+            const pullDuration =
+              EmulatorCommon.timeToString(enc.endTimestamp - enc.initialTimestamp, false)
+                .split(':');
+            const pullDurationMins = pullDuration[0] ?? '0';
+            const pullDurationSecs = pullDuration[1] ?? '00';
+
+            querySelectorSafe(encLabel, '.durMins').innerText = durationMins;
+            querySelectorSafe(encLabel, '.durSecs').innerText = durationSecs;
+            querySelectorSafe(encLabel, '.pullMins').innerText = pullDurationMins;
+            querySelectorSafe(encLabel, '.pullSecs').innerText = pullDurationSecs;
+
+            querySelectorSafe(encLabel, '.startedBy').innerText =
+              lookupStartStatuses(options.DisplayLanguage, enc.startStatus);
+            querySelectorSafe(encLabel, '.endStatus').innerText =
+              lookupEndStatus(options.DisplayLanguage, enc.endStatus);
+            querySelectorSafe(encLabel, '.lineCount').innerText = enc.logLines.length.toString();
             if (promise) {
               void promise.then(() => {
                 promise = persistor.persistEncounter(enc);
