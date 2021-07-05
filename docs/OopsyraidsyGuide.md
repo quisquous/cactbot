@@ -257,6 +257,7 @@ The full order of evaluation of functions in a trigger is:
 1. `condition`
 1. `delaySeconds`
 1. (delay happens here)
+1. `suppressSeconds`
 1. `mistake`
 1. `deathReason`
 1. `run`
