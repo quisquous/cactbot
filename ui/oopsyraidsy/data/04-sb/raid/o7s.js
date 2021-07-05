@@ -16,7 +16,7 @@ export default {
       id: 'O7S Stoneskin',
       netRegex: NetRegexes.ability({ id: '2AB5' }),
       mistake: (_e, _data, matches) => {
-        return { type: 'fail', fullText: `${matches.source}: ${matches.ability}` };
+        return { type: 'fail', blame: matches.source, text: matches.ability };
       },
     },
   ],
