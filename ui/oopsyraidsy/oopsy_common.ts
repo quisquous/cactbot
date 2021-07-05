@@ -1,3 +1,5 @@
+import { OopsyOptions } from './oopsy_options';
+
 // Fields for net log ability lines.
 export const kFieldFlags = 8;
 export const kFieldDamage = 9;
@@ -69,21 +71,22 @@ Examples:
 
 /* eslint-enable */
 
-export function ShortNamify(name, playerNicks) {
+export const ShortNamify = (name: string, playerNicks: { [name: string]: string }): string => {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
 
-  if (name in playerNicks)
-    return playerNicks[name];
+  const nick = playerNicks[name];
+  if (nick)
+    return nick;
 
   const idx = name.indexOf(' ');
   return idx < 0 ? name : name.substr(0, idx);
-}
+};
 
 // Turns a scrambled string damage field into an integer.
 // Since fields are modified in place right now, this does nothing if called
 // again with an integer.  This is kind of a hack, sorry.
-export function UnscrambleDamage(field) {
+export const UnscrambleDamage = (field: string | number): string | number => {
   if (typeof field !== 'string')
     return field;
   const len = field.length;
@@ -98,13 +101,14 @@ export function UnscrambleDamage(field) {
     damage = damage - rightDamage + (rightDamage << 16);
   }
   return damage;
-}
+};
 
-export function IsPlayerId(id) {
-  return id[0] < 4;
-}
+export const IsPlayerId = (id: string): boolean => {
+  const firstChar = id[0];
+  return firstChar ? firstChar < '4' : false;
+};
 
-export function IsTriggerEnabled(options, id) {
+export const IsTriggerEnabled = (options: OopsyOptions, id: string): boolean => {
   if (id in options.DisabledTriggers)
     return false;
 
@@ -113,4 +117,4 @@ export function IsTriggerEnabled(options, id) {
     return autoConfig.enabled;
 
   return true;
-}
+};

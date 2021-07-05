@@ -9,6 +9,8 @@ import { ZoneId as ZoneIdType } from '../../types/trigger';
 import { abilityNameMap } from './ability_name_map';
 
 export type DisabledTriggers = { [triggerId: string]: boolean };
+export type TriggerAutoConfig = { enabled: boolean };
+export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
 
 type OopsyNonConfigOptions = {
   // TODO: add a type for oopsy triggers and trigger sets
@@ -19,6 +21,7 @@ type OopsyNonConfigOptions = {
   IgnoreContentTypes: number[];
   IgnoreZoneIds: ZoneIdType[];
   AbilityIdNameMap: { [id: string]: string };
+  PerTriggerAutoConfig: PerTriggerAutoConfig;
 };
 
 const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
@@ -37,6 +40,7 @@ const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
   ],
 
   AbilityIdNameMap: abilityNameMap,
+  PerTriggerAutoConfig: {},
 };
 
 // TODO: figure out how to get this type from oopsyraidsy_config??
