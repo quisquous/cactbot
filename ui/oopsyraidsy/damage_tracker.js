@@ -286,8 +286,8 @@ export class DamageTracker {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
-        mistake: function(e, data) {
-          return { type: type, blame: e.targetName, text: e.abilityName };
+        mistake: (_e, _data, matches) => {
+          return { type: type, blame: matches.target, text: matches.ability };
         },
       };
       this.triggers.push(trigger);
@@ -303,17 +303,17 @@ export class DamageTracker {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '21', id: id, ...playerDamageFields }),
-        mistake: function(e, data) {
+        mistake: (_e, _data, matches) => {
           return {
             type: type,
-            blame: e.targetName,
+            blame: matches.target,
             text: {
-              en: `${e.abilityName} (alone)`,
-              de: `${e.abilityName} (allein)`,
-              fr: `${e.abilityName} (seul(e))`,
-              ja: `${e.abilityName} (一人)`,
-              cn: `${e.abilityName} (单吃)`,
-              ko: `${e.abilityName} (혼자 맞음)`,
+              en: `${matches.ability} (alone)`,
+              de: `${matches.ability} (allein)`,
+              fr: `${matches.ability} (seul(e))`,
+              ja: `${matches.ability} (一人)`,
+              cn: `${matches.ability} (单吃)`,
+              ko: `${matches.ability} (혼자 맞음)`,
             },
           };
         },
