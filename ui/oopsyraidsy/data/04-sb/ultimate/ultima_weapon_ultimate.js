@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // Ultima Weapon Ultimate
 export default {
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
@@ -22,19 +24,19 @@ export default {
       id: 'UWU Windburn',
       netRegex: NetRegexes.gainsEffect({ effectId: 'EB' }),
       suppressSeconds: 2,
-      mistake: (e) => {
-        return { type: 'warn', blame: e.target, text: e.effect };
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       // Featherlance explosion.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
       id: 'UWU Featherlance',
-      damageRegex: '2B43',
+      netRegex: NetRegexes.abilityFull({ id: '2B43', ...playerDamageFields }),
       collectSeconds: 0.5,
       suppressSeconds: 5,
-      mistake: (e) => {
-        return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches[0].target, text: matches[0].source };
       },
     },
   ],

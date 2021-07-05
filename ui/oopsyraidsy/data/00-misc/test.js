@@ -51,23 +51,24 @@ export default {
     },
     {
       id: 'Test Bootshine',
-      damageRegex: '35',
-      condition: (e, data) => {
-        if (e.attackerName !== data.me)
+      netRegex: NetRegexes.abilityFull({ id: '35' }),
+      condition: (_e, data, matches) => {
+        if (matches.source !== data.me)
           return false;
-        const strikingDummyNames = [
-          'Striking Dummy',
-          'Mannequin d\'entraînement',
-          '木人', // Striking Dummy called `木人` in CN as well as JA
-          '나무인형',
-          // FIXME: add other languages here
-        ];
-        return strikingDummyNames.includes(e.targetName);
+        const strikingDummyByLocale = {
+          en: 'Striking Dummy',
+          fr: 'Mannequin d\'entraînement',
+          ja: '木人',
+          cn: '木人',
+          ko: '나무인형',
+        };
+        const strikingDummyNames = Object.values(strikingDummyByLocale);
+        return strikingDummyNames.includes(matches.target);
       },
-      mistake: (e, data) => {
+      mistake: (_e, data, matches) => {
         data.bootCount = data.bootCount || 0;
         data.bootCount++;
-        const text = e.abilityName + ' (' + data.bootCount + '): ' + e.damageStr;
+        const text = `${matches.ability} (${data.bootCount}): ${data.DamageFromMatches(matches)}`;
         return { type: 'warn', blame: data.me, text: text };
       },
     },

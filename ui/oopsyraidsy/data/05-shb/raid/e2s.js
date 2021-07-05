@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: shadoweye failure
 // TODO: Empty Hate (3E59/3E5A) hits everybody, so hard to tell about knockback
 // TODO: maybe mark hell wind people who got clipped by stack?
@@ -27,17 +29,17 @@ export default {
     },
     {
       id: 'E2S Nyx',
-      damageRegex: '3E51',
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '3E51', ...playerDamageFields }),
+      mistake: (_e, _data, matches) => {
         return {
           type: 'warn',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'Booped',
-            de: e.abilityName,
+            de: matches.ability, // FIXME
             fr: 'Malus de dégâts',
-            ja: e.abilityName,
-            cn: '攻击伤害降低',
+            ja: matches.ability, // FIXME
+            cn: matches.ability, // FIXME
             ko: '닉스',
           },
         };

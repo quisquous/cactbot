@@ -12,6 +12,16 @@ export const kFlagInstantDeath = '36'; // Always 36 ?
 // miss, damage, block, parry, instant death
 export const kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
 
+// TODO: should we include damage != 0 here?
+export const damageFields = {
+  flags: `(?:[^|]*${kAttackFlags.join('|')})(?=\\|)`,
+};
+
+export const playerDamageFields = {
+  targetId: '[^4].......',
+  ...damageFields,
+};
+
 /* eslint-disable max-len */
 
 /*

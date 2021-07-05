@@ -1,5 +1,6 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+import { playerDamageFields } from '../../../oopsy_common';
 
 // O4N - Deltascape 4.0 Normal
 export default {
@@ -24,10 +25,10 @@ export default {
     {
       id: 'O4N Doom', // Kills target if not cleansed
       netRegex: NetRegexes.gainsEffect({ effectId: '38E' }),
-      deathReason: (e) => {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
-          name: e.target,
+          name: matches.target,
           reason: {
             en: 'Cleansers missed Doom!',
             de: 'Doom-Reinigung vergessen!',
@@ -39,12 +40,13 @@ export default {
       },
     },
     {
-      id: 'O4N Vacuum Wave', // Short knockback from Exdeath
-      damageRegex: '24B8',
-      deathReason: (e) => {
+      // Short knockback from Exdeath
+      id: 'O4N Vacuum Wave',
+      netRegex: NetRegexes.abilityFull({ id: '24B8', ...playerDamageFields }),
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
-          name: e.targetName,
+          name: matches.target,
           reason: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
@@ -58,8 +60,8 @@ export default {
     {
       id: 'O4N Empowered Blizzard', // Room-wide AoE, freezes non-moving targets
       netRegex: NetRegexes.gainsEffect({ effectId: '4E6' }),
-      mistake: (e) => {
-        return { type: 'warn', blame: e.target, text: e.effect };
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
   ],

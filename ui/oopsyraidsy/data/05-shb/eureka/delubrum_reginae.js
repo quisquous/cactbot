@@ -1,4 +1,7 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+
+import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: Dead Iron 5AB0 (earthshakers, but only if you take two?)
 
@@ -76,8 +79,8 @@ export default {
       // At least during The Queen, these ability ids can be ordered differently,
       // and the first explosion "hits" everyone, although with "1B" flags.
       id: 'Delubrum Lots Cast',
-      damageRegex: ['565A', '565B', '57FD', '57FE', '5B86', '5B87', '59D2', '5D93'],
-      condition: (e) => e.flags.slice(-2) === '03',
+      netRegex: NetRegexes.abilityFull({ id: ['565A', '565B', '57FD', '57FE', '5B86', '5B87', '59D2', '5D93'], ...playerDamageFields }),
+      condition: (_e, _data, matches) => matches.flags.slice(-2) === '03',
       mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },

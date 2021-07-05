@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // O2N - Deltascape 2.0 Normal
 export default {
   zoneId: ZoneId.DeltascapeV20,
@@ -20,19 +22,17 @@ export default {
       // The user might get hit by another petrifying ability before the effect ends.
       // There's no point in notifying for that.
       suppressSeconds: 10,
-      mistake: (e) => {
-        return { type: 'warn', blame: e.target, text: e.effect };
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'O2N Earthquake',
-      damageRegex: '2515',
-      condition: (e) => {
-        // This deals damage only to non-floating targets.
-        return e.damage > 0;
-      },
-      mistake: (e) => {
-        return { type: 'warn', name: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.abilityFull({ id: '2515', ...playerDamageFields }),
+      // This deals damage only to non-floating targets.
+      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
   ],

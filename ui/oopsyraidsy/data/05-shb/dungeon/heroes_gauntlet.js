@@ -1,4 +1,7 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+
+import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: Berserker 2nd/3rd wild anguish should be shared with just a rock
 
@@ -52,9 +55,9 @@ export default {
   triggers: [
     {
       id: 'THG Wild Rampage',
-      damageRegex: '5207',
+      netRegex: NetRegexes.abilityFull({ id: '5207', ...playerDamageFields }),
       // This is zero damage if you are in the crater.
-      condition: (e) => e.damage > 0,
+      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },

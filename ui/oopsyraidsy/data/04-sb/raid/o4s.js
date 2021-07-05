@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // O4S - Deltascape 4.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV40Savage,
@@ -36,24 +38,20 @@ export default {
     },
     {
       id: 'O4S2 Blizzard III',
-      damageRegex: '23F8',
-      condition: (e, data) => {
-        // Ignore unavoidable raid aoe Blizzard III.
-        return data.IsPlayerId(e.targetId) && !data.isDecisiveBattleElement;
-      },
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.abilityFull({ id: '23F8', ...playerDamageFields }),
+      // Ignore unavoidable raid aoe Blizzard III.
+      condition: (_e, data) => !data.isDecisiveBattleElement,
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.abilityName };
       },
     },
     {
       id: 'O4S2 Thunder III',
-      damageRegex: '23FD',
-      condition: (e, data) => {
-        // Only consider this during random mechanic after decisive battle.
-        return data.IsPlayerId(e.targetId) && data.isDecisiveBattleElement;
-      },
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.abilityFull({ id: '23FD', ...playerDamageFields }),
+      // Only consider this during random mechanic after decisive battle.
+      condition: (_e, data) => data.isDecisiveBattleElement,
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.abilityName };
       },
     },
     {
@@ -69,17 +67,14 @@ export default {
     },
     {
       id: 'O4S2 Forked Lightning',
-      damageRegex: '242E',
-      condition: (e, data) => data.IsPlayerId(e.targetId),
-      mistake: (e, data) => {
-        const text = e.abilityName + ' => ' + data.ShortName(e.targetName);
-        return { type: 'fail', blame: e.attackerName, text: text };
+      netRegex: NetRegexes.abilityFull({ id: '242E', ...playerDamageFields }),
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
     {
       id: 'O4S2 Double Attack',
-      damageRegex: '241C',
-      condition: (e, data) => data.IsPlayerId(e.targetId),
+      netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
       collectSeconds: 0.5,
       mistake: (e) => {
         if (e.length <= 2)

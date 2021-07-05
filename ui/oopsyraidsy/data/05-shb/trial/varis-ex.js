@@ -1,4 +1,7 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+
+import { playerDamageFields } from '../../../oopsy_common';
 
 export default {
   zoneId: ZoneId.MemoriaMiseraExtreme,
@@ -30,10 +33,10 @@ export default {
   triggers: [
     {
       id: 'VarisEx Terminus Est',
-      damageRegex: '4CB4',
+      netRegex: NetRegexes.abilityFull({ id: '4CB4', ...playerDamageFields }),
       suppressSeconds: 1,
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
   ],

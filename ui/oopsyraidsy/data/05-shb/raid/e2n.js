@@ -1,4 +1,7 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+
+import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: shadoweye failure (top line fail, bottom line success, effect there too)
 // [16:17:35.966] 16:400110FE:Voidwalker:40B7:Shadoweye:10612345:Tini Poutini:F:10000:100190F:
@@ -14,17 +17,17 @@ export default {
   triggers: [
     {
       id: 'E2N Nyx',
-      damageRegex: '3E3D',
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '3E3D', ...playerDamageFields }),
+      mistake: (_e, _data, matches) => {
         return {
           type: 'warn',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'Booped',
-            de: e.abilityName,
+            de: matches.ability, // FIXME
             fr: 'Malus de dégâts',
-            ja: e.abilityName,
-            cn: e.abilityName,
+            ja: matches.ability, // FIXME
+            cn: matches.ability, // FIXME
             ko: '닉스',
           },
         };

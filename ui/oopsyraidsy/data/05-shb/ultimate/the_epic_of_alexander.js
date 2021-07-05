@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: FIX luminous aetheroplasm warning not working
 // TODO: FIX doll death not working
 // TODO: failing hand of pain/parting (check for high damage?)
@@ -58,11 +60,11 @@ export default {
       // Balloon Popping.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
       id: 'TEA Outburst',
-      damageRegex: '482A',
+      netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
       collectSeconds: 0.5,
       suppressSeconds: 5,
-      mistake: (e) => {
-        return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches[0].target, text: matches[0].source };
       },
     },
     {
@@ -70,12 +72,12 @@ export default {
       // When this happens, the target explodes, hitting nearby people
       // but also themselves.
       id: 'TEA Exhaust',
-      damageRegex: '481F',
-      condition: (e) => e.targetName === e.attackerName,
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '481F', ...playerDamageFields }),
+      condition: (_e, _data, matches) => matches.target === matches.source,
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'luminous aetheroplasm',
             de: 'Luminiszentes Ätheroplasma',
@@ -103,12 +105,12 @@ export default {
     },
     {
       id: 'TEA Reducible Complexity',
-      damageRegex: '4821',
-      mistake: (e, data) => {
+      netRegex: NetRegexes.abilityFull({ id: '4821', ...playerDamageFields }),
+      mistake: (_e, data, matches) => {
         return {
           type: 'fail',
           // This may be undefined, which is fine.
-          name: data.jagdTether ? data.jagdTether[e.attackerId] : undefined,
+          name: data.jagdTether ? data.jagdTether[matches.sourceId] : undefined,
           text: {
             en: 'Doll Death',
             de: 'Puppe Tot',
@@ -121,16 +123,10 @@ export default {
     },
     {
       id: 'TEA Drainage',
-      damageRegex: '4827',
-      condition: (e, data) => {
-        // TODO: remove this when ngld overlayplugin is the default
-        if (!data.party.partyNames.length)
-          return false;
-
-        return data.IsPlayerId(e.targetId) && !data.party.isTank(e.targetName);
-      },
-      mistake: (e) => {
-        return { type: 'fail', name: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.abilityFull({ id: '4827', ...playerDamageFields }),
+      condition: (_e, data, matches) => !data.party.isTank(matches.target),
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', name: matches.target, text: matches.ability };
       },
     },
     {

@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields, kFlagInstantDeath } from '../../../oopsy_common';
+
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 export default {
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
@@ -13,17 +15,14 @@ export default {
   triggers: [
     {
       id: 'UCU Twister Death',
-      damageRegex: '26AB',
-      condition: (e, data) => {
-        // Instant death uses '36' as its flags, differentiating
-        // from the explosion damage you take when somebody else
-        // pops one.
-        return data.IsPlayerId(e.targetId) && e.flags === '36';
-      },
-      mistake: (e) => {
+      // Instant death has a special flag value, differentiating
+      // from the explosion damage you take when somebody else
+      // pops one.
+      netRegex: NetRegexes.abilityFull({ id: '26AB', ...playerDamageFields, flags: kFlagInstantDeath }),
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'Twister Pop',
             de: 'Wirbelsturm berührt',
@@ -37,12 +36,11 @@ export default {
     },
     {
       id: 'UCU Thermionic Burst',
-      damageRegex: '26B9',
-      condition: (e, data) => data.IsPlayerId(e.targetId),
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '26B9', ...playerDamageFields }),
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'Pizza Slice',
             de: 'Pizzastück',
@@ -56,15 +54,14 @@ export default {
     },
     {
       id: 'UCU Chain Lightning',
-      damageRegex: '26C8',
-      condition: (e, data) => data.IsPlayerId(e.targetId),
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '26C8', ...playerDamageFields }),
+      mistake: (_e, _data, matches) => {
         // It's hard to assign blame for lightning.  The debuffs
         // go out and then explode in order, but the attacker is
         // the dragon and not the player.
         return {
           type: 'warn',
-          name: e.targetName,
+          name: matches.target,
           text: {
             en: 'hit by lightning',
             de: 'vom Blitz getroffen',
@@ -79,15 +76,15 @@ export default {
     {
       id: 'UCU Burns',
       netRegex: NetRegexes.gainsEffect({ effectId: 'FA' }),
-      mistake: (e) => {
-        return { type: 'warn', blame: e.target, text: e.effect };
+      mistake: (_e, _data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'UCU Sludge',
       netRegex: NetRegexes.gainsEffect({ effectId: '11F' }),
-      mistake: (e) => {
-        return { type: 'fail', blame: e.target, text: e.effect };
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },
     {
@@ -122,13 +119,14 @@ export default {
       id: 'UCU Doom Death',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 1,
-      deathReason: (e, data, matches) => {
+      deathReason: (_e, data, matches) => {
         if (!data.hasDoom || !data.hasDoom[matches.target])
           return;
         let reason;
-        if (e.durationSeconds < 9)
+        const duration = parseFloat(matches.duration);
+        if (duration < 9)
           reason = matches.effect + ' #1';
-        else if (e.durationSeconds < 14)
+        else if (duration < 14)
           reason = matches.effect + ' #2';
         else
           reason = matches.effect + ' #3';

@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // Shinryu Normal
 
 export default {
@@ -40,11 +42,11 @@ export default {
     },
     {
       id: 'Shinryu Tidal Wave',
-      damageRegex: '1F8B',
-      deathReason: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '1F8B', ...playerDamageFields }),
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
-          name: e.targetName,
+          name: matches.target,
           reason: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
@@ -58,11 +60,11 @@ export default {
     {
       // Knockback from center.
       id: 'Shinryu Aerial Blast',
-      damageRegex: '1F90',
-      deathReason: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '1F90', ...playerDamageFields }),
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
-          name: e.targetName,
+          name: matches.target,
           reason: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',

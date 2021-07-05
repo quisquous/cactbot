@@ -1,4 +1,7 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+
+import { playerDamageFields } from '../../../oopsy_common';
 
 // Byakko Extreme
 export default {
@@ -23,12 +26,11 @@ export default {
     {
       // Pink bubble collision
       id: 'ByaEx Ominous Wind',
-      damageRegex: '27EC',
-      condition: (e, data) => data.IsPlayerId(e.targetId),
-      mistake: (e) => {
+      netRegex: NetRegexes.abilityFull({ id: '27EC', ...playerDamageFields }),
+      mistake: (_e, _data, matches) => {
         return {
           type: 'warn',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'bubble collision',
             de: 'Blasen sind zusammengestoßen',

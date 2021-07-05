@@ -1,6 +1,8 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
+import { playerDamageFields } from '../../../oopsy_common';
+
 // TODO: could add Patch warnings for double/unbroken tethers
 // TODO: Hello World could have any warnings (sorry)
 
@@ -77,7 +79,7 @@ export default {
       // 332E = Pile Pitch stack
       // 333E = Electric Slide (Omega-M square 1-4 dashes)
       // 333F = Electric Slide (Omega-F triangle 1-4 dashes)
-      damageRegex: ['332E', '333E', '333F'],
+      netRegex: NetRegexes.abilityFull({ id: ['332E', '333E', '333F'], ...playerDamageFields }),
       condition: (_e, data, matches) => data.vuln && data.vuln[matches.target],
       mistake: (_e, _data, matches) => {
         return {
