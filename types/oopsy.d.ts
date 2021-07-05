@@ -106,3 +106,9 @@ export type LooseOopsyTrigger = Partial<
 export type LooseOopsyCollectTrigger = Partial<
   BaseOopsyCollectTrigger<Data, 'None'> & PartialOopsyTrigger<'None'>
 >;
+
+export type LooseOopsyTriggerSet = Exclude<Partial<OopsyTriggerSet<OopsyData>>, 'triggers' | 'collectTriggers'> & {
+  zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
+  triggers?: LooseOopsyTrigger[];
+  timelineTriggers?: LooseOopsyCollectTrigger[];
+}
