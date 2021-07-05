@@ -539,7 +539,7 @@ export class PopupText {
     }
 
     // User triggers must come last so that they override built-in files.
-    Array.prototype.push.apply(this.triggerSets, this.options.Triggers);
+    this.triggerSets.push(...this.options.Triggers);
   }
 
   OnChangeZone(e: EventResponses['ChangeZone']): void {
