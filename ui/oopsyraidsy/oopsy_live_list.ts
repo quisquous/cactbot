@@ -1,6 +1,7 @@
 import { UnreachableCode } from '../../resources/not_reached';
 import { EventResponses } from '../../types/event';
 
+import { OopsyListView } from './oopsy_list_view';
 import { OopsyOptions } from './oopsy_options';
 
 const kCopiedMessage = {
@@ -12,7 +13,7 @@ const kCopiedMessage = {
   ko: '복사 완료!',
 };
 
-export class OopsyLiveList {
+export class OopsyLiveList implements OopsyListView {
   private container: Element;
   private inCombat = false;
   private numItems = 0;
@@ -77,7 +78,7 @@ export class OopsyLiveList {
     this.scroller.scrollTop = this.scroller.scrollHeight;
   }
 
-  MakeRow(): HTMLElement {
+  private MakeRow(): HTMLElement {
     const div = document.createElement('div');
     div.classList.add('mistake-row');
 
@@ -107,14 +108,14 @@ export class OopsyLiveList {
     return div;
   }
 
-  ShowAllItems(): void {
+  private ShowAllItems(): void {
     for (const item of this.items)
       item.classList.remove('hide');
 
     this.scroller.scrollTop = this.scroller.scrollHeight;
   }
 
-  HideOldItems(): void {
+  private HideOldItems(): void {
     const maxItems = this.options.NumLiveListItemsInCombat;
     for (let i = 0; i < this.items.length - maxItems; ++i)
       this.items[i]?.classList.add('hide');
