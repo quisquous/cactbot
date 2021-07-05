@@ -966,7 +966,27 @@ class Bars {
 
     const type = line[0];
 
-    if (type === '26') {
+    if (type === '00') {
+      const m = this.regexes.countdownStartRegex.exec(log);
+      if (m) {
+        const seconds = parseFloat(m.groups.time);
+        this._setPullCountdown(seconds);
+      }
+      if (this.regexes.countdownCancelRegex.test(log))
+        this._setPullCountdown(0);
+      if (/:test:jobs:/.test(log))
+        this._test();
+      if (Util.isCraftingJob(this.job))
+        this._onCraftingLog(log);
+    } else if (type === '12') {
+      const m = this.regexes.StatsRegex.exec(log);
+      if (m) {
+        const stats = m.groups;
+        this.skillSpeed = parseInt(stats.skillSpeed);
+        this.spellSpeed = parseInt(stats.spellSpeed);
+        this._updateJobBarGCDs();
+      }
+    } else if (type === '26') {
       let m = this.regexes.YouGainEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
@@ -1034,6 +1054,12 @@ class Bars {
         if (this.dotTarget.includes(m.groups.targetId))
           this.lastAttackedDotTarget = m.groups.targetId;
       }
+      if (this.regexes.cordialRegex.test(log)) {
+        this.gpPotion = true;
+        window.setTimeout(() => {
+          this.gpPotion = false;
+        }, 2000);
+      }
     } else if (type === '24') {
       // line[2] is dotted target id.
       // lastAttackedTarget, lastDotTarget may not be maintarget,
@@ -1045,54 +1071,6 @@ class Bars {
         this.updateDotTimerFuncs.forEach((f) => f());
       }
     }
-  }
-
-  _onLogEvent(e) {
-    if (!this.init || !this.regexes)
-      return;
-
-    e.detail.logs.forEach((log) => {
-      // TODO: only consider this when not in battle.
-      if (log[15] === '0') {
-        const m = this.regexes.countdownStartRegex.exec(log);
-        if (m) {
-          const seconds = parseFloat(m.groups.time);
-          this._setPullCountdown(seconds);
-          return;
-        }
-        if (this.regexes.countdownCancelRegex.test(log)) {
-          this._setPullCountdown(0);
-          return;
-        }
-        if (/:test:jobs:/.test(log)) {
-          this._test();
-          return;
-        }
-        if (log[16] === 'C') {
-          const m = this.regexes.StatsRegex.exec(log);
-          if (m) {
-            const stats = m.groups;
-            this.skillSpeed = parseInt(stats.skillSpeed);
-            this.spellSpeed = parseInt(stats.spellSpeed);
-            this._updateJobBarGCDs();
-            return;
-          }
-        }
-        if (Util.isCraftingJob(this.job))
-          this._onCraftingLog(log);
-      } else if (log[15] === '1') {
-        // TODO: consider flags for missing.
-        // flags:damage is 1:0 in most misses.
-        if (log[16] === '5' || log[16] === '6') {
-          if (this.regexes.cordialRegex.test(log)) {
-            this.gpPotion = true;
-            setTimeout(() => {
-              this.gpPotion = false;
-            }, 2000);
-          }
-        }
-      }
-    });
   }
 
   _test() {
@@ -1134,9 +1112,6 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   });
   addOverlayListener('ChangeZone', (e) => {
     bars._onChangeZone(e);
-  });
-  addOverlayListener('onLogEvent', (e) => {
-    bars._onLogEvent(e);
   });
   addOverlayListener('LogLine', (e) => {
     bars._onNetLog(e);
