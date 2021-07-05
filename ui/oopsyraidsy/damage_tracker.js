@@ -545,10 +545,12 @@ export class DamageTracker {
       this.AddSoloTriggers('warn', set.soloWarn);
       this.AddSoloTriggers('fail', set.soloFail);
 
-      if (!set.triggers)
-        set.triggers = [];
-      for (let j = 0; j < set.triggers.length; ++j) {
-        const trigger = set.triggers[j];
+      for (const trigger of set.triggers ?? []) {
+        if (trigger.collectSeconds) {
+          console.error(`${trigger.id ?? '???'} should be in collectTriggers if using collectSeconds.`);
+          continue;
+        }
+
         if ('regex' in trigger) {
           trigger.regex = Regexes.parse(Regexes.anyOf(trigger.regex));
           this.generalTriggers.push(trigger);
@@ -577,6 +579,16 @@ export class DamageTracker {
           trigger.netRegex = Regexes.parse(Regexes.anyOf(trigger.netRegex));
           this.netTriggers.push(trigger);
         }
+      }
+
+      for (const trigger of set.collectTriggers ?? []) {
+        // TODO: For now, treat collectTriggers as netTriggers to simplify implementation.
+        if (!trigger.collectSeconds) {
+          console.error(`${trigger.id ?? '???'} should be in triggers if not using collectSeconds.`);
+          continue;
+        }
+        trigger.netRegex = Regexes.parse(Regexes.anyOf(trigger.netRegex));
+        this.netTriggers.push(trigger);
       }
     }
   }

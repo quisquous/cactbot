@@ -28,6 +28,8 @@ export default {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
+  ],
+  collectTriggers: [
     {
       // Featherlance explosion.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
@@ -35,8 +37,8 @@ export default {
       netRegex: NetRegexes.abilityFull({ id: '2B43', ...playerDamageFields }),
       collectSeconds: 0.5,
       suppressSeconds: 5,
-      mistake: (_e, _data, matches) => {
-        return { type: 'fail', blame: matches[0].target, text: matches[0].source };
+      mistake: (_e, _data, matchesArray) => {
+        return { type: 'fail', blame: matchesArray[0].target, text: matchesArray[0].source };
       },
     },
   ],

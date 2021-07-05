@@ -9,6 +9,7 @@ export const oopsyTriggerSetOutputFields = [
   'soloWarn',
   'soloFail',
   'triggers',
+  'collectTriggers',
 ];
 
 // TODO: use this for testing validity of oopsy trigger sets in the event

@@ -88,6 +88,8 @@ export default {
         return { type: 'fail', blame: data.me, text: matches.line };
       },
     },
+  ],
+  collectTriggers: [
     {
       id: 'Test Poke',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
@@ -96,9 +98,9 @@ export default {
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
       collectSeconds: 5,
-      mistake: (events, data) => {
+      mistake: (_e, data, matchesArray) => {
         // When collectSeconds is specified, events are passed as an array.
-        const pokes = events.length;
+        const pokes = matchesArray.length;
 
         // 1 poke at a time is fine, but more than one inside of
         // collectSeconds is (OBVIOUSLY) a mistake.
