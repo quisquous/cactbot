@@ -452,8 +452,8 @@ export class DamageTracker {
   }
 
   ProcessTrigger(trigger: OopsyTrigger<OopsyData>): void {
-    // This is a bit of a hack, but LooseOopsyTrigger and OopsyTrigger<OopsyData> are not
-    // technically compatible types.  Because the NetMatches['Ability'] require a bunch
+    // This is a bit of a hack, but LooseOopsyTrigger extends OopsyTrigger<OopsyData>
+    // but not vice versa.  Because the NetMatches['Ability'] require a bunch
     // of fields, Matches cannot be assigned to Matches & NetMatches['Ability'].
     const looseTrigger = trigger as LooseOopsyTrigger;
 
