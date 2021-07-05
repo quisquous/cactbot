@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: Dahu 5776 Spit Flame should always hit a Marchosias
@@ -139,14 +140,14 @@ export default {
     },
     {
       id: 'DelubrumSav Golem Compaction',
-      abilityRegex: '5746',
+      netRegex: NetRegexes.ability({ id: '5746' }),
       mistake: (_e, _data, matches) => {
         return { type: 'fail', fullText: `${matches.source}: ${matches.ability}` };
       },
     },
     {
       id: 'DelubrumSav Slime Sanguine Fusion',
-      abilityRegex: '554D',
+      netRegex: NetRegexes.ability({ id: '554D' }),
       mistake: (_e, _data, matches) => {
         return { type: 'fail', fullText: `${matches.source}: ${matches.ability}` };
       },

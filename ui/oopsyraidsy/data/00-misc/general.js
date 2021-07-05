@@ -49,12 +49,12 @@ export default {
     },
     {
       id: 'General Rabbit Medium',
-      abilityRegex: '8E0',
-      condition: (e, data) => data.IsPlayerId(e.attackerId),
-      mistake: (e) => {
+      netRegex: NetRegexes.ability({ id: '8E0' }),
+      condition: (_e, data, matches) => data.IsPlayerId(matches.sourceId),
+      mistake: (_e, _data, matches) => {
         return {
           type: 'warn',
-          blame: e.attackerName,
+          blame: matches.source,
           text: {
             en: 'bunny',
             de: 'Hase',

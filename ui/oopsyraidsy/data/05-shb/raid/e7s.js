@@ -56,9 +56,10 @@ export default {
     {
       // Interrupt
       id: 'E7S Advent Of Light',
-      abilityRegex: '4C6E',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.ability({ id: '4C6E' }),
+      mistake: (_e, _data, matches) => {
+        // TODO: is this blame correct? does this have a target?
+        return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
     {

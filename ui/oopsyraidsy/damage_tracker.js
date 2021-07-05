@@ -57,6 +57,7 @@ export class DamageTracker {
       inCombat: this.inCombat,
       ShortName: (name) => ShortNamify(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
+      DamageFromMatches: (matches) => UnscrambleDamage(matches.damage),
 
       // Deprecated.
       ParseLocaleFloat: parseFloat,

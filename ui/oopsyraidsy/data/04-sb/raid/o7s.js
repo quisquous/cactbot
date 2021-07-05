@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // O7S - Sigmascape 3.0 Savage
@@ -13,9 +14,9 @@ export default {
   triggers: [
     {
       id: 'O7S Stoneskin',
-      abilityRegex: '2AB5',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.ability({ id: '2AB5' }),
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.source, text: matches.ability };
       },
     },
   ],
