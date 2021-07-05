@@ -11,7 +11,7 @@ import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
 import {
-  LooseTrigger, OutputStrings, TriggerSet, TimelineField, TimelineFunc, LooseTriggerSet,
+  LooseTrigger, OutputStrings, TimelineField, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
   Output, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
   GeneralNetRegexTrigger, RegexTrigger,
@@ -515,7 +515,7 @@ export class PopupText {
 
   ProcessDataFiles(files: RaidbossFileData): void {
     this.triggerSets = [];
-    for (const [filename, json] of Object.entries<TriggerSet<RaidbossData>>(files)) {
+    for (const [filename, json] of Object.entries<LooseTriggerSet>(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
@@ -535,7 +535,7 @@ export class PopupText {
         filename: filename,
         ...json,
       };
-      this.triggerSets.push(processedSet as ProcessedTriggerSet);
+      this.triggerSets.push(processedSet);
     }
 
     // User triggers must come last so that they override built-in files.
