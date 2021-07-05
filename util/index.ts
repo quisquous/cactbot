@@ -14,6 +14,22 @@ declare module 'inquirer' {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getArgument = <T = string>(obj: any, propertyName: string): T | undefined => {
+  if (typeof obj === 'undefined' || obj === null)
+    return;
+
+  if (!(propertyName in obj))
+    return;
+
+  const prop = (obj as { [s: string]: unknown })[propertyName] as T;
+
+  if (typeof prop === 'undefined' || prop === null)
+    return;
+
+  return prop;
+};
+
 const dataFilesMap: { readonly [filename: string]: () => Promise<void> } = {
   'effect_id': generateEffectIds,
 };
@@ -78,14 +94,15 @@ findParser.addArgument(['-f', '--filter'], {
 
 inquirer.registerPrompt('fuzzypath', inquirerFuzzyPath);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const run = (args: any) => {
   inquirer.prompt([{
     type: 'list',
     name: 'action',
     message: 'What do you want to do?',
     choices: Object.values(actionChoices),
-    default: args.action ?? undefined,
-    when: () => typeof args.action !== 'string',
+    default: getArgument(args, 'action'),
+    when: () => typeof getArgument(args, 'action') !== 'string',
   }]).then((answer: Answers) => {
     const action = answer.action || args.action;
     if (action === actionChoices.generate.value)
@@ -97,20 +114,22 @@ const run = (args: any) => {
   }).catch(console.error);
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const generateDataFiles = (args: any) => {
   return inquirer.prompt([{
     type: 'list',
     name: 'choice',
     message: 'Which data file do you want to generate?',
     choices: Object.keys(dataFilesMap),
-    default: args.choice ?? undefined,
-    when: () => typeof args.choice !== 'string',
+    default: getArgument(args, 'choice'),
+    when: () => typeof getArgument(args, 'choice') !== 'string',
   }]).then(async (answers: Answers) => {
     if (typeof answers.choice === 'string' && answers.choice in dataFilesMap)
       return await dataFilesMap[answers.choice]?.();
   });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const translateTimelineFunc = (args: any) => {
   return inquirer.prompt([
     {
@@ -118,16 +137,16 @@ const translateTimelineFunc = (args: any) => {
       name: 'timeline',
       message: 'Input a valid timeline filename: ',
       rootPath: 'ui/raidboss/data',
-      default: args.timeline ?? '',
-      when: () => typeof args.timeline !== 'string',
+      default: getArgument(args, 'timeline') ?? '',
+      when: () => typeof getArgument(args, 'timeline') !== 'string',
     },
     {
       type: 'list',
       name: 'locale',
       message: 'Select a locale: ',
       choices: languages,
-      default: args.locale ?? undefined,
-      when: () => typeof args.locale !== 'string',
+      default: getArgument(args, 'locale'),
+      when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
     if (answers.timeline && answers.locale)
@@ -135,6 +154,7 @@ const translateTimelineFunc = (args: any) => {
   });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const findMissingTranslationsFunc = (args: any) => {
   return inquirer.prompt([
     {
@@ -142,16 +162,16 @@ const findMissingTranslationsFunc = (args: any) => {
       name: 'filter',
       message: 'Input a valid trigger JavaScript filename: ',
       rootPath: 'ui/raidboss/data',
-      default: args.filter ?? undefined,
-      when: () => typeof args.filter !== 'string',
+      default: getArgument(args, 'filter'),
+      when: () => typeof getArgument(args, 'filter') !== 'string',
     },
     {
       type: 'list',
       name: 'locale',
       message: 'Select a locale: ',
       choices: languages,
-      default: args.locale ?? undefined,
-      when: () => typeof args.locale !== 'string',
+      default: getArgument(args, 'locale'),
+      when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
     if (answers.filter && answers.locale)
@@ -159,4 +179,4 @@ const findMissingTranslationsFunc = (args: any) => {
   });
 };
 
-run(process.argv.length > 2 ? argumentParser.parseArgs() : {});
+run(process.argv.length > 2 ? argumentParser.parseArgs() : undefined);
