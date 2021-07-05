@@ -68,7 +68,7 @@ export default {
           reason: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
-            fr: 'A été poussé(e) !',
+            fr: 'A été pousser !',
             ja: '落ちた',
             cn: '击退坠落',
           },
