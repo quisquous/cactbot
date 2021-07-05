@@ -144,14 +144,14 @@ export default {
       id: 'DelubrumSav Golem Compaction',
       netRegex: NetRegexes.ability({ id: '5746' }),
       mistake: (_data, matches) => {
-        return { type: 'fail', fullText: `${matches.source}: ${matches.ability}` };
+        return { type: 'fail', text: `${matches.source}: ${matches.ability}` };
       },
     },
     {
       id: 'DelubrumSav Slime Sanguine Fusion',
       netRegex: NetRegexes.ability({ id: '554D' }),
       mistake: (_data, matches) => {
-        return { type: 'fail', fullText: `${matches.source}: ${matches.ability}` };
+        return { type: 'fail', text: `${matches.source}: ${matches.ability}` };
       },
     },
   ],

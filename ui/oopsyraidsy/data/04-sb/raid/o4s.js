@@ -122,7 +122,7 @@ export default {
           return;
         // Hard to know who should be in this and who shouldn't, but
         // it should never hit 3 people.
-        return { type: 'fail', fullText: `${arr[0].ability} x ${arr.length}` };
+        return { type: 'fail', text: `${arr[0].ability} x ${arr.length}` };
       },
       run: (data) => delete data.doubleAttackMatches,
     },
