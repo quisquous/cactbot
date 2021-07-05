@@ -149,17 +149,14 @@ export default {
         };
       },
     },
-  ],
-  collectTriggers: [
     {
       // Balloon Popping.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
       id: 'TEA Outburst',
       netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
-      collectSeconds: 0.5,
       suppressSeconds: 5,
-      mistake: (_e, _data, matchesArray) => {
-        return { type: 'fail', blame: matchesArray[0].target, text: matchesArray[0].source };
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.source };
       },
     },
   ],

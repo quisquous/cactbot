@@ -88,8 +88,17 @@ export default {
         return { type: 'fail', blame: data.me, text: matches.line };
       },
     },
-  ],
-  collectTriggers: [
+    {
+      id: 'Test Poke Collect',
+      netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
+      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?' }),
+      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?' }),
+      netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
+      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
+      run: (_e, data) => {
+        data.pokeCount = (data.pokeCount || 0) + 1;
+      },
+    },
     {
       id: 'Test Poke',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
@@ -97,25 +106,28 @@ export default {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?' }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
-      collectSeconds: 5,
-      mistake: (_e, data, matchesArray) => {
-        // When collectSeconds is specified, events are passed as an array.
-        const pokes = matchesArray.length;
-
+      delaySeconds: 5,
+      mistake: (_e, data) => {
+        if (typeof data.pokeCount === undefined)
+          return;
         // 1 poke at a time is fine, but more than one inside of
         // collectSeconds is (OBVIOUSLY) a mistake.
-        if (pokes <= 1)
+        if (data.pokeCount <= 1)
           return;
-        const text = {
-          en: 'Too many pokes (' + pokes + ')',
-          de: 'Zu viele Piekser (' + pokes + ')',
-          fr: 'Trop de touches (' + pokes + ')',
-          ja: 'いっぱいつついた (' + pokes + ')',
-          cn: '戳太多下啦 (' + pokes + ')',
-          ko: '너무 많이 찌름 (' + pokes + '번)',
+        return {
+          type: 'fail',
+          blame: data.me,
+          text: {
+            en: `Too many pokes (${data.pokeCount})`,
+            de: `Zu viele Piekser (${data.pokeCount})`,
+            fr: `Trop de touches (${data.pokeCount})`,
+            ja: `いっぱいつついた (${data.pokeCount})`,
+            cn: `戳太多下啦 (${data.pokeCount})`,
+            ko: `너무 많이 찌름 (${data.pokeCount}번)`,
+          },
         };
-        return { type: 'fail', blame: data.me, text: text };
       },
+      run: (_e, data) => delete data.pokeCount,
     },
   ],
 };

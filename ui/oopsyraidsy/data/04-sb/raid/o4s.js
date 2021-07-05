@@ -103,19 +103,28 @@ export default {
         };
       },
     },
-  ],
-  collectTriggers: [
+    {
+      id: 'O4S2 Double Attack Collect',
+      netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
+      run: (_e, data, matches) => {
+        data.doubleAttackMatches = data.doubleAttackMatches || [];
+        data.doubleAttackMatches.push(matches);
+      },
+    },
     {
       id: 'O4S2 Double Attack',
       netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
-      collectSeconds: 0.5,
-      mistake: (_evts, _data, matchesArray) => {
-        if (matchesArray.length <= 2)
+      mistake: (_e, data) => {
+        const arr = data.doubleAttackMatches;
+        if (!arr)
+          return;
+        if (arr.length <= 2)
           return;
         // Hard to know who should be in this and who shouldn't, but
         // it should never hit 3 people.
-        return { type: 'fail', fullText: `${matchesArray[0].ability}  x ${matchesArray.length}` };
+        return { type: 'fail', fullText: `${arr[0].ability}  x ${arr.length}` };
       },
+      run: (_e, data) => delete data.doubleAttackMatches,
     },
   ],
 };
