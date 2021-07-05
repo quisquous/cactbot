@@ -21,7 +21,7 @@ export class DamageTracker {
     this.inCombat = false;
     this.ignoreZone = false;
     this.timers = [];
-    this.netTriggers = [];
+    this.triggers = [];
 
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
@@ -72,7 +72,7 @@ export class DamageTracker {
       return;
 
     const line = e.rawLine;
-    for (const trigger of this.netTriggers) {
+    for (const trigger of this.triggers) {
       const matches = line.match(trigger.netRegex);
       if (matches)
         this.OnTrigger(trigger, { line: line }, matches);
@@ -244,8 +244,7 @@ export class DamageTracker {
   AddSimpleTriggers(type, dict) {
     if (!dict)
       return;
-    const keys = Object.keys(dict);
-    for (const key of keys) {
+    for (const key in dict) {
       const id = dict[key];
       const trigger = {
         id: key,
@@ -255,15 +254,14 @@ export class DamageTracker {
           return { type: type, blame: matches.target, text: matches.ability };
         },
       };
-      this.damageTriggers.push(trigger);
+      this.triggers.push(trigger);
     }
   }
 
   AddGainsEffectTriggers(type, dict) {
     if (!dict)
       return;
-    const keys = Object.keys(dict);
-    for (const key of keys) {
+    for (const key in dict) {
       const id = dict[key];
       const trigger = {
         id: key,
@@ -273,7 +271,7 @@ export class DamageTracker {
           return { type: type, blame: matches.target, text: matches.effect };
         },
       };
-      this.netTriggers.push(trigger);
+      this.triggers.push(trigger);
     }
   }
 
@@ -282,8 +280,7 @@ export class DamageTracker {
   AddShareTriggers(type, dict) {
     if (!dict)
       return;
-    const keys = Object.keys(dict);
-    for (const key of keys) {
+    for (const key in dict) {
       const id = dict[key];
       const trigger = {
         id: key,
@@ -293,15 +290,14 @@ export class DamageTracker {
           return { type: type, blame: e.targetName, text: e.abilityName };
         },
       };
-      this.damageTriggers.push(trigger);
+      this.triggers.push(trigger);
     }
   }
 
   AddSoloTriggers(type, dict) {
     if (!dict)
       return;
-    const keys = Object.keys(dict);
-    for (const key of keys) {
+    for (const key in dict) {
       const id = dict[key];
       const trigger = {
         id: key,
@@ -322,7 +318,7 @@ export class DamageTracker {
           };
         },
       };
-      this.damageTriggers.push(trigger);
+      this.triggers.push(trigger);
     }
   }
 
@@ -335,7 +331,7 @@ export class DamageTracker {
 
     this.Reset();
 
-    this.netTriggers = [];
+    this.triggers = [];
 
     this.ignoreZone = this.options.IgnoreContentTypes.includes(this.contentType) ||
       this.options.IgnoreZoneIds.includes(this.zoneId);
@@ -396,12 +392,11 @@ export class DamageTracker {
 
       for (const trigger of set.triggers ?? []) {
         const regex = trigger.netRegex;
-        if (!regex) {
-          console.error(`${trigger.id ?? '???'} missing netRegex field.`);
+        // Some oopsy triggers (e.g. early pull) have only an id.
+        if (!regex)
           continue;
-        }
         trigger.netRegex = Regexes.parse(Regexes.anyOf(regex));
-        this.netTriggers.push(trigger);
+        this.triggers.push(trigger);
       }
     }
   }
