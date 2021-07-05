@@ -1086,7 +1086,7 @@ class Bars {
         if (log[16] === '5' || log[16] === '6') {
           if (this.regexes.cordialRegex.test(log)) {
             this.gpPotion = true;
-            setTimeout(() => {
+            window.setTimeout(() => {
               this.gpPotion = false;
             }, 2000);
           }

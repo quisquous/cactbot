@@ -428,7 +428,7 @@ export default class TimerBox extends HTMLElement {
     this._start = new Date().getTime();
 
     for (const f of this._onResetCallbacks)
-      setTimeout(f, 0);
+      window.setTimeout(f, 0);
 
     this.advance();
   }
@@ -442,7 +442,7 @@ export default class TimerBox extends HTMLElement {
       // the ability is activated.
       if (this._duration > 0) {
         for (const f of this._onExpiredCallbacks)
-          setTimeout(f, 0);
+          window.setTimeout(f, 0);
       }
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
@@ -462,7 +462,7 @@ export default class TimerBox extends HTMLElement {
     const remainingTime = Math.max(0, this._duration - elapsedSec);
     if (remainingTime <= this._threshold && this._notifyThresholdCallbacks && this._duration > 0) {
       for (const f of this._onThresholdCallbacks)
-        setTimeout(f, 0);
+        window.setTimeout(f, 0);
       this._notifyThresholdCallbacks = false;
     }
 

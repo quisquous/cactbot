@@ -52,7 +52,7 @@ export function setup(bars) {
     technicalStep.duration = 20;
     technicalStep.threshold = 1000;
     technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep.active');
-    tid1 = setTimeout(() => {
+    tid1 = window.setTimeout(() => {
       technicalIsActive = false;
       technicalStep.duration = 100 - elapsed;
       technicalStep.threshold = bars.gcdSkill + 1;
@@ -73,7 +73,7 @@ export function setup(bars) {
     flourishIsActive = true;
     flourish.threshold = 1000;
     flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish.active');
-    tid2 = setTimeout(() => {
+    tid2 = window.setTimeout(() => {
       flourish.duration = 40;
       flourishIsActive = false;
       flourish.threshold = bars.gcdSkill + 1;
