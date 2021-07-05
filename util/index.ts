@@ -169,7 +169,7 @@ const findMissingTranslationsFunc = (args: any) => {
       when: () => typeof getArgument(args, 'filter') !== 'string',
     },
     {
-      type: 'list',
+      type: 'checkbox',
       name: 'locale',
       message: 'Select a locale: ',
       choices: languages,
