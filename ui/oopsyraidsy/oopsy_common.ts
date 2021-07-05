@@ -81,9 +81,12 @@ Examples:
 
 /* eslint-enable */
 
-export const ShortNamify = (name: string, playerNicks: { [name: string]: string }): string => {
+export const ShortNamify = (name: string | undefined,
+    playerNicks: { [name: string]: string }): string => {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
+  if (!name)
+    return '???';
 
   const nick = playerNicks[name];
   if (nick)
@@ -96,9 +99,7 @@ export const ShortNamify = (name: string, playerNicks: { [name: string]: string 
 // Turns a scrambled string damage field into an integer.
 // Since fields are modified in place right now, this does nothing if called
 // again with an integer.  This is kind of a hack, sorry.
-export const UnscrambleDamage = (field: string | number): string | number => {
-  if (typeof field !== 'string')
-    return field;
+export const UnscrambleDamage = (field: string): number => {
   const len = field.length;
   if (len <= 4)
     return 0;
@@ -113,7 +114,9 @@ export const UnscrambleDamage = (field: string | number): string | number => {
   return damage;
 };
 
-export const IsPlayerId = (id: string): boolean => {
+export const IsPlayerId = (id?: string): boolean => {
+  if (id === undefined)
+    return false;
   const firstChar = id[0];
   return firstChar ? firstChar < '4' : false;
 };

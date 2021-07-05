@@ -1,28 +1,63 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
-import { LocaleNetRegex } from '../../resources/translations';
 import NetRegexes from '../../resources/netregexes';
+import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
+import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
+import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
+import { OopsyData } from '../../types/data';
+import { EventResponses } from '../../types/event';
+import { Job, Role } from '../../types/job';
+import { Matches, NetMatches } from '../../types/net_matches';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
+import { LooseOopsyTrigger, LooseOopsyTriggerSet, MistakeMap, OopsyEvent, OopsyField, OopsyMistakeType, OopsyTrigger, OopsyTriggerField, OopsyDeathReason, OopsyMistake } from '../../types/oopsy';
+import { ZoneId as ZoneIdType } from '../../types/trigger';
 
+import { OopsyFileData } from './data/oopsy_manifest.txt';
+import { MistakeCollector } from './mistake_collector';
 import {
   ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled,
-  kFieldFlags, kFieldDamage, kShiftFlagValues, kFlagInstantDeath, kAttackFlags, playerDamageFields,
+  kFieldFlags, kShiftFlagValues, kFlagInstantDeath, kAttackFlags, playerDamageFields,
 } from './oopsy_common';
+import { OopsyOptions } from './oopsy_options';
+
+const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
+
+type ProcessedOopsyTriggerSet = LooseOopsyTriggerSet & {
+  filename?: string;
+};
+
+type ProcessedOopsyTrigger = LooseOopsyTrigger & {
+  localRegex: RegExp;
+};
 
 export class DamageTracker {
-  constructor(options, collector, dataFiles) {
-    this.options = options;
-    this.collector = collector;
-    this.dataFiles = dataFiles;
-    this.triggerSets = null;
-    this.inCombat = false;
-    this.ignoreZone = false;
-    this.timers = [];
-    this.triggers = [];
+  private triggerSets: ProcessedOopsyTriggerSet[] | undefined = undefined;
+  private inCombat = false;
+  private ignoreZone = false;
+  private timers: number[] = [];
+  private triggers: ProcessedOopsyTrigger[] = [];
+  private partyTracker: PartyTracker;
+  private countdownEngageRegex: RegExp;
+  private countdownStartRegex: RegExp;
+  private countdownCancelRegex: RegExp;
+  private defeatedRegex: CactbotBaseRegExp<'WasDefeated'>;
+  private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
+  private lastDamage: { [name: string]: Partial<NetMatches['Ability']> } = {};
+  private triggerSuppress: { [ triggerId: string]: number } = {};
+  private data: OopsyData;
 
+  private job: Job = 'NONE';
+  private role: Role = 'none';
+  private me: string | undefined;
+  private zoneName: string | undefined;
+  private zoneId: ZoneIdType = ZoneId.MatchAll;
+  private contentType = 0;
+
+  constructor(private options: OopsyOptions, private collector: MistakeCollector,
+      private dataFiles: OopsyFileData) {
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
@@ -38,42 +73,45 @@ export class DamageTracker {
     this.defeatedRegex = NetRegexes.wasDefeated();
     this.abilityFullRegex = NetRegexes.abilityFull();
 
+    this.data = this.GetDataObject();
     this.Reset();
   }
 
-  // TODO: this shouldn't clear timers and triggers
-  // TODO: seems like some reloads are causing the /poke test to get undefined
-  Reset() {
-    this.data = {
-      me: this.me,
+  GetDataObject(): OopsyData {
+    return {
+      me: this.me ?? '',
       job: this.job,
       role: this.role,
       party: this.partyTracker,
       inCombat: this.inCombat,
-      ShortName: (name) => ShortNamify(name, this.options.PlayerNicks),
+      ShortName: (name?: string) => ShortNamify(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
-      DamageFromMatches: (matches) => UnscrambleDamage(matches.damage),
+      DamageFromMatches: (matches: NetMatches['Ability']) => UnscrambleDamage(matches?.damage),
 
       // Deprecated.
       ParseLocaleFloat: parseFloat,
     };
+  }
+
+  // TODO: this shouldn't clear timers and triggers
+  // TODO: seems like some reloads are causing the /poke test to get undefined
+  Reset(): void {
+    this.data = this.GetDataObject();
     this.lastDamage = {};
-    // Trigger ID -> { events: [], matches: [] }
-    this.activeTriggers = {};
     this.triggerSuppress = {};
 
-    for (let i = 0; i < this.timers.length; ++i)
-      window.clearTimeout(this.timers[i]);
+    for (const timer of this.timers)
+      window.clearTimeout(timer);
     this.timers = [];
   }
 
-  OnNetLog(e) {
+  OnNetLog(e: EventResponses['LogLine']): void {
     if (this.ignoreZone)
       return;
 
     const line = e.rawLine;
     for (const trigger of this.triggers) {
-      const matches = line.match(trigger.netRegex);
+      const matches = trigger.localRegex.exec(line);
       if (matches)
         this.OnTrigger(trigger, { line: line }, matches);
     }
@@ -93,9 +131,9 @@ export class DamageTracker {
     }
   }
 
-  OnDefeated(line) {
-    const matches = line.match(this.defeatedRegex);
-    if (!matches)
+  private OnDefeated(line: string): void {
+    const matches = this.defeatedRegex.exec(line);
+    if (!matches || !matches.groups)
       return;
     const name = matches.groups.target;
 
@@ -114,11 +152,11 @@ export class DamageTracker {
       this.collector.AddDeath(name, last);
   }
 
-  OnAbilityEvent(line, splitLine) {
+  private OnAbilityEvent(line: string, splitLine: string[]): void {
     // This is kind of obnoxious to have to regex match every ability line that's already split.
     // But, it turns it into a usable match object.
-    const lineMatches = line.match(this.abilityFullRegex);
-    if (!lineMatches)
+    const lineMatches = this.abilityFullRegex.exec(line);
+    if (!lineMatches || !lineMatches.groups)
       return;
 
     const matches = lineMatches.groups;
@@ -126,9 +164,10 @@ export class DamageTracker {
     // Shift damage and flags forward for mysterious spurious :3E:0:.
     // Plenary Indulgence also appears to prepend confession stacks.
     // UNKNOWN: Can these two happen at the same time?
-    if (kShiftFlagValues.includes(splitLine[kFieldFlags])) {
-      matches.flags = splitLine[kFieldFlags + 2];
-      matches.damage = splitLine[kFieldFlags + 3];
+    const origFlags = splitLine[kFieldFlags];
+    if (origFlags && kShiftFlagValues.includes(origFlags)) {
+      matches.flags = splitLine[kFieldFlags + 2] ?? matches.flags;
+      matches.damage = splitLine[kFieldFlags + 3] ?? matches.damage;
     }
 
     // Length 1 or 2.
@@ -147,106 +186,123 @@ export class DamageTracker {
       this.lastDamage[matches.target] = matches;
   }
 
-  AddImpliedDeathReason(obj) {
-    if (!obj)
+  AddImpliedDeathReason(obj?: OopsyDeathReason): void {
+    if (!obj || !obj.name)
       return;
     this.lastDamage[obj.name] = {
       target: obj.name,
-      ability: obj.reason,
+      ability: this.collector.Translate(obj.reason),
       flags: kFlagInstantDeath,
-      damage: 0,
+      damage: '0',
     };
   }
 
-  OnTrigger(trigger, evt, matches) {
+  OnTrigger(trigger: LooseOopsyTrigger, evt: OopsyEvent, execMatches: RegExpExecArray): void {
     const triggerTime = Date.now();
+
+    // TODO: turn this into a helper?? this was copied/pasted from popup-text.js
 
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if (matches && matches.groups)
-      matches = matches.groups;
+    let matches: Matches = {};
+    // If using named groups, treat matches.groups as matches
+    // so triggers can do things like matches.target.
+    if (execMatches && execMatches.groups) {
+      matches = execMatches.groups;
+    } else if (execMatches) {
+      // If there are no matching groups, reproduce the old js logic where
+      // groups ended up as the original RegExpExecArray object
+      execMatches.forEach((value, idx) => {
+        matches[idx] = value;
+      });
+    }
 
     if (trigger.id) {
       if (!IsTriggerEnabled(this.options, trigger.id))
         return;
 
       if (trigger.id in this.triggerSuppress) {
-        if (this.triggerSuppress[trigger.id] > triggerTime)
+        const suppressTime = this.triggerSuppress[trigger.id];
+        if (suppressTime && suppressTime > triggerTime)
           return;
         delete this.triggerSuppress[trigger.id];
       }
     }
 
-    if ('condition' in trigger) {
-      if (!trigger.condition(evt, this.data, matches))
-        return;
-    }
-
-    const ValueOrFunction = (f, events, matches) => {
+    const ValueOrFunction = (f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
+        events: OopsyEvent, matches: Matches) => {
       return (typeof f === 'function') ? f(events, this.data, matches) : f;
     };
 
+    if ('condition' in trigger) {
+      const condition = ValueOrFunction(trigger.condition, evt, matches);
+      if (!condition)
+        return;
+    }
+
     const delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
 
-    const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
-    if (trigger.id && suppress > 0)
+    const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds, evt, matches) : 0;
+    if (trigger.id && typeof suppress === 'number' && suppress > 0)
       this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
 
-    const f = (function() {
+    const f = (() => {
       if ('mistake' in trigger) {
         const m = ValueOrFunction(trigger.mistake, evt, matches);
-        if (Array.isArray(m)) {
-          for (let i = 0; i < m.length; ++i)
-            this.collector.OnMistakeObj(m[i]);
-        } else {
-          this.collector.OnMistakeObj(m);
+        if (typeof m === 'object') {
+          if (Array.isArray(m)) {
+            for (let i = 0; i < m.length; ++i)
+              this.collector.OnMistakeObj(m[i]);
+          } else if (isOopsyMistake(m)) {
+            this.collector.OnMistakeObj(m);
+          }
         }
       }
       if ('deathReason' in trigger) {
         const ret = ValueOrFunction(trigger.deathReason, evt, matches);
-        if (ret) {
-          ret.reason = this.collector.Translate(ret.reason);
-          this.AddImpliedDeathReason(ret);
+        if (ret && typeof ret === 'object' && !Array.isArray(ret)) {
+          if (!isOopsyMistake(ret))
+            this.AddImpliedDeathReason(ret);
         }
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, evt, matches);
-    }).bind(this);
+    });
 
-    if (!delay)
+    if (!delay || typeof delay !== 'number')
       f();
     else
       this.timers.push(window.setTimeout(f, delay * 1000));
   }
 
-  OnPartyWipeEvent(e) {
+  OnPartyWipeEvent(): void {
     if (this.ignoreZone)
       return;
     this.Reset();
-    this.collector.OnPartyWipeEvent(e);
+    this.collector.OnPartyWipeEvent();
   }
 
-  OnChangeZone(e) {
+  OnChangeZone(e: EventResponses['ChangeZone']): void {
     this.zoneName = e.zoneName;
     this.zoneId = e.zoneID;
 
     const zoneInfo = ZoneInfo[this.zoneId];
-    this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+    this.contentType = zoneInfo?.contentType ?? 0;
 
     this.ReloadTriggers();
   }
 
-  OnInCombatChangedEvent(e) {
+  OnInCombatChangedEvent(e: EventResponses['onInCombatChangedEvent']): void {
     this.inCombat = e.detail.inGameCombat;
     this.data.inCombat = this.inCombat;
   }
 
-  AddSimpleTriggers(type, dict) {
+  private AddSimpleTriggers(type: OopsyMistakeType, dict?: MistakeMap): void {
     if (!dict)
       return;
     for (const key in dict) {
       const id = dict[key];
-      const trigger = {
+      const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ id: id, ...playerDamageFields }),
@@ -254,16 +310,16 @@ export class DamageTracker {
           return { type: type, blame: matches.target, text: matches.ability };
         },
       };
-      this.triggers.push(trigger);
+      this.ProcessTrigger(trigger);
     }
   }
 
-  AddGainsEffectTriggers(type, dict) {
+  private AddGainsEffectTriggers(type: OopsyMistakeType, dict?: MistakeMap): void {
     if (!dict)
       return;
     for (const key in dict) {
       const id = dict[key];
-      const trigger = {
+      const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'GainsEffect',
         netRegex: NetRegexes.gainsEffect({ effectId: id }),
@@ -271,18 +327,18 @@ export class DamageTracker {
           return { type: type, blame: matches.target, text: matches.effect };
         },
       };
-      this.triggers.push(trigger);
+      this.ProcessTrigger(trigger);
     }
   }
 
   // Helper function for "double tap" shares where multiple players share
   // damage when it should only be on one person, such as a spread mechanic.
-  AddShareTriggers(type, dict) {
+  AddShareTriggers(type: OopsyMistakeType, dict?: MistakeMap): void {
     if (!dict)
       return;
     for (const key in dict) {
       const id = dict[key];
-      const trigger = {
+      const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
@@ -290,16 +346,16 @@ export class DamageTracker {
           return { type: type, blame: matches.target, text: matches.ability };
         },
       };
-      this.triggers.push(trigger);
+      this.ProcessTrigger(trigger);
     }
   }
 
-  AddSoloTriggers(type, dict) {
+  AddSoloTriggers(type: OopsyMistakeType, dict?: MistakeMap): void {
     if (!dict)
       return;
     for (const key in dict) {
       const id = dict[key];
-      const trigger = {
+      const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '21', id: id, ...playerDamageFields }),
@@ -318,11 +374,11 @@ export class DamageTracker {
           };
         },
       };
-      this.triggers.push(trigger);
+      this.ProcessTrigger(trigger);
     }
   }
 
-  ReloadTriggers() {
+  ReloadTriggers(): void {
     this.ProcessDataFiles();
 
     // Wait for datafiles / jobs / zone events / localization.
@@ -343,8 +399,8 @@ export class DamageTracker {
         if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
           continue;
       } else if ('zoneRegex' in set) {
-        const zoneError = (s) => {
-          console.error(s + ': ' + JSON.stringify(set.zoneRegex) + ' in ' + set.filename);
+        const zoneError = (s: string) => {
+          console.error(`${s}: ${JSON.stringify(set.zoneRegex)} in ${set.filename ?? '???'}`);
         };
 
         let zoneRegex = set.zoneRegex;
@@ -376,7 +432,7 @@ export class DamageTracker {
 
       if (this.options.Debug) {
         if (set.filename)
-          console.log('Loading ' + set.filename);
+          console.log(`Loading ${set.filename}`);
         else
           console.log('Loading user triggers for zone');
       }
@@ -390,18 +446,28 @@ export class DamageTracker {
       this.AddSoloTriggers('warn', set.soloWarn);
       this.AddSoloTriggers('fail', set.soloFail);
 
-      for (const trigger of set.triggers ?? []) {
-        const regex = trigger.netRegex;
-        // Some oopsy triggers (e.g. early pull) have only an id.
-        if (!regex)
-          continue;
-        trigger.netRegex = Regexes.parse(Regexes.anyOf(regex));
-        this.triggers.push(trigger);
-      }
+      for (const trigger of set.triggers ?? [])
+        this.ProcessTrigger(trigger);
     }
   }
 
-  OnPlayerChange(e) {
+  ProcessTrigger(trigger: OopsyTrigger<OopsyData>): void {
+    // This is a bit of a hack, but LooseOopsyTrigger and OopsyTrigger<OopsyData> are not
+    // technically compatible types.  Because the NetMatches['Ability'] require a bunch
+    // of fields, Matches cannot be assigned to Matches & NetMatches['Ability'].
+    const looseTrigger = trigger as LooseOopsyTrigger;
+
+    const regex = looseTrigger.netRegex;
+    // Some oopsy triggers (e.g. early pull) have only an id.
+    if (!regex)
+      return;
+    this.triggers.push({
+      ...looseTrigger,
+      localRegex: Regexes.parse(Array.isArray(regex) ? Regexes.anyOf(regex) : regex),
+    });
+  }
+
+  OnPlayerChange(e: PlayerChangedDetail): void {
     if (this.job === e.detail.job && this.me === e.detail.name)
       return;
 
@@ -411,7 +477,7 @@ export class DamageTracker {
     this.ReloadTriggers();
   }
 
-  ProcessDataFiles() {
+  ProcessDataFiles(): void {
     // Only run this once.
     if (this.triggerSets)
       return;
@@ -419,8 +485,7 @@ export class DamageTracker {
       return;
 
     this.triggerSets = this.options.Triggers;
-    for (const filename in this.dataFiles) {
-      const json = this.dataFiles[filename];
+    for (const [filename, json] of Object.entries<LooseOopsyTriggerSet>(this.dataFiles)) {
       if (typeof json !== 'object') {
         console.error('Unexpected JSON from ' + filename + ', expected an object');
         continue;
@@ -432,14 +497,18 @@ export class DamageTracker {
         continue;
       }
 
-      json.filename = filename;
       if ('triggers' in json) {
         if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
           console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
           continue;
         }
       }
-      this.triggerSets.push(json);
+
+      const set = {
+        filename: filename,
+        ...json,
+      };
+      this.triggerSets.push(set);
     }
     this.ReloadTriggers();
   }
