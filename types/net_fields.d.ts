@@ -1,5 +1,5 @@
 type Fields = {
-  event: 0;
+  type: 0;
   timestamp: 1;
 };
 
