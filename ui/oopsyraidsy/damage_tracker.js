@@ -9,7 +9,7 @@ import ZoneInfo from '../../resources/zone_info';
 
 import {
   ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled,
-  kFieldFlags, kFieldDamage, kShiftFlagValues, kFlagInstantDeath, kAttackFlags,
+  kFieldFlags, kFieldDamage, kShiftFlagValues, kFlagInstantDeath, kAttackFlags, playerDamageFields,
 } from './oopsy_common';
 
 export class DamageTracker {
@@ -21,11 +21,6 @@ export class DamageTracker {
     this.inCombat = false;
     this.ignoreZone = false;
     this.timers = [];
-    this.generalTriggers = [];
-    this.damageTriggers = [];
-    this.abilityTriggers = [];
-    this.effectTriggers = [];
-    this.healTriggers = [];
     this.netTriggers = [];
 
     this.partyTracker = new PartyTracker();
@@ -91,24 +86,10 @@ export class DamageTracker {
         this.collector.AddEngage();
       if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
         this.collector.Reset();
-    } else if (type === '26') {
-      this.OnEffectEvent(line);
     } else if (type === '21' || type === '22') {
       this.OnAbilityEvent(line, splitLine);
     } else if (type === '25') {
       this.OnDefeated(line);
-    }
-  }
-
-  OnLogEvent(e) {
-    if (this.ignoreZone || this.generalTriggers.length === 0)
-      return;
-    for (const line of e.detail.logs) {
-      for (const trigger of this.generalTriggers) {
-        const matches = line.match(trigger.regex);
-        if (matches)
-          this.OnTrigger(trigger, { line: line }, matches);
-      }
     }
   }
 
@@ -134,6 +115,8 @@ export class DamageTracker {
   }
 
   OnAbilityEvent(line, splitLine) {
+    // This is kind of obnoxious to have to regex match every ability line that's already split.
+    // But, it turns it into a usable match object.
     const lineMatches = line.match(this.abilityFullRegex);
     if (!lineMatches)
       return;
@@ -148,34 +131,10 @@ export class DamageTracker {
       matches.damage = splitLine[kFieldFlags + 3];
     }
 
-    // Lazy initialize event.
-    let evt;
-
-    const abilityId = matches.id;
-    for (const trigger of this.abilityTriggers) {
-      if (!trigger.idRegex.test(abilityId))
-        continue;
-      if (!evt)
-        evt = this.ProcessMatchesIntoEvent(line, matches);
-      this.OnTrigger(trigger, evt, matches);
-    }
-
     // Length 1 or 2.
     let lowByte = matches.flags.substr(-2);
     if (lowByte.length === 1)
       lowByte = '0' + lowByte;
-
-    // Healing?
-    if (lowByte === '04') {
-      for (const trigger of this.healTriggers) {
-        if (!trigger.idRegex.test(abilityId))
-          continue;
-        if (!evt)
-          evt = this.ProcessMatchesIntoEvent(line, matches);
-        this.OnTrigger(trigger, evt, matches);
-      }
-      return;
-    }
 
     if (!kAttackFlags.includes(lowByte))
       return;
@@ -186,74 +145,6 @@ export class DamageTracker {
 
     if (IsPlayerId(matches.targetId))
       this.lastDamage[matches.target] = matches;
-
-    for (const trigger of this.damageTriggers) {
-      if (!trigger.idRegex.test(abilityId))
-        continue;
-      if (!evt)
-        evt = this.ProcessMatchesIntoEvent(line, matches);
-      this.OnTrigger(trigger, evt, matches);
-    }
-  }
-
-  OnEffectEvent(line) {
-    let evt;
-    for (const trigger of this.effectTriggers) {
-      let matches;
-      let isGainLine;
-      if (trigger.gainRegex) {
-        matches = line.match(trigger.gainRegex);
-        if (matches)
-          isGainLine = true;
-      }
-      if (!matches && trigger.loseRegex) {
-        matches = line.match(trigger.loseRegex);
-        if (matches)
-          isGainLine = false;
-      }
-      if (!matches)
-        continue;
-
-      const g = matches.groups;
-      if (!evt) {
-        evt = {
-          targetName: g.target,
-          effectName: g.effect,
-          attackerName: g.source,
-          gains: isGainLine,
-          durationSeconds: g.duration,
-        };
-      }
-      this.OnTrigger(trigger, evt, g);
-    }
-  }
-
-  // This function does too much, but it's a way to do one-time work if any trigger
-  // matches without having to do that work on every single ability line.
-  // This should only be called once per matches object as it modifies it.
-  ProcessMatchesIntoEvent(line, matches) {
-    const abilityId = matches.id;
-    if (abilityId in this.options.AbilityIdNameMap)
-      matches.ability = this.options.AbilityIdNameMap[abilityId];
-
-    matches.damage = UnscrambleDamage(matches.damage);
-
-    return {
-      line: line,
-      // Convert from network log decimal id to parsed log hex id for backwards compat.
-      type: matches.type === '21' ? '15' : '16',
-      attackerId: matches.sourceId,
-      attackerName: matches.source,
-      abilityId: matches.id,
-      abilityName: matches.ability,
-      targetId: matches.targetId,
-      targetName: matches.target,
-      flags: matches.flags,
-      damage: matches.damage,
-      targetCurrentHp: matches.targetCurrentHp,
-      targetMaxHp: matches.targetMaxHp,
-      damageStr: matches.damage,
-    };
   }
 
   AddImpliedDeathReason(obj) {
@@ -358,12 +249,10 @@ export class DamageTracker {
       const id = dict[key];
       const trigger = {
         id: key,
-        damageRegex: id,
-        idRegex: Regexes.parse('^' + id + '$'),
-        mistake: function(e, data) {
-          if (!IsPlayerId(e.targetId))
-            return;
-          return { type: type, blame: e.targetName, text: e.abilityName };
+        type: 'Ability',
+        netRegex: NetRegexes.abilityFull({ id: id, ...playerDamageFields }),
+        mistake: (_e, _data, matches) => {
+          return { type: type, blame: matches.target, text: matches.ability };
         },
       };
       this.damageTriggers.push(trigger);
@@ -378,8 +267,9 @@ export class DamageTracker {
       const id = dict[key];
       const trigger = {
         id: key,
+        type: 'GainsEffect',
         netRegex: NetRegexes.gainsEffect({ effectId: id }),
-        mistake: function(e, data, matches) {
+        mistake: function(_e, _data, matches) {
           return { type: type, blame: matches.target, text: matches.effect };
         },
       };
@@ -393,14 +283,12 @@ export class DamageTracker {
     if (!dict)
       return;
     const keys = Object.keys(dict);
-    const condFunc = (e) => e.type !== '15';
     for (const key of keys) {
       const id = dict[key];
       const trigger = {
         id: key,
-        damageRegex: id,
-        condition: condFunc,
-        idRegex: Regexes.parse('^' + id + '$'),
+        type: 'Ability',
+        netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
         mistake: function(e, data) {
           return { type: type, blame: e.targetName, text: e.abilityName };
         },
@@ -413,14 +301,12 @@ export class DamageTracker {
     if (!dict)
       return;
     const keys = Object.keys(dict);
-    const condFunc = (e) => e.type !== '16';
     for (const key of keys) {
       const id = dict[key];
       const trigger = {
         id: key,
-        damageRegex: id,
-        condition: condFunc,
-        idRegex: Regexes.parse('^' + id + '$'),
+        type: 'Ability',
+        netRegex: NetRegexes.abilityFull({ type: '21', id: id, ...playerDamageFields }),
         mistake: function(e, data) {
           return {
             type: type,
@@ -449,11 +335,6 @@ export class DamageTracker {
 
     this.Reset();
 
-    this.generalTriggers = [];
-    this.damageTriggers = [];
-    this.abilityTriggers = [];
-    this.effectTriggers = [];
-    this.healTriggers = [];
     this.netTriggers = [];
 
     this.ignoreZone = this.options.IgnoreContentTypes.includes(this.contentType) ||
@@ -514,34 +395,13 @@ export class DamageTracker {
       this.AddSoloTriggers('fail', set.soloFail);
 
       for (const trigger of set.triggers ?? []) {
-        if ('regex' in trigger) {
-          trigger.regex = Regexes.parse(Regexes.anyOf(trigger.regex));
-          this.generalTriggers.push(trigger);
+        const regex = trigger.netRegex;
+        if (!regex) {
+          console.error(`${trigger.id ?? '???'} missing netRegex field.`);
+          continue;
         }
-        if ('damageRegex' in trigger) {
-          trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.damageRegex) + '$');
-          this.damageTriggers.push(trigger);
-        }
-        if ('abilityRegex' in trigger) {
-          trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.abilityRegex) + '$');
-          this.abilityTriggers.push(trigger);
-        }
-        if ('gainsEffectRegex' in trigger) {
-          trigger.gainRegex = NetRegexes.gainsEffect({ effect: trigger.gainsEffectRegex });
-          this.effectTriggers.push(trigger);
-        }
-        if ('losesEffectRegex' in trigger) {
-          trigger.loseRegex = NetRegexes.losesEffect({ effect: trigger.losesEffectRegex });
-          this.effectTriggers.push(trigger);
-        }
-        if ('healRegex' in trigger) {
-          trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.healRegex) + '$');
-          this.healTriggers.push(trigger);
-        }
-        if ('netRegex' in trigger) {
-          trigger.netRegex = Regexes.parse(Regexes.anyOf(trigger.netRegex));
-          this.netTriggers.push(trigger);
-        }
+        trigger.netRegex = Regexes.parse(Regexes.anyOf(regex));
+        this.netTriggers.push(trigger);
       }
     }
   }
