@@ -1,7 +1,7 @@
 import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
-import { LocaleRegex } from '../../resources/translations';
+import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
 import { Job } from '../../types/job';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
@@ -55,21 +55,21 @@ export class RegexesHolder {
     });
 
     const getCurrentRegex = getLocaleRegex.bind(this, lang);
-    this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
-    this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
+    this.countdownStartRegex = getCurrentRegex(LocaleNetRegex.countdownStart);
+    this.countdownCancelRegex = getCurrentRegex(LocaleNetRegex.countdownCancel);
     this.craftingStartRegexes = [
-      LocaleRegex.craftingStart,
-      LocaleRegex.trialCraftingStart,
+      LocaleNetRegex.craftingStart,
+      LocaleNetRegex.trialCraftingStart,
     ].map(getCurrentRegex);
     this.craftingFinishRegexes = [
-      LocaleRegex.craftingFinish,
-      LocaleRegex.trialCraftingFinish,
+      LocaleNetRegex.craftingFinish,
+      LocaleNetRegex.trialCraftingFinish,
     ].map(getCurrentRegex);
     this.craftingStopRegexes = [
-      LocaleRegex.craftingFail,
-      LocaleRegex.craftingCancel,
-      LocaleRegex.trialCraftingFail,
-      LocaleRegex.trialCraftingCancel,
+      LocaleNetRegex.craftingFail,
+      LocaleNetRegex.craftingCancel,
+      LocaleNetRegex.trialCraftingFail,
+      LocaleNetRegex.trialCraftingCancel,
     ].map(getCurrentRegex);
   }
 }
