@@ -24,19 +24,11 @@ export default {
     // Laser.  TODO: maybe blame the person it's on??
     'ShivaEx Avalanche': '5379',
   },
+  soloWarn: {
+    // Party shared tank buster.
+    'ShivaEx Icebrand': '5373',
+  },
   triggers: [
-    {
-      // Party shared tank buster.
-      id: 'ShivaEx Icebrand',
-      damageRegex: '5373',
-      condition: (e) => {
-        // Should be shared with friends.
-        return e.type === '15';
-      },
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       id: 'ShivaEx Deep Freeze',
       // Shiva also uses ability 537A on you, but it has an unknown name.

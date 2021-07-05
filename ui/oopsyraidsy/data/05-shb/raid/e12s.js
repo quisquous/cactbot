@@ -59,6 +59,9 @@ export default {
   gainsEffectFail: {
     'E12S Oracle Doom': '9D4', // Relativity punishment for multiple mistakes
   },
+  soloWarn: {
+    'E12S Promise Force Of The Land': '58A4',
+  },
   triggers: [
     {
       // Big circle ground aoes during Shiva junction.
@@ -121,13 +124,9 @@ export default {
     {
       // This is the Chiseled Sculpture laser with the limit cut dots.
       id: 'E12S Promise Blade Of Flame',
-      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
-      mistake: (e, data, matches) => {
+      netRegex: NetRegexes.ability({ type: '22', source: 'Chiseled Sculpture', id: '58B3' }),
+      mistake: (_e, data, matches) => {
         if (!data.laserNameToNum || !data.sculptureTetherNameToId || !data.sculptureYPositions)
-          return;
-
-        // Hitting only one person is just fine.
-        if (e.type === '15')
           return;
 
         // Find the person who has this laser number and is tethered to this statue.
@@ -228,26 +227,6 @@ export default {
             ja: `${matches.ability} (${pillarOwner}から)`,
             cn: `${matches.ability} (来自${pillarOwner})`,
             ko: `${matches.ability} (대상자 "${pillarOwner}")`,
-          },
-        };
-      },
-    },
-    {
-      // Titan phase orange marker
-      id: 'E12S Promise Force Of The Land',
-      damageRegex: '58A4',
-      condition: (e) => e.type === '15',
-      mistake: (_e, _data, matches) => {
-        return {
-          type: 'warn',
-          blame: matches.target,
-          text: {
-            en: `${matches.ability} (alone)`,
-            de: `${matches.ability} (allein)`,
-            fr: `${matches.ability} (seul(e))`,
-            ja: `${matches.ability} (一人)`,
-            cn: `${matches.ability} (单吃)`,
-            ko: `${matches.ability} (혼자 맞음)`,
           },
         };
       },

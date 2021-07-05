@@ -54,6 +54,9 @@ export default {
     // Shared orb, correct is Bright Pulse (4D95)
     'E8S Blinding Pulse': '4D96',
   },
+  shareFail: {
+    'E8S Path of Light': '4DA1', // Protean
+  },
   triggers: [
     {
       id: 'E8S Shining Armor',
@@ -67,15 +70,6 @@ export default {
       // Interrupt
       id: 'E8S Stoneskin',
       abilityRegex: '4D85',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Protean
-      id: 'E8S Path of Light',
-      damageRegex: '4DA1',
-      condition: (e) => e.type !== '15',
       mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },

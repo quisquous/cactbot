@@ -28,6 +28,9 @@ export default {
     'WOLEx Deep Freeze': '4E6', // failing Absolute Blizzard III
     'WOLEx Damage Down': '274', // failing Absolute Flash
   },
+  soloWarn: {
+    'WolEx Katon San Share': '4EFE',
+  },
   triggers: [
     {
       id: 'WOLEx True Walking Dead',
@@ -65,14 +68,6 @@ export default {
       netRegex: NetRegexes.ability({ id: ['5156', '5158'] }),
       mistake: (_e, _data, matches) => {
         return { type: 'fail', reason: matches.ability };
-      },
-    },
-    {
-      id: 'WolEx Katon San Share',
-      netRegex: NetRegexes.ability({ id: '4EFE' }),
-      condition: (e) => e.type === '15',
-      mistake: (_e, _data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
   ],

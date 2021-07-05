@@ -30,26 +30,7 @@ export default {
     'St Mocianne Hard Hysteria': '128', // Gaze failure, Lakhamu, boss 2
     'St Mocianne Hard Stab Wound': '45D', // Arena outer wall effect, boss 2
   },
-  triggers: [
-    {
-      // Stack marker, Nullchu, boss 1
-      id: 'St Mocianne Hard Fault Warren',
-      damageRegex: '2E4A',
-      condition: (e) => e.type === '15', // Taking the stack solo is *probably* a mistake.
-      mistake: (_e, _data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          text: {
-            en: `${matches.ability} (alone)`,
-            de: `${matches.ability} (allein)`,
-            fr: `${matches.ability} (seul(e))`,
-            ja: `${matches.ability} (一人)`,
-            cn: `${matches.ability} (单吃)`,
-            ko: `${matches.ability} (혼자 맞음)`,
-          },
-        };
-      },
-    },
-  ],
+  soloFail: {
+    'St Mocianne Hard Fault Warren': '2E4A', // Stack marker, Nullchu, boss 1
+  },
 };

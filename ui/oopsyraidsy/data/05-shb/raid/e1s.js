@@ -17,41 +17,10 @@ export default {
     'E1S Eden\'s Flare': '3D73',
     'E1S Pure Light': '3D8A',
   },
-  triggers: [
-    // Things that should only hit one person.
-    {
-      id: 'E1S Fire/Thunder III',
-      damageRegex: '44FB',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'E1S Pure Beam Single',
-      damageRegex: '3D81',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'E1S Tank Lasers',
-      // Vice Of Vanity
-      damageRegex: '44F1',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'E1S DPS Puddles',
-      // Vice Of Apathy
-      damageRegex: '44F2',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareFail: {
+    'E1S Fire/Thunder III': '44FB',
+    'E1S Pure Beam Single': '3D81',
+    'E1S Vice Of Vanity': '44F1', // tank lasers
+    'E1S Vice of Apathy': '44F2', // dps puddles
+  },
 };

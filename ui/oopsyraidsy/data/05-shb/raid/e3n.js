@@ -13,14 +13,7 @@ export default {
     'E3N Temporary Current 2': '3FCD',
     'E3N Spinning Dive': '3FDB',
   },
-  triggers: [
-    {
-      id: 'E3N Rip Current',
-      damageRegex: '3FC7',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareFail: {
+    'E3N Rip Current': '3FC7',
+  },
 };

@@ -49,6 +49,10 @@ export default {
     // Optical Spread
     'TEA Individual Reprobation': '488C',
   },
+  soloFail: {
+    // Optical Stack
+    'TEA Collective Reprobation': '488D',
+  },
   triggers: [
     {
       // Balloon Popping.  It seems like the person who pops it is the
@@ -158,18 +162,6 @@ export default {
           name: matches.target,
           reason: matches.effect,
         };
-      },
-    },
-    {
-      // Optical Stack
-      id: 'TEA Collective Reprobation',
-      damageRegex: '488D',
-      condition: (e) => {
-        // Single Tap
-        return e.type === '15';
-      },
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },
   ],

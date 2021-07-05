@@ -99,8 +99,7 @@ export default {
     {
       // This ability name is helpfully called "Attack" so name it something else.
       id: 'Weeping Ozma Tank Laser',
-      netRegex: NetRegexes.ability({ id: '1831' }),
-      condition: (e) => e.type !== '15',
+      netRegex: NetRegexes.ability({ type: '22', id: '1831' }),
       mistake: (_e, _data, matches) => {
         return {
           type: 'warn',

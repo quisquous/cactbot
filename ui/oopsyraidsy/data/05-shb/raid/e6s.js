@@ -35,18 +35,7 @@ export default {
     'E6S Instant Incineration': '4C0E', // Second Tankbuster
     'E6S Blaze': '4C1B', // Flame Tornado Cleave
   },
-  triggers: [
-    {
-      id: 'E6S Air Bump',
-      damageRegex: '4BF9',
-      condition: (e) => {
-        // Needs to be taken with friends.
-        // This can't tell if you have 2 or >2.
-        return e.type === '15';
-      },
-      mistake: (e) => {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  soloFail: {
+    'E6S Air Bump': '4BF9',
+  },
 };

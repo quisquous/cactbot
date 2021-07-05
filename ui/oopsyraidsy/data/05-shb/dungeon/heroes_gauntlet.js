@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: Berserker 2nd/3rd wild anguish should be shared with just a rock
@@ -44,18 +43,13 @@ export default {
   gainsEffectFail: {
     'THG Truly Berserk': '906', // Standing in the crater too long
   },
+  soloWarn: {
+    // This should always be shared.  On all times but the 2nd and 3rd, it's a party share.
+    // TODO: on the 2nd and 3rd time this should only be shared with a rock.
+    // TODO: alternatively warn on taking one of these with a 472 Magic Vulnerability Up effect
+    'THG Wild Anguish': '5209',
+  },
   triggers: [
-    {
-      id: 'THG Wild Anguish',
-      netRegex: NetRegexes.ability({ id: '5209' }),
-      // This should always be shared.  On all times but the 2nd and 3rd, it's a party share.
-      // TODO: on the 2nd and 3rd time this should only be shared with a rock.
-      // TODO: alternatively warn on taking one of these with a 472 Magic Vulnerability Up effect
-      condition: (e) => e.type === '15',
-      mistake: (_e, _data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
-      },
-    },
     {
       id: 'THG Wild Rampage',
       damageRegex: '5207',

@@ -45,43 +45,14 @@ export default {
     'E7S Crusade': '4C58', // blue knockback circle (standing in it)
     'E7S Explosion': '4C6F', // didn't kill an add
   },
+  shareWarn: {
+    'E7S Stygian Stake': '4C34', // Laser tank buster 1
+    'E7S Silver Shot': '4C92', // Spread markers
+    'E7S Silver Scourge': '4C93', // Ice markers
+    'E7S Chiaro Scuro Explosion 1': '4D14', // orb explosion
+    'E7S Chiaro Scuro Explosion 2': '4D15', // orb explosion
+  },
   triggers: [
-    {
-      // Laser tank buster 1
-      id: 'E7S Stygian Stake',
-      damageRegex: '4C34',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Spread markers
-      id: 'E7S Silver Shot',
-      damageRegex: '4C92',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Ice markers
-      id: 'E7S Silver Scourge',
-      damageRegex: '4C93',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Orb Explosion
-      id: 'E7S Chiaro Scuro Explosion',
-      damageRegex: '4D1[45]',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       // Interrupt
       id: 'E7S Advent Of Light',

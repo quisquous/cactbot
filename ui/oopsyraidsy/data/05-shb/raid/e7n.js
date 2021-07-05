@@ -30,25 +30,11 @@ export default {
     'E7N Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
     'E7N Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
   },
-  damageFail: {
+  shareWarn: {
+    'E7N Stygian Stake': '4C33', // Laser tank buster, outside intermission phase
+    'E5N Silver Shot': '4E7D', // Spread markers, intermission
   },
   triggers: [
-    {
-      id: 'E7N Stygian Stake', // Laser tank buster, outside intermission phase
-      damageRegex: '4C33',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'E5N Silver Shot', // Spread markers, intermission
-      damageRegex: '4E7D',
-      condition: (e) => e.type !== '15',
-      mistake: (e) => {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       id: 'E7N Astral Effect Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
