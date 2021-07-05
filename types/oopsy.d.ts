@@ -38,30 +38,6 @@ export type BaseOopsyTrigger<Data, Type extends TriggerTypes> = {
   run?: OopsyTriggerField<Data, NetMatches[Type], void>;
 };
 
-export type OopsyCollectFunc<Data extends OopsyData,
-    MatchType extends NetAnyMatches, Return> =
-  (events: never, datas: Data[], matchesArray: MatchType[]) => Return;
-
-export type OopsyCollectTriggerField<Data extends OopsyData,
-    MatchType extends NetAnyMatches, Return> =
-  [Return] extends [void] ? OopsyCollectFunc<Data, MatchType, void> :
-  OopsyCollectFunc<Data, MatchType, Return | undefined> | Return | undefined;
-
-export type RequiredOopsyTriggerField<Data extends OopsyData,
-  MatchType extends NetAnyMatches, Return> =
-  OopsyFunc<Data, MatchType, Return> | Return;
-
-export type BaseOopsyCollectTrigger<Data, Type extends TriggerTypes> = {
-  id: string;
-  condition?: OopsyTriggerField<Data, NetMatches[Type], boolean>;
-  collectSeconds: RequiredOopsyTriggerField<Data, NetMatches[Type], number>;
-  suppressSeconds?: OopsyTriggerField<Data, NetMatches[Type], number>;
-  // For collectTriggers, these three functions have array parameters.
-  deathReason?: OopsyCollectTriggerField<Data, NetMatches[Type], OopsyDeathReason>;
-  mistake?: OopsyCollectTriggerField<Data, NetMatches[Type], OopsyMistake | OopsyMistake[]>;
-  run?: OopsyCollectTriggerField<Data, NetMatches[Type], void>;
-};
-
 type PartialOopsyTrigger<T extends TriggerTypes> = {
   type: T;
   netRegex: CactbotBaseRegExp<T>;
@@ -75,10 +51,6 @@ type PartialOopsyTrigger<T extends TriggerTypes> = {
 export type OopsyTrigger<Data extends OopsyData> =
   TriggerTypes extends infer T ? T extends TriggerTypes ?
   (BaseOopsyTrigger<Data, T> & PartialOopsyTrigger<T>) : never : never;
-
-export type OopsyCollectTrigger<Data extends OopsyData> =
-  TriggerTypes extends infer T ? T extends TriggerTypes ?
-  (BaseOopsyCollectTrigger<Data, T> & PartialOopsyTrigger<T>) : never : never;
 
 type MistakeMap = { [mistakeId: string]: string };
 
@@ -96,19 +68,13 @@ export type SimpleOopsyTriggerSet = {
 
 export type OopsyTriggerSet<Data extends OopsyData> = SimpleOopsyTriggerSet & {
   triggers?: OopsyTrigger<Data>[];
-  collectTriggers?: OopsyCollectTrigger<Data>[];
 }
 
 export type LooseOopsyTrigger = Partial<
   BaseOopsyTrigger<Data, 'None'> & PartialOopsyTrigger<'None'>
 >;
 
-export type LooseOopsyCollectTrigger = Partial<
-  BaseOopsyCollectTrigger<Data, 'None'> & PartialOopsyTrigger<'None'>
->;
-
-export type LooseOopsyTriggerSet = Exclude<Partial<OopsyTriggerSet<OopsyData>>, 'triggers' | 'collectTriggers'> & {
+export type LooseOopsyTriggerSet = Exclude<Partial<OopsyTriggerSet<OopsyData>>, 'triggers'> & {
   zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
   triggers?: LooseOopsyTrigger[];
-  timelineTriggers?: LooseOopsyCollectTrigger[];
 }
