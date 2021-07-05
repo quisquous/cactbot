@@ -47,11 +47,6 @@ export default {
     { /* ..trigger 2.. */ },
     { /* ..trigger 3.. */ },
   ],
-  collectTriggers: [
-    { /* ..trigger 1.. */ },
-    { /* ..trigger 2.. */ },
-    { /* ..trigger 3.. */ },
-  ],
 };
 ```
 
@@ -92,9 +87,6 @@ in that they are trigger when something should be taken alone but hits multiple 
 An array of triggers in the trigger set.
 See below for the format of each of individual triggers.
 
-**collectTriggers**:
-The same as triggers, but for triggers that use `collectSeconds`.
-
 ## Trigger Structure
 
 Each trigger is an object with the following fields.  All fields are optional.
@@ -102,8 +94,7 @@ Each trigger is an object with the following fields.  All fields are optional.
 * `id`: a string representing this trigger, for use in disabling triggers.  See [oopsyraidsy-example.js](../users/oopsyraidsy-example.js).
 * `condition`: function returning bool for whether or not to run this trigger.
 * `netRegex`: a regex matching a network line (such as from the `NetRegexes` helper)
-* `collectSeconds`: float (or function returning float), only valid for `collectTriggers` triggers
-* `delaySeconds`: float (or function returning float) for how long to wait before executing this trigger.  Ignored if `collectSeconds > 0`.
+* `delaySeconds`: float (or function returning float) for how long to wait before executing this trigger.
 * `suppressSeconds`: float (or function returning float) for how long to ignore future matches to this trigger (including additional collection).
 * `deathReason`: overrides the reason that a player died if the player dies without taking any more damage.  This is for things that kill you without an obvious log line, e.g. forgetting to clear Beyond Death.
 * `mistake`: returns a single mistake or an array of mistakes to add to the live list.  See below for the `mistake` format.
@@ -222,30 +213,6 @@ This happens for triggers that are in the `triggers` object.
 },
 ```
 
-### Multiple Event Example (Collection)
-
-If `collectSeconds` is used, then as soon as the trigger matches any line,
-it will wait `collectSeconds` and then pass that first trigger
-and any additional trigger that matches during that time period as an array.
-`collectSeconds` can only be used for triggers in the `collectTriggers` object.
-
-`condition` always takes a single event and acts as a filter prior to collecting events.  If `condition` is not true, then it as if the log line didn't exist and the event is skipped, both for the initial match and for the collection.
-
-`delaySeconds` is not called when collecting.
-
-```javascript
-{
-  // Succor
-  netRegex: NetRegexes.ability({ id: 'BA' }),
-  collectSeconds: 0.2,
-  mistake: (_events, _datas, matchesArray) => {
-    // events here is an array of event objects
-    for (const matches of matchesArray)
-      console.log(matches.target);
-  },
-},
-```
-
 ### Data Fields
 
 `data` is an object that persists for an entire fight and is reset on wipe.  It is passed to every function.
@@ -285,12 +252,11 @@ so that you can do things like `matches.target`.
 
 The full order of evaluation of functions in a trigger is:
 
-1. match against regex
-1. check if `id` is disabled
+1. `regex`
+1. `disabled`
 1. `condition`
-1. `collectSeconds`
-1. `delaySeconds` (only if not collecting)
-1. (delay and waiting for collecting happens here)
+1. `delaySeconds`
+1. (delay happens here)
 1. `mistake`
 1. `deathReason`
 1. `run`
