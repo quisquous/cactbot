@@ -14,7 +14,7 @@ export const kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
 
 // TODO: should we include damage != 0 here?
 export const damageFields = {
-  flags: `(?:[^|]*${kAttackFlags.join('|')})(?=\\|)`,
+  flags: `[^|]*(?:${kAttackFlags.join('|')})(?=\\|)`,
 };
 
 export const playerDamageFields = {
