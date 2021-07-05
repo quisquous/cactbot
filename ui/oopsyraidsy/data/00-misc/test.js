@@ -108,11 +108,9 @@ export default {
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
       delaySeconds: 5,
       mistake: (_e, data) => {
-        if (typeof data.pokeCount === undefined)
-          return;
         // 1 poke at a time is fine, but more than one inside of
         // collectSeconds is (OBVIOUSLY) a mistake.
-        if (data.pokeCount <= 1)
+        if (!data.pokeCount || data.pokeCount <= 1)
           return;
         return {
           type: 'fail',
