@@ -214,7 +214,7 @@ This happens for triggers that are in the `triggers` object.
 ```javascript
 {
   // 26BB is the ability id for Nael's Iron Chariot.
-  netRegex: NetRegexes.ability({ id: 26BB }),
+  netRegex: NetRegexes.ability({ id: '26BB' }),
   mistake: (_e_, _data, matches) => {
     // matches here is a single matches object
     console.log(matches.target);
