@@ -101,10 +101,10 @@ const run = (args: any) => {
     name: 'action',
     message: 'What do you want to do?',
     choices: Object.values(actionChoices),
-    default: getArgument(args, 'action'),
+    default: getArgument<string>(args, 'action'),
     when: () => typeof getArgument(args, 'action') !== 'string',
   }]).then((answer: Answers) => {
-    const action = answer.action || args.action;
+    const action = getArgument(answer, 'action') || getArgument<string>(args, 'action');
     if (action === actionChoices.generate.value)
       return generateDataFiles(args);
     if (action === actionChoices.translateTimeline.value)
@@ -121,7 +121,7 @@ const generateDataFiles = (args: any) => {
     name: 'choice',
     message: 'Which data file do you want to generate?',
     choices: Object.keys(dataFilesMap),
-    default: getArgument(args, 'choice'),
+    default: getArgument<string>(args, 'choice'),
     when: () => typeof getArgument(args, 'choice') !== 'string',
   }]).then(async (answers: Answers) => {
     if (typeof answers.choice === 'string' && answers.choice in dataFilesMap)
@@ -137,7 +137,7 @@ const translateTimelineFunc = (args: any) => {
       name: 'timeline',
       message: 'Input a valid timeline filename: ',
       rootPath: 'ui/raidboss/data',
-      default: getArgument(args, 'timeline') ?? '',
+      default: getArgument<string>(args, 'timeline') ?? '',
       when: () => typeof getArgument(args, 'timeline') !== 'string',
     },
     {
@@ -145,7 +145,7 @@ const translateTimelineFunc = (args: any) => {
       name: 'locale',
       message: 'Select a locale: ',
       choices: languages,
-      default: getArgument(args, 'locale'),
+      default: getArgument<string>(args, 'locale'),
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
@@ -162,7 +162,7 @@ const findMissingTranslationsFunc = (args: any) => {
       name: 'filter',
       message: 'Input a valid trigger JavaScript filename: ',
       rootPath: 'ui/raidboss/data',
-      default: getArgument(args, 'filter'),
+      default: getArgument<string>(args, 'filter'),
       when: () => typeof getArgument(args, 'filter') !== 'string',
     },
     {
@@ -170,7 +170,7 @@ const findMissingTranslationsFunc = (args: any) => {
       name: 'locale',
       message: 'Select a locale: ',
       choices: languages,
-      default: getArgument(args, 'locale'),
+      default: getArgument<string>(args, 'locale'),
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
