@@ -23,7 +23,7 @@ const findTriggersFile = (shortName: string): string | undefined => {
   return found;
 };
 
-export const run = async (args: { locale: Lang; timeline: string }): Promise<void> => {
+export default async (args: { locale: Lang; timeline: string }): Promise<void> => {
   const triggersFile = findTriggersFile(args.timeline);
   if (!triggersFile) {
     console.error(`Couldn\'t find '${args.timeline}', aborting.`);

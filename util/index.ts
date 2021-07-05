@@ -6,7 +6,7 @@ import { Lang, languages } from '../resources/languages';
 
 import { run as findMissingTranslations } from './find_missing_translations';
 import { default as generateEffectIds } from './gen_effect_id';
-import { run as translateTimeline } from './translate_timeline';
+import { default as translateTimeline } from './translate_timeline';
 
 declare module 'inquirer' {
   interface QuestionMap<T> {
