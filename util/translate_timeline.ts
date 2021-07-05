@@ -23,10 +23,10 @@ const findTriggersFile = (shortName: string): string | undefined => {
   return found;
 };
 
-export default async (args: { locale: Lang; timeline: string }): Promise<void> => {
-  const triggersFile = findTriggersFile(args.timeline);
+export default async (timelinePath: string, locale: Lang): Promise<void> => {
+  const triggersFile = findTriggersFile(timelinePath);
   if (!triggersFile) {
-    console.error(`Couldn\'t find '${args.timeline}', aborting.`);
+    console.error(`Couldn\'t find '${timelinePath}', aborting.`);
     process.exit(-2);
   }
 
@@ -35,8 +35,6 @@ export default async (args: { locale: Lang; timeline: string }): Promise<void> =
     console.error(`Couldn\'t find '${timelineFile}', aborting.`);
     process.exit(-2);
   }
-
-  const locale = args.locale;
 
   // Use findMissing to figure out which lines have errors on them.
   const syncErrors: { [lineNumber: number]: boolean } = {};

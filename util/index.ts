@@ -149,8 +149,11 @@ const translateTimelineFunc = (args: any) => {
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
-    if (answers.timeline && answers.locale)
-      return translateTimeline(answers as { timeline: string; locale: Lang });
+    if (answers.timeline && answers.locale) {
+      const timeline = answers.timeline as string;
+      const locale = answers.locale as Lang;
+      return translateTimeline(timeline, locale);
+    }
   });
 };
 
@@ -174,8 +177,11 @@ const findMissingTranslationsFunc = (args: any) => {
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
-    if (answers.filter && answers.locale)
-      return findMissingTranslations(answers);
+    if (answers.filter && answers.locale) {
+      const filter = answers.filter as string;
+      const locale = answers.locale as Lang[];
+      return findMissingTranslations(filter, locale);
+    }
   });
 };
 

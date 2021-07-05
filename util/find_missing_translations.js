@@ -127,10 +127,10 @@ const parseJavascriptFile = (file, locales) => {
   });
 };
 
-export const run = async (args) => {
-  const files = findAllJavascriptFiles(args['filter']);
+export const run = async (filter, locale) => {
+  const files = findAllJavascriptFiles(filter);
   for (const file of files) {
-    await findMissing(file, args['locale'], (file, line, label, message) => {
+    await findMissing(file, locale, (file, line, label, message) => {
       let str = file;
       if (line)
         str += `:${line}`;
@@ -140,6 +140,6 @@ export const run = async (args) => {
         str += ` ${message}`;
       console.log(str);
     });
-    parseJavascriptFile(file, [args['locale']]);
+    parseJavascriptFile(file, [locale]);
   }
 };
