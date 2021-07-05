@@ -35,8 +35,8 @@ export default {
       // Stack marker, Zuiko Maru, boss 1
       id: 'Kugane Castle Helm Crack',
       netRegex: NetRegexes.ability({ id: '1E94' }),
-      condition: (_e, _data, matches) => matches.type === '21', // Taking the stack solo is *probably* a mistake.
-      mistake: (_e, _data, matches) => {
+      condition: (_data, matches) => matches.type === '21', // Taking the stack solo is *probably* a mistake.
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,

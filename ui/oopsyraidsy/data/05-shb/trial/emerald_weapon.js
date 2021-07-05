@@ -33,7 +33,7 @@ export default {
     {
       id: 'Emerald Weapon Emerald Crusher Knocked Off',
       netRegex: NetRegexes.ability({ id: '553E' }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,
@@ -52,7 +52,7 @@ export default {
       // Getting knocked into a wall from the arrow headmarker.
       id: 'Emerald Weapon Primus Terminus Est Wall',
       netRegex: NetRegexes.ability({ id: ['5563', '5564'] }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

@@ -51,7 +51,7 @@ export default {
     {
       id: 'Weeping Forgall Gradual Zombification Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '415' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.zombie = data.zombie || {};
         data.zombie[matches.target] = true;
       },
@@ -59,7 +59,7 @@ export default {
     {
       id: 'Weeping Forgall Gradual Zombification Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '415' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.zombie = data.zombie || {};
         data.zombie[matches.target] = false;
       },
@@ -67,15 +67,15 @@ export default {
     {
       id: 'Weeping Forgall Mega Death',
       netRegex: NetRegexes.ability({ id: '17CA' }),
-      condition: (_e, data, matches) => data.zombie && !data.zombie[matches.target],
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.zombie && !data.zombie[matches.target],
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
     {
       id: 'Weeping Headstone Shield Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '15E' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.shield = data.shield || {};
         data.shield[matches.target] = true;
       },
@@ -83,7 +83,7 @@ export default {
     {
       id: 'Weeping Headstone Shield Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '15E' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.shield = data.shield || {};
         data.shield[matches.target] = false;
       },
@@ -91,8 +91,8 @@ export default {
     {
       id: 'Weeping Flaring Epigraph',
       netRegex: NetRegexes.ability({ id: '1856' }),
-      condition: (_e, data, matches) => data.shield && !data.shield[matches.target],
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.shield && !data.shield[matches.target],
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
@@ -100,7 +100,7 @@ export default {
       // This ability name is helpfully called "Attack" so name it something else.
       id: 'Weeping Ozma Tank Laser',
       netRegex: NetRegexes.ability({ type: '22', id: '1831' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return {
           type: 'warn',
           blame: matches.target,
@@ -118,7 +118,7 @@ export default {
     {
       id: 'Weeping Ozma Holy',
       netRegex: NetRegexes.ability({ id: '182E' }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

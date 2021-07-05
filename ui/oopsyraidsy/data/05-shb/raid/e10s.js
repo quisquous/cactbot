@@ -44,7 +44,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenflamme', effectId: '82C' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Flamme ombrale', effectId: '82C' }),
       netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect} (partial stack)` };
       },
     },
@@ -58,7 +58,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenkönig', effectId: '82C' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Roi De L\'Ombre', effectId: '82C' }),
       netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect}` };
       },
     },
@@ -67,8 +67,8 @@ export default {
       // This can be mitigated by the whole group, so add a damage condition.
       id: 'E10S Barbs Of Agony',
       netRegex: NetRegexes.abilityFull({ id: ['572A', '5B27'], ...playerDamageFields }),
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },

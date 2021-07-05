@@ -66,7 +66,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Advent Of Light',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4C6E' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         // TODO: is this blame correct? does this have a target?
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
@@ -75,7 +75,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Astral Effect Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasAstral = data.hasAstral || {};
         data.hasAstral[matches.target] = true;
       },
@@ -84,7 +84,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Astral Effect Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasAstral = data.hasAstral || {};
         data.hasAstral[matches.target] = false;
       },
@@ -93,7 +93,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Umbral Effect Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
         data.hasUmbral[matches.target] = true;
       },
@@ -102,7 +102,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Umbral Effect Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
         data.hasUmbral[matches.target] = false;
       },
@@ -111,10 +111,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Light\'s Course',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: ['4C62', '4C63', '4C64', '4C5B', '4C5F'], ...playerDamageFields }),
-      condition: (_e, data, matches) => {
+      condition: (data, matches) => {
         return !data.hasUmbral || !data.hasUmbral[matches.target];
       },
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         if (data.hasAstral && data.hasAstral[matches.target])
           return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
         return { type: 'warn', blame: matches.target, text: noBuff(matches.ability) };
@@ -124,10 +124,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Darks\'s Course',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: ['4C65', '4C66', '4C67', '4C5A', '4C60'], ...playerDamageFields }),
-      condition: (_e, data, matches) => {
+      condition: (data, matches) => {
         return !data.hasAstral || !data.hasAstral[matches.target];
       },
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         if (data.hasUmbral && data.hasUmbral[matches.target])
           return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
         // This case is probably impossible, as the debuff ticks after death,
@@ -141,7 +141,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       // 4C76 is the knockback damage, 4C58 is the damage for standing on the puck.
       netRegex: NetRegexes.abilityFull({ id: '4C76', ...playerDamageFields }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

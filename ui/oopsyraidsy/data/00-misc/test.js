@@ -12,7 +12,7 @@ export default {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人にお辞儀した.*?' }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*恭敬地对木人行礼.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
-      mistake: (_e, data) => {
+      mistake: (data) => {
         return {
           type: 'pull',
           blame: data.me,
@@ -34,7 +34,7 @@ export default {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に別れの挨拶をした.*?' }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*向木人告别.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 작별 인사를 합니다.*?' }),
-      mistake: (_e, data) => {
+      mistake: (data) => {
         return {
           type: 'wipe',
           blame: data.me,
@@ -52,7 +52,7 @@ export default {
     {
       id: 'Test Bootshine',
       netRegex: NetRegexes.abilityFull({ id: '35' }),
-      condition: (_e, data, matches) => {
+      condition: (data, matches) => {
         if (matches.source !== data.me)
           return false;
         const strikingDummyByLocale = {
@@ -65,7 +65,7 @@ export default {
         const strikingDummyNames = Object.values(strikingDummyByLocale);
         return strikingDummyNames.includes(matches.target);
       },
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         data.bootCount = data.bootCount || 0;
         data.bootCount++;
         const text = `${matches.ability} (${data.bootCount}): ${data.DamageFromMatches(matches)}`;
@@ -75,8 +75,8 @@ export default {
     {
       id: 'Test Leaden Fist',
       netRegex: NetRegexes.gainsEffect({ effectId: '745' }),
-      condition: (_e, data, matches) => matches.source === data.me,
-      mistake: (_e, data, matches) => {
+      condition: (data, matches) => matches.source === data.me,
+      mistake: (data, matches) => {
         return { type: 'good', blame: data.me, text: matches.effect };
       },
     },
@@ -84,7 +84,7 @@ export default {
       id: 'Test Oops',
       netRegex: NetRegexes.echo({ line: '.*oops.*' }),
       suppressSeconds: 10,
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         return { type: 'fail', blame: data.me, text: matches.line };
       },
     },
@@ -95,7 +95,7 @@ export default {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?' }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
-      run: (_e, data) => {
+      run: (data) => {
         data.pokeCount = (data.pokeCount || 0) + 1;
       },
     },
@@ -107,7 +107,7 @@ export default {
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
       delaySeconds: 5,
-      mistake: (_e, data) => {
+      mistake: (data) => {
         // 1 poke at a time is fine, but more than one in 5 seconds is (OBVIOUSLY) a mistake.
         if (!data.pokeCount || data.pokeCount <= 1)
           return;
@@ -124,7 +124,7 @@ export default {
           },
         };
       },
-      run: (_e, data) => delete data.pokeCount,
+      run: (data) => delete data.pokeCount,
     },
   ],
 };

@@ -19,7 +19,7 @@ export default {
     {
       id: 'A12N Assault Collect',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.assault = data.assault || [];
         data.assault.push(matches.target);
       },
@@ -28,8 +28,8 @@ export default {
       // It is a failure for a Severity marker to stack with the Solidarity group.
       id: 'A12N Assault Failure',
       netRegex: NetRegexes.abilityFull({ id: '1AF2', ...playerDamageFields }),
-      condition: (_e, data, matches) => data.assault.includes(matches.target),
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.assault.includes(matches.target),
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,
@@ -48,7 +48,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
       delaySeconds: 20,
       suppressSeconds: 5,
-      run: (_e, data) => {
+      run: (data) => {
         delete data.assault;
       },
     },

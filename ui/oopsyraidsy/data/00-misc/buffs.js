@@ -6,7 +6,7 @@ const abilityCollectSeconds = 0.5;
 // Observation: up to ~1.2 seconds for a buff to roll through the party.
 const effectCollectSeconds = 2.0;
 
-const isInPartyConditionFunc = (_evt, data, matches) => {
+const isInPartyConditionFunc = (data, matches) => {
   const sourceId = matches.sourceId.toUpperCase();
   if (data.party.partyIds.includes(sourceId))
     return true;
@@ -27,7 +27,7 @@ const missedFunc = (args) => [
     id: `Buff ${args.triggerId} Collect`,
     netRegex: args.netRegex,
     condition: isInPartyConditionFunc,
-    run: (_e, data, matches) => {
+    run: (data, matches) => {
       data.generalBuffCollection = data.generalBuffCollection || {};
       data.generalBuffCollection[args.triggerId] = data.generalBuffCollection[args.triggerId] || [];
       data.generalBuffCollection[args.triggerId].push(matches);
@@ -39,7 +39,7 @@ const missedFunc = (args) => [
     condition: isInPartyConditionFunc,
     delaySeconds: args.collectSeconds,
     suppressSeconds: args.collectSeconds,
-    mistake: (_e, data, _matches) => {
+    mistake: (data, _matches) => {
       if (!data.generalBuffCollection)
         return;
       const allMatches = data.generalBuffCollection[args.triggerId];
@@ -170,7 +170,7 @@ export default {
     {
       id: 'Buff Pet To Owner Mapper',
       netRegex: NetRegexes.addedCombatantFull(),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         if (matches.ownerId === '0')
           return;
 
@@ -182,7 +182,7 @@ export default {
     {
       id: 'Buff Pet To Owner Clearer',
       netRegex: NetRegexes.changeZone(),
-      run: (_e, data) => {
+      run: (data) => {
         // Clear this hash periodically so it doesn't have false positives.
         data.petIdToOwnerId = {};
       },

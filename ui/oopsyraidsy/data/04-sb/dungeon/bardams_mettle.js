@@ -16,8 +16,8 @@ const abilityWarn = (args) => {
   return {
     id: args.id,
     netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
-    condition: (_e, _data, matches) => matches.flags.substr(-2) === '0E',
-    mistake: (_e, _data, matches) => {
+    condition: (_data, matches) => matches.flags.substr(-2) === '0E',
+    mistake: (_data, matches) => {
       return { type: 'warn', blame: matches.target, text: matches.ability };
     },
   };

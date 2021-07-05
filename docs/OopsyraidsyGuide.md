@@ -111,10 +111,10 @@ Each trigger is an object with the following fields.  All fields are optional.
 This will print ":no_entry_sign: Latke: Dynamo" in the live log.
 
 ```javascript
-mistake: (event, data, matches) => {
+mistake: (data, matches) => {
   return {
     type: 'fail',
-    blame: e.targetName,
+    blame: matches.target,
     text: 'Dynamo'
   };
 },
@@ -123,10 +123,10 @@ mistake: (event, data, matches) => {
 This will print ":warning: WHOOPS" in the live log, even though a player was blamed.
 
 ```javascript
-mistake: (event, data, matches) => {
+mistake: (data, matches) => {
   return {
     type: 'warn',
-    blame: e.targetName,
+    blame: matches.target,
     fullText: 'WHOOPS',
   };
 },
@@ -150,63 +150,15 @@ deathReason: function(event, data, matches) {
 
 ## Oopsy Trigger Function Parameters
 
-Every function in an oopsy trigger gets three parameters: `event`, `data`, `matches` in that order.
-
-### Event Fields
-
-Every function specified in a trigger gets an event (or events) object.
-This object has different fields depending on which type of regex was used to match the trigger.
-Events are deprecated and will be removed shortly.
-
-#### All Events
-
-* `event.line`: string, representing the entire log line.
-
-#### Effect Events (gainsEffectRegex, losesEffectRegex)
-
-* `event.targetName`: string, the target's full name.
-* `event.effectName`: string, the buff name gained, e.g. 'Beyond Death'.
-* `event.gains`: bool, true if the buff was gained, false if the buff was lost.
-* `event.attackerName`: string, the full name of the attacker that gave the target this buff.
-* `event.durationSeconds`: float, the duration this buff was gained for.  undefined if the buff was lost.
-
-#### Ability Events (healRegex, damageRegex, abilityRegex)
-
-* `event.type`: hex string of the log line type (e.g. '1B' for head markers).
-* `event.attackerId`: hex string of the attacker's id
-* `event.attackerName`: string, full name of the target.
-* `event.targetId`: hex string of the target's id.
-* `event.targetName`: string, full name of the target.
-* `event.flags`: hex string of flags for this damage value (see comments in **oopsyraidsy.js** for more information).
-* `event.damage`: float, damage or heal value
-* `event.damageStr`: string, nicer looking version of `event.damage` with ! and !! for crits.
-* `event.targetCurrentHp`: int string, target's hp at the time of this ability.
-* `event.targetMaxHp`: int string, target's max hp at the time of this ability.
-* `event.targetCurrentMp`: int string, target's mp at the time of this ability.
-* `event.targetMaxMp`: int string, target's max mp at the time of this ability.
-* `event.targetCurrentTp`: int string, target's tp at the time of this ability.
-* `event.targetMaxTp`: int string, target's max tp at the time of this ability.
-* `event.targetX`: x position of the target when this ability was used.
-* `event.targetY`: y position of the target when this ability was used.
-* `event.targetZ`: z position of the target when this ability was used.
-* `event.attackerX`: x position of the attacker when this ability was used.
-* `event.attackerY`: y position of the attacker when this ability was used.
-* `event.attackerZ`: z position of the attacker when this ability was used.
-
-`data.IsPlayerId(id)` can be used against the `attackerId` or the `targetId` to determine if that id represents a player.
+Every function in an oopsy trigger gets two parameters: `data` and `matches` in that order.
 
 Current hp/mp/tp values are not 100% precise.  ACT polls these values periodically and so it may be out of date by one HoT/DoT tick.  The most important consideration is that damage that does more than current hp may not actually be fatal, and vice versa that damage that does less than current hp may turn out to be fatal.  There's no way to know until the 'was defeated' message shows up two seconds later.
-
-### Single Event Example
-
-In most cases, a single event will be passed to every function.
-This happens for triggers that are in the `triggers` object.
 
 ```javascript
 {
   // 26BB is the ability id for Nael's Iron Chariot.
   netRegex: NetRegexes.ability({ id: '26BB' }),
-  mistake: (_e_, _data, matches) => {
+  mistake: (_data, matches) => {
     // matches here is a single matches object
     console.log(matches.target);
   },
@@ -233,7 +185,7 @@ For example, if you want to store a map of which players have doom or not, that 
 ```javascript
 {
   netRegex: NetRegexes.gainsEffect({ effect: 'Doom' }),
-  run: function(_e, data, matches) {
+  run: function(data, matches) {
     data.hasDoom[matches.target] = true;
   },
 },

@@ -18,7 +18,7 @@ export default {
     {
       id: 'E2N Nyx',
       netRegex: NetRegexes.abilityFull({ id: '3E3D', ...playerDamageFields }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return {
           type: 'warn',
           blame: matches.target,

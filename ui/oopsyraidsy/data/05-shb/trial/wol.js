@@ -31,8 +31,8 @@ export default {
     {
       id: 'WOL True Walking Dead',
       netRegex: NetRegexes.gainsEffect({ effectId: '38E' }),
-      delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 0.5,
-      deathReason: (_e, _data, matches) => {
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
+      deathReason: (_data, matches) => {
         return { type: 'fail', name: matches.target, reason: matches.effect };
       },
     },
