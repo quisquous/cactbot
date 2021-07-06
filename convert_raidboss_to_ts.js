@@ -13,7 +13,7 @@ const netRegexToType = {
   addedCombatantFull: 'AddedCombatant',
   removingCombatant: 'RemovingCombatant',
   gainsEffect: 'GainsEffect',
-  statusEffectExplicit: 'StatusEffectExplicit',
+  statusEffectExplicit: 'StatusEffect',
   losesEffect: 'LosesEffect',
   tether: 'Tether',
   wasDefeated: 'WasDefeated',
@@ -50,7 +50,9 @@ const updateFile = (file) => {
   };
 
   const replaceOutput = (line) => {
-    return line.replace(/(output\.\w*)\(/g, '$1!(');
+    line = line.replace(/(\boutput\.\w*)\(/g, '$1!(');
+    line = line.replace(/(^\s*)data\.(\w*) = data.\2 \|\| /, '$1data.$2 ??= ');
+    return line;
   };
 
   lineReader.on('line', (line) => {
