@@ -352,51 +352,91 @@ export interface PluginCombatantState {
   Heading: number;
 }
 
-export type GetCombatantsCall = {
+type SubscribeHandler = (msg: {
+  call: 'subscribe';
+  events: string[];
+}) => void;
+
+type GetCombatantsHandler = (msg: {
   call: 'getCombatants';
   ids?: number[];
   names?: string[];
   props?: string[];
+}) => { combatants: PluginCombatantState[] };
+
+type CactbotReloadOverlaysHandler = (msg: {
+  call: 'cactbotReloadOverlays';
+}) => void;
+
+type CactbotLoadUserHandler = (msg: {
+  call: 'cactbotLoadUser';
+  source: string;
+  overlayName: string;
+}) => { detail: CactbotLoadUserRet };
+
+type CactbotRequestPlayerUpdateHandler = (msg: {
+  call: 'cactbotRequestPlayerUpdate';
+}) => void;
+
+type CactbotRequestStateHandler = (msg: {
+  call: 'cactbotRequestState';
+}) => void;
+
+type CactbotSayHandler = (msg: {
+  call: 'cactbotSay';
+  text: string;
+}) => void;
+
+type CactbotSaveDataHandler = (msg: {
+  call: 'cactbotSaveData';
+}) => void;
+
+type CactbotLoadDataHandler = (msg: {
+  call: 'cactbotLoadData';
+  overlay: string;
+}) => ({ data: SavedConfig } | undefined);
+
+type CactbotChooseDirectoryHandler = <T>(msg: {
+  call: 'cactbotChooseDirectory';
+}) => ({ data: T } | undefined);
+
+export type OverlayHandlerAll = {
+  'subscribe': SubscribeHandler;
+  'getCombatants': GetCombatantsHandler;
+  'cactbotReloadOverlays': CactbotReloadOverlaysHandler;
+  'cactbotLoadUser': CactbotLoadUserHandler;
+  'cactbotRequestPlayerUpdate': CactbotRequestPlayerUpdateHandler;
+  'cactbotRequestState': CactbotRequestStateHandler;
+  'cactbotSay': CactbotSayHandler;
+  'cactbotSaveData': CactbotSaveDataHandler;
+  'cactbotLoadData': CactbotLoadDataHandler;
+  'cactbotChooseDirectory': CactbotChooseDirectoryHandler;
 };
 
-export type GetCombatantsRet = { combatants: PluginCombatantState[] };
+export type OverlayHandlerTypes = keyof OverlayHandlerAll;
 
-export type IOverlayHandler = {
-  // OutputPlugin build-in
-  (msg: {
-    call: 'subscribe';
-    events: string[];
-  }): Promise<null>;
-  (msg: GetCombatantsCall): Promise<GetCombatantsRet>;
-  // TODO: add OverlayPlugin build-in handlers
-  // Cactbot
-  // TODO: fill up all handler types
-  (msg: {
-    call: 'cactbotReloadOverlays';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotLoadUser';
-    source: string;
-    overlayName: string;
-  }): Promise<{ detail: CactbotLoadUserRet }>;
-  (msg: {
-    call: 'cactbotRequestPlayerUpdate';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotRequestState';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotSay';
-    text: string;
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotSaveData';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotLoadData';
-    overlay: string;
-  }): Promise<{ data: SavedConfig } | null>;
-  <T>(msg: {
-    call: 'cactbotChooseDirectory';
-  }): Promise<{ data: T } | null>;
+export type OverlayHandlerRequests = {
+  [call in OverlayHandlerTypes]: Parameters<OverlayHandlerAll[call]>[0];
 };
+
+export type OverlayHandlerAnyRequest = OverlayHandlerRequests[OverlayHandlerTypes];
+
+export type OverlayHandlerResponseTypes = {
+  [call in OverlayHandlerTypes]: ReturnType<OverlayHandlerAll[call]>;
+};
+
+export type OverlayHandlerResponses = {
+  [call in OverlayHandlerTypes]: Promise<OverlayHandlerResponseTypes[call]>;
+};
+
+export type OverlayHandlerAnyResponse = OverlayHandlerResponses[OverlayHandlerTypes];
+
+export type OverlayHandlerFuncs = {
+  [call in OverlayHandlerTypes]:
+    (msg: Parameters<OverlayHandlerAll[call]>[0]) => OverlayHandlerResponses[call];
+};
+
+// Thanks, https://stackoverflow.com/a/50375286.
+type UnionToIntersection<U> =
+  (U extends U ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
+export type IOverlayHandler = UnionToIntersection<OverlayHandlerFuncs[OverlayHandlerTypes]>;

@@ -1,4 +1,4 @@
-import { callOverlayHandler, addOverlayListener, removeOverlayListener, setCallOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
+import { callOverlayHandler, addOverlayListener, removeOverlayListener, setOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
 
 const excludedReqProps = ['source'];
 const excludedRespProps = ['rseq'];
@@ -20,7 +20,7 @@ const toCache = (data) => {
 export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
-    this.originalCall = setCallOverlayHandlerOverride(this.call.bind(this));
+    setOverlayHandlerOverride('getCombatants', this._getCombatantsOverride.bind(this));
     this.currentLogTime = 0;
     this.connected = false;
 
@@ -36,13 +36,6 @@ export default class RaidEmulatorOverlayApiHook {
         this.currentLogTime = log.timestamp;
       });
     });
-  }
-
-  async call(msg) {
-    if (msg.call === 'getCombatants')
-      return await this._getCombatantsOverride(msg);
-
-    return await this.originalCall(msg);
   }
 
   async _getCombatantsOverride(msg) {
