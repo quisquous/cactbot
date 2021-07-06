@@ -117,7 +117,7 @@ const missedFunc = (args) => [
         },
       };
     },
-    run: (_e, data) => {
+    run: (data) => {
       if (data.generalBuffCollection)
         delete data.generalBuffCollection[args.triggerId];
     },
