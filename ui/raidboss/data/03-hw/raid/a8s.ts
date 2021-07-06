@@ -3,6 +3,18 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  seenLinkUp?: boolean;
+  lightning?: string;
+  longNeedleStack?: string;
+  longNeedlePrey?: string[];
+  verdictMin?: string;
+  verdictMax?: string;
+  water?: string;
+}
 
 // TODO: Final Punishment stack counts are in the network log, but not in ACT log :C
 // e.g. 4 stacks:
@@ -10,7 +22,7 @@ import ZoneId from '../../../../../resources/zone_id';
 //   39.95|E0000000||1068E9CB|Potato Chippy|04|19062|||0bd20f2b57d49b17a19caa10e1fb8734
 // TODO: chakram safe spots lol?
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
   timelineTriggers: [
@@ -24,7 +36,7 @@ export default {
       id: 'A8S Swindler Add',
       regex: /Swindler/,
       beforeSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Swindler Soon',
@@ -40,7 +52,7 @@ export default {
       id: 'A8S Vortexer Add',
       regex: /Vortexer/,
       beforeSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Vortexer Soon',
@@ -62,7 +74,7 @@ export default {
       id: 'A8S Super Jump Soon',
       regex: /Super Jump/,
       beforeSeconds: 8,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait Super Jump',
@@ -78,6 +90,7 @@ export default {
   triggers: [
     {
       id: 'A8S Megabeam Onslaughter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '162E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '162E', capture: false }),
@@ -85,7 +98,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '162E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '162E', capture: false }),
       // Insert sound effect from Arthars here.
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Megabeamu~',
@@ -99,13 +112,14 @@ export default {
     },
     {
       id: 'A8S Megabeam Brute Justice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1664', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1664', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1664', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1664', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1664', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1664', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Megabeamu~!',
@@ -119,6 +133,7 @@ export default {
     },
     {
       id: 'A8S Execution',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schlachter', id: '1632', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Attaqueur', id: '1632', capture: false }),
@@ -126,7 +141,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
       condition: (data) => data.role === 'dps' || data.job === 'BLU',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Kill Regulators',
@@ -140,6 +155,7 @@ export default {
     },
     {
       id: 'A8S Perpetual Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '162B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '162B' }),
@@ -151,6 +167,7 @@ export default {
     },
     {
       id: 'A8S Blaster Mirage',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Blaster Mirage', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Blaster-Replikant', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Réplique Du Fracasseur', capture: false }),
@@ -158,7 +175,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '爆破者幻象', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭파자의 환영', capture: false }),
       suppressSeconds: 99999,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mirage',
@@ -172,12 +189,13 @@ export default {
     },
     {
       id: 'A8S Discoid',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0023' }),
       condition: (data, matches) => {
         // Verdict comes with the same headmarker.
         return data.me === matches.target && !data.seenLinkUp;
       },
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Orb on YOU',
@@ -191,6 +209,7 @@ export default {
     },
     {
       id: 'A8S Mind Blast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '1639' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster', id: '1639' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fracasseur', id: '1639' }),
@@ -202,12 +221,13 @@ export default {
     },
     {
       id: 'A8S Low Arithmeticks',
+      type: 'GainsEffect',
       // Note: both high and low use '0025' headmarker
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get High',
@@ -221,11 +241,12 @@ export default {
     },
     {
       id: 'A8S High Arithmeticks',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Down',
@@ -239,6 +260,7 @@ export default {
     },
     {
       id: 'A8S Bio-Arithmeticks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '164A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwindler', id: '164A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arnaqueur', id: '164A', capture: false }),
@@ -250,6 +272,7 @@ export default {
     },
     {
       id: 'A8S Super Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1657', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wirbler', id: '1657', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Tourbillonneur', id: '1657', capture: false }),
@@ -260,16 +283,17 @@ export default {
     },
     {
       id: 'A8S Compressed Lightning',
+      type: 'GainsEffect',
       // Note: also the 0045 headmarker.
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.thunderOnYou();
+          return output.thunderOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.thunderOn({ player: data.ShortName(matches.target) });
+          return output.thunderOn!({ player: data.ShortName(matches.target) });
       },
       run: (data, matches) => data.lightning = matches.target,
       outputStrings: {
@@ -293,16 +317,18 @@ export default {
     },
     {
       id: 'A8S Compressed Lightning Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '400', capture: false }),
       run: (data) => delete data.lightning,
     },
     {
       id: 'A8S Compressed Lightning Soon',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: (data) => data.lightning,
+      condition: (data) => data.lightning !== undefined,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
-        return output.text({ player: data.ShortName(data.lightning) });
+        return output.text!({ player: data.ShortName(data.lightning) });
       },
       outputStrings: {
         text: {
@@ -317,11 +343,12 @@ export default {
     },
     {
       id: 'A8S Enumeration',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return output.text({ player: data.ShortName(matches.target), count: count });
+        return output.text!({ player: data.ShortName(matches.target), count: count });
       },
       outputStrings: {
         text: {
@@ -336,6 +363,7 @@ export default {
     },
     {
       id: 'A8S Double Rocket Punch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1663' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1663' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1663' }),
@@ -345,10 +373,10 @@ export default {
       condition: Conditions.caresAboutPhysical(),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.sharedTankbusterOnYou();
+          return output.sharedTankbusterOnYou!();
 
         if (data.role === 'tank' || data.role === 'healer')
-          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
+          return output.sharedTankbusterOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         sharedTankbusterOnYou: {
@@ -371,19 +399,22 @@ export default {
     },
     {
       id: 'A8S Long Needle Stack Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       run: (data, matches) => data.longNeedleStack = matches.target,
     },
     {
       id: 'A8S Long Needle Prey Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: (data, matches) => {
-        data.longNeedlePrey = data.longNeedlePrey || [];
+        data.longNeedlePrey ??= [];
         data.longNeedlePrey.push(matches.target);
       },
     },
     {
       id: 'A8S Short Needle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1668', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1668', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1668', capture: false }),
@@ -395,26 +426,27 @@ export default {
     },
     {
       id: 'A8S Long Needle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '166A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '166A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '166A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
-      condition: (data) => data.longNeedleStack && data.longNeedlePrey,
+      condition: (data) => data.longNeedleStack !== undefined && data.longNeedlePrey !== undefined,
       suppressSeconds: 10,
       alarmText: (data, _matches, output) => {
-        if (data.longNeedlePrey.includes(data.me))
-          return output.preyGetOut();
+        if (data.longNeedlePrey?.includes(data.me))
+          return output.preyGetOut!();
       },
       alertText: (data, _matches, output) => {
-        if (data.longNeedlePrey.includes(data.me))
+        if (data.longNeedlePrey?.includes(data.me))
           return;
         const target = data.longNeedleStack;
         if (target === data.me)
-          return output.stackOnYou();
+          return output.stackOnYou!();
 
-        return output.stackOn({ player: data.ShortName(target) });
+        return output.stackOn!({ player: data.ShortName(target) });
       },
       run: (data) => {
         delete data.longNeedleStack;
@@ -435,6 +467,7 @@ export default {
     },
     {
       id: 'A8S Super Jump',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1665' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1665' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1665' }),
@@ -444,12 +477,12 @@ export default {
       alertText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
-        return output.superJumpOnYou();
+        return output.superJumpOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.superJumpOn({ player: data.ShortName(matches.target) });
+        return output.superJumpOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         superJumpOn: {
@@ -472,9 +505,10 @@ export default {
     },
     {
       id: 'A8S Mirage Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mirage on YOU',
@@ -488,9 +522,10 @@ export default {
     },
     {
       id: 'A8S Ice Missile Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Ice Missile on YOU',
@@ -504,6 +539,7 @@ export default {
     },
     {
       id: 'A8S Hidden Minefield Intermission',
+      type: 'Ability',
       // 165E used in both intermission and in final phase
       // 165C only used for intermission
       netRegex: NetRegexes.ability({ source: 'Hidden Mine', id: '165E', capture: false }),
@@ -514,7 +550,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '은폐 지뢰', id: '165E', capture: false }),
       condition: (data) => !data.seenLinkUp,
       suppressSeconds: 10,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Mines',
@@ -528,6 +564,7 @@ export default {
     },
     {
       id: 'A8S Mirage Blinder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165A' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '165A' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165A' }),
@@ -535,7 +572,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165A' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look Away from Mirage',
@@ -549,6 +586,7 @@ export default {
     },
     {
       id: 'A8S Mirage Power Tackle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '165B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165B' }),
@@ -556,7 +594,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165B' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look Towards Mirage',
@@ -570,6 +608,7 @@ export default {
     },
     {
       id: 'A8S Link Up',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1673', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1673', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1673', capture: false }),
@@ -580,10 +619,11 @@ export default {
     },
     {
       id: 'A8S Verdict Min HP',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Min HP: Provoke Boss => Late NE Tornado',
@@ -597,15 +637,17 @@ export default {
     },
     {
       id: 'A8S Verdict Min HP Collect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       run: (data, matches) => data.verdictMin = matches.target,
     },
     {
       id: 'A8S Verdict Min HP Tornado',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get NE Tornado',
@@ -619,14 +661,16 @@ export default {
     },
     {
       id: 'A8S Verdict Max HP Collect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       run: (data, matches) => data.verdictMax = matches.target,
     },
     {
       id: 'A8S Verdict Max HP',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Max HP: Provoke Boss Second',
@@ -641,11 +685,12 @@ export default {
     {
       // Final Punishment effect falling off due to auto.
       id: 'A8S Verdict Max HP Provoke',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '403' }),
       condition: (data, matches) => {
         return matches.target === data.verdictMin && data.me === data.verdictMax;
       },
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Provoke Boss',
@@ -659,10 +704,11 @@ export default {
     },
     {
       id: 'A8S Verdict Max HP Blu Devour',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 27,
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Use Devour',
@@ -676,12 +722,13 @@ export default {
     },
     {
       id: 'A8S Verdict Penalty 1',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '409' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       // TODO: we could say who to share north orbs with?
       // TODO: we could also repeat the "share north orbs" after sw orb Explosion.
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Penalty 1: SW orb -> Share 2x North Orbs',
@@ -695,9 +742,10 @@ export default {
     },
     {
       id: 'A8S Verdict Penalty 2',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Penalty 2: NW Tornado',
@@ -711,9 +759,10 @@ export default {
     },
     {
       id: 'A8S Verdict Penalty 3',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Penalty 3: Get a South Tornado',
@@ -727,12 +776,13 @@ export default {
     },
     {
       id: 'A8S Verdict Penalty 3 Orb',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 28,
       // TODO: we could collect who else has penalty 3 to share the orb with?
       // TODO: we could also say who to share north orb with.
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Share last orb after gavel',
@@ -746,12 +796,13 @@ export default {
     },
     {
       id: 'A8S Verdict Nisi A',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40C' }),
       condition: Conditions.targetIsYou(),
       // TODO: we could say east or west here after the regulators spawn?
       // TODO: we could also say who to share north orb with.
       // TODO: we could also repeat the share after the regular dies?
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Blue Regulator -> Share 1x North Orb',
@@ -765,9 +816,10 @@ export default {
     },
     {
       id: 'A8S Verdict Nisi B',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40D' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Red Regulator -> Share 1x North Orb',
@@ -781,14 +833,15 @@ export default {
     },
     {
       id: 'A8S Compressed Water',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.waterOnYou();
+          return output.waterOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.waterOn({ player: data.ShortName(matches.target) });
+          return output.waterOn!({ player: data.ShortName(matches.target) });
       },
       run: (data, matches) => data.water = matches.target,
       outputStrings: {
@@ -812,6 +865,7 @@ export default {
     },
     {
       id: 'A8S Compressed Water Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF', capture: false }),
       run: (data) => {
         // rip, valiant mine sac
@@ -820,11 +874,12 @@ export default {
     },
     {
       id: 'A8S Compressed Water Soon',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: (data) => data.water,
+      condition: (data) => data.water !== undefined,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
-        return output.text({ player: data.ShortName(data.water) });
+        return output.text!({ player: data.ShortName(data.water) });
       },
       outputStrings: {
         text: {
@@ -839,6 +894,7 @@ export default {
     },
     {
       id: 'A8S Final Punch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '170C' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '170C' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '170C' }),
@@ -850,6 +906,7 @@ export default {
     },
     {
       id: 'A8S Final Beam',
+      type: 'Ability',
       // id is for Final Apocalypse Ability
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1716', capture: false }),
@@ -857,7 +914,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1716', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1716', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1716', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stack for Final Beam',
@@ -1248,3 +1305,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

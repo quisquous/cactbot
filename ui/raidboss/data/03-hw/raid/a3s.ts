@@ -2,8 +2,15 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  ferroTether?: { [name: string]: string };
+  ferroMarker?: { [name: string]: string };
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheArmOfTheFatherSavage,
   timelineFile: 'a3s.txt',
   timelineTriggers: [
@@ -28,7 +35,7 @@ export default {
       beforeSeconds: 5,
       condition: (data) => data.role === 'tank' || data.job === 'BLU',
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move Bosses',
@@ -44,9 +51,10 @@ export default {
   triggers: [
     {
       id: 'A3S Sluice',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Sluice on YOU',
@@ -60,9 +68,10 @@ export default {
     },
     {
       id: 'A3S Digititis Tank',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0025' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tank Debuff',
@@ -76,9 +85,10 @@ export default {
     },
     {
       id: 'A3S Digititis Healer',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0022' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Healer Debuff',
@@ -92,9 +102,10 @@ export default {
     },
     {
       id: 'A3S Digititis Damage',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0024' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Damage Debuff',
@@ -108,13 +119,14 @@ export default {
     },
     {
       id: 'A3S Equal Concentration',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false }),
       netRegexDe: NetRegexes.ability({ source: ['Belebt(?:e|er|es|en) Hand', 'Belebt(?:e|er|es|en) Wasser'], id: 'F09', capture: false }),
       netRegexFr: NetRegexes.ability({ source: ['Membre Liquide', 'Liquide Vivant'], id: 'F09', capture: false }),
       netRegexJa: NetRegexes.ability({ source: ['リキッドハンド', 'リビングリキッド'], id: 'F09', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['活水之手', '有生命活水'], id: 'F09', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['액체 손', '살아있는 액체'], id: 'F09', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Burn Higher HP Hand',
@@ -128,6 +140,7 @@ export default {
     },
     {
       id: 'A3S Drainage You',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid' }),
       netRegexDe: NetRegexes.tether({ id: '0005', target: 'Belebt(?:e|er|es|en) Wasser' }),
       netRegexFr: NetRegexes.tether({ id: '0005', target: 'Liquide Vivant' }),
@@ -135,7 +148,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水' }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체' }),
       condition: (data, matches) => matches.source === data.me,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drainage on YOU',
@@ -149,6 +162,7 @@ export default {
     },
     {
       id: 'A3S Drainage Tank',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid', capture: false }),
       netRegexDe: NetRegexes.tether({ id: '0005', target: 'Belebt(?:e|er|es|en) Wasser', capture: false }),
       netRegexFr: NetRegexes.tether({ id: '0005', target: 'Liquide Vivant', capture: false }),
@@ -157,7 +171,7 @@ export default {
       netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체', capture: false }),
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get drainage tether',
@@ -171,24 +185,27 @@ export default {
     },
     {
       id: 'A3S Ferrofluid Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0026' }),
       run: (data, matches) => {
-        data.ferroTether = data.ferroTether || {};
+        data.ferroTether ??= {};
         data.ferroTether[matches.source] = matches.target;
         data.ferroTether[matches.target] = matches.source;
       },
     },
     {
       id: 'A3S Ferrofluid Signs',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
       run: (data, matches) => {
-        data.ferroMarker = data.ferroMarker || {};
+        data.ferroMarker ??= {};
         data.ferroMarker[matches.target] = matches.id;
       },
     },
     {
       // From logs, it appears that tethers, then headmarkers, then starts casting occurs.
       id: 'A3S Ferrofluid',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'F01' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Belebt(?:e|er|es|en) Wasser', id: 'F01' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Liquide Vivant', id: 'F01' }),
@@ -196,18 +213,18 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: 'F01' }),
       netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'F01' }),
       alertText: (data, matches, output) => {
-        data.ferroTether = data.ferroTether || {};
-        data.ferroMarker = data.ferroMarker || {};
+        data.ferroTether ??= {};
+        data.ferroMarker ??= {};
         const partner = data.ferroTether[data.me];
         const marker1 = data.ferroMarker[data.me];
-        const marker2 = data.ferroMarker[partner];
+        const marker2 = data.ferroMarker[partner ?? ''];
 
         if (!partner || !marker1 || !marker2)
           return matches.ability + ' (???)';
 
         if (marker1 === marker2)
-          return output.repel({ player: data.ShortName(partner) });
-        return output.attract({ player: data.ShortName(partner) });
+          return output.repel!({ player: data.ShortName(partner) });
+        return output.attract!({ player: data.ShortName(partner) });
       },
       outputStrings: {
         repel: {
@@ -230,6 +247,7 @@ export default {
     },
     {
       id: 'A3S Cascade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'EFE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Belebt(?:e|er|es|en) Wasser', id: 'EFE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Liquide Vivant', id: 'EFE', capture: false }),
@@ -242,6 +260,7 @@ export default {
     {
       // aka Liquid Gaol
       id: 'A3S Throttle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Liquid Rage', id: 'F1A' }),
       netRegexDe: NetRegexes.ability({ source: 'Levitiert(?:e|er|es|en) Rage', id: 'F1A' }),
       netRegexFr: NetRegexes.ability({ source: 'Furie Liquide', id: 'F1A' }),
@@ -249,7 +268,9 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '活水之怒', id: 'F1A' }),
       netRegexKo: NetRegexes.ability({ source: '분노한 액체', id: 'F1A' }),
       condition: (data) => data.CanCleanse(),
-      alertText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) => {
+        return output.text!({ player: data.ShortName(matches.target) });
+      },
       outputStrings: {
         text: {
           en: 'Throttle on ${player}',
@@ -263,14 +284,15 @@ export default {
     },
     {
       id: 'A3S Fluid Claw',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.clawOnYou();
+          return output.clawOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.clawOn({ player: data.ShortName(matches.target) });
+          return output.clawOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         clawOn: {
@@ -294,6 +316,7 @@ export default {
     {
       // aka Pressurize
       id: 'A3S Embolus',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Living Liquid', id: 'F1B', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Belebt(?:e|er|es|en) Wasser', id: 'F1B', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Liquide Vivant', id: 'F1B', capture: false }),
@@ -301,7 +324,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '有生命活水', id: 'F1B', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '살아있는 액체', id: 'F1B', capture: false }),
       condition: (data) => data.role === 'tank' || data.job === 'BLU',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Embolus: Move Boss',
@@ -481,3 +504,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -1,6 +1,12 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  bangyzoom?: boolean;
+}
 
 // TODO: could consider keeping track of the gobbie driver?
 // Nothing in the logs for when you get in, other than removing combatanat.
@@ -9,7 +15,7 @@ import ZoneId from '../../../../../resources/zone_id';
 // There aren't many triggers, so maybe worth just keeping the global callouts
 // for bombs and stuns.
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheCuffOfTheFatherSavage,
   timelineFile: 'a2s.txt',
   timelineTriggers: [
@@ -18,7 +24,7 @@ export default {
       regex: /(?:Brainhurt|Bodyhurt) Breakblock/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stun Soon',
@@ -34,13 +40,14 @@ export default {
   triggers: [
     {
       id: 'A2S Bomb',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Bomb', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Bombe', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Bombe', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: '爆弾', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '炸弹', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭탄', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bomb',
@@ -54,6 +61,7 @@ export default {
     },
     {
       id: 'A2S Prey',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
       netRegexDe: NetRegexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
       netRegexFr: NetRegexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
@@ -62,7 +70,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 10,
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Keep ${player} topped',
@@ -76,6 +84,7 @@ export default {
     },
     {
       id: 'A2S Prey You',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
       netRegexDe: NetRegexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
       netRegexFr: NetRegexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
@@ -84,7 +93,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Boomcannon on YOU',
@@ -98,6 +107,7 @@ export default {
     },
     {
       id: 'A2S Soldier Spawn',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Gordian Soldier', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gordios-Soldat', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Soldat Gordien', capture: false }),
@@ -108,6 +118,7 @@ export default {
     },
     {
       id: 'A2S Bangyzoom',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'FD9', target: 'Gordios-Soldat', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'FD9', target: 'Soldat Gordien', capture: false }),
@@ -116,7 +127,7 @@ export default {
       netRegexKo: NetRegexes.ability({ id: 'FD9', target: '고르디우스 병사', capture: false }),
       condition: (data) => !data.bangyzoom,
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.bangyzoom = true,
       outputStrings: {
         text: {
@@ -309,3 +320,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

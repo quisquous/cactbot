@@ -155,6 +155,7 @@ type RequiredFieldsAsUnion<Type> =
 export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
+  timelineNeedsFixing?: boolean;
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;
   timelineFile?: string;

@@ -2,14 +2,21 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  stockpileCount?: number;
+  mainTank?: string;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheEyesOfTheCreatorSavage,
   timelineFile: 'a9s.txt',
   timelineTriggers: [
     {
       id: 'A9S Panzerschreck',
-      regex: 'Panzerschreck',
+      regex: /Panzerschreck/,
       beforeSeconds: 5,
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
@@ -18,16 +25,17 @@ export default {
       id: 'A9S Power Generator',
       regex: /Power Generator/,
       infoText: (data, _matches, output) => {
-        return {
-          1: output.oneEachNWSE(),
-          2: output.twoNW(),
+        const outputs: { [index: number]: string } = {
+          1: output.oneEachNWSE!(),
+          2: output.twoNW!(),
           // 3: faust,
-          4: output.oneNW(),
-          5: output.twoSE(),
-          6: output.oneNW(),
-          7: output.twoSE(),
-          8: output.oneNW(),
-        }[data.stockpileCount];
+          4: output.oneNW!(),
+          5: output.twoSE!(),
+          6: output.oneNW!(),
+          7: output.twoSE!(),
+          8: output.oneNW!(),
+        };
+        return outputs[data.stockpileCount ?? 0];
       },
       outputStrings: {
         oneEachNWSE: {
@@ -69,12 +77,13 @@ export default {
       regex: /Alarum/,
       delaySeconds: 1,
       infoText: (data, _matches, output) => {
-        return {
-          5: output.southeast(),
-          6: output.southwest(),
-          7: output.southeast(),
-          8: output.southwest(),
-        }[data.stockpileCount];
+        const outputs: { [index: number]: string } = {
+          5: output.southeast!(),
+          6: output.southwest!(),
+          7: output.southeast!(),
+          8: output.southwest!(),
+        };
+        return outputs[data.stockpileCount ?? 0];
       },
       outputStrings: {
         southeast: {
@@ -101,7 +110,7 @@ export default {
       id: 'A9S Bomb Explosion',
       regex: /Explosion/,
       beforeSeconds: 7,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bombs Soon',
@@ -117,6 +126,7 @@ export default {
   triggers: [
     {
       id: 'A9S Stockpile Count',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A38', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A38', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A38', capture: false }),
@@ -124,12 +134,13 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A38', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A38', capture: false }),
       run: (data) => {
-        data.stockpileCount = data.stockpileCount || 0;
+        data.stockpileCount ??= 0;
         data.stockpileCount++;
       },
     },
     {
       id: 'A9S Scrapline',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A3C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A3C', capture: false }),
@@ -139,12 +150,12 @@ export default {
       alertText: (data, _matches, output) => {
         if (data.mainTank === data.me)
           return;
-        return output.getBehind();
+        return output.getBehind!();
       },
       infoText: (data, _matches, output) => {
         if (data.mainTank !== data.me)
           return;
-        return output.scraplineOnYou();
+        return output.scraplineOnYou!();
       },
       outputStrings: {
         scraplineOnYou: {
@@ -167,13 +178,14 @@ export default {
     },
     {
       id: 'A9S Double Scrapline',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A3D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A3D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A3D', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3D', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3D', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand in Alarum Puddle',
@@ -187,9 +199,10 @@ export default {
     },
     {
       id: 'A9S Scrap Rock',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Rock on YOU',
@@ -203,10 +216,11 @@ export default {
     },
     {
       id: 'A9S Scrap Burst',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 5,
       suppressSeconds: 1,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Hide Fully Behind Rock',
@@ -220,6 +234,7 @@ export default {
     },
     {
       id: 'A9S Scrap Bomb Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       // TODO: dubious to tell the person tanking to do it here.
       // But maybe fine to inform.
@@ -227,12 +242,14 @@ export default {
     },
     {
       id: 'A9S Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'A9S Auto',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Refurbisher 0', id: '1AFE' }),
       netRegexDe: NetRegexes.ability({ source: 'Rekompositor', id: '1AFE' }),
       netRegexFr: NetRegexes.ability({ source: 'Récupérateur', id: '1AFE' }),
@@ -243,22 +260,24 @@ export default {
     },
     {
       id: 'A9S Power Generator Add Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
 
       suppressSeconds: 30,
       infoText: (data, _matches, output) => {
         // Some of the last phases have multiple options.
         // This is an old fight, so just pick one for people.
-        return {
-          1: output.northeast(),
-          2: output.southeast(),
+        const outputs: { [index: number]: string } = {
+          1: output.northeast!(),
+          2: output.southeast!(),
           // 3: faust,
-          4: output.southwest(),
-          5: output.northwest(),
-          6: output.southwest(),
-          7: output.northwest(),
-          8: output.southwest(),
-        }[data.stockpileCount];
+          4: output.southwest!(),
+          5: output.northwest!(),
+          6: output.southwest!(),
+          7: output.northwest!(),
+          8: output.southwest!(),
+        };
+        return outputs[data.stockpileCount ?? 0];
       },
       outputStrings: {
         northeast: {
@@ -476,3 +495,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -2,6 +2,16 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
+import { TriggerSet } from '../../../../../types/trigger';
+
+// export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  bombCount?: number;
+  boostCount?: number;
+  boostBombs?: { x: number; y: number }[];
+}
 
 // TODO: do the gobcut and gobstraight really alternate?
 // if so, then maybe we could call out which was coming.
@@ -15,7 +25,7 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: is it worth calling out a safe spot for the second boost?
 // There's some notes below, but good words for directions are hard.
 
-const bombLocation = (matches) => {
+const bombLocation = (matches: NetMatches['AddedCombatant']) => {
   // x = -15, -5, +5, +15 (east to west)
   // y = -205, -195, -185, -175 (north to south)
   return {
@@ -24,7 +34,7 @@ const bombLocation = (matches) => {
   };
 };
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   timelineTriggers: [
@@ -55,7 +65,7 @@ export default {
       regex: /Boost/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bird Soon (Purple)',
@@ -72,7 +82,7 @@ export default {
       regex: /Bomb's Away/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Gorilla Soon (Red)',
@@ -89,7 +99,7 @@ export default {
       regex: /Disorienting Groan/,
       beforeSeconds: 1,
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'refresh debuff in puddle soon',
@@ -105,11 +115,13 @@ export default {
   triggers: [
     {
       id: 'A5S Gobcut Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'A5S Concussion',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E4' }),
       condition: (data, matches) => {
         if (data.me !== matches.target)
@@ -120,6 +132,7 @@ export default {
     },
     {
       id: 'A5S Concussion BLU',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E4' }),
       condition: (data, matches) => {
         if (data.me !== matches.target)
@@ -130,6 +143,7 @@ export default {
     },
     {
       id: 'A5S Bomb Direction',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ratfinx Twinkledinks', id: '1590', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ratfix Blinkdings', id: '1590', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ratfinx Le Génie', id: '1590', capture: false }),
@@ -137,15 +151,15 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '1590', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '1590', capture: false }),
       preRun: (data) => {
-        data.bombCount = data.bombCount || 0;
+        data.bombCount ??= 0;
         data.bombCount++;
       },
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
       infoText: (data, _matches, output) => {
         if (data.bombCount === 1)
-          return output.knockBombsIntoSpikey();
+          return output.knockBombsIntoSpikey!();
 
-        return output.knockBombsOppositeSpikey();
+        return output.knockBombsOppositeSpikey!();
       },
       outputStrings: {
         knockBombsIntoSpikey: {
@@ -168,6 +182,7 @@ export default {
     },
     {
       id: 'A5S Boost Count',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ratfinx Twinkledinks', id: '16A6', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ratfix Blinkdings', id: '16A6', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ratfinx Le Génie', id: '16A6', capture: false }),
@@ -175,13 +190,14 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '16A6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '16A6', capture: false }),
       run: (data) => {
-        data.boostCount = data.boostCount || 0;
+        data.boostCount ??= 0;
         data.boostCount++;
         data.boostBombs = [];
       },
     },
     {
       id: 'A5S Bomb',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Bomb' }),
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Bombe' }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Bombe' }),
@@ -189,21 +205,23 @@ export default {
       netRegexCn: NetRegexes.addedCombatantFull({ name: '炸弹' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '폭탄' }),
       preRun: (data, matches) => {
-        data.boostBombs = data.boostBombs || [];
+        data.boostBombs ??= [];
         data.boostBombs.push(bombLocation(matches));
       },
       alertText: (data, _matches, output) => {
-        if (data.boostCount === 1) {
-          if (data.boostBombs.length !== 1)
+        if (data.boostBombs && data.boostCount === 1) {
+          const firstBomb = data.boostBombs[0];
+          if (!firstBomb)
             return;
           // index 0 = NW, 3 = NE, 12 = SW, 15 = SE
-          const index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
-          return {
-            0: output.northwestFirst(),
-            3: output.northeastFirst(),
-            12: output.southwestFirst(),
-            15: output.southeastFirst(),
-          }[index];
+          const index = firstBomb.x + firstBomb.y * 4;
+          const outputs: { [index: number]: string } = {
+            0: output.northwestFirst!(),
+            3: output.northeastFirst!(),
+            12: output.southwestFirst!(),
+            15: output.southeastFirst!(),
+          };
+          return outputs[index];
         }
 
         // Otherwise, we're on the second and final set of boost bombs.
@@ -248,9 +266,10 @@ export default {
     },
     {
       id: 'A5S Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Away',
@@ -264,9 +283,10 @@ export default {
     },
     {
       id: 'A5S Prey Healer',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: (data) => data.role === 'healer',
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Shield ${player}',
@@ -280,9 +300,10 @@ export default {
     },
     {
       id: 'A5S Glupgloop',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'GLOOPYGLOOP~',
@@ -296,6 +317,7 @@ export default {
     },
     {
       id: 'A5S Snake Adds',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Glassy-Eyed Cobra', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Aufgerüstet(?:e|er|es|en) Kobra', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cobra Au Regard Vide', capture: false }),
@@ -307,6 +329,7 @@ export default {
     },
     {
       id: 'A5S Steel Scales',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Glassy-Eyed Cobra', id: '16A2' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Aufgerüstet(?:e|er|es|en) Kobra', id: '16A2' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Cobra Au Regard Vide', id: '16A2' }),
@@ -319,11 +342,12 @@ export default {
     },
     {
       id: 'A5S Anti-Coagulant Cleanse',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3EC' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       suppressSeconds: 30,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cleanse (Green)',
@@ -337,6 +361,7 @@ export default {
     },
     {
       id: 'A5S Gobbledygroper',
+      type: 'Ability',
       // FIXME: this is a case where the tether is part of the added combatant network data,
       // but isn't exposed as a separate tether line.  Instead, just assume the first auto
       // is going to hit the tethered person, and suppress everything else.
@@ -348,7 +373,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '고블키마이라', id: '366' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 100,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Break Tether (Blue)',
@@ -362,6 +387,7 @@ export default {
     },
     {
       id: 'A5S Oogle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Gobbledygawker', id: '169C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gobglotzer', id: '169C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Gobœil', id: '169C', capture: false }),
@@ -620,3 +646,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
