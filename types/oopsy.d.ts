@@ -5,7 +5,7 @@ import { NetAnyMatches, NetMatches } from './net_matches';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 import { LocaleText, ZoneId } from './trigger';
 
-export type OopsyMistakeType = 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe';
+export type OopsyMistakeType = 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe' | 'damage' | 'heal';
 
 export type OopsyField = boolean | number | string |
   OopsyMistake | OopsyMistake[] | OopsyDeathReason | void;
