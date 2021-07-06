@@ -1,10 +1,15 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields, kFlagInstantDeath } from '../../../oopsy_common';
 
+export interface Data extends OopsyData {
+  hasDoom?: { [name: string]: boolean };
+}
+
 // UCU - The Unending Coil Of Bahamut (Ultimate)
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   damageFail: {
     'UCU Lunar Dynamo': '26BC',
@@ -15,6 +20,7 @@ export default {
   triggers: [
     {
       id: 'UCU Twister Death',
+      type: 'Ability',
       // Instant death has a special flag value, differentiating
       // from the explosion damage you take when somebody else
       // pops one.
@@ -36,6 +42,7 @@ export default {
     },
     {
       id: 'UCU Thermionic Burst',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '26B9', ...playerDamageFields }),
       mistake: (_data, matches) => {
         return {
@@ -54,6 +61,7 @@ export default {
     },
     {
       id: 'UCU Chain Lightning',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '26C8', ...playerDamageFields }),
       mistake: (_data, matches) => {
         // It's hard to assign blame for lightning.  The debuffs
@@ -75,6 +83,7 @@ export default {
     },
     {
       id: 'UCU Burns',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'FA' }),
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
@@ -82,6 +91,7 @@ export default {
     },
     {
       id: 'UCU Sludge',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '11F' }),
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.effect };
@@ -89,17 +99,19 @@ export default {
     },
     {
       id: 'UCU Doom Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       run: (data, matches) => {
-        data.hasDoom = data.hasDoom || {};
+        data.hasDoom ??= {};
         data.hasDoom[matches.target] = true;
       },
     },
     {
       id: 'UCU Doom Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: 'D2' }),
       run: (data, matches) => {
-        data.hasDoom = data.hasDoom || {};
+        data.hasDoom ??= {};
         data.hasDoom[matches.target] = false;
       },
     },
@@ -117,6 +129,7 @@ export default {
       // died to doom.  You can get non-fatally iceballed or auto'd in between,
       // but what can you do.
       id: 'UCU Doom Death',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
       deathReason: (data, matches) => {
@@ -135,3 +148,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -1,12 +1,20 @@
 import NetRegexes from '../../../../resources/netregexes';
 import ZoneId from '../../../../resources/zone_id';
+import { OopsyData } from '../../../../types/data';
+import { OopsyTriggerSet } from '../../../../types/oopsy';
+
+export interface Data extends OopsyData {
+  bootCount?: number;
+  pokeCount?: number;
+}
 
 // Test mistake triggers.
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.MiddleLaNoscea,
   triggers: [
     {
       id: 'Test Bow',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You bow courteously to the striking dummy.*?' }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?' }),
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人にお辞儀した.*?' }),
@@ -29,6 +37,7 @@ export default {
     },
     {
       id: 'Test Wipe',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You bid farewell to the striking dummy.*?' }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous faites vos adieux au mannequin d\'entraînement.*?' }),
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に別れの挨拶をした.*?' }),
@@ -51,6 +60,7 @@ export default {
     },
     {
       id: 'Test Bootshine',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '35' }),
       condition: (data, matches) => {
         if (matches.source !== data.me)
@@ -66,7 +76,7 @@ export default {
         return strikingDummyNames.includes(matches.target);
       },
       mistake: (data, matches) => {
-        data.bootCount = data.bootCount || 0;
+        data.bootCount ??= 0;
         data.bootCount++;
         const text = `${matches.ability} (${data.bootCount}): ${data.DamageFromMatches(matches)}`;
         return { type: 'warn', blame: data.me, text: text };
@@ -74,6 +84,7 @@ export default {
     },
     {
       id: 'Test Leaden Fist',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '745' }),
       condition: (data, matches) => matches.source === data.me,
       mistake: (data, matches) => {
@@ -82,6 +93,7 @@ export default {
     },
     {
       id: 'Test Oops',
+      type: 'GameLog',
       netRegex: NetRegexes.echo({ line: '.*oops.*' }),
       suppressSeconds: 10,
       mistake: (data, matches) => {
@@ -90,17 +102,19 @@ export default {
     },
     {
       id: 'Test Poke Collect',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?' }),
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?' }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
       run: (data) => {
-        data.pokeCount = (data.pokeCount || 0) + 1;
+        data.pokeCount = (data.pokeCount ?? 0) + 1;
       },
     },
     {
       id: 'Test Poke',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?' }),
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?' }),
@@ -128,3 +142,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

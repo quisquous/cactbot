@@ -1,10 +1,17 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
+export interface Data extends OopsyData {
+  hasDark?: string[];
+  hasBeyondDeath?: { [name: string]: boolean };
+  hasDoom?: { [name: string]: boolean };
+}
+
 // Hades Ex
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   damageWarn: {
     'HadesEx Shadow Spread 2': '47AA',
@@ -40,14 +47,16 @@ export default {
   triggers: [
     {
       id: 'HadesEx Dark II Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Shadow of the Ancients', id: '0011' }),
       run: (data, matches) => {
-        data.hasDark = data.hasDark || [];
+        data.hasDark ??= [];
         data.hasDark.push(matches.target);
       },
     },
     {
       id: 'HadesEx Dark II',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ type: '22', id: '47BA', ...playerDamageFields }),
       // Don't blame people who don't have tethers.
       condition: (data, matches) => data.hasDark && data.hasDark.includes(matches.target),
@@ -57,6 +66,7 @@ export default {
     },
     {
       id: 'HadesEx Boss Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], id: '000E', capture: false }),
       mistake: {
         type: 'warn',
@@ -72,6 +82,7 @@ export default {
     },
     {
       id: 'HadesEx Death Shriek',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '47CB', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
@@ -80,22 +91,25 @@ export default {
     },
     {
       id: 'HadesEx Beyond Death Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       run: (data, matches) => {
-        data.hasBeyondDeath = data.hasBeyondDeath || {};
+        data.hasBeyondDeath ??= {};
         data.hasBeyondDeath[matches.target] = true;
       },
     },
     {
       id: 'HadesEx Beyond Death Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '566' }),
       run: (data, matches) => {
-        data.hasBeyondDeath = data.hasBeyondDeath || {};
+        data.hasBeyondDeath ??= {};
         data.hasBeyondDeath[matches.target] = false;
       },
     },
     {
       id: 'HadesEx Beyond Death',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
       deathReason: (data, matches) => {
@@ -111,22 +125,25 @@ export default {
     },
     {
       id: 'HadesEx Doom Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '6E9' }),
       run: (data, matches) => {
-        data.hasDoom = data.hasDoom || {};
+        data.hasDoom ??= {};
         data.hasDoom[matches.target] = true;
       },
     },
     {
       id: 'HadesEx Doom Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '6E9' }),
       run: (data, matches) => {
-        data.hasDoom = data.hasDoom || {};
+        data.hasDoom ??= {};
         data.hasDoom[matches.target] = false;
       },
     },
     {
       id: 'HadesEx Doom',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '6E9' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
       deathReason: (data, matches) => {
@@ -142,3 +159,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

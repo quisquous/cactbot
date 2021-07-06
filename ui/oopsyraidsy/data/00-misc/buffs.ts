@@ -1,12 +1,23 @@
 import NetRegexes from '../../../../resources/netregexes';
 import ZoneId from '../../../../resources/zone_id';
+import { OopsyData } from '../../../../types/data';
+import { NetMatches } from '../../../../types/net_matches';
+import { CactbotBaseRegExp } from '../../../../types/net_trigger';
+import { OopsyMistakeType, OopsyTriggerGeneric, OopsyTriggerSet } from '../../../../types/oopsy';
+
+type BuffMatches = NetMatches['Ability'] | NetMatches['GainsEffect'];
+
+export interface Data extends OopsyData {
+  generalBuffCollection?: { [triggerId: string]: BuffMatches[] };
+  petIdToOwnerId?: { [petId: string]: string };
+}
 
 // Abilities seem instant.
 const abilityCollectSeconds = 0.5;
 // Observation: up to ~1.2 seconds for a buff to roll through the party.
 const effectCollectSeconds = 2.0;
 
-const isInPartyConditionFunc = (data, matches) => {
+const isInPartyConditionFunc = (data: Data, matches: BuffMatches) => {
   const sourceId = matches.sourceId.toUpperCase();
   if (data.party.partyIds.includes(sourceId))
     return true;
@@ -20,40 +31,48 @@ const isInPartyConditionFunc = (data, matches) => {
   return false;
 };
 
-// args: triggerId, netRegex, field, type, ignoreSelf
-const missedFunc = (args) => [
+const missedFunc = <T extends 'Ability' | 'GainsEffect'>(args: {
+  triggerId: string;
+  regexType: T;
+  netRegex: CactbotBaseRegExp<T>;
+  field: string;
+  type: OopsyMistakeType;
+  ignoreSelf?: boolean;
+  collectSeconds: number;
+}): OopsyTriggerGeneric<Data, T>[] => [
   {
     // Sure, not all of these are "buffs" per se, but they're all in the buffs file.
     id: `Buff ${args.triggerId} Collect`,
+    type: args.regexType,
     netRegex: args.netRegex,
     condition: isInPartyConditionFunc,
     run: (data, matches) => {
-      data.generalBuffCollection = data.generalBuffCollection || {};
-      data.generalBuffCollection[args.triggerId] = data.generalBuffCollection[args.triggerId] || [];
-      data.generalBuffCollection[args.triggerId].push(matches);
+      data.generalBuffCollection ??= {};
+      const arr = data.generalBuffCollection[args.triggerId] ??= [];
+      arr.push(matches);
     },
   },
   {
     id: `Buff ${args.triggerId}`,
+    type: args.regexType,
     netRegex: args.netRegex,
     condition: isInPartyConditionFunc,
     delaySeconds: args.collectSeconds,
     suppressSeconds: args.collectSeconds,
-    mistake: (data, _matches) => {
-      if (!data.generalBuffCollection)
-        return;
-      const allMatches = data.generalBuffCollection[args.triggerId];
-      if (!allMatches)
+    mistake: (data) => {
+      const allMatches = data.generalBuffCollection?.[args.triggerId];
+      const firstMatch = allMatches?.[0];
+      const thingName = firstMatch?.[args.field];
+      if (!allMatches || !firstMatch || !thingName)
         return;
 
       const partyNames = data.party.partyNames;
 
       // TODO: consider dead people somehow
-      const gotBuffMap = {};
+      const gotBuffMap: { [name: string]: boolean } = {};
       for (const name of partyNames)
         gotBuffMap[name] = false;
 
-      const firstMatch = allMatches[0];
       let sourceName = firstMatch.source;
       // Blame pet mistakes on owners.
       if (data.petIdToOwnerId) {
@@ -71,7 +90,6 @@ const missedFunc = (args) => [
       if (args.ignoreSelf)
         gotBuffMap[sourceName] = true;
 
-      const thingName = firstMatch[args.field];
       for (const matches of allMatches) {
         // In case you have multiple party members who hit the same cooldown at the same
         // time (lol?), then ignore anybody who wasn't the first.
@@ -93,12 +111,12 @@ const missedFunc = (args) => [
           type: args.type,
           blame: sourceName,
           text: {
-            en: thingName + ' missed ' + missed.map((x) => data.ShortName(x)).join(', '),
-            de: thingName + ' verfehlt ' + missed.map((x) => data.ShortName(x)).join(', '),
-            fr: thingName + ' manqué(e) sur ' + missed.map((x) => data.ShortName(x)).join(', '),
-            ja: '(' + missed.map((x) => data.ShortName(x)).join(', ') + ') が' + thingName + 'を受けなかった',
-            cn: missed.map((x) => data.ShortName(x)).join(', ') + ' 没受到 ' + thingName,
-            ko: thingName + ' ' + missed.map((x) => data.ShortName(x)).join(', ') + '에게 적용안됨',
+            en: `${thingName} missed ${missed.map((x) => data.ShortName(x)).join(', ')}`,
+            de: `${thingName} verfehlt ${missed.map((x) => data.ShortName(x)).join(', ')}`,
+            fr: `${thingName} manqué(e) sur ${missed.map((x) => data.ShortName(x)).join(', ')}`,
+            ja: `(${missed.map((x) => data.ShortName(x)).join(', ')}) が${thingName}を受けなかった`,
+            cn: `${missed.map((x) => data.ShortName(x)).join(', ')} 没受到 ${thingName}`,
+            ko: `${thingName} ${missed.map((x) => data.ShortName(x)).join(', ')}에게 적용안됨`,
           },
         };
       }
@@ -108,12 +126,12 @@ const missedFunc = (args) => [
         type: args.type,
         blame: sourceName,
         text: {
-          en: thingName + ' missed ' + missed.length + ' people',
-          de: thingName + ' verfehlte ' + missed.length + ' Personen',
-          fr: thingName + ' manqué(e) sur ' + missed.length + ' personnes',
-          ja: missed.length + '人が' + thingName + 'を受けなかった',
-          cn: '有' + missed.length + '人没受到 ' + thingName,
-          ko: thingName + ' ' + missed.length + '명에게 적용안됨',
+          en: `${thingName} missed ${missed.length} people`,
+          de: `${thingName} verfehlte ${missed.length} Personen`,
+          fr: `${thingName} manqué(e) sur ${missed.length} personnes`,
+          ja: `${missed.length}人が${thingName}を受けなかった`,
+          cn: `有${missed.length}人没受到 ${thingName}`,
+          ko: `${thingName} ${missed.length}명에게 적용안됨`,
         },
       };
     },
@@ -124,12 +142,14 @@ const missedFunc = (args) => [
   },
 ];
 
-const missedMitigationBuff = (args) => {
+const missedMitigationBuff = (args: { id: string; effectId: string;
+  ignoreSelf?: boolean; collectSeconds?: number; }) => {
   if (!args.effectId)
     console.error('Missing effectId: ' + JSON.stringify(args));
   return missedFunc({
     triggerId: args.id,
     netRegex: NetRegexes.gainsEffect({ effectId: args.effectId }),
+    regexType: 'GainsEffect',
     field: 'effect',
     type: 'heal',
     ignoreSelf: args.ignoreSelf,
@@ -137,12 +157,14 @@ const missedMitigationBuff = (args) => {
   });
 };
 
-const missedDamageAbility = (args) => {
+const missedDamageAbility = (args: { id: string; abilityId: string;
+  ignoreSelf?: boolean; collectSeconds?: number; }) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
   return missedFunc({
     triggerId: args.id,
     netRegex: NetRegexes.ability({ id: args.abilityId }),
+    regexType: 'Ability',
     field: 'ability',
     type: 'damage',
     ignoreSelf: args.ignoreSelf,
@@ -150,12 +172,14 @@ const missedDamageAbility = (args) => {
   });
 };
 
-const missedHeal = (args) => {
+const missedHeal = (args: { id: string; abilityId: string;
+  ignoreSelf?: boolean; collectSeconds?: number; }) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
   return missedFunc({
     triggerId: args.id,
     netRegex: NetRegexes.ability({ id: args.abilityId }),
+    regexType: 'Ability',
     field: 'ability',
     type: 'heal',
     collectSeconds: args.collectSeconds ? args.collectSeconds : abilityCollectSeconds,
@@ -164,23 +188,25 @@ const missedHeal = (args) => {
 
 const missedMitigationAbility = missedHeal;
 
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
       id: 'Buff Pet To Owner Mapper',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull(),
       run: (data, matches) => {
         if (matches.ownerId === '0')
           return;
 
-        data.petIdToOwnerId = data.petIdToOwnerId || {};
+        data.petIdToOwnerId ??= {};
         // Fix any lowercase ids.
         data.petIdToOwnerId[matches.id.toUpperCase()] = matches.ownerId.toUpperCase();
       },
     },
     {
       id: 'Buff Pet To Owner Clearer',
+      type: 'ChangeZone',
       netRegex: NetRegexes.changeZone(),
       run: (data) => {
         // Clear this hash periodically so it doesn't have false positives.
@@ -260,3 +286,5 @@ export default {
     ...missedMitigationAbility({ id: 'Lost Aethershield', abilityId: '5753' }),
   ],
 };
+
+export default triggerSet;

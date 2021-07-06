@@ -1,9 +1,15 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
-export default {
+export interface Data extends OopsyData {
+  hasOrb?: { [name: string]: boolean };
+  cloudMarkers?: string[];
+}
+
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseFulmination,
   damageWarn: {
     'E5N Impact': '4E3A', // Stratospear landing AoE
@@ -19,6 +25,7 @@ export default {
     {
       // This happens when a player gets 4+ stacks of orbs. Don't be greedy!
       id: 'E5N Static Condensation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B5' }),
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
@@ -27,24 +34,27 @@ export default {
     {
       // Helper for orb pickup failures
       id: 'E5N Orb Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       run: (data, matches) => {
-        data.hasOrb = data.hasOrb || {};
+        data.hasOrb ??= {};
         data.hasOrb[matches.target] = true;
       },
     },
     {
       id: 'E5N Orb Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
       run: (data, matches) => {
-        data.hasOrb = data.hasOrb || {};
+        data.hasOrb ??= {};
         data.hasOrb[matches.target] = false;
       },
     },
     {
       id: 'E5N Divine Judgement Volts',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '4B9A', ...playerDamageFields }),
-      condition: (data, matches) => !data.hasOrb[matches.target],
+      condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
         return {
           type: 'fail',
@@ -61,22 +71,24 @@ export default {
     },
     {
       id: 'E5N Stormcloud Target Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       run: (data, matches) => {
-        data.cloudMarkers = data.cloudMarkers || [];
+        data.cloudMarkers ??= [];
         data.cloudMarkers.push(matches.target);
       },
     },
     {
       // This ability is seen only if players stacked the clouds instead of spreading them.
       id: 'E5N The Parting Clouds',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '4B9D', ...playerDamageFields }),
       suppressSeconds: 30,
       mistake: (data, matches) => {
-        for (const m of data.cloudMarkers) {
+        for (const name of data.cloudMarkers ?? []) {
           return {
             type: 'fail',
-            blame: data.cloudMarkers[m],
+            blame: name,
             text: {
               en: `${matches.ability} (clouds too close)`,
               de: `${matches.ability} (Wolken zu nahe)`,
@@ -90,6 +102,7 @@ export default {
     },
     {
       id: 'E5N Stormcloud cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       delaySeconds: 30, // Stormclouds resolve well before this.
       run: (data) => {
@@ -98,3 +111,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

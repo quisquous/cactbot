@@ -1,9 +1,14 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
-export default {
+export interface Data extends OopsyData {
+  assault?: string[];
+}
+
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheSoulOfTheCreator,
   damageWarn: {
     'A12N Sacrament': '1AE6', // Cross Lasers
@@ -18,17 +23,19 @@ export default {
   triggers: [
     {
       id: 'A12N Assault Collect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
       run: (data, matches) => {
-        data.assault = data.assault || [];
+        data.assault ??= [];
         data.assault.push(matches.target);
       },
     },
     {
       // It is a failure for a Severity marker to stack with the Solidarity group.
       id: 'A12N Assault Failure',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '1AF2', ...playerDamageFields }),
-      condition: (data, matches) => data.assault.includes(matches.target),
+      condition: (data, matches) => data.assault?.includes(matches.target),
       mistake: (_data, matches) => {
         return {
           type: 'fail',
@@ -45,6 +52,7 @@ export default {
     },
     {
       id: 'A12N Assault Cleanup',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
       delaySeconds: 20,
       suppressSeconds: 5,
@@ -54,3 +62,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

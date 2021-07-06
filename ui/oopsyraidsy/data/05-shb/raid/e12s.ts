@@ -1,8 +1,26 @@
+import { Lang } from '../../../../../resources/languages';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { LocaleText } from '../../../../../types/trigger';
 import { playerDamageFields } from '../../../oopsy_common';
+
+export interface Data extends OopsyData {
+  decOffset?: number;
+  laserNameToNum?: { [name: string]: number };
+  sculptureTetherNameToId?: { [name: string]: string };
+  sculptureYPositions?: { [sculptureId: string]: number };
+  bladeOfFlameCount?: number;
+  pillarIdToOwner?: { [pillarId: string]: string };
+  smallLionIdToOwner?: { [pillarId: string]: string };
+  smallLionOwners?: string[];
+  northBigLion?: string;
+  fire?: { [name: string]: boolean };
+}
 
 // TODO: add separate damageWarn-esque icon for damage downs?
 // TODO: 58A6 Under The Weight / 58B2 Classical Sculpture missing somebody in party warning?
@@ -15,7 +33,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // we can determine what it is from the first overhead marker we see.
 // The first 1B marker in the encounter is the formless tankbuster, ID 004F.
 const firstHeadmarker = parseInt('00DA', 16);
-const getHeadmarkerId = (data, matches) => {
+const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
   if (typeof data.decOffset === 'undefined')
@@ -26,7 +44,7 @@ const getHeadmarkerId = (data, matches) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensPromiseEternitySavage,
   damageWarn: {
     'E12S Promise Rapturous Reach Left': '58AD', // Haircut with left safe side
@@ -43,6 +61,9 @@ export default {
   damageFail: {
     'E12S Oracle Maelstrom': '58DA', // Advanced Relativity traffic light aoe
   },
+  gainsEffectFail: {
+    'E12S Oracle Doom': '9D4', // Relativity punishment for multiple mistakes
+  },
   shareWarn: {
     'E12S Promise Frigid Stone': '589E', // Shiva spread
     'E12S Oracle Darkest Dance': '4E33', // Farthest target bait + jump before knockback
@@ -58,9 +79,6 @@ export default {
     'E12S Oracle Dark Eruption 2': '58CD', // Relativity spread mechanic
     'E12S Oracle Black Halo': '58C7', // Tankbuster cleave
   },
-  gainsEffectFail: {
-    'E12S Oracle Doom': '9D4', // Relativity punishment for multiple mistakes
-  },
   soloWarn: {
     'E12S Promise Force Of The Land': '58A4',
   },
@@ -69,6 +87,7 @@ export default {
       // Big circle ground aoes during Shiva junction.
       // This can be shielded through as long as that person doesn't stack.
       id: 'E12S Icicle Impact',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
@@ -77,6 +96,7 @@ export default {
     },
     {
       id: 'E12S Headmarker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       run: (data, matches) => {
         const id = getHeadmarkerId(data, matches);
@@ -87,7 +107,7 @@ export default {
           const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
 
           // decOffset is 0-7, so map 0-3 to 1-4 and 4-7 to 1-4.
-          data.laserNameToNum = data.laserNameToNum || {};
+          data.laserNameToNum ??= {};
           data.laserNameToNum[matches.target] = decOffset % 4 + 1;
         }
       },
@@ -96,25 +116,28 @@ export default {
       // These sculptures are added at the start of the fight, so we need to check where they
       // use the "Classical Sculpture" ability and end up on the arena for real.
       id: 'E12S Promise Chiseled Sculpture Classical Sculpture',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Chiseled Sculpture', id: '58B2' }),
       run: (data, matches) => {
         // This will run per person that gets hit by the same sculpture, but that's fine.
         // Record the y position of each sculpture so we can use it for better text later.
-        data.sculptureYPositions = data.sculptureYPositions || {};
+        data.sculptureYPositions ??= {};
         data.sculptureYPositions[matches.sourceId.toUpperCase()] = parseFloat(matches.y);
       },
     },
     {
       // The source of the tether is the player, the target is the sculpture.
       id: 'E12S Promise Chiseled Sculpture Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
       run: (data, matches) => {
-        data.sculptureTetherNameToId = data.sculptureTetherNameToId || {};
+        data.sculptureTetherNameToId ??= {};
         data.sculptureTetherNameToId[matches.source] = matches.targetId.toUpperCase();
       },
     },
     {
       id: 'E12S Promise Blade Of Flame Counter',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
       delaySeconds: 1,
       suppressSeconds: 1,
@@ -126,6 +149,7 @@ export default {
     {
       // This is the Chiseled Sculpture laser with the limit cut dots.
       id: 'E12S Promise Blade Of Flame',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ type: '22', source: 'Chiseled Sculpture', id: '58B3' }),
       mistake: (data, matches) => {
         if (!data.laserNameToNum || !data.sculptureTetherNameToId || !data.sculptureYPositions)
@@ -135,8 +159,8 @@ export default {
         const number = (data.bladeOfFlameCount || 0) + 1;
         const sourceId = matches.sourceId.toUpperCase();
         const names = Object.keys(data.laserNameToNum);
-        const withNum = names.filter((name) => data.laserNameToNum[name] === number);
-        const owners = withNum.filter((name) => data.sculptureTetherNameToId[name] === sourceId);
+        const withNum = names.filter((name) => data.laserNameToNum?.[name] === number);
+        const owners = withNum.filter((name) => data.sculptureTetherNameToId?.[name] === sourceId);
 
         // if some logic error, just abort.
         if (owners.length !== 1)
@@ -158,7 +182,9 @@ export default {
         if (sculptureIds.length === 2 && sculptureIds.includes(sourceId)) {
           const otherId = sculptureIds[0] === sourceId ? sculptureIds[1] : sculptureIds[0];
           const sourceY = data.sculptureYPositions[sourceId];
-          const otherY = data.sculptureYPositions[otherId];
+          const otherY = data.sculptureYPositions[otherId ?? ''];
+          if (sourceY === undefined || otherY === undefined || otherId === undefined)
+            throw new UnreachableCode();
           const yDiff = Math.abs(sourceY - otherY);
           if (yDiff > minimumYalmsForStatues) {
             isStatuePositionKnown = true;
@@ -203,14 +229,16 @@ export default {
     },
     {
       id: 'E12S Promise Ice Pillar Tracker',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Ice Pillar', id: ['0001', '0039'] }),
       run: (data, matches) => {
-        data.pillarIdToOwner = data.pillarIdToOwner || {};
+        data.pillarIdToOwner ??= {};
         data.pillarIdToOwner[matches.sourceId] = matches.target;
       },
     },
     {
       id: 'E12S Promise Ice Pillar Mistake',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ice Pillar', id: '589B' }),
       condition: (data, matches) => {
         if (!data.pillarIdToOwner)
@@ -218,7 +246,7 @@ export default {
         return matches.target !== data.pillarIdToOwner[matches.sourceId];
       },
       mistake: (data, matches) => {
-        const pillarOwner = data.ShortName(data.pillarIdToOwner[matches.sourceId]);
+        const pillarOwner = data.ShortName(data.pillarIdToOwner?.[matches.sourceId]);
         return {
           type: 'fail',
           blame: matches.target,
@@ -235,36 +263,40 @@ export default {
     },
     {
       id: 'E12S Promise Gain Fire Resistance Down II',
+      type: 'GainsEffect',
       // The Beastly Sculpture gives a 3 second debuff, the Regal Sculpture gives a 14s one.
       netRegex: NetRegexes.gainsEffect({ effectId: '832' }),
       run: (data, matches) => {
-        data.fire = data.fire || {};
+        data.fire ??= {};
         data.fire[matches.target] = true;
       },
     },
     {
       id: 'E12S Promise Lose Fire Resistance Down II',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '832' }),
       run: (data, matches) => {
-        data.fire = data.fire || {};
+        data.fire ??= {};
         data.fire[matches.target] = false;
       },
     },
     {
       id: 'E12S Promise Small Lion Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Beastly Sculpture', id: '0011' }),
       netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
       run: (data, matches) => {
-        data.smallLionIdToOwner = data.smallLionIdToOwner || {};
+        data.smallLionIdToOwner ??= {};
         data.smallLionIdToOwner[matches.sourceId.toUpperCase()] = matches.target;
-        data.smallLionOwners = data.smallLionOwners || [];
+        data.smallLionOwners ??= [];
         data.smallLionOwners.push(matches.target);
       },
     },
     {
       id: 'E12S Promise Small Lion Lionsblaze',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Beastly Sculpture', id: '58B9' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Abbild Eines Löwen', id: '58B9' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Création Léonine', id: '58B9' }),
@@ -274,7 +306,7 @@ export default {
         // so it's not sufficient to check only the owner.
         if (!data.smallLionOwners)
           return;
-        const owner = data.smallLionIdToOwner[matches.sourceId.toUpperCase()];
+        const owner = data.smallLionIdToOwner?.[matches.sourceId.toUpperCase()];
         if (!owner)
           return;
         if (matches.target === owner)
@@ -322,6 +354,7 @@ export default {
     },
     {
       id: 'E12S Promise North Big Lion',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Regal Sculpture' }),
       run: (data, matches) => {
         const y = parseFloat(matches.y);
@@ -332,6 +365,7 @@ export default {
     },
     {
       id: 'E12S Promise Big Lion Kingsblaze',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Regal Sculpture', id: '4F9E' }),
       netRegexDe: NetRegexes.ability({ source: 'Abbild eines großen Löwen', id: '4F9E' }),
       netRegexFr: NetRegexes.ability({ source: 'création léonine royale', id: '4F9E' }),
@@ -344,48 +378,48 @@ export default {
         if (singleTarget && !hasFireDebuff)
           return;
 
-        const output = {
-          northBigLion: {
-            en: 'north big lion',
-            de: 'Nordem, großer Löwe',
-            ja: '大ライオン(北)',
-            cn: '北方大狮子',
-            ko: '북쪽 큰 사자',
-          },
-          southBigLion: {
-            en: 'south big lion',
-            de: 'Süden, großer Löwe',
-            ja: '大ライオン(南)',
-            cn: '南方大狮子',
-            ko: '남쪽 큰 사자',
-          },
-          shared: {
-            en: 'shared',
-            de: 'geteilt',
-            ja: '重ねた',
-            cn: '重叠',
-            ko: '같이 맞음',
-          },
-          fireDebuff: {
-            en: 'had fire',
-            de: 'hatte Feuer',
-            ja: '炎付き',
-            cn: '火Debuff',
-            ko: '화염 디버프 받음',
-          },
+        const northBigLion: LocaleText = {
+          en: 'north big lion',
+          de: 'Nordem, großer Löwe',
+          ja: '大ライオン(北)',
+          cn: '北方大狮子',
+          ko: '북쪽 큰 사자',
+        };
+        const southBigLion: LocaleText = {
+          en: 'south big lion',
+          de: 'Süden, großer Löwe',
+          ja: '大ライオン(南)',
+          cn: '南方大狮子',
+          ko: '남쪽 큰 사자',
+        };
+        const shared: LocaleText = {
+          en: 'shared',
+          de: 'geteilt',
+          ja: '重ねた',
+          cn: '重叠',
+          ko: '같이 맞음',
+        };
+        const fireDebuff: LocaleText = {
+          en: 'had fire',
+          de: 'hatte Feuer',
+          ja: '炎付き',
+          cn: '火Debuff',
+          ko: '화염 디버프 받음',
         };
 
         const labels = [];
+        const lang: Lang = data.options.ParserLanguage;
+
         if (data.northBigLion) {
           if (data.northBigLion === matches.sourceId)
-            labels.push(output.northBigLion[data.parserLang] || output.northBigLion['en']);
+            labels.push(northBigLion[lang] ?? northBigLion['en']);
           else
-            labels.push(output.southBigLion[data.parserLang] || output.southBigLion['en']);
+            labels.push(southBigLion[lang] ?? southBigLion['en']);
         }
         if (!singleTarget)
-          labels.push(output.shared[data.parserLang] || output.shared['en']);
+          labels.push(shared[lang] ?? shared['en']);
         if (hasFireDebuff)
-          labels.push(output.fireDebuff[data.parserLang] || output.fireDebuff['en']);
+          labels.push(fireDebuff[lang] ?? fireDebuff['en']);
 
         return {
           type: 'fail',
@@ -396,6 +430,7 @@ export default {
     },
     {
       id: 'E12S Knocked Off',
+      type: 'Ability',
       // 589A = Ice Pillar (promise shiva phase)
       // 58B6 = Palm Of Temperance (promise statue hand)
       // 58B7 = Laser Eye (promise lion phase)
@@ -418,6 +453,7 @@ export default {
     },
     {
       id: 'E12S Oracle Shadoweye',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
@@ -426,3 +462,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

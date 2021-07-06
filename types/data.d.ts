@@ -48,6 +48,7 @@ export interface OopsyData {
   ShortName: (x?: string) => string;
   IsPlayerId: (x?: string) => boolean;
   DamageFromMatches: (matches: NetMatches['Ability']) => number;
+  options: BaseOptions;
 
   /** @deprecated Use parseFloat instead */
   ParseLocaleFloat: (string: string) => number;

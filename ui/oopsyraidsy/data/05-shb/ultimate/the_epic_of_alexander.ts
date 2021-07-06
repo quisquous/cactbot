@@ -1,7 +1,13 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
+
+export interface Data extends OopsyData {
+  hasThrottle?: { [name: string]: boolean };
+  jagdTether?: { [sourceId: string]: string };
+}
 
 // TODO: FIX luminous aetheroplasm warning not working
 // TODO: FIX doll death not working
@@ -19,7 +25,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: failures of plaint of solidarity (shared sentence)
 // TODO: ordained capital punishment hitting non-tanks
 
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   damageWarn: {
     'TEA Sluice': '49B1',
@@ -61,6 +67,7 @@ export default {
       // When this happens, the target explodes, hitting nearby people
       // but also themselves.
       id: 'TEA Exhaust',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '481F', ...playerDamageFields }),
       condition: (_data, matches) => matches.target === matches.source,
       mistake: (_data, matches) => {
@@ -79,6 +86,7 @@ export default {
     },
     {
       id: 'TEA Dropsy',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '121' }),
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
@@ -86,14 +94,16 @@ export default {
     },
     {
       id: 'TEA Tether Tracking',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Jagd Doll', id: '0011' }),
       run: (data, matches) => {
-        data.jagdTether = data.jagdTether || {};
+        data.jagdTether ??= {};
         data.jagdTether[matches.sourceId] = matches.target;
       },
     },
     {
       id: 'TEA Reducible Complexity',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '4821', ...playerDamageFields }),
       mistake: (data, matches) => {
         return {
@@ -112,6 +122,7 @@ export default {
     },
     {
       id: 'TEA Drainage',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '4827', ...playerDamageFields }),
       condition: (data, matches) => !data.party.isTank(matches.target),
       mistake: (_data, matches) => {
@@ -120,22 +131,25 @@ export default {
     },
     {
       id: 'TEA Throttle Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
       run: (data, matches) => {
-        data.hasThrottle = data.hasThrottle || {};
+        data.hasThrottle ??= {};
         data.hasThrottle[matches.target] = true;
       },
     },
     {
       id: 'TEA Throttle Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '2BC' }),
       run: (data, matches) => {
-        data.hasThrottle = data.hasThrottle || {};
+        data.hasThrottle ??= {};
         data.hasThrottle[matches.target] = false;
       },
     },
     {
       id: 'TEA Throttle',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
       deathReason: (data, matches) => {
@@ -153,6 +167,7 @@ export default {
       // Balloon Popping.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
       id: 'TEA Outburst',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {
@@ -161,3 +176,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

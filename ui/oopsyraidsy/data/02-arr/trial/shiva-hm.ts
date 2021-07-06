@@ -1,8 +1,14 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
+
+export interface Data extends OopsyData {
+  seenDiamondDust?: boolean;
+}
 
 // Shiva Hard
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheAkhAfahAmphitheatreHard,
   damageWarn: {
     // Large white circles.
@@ -23,6 +29,7 @@ export default {
   triggers: [
     {
       id: 'ShivaHm Diamond Dust',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '98A' }),
       run: (data) => {
         data.seenDiamondDust = true;
@@ -30,6 +37,7 @@ export default {
     },
     {
       id: 'ShivaHm Deep Freeze',
+      type: 'GainsEffect',
       // Shiva also uses ability 9A3 on you, but it has the untranslated name
       // 透明：シヴァ：凍結レクト：ノックバック用. So, use the effect instead for free translation.
       netRegex: NetRegexes.gainsEffect({ effectId: '1E7' }),
@@ -44,3 +52,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
