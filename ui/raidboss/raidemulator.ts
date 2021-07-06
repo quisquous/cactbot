@@ -161,7 +161,7 @@ const raidEmulatorOnLoad = async () => {
     // Attempt to set the current emulated encounter
     if (!emulator.setCurrentByID(id)) {
       // If that encounter isn't loaded, load it
-      void persistor.encounters.get(id).then((enc?: Encounter) => {
+      void persistor.loadEncounter(id).then((enc?: Encounter) => {
         if (enc) {
           emulator.addEncounter(enc);
           emulator.setCurrentByID(id);
@@ -172,10 +172,10 @@ const raidEmulatorOnLoad = async () => {
 
   // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
   encounterTab.on('parse', (id: number) => {
-    void persistor.encounters.get(id).then(async (enc?: Encounter) => {
+    void persistor.loadEncounter(id).then(async (enc?: Encounter) => {
       if (enc) {
         enc.initialize();
-        await persistor.encounters.put(enc, enc.id);
+        await persistor.persistEncounter(enc);
         encounterTab.refresh();
       }
     });
@@ -183,7 +183,7 @@ const raidEmulatorOnLoad = async () => {
 
   // Listen for the user to select prune on the encounters tab
   encounterTab.on('prune', (id: number) => {
-    void persistor.encounters.get(id).then(async (enc?: Encounter) => {
+    void persistor.loadEncounter(id).then(async (enc?: Encounter) => {
       if (enc) {
         // Trim log lines
         enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
@@ -196,7 +196,7 @@ const raidEmulatorOnLoad = async () => {
         enc.firstLineIndex = 0;
 
         enc.initialize();
-        await persistor.encounters.put(enc, enc.id);
+        await persistor.persistEncounter(enc);
         encounterTab.refresh();
       }
     });
@@ -204,7 +204,7 @@ const raidEmulatorOnLoad = async () => {
 
   // Listen for the user to select delete on the encounters tab, then do it.
   encounterTab.on('delete', (id: number) => {
-    void persistor.encounters.delete(id).then(() => {
+    void persistor.deleteEncounter(id).then(() => {
       encounterTab.refresh();
     });
   });
