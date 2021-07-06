@@ -19,15 +19,12 @@ export default class NetworkLogConverter extends EventBus {
   }
 
   convertLines(lines: string[], repo: LogRepository): LineEvent[] {
-    let lineEvents = lines.map((l) => ParseLine.parse(repo, l)).filter(isLineEvent);
+    const lineEvents = lines.map((l) => ParseLine.parse(repo, l)).filter(isLineEvent);
     // Call `convert` to convert the network line to non-network format and update indexing values
-    lineEvents = lineEvents.map((l, i) => {
+    return lineEvents.map((l, i) => {
       l.index = i;
       return l;
     });
-    // Sort the lines based on `${timestamp}_${index}` to handle out-of-order lines properly
-    // @TODO: Remove this once underlying CombatantTracker update issues are resolved
-    return lineEvents.sort((l, r) => (`${l.timestamp}_${l.index}`).localeCompare(`${r.timestamp}_${r.index}`));
   }
 
   static lineSplitRegex = /\r?\n/gm;
