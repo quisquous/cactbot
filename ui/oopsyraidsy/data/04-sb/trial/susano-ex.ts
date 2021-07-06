@@ -1,6 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
 import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
+export { OopsyData as Data } from '../../../../../types/data';
+
 // Susano Extreme
 const triggerSet: SimpleOopsyTriggerSet = {
   zoneId: ZoneId.ThePoolOfTributeExtreme,

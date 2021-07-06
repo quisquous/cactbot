@@ -1,6 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
 import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
+export { OopsyData as Data } from '../../../../../types/data';
+
 // TODO: 5093 taking High-Powered Laser with a vuln (because of taking two)
 // TODO: 4FB5 taking High-Powered Laser with a vuln (because of taking two)
 // TODO: 50D3 Aerial Support: Bombardment going off from add

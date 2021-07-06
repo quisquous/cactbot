@@ -1,6 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
 import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
+export { OopsyData as Data } from '../../../../../types/data';
+
 // TODO: could include 5484 Mudman Rocky Roll as a shareWarn, but it's low damage and common.
 
 const triggerSet: SimpleOopsyTriggerSet = {

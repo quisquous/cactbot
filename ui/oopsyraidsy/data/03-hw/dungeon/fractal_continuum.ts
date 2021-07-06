@@ -1,6 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
 import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
+export { OopsyData as Data } from '../../../../../types/data';
+
 // Fractal Continuum
 const triggerSet: SimpleOopsyTriggerSet = {
   zoneId: ZoneId.TheFractalContinuum,

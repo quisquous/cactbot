@@ -1,6 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
 import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
+export { OopsyData as Data } from '../../../../../types/data';
+
 // TODO: What to do about Kahn Rai 5B50?
 // It seems impossible for the marked person to avoid entirely.
 

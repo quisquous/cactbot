@@ -1,6 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
 import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
+export { OopsyData as Data } from '../../../../../types/data';
+
 // O1N - Deltascape 1.0 Normal
 const triggerSet: SimpleOopsyTriggerSet = {
   zoneId: ZoneId.DeltascapeV10,

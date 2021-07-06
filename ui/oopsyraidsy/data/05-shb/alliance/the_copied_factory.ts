@@ -1,6 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
 import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
 
+export { OopsyData as Data } from '../../../../../types/data';
+
 // The Copied Factory
 const triggerSet: SimpleOopsyTriggerSet = {
   zoneId: ZoneId.TheCopiedFactory,
