@@ -436,14 +436,7 @@ export type OverlayHandlerFuncs = {
     (msg: Parameters<OverlayHandlerAll[call]>[0]) => OverlayHandlerResponses[call];
 };
 
-export type IOverlayHandler =
-  OverlayHandlerFuncs['subscribe'] &
-  OverlayHandlerFuncs['getCombatants'] &
-  OverlayHandlerFuncs['cactbotReloadOverlays'] &
-  OverlayHandlerFuncs['cactbotLoadUser'] &
-  OverlayHandlerFuncs['cactbotRequestPlayerUpdate'] &
-  OverlayHandlerFuncs['cactbotRequestState'] &
-  OverlayHandlerFuncs['cactbotSay'] &
-  OverlayHandlerFuncs['cactbotSaveData'] &
-  OverlayHandlerFuncs['cactbotLoadData'] &
-  OverlayHandlerFuncs['cactbotChooseDirectory'];
+// Thanks, https://stackoverflow.com/a/50375286.
+type UnionToIntersection<U> =
+  (U extends U ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
+export type IOverlayHandler = UnionToIntersection<OverlayHandlerFuncs[OverlayHandlerTypes]>;
