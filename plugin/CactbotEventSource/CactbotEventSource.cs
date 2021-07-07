@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using CactbotEventSource.loc;
+using System.Globalization;
 
 namespace Cactbot {
 
@@ -228,6 +229,12 @@ namespace Cactbot {
       FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
       language_ = plugin_helper.GetLocaleString();
       pc_locale_ = System.Globalization.CultureInfo.CurrentUICulture.Name;
+
+      var ui_lang = Config.DisplayLanguage;
+      if (ui_lang == "default") ui_lang = language_;
+      if (ui_lang == "cn") ui_lang = "zh";
+      CultureInfo culture = new CultureInfo(ui_lang, false);
+      CultureInfo.CurrentUICulture = culture;
 
       var versions = new VersionChecker(this);
       Version local = versions.GetCactbotVersion();
