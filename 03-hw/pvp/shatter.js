@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Shatter Big Ice Center',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A1 activates and begins to emit heat.*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Vereister Echolith A1 setzt sich in Betrieb und das Eis beginnt zu bröckeln.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A1 e et la glace s\'est fragilisée.*?', capture: false }),
@@ -22,6 +23,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shatter Big Ice North',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A2 activates and begins to emit heat.*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Vereister Echolith A2 setzt sich in Betrieb und das Eis beginnt zu bröckeln.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A2 e et la glace s\'est fragilisée.*?', capture: false }),
@@ -40,6 +42,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shatter Big Ice Southeast',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A3 activates and begins to emit heat.*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Vereister Echolith A3 setzt sich in Betrieb und das Eis beginnt zu bröckeln.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A3 e et la glace s\'est fragilisée.*?', capture: false }),
@@ -58,6 +61,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shatter Big Ice Southwest',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A4 activates and begins to emit heat.*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Vereister Echolith A4 setzt sich in Betrieb und das Eis beginnt zu bröckeln.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A4 e et la glace s\'est fragilisée.*?', capture: false }),
