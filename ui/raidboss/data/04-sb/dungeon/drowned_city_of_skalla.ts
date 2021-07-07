@@ -34,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'tail cleave',
           de: 'schweifattacke',
-          fr: 'attaquez la queue',
+          fr: 'évitez la queue',
           ja: 'しっぽ！',
           cn: '尾巴攻击',
           ko: '꼬리쓸기',
