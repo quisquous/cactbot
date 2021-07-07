@@ -140,7 +140,7 @@ mistake: (data, matches) => {
 If this following trigger is used, then if a player dies without taking any other damage, the log would show ":skull: Chippy: Doom Debuff" instead of assigning it to the last damage the player took before this trigger, which might incorrectly look more like ":skull: Chippy: Auto (3034/38471)".
 
 ```javascript
-deathReason: function(event, data, matches) {
+deathReason: (data, matches) => {
   return {
     name: event.targetName,
     reason: 'Doom Debuff',
@@ -185,7 +185,7 @@ For example, if you want to store a map of which players have doom or not, that 
 ```javascript
 {
   netRegex: NetRegexes.gainsEffect({ effect: 'Doom' }),
-  run: function(data, matches) {
+  run: (data, matches) => {
     data.hasDoom[matches.target] = true;
   },
 },
