@@ -3,9 +3,23 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
+import { ResponseOutput, TriggerSet } from '../../../../../types/trigger';
+
+// export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  phase?: number;
+  seenHolyThisPhase?: boolean;
+  holyTargets?: string[];
+  librarySpellbladeMe?: string;
+  librarySpellbladePrinted?: boolean;
+  bookCount?: number;
+  reapers?: NetMatches['AddedCombatant'][];
+}
 
 // O3S - Deltascape 3.0 Savage
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV30Savage,
   timelineFile: 'o3s.txt',
   timelineTriggers: [
@@ -13,7 +27,7 @@ export default {
       id: 'O3S Great Dragon Frost Breath',
       regex: /Frost Breath/,
       beforeSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dragon Cleave',
@@ -25,6 +39,7 @@ export default {
   triggers: [
     {
       id: 'O3S Panel Swap Phase Counter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2304', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnasse', capture: false }),
@@ -32,12 +47,13 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
       run: (data) => {
-        data.phase = (data.phase || 0) + 1;
+        data.phase = (data.phase ?? 0) + 1;
         delete data.seenHolyThisPhase;
       },
     },
     {
       id: 'O3S Critical Hit',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnassus' }),
       netRegexDe: NetRegexes.startsUsing({ id: '22EB', source: 'Halikarnassos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnasse' }),
@@ -50,6 +66,7 @@ export default {
     },
     {
       id: 'O3S Dimensional Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '22F6', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnasse', capture: false }),
@@ -63,6 +80,7 @@ export default {
       // Look for spellblade holy so that the last noisy waltz
       // books message in the library phase can be ignored.
       id: 'O3S Spellblade Holy Counter',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '22EF', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '22EF', source: 'Halicarnasse', capture: false }),
@@ -73,7 +91,6 @@ export default {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
         delete data.holyTargets;
-        delete data.holyTethers;
         data.seenHolyThisPhase = true;
       },
     },
@@ -88,13 +105,14 @@ export default {
       //   (4) prey marker (tethered to #3)
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: (data, matches) => {
         // Library phase stack markers behave differently.
         if (data.phase === 3)
           return false;
 
-        data.holyTargets = data.holyTargets || [];
+        data.holyTargets ??= [];
         data.holyTargets.push(matches.target);
         return true;
       },
@@ -121,27 +139,25 @@ export default {
 
         const stackTarget = data.holyTargets[1];
 
-        const ret = {};
+        const ret: ResponseOutput<Data, NetMatches['HeadMarker']> = {};
         if (data.me === stackTarget) {
-          ret.alarmText = output.stackOnYou();
+          ret.alarmText = output.stackOnYou!();
         } else {
           if (data.holyTargets.includes(data.me)) {
-            ret.alertText = output.spread();
-            ret.infoText = output.othersStackOnHoly({ player: data.ShortName(stackTarget) });
+            ret.alertText = output.spread!();
+            ret.infoText = output.othersStackOnHoly!({ player: data.ShortName(stackTarget) });
           } else {
-            ret.infoText = output.stackOnHoly({ player: data.ShortName(stackTarget) });
+            ret.infoText = output.stackOnHoly!({ player: data.ShortName(stackTarget) });
           }
         }
         return ret;
       },
-      run: (data) => {
-        delete data.holyTargets;
-        delete data.holyTethers;
-      },
+      run: (data) => delete data.holyTargets,
     },
     {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: (data, matches) => {
         // This is only for library phase.
@@ -164,12 +180,12 @@ export default {
 
         data.librarySpellbladePrinted = true;
         if (data.librarySpellbladeMe === '0064')
-          return output.goSouthStackOnYou();
+          return output.goSouthStackOnYou!();
 
         if (data.librarySpellbladeMe === '0065')
-          return output.goNorth();
+          return output.goNorth!();
 
-        return output.goSouthStackOnFriend();
+        return output.goSouthStackOnFriend!();
       },
       outputStrings: {
         goSouthStackOnYou: {
@@ -200,10 +216,11 @@ export default {
     },
     {
       id: 'O3S Right Face',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mindjack: Right',
@@ -217,10 +234,11 @@ export default {
     },
     {
       id: 'O3S Forward March',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mindjack: Forward',
@@ -234,10 +252,11 @@ export default {
     },
     {
       id: 'O3S Left Face',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mindjack: Left',
@@ -251,10 +270,11 @@ export default {
     },
     {
       id: 'O3S About Face',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mindjack: Back',
@@ -268,6 +288,7 @@ export default {
     },
     {
       id: 'O3S Ribbit',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '22F7', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '22F7', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '22F7', source: 'Halicarnasse', capture: false }),
@@ -278,6 +299,7 @@ export default {
     },
     {
       id: 'O3S Oink',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '22F9', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '22F9', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '22F9', source: 'Halicarnasse', capture: false }),
@@ -288,6 +310,7 @@ export default {
     },
     {
       id: 'O3S Squelch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '22F8', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '22F8', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '22F8', source: 'Halicarnasse', capture: false }),
@@ -298,13 +321,14 @@ export default {
     },
     {
       id: 'O3S Individual Adds',
+      type: 'AddedCombatant',
       // npcNameId, npcBaseId
       // 5626, 7399 = White Flame
       // 6724, 7400 = Great Dragon
       // 6056, 7401 = Apanda
       // There are a bunch of 6056, 7404 Apandas that get added at the beginning.
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5626', '6724', '6056'], npcBaseId: ['7399', '7400', '7401'] }),
-      infoText: (_data, matches, output) => output.kill({ name: matches.name }),
+      infoText: (_data, matches, output) => output.kill!({ name: matches.name }),
       outputStrings: {
         kill: {
           en: 'Kill ${name}',
@@ -314,9 +338,10 @@ export default {
     },
     {
       id: 'O3S Iron Giant',
+      type: 'AddedCombatant',
       // 5636 = Iron Giant
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5636', capture: false }),
-      infoText: (_data, _matches, output) => output.kill(),
+      infoText: (_data, _matches, output) => output.kill!(),
       outputStrings: {
         kill: {
           en: 'Kill Giant + Ninjas',
@@ -326,6 +351,7 @@ export default {
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '230E', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '230E', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '230E', source: 'Halicarnasse', capture: false }),
@@ -338,10 +364,10 @@ export default {
         return data.phase !== 3 || !data.seenHolyThisPhase;
       },
       alertText: (data, _matches, output) => {
-        data.bookCount = (data.bookCount || 0) + 1;
+        data.bookCount = (data.bookCount ?? 0) + 1;
         // The second books (with the Apanda) has big magic hammer circles.
         // Usually folks handle this by going to the inner corners.
-        return data.bookCount !== 2 ? output.books() : output.magicHammer();
+        return data.bookCount !== 2 ? output.books!() : output.magicHammer!();
       },
       outputStrings: {
         books: {
@@ -360,13 +386,14 @@ export default {
     },
     {
       id: 'O3S The Queen\'s Waltz: Clock',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2306', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2306', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2306', source: 'Halicarnasse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2306', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Clock',
@@ -380,13 +407,14 @@ export default {
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '230A', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '230A', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '230A', source: 'Halicarnasse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '230A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Be On Blue Square',
@@ -400,13 +428,14 @@ export default {
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2308', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2308', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2308', source: 'Halicarnasse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2308', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tethers',
@@ -420,12 +449,13 @@ export default {
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers You',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0012' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.breakTether({ player: data.ShortName(matches.source) });
+          return output.breakTether!({ player: data.ShortName(matches.source) });
         else if (data.me === matches.source)
-          return output.breakTether({ player: data.ShortName(matches.target) });
+          return output.breakTether!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         breakTether: {
@@ -437,9 +467,10 @@ export default {
     },
     {
       id: 'O3S Soul Reaper',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5634' }),
       alertText: (data, matches, output) => {
-        data.reapers = data.reapers || [];
+        data.reapers ??= [];
         data.reapers.push(matches);
 
         if (data.reapers.length !== 4)
@@ -451,7 +482,7 @@ export default {
 
         // x, y coordinates: -15, 5, 5, 15 on rows/columns.
         // x, y coordinates: -19 or 19 if outside.
-        const mapPosToIndex = (coord) => Math.round((coord + 15) / 10);
+        const mapPosToIndex = (coord: number) => Math.round((coord + 15) / 10);
         for (const reaper of data.reapers) {
           const x = parseFloat(reaper.x);
           const y = parseFloat(reaper.y);
@@ -467,15 +498,17 @@ export default {
         }
 
         const spots = Array.from(safeSpots);
-        if (spots.length !== 1)
-          return output.unknown();
+        const safeSpot = spots[0];
+        if (!safeSpot || spots.length !== 1)
+          return output.unknown!();
 
-        return {
-          0: output.nwOutside(),
-          1: output.nwInside(),
-          2: output.seInside(),
-          3: output.seOutside(),
-        }[spots[0]];
+        const outputs: { [idx: number]: string } = {
+          0: output.nwOutside!(),
+          1: output.nwInside!(),
+          2: output.seInside!(),
+          3: output.seOutside!(),
+        };
+        return outputs[safeSpot];
       },
       outputStrings: {
         unknown: Outputs.unknown,
@@ -761,3 +794,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

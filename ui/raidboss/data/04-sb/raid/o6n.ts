@@ -2,14 +2,19 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // O6N - Sigmascape 2.0 Normal
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV20,
   timelineFile: 'o6n.txt',
   triggers: [
     {
       id: 'O6N Demonic Shear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '282A', source: 'Demon Chadarnook' }),
       netRegexDe: NetRegexes.startsUsing({ id: '282A', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
       netRegexFr: NetRegexes.startsUsing({ id: '282A', source: 'Démon Chadarnouk' }),
@@ -20,9 +25,10 @@ export default {
     },
     {
       id: 'O6N Meteors',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drop AOEs Away',
@@ -178,3 +184,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

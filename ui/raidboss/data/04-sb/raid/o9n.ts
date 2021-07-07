@@ -1,14 +1,19 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // O9N - Alphascape 1.0
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV10,
   timelineFile: 'o9n.txt',
   triggers: [
     {
       id: 'O9N Chaotic Dispersion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
       netRegexDe: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
@@ -19,6 +24,7 @@ export default {
     },
     {
       id: 'O9N Orbs Fiend',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
@@ -26,7 +32,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '315C', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '315C', source: '카오스', capture: false }),
       condition: (data) => data.role === 'tank',
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Orb Tethers',
@@ -163,3 +169,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

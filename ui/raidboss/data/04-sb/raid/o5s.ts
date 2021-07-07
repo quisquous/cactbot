@@ -2,15 +2,20 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // O5S - Sigmascape 1.0 Savage
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV10Savage,
   timelineFile: 'o5s.txt',
   resetWhenOutOfCombat: false,
   triggers: [
     {
       id: 'O5S Stop Combat',
+      type: 'RemovedCombatant',
       netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.removingCombatant({ name: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
@@ -21,6 +26,7 @@ export default {
     },
     {
       id: 'O5S Doom Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28B1', source: 'Phantom Train' }),
       netRegexDe: NetRegexes.startsUsing({ id: '28B1', source: 'Phantomzug' }),
       netRegexFr: NetRegexes.startsUsing({ id: '28B1', source: 'Train Fantôme' }),
@@ -31,6 +37,7 @@ export default {
     },
     {
       id: 'O5S Head On',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
@@ -41,6 +48,7 @@ export default {
     },
     {
       id: 'O5S Diabolic Headlamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28B2', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28B2', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28B2', source: 'Train Fantôme', capture: false }),
@@ -51,9 +59,10 @@ export default {
     },
     {
       id: 'O5S Diabolic Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Light',
@@ -67,9 +76,10 @@ export default {
     },
     {
       id: 'O5S Diabolic Wind',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Wind',
@@ -83,6 +93,7 @@ export default {
     },
     {
       id: 'O5S Remorse',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Remorse', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Melancholisch(?:e|er|es|en) Geist', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Fantôme Mélancolique', capture: false }),
@@ -232,3 +243,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -3,6 +3,18 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  truths?: boolean;
+  antics?: boolean;
+  lastFire?: string;
+  lastThunder?: string;
+  lastIceDir?: string;
+  manaReleaseText?: string;
+  fireMarker?: string;
+}
 
 const strings = {
   typeAndDir: {
@@ -73,12 +85,13 @@ const strings = {
 };
 
 // O8S - Sigmascape 4.0 Savage
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV40Savage,
   timelineFile: 'o8s.txt',
   triggers: [
     {
       id: 'O8S Shockwave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28DB', source: 'Graven Image', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28DB', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28DB', source: 'Statue Divine', capture: false }),
@@ -90,13 +103,14 @@ export default {
     },
     {
       id: 'O8S Indolent Will',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28E4', source: 'Graven Image', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28E4', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28E4', source: 'Statue Divine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '28E4', source: '神々の像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E4', source: '众神之像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E4', source: '신들의 상', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look Away From Statue',
@@ -110,6 +124,7 @@ export default {
     },
     {
       id: 'O8S Intemperate Will',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28DF', source: 'Graven Image', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28DF', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28DF', source: 'Statue Divine', capture: false }),
@@ -120,6 +135,7 @@ export default {
     },
     {
       id: 'O8S Gravitational Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28DE', source: 'Graven Image', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28DE', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28DE', source: 'Statue Divine', capture: false }),
@@ -130,13 +146,14 @@ export default {
     },
     {
       id: 'O8S Ave Maria',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28E3', source: 'Graven Image', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28E3', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28E3', source: 'Statue Divine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '28E3', source: '神々の像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E3', source: '众神之像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E3', source: '신들의 상', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look At Statue',
@@ -150,13 +167,14 @@ export default {
     },
     {
       id: 'O8S Pasts Forgotten',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '28F1', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F1', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F1', source: '케프카', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Past: Stack and Stay',
@@ -170,13 +188,14 @@ export default {
     },
     {
       id: 'O8S Futures Numbered',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28EE', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28EE', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28EE', source: 'Kefka', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '28EE', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28EE', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28EE', source: '케프카', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Future: Stack and Through',
@@ -191,6 +210,7 @@ export default {
     {
       // TODO: not sure if this cast is 7 or 8.
       id: 'O8S Past\'s End',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
@@ -198,7 +218,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '28F[78]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[78]', source: '케프카', capture: false }),
       condition: (data) => data.role === 'tank' || data.role === 'healer',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Past: Bait, then through',
@@ -213,6 +233,7 @@ export default {
     {
       // TODO: not sure if this cast is 4 or 5.
       id: 'O8S Future\'s End',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
@@ -220,7 +241,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '28F[45]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[45]', source: '케프카', capture: false }),
       condition: (data) => data.role === 'tank' || data.role === 'healer',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Future: Bait, then stay',
@@ -234,6 +255,7 @@ export default {
     },
     {
       id: 'O8S Pulse Wave You',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28DD', source: 'Graven Image' }),
       netRegexDe: NetRegexes.startsUsing({ id: '28DD', source: 'Heilig(?:e|er|es|en) Statue' }),
       netRegexFr: NetRegexes.startsUsing({ id: '28DD', source: 'Statue Divine' }),
@@ -245,6 +267,7 @@ export default {
     },
     {
       id: 'O8S Wings of Destruction',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
@@ -253,11 +276,11 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
       alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
-          return output.wingsBeNearFar();
+          return output.wingsBeNearFar!();
       },
       infoText: (data, _matches, output) => {
         if (data.role !== 'tank')
-          return output.maxMeleeAvoidTanks();
+          return output.maxMeleeAvoidTanks!();
       },
       outputStrings: {
         maxMeleeAvoidTanks: {
@@ -280,13 +303,14 @@ export default {
     },
     {
       id: 'O8S Single Wing of Destruction',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '28F[EF]', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F[EF]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[EF]', source: '케프카', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Single Wing',
@@ -300,6 +324,7 @@ export default {
     },
     {
       id: 'O8S Ultimate Embrace',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2910', source: 'Kefka' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2910', source: 'Kefka' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2910', source: 'Kefka' }),
@@ -310,14 +335,14 @@ export default {
         if (matches.target !== data.me)
           return;
 
-        return output.embraceOnYou();
+        return output.embraceOnYou!();
       },
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
 
         if (data.role === 'healer' || data.role === 'tank')
-          return output.embraceOn({ player: data.ShortName(matches.target) });
+          return output.embraceOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         embraceOn: {
@@ -341,6 +366,7 @@ export default {
     {
       // 28E8: clown hyperdrive, 2912: god hyperdrive
       id: 'O8S Hyperdrive',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
       netRegexDe: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
@@ -351,6 +377,7 @@ export default {
     },
     {
       id: 'O8S Indulgent Will',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28E5', source: 'Graven Image' }),
       netRegexDe: NetRegexes.startsUsing({ id: '28E5', source: 'Heilig(?:e|er|es|en) Statue' }),
       netRegexFr: NetRegexes.startsUsing({ id: '28E5', source: 'Statue Divine' }),
@@ -358,7 +385,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '28E5', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E5', source: '신들의 상' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Confusion: Go Outside',
@@ -372,6 +399,7 @@ export default {
     },
     {
       id: 'O8S Idyllic Will',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28E6', source: 'Graven Image' }),
       netRegexDe: NetRegexes.startsUsing({ id: '28E6', source: 'Heilig(?:e|er|es|en) Statue' }),
       netRegexFr: NetRegexes.startsUsing({ id: '28E6', source: 'Statue Divine' }),
@@ -379,7 +407,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '28E6', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E6', source: '신들의 상' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Sleep: Go Inside',
@@ -394,6 +422,7 @@ export default {
     {
       // Precedes fake abilities
       id: 'O8S Jester\'s Antics',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5CE', capture: false }),
       suppressSeconds: 1, // Every Kefka entity gains this at once.
       run: (data) => data.antics = true,
@@ -401,12 +430,14 @@ export default {
     {
       // Precedes real abilities
       id: 'O8S Jester\'s Truths',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5CF', capture: false }),
       suppressSeconds: 1, // Every Kefka entity gains this at once.
       run: (data) => data.truths = true,
     },
     {
       id: 'O8S Jester Cleanup',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: ['5CE', '5CF'], capture: false }),
       suppressSeconds: 1,
       run: (data) => {
@@ -416,6 +447,7 @@ export default {
     },
     {
       id: 'O8S Mana Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
@@ -431,6 +463,7 @@ export default {
     },
     {
       id: 'O8S Mana Release',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
@@ -439,14 +472,14 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '28D2', source: '케프카', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.lastFire)
-          return output[data.lastFire]();
+          return output[data.lastFire]!();
 
-        if (!data.lastIceDir)
+        if (!data.lastIceDir || !data.lastThunder)
           return;
 
-        return output.thunderIce({
-          thunder: output[data.lastThunder](),
-          dir: output[data.lastIceDir](),
+        return output.thunderIce!({
+          thunder: output[data.lastThunder]!(),
+          dir: output[data.lastIceDir]!(),
         });
       },
       outputStrings: {
@@ -471,6 +504,7 @@ export default {
       // so we can use it to call the first fire correctly.
       // 007F is the spread marker, 0080 is the stack marker
       id: 'O8S Fire Head Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['007F', '0080'] }),
       suppressSeconds: 2,
       run: (data, matches) => data.fireMarker = matches.id === '007F' ? 'spread' : 'stack',
@@ -483,6 +517,7 @@ export default {
       // 28CF: damage from mana charge
       // 2B32: damage from mana release
       id: 'O8S Fire Spread',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
@@ -505,6 +540,7 @@ export default {
       // 28D0: damage from mana charge
       // 2B33: damage from mana release
       id: 'O8S Fire Stack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
@@ -527,6 +563,7 @@ export default {
       // 28CD: mana charge
       // 2B31: mana release
       id: 'O8S Thrumming Thunder Real',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
@@ -535,7 +572,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: '케프카', capture: false }),
       preRun: (data) => data.lastThunder = 'trueThunder',
       suppressSeconds: 40,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: strings.trueThunder,
       },
@@ -545,6 +582,7 @@ export default {
       // 28CB, 28CC: mana charge
       // 2B2F, 2B30: mana release
       id: 'O8S Thrumming Thunder Fake',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
@@ -553,7 +591,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: '케프카', capture: false }),
       preRun: (data) => data.lastThunder = 'fakeThunder',
       suppressSeconds: 40,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: strings.fakeThunder,
       },
@@ -563,6 +601,7 @@ export default {
       // 28C5, 28C6: mana charge
       // 2B2B, 2B2E: mana release
       id: 'O8S Blizzard Fake Donut',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
@@ -572,9 +611,9 @@ export default {
       preRun: (data) => data.lastIceDir = 'getOut',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
-        return output.text({ type: output.type(), dir: output.dir() });
+        return output.text!({ type: output.type!(), dir: output.dir!() });
       },
-      tts: (_data, _matches, output) => output.dir(),
+      tts: (_data, _matches, output) => output.dir!(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.fakeIce,
@@ -586,6 +625,7 @@ export default {
       // 28C9: mana charge
       // 2B2E: mana release
       id: 'O8S Blizzard True Donut',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
@@ -595,9 +635,9 @@ export default {
       preRun: (data) => data.lastIceDir = 'getIn',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
-        return output.text({ type: output.type(), dir: output.dir() });
+        return output.text!({ type: output.type!(), dir: output.dir!() });
       },
-      tts: (_data, _matches, output) => output.dir(),
+      tts: (_data, _matches, output) => output.dir!(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.trueIce,
@@ -609,6 +649,7 @@ export default {
       // 28C3, 28C4: mana charge
       // 2B29, 2B2A: mana release
       id: 'O8S Blizzard Fake Near',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
@@ -618,9 +659,9 @@ export default {
       preRun: (data) => data.lastIceDir = 'getIn',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
-        return output.text({ type: output.type(), dir: output.dir() });
+        return output.text!({ type: output.type!(), dir: output.dir!() });
       },
-      tts: (_data, _matches, output) => output.dir(),
+      tts: (_data, _matches, output) => output.dir!(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.fakeIce,
@@ -632,6 +673,7 @@ export default {
       // 28C8: mana charge
       // 2B2D: mana release
       id: 'O8S Blizzard True Near',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
@@ -641,9 +683,9 @@ export default {
       preRun: (data) => data.lastIceDir = 'getOut',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
-        return output.text({ type: output.type(), dir: output.dir() });
+        return output.text!({ type: output.type!(), dir: output.dir!() });
       },
-      tts: (_data, _matches, output) => output.dir(),
+      tts: (_data, _matches, output) => output.dir!(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.trueIce,
@@ -919,3 +961,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

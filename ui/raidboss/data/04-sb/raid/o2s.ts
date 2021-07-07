@@ -2,9 +2,20 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  probeCount?: number;
+  levitating?: boolean;
+  blueCircle?: string[];
+  dpsProbe?: boolean;
+  myProbe?: boolean;
+  under?: boolean;
+}
 
 // O2S - Deltascape 2.0 Savage
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV20Savage,
   timelineFile: 'o2s.txt',
   timelineTriggers: [
@@ -12,7 +23,7 @@ export default {
       id: 'O2S Double Stack',
       regex: /Gravitational Manipulation/,
       beforeSeconds: 6,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'DPS: Levitate',
@@ -35,6 +46,7 @@ export default {
   triggers: [
     {
       id: 'O2S Phase Probe Tracker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
@@ -42,25 +54,28 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       run: (data) => {
-        data.probeCount = (data.probeCount || 0) + 1;
+        data.probeCount = (data.probeCount ?? 0) + 1;
         data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
         data.myProbe = data.dpsProbe === data.role.startsWith('dps');
       },
     },
     {
       id: 'O2S Levitation Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = true,
     },
     {
       id: 'O2S Levitation Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = false,
     },
     {
       id: 'O2S Evilsphere',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2371', source: 'Katastroph' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
@@ -72,9 +87,10 @@ export default {
     },
     {
       id: 'O2S 100Gs',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0069' }),
       preRun: (data, matches) => {
-        data.blueCircle = data.blueCircle || [];
+        data.blueCircle ??= [];
         data.blueCircle.push(matches.target);
       },
       delaySeconds: 0.3,
@@ -95,20 +111,21 @@ export default {
           return;
 
         if (data.blueCircle.includes(data.me))
-          return { alertText: output.onYou() };
-        return { infoText: output.beIn() };
+          return { alertText: output.onYou!() };
+        return { infoText: output.beIn!() };
       },
       run: (data) => delete data.blueCircle,
     },
     {
       id: 'O2S -100Gs',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '235E', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '235E', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235E', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235E', source: '카타스트로피', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: '-100 Gs: Go north/south and look away',
@@ -122,6 +139,7 @@ export default {
     },
     {
       id: 'O2S Death\'s Gaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '236F', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
@@ -132,6 +150,7 @@ export default {
     },
     {
       id: 'O2S Earthquake',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2374', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
@@ -140,15 +159,15 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2374', source: '카타스트로피', capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.levitating)
-          return output.earthquakeLevitate();
+          return output.earthquakeLevitate!();
       },
       infoText: (data, _matches, output) => {
         if (data.levitating)
-          return output.earthquake();
+          return output.earthquake!();
       },
       tts: (data, _matches, output) => {
         if (!data.levitating)
-          return output.levitate();
+          return output.levitate!();
       },
       outputStrings: {
         earthquake: {
@@ -179,17 +198,18 @@ export default {
     },
     {
       id: 'O2S Elevated',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '54E', capture: false }),
       condition: (data) => data.job !== 'BLU',
       alarmText: (data, _matches, output) => {
         if (data.role.startsWith('dps') && !data.levitating)
-          return output.dpsLevitate();
+          return output.dpsLevitate!();
       },
       infoText: (data, _matches, output) => {
         if (!data.role.startsWith('dps'))
-          return output.dpsUpTanksHealersDown();
+          return output.dpsUpTanksHealersDown!();
       },
-      tts: (_data, _matches, output) => output.dpsUp(),
+      tts: (_data, _matches, output) => output.dpsUp!(),
       outputStrings: {
         dpsUpTanksHealersDown: {
           en: 'DPS up, T/H down',
@@ -219,6 +239,7 @@ export default {
     },
     {
       id: 'O2S Gravitational Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2372', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
@@ -230,6 +251,7 @@ export default {
     },
     {
       id: 'O2S Maniacal Probe',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
@@ -240,24 +262,24 @@ export default {
       alertText: (data, _matches, output) => {
         if (data.myProbe) {
           if (!data.dpsProbe)
-            return output.maniacalProbeTanksHealers();
+            return output.maniacalProbeTanksHealers!();
 
-          return output.maniacalProbeDps();
+          return output.maniacalProbeDps!();
         }
       },
       infoText: (data, _matches, output) => {
         if (!data.myProbe) {
           if (!data.dpsProbe)
-            return output.maniacalProbeTanksHealers();
+            return output.maniacalProbeTanksHealers!();
 
-          return output.maniacalProbeDps();
+          return output.maniacalProbeDps!();
         }
       },
       tts: (data, _matches, output) => {
         if (data.dpsProbe)
-          return output.dpsProbe();
+          return output.dpsProbe!();
 
-        return output.tankHealProbe();
+        return output.tankHealProbe!();
       },
       outputStrings: {
         maniacalProbeTanksHealers: {
@@ -296,9 +318,10 @@ export default {
     },
     {
       id: 'O2S Maniacal Probe You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0005 ' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Probe on YOU',
@@ -308,9 +331,10 @@ export default {
     },
     {
       id: 'O2S Unstable Gravity',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Elevate (Unstable Gravity)',
@@ -320,10 +344,11 @@ export default {
     },
     {
       id: 'O2S Unstable Gravity Delayed',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 9,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Knocked to Edge',
@@ -332,18 +357,19 @@ export default {
     },
     {
       id: 'O2S 6 Fulms Under Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: (data, matches) => !data.under && matches.target === data.me,
       delaySeconds: 5,
       alertText: (data, _matches, output) => {
         if (!data.levitating)
-          return output.sixFulmsUnderLevitate();
+          return output.sixFulmsUnderLevitate!();
       },
       infoText: (data, _matches, output) => {
         if (data.levitating)
-          return output.sixFulmsUnder();
+          return output.sixFulmsUnder!();
       },
-      tts: (_data, _matches, output) => output.float(),
+      tts: (_data, _matches, output) => output.float!(),
       run: (data) => data.under = true,
       outputStrings: {
         sixFulmsUnder: {
@@ -374,6 +400,7 @@ export default {
     },
     {
       id: 'O2S 6 Fulms Under Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.under = false,
@@ -537,3 +564,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

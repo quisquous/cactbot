@@ -1,21 +1,26 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // O7N - Sigmascape 3.0 Normal
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV30,
   timelineFile: 'o7n.txt',
   triggers: [
     {
       id: 'O7N Magitek Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '276B', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '276B', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '276B', source: 'Gardien', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '276B', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276B', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276B', source: '가디언', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Magitek Ray',
@@ -29,6 +34,7 @@ export default {
     },
     {
       id: 'O7N Arm And Hammer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '276C', source: 'Guardian' }),
       netRegexDe: NetRegexes.startsUsing({ id: '276C', source: 'Wächter' }),
       netRegexFr: NetRegexes.startsUsing({ id: '276C', source: 'Gardien' }),
@@ -39,6 +45,7 @@ export default {
     },
     {
       id: 'O7N Shockwave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2766', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2766', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2766', source: 'Gardien', capture: false }),
@@ -49,6 +56,7 @@ export default {
     },
     {
       id: 'O7N Diffractive Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2761', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2761', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2761', source: 'Gardien', capture: false }),
@@ -59,6 +67,7 @@ export default {
     },
     {
       id: 'O7N Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn('info'),
     },
@@ -238,3 +247,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

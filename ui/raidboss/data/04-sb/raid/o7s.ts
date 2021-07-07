@@ -2,27 +2,41 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  rot?: boolean;
+  seenVirus?: boolean;
+  first?: string;
+  second?: string;
+  loadCount?: number;
+  runCount?: number;
+}
 
 // O7S - Sigmascape 3.0 Savage
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV30Savage,
   timelineFile: 'o7s.txt',
   triggers: [
     // State
     {
       id: 'O7S Aether Rot Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.rot = true,
     },
     {
       id: 'O7S Aether Rot Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.rot = false,
     },
     {
       id: 'O7S Dadaluma Simulation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D3', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D3', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D3', capture: false }),
@@ -39,6 +53,7 @@ export default {
     },
     {
       id: 'O7S Bibliotaph Simulation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D4', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D4', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D4', capture: false }),
@@ -55,6 +70,7 @@ export default {
     },
     {
       id: 'O7S Virus Tracker',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D5', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D5', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D5', capture: false }),
@@ -65,13 +81,14 @@ export default {
     },
     {
       id: 'O7S Magitek Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2788', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2788', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2788', source: 'Gardien', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Magitek Ray',
@@ -85,6 +102,7 @@ export default {
     },
     {
       id: 'O7S Arm And Hammer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2789', source: 'Guardian' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2789', source: 'Wächter' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2789', source: 'Gardien' }),
@@ -95,9 +113,10 @@ export default {
     },
     {
       id: 'O7S Orb Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Orb Marker',
@@ -111,16 +130,17 @@ export default {
     },
     {
       id: 'O7S Blue Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
-        return output.blueMarkerOnYou();
+        return output.blueMarkerOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.blueMarkerOn({ player: data.ShortName(matches.target) });
+        return output.blueMarkerOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         blueMarkerOn: {
@@ -143,20 +163,23 @@ export default {
     },
     {
       id: 'O7S Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn('info'),
     },
     {
       id: 'O7S Searing Wind',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'O7S Abandonment',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Abandonment: stay middle',
@@ -171,12 +194,13 @@ export default {
     {
       // Aether Rot
       id: 'O7S Rot',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.rotOnYou();
+          return output.rotOnYou!();
 
-        return output.rotOn({ player: data.ShortName(matches.target) });
+        return output.rotOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         rotOnYou: {
@@ -199,6 +223,7 @@ export default {
     },
     {
       id: 'O7S Stoneskin',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2AB5', source: 'Orthros' }),
@@ -209,6 +234,7 @@ export default {
     },
     {
       id: 'O7S Load',
+      type: 'StartsUsing',
       // Load: 275C
       // Skip: 2773
       // Retrieve: 2774
@@ -220,31 +246,31 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
       alertText: (data, _matches, output) => {
-        data.loadCount = ++data.loadCount || 1;
+        data.loadCount = (data.loadCount ?? 0) + 1;
 
         if (data.loadCount === 1) {
           // First load is unknown.
-          return output.screen();
+          return output.screen!();
         } else if (data.loadCount === 2) {
-          return data.first === 'biblio' ? output.dada() : output.biblio();
+          return data.first === 'biblio' ? output.dada!() : output.biblio!();
         } else if (data.loadCount === 3) {
-          return data.first === 'biblio' ? output.ultros() : output.ships();
+          return data.first === 'biblio' ? output.ultros!() : output.ships!();
         } else if (data.loadCount === 4) {
-          return data.first === 'biblio' ? output.ships() : output.ultros();
+          return data.first === 'biblio' ? output.ships!() : output.ultros!();
         } else if (data.loadCount === 5) {
-          return output.virus();
+          return output.virus!();
         } else if (data.loadCount === 6) {
-          return data.first === 'biblio' ? output.ultros() : output.ships();
+          return data.first === 'biblio' ? output.ultros!() : output.ships!();
         } else if (data.loadCount === 7) {
           // This is the post-virus Load/Skip divergence.
-          return output.screen();
+          return output.screen!();
         } else if (data.loadCount === 8) {
-          return data.first === 'biblio' ? output.dada() : output.biblio();
+          return data.first === 'biblio' ? output.dada!() : output.biblio!();
         } else if (data.loadCount === 9) {
-          return data.first === 'biblio' ? output.ships() : output.ultros();
+          return data.first === 'biblio' ? output.ships!() : output.ultros!();
         }
 
-        console.error('Unknown load: ' + data.loadCount);
+        console.error(`Unknown load: ${data.loadCount}`);
       },
       outputStrings: {
         screen: {
@@ -287,6 +313,7 @@ export default {
     },
     {
       id: 'O7S Run',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '276F', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '276F', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '276F', source: 'Gardien', capture: false }),
@@ -294,20 +321,20 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
       infoText: (data, _matches, output) => {
-        data.runCount = ++data.runCount || 1;
+        data.runCount = (data.runCount ?? 0) + 1;
 
         if (data.runCount === 1)
-          return output.dada();
+          return output.dada!();
         else if (data.runCount === 2)
-          return data.first === 'biblio' ? output.ultros() : output.ships();
+          return data.first === 'biblio' ? output.ultros!() : output.ships!();
         else if (data.runCount === 3)
-          return data.first === 'biblio' ? output.ships() : output.ultros();
+          return data.first === 'biblio' ? output.ships!() : output.ultros!();
         else if (data.runCount === 4)
-          return data.first === 'biblio' ? output.ultros() : output.ships();
+          return data.first === 'biblio' ? output.ultros!() : output.ships!();
         else if (data.runCount === 5)
-          return output.biblio();
+          return output.biblio!();
         else if (data.runCount === 6)
-          return data.first === 'biblio' ? output.ships() : output.ultros();
+          return data.first === 'biblio' ? output.ships!() : output.ultros!();
       },
       outputStrings: {
         biblio: {
@@ -585,3 +612,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

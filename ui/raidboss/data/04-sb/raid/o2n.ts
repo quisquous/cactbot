@@ -3,9 +3,16 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  levitating?: boolean;
+  antiCounter?: number;
+}
 
 // O2N - Deltascape 2.0 Normal
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV20,
   timelineFile: 'o2n.txt',
   timelineTriggers: [
@@ -19,24 +26,27 @@ export default {
   triggers: [
     {
       id: 'O2N Levitation Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = true,
     },
     {
       id: 'O2N Levitation Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = false,
     },
     {
       id: 'O2N Gravitational Manipulation Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.stackMarkerOnYou();
+          return output.stackMarkerOnYou!();
 
-        return output.stackOn({ player: data.ShortName(matches.target) });
+        return output.stackOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         stackMarkerOnYou: {
@@ -52,9 +62,10 @@ export default {
     },
     {
       id: 'O2N Gravitational Manipulation Float',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
       condition: (data, matches) => !data.levitating && Conditions.targetIsNotYou()(data, matches),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Levitate',
@@ -68,6 +79,7 @@ export default {
     },
     {
       id: 'O2N Evilsphere',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
       netRegexDe: NetRegexes.startsUsing({ id: '250F', source: 'Katastroph' }),
       netRegexFr: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
@@ -79,13 +91,14 @@ export default {
     },
     {
       id: 'O2N -100Gs',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24FF', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '24FF', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24FF', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24FF', source: '카타스트로피', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: '-100 Gs: Go north/south',
@@ -99,6 +112,7 @@ export default {
     },
     {
       id: 'O2N Demon Eye',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '250D', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
@@ -109,6 +123,7 @@ export default {
     },
     {
       id: 'O2N Earthquake',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2512', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
@@ -117,11 +132,11 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2512', source: '카타스트로피', capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.levitating)
-          return output.levitate();
+          return output.levitate!();
       },
       infoText: (data, _matches, output) => {
         if (data.levitating)
-          return output.earthquake();
+          return output.earthquake!();
       },
       outputStrings: {
         earthquake: {
@@ -144,6 +159,7 @@ export default {
     },
     {
       id: 'O2N Gravitational Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2510', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
@@ -155,19 +171,20 @@ export default {
     },
     {
       id: 'O2N Six Fulms Under',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 5,
       suppressSeconds: 10,
       alertText: (data, _matches, output) => {
         if (!data.levitating)
-          return output.levitate();
+          return output.levitate!();
       },
       infoText: (data, _matches, output) => {
         if (data.levitating)
-          return output.sixFulmsUnder();
+          return output.sixFulmsUnder!();
       },
-      tts: (_data, _matches, output) => output.float(),
+      tts: (_data, _matches, output) => output.float!(),
       outputStrings: {
         sixFulmsUnder: {
           en: '6 Fulms Under',
@@ -197,13 +214,14 @@ export default {
     },
     {
       id: 'O2N Antilight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2502', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2502', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2502', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2502', source: '카타스트로피', capture: false }),
-      preRun: (data) => data.antiCounter = data.antiCounter || 0,
+      preRun: (data) => data.antiCounter ??= 0,
       durationSeconds: (data) => {
         if (data.antiCounter === 0 && data.levitating)
           return 3;
@@ -215,20 +233,23 @@ export default {
           // Players who are already floating should just get an info about Petrospheres.
           if (data.levitating)
             return;
-          return output.levitate();
+          return output.levitate!();
         }
         // It's always safe not to levitate after the first Antilight.
         // The second, fifth, eighth, etc Antilights require moving to the center as well.
-        if (data.antiCounter % 3 === 1)
-          return output.goCenterAndDontLevitate();
+        if (data.antiCounter && data.antiCounter % 3 === 1)
+          return output.goCenterAndDontLevitate!();
 
-        return output.dontLevitate();
+        return output.dontLevitate!();
       },
       infoText: (data, _matches, output) => {
         if (data.antiCounter === 0 && data.levitating)
-          return output.antilight();
+          return output.antilight!();
       },
-      run: (data) => data.antiCounter += 1,
+      run: (data) => {
+        data.antiCounter ??= 0;
+        data.antiCounter += 1;
+      },
       outputStrings: {
         antilight: {
           en: 'Antilight',
@@ -408,3 +429,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
