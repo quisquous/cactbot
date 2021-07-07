@@ -41,9 +41,9 @@
 02-arr/trial/titan-hm.txt
 02-arr/trial/titan-ex.ts
 02-arr/trial/titan-ex.txt
-03-hw/alliance/dun_scaith.js
+03-hw/alliance/dun_scaith.ts
 03-hw/alliance/dun_scaith.txt
-03-hw/alliance/weeping_city.js
+03-hw/alliance/weeping_city.ts
 03-hw/alliance/weeping_city.txt
 03-hw/dungeon/aetherochemical_research_facility.ts
 03-hw/dungeon/aetherochemical_research_facility.txt
@@ -59,7 +59,7 @@
 03-hw/dungeon/the_vault.txt
 03-hw/dungeon/xelphatol.ts
 03-hw/dungeon/xelphatol.txt
-03-hw/pvp/shatter.js
+03-hw/pvp/shatter.ts
 03-hw/raid/a10s.ts
 03-hw/raid/a10s.txt
 03-hw/raid/a11s.ts
@@ -88,11 +88,11 @@
 03-hw/raid/a8s.txt
 03-hw/raid/a9s.ts
 03-hw/raid/a9s.txt
-03-hw/trial/ravana-ex.js
+03-hw/trial/ravana-ex.ts
 03-hw/trial/ravana-ex.txt
-03-hw/trial/sephirot-ex.js
+03-hw/trial/sephirot-ex.ts
 03-hw/trial/sephirot-ex.txt
-03-hw/trial/sophia-ex.js
+03-hw/trial/sophia-ex.ts
 03-hw/trial/sophia-ex.txt
 04-sb/alliance/orbonne_monastery.js
 04-sb/alliance/orbonne_monastery.txt

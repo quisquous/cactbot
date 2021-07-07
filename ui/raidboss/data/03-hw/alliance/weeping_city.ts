@@ -2,8 +2,16 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  arachneStarted?: boolean;
+  ozmaStarted?: boolean;
+  calStarted?: boolean;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheWeepingCityOfMhach,
   timelineFile: 'weeping_city.txt',
   timelineTriggers: [
@@ -19,7 +27,7 @@ export default {
       regex: /The Widow's Kiss/,
       beforeSeconds: 5,
       // Probably kills the player if failed, so it gets an alert.
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand on webs',
@@ -35,7 +43,7 @@ export default {
       id: 'Weeping City Punishing Ray',
       regex: /Punishing Ray/,
       beforeSeconds: 10,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Puddles',
@@ -77,6 +85,7 @@ export default {
       // Because of this, we restrict those triggers for each boss to activate
       // only when that boss is in progress.
       id: 'Weeping City HeadMarker Arachne',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The Queen\'s Room will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Spinnenfalle will be sealed off.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Domaine de la Tisseuse will be sealed off.*?', capture: false }),
@@ -87,6 +96,7 @@ export default {
     },
     {
       id: 'Weeping City HeadMarker Ozma',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The Gloriole will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Aureole will be sealed off.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Hauteurs de la pyramide will be sealed off.*?', capture: false }),
@@ -100,6 +110,7 @@ export default {
     },
     {
       id: 'Weeping City HeadMarker Calofisteri',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The Tomb Of The Nullstone will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Kammer des Nullsteins will be sealed off.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Tombeau de la Clef de voûte will be sealed off.*?', capture: false }),
@@ -113,18 +124,21 @@ export default {
     },
     {
       id: 'Weeping City Sticky Wicket',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003C', capture: false }),
       suppressSeconds: 10,
       response: Responses.spread(),
     },
     {
       id: 'Weeping City Shadow Burst',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => data.arachneStarted,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Weeping City Frond Affeared',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '183A', source: 'Arachne Eve', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '183A', source: 'Arachne (?:der|die|das) Ahnin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '183A', source: 'Arachné Mère', capture: false }),
@@ -135,9 +149,10 @@ export default {
     },
     {
       id: 'Weeping City Arachne Web',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.arachneStarted && data.me === matches.target,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drop Web Outside',
@@ -151,15 +166,17 @@ export default {
     },
     {
       id: 'Weeping City Brand Of The Fallen',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Weeping City Dark Eruption',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Puddles on YOU',
@@ -173,6 +190,7 @@ export default {
     },
     {
       id: 'Weeping City Beguiling Mist',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '17CE', source: 'Summoned Succubus' }),
       netRegexDe: NetRegexes.startsUsing({ id: '17CE', source: 'Beschworen(?:e|er|es|en) Sukkubus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '17CE', source: 'Succube Adjuré' }),
@@ -184,6 +202,7 @@ export default {
     },
     {
       id: 'Weeping City Mortal Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '17D4', source: 'Summoned Haagenti' }),
       netRegexDe: NetRegexes.startsUsing({ id: '17D4', source: 'Beschworen(?:e|er|es|en) Haagenti' }),
       netRegexFr: NetRegexes.startsUsing({ id: '17D4', source: 'Haagenti Adjuré' }),
@@ -194,6 +213,7 @@ export default {
     },
     {
       id: 'Weeping City Hell Wind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '17CB', source: 'Forgall', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '17CB', source: 'Forgall', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '17CB', source: 'Forgall', capture: false }),
@@ -206,13 +226,14 @@ export default {
     },
     {
       id: 'Weeping City Mega Death',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '17CA', source: 'Forgall', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '17CA', source: 'Forgall', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '17CA', source: 'Forgall', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '17CA', source: 'フォルガル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '17CA', source: '弗加尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '17CA', source: '포르갈', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand in one puddle',
@@ -226,9 +247,10 @@ export default {
     },
     {
       id: 'Weeping City Meteor Impact',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drop meteor back or left',
@@ -244,13 +266,14 @@ export default {
       // The ability used here is Ozma entering Pyramid form.
       // Execration follows this up almost immediately.
       id: 'Weeping City Execration',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1826', source: 'Ozma', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1826', source: 'Yadis', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1826', source: 'Ozma', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '1826', source: 'オズマ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '1826', source: '奥兹玛', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1826', source: '오즈마', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get off rectangle platform',
@@ -266,6 +289,7 @@ export default {
       // The ability used here is Ozma entering Cube form.
       // Flare Star and tank lasers follow shortly.
       id: 'Weeping City Flare Star Ring',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1803', source: 'Yadis', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
@@ -279,6 +303,7 @@ export default {
       // is literally named "attack". Ozma zaps the 3 highest-threat targets. (Not always tanks!)
       // This continues until the next Sphere form, whether by time or by HP push.
       id: 'Weeping City Tank Lasers',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1803', source: 'Yadis', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
@@ -289,9 +314,9 @@ export default {
       delaySeconds: 4,
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
-          return output.tankLasers();
+          return output.tankLasers!();
 
-        return output.avoidTanks();
+        return output.avoidTanks!();
       },
       outputStrings: {
         tankLasers: {
@@ -316,9 +341,10 @@ export default {
       // The NPC name is Ozmasphere. These need to be popped just like any other Flare Star.
       // Failing to pop an orb means it will explode, dealing damage with 1808 Aethernova.
       id: 'Weeping City Flare Star Orbs',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '4889', capture: false }),
       condition: (data) => data.role === 'tank' || data.role === 'healer',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get orbs',
@@ -332,6 +358,7 @@ export default {
     },
     {
       id: 'Weeping City Acceleration Bomb',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
@@ -339,6 +366,7 @@ export default {
     },
     {
       id: 'Weeping City Assimilation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1802', source: 'Ozmashade', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1802', source: 'Yadis-Schatten', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1802', source: 'Ombre D\'Ozma', capture: false }),
@@ -350,6 +378,7 @@ export default {
     {
       // Each party gets a stack marker, so this is the best we can do.
       id: 'Weeping City Meteor Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => data.ozmaStarted,
       suppressSeconds: 5,
@@ -360,6 +389,7 @@ export default {
       // There's no castbar or indicator except that she grows a scythe on one side.
       // It's not a very obvious visual cue unless the player knows to look for it.
       id: 'Weeping City Coif Change Left',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '180A', source: 'Calofisteri', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '180A', source: 'Calofisteri', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '180A', source: 'Calofisteri', capture: false }),
@@ -370,6 +400,7 @@ export default {
     },
     {
       id: 'Weeping City Coif Change Right',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '180E', source: 'Calofisteri', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '180E', source: 'Calofisteri', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '180E', source: 'Calofisteri', capture: false }),
@@ -382,9 +413,10 @@ export default {
       // 4899 is the base ID for bulb hair. 4900 is axe hair.
       // Bulbs do a circle AoE surrounding them, while axes are a donut.
       id: 'Weeping City Living Lock Axes',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['4899', '4900'], capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Close to axes, avoid bulbs',
@@ -398,9 +430,10 @@ export default {
     },
     {
       id: 'Weeping City Living Lock Scythes',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4898', capture: false }),
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid scythe line AoEs',
@@ -415,9 +448,10 @@ export default {
     {
       // These adds are the purple circles waiting to grab people and Garrotte them.
       id: 'Weeping City Entanglement',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4904', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid purple circles',
@@ -433,6 +467,7 @@ export default {
       // If by some chance someone actually did stand in the purple circles, break them out.
       // The actual ability here is an Unknown ability, but it begins slightly before Garrotte.
       id: 'Weeping City Garrotte',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '181D', source: 'Entanglement', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '181D', source: 'Verfilzung', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '181D', source: 'Emmêlement', capture: false }),
@@ -444,13 +479,14 @@ export default {
     },
     {
       id: 'Weeping City Particle Beam',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data) => data.calStarted,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.skyLaserOnYou();
+          return output.skyLaserOnYou!();
 
-        return output.avoidSkyLasers();
+        return output.avoidSkyLasers!();
       },
       outputStrings: {
         skyLaserOnYou: {
@@ -475,6 +511,7 @@ export default {
       // The actual ability here is Mana Drain, which ends the intermission.
       // Dancing Mad follows this up closely enough to make this the best time to notify.
       id: 'Weeping City Dancing Mad',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1819', source: 'Calofisteri', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1819', source: 'Calofisteri', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1819', source: 'Calofisteri', capture: false }),
@@ -486,6 +523,7 @@ export default {
     },
     {
       id: 'Weeping City Penetration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1822', source: 'Calofisteri', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1822', source: 'Calofisteri', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1822', source: 'Calofisteri', capture: false }),
@@ -496,6 +534,7 @@ export default {
     },
     {
       id: 'Weeping City Depth Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1820', source: 'Calofisteri', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1820', source: 'Calofisteri', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1820', source: 'Calofisteri', capture: false }),
@@ -864,3 +903,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
