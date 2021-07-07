@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlaMhigo,
   timelineFile: 'ala_mhigo.txt',
   timelineTriggers: [
@@ -17,6 +21,7 @@ export default {
   triggers: [
     {
       id: 'Ala Mhigo Electromagnetic Field',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '204D', source: 'Magitek Scorpion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '204D', source: 'Wachskorpion', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '204D', source: 'Scorpion Magitek', capture: false }),
@@ -28,6 +33,7 @@ export default {
     },
     {
       id: 'Ala Mhigo Mana Burst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
@@ -39,6 +45,7 @@ export default {
     },
     {
       id: 'Ala Mhigo Demimagicks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
@@ -49,13 +56,14 @@ export default {
     },
     {
       id: 'Ala Mhigo Storm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2066', '2587'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2066', '2587'], source: '제노스 예 갈부스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Out of blue circle',
@@ -69,6 +77,7 @@ export default {
     },
     {
       id: 'Ala Mhigo Swell',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
@@ -79,13 +88,14 @@ export default {
     },
     {
       id: 'Ala Mhigo Sword',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2068', '2588'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2068', '2588'], source: '제노스 예 갈부스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Protean',
@@ -99,6 +109,7 @@ export default {
     },
     {
       id: 'Ala Mhigo Lightless Spark',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
       netRegexDe: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
       netRegexFr: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
@@ -106,7 +117,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '0029', source: '芝诺斯·耶·加尔乌斯' }),
       netRegexKo: NetRegexes.tether({ id: '0029', source: '제노스 예 갈부스' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Face tether out',
@@ -120,6 +131,7 @@ export default {
     },
     {
       id: 'Ala Mhigo Concentrativity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
@@ -325,3 +337,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
