@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AkadaemiaAnyder,
   timelineFile: 'akadaemia_anyder.txt',
   timelineTriggers: [
@@ -25,9 +29,10 @@ export default {
   triggers: [
     {
       id: 'Anyder Aquatic Lance',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'puddle on you',
@@ -41,6 +46,7 @@ export default {
     },
     {
       id: 'Anyder Puncture',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
@@ -52,13 +58,14 @@ export default {
     },
     {
       id: 'Anyder Tidal Guillotine',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3E0A', source: 'クラドセラケ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E0A', source: '裂口鲨', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E0A', source: '클라도셀라케', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away From Swimming Shark',
@@ -72,13 +79,14 @@ export default {
     },
     {
       id: 'Anyder Pelagic Cleaver',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3E0B', source: 'ドリオドゥス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E0B', source: '原祖鲨', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E0B', source: '돌리오두스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Sides of Swimming Shark',
@@ -92,6 +100,7 @@ export default {
     },
     {
       id: 'Anyder Marine Mayhem',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
@@ -103,12 +112,14 @@ export default {
     },
     {
       id: 'Anyder Sap Shower',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Anyder Arbor Storm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis-Morbol', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
@@ -120,6 +131,7 @@ export default {
     },
     {
       id: 'Anyder Noahionto',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '430C', source: 'Evil Armor' }),
       netRegexDe: NetRegexes.startsUsing({ id: '430C', source: 'Bös(?:e|er|es|en) Kampfmaschine' }),
       netRegexFr: NetRegexes.startsUsing({ id: '430C', source: 'Armure Maléfique' }),
@@ -131,6 +143,7 @@ export default {
     },
     {
       id: 'Anyder Shockbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E23', source: 'Quetzalcoatl' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E23', source: 'Quetzalcoatl' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E23', source: 'Quetzalcóatl' }),
@@ -142,6 +155,7 @@ export default {
     },
     {
       id: 'Anyder Thunderbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E24', source: 'Quetzalcoatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E24', source: 'Quetzalcoatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E24', source: 'Quetzalcóatl', capture: false }),
@@ -153,6 +167,7 @@ export default {
     },
     {
       id: 'Anyder Thunderstorm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E1A', source: 'Quetzalcoatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E1A', source: 'Quetzalcoatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E1A', source: 'Quetzalcóatl', capture: false }),
@@ -160,7 +175,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3E1A', source: '克察尔科亚特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E1A', source: '케찰코아틀', capture: false }),
       delaySeconds: 4.7,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'grab orbs',
@@ -341,3 +356,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

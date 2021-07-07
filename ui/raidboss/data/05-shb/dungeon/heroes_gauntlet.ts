@@ -3,13 +3,20 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  anguish?: string[];
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheHeroesGauntlet,
   timelineFile: 'heroes_gauntlet.txt',
   triggers: [
     {
       id: 'Heroes Gauntlet Spectral Dream',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FCB', source: 'Spectral Thief' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4FCB', source: 'Phantom-Dieb' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4FCB', source: 'Voleur Spectral' }),
@@ -21,12 +28,14 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Spectral Gust',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Heroes Gauntlet Spectral Whirlwind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FCC', source: 'Spectral Thief', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4FCC', source: 'Phantom-Dieb', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4FCC', source: 'Voleur Spectral', capture: false }),
@@ -39,9 +48,10 @@ export default {
     {
       // Spectral Thief tethers to the locations where it will attack.
       id: 'Heroes Gauntlet Spectral Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '000C', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away from tether marker',
@@ -55,6 +65,7 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Spectral White Mage Absolute Protect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '524D', source: 'Spectral White Mage' }),
       netRegexDe: NetRegexes.startsUsing({ id: '524D', source: 'Phantom-Weißmagierin' }),
       netRegexFr: NetRegexes.startsUsing({ id: '524D', source: 'Mage Blanc Spectral' }),
@@ -66,12 +77,14 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Large Zombie Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '004F' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Heroes Gauntlet Twisted Touch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4F5E', source: 'Spectral Necromancer' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4F5E', source: 'Phantom-Nekromantin' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4F5E', source: 'Nécromancienne Spectrale' }),
@@ -83,6 +96,7 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Chaos Storm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4F60', source: 'Spectral Necromancer', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4F60', source: 'Phantom-Nekromantin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4F60', source: 'Nécromancienne Spectrale', capture: false }),
@@ -94,6 +108,7 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Beastly Fury',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '520C', source: 'Spectral Berserker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '520C', source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '520C', source: 'Berserker Spectral', capture: false }),
@@ -106,6 +121,7 @@ export default {
     {
       // Both two and three uses of Slice can happen.
       id: 'Heroes Gauntlet Raging Slice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['520A', '520B'], source: 'Spectral Berserker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['520A', '520B'], source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['520A', '520B'], source: 'Berserker Spectral', capture: false }),
@@ -116,13 +132,14 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Wild Rampage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5206', source: 'Spectral Berserker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5206', source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5206', source: 'Berserker Spectral', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5206', source: '幻光のバーサーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5206', source: '幻光狂战士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5206', source: '환상빛의 광전사', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get in a crater',
@@ -136,6 +153,7 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Wild Rage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: 'Spectral Berserker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: 'Berserker Spectral', capture: false }),
@@ -150,25 +168,27 @@ export default {
       // If there's one stack marker, the players stack.
       // Otherwise they stack on the rock they drop.
       id: 'Heroes Gauntlet Wild Anguish Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
       run: (data, matches) => {
-        data.anguish = data.anguish || [];
+        data.anguish ??= [];
         data.anguish.push(matches.target);
       },
     },
     {
       id: 'Heroes Gauntlet Wild Anguish Resolve',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
       delaySeconds: 1,
       suppressSeconds: 5,
       alertText: (data, matches, output) => {
-        if (data.anguish.length > 1)
-          return output.stackOnYourRock();
+        if (data.anguish && data.anguish.length > 1)
+          return output.stackOnYourRock!();
 
         if (matches.target === data.me)
-          return output.stackOnYou();
+          return output.stackOnYou!();
 
-        return output.stackOn({ player: data.ShortName(matches.target) });
+        return output.stackOn!({ player: data.ShortName(matches.target) });
       },
       run: (data) => delete data.anguish,
       outputStrings: {
@@ -186,6 +206,7 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Wild Anguish Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005E' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
@@ -394,3 +415,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
