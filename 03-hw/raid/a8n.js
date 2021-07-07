@@ -36,6 +36,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A8N Megabeam Onslaughter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '1732', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '1732', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '1732', capture: false }),
@@ -57,6 +58,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Megabeam Brute Justice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '174F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '174F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '174F', capture: false }),
@@ -77,6 +79,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Execution',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schlachter', id: '1632', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Attaqueur', id: '1632', capture: false }),
@@ -98,6 +101,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Perpetual Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '1730' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '1730' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '1730' }),
@@ -109,6 +113,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Low Arithmeticks',
+      type: 'GainsEffect',
       // Note: both high and low use '0025' headmarker
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
       condition: Conditions.targetIsYou(),
@@ -128,6 +133,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N High Arithmeticks',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
@@ -146,6 +152,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Super Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1747', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wirbler', id: '1747', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Tourbillonneur', id: '1747', capture: false }),
@@ -156,6 +163,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Enumeration',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
@@ -175,6 +183,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Double Rocket Punch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '174E' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '174E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '174E' }),
@@ -189,6 +198,7 @@ Options.Triggers.push({
       // This is *very* dangerous if the healers aren't ready, so we collect the active tank
       // in order to warn them not to stack.
       id: 'A8N Brute Active Tank',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '174C' }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '174C' }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '174C' }),
@@ -206,6 +216,7 @@ Options.Triggers.push({
       // since data.bruteTankOut will not be initialized at that point.)
       // 1750 is Super Jump, 1756 is J-Kick.
       id: 'A8N Long Needle Toggle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: ['1750', '1756'] }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: ['1750', '1756'] }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: ['1750', '1756'] }),
@@ -217,12 +228,14 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Long Needle Party',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => !(data.me === data.bruteTank && data.bruteTankOut),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'A8N Long Needle Active Tank',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => data.me === data.bruteTank && data.bruteTankOut,
       alertText: (_data, _matches, output) => output.text(),
@@ -239,6 +252,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Short Needle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1753', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1753', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1753', capture: false }),
@@ -250,6 +264,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Apocalyptic Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1751', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1751', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1751', capture: false }),
@@ -260,6 +275,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Super Jump',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1750' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1750' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1750' }),
@@ -297,6 +313,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Mirage Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -313,6 +330,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Ice Missile Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -329,6 +347,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8N Mirage Supercharge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '1749', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '1749', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '1749', capture: false }),

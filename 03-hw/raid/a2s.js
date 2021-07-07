@@ -29,6 +29,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A2S Bomb',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Bomb', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Bombe', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Bombe', capture: false }),
@@ -49,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'A2S Prey',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
       netRegexDe: NetRegexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
       netRegexFr: NetRegexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
@@ -71,6 +73,7 @@ Options.Triggers.push({
     },
     {
       id: 'A2S Prey You',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
       netRegexDe: NetRegexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
       netRegexFr: NetRegexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
@@ -93,6 +96,7 @@ Options.Triggers.push({
     },
     {
       id: 'A2S Soldier Spawn',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Gordian Soldier', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gordios-Soldat', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Soldat Gordien', capture: false }),
@@ -103,6 +107,7 @@ Options.Triggers.push({
     },
     {
       id: 'A2S Bangyzoom',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'FD9', target: 'Gordios-Soldat', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'FD9', target: 'Soldat Gordien', capture: false }),

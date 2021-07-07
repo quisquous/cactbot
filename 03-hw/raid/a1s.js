@@ -29,6 +29,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A1S Hydrothermal Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: (data, matches) => {
         data.hydro = data.hydro || [];
@@ -37,6 +38,7 @@ Options.Triggers.push({
     },
     {
       id: 'A1S Hydrothermal You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -53,6 +55,7 @@ Options.Triggers.push({
     },
     {
       id: 'A1S Hydrothermal Healer',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
@@ -75,12 +78,14 @@ Options.Triggers.push({
     },
     {
       id: 'A1S Hydrothermal Cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       delaySeconds: 10,
       run: (data) => delete data.hydro,
     },
     {
       id: 'A1S Resin Bomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E46', source: 'Unterdrücker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E46', source: 'Oppresseur', capture: false }),
@@ -101,6 +106,7 @@ Options.Triggers.push({
     },
     {
       id: 'A1S Hypercompressed Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
@@ -114,6 +120,7 @@ Options.Triggers.push({
     },
     {
       id: 'A1S Hypercompressed You',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
@@ -126,6 +133,7 @@ Options.Triggers.push({
     },
     {
       id: 'A1S Hypercompressed Other',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
@@ -150,6 +158,7 @@ Options.Triggers.push({
     },
     {
       id: 'A1S Hypercompressed Delete',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),

@@ -4,18 +4,21 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A6S Magic Vulnerability Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '292' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.magicVulnerability = true,
     },
     {
       id: 'A6S Magic Vulnerability Loss',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '292' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.magicVulnerability = false,
     },
     {
       id: 'A6S Mind Blast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '15F3' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster', id: '15F3' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fracasseur', id: '15F3' }),
@@ -27,6 +30,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Hidden Minefield',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '15F7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster', id: '15F7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fracasseur', id: '15F7', capture: false }),
@@ -59,6 +63,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Supercharge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '15FB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '15FB', capture: false }),
@@ -80,6 +85,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Blinder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FC' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '15FC' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '15FC' }),
@@ -101,6 +107,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Power Tackle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FD' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '15FD' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '15FD' }),
@@ -122,6 +129,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Low Arithmeticks',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
@@ -139,6 +147,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S High Arithmeticks',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
@@ -156,6 +165,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Bio-arithmeticks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '1610', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwindler', id: '1610', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arnaqueur', id: '1610', capture: false }),
@@ -166,6 +176,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Midan Hardhelm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1612' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Midas-Harthelm', id: '1612' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Casque-Dur Midin', id: '1612' }),
@@ -177,6 +188,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Midan Hardmind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1613' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Midas-Harthelm', id: '1613' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Casque-Dur Midin', id: '1613' }),
@@ -188,6 +200,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Enumeration',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
@@ -207,6 +220,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Super Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1627', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wirbler', id: '1627', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Tourbillonneur', id: '1627', capture: false }),
@@ -217,6 +231,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Ultra Flash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '161A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wirbler', id: '161A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Tourbillonneur', id: '161A', capture: false }),
@@ -237,6 +252,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Ice Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -253,6 +269,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Fire Beam',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: Conditions.targetIsYou(),
       // TODO: maybe this should say "hit tornado / avoid ice" but that's wordy.
@@ -270,6 +287,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Compressed Water Initial',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -287,12 +305,14 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Compressed Water Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.haveWater = false,
     },
     {
       id: 'A6S Compressed Water Explode',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
@@ -314,6 +334,7 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Compressed Lightning Initial',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -331,12 +352,14 @@ Options.Triggers.push({
     },
     {
       id: 'A6S Compressed Lightning Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.haveLightning = false,
     },
     {
       id: 'A6S Compressed Lightning Explode',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,

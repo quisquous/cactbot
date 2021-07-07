@@ -19,6 +19,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A12S Punishing Heat',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19E9' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19E9' }),
@@ -31,6 +32,7 @@ Options.Triggers.push({
     {
       // Applies to both holy and blazing scourge.
       id: 'A12S Holy Blazing Scourge You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: (data, matches) => {
         // Ignore Holy Scourge later in the fight.
@@ -52,14 +54,17 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Blazing Scourge Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: (data, matches) => {
-        data.scourge = data.scourge || [];
+        let _a;
+        (_a = data.scourge) !== null && _a !== void 0 ? _a : (data.scourge = []);
         data.scourge.push(matches.target);
       },
     },
     {
       id: 'A12S Blazing Scourge Report',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: (data) => {
         // Ignore Holy Scourge later in the fight.
@@ -70,11 +75,12 @@ Options.Triggers.push({
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
+        let _a;
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
           return false;
-        const names = data.scourge.map((x) => data.ShortName(x)).sort();
-        if (names.length === 0)
+        const names = (_a = data.scourge) === null || _a === void 0 ? void 0 : _a.map((x) => data.ShortName(x)).sort();
+        if (!names || names.length === 0)
           return;
         return output.text({ players: names.join(', ') });
       },
@@ -91,6 +97,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Mega Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19EE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19EE', capture: false }),
@@ -102,11 +109,13 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Incinerating Heat',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'A12S Laser Sacrament',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19EB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19EB', capture: false }),
@@ -127,6 +136,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Radiant Sacrament',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19ED', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19ED', capture: false }),
@@ -137,6 +147,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S House Arrest',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001C' }),
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       infoText: (data, matches, output) => {
@@ -156,6 +167,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Restraining Order',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001D' }),
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
@@ -175,6 +187,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Shared Sentence',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -191,6 +204,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Defamation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '460' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -207,6 +221,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Judgment Crystal',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -223,6 +238,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Holy Scourge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1A0B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1A0B', capture: false }),
@@ -244,6 +260,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Chastening Heat',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1A0D' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1A0D' }),
@@ -254,6 +271,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12S Communion Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
       netRegexDe: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
       netRegexFr: NetRegexes.tether({ source: 'Alexander', id: '0036' }),

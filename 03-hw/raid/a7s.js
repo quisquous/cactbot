@@ -41,6 +41,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A7S Phase Counter',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Shanoa', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Schwarz(?:e|er|es|en) Katze', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Chat-Noir', capture: false }),
@@ -48,12 +49,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.addedCombatant({ name: '夏诺雅', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '샤노아', capture: false }),
       run: (data) => {
-        data.phase = data.phase || 0;
+        let _a;
+        (_a = data.phase) !== null && _a !== void 0 ? _a : (data.phase = 0);
         data.phase++;
       },
     },
     {
       id: 'A7S Sizzlebeam',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0018' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
@@ -84,6 +87,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Sizzlespark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F8', capture: false }),
@@ -95,6 +99,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Bomb Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Bomb', id: '001F' }),
       netRegexDe: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
       netRegexFr: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
@@ -116,6 +121,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Jail Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -132,6 +138,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Jail Tether',
+      type: 'Tether',
       // This does not include the initial tether, unfortunately.
       // This is another case of "added combatant with initial tether".
       netRegex: NetRegexes.tether({ source: 'Boomtype Magitek Gobwalker G-VII', id: '0011' }),
@@ -156,6 +163,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Kugelblitz',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sturm Doll', id: '16FE' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sturmpuppe', id: '16FE' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Poupée Sturm', id: '16FE' }),
@@ -167,6 +175,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Zoomdoom Clear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F4', capture: false }),
@@ -180,6 +189,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Gobbie Grab',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Quickthinx Allthoughts', id: '15C0' }),
       netRegexDe: NetRegexes.ability({ source: 'Denkfix', id: '15C0' }),
       netRegexFr: NetRegexes.ability({ source: 'Quickthinx Le Cerveau', id: '15C0' }),
@@ -193,6 +203,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Stickyloom',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' }),
       netRegexDe: NetRegexes.ability({ source: 'Gob-Stampfer VII-L', id: '16F2' }),
       netRegexFr: NetRegexes.ability({ source: 'gobblindé magitek G-VII Lamineur', id: '16F2' }),
@@ -203,6 +214,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Padlock',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Padlock', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Vorhängeschloss', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cadenas', capture: false }),
@@ -229,6 +241,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S True Heart',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shanoa', id: '15EC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schwarz(?:e|er|es|en) Katze', id: '15EC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Chat-Noir', id: '15EC', capture: false }),
@@ -249,6 +262,7 @@ Options.Triggers.push({
     },
     {
       id: 'A7S Searing Wind',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),

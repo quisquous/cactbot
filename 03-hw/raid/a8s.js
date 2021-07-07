@@ -71,6 +71,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A8S Megabeam Onslaughter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '162E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '162E', capture: false }),
@@ -92,6 +93,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Megabeam Brute Justice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1664', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1664', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1664', capture: false }),
@@ -112,6 +114,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Execution',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schlachter', id: '1632', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Attaqueur', id: '1632', capture: false }),
@@ -133,6 +136,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Perpetual Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '162B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '162B' }),
@@ -144,6 +148,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Blaster Mirage',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Blaster Mirage', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Blaster-Replikant', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Réplique Du Fracasseur', capture: false }),
@@ -165,6 +170,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Discoid',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0023' }),
       condition: (data, matches) => {
         // Verdict comes with the same headmarker.
@@ -184,6 +190,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Mind Blast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '1639' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster', id: '1639' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fracasseur', id: '1639' }),
@@ -195,6 +202,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Low Arithmeticks',
+      type: 'GainsEffect',
       // Note: both high and low use '0025' headmarker
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
       condition: Conditions.targetIsYou(),
@@ -214,6 +222,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S High Arithmeticks',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
@@ -232,6 +241,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Bio-Arithmeticks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '164A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwindler', id: '164A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arnaqueur', id: '164A', capture: false }),
@@ -243,6 +253,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Super Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1657', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wirbler', id: '1657', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Tourbillonneur', id: '1657', capture: false }),
@@ -253,6 +264,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Compressed Lightning',
+      type: 'GainsEffect',
       // Note: also the 0045 headmarker.
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
@@ -286,13 +298,15 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Compressed Lightning Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '400', capture: false }),
       run: (data) => delete data.lightning,
     },
     {
       id: 'A8S Compressed Lightning Soon',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: (data) => data.lightning,
+      condition: (data) => !!data.lightning,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
         return output.text({ player: data.ShortName(data.lightning) });
@@ -310,6 +324,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Enumeration',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
@@ -329,6 +344,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Double Rocket Punch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1663' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1663' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1663' }),
@@ -363,19 +379,23 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Long Needle Stack Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       run: (data, matches) => data.longNeedleStack = matches.target,
     },
     {
       id: 'A8S Long Needle Prey Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: (data, matches) => {
-        data.longNeedlePrey = data.longNeedlePrey || [];
+        let _a;
+        (_a = data.longNeedlePrey) !== null && _a !== void 0 ? _a : (data.longNeedlePrey = []);
         data.longNeedlePrey.push(matches.target);
       },
     },
     {
       id: 'A8S Short Needle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1668', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1668', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1668', capture: false }),
@@ -387,20 +407,23 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Long Needle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '166A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '166A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '166A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
-      condition: (data) => data.longNeedleStack && data.longNeedlePrey,
+      condition: (data) => data.longNeedleStack !== undefined && data.longNeedlePrey !== undefined,
       suppressSeconds: 10,
       alarmText: (data, _matches, output) => {
-        if (data.longNeedlePrey.includes(data.me))
+        let _a;
+        if ((_a = data.longNeedlePrey) === null || _a === void 0 ? void 0 : _a.includes(data.me))
           return output.preyGetOut();
       },
       alertText: (data, _matches, output) => {
-        if (data.longNeedlePrey.includes(data.me))
+        let _a;
+        if ((_a = data.longNeedlePrey) === null || _a === void 0 ? void 0 : _a.includes(data.me))
           return;
         const target = data.longNeedleStack;
         if (target === data.me)
@@ -426,6 +449,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Super Jump',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1665' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1665' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1665' }),
@@ -463,6 +487,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Mirage Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -479,6 +504,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Ice Missile Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -495,6 +521,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Hidden Minefield Intermission',
+      type: 'Ability',
       // 165E used in both intermission and in final phase
       // 165C only used for intermission
       netRegex: NetRegexes.ability({ source: 'Hidden Mine', id: '165E', capture: false }),
@@ -519,6 +546,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Mirage Blinder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165A' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '165A' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165A' }),
@@ -540,6 +568,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Mirage Power Tackle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '165B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165B' }),
@@ -561,6 +590,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Link Up',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1673', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1673', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1673', capture: false }),
@@ -571,6 +601,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Min HP',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
@@ -588,11 +619,13 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Min HP Collect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       run: (data, matches) => data.verdictMin = matches.target,
     },
     {
       id: 'A8S Verdict Min HP Tornado',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
@@ -610,11 +643,13 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Max HP Collect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       run: (data, matches) => data.verdictMax = matches.target,
     },
     {
       id: 'A8S Verdict Max HP',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -632,6 +667,7 @@ Options.Triggers.push({
     {
       // Final Punishment effect falling off due to auto.
       id: 'A8S Verdict Max HP Provoke',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '403' }),
       condition: (data, matches) => {
         return matches.target === data.verdictMin && data.me === data.verdictMax;
@@ -650,6 +686,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Max HP Blu Devour',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 27,
@@ -667,6 +704,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Penalty 1',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '409' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
@@ -686,6 +724,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Penalty 2',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40A' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -702,6 +741,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Penalty 3',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -718,6 +758,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Penalty 3 Orb',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 28,
@@ -737,6 +778,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Nisi A',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40C' }),
       condition: Conditions.targetIsYou(),
       // TODO: we could say east or west here after the regulators spawn?
@@ -756,6 +798,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Verdict Nisi B',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40D' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -772,6 +815,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Compressed Water',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -803,6 +847,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Compressed Water Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF', capture: false }),
       run: (data) => {
         // rip, valiant mine sac
@@ -811,8 +856,9 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Compressed Water Soon',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: (data) => data.water,
+      condition: (data) => !!data.water,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
         return output.text({ player: data.ShortName(data.water) });
@@ -830,6 +876,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Final Punch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '170C' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '170C' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '170C' }),
@@ -841,6 +888,7 @@ Options.Triggers.push({
     },
     {
       id: 'A8S Final Beam',
+      type: 'Ability',
       // id is for Final Apocalypse Ability
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1716', capture: false }),

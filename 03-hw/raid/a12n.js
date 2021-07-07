@@ -29,6 +29,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A12N Punishing Heat',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE4' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1AE4' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1AE4' }),
@@ -40,12 +41,14 @@ Options.Triggers.push({
     },
     {
       id: 'A12N Blazing Scourge',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'A12N Mega Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1AE7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1AE7', capture: false }),
@@ -57,6 +60,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12N Aggravated Assault',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -76,6 +80,7 @@ Options.Triggers.push({
     {
       // Both Incinerating Heat and Shared Sentence use the same stack marker.
       id: 'A12N Heat And Solidarity',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       delaySeconds: 0.5,
       alertText: (data, matches, output) => {
@@ -96,6 +101,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12N Laser Sacrament',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1AE5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1AE5', capture: false }),
@@ -116,6 +122,7 @@ Options.Triggers.push({
     },
     {
       id: 'A12N Communion Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
       netRegexDe: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
       netRegexFr: NetRegexes.tether({ source: 'Alexander', id: '0036' }),

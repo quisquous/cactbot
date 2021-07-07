@@ -4,7 +4,7 @@ Options.Triggers.push({
   timelineTriggers: [
     {
       id: 'A9S Panzerschreck',
-      regex: 'Panzerschreck',
+      regex: /Panzerschreck/,
       beforeSeconds: 5,
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
@@ -13,7 +13,8 @@ Options.Triggers.push({
       id: 'A9S Power Generator',
       regex: /Power Generator/,
       infoText: (data, _matches, output) => {
-        return {
+        let _a;
+        const outputs = {
           1: output.oneEachNWSE(),
           2: output.twoNW(),
           // 3: faust,
@@ -22,7 +23,8 @@ Options.Triggers.push({
           6: output.oneNW(),
           7: output.twoSE(),
           8: output.oneNW(),
-        }[data.stockpileCount];
+        };
+        return outputs[(_a = data.stockpileCount) !== null && _a !== void 0 ? _a : 0];
       },
       outputStrings: {
         oneEachNWSE: {
@@ -64,12 +66,14 @@ Options.Triggers.push({
       regex: /Alarum/,
       delaySeconds: 1,
       infoText: (data, _matches, output) => {
-        return {
+        let _a;
+        const outputs = {
           5: output.southeast(),
           6: output.southwest(),
           7: output.southeast(),
           8: output.southwest(),
-        }[data.stockpileCount];
+        };
+        return outputs[(_a = data.stockpileCount) !== null && _a !== void 0 ? _a : 0];
       },
       outputStrings: {
         southeast: {
@@ -112,6 +116,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A9S Stockpile Count',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A38', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A38', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A38', capture: false }),
@@ -119,12 +124,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A38', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A38', capture: false }),
       run: (data) => {
-        data.stockpileCount = data.stockpileCount || 0;
+        let _a;
+        (_a = data.stockpileCount) !== null && _a !== void 0 ? _a : (data.stockpileCount = 0);
         data.stockpileCount++;
       },
     },
     {
       id: 'A9S Scrapline',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A3C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A3C', capture: false }),
@@ -162,6 +169,7 @@ Options.Triggers.push({
     },
     {
       id: 'A9S Double Scrapline',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A3D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A3D', capture: false }),
@@ -182,6 +190,7 @@ Options.Triggers.push({
     },
     {
       id: 'A9S Scrap Rock',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -198,6 +207,7 @@ Options.Triggers.push({
     },
     {
       id: 'A9S Scrap Burst',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 5,
       suppressSeconds: 1,
@@ -215,6 +225,7 @@ Options.Triggers.push({
     },
     {
       id: 'A9S Scrap Bomb Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       // TODO: dubious to tell the person tanking to do it here.
       // But maybe fine to inform.
@@ -222,12 +233,14 @@ Options.Triggers.push({
     },
     {
       id: 'A9S Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'A9S Auto',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Refurbisher 0', id: '1AFE' }),
       netRegexDe: NetRegexes.ability({ source: 'Rekompositor', id: '1AFE' }),
       netRegexFr: NetRegexes.ability({ source: 'Récupérateur', id: '1AFE' }),
@@ -238,12 +251,14 @@ Options.Triggers.push({
     },
     {
       id: 'A9S Power Generator Add Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
       suppressSeconds: 30,
       infoText: (data, _matches, output) => {
+        let _a;
         // Some of the last phases have multiple options.
         // This is an old fight, so just pick one for people.
-        return {
+        const outputs = {
           1: output.northeast(),
           2: output.southeast(),
           // 3: faust,
@@ -252,7 +267,8 @@ Options.Triggers.push({
           6: output.southwest(),
           7: output.northwest(),
           8: output.southwest(),
-        }[data.stockpileCount];
+        };
+        return outputs[(_a = data.stockpileCount) !== null && _a !== void 0 ? _a : 0];
       },
       outputStrings: {
         northeast: {

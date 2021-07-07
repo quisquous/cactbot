@@ -12,6 +12,7 @@ const chargeOutputStrings = {
   },
   spread: Outputs.spread,
   stackMarker: Outputs.stackMarker,
+  unknown: Outputs.unknown,
 };
 Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
@@ -46,6 +47,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A10S Floor Spike Trap',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB2', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AB2', capture: false }),
@@ -66,6 +68,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Frost Laser Trap',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB1', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB1', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AB1', capture: false }),
@@ -86,6 +89,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Ceiling Weight Trap',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB0', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB0', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AB0', capture: false }),
@@ -106,6 +110,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Charge Marker',
+      type: 'Ability',
       // This also handles the "single charge" call.
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB[89AB]' }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB[89AB]' }),
@@ -114,25 +119,30 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB[89AB]' }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB[89AB]' }),
       preRun: (data, matches) => {
-        data.charges = data.charges || [];
-        data.charges.push({
+        let _a; let _b;
+        const charges = (_a = data.charges) !== null && _a !== void 0 ? _a : (data.charges = []);
+        const chargeMap = {
           '1AB8': 'getIn',
           '1AB9': 'getOut',
           '1ABA': 'spread',
           '1ABB': 'stackMarker',
-        }[matches.id]);
+        };
+        charges.push((_b = chargeMap[matches.id]) !== null && _b !== void 0 ? _b : 'unknown');
       },
       response: (data, _matches, output) => {
+        let _a; let _b;
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
         // Call the first one out with alert, the other two with info.
-        data.charges = data.charges || [];
+        (_a = data.charges) !== null && _a !== void 0 ? _a : (data.charges = []);
         const severity = data.charges.length > 1 ? 'infoText' : 'alertText';
-        return { [severity]: output[data.charges[data.charges.length - 1]]() };
+        const charge = (_b = data.charges[data.charges.length - 1]) !== null && _b !== void 0 ? _b : 'unknown';
+        return { [severity]: output[charge]() };
       },
     },
     {
       id: 'A10S Charge 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9[789]', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A9[789]', capture: false }),
@@ -146,6 +156,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Charge Double Triple',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[ABCE]', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9[ABCE]', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A9[ABCE]', capture: false }),
@@ -158,11 +169,14 @@ Options.Triggers.push({
         output.responseOutputStrings = chargeOutputStrings;
         if (!data.charges || !data.charges.length)
           return;
-        return { alertText: output[data.charges.shift()]() };
+        const charge = data.charges.shift();
+        if (charge)
+          return { alertText: output[charge]() };
       },
     },
     {
       id: 'A10S Charge Clear',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9[789]', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A9[789]', capture: false }),
@@ -177,6 +191,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Gobrush Rushgob',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A9F' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9F' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1A9F' }),
@@ -188,6 +203,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Slicetops Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Lamebrix Strikebocks', id: '0039' }),
       netRegexDe: NetRegexes.tether({ source: 'Wüterix (?:der|die|das) Söldner', id: '0039' }),
       netRegexFr: NetRegexes.tether({ source: 'Lamebrix Le Mercenaire', id: '0039' }),
@@ -229,6 +245,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Gobsnick Leghops',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1AA4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AA4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1AA4', capture: false }),
@@ -239,6 +256,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Brighteyes Tracker',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AA9', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AA9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AA9', capture: false }),
@@ -252,6 +270,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Brighteyes Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AA9', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AA9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AA9', capture: false }),
@@ -264,6 +283,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Brighteyes Prey Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -280,6 +300,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Brighteyes Prey Marker Pass',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: (data, matches) => {
         // Only need to pass on the first one.
@@ -300,6 +321,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Gobslice Mooncrops',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A92', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A92', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1A92', capture: false }),
@@ -320,6 +342,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Gobslice Mooncrops Cast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A8F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A8F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1A8F', capture: false }),
@@ -330,6 +353,7 @@ Options.Triggers.push({
     },
     {
       id: 'A10S Gobspin Zoomdrops',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A8F', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A8F', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A8F', capture: false }),

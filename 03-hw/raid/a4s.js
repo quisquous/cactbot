@@ -13,6 +13,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'A4S Discord Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -44,6 +45,7 @@ Options.Triggers.push({
     {
       // Stun Resistance.
       id: 'A4S Stun Leg',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '27' }),
       condition: (data) => data.CanStun(),
       alertText: (_data, matches, output) => output.text({ name: matches.target }),
@@ -60,6 +62,7 @@ Options.Triggers.push({
     },
     {
       id: 'A4S Mortal Revolution',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: '13E7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: '13E7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: '13E7', capture: false }),
@@ -72,6 +75,7 @@ Options.Triggers.push({
       // This is an 0011 tether, but there's not an easy way to know who it is on 100%,
       // as a set of tethers come out from bits and some may be pre-intercepted.
       id: 'A4S Carnage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
@@ -92,6 +96,7 @@ Options.Triggers.push({
     },
     {
       id: 'A4S Judgment Nisi A',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F64' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F64' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F64' }),
@@ -113,6 +118,7 @@ Options.Triggers.push({
     },
     {
       id: 'A4S Judgment Nisi B',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F65' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F65' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F65' }),
@@ -134,6 +140,7 @@ Options.Triggers.push({
     },
     {
       id: 'A4S Carnage Zero',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
