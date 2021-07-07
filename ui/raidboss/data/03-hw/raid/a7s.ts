@@ -2,6 +2,14 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  phase?: number;
+  grabbed?: string[];
+  stickyloom?: string;
+}
 
 // TODO: stun call for True Heart sprint ability?
 
@@ -42,13 +50,14 @@ import ZoneId from '../../../../../resources/zone_id';
 //     red tether / white prey
 //     green tether / purple prey
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',
   triggers: [
     {
       id: 'A7S Phase Counter',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Shanoa', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Schwarz(?:e|er|es|en) Katze', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Chat-Noir', capture: false }),
@@ -56,20 +65,21 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '夏诺雅', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '샤노아', capture: false }),
       run: (data) => {
-        data.phase = data.phase || 0;
+        data.phase ??= 0;
         data.phase++;
       },
     },
     {
       id: 'A7S Sizzlebeam',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0018' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.sizzlebeamOnYou();
+          return output.sizzlebeamOnYou!();
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.sizzlebeamOn({ player: data.ShortName(matches.target) });
+          return output.sizzlebeamOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         sizzlebeamOn: {
@@ -92,6 +102,7 @@ export default {
     },
     {
       id: 'A7S Sizzlespark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F8', capture: false }),
@@ -103,6 +114,7 @@ export default {
     },
     {
       id: 'A7S Bomb Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Bomb', id: '001F' }),
       netRegexDe: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
       netRegexFr: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
@@ -110,7 +122,7 @@ export default {
       netRegexCn: NetRegexes.tether({ source: '炸弹', id: '001F' }),
       netRegexKo: NetRegexes.tether({ source: '폭탄', id: '001F' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bomb Spread',
@@ -124,9 +136,10 @@ export default {
     },
     {
       id: 'A7S Jail Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Jail Prey',
@@ -140,6 +153,7 @@ export default {
     },
     {
       id: 'A7S Jail Tether',
+      type: 'Tether',
       // This does not include the initial tether, unfortunately.
       // This is another case of "added combatant with initial tether".
       netRegex: NetRegexes.tether({ source: 'Boomtype Magitek Gobwalker G-VII', id: '0011' }),
@@ -150,7 +164,7 @@ export default {
       netRegexKo: NetRegexes.tether({ source: 'VII호 고블린워커 L형', id: '0011' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Jail Tether',
@@ -164,6 +178,7 @@ export default {
     },
     {
       id: 'A7S Kugelblitz',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sturm Doll', id: '16FE' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sturmpuppe', id: '16FE' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Poupée Sturm', id: '16FE' }),
@@ -175,6 +190,7 @@ export default {
     },
     {
       id: 'A7S Zoomdoom Clear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F4', capture: false }),
@@ -188,6 +204,7 @@ export default {
     },
     {
       id: 'A7S Gobbie Grab',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Quickthinx Allthoughts', id: '15C0' }),
       netRegexDe: NetRegexes.ability({ source: 'Denkfix', id: '15C0' }),
       netRegexFr: NetRegexes.ability({ source: 'Quickthinx Le Cerveau', id: '15C0' }),
@@ -201,6 +218,7 @@ export default {
     },
     {
       id: 'A7S Stickyloom',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' }),
       netRegexDe: NetRegexes.ability({ source: 'Gob-Stampfer VII-L', id: '16F2' }),
       netRegexFr: NetRegexes.ability({ source: 'gobblindé magitek G-VII Lamineur', id: '16F2' }),
@@ -211,6 +229,7 @@ export default {
     },
     {
       id: 'A7S Padlock',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Padlock', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Vorhängeschloss', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cadenas', capture: false }),
@@ -223,7 +242,7 @@ export default {
         // If you're not in a jail, kill the padlock.
         return !data.grabbed.includes(data.me) && data.stickyloom !== data.me;
       },
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Break Padlock',
@@ -237,13 +256,14 @@ export default {
     },
     {
       id: 'A7S True Heart',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shanoa', id: '15EC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schwarz(?:e|er|es|en) Katze', id: '15EC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Chat-Noir', id: '15EC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'シャノア', id: '15EC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '夏诺雅', id: '15EC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '샤노아', id: '15EC', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Kill Heart',
@@ -257,9 +277,10 @@ export default {
     },
     {
       id: 'A7S Searing Wind',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Searing Wind on YOU',
@@ -428,3 +449,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

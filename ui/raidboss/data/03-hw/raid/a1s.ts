@@ -3,8 +3,15 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  hydro?: string[];
+  hyper?: string[];
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheFistOfTheFatherSavage,
   timelineFile: 'a1s.txt',
   timelineTriggers: [
@@ -12,7 +19,7 @@ export default {
       id: 'A1S Emergency Liftoff',
       regex: /Emergency Liftoff/,
       beforeSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Liftoff Soon',
@@ -35,6 +42,7 @@ export default {
   triggers: [
     {
       id: 'A1S Hydrothermal Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: (data, matches) => {
         data.hydro = data.hydro || [];
@@ -43,9 +51,10 @@ export default {
     },
     {
       id: 'A1S Hydrothermal You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Hydrothermal on You',
@@ -59,6 +68,7 @@ export default {
     },
     {
       id: 'A1S Hydrothermal Healer',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
@@ -66,7 +76,7 @@ export default {
         data.hydro = data.hydro || [];
         if (data.hydro.length === 0)
           return;
-        return output.text({ players: data.hydro.map((x) => data.ShortName(x)).join(', ') });
+        return output.text!({ players: data.hydro.map((x) => data.ShortName(x)).join(', ') });
       },
       outputStrings: {
         text: {
@@ -81,19 +91,21 @@ export default {
     },
     {
       id: 'A1S Hydrothermal Cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       delaySeconds: 10,
       run: (data) => delete data.hydro,
     },
     {
       id: 'A1S Resin Bomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E46', source: 'Unterdrücker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E46', source: 'Oppresseur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: 'E46', source: 'オプレッサー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'E46', source: '压迫者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E46', source: '억압자', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait Resin Bomb',
@@ -107,6 +119,7 @@ export default {
     },
     {
       id: 'A1S Hypercompressed Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
@@ -120,6 +133,7 @@ export default {
     },
     {
       id: 'A1S Hypercompressed You',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
@@ -132,6 +146,7 @@ export default {
     },
     {
       id: 'A1S Hypercompressed Other',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
@@ -148,7 +163,7 @@ export default {
         // awkward inside of functions.
         if (!Conditions.caresAboutMagical()(data))
           return;
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: Outputs.tankBusters,
@@ -156,6 +171,7 @@ export default {
     },
     {
       id: 'A1S Hypercompressed Delete',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
@@ -314,3 +330,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheBurdenOfTheFatherSavage,
   timelineFile: 'a4s.txt',
   timelineTriggers: [
@@ -18,14 +22,15 @@ export default {
   triggers: [
     {
       id: 'A4S Discord Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.orbsOnYou();
+          return output.orbsOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.orbsOn({ player: data.ShortName(matches.target) });
+          return output.orbsOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         orbsOn: {
@@ -49,9 +54,10 @@ export default {
     {
       // Stun Resistance.
       id: 'A4S Stun Leg',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '27' }),
       condition: (data) => data.CanStun(),
-      alertText: (_data, matches, output) => output.text({ name: matches.target }),
+      alertText: (_data, matches, output) => output.text!({ name: matches.target }),
       outputStrings: {
         text: {
           en: 'Stun ${name}',
@@ -65,6 +71,7 @@ export default {
     },
     {
       id: 'A4S Mortal Revolution',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: '13E7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: '13E7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: '13E7', capture: false }),
@@ -77,13 +84,14 @@ export default {
       // This is an 0011 tether, but there's not an easy way to know who it is on 100%,
       // as a set of tethers come out from bits and some may be pre-intercepted.
       id: 'A4S Carnage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F5E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F5E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Laser Tethers',
@@ -97,6 +105,7 @@ export default {
     },
     {
       id: 'A4S Judgment Nisi A',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F64' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F64' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F64' }),
@@ -104,7 +113,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F64' }),
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F64' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Nisi A on YOU',
@@ -118,6 +127,7 @@ export default {
     },
     {
       id: 'A4S Judgment Nisi B',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F65' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F65' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F65' }),
@@ -125,7 +135,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F65' }),
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F65' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Nisi B on YOU',
@@ -139,6 +149,7 @@ export default {
     },
     {
       id: 'A4S Carnage Zero',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
@@ -251,3 +262,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
