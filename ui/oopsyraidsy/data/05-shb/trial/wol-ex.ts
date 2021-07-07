@@ -66,7 +66,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4F44' }),
       mistake: (_data, matches) => {
-        return { type: 'fail', reason: matches.ability };
+        return { type: 'fail', text: matches.ability };
       },
     },
     {
@@ -75,7 +75,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['5156', '5158'] }),
       mistake: (_data, matches) => {
-        return { type: 'fail', reason: matches.ability };
+        return { type: 'fail', text: matches.ability };
       },
     },
   ],
