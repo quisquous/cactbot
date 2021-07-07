@@ -8,8 +8,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // export type Data = RaidbossData;
 export interface Data extends RaidbossData {
-  bombCount?: number;
-  boostCount?: number;
+  bombCount: number;
+  boostCount: number;
   boostBombs?: { x: number; y: number }[];
 }
 
@@ -37,6 +37,12 @@ const bombLocation = (matches: NetMatches['AddedCombatant']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
+  initData: () => {
+    return {
+      bombCount: 0,
+      boostCount: 0,
+    };
+  },
   timelineTriggers: [
     {
       id: 'A5S Kaltstrahl',
@@ -150,10 +156,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: '奇才のラットフィンクス', id: '1590', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '1590', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '1590', capture: false }),
-      preRun: (data) => {
-        data.bombCount ??= 0;
-        data.bombCount++;
-      },
+      preRun: (data) => data.bombCount++,
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
       infoText: (data, _matches, output) => {
         if (data.bombCount === 1)
@@ -190,7 +193,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '16A6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '16A6', capture: false }),
       run: (data) => {
-        data.boostCount ??= 0;
         data.boostCount++;
         data.boostBombs = [];
       },
