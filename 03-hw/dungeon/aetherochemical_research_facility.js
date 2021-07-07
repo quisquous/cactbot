@@ -43,6 +43,7 @@ Options.Triggers.push({
     },
     {
       id: 'Facility Inertia Stream',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
       netRegexDe: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
       netRegexFr: NetRegexes.ability({ id: '10ED', source: 'Horemakhet' }),
@@ -89,6 +90,7 @@ Options.Triggers.push({
     },
     {
       id: 'Facility Universal Manipulation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1105', source: 'Ascian Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1105', source: 'Prim-Ascian' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1105', source: 'Primo-Ascien' }),
@@ -112,6 +114,7 @@ Options.Triggers.push({
     },
     {
       id: 'Facility Chaosphere',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Chaosphere', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Chaossphäre', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sphère De Chaos', capture: false }),

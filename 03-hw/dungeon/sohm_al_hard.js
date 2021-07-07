@@ -15,6 +15,7 @@ Options.Triggers.push({
       // The actual damage is 1C31, but the windup for the damage
       // occurs between 1C30 and 1C31.
       id: 'Sohm Al Hard Inflammable Fumes',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1C30', source: 'The Leightonward', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1C30', source: 'Hortigolem', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1C30', source: 'Chortocyon', capture: false }),
@@ -28,6 +29,7 @@ Options.Triggers.push({
       // Both the small and large Spore Sacs use Glorious Blaze.
       // However, it's not the same ability.
       id: 'Sohm Al Hard Glorious Blaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C32', source: 'Spore Sac', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C32', source: 'Sporensack', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C32', source: 'Sac de spores', capture: false }),
@@ -50,6 +52,7 @@ Options.Triggers.push({
     {
       // The actual effect being checked here is Heavy.
       id: 'Sohm Al Hard Excretion',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '0E' }),
       condition: (data) => data.CanCleanse(),
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
@@ -69,6 +72,7 @@ Options.Triggers.push({
       // If used while Gowrow is empowered,
       // leaves a tornado at the target location on completion.
       id: 'Sohm Al Hard Ripper Claw',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C37', source: 'Gowrow', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C37', source: 'Gowrow', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C37', source: 'Gowrow', capture: false }),
@@ -82,6 +86,7 @@ Options.Triggers.push({
       // This ability is used only if there is a party member in range behind Gowrow
       // AND if Gowrow is not empowered.
       id: 'Sohm Al Hard Tail Smash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C35', source: 'Gowrow', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C35', source: 'Gowrow', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C35', source: 'Gowrow', capture: false }),
@@ -94,6 +99,7 @@ Options.Triggers.push({
       // Inflicts Incoming Healing Down.
       // Used only if Gowrow is empowered.
       id: 'Sohm Al Hard Tail Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C36', source: 'Gowrow', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C36', source: 'Gowrow', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C36', source: 'Gowrow', capture: false }),
@@ -105,6 +111,7 @@ Options.Triggers.push({
     {
       // Used only if Gowrow is not empowered.
       id: 'Sohm Al Hard Wild Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C39', source: 'Gowrow', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C39', source: 'Gowrow', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C39', source: 'Gowrow', capture: false }),
@@ -116,6 +123,7 @@ Options.Triggers.push({
     {
       // Used only if Gowrow is empowered.
       id: 'Sohm Al Hard Hot Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C3A', source: 'Gowrow', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C3A', source: 'Gowrow', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C3A', source: 'Gowrow', capture: false }),
@@ -127,6 +135,7 @@ Options.Triggers.push({
     {
       // Used only if Gowrow is not empowered.
       id: 'Sohm Al Hard Fireball',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C3B', source: 'Gowrow', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C3B', source: 'Gowrow', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C3B', source: 'Gowrow', capture: false }),
@@ -138,6 +147,7 @@ Options.Triggers.push({
     {
       // Used only if Gowrow is empowered.
       id: 'Sohm Al Hard Lava Flow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C3C', source: 'Gowrow', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C3C', source: 'Gowrow', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C3C', source: 'Gowrow', capture: false }),
@@ -150,6 +160,7 @@ Options.Triggers.push({
       // This cast is accompanied by a 0017 head marker on the target.
       // We use the cast line for this trigger because the timing is the same.
       id: 'Sohm Al Hard Flying Press',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C3E', source: 'Lava Scorpion' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C3E', source: 'Lavaskorpion' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C3E', source: 'scorpion de lave' }),
@@ -171,6 +182,7 @@ Options.Triggers.push({
     },
     {
       id: 'Sohm Al Hard Deadly Thrust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['Lava Scorpion', 'The Scorpion\'s Tail'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['Lavaskorpion', 'Schwanzskorpion'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['scorpion de lave', 'queue du scorpion'] }),
@@ -182,6 +194,7 @@ Options.Triggers.push({
     },
     {
       id: 'Sohm Al Hard Hiss',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1C45', source: 'Lava Scorpion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C45', source: 'Lavaskorpion', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C45', source: 'scorpion de lave', capture: false }),

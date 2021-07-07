@@ -67,6 +67,7 @@ Options.Triggers.push({
     },
     {
       id: 'Fractal Big Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'F87', source: 'Minotaur', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'F87', source: 'Minotaurus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'F87', source: 'Minotaure', capture: false }),
@@ -87,6 +88,7 @@ Options.Triggers.push({
     },
     {
       id: 'Fractal Aetherochemical Bomb',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '2D3', capture: false }),
       condition: (data) => data.CanCleanse(),
       infoText: (_data, _matches, output) => output.text(),

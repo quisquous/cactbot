@@ -27,17 +27,20 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sohm Al Myath Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Sohm Al Myath Chyme',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gebirgsbrei', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Chyme Des Montagnes', capture: false }),
@@ -58,6 +61,7 @@ Options.Triggers.push({
     },
     {
       id: 'Sohm Al Tioman Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0007' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),

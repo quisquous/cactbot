@@ -27,6 +27,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Gubal Hard Bibliocide',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1945', source: 'Liquid Flame', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1945', source: 'flüssig(?:e|er|es|en) Flamme', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1945', source: 'Flamme Liquide', capture: false }),
@@ -38,14 +39,17 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Ferrofluid',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
       condition: (data, matches) => data.me === matches.target || matches.targetId.slice(0, 1) === '4',
       preRun: (data, matches) => {
-        data.markers = data.markers || [];
+        let _a;
+        (_a = data.markers) !== null && _a !== void 0 ? _a : (data.markers = []);
         data.markers.push(matches.id);
       },
       infoText: (data, _matches, output) => {
-        if (data.markers.length === 2) {
+        let _a;
+        if (((_a = data.markers) === null || _a === void 0 ? void 0 : _a.length) === 2) {
           const sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
           if (sameMarkers)
@@ -74,6 +78,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Slosh',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0039', source: 'Liquid Flame' }),
       netRegexDe: NetRegexes.tether({ id: '0039', source: 'Flüssig(?:e|er|es|en) Flamme' }),
       netRegexFr: NetRegexes.tether({ id: '0039', source: 'Flamme Liquide' }),
@@ -95,6 +100,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Sunseal',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -111,6 +117,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Moonseal',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -128,6 +135,7 @@ Options.Triggers.push({
     {
       // This inflicts a vulnerability stack on the tank if not interrupted
       id: 'Gubal Hard Condensed Libra',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '198D', source: 'Mechanoscribe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '198D', source: 'Mechanoscholar', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '198D', source: 'Mécano-Scribe', capture: false }),
@@ -161,6 +169,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Properties of Quakes',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
@@ -181,6 +190,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Properties of Tornadoes',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
@@ -201,6 +211,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Properties of Imps',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
@@ -221,6 +232,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Properties of Thunder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
@@ -231,6 +243,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Properties of Darkness II',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
@@ -242,6 +255,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '195D', source: 'Behemoth Ward', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '195D', source: 'Buch-Behemoth', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '195D', source: 'Béhémoth Conjuré', capture: false }),

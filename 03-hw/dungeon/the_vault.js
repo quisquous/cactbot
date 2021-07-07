@@ -43,6 +43,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'The Vault Holiest of Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '101E', source: 'Ser Adelphel', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '101E', source: 'Adelphel', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '101E', source: 'Sire Adelphel', capture: false }),
@@ -54,6 +55,7 @@ Options.Triggers.push({
     },
     {
       id: 'The Vault Holy Shield Bash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '101F', source: 'Ser Adelphel' }),
       netRegexDe: NetRegexes.startsUsing({ id: '101F', source: 'Adelphel' }),
       netRegexFr: NetRegexes.startsUsing({ id: '101F', source: 'Sire Adelphel' }),
@@ -77,11 +79,13 @@ Options.Triggers.push({
     },
     {
       id: 'The Vault Execution',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
       response: Responses.awayFrom(),
     },
     {
       id: 'The Vault Black Nebula',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1042', source: 'Face Of The Hero' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1042', source: 'Gesicht Des Helden' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1042', source: 'Visage Du Héros' }),
@@ -93,6 +97,7 @@ Options.Triggers.push({
     },
     {
       id: 'The Vault Faith Unmoving',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1027', source: 'Ser Grinnaux', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1027', source: 'Grinnaux', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1027', source: 'Sire Grinnaux', capture: false }),
@@ -103,6 +108,7 @@ Options.Triggers.push({
     },
     {
       id: 'The Vault Dimensional Torsion',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0001', source: 'Aetherial Tear' }),
       netRegexDe: NetRegexes.tether({ id: '0001', source: 'Ätherspalt' }),
       netRegexFr: NetRegexes.tether({ id: '0001', source: 'Déchirure Dimensionnelle' }),
@@ -125,6 +131,7 @@ Options.Triggers.push({
     },
     {
       id: 'The Vault Altar Pyre',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1035', source: 'Ser Charibert', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1035', source: 'Charibert', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1035', source: 'Sire Charibert', capture: false }),
@@ -136,6 +143,7 @@ Options.Triggers.push({
     },
     {
       id: 'The Vault Holy Chains',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
       condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
@@ -143,12 +151,14 @@ Options.Triggers.push({
     {
       // This prevents out-of-combat activation for the March trigger during Charibert's spawn-in.
       id: 'The Vault Knights Activation',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061', capture: false }),
       condition: (data) => !data.knightsActive,
       run: (data) => data.knightsActive = true,
     },
     {
       id: 'The Vault Knights March',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: ['Dawn Knight', 'Dusk Knight'], capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: ['Dämmerross', 'Morgenross'], capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: ['Cavalier De L\'Aube', 'Cavalier Du Crépuscule'], capture: false }),
