@@ -2,13 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensGateResurrection,
   timelineFile: 'e1n.txt',
   triggers: [
     {
       id: 'E1N Eden\'s Gravity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D94', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D94', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D94', source: 'Primo-Éden', capture: false }),
@@ -20,6 +25,7 @@ export default {
     },
     {
       id: 'E1N Fragor Maximus',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DA4', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DA4', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DA4', source: 'Primo-Éden', capture: false }),
@@ -31,6 +37,7 @@ export default {
     },
     {
       id: 'E1N Dimensional Shift',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D9C', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D9C', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D9C', source: 'Primo-Éden', capture: false }),
@@ -42,6 +49,7 @@ export default {
     },
     {
       id: 'E1N Eden\'s Flare',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D97', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D97', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D97', source: 'Primo-Éden', capture: false }),
@@ -52,6 +60,7 @@ export default {
     },
     {
       id: 'E1N Vice of Vanity You',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011', target: 'Eden Prime' }),
       netRegexDe: NetRegexes.tether({ id: '0011', target: 'Prim-Eden' }),
       netRegexFr: NetRegexes.tether({ id: '0011', target: 'Primo-Éden' }),
@@ -59,7 +68,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '0011', target: '至尊伊甸' }),
       netRegexKo: NetRegexes.tether({ id: '0011', target: '에덴 프라임' }),
       condition: (data, matches) => data.me === matches.source,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tank Laser on YOU',
@@ -73,6 +82,7 @@ export default {
     },
     {
       id: 'E1N Spear Of Paradise',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DA1', source: 'Eden Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DA1', source: 'Prim-Eden' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DA1', source: 'Primo-Éden' }),
@@ -84,9 +94,10 @@ export default {
     },
     {
       id: 'E1N Vice of Apathy Mark',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001C' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drop Puddle, Run Middle',
@@ -101,6 +112,7 @@ export default {
     {
       // 10.5 second cast, maybe warn 6 seconds ahead so that folks bait outside.
       id: 'E1N Pure Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DA3', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DA3', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DA3', source: 'Primo-Éden', capture: false }),
@@ -274,3 +286,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

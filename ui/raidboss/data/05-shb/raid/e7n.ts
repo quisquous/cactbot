@@ -2,13 +2,20 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  colorCount?: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseIconoclasm,
   timelineFile: 'e7n.txt',
   triggers: [
     {
       id: 'E7N Empty Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C52', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C52', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C52', capture: false }),
@@ -20,6 +27,7 @@ export default {
     },
     {
       id: 'E7N Unshadowed Stake',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
       netRegexDe: NetRegexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0025' }),
       netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
@@ -31,9 +39,10 @@ export default {
     },
     {
       id: 'E7N Left With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Teleporting Left',
@@ -47,9 +56,10 @@ export default {
     },
     {
       id: 'E7N Right With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Teleporting Right',
@@ -63,9 +73,10 @@ export default {
     },
     {
       id: 'E7N Forward With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Teleporting Forward',
@@ -79,9 +90,10 @@ export default {
     },
     {
       id: 'E7N Back With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Teleporting Back',
@@ -95,6 +107,7 @@ export default {
     },
     {
       id: 'E7N Strength In Numbers Donut',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4C', capture: false }),
@@ -102,7 +115,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C4C', capture: false }),
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Teleport into donut',
@@ -118,6 +131,7 @@ export default {
       // Ordinarily we might not warn on ground AoE markers. However, there are player-dropped
       // markers just before this, so it might be difficult to see.
       id: 'E7N Strength In Numbers Circle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4D', capture: false }),
@@ -131,16 +145,17 @@ export default {
       // For this and the following trigger, we warn the user only if they
       // will be struck by a color before their debuff expires.
       id: 'E7N Astral Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: (data, _matches, output) => {
-        data.colorCount = data.colorCount + 1 || 0;
+        data.colorCount = (data.colorCount ?? 0) + 1;
         if (data.colorCount === 3) {
           delete data.colorCount;
           return;
         }
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -155,16 +170,17 @@ export default {
     },
     {
       id: 'E7N Umbral Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: (data, _matches, output) => {
-        data.colorCount = data.colorCount + 1 || 0;
+        data.colorCount = (data.colorCount ?? 0) + 1;
         if (data.colorCount === 3) {
           delete data.colorCount;
           return;
         }
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -180,6 +196,7 @@ export default {
     {
       // Safety in case the user dies during Dark/Light Course.
       id: 'E7N Away With Thee Color Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C39', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C39', capture: false }),
@@ -327,3 +344,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

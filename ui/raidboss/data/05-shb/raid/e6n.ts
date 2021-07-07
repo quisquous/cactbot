@@ -3,8 +3,16 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  handsOfFlame?: boolean;
+  seenSpark?: boolean;
+  phase?: string;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseFuror,
   timelineFile: 'e6n.txt',
   timelineTriggers: [
@@ -20,6 +28,7 @@ export default {
   triggers: [
     {
       id: 'E6N Superstorm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BD7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Garuda', id: '4BD7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garuda', id: '4BD7', capture: false }),
@@ -31,13 +40,14 @@ export default {
     },
     {
       id: 'E6N Ferostorm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['迦楼罗', '赤翼罗羯坨博叉'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['가루다', '락타팍샤'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid green nails',
@@ -51,13 +61,14 @@ export default {
     },
     {
       id: 'E6N Air Bump',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.enumerationOnYou();
+          return output.enumerationOnYou!();
 
-        return output.enumeration();
+        return output.enumeration!();
       },
       outputStrings: {
         enumerationOnYou: {
@@ -80,6 +91,7 @@ export default {
     },
     {
       id: 'E6N Inferno Howl',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false }),
@@ -92,6 +104,7 @@ export default {
     {
       // Save ability state since the generic tether used has multiple uses in this fight
       id: 'E6N Hands of Flame Start',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false }),
@@ -104,15 +117,16 @@ export default {
       // Tank swap if you're not the target
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6N Hands of Flame Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0068' }),
       condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.chargeOnYou();
+          return output.chargeOnYou!();
 
         if (data.role !== 'tank' || data.phase === 'both')
           return;
-        return output.tankSwap();
+        return output.tankSwap!();
       },
       outputStrings: {
         chargeOnYou: {
@@ -128,6 +142,7 @@ export default {
     },
     {
       id: 'E6N Hands of Flame Cast',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
       netRegexDe: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
@@ -139,6 +154,7 @@ export default {
     },
     {
       id: 'E6N Instant Incineration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BED' }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BED' }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BED' }),
@@ -150,9 +166,10 @@ export default {
     },
     {
       id: 'E6N Hands of Hell',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0016' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tether Marker on YOU',
@@ -166,6 +183,7 @@ export default {
     },
     {
       id: 'E6N Strike Spark',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ifrit', id: '4F98', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ifrit', id: '4F98', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ifrit', id: '4F98', capture: false }),
@@ -174,7 +192,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '이프리트', id: '4F98', capture: false }),
       // Run only once, because Ifrit's other jumps are not important.
       condition: (data) => !data.seenSpark,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.seenSpark = true,
       outputStrings: {
         text: {
@@ -189,6 +207,7 @@ export default {
     },
     {
       id: 'E6N Storm Of Fury',
+      type: 'StartsUsing',
       // Garuda uses this ability without eruptions alongside, so she needs no warnings.
       netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BE6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BE6', capture: false }),
@@ -357,3 +376,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

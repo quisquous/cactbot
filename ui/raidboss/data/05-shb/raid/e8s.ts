@@ -2,6 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+// export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  firstFrost?: string;
+  rushCount?: number;
+  akhMornTargets?: string[];
+  wyrmsLament?: number;
+  wyrmclawNumber?: number;
+  wyrmfangNumber?: number;
+}
 
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbote8sUptimeKnockbackStrat = true;
@@ -25,7 +37,7 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: callouts for the stack group mirrors?
 // TODO: icelit dragonsong callouts?
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   timelineFile: 'e8s.txt',
   timelineTriggers: [
@@ -54,9 +66,8 @@ export default {
       regex: /Rush \d/,
       beforeSeconds: 5,
       infoText: (data, _matches, output) => {
-        data.rushCount = data.rushCount || 0;
-        data.rushCount++;
-        return output.text({ num: data.rushCount });
+        data.rushCount = (data.rushCount ?? 0) + 1;
+        return output.text!({ num: data.rushCount });
       },
       outputStrings: {
         text: {
@@ -73,6 +84,7 @@ export default {
   triggers: [
     {
       id: 'E8S Absolute Zero',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DCC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DCC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DCC', capture: false }),
@@ -84,6 +96,7 @@ export default {
     },
     {
       id: 'E8S Biting Frost First Mirror',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
@@ -97,7 +110,7 @@ export default {
       // This cast is 5 seconds, so don't muddy the back/front call.
       // But also don't wait too long to give directions?
       delaySeconds: 2,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           // Sorry, there are no mirror colors in the logs (YET),
@@ -113,6 +126,7 @@ export default {
     },
     {
       id: 'E8S Driving Frost First Mirror',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
@@ -122,7 +136,7 @@ export default {
       condition: (data) => !data.firstFrost,
       // See comments on Biting Frost First Mirror above.
       delaySeconds: 2,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Front, Green Mirror Side',
@@ -136,6 +150,7 @@ export default {
     },
     {
       id: 'E8S Reflected Frost 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
@@ -143,7 +158,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Swap Sides',
@@ -157,6 +172,7 @@ export default {
     },
     {
       id: 'E8S Biting Frost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
@@ -168,6 +184,7 @@ export default {
     },
     {
       id: 'E8S Driving Frost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
@@ -176,11 +193,12 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
       response: Responses.goFrontOrSides(),
       run: (data) => {
-        data.firstFrost = data.firstFrost || 'driving';
+        data.firstFrost ??= 'driving';
       },
     },
     {
       id: 'E8S Forgetful Tank Second Frost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
@@ -192,9 +210,9 @@ export default {
       suppressSeconds: 80,
       infoText: (data, _matches, output) => {
         if (data.firstFrost === 'driving')
-          return output.bitingFrostNext();
+          return output.bitingFrostNext!();
 
-        return output.drivingFrostNext();
+        return output.drivingFrostNext!();
       },
       outputStrings: {
         bitingFrostNext: {
@@ -217,6 +235,7 @@ export default {
     },
     {
       id: 'E8S Diamond Frost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6C', capture: false }),
@@ -228,6 +247,7 @@ export default {
     },
     {
       id: 'E8S Icicle Impact',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
@@ -238,9 +258,9 @@ export default {
       infoText: (_data, matches, output) => {
         const x = parseFloat(matches.x);
         if (x >= 99 && x <= 101)
-          return output.northSouth();
+          return output.northSouth!();
 
-        return output.eastWest();
+        return output.eastWest!();
       },
       outputStrings: {
         northSouth: {
@@ -263,6 +283,7 @@ export default {
     },
     {
       id: 'E8S Diamond Frost Cleanse',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
@@ -271,7 +292,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4D6C', capture: false }),
       condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cleanse',
@@ -285,6 +306,7 @@ export default {
     },
     {
       id: 'E8S Double Slap',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D65' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D65' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D65' }),
@@ -296,6 +318,7 @@ export default {
     },
     {
       id: 'E8S Axe Kick',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6D', capture: false }),
@@ -306,6 +329,7 @@ export default {
     },
     {
       id: 'E8S Scythe Kick',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6E', capture: false }),
@@ -316,6 +340,7 @@ export default {
     },
     {
       id: 'E8S Light Rampant',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D73', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D73', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D73', capture: false }),
@@ -327,10 +352,11 @@ export default {
     },
     {
       id: 'E8S Refulgent Chain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8CD' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Chain on YOU',
@@ -344,9 +370,10 @@ export default {
     },
     {
       id: 'E8S Holy Light',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0002' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Orb on YOU',
@@ -360,6 +387,7 @@ export default {
     },
     {
       id: 'E8S Banish III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
@@ -370,6 +398,7 @@ export default {
     },
     {
       id: 'E8S Banish III Divided',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
@@ -380,6 +409,7 @@ export default {
     },
     {
       id: 'E8S Akh Morn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Shiva', 'Great Wyrm'], id: ['4D98', '4D79'] }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Shiva', 'Körper des heiligen Drachen'], id: ['4D98', '4D79'] }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Shiva', 'Dragon divin'], id: ['4D98', '4D79'] }),
@@ -387,7 +417,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: ['希瓦', '圣龙'], id: ['4D98', '4D79'] }),
       netRegexKo: NetRegexes.startsUsing({ source: ['시바', '성룡'], id: ['4D98', '4D79'] }),
       preRun: (data, matches) => {
-        data.akhMornTargets = data.akhMornTargets || [];
+        data.akhMornTargets ??= [];
         data.akhMornTargets.push(matches.target);
       },
       response: (data, matches, output) => {
@@ -413,18 +443,19 @@ export default {
         if (data.me === matches.target) {
           // It'd be nice to have this be an alert, but it mixes with a lot of
           // other alerts (akh rhai "move" and worm's lament numbers).
-          return { [data.role === 'tank' ? 'infoText' : 'alarmText']: output.akhMornOnYou() };
+          return { [data.role === 'tank' ? 'infoText' : 'alarmText']: output.akhMornOnYou!() };
         }
-        if (data.akhMornTargets.length !== 2)
+        if (!data.akhMornTargets || data.akhMornTargets.length !== 2)
           return;
         if (data.akhMornTargets.includes(data.me))
           return;
         const players = data.akhMornTargets.map((x) => data.ShortName(x)).join(', ');
-        return { infoText: output.akhMornOn({ players: players }) };
+        return { infoText: output.akhMornOn!({ players: players }) };
       },
     },
     {
       id: 'E8S Akh Morn Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Shiva', 'Great Wyrm'], id: ['4D98', '4D79'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Shiva', 'Körper des heiligen Drachen'], id: ['4D98', '4D79'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Shiva', 'Dragon divin'], id: ['4D98', '4D79'], capture: false }),
@@ -436,6 +467,7 @@ export default {
     },
     {
       id: 'E8S Morn Afah',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
@@ -444,10 +476,10 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7B' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.mornAfahOnYou();
+          return output.mornAfahOnYou!();
 
         if (data.role === 'tank' || data.role === 'healer' || data.CanAddle())
-          return output.mornAfahOn({ player: data.ShortName(matches.target) });
+          return output.mornAfahOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         mornAfahOnYou: {
@@ -470,6 +502,7 @@ export default {
     },
     {
       id: 'E8S Hallowed Wings Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
@@ -480,6 +513,7 @@ export default {
     },
     {
       id: 'E8S Hallowed Wings Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
@@ -490,13 +524,14 @@ export default {
     },
     {
       id: 'E8S Hallowed Wings Knockback',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D77', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D77', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D77', capture: false }),
-      condition: (data) => data.options.cactbote8sUptimeKnockbackStrat,
+      condition: (data) => !!data.options.cactbote8sUptimeKnockbackStrat,
       // This gives a warning within 1.4 seconds, so you can hit arm's length.
       delaySeconds: 8.6,
       durationSeconds: 1.4,
@@ -504,6 +539,7 @@ export default {
     },
     {
       id: 'E8S Wyrm\'s Lament',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
@@ -515,38 +551,39 @@ export default {
     },
     {
       id: 'E8S Wyrm\'s Lament Counter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7C', capture: false }),
-      run: (data) => {
-        data.wyrmsLament = data.wyrmsLament || 0;
-        data.wyrmsLament++;
-      },
+      run: (data) => data.wyrmsLament = (data.wyrmsLament ?? 0) + 1,
     },
     {
       id: 'E8S Wyrmclaw',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8D2' }),
       condition: Conditions.targetIsYou(),
       preRun: (data, matches) => {
         if (data.wyrmsLament === 1) {
-          data.wyrmclawNumber = {
+          const clawNumber: { [time: string]: number } = {
             '14': 1,
             '22': 2,
             '30': 3,
             '38': 4,
-          }[Math.ceil(matches.duration)];
+          };
+          data.wyrmclawNumber = clawNumber[Math.ceil(parseFloat(matches.duration))];
         } else {
-          data.wyrmclawNumber = {
+          const clawNumber: { [time: string]: number } = {
             '22': 1,
             '38': 2,
-          }[Math.ceil(matches.duration)];
+          };
+          data.wyrmclawNumber = clawNumber[Math.ceil(parseFloat(matches.duration))];
         }
       },
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
-      alertText: (data, _matches, output) => output.text({ num: data.wyrmclawNumber }),
+      alertText: (data, _matches, output) => output.text!({ num: data.wyrmclawNumber }),
       outputStrings: {
         text: {
           en: 'Red #${num}',
@@ -560,25 +597,28 @@ export default {
     },
     {
       id: 'E8S Wyrmfang',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8D3' }),
       condition: Conditions.targetIsYou(),
       preRun: (data, matches) => {
         if (data.wyrmsLament === 1) {
-          data.wyrmfangNumber = {
+          const fangNumber: { [time: string]: number } = {
             '20': 1,
             '28': 2,
             '36': 3,
             '44': 4,
-          }[Math.ceil(matches.duration)];
+          };
+          data.wyrmfangNumber = fangNumber[Math.ceil(parseFloat(matches.duration))];
         } else {
-          data.wyrmfangNumber = {
+          const fangNumber: { [time: string]: number } = {
             '28': 1,
             '44': 2,
-          }[Math.ceil(matches.duration)];
+          };
+          data.wyrmfangNumber = fangNumber[Math.ceil(parseFloat(matches.duration))];
         }
       },
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
-      alertText: (data, _matches, output) => output.text({ num: data.wyrmfangNumber }),
+      alertText: (data, _matches, output) => output.text!({ num: data.wyrmfangNumber }),
       outputStrings: {
         text: {
           en: 'Blue #${num}',
@@ -592,6 +632,7 @@ export default {
     },
     {
       id: 'E8S Drachen Armor',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
@@ -602,6 +643,7 @@ export default {
     },
     {
       id: 'E8S Reflected Drachen Armor',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DC2', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DC2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Miroir De Glace', id: '4DC2', capture: false }),
@@ -612,6 +654,7 @@ export default {
     },
     {
       id: 'E8S Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
@@ -622,6 +665,7 @@ export default {
     },
     {
       id: 'E8S Holy Divided',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
@@ -632,6 +676,7 @@ export default {
     },
     {
       id: 'E8S Twin Stillness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
@@ -642,6 +687,7 @@ export default {
     },
     {
       id: 'E8S Twin Silence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
@@ -652,6 +698,7 @@ export default {
     },
     {
       id: 'E8S Spiteful Dance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D6F', capture: false }),
@@ -662,6 +709,7 @@ export default {
     },
     {
       id: 'E8S Embittered Dance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D70', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D70', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D70', capture: false }),
@@ -672,6 +720,7 @@ export default {
     },
     {
       id: 'E8S Icelit Dragonsong Cleanse',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
@@ -680,7 +729,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4D7D', capture: false }),
       condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cleanse DPS Only',
@@ -694,6 +743,7 @@ export default {
     },
     {
       id: 'E8S Banish',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
@@ -701,7 +751,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
       condition: (data) => data.role === 'tank',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tank Stack in Tower',
@@ -715,6 +765,7 @@ export default {
     },
     {
       id: 'E8S Banish Divided',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
@@ -722,7 +773,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role === 'tank',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tank Spread in Tower',
@@ -1054,3 +1105,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

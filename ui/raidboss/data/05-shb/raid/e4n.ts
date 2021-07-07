@@ -2,13 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensGateSepulture,
   timelineFile: 'e4n.txt',
   triggers: [
     {
       id: 'E4N Voice of the Land',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
@@ -20,6 +25,7 @@ export default {
     },
     {
       id: 'E4N Earthen Fury',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
@@ -27,7 +33,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '40F8', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F8', source: '타이탄', capture: false }),
       condition: (data) => data.role === 'healer',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'aoe + dot',
@@ -41,6 +47,7 @@ export default {
     },
     {
       id: 'E4N Stonecrusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F9', source: 'Titan' }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F9', source: 'Titan' }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F9', source: 'Titan' }),
@@ -52,13 +59,14 @@ export default {
     },
     {
       id: 'E4N Massive Landslide',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '40FA', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40FA', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40FA', source: '타이탄', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand In Front',
@@ -72,6 +80,7 @@ export default {
     },
     {
       id: 'E4N Seismic Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F2', source: 'Massive Boulder', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F2', source: 'Riesig(?:e|er|es|en) Felsen', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F2', source: 'Monolithe Géant', capture: false }),
@@ -80,7 +89,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '40F2', source: '거대 바위', capture: false }),
       delaySeconds: 6,
       suppressSeconds: 10,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Hide Behind Boulder',
@@ -94,6 +103,7 @@ export default {
     },
     {
       id: 'E4N Geocrush',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
@@ -104,13 +114,14 @@ export default {
     },
     {
       id: 'E4N Fault Zone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4102', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4102', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4102', source: '타이탄', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand On Flank',
@@ -272,3 +283,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

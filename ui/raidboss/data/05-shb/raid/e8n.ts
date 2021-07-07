@@ -2,8 +2,15 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  mirrorsActive?: boolean;
+  rampant?: { [name: string]: string };
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseRefulgence,
   timelineFile: 'e8n.txt',
   timelineTriggers: [
@@ -17,6 +24,7 @@ export default {
   triggers: [
     {
       id: 'E8N Mirrors Active',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD4', capture: false }),
@@ -27,6 +35,7 @@ export default {
     },
     {
       id: 'E8N Biting Frost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
@@ -38,6 +47,7 @@ export default {
     },
     {
       id: 'E8N Driving Frost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
@@ -45,7 +55,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DDC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DDC', capture: false }),
       condition: (data) => !data.mirrorsActive,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Front / Sides',
@@ -59,6 +69,7 @@ export default {
     },
     {
       id: 'E8N Axe Kick',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
@@ -70,6 +81,7 @@ export default {
     },
     {
       id: 'E8N Scythe Kick',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE3', capture: false }),
@@ -80,6 +92,7 @@ export default {
     },
     {
       id: 'E8N Biting Frost With Mirror',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
@@ -87,7 +100,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DDB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DDB', capture: false }),
       condition: (data) => data.mirrorsActive,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get behind, then South',
@@ -101,6 +114,7 @@ export default {
     },
     {
       id: 'E8N Driving Frost With Mirror',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
@@ -108,7 +122,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DDC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DDC', capture: false }),
       condition: (data) => data.mirrorsActive,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Front / Sides, then North',
@@ -122,6 +136,7 @@ export default {
     },
     {
       id: 'E8N Axe Kick With Mirror',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
@@ -133,6 +148,7 @@ export default {
     },
     {
       id: 'E8N Reflected Scythe Kick',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Frozen Mirror', id: '4E01', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Eisspiegel', id: '4E01', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'miroir de glace', id: '4E01', capture: false }),
@@ -140,7 +156,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '冰面镜', id: '4E01', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '얼음 거울', id: '4E01', capture: false }),
       suppressSeconds: 3,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Close to mirrors',
@@ -154,6 +170,7 @@ export default {
     },
     {
       id: 'E8N Mirror Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Frozen Mirror', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Eisspiegel', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'miroir de glace', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
@@ -166,6 +183,7 @@ export default {
     },
     {
       id: 'E8N Absolute Zero',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD7', capture: false }),
@@ -177,6 +195,7 @@ export default {
     },
     {
       id: 'E8N Double Slap',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDA' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDA' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDA' }),
@@ -188,9 +207,10 @@ export default {
     },
     {
       id: 'E8N Frigid Water',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Flare on YOU',
@@ -204,15 +224,17 @@ export default {
     },
     {
       id: 'E8N Icicle Impact',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E8N Puddle Chase',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: '3x puddles on YOU',
@@ -226,6 +248,7 @@ export default {
     },
     {
       id: 'E8N Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DEC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DEC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DEC', capture: false }),
@@ -236,6 +259,7 @@ export default {
     },
     {
       id: 'E8N Holy Divided',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DED', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DED', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DED', capture: false }),
@@ -246,22 +270,24 @@ export default {
     },
     {
       id: 'E8N Light Rampant Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       run: (data, matches) => {
-        data.rampant = data.rampant || {};
+        data.rampant ??= {};
         data.rampant[matches.target] = matches.id;
       },
     },
     {
       id: 'E8N Light Rampant',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
-        if (data.rampant[data.me])
-          return output.coneOnYouAvoidTowers();
+        if (data.rampant?.[data.me])
+          return output.coneOnYouAvoidTowers!();
 
-        return output.standInATower();
+        return output.standInATower!();
       },
       outputStrings: {
         coneOnYouAvoidTowers: {
@@ -284,6 +310,7 @@ export default {
     },
     {
       id: 'E8N Light Rampant Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '4E0B', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '4E0B', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '4E0B', capture: false }),
@@ -294,6 +321,7 @@ export default {
     },
     {
       id: 'E8N Heavenly Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD8', capture: false }),
@@ -304,6 +332,7 @@ export default {
     },
     {
       id: 'E8N Twin Stillness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDD', capture: false }),
@@ -314,6 +343,7 @@ export default {
     },
     {
       id: 'E8N Twin Silence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDE', capture: false }),
@@ -324,6 +354,7 @@ export default {
     },
     {
       id: 'E8N Spiteful Dance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE4', capture: false }),
@@ -334,6 +365,7 @@ export default {
     },
     {
       id: 'E8N Embittered Dance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE5', capture: false }),
@@ -567,3 +599,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

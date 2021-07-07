@@ -2,8 +2,19 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  surgeProtection?: boolean;
+  steppedLeaderNext?: boolean;
+  seenFirstSpear?: boolean;
+  furysBoltActive?: boolean;
+  seenFirstAdd?: boolean;
+  furysFourteenCounter?: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseFulminationSavage,
   timelineFile: 'e5s.txt',
   timelineTriggers: [
@@ -17,18 +28,21 @@ export default {
   triggers: [
     {
       id: 'E5S Surge Protection Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.surgeProtection = true,
     },
     {
       id: 'E5S Surge Protection Loss',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.surgeProtection = false,
     },
     {
       id: 'E5S Stratospear Summons',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
@@ -37,7 +51,7 @@ export default {
       netRegexKo: NetRegexes.ability({ id: '4BA5', source: '라무', capture: false }),
       condition: (data) => !data.seenFirstSpear,
       delaySeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.seenFirstSpear = true,
       outputStrings: {
         text: {
@@ -52,6 +66,7 @@ export default {
     },
     {
       id: 'E5S Tribunal Summons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
@@ -60,12 +75,12 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.seenFirstAdd)
-          return output.lookForAdds();
+          return output.lookForAdds!();
 
         if (data.furysBoltActive)
-          return output.bigKnockback();
+          return output.bigKnockback!();
 
-        return output.shortKnockback();
+        return output.shortKnockback!();
       },
       run: (data) => data.seenFirstAdd = true,
       outputStrings: {
@@ -97,6 +112,7 @@ export default {
     },
     {
       id: 'E5S Fury\'s Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BAA', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BAA', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BAA', source: 'Ramuh', capture: false }),
@@ -106,7 +122,7 @@ export default {
       alertText: (data, _matches, output) => {
         // Fury's Bolt + Stepped Leader doesn't require an orb
         if (!data.surgeProtection && !data.steppedLeaderNext)
-          return output.text();
+          return output.text!();
       },
       outputStrings: {
         text: {
@@ -121,16 +137,19 @@ export default {
     },
     {
       id: 'E5S Fury\'s Bolt Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B7', capture: false }),
       run: (data) => data.furysBoltActive = true,
     },
     {
       id: 'E5S Fury\'s Bolt Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8B7', capture: false }),
       run: (data) => data.furysBoltActive = false,
     },
     {
       id: 'E5S Fury\'s Fourteen',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
@@ -140,12 +159,9 @@ export default {
       condition: (data) => !data.furysFourteenCounter || data.furysFourteenCounter < 2,
       alertText: (data, _matches, output) => {
         if (!data.surgeProtection)
-          return output.text();
+          return output.text!();
       },
-      run: (data) => {
-        data.furysFourteenCounter = data.furysFourteenCounter || 0;
-        data.furysFourteenCounter++;
-      },
+      run: (data) => data.furysFourteenCounter = (data.furysFourteenCounter ?? 0) + 1,
       outputStrings: {
         text: {
           en: 'Grab an orb',
@@ -159,6 +175,7 @@ export default {
     },
     {
       id: 'E5S Judgment Volts',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
@@ -170,6 +187,7 @@ export default {
     },
     {
       id: 'E5S Stepped Leader',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
@@ -179,9 +197,9 @@ export default {
       alertText: (data, _matches, output) => {
         // Fury's Bolt + Stepped Leader is a donut AoE instead
         if (!data.furysBoltActive)
-          return output.readySpread();
+          return output.readySpread!();
 
-        return output.donutAoe();
+        return output.donutAoe!();
       },
       outputStrings: {
         readySpread: {
@@ -204,6 +222,7 @@ export default {
     },
     {
       id: 'E5S Stepped Leader Spread',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
@@ -216,6 +235,7 @@ export default {
     },
     {
       id: 'E5S Stepped Leader Cast',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
@@ -226,6 +246,7 @@ export default {
     },
     {
       id: 'E5S Crippling Blow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
@@ -237,13 +258,14 @@ export default {
     },
     {
       id: 'E5S Stormcloud Summons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BB8', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BB8', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BB8', source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4BB8', source: 'ラムウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BB8', source: '拉姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BB8', source: '라무', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Position for Stormcloud',
@@ -258,9 +280,10 @@ export default {
     {
       // Hated of Levin debuff
       id: 'E5S Stormcloud Cleanse',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00D2' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cleanse In Cloud',
@@ -274,9 +297,10 @@ export default {
     },
     {
       id: 'E5S Stormcloud Drop',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drop Cloud Away',
@@ -290,13 +314,14 @@ export default {
     },
     {
       id: 'E5S Centaur\'s Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4BAD', source: 'ラムウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAD', source: '拉姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAD', source: '라무', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Be in your position',
@@ -310,13 +335,14 @@ export default {
     },
     {
       id: 'E5S Chain Lightning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BC4', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BC4', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BC4', source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4BC4', source: 'ラムウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BC4', source: '拉姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BC4', source: '라무', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Ready for Chain',
@@ -330,6 +356,7 @@ export default {
     },
     {
       id: 'E5S Levinforce',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4BCC', source: 'Ramuh', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4BCC', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BCC', source: 'Ramuh', capture: false }),
@@ -506,3 +533,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
