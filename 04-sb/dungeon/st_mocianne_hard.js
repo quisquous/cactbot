@@ -22,6 +22,7 @@ Options.Triggers.push({
     {
       // Trash mob gaze attack
       id: 'St Mocianne Hard Frond Fatale',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '31A4', source: 'Withered Belladonna' }),
       netRegexDe: NetRegexes.startsUsing({ id: '31A4', source: 'Verwittert(?:e|er|es|en) Belladonna' }),
       netRegexFr: NetRegexes.startsUsing({ id: '31A4', source: 'Belladone Flétrie' }),
@@ -33,6 +34,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Vine Whip',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
@@ -44,6 +46,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Sludge Bomb',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -60,18 +63,21 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Fault Warren',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       suppressSeconds: 5,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'St Mocianne Hard Taproot',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008D' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'St Mocianne Hard Devour',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2E4F', source: 'Nullchu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2E4F', source: 'Nullchu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2E4F', source: 'Nullchu', capture: false }),
@@ -92,6 +98,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Stone II',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '312A', source: 'Lakhamu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '312A', source: 'Lakhamu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '312A', source: 'Lakhamu' }),
@@ -103,6 +110,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Tectonics',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '312C', source: 'Lakhamu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '312C', source: 'Lakhamu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '312C', source: 'Lakhamu', capture: false }),
@@ -114,6 +122,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Landslip',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3132', source: 'Silt Golem' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3132', source: 'Schlickgolem' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3132', source: 'Golem De Bourbe' }),
@@ -135,12 +144,14 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Eath Shaker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
     {
       id: 'St Mocianne Empty Gaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '312B', source: 'Lakhamu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '312B', source: 'Lakhamu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '312B', source: 'Lakhamu' }),
@@ -151,6 +162,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Mudsling',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3135', source: 'Tokkapchi' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3135', source: 'Tokkapchi' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3135', source: 'Tokkapchi' }),
@@ -162,6 +174,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Quagmire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -178,6 +191,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Mud Pie',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3137', source: 'Tokkapchi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3137', source: 'Tokkapchi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3137', source: 'Tokkapchi', capture: false }),
@@ -198,6 +212,7 @@ Options.Triggers.push({
     },
     {
       id: 'St Mocianne Hard Feculent Flood',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '313C', source: 'Tokkapchi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '313C', source: 'Tokkapchi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '313C', source: 'Tokkapchi', capture: false }),

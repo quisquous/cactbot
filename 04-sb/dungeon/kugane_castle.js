@@ -20,6 +20,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Kugane Castle Kenki Release',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1E93', source: 'Zuiko-Maru', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1E93', source: 'Zuiko-Maru', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1E93', source: 'Zuiko Maru', capture: false }),
@@ -31,6 +32,7 @@ Options.Triggers.push({
     },
     {
       id: 'Kugane Castle Helm Crack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
@@ -38,6 +40,7 @@ Options.Triggers.push({
       // The tether has no actual skill name,
       // but the Harakiri Koshu uses Cordage on the tether target after about 4 seconds.
       id: 'Kugane Castle Cordage',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -54,12 +57,14 @@ Options.Triggers.push({
     },
     {
       id: 'Kugane Castle Clockwork Raiton',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005F' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Kugane Castle Gratuity',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1EAE', source: 'Kageyama', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1EAE', source: 'Kageyama', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1EAE', source: 'Kageyama', capture: false }),
@@ -81,6 +86,7 @@ Options.Triggers.push({
     },
     {
       id: 'Kugane Castle Dragons Lair',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1EA6', source: 'Yojimbo', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1EA6', source: 'Yojinbo', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1EA6', source: 'Yojimbo', capture: false }),

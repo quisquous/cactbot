@@ -12,6 +12,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Ala Mhigo Electromagnetic Field',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '204D', source: 'Magitek Scorpion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '204D', source: 'Wachskorpion', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '204D', source: 'Scorpion Magitek', capture: false }),
@@ -23,6 +24,7 @@ Options.Triggers.push({
     },
     {
       id: 'Ala Mhigo Mana Burst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
@@ -34,6 +36,7 @@ Options.Triggers.push({
     },
     {
       id: 'Ala Mhigo Demimagicks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
@@ -44,6 +47,7 @@ Options.Triggers.push({
     },
     {
       id: 'Ala Mhigo Storm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
@@ -64,6 +68,7 @@ Options.Triggers.push({
     },
     {
       id: 'Ala Mhigo Swell',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
@@ -74,6 +79,7 @@ Options.Triggers.push({
     },
     {
       id: 'Ala Mhigo Sword',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
@@ -94,6 +100,7 @@ Options.Triggers.push({
     },
     {
       id: 'Ala Mhigo Lightless Spark',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
       netRegexDe: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
       netRegexFr: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
@@ -115,6 +122,7 @@ Options.Triggers.push({
     },
     {
       id: 'Ala Mhigo Concentrativity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),

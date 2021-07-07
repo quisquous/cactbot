@@ -20,6 +20,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Temple Electric Burst Sruti',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
@@ -31,6 +32,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Electric Burst Smriti',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
@@ -42,6 +44,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Fourfold Shear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
@@ -52,6 +55,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Moonseal',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0059' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -68,6 +72,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Sunseal',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0058' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -84,6 +89,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Port And Star',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
@@ -94,6 +100,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Fore And Aft',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
@@ -104,6 +111,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Killer Instinct',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
@@ -124,6 +132,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Spirit Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FE7', source: 'Ivon Coeurlfist', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FE7', source: 'Ivon Coeurlfaust', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FE7', source: 'Ivon Le Coeurl', capture: false }),
@@ -135,6 +144,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Touch Of Slaughter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FE6', source: 'Ivon Coeurlfist' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FE6', source: 'Ivon Coeurlfaust' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FE6', source: 'Ivon Le Coeurl' }),
@@ -156,6 +166,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Coeurl Heads',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1FE9', source: 'Ivon Coeurlfist', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1FE9', source: 'Ivon Coeurlfaust', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1FE9', source: 'Ivon Le Coeurl', capture: false }),
@@ -176,6 +187,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Rhalgr\'s Piece',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FED', source: 'Ivon Coeurlfist', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FED', source: 'Ivon Coeurlfaust', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FED', source: 'Ivon Le Coeurl', capture: false }),
@@ -196,6 +208,7 @@ Options.Triggers.push({
     },
     {
       id: 'Temple Rose Of Destruction',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FEE', source: 'Ivon Coeurlfist' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FEE', source: 'Ivon Coeurlfaust' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FEE', source: 'Ivon Le Coeurl' }),

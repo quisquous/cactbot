@@ -13,6 +13,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Bardam\'s Mettle Rush',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0039' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -29,6 +30,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle War Cry',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
@@ -42,6 +44,7 @@ Options.Triggers.push({
       // Both Bardam and Yol use the 0017 head marker.
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
       id: 'Bardam\'s Mettle Dead Bardam',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: '.*Voiceless Muse will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: '.*Stumme Muse will be sealed off.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: '.*la Muse sans voix will be sealed off.*?', capture: false }),
@@ -52,6 +55,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle Empty Gaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1F04', source: 'Hunter Of Bardam', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1F04', source: 'Bardams Jäger', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1F04', source: 'chasseur de Bardam', capture: false }),
@@ -62,6 +66,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle Sacrifice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1F01', source: 'Bardam', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1F01', source: 'Bardams Statue', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1F01', source: 'Bardam', capture: false }),
@@ -85,6 +90,7 @@ Options.Triggers.push({
       // Bardam casts Comet repeatedly during this phase,
       // but 257D is used only once. The others are 257E.
       id: 'Bardam\'s Mettle Comet',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '257D', source: 'Bardam', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '257D', source: 'Bardams Statue', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '257D', source: 'Bardam', capture: false }),
@@ -106,6 +112,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle Meteor Impact',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2582', source: 'Looming Shadow' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2582', source: 'Lauernd(?:e|er|es|en) Schatten' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2582', source: 'ombre grandissante' }),
@@ -127,6 +134,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle Wind Unbound',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
@@ -138,12 +146,14 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle Flutterfall',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.deadBardam,
       response: Responses.spread(),
     },
     {
       id: 'Bardam\'s Mettle Eye Of The Fierce',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
@@ -154,6 +164,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle Wingbeat You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -170,6 +181,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bardam\'s Mettle Wingbeat Others',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsNotYou(),
       infoText: (_data, _matches, output) => output.text(),
