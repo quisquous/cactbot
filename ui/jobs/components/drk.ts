@@ -4,9 +4,9 @@ import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
-let tid1: ReturnType<typeof setTimeout>;
-let tid2: ReturnType<typeof setTimeout>;
-let tid3: ReturnType<typeof setTimeout>;
+let tid1: number;
+let tid2: number;
+let tid3: number;
 
 export const setup = (bars: Bars): void => {
   const bloodBox = bars.addResourceBox({
@@ -62,7 +62,7 @@ export const setup = (bars: Bars): void => {
     bloodWeapon.duration = '10';
     bloodWeapon.threshold = '10';
     bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon.active');
-    tid1 = setTimeout(() => {
+    tid1 = window.setTimeout(() => {
       bloodWeapon.duration = '50';
       bloodWeapon.threshold = (bars.gcdSkill * 2).toString();
       bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon');
@@ -77,7 +77,7 @@ export const setup = (bars: Bars): void => {
     delirium.duration = '10.5';
     delirium.threshold = '20';
     delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium.active');
-    tid2 = setTimeout(() => {
+    tid2 = window.setTimeout(() => {
       delirium.duration = '79.5';
       delirium.threshold = (bars.gcdSkill * 2).toString();
       delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
@@ -92,7 +92,7 @@ export const setup = (bars: Bars): void => {
     livingShadow.duration = '24';
     livingShadow.threshold = '24';
     livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow.active');
-    tid3 = setTimeout(() => {
+    tid3 = window.setTimeout(() => {
       livingShadow.duration = '96';
       livingShadow.threshold = (bars.gcdSkill * 4).toString();
       livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow');
