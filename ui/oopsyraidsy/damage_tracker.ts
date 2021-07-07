@@ -34,7 +34,7 @@ type ProcessedOopsyTrigger = LooseOopsyTrigger & {
 };
 
 export class DamageTracker {
-  private triggerSets: ProcessedOopsyTriggerSet[] | undefined = undefined;
+  private triggerSets?: ProcessedOopsyTriggerSet[];
   private inCombat = false;
   private ignoreZone = false;
   private timers: number[] = [];
@@ -51,8 +51,8 @@ export class DamageTracker {
 
   private job: Job = 'NONE';
   private role: Role = 'none';
-  private me: string | undefined;
-  private zoneName: string | undefined;
+  private me?: string;
+  private zoneName?: string;
   private zoneId: ZoneIdType = ZoneId.MatchAll;
   private contentType = 0;
 
@@ -207,7 +207,7 @@ export class DamageTracker {
     let matches: Matches = {};
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if (execMatches && execMatches.groups) {
+    if (execMatches?.groups) {
       matches = execMatches.groups;
     } else if (execMatches) {
       // If there are no matching groups, reproduce the old js logic where
