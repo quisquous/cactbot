@@ -1,3 +1,5 @@
+import { Lang } from '../resources/languages';
+
 import { OopsyData } from './data';
 import { NetMatches } from './net_matches';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
