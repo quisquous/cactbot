@@ -8,42 +8,42 @@ hideall "--sync--"
 0 "Start" sync / 00:0839:The Third Armory will be sealed off/
 7.4 "Cermet Pile" sync /:Magitek Rearguard:209D:/
 15.0 "Garlean Fire" sync /:Magitek Rearguard:209E:/
-30.4 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-35.4 "Mines" sync /03:........:Added new combatant Rearguard Mine/
-37.6 "Cermet Pile" sync /:Magitek Rearguard:209D:/
-40.6 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-43.2 "Garlean Fire" sync /:Magitek Rearguard:209E:/
-48.7 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-53.7 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-60.7 "Cermet Pile" sync /:Magitek Rearguard:209D:/
+30.6 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+35.6 "Rearguard Mines" #sync /03:........:Added new combatant Rearguard Mine/
+37.8 "Cermet Pile" sync /:Magitek Rearguard:209D:/
+40.8 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+43.4 "Garlean Fire" sync /:Magitek Rearguard:209E:/
+48.9 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+53.9 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+60.9 "Cermet Pile" sync /:Magitek Rearguard:209D:/
+68.5 "Rearguard Mines" #sync /03:........:Added new combatant Rearguard Mine/
 
-68.3 "Mines" sync /03:........:Added new combatant Rearguard Mine/
-70.5 "Cermet Pile" sync /:Magitek Rearguard:209D:/
-73.5 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-76.2 "Garlean Fire" sync /:Magitek Rearguard:209E:/
-81.7 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-85.8 "Cermet Pile" sync /:Magitek Rearguard:209D:/
-88.7 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-91.4 "Garlean Fire" sync /:Magitek Rearguard:209E:/
-97.0 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-98.5 "Mines" sync /03:........:Added new combatant Rearguard Mine/
-101.1 "Cermet Pile" sync /:Magitek Rearguard:209D:/
-104.1 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-106.8 "Garlean Fire" sync /:Magitek Rearguard:209E:/
-112.3 "Magitek Ray" sync /:Rearguard Bit:20A1:/
-115.4 "Cermet Pile" sync /:Magitek Rearguard:209D:/
-118.4 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+70.7 "Cermet Pile" sync /:Magitek Rearguard:209D:/
+73.7 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+76.4 "Garlean Fire" sync /:Magitek Rearguard:209E:/
+81.9 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+86.0 "Cermet Pile" sync /:Magitek Rearguard:209D:/
+88.9 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+91.6 "Garlean Fire" sync /:Magitek Rearguard:209E:/
+97.2 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+98.7 "Rearguard Mines" #sync /03:........:Added new combatant Rearguard Mine/
+101.3 "Cermet Pile" sync /:Magitek Rearguard:209D:/
+104.3 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+107.0 "Garlean Fire" sync /:Magitek Rearguard:209E:/
+112.5 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+115.6 "Cermet Pile" sync /:Magitek Rearguard:209D:/
+118.6 "Magitek Ray" sync /:Rearguard Bit:20A1:/
+131.3 "Rearguard Mines" #sync /03:........:Added new combatant Rearguard Mine/
 
-131.1 "Mines" sync /03:........:Added new combatant Rearguard Mine/ jump 68.3
-132.0 "Cermet Pile"
-135.0 "Magitek Ray"
-137.6 "Garlean Fire"
-143.1 "Magitek Ray"
-147.1 "Cermet Pile"
-150.1 "Magitek Ray"
-152.7 "Garlean Fire"
-158.2 "Magitek Ray"
-160.1 "Mines"
+133.2 "Cermet Pile" sync /:Magitek Rearguard:209D:/ jump 70.7
+136.2 "Magitek Ray"
+138.9 "Garlean Fire"
+144.4 "Magitek Ray"
+148.5 "Cermet Pile"
+151.4 "Magitek Ray"
+154.1 "Garlean Fire"
+159.7 "Magitek Ray"
+161.2 "Rearguard Mines"
 
 ### Magitek Hexadrone
 # -ii 20A4 20A6 20A7 2447
@@ -81,9 +81,8 @@ hideall "--sync--"
 1181.3 "Circle Of Death" sync /:Magitek Hexadrone:20A2:/ jump 1083.9
 1187.4 "Hexadrone Bits"
 1192.9 "Bits Activate"
-1195.0 "Magitek Missiles"
+1196.0 "Magitek Missiles"
 1203.8 "2-Tonze Magitek Missile"
-1216.0 "Magitek Missiles"
 
 
 ### Hypertuned Grynewaht
@@ -95,10 +94,12 @@ hideall "--sync--"
 2045.4 "Thermobaric Charge" sync /:Hypertuned Grynewaht:20AF:/
 2048.8 "--sync--" sync /:Hypertuned Grynewaht:20B0:/
 2057.0 "Gunsaw" duration 5.0  sync /:Hypertuned Grynewaht:20AA:/
-2070.3 "Delay-Action Charge/Clean Cut" sync /:Hypertuned Grynewaht:20AD:/
+2070.3 "Delay-Action Charge" sync /:Hypertuned Grynewaht:20AD:/
+2070.3 "Clean Cut" #sync /:Magitek Chakram:20B1:/
 2071.7 "--sync--" sync /:Hypertuned Grynewaht:20B0:/
 2079.9 "Gunsaw" duration 5.0  sync /:Hypertuned Grynewaht:20AA:/
-2093.2 "Delay-Action Charge/Clean Cut" sync /:Hypertuned Grynewaht:20AD:/
+2093.2 "Delay-Action Charge" sync /:Hypertuned Grynewaht:20AD:/
+2093.2 "Clean Cut" #sync /:Magitek Chakram:20B1:/
 2097.6 "Hexadrone Bits" sync /03:........:Added new combatant Hexadrone Bit/
 2103.1 "Bits Activate"
 2108.2 "Chainsaw" duration 5.5 sync /:Hypertuned Grynewaht:20A8:/
@@ -109,7 +110,8 @@ hideall "--sync--"
 2140.0 "Clean Cut" sync /:Magitek Chakram:20B1:/
 2141.4 "--sync--" sync /:Hypertuned Grynewaht:20B0:/
 2149.6 "Gunsaw" duration 5.0 sync /:Hypertuned Grynewaht:20AA:/
-2162.9 "Delay-Action Charge/Clean Cut" sync /:Hypertuned Grynewaht:20AD:/
+2162.9 "Delay-Action Charge" sync /:Hypertuned Grynewaht:20AD:/
+2162.9 "Clean Cut" #sync /:Magitek Chakram:20B1:/
 2167.4 "--sync--" sync /:Hypertuned Grynewaht:20B0:/
 2168.5 "Hexadrone Bits" sync /03:........:Added new combatant Hexadrone Bit/
 2174.0 "Bits Activate"
@@ -119,7 +121,8 @@ hideall "--sync--"
 
 2194.2 "--sync--" sync /:Hypertuned Grynewaht:20B0:/
 2202.4 "Gunsaw" duration 5.0 sync /:Hypertuned Grynewaht:20AA:/
-2215.7 "Delay-Action Charge/Clean Cut" sync /:Hypertuned Grynewaht:20AD:/
+2215.7 "Delay-Action Charge" sync /:Hypertuned Grynewaht:20AD:/
+2215.7 "Clean Cut" #sync /:Magitek Chakram:20B1:/
 2218.2 "Hexadrone Bits" sync /03:........:Added new combatant Hexadrone Bit/
 2223.7 "Bits Activate"
 2228.7 "Chainsaw" duration 5.5 sync /:Hypertuned Grynewaht:20A8:/
@@ -127,9 +130,10 @@ hideall "--sync--"
 2242.8 "Chainsaw" duration 5.5 sync /:Hypertuned Grynewaht:20A8:/
 
 2257.0 "--sync--" sync /:Hypertuned Grynewaht:20B0:/
-# Loop begins here, but the jump is attached to the Delay-Action/Clean Cut to preserve the duration timer for Gunsaw
+# Loop begins here, but the jump is attached to the Delay-Action Charge to preserve the duration timer for Gunsaw
 2265.2 "Gunsaw" duration 5.0 sync /:Hypertuned Grynewaht:20AA:/ 
-2278.5 "Delay-Action Charge/Clean Cut" sync /:Hypertuned Grynewaht:20AD:/ jump 2215.7
+2278.5 "Delay-Action Charge" sync /:Hypertuned Grynewaht:20AD:/ jump 2215.7
+2278.5 "Clean Cut"
 2281.0 "Hexadrone Bits"
 2286.5 "Bits Activate"
 2291.5 "Chainsaw" duration 5.5
