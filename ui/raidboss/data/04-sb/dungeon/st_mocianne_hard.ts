@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SaintMociannesArboretumHard,
   timelineFile: 'st_mocianne_hard.txt',
   timelineTriggers: [
@@ -11,7 +15,7 @@ export default {
       id: 'St Mocianne Hard Quickmire',
       regex: /Quickmire/,
       beforeSeconds: 7, // This is approximately when the sewage surge begins.
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Be On A Platform',
@@ -27,6 +31,7 @@ export default {
     {
       // Trash mob gaze attack
       id: 'St Mocianne Hard Frond Fatale',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '31A4', source: 'Withered Belladonna' }),
       netRegexDe: NetRegexes.startsUsing({ id: '31A4', source: 'Verwittert(?:e|er|es|en) Belladonna' }),
       netRegexFr: NetRegexes.startsUsing({ id: '31A4', source: 'Belladone Flétrie' }),
@@ -38,6 +43,7 @@ export default {
     },
     {
       id: 'St Mocianne Hard Vine Whip',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
@@ -49,9 +55,10 @@ export default {
     },
     {
       id: 'St Mocianne Hard Sludge Bomb',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Sludge puddle on YOU',
@@ -65,25 +72,28 @@ export default {
     },
     {
       id: 'St Mocianne Hard Fault Warren',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       suppressSeconds: 5, // There are two (!!) simultaneous head markers on the same target here.
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'St Mocianne Hard Taproot',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008D' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'St Mocianne Hard Devour',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2E4F', source: 'Nullchu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2E4F', source: 'Nullchu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2E4F', source: 'Nullchu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2E4F', source: 'ヌルチュー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2E4F', source: '泥口花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2E4F', source: '누루츄', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get behind flower',
@@ -97,6 +107,7 @@ export default {
     },
     {
       id: 'St Mocianne Hard Stone II',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '312A', source: 'Lakhamu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '312A', source: 'Lakhamu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '312A', source: 'Lakhamu' }),
@@ -108,6 +119,7 @@ export default {
     },
     {
       id: 'St Mocianne Hard Tectonics',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '312C', source: 'Lakhamu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '312C', source: 'Lakhamu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '312C', source: 'Lakhamu', capture: false }),
@@ -119,6 +131,7 @@ export default {
     },
     {
       id: 'St Mocianne Hard Landslip',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3132', source: 'Silt Golem' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3132', source: 'Schlickgolem' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3132', source: 'Golem De Bourbe' }),
@@ -126,7 +139,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3132', source: '淤泥巨像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3132', source: '실트 골렘' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Conveyors: Avoid Golem Lines',
@@ -140,12 +153,14 @@ export default {
     },
     {
       id: 'St Mocianne Hard Eath Shaker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
     {
       id: 'St Mocianne Empty Gaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '312B', source: 'Lakhamu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '312B', source: 'Lakhamu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '312B', source: 'Lakhamu' }),
@@ -156,6 +171,7 @@ export default {
     },
     {
       id: 'St Mocianne Mudsling',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3135', source: 'Tokkapchi' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3135', source: 'Tokkapchi' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3135', source: 'Tokkapchi' }),
@@ -167,9 +183,10 @@ export default {
     },
     {
       id: 'St Mocianne Hard Quagmire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spread + Stay Off Platforms',
@@ -183,13 +200,14 @@ export default {
     },
     {
       id: 'St Mocianne Hard Mud Pie',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3137', source: 'Tokkapchi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3137', source: 'Tokkapchi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3137', source: 'Tokkapchi', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3137', source: 'トカップチ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3137', source: '枯腐泥妖', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3137', source: '진흙장사', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Push Mud Pie On Platform',
@@ -203,13 +221,14 @@ export default {
     },
     {
       id: 'St Mocianne Hard Feculent Flood',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '313C', source: 'Tokkapchi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '313C', source: 'Tokkapchi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '313C', source: 'Tokkapchi', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '313C', source: 'トカップチ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '313C', source: '枯腐泥妖', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '313C', source: '진흙장사', capture: false }),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Push Mud Pie Out Of Cone',
@@ -407,3 +426,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

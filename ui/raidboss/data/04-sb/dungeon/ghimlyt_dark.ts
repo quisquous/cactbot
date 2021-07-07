@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheGhimlytDark,
   timelineFile: 'ghimlyt_dark.txt',
   timelineTriggers: [
@@ -11,7 +15,7 @@ export default {
       id: 'Ghimlyt Dark Prometheus Laser',
       regex: /Heat/,
       beforeSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid wall laser',
@@ -27,6 +31,7 @@ export default {
   triggers: [
     {
       id: 'Ghimlyt Dark Jarring Blow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '376E', source: 'Mark III-B Magitek Colossus' }),
       netRegexDe: NetRegexes.startsUsing({ id: '376E', source: 'Magitek-Stahlriese' }),
       netRegexFr: NetRegexes.startsUsing({ id: '376E', source: 'Colosse Magitek IIIb' }),
@@ -38,12 +43,14 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Wild Fire Beam',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Ghimlyt Dark Ceruleum Vent',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3773', source: 'Mark III-B Magitek Colossus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3773', source: 'Magitek-Stahlriese', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3773', source: 'Colosse Magitek IIIb', capture: false }),
@@ -56,14 +63,16 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Magitek Ray',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       // 00A7 is the orange clockwise indicator. 00A8 is the blue counterclockwise one.
       id: 'Ghimlyt Dark Magitek Slash',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
-      infoText: (_data, matches, output) => matches.id === '00A7' ? output.left() : output.right(),
+      infoText: (_data, matches, output) => matches.id === '00A7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Rotate left',
@@ -85,6 +94,7 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Nitrospin',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3455', source: 'Prometheus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3455', source: 'Prometheus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3455', source: 'Prometheus', capture: false }),
@@ -96,6 +106,7 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Cermet Drill',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3459', source: 'Prometheus' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3459', source: 'Prometheus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3459', source: 'Prometheus' }),
@@ -107,6 +118,7 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Freezing Missile',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '345C', source: 'Prometheus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '345C', source: 'Prometheus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '345C', source: 'Prometheus', capture: false }),
@@ -118,6 +130,7 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Artifical Plasma',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3727', source: 'Julia Quo Soranus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3727', source: 'Julia Quo Soranus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3727', source: 'Julia Quo Soranus', capture: false }),
@@ -129,6 +142,7 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Innocence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3729', source: 'Julia Quo Soranus' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3729', source: 'Julia Quo Soranus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3729', source: 'Julia Quo Soranus' }),
@@ -140,6 +154,7 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Delta Trance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '372A', source: 'Annia Quo Soranus' }),
       netRegexDe: NetRegexes.startsUsing({ id: '372A', source: 'Annia Quo Soranus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '372A', source: 'Annia Quo Soranus' }),
@@ -152,12 +167,14 @@ export default {
     {
       // This head marker is used on players and NPCs, so we have to exclude NPCs explicitly.
       id: 'Ghimlyt Dark Heirsbane',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: (data, matches) => matches.targetId[0] !== '4' && Conditions.caresAboutPhysical()(data),
       response: Responses.tankBuster(),
     },
     {
       id: 'Ghimlyt Dark Order To Bombard',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3710', source: 'Annia Quo Soranus', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3710', source: 'Annia Quo Soranus', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3710', source: 'Annia Quo Soranus', capture: false }),
@@ -168,6 +185,7 @@ export default {
     },
     {
       id: 'Ghimlyt Dark Covering Fire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
@@ -441,3 +459,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

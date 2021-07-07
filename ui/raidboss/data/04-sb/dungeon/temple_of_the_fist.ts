@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheTempleOfTheFist,
   timelineFile: 'temple_of_the_fist.txt',
   timelineTriggers: [
@@ -25,6 +29,7 @@ export default {
   triggers: [
     {
       id: 'Temple Electric Burst Sruti',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
@@ -36,6 +41,7 @@ export default {
     },
     {
       id: 'Temple Electric Burst Smriti',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
@@ -47,6 +53,7 @@ export default {
     },
     {
       id: 'Temple Fourfold Shear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
@@ -57,9 +64,10 @@ export default {
     },
     {
       id: 'Temple Moonseal',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0059' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand in blue',
@@ -73,9 +81,10 @@ export default {
     },
     {
       id: 'Temple Sunseal',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0058' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand in red',
@@ -89,6 +98,7 @@ export default {
     },
     {
       id: 'Temple Port And Star',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
@@ -99,6 +109,7 @@ export default {
     },
     {
       id: 'Temple Fore And Aft',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
@@ -109,13 +120,14 @@ export default {
     },
     {
       id: 'Temple Killer Instinct',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1FDE', source: 'アブダ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FDE', source: '额部陀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FDE', source: '아부다', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'watch for safe',
@@ -129,6 +141,7 @@ export default {
     },
     {
       id: 'Temple Spirit Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FE7', source: 'Ivon Coeurlfist', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FE7', source: 'Ivon Coeurlfaust', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FE7', source: 'Ivon Le Coeurl', capture: false }),
@@ -140,6 +153,7 @@ export default {
     },
     {
       id: 'Temple Touch Of Slaughter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FE6', source: 'Ivon Coeurlfist' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FE6', source: 'Ivon Coeurlfaust' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FE6', source: 'Ivon Le Coeurl' }),
@@ -147,7 +161,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '1FE6', source: '双豹伊沃恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FE6', source: '쌍표범 이본' }),
       condition: (data) => data.role === 'healer',
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Heal ${player} soon',
@@ -161,13 +175,14 @@ export default {
     },
     {
       id: 'Temple Coeurl Heads',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1FE9', source: 'Ivon Coeurlfist', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1FE9', source: 'Ivon Coeurlfaust', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1FE9', source: 'Ivon Le Coeurl', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '1FE9', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '1FE9', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1FE9', source: '쌍표범 이본', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid floating heads',
@@ -181,13 +196,14 @@ export default {
     },
     {
       id: 'Temple Rhalgr\'s Piece',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FED', source: 'Ivon Coeurlfist', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FED', source: 'Ivon Coeurlfaust', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FED', source: 'Ivon Le Coeurl', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1FED', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FED', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FED', source: '쌍표범 이본', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away from marker',
@@ -201,6 +217,7 @@ export default {
     },
     {
       id: 'Temple Rose Of Destruction',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FEE', source: 'Ivon Coeurlfist' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FEE', source: 'Ivon Coeurlfaust' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FEE', source: 'Ivon Le Coeurl' }),
@@ -390,3 +407,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

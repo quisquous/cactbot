@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.HellsLid,
   timelineFile: 'hells_lid.txt',
   timelineTriggers: [
@@ -12,7 +16,7 @@ export default {
       regex: /Stone Cudgel/,
       beforeSeconds: 4,
       suppressSeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away from club/shield',
@@ -42,6 +46,7 @@ export default {
   triggers: [
     {
       id: 'Hells Lid Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Maru', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Maru', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27BE', source: 'Ôtake Maru', capture: false }),
@@ -52,11 +57,12 @@ export default {
     },
     {
       id: 'Hells Lid Targeted Leap',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.targetText();
-        return output.otherText();
+          return output.targetText!();
+        return output.otherText!();
       },
       outputStrings: {
         targetText: {
@@ -79,6 +85,7 @@ export default {
     },
     {
       id: 'Hells Lid Circling Winds',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27C8', source: 'Kamaitachi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27C8', source: 'Kamaitachi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27C8', source: 'Kamaitachi', capture: false }),
@@ -89,6 +96,7 @@ export default {
     },
     {
       id: 'Hells Lid Rolling Winds',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27C9', source: 'Kamaitachi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27C9', source: 'Kamaitachi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27C9', source: 'Kamaitachi', capture: false }),
@@ -99,13 +107,14 @@ export default {
     },
     {
       id: 'Hells Lid Sinister Tide',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27D4', source: 'Genbu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27D4', source: 'Genbu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27D4', source: 'Genbu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '27D4', source: '玄武', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27D4', source: '玄武', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27D4', source: '현무', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid water orb',
@@ -119,12 +128,14 @@ export default {
     },
     {
       id: 'Hells Lid Hell Of Waste',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '002B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Hells Lid Hell Of Waves',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27D3', source: 'Genbu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27D3', source: 'Genbu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27D3', source: 'Genbu', capture: false }),
@@ -307,3 +318,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

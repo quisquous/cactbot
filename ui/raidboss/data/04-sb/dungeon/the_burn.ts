@@ -2,13 +2,20 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  hedetet?: boolean;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBurn,
   timelineFile: 'the_burn.txt',
   triggers: [
     {
       id: 'The Burn Crystal Needle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3193', source: 'Hedetet' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3193', source: 'Hedetet' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3193', source: 'Hedetet' }),
@@ -20,9 +27,10 @@ export default {
     },
     {
       id: 'The Burn Hailfire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0002', capture: false }),
       condition: (data) => !data.hedetet,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Hide behind crystal',
@@ -36,9 +44,10 @@ export default {
     },
     {
       id: 'The Burn Shardstrike',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spread + Avoid Crystals',
@@ -52,13 +61,14 @@ export default {
     },
     {
       id: 'The Burn Crystal Shardfall',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3191', source: 'Hedetet', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3191', source: 'Hedetet', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3191', source: 'Hedetet', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3191', source: 'ヘデテト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3191', source: '赫德提特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3191', source: '헤데테트', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Hide behind crystal',
@@ -73,6 +83,7 @@ export default {
     {
       // This has a visible donut AoE, but the user must be inside the target ring to be safe.
       id: 'The Burn Crystal Dissonance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3192', source: 'Hedetet', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3192', source: 'Hedetet', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3192', source: 'Hedetet', capture: false }),
@@ -84,6 +95,7 @@ export default {
     {
       // Head marker 0002 is used in both the first two encounters.
       id: 'The Burn Dead Hedetet',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '368', source: 'Defective Drone', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '368', source: 'Defekt(?:e|er|es|en) Drohne', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '368', source: 'Drone Défectueux', capture: false }),
@@ -95,6 +107,7 @@ export default {
     },
     {
       id: 'The Burn Aetherochemical Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2D73', source: 'Defective Drone', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2D73', source: 'Defekt(?:e|er|es|en) Drohne', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2D73', source: 'Drone Défectueux', capture: false }),
@@ -106,6 +119,7 @@ export default {
     },
     {
       id: 'The Burn Aetherochemical Coil',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2D72', source: 'Defective Drone' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2D72', source: 'Defekt(?:e|er|es|en) Drohne' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2D72', source: 'Drone Défectueux' }),
@@ -117,9 +131,10 @@ export default {
     },
     {
       id: 'The Burn Aetherochemical Residue',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0002' }),
       condition: (data, matches) => data.me === matches.target && data.hedetet,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
@@ -134,9 +149,10 @@ export default {
     {
       // The NPC here is Mining Drone.
       id: 'The Burn Throttle',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7670', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'In line with smoking drone',
@@ -150,6 +166,7 @@ export default {
     },
     {
       id: 'The Burn Adit Driver',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2D78', source: 'Rock Biter', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2D78', source: 'Felsbeißer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2D78', source: 'Trancheur De Pierre', capture: false }),
@@ -157,7 +174,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2D78', source: '石刃', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2D78', source: '암석 절단날', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Rock Biters',
@@ -171,6 +188,7 @@ export default {
     },
     {
       id: 'The Burn Rime Wreath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '314B', source: 'Mist Dragon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '314B', source: 'Nebeldrache', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '314B', source: 'Dragon Des Brumes', capture: false }),
@@ -183,12 +201,13 @@ export default {
     {
       // Also handles Chilling Aspiration, which is randomly targeted.
       id: 'The Burn Frost Breath',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['001A', '000E'] }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.puddleCleaveOnYou();
+          return output.puddleCleaveOnYou!();
 
-        return output.avoidMarkerCone();
+        return output.avoidMarkerCone!();
       },
       outputStrings: {
         puddleCleaveOnYou: {
@@ -211,6 +230,7 @@ export default {
     },
     {
       id: 'The Burn Fog Plume',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3144', source: 'Mist Dragon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3144', source: 'Nebeldrache', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3144', source: 'Dragon Des Brumes', capture: false }),
@@ -218,7 +238,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3144', source: '雾龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3144', source: '안개 드래곤', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait Star Explosions',
@@ -409,3 +429,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

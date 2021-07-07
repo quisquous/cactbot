@@ -2,13 +2,22 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  dynamo?: boolean;
+  seenIntermission?: boolean;
+  tethers?: string[];
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheSwallowsCompass,
   timelineFile: 'swallows_compass.txt',
   triggers: [
     {
       id: 'Swallows Compass Tengu Clout',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B95', source: 'Otengu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B95', source: 'Otengu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B95', source: 'Ô-Tengu', capture: false }),
@@ -20,6 +29,7 @@ export default {
     },
     {
       id: 'Swallows Compass Tengu Might',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B94', source: 'Otengu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B94', source: 'Otengu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B94', source: 'Ô-Tengu' }),
@@ -31,6 +41,7 @@ export default {
     },
     {
       id: 'Swallows Compass Tengu Wile',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B97', source: 'Otengu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B97', source: 'Otengu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B97', source: 'Ô-Tengu', capture: false }),
@@ -42,9 +53,10 @@ export default {
     {
       // 7201 is Tengu Ember.
       id: 'Swallows Compass Ember Spawn',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7201', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Fire Orbs',
@@ -58,6 +70,7 @@ export default {
     },
     {
       id: 'Swallows Compass Flames Of Hate',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2898', source: 'Tengu Ember', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2898', source: 'Tengu-Glut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2898', source: 'Tengu-Bi', capture: false }),
@@ -65,7 +78,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2898', source: '天狗火', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2898', source: '텐구불', capture: false }),
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away From Fireballs',
@@ -79,6 +92,7 @@ export default {
     },
     {
       id: 'Swallows Compass Right Palm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B9D', source: 'Daidarabotchi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B9D', source: 'Daidarabotchi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B9D', source: 'Daidarabotchi', capture: false }),
@@ -89,6 +103,7 @@ export default {
     },
     {
       id: 'Swallows Compass Left Palm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B9E', source: 'Daidarabotchi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B9E', source: 'Daidarabotchi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B9E', source: 'Daidarabotchi', capture: false }),
@@ -99,15 +114,17 @@ export default {
     },
     {
       id: 'Swallows Compass Mountain Falls',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Swallows Compass Mirage',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: '5x Puddles on YOU',
@@ -121,6 +138,7 @@ export default {
     },
     {
       id: 'Swallows Compass Mythmaker',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2BA3', source: 'Daidarabotchi', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '2BA3', source: 'Daidarabotchi', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '2BA3', source: 'Daidarabotchi', capture: false }),
@@ -132,10 +150,11 @@ export default {
     },
     {
       id: 'Swallows Compass Six Fulms Under',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 2, // If the user stays in, they will get more reminders.
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'OUT OF THE LAKE',
@@ -149,6 +168,7 @@ export default {
     },
     {
       id: 'Swallows Compass Short End',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2BA6', '2D07'], source: ['Qitian Dasheng', 'Shadow Of The Sage'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2BA6', '2D07'], source: ['Qitian Dasheng', 'Schatten Des Weisen'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2BA6', '2D07'], source: ['Qitian Dasheng', 'Ombre De Qitian Dasheng'] }),
@@ -161,6 +181,7 @@ export default {
     },
     {
       id: 'Swallows Compass Mount Huaguo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['Qitian Dasheng', 'Schatten Des Weisen'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['Qitian Dasheng', 'Ombre De Qitian Dasheng'], capture: false }),
@@ -179,6 +200,7 @@ export default {
       // If there's no blue, we want to be away from red.
       // In order to avoid collisions and confusion, we collect first.
       id: 'Swallows Compass Both Ends Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2BA9', '2BAF'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2BA9', '2BAF'], source: ['Qitian Dasheng', 'Schatten Des Weisen'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2BA9', '2BAF'], source: ['Qitian Dasheng', 'Ombre De Qitian Dasheng'], capture: false }),
@@ -190,6 +212,7 @@ export default {
     {
       // 2BA8,2BAE is red, chariot, 2BA9,2BAF is blue, dynamo.
       id: 'Swallows Compass Both Ends Call',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2BA8', '2BA9', '2BAE', '2BAF'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2BA8', '2BA9', '2BAE', '2BAF'], source: ['Qitian Dasheng', 'Schatten Des Weisen'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2BA8', '2BA9', '2BAE', '2BAF'], source: ['Qitian Dasheng', 'Ombre De Qitian Dasheng'], capture: false }),
@@ -200,8 +223,8 @@ export default {
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
         if (data.dynamo)
-          return output.dynamo();
-        return output.chariot();
+          return output.dynamo!();
+        return output.chariot!();
       },
       run: (data) => delete data.dynamo,
       outputStrings: {
@@ -225,6 +248,7 @@ export default {
     },
     {
       id: 'Swallows Compass Five Fingered Punishment',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn('info'), // Info rather than alert to avoid collision with Both Ends.
     },
@@ -234,6 +258,7 @@ export default {
       // so we just track the phase instead.
       // The ability use here is unnamed, the teleport to the center to begin the intermission.
       id: 'Swallows Compass Intermission Tracking',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2CC7', source: 'Qitian Dasheng', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '2CC7', source: 'Qitian Dasheng', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '2CC7', source: 'Qitian Dasheng', capture: false }),
@@ -246,23 +271,25 @@ export default {
       // Either one or two tethers can be present for Long End.
       // We have to handle both possibilities, so we collect targets first for later analysis.
       id: 'Swallows Compass Long End Collect',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0029' }),
       run: (data, matches) => {
-        data.tethers = data.tethers || [];
+        data.tethers ??= [];
         data.tethers.push(matches.target);
       },
     },
     {
       id: 'Swallows Compass Long End Call',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0029', capture: false }),
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
-        if (data.tethers.includes(data.me)) {
+        if (data.tethers?.includes(data.me)) {
           if (data.seenIntermission)
-            return output.target();
-          return output.knockback();
+            return output.target!();
+          return output.knockback!();
         }
-        return output.avoid();
+        return output.avoid!();
       },
       run: (data) => delete data.tethers,
       outputStrings: {
@@ -462,3 +489,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
