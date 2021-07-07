@@ -2,9 +2,13 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // Sohm Al (normal)
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SohmAl,
   timelineFile: 'sohm_al.txt',
   timelineTriggers: [
@@ -32,24 +36,27 @@ export default {
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sohm Al Myath Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Sohm Al Myath Chyme',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gebirgsbrei', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Chyme Des Montagnes', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '圣山之糜', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '산의 유미즙', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Kill Chyme Add',
@@ -63,6 +70,7 @@ export default {
     },
     {
       id: 'Sohm Al Tioman Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0007' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
@@ -241,3 +249,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

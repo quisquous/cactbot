@@ -2,9 +2,13 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // Fractal Continuum
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheFractalContinuum,
   timelineFile: 'fractal_continuum.txt',
   timelineTriggers: [
@@ -72,13 +76,14 @@ export default {
     },
     {
       id: 'Fractal Big Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'F87', source: 'Minotaur', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'F87', source: 'Minotaurus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'F87', source: 'Minotaure', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: 'F87', source: 'ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'F87', source: '弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'F87', source: '미노타우로스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Use a cage',
@@ -92,9 +97,10 @@ export default {
     },
     {
       id: 'Fractal Aetherochemical Bomb',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '2D3', capture: false }),
       condition: (data) => data.CanCleanse(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cleanse bomb',
@@ -282,3 +288,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -2,9 +2,13 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // Aetherochemical Research Facility
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheAetherochemicalResearchFacility,
   timelineFile: 'aetherochemical_research_facility.txt',
   timelineTriggers: [
@@ -48,6 +52,7 @@ export default {
     },
     {
       id: 'Facility Inertia Stream',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
       netRegexDe: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
       netRegexFr: NetRegexes.ability({ id: '10ED', source: 'Horemakhet' }),
@@ -94,6 +99,7 @@ export default {
     },
     {
       id: 'Facility Universal Manipulation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1105', source: 'Ascian Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1105', source: 'Prim-Ascian' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1105', source: 'Primo-Ascien' }),
@@ -103,7 +109,7 @@ export default {
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand in dark portal',
@@ -117,6 +123,7 @@ export default {
     },
     {
       id: 'Facility Chaosphere',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Chaosphere', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Chaossphäre', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sphère De Chaos', capture: false }),
@@ -124,7 +131,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '混沌晶球', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '혼돈의 구체', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid your orb--pop others\'',
@@ -407,3 +414,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
