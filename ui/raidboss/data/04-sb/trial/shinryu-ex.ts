@@ -2,14 +2,23 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  phase?: number;
+  finalWing?: boolean;
+  shakerTargets?: string[];
+}
 
 // Shinryu Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladShinryusDomain,
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {
       id: 'ShinryuEx Heart Cleanup',
+      type: 'RemovedCombatant',
       netRegex: NetRegexes.removingCombatant({ name: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.removingCombatant({ name: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.removingCombatant({ name: 'Shinryu', capture: false }),
@@ -23,6 +32,7 @@ export default {
     },
     {
       id: 'ShinryuEx Phase 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
@@ -33,6 +43,7 @@ export default {
     },
     {
       id: 'ShinryuEx Phase 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
@@ -43,6 +54,7 @@ export default {
     },
     {
       id: 'ShinryuEx Phase 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
@@ -53,6 +65,7 @@ export default {
     },
     {
       id: 'ShinryuEx Phase 4',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
@@ -63,6 +76,7 @@ export default {
     },
     {
       id: 'ShinryuEx Akh Morn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
@@ -71,15 +85,15 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '25F3', source: '신룡' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.akhMornOnYou();
+          return output.akhMornOnYou!();
         else if (data.role === 'tank')
-          return output.akhMornOn({ player: data.ShortName(matches.target) });
+          return output.akhMornOn!({ player: data.ShortName(matches.target) });
       },
       infoText: (data, matches, output) => {
         if (matches.target === data.me || data.role === 'tank')
           return;
 
-        return output.akhRhaiSpreadAndMove();
+        return output.akhRhaiSpreadAndMove!();
       },
       outputStrings: {
         akhRhaiSpreadAndMove: {
@@ -110,13 +124,14 @@ export default {
     },
     {
       id: 'ShinryuEx Diamond Dust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '25DD', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25DD', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DD', source: '신룡', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Ice: Stack and Stop',
@@ -130,13 +145,14 @@ export default {
     },
     {
       id: 'ShinryuEx Dragonfist',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2611', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2611', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2611', source: '신룡', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Out of middle',
@@ -150,6 +166,7 @@ export default {
     },
     {
       id: 'ShinryuEx Hellfire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
@@ -157,7 +174,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '25DB', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DB', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get in water',
@@ -173,6 +190,7 @@ export default {
       // TODO: the original trigger didn't differentiate the two ability ids.
       // Probably the phase conditional could get removed if it did.
       id: 'ShinryuEx Hypernova',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: 'Aile Droite', capture: false }),
@@ -182,9 +200,9 @@ export default {
       durationSeconds: 7,
       alertText: (data, _matches, output) => {
         if (data.phase === 3)
-          return output.stopToGetFrozen();
+          return output.stopToGetFrozen!();
 
-        return output.stackInWater();
+        return output.stackInWater!();
       },
       outputStrings: {
         stopToGetFrozen: {
@@ -207,6 +225,7 @@ export default {
     },
     {
       id: 'ShinryuEx Judgement Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
@@ -214,7 +233,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '25DC', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DC', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'out of water',
@@ -228,6 +247,7 @@ export default {
     },
     {
       id: 'ShinryuEx Levinbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Aile Droite', target: 'Aile Droite', capture: false }),
@@ -237,9 +257,9 @@ export default {
       durationSeconds: 7,
       alertText: (data, _matches, output) => {
         if (data.phase === 3)
-          return output.baitBoltKeepMoving();
+          return output.baitBoltKeepMoving!();
 
-        return output.spreadOutNoWater();
+        return output.spreadOutNoWater!();
       },
       outputStrings: {
         baitBoltKeepMoving: {
@@ -262,6 +282,7 @@ export default {
     },
     {
       id: 'ShinryuEx Levinbolt Phase 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Aile Droite', target: 'Aile Droite', capture: false }),
@@ -270,7 +291,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       condition: (data) => data.phase === 3,
       delaySeconds: 9.5,
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'move away',
@@ -284,13 +305,14 @@ export default {
     },
     {
       id: 'ShinryuEx Icicle Left',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-15', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-15', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-15', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-15', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-15', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-15', capture: false }),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'icicle, lean west',
@@ -304,13 +326,14 @@ export default {
     },
     {
       id: 'ShinryuEx Icicle Right',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-25', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-25', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-25', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-25', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-25', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-25', capture: false }),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'icicle, lean east',
@@ -324,6 +347,7 @@ export default {
     },
     {
       id: 'ShinryuEx Tidal Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
@@ -332,7 +356,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '25DA', source: '신룡', capture: false }),
       delaySeconds: 3,
       durationSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Knockback, look for water',
@@ -346,6 +370,7 @@ export default {
     },
     {
       id: 'ShinryuEx Final Tidal Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
@@ -353,7 +378,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
       condition: (data) => data.role === 'healer',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'no more heals needed',
@@ -367,6 +392,7 @@ export default {
     },
     {
       id: 'ShinryuEx Tail Slap',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25E2', source: 'Tail', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25E2', source: 'Schwanz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25E2', source: 'Queue', capture: false }),
@@ -374,7 +400,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '25E2', source: '龙尾', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E2', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tail: Switch targets',
@@ -388,6 +414,7 @@ export default {
     },
     {
       id: 'ShinryuEx Heart',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'The Worm\'s Heart', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Shinryus Herz', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cœur Du Dragon', capture: false }),
@@ -399,7 +426,7 @@ export default {
         return data.phase === 1;
       },
       // TODO: If tail is alive, delay this message?
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Heart: Switch targets',
@@ -414,13 +441,14 @@ export default {
     {
       // TODO: can't find the id of this, so using all of them.
       id: 'ShinryuEx Divebomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '신룡', capture: false }),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'avoid divebomb',
@@ -434,6 +462,7 @@ export default {
     },
     {
       id: 'ShinryuEx Death Sentence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
@@ -442,13 +471,13 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '260A', source: '백금룡' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.deathSentenceOnYou();
+          return output.deathSentenceOnYou!();
         else if (data.role === 'healer')
-          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
+          return output.deathSentenceOn!({ player: data.ShortName(matches.target) });
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me && data.role === 'tank')
-          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
+          return output.deathSentenceOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         deathSentenceOn: {
@@ -471,6 +500,7 @@ export default {
     },
     {
       id: 'ShinryuEx Tera Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264B', source: 'Shinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '264B', source: 'Shinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '264B', source: 'Shinryu' }),
@@ -481,6 +511,7 @@ export default {
     },
     {
       id: 'ShinryuEx Wormwail',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
@@ -491,13 +522,14 @@ export default {
     },
     {
       id: 'ShinryuEx Breath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '264A', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264A', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264A', source: '신룡', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'front cleave',
@@ -511,6 +543,7 @@ export default {
     },
     {
       id: 'ShinryuEx Final Left Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2718', source: 'Left Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2718', source: 'Link(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2718', source: 'Aile Gauche', capture: false }),
@@ -518,7 +551,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2718', source: '左翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2718', source: '왼쪽 날개', capture: false }),
       condition: (data) => !data.finalWing,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.finalWing = true,
       outputStrings: {
         text: {
@@ -533,6 +566,7 @@ export default {
     },
     {
       id: 'ShinryuEx Final Right Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2719', source: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2719', source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2719', source: 'Aile Droite', capture: false }),
@@ -540,7 +574,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2719', source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2719', source: '오른쪽 날개', capture: false }),
       condition: (data) => !data.finalWing,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.finalWing = true,
       outputStrings: {
         text: {
@@ -555,14 +589,15 @@ export default {
     },
     {
       id: 'ShinryuEx Tethers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
       infoText: (data, _matches, output) => {
         if (data.phase === 3)
-          return output.breakTethersThenStack();
+          return output.breakTethersThenStack!();
 
-        return output.breakTethers();
+        return output.breakTethers!();
       },
       outputStrings: {
         breakTethersThenStack: {
@@ -585,9 +620,10 @@ export default {
     },
     {
       id: 'ShinryuEx Tail Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '007E' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'tail marker on you',
@@ -601,19 +637,20 @@ export default {
     },
     {
       id: 'ShinryuEx Shakers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: (data, matches) => {
-        data.shakerTargets = data.shakerTargets || [];
+        data.shakerTargets ??= [];
         data.shakerTargets.push(matches.target);
         return data.shakerTargets.length === 2;
       },
       alarmText: (data, _matches, output) => {
-        if (data.shakerTargets.includes(data.me))
-          return output.earthshakerOnYou();
+        if (data.shakerTargets?.includes(data.me))
+          return output.earthshakerOnYou!();
       },
       alertText: (data, _matches, output) => {
-        if (!data.shakerTargets.includes(data.me))
-          return output.avoidEarthshakers();
+        if (!data.shakerTargets || !data.shakerTargets.includes(data.me))
+          return output.avoidEarthshakers!();
       },
       run: (data) => delete data.shakerTargets,
       outputStrings: {
@@ -637,6 +674,7 @@ export default {
     },
     {
       id: 'ShinryuEx Cocoon Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
@@ -872,3 +910,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

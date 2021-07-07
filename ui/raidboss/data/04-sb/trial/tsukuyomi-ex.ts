@@ -3,14 +3,23 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  moonIsOut?: boolean;
+  moonlitCount?: number;
+  moonshadowedCount?: number;
+}
 
 // Tsukuyomi Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladTsukuyomisPain,
   timelineFile: 'tsukuyomi-ex.txt',
   triggers: [
     {
       id: 'Tsukuyomi Nightfall Gun',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
@@ -21,6 +30,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Nightfall Spear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
@@ -31,6 +41,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Torment',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
@@ -41,20 +52,20 @@ export default {
         if (matches.target === data.me || data.role !== 'tank')
           return;
 
-        return output.tankSwap();
+        return output.tankSwap!();
       },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.tankBusterOnYou();
+          return output.tankBusterOnYou!();
 
         if (data.role === 'healer')
-          return output.busterOn({ player: data.ShortName(matches.target) });
+          return output.busterOn!({ player: data.ShortName(matches.target) });
       },
       infoText: (data, matches, output) => {
         if (matches.target === data.me || data.role === 'tank' || data.role === 'healer')
           return;
 
-        return output.getOutOfFront();
+        return output.getOutOfFront!();
       },
       outputStrings: {
         getOutOfFront: {
@@ -72,6 +83,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Full Moon',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
@@ -82,6 +94,7 @@ export default {
     },
     {
       id: 'Tsukuyomi New Moon',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
@@ -92,6 +105,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Dark Blade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
@@ -100,8 +114,8 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.moonIsOut)
-          return output.leftAndOut();
-        return output.leftAndIn();
+          return output.leftAndOut!();
+        return output.leftAndIn!();
       },
       outputStrings: {
         leftAndOut: {
@@ -124,6 +138,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Bright Blade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
@@ -132,8 +147,8 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.moonIsOut)
-          return output.rightAndOut();
-        return output.rightAndIn();
+          return output.rightAndOut!();
+        return output.rightAndIn!();
       },
       outputStrings: {
         rightAndOut: {
@@ -156,23 +171,27 @@ export default {
     },
     {
       id: 'Tsukuyomi Meteor Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0083' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'Tsukuyomi Lunacy',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       response: Responses.stackMarker(),
     },
     {
       id: 'Tsukuyomi Hagetsu',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Tsukuyomi Dance of the Dead',
+      type: 'GameLog',
       // There's no "starts using" here.  She pushes at 35% to this ability.
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
@@ -186,6 +205,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Supreme Selenomancy',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
@@ -200,6 +220,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
@@ -216,9 +237,13 @@ export default {
     },
     {
       id: 'Tsukuyomi Moonlit Debuff',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
-      condition: (data, matches) => matches.target === data.me && data.moonlitCount >= 4,
-      infoText: (_data, _matches, output) => output.text(),
+      condition: (data, matches) => {
+        const result = matches.target === data.me && data.moonlitCount && data.moonlitCount >= 4;
+        return !!result;
+      },
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move to Black!',
@@ -232,6 +257,7 @@ export default {
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
@@ -248,9 +274,14 @@ export default {
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
-      condition: (data, matches) => matches.target === data.me && data.moonshadowedCount >= 4,
-      infoText: (_data, _matches, output) => output.text(),
+      condition: (data, matches) => {
+        const result = matches.target === data.me &&
+          data.moonshadowedCount && data.moonshadowedCount >= 4;
+        return !!result;
+      },
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move to White!',
@@ -501,3 +532,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

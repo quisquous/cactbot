@@ -2,22 +2,27 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // Note: no warnings for Sweeping Flames, Tail Sweep, or Roar.
 
 // Rathalos Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheGreatHuntExtreme,
   triggers: [
     {
       id: 'RathEx Mangle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '리오레우스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mangle',
@@ -31,13 +36,14 @@ export default {
     },
     {
       id: 'RathEx Rush',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '리오레우스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Rush',
@@ -51,13 +57,14 @@ export default {
     },
     {
       id: 'RathEx Flaming Recoil',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '리오레우스', capture: false }),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Flaming Recoil',
@@ -71,9 +78,10 @@ export default {
     },
     {
       id: 'RathEx Fire Breath',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0081' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Fire Breath on YOU',
@@ -87,11 +95,13 @@ export default {
     },
     {
       id: 'RathEx Fireball',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0084', '005D'] }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'RathEx Adds',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Steppe Sheep', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Steppenschaf', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Mouton De La Steppe', capture: false }),
@@ -141,3 +151,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
