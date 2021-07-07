@@ -17,8 +17,8 @@ import './oopsy_common.css';
 
 UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   const options = { ...defaultOptions };
-  let initListView: OopsyListView | undefined;
-  let initMistakeCollector: MistakeCollector | undefined;
+  let initListView: OopsyListView;
+  let initMistakeCollector: MistakeCollector;
 
   const summaryElement = document.getElementById('summary');
   const liveListElement = document.getElementById('livelist');
