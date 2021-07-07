@@ -18,11 +18,7 @@ import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlay
 import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
 import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
-import {
-  defaultLocale, emulatorButtons, emulatorDeleteModal, emulatorDisconnectedModal,
-  emulatorEncounterInfo, emulatorImportModal, emulatorIntroModal, emulatorTitle,
-  emulatorTooltips, lookupEndStatus, lookupStartStatuses,
-} from './emulator/translations';
+import { translate, emulatorTranslations, emulatorTooltipTranslations, lookupEndStatus, lookupStartStatuses, emulatorTemplateTranslations } from './emulator/translations';
 import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
 import EncounterTab from './emulator/ui/EncounterTab';
 import ProgressBar from './emulator/ui/ProgressBar';
@@ -73,102 +69,27 @@ const hideModal = (selector = '.modal.show'): HTMLElement => {
 };
 
 const applyTranslation = (lang: Lang) => {
-  document.title = defaultLocale(lang, emulatorTitle);
-
-  // Top-right connected indicator tooltips
-  querySelectorSafe(document, '.connectedIndicator').title =
-    defaultLocale(lang, emulatorTooltips.connectedIndicator);
-  querySelectorSafe(document, '.disconnectedIndicator').title =
-    defaultLocale(lang, emulatorTooltips.disconnectedIndicator);
-
-  // Trigger detail area checkboxes
-  querySelectorSafe(document, '.triggerHideSkippedContainer').title =
-    defaultLocale(lang, emulatorTooltips.hideSkippedTooltip);
-  querySelectorSafe(document, 'label[for=hideSkipped]').innerHTML =
-    defaultLocale(lang, emulatorTooltips.hideSkipped);
-  querySelectorSafe(document, '.triggerHideCollectorContainer').title =
-    defaultLocale(lang, emulatorTooltips.hideCollectorsTooltip);
-  querySelectorSafe(document, 'label[for=hideCollector]').innerHTML =
-    defaultLocale(lang, emulatorTooltips.hideCollectors);
-
-  // Buttons
-  querySelectorSafe(document, '.loadNetworkLogButton').innerHTML =
-    defaultLocale(lang, emulatorButtons.loadNetworkLog);
-  querySelectorSafe(document, '.exportDBButton').innerHTML =
-    defaultLocale(lang, emulatorButtons.exportDatabase);
-  querySelectorSafe(document, '.importDBButton').innerHTML =
-    defaultLocale(lang, emulatorButtons.importDatabase);
-  querySelectorSafe(document, '.clearDBButton').innerHTML =
-    defaultLocale(lang, emulatorButtons.clearDatabase);
-  querySelectorSafe(document, '.doneButton').innerHTML =
-    defaultLocale(lang, emulatorButtons.done);
-
-  // Repeated buttons
-  querySelectorAllSafe(document, '.yesButton').forEach(
-      (btn) => {
-        btn.innerHTML = defaultLocale(lang, emulatorButtons.yes);
-      });
-  querySelectorAllSafe(document, '.noButton').forEach(
-      (btn) => {
-        btn.innerHTML = defaultLocale(lang, emulatorButtons.no);
-      });
-  querySelectorAllSafe(document, '.closeButton').forEach(
-      (btn) => {
-        btn.innerHTML = defaultLocale(lang, emulatorButtons.close);
-      });
-
-  // Intro modal
-  const introModal = querySelectorSafe(document, '.introModal');
-  querySelectorSafe(introModal, '.modal-title').innerHTML =
-    defaultLocale(lang, emulatorIntroModal.title);
-  querySelectorSafe(introModal, '.modal-body').innerHTML =
-    defaultLocale(lang, emulatorIntroModal.body);
-
-  // Import modal
-  const importModal = querySelectorSafe(document, '.importProgressModal');
-  querySelectorSafe(importModal, '.modal-title').innerHTML =
-    defaultLocale(lang, emulatorImportModal.title);
-  querySelectorSafe(importModal, '.modal-body-contents').innerHTML =
-    defaultLocale(lang, emulatorImportModal.body);
-
-  // Delete database modal
-  const deleteModal = querySelectorSafe(document, '.deleteDBModal');
-  querySelectorSafe(deleteModal, '.modal-title').innerHTML =
-    defaultLocale(lang, emulatorDeleteModal.title);
-  querySelectorSafe(deleteModal, '.modal-body').innerHTML =
-    defaultLocale(lang, emulatorDeleteModal.body);
-
-  // Disconnected modal
-  const discModal = querySelectorSafe(document, '.disconnectedModal');
-  querySelectorSafe(discModal, '.modal-title').innerHTML =
-    defaultLocale(lang, emulatorDisconnectedModal.title);
-  querySelectorSafe(discModal, '.modal-body').innerHTML =
-    defaultLocale(lang, emulatorDisconnectedModal.body);
-
-  // Encounter info template
-  const infoDiv = getTemplateChild(document, 'template.encounterInfo');
-  querySelectorSafe(infoDiv, '.encounterLoad').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.loadEncounter);
-  querySelectorSafe(infoDiv, '.encounterParse').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.reparseEncounter);
-  querySelectorSafe(infoDiv, '.encounterPrune').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.pruneEncounter);
-  querySelectorSafe(infoDiv, '.encounterDelete').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.deleteEncounter);
-  querySelectorSafe(infoDiv, '.encounterZone').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.zone);
-  querySelectorSafe(infoDiv, '.encounterStart').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.start);
-  querySelectorSafe(infoDiv, '.encounterDuration').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.duration);
-  querySelectorSafe(infoDiv, '.encounterOffset').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.pullAt);
-  querySelectorSafe(infoDiv, '.encounterName').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.name);
-  querySelectorSafe(infoDiv, '.encounterStartStatus').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.startStatus);
-  querySelectorSafe(infoDiv, '.encounterEndStatus').innerHTML =
-    defaultLocale(lang, emulatorEncounterInfo.endStatus);
+  for (const [key, value] of Object.entries(emulatorTranslations)) {
+    querySelectorAllSafe(document, '.translate' + key).forEach(
+        (elem) => {
+          elem.innerHTML = translate(lang, value);
+        });
+  }
+  for (const [key, value] of Object.entries(emulatorTooltipTranslations)) {
+    querySelectorAllSafe(document, '.translate' + key).forEach(
+        (elem) => {
+          elem.title = translate(lang, value);
+        });
+  }
+  for (const [sel, trans] of Object.entries(emulatorTemplateTranslations)) {
+    const template = getTemplateChild(document, sel);
+    for (const [key, value] of Object.entries(trans)) {
+      querySelectorAllSafe(template, '.translate' + key).forEach(
+          (elem) => {
+            elem.innerHTML = translate(lang, value);
+          });
+    }
+  }
 };
 
 // Default language to en until we know what language to use

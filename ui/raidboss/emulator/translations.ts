@@ -1,46 +1,50 @@
 import { Lang } from '../../../resources/languages';
 import { LocaleObject, LocaleText } from '../../../types/trigger';
 
-export const defaultLocale = <T>(lang: Lang, obj: LocaleObject<T>): T => {
+export const translate = <T>(lang: Lang, obj: LocaleObject<T>): T => {
   return obj[lang] ?? obj['en'];
 };
 
-export const emulatorButtons = {
-  yes: {
+type Translation = { [selector: string]: LocaleText };
+
+const emulatorButtons: Translation = {
+  '.yesButton': {
     en: 'Yes',
   },
-  no: {
+  '.noButton': {
     en: 'No',
   },
-  close: {
+  '.closeButton': {
     en: 'Close',
   },
-  done: {
+  '.doneButton': {
     en: 'Done<span class="doneBtnTimeout"></span>',
   },
-  loadNetworkLog: {
+  '.loadNetworkLogButton': {
     en: 'Load Network Log',
   },
-  exportDatabase: {
+  '.exportDBButton': {
     en: 'Export DB',
   },
-  importDatabase: {
+  '.importDBButton': {
     en: 'Import DB',
   },
-  clearDatabase: {
+  '.clearDBButton': {
     en: 'Clear DB',
   },
-};
+} as const;
 
-export const emulatorTitle: LocaleText = {
-  en: 'Cactbot Raid Emulator',
-};
+const emulatorTitle: Translation = {
+  '.title': {
+    en: 'Cactbot Raid Emulator',
+  },
+} as const;
 
-export const emulatorImportModal = {
-  title: {
+const emulatorImportModal: Translation = {
+  '.importProgressModal .modal-title': {
     en: 'Log File Import Progress',
   },
-  body: {
+  '.importProgressModal .modal-body-contents': {
     en: `<h3>Latest encounter:</h3>
     Zone: <span class="zone"></span><br />
     Encounter: <span class="encounter"></span><br />
@@ -52,22 +56,22 @@ export const emulatorImportModal = {
     End Status: <span class="endStatus"></span><br />
     Line Count: <span class="lineCount"></span><br />`,
   },
-};
+} as const;
 
-export const emulatorDeleteModal = {
-  title: {
+const emulatorDeleteModal: Translation = {
+  '.deleteDBModal .modal-title': {
     en: 'Delete Encounter Database',
   },
-  body: {
+  '.deleteDBModal .modal-body': {
     en: '<p>You are about to delete the encounter database. Are you sure?</p>',
   },
-};
+} as const;
 
-export const emulatorIntroModal = {
-  title: {
+const emulatorIntroModal: Translation = {
+  '.introModal .modal-title': {
     en: 'Introduction',
   },
-  body: {
+  '.introModal .modal-body': {
     en: `<p>Welcome to the Raid Emulator.</p>
     <p>This tool replays encounters and shows what triggers were fired when, and allows you to view the encounter from any player's perspective.</p>
     <p>This tool optionally accepts an <strong>OVERLAY_WS</strong> parameter to connect to an ACT web socket with both ngld's OverlayPlugin and the Cactbot plugin loaded.</p>
@@ -92,13 +96,13 @@ export const emulatorIntroModal = {
       </ul>
     </p>`,
   },
-};
+} as const;
 
-export const emulatorDisconnectedModal = {
-  title: {
+const emulatorDisconnectedModal: Translation = {
+  '.disconnectedModal .modal-title': {
     en: 'Currently Disconnected',
   },
-  body: {
+  '.disconnectedModal .modal-body': {
     en: `<p>Raid Emulator is currently disconnected from ACT.</p>
     <p>Raid Emulator will use the default settings for raidboss. These are:</p>
     <ul>
@@ -108,63 +112,88 @@ export const emulatorDisconnectedModal = {
       <li>Timeline language: <span class="discLangTimeline"></span></li>
     </ul>`,
   },
-};
+} as const;
 
-export const emulatorTooltips = {
-  hideSkipped: {
+const emulatorLabels: Translation = {
+  ' label[for=hideSkipped]': {
     en: 'Hide Skipped',
   },
-  hideSkippedTooltip: {
-    en: 'Hide triggers that were not executed',
-  },
-  hideCollectors: {
+  ' label[for=hideCollector]': {
     en: 'Hide Collectors',
   },
-  hideCollectorsTooltip: {
+} as const;
+
+const emulatorTooltips: Translation = {
+  '.triggerHideSkipped': {
+    en: 'Hide triggers that were not executed',
+  },
+  '.triggerHideCollector': {
     en: 'Hide triggers that had no output',
   },
-  connectedIndicator: {
+  '.connectedIndicator': {
     en: 'Connected to websocket',
   },
-  disconnectedIndicator: {
+  '.disconnectedIndicator': {
     en: 'Disconnected from websocket',
   },
-};
+} as const;
 
-export const emulatorEncounterInfo = {
-  loadEncounter: {
+const emulatorEncounterInfo: Translation = {
+  '.encounterLoad': {
     en: 'Load Encounter',
   },
-  reparseEncounter: {
+  '.encounterParse': {
     en: 'Reparse Encounter',
   },
-  pruneEncounter: {
+  '.encounterPrune': {
     en: 'Prune Encounter',
   },
-  deleteEncounter: {
+  '.encounterDelete': {
     en: 'Delete Encounter',
   },
-  zone: {
+  '.encounterZone': {
     en: 'Zone: <span class="label"></span>',
   },
-  start: {
+  '.encounterStart': {
     en: 'Start: <span class="label"></span>',
   },
-  duration: {
+  '.encounterDuration': {
     en: 'Duration: <span class="label"></span>',
   },
-  pullAt: {
+  '.encounterOffset': {
     en: 'Pull At: <span class="label"></span>',
   },
-  name: {
+  '.encounterName': {
     en: 'Name: <span class="label"></span>',
   },
-  startStatus: {
+  '.encounterStartStatus': {
     en: 'Start Status: <span class="label"></span>',
   },
-  endStatus: {
+  '.encounterEndStatus': {
     en: 'End Status: <span class="label"></span>',
   },
+} as const;
+
+// These elements get their innerHTML set to the translated value
+export const emulatorTranslations: Translation = {
+  ...emulatorButtons,
+  ...emulatorTitle,
+  ...emulatorImportModal,
+  ...emulatorDeleteModal,
+  ...emulatorIntroModal,
+  ...emulatorDisconnectedModal,
+  ...emulatorLabels,
+} as const;
+
+// These elements get their title set to the translated value
+export const emulatorTooltipTranslations: Translation = {
+  ...emulatorTooltips,
+} as const;
+
+// Template elements need special handling, any templates that have translatable elements
+// should be listed here
+export const emulatorTemplateTranslations: { [selector: string]: Translation } = {
+  'template.encounterInfo': emulatorEncounterInfo,
 };
 
 export const emulatorStartStatuses = {
@@ -208,7 +237,7 @@ export const lookupStartStatuses = (lang: Lang, statusesStr: string): string => 
   for (const status of engStatuses) {
     for (const map of Object.values(emulatorStartStatuses)) {
       if (map.en === status) {
-        transStatuses.push(defaultLocale(lang, map));
+        transStatuses.push(translate(lang, map));
         break;
       }
     }
@@ -219,7 +248,7 @@ export const lookupStartStatuses = (lang: Lang, statusesStr: string): string => 
 export const lookupEndStatus = (lang: Lang, status: string): string => {
   for (const map of Object.values(emulatorEndStatuses)) {
     if (map.en === status)
-      return defaultLocale(lang, map);
+      return translate(lang, map);
   }
   return status;
 };
