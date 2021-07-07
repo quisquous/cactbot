@@ -423,7 +423,8 @@ class RaidbossConfigurator {
           continue;
         const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');
-        partDiv.innerText = parts[i];
+        // Use innerHTML here because of <Emphasis>Whorleater</Emphasis>.
+        partDiv.innerHTML = parts[i];
         headerDiv.appendChild(partDiv);
       }
 
