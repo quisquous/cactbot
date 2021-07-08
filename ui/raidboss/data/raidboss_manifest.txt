@@ -268,7 +268,7 @@
 05-shb/raid/e6s.txt
 05-shb/raid/e7n.js
 05-shb/raid/e7n.txt
-05-shb/raid/e7s.js
+05-shb/raid/e7s.ts
 05-shb/raid/e7s.txt
 05-shb/raid/e8n.js
 05-shb/raid/e8n.txt
