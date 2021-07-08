@@ -182,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 1,
       suppressSeconds: 5,
       alertText: (data, matches, output) => {
-        if (data.anguish && data.anguish.length > 1)
+        if (data.anguish?.length > 1)
           return output.stackOnYourRock!();
 
         if (matches.target === data.me)
