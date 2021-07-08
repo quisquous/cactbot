@@ -1,6 +1,12 @@
 Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheFistOfTheFatherSavage,
   timelineFile: 'a1s.txt',
+  initData: () => {
+    return {
+      hydro: [],
+      hyper: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'A1S Emergency Liftoff',
@@ -31,10 +37,7 @@ Options.Triggers.push({
       id: 'A1S Hydrothermal Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: (data, matches) => {
-        data.hydro = data.hydro || [];
-        data.hydro.push(matches.target);
-      },
+      run: (data, matches) => data.hydro.push(matches.target),
     },
     {
       id: 'A1S Hydrothermal You',
@@ -60,7 +63,6 @@ Options.Triggers.push({
       condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
       infoText: (data, _matches, output) => {
-        data.hydro = data.hydro || [];
         if (data.hydro.length === 0)
           return;
         return output.text({ players: data.hydro.map((x) => data.ShortName(x)).join(', ') });
@@ -81,7 +83,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       delaySeconds: 10,
-      run: (data) => delete data.hydro,
+      run: (data) => data.hydro = [],
     },
     {
       id: 'A1S Resin Bomb',
@@ -113,10 +115,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
       netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
-      run: (data, matches) => {
-        data.hyper = data.hyper || [];
-        data.hyper.push(matches.target);
-      },
+      run: (data, matches) => data.hyper.push(matches.target),
     },
     {
       id: 'A1S Hypercompressed You',
@@ -143,7 +142,6 @@ Options.Triggers.push({
       delaySeconds: 0.3,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
-        data.hyper = data.hyper || [];
         if (data.hyper.includes(data.me))
           return;
         // TODO: maybe need some way to make calling Conditions look less
@@ -166,7 +164,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 10,
-      run: (data) => delete data.hyper,
+      run: (data) => data.hyper = [],
     },
   ],
   timelineReplace: [

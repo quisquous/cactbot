@@ -1,6 +1,11 @@
 Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheEyesOfTheCreatorSavage,
   timelineFile: 'a9s.txt',
+  initData: () => {
+    return {
+      stockpileCount: 0,
+    };
+  },
   timelineTriggers: [
     {
       id: 'A9S Panzerschreck',
@@ -13,7 +18,6 @@ Options.Triggers.push({
       id: 'A9S Power Generator',
       regex: /Power Generator/,
       infoText: (data, _matches, output) => {
-        let _a;
         const outputs = {
           1: output.oneEachNWSE(),
           2: output.twoNW(),
@@ -24,7 +28,7 @@ Options.Triggers.push({
           7: output.twoSE(),
           8: output.oneNW(),
         };
-        return outputs[(_a = data.stockpileCount) !== null && _a !== void 0 ? _a : 0];
+        return outputs[data.stockpileCount];
       },
       outputStrings: {
         oneEachNWSE: {
@@ -66,14 +70,13 @@ Options.Triggers.push({
       regex: /Alarum/,
       delaySeconds: 1,
       infoText: (data, _matches, output) => {
-        let _a;
         const outputs = {
           5: output.southeast(),
           6: output.southwest(),
           7: output.southeast(),
           8: output.southwest(),
         };
-        return outputs[(_a = data.stockpileCount) !== null && _a !== void 0 ? _a : 0];
+        return outputs[data.stockpileCount];
       },
       outputStrings: {
         southeast: {
@@ -123,11 +126,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A38', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A38', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A38', capture: false }),
-      run: (data) => {
-        let _a;
-        (_a = data.stockpileCount) !== null && _a !== void 0 ? _a : (data.stockpileCount = 0);
-        data.stockpileCount++;
-      },
+      run: (data) => data.stockpileCount++,
     },
     {
       id: 'A9S Scrapline',
@@ -255,7 +254,6 @@ Options.Triggers.push({
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
       suppressSeconds: 30,
       infoText: (data, _matches, output) => {
-        let _a;
         // Some of the last phases have multiple options.
         // This is an old fight, so just pick one for people.
         const outputs = {
@@ -268,7 +266,7 @@ Options.Triggers.push({
           7: output.northwest(),
           8: output.southwest(),
         };
-        return outputs[(_a = data.stockpileCount) !== null && _a !== void 0 ? _a : 0];
+        return outputs[data.stockpileCount];
       },
       outputStrings: {
         northeast: {

@@ -6,6 +6,11 @@
 Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
+  initData: () => {
+    return {
+      longNeedlePrey: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'A8S Hydrothermal Missile',
@@ -387,11 +392,7 @@ Options.Triggers.push({
       id: 'A8S Long Needle Prey Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: (data, matches) => {
-        let _a;
-        (_a = data.longNeedlePrey) !== null && _a !== void 0 ? _a : (data.longNeedlePrey = []);
-        data.longNeedlePrey.push(matches.target);
-      },
+      run: (data, matches) => data.longNeedlePrey.push(matches.target),
     },
     {
       id: 'A8S Short Needle',
@@ -414,16 +415,14 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
-      condition: (data) => data.longNeedleStack !== undefined && data.longNeedlePrey !== undefined,
+      condition: (data) => data.longNeedleStack !== undefined && data.longNeedlePrey.length !== 0,
       suppressSeconds: 10,
       alarmText: (data, _matches, output) => {
-        let _a;
-        if ((_a = data.longNeedlePrey) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+        if (data.longNeedlePrey.includes(data.me))
           return output.preyGetOut();
       },
       alertText: (data, _matches, output) => {
-        let _a;
-        if ((_a = data.longNeedlePrey) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+        if (data.longNeedlePrey.includes(data.me))
           return;
         const target = data.longNeedleStack;
         if (target === data.me)
@@ -432,7 +431,7 @@ Options.Triggers.push({
       },
       run: (data) => {
         delete data.longNeedleStack;
-        delete data.longNeedlePrey;
+        data.longNeedlePrey = [];
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,

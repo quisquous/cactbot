@@ -17,6 +17,11 @@ const chargeOutputStrings = {
 Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
+  initData: () => {
+    return {
+      charges: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'A10S Goblin Rush',
@@ -119,24 +124,22 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB[89AB]' }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB[89AB]' }),
       preRun: (data, matches) => {
-        let _a; let _b;
-        const charges = (_a = data.charges) !== null && _a !== void 0 ? _a : (data.charges = []);
+        let _a;
         const chargeMap = {
           '1AB8': 'getIn',
           '1AB9': 'getOut',
           '1ABA': 'spread',
           '1ABB': 'stackMarker',
         };
-        charges.push((_b = chargeMap[matches.id]) !== null && _b !== void 0 ? _b : 'unknown');
+        data.charges.push((_a = chargeMap[matches.id]) !== null && _a !== void 0 ? _a : 'unknown');
       },
       response: (data, _matches, output) => {
-        let _a; let _b;
+        let _a;
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
         // Call the first one out with alert, the other two with info.
-        (_a = data.charges) !== null && _a !== void 0 ? _a : (data.charges = []);
         const severity = data.charges.length > 1 ? 'infoText' : 'alertText';
-        const charge = (_b = data.charges[data.charges.length - 1]) !== null && _b !== void 0 ? _b : 'unknown';
+        const charge = (_a = data.charges[data.charges.length - 1]) !== null && _a !== void 0 ? _a : 'unknown';
         return { [severity]: output[charge]() };
       },
     },
@@ -149,10 +152,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A9[789]', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[789]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[789]', capture: false }),
-      run: (data) => {
-        if (data.charges)
-          data.charges.shift();
-      },
+      run: (data) => data.charges.shift(),
     },
     {
       id: 'A10S Charge Double Triple',
@@ -167,7 +167,7 @@ Options.Triggers.push({
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
-        if (!data.charges || !data.charges.length)
+        if (data.charges.length === 0)
           return;
         const charge = data.charges.shift();
         if (charge)
@@ -186,7 +186,7 @@ Options.Triggers.push({
       delaySeconds: 10,
       run: (data) => {
         // Cleanup just in case.
-        delete data.charges;
+        data.charges = [];
       },
     },
     {

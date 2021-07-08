@@ -18,6 +18,12 @@ const bombLocation = (matches) => {
 Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
+  initData: () => {
+    return {
+      bombCount: 0,
+      boostCount: 0,
+    };
+  },
   timelineTriggers: [
     {
       id: 'A5S Kaltstrahl',
@@ -131,11 +137,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '奇才のラットフィンクス', id: '1590', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '1590', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '1590', capture: false }),
-      preRun: (data) => {
-        let _a;
-        (_a = data.bombCount) !== null && _a !== void 0 ? _a : (data.bombCount = 0);
-        data.bombCount++;
-      },
+      preRun: (data) => data.bombCount++,
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
       infoText: (data, _matches, output) => {
         if (data.bombCount === 1)
@@ -171,8 +173,6 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '16A6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '16A6', capture: false }),
       run: (data) => {
-        let _a;
-        (_a = data.boostCount) !== null && _a !== void 0 ? _a : (data.boostCount = 0);
         data.boostCount++;
         data.boostBombs = [];
       },

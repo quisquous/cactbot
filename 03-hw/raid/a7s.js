@@ -38,6 +38,12 @@ Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',
+  initData: () => {
+    return {
+      phase: 0,
+      grabbed: [],
+    };
+  },
   triggers: [
     {
       id: 'A7S Phase Counter',
@@ -48,11 +54,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'シャノア', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '夏诺雅', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '샤노아', capture: false }),
-      run: (data) => {
-        let _a;
-        (_a = data.phase) !== null && _a !== void 0 ? _a : (data.phase = 0);
-        data.phase++;
-      },
+      run: (data) => data.phase++,
     },
     {
       id: 'A7S Sizzlebeam',
@@ -183,7 +185,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F4', capture: false }),
       run: (data) => {
-        delete data.grabbed;
+        data.grabbed = [];
         delete data.stickyloom;
       },
     },
@@ -196,10 +198,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '万能のクイックシンクス', id: '15C0' }),
       netRegexCn: NetRegexes.ability({ source: '万事通 奎克辛克斯', id: '15C0' }),
       netRegexKo: NetRegexes.ability({ source: '만능의 퀵싱크스', id: '15C0' }),
-      run: (data, matches) => {
-        data.grabbed = data.grabbed || [];
-        data.grabbed.push(matches.target);
-      },
+      run: (data, matches) => data.grabbed.push(matches.target),
     },
     {
       id: 'A7S Stickyloom',

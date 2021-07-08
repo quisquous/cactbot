@@ -1,6 +1,11 @@
 Options.Triggers.push({
   zoneId: ZoneId.AlexanderTheSoulOfTheCreatorSavage,
   timelineFile: 'a12s.txt',
+  initData: () => {
+    return {
+      scourge: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'A12S Divine Spear',
@@ -36,7 +41,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: (data, matches) => {
         // Ignore Holy Scourge later in the fight.
-        if (data.scourge && data.scourge.length > 2)
+        if (data.scourge.length > 2)
           return false;
         return data.me === matches.target;
       },
@@ -56,11 +61,7 @@ Options.Triggers.push({
       id: 'A12S Blazing Scourge Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: (data, matches) => {
-        let _a;
-        (_a = data.scourge) !== null && _a !== void 0 ? _a : (data.scourge = []);
-        data.scourge.push(matches.target);
-      },
+      run: (data, matches) => data.scourge.push(matches.target),
     },
     {
       id: 'A12S Blazing Scourge Report',
@@ -68,19 +69,18 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: (data) => {
         // Ignore Holy Scourge later in the fight.
-        if (data.scourge && data.scourge.length > 2)
+        if (data.scourge.length > 2)
           return false;
         return data.role === 'healer' || data.job === 'BLU';
       },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        let _a;
         // Ignore Holy Scourge later in the fight.
-        if (data.scourge && data.scourge.length > 2)
+        if (data.scourge.length > 2)
           return false;
-        const names = (_a = data.scourge) === null || _a === void 0 ? void 0 : _a.map((x) => data.ShortName(x)).sort();
-        if (!names || names.length === 0)
+        const names = data.scourge.map((x) => data.ShortName(x)).sort();
+        if (names.length === 0)
           return;
         return output.text({ players: names.join(', ') });
       },
