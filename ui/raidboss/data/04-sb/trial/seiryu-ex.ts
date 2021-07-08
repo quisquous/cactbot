@@ -212,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9', capture: false }),
       condition: (data) => {
-        if (!data.blazing || !data.markers || data.markers.length !== 4)
+        if (!data.blazing || data.markers?.length !== 4)
           return false;
         return !data.markers.includes(data.me);
       },
