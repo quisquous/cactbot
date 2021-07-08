@@ -240,8 +240,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
       condition: (data, matches) => {
-        const result = matches.target === data.me && data.moonlitCount && data.moonlitCount >= 4;
-        return !!result;
+        if (matches.target !== data.me)
+          return false;
+        return data.moonlitCount !== undefined && data.moonlitCount >= 4;
       },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -277,9 +278,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
       condition: (data, matches) => {
-        const result = matches.target === data.me &&
-          data.moonshadowedCount && data.moonshadowedCount >= 4;
-        return !!result;
+        if (matches.target !== data.me)
+          return false;
+        return data.moonlitCount !== undefined && data.moonlitCount >= 4;
       },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
