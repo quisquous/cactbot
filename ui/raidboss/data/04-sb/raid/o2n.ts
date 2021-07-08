@@ -247,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.antilight!();
       },
       run: (data) => {
-        data.antiCounter ??= 0;
+        data.antiCounter = (data.antiCounter ?? 0) + 1;
         data.antiCounter += 1;
       },
       outputStrings: {

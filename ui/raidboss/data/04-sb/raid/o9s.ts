@@ -164,8 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
-        data.entropyCount ??= 0;
-        data.entropyCount += 1;
+        data.entropyCount = (data.entropyCount ?? 0) + 1;
       },
       delaySeconds: (data, matches) => {
         // Warn dps earlier to stack.
@@ -582,8 +581,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
       run: (data) => {
-        data.blazeCount ??= 0;
-        data.blazeCount++;
+        data.blazeCount = (data.blazeCount ?? 0) + 1;
         if (data.blazeCount >= 3)
           data.phaseType = 'enrage';
       },
