@@ -29,6 +29,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'UWU Aetherochemical Laser Middle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B84', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B84', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B84', capture: false }),
@@ -48,6 +49,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Aetherochemical Laser Right',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B85', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B85', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B85', capture: false }),
@@ -67,6 +69,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Aetherochemical Laser Left',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B86', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B86', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B86', capture: false }),
@@ -87,6 +90,7 @@ Options.Triggers.push({
     // Phases
     {
       id: 'UWU Suppression Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -98,6 +102,7 @@ Options.Triggers.push({
     {
       // Wait after suppression for primal triggers at the end.
       id: 'UWU Finale Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -109,6 +114,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Garuda Slipstream',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
@@ -130,6 +136,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Garuda Mistral Song Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -146,6 +153,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Garuda Mistral Song Tank',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010', capture: false }),
       condition: (data) => data.role === 'tank',
       suppressSeconds: 5,
@@ -163,6 +171,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Garuda Spiny Plume',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Spiny Plume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Dornig(?:e|er|es|en) Federsturm', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Plume Perforante', capture: false }),
@@ -184,6 +193,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Fetters',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '179' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 45,
@@ -201,6 +211,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Searing Wind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
@@ -222,6 +233,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Flaming Crush',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0075', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -237,6 +249,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Garuda Woken',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Garuda', effectId: '5F9', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Garuda', effectId: '5F9', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Garuda', effectId: '5F9', capture: false }),
@@ -247,6 +260,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Woken',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Ifrit', effectId: '5F9', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Ifrit', effectId: '5F9', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Ifrit', effectId: '5F9', capture: false }),
@@ -257,6 +271,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Titan Woken',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Titan', effectId: '5F9', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Titan', effectId: '5F9', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Titan', effectId: '5F9', capture: false }),
@@ -267,6 +282,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Titan Gaols',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
       netRegexDe: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
       netRegexFr: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
@@ -274,13 +290,15 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
       netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
       preRun: (data, matches) => {
-        data.titanGaols = data.titanGaols || [];
+        let _a;
+        (_a = data.titanGaols) !== null && _a !== void 0 ? _a : (data.titanGaols = []);
         data.titanGaols.push(matches.target);
         if (data.titanGaols.length === 3)
           data.titanGaols.sort();
       },
       alertText: (data, _matches, output) => {
-        if (data.titanGaols.length !== 3)
+        let _a;
+        if (((_a = data.titanGaols) === null || _a === void 0 ? void 0 : _a.length) !== 3)
           return;
         const idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
@@ -289,7 +307,8 @@ Options.Triggers.push({
         return output.num({ num: idx + 1 });
       },
       infoText: (data, _matches, output) => {
-        if (data.titanGaols.length !== 3)
+        let _a;
+        if (((_a = data.titanGaols) === null || _a === void 0 ? void 0 : _a.length) !== 3)
           return;
         return output.text({
           player1: data.ShortName(data.titanGaols[0]),
@@ -319,6 +338,7 @@ Options.Triggers.push({
     {
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2B6A', source: 'Bomb Boulder' }),
       netRegexDe: NetRegexes.ability({ id: '2B6A', source: 'Bomber-Brocken' }),
       netRegexFr: NetRegexes.ability({ id: '2B6A', source: 'Bombo Rocher' }),
@@ -344,6 +364,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Gaol Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
       netRegexDe: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
       netRegexFr: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
@@ -355,6 +376,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Suppression Gaol',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
       netRegexDe: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
       netRegexFr: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
@@ -376,6 +398,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Garuda Finale',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD3', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD3', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD3', capture: false }),
@@ -397,6 +420,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Finale',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD4', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD4', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD4', capture: false }),
@@ -418,6 +442,7 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Titan Finale',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD5', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD5', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD5', capture: false }),

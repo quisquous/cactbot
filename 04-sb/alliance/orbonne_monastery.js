@@ -44,6 +44,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Orbonne Harpy Devitalize',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3778', source: 'Harpy', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3778', source: 'Harpyie', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3778', source: 'Harpie', capture: false }),
@@ -55,6 +56,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Mustadio Right Handgonne',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '373E', source: 'Mustadio', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '373E', source: 'Mustadio', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '373E', source: 'Mustadio', capture: false }),
@@ -65,6 +67,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Mustadio Left Handgonne',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '373F', source: 'Mustadio', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '373F', source: 'Mustadio', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '373F', source: 'Mustadio', capture: false }),
@@ -75,6 +78,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Mustadio Last Testament',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3737', source: 'Mustadio', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3737', source: 'Mustadio', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3737', source: 'Mustadio', capture: false }),
@@ -95,6 +99,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Mustadio Arm Shot',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3739', source: 'Mustadio' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3739', source: 'Mustadio' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3739', source: 'Mustadio' }),
@@ -105,6 +110,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Mustadio Searchlight',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -121,12 +127,14 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Spread Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Orbonne Agrias Thunder Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3866', source: 'Agrias' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3866', source: 'Agrias' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3866', source: 'Agrias' }),
@@ -137,6 +145,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Cleansing Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3854', source: 'Agrias', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3854', source: 'Agrias', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3854', source: 'Agrias', capture: false }),
@@ -149,12 +158,14 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Vacuum',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A5' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.agriasGhostCleanse = true,
     },
     {
       id: 'Orbonne Agrias Consecration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3850', source: 'Agrias', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3850', source: 'Agrias', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3850', source: 'Agrias', capture: false }),
@@ -176,16 +187,22 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Halidom Inside',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3851', source: 'Halidom' }),
       netRegexDe: NetRegexes.ability({ id: '3851', source: 'Falsch(?:e|er|es|en) Heiligtum' }),
       netRegexFr: NetRegexes.ability({ id: '3851', source: 'Faux Sanctuaire' }),
       netRegexJa: NetRegexes.ability({ id: '3851', source: '模造聖域' }),
       netRegexCn: NetRegexes.ability({ id: '3851', source: '仿制圣域' }),
       netRegexKo: NetRegexes.ability({ id: '3851', source: '모조 성역' }),
-      run: (data, matches) => data.halidom.push(matches.target),
+      run: (data, matches) => {
+        let _a;
+        (_a = data.halidom) !== null && _a !== void 0 ? _a : (data.halidom = []);
+        data.halidom.push(matches.target);
+      },
     },
     {
       id: 'Orbonne Agrias Halidom Outside',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3851', source: 'Halidom', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3851', source: 'Falsch(?:e|er|es|en) Heiligtum', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3851', source: 'Faux Sanctuaire', capture: false }),
@@ -195,7 +212,8 @@ Options.Triggers.push({
       delaySeconds: 0.5,
       suppressSeconds: 10,
       alertText: (data, _matches, output) => {
-        if (data.agriasGhostCleanse || data.halidom.includes(data.me))
+        let _a;
+        if (data.agriasGhostCleanse || ((_a = data.halidom) === null || _a === void 0 ? void 0 : _a.includes(data.me)))
           return;
         return output.text();
       },
@@ -212,6 +230,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Hallowed Bolt',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A6' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -228,6 +247,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Adds Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '385D', source: 'Agrias', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '385D', source: 'Agrias', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '385D', source: 'Agrias', capture: false }),
@@ -248,6 +268,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Mortal Blow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '385E', source: 'Sword Knight', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '385E', source: 'Schwertritter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '385E', source: 'Chevalier À L\'Épée', capture: false }),
@@ -269,6 +290,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Extra Adds',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Emblazoned Shield', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Geschmückt(?:e|er|es|en) Schild', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Pavois Miroitant', capture: false }),
@@ -290,6 +312,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Judgment Blade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3857', source: 'Agrias', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3857', source: 'Agrias', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3857', source: 'Agrias', capture: false }),
@@ -310,6 +333,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Agrias Divine Ruination',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3858', source: 'Agrias', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3858', source: 'Agrias', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3858', source: 'Agrias', capture: false }),
@@ -330,6 +354,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Crush Helm Healer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3752', source: 'The Thunder God' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3752', source: 'Cidolfus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre' }),
@@ -341,6 +366,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Crush Helm Feint',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3752', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3752', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -362,6 +388,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Crush Helm Tank',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3753', source: 'The Thunder God' }),
       netRegexDe: NetRegexes.ability({ id: '3753', source: 'Cidolfus' }),
       netRegexFr: NetRegexes.ability({ id: '3753', source: 'Cid Le Dieu De La Foudre' }),
@@ -373,6 +400,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Crush Armor Tank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3758', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3758', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3758', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -394,6 +422,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Crush Armor',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3759', source: 'The Thunder God' }),
       netRegexDe: NetRegexes.ability({ id: '3759', source: 'Cidolfus' }),
       netRegexFr: NetRegexes.ability({ id: '3759', source: 'Cid Le Dieu De La Foudre' }),
@@ -415,6 +444,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Crush Accessory',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '375A', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '375A', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '375A', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -435,6 +465,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Cleansing Strike',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3751', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3751', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3751', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -457,6 +488,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Shadowblade Pads',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3761', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3761', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3761', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -477,6 +509,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Shadowblade Bubble',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AA' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -493,6 +526,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Hallowed Bolt',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -509,18 +543,21 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Crush Weapon',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
       response: Responses.stackMarker(),
     },
     {
       id: 'Orbonne Cid Divine Ruination',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -537,6 +574,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Holy Sword In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3750', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3750', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3750', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -547,6 +585,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Holy Sword Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '374F', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '374F', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '374F', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -557,6 +596,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3749', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3749', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3749', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -567,6 +607,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '374A', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '374A', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '374A', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -577,6 +618,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Holy Sword Three 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '374C', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '374C', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '374C', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -598,6 +640,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Cid Holy Sword Three 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '374D', source: 'The Thunder God', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '374D', source: 'Cidolfus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '374D', source: 'Cid Le Dieu De La Foudre', capture: false }),
@@ -619,6 +662,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Ultima Redemption',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '38AA', source: 'Ultima, The High Seraph' }),
       netRegexDe: NetRegexes.startsUsing({ id: '38AA', source: 'Cherub Ultima' }),
       netRegexFr: NetRegexes.startsUsing({ id: '38AA', source: 'Ultima La Grande Séraphine' }),
@@ -629,12 +673,14 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Ultima Dark Cannonade',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Orbonne Ultima Eruption',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0066' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -651,12 +697,14 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Ultima Flare IV',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
       id: 'Orbonne Ultima Time Eruption',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '38CF', source: 'Demi-Belias', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '38CF', source: 'Demi-Belias', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '38CF', source: 'Demi-Belias', capture: false }),
@@ -677,6 +725,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Ultima Extreme Edge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '38DA', source: 'Demi-Hashmal', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '38DA', source: 'Demi-Hashmallim', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '38DA', source: 'Demi-Hashmal', capture: false }),
@@ -697,6 +746,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Ultima Ultimate Illusion Healer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3895', source: 'Cherub Ultima', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3895', source: 'Ultima La Grande Séraphine', capture: false }),
@@ -718,6 +768,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Ultima Ultimate Illusion',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3895', source: 'Cherub Ultima', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3895', source: 'Ultima La Grande Séraphine', capture: false }),
@@ -741,6 +792,7 @@ Options.Triggers.push({
     },
     {
       id: 'Orbonne Ultima Acceleration Bomb',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,

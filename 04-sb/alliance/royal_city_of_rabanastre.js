@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Rab Mateus Aqua Sphere',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2633', source: 'Mateus, The Corrupt', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2633', source: 'Mateus (?:der|die|das) Peiniger', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2633', source: 'Mateus Le Corrompu', capture: false }),
@@ -28,6 +29,7 @@ Options.Triggers.push({
       // Note: this could probably use |matches.count| directly instead of
       // using data.breathless to count the stacks.
       id: 'Rab Mateus Breathless Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
       alarmText: (data, _matches, output) => {
@@ -35,7 +37,7 @@ Options.Triggers.push({
           return output.getInBubble();
       },
       infoText: (data, _matches, output) => {
-        if (data.breathless >= 7)
+        if (data.breathless && data.breathless >= 7)
           return output.breathless({ num: (data.breathless + 1) });
       },
       tts: (data, _matches, output) => {
@@ -43,8 +45,8 @@ Options.Triggers.push({
           return output.bubble();
       },
       run: (data) => {
-        data.breathless = data.breathless | 0;
-        data.breathless++;
+        let _a;
+        data.breathless = ((_a = data.breathless) !== null && _a !== void 0 ? _a : 0) + 1;
       },
       outputStrings: {
         breathless: {
@@ -75,12 +77,14 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Mateus Breathless Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.breathless = 0,
     },
     {
       id: 'Rab Mateus Blizzard IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '263D', source: 'Mateus, The Corrupt', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '263D', source: 'Mateus (?:der|die|das) Peiniger', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '263D', source: 'Mateus Le Corrompu', capture: false }),
@@ -101,6 +105,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Hashmal Rock Cutter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmal, Bringer Of Order' }),
       netRegexDe: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmallim der Einiger' }),
       netRegexFr: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmal Le Grand Ordonnateur' }),
@@ -111,6 +116,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Hashmal Earth Hammer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmal, Bringer Of Order', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmallim der Einiger', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
@@ -131,6 +137,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Hashmal Golems',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmal, Bringer Of Order', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmallim der Einiger', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
@@ -152,6 +159,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Trash Dragon Voice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'D10', source: 'Archaeolion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'D10', source: 'Archaeolöwe', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'D10', source: 'Archéochimère', capture: false }),
@@ -172,6 +180,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Trash Ram Voice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolöwe', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archéochimère', capture: false }),
@@ -192,12 +201,14 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Rofocale Chariot',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getIn(),
     },
     {
       id: 'Rab Rofocale Trample',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2676', source: 'Rofocale', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2676', source: 'Rofocale', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2676', source: 'Rofocale Le Roi Centaure', capture: false }),
@@ -218,6 +229,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Argath Mask of Truth',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
@@ -228,6 +240,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Argath Mask of Lies',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
@@ -238,6 +251,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Argath Command Scatter',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '007B' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
@@ -266,6 +280,7 @@ Options.Triggers.push({
     },
     {
       id: 'Rab Argath Command Turn',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '007C' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {

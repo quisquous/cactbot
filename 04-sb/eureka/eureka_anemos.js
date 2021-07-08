@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Eureka Garm Dragon Voice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2AD5', source: 'Void Garm', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2AD5', source: 'Nichts-Garm', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2AD5', source: 'Garm Du Néant', capture: false }),
@@ -24,6 +25,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Sabotender Stack Marker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '29EB', source: 'Sabotender Corrido' }),
       netRegexDe: NetRegexes.startsUsing({ id: '29EB', source: 'Sabotender Corrido' }),
       netRegexFr: NetRegexes.startsUsing({ id: '29EB', source: 'Pampa Corrido' }),
@@ -34,6 +36,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Poly Swipe',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2A71', source: 'Polyphemus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2A71', source: 'Polyphemus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2A71', source: 'Polyphemus', capture: false }),
@@ -54,6 +57,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Poly Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2A6E', source: 'Polyphemus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2A6E', source: 'Polyphemus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2A6E', source: 'Polyphemus', capture: false }),
@@ -64,6 +68,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Poly Eye',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2A73', source: 'Polyphemus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2A73', source: 'Polyphemus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2A73', source: 'Polyphemus', capture: false }),
@@ -84,6 +89,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Poly Glower',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2A72', source: 'Polyphemus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2A72', source: 'Polyphemus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2A72', source: 'Polyphemus', capture: false }),
@@ -104,6 +110,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Caym Eye',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2A64', source: 'Caym', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2A64', source: 'Caym', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2A64', source: 'Caym', capture: false }),
@@ -114,6 +121,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Fafnir Terror',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '29B7', source: 'Fafnir', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '29B7', source: 'Fafnir', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '29B7', source: 'Fafnir', capture: false }),
@@ -124,6 +132,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Voidscale Ice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '29C3', source: 'Voidscale' }),
       netRegexDe: NetRegexes.startsUsing({ id: '29C3', source: 'Nichtsschuppe' }),
       netRegexFr: NetRegexes.startsUsing({ id: '29C3', source: 'Vidécailles' }),
@@ -145,6 +154,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Pazuzu Dread Wind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2899', source: 'Pazuzu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2899', source: 'Pazuzu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2899', source: 'Pazuzu', capture: false }),
@@ -155,6 +165,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Pazuzu Camisado',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '289F', source: 'Pazuzu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '289F', source: 'Pazuzu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '289F', source: 'Pazuzu' }),
@@ -166,6 +177,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Pazuzu Cloud of Locust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2897', source: 'Pazuzu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2897', source: 'Pazuzu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2897', source: 'Pazuzu', capture: false }),
@@ -176,6 +188,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Pazuzu Plague of Locust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2896', source: 'Pazuzu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2896', source: 'Pazuzu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2896', source: 'Pazuzu', capture: false }),
@@ -196,6 +209,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Wraith Count',
+      type: 'WasDefeated',
       netRegex: NetRegexes.wasDefeated({ target: 'Shadow Wraith', capture: false }),
       netRegexDe: NetRegexes.wasDefeated({ target: 'Schatten-Geist', capture: false }),
       netRegexFr: NetRegexes.wasDefeated({ target: 'Spectre Des Ombres', capture: false }),
@@ -204,8 +218,8 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.wasDefeated({ target: '그림자 망령', capture: false }),
       soundVolume: 0,
       infoText: (data, _matches, output) => {
-        data.wraithCount = data.wraithCount || 0;
-        data.wraithCount++;
+        let _a;
+        data.wraithCount = ((_a = data.wraithCount) !== null && _a !== void 0 ? _a : 0) + 1;
         return output.text({ num: data.wraithCount });
       },
       outputStrings: {
@@ -221,6 +235,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Pazuzu Pop',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Pazuzu', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Pazuzu', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Pazuzu', capture: false }),
@@ -231,6 +246,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Falling Asleep',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 7 Minuten vergangen..*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),

@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Eureka Pyros Skoll Hoarhound Halo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '36E0', source: 'Skoll', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '36E0', source: 'Skalli', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '36E0', source: 'Sköll', capture: false }),
@@ -14,6 +15,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Pyros Skoll Heavensward Howl',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '46BD', source: 'Skoll', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '46BD', source: 'Skalli', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '46BD', source: 'Sköll', capture: false }),
@@ -24,6 +26,7 @@ Options.Triggers.push({
     },
     {
       id: 'Eureka Pyros Falling Asleep',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 7 Minuten vergangen..*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
