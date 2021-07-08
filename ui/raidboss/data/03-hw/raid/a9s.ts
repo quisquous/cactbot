@@ -6,13 +6,18 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  stockpileCount?: number;
+  stockpileCount: number;
   mainTank?: string;
 }
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheEyesOfTheCreatorSavage,
   timelineFile: 'a9s.txt',
+  initData: () => {
+    return {
+      stockpileCount: 0,
+    };
+  },
   timelineTriggers: [
     {
       id: 'A9S Panzerschreck',
@@ -35,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
           7: output.twoSE!(),
           8: output.oneNW!(),
         };
-        return outputs[data.stockpileCount ?? 0];
+        return outputs[data.stockpileCount];
       },
       outputStrings: {
         oneEachNWSE: {
@@ -83,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
           7: output.southeast!(),
           8: output.southwest!(),
         };
-        return outputs[data.stockpileCount ?? 0];
+        return outputs[data.stockpileCount];
       },
       outputStrings: {
         southeast: {
@@ -133,10 +138,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A38', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A38', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A38', capture: false }),
-      run: (data) => {
-        data.stockpileCount ??= 0;
-        data.stockpileCount++;
-      },
+      run: (data) => data.stockpileCount++,
     },
     {
       id: 'A9S Scrapline',
@@ -277,7 +279,7 @@ const triggerSet: TriggerSet<Data> = {
           7: output.northwest!(),
           8: output.southwest!(),
         };
-        return outputs[data.stockpileCount ?? 0];
+        return outputs[data.stockpileCount];
       },
       outputStrings: {
         northeast: {
