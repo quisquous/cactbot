@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Malikah Stone Flail',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CE5', source: 'Greater Armadillo' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CE5', source: 'Riesengürteltier' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CE5', source: 'Grand Tatou' }),
@@ -15,11 +16,13 @@ Options.Triggers.push({
     },
     {
       id: 'Malikah Head Toss Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Malikah Right Round',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CE7', source: 'Greater Armadillo', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CE7', source: 'Riesengürteltier', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CE7', source: 'Grand Tatou', capture: false }),
@@ -40,6 +43,7 @@ Options.Triggers.push({
     },
     {
       id: 'Malikah Deep Draught',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4188', source: 'Pack Armadillo' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4188', source: 'Rudel-Gürteltier' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4188', source: 'Tatou Grégaire' }),
@@ -51,6 +55,7 @@ Options.Triggers.push({
     },
     {
       id: 'Malikah Efface',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CEB', source: 'Amphibious Talos' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CEB', source: 'Wasserträger-Talos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CEB', source: 'Talos Amphibie' }),
@@ -62,6 +67,7 @@ Options.Triggers.push({
     },
     {
       id: 'Malikah High Pressure',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CEC', source: 'Amphibious Talos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CEC', source: 'Wasserträger-Talos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CEC', source: 'Talos Amphibie', capture: false }),
@@ -72,6 +78,7 @@ Options.Triggers.push({
     },
     {
       id: 'Malikah Swift Spill',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CEF', source: 'Amphibious Talos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CEF', source: 'Wasserträger-Talos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CEF', source: 'Talos Amphibie', capture: false }),
@@ -82,6 +89,7 @@ Options.Triggers.push({
     },
     {
       id: 'Malikah Intestinal Crank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CF1', source: 'Storge', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CF1', source: 'Storge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CF1', source: 'Storgê', capture: false }),

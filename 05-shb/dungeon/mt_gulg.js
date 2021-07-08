@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Gulg Punitive Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '41AF', source: 'Forgiven Prejudice' }),
       netRegexDe: NetRegexes.startsUsing({ id: '41AF', source: 'Geläutert(?:e|er|es|en) Voreingenommenheit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '41AF', source: 'Préjugé Pardonné' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Tail Smash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '41AB', source: 'Forgiven Ambition', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '41AB', source: 'Geläutert(?:e|er|es|en) Begierde', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '41AB', source: 'Ambition Pardonnée', capture: false }),
@@ -35,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Rake',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CFB', source: 'Forgiven Cruelty' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CFB', source: 'Geläutert(?:e|er|es|en) Grausamkeit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CFB', source: 'Cruauté Pardonnée' }),
@@ -46,6 +49,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Lumen Infinitum',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '41B2', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '41B2', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '41B2', source: 'Cruauté Pardonnée', capture: false }),
@@ -66,6 +70,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Cyclone Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CFC', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CFC', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CFC', source: 'Cruauté Pardonnée', capture: false }),
@@ -77,6 +82,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Typhoon Wing 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D00', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D00', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D00', source: 'Cruauté Pardonnée', capture: false }),
@@ -98,6 +104,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Typhoon Wing 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D0[12]', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D0[12]', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D0[12]', source: 'Cruauté Pardonnée', capture: false }),
@@ -109,6 +116,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Sacrament of Penance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D0B', source: 'Forgiven Whimsy', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D0B', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D0B', source: 'Caprice Pardonné', capture: false }),
@@ -120,6 +128,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Catechism',
+      type: 'StartsUsing',
       // no target name
       netRegex: NetRegexes.startsUsing({ id: '3D09', source: 'Forgiven Whimsy' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D09', source: 'Geläutert(?:e|er|es|en) Gereiztheit' }),
@@ -132,6 +141,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Judgment Day',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D0F', source: 'Forgiven Whimsy', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D0F', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D0F', source: 'Caprice Pardonné', capture: false }),
@@ -152,6 +162,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Left Palm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3F7A', source: 'Forgiven Revelry', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3F7A', source: 'Geläutert(?:e|er|es|en) Prasserei', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3F7A', source: 'Orgie Pardonnée', capture: false }),
@@ -162,6 +173,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Right Palm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3F78', source: 'Forgiven Revelry', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3F78', source: 'Geläutert(?:e|er|es|en) Prasserei', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3F78', source: 'Orgie Pardonnée', capture: false }),
@@ -172,6 +184,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Orison Fortissimo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D14', source: 'Forgiven Obscenity', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D14', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D14', source: 'Obscénité Pardonnée', capture: false }),
@@ -183,6 +196,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Sforzando',
+      type: 'StartsUsing',
       // no target name
       netRegex: NetRegexes.startsUsing({ id: '3D12', source: 'Forgiven Obscenity' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D12', source: 'Geläutert(?:e|er|es|en) Unzucht' }),
@@ -195,6 +209,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Divine Diminuendo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D18', source: 'Forgiven Obscenity', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D18', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D18', source: 'Obscénité Pardonnée', capture: false }),
@@ -215,6 +230,7 @@ Options.Triggers.push({
     },
     {
       id: 'Gulg Conviction Marcato',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D1A', source: 'Forgiven Obscenity', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D1A', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D1A', source: 'Obscénité Pardonnée', capture: false }),

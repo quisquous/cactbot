@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Matoyas Mudman Hard Rock',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '547F', source: 'Mudman' }),
       netRegexDe: NetRegexes.startsUsing({ id: '547F', source: 'Matschmann' }),
       netRegexFr: NetRegexes.startsUsing({ id: '547F', source: 'tadboue' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Mudman Peat Pelt',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '5482', source: 'Mudman', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '5482', source: 'Matschmann', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '5482', source: 'tadboue', capture: false }),
@@ -35,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Mudman Stone Age',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5491', source: 'Mudman', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5491', source: 'Matschmann', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5491', source: 'tadboue', capture: false }),
@@ -46,17 +49,20 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Mudman Falling Rock',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Matoyas Mudman Sputter',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Matoyas Nixie Crash-smash',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E6' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -76,6 +82,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Nixie Shower Power',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5991', source: 'Nixie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5991', source: 'Nixchen', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5991', source: 'nixe', capture: false }),
@@ -96,6 +103,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Nixie Pitter-patter',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '5988', source: 'Nixie', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '5988', source: 'Nixchen', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '5988', source: 'nixe', capture: false }),
@@ -118,6 +126,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Porxie Tender Loin',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5913', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5913', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5913', source: 'mère porxie', capture: false }),
@@ -129,6 +138,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Porxie Huff and Puff',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5919', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5919', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5919', source: 'mère porxie', capture: false }),
@@ -149,6 +159,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Porxie Meat Mallet',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5916', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5916', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5916', source: 'mère porxie', capture: false }),
@@ -169,6 +180,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Porxie Sucked In',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '9B6' }),
       suppressSeconds: (_data, matches) => parseFloat(matches.duration),
       alarmText: (_data, _matches, output) => output.runAway(),
@@ -185,6 +197,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Porxie Minced Meat',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5911', source: 'Mother Porxie' }),
       netRegexDe: NetRegexes.startsUsing({ id: '5911', source: 'Muttersau' }),
       netRegexFr: NetRegexes.startsUsing({ id: '5911', source: 'mère porxie' }),
@@ -196,6 +209,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Porxie Sprite Explosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4E34', source: 'aeolian cave sprite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4E34', source: 'Windhöhlen-Exergon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4E34', source: 'élémentaire des cavernes venteuses', capture: false }),
@@ -217,6 +231,7 @@ Options.Triggers.push({
     },
     {
       id: 'Matoyas Porxie Open Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5922', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5922', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5922', source: 'mère porxie', capture: false }),

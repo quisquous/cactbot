@@ -4,9 +4,12 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Amaurot Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      preRun: (data) => data.meteor = (data.meteor || 0) + 1,
+      preRun: (data) => {
+        let _a; return data.meteor = ((_a = data.meteor) !== null && _a !== void 0 ? _a : 0) + 1;
+      },
       infoText: (data, _matches, output) => {
         if (data.meteor === 1)
           return output.dropMeteorWest();
@@ -43,12 +46,14 @@ Options.Triggers.push({
     },
     {
       id: 'Amaurot Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Amaurot Final Sky',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CCB', source: '(?:der|die|das) Erst(?:e|er|es|en) Unheil', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CCB', source: 'Annélide De L\'Apocalypse', capture: false }),
@@ -69,6 +74,7 @@ Options.Triggers.push({
     },
     {
       id: 'Amaurot Shadow Wreck',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CE3', source: 'Mégatherion', capture: false }),
@@ -80,6 +86,7 @@ Options.Triggers.push({
     },
     {
       id: 'Amaurot Apokalypsis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CD7', source: 'Mégatherion', capture: false }),

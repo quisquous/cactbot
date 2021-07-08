@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Holminster Path of Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DC5', source: 'Forgiven Dissonance', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DC5', source: 'Geläutert(?:e|er|es|en) Widerspruch', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DC5', source: 'Dissonance Pardonnée', capture: false }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Pillory',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DC4', source: 'Forgiven Dissonance' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DC4', source: 'Geläutert(?:e|er|es|en) Widerspruch' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DC4', source: 'Dissonance Pardonnée' }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Tickler',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen, The Forgiven' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen Pardonnée' }),
@@ -37,6 +40,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Bridle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen, The Forgiven', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen Pardonnée', capture: false }),
@@ -48,6 +52,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Flagellation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen, The Forgiven', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen Pardonnée', capture: false }),
@@ -58,11 +63,13 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Exorcise Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Holminster Scavenger',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
@@ -74,6 +81,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Head Crusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
@@ -85,6 +93,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Chain Down',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: Conditions.targetIsNotYou(),
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
@@ -101,12 +110,14 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Taphephobia',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Holminster Into The Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
@@ -127,6 +138,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Left Knout',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
@@ -137,6 +149,7 @@ Options.Triggers.push({
     },
     {
       id: 'Holminster Right Knout',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),

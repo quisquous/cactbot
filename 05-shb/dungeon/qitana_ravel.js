@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Qitana Stonefist',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Scorn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Eerie Pillar',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
@@ -47,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Heat Up Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
@@ -69,6 +73,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Heat Up Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
@@ -91,6 +96,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Ripper Fang',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C91', source: 'Batsquatch' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C91', source: 'Fledersquatch' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C91', source: 'Batsquatch' }),
@@ -102,6 +108,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Soundwave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C92', source: 'Batsquatch', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C92', source: 'Fledersquatch', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C92', source: 'Batsquatch', capture: false }),
@@ -113,6 +120,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Subsonics',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C93', source: 'Batsquatch', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C93', source: 'Fledersquatch', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C93', source: 'Batsquatch', capture: false }),
@@ -124,6 +132,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Rend',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C99', source: 'Eros' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C99', source: 'Eros' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C99', source: 'Éros' }),
@@ -135,6 +144,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Glossolalia',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C9B', source: 'Eros', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C9B', source: 'Eros', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C9B', source: 'Éros', capture: false }),
@@ -146,6 +156,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Hound Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0039', source: 'Eros' }),
       netRegexDe: NetRegexes.tether({ id: '0039', source: 'Eros' }),
       netRegexFr: NetRegexes.tether({ id: '0039', source: 'Éros' }),
@@ -167,6 +178,7 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Viper Poison',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AB' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -183,11 +195,13 @@ Options.Triggers.push({
     },
     {
       id: 'Qitana Confession of Faith Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Qitana Confession of Faith Spread',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CA1', source: 'Eros', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CA1', source: 'Eros', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CA1', source: 'Éros', capture: false }),

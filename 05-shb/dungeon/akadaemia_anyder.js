@@ -20,6 +20,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Anyder Aquatic Lance',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -36,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Puncture',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
@@ -47,6 +49,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Tidal Guillotine',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
@@ -67,6 +70,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Pelagic Cleaver',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
@@ -87,6 +91,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Marine Mayhem',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
@@ -98,12 +103,14 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Sap Shower',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Anyder Arbor Storm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis-Morbol', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
@@ -115,6 +122,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Noahionto',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '430C', source: 'Evil Armor' }),
       netRegexDe: NetRegexes.startsUsing({ id: '430C', source: 'Bös(?:e|er|es|en) Kampfmaschine' }),
       netRegexFr: NetRegexes.startsUsing({ id: '430C', source: 'Armure Maléfique' }),
@@ -126,6 +134,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Shockbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E23', source: 'Quetzalcoatl' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E23', source: 'Quetzalcoatl' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E23', source: 'Quetzalcóatl' }),
@@ -137,6 +146,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Thunderbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E24', source: 'Quetzalcoatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E24', source: 'Quetzalcoatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E24', source: 'Quetzalcóatl', capture: false }),
@@ -148,6 +158,7 @@ Options.Triggers.push({
     },
     {
       id: 'Anyder Thunderstorm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E1A', source: 'Quetzalcoatl', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E1A', source: 'Quetzalcoatl', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E1A', source: 'Quetzalcóatl', capture: false }),

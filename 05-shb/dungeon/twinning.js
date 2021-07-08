@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Twinning Main Head',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DBC', source: 'Massengefertigt(?:e|er|es|en) Kaliya' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Berserk',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DC0', source: 'Gestärkt(?:e|er|es|en) Reptoid' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DC0', source: 'Reptoïde Vitalisé' }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning 128 Tonze Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DBA', source: 'Servomechanisch(?:e|er|es|en) Minotaurus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DBA', source: 'Minotaure Servomécanique' }),
@@ -38,6 +41,7 @@ Options.Triggers.push({
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -54,6 +58,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Beastly Roar',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D64', source: 'Alpha Zaghnal', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D64', source: 'Alpha-Zaghnal', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D64', source: 'Zaghnal Alpha', capture: false }),
@@ -65,6 +70,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Augurium',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D65', source: 'Alpha Zaghnal' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D65', source: 'Alpha-Zaghnal' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D65', source: 'Zaghnal Alpha' }),
@@ -75,11 +81,13 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Charge Eradicated',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Twinning Thunder Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DED', source: 'Mithridates' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DED', source: 'Mithridates' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DED', source: 'Mithridate' }),
@@ -92,6 +100,7 @@ Options.Triggers.push({
     {
       // Alternatively, we could use 1B:\y{ObjectId}:(\y{Name}):....:....:00A0
       id: 'Twinning Allagan Thunder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DEF', source: 'Mithridates' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DEF', source: 'Mithridates' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DEF', source: 'Mithridate' }),
@@ -103,6 +112,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Magitek Crossray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DF8', source: 'The Tycoon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DF8', source: 'Tycoon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DF8', source: 'Le Magnat', capture: false }),
@@ -124,6 +134,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Defensive Array',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DF2', source: 'The Tycoon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DF2', source: 'Tycoon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DF2', source: 'Le Magnat', capture: false }),
@@ -145,6 +156,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Rail Cannon',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DFB', source: 'The Tycoon' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DFB', source: 'Tycoon' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DFB', source: 'Le Magnat' }),
@@ -157,6 +169,7 @@ Options.Triggers.push({
     {
       // An alternative is 1B:\y{ObjectId}:\y{Name}:....:....:00A9
       id: 'Twinning Magicrystal',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E0C', source: 'The Tycoon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E0C', source: 'Tycoon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E0C', source: 'Le Magnat', capture: false }),
@@ -167,6 +180,7 @@ Options.Triggers.push({
     },
     {
       id: 'Twinning Discharger',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DFC', source: 'The Tycoon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DFC', source: 'Tycoon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DFC', source: 'Le Magnat', capture: false }),

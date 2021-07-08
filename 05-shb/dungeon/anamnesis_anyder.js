@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'AnAnyder Fetid Fang',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: ['4B69', '4B72'] }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: ['4B69', '4B72'] }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: ['4B69', '4B72'] }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Scrutiny',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E25', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: '4E25', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4E25', capture: false }),
@@ -37,6 +39,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Inscrutability',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4B6A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: '4B6A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4B6A', capture: false }),
@@ -48,6 +51,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Luminous Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E2[67]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: '4E2[67]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4E2[67]', capture: false }),
@@ -58,6 +62,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder The Final Verse',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B58', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B58', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B58', capture: false }),
@@ -69,6 +74,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder 2,000-Mina Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B55', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B55', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B55', capture: false }),
@@ -79,6 +85,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Eye Of The Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B57', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B57', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B57', capture: false }),
@@ -89,6 +96,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder 2,000-Mina Swipe',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
@@ -99,6 +107,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Raging Glower',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
@@ -109,11 +118,13 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Open Hearth Flying Fount',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'AnAnyder Bonebreaker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B8C' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B8C' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B8C' }),
@@ -125,6 +136,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Falling Water',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
@@ -136,6 +148,7 @@ Options.Triggers.push({
     },
     {
       id: 'AnAnyder Depth Grip',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
