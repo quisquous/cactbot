@@ -5,7 +5,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  playerMap?: { [name: string]: boolean };
   sealed?: boolean;
   side?: string;
   mythcall?: boolean;
@@ -750,8 +749,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
       condition: (data) => data.sealed,
       preRun: (data) => {
-        data.blackHoleCount ??= 0;
-        data.blackHoleCount++;
+        data.blackHoleCount = (data.blackHoleCount ?? 0) + 1;
       },
       alarmText: (data, _matches, output) => output.blackHole!({ num: data.blackHoleCount }),
       tts: (data, _matches, output) => output.blackHoleTTS!({ num: data.blackHoleCount }),

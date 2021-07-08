@@ -308,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
           data.titanGaols.sort();
       },
       alertText: (data, _matches, output) => {
-        if (!data.titanGaols || data.titanGaols.length !== 3)
+        if (data.titanGaols?.length !== 3)
           return;
         const idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
@@ -317,7 +317,7 @@ const triggerSet: TriggerSet<Data> = {
         return output.num!({ num: idx + 1 });
       },
       infoText: (data, _matches, output) => {
-        if (!data.titanGaols || data.titanGaols.length !== 3)
+        if (data.titanGaols?.length !== 3)
           return;
         return output.text!({
           player1: data.ShortName(data.titanGaols[0]),

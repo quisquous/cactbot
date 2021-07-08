@@ -58,8 +58,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.bubble!();
       },
       run: (data) => {
-        data.breathless ??= 0;
-        data.breathless++;
+        data.breathless = (data.breathless ?? 0) + 1;
       },
       outputStrings: {
         breathless: {

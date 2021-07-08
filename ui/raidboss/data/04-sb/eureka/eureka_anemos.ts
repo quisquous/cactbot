@@ -229,8 +229,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.wasDefeated({ target: '그림자 망령', capture: false }),
       soundVolume: 0,
       infoText: (data, _matches, output) => {
-        data.wraithCount ??= 0;
-        data.wraithCount++;
+        data.wraithCount = (data.wraithCount ?? 0) + 1;
         return output.text!({ num: data.wraithCount });
       },
       outputStrings: {
