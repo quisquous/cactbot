@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DohnMheg,
   timelineFile: 'dohn_mheg.txt',
   timelineTriggers: [
@@ -18,6 +22,7 @@ export default {
   triggers: [
     {
       id: 'Dohn Mheg Watering Wheel',
+      type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
       netRegex: NetRegexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath' }),
@@ -30,6 +35,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Straight Punch',
+      type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
       netRegex: NetRegexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb' }),
@@ -42,6 +48,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Proboscis',
+      type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
       netRegex: NetRegexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte' }),
@@ -54,6 +61,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Torpedo',
+      type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
       netRegex: NetRegexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie' }),
@@ -66,6 +74,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Candy Cane',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2299', source: 'Aenc Thon, Lord Of The Lingering Gaze' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2299', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2299', source: 'Aenc Thon L\'Envoûtant' }),
@@ -77,6 +86,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Landsblood',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1E8E', source: 'Aenc Thon, Lord Of The Lingering Gaze', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1E8E', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1E8E', source: 'Aenc Thon L\'Envoûtant', capture: false }),
@@ -88,11 +98,13 @@ export default {
     },
     {
       id: 'Dohn Mheg Leap Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Dohn Mheg Timber',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
@@ -104,6 +116,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Crippling Blow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '35A4', source: 'Aenc Thon, Lord Of The Lengthsome Gait' }),
       netRegexDe: NetRegexes.startsUsing({ id: '35A4', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)' }),
       netRegexFr: NetRegexes.startsUsing({ id: '35A4', source: 'Aenc Thon Le Virtuose' }),
@@ -115,6 +128,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Imp Choir',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon Le Virtuose', capture: false }),
@@ -125,6 +139,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Toad Choir',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon Le Virtuose', capture: false }),
@@ -135,6 +150,7 @@ export default {
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon Le Virtuose', capture: false }),
@@ -348,3 +364,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

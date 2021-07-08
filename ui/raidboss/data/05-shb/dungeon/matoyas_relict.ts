@@ -3,13 +3,18 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MatoyasRelict,
   timelineFile: 'matoyas_relict.txt',
   triggers: [
     {
       id: 'Matoyas Mudman Hard Rock',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '547F', source: 'Mudman' }),
       netRegexDe: NetRegexes.startsUsing({ id: '547F', source: 'Matschmann' }),
       netRegexFr: NetRegexes.startsUsing({ id: '547F', source: 'tadboue' }),
@@ -21,13 +26,14 @@ export default {
     },
     {
       id: 'Matoyas Mudman Peat Pelt',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '5482', source: 'Mudman', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '5482', source: 'Matschmann', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '5482', source: 'tadboue', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5482', source: 'マッドマン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '5482', source: '土泥人', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '5482', source: '진흙인간', capture: false }),
-      alertText: (_data, _matches, output) => output.pullOrb(),
+      alertText: (_data, _matches, output) => output.pullOrb!(),
       outputStrings: {
         pullOrb: {
           en: 'Pull orb to an empty hole',
@@ -41,6 +47,7 @@ export default {
     },
     {
       id: 'Matoyas Mudman Stone Age',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5491', source: 'Mudman', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5491', source: 'Matschmann', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5491', source: 'tadboue', capture: false }),
@@ -52,22 +59,25 @@ export default {
     },
     {
       id: 'Matoyas Mudman Falling Rock',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Matoyas Mudman Sputter',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Matoyas Nixie Crash-smash',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E6' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.tankBuster();
-        return output.avoidTether({ player: matches.target });
+          return output.tankBuster!();
+        return output.avoidTether!({ player: matches.target });
       },
       outputStrings: {
         tankBuster: Outputs.tankBuster,
@@ -82,13 +92,14 @@ export default {
     },
     {
       id: 'Matoyas Nixie Shower Power',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5991', source: 'Nixie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5991', source: 'Nixchen', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5991', source: 'nixe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5991', source: 'ノッケン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5991', source: '水滴精', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5991', source: '뇌켄', capture: false }),
-      alertText: (_data, _matches, output) => output.avoidWall(),
+      alertText: (_data, _matches, output) => output.avoidWall!(),
       outputStrings: {
         avoidWall: {
           en: 'Avoid Wall Flush',
@@ -102,6 +113,7 @@ export default {
     },
     {
       id: 'Matoyas Nixie Pitter-patter',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '5988', source: 'Nixie', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '5988', source: 'Nixchen', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '5988', source: 'nixe', capture: false }),
@@ -110,7 +122,7 @@ export default {
       netRegexKo: NetRegexes.ability({ id: '5988', source: '뇌켄', capture: false }),
       delaySeconds: 3,
       durationSeconds: 6,
-      infoText: (_data, _matches, output) => output.stepIn(),
+      infoText: (_data, _matches, output) => output.stepIn!(),
       outputStrings: {
         stepIn: {
           en: 'Step in Puddle near the Cloud',
@@ -124,6 +136,7 @@ export default {
     },
     {
       id: 'Matoyas Porxie Tender Loin',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5913', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5913', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5913', source: 'mère porxie', capture: false }),
@@ -135,13 +148,14 @@ export default {
     },
     {
       id: 'Matoyas Porxie Huff and Puff',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5919', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5919', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5919', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5919', source: 'マザーポークシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5919', source: '仙子猪之母', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5919', source: '마더 포크시', capture: false }),
-      alertText: (_data, _matches, output) => output.getKnocked(),
+      alertText: (_data, _matches, output) => output.getKnocked!(),
       outputStrings: {
         getKnocked: {
           en: 'Get Knocked into Safe (no anti-knockback)',
@@ -155,13 +169,14 @@ export default {
     },
     {
       id: 'Matoyas Porxie Meat Mallet',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5916', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5916', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5916', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5916', source: 'マザーポークシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5916', source: '仙子猪之母', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5916', source: '마더 포크시', capture: false }),
-      alertText: (_data, _matches, output) => output.awayFromAoe(),
+      alertText: (_data, _matches, output) => output.awayFromAoe!(),
       outputStrings: {
         awayFromAoe: {
           en: 'Go to Opposite Side',
@@ -175,9 +190,10 @@ export default {
     },
     {
       id: 'Matoyas Porxie Sucked In',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '9B6' }),
       suppressSeconds: (_data, matches) => parseFloat(matches.duration),
-      alarmText: (_data, _matches, output) => output.runAway(),
+      alarmText: (_data, _matches, output) => output.runAway!(),
       outputStrings: {
         runAway: {
           en: 'RUN AWAY',
@@ -191,6 +207,7 @@ export default {
     },
     {
       id: 'Matoyas Porxie Minced Meat',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5911', source: 'Mother Porxie' }),
       netRegexDe: NetRegexes.startsUsing({ id: '5911', source: 'Muttersau' }),
       netRegexFr: NetRegexes.startsUsing({ id: '5911', source: 'mère porxie' }),
@@ -202,6 +219,7 @@ export default {
     },
     {
       id: 'Matoyas Porxie Sprite Explosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4E34', source: 'aeolian cave sprite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4E34', source: 'Windhöhlen-Exergon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4E34', source: 'élémentaire des cavernes venteuses', capture: false }),
@@ -209,7 +227,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '4E34', source: '洞窟风元精', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4E34', source: '바람 동굴 정령', capture: false }),
       delaySeconds: 5,
-      alertText: (_data, _matches, output) => output.goBoss(),
+      alertText: (_data, _matches, output) => output.goBoss!(),
       outputStrings: {
         goBoss: {
           en: 'Go to Boss',
@@ -223,6 +241,7 @@ export default {
     },
     {
       id: 'Matoyas Porxie Open Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5922', source: 'Mother Porxie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5922', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5922', source: 'mère porxie', capture: false }),
@@ -420,3 +439,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

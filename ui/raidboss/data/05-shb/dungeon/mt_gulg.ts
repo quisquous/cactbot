@@ -2,13 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MtGulg,
   timelineFile: 'mt_gulg.txt',
   triggers: [
     {
       id: 'Gulg Punitive Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '41AF', source: 'Forgiven Prejudice' }),
       netRegexDe: NetRegexes.startsUsing({ id: '41AF', source: 'Geläutert(?:e|er|es|en) Voreingenommenheit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '41AF', source: 'Préjugé Pardonné' }),
@@ -20,13 +25,14 @@ export default {
     },
     {
       id: 'Gulg Tail Smash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '41AB', source: 'Forgiven Ambition', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '41AB', source: 'Geläutert(?:e|er|es|en) Begierde', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '41AB', source: 'Ambition Pardonnée', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '41AB', source: 'フォーギヴン・アンビション', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '41AB', source: '得到宽恕的奢望', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '41AB', source: '면죄된 야망', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Ambition Tail Smash',
@@ -40,6 +46,7 @@ export default {
     },
     {
       id: 'Gulg Rake',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CFB', source: 'Forgiven Cruelty' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CFB', source: 'Geläutert(?:e|er|es|en) Grausamkeit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CFB', source: 'Cruauté Pardonnée' }),
@@ -51,13 +58,14 @@ export default {
     },
     {
       id: 'Gulg Lumen Infinitum',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '41B2', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '41B2', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '41B2', source: 'Cruauté Pardonnée', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '41B2', source: 'フォーギヴン・クルエルティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '41B2', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '41B2', source: '면죄된 잔혹', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Frontal Laser',
@@ -71,6 +79,7 @@ export default {
     },
     {
       id: 'Gulg Cyclone Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CFC', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CFC', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CFC', source: 'Cruauté Pardonnée', capture: false }),
@@ -82,6 +91,7 @@ export default {
     },
     {
       id: 'Gulg Typhoon Wing 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D00', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D00', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D00', source: 'Cruauté Pardonnée', capture: false }),
@@ -89,7 +99,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3D00', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D00', source: '면죄된 잔혹', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'dodge wind cones',
@@ -103,6 +113,7 @@ export default {
     },
     {
       id: 'Gulg Typhoon Wing 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D0[12]', source: 'Forgiven Cruelty', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D0[12]', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D0[12]', source: 'Cruauté Pardonnée', capture: false }),
@@ -114,6 +125,7 @@ export default {
     },
     {
       id: 'Gulg Sacrament of Penance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D0B', source: 'Forgiven Whimsy', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D0B', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D0B', source: 'Caprice Pardonné', capture: false }),
@@ -125,6 +137,7 @@ export default {
     },
     {
       id: 'Gulg Catechism',
+      type: 'StartsUsing',
       // no target name
       netRegex: NetRegexes.startsUsing({ id: '3D09', source: 'Forgiven Whimsy' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D09', source: 'Geläutert(?:e|er|es|en) Gereiztheit' }),
@@ -137,13 +150,14 @@ export default {
     },
     {
       id: 'Gulg Judgment Day',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D0F', source: 'Forgiven Whimsy', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D0F', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D0F', source: 'Caprice Pardonné', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3D0F', source: 'フォーギヴン・ウィムズィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D0F', source: '得到宽恕的无常', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D0F', source: '면죄된 변덕', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Towers',
@@ -157,6 +171,7 @@ export default {
     },
     {
       id: 'Gulg Left Palm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3F7A', source: 'Forgiven Revelry', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3F7A', source: 'Geläutert(?:e|er|es|en) Prasserei', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3F7A', source: 'Orgie Pardonnée', capture: false }),
@@ -167,6 +182,7 @@ export default {
     },
     {
       id: 'Gulg Right Palm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3F78', source: 'Forgiven Revelry', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3F78', source: 'Geläutert(?:e|er|es|en) Prasserei', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3F78', source: 'Orgie Pardonnée', capture: false }),
@@ -177,6 +193,7 @@ export default {
     },
     {
       id: 'Gulg Orison Fortissimo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D14', source: 'Forgiven Obscenity', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D14', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D14', source: 'Obscénité Pardonnée', capture: false }),
@@ -188,6 +205,7 @@ export default {
     },
     {
       id: 'Gulg Sforzando',
+      type: 'StartsUsing',
       // no target name
       netRegex: NetRegexes.startsUsing({ id: '3D12', source: 'Forgiven Obscenity' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D12', source: 'Geläutert(?:e|er|es|en) Unzucht' }),
@@ -200,13 +218,14 @@ export default {
     },
     {
       id: 'Gulg Divine Diminuendo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D18', source: 'Forgiven Obscenity', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D18', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D18', source: 'Obscénité Pardonnée', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3D18', source: 'フォーギヴン・オブセニティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D18', source: '得到宽恕的猥亵', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D18', source: '면죄된 외설', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'max melee range',
@@ -220,6 +239,7 @@ export default {
     },
     {
       id: 'Gulg Conviction Marcato',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D1A', source: 'Forgiven Obscenity', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D1A', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D1A', source: 'Obscénité Pardonnée', capture: false }),
@@ -427,3 +447,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

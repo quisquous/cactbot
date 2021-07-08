@@ -2,13 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AnamnesisAnyder,
   timelineFile: 'anamnesis_anyder.txt',
   triggers: [
     {
       id: 'AnAnyder Fetid Fang',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: ['4B69', '4B72'] }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: ['4B69', '4B72'] }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: ['4B69', '4B72'] }),
@@ -20,6 +25,7 @@ export default {
     },
     {
       id: 'AnAnyder Scrutiny',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E25', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: '4E25', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4E25', capture: false }),
@@ -28,7 +34,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '정체불명', id: '4E25', capture: false }),
       delaySeconds: 3,
       durationSeconds: 7,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Arrow',
@@ -42,6 +48,7 @@ export default {
     },
     {
       id: 'AnAnyder Inscrutability',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4B6A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: '4B6A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4B6A', capture: false }),
@@ -53,6 +60,7 @@ export default {
     },
     {
       id: 'AnAnyder Luminous Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E2[67]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abscheulich(?:e|er|es|en) Monstrum', id: '4E2[67]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4E2[67]', capture: false }),
@@ -63,6 +71,7 @@ export default {
     },
     {
       id: 'AnAnyder The Final Verse',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B58', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B58', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B58', capture: false }),
@@ -74,6 +83,7 @@ export default {
     },
     {
       id: 'AnAnyder 2,000-Mina Swing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B55', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B55', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B55', capture: false }),
@@ -84,6 +94,7 @@ export default {
     },
     {
       id: 'AnAnyder Eye Of The Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B57', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B57', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B57', capture: false }),
@@ -94,6 +105,7 @@ export default {
     },
     {
       id: 'AnAnyder 2,000-Mina Swipe',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
@@ -104,6 +116,7 @@ export default {
     },
     {
       id: 'AnAnyder Raging Glower',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
@@ -114,11 +127,13 @@ export default {
     },
     {
       id: 'AnAnyder Open Hearth Flying Fount',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'AnAnyder Bonebreaker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B8C' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B8C' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B8C' }),
@@ -130,6 +145,7 @@ export default {
     },
     {
       id: 'AnAnyder Falling Water',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
@@ -141,13 +157,14 @@ export default {
     },
     {
       id: 'AnAnyder Depth Grip',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルクスィー・ディーマ', id: '4B84', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '鲁克嘶·蒂母', id: '4B84', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루크쉬 디마', id: '4B84', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Hands',
@@ -373,3 +390,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

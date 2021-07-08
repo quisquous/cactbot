@@ -2,13 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MalikahsWell,
   timelineFile: 'malikahs_well.txt',
   triggers: [
     {
       id: 'Malikah Stone Flail',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CE5', source: 'Greater Armadillo' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CE5', source: 'Riesengürteltier' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CE5', source: 'Grand Tatou' }),
@@ -20,18 +25,20 @@ export default {
     },
     {
       id: 'Malikah Head Toss Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Malikah Right Round',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CE7', source: 'Greater Armadillo', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CE7', source: 'Riesengürteltier', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CE7', source: 'Grand Tatou', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3CE7', source: 'グレーター・アルマジロ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CE7', source: '大犰狳', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CE7', source: '거대 아르마딜로', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Melee Knockback',
@@ -45,6 +52,7 @@ export default {
     },
     {
       id: 'Malikah Deep Draught',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4188', source: 'Pack Armadillo' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4188', source: 'Rudel-Gürteltier' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4188', source: 'Tatou Grégaire' }),
@@ -56,6 +64,7 @@ export default {
     },
     {
       id: 'Malikah Efface',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CEB', source: 'Amphibious Talos' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CEB', source: 'Wasserträger-Talos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CEB', source: 'Talos Amphibie' }),
@@ -67,6 +76,7 @@ export default {
     },
     {
       id: 'Malikah High Pressure',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CEC', source: 'Amphibious Talos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CEC', source: 'Wasserträger-Talos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CEC', source: 'Talos Amphibie', capture: false }),
@@ -77,6 +87,7 @@ export default {
     },
     {
       id: 'Malikah Swift Spill',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CEF', source: 'Amphibious Talos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CEF', source: 'Wasserträger-Talos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CEF', source: 'Talos Amphibie', capture: false }),
@@ -87,6 +98,7 @@ export default {
     },
     {
       id: 'Malikah Intestinal Crank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CF1', source: 'Storge', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CF1', source: 'Storge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CF1', source: 'Storgê', capture: false }),
@@ -259,3 +271,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

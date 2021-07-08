@@ -2,13 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.HolminsterSwitch,
   timelineFile: 'holminster_switch.txt',
   triggers: [
     {
       id: 'Holminster Path of Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DC5', source: 'Forgiven Dissonance', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DC5', source: 'Geläutert(?:e|er|es|en) Widerspruch', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DC5', source: 'Dissonance Pardonnée', capture: false }),
@@ -20,6 +25,7 @@ export default {
     },
     {
       id: 'Holminster Pillory',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DC4', source: 'Forgiven Dissonance' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DC4', source: 'Geläutert(?:e|er|es|en) Widerspruch' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DC4', source: 'Dissonance Pardonnée' }),
@@ -31,6 +37,7 @@ export default {
     },
     {
       id: 'Holminster Tickler',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen, The Forgiven' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen Pardonnée' }),
@@ -42,6 +49,7 @@ export default {
     },
     {
       id: 'Holminster Bridle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen, The Forgiven', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen Pardonnée', capture: false }),
@@ -53,6 +61,7 @@ export default {
     },
     {
       id: 'Holminster Flagellation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen, The Forgiven', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen Pardonnée', capture: false }),
@@ -63,11 +72,13 @@ export default {
     },
     {
       id: 'Holminster Exorcise Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Holminster Scavenger',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
@@ -79,6 +90,7 @@ export default {
     },
     {
       id: 'Holminster Head Crusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
@@ -90,9 +102,10 @@ export default {
     },
     {
       id: 'Holminster Chain Down',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Break chain on ${player}',
@@ -106,19 +119,21 @@ export default {
     },
     {
       id: 'Holminster Taphephobia',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Holminster Into The Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4350', source: 'フィリア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4350', source: '斐利亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4350', source: '필리아', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Line Stack',
@@ -132,6 +147,7 @@ export default {
     },
     {
       id: 'Holminster Left Knout',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
@@ -142,6 +158,7 @@ export default {
     },
     {
       id: 'Holminster Right Knout',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
@@ -340,3 +357,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

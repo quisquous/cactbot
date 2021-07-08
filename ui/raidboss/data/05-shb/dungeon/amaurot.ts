@@ -2,23 +2,30 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  meteor?: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.Amaurot,
   timelineFile: 'amaurot.txt',
   triggers: [
     {
       id: 'Amaurot Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      preRun: (data) => data.meteor = (data.meteor || 0) + 1,
+      preRun: (data) => data.meteor = (data.meteor ?? 0) + 1,
       infoText: (data, _matches, output) => {
         if (data.meteor === 1)
-          return output.dropMeteorWest();
+          return output.dropMeteorWest!();
         else if (data.meteor === 2)
-          return output.dropMeteorEast();
+          return output.dropMeteorEast!();
 
-        return output.meteor();
+        return output.meteor!();
       },
       outputStrings: {
         dropMeteorWest: {
@@ -49,19 +56,21 @@ export default {
     },
     {
       id: 'Amaurot Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Amaurot Final Sky',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CCB', source: '(?:der|die|das) Erst(?:e|er|es|en) Unheil', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CCB', source: 'Annélide De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3CCB', source: 'ファースト・ビースト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CCB', source: '第一之兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CCB', source: '최초의 야수', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Hide Behind Boulder',
@@ -75,6 +84,7 @@ export default {
     },
     {
       id: 'Amaurot Shadow Wreck',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CE3', source: 'Mégatherion', capture: false }),
@@ -86,13 +96,14 @@ export default {
     },
     {
       id: 'Amaurot Apokalypsis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3CD7', source: 'Mégatherion', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3CD7', source: 'メガセリオン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CD7', source: '至大灾兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CD7', source: '메가테리온', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Off',
@@ -273,3 +284,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

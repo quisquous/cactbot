@@ -2,13 +2,20 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  firesDomain?: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheGrandCosmos,
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [
     {
       id: 'Cosmos Shadowbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
@@ -20,17 +27,20 @@ export default {
     },
     {
       id: 'Cosmos Dark Pulse',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Immortal Anathema',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
@@ -42,6 +52,7 @@ export default {
     },
     {
       id: 'Cosmos Tribulation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
@@ -49,7 +60,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '476B', source: '궁전의 은자', capture: false }),
       delaySeconds: 8,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Brooms',
@@ -63,6 +74,7 @@ export default {
     },
     {
       id: 'Cosmos Storm of Color',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
       netRegexDe: NetRegexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
       netRegexFr: NetRegexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
@@ -73,6 +85,7 @@ export default {
     },
     {
       id: 'Cosmos Ode To Lost Love',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
@@ -86,6 +99,7 @@ export default {
       // Can't use added combatant here as all these adds exist.
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
@@ -97,13 +111,14 @@ export default {
     },
     {
       id: 'Cosmos Gardener\'s Hymn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '471E', source: '랴난시', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'put seeds on dirt',
@@ -117,6 +132,7 @@ export default {
     },
     {
       id: 'Cosmos Ronkan Cure II',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
@@ -128,6 +144,7 @@ export default {
     },
     {
       id: 'Cosmos Captive Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
@@ -138,6 +155,7 @@ export default {
     },
     {
       id: 'Cosmos Culling Blade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
@@ -149,16 +167,18 @@ export default {
     },
     {
       id: 'Cosmos Black Flame 1',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Black Flame 2',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 4,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Crosses',
@@ -172,16 +192,18 @@ export default {
     },
     {
       id: 'Cosmos Mortal Flame 1',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Mortal Flame 2',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 5.5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Touch Furniture',
@@ -195,6 +217,7 @@ export default {
     },
     {
       id: 'Cosmos Scorching Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
@@ -205,6 +228,7 @@ export default {
     },
     {
       id: 'Cosmos Scorching Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
@@ -215,16 +239,17 @@ export default {
     },
     {
       id: 'Cosmos Fire\'s Domain',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
-        data.firesDomain = (data.firesDomain || 0) + 1;
+        data.firesDomain = (data.firesDomain ?? 0) + 1;
       },
       infoText: (data, _matches, output) => {
         if (data.firesDomain === 1)
-          return output.pointTetherAwayFromFurniture();
+          return output.pointTetherAwayFromFurniture!();
 
-        return output.tetherOnYou();
+        return output.tetherOnYou!();
       },
       outputStrings: {
         pointTetherAwayFromFurniture: {
@@ -444,3 +469,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
