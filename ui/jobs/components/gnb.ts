@@ -4,7 +4,7 @@ import { kAbility } from '../constants';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
-let tid1: ReturnType<typeof setTimeout>;
+let tid1: number;
 
 export const setup = (bars: Bars): void => {
   const cartridgeBox = bars.addResourceBox({
@@ -19,7 +19,7 @@ export const setup = (bars: Bars): void => {
     noMercyBox.duration = '20';
     noMercyBox.threshold = '1000';
     noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
-    tid1 = setTimeout(() => {
+    tid1 = window.setTimeout(() => {
       noMercyBox.duration = '40';
       noMercyBox.threshold = (bars.gcdSkill + 1).toString();
       noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');

@@ -135,7 +135,7 @@ export class Buff {
 
     // if a readied raidbuff not be used in 3min, we can assume that
     // this player has left the battlefield, or at least his raidbuff is unexpectable.
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.ready[source]?.removeCallback();
     }, 3 * 60 * 1000);
   }

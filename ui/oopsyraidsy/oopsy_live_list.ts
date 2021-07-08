@@ -99,7 +99,7 @@ export class OopsyLiveList implements OopsyListView {
       msg.classList.add('copied-msg');
       msg.innerText = kCopiedMessage[this.options.DisplayLanguage] || kCopiedMessage['en'];
       document.body.appendChild(msg);
-      setTimeout(() => {
+      window.setTimeout(() => {
         document.body.removeChild(msg);
       }, 1000);
     });

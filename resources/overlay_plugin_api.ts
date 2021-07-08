@@ -233,7 +233,7 @@ export const init = (): void => {
 
           console.log('Trying to reconnect...');
           // Don't spam the server with retries.
-          setTimeout(() => {
+          window.setTimeout(() => {
             connectWs();
           }, 300);
         });
@@ -243,7 +243,7 @@ export const init = (): void => {
     } else {
       const waitForApi = function() {
         if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
-          setTimeout(waitForApi, 300);
+          window.setTimeout(waitForApi, 300);
           return;
         }
 
