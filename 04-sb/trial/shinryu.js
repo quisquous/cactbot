@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Shinryu Normal Akh Morn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FA4', source: 'Shinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FA4', source: 'Shinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FA4', source: 'Shinryu' }),
@@ -54,6 +55,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Diamond Dust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FAD', source: 'Shinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FAD', source: 'Shinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FAD', source: 'Shinryu' }),
@@ -62,11 +64,12 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '1FAD', source: '신룡' }),
       // Here and elsewhere, timings aren't always completely usable. Instead we give the user
       // a quasi-standard amount of time when notifying.
-      delaySeconds: (_data, matches) => matches.castTime - 4,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       response: Responses.stopMoving(),
     },
     {
       id: 'Shinryu Normal Dragonfist',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu', capture: false }),
@@ -87,6 +90,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Hellfire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu', capture: false }),
@@ -108,6 +112,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Hypernova',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Aile Droite', capture: false }),
@@ -129,6 +134,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Judgement Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu', capture: false }),
@@ -150,6 +156,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Levinbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1F9B', source: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1F9B', source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1F9B', source: 'Aile Droite', capture: false }),
@@ -171,13 +178,14 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Tidal Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FAA', source: 'Shinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FAA', source: 'Shinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FAA', source: 'Shinryu' }),
       netRegexJa: NetRegexes.startsUsing({ id: '1FAA', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FAA', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAA', source: '신룡' }),
-      delaySeconds: (_data, matches) => matches.castTime - 6,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -193,6 +201,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Ice Storm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FA2', source: 'Left Wing' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FA2', source: 'link(?:e|er|es|en) Schwinge' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FA2', source: 'aile gauche' }),
@@ -200,11 +209,12 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '1FA2', source: '左翼' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA2', source: '왼쪽 날개' }),
       condition: (data) => data.role === 'healer',
-      delaySeconds: (_data, matches) => matches.castTime - 4,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       response: Responses.aoe(),
     },
     {
       id: 'Shinryu Normal Tail Slap',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1F93', source: 'Tail', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1F93', source: 'Schwanz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1F93', source: 'Queue', capture: false }),
@@ -227,6 +237,7 @@ Options.Triggers.push({
     {
       // Re-using the Gyre Charge triggers since they're convenient and already translated.
       id: 'Shinryu Normal Akh Rai Activation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
@@ -238,6 +249,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Divebomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
@@ -258,6 +270,7 @@ Options.Triggers.push({
     },
     {
       id: 'Shinryu Normal Tethers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
@@ -268,6 +281,7 @@ Options.Triggers.push({
       // It usually appears around Burning Chains, but it's wildly inconsistent.
       // However, it *seems* that the tail attacks from the side the target is on.
       id: 'Shinryu Normal Slap Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0062' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),

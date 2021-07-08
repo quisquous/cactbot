@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'SuzEx Cremate',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
       netRegexDe: NetRegexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
       netRegexFr: NetRegexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'SuzEx Phantom Flurry',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
@@ -29,6 +31,7 @@ Options.Triggers.push({
     },
     {
       id: 'SuzEx Mesmerizing Melody',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
@@ -49,6 +52,7 @@ Options.Triggers.push({
     },
     {
       id: 'SuzEx Ruthless Refrain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),

@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'RathEx Mangle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
@@ -25,6 +26,7 @@ Options.Triggers.push({
     },
     {
       id: 'RathEx Rush',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
@@ -45,6 +47,7 @@ Options.Triggers.push({
     },
     {
       id: 'RathEx Flaming Recoil',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
@@ -65,6 +68,7 @@ Options.Triggers.push({
     },
     {
       id: 'RathEx Fire Breath',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0081' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -81,11 +85,13 @@ Options.Triggers.push({
     },
     {
       id: 'RathEx Fireball',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0084', '005D'] }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'RathEx Adds',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Steppe Sheep', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Steppenschaf', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Mouton De La Steppe', capture: false }),

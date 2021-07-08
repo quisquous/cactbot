@@ -57,6 +57,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'SeiryuEx Aramitama Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37E4', source: 'Seiryû', capture: false }),
@@ -67,6 +68,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Cursekeeper',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryû' }),
@@ -93,6 +95,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Infirm Soul',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryû', capture: false }),
@@ -119,6 +122,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Ascending Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
@@ -129,6 +133,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Ascending Stack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
@@ -150,12 +155,18 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Ascending Marker Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: (data) => data.blazing,
-      run: (data, matches) => data.markers.push(matches.target),
+      run: (data, matches) => {
+        let _a;
+        (_a = data.markers) !== null && _a !== void 0 ? _a : (data.markers = []);
+        data.markers.push(matches.target);
+      },
     },
     {
       id: 'SeiryuEx Ascending Marker You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: (data, matches) => data.blazing && matches.target === data.me,
       infoText: (data, _matches, output) => {
@@ -184,9 +195,11 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Ascending Tower You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9', capture: false }),
       condition: (data) => {
-        if (!data.blazing || data.markers.length !== 4)
+        let _a;
+        if (!data.blazing || ((_a = data.markers) === null || _a === void 0 ? void 0 : _a.length) !== 4)
           return false;
         return !data.markers.includes(data.me);
       },
@@ -216,6 +229,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Handprint East',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '37E5', source: 'Yama-No-Shiki', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '37E5', source: 'Yama No Shiki', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '37E5', source: 'Shiki Montagneux', capture: false }),
@@ -226,6 +240,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Handprint West',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '37E6', source: 'Yama-No-Shiki', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '37E6', source: 'Yama No Shiki', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '37E6', source: 'Shiki Montagneux', capture: false }),
@@ -236,6 +251,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Find Sneks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37F7', source: 'Seiryû', capture: false }),
@@ -269,6 +285,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Silence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki' }),
       netRegexDe: NetRegexes.startsUsing({ id: '37F4', source: 'Numa No Shiki' }),
       netRegexFr: NetRegexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux' }),
@@ -280,6 +297,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Stack',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Ao-No-Shiki', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Ao No Shiki', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Shiki Céruléen', capture: false }),
@@ -314,6 +332,7 @@ Options.Triggers.push({
       // This comes a good bit after the symbol on screen,
       // but it's still 2.5s of warning if you've fallen asleep.
       id: 'SeiryuEx Sigil Single Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A01', source: 'Seiryû', capture: false }),
@@ -324,6 +343,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
@@ -334,6 +354,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
@@ -345,6 +366,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Sigil Out In 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
@@ -355,6 +377,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Sigil Out In 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
@@ -366,6 +389,7 @@ Options.Triggers.push({
     },
     {
       id: 'SeiryuEx Swim Lessons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37CB', source: 'Seiryû', capture: false }),

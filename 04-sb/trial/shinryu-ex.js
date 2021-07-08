@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'ShinryuEx Heart Cleanup',
+      type: 'RemovedCombatant',
       netRegex: NetRegexes.removingCombatant({ name: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.removingCombatant({ name: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.removingCombatant({ name: 'Shinryu', capture: false }),
@@ -18,6 +19,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Phase 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
@@ -28,6 +30,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Phase 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
@@ -38,6 +41,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Phase 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
@@ -48,6 +52,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Phase 4',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
@@ -58,6 +63,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Akh Morn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
@@ -104,6 +110,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Diamond Dust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
@@ -124,6 +131,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Dragonfist',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
@@ -144,6 +152,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Hellfire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
@@ -167,6 +176,7 @@ Options.Triggers.push({
       // TODO: the original trigger didn't differentiate the two ability ids.
       // Probably the phase conditional could get removed if it did.
       id: 'ShinryuEx Hypernova',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: 'Aile Droite', capture: false }),
@@ -200,6 +210,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Judgement Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
@@ -221,6 +232,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Levinbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Aile Droite', target: 'Aile Droite', capture: false }),
@@ -254,6 +266,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Levinbolt Phase 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Aile Droite', target: 'Aile Droite', capture: false }),
@@ -276,6 +289,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Icicle Left',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-15', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-15', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-15', capture: false }),
@@ -296,6 +310,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Icicle Right',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-25', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-25', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-25', capture: false }),
@@ -316,6 +331,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Tidal Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
@@ -338,6 +354,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Final Tidal Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
@@ -359,6 +376,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Tail Slap',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25E2', source: 'Tail', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '25E2', source: 'Schwanz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '25E2', source: 'Queue', capture: false }),
@@ -380,6 +398,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Heart',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'The Worm\'s Heart', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Shinryus Herz', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cœur Du Dragon', capture: false }),
@@ -406,6 +425,7 @@ Options.Triggers.push({
     {
       // TODO: can't find the id of this, so using all of them.
       id: 'ShinryuEx Divebomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
@@ -426,6 +446,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Death Sentence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
@@ -463,6 +484,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Tera Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264B', source: 'Shinryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '264B', source: 'Shinryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '264B', source: 'Shinryu' }),
@@ -473,6 +495,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Wormwail',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
@@ -483,6 +506,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Breath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
@@ -503,6 +527,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Final Left Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2718', source: 'Left Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2718', source: 'Link(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2718', source: 'Aile Gauche', capture: false }),
@@ -525,6 +550,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Final Right Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2719', source: 'Right Wing', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2719', source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2719', source: 'Aile Droite', capture: false }),
@@ -547,6 +573,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Tethers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
@@ -576,6 +603,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Tail Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '007E' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -592,18 +620,21 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Shakers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: (data, matches) => {
-        data.shakerTargets = data.shakerTargets || [];
+        let _a;
+        (_a = data.shakerTargets) !== null && _a !== void 0 ? _a : (data.shakerTargets = []);
         data.shakerTargets.push(matches.target);
         return data.shakerTargets.length === 2;
       },
       alarmText: (data, _matches, output) => {
-        if (data.shakerTargets.includes(data.me))
+        let _a;
+        if ((_a = data.shakerTargets) === null || _a === void 0 ? void 0 : _a.includes(data.me))
           return output.earthshakerOnYou();
       },
       alertText: (data, _matches, output) => {
-        if (!data.shakerTargets.includes(data.me))
+        if (!data.shakerTargets || !data.shakerTargets.includes(data.me))
           return output.avoidEarthshakers();
       },
       run: (data) => delete data.shakerTargets,
@@ -628,6 +659,7 @@ Options.Triggers.push({
     },
     {
       id: 'ShinryuEx Cocoon Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),

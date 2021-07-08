@@ -24,6 +24,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'SusEx Thundercloud Tracker',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Thunderhead', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gewitterwolke', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Nuage Orageux', capture: false }),
@@ -38,6 +39,7 @@ Options.Triggers.push({
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
       id: 'SusEx Thundercloud Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2041', source: 'Gewitterwolke', target: 'Gewitterwolke', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2041', source: 'Nuage Orageux', target: 'Nuage Orageux', capture: false }),
@@ -48,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'SusEx Churning Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6', capture: false }),
       condition: (data) => !data.churning,
       run: (data) => data.churning = true,
@@ -57,12 +60,14 @@ Options.Triggers.push({
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
       id: 'SusEx Churning Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '4F6', capture: false }),
       condition: (data) => data.churning,
       run: (data) => data.churning = false,
     },
     {
       id: 'SusEx Stormsplitter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
@@ -75,6 +80,7 @@ Options.Triggers.push({
     {
       // Red knockback marker indicator
       id: 'SusEx Knockback',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
@@ -130,6 +136,7 @@ Options.Triggers.push({
     },
     {
       id: 'SusEx Levinbolt',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
@@ -179,6 +186,7 @@ Options.Triggers.push({
     },
     {
       id: 'SusEx Levinbolt Debug',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: (data, matches) => {
         data.levinbolt = matches.target;
@@ -187,6 +195,7 @@ Options.Triggers.push({
     },
     {
       id: 'SusEx Levinbolt Stun',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006F' }),
       infoText: (data, matches, output) => {
         // It's sometimes hard for tanks to see the line, so just give a
@@ -207,6 +216,7 @@ Options.Triggers.push({
     },
     {
       id: 'SusEx Churning',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,

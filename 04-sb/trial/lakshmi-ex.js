@@ -14,6 +14,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'LakshmiEx Chanchala Gain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
@@ -24,6 +25,7 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Chanchala Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexDe: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexFr: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
@@ -34,6 +36,7 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Pull of Light Tank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexDe: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexFr: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
@@ -45,6 +48,7 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Pull of Light Unexpected',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexDe: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexFr: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
@@ -56,6 +60,7 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Divine Denial',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
@@ -76,6 +81,7 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Divine Desire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
@@ -96,6 +102,7 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Divine Doubt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
@@ -116,6 +123,7 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Pall of Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       alertText: (data, matches, output) => {
         if (!data.chanchala)
@@ -161,13 +169,14 @@ Options.Triggers.push({
     },
     {
       id: 'LakshmiEx Stotram',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2147', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2147', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2147', source: '락슈미', capture: false }),
-      condition: (data) => data.chancala,
+      condition: (data) => data.chanchala,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -183,6 +192,7 @@ Options.Triggers.push({
     {
       // Offtank cleave
       id: 'LakshmiEx Path of Light Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: Conditions.targetIsYou(),
       alarmText: (data, _matches, output) => {
@@ -212,6 +222,7 @@ Options.Triggers.push({
     {
       // Cross aoe
       id: 'LakshmiEx Hand of Grace',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
@@ -241,6 +252,7 @@ Options.Triggers.push({
     {
       // Flower marker (healers)
       id: 'LakshmiEx Hand of Beauty',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
@@ -270,6 +282,7 @@ Options.Triggers.push({
     {
       // Red marker during add phase
       id: 'LakshmiEx Water III',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),

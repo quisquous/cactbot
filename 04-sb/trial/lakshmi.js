@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Lakshmi Chanchala Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'Lakshmi Chanchala Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexDe: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexFr: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     {
       // 2492 is normal, 2493 is under Chanchala
       id: 'Lakshmi Pull of Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2492', '2493'], source: 'Lakshmi' }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2492', '2493'], source: 'Lakshmi' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2492', '2493'], source: 'Lakshmi' }),
@@ -37,6 +40,7 @@ Options.Triggers.push({
     },
     {
       id: 'Lakshmi Stotram',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '249E', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '249E', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '249E', source: 'Lakshmi', capture: false }),
@@ -49,6 +53,7 @@ Options.Triggers.push({
     {
       // Intermission ability. The user WILL die if they don't use Vril.
       id: 'Lakshmi Jagadishwari',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2342', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '2342', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '2342', source: 'Lakshmi', capture: false }),
@@ -68,6 +73,7 @@ Options.Triggers.push({
     },
     {
       id: 'Lakshmi Divine Denial',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2485', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2485', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2485', source: 'Lakshmi', capture: false }),
@@ -89,9 +95,11 @@ Options.Triggers.push({
     {
       // Nobody with a different marker should be told to stack.
       id: 'Lakshmi Headmarker Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       run: (data, matches) => {
-        data.avoidStack = data.avoidStack || [];
+        let _a;
+        (_a = data.avoidStack) !== null && _a !== void 0 ? _a : (data.avoidStack = []);
         if (matches.id !== '003E')
           data.avoidStack.push(matches.target);
       },
@@ -102,6 +110,7 @@ Options.Triggers.push({
       // and every head marker section begins with one of these abilities,
       // so this should be perfectly safe.
       id: 'Lakshmi Headmarker Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2486', '2487', '2488'], source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['2486', '2487', '2488'], source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['2486', '2487', '2488'], source: 'Lakshmi', capture: false }),
@@ -111,16 +120,19 @@ Options.Triggers.push({
       run: (data) => delete data.avoidStack,
     },
     {
+      // Stack marker
       id: 'Lakshmi Pall of Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
-        if (!data.avoidStack.includes(data.me))
+        if (!data.avoidStack || !data.avoidStack.includes(data.me))
           return;
         return output.dontStack();
       },
       infoText: (data, matches, output) => {
-        if (data.avoidStack.includes(data.me))
+        let _a;
+        if ((_a = data.avoidStack) === null || _a === void 0 ? void 0 : _a.includes(data.me))
           return;
         if (data.me === matches.target)
           return output.stackOnYou();
@@ -141,12 +153,14 @@ Options.Triggers.push({
     {
       // Off-tank cleave
       id: 'Lakshmi Path of Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       response: Responses.tankCleave(),
     },
     {
       // Cross aoe
       id: 'Lakshmi Hand of Grace',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -164,6 +178,7 @@ Options.Triggers.push({
     {
       // Circle
       id: 'Lakshmi Hand of Beauty',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
