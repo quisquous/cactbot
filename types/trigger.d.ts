@@ -76,7 +76,7 @@ export type TriggerAutoConfig = {
 // it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.
 export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatches, Return> =
   [Return] extends [void] ? TriggerFunc<Data, MatchType, void> :
-  TriggerFunc<Data, MatchType, Return | undefined> | Return | undefined;
+  TriggerFunc<Data, MatchType, Return> | Return;
 
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
@@ -84,7 +84,7 @@ export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatc
 export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
   disabled?: boolean;
-  condition?: TriggerField<Data, NetMatches[Type], boolean>;
+  condition?: TriggerField<Data, NetMatches[Type], boolean | undefined>;
   preRun?: TriggerField<Data, NetMatches[Type], void>;
   delaySeconds?: TriggerField<Data, NetMatches[Type], number>;
   durationSeconds?: TriggerField<Data, NetMatches[Type], number>;
