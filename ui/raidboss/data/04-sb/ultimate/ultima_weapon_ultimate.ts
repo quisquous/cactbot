@@ -2,9 +2,16 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  phase?: string;
+  titanGaols?: string[];
+}
 
 // Ultima Weapon Ultimate
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
@@ -18,7 +25,7 @@ export default {
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
       beforeSeconds: 3,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move!',
@@ -34,13 +41,14 @@ export default {
   triggers: [
     {
       id: 'UWU Aetherochemical Laser Middle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B84', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B84', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B84', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B84', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B84', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B84', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Middle Laser',
@@ -53,13 +61,14 @@ export default {
     },
     {
       id: 'UWU Aetherochemical Laser Right',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B85', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B85', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B85', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B85', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B85', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B85', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'North Laser',
@@ -72,13 +81,14 @@ export default {
     },
     {
       id: 'UWU Aetherochemical Laser Left',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B86', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B86', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B86', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B86', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B86', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B86', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'East Laser',
@@ -92,6 +102,7 @@ export default {
     // Phases
     {
       id: 'UWU Suppression Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -103,6 +114,7 @@ export default {
     {
       // Wait after suppression for primal triggers at the end.
       id: 'UWU Finale Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -114,6 +126,7 @@ export default {
     },
     {
       id: 'UWU Garuda Slipstream',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
@@ -121,7 +134,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
       condition: (data) => data.role === 'tank',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Slipstream',
@@ -135,9 +148,10 @@ export default {
     },
     {
       id: 'UWU Garuda Mistral Song Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mistral on YOU',
@@ -151,10 +165,11 @@ export default {
     },
     {
       id: 'UWU Garuda Mistral Song Tank',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010', capture: false }),
       condition: (data) => data.role === 'tank',
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mistral Song',
@@ -168,6 +183,7 @@ export default {
     },
     {
       id: 'UWU Garuda Spiny Plume',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Spiny Plume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Dornig(?:e|er|es|en) Federsturm', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Plume Perforante', capture: false }),
@@ -175,7 +191,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '刺羽', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
       condition: (data) => data.role === 'tank',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spiny Plume Add',
@@ -189,10 +205,11 @@ export default {
     },
     {
       id: 'UWU Ifrit Fetters',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '179' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 45,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Fetters on YOU',
@@ -206,6 +223,7 @@ export default {
     },
     {
       id: 'UWU Searing Wind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
@@ -213,7 +231,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B5B', source: '이프리트' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Searing Wind on YOU',
@@ -227,8 +245,9 @@ export default {
     },
     {
       id: 'UWU Ifrit Flaming Crush',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0075', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stack',
@@ -242,6 +261,7 @@ export default {
     },
     {
       id: 'UWU Garuda Woken',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Garuda', effectId: '5F9', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Garuda', effectId: '5F9', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Garuda', effectId: '5F9', capture: false }),
@@ -252,6 +272,7 @@ export default {
     },
     {
       id: 'UWU Ifrit Woken',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Ifrit', effectId: '5F9', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Ifrit', effectId: '5F9', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Ifrit', effectId: '5F9', capture: false }),
@@ -262,6 +283,7 @@ export default {
     },
     {
       id: 'UWU Titan Woken',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Titan', effectId: '5F9', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Titan', effectId: '5F9', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Titan', effectId: '5F9', capture: false }),
@@ -272,6 +294,7 @@ export default {
     },
     {
       id: 'UWU Titan Gaols',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
       netRegexDe: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
       netRegexFr: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
@@ -279,24 +302,24 @@ export default {
       netRegexCn: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
       netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
       preRun: (data, matches) => {
-        data.titanGaols = data.titanGaols || [];
+        data.titanGaols ??= [];
         data.titanGaols.push(matches.target);
         if (data.titanGaols.length === 3)
           data.titanGaols.sort();
       },
       alertText: (data, _matches, output) => {
-        if (data.titanGaols.length !== 3)
+        if (data.titanGaols?.length !== 3)
           return;
         const idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
           return;
         // Just return your number.
-        return output.num({ num: idx + 1 });
+        return output.num!({ num: idx + 1 });
       },
       infoText: (data, _matches, output) => {
-        if (data.titanGaols.length !== 3)
+        if (data.titanGaols?.length !== 3)
           return;
-        return output.text({
+        return output.text!({
           player1: data.ShortName(data.titanGaols[0]),
           player2: data.ShortName(data.titanGaols[1]),
           player3: data.ShortName(data.titanGaols[2]),
@@ -324,6 +347,7 @@ export default {
     {
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2B6A', source: 'Bomb Boulder' }),
       netRegexDe: NetRegexes.ability({ id: '2B6A', source: 'Bomber-Brocken' }),
       netRegexFr: NetRegexes.ability({ id: '2B6A', source: 'Bombo Rocher' }),
@@ -335,7 +359,7 @@ export default {
           return;
         if (!data.titanGaols.includes(matches.target))
           return;
-        return output.text({ player: data.ShortName(matches.target) });
+        return output.text!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         text: {
@@ -349,6 +373,7 @@ export default {
     },
     {
       id: 'UWU Gaol Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
       netRegexDe: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
       netRegexFr: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
@@ -360,6 +385,7 @@ export default {
     },
     {
       id: 'UWU Suppression Gaol',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
       netRegexDe: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
       netRegexFr: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
@@ -367,7 +393,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '2B6B', source: '泰坦' }),
       netRegexKo: NetRegexes.ability({ id: '2B6B', source: '타이탄' }),
       condition: (data, matches) => data.phase === 'suppression' && data.me === matches.target,
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Gaol on YOU',
@@ -381,6 +407,7 @@ export default {
     },
     {
       id: 'UWU Garuda Finale',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD3', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD3', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD3', capture: false }),
@@ -388,7 +415,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
       condition: (data) => data.phase === 'finale',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Garuda',
@@ -402,6 +429,7 @@ export default {
     },
     {
       id: 'UWU Ifrit Finale',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD4', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD4', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD4', capture: false }),
@@ -409,7 +437,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
       condition: (data) => data.phase === 'finale',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Ifrit',
@@ -423,6 +451,7 @@ export default {
     },
     {
       id: 'UWU Titan Finale',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD5', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD5', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD5', capture: false }),
@@ -430,7 +459,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
       condition: (data) => data.phase === 'finale',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Titan',
@@ -778,3 +807,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
