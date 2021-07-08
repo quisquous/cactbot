@@ -2,15 +2,20 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // O5N - Sigmascape 1.0 Normal
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV10,
   timelineFile: 'o5n.txt',
   resetWhenOutOfCombat: false,
   triggers: [
     {
       id: 'O5N Stop Combat',
+      type: 'RemovedCombatant',
       netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.removingCombatant({ name: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
@@ -19,9 +24,9 @@ export default {
       netRegexKo: NetRegexes.removingCombatant({ name: '마열차', capture: false }),
       run: (data) => data.StopCombat(),
     },
-
     {
       id: 'O5N Doom Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Phantom Train', id: '28A3' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Phantomzug', id: '28A3' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Train Fantôme', id: '28A3' }),
@@ -32,6 +37,7 @@ export default {
     },
     {
       id: 'O5N Head On',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
@@ -42,6 +48,7 @@ export default {
     },
     {
       id: 'O5N Diabolic Headlamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28A6', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28A6', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28A6', source: 'Train Fantôme', capture: false }),
@@ -52,9 +59,10 @@ export default {
     },
     {
       id: 'O5N Diabolic Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Light',
@@ -68,9 +76,10 @@ export default {
     },
     {
       id: 'O5N Diabolic Wind',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Wind',
@@ -197,3 +206,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

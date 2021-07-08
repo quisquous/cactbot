@@ -1,14 +1,21 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  lastWasStarboard?: boolean;
+}
 
 // O11S - Alphascape 3.0 Savage
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV30Savage,
   timelineFile: 'o11s.txt',
   triggers: [
     {
       id: 'O11S Mustard Bomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326D', source: 'Omega' }),
       netRegexDe: NetRegexes.startsUsing({ id: '326D', source: 'Omega' }),
       netRegexFr: NetRegexes.startsUsing({ id: '326D', source: 'Oméga' }),
@@ -27,6 +34,7 @@ export default {
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       id: 'O11S Cannon Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '326[24]', source: 'Oméga', capture: false }),
@@ -38,6 +46,7 @@ export default {
     },
     {
       id: 'O11S Starboard Cannon 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326[23]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '326[23]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '326[23]', source: 'Oméga', capture: false }),
@@ -50,6 +59,7 @@ export default {
     },
     {
       id: 'O11S Larboard Cannon 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326[45]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '326[45]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '326[45]', source: 'Oméga', capture: false }),
@@ -62,6 +72,7 @@ export default {
     },
     {
       id: 'O11S Starboard Cannon 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3263', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3263', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3263', source: 'Oméga', capture: false }),
@@ -71,9 +82,9 @@ export default {
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
-          return output.moveLeft();
+          return output.moveLeft!();
 
-        return output.stayLeft();
+        return output.stayLeft!();
       },
       outputStrings: {
         moveLeft: {
@@ -96,6 +107,7 @@ export default {
     },
     {
       id: 'O11S Larboard Cannon 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3265', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3265', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3265', source: 'Oméga', capture: false }),
@@ -105,9 +117,9 @@ export default {
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
-          return output.stayRight();
+          return output.stayRight!();
 
-        return output.moveRight();
+        return output.moveRight!();
       },
       outputStrings: {
         stayRight: {
@@ -130,13 +142,14 @@ export default {
     },
     {
       id: 'O11S Starboard Surge 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3266', source: 'Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3266', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Left (then opposite)',
@@ -150,13 +163,14 @@ export default {
     },
     {
       id: 'O11S Larboard Surge 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3268', source: 'Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3268', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Right (then opposite)',
@@ -170,6 +184,7 @@ export default {
     },
     {
       id: 'O11S Starboard Surge 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3266', source: 'Oméga', capture: false }),
@@ -177,7 +192,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Opposite (Left)',
@@ -191,6 +206,7 @@ export default {
     },
     {
       id: 'O11S Larboard Surge 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3268', source: 'Oméga', capture: false }),
@@ -198,7 +214,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Opposite (Right)',
@@ -429,3 +445,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

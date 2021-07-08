@@ -1,8 +1,14 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  lastSpinWasHorizontal?: boolean;
+}
 
 // O10N - Alphascape 2.0
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV20,
   timelineFile: 'o10n.txt',
   triggers: [
@@ -12,6 +18,7 @@ export default {
       // 31C7 + 31CB = 31CF (horiz + vert = in)
       // 31C8 + 31CB = 31D0 (vert + vert = +)
       id: 'O10N Spin Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
@@ -23,13 +30,14 @@ export default {
     },
     {
       id: 'O10N Horizontal Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '31C7', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C7', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C7', source: '미드가르드오름', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = true,
       outputStrings: {
         text: {
@@ -44,13 +52,14 @@ export default {
     },
     {
       id: 'O10N Vertical Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '31C8', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C8', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C8', source: '미드가르드오름', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = false,
       outputStrings: {
         text: {
@@ -65,6 +74,7 @@ export default {
     },
     {
       id: 'O10N Horizontal Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
@@ -74,10 +84,10 @@ export default {
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
-          return output.getOut();
+          return output.getOut!();
 
         // This shouldn't happen.
-        return output.goToCardinals();
+        return output.goToCardinals!();
       },
       outputStrings: {
         getOut: {
@@ -99,6 +109,7 @@ export default {
     },
     {
       id: 'O10N Vertical Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
@@ -108,9 +119,9 @@ export default {
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
-          return output.getIn();
+          return output.getIn!();
 
-        return output.goToCorners();
+        return output.goToCorners!();
       },
       outputStrings: {
         getIn: {
@@ -270,3 +281,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

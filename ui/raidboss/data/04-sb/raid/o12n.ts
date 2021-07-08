@@ -2,9 +2,13 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // O12N - Alphascape 4.0
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV40,
   timelineFile: 'o12n.txt',
   timelineTriggers: [
@@ -18,6 +22,7 @@ export default {
   triggers: [
     {
       id: 'O12N Solar Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['Oméga', 'Oméga-M'] }),
@@ -30,6 +35,7 @@ export default {
     },
     {
       id: 'O12N Optimized Blade Dance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['Oméga', 'Oméga-M'] }),
@@ -42,6 +48,7 @@ export default {
     },
     {
       id: 'O12N Local Resonance',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Oméga', effectId: '67E', capture: false }),
@@ -49,7 +56,7 @@ export default {
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
       condition: (data) => data.role === 'tank',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move bosses apart',
@@ -63,22 +70,24 @@ export default {
     },
     {
       id: 'O12N Optimized Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'O12N Stack Spread Markers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       alertText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
-        return output.getOut();
+        return output.getOut!();
       },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.stack();
+        return output.stack!();
       },
       outputStrings: {
         stack: {
@@ -101,9 +110,10 @@ export default {
     },
     {
       id: 'O12N Packet Filter F',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Attack Omega-M',
@@ -117,9 +127,10 @@ export default {
     },
     {
       id: 'O12N Packet Filter M',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Attack Omega-F',
@@ -325,3 +336,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

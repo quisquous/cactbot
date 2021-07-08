@@ -2,9 +2,13 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // O1S - Deltascape 1.0 Normal
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV10,
   timelineFile: 'o1n.txt',
   timelineTriggers: [
@@ -19,6 +23,7 @@ export default {
   triggers: [
     {
       id: 'O1N Blaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23E1', source: 'Alte Roite' }),
       netRegexDe: NetRegexes.startsUsing({ id: '23E1', source: 'Alte Roite' }),
       netRegexFr: NetRegexes.startsUsing({ id: '23E1', source: 'Alte Roite' }),
@@ -29,13 +34,14 @@ export default {
     },
     {
       id: 'O1N Breath Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23DE', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23DE', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23DE', source: 'Alte Roite', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '23DE', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23DE', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DE', source: '알테 로이테', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Breath Wing: Be beside boss',
@@ -49,6 +55,7 @@ export default {
     },
     {
       id: 'O1N Clamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23E2', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23E2', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23E2', source: 'Alte Roite', capture: false }),
@@ -60,6 +67,7 @@ export default {
     {
       // Knockback immunities don't work.
       id: 'O1N Downburst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
@@ -70,6 +78,7 @@ export default {
     },
     {
       id: 'O1N Roar',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23DC', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23DC', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23DC', source: 'Alte Roite', capture: false }),
@@ -81,6 +90,7 @@ export default {
     },
     {
       id: 'O1N Charybdis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23DB', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23DB', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23DB', source: 'Alte Roite', capture: false }),
@@ -93,6 +103,7 @@ export default {
     },
     {
       id: 'O1N Twin Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23D7', source: 'Alte Roite' }),
       netRegexDe: NetRegexes.startsUsing({ id: '23D7', source: 'Alte Roite' }),
       netRegexFr: NetRegexes.startsUsing({ id: '23D7', source: 'Alte Roite' }),
@@ -107,6 +118,7 @@ export default {
       // cast by Alte Roite on Alte Roite, and when that resolves the markers on players resolve
       // with 23DA.
       id: 'O1N Levinbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23D9', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23D9', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23D9', source: 'Alte Roite', capture: false }),
@@ -230,3 +242,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

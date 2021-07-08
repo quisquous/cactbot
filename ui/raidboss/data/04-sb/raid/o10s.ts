@@ -2,6 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  lastSpinWasHorizontal?: boolean;
+}
 
 // TODO: fix tail end (seemed to not work??)
 // TODO: add phase tracking (so death from above/below can tell you to swap or not)
@@ -11,12 +17,13 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: stack head markers
 
 // O10S - Alphascape 2.0 Savage
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV20Savage,
   timelineFile: 'o10s.txt',
   triggers: [
     {
       id: 'O10S Tail End',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
       netRegexDe: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
       netRegexFr: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
@@ -27,14 +34,15 @@ export default {
     },
     {
       id: 'O10S Fire Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.fireOnYou();
+          return output.fireOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.fireOn({ player: data.ShortName(matches.target) });
+          return output.fireOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         fireOnYou: {
@@ -56,9 +64,10 @@ export default {
     },
     {
       id: 'O10S Death From Below',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008F' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Death From Below',
@@ -72,9 +81,10 @@ export default {
     },
     {
       id: 'O10S Death From Above',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008E' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Death From Above',
@@ -93,6 +103,7 @@ export default {
       // 31AD + 31AE = 31B3 (vert + horiz = x)
       // 31AD + 31B0 = 31B5 (vert + vert = +)
       id: 'O10S Spin Cleanup',
+      type: 'Ability',
       // 16 if it doesn't hit anybody, 15 if it does.
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
@@ -106,13 +117,14 @@ export default {
     },
     {
       id: 'O10S Horizontal Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '31AC', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = true,
       outputStrings: {
         text: {
@@ -127,13 +139,14 @@ export default {
     },
     {
       id: 'O10S Vertical Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '31AD', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = false,
       outputStrings: {
         text: {
@@ -148,6 +161,7 @@ export default {
     },
     {
       id: 'O10S Horizontal Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
@@ -157,9 +171,9 @@ export default {
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
-          return output.getOut();
+          return output.getOut!();
 
-        return output.goToCardinals();
+        return output.goToCardinals!();
       },
       outputStrings: {
         getOut: {
@@ -182,6 +196,7 @@ export default {
     },
     {
       id: 'O10S Vertical Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
@@ -191,9 +206,9 @@ export default {
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
-          return output.getIn();
+          return output.getIn!();
 
-        return output.goToCorners();
+        return output.goToCorners!();
       },
       outputStrings: {
         getIn: {
@@ -394,3 +409,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

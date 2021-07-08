@@ -1,9 +1,15 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  lastWasStarboard?: boolean;
+}
 
 // O11N - Alphascape 3.0
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV30,
   timelineFile: 'o11n.txt',
   timelineTriggers: [
@@ -12,7 +18,7 @@ export default {
       regex: /Blaster/,
       beforeSeconds: 3,
       condition: (data) => data.role === 'tank',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tank Tether',
@@ -27,6 +33,7 @@ export default {
   triggers: [
     {
       id: 'O11N Mustard Bomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3287', source: 'Omega' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3287', source: 'Omega' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3287', source: 'Oméga' }),
@@ -45,6 +52,7 @@ export default {
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       id: 'O11N Cannon Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '328[13]', source: 'Oméga', capture: false }),
@@ -56,6 +64,7 @@ export default {
     },
     {
       id: 'O11N Starboard Cannon 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '328[12]', source: 'Oméga', capture: false }),
@@ -68,6 +77,7 @@ export default {
     },
     {
       id: 'O11N Larboard Cannon 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '328[34]', source: 'Oméga', capture: false }),
@@ -80,6 +90,7 @@ export default {
     },
     {
       id: 'O11N Starboard Cannon 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3282', source: 'Oméga', capture: false }),
@@ -89,9 +100,9 @@ export default {
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
-          return output.moveLeft();
+          return output.moveLeft!();
 
-        return output.stayLeft();
+        return output.stayLeft!();
       },
       outputStrings: {
         moveLeft: {
@@ -114,6 +125,7 @@ export default {
     },
     {
       id: 'O11N Larboard Cannon 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3284', source: 'Oméga', capture: false }),
@@ -123,9 +135,9 @@ export default {
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
-          return output.stayRight();
+          return output.stayRight!();
 
-        return output.moveRight();
+        return output.moveRight!();
       },
       outputStrings: {
         stayRight: {
@@ -280,3 +292,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

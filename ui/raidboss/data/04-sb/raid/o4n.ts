@@ -2,14 +2,21 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  battleCount?: number;
+}
 
 // O4N - Deltascape 4.0 Normal
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV40,
   timelineFile: 'o4n.txt',
   triggers: [
     {
       id: 'O4N Doom',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
@@ -17,7 +24,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '24B7', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24B7', source: '엑스데스', capture: false }),
       condition: (data) => data.CanCleanse(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cleanse Doom soon',
@@ -31,6 +38,7 @@ export default {
     },
     {
       id: 'O4N Standard Thunder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
       netRegexDe: NetRegexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
       netRegexFr: NetRegexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
@@ -41,6 +49,7 @@ export default {
     },
     {
       id: 'O4N Standard Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
@@ -52,13 +61,14 @@ export default {
     },
     {
       id: 'O4N Empowered Blizzard',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '24C0', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24C0', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24C0', source: '엑스데스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move around',
@@ -72,6 +82,7 @@ export default {
     },
     {
       id: 'O4N Empowered Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
@@ -82,6 +93,7 @@ export default {
     },
     {
       id: 'O4N Empowered Thunder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
@@ -92,6 +104,7 @@ export default {
     },
     {
       id: 'O4N Decisive Battle ',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
@@ -100,12 +113,11 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2408', source: '엑스데스', capture: false }),
       condition: (data) => {
         // Without a condition, this notifies on the first one, where it's meaningless.
-        data.battleCount = data.battleCount || 0;
-        data.battleCount += 1;
+        data.battleCount = (data.battleCount ?? 0) + 1;
         return data.battleCount > 1;
       },
       delaySeconds: 6,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stand in the gap',
@@ -119,6 +131,7 @@ export default {
     },
     {
       id: 'O4N Zombie Breath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
@@ -126,7 +139,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '240A', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '240A', source: '엑스데스', capture: false }),
       delaySeconds: 6,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Behind head--Avoid zombie breath',
@@ -140,13 +153,14 @@ export default {
     },
     {
       id: 'O4N Black Hole',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '24C8', source: 'エクスデス', target: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24C8', source: '艾克斯迪司', target: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24C8', source: '엑스데스', target: '엑스데스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid black holes',
@@ -160,6 +174,7 @@ export default {
     },
     {
       id: 'O4N Vacuum Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
@@ -170,9 +185,10 @@ export default {
     },
     {
       id: 'O4N Flare',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Flare on YOU',
@@ -186,11 +202,13 @@ export default {
     },
     {
       id: 'O4N Holy',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'O4N Meteor',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
@@ -317,3 +335,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
