@@ -136,8 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       run: (data) => {
-        data.roarCount ??= 0;
-        data.roarCount += 1;
+        data.roarCount = (data.roarCount ?? 0) + 1;
       },
     },
     {
