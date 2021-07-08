@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O9N Chaotic Dispersion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
       netRegexDe: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9N Orbs Fiend',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),

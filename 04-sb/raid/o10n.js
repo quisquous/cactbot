@@ -9,6 +9,7 @@ Options.Triggers.push({
       // 31C7 + 31CB = 31CF (horiz + vert = in)
       // 31C8 + 31CB = 31D0 (vert + vert = +)
       id: 'O10N Spin Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
@@ -20,6 +21,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10N Horizontal Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
@@ -41,6 +43,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10N Vertical Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
@@ -62,6 +65,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10N Horizontal Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
@@ -95,6 +99,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10N Vertical Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),

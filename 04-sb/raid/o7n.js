@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O7N Magitek Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '276B', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '276B', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '276B', source: 'Gardien', capture: false }),
@@ -25,6 +26,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7N Arm And Hammer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '276C', source: 'Guardian' }),
       netRegexDe: NetRegexes.startsUsing({ id: '276C', source: 'Wächter' }),
       netRegexFr: NetRegexes.startsUsing({ id: '276C', source: 'Gardien' }),
@@ -35,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7N Shockwave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2766', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2766', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2766', source: 'Gardien', capture: false }),
@@ -45,6 +48,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7N Diffractive Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2761', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2761', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2761', source: 'Gardien', capture: false }),
@@ -55,6 +59,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7N Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn('info'),
     },

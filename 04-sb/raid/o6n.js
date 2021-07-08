@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O6N Demonic Shear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '282A', source: 'Demon Chadarnook' }),
       netRegexDe: NetRegexes.startsUsing({ id: '282A', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
       netRegexFr: NetRegexes.startsUsing({ id: '282A', source: 'Démon Chadarnouk' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'O6N Meteors',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),

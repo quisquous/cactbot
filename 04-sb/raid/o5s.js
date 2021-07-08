@@ -6,6 +6,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O5S Stop Combat',
+      type: 'RemovedCombatant',
       netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.removingCombatant({ name: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
@@ -16,6 +17,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5S Doom Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28B1', source: 'Phantom Train' }),
       netRegexDe: NetRegexes.startsUsing({ id: '28B1', source: 'Phantomzug' }),
       netRegexFr: NetRegexes.startsUsing({ id: '28B1', source: 'Train Fantôme' }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5S Head On',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
@@ -36,6 +39,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5S Diabolic Headlamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28B2', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28B2', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28B2', source: 'Train Fantôme', capture: false }),
@@ -46,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5S Diabolic Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -62,6 +67,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5S Diabolic Wind',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -78,6 +84,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5S Remorse',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Remorse', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Melancholisch(?:e|er|es|en) Geist', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Fantôme Mélancolique', capture: false }),

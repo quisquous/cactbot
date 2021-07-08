@@ -6,18 +6,21 @@ Options.Triggers.push({
     // State
     {
       id: 'O7S Aether Rot Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.rot = true,
     },
     {
       id: 'O7S Aether Rot Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.rot = false,
     },
     {
       id: 'O7S Dadaluma Simulation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D3', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D3', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D3', capture: false }),
@@ -34,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Bibliotaph Simulation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D4', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D4', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D4', capture: false }),
@@ -50,6 +54,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Virus Tracker',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D5', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D5', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D5', capture: false }),
@@ -60,6 +65,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Magitek Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2788', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2788', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2788', source: 'Gardien', capture: false }),
@@ -80,6 +86,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Arm And Hammer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2789', source: 'Guardian' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2789', source: 'Wächter' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2789', source: 'Gardien' }),
@@ -90,6 +97,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Orb Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -106,6 +114,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Blue Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
@@ -138,17 +147,20 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn('info'),
     },
     {
       id: 'O7S Searing Wind',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'O7S Abandonment',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -166,6 +178,7 @@ Options.Triggers.push({
     {
       // Aether Rot
       id: 'O7S Rot',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -193,6 +206,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Stoneskin',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2AB5', source: 'Orthros' }),
@@ -203,6 +217,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Load',
+      type: 'StartsUsing',
       // Load: 275C
       // Skip: 2773
       // Retrieve: 2774
@@ -214,7 +229,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
       alertText: (data, _matches, output) => {
-        data.loadCount = ++data.loadCount || 1;
+        let _a;
+        data.loadCount = ((_a = data.loadCount) !== null && _a !== void 0 ? _a : 0) + 1;
         if (data.loadCount === 1) {
           // First load is unknown.
           return output.screen();
@@ -236,7 +252,7 @@ Options.Triggers.push({
         } else if (data.loadCount === 9) {
           return data.first === 'biblio' ? output.ships() : output.ultros();
         }
-        console.error('Unknown load: ' + data.loadCount);
+        console.error(`Unknown load: ${data.loadCount}`);
       },
       outputStrings: {
         screen: {
@@ -279,6 +295,7 @@ Options.Triggers.push({
     },
     {
       id: 'O7S Run',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '276F', source: 'Guardian', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '276F', source: 'Wächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '276F', source: 'Gardien', capture: false }),
@@ -286,7 +303,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
       infoText: (data, _matches, output) => {
-        data.runCount = ++data.runCount || 1;
+        let _a;
+        data.runCount = ((_a = data.runCount) !== null && _a !== void 0 ? _a : 0) + 1;
         if (data.runCount === 1)
           return output.dada();
         else if (data.runCount === 2)

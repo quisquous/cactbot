@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O11S Mustard Bomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326D', source: 'Omega' }),
       netRegexDe: NetRegexes.startsUsing({ id: '326D', source: 'Omega' }),
       netRegexFr: NetRegexes.startsUsing({ id: '326D', source: 'Oméga' }),
@@ -23,6 +24,7 @@ Options.Triggers.push({
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       id: 'O11S Cannon Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '326[24]', source: 'Oméga', capture: false }),
@@ -34,6 +36,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Starboard Cannon 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326[23]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '326[23]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '326[23]', source: 'Oméga', capture: false }),
@@ -46,6 +49,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Larboard Cannon 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '326[45]', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '326[45]', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '326[45]', source: 'Oméga', capture: false }),
@@ -58,6 +62,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Starboard Cannon 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3263', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3263', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3263', source: 'Oméga', capture: false }),
@@ -91,6 +96,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Larboard Cannon 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3265', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3265', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3265', source: 'Oméga', capture: false }),
@@ -124,6 +130,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Starboard Surge 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3266', source: 'Oméga', capture: false }),
@@ -144,6 +151,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Larboard Surge 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3268', source: 'Oméga', capture: false }),
@@ -164,6 +172,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Starboard Surge 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3266', source: 'Oméga', capture: false }),
@@ -185,6 +194,7 @@ Options.Triggers.push({
     },
     {
       id: 'O11S Larboard Surge 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3268', source: 'Oméga', capture: false }),

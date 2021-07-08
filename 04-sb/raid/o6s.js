@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O6S Demonic Shear',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2829', source: 'Demon Chadarnook' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2829', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2829', source: 'Démon Chadarnouk' }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'O6S Storms Grip',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'The Storm\'s Grip', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Sturmgebiet', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Zone De Tempête', capture: false }),
@@ -36,6 +38,7 @@ Options.Triggers.push({
     },
     {
       id: 'O6S Demonic Stone',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -52,11 +55,13 @@ Options.Triggers.push({
     },
     {
       id: 'O6S Last Kiss Tracker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       run: (data, matches) => data.lastKiss = matches.target,
     },
     {
       id: 'O6S Last Kiss Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -73,6 +78,7 @@ Options.Triggers.push({
     },
     {
       id: 'O6S Last Kiss',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5BF' }),
       condition: (data, matches) => {
         // The person who gets the marker briefly gets the effect, so

@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O1S Blaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1EDD', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1EDD', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1EDD', source: 'Alte Roite', capture: false }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1S Breath Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1ED6', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1ED6', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1ED6', source: 'Alte Roite', capture: false }),
@@ -35,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1S Clamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1EDE', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1EDE', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1EDE', source: 'Alte Roite', capture: false }),
@@ -45,6 +48,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1S Downburst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
@@ -55,6 +59,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1S Roar',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
@@ -66,6 +71,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1S Charybdis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1ED3', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1ED3', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1ED3', source: 'Alte Roite', capture: false }),

@@ -11,6 +11,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O10S Tail End',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
       netRegexDe: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
       netRegexFr: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
@@ -21,6 +22,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10S Fire Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -50,6 +52,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10S Death From Below',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008F' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -66,6 +69,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10S Death From Above',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008E' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -87,6 +91,7 @@ Options.Triggers.push({
       // 31AD + 31AE = 31B3 (vert + horiz = x)
       // 31AD + 31B0 = 31B5 (vert + vert = +)
       id: 'O10S Spin Cleanup',
+      type: 'Ability',
       // 16 if it doesn't hit anybody, 15 if it does.
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
@@ -100,6 +105,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10S Horizontal Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
@@ -121,6 +127,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10S Vertical Spin 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
@@ -142,6 +149,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10S Horizontal Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
@@ -175,6 +183,7 @@ Options.Triggers.push({
     },
     {
       id: 'O10S Vertical Spin 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),

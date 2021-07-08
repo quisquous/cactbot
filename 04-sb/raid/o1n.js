@@ -14,6 +14,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O1N Blaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23E1', source: 'Alte Roite' }),
       netRegexDe: NetRegexes.startsUsing({ id: '23E1', source: 'Alte Roite' }),
       netRegexFr: NetRegexes.startsUsing({ id: '23E1', source: 'Alte Roite' }),
@@ -24,6 +25,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1N Breath Wing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23DE', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23DE', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23DE', source: 'Alte Roite', capture: false }),
@@ -44,6 +46,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1N Clamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23E2', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23E2', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23E2', source: 'Alte Roite', capture: false }),
@@ -55,6 +58,7 @@ Options.Triggers.push({
     {
       // Knockback immunities don't work.
       id: 'O1N Downburst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
@@ -65,6 +69,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1N Roar',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23DC', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23DC', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23DC', source: 'Alte Roite', capture: false }),
@@ -76,6 +81,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1N Charybdis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23DB', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23DB', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23DB', source: 'Alte Roite', capture: false }),
@@ -88,6 +94,7 @@ Options.Triggers.push({
     },
     {
       id: 'O1N Twin Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23D7', source: 'Alte Roite' }),
       netRegexDe: NetRegexes.startsUsing({ id: '23D7', source: 'Alte Roite' }),
       netRegexFr: NetRegexes.startsUsing({ id: '23D7', source: 'Alte Roite' }),
@@ -102,6 +109,7 @@ Options.Triggers.push({
       // cast by Alte Roite on Alte Roite, and when that resolves the markers on players resolve
       // with 23DA.
       id: 'O1N Levinbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23D9', source: 'Alte Roite', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23D9', source: 'Alte Roite', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '23D9', source: 'Alte Roite', capture: false }),

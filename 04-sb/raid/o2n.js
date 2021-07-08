@@ -13,18 +13,21 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O2N Levitation Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = true,
     },
     {
       id: 'O2N Levitation Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = false,
     },
     {
       id: 'O2N Gravitational Manipulation Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -45,6 +48,7 @@ Options.Triggers.push({
     },
     {
       id: 'O2N Gravitational Manipulation Float',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
       condition: (data, matches) => !data.levitating && Conditions.targetIsNotYou()(data, matches),
       infoText: (_data, _matches, output) => output.text(),
@@ -61,6 +65,7 @@ Options.Triggers.push({
     },
     {
       id: 'O2N Evilsphere',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
       netRegexDe: NetRegexes.startsUsing({ id: '250F', source: 'Katastroph' }),
       netRegexFr: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
@@ -72,6 +77,7 @@ Options.Triggers.push({
     },
     {
       id: 'O2N -100Gs',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24FF', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
@@ -92,6 +98,7 @@ Options.Triggers.push({
     },
     {
       id: 'O2N Demon Eye',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '250D', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
@@ -102,6 +109,7 @@ Options.Triggers.push({
     },
     {
       id: 'O2N Earthquake',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2512', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
@@ -137,6 +145,7 @@ Options.Triggers.push({
     },
     {
       id: 'O2N Gravitational Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2510', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
@@ -148,6 +157,7 @@ Options.Triggers.push({
     },
     {
       id: 'O2N Six Fulms Under',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 5,
@@ -190,13 +200,16 @@ Options.Triggers.push({
     },
     {
       id: 'O2N Antilight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2502', source: 'Katastroph', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2502', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2502', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2502', source: '카타스트로피', capture: false }),
-      preRun: (data) => data.antiCounter = data.antiCounter || 0,
+      preRun: (data) => {
+        let _a; return (_a = data.antiCounter) !== null && _a !== void 0 ? _a : (data.antiCounter = 0);
+      },
       durationSeconds: (data) => {
         if (data.antiCounter === 0 && data.levitating)
           return 3;
@@ -212,7 +225,7 @@ Options.Triggers.push({
         }
         // It's always safe not to levitate after the first Antilight.
         // The second, fifth, eighth, etc Antilights require moving to the center as well.
-        if (data.antiCounter % 3 === 1)
+        if (data.antiCounter && data.antiCounter % 3 === 1)
           return output.goCenterAndDontLevitate();
         return output.dontLevitate();
       },
@@ -220,7 +233,11 @@ Options.Triggers.push({
         if (data.antiCounter === 0 && data.levitating)
           return output.antilight();
       },
-      run: (data) => data.antiCounter += 1,
+      run: (data) => {
+        let _a;
+        data.antiCounter = ((_a = data.antiCounter) !== null && _a !== void 0 ? _a : 0) + 1;
+        data.antiCounter += 1;
+      },
       outputStrings: {
         antilight: {
           en: 'Antilight',

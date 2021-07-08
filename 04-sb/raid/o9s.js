@@ -6,6 +6,7 @@ Options.Triggers.push({
     // General actions
     {
       id: 'O9S Chaotic Dispersion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3170', source: 'Chaos' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3170', source: 'Chaos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3170', source: 'Chaos' }),
@@ -16,6 +17,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Longitudinal Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
@@ -51,6 +53,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Latitudinal Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
@@ -86,6 +89,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Damning Edict',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
@@ -96,6 +100,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Orbs Fiend',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
@@ -124,6 +129,7 @@ Options.Triggers.push({
     // Fire Path
     {
       id: 'O9S Fire Phase Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
@@ -137,11 +143,12 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Entropy Spread',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
-        data.entropyCount = data.entropyCount || 0;
-        data.entropyCount += 1;
+        let _a;
+        data.entropyCount = ((_a = data.entropyCount) !== null && _a !== void 0 ? _a : 0) + 1;
       },
       delaySeconds: (data, matches) => {
         // Warn dps earlier to stack.
@@ -183,6 +190,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Entropy Avoid Hit',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: (data, matches) => matches.target === data.me && data.phaseType === 'fire',
       delaySeconds: (_data, matches) => {
@@ -209,6 +217,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Fire Big Bang',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
@@ -233,6 +242,7 @@ Options.Triggers.push({
     // Water Path
     {
       id: 'O9S Water Phase Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
@@ -246,6 +256,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Dynamic Fluid 1',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: (data) => data.phaseType === 'water',
       delaySeconds: 5,
@@ -265,6 +276,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Dynamic Fluid 2',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: (data) => data.phaseType === 'water',
       // T/H get 10s & DPS get 17s
@@ -284,6 +296,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Dynamic Fluid 3',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: (data) => data.phaseType === 'enrage',
       // enrage -> 6s
@@ -303,6 +316,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Knock Down Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
@@ -333,6 +347,7 @@ Options.Triggers.push({
     // Wind Path
     {
       id: 'O9S Wind Phase Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
@@ -346,18 +361,21 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Headwind',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.wind = 'head',
     },
     {
       id: 'O9S Tailwind',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.wind = 'tail',
     },
     {
       id: 'O9S Cyclone Knockback',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
@@ -393,6 +411,7 @@ Options.Triggers.push({
     // Earth Path
     {
       id: 'O9S Earth Phase Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
@@ -406,6 +425,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Accretion',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '644', capture: false }),
       condition: (data) => data.role === 'healer',
       suppressSeconds: 10,
@@ -435,6 +455,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Primordial Crust',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: (data, matches) => data.me === matches.target && data.phaseType !== 'orb',
       infoText: (_data, _matches, output) => output.text(),
@@ -452,6 +473,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Primordial Crust Cleanup',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 30,
@@ -459,6 +481,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Earth Stack Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -476,6 +499,7 @@ Options.Triggers.push({
     // Orb Phase
     {
       id: 'O9S Orb Phase Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
@@ -486,6 +510,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Orb Entropy',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: (data, matches) => matches.target !== data.me && data.phaseType === 'orb',
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
@@ -508,6 +533,7 @@ Options.Triggers.push({
     },
     {
       id: 'O9S Orb Dynamic Fluid',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
       condition: (data, matches) => matches.target === data.me && data.phaseType === 'orb',
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
@@ -526,6 +552,7 @@ Options.Triggers.push({
     // Enrage Phase
     {
       id: 'O9S Enrage Phase Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
@@ -533,8 +560,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
       run: (data) => {
-        data.blazeCount = data.blazeCount || 0;
-        data.blazeCount++;
+        let _a;
+        data.blazeCount = ((_a = data.blazeCount) !== null && _a !== void 0 ? _a : 0) + 1;
         if (data.blazeCount >= 3)
           data.phaseType = 'enrage';
       },

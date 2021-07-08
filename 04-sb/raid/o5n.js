@@ -6,6 +6,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O5N Stop Combat',
+      type: 'RemovedCombatant',
       netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.removingCombatant({ name: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
@@ -16,6 +17,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5N Doom Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Phantom Train', id: '28A3' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Phantomzug', id: '28A3' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Train Fantôme', id: '28A3' }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5N Head On',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
@@ -36,6 +39,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5N Diabolic Headlamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28A6', source: 'Phantom Train', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28A6', source: 'Phantomzug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '28A6', source: 'Train Fantôme', capture: false }),
@@ -46,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5N Diabolic Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -62,6 +67,7 @@ Options.Triggers.push({
     },
     {
       id: 'O5N Diabolic Wind',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),

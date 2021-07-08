@@ -13,6 +13,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O12N Solar Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['Oméga', 'Oméga-M'] }),
@@ -25,6 +26,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12N Optimized Blade Dance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['Oméga', 'Oméga-M'] }),
@@ -37,6 +39,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12N Local Resonance',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Oméga', effectId: '67E', capture: false }),
@@ -58,12 +61,14 @@ Options.Triggers.push({
     },
     {
       id: 'O12N Optimized Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'O12N Stack Spread Markers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       alertText: (data, matches, output) => {
         if (data.me !== matches.target)
@@ -96,6 +101,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12N Packet Filter F',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -112,6 +118,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12N Packet Filter M',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),

@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O4N Doom',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
@@ -26,6 +27,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Standard Thunder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
       netRegexDe: NetRegexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
       netRegexFr: NetRegexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
@@ -36,6 +38,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Standard Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
@@ -47,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Empowered Blizzard',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
@@ -67,6 +71,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Empowered Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
@@ -77,6 +82,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Empowered Thunder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
@@ -87,6 +93,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Decisive Battle ',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
@@ -94,9 +101,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2408', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2408', source: '엑스데스', capture: false }),
       condition: (data) => {
+        let _a;
         // Without a condition, this notifies on the first one, where it's meaningless.
-        data.battleCount = data.battleCount || 0;
-        data.battleCount += 1;
+        data.battleCount = ((_a = data.battleCount) !== null && _a !== void 0 ? _a : 0) + 1;
         return data.battleCount > 1;
       },
       delaySeconds: 6,
@@ -114,6 +121,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Zombie Breath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
@@ -135,6 +143,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Black Hole',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
@@ -155,6 +164,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Vacuum Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
@@ -165,6 +175,7 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Flare',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -181,11 +192,13 @@ Options.Triggers.push({
     },
     {
       id: 'O4N Holy',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'O4N Meteor',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),

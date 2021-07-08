@@ -29,6 +29,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'O12S Ion Efflux Phase Reset',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3357', source: 'Oméga', capture: false }),
@@ -47,6 +48,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Beyond Defense Spread',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '332C', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '332C', source: 'Omega-M', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '332C', source: 'Oméga-M', capture: false }),
@@ -57,6 +59,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Beyond Defense Vuln',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '332C', source: 'Omega-M' }),
       netRegexDe: NetRegexes.ability({ id: '332C', source: 'Omega-M' }),
       netRegexFr: NetRegexes.ability({ id: '332C', source: 'Oméga-M' }),
@@ -68,7 +71,8 @@ Options.Triggers.push({
           return output.text();
       },
       run: (data, matches) => {
-        data.beyondDefenseVuln = data.beyondDefenseVuln || [];
+        let _a;
+        (_a = data.beyondDefenseVuln) !== null && _a !== void 0 ? _a : (data.beyondDefenseVuln = []);
         data.beyondDefenseVuln.push(matches.target);
       },
       outputStrings: {
@@ -84,6 +88,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Beyond Defense Stack',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '332C', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '332C', source: 'Omega-M', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '332C', source: 'Oméga-M', capture: false }),
@@ -104,6 +109,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Superliminal Motion Initial',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3334', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3334', source: 'Omega-M', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3334', source: 'Oméga-M', capture: false }),
@@ -125,6 +131,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Laser Shower',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3352', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3352', source: 'Omega-M', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3352', source: 'Oméga-M', capture: false }),
@@ -135,6 +142,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Cosmo Memory',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3342', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3342', source: 'Omega-M', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3342', source: 'Oméga-M', capture: false }),
@@ -145,6 +153,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Local Resonance',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Oméga', effectId: '67E', capture: false }),
@@ -165,6 +174,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Remote Resonance',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67F', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67F', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Oméga', effectId: '67F', capture: false }),
@@ -185,6 +195,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Solar Ray Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Oméga', 'Oméga-M'] }),
@@ -192,13 +203,15 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
       run: (data, matches) => {
-        data.solarRayTargets = data.solarRayTargets || [];
+        let _a;
+        (_a = data.solarRayTargets) !== null && _a !== void 0 ? _a : (data.solarRayTargets = []);
         data.solarRayTargets.push(matches.target);
         data.seenSolarRay = true;
       },
     },
     {
       id: 'O12S Solar Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Oméga', 'Oméga-M'] }),
@@ -211,6 +224,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Solar Ray Not You',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Oméga', 'Oméga-M'], capture: false }),
@@ -230,6 +244,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Shield Blades Setup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false }),
       netRegexDe: NetRegexes.ability({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false }),
       netRegexFr: NetRegexes.ability({ id: ['3350', '3351'], source: ['Oméga', 'Oméga-M'], capture: false }),
@@ -252,6 +267,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Synthetic Blades',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3301', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3301', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3301', source: 'Oméga', capture: false }),
@@ -273,6 +289,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Blades Superliminal Steel',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '332F', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '332F', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '332F', source: 'Oméga', capture: false }),
@@ -293,6 +310,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Blades Superliminal Motion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3334', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3334', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3334', source: 'Oméga', capture: false }),
@@ -313,6 +331,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Synthetic Shield',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '32FD', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '32FD', source: 'Omega-M', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '32FD', source: 'Oméga-M', capture: false }),
@@ -334,6 +353,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Shield Beyond Strength',
+      type: 'Ability',
       // Warn on Pile Pitch damage for Beyond Strength before it starts casting
       netRegex: NetRegexes.ability({ id: '332E', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '332E', source: 'Omega-M', capture: false }),
@@ -357,6 +377,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Shield Beyond Defense',
+      type: 'Ability',
       // Warn on Beyond Strength ability for uncasted Efficient Bladework.
       netRegex: NetRegexes.ability({ id: '3328', source: 'Omega-M', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3328', source: 'Omega-M', capture: false }),
@@ -379,6 +400,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Optimized Blade Dance',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['Oméga', 'Oméga-M'] }),
@@ -391,6 +413,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Electric Slide Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '009[12345678]' }),
       condition: Conditions.targetIsYou(),
       response: (_data, matches, output) => {
@@ -430,6 +453,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S MF Stack Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => !data.isFinalOmega,
       suppressSeconds: 1,
@@ -446,12 +470,14 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Optimized Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'O12S Optimized Sagittarius Arrow',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -467,6 +493,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Packet Filter F',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -483,6 +510,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Packet Filter M',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -499,6 +527,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Diffuse Wave Cannon Sides',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3367', source: 'Oméga', capture: false }),
@@ -509,6 +538,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Diffuse Wave Cannon Front/Back',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3368', source: 'Oméga', capture: false }),
@@ -519,6 +549,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Oversampled Wave Cannon Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3364', source: 'Oméga', capture: false }),
@@ -551,6 +582,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Oversampled Wave Cannon Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3365', source: 'Oméga', capture: false }),
@@ -583,6 +615,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Target Analysis Target',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -617,6 +650,7 @@ Options.Triggers.push({
     {
       // Local Regression
       id: 'O12S Local Tethers',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '688' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -634,6 +668,7 @@ Options.Triggers.push({
     {
       // Remote Regression
       id: 'O12S Far Tethers',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '689' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -651,6 +686,7 @@ Options.Triggers.push({
     {
       // Critical Overflow Bug
       id: 'O12S Defamation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '681' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -667,6 +703,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Latent Defect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '686' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -684,6 +721,7 @@ Options.Triggers.push({
     {
       // Critical Underflow Bug
       id: 'O12S Rot',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '682' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -701,6 +739,7 @@ Options.Triggers.push({
     {
       // Critical Synchronization Bug
       id: 'O12S Hello World Stack',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '680' }),
       delaySeconds: (data, matches) => matches.target === data.me ? 0 : 1,
       alertText: (data, matches, output) => {
@@ -760,6 +799,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Hello World Initial Debuff Collect',
+      type: 'GainsEffect',
       // These effects are all handled elsewhere.
       // Collect who has them, but don't call them out here.
       // 680 = Critical Synchronization Bug (short/long stack)
@@ -769,17 +809,21 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '682', '686'] }),
       condition: (data) => !data.calledHelloNoMarker,
       run: (data, matches) => {
+        let _a;
+        (_a = data.helloDebuffs) !== null && _a !== void 0 ? _a : (data.helloDebuffs = {});
         data.helloDebuffs[matches.target] = matches.effectId;
       },
     },
     {
       id: 'O12S Hello World No Marker',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '682', '686'], capture: false }),
       condition: (data) => !data.calledHelloNoMarker,
       delaySeconds: 0.3,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.me in data.helloDebuffs)
+        let _a;
+        if (data.me in ((_a = data.helloDebuffs) !== null && _a !== void 0 ? _a : {}))
           return;
         return output.text();
       },
@@ -798,6 +842,7 @@ Options.Triggers.push({
     {
       // Cascading Latent Defect
       id: 'O12S Hello World Tower Complete',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '687' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -814,21 +859,28 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Archive All Marker Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['003E', '0060'] }),
       condition: (data) => data.isFinalOmega,
       run: (data, matches) => {
+        let _a;
+        (_a = data.archiveMarkers) !== null && _a !== void 0 ? _a : (data.archiveMarkers = {});
         data.archiveMarkers[matches.target] = matches.id;
       },
     },
     {
       id: 'O12S Archive All No Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['003E', '0060'], capture: false }),
       condition: (data) => {
         // 4 fire markers, 1 stack marker.
-        return data.isFinalOmega && Object.keys(data.archiveMarkers).length === 5;
+        if (!data.isFinalOmega)
+          return false;
+        return data.archiveMarkers && Object.keys(data.archiveMarkers).length === 5;
       },
       infoText: (data, _matches, output) => {
-        if (data.me in data.archiveMarkers)
+        let _a;
+        if (data.me in ((_a = data.archiveMarkers) !== null && _a !== void 0 ? _a : {}))
           return;
         for (const player in data.archiveMarkers) {
           if (data.archiveMarkers[player] !== '003E')
@@ -842,18 +894,21 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Archive All Stack Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data, matches) => data.isFinalOmega && matches.target === data.me,
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'O12S Archive All Spread Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: (data, matches) => data.isFinalOmega && matches.target === data.me,
       response: Responses.spread(),
     },
     {
       id: 'O12S Archive All Blue Arrow',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Rear Power Unit', id: '009D', capture: false }),
       netRegexDe: NetRegexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009D', capture: false }),
       netRegexFr: NetRegexes.headMarker({ target: 'unité arrière', id: '009D', capture: false }),
@@ -874,6 +929,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Archive All Red Arrow',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Rear Power Unit', id: '009C', capture: false }),
       netRegexDe: NetRegexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009C', capture: false }),
       netRegexFr: NetRegexes.headMarker({ target: 'unité arrière', id: '009C', capture: false }),
@@ -894,6 +950,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Archive  Peripheral Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'] }),
       netRegexDe: NetRegexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'] }),
       netRegexFr: NetRegexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'] }),
@@ -901,8 +958,11 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'] }),
       netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'] }),
       run: (data, matches) => {
+        let _a; let _b;
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
+        (_a = data.armValue) !== null && _a !== void 0 ? _a : (data.armValue = 0);
+        (_b = data.numArms) !== null && _b !== void 0 ? _b : (data.numArms = 0);
         data.armValue *= 2;
         if (matches.id === '009D')
           data.armValue += 1;
@@ -911,6 +971,7 @@ Options.Triggers.push({
     },
     {
       id: 'O12S Archive Peripheral',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'], capture: false }),
       netRegexDe: NetRegexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'], capture: false }),
       netRegexFr: NetRegexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'], capture: false }),
@@ -919,10 +980,9 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'], capture: false }),
       condition: (data) => data.numArms === 3,
       alertText: (data, _matches, output) => {
-        const v = parseInt(data.armValue);
-        if (!(v >= 0) || v > 7)
+        if (!data.armValue || !(data.armValue >= 0) || data.armValue > 7)
           return;
-        return {
+        const outputs = {
           0b000: output.east(),
           0b001: output.northeast(),
           0b010: undefined,
@@ -931,7 +991,8 @@ Options.Triggers.push({
           0b101: undefined,
           0b110: output.southwest(),
           0b111: output.west(),
-        }[v];
+        };
+        return outputs[data.armValue];
       },
       outputStrings: {
         east: Outputs.east,
