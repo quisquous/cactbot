@@ -2,9 +2,17 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  blazing?: boolean;
+  markers?: string[];
+  withForce?: boolean;
+}
 
 // Seiryu Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheWreathOfSnakesExtreme,
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [
@@ -12,7 +20,7 @@ export default {
       id: 'SeiryuEx Split Group',
       regex: /Forbidden Arts 1/,
       beforeSeconds: 4,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'stack with your group',
@@ -29,7 +37,7 @@ export default {
       regex: /Forbidden Arts$/,
       beforeSeconds: 1,
       suppressSeconds: 10,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'line stack',
@@ -46,7 +54,7 @@ export default {
       regex: /Kanabo/,
       beforeSeconds: 7,
       condition: (data) => data.role === 'tank',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Grab Tether, Point Away',
@@ -62,6 +70,7 @@ export default {
   triggers: [
     {
       id: 'SeiryuEx Aramitama Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37E4', source: 'Seiryû', capture: false }),
@@ -72,6 +81,7 @@ export default {
     },
     {
       id: 'SeiryuEx Cursekeeper',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
       netRegexDe: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryû' }),
@@ -80,10 +90,10 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '37D2', source: '청룡' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.tankSwap();
+          return output.tankSwap!();
 
         if (data.role === 'tank')
-          return output.swapThenBuster();
+          return output.swapThenBuster!();
       },
       outputStrings: {
         tankSwap: Outputs.tankSwap,
@@ -99,6 +109,7 @@ export default {
     },
     {
       id: 'SeiryuEx Infirm Soul',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryû', capture: false }),
@@ -111,7 +122,7 @@ export default {
         return data.role !== 'tank';
       },
       delaySeconds: 3,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away From Tanks',
@@ -125,6 +136,7 @@ export default {
     },
     {
       id: 'SeiryuEx Ascending Tracking',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
@@ -135,6 +147,7 @@ export default {
     },
     {
       id: 'SeiryuEx Ascending Stack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
@@ -142,7 +155,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
       delaySeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stack for Puddle AOEs',
@@ -156,19 +169,24 @@ export default {
     },
     {
       id: 'SeiryuEx Ascending Marker Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: (data) => data.blazing,
-      run: (data, matches) => data.markers.push(matches.target),
+      run: (data, matches) => {
+        data.markers ??= [];
+        data.markers.push(matches.target);
+      },
     },
     {
       id: 'SeiryuEx Ascending Marker You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: (data, matches) => data.blazing && matches.target === data.me,
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
-          return output.spreadDpsGetTowers();
+          return output.spreadDpsGetTowers!();
 
-        return output.spreadTanksHealersGetTowers();
+        return output.spreadTanksHealersGetTowers!();
       },
       outputStrings: {
         spreadDpsGetTowers: {
@@ -191,17 +209,18 @@ export default {
     },
     {
       id: 'SeiryuEx Ascending Tower You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9', capture: false }),
       condition: (data) => {
-        if (!data.blazing || data.markers.length !== 4)
+        if (!data.blazing || data.markers?.length !== 4)
           return false;
         return !data.markers.includes(data.me);
       },
       alarmText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
-          return output.getTowerTankHealerTowers();
+          return output.getTowerTankHealerTowers!();
 
-        return output.getTowerDpsTowers();
+        return output.getTowerDpsTowers!();
       },
       outputStrings: {
         getTowerTankHealerTowers: {
@@ -224,6 +243,7 @@ export default {
     },
     {
       id: 'SeiryuEx Handprint East',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '37E5', source: 'Yama-No-Shiki', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '37E5', source: 'Yama No Shiki', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '37E5', source: 'Shiki Montagneux', capture: false }),
@@ -234,6 +254,7 @@ export default {
     },
     {
       id: 'SeiryuEx Handprint West',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '37E6', source: 'Yama-No-Shiki', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '37E6', source: 'Yama No Shiki', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '37E6', source: 'Shiki Montagneux', capture: false }),
@@ -244,6 +265,7 @@ export default {
     },
     {
       id: 'SeiryuEx Find Sneks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37F7', source: 'Seiryû', capture: false }),
@@ -252,9 +274,9 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '37F7', source: '청룡', capture: false }),
       alarmText: (data, _matches, output) => {
         if (data.withForce === undefined)
-          return output.goToSnakes();
+          return output.goToSnakes!();
 
-        return output.outOfMiddleTowardSnakes();
+        return output.outOfMiddleTowardSnakes!();
       },
       run: (data) => data.withForce = true,
       outputStrings: {
@@ -278,6 +300,7 @@ export default {
     },
     {
       id: 'SeiryuEx Silence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki' }),
       netRegexDe: NetRegexes.startsUsing({ id: '37F4', source: 'Numa No Shiki' }),
       netRegexFr: NetRegexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux' }),
@@ -289,6 +312,7 @@ export default {
     },
     {
       id: 'SeiryuEx Stack',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Ao-No-Shiki', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Ao No Shiki', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Shiki Céruléen', capture: false }),
@@ -297,9 +321,9 @@ export default {
       netRegexKo: NetRegexes.addedCombatant({ name: '푸른 사역귀', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
-          return output.stackSouth();
+          return output.stackSouth!();
 
-        return output.stackIfNoTether();
+        return output.stackIfNoTether!();
       },
       outputStrings: {
         stackSouth: {
@@ -324,6 +348,7 @@ export default {
       // This comes a good bit after the symbol on screen,
       // but it's still 2.5s of warning if you've fallen asleep.
       id: 'SeiryuEx Sigil Single Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A01', source: 'Seiryû', capture: false }),
@@ -334,6 +359,7 @@ export default {
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
@@ -344,6 +370,7 @@ export default {
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
@@ -355,6 +382,7 @@ export default {
     },
     {
       id: 'SeiryuEx Sigil Out In 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
@@ -365,6 +393,7 @@ export default {
     },
     {
       id: 'SeiryuEx Sigil Out In 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
@@ -376,6 +405,7 @@ export default {
     },
     {
       id: 'SeiryuEx Swim Lessons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '37CB', source: 'Seiryû', capture: false }),
@@ -383,7 +413,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '37CB', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '37CB', source: '청룡', capture: false }),
       delaySeconds: 28,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Pop Sprint',
@@ -569,3 +599,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -3,9 +3,15 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  chanchala?: boolean;
+}
 
 // Lakshmi Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EmanationExtreme,
   timelineFile: 'lakshmi-ex.txt',
   timelineTriggers: [
@@ -20,6 +26,7 @@ export default {
   triggers: [
     {
       id: 'LakshmiEx Chanchala Gain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
@@ -30,6 +37,7 @@ export default {
     },
     {
       id: 'LakshmiEx Chanchala Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexDe: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
       netRegexFr: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
@@ -40,6 +48,7 @@ export default {
     },
     {
       id: 'LakshmiEx Pull of Light Tank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexDe: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexFr: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
@@ -51,6 +60,7 @@ export default {
     },
     {
       id: 'LakshmiEx Pull of Light Unexpected',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexDe: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       netRegexFr: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
@@ -62,13 +72,14 @@ export default {
     },
     {
       id: 'LakshmiEx Divine Denial',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2149', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2149', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2149', source: '락슈미', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Vrill + Knockback',
@@ -82,13 +93,14 @@ export default {
     },
     {
       id: 'LakshmiEx Divine Desire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '214B', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '214B', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '214B', source: '락슈미', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Vrill + Be Outside',
@@ -102,13 +114,14 @@ export default {
     },
     {
       id: 'LakshmiEx Divine Doubt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '214A', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '214A', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '214A', source: '락슈미', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Vrill + Pair Up',
@@ -122,24 +135,25 @@ export default {
     },
     { // Stack marker
       id: 'LakshmiEx Pall of Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       alertText: (data, matches, output) => {
         if (!data.chanchala)
           return;
 
         if (data.me === matches.target)
-          return output.vrillStackOnYou();
+          return output.vrillStackOnYou!();
 
-        return output.vrillStack();
+        return output.vrillStack!();
       },
       infoText: (data, matches, output) => {
         if (data.chanchala)
           return;
 
         if (data.me === matches.target)
-          return output.stackOnYou();
+          return output.stackOnYou!();
 
-        return output.stack();
+        return output.stack!();
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,
@@ -171,14 +185,15 @@ export default {
     },
     {
       id: 'LakshmiEx Stotram',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2147', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2147', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2147', source: '락슈미', capture: false }),
-      condition: (data) => data.chancala,
-      alertText: (_data, _matches, output) => output.text(),
+      condition: (data) => data.chanchala,
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Vrill for AOE',
@@ -193,13 +208,14 @@ export default {
     {
       // Offtank cleave
       id: 'LakshmiEx Path of Light Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: Conditions.targetIsYou(),
       alarmText: (data, _matches, output) => {
         if (data.chanchala)
-          return output.vrillCleaveOnYou();
+          return output.vrillCleaveOnYou!();
 
-        return output.cleaveOnYou();
+        return output.cleaveOnYou!();
       },
       outputStrings: {
         vrillCleaveOnYou: {
@@ -223,13 +239,14 @@ export default {
     {
       // Cross aoe
       id: 'LakshmiEx Hand of Grace',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
-          return output.vrillCrossMarker();
+          return output.vrillCrossMarker!();
 
-        return output.crossMarker();
+        return output.crossMarker!();
       },
       outputStrings: {
         vrillCrossMarker: {
@@ -253,13 +270,14 @@ export default {
     {
       // Flower marker (healers)
       id: 'LakshmiEx Hand of Beauty',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
-          return output.vrillFlowerMarker();
+          return output.vrillFlowerMarker!();
 
-        return output.flowerMarker();
+        return output.flowerMarker!();
       },
       outputStrings: {
         vrillFlowerMarker: {
@@ -283,9 +301,10 @@ export default {
     {
       // Red marker during add phase
       id: 'LakshmiEx Water III',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move Away',
@@ -431,3 +450,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

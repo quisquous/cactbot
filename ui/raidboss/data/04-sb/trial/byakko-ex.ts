@@ -2,14 +2,22 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  roarCount?: number;
+  stakeCount?: number;
+}
 
 // Byakko Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheJadeStoaExtreme,
   timelineFile: 'byakko-ex.txt',
   triggers: [
     {
       id: 'ByaEx Heavenly Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27DA', source: 'Byakko' }),
       netRegexDe: NetRegexes.startsUsing({ id: '27DA', source: 'Byakko' }),
       netRegexFr: NetRegexes.startsUsing({ id: '27DA', source: 'Byakko' }),
@@ -21,6 +29,7 @@ export default {
     },
     {
       id: 'ByaEx Flying Donut',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
@@ -31,6 +40,7 @@ export default {
     },
     {
       id: 'ByaEx Sweep The Leg',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
@@ -41,6 +51,7 @@ export default {
     },
     {
       id: 'ByaEx Storm Pulse',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
@@ -51,13 +62,14 @@ export default {
     },
     {
       id: 'ByaEx Distant Clap',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Distant Clap',
@@ -71,6 +83,7 @@ export default {
     },
     {
       id: 'ByaEx State Of Shock Tank 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
       netRegexDe: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
       netRegexFr: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
@@ -78,7 +91,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: (data, matches) => data.role === 'tank' && matches.target !== data.me,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Provoke Boss',
@@ -92,6 +105,7 @@ export default {
     },
     {
       id: 'ByaEx State Of Shock Tank 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
       netRegexDe: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
       netRegexFr: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
@@ -100,7 +114,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: (data, matches) => data.role === 'tank' && matches.target === data.me,
       delaySeconds: 12,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Provoke Boss',
@@ -114,6 +128,7 @@ export default {
     },
     {
       id: 'ByaEx Roar Counter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
@@ -121,12 +136,12 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       run: (data) => {
-        data.roarCount = data.roarCount || 0;
-        data.roarCount += 1;
+        data.roarCount = (data.roarCount ?? 0) + 1;
       },
     },
     {
       id: 'ByaEx Roar of Thunder',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
@@ -139,7 +154,7 @@ export default {
           return;
 
         if (data.role === 'tank')
-          return output.text();
+          return output.text!();
       },
       outputStrings: {
         text: {
@@ -154,9 +169,10 @@ export default {
     },
     {
       id: 'ByaEx Bubble',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drop bubble outside',
@@ -170,9 +186,10 @@ export default {
     },
     {
       id: 'ByaEx Ominous Wind',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C9' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Pink bubble',
@@ -186,9 +203,10 @@ export default {
     },
     {
       id: 'ByaEx Puddle Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0004' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Puddles on YOU',
@@ -202,9 +220,10 @@ export default {
     },
     {
       id: 'ByaEx G100',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get away',
@@ -218,6 +237,7 @@ export default {
     },
     {
       id: 'ByaEx Tiger Add',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: '[^:]*:Twofold is my wrath, twice-cursed my foes!.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: '[^:]*:Stürmt los, meine zwei Gesichter!.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: '[^:]*:Ma colère devient double.*?!.*?', capture: false }),
@@ -225,7 +245,7 @@ export default {
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
       condition: (data) => data.role === 'tank',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tiger Add',
@@ -239,6 +259,7 @@ export default {
     },
     {
       id: 'ByaEx Stake Counter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
@@ -246,12 +267,12 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       run: (data) => {
-        data.stakeCount = data.stakeCount || 0;
-        data.stakeCount += 1;
+        data.stakeCount = (data.stakeCount ?? 0) + 1;
       },
     },
     {
       id: 'ByaEx Stake Counter Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
@@ -263,13 +284,14 @@ export default {
     },
     {
       id: 'ByaEx Highest Stakes',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
-      infoText: (data, _matches, output) => output.text({ num: data.stakeCount }),
+      infoText: (data, _matches, output) => output.text!({ num: data.stakeCount }),
       outputStrings: {
         text: {
           en: 'Stack #${num}',
@@ -452,3 +474,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

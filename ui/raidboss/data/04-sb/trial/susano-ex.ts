@@ -3,9 +3,17 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  cloud?: boolean;
+  churning?: boolean;
+  levinbolt?: string;
+}
 
 // Susano Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.ThePoolOfTributeExtreme,
   timelineNeedsFixing: true,
   timelineFile: 'susano-ex.txt',
@@ -14,7 +22,7 @@ export default {
       id: 'SusEx Cloud',
       regex: /Knockback \(cloud\)/,
       beforeSeconds: 1.5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'look for cloud',
@@ -30,6 +38,7 @@ export default {
   triggers: [
     {
       id: 'SusEx Thundercloud Tracker',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Thunderhead', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gewitterwolke', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Nuage Orageux', capture: false }),
@@ -44,6 +53,7 @@ export default {
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
       id: 'SusEx Thundercloud Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2041', source: 'Gewitterwolke', target: 'Gewitterwolke', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2041', source: 'Nuage Orageux', target: 'Nuage Orageux', capture: false }),
@@ -54,6 +64,7 @@ export default {
     },
     {
       id: 'SusEx Churning Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6', capture: false }),
       condition: (data) => !data.churning,
       run: (data) => data.churning = true,
@@ -63,12 +74,14 @@ export default {
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
       id: 'SusEx Churning Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '4F6', capture: false }),
       condition: (data) => data.churning,
       run: (data) => data.churning = false,
     },
     {
       id: 'SusEx Stormsplitter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
@@ -81,23 +94,24 @@ export default {
     {
       // Red knockback marker indicator
       id: 'SusEx Knockback',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.cloud)
-          return output.knockbackWithCloud();
+          return output.knockbackWithCloud!();
         else if (data.churning)
-          return output.knockbackWithDice();
+          return output.knockbackWithDice!();
 
-        return output.knockback();
+        return output.knockback!();
       },
       tts: (data, _matches, output) => {
         if (data.cloud)
-          return output.knockbackWithCloudTTS();
+          return output.knockbackWithCloudTTS!();
         else if (data.churning)
-          return output.knockbackWithDiceTTS();
+          return output.knockbackWithDiceTTS!();
 
-        return output.knockbackTTS();
+        return output.knockbackTTS!();
       },
       outputStrings: {
         knockbackWithCloud: {
@@ -138,19 +152,20 @@ export default {
     },
     {
       id: 'SusEx Levinbolt',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.cloud)
-          return output.levinboltWithCloud();
+          return output.levinboltWithCloud!();
 
-        return output.levinboltOnYou();
+        return output.levinboltOnYou!();
       },
       tts: (data, _matches, output) => {
         if (data.cloud)
-          return output.levinboltWithCloudTTS();
+          return output.levinboltWithCloudTTS!();
 
-        return output.levinboltOnYouTTS();
+        return output.levinboltOnYouTTS!();
       },
       outputStrings: {
         levinboltWithCloud: {
@@ -189,6 +204,7 @@ export default {
     },
     {
       id: 'SusEx Levinbolt Debug',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: (data, matches) => {
         data.levinbolt = matches.target;
@@ -197,12 +213,13 @@ export default {
     },
     {
       id: 'SusEx Levinbolt Stun',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006F' }),
       infoText: (data, matches, output) => {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
         if (data.role === 'tank')
-          return output.text({ player: data.ShortName(matches.target) });
+          return output.text!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         text: {
@@ -217,6 +234,7 @@ export default {
     },
     {
       id: 'SusEx Churning',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
@@ -385,3 +403,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

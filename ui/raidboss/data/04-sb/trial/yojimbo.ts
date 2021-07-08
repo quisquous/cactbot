@@ -2,16 +2,21 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.KuganeOhashi,
   timelineFile: 'yojimbo.txt',
   triggers: [
     {
       id: 'Yojimbo Giga Jump',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Run Marker Away',
@@ -25,15 +30,17 @@ export default {
     },
     {
       id: 'Yojimbo Dorito',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Yojimbo Gekko',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0090' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Gekko Marker',
@@ -47,6 +54,7 @@ export default {
     },
     {
       id: 'Yojimbo Enchain',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0005' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
@@ -215,3 +223,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
