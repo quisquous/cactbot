@@ -267,7 +267,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       run: (data) => {
-        data.stakeCount  = (data.stakeCount ?? 0) + 1;
+        data.stakeCount = (data.stakeCount ?? 0) + 1;
       },
     },
     {
