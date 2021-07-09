@@ -2,8 +2,12 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavelUnreal,
   timelineFile: 'titan-un.txt',
   timelineTriggers: [
@@ -32,7 +36,7 @@ export default {
       id: 'TitanUn Gaoler Adds',
       regex: /Gaoler Adds/,
       beforeSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Gaoler Adds',
@@ -48,7 +52,7 @@ export default {
       id: 'TitanUn Double Weight',
       regex: /Weight Of The Land 1/,
       beforeSeconds: 4,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Double Weight',
@@ -65,15 +69,16 @@ export default {
     {
       // Doesn't seem like this happens twice, but let's be safe.
       id: 'TitanUn Rock Throw',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,
       alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)
-          return output.jailOnYou();
+          return output.jailOnYou!();
       },
       infoText: (data, matches, output) => {
         if (matches.source !== data.me && matches.target !== data.me)
-          return output.jails();
+          return output.jails!();
       },
       outputStrings: {
         jailOnYou: {
@@ -96,6 +101,7 @@ export default {
     },
     {
       id: 'TitanUn Upheaval',
+      type: 'StartsUsing',
       // Five second cast time.
       netRegex: NetRegexes.startsUsing({ source: 'Titan', id: '58F9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Titan', id: '58F9', capture: false }),
@@ -258,3 +264,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

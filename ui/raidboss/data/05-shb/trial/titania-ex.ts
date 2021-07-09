@@ -3,14 +3,25 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  seenMistRune?: boolean;
+  seenFlameRune?: boolean;
+  pummelCount?: number;
+  bomb?: { [ name: string]: boolean };
+  thunderCount?: number;
+}
 
 // Titania Extreme
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheDancingPlagueExtreme,
   timelineFile: 'titania-ex.txt',
   triggers: [
     {
       id: 'TitaniaEx Bright Sabbath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D4B', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D4B', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D4B', source: 'Titania', capture: false }),
@@ -22,6 +33,7 @@ export default {
     },
     {
       id: 'TitaniaEx Phantom Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
@@ -32,6 +44,7 @@ export default {
     },
     {
       id: 'TitaniaEx Phantom In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D4D', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D4D', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D4D', source: 'Titania', capture: false }),
@@ -42,6 +55,7 @@ export default {
     },
     {
       id: 'TitaniaEx Mist Failure',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Spirit Of Dew', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wasserfee', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Esprit Des Rosées', capture: false }),
@@ -52,6 +66,7 @@ export default {
     },
     {
       id: 'TitaniaEx Mist',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
@@ -60,9 +75,9 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.seenMistRune)
-          return output.inOutThenWaterPositions();
+          return output.inOutThenWaterPositions!();
 
-        return output.waterPositions();
+        return output.waterPositions!();
       },
       run: (data) => data.seenMistRune = true,
       outputStrings: {
@@ -86,6 +101,7 @@ export default {
     },
     {
       id: 'TitaniaEx Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
@@ -96,9 +112,9 @@ export default {
       delaySeconds: 8.5,
       alertText: (data, _matches, output) => {
         if (data.seenFlameRune)
-          return output.stackMaybeRotate();
+          return output.stackMaybeRotate!();
 
-        return output.stackPositions();
+        return output.stackPositions!();
       },
       run: (data) => data.seenFlameRune = true,
       outputStrings: {
@@ -122,6 +138,7 @@ export default {
     },
     {
       id: 'TitaniaEx Divination',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D4A', source: 'Titania' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D4A', source: 'Titania' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D4A', source: 'Titania' }),
@@ -132,13 +149,14 @@ export default {
     },
     {
       id: 'TitaniaEx Bramble 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '42D7', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Wait For Tethers In Center',
@@ -152,6 +170,7 @@ export default {
     },
     {
       id: 'TitaniaEx Bramble 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
@@ -163,13 +182,14 @@ export default {
     },
     {
       id: 'TitaniaEx Bramble Knockback',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '3D42', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D42', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Diagonal Knockback Soon',
@@ -183,6 +203,7 @@ export default {
     },
     {
       id: 'TitaniaEx Fae Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2C', source: 'Titania' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2C', source: 'Titania' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2C', source: 'Titania' }),
@@ -194,6 +215,7 @@ export default {
     },
     {
       id: 'TitaniaEx Fae Light Cleave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2C', source: 'Titania' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2C', source: 'Titania' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2C', source: 'Titania' }),
@@ -205,13 +227,14 @@ export default {
     },
     {
       id: 'TitaniaEx Frost Rune 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Middle, Shiva Circles',
@@ -225,6 +248,7 @@ export default {
     },
     {
       id: 'TitaniaEx Frost Rune 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
@@ -236,6 +260,7 @@ export default {
     },
     {
       id: 'TitaniaEx Frost Rune 3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
@@ -247,13 +272,14 @@ export default {
     },
     {
       id: 'TitaniaEx Growth Rune',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Roots',
@@ -267,12 +293,14 @@ export default {
     },
     {
       id: 'TitaniaEx Uplift Markers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'TitaniaEx Hard Swipe',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D36', source: 'Peaseblossom' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D36', source: 'Bohnenblüte' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D36', source: 'Fleur-De-Pois' }),
@@ -284,6 +312,7 @@ export default {
     },
     {
       id: 'TitaniaEx Pummel',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D37', source: 'Puck', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D37', source: 'Puck', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D37', source: 'Puck', capture: false }),
@@ -292,10 +321,10 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '3D37', source: '요정의 권속', capture: false }),
       condition: (data) => data.role === 'tank',
       preRun: (data) => {
-        data.pummelCount = data.pummelCount || 0;
+        data.pummelCount ??= 0;
         data.pummelCount++;
       },
-      infoText: (data, _matches, output) => output.text({ num: data.pummelCount }),
+      infoText: (data, _matches, output) => output.text!({ num: data.pummelCount }),
       outputStrings: {
         text: {
           en: 'Pummel ${num}',
@@ -309,16 +338,18 @@ export default {
     },
     {
       id: 'TitaniaEx Peasebomb',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008D' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
       run: (data) => {
-        data.bomb = data.bomb || {};
+        data.bomb ??= {};
         data.bomb[data.me] = true;
       },
     },
     {
       id: 'TitaniaEx Peasebomb Use',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D3F', source: 'Peaseblossom', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3D3F', source: 'Bohnenblüte', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3D3F', source: 'Fleur-De-Pois', capture: false }),
@@ -329,17 +360,18 @@ export default {
     },
     {
       id: 'TitaniaEx Adds Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       delaySeconds: 0.25,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.stackOnYou();
+          return output.stackOnYou!();
 
 
         if (data.bomb && data.bomb[data.me])
           return;
 
-        return output.stackOn({ player: data.ShortName(matches.target) });
+        return output.stackOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,
@@ -348,6 +380,7 @@ export default {
     },
     {
       id: 'TitaniaEx Thunder Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0054', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.tether({ id: '0054', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.tether({ id: '0054', source: 'Titania', capture: false }),
@@ -355,7 +388,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '0054', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '0054', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Initial Thunder Tether',
@@ -369,16 +402,16 @@ export default {
     },
     {
       id: 'TitaniaEx Thunder Rune',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D29', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3D29', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3D29', source: 'Titania', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '3D29', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D29', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D29', source: '티타니아', capture: false }),
-      preRun: (data) => data.thunderCount = data.thunderCount || 1,
+      preRun: (data) => data.thunderCount = (data.thunderCount ?? 0) + 1,
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => output.text({ num: data.thunderCount }),
-      run: (data) => data.thunderCount++,
+      infoText: (data, _matches, output) => output.text!({ num: data.thunderCount }),
       outputStrings: {
         text: {
           en: 'Thunder ${num}',
@@ -392,6 +425,7 @@ export default {
     },
     {
       id: 'TitaniaEx Thunder Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D32', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D32', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D32', source: 'Titania', capture: false }),
@@ -621,3 +655,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

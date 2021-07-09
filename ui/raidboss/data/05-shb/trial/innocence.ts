@@ -2,14 +2,19 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
 
 // Innocence Normal
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheCrownOfTheImmaculate,
   timelineFile: 'innocence.txt',
   triggers: [
     {
       id: 'Inno Realmrazer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E9A', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
@@ -21,13 +26,14 @@ export default {
     },
     {
       id: 'Inno Enthrall',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E99', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3E99', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E99', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E99', source: '이노센스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look Away, Get Towers',
@@ -41,6 +47,7 @@ export default {
     },
     {
       id: 'Inno Reprobation Swords 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EDC', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
@@ -49,7 +56,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 9.5 seconds until next sword.
       delaySeconds: 9.5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Swords!',
@@ -64,6 +71,7 @@ export default {
 
     {
       id: 'Inno Shadowreaver',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
@@ -75,6 +83,7 @@ export default {
     },
     {
       id: 'Inno Righteous Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EA3', source: 'Innozenz' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
@@ -86,13 +95,14 @@ export default {
     },
     {
       id: 'Inno Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EC7', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3EC7', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EC7', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC7', source: '이노센스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Charge',
@@ -106,13 +116,14 @@ export default {
     },
     {
       id: 'Inno Light Pillar',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '38FC', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '38FC', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '38FC', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '38FC', source: '이노센스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Line Stack',
@@ -126,9 +137,10 @@ export default {
     },
     {
       id: 'Inno Winged Drop Of Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Circle on YOU',
@@ -143,6 +155,7 @@ export default {
     {
       // TODO: is there a left, or do all normal modes rotate right??
       id: 'Inno Soul And Body Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EB1', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
@@ -150,7 +163,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3EB1', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EB1', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Rotate Right',
@@ -316,3 +329,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

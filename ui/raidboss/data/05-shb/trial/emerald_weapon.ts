@@ -1,14 +1,21 @@
-import ZoneId from '../../../../../resources/zone_id';
-import NetRegexes from '../../../../../resources/netregexes';
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  seenMines?: boolean;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.CastrumMarinum,
   timelineFile: 'emerald_weapon.txt',
   triggers: [
     {
       id: 'Emerald Emerald Shot',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5554' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5554' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5554' }),
@@ -20,6 +27,7 @@ export default {
     },
     {
       id: 'Emerald Optimized Ultima',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['5555', '5556', '5B0F'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: ['5555', '5556', '5B0F'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['5555', '5556', '5B0F'], capture: false }),
@@ -31,6 +39,7 @@ export default {
     },
     {
       id: 'Emerald Magitek Magnetism',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B0[56]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5B0[56]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5B0[56]', capture: false }),
@@ -40,7 +49,7 @@ export default {
       condition: (data) => data.seenMines || data.role !== 'tank',
       delaySeconds: 9,
       durationSeconds: 6,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.seenMines = true,
       outputStrings: {
         text: {
@@ -55,6 +64,7 @@ export default {
     },
     {
       id: 'Emerald Sidescathe Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['553F', '5540'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: ['553F', '5540'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['553F', '5540'], capture: false }),
@@ -65,6 +75,7 @@ export default {
     },
     {
       id: 'Emerald Sidescathe Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['5541', '5542'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: ['5541', '5542'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['5541', '5542'], capture: false }),
@@ -75,6 +86,7 @@ export default {
     },
     {
       id: 'Emerald Emerald Crusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['553C', '553D'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: ['553C', '553D'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['553C', '553D'], capture: false }),
@@ -87,14 +99,16 @@ export default {
     },
     {
       id: 'Emerald Divide Et Impera Tankbuster',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Emerald Primus Terminus Est',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00F5' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Knockback Arrow on YOU',
@@ -107,9 +121,10 @@ export default {
     },
     {
       id: 'Emerald Secundus Terminus Est X',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00FE' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Cardinal With Sword',
@@ -122,9 +137,10 @@ export default {
     },
     {
       id: 'Emerald Secundus Terminus Est Plus',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00FD' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Intercardinal With Sword',
@@ -314,3 +330,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

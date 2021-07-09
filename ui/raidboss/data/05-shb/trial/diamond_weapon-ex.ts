@@ -1,8 +1,16 @@
-import ZoneId from '../../../../../resources/zone_id';
-import NetRegexes from '../../../../../resources/netregexes';
 import Conditions from '../../../../../resources/conditions';
-import { Responses } from '../../../../../resources/responses';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  decOffset?: number;
+  phase?: number;
+}
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
@@ -12,7 +20,7 @@ import Outputs from '../../../../../resources/outputs';
 // P2 buster is 00F3
 // P3 Shrapnal tracking AoE is 00C5
 const firstHeadmarker = parseInt('0057', 16);
-const getHeadmarkerId = (data, matches) => {
+const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 0057.
   // (This makes the offset 0, and !0 is true.)
   if (typeof data.decOffset === 'undefined')
@@ -23,20 +31,21 @@ const getHeadmarkerId = (data, matches) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheCloudDeckExtreme,
   timelineFile: 'diamond_weapon-ex.txt',
   triggers: [
     // Phase 1&3
     {
       id: 'DiamondEx Diamond Rain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA7', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
-      run: (data) => data.phase = data.phase || 1,
+      run: (data) => data.phase = data.phase ?? 1,
     },
     // @TODO: There's probably a better callout for these mechanics, e.g.
     // `jump -> stay -> aoe`
@@ -48,11 +57,12 @@ export default {
     // but need to figure out what side player is on
     {
       id: 'DiamondEx Adamant Purge West Diamond Rain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5F9B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9B', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'go east -> aoe',
@@ -66,11 +76,12 @@ export default {
     },
     {
       id: 'DiamondEx Adamant Purge East Diamond Rain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5F9A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9A', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'go west -> aoe',
@@ -84,11 +95,12 @@ export default {
     },
     {
       id: 'DiamondEx Adamant Purge West Diamond Flash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA5', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'go east -> stack',
@@ -102,11 +114,12 @@ export default {
     },
     {
       id: 'DiamondEx Adamant Purge East Diamond Flash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA4', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'go west -> stack',
@@ -120,11 +133,12 @@ export default {
     },
     {
       id: 'DiamondEx Adamant Purge West Homing Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA3', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'go east -> spread',
@@ -138,11 +152,12 @@ export default {
     },
     {
       id: 'DiamondEx Adamant Purge East Homing Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA2', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'go west -> spread',
@@ -157,12 +172,13 @@ export default {
     // @TODO: Make this a collector with with flare/away from flare
     {
       id: 'DiamondEx Photon Burst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA8', capture: false }),
       condition: Conditions.caresAboutMagical(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Flare',
@@ -177,6 +193,7 @@ export default {
     // @TODO: Phase transition tethers and KB
     {
       id: 'DiamondEx Code Chi-Xi-Stigma',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAD', capture: false }),
@@ -186,6 +203,7 @@ export default {
     // Phase 2
     {
       id: 'DiamondEx Outrage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FBC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBC', capture: false }),
@@ -195,6 +213,7 @@ export default {
     },
     {
       id: 'DiamondEx Auri Doomstead',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBD' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FBD' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBD' }),
@@ -205,11 +224,12 @@ export default {
     // @TODO: Get boss facing and bits position, call out adjust?
     {
       id: 'DiamondEx P2 Zig-Zag',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAF', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Zig-Zag',
@@ -224,11 +244,12 @@ export default {
     // @TODO: Get boss facing and orb position, call out safe side?
     {
       id: 'DiamondEx P2 Zig-Zag Jump',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB2', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge East/West',
@@ -243,11 +264,12 @@ export default {
     // @TODO: Get boss facing and orb count, call out towards/away?
     {
       id: 'DiamondEx P2 North/South Jump',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB5', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Towards/Away',
@@ -262,11 +284,12 @@ export default {
     // @TODO: Get bit locations, call out north/south diagonal KB?
     {
       id: 'DiamondEx P2 Vertical Cleave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB7', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Diagonal Knockback',
@@ -280,12 +303,13 @@ export default {
     },
     {
       id: 'DiamondEx P2 Articulated Bits',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FC1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FC1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FC1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FC1', capture: false }),
       durationSeconds: 15,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Bits',
@@ -299,6 +323,7 @@ export default {
     },
     {
       id: 'DiamondEx Headmarker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       durationSeconds: 25,
       infoText: (data, matches, output) => {
@@ -313,7 +338,7 @@ export default {
 
         if (id >= firstLCMarker && id <= lastLCMarker) {
           const decOffset = id - firstLCMarker;
-          return output[decOffset + 1]();
+          return output[decOffset + 1]!();
         }
       },
       outputStrings: {
@@ -330,12 +355,13 @@ export default {
     // Phase 3
     {
       id: 'DiamondEx P3 Articulated Bits',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA9', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA9', capture: false }),
       durationSeconds: 20,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Bits',
@@ -349,11 +375,12 @@ export default {
     },
     {
       id: 'DiamondEx Diamond Shrapnel',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAC', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait Puddles',
@@ -367,12 +394,13 @@ export default {
     },
     {
       id: 'DiamondEx Burst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAC', capture: false }),
       delaySeconds: 15,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Towers',
@@ -473,3 +501,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
