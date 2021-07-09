@@ -37,6 +37,7 @@ export class Resolver {
   private delayUntil?: number;
   private final?: ResolverFunc;
   private delayPromise?: Promise<void>;
+  private promiseResolved = false;
   private delayResolver?: ResolverFunc;
   public triggerHelper?: EmulatorTriggerHelper;
 
@@ -53,8 +54,8 @@ export class Resolver {
         return false;
       }
     }
-    if (this.promise)
-      await this.promise;
+    if (this.promise && !this.promiseResolved)
+      return false;
     if (this.run)
       this.run();
     if (this.final)
@@ -69,6 +70,9 @@ export class Resolver {
   }
   setPromise(promise: Promise<void>): void {
     this.promise = promise;
+    void this.promise.then(() => {
+      this.promiseResolved = true;
+    });
   }
   setRun(run: ResolverFunc): void {
     this.run = run;

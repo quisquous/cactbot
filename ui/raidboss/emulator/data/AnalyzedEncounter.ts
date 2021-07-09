@@ -10,6 +10,7 @@ import EventBus from '../EventBus';
 import RaidEmulatorAnalysisTimelineUI from '../overrides/RaidEmulatorAnalysisTimelineUI';
 import RaidEmulatorPopupText from '../overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
+import RaidEmulatorWatchCombatantsOverride from '../overrides/RaidEmulatorWatchCombatantsOverride';
 
 import Combatant from './Combatant';
 import Encounter from './Encounter';
@@ -35,7 +36,8 @@ export default class AnalyzedEncounter extends EventBus {
   constructor(
       public options: RaidbossOptions,
       public encounter: Encounter,
-      public emulator: RaidEmulator) {
+      public emulator: RaidEmulator,
+      public watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride) {
     super();
   }
 
@@ -213,9 +215,12 @@ export default class AnalyzedEncounter extends EventBus {
       if (combatant && combatant.hasState(log.timestamp))
         this.updateState(combatant, log.timestamp, popupText);
 
+      this.watchCombatantsOverride.tick(this, this.encounter.combatantTracker, log.timestamp);
       await popupText.onEmulatorLog([log]);
       timelineController.onEmulatorLogEvent([log]);
     }
+
+    this.watchCombatantsOverride.clear();
     timelineUI.stop();
   }
 }

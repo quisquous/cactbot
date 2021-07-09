@@ -18,6 +18,7 @@ import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlay
 import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
 import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
+import RaidEmulatorWatchCombatantsOverride from './emulator/overrides/RaidEmulatorWatchCombatantsOverride';
 import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
 import EncounterTab from './emulator/ui/EncounterTab';
 import ProgressBar from './emulator/ui/ProgressBar';
@@ -40,6 +41,7 @@ declare global {
       emulatedPartyInfo: EmulatedPartyInfo;
       emulatedWebSocket: RaidEmulatorOverlayApiHook;
       timelineUI: RaidEmulatorTimelineUI;
+      emulatorWatchCombatantsOverride: RaidEmulatorWatchCombatantsOverride;
     };
   }
 }
@@ -141,6 +143,9 @@ const raidEmulatorOnLoad = async () => {
 
   emulator.setPopupText(popupText);
 
+  const emulatorWatchCombatantsOverride =
+    new RaidEmulatorWatchCombatantsOverride(emulator, emulatedWebSocket);
+
   // Listen for the user to click a player in the party list on the right
   // and persist that over to the emulator
   emulatedPartyInfo.on('selectPerspective', (id: string) => {
@@ -159,12 +164,12 @@ const raidEmulatorOnLoad = async () => {
   // Listen for the user to attempt to load an encounter from the encounters pane
   encounterTab.on('load', (id: number) => {
     // Attempt to set the current emulated encounter
-    if (!emulator.setCurrentByID(id)) {
+    if (!emulator.setCurrentByID(id, emulatorWatchCombatantsOverride)) {
       // If that encounter isn't loaded, load it
       void persistor.loadEncounter(id).then((enc?: Encounter) => {
         if (enc) {
           emulator.addEncounter(enc);
-          emulator.setCurrentByID(id);
+          emulator.setCurrentByID(id, emulatorWatchCombatantsOverride);
         }
       });
     }
@@ -453,6 +458,7 @@ const raidEmulatorOnLoad = async () => {
     emulatedPartyInfo: emulatedPartyInfo,
     emulatedWebSocket: emulatedWebSocket,
     timelineUI: timelineUI,
+    emulatorWatchCombatantsOverride: emulatorWatchCombatantsOverride,
   };
 };
 
