@@ -1,13 +1,47 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import Regexes from '../../../../../resources/regexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn2,
   timelineFile: 't7.txt',
+  initData: () => {
+    return {
+      monitoringHP: false,
+      hpThresholds: [0.79, 0.59, 0.34],
+      currentPhase: 0,
+    };
+  },
   triggers: [
+    {
+      id: 'T7 Meluseine Phase Change Watcher',
+      type: 'Ability',
+      // On Tail Slap.
+      netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegexDe: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegexFr: NetRegexes.ability({ id: '7A8', source: 'Mélusine' }),
+      netRegexJa: NetRegexes.ability({ id: '7A8', source: 'メリュジーヌ' }),
+      netRegexCn: NetRegexes.ability({ id: '7A8', source: '美瑠姬奴' }),
+      netRegexKo: NetRegexes.ability({ id: '7A8', source: '멜뤼진' }),
+      condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
+      preRun: (data) => data.monitoringHP = true,
+      promise: (data, matches) => Util.watchCombatant({
+        ids: [parseInt(matches.sourceId, 16)],
+      },
+      (ret) => {
+        return ret.combatants.some((c) => {
+          const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
+          return currentHPCheck >= (c.CurrentHP / c.MaxHP);
+        });
+      }),
+      sound: 'Long',
+      run: (data) => {
+        data.currentPhase++;
+        data.monitoringHP = false;
+      },
+    },
     {
       id: 'T7 Ram',
       netRegex: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
@@ -172,36 +206,6 @@ export default {
           ko: '저주의 외침 피하기',
         },
       },
-    },
-    {
-      id: 'T7 Phase 2',
-      regex: Regexes.hasHP({ name: 'Melusine', hp: '79', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Melusine', hp: '79', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Mélusine', hp: '79', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'メリュジーヌ', hp: '79', capture: false }),
-      regexCn: Regexes.hasHP({ name: '美瑠姬奴', hp: '79', capture: false }),
-      regexKo: Regexes.hasHP({ name: '멜뤼진', hp: '79', capture: false }),
-      sound: 'Long',
-    },
-    {
-      id: 'T7 Phase 3',
-      regex: Regexes.hasHP({ name: 'Melusine', hp: '59', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Melusine', hp: '59', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Mélusine', hp: '59', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'メリュジーヌ', hp: '59', capture: false }),
-      regexCn: Regexes.hasHP({ name: '美瑠姬奴', hp: '59', capture: false }),
-      regexKo: Regexes.hasHP({ name: '멜뤼진', hp: '59', capture: false }),
-      sound: 'Long',
-    },
-    {
-      id: 'T7 Phase 4',
-      regex: Regexes.hasHP({ name: 'Melusine', hp: '34', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Melusine', hp: '34', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Mélusine', hp: '34', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'メリュジーヌ', hp: '34', capture: false }),
-      regexCn: Regexes.hasHP({ name: '美瑠姬奴', hp: '34', capture: false }),
-      regexKo: Regexes.hasHP({ name: '멜뤼진', hp: '34', capture: false }),
-      sound: 'Long',
     },
     {
       id: 'T7 Petrifaction 1',
