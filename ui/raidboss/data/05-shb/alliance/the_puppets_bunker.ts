@@ -780,7 +780,7 @@ const triggerSet: TriggerSet<Data> = {
           '0051': output.jump!({ num: 2 }),
           '0052': output.cleave!({ num: 2 }),
         };
-        return fourPartsMap[matches.id];
+        return fourPartsMap[matches.id] ?? output.unknown!();
       },
       outputStrings: {
         jump: {
@@ -799,6 +799,7 @@ const triggerSet: TriggerSet<Data> = {
           cn: '直线劈砍#${num}点名',
           ko: '직선공격 #${num} 대상자',
         },
+        unknown: Outputs.unknown,
       },
     },
     {
