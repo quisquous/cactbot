@@ -54,7 +54,7 @@ export default {
       // 567A = same thing, but from Fatebreaker's Image
       // 568F = same thing, but during Cycle of Faith
       netRegex: NetRegexes.ability({ id: ['5653', '567A', '568F'] }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

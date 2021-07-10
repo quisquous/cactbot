@@ -19,7 +19,7 @@ export default {
       // from the explosion damage you take when somebody else
       // pops one.
       netRegex: NetRegexes.abilityFull({ id: '26AB', ...playerDamageFields, flags: kFlagInstantDeath }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,
@@ -37,7 +37,7 @@ export default {
     {
       id: 'UCU Thermionic Burst',
       netRegex: NetRegexes.abilityFull({ id: '26B9', ...playerDamageFields }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,
@@ -55,7 +55,7 @@ export default {
     {
       id: 'UCU Chain Lightning',
       netRegex: NetRegexes.abilityFull({ id: '26C8', ...playerDamageFields }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         // It's hard to assign blame for lightning.  The debuffs
         // go out and then explode in order, but the attacker is
         // the dragon and not the player.
@@ -76,21 +76,21 @@ export default {
     {
       id: 'UCU Burns',
       netRegex: NetRegexes.gainsEffect({ effectId: 'FA' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'UCU Sludge',
       netRegex: NetRegexes.gainsEffect({ effectId: '11F' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'UCU Doom Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasDoom = data.hasDoom || {};
         data.hasDoom[matches.target] = true;
       },
@@ -98,7 +98,7 @@ export default {
     {
       id: 'UCU Doom Lose',
       netRegex: NetRegexes.losesEffect({ effectId: 'D2' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasDoom = data.hasDoom || {};
         data.hasDoom[matches.target] = false;
       },
@@ -118,8 +118,8 @@ export default {
       // but what can you do.
       id: 'UCU Doom Death',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 1,
-      deathReason: (_e, data, matches) => {
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
+      deathReason: (data, matches) => {
         if (!data.hasDoom || !data.hasDoom[matches.target])
           return;
         let reason;

@@ -40,7 +40,7 @@ export default {
     {
       id: 'E7N Astral Effect Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasAstral = data.hasAstral || {};
         data.hasAstral[matches.target] = true;
       },
@@ -48,7 +48,7 @@ export default {
     {
       id: 'E7N Astral Effect Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasAstral = data.hasAstral || {};
         data.hasAstral[matches.target] = false;
       },
@@ -56,7 +56,7 @@ export default {
     {
       id: 'E7N Umbral Effect Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
         data.hasUmbral[matches.target] = true;
       },
@@ -64,7 +64,7 @@ export default {
     {
       id: 'E7N Umbral Effect Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
         data.hasUmbral[matches.target] = false;
       },
@@ -72,10 +72,10 @@ export default {
     {
       id: 'E7N Light\'s Course',
       netRegex: NetRegexes.abilityFull({ id: ['4C3E', '4C40', '4C22', '4C3C', '4E63'], ...playerDamageFields }),
-      condition: (_e, data, matches) => {
+      condition: (data, matches) => {
         return !data.hasUmbral || !data.hasUmbral[matches.target];
       },
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         if (data.hasAstral && data.hasAstral[matches.target])
           return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
         return { type: 'warn', blame: matches.target, text: noBuff(matches.ability) };
@@ -84,10 +84,10 @@ export default {
     {
       id: 'E7N Darks\'s Course',
       netRegex: NetRegexes.abilityFull({ id: ['4C3D', '4C23', '4C41', '4C43'], ...playerDamageFields }),
-      condition: (_e, data, matches) => {
+      condition: (data, matches) => {
         return !data.hasAstral || !data.hasAstral[matches.target];
       },
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         if (data.hasUmbral && data.hasUmbral[matches.target])
           return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
         // This case is probably impossible, as the debuff ticks after death,

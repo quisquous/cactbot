@@ -6,12 +6,17 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  scourge?: string[];
+  scourge: string[];
 }
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheSoulOfTheCreatorSavage,
   timelineFile: 'a12s.txt',
+  initData: () => {
+    return {
+      scourge: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'A12S Divine Spear',
@@ -47,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: (data, matches) => {
         // Ignore Holy Scourge later in the fight.
-        if (data.scourge && data.scourge.length > 2)
+        if (data.scourge.length > 2)
           return false;
         return data.me === matches.target;
       },
@@ -67,10 +72,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12S Blazing Scourge Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: (data, matches) => {
-        data.scourge ??= [];
-        data.scourge.push(matches.target);
-      },
+      run: (data, matches) => data.scourge.push(matches.target),
     },
     {
       id: 'A12S Blazing Scourge Report',
@@ -78,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: (data) => {
         // Ignore Holy Scourge later in the fight.
-        if (data.scourge && data.scourge.length > 2)
+        if (data.scourge.length > 2)
           return false;
 
         return data.role === 'healer' || data.job === 'BLU';
@@ -87,11 +89,11 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         // Ignore Holy Scourge later in the fight.
-        if (data.scourge && data.scourge.length > 2)
+        if (data.scourge.length > 2)
           return false;
 
-        const names = data.scourge?.map((x) => data.ShortName(x)).sort();
-        if (!names || names.length === 0)
+        const names = data.scourge.map((x) => data.ShortName(x)).sort();
+        if (names.length === 0)
           return;
         return output.text!({ players: names.join(', ') });
       },

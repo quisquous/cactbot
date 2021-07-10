@@ -62,9 +62,9 @@
 05-shb/raid/e5n.js
 05-shb/raid/e5s.js
 05-shb/raid/e6n.js
-05-shb/raid/e6s.js
+05-shb/raid/e6s.ts
 05-shb/raid/e7n.js
-05-shb/raid/e7s.js
+05-shb/raid/e7s.ts
 05-shb/raid/e8n.js
 05-shb/raid/e8s.js
 05-shb/raid/e9n.js

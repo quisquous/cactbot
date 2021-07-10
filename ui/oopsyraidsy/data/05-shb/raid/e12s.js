@@ -70,15 +70,15 @@ export default {
       // This can be shielded through as long as that person doesn't stack.
       id: 'E12S Icicle Impact',
       netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
     {
       id: 'E12S Headmarker',
       netRegex: NetRegexes.headMarker({}),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         const id = getHeadmarkerId(data, matches);
         const firstLaserMarker = '0091';
         const lastLaserMarker = '0098';
@@ -97,7 +97,7 @@ export default {
       // use the "Classical Sculpture" ability and end up on the arena for real.
       id: 'E12S Promise Chiseled Sculpture Classical Sculpture',
       netRegex: NetRegexes.abilityFull({ source: 'Chiseled Sculpture', id: '58B2' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         // This will run per person that gets hit by the same sculpture, but that's fine.
         // Record the y position of each sculpture so we can use it for better text later.
         data.sculptureYPositions = data.sculptureYPositions || {};
@@ -108,7 +108,7 @@ export default {
       // The source of the tether is the player, the target is the sculpture.
       id: 'E12S Promise Chiseled Sculpture Tether',
       netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.sculptureTetherNameToId = data.sculptureTetherNameToId || {};
         data.sculptureTetherNameToId[matches.source] = matches.targetId.toUpperCase();
       },
@@ -118,7 +118,7 @@ export default {
       netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
       delaySeconds: 1,
       suppressSeconds: 1,
-      run: (_e, data) => {
+      run: (data) => {
         data.bladeOfFlameCount = data.bladeOfFlameCount || 0;
         data.bladeOfFlameCount++;
       },
@@ -127,7 +127,7 @@ export default {
       // This is the Chiseled Sculpture laser with the limit cut dots.
       id: 'E12S Promise Blade Of Flame',
       netRegex: NetRegexes.ability({ type: '22', source: 'Chiseled Sculpture', id: '58B3' }),
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         if (!data.laserNameToNum || !data.sculptureTetherNameToId || !data.sculptureYPositions)
           return;
 
@@ -204,7 +204,7 @@ export default {
     {
       id: 'E12S Promise Ice Pillar Tracker',
       netRegex: NetRegexes.tether({ source: 'Ice Pillar', id: ['0001', '0039'] }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.pillarIdToOwner = data.pillarIdToOwner || {};
         data.pillarIdToOwner[matches.sourceId] = matches.target;
       },
@@ -212,12 +212,12 @@ export default {
     {
       id: 'E12S Promise Ice Pillar Mistake',
       netRegex: NetRegexes.ability({ source: 'Ice Pillar', id: '589B' }),
-      condition: (_e, data, matches) => {
+      condition: (data, matches) => {
         if (!data.pillarIdToOwner)
           return false;
         return matches.target !== data.pillarIdToOwner[matches.sourceId];
       },
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         const pillarOwner = data.ShortName(data.pillarIdToOwner[matches.sourceId]);
         return {
           type: 'fail',
@@ -237,7 +237,7 @@ export default {
       id: 'E12S Promise Gain Fire Resistance Down II',
       // The Beastly Sculpture gives a 3 second debuff, the Regal Sculpture gives a 14s one.
       netRegex: NetRegexes.gainsEffect({ effectId: '832' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.fire = data.fire || {};
         data.fire[matches.target] = true;
       },
@@ -245,7 +245,7 @@ export default {
     {
       id: 'E12S Promise Lose Fire Resistance Down II',
       netRegex: NetRegexes.losesEffect({ effectId: '832' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.fire = data.fire || {};
         data.fire[matches.target] = false;
       },
@@ -256,7 +256,7 @@ export default {
       netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.smallLionIdToOwner = data.smallLionIdToOwner || {};
         data.smallLionIdToOwner[matches.sourceId.toUpperCase()] = matches.target;
         data.smallLionOwners = data.smallLionOwners || [];
@@ -269,7 +269,7 @@ export default {
       netRegexDe: NetRegexes.abilityFull({ source: 'Abbild Eines Löwen', id: '58B9' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Création Léonine', id: '58B9' }),
       netRegexJa: NetRegexes.abilityFull({ source: '創られた獅子', id: '58B9' }),
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         // Folks baiting the big lion second can take the first small lion hit,
         // so it's not sufficient to check only the owner.
         if (!data.smallLionOwners)
@@ -323,7 +323,7 @@ export default {
     {
       id: 'E12S Promise North Big Lion',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Regal Sculpture' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         const y = parseFloat(matches.y);
         const centerY = -75;
         if (y < centerY)
@@ -336,7 +336,7 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Abbild eines großen Löwen', id: '4F9E' }),
       netRegexFr: NetRegexes.ability({ source: 'création léonine royale', id: '4F9E' }),
       netRegexJa: NetRegexes.ability({ source: '創られた獅子王', id: '4F9E' }),
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
 
@@ -401,7 +401,7 @@ export default {
       // 58B7 = Laser Eye (promise lion phase)
       // 58C1 = Darkest Dance (oracle tank jump + knockback in beginning and triple apoc)
       netRegex: NetRegexes.ability({ id: ['589A', '58B6', '58B7', '58C1'] }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,
@@ -419,8 +419,8 @@ export default {
     {
       id: 'E12S Oracle Shadoweye',
       netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },

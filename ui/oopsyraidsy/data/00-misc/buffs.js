@@ -6,27 +6,46 @@ const abilityCollectSeconds = 0.5;
 // Observation: up to ~1.2 seconds for a buff to roll through the party.
 const effectCollectSeconds = 2.0;
 
+const isInPartyConditionFunc = (data, matches) => {
+  const sourceId = matches.sourceId.toUpperCase();
+  if (data.party.partyIds.includes(sourceId))
+    return true;
+
+  if (data.petIdToOwnerId) {
+    const ownerId = data.petIdToOwnerId[sourceId];
+    if (ownerId && data.party.partyIds.includes(ownerId))
+      return true;
+  }
+
+  return false;
+};
+
 // args: triggerId, netRegex, field, type, ignoreSelf
-const missedFunc = (args) => {
-  return {
+const missedFunc = (args) => [
+  {
     // Sure, not all of these are "buffs" per se, but they're all in the buffs file.
-    id: 'Buff ' + args.triggerId,
+    id: `Buff ${args.triggerId} Collect`,
     netRegex: args.netRegex,
-    condition: (_evt, data, matches) => {
-      const sourceId = matches.sourceId.toUpperCase();
-      if (data.party.partyIds.includes(sourceId))
-        return true;
-
-      if (data.petIdToOwnerId) {
-        const ownerId = data.petIdToOwnerId[sourceId];
-        if (ownerId && data.party.partyIds.includes(ownerId))
-          return true;
-      }
-
-      return false;
+    condition: isInPartyConditionFunc,
+    run: (data, matches) => {
+      data.generalBuffCollection = data.generalBuffCollection || {};
+      data.generalBuffCollection[args.triggerId] = data.generalBuffCollection[args.triggerId] || [];
+      data.generalBuffCollection[args.triggerId].push(matches);
     },
-    collectSeconds: args.collectSeconds,
-    mistake: (_allEvents, data, allMatches) => {
+  },
+  {
+    id: `Buff ${args.triggerId}`,
+    netRegex: args.netRegex,
+    condition: isInPartyConditionFunc,
+    delaySeconds: args.collectSeconds,
+    suppressSeconds: args.collectSeconds,
+    mistake: (data, _matches) => {
+      if (!data.generalBuffCollection)
+        return;
+      const allMatches = data.generalBuffCollection[args.triggerId];
+      if (!allMatches)
+        return;
+
       const partyNames = data.party.partyNames;
 
       // TODO: consider dead people somehow
@@ -98,8 +117,12 @@ const missedFunc = (args) => {
         },
       };
     },
-  };
-};
+    run: (data) => {
+      if (data.generalBuffCollection)
+        delete data.generalBuffCollection[args.triggerId];
+    },
+  },
+];
 
 const missedMitigationBuff = (args) => {
   if (!args.effectId)
@@ -147,7 +170,7 @@ export default {
     {
       id: 'Buff Pet To Owner Mapper',
       netRegex: NetRegexes.addedCombatantFull(),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         if (matches.ownerId === '0')
           return;
 
@@ -159,7 +182,7 @@ export default {
     {
       id: 'Buff Pet To Owner Clearer',
       netRegex: NetRegexes.changeZone(),
-      run: (_e, data) => {
+      run: (data) => {
         // Clear this hash periodically so it doesn't have false positives.
         data.petIdToOwnerId = {};
       },
@@ -170,69 +193,70 @@ export default {
 
     // For things you can step in or out of, give a longer timer?  This isn't perfect.
     // TODO: include soil here??
-    missedMitigationBuff({ id: 'Collective Unconscious', effectId: '351', collectSeconds: 10 }),
-    missedMitigationBuff({ id: 'Passage of Arms', effectId: '498', ignoreSelf: true, collectSeconds: 10 }),
+    ...missedMitigationBuff({ id: 'Collective Unconscious', effectId: '351', collectSeconds: 10 }),
+    // Arms Up = 498 (others), Passage Of Arms = 497 (you).  Use both in case everybody is missed.
+    ...missedMitigationBuff({ id: 'Passage of Arms', effectId: '49[78]', ignoreSelf: true, collectSeconds: 10 }),
 
-    missedMitigationBuff({ id: 'Divine Veil', effectId: '2D7', ignoreSelf: true }),
+    ...missedMitigationBuff({ id: 'Divine Veil', effectId: '2D7', ignoreSelf: true }),
 
-    missedMitigationAbility({ id: 'Heart Of Light', abilityId: '3F20' }),
-    missedMitigationAbility({ id: 'Dark Missionary', abilityId: '4057' }),
-    missedMitigationAbility({ id: 'Shake It Off', abilityId: '1CDC' }),
+    ...missedMitigationAbility({ id: 'Heart Of Light', abilityId: '3F20' }),
+    ...missedMitigationAbility({ id: 'Dark Missionary', abilityId: '4057' }),
+    ...missedMitigationAbility({ id: 'Shake It Off', abilityId: '1CDC' }),
 
     // 3F44 is the correct Quadruple Technical Finish, others are Dinky Technical Finish.
-    missedDamageAbility({ id: 'Technical Finish', abilityId: '3F4[1-4]' }),
-    missedDamageAbility({ id: 'Divination', abilityId: '40A8' }),
-    missedDamageAbility({ id: 'Brotherhood', abilityId: '1CE4' }),
-    missedDamageAbility({ id: 'Battle Litany', abilityId: 'DE5' }),
-    missedDamageAbility({ id: 'Embolden', abilityId: '1D60' }),
-    missedDamageAbility({ id: 'Battle Voice', abilityId: '76', ignoreSelf: true }),
+    ...missedDamageAbility({ id: 'Technical Finish', abilityId: '3F4[1-4]' }),
+    ...missedDamageAbility({ id: 'Divination', abilityId: '40A8' }),
+    ...missedDamageAbility({ id: 'Brotherhood', abilityId: '1CE4' }),
+    ...missedDamageAbility({ id: 'Battle Litany', abilityId: 'DE5' }),
+    ...missedDamageAbility({ id: 'Embolden', abilityId: '1D60' }),
+    ...missedDamageAbility({ id: 'Battle Voice', abilityId: '76', ignoreSelf: true }),
 
     // Too noisy (procs every three seconds, and bards often off doing mechanics).
     // missedDamageBuff({ id: 'Wanderer\'s Minuet', effectId: '8A8', ignoreSelf: true }),
     // missedDamageBuff({ id: 'Mage\'s Ballad', effectId: '8A9', ignoreSelf: true }),
     // missedDamageBuff({ id: 'Army\'s Paeon', effectId: '8AA', ignoreSelf: true }),
 
-    missedMitigationAbility({ id: 'Troubadour', abilityId: '1CED' }),
-    missedMitigationAbility({ id: 'Tactician', abilityId: '41F9' }),
-    missedMitigationAbility({ id: 'Shield Samba', abilityId: '3E8C' }),
+    ...missedMitigationAbility({ id: 'Troubadour', abilityId: '1CED' }),
+    ...missedMitigationAbility({ id: 'Tactician', abilityId: '41F9' }),
+    ...missedMitigationAbility({ id: 'Shield Samba', abilityId: '3E8C' }),
 
-    missedMitigationAbility({ id: 'Mantra', abilityId: '41' }),
+    ...missedMitigationAbility({ id: 'Mantra', abilityId: '41' }),
 
-    missedDamageAbility({ id: 'Devotion', abilityId: '1D1A' }),
+    ...missedDamageAbility({ id: 'Devotion', abilityId: '1D1A' }),
 
     // Maybe using a healer LB1/LB2 should be an error for the healer. O:)
-    // missedHeal({ id: 'Healing Wind', abilityId: 'CE' }),
-    // missedHeal({ id: 'Breath of the Earth', abilityId: 'CF' }),
+    // ...missedHeal({ id: 'Healing Wind', abilityId: 'CE' }),
+    // ...missedHeal({ id: 'Breath of the Earth', abilityId: 'CF' }),
 
-    missedHeal({ id: 'Medica', abilityId: '7C' }),
-    missedHeal({ id: 'Medica II', abilityId: '85' }),
-    missedHeal({ id: 'Afflatus Rapture', abilityId: '4096' }),
-    missedHeal({ id: 'Temperance', abilityId: '751' }),
-    missedHeal({ id: 'Plenary Indulgence', abilityId: '1D09' }),
-    missedHeal({ id: 'Pulse of Life', abilityId: 'D0' }),
+    ...missedHeal({ id: 'Medica', abilityId: '7C' }),
+    ...missedHeal({ id: 'Medica II', abilityId: '85' }),
+    ...missedHeal({ id: 'Afflatus Rapture', abilityId: '4096' }),
+    ...missedHeal({ id: 'Temperance', abilityId: '751' }),
+    ...missedHeal({ id: 'Plenary Indulgence', abilityId: '1D09' }),
+    ...missedHeal({ id: 'Pulse of Life', abilityId: 'D0' }),
 
-    missedHeal({ id: 'Succor', abilityId: 'BA' }),
-    missedHeal({ id: 'Indomitability', abilityId: 'DFF' }),
-    missedHeal({ id: 'Deployment Tactics', abilityId: 'E01' }),
-    missedHeal({ id: 'Whispering Dawn', abilityId: '323' }),
-    missedHeal({ id: 'Fey Blessing', abilityId: '40A0' }),
-    missedHeal({ id: 'Consolation', abilityId: '40A3' }),
-    missedHeal({ id: 'Angel\'s Whisper', abilityId: '40A6' }),
-    missedMitigationAbility({ id: 'Fey Illumination', abilityId: '325' }),
-    missedMitigationAbility({ id: 'Seraphic Illumination', abilityId: '40A7' }),
-    missedHeal({ id: 'Angel Feathers', abilityId: '1097' }),
+    ...missedHeal({ id: 'Succor', abilityId: 'BA' }),
+    ...missedHeal({ id: 'Indomitability', abilityId: 'DFF' }),
+    ...missedHeal({ id: 'Deployment Tactics', abilityId: 'E01' }),
+    ...missedHeal({ id: 'Whispering Dawn', abilityId: '323' }),
+    ...missedHeal({ id: 'Fey Blessing', abilityId: '40A0' }),
+    ...missedHeal({ id: 'Consolation', abilityId: '40A3' }),
+    ...missedHeal({ id: 'Angel\'s Whisper', abilityId: '40A6' }),
+    ...missedMitigationAbility({ id: 'Fey Illumination', abilityId: '325' }),
+    ...missedMitigationAbility({ id: 'Seraphic Illumination', abilityId: '40A7' }),
+    ...missedHeal({ id: 'Angel Feathers', abilityId: '1097' }),
 
-    missedHeal({ id: 'Helios', abilityId: 'E10' }),
-    missedHeal({ id: 'Aspected Helios', abilityId: 'E11' }),
-    missedHeal({ id: 'Aspected Helios', abilityId: '3200' }),
-    missedHeal({ id: 'Celestial Opposition', abilityId: '40A9' }),
-    missedHeal({ id: 'Astral Stasis', abilityId: '1098' }),
+    ...missedHeal({ id: 'Helios', abilityId: 'E10' }),
+    ...missedHeal({ id: 'Aspected Helios', abilityId: 'E11' }),
+    ...missedHeal({ id: 'Aspected Helios', abilityId: '3200' }),
+    ...missedHeal({ id: 'Celestial Opposition', abilityId: '40A9' }),
+    ...missedHeal({ id: 'Astral Stasis', abilityId: '1098' }),
 
-    missedHeal({ id: 'White Wind', abilityId: '2C8E' }),
-    missedHeal({ id: 'Gobskin', abilityId: '4780' }),
+    ...missedHeal({ id: 'White Wind', abilityId: '2C8E' }),
+    ...missedHeal({ id: 'Gobskin', abilityId: '4780' }),
 
     // TODO: export all of these missed functions into their own helper
     // and then add this to the Delubrum Reginae files directly.
-    missedMitigationAbility({ id: 'Lost Aethershield', abilityId: '5753' }),
+    ...missedMitigationAbility({ id: 'Lost Aethershield', abilityId: '5753' }),
   ],
 };

@@ -62,7 +62,7 @@ export default {
       id: 'E8S Shining Armor',
       // Stun
       netRegex: NetRegexes.gainsEffect({ effectId: '95' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },
@@ -70,7 +70,7 @@ export default {
       // Interrupt
       id: 'E8S Stoneskin',
       netRegex: NetRegexes.ability({ id: '4D85' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },

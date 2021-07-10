@@ -37,15 +37,15 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '411E', source: 'タイタン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '411E', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '411E', source: '타이탄' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.faultLineTarget = matches.target;
       },
     },
     {
       id: 'E4S Fault Line',
       netRegex: NetRegexes.abilityFull({ id: '411E', ...playerDamageFields }),
-      condition: (_e, data, matches) => data.faultLineTarget !== matches.target,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.faultLineTarget !== matches.target,
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,

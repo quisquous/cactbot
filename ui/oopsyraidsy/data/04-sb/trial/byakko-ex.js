@@ -27,7 +27,7 @@ export default {
       // Pink bubble collision
       id: 'ByaEx Ominous Wind',
       netRegex: NetRegexes.abilityFull({ id: '27EC', ...playerDamageFields }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return {
           type: 'warn',
           blame: matches.target,

@@ -10,7 +10,7 @@ export interface Data extends RaidbossData {
   seenLinkUp?: boolean;
   lightning?: string;
   longNeedleStack?: string;
-  longNeedlePrey?: string[];
+  longNeedlePrey: string[];
   verdictMin?: string;
   verdictMax?: string;
   water?: string;
@@ -25,6 +25,11 @@ export interface Data extends RaidbossData {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
+  initData: () => {
+    return {
+      longNeedlePrey: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'A8S Hydrothermal Missile',
@@ -407,10 +412,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Long Needle Prey Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: (data, matches) => {
-        data.longNeedlePrey ??= [];
-        data.longNeedlePrey.push(matches.target);
-      },
+      run: (data, matches) => data.longNeedlePrey.push(matches.target),
     },
     {
       id: 'A8S Short Needle',
@@ -433,14 +435,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
-      condition: (data) => data.longNeedleStack !== undefined && data.longNeedlePrey !== undefined,
+      condition: (data) => data.longNeedleStack !== undefined && data.longNeedlePrey.length !== 0,
       suppressSeconds: 10,
       alarmText: (data, _matches, output) => {
-        if (data.longNeedlePrey?.includes(data.me))
+        if (data.longNeedlePrey.includes(data.me))
           return output.preyGetOut!();
       },
       alertText: (data, _matches, output) => {
-        if (data.longNeedlePrey?.includes(data.me))
+        if (data.longNeedlePrey.includes(data.me))
           return;
         const target = data.longNeedleStack;
         if (target === data.me)
@@ -450,7 +452,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => {
         delete data.longNeedleStack;
-        delete data.longNeedlePrey;
+        data.longNeedlePrey = [];
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,

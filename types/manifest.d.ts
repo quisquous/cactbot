@@ -1,6 +1,6 @@
 declare module '*/raidboss_manifest.txt' {
   export interface RaidbossFileData {
-    [filename: string]: TriggerSet;
+    [filename: string]: LooseTriggerSet;
   }
   const raidbossFileData: RaidbossFileData;
   export default raidbossFileData;
@@ -8,7 +8,7 @@ declare module '*/raidboss_manifest.txt' {
 
 declare module '*/oopsy_manifest.txt' {
   export interface OopsyFileData {
-    [filename: string]: unknown; // TODO
+    [filename: string]: LooseOopsyTriggerSet;
   }
   const oopsyFileData: OopsyFileData;
   export default oopsyFileData;

@@ -28,7 +28,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
-      run: (_e, data) => {
+      run: (data) => {
         data.phaseNumber += 1;
       },
     },
@@ -42,8 +42,8 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '367', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '367', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '367', source: '할리카르나소스', capture: false }),
-      condition: (_e, data) => !data.initialized,
-      run: (_e, data) => {
+      condition: (data) => !data.initialized,
+      run: (data) => {
         data.gameCount = 0;
         // Indexing phases at 1 so as to make phases match what humans expect.
         // 1: We start here.
@@ -56,12 +56,12 @@ export default {
     {
       id: 'O3N Ribbit',
       netRegex: NetRegexes.ability({ id: '2466' }),
-      condition: (_e, data, matches) => {
+      condition: (data, matches) => {
         // We DO want to be hit by Toad/Ribbit if the next cast of The Game
         // is 4x toad panels.
         return !(data.phaseNumber === 3 && data.gameCount % 2 === 0) && matches.targetId !== 'E0000000';
       },
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
@@ -72,11 +72,11 @@ export default {
       // Guess what you just lost?
       netRegex: NetRegexes.ability({ id: '246D' }),
       // If the player takes no damage, they did the mechanic correctly.
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
-      run: (_e, data) => {
+      run: (data) => {
         data.gameCount += 1;
       },
     },

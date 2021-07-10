@@ -7,7 +7,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  charges?: string[];
+  charges: string[];
   seenBrighteyes?: boolean;
 }
 
@@ -32,6 +32,11 @@ const chargeOutputStrings = {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
+  initData: () => {
+    return {
+      charges: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'A10S Goblin Rush',
@@ -134,21 +139,19 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB[89AB]' }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB[89AB]' }),
       preRun: (data, matches) => {
-        const charges = data.charges ??= [];
         const chargeMap: { [abilityId: string]: string } = {
           '1AB8': 'getIn',
           '1AB9': 'getOut',
           '1ABA': 'spread',
           '1ABB': 'stackMarker',
         };
-        charges.push(chargeMap[matches.id] ?? 'unknown');
+        data.charges.push(chargeMap[matches.id] ?? 'unknown');
       },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
 
         // Call the first one out with alert, the other two with info.
-        data.charges ??= [];
         const severity = data.charges.length > 1 ? 'infoText' : 'alertText';
         const charge = data.charges[data.charges.length - 1] ?? 'unknown';
         return { [severity]: output[charge]!() };
@@ -163,10 +166,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A9[789]', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[789]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[789]', capture: false }),
-      run: (data) => {
-        if (data.charges)
-          data.charges.shift();
-      },
+      run: (data) => data.charges.shift(),
     },
     {
       id: 'A10S Charge Double Triple',
@@ -182,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
 
-        if (!data.charges || !data.charges.length)
+        if (data.charges.length === 0)
           return;
 
         const charge = data.charges.shift();
@@ -202,7 +202,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 10,
       run: (data) => {
         // Cleanup just in case.
-        delete data.charges;
+        data.charges = [];
       },
     },
     {
