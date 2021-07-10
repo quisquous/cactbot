@@ -16,7 +16,7 @@ export default {
         return {
           type: 'pull',
           blame: data.me,
-          fullText: {
+          text: {
             en: 'Bow',
             de: 'Bogen',
             fr: 'Saluer',
@@ -38,7 +38,7 @@ export default {
         return {
           type: 'wipe',
           blame: data.me,
-          fullText: {
+          text: {
             en: 'Party Wipe',
             de: 'Gruppenwipe',
             fr: 'Party Wipe',

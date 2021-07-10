@@ -16,8 +16,6 @@ export type OopsyMistake = {
   // TODO: docs say blame can be an array but the code does not support that.
   blame?: string;
   text?: string | LocaleText;
-  // TODO: remove fullText.
-  fullText?: string | LocaleText;
 };
 
 export type OopsyDeathReason = {

@@ -109,10 +109,7 @@ export class MistakeCollector {
   OnMistakeObj(m?: OopsyMistake): void {
     if (!m)
       return;
-    if (m.fullText)
-      this.OnFullMistakeText(m.type, m.blame, this.Translate(m.fullText));
-    else
-      this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
+    this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
   }
 
   OnMistakeText(type: string, blame?: string, text?: string, time?: number): void {
@@ -120,12 +117,6 @@ export class MistakeCollector {
       return;
     const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
     this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
-  }
-
-  OnFullMistakeText(type: string, blame?: string, text?: string, time?: number): void {
-    if (!text)
-      return;
-    this.listView.AddLine(type, text, this.GetFormattedTime(time));
   }
 
   AddEngage(): void {
@@ -198,7 +189,7 @@ export class MistakeCollector {
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
-    this.OnFullMistakeText('wipe', undefined, this.Translate(kPartyWipeText));
+    this.OnMistakeText('wipe', undefined, this.Translate(kPartyWipeText));
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();
