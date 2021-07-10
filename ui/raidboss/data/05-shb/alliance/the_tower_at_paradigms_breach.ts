@@ -577,7 +577,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.tether({ id: '0036', target: 'Ihre Infloreszenz', capture: false }),
       netRegexFr: NetRegexes.tether({ id: '0036', target: 'Déesse Éclose', capture: false }),
       netRegexJa: NetRegexes.tether({ id: '0036', target: '開花シタ神', capture: false }),
-      preRun: (data) => data.signalCount = (data.signalCount || 0) + 1,
+      preRun: (data) => data.signalCount = (data.signalCount ?? 0) + 1,
       durationSeconds: 5,
       alertText: (data, _matches, output) => {
         if ((data.signalCount ?? 0) % 5 === 0)
