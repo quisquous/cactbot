@@ -59,7 +59,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           blame: matches.target,
           text: {
             en: 'Run Over',
-            de: matches.ability, // FIXME
+            de: 'Wurde überfahren',
             fr: 'A été écrasé(e)',
             ja: matches.ability, // FIXME
             cn: matches.ability, // FIXME

@@ -67,6 +67,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return false;
         const strikingDummyByLocale = {
           en: 'Striking Dummy',
+          de: 'Trainingspuppe',
           fr: 'Mannequin d\'entraînement',
           ja: '木人',
           cn: '木人',

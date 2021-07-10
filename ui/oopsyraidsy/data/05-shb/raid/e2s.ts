@@ -42,7 +42,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           blame: matches.target,
           text: {
             en: 'Booped',
-            de: matches.ability, // FIXME
+            de: 'Nyx berührt',
             fr: 'Malus de dégâts',
             ja: matches.ability, // FIXME
             cn: matches.ability, // FIXME
