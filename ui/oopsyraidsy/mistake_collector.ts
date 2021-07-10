@@ -1,5 +1,6 @@
 import { EventResponses } from '../../types/event';
 import { NetMatches } from '../../types/net_matches';
+import { OopsyMistake } from '../../types/oopsy';
 import { LocaleText } from '../../types/trigger';
 
 import { ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled, kFlagInstantDeath } from './oopsy_common';
@@ -35,16 +36,6 @@ const kPartyWipeText = {
 
 // Internal trigger id for early pull
 const kEarlyPullId = 'General Early Pull';
-
-export type OopsyMistake = {
-  type: 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe';
-  name?: string;
-  // TODO: docs say blame can be an array but the code does not support that.
-  blame?: string;
-  text?: string;
-  // TODO: remove fullText.
-  fullText?: string;
-};
 
 // Collector:
 // * processes mistakes, adds lines to the live list
