@@ -74,7 +74,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Knocked into wall',
             de: 'Rückstoß in die Wand',
             ja: '壁へノックバック',

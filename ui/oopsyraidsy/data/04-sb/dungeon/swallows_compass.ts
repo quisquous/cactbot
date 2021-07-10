@@ -52,7 +52,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: matches.effect,
+          text: matches.effect,
         };
       },
     },

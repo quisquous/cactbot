@@ -135,15 +135,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
       deathReason: (data, matches) => {
         if (!data.hasDoom || !data.hasDoom[matches.target])
           return;
-        let reason;
+        let text;
         const duration = parseFloat(matches.duration);
         if (duration < 9)
-          reason = matches.effect + ' #1';
+          text = matches.effect + ' #1';
         else if (duration < 14)
-          reason = matches.effect + ' #2';
+          text = matches.effect + ' #2';
         else
-          reason = matches.effect + ' #3';
-        return { name: matches.target, reason: reason };
+          text = matches.effect + ' #3';
+        return { name: matches.target, text: text };
       },
     },
   ],

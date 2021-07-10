@@ -42,7 +42,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '8FF' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
       deathReason: (_data, matches) => {
-        return { type: 'fail', name: matches.target, reason: matches.effect };
+        return { type: 'fail', name: matches.target, text: matches.effect };
       },
     },
     {

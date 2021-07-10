@@ -129,7 +129,7 @@ If this following trigger is used, then if a player dies without taking any othe
 deathReason: (data, matches) => {
   return {
     name: event.targetName,
-    reason: 'Doom Debuff',
+    text: 'Doom Debuff',
   },
 },
 ```

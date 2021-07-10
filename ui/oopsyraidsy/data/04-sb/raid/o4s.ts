@@ -55,7 +55,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Ignore unavoidable raid aoe Blizzard III.
       condition: (data) => !data.isDecisiveBattleElement,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.abilityName };
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
     {
@@ -65,7 +65,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Only consider this during random mechanic after decisive battle.
       condition: (data) => data.isDecisiveBattleElement,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.abilityName };
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
     {
@@ -118,7 +118,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         return {
           name: matches.target,
-          reason: matches.effect,
+          text: matches.effect,
         };
       },
     },

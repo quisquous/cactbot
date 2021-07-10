@@ -42,7 +42,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Knocked off',
             de: 'Runtergefallen',
             fr: 'A été assommé(e)',
@@ -62,7 +62,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Pushed into wall',
             de: 'Rückstoß in die Wand',
             ja: '壁へノックバック',
