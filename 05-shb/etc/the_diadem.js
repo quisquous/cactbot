@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Diadem Falling Asleep',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 7 Minuten vergangen..*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
@@ -14,6 +15,7 @@ Options.Triggers.push({
     },
     {
       id: 'Diadem Found Gather Point',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: 'You sense a grade .* clouded (?:mineral deposit|rocky outcrop|mature tree|lush vegetation patch).*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Du hast einen? verhüllten? (?:Nutzbaum|Vegetation|Steinbruch|Lagerstätte)? der Güte.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Vous détectez une? (?:filon de minerai|carrière de pierre|arbre mature|carré de végétation) évanescente?.*?', capture: false }),
@@ -34,6 +36,7 @@ Options.Triggers.push({
     },
     {
       id: 'Diadem Flag Alert',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: '.*\ue0bbThe Diadem *?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: '.*\ue0bbDas Diadem *?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: '.*\ue0bbLe Diadème *?', capture: false }),
