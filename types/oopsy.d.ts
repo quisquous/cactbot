@@ -57,7 +57,7 @@ export type OopsyTrigger<Data extends OopsyData> =
 
 type MistakeMap = { [mistakeId: string]: string };
 
-export type SimpleOopsyTriggerSet = {
+type SimpleOopsyTriggerSet = {
   zoneId: ZoneId | ZoneId[];
   damageWarn?: MistakeMap;
   damageFail?: MistakeMap;
