@@ -1,9 +1,15 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
-const wrongBuff = (str) => {
+export interface Data extends OopsyData {
+  hasAstral?: { [name: string]: boolean };
+  hasUmbral?: { [name: string]: boolean };
+}
+
+const wrongBuff = (str: string) => {
   return {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
@@ -14,7 +20,7 @@ const wrongBuff = (str) => {
   };
 };
 
-const noBuff = (str) => {
+const noBuff = (str: string) => {
   return {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',
@@ -25,7 +31,7 @@ const noBuff = (str) => {
   };
 };
 
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseIconoclasm,
   damageWarn: {
     'E7N Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
@@ -39,38 +45,43 @@ export default {
   triggers: [
     {
       id: 'E7N Astral Effect Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       run: (data, matches) => {
-        data.hasAstral = data.hasAstral || {};
+        data.hasAstral ??= {};
         data.hasAstral[matches.target] = true;
       },
     },
     {
       id: 'E7N Astral Effect Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
       run: (data, matches) => {
-        data.hasAstral = data.hasAstral || {};
+        data.hasAstral ??= {};
         data.hasAstral[matches.target] = false;
       },
     },
     {
       id: 'E7N Umbral Effect Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       run: (data, matches) => {
-        data.hasUmbral = data.hasUmbral || {};
+        data.hasUmbral ??= {};
         data.hasUmbral[matches.target] = true;
       },
     },
     {
       id: 'E7N Umbral Effect Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
       run: (data, matches) => {
-        data.hasUmbral = data.hasUmbral || {};
+        data.hasUmbral ??= {};
         data.hasUmbral[matches.target] = false;
       },
     },
     {
       id: 'E7N Light\'s Course',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: ['4C3E', '4C40', '4C22', '4C3C', '4E63'], ...playerDamageFields }),
       condition: (data, matches) => {
         return !data.hasUmbral || !data.hasUmbral[matches.target];
@@ -83,6 +94,7 @@ export default {
     },
     {
       id: 'E7N Darks\'s Course',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: ['4C3D', '4C23', '4C41', '4C43'], ...playerDamageFields }),
       condition: (data, matches) => {
         return !data.hasAstral || !data.hasAstral[matches.target];
@@ -98,3 +110,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

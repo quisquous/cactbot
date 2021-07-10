@@ -1,8 +1,14 @@
 import NetRegexes from '../../../../resources/netregexes';
 import ZoneId from '../../../../resources/zone_id';
+import { OopsyData } from '../../../../types/data';
+import { OopsyTriggerSet } from '../../../../types/oopsy';
+
+export interface Data extends OopsyData {
+  lostFood?: { [name: string]: boolean };
+}
 
 // General mistakes; these apply everywhere.
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
@@ -11,6 +17,7 @@ export default {
     },
     {
       id: 'General Food Buff',
+      type: 'LosesEffect',
       // Well Fed
       netRegex: NetRegexes.losesEffect({ effectId: '48' }),
       condition: (_data, matches) => {
@@ -18,7 +25,7 @@ export default {
         return matches.target === matches.source;
       },
       mistake: (data, matches) => {
-        data.lostFood = data.lostFood || {};
+        data.lostFood ??= {};
         // Well Fed buff happens repeatedly when it falls off (WHY),
         // so suppress multiple occurrences.
         if (!data.inCombat || data.lostFood[matches.target])
@@ -40,6 +47,7 @@ export default {
     },
     {
       id: 'General Well Fed',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '48' }),
       run: (data, matches) => {
         if (!data.lostFood)
@@ -49,6 +57,7 @@ export default {
     },
     {
       id: 'General Rabbit Medium',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '8E0' }),
       condition: (data, matches) => data.IsPlayerId(matches.sourceId),
       mistake: (_data, matches) => {
@@ -68,3 +77,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

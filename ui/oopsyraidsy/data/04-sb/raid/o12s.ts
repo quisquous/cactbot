@@ -1,12 +1,17 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
+
+export interface Data extends OopsyData {
+  vuln?: { [name: string]: boolean };
+}
 
 // TODO: could add Patch warnings for double/unbroken tethers
 // TODO: Hello World could have any warnings (sorry)
 
-export default {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV40Savage,
   damageWarn: {
     'O12S1 Superliminal Motion 1': '3334', // 300+ degree cleave with back safe area
@@ -42,6 +47,7 @@ export default {
   triggers: [
     {
       id: 'O12S1 Discharger Knocked Off',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3327' }),
       deathReason: (_data, matches) => {
         return {
@@ -60,14 +66,16 @@ export default {
     },
     {
       id: 'O12S1 Magic Vulnerability Up Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '472' }),
       run: (data, matches) => {
-        data.vuln = data.vuln || {};
+        data.vuln ??= {};
         data.vuln[matches.target] = true;
       },
     },
     {
       id: 'O12S1 Magic Vulnerability Up Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '472' }),
       run: (data, matches) => {
         data.vuln = data.vuln || {};
@@ -76,6 +84,7 @@ export default {
     },
     {
       id: 'O12S1 Magic Vulnerability Damage',
+      type: 'Ability',
       // 332E = Pile Pitch stack
       // 333E = Electric Slide (Omega-M square 1-4 dashes)
       // 333F = Electric Slide (Omega-F triangle 1-4 dashes)
@@ -96,3 +105,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

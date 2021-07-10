@@ -1,12 +1,18 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
+
+export interface Data extends OopsyData {
+  faultLineTarget?: string;
+}
 
 // TODO: could track people get hitting by markers they shouldn't
 // TODO: could track non-tanks getting hit by tankbusters, megaliths
 // TODO: could track non-target getting hit by tankbuster
-export default {
+
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensGateSepultureSavage,
   damageWarn: {
     'E4S Weight of the Land': '4108',
@@ -31,6 +37,7 @@ export default {
   triggers: [
     {
       id: 'E4S Fault Line Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
       netRegexDe: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
       netRegexFr: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
@@ -43,6 +50,7 @@ export default {
     },
     {
       id: 'E4S Fault Line',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '411E', ...playerDamageFields }),
       condition: (data, matches) => data.faultLineTarget !== matches.target,
       mistake: (_data, matches) => {
@@ -62,3 +70,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

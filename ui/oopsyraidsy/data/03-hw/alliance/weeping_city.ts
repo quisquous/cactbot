@@ -1,7 +1,14 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export default {
+export interface Data extends OopsyData {
+  zombie?: { [name: string]: boolean };
+  shield?: { [name: string]: boolean };
+}
+
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheWeepingCityOfMhach,
   damageWarn: {
     'Weeping Critical Bite': '1848', // Sarsuchus cone aoe
@@ -29,6 +36,14 @@ export default {
     'Weeping Feint Particle Beam': '1928', // Calofisteri sky laser
     'Weeping Evil Switch': '1815', // Calofisteri lasers
   },
+  gainsEffectWarn: {
+    'Weeping Hysteria': '128', // Arachne Eve Frond Affeard
+    'Weeping Zombification': '173', // Forgall too many zombie puddles
+    'Weeping Toad': '1B7', // Forgall Brand of the Fallen failure
+    'Weeping Doom': '38E', // Forgall Haagenti Mortal Ray
+    'Weeping Assimilation': '42C', // Ozmashade Assimilation look-away
+    'Weeping Stun': '95', // Calofisteri Penetration look-away
+  },
   shareWarn: {
     'Weeping Arachne Web': '185E', // Arachne Eve headmarker web aoe
     'Weeping Earth Aether': '1841', // Arachne Eve orbs
@@ -39,25 +54,19 @@ export default {
     'Weeping Split End 2': '1810', // Calofisteri tank cleave 2
     'Weeping Bloodied Nail': '181F', // Calofisteri axe/bulb appearing
   },
-  gainsEffectWarn: {
-    'Weeping Hysteria': '128', // Arachne Eve Frond Affeard
-    'Weeping Zombification': '173', // Forgall too many zombie puddles
-    'Weeping Toad': '1B7', // Forgall Brand of the Fallen failure
-    'Weeping Doom': '38E', // Forgall Haagenti Mortal Ray
-    'Weeping Assimilation': '42C', // Ozmashade Assimilation look-away
-    'Weeping Stun': '95', // Calofisteri Penetration look-away
-  },
   triggers: [
     {
       id: 'Weeping Forgall Gradual Zombification Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '415' }),
       run: (data, matches) => {
-        data.zombie = data.zombie || {};
+        data.zombie ??= {};
         data.zombie[matches.target] = true;
       },
     },
     {
       id: 'Weeping Forgall Gradual Zombification Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '415' }),
       run: (data, matches) => {
         data.zombie = data.zombie || {};
@@ -66,6 +75,7 @@ export default {
     },
     {
       id: 'Weeping Forgall Mega Death',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '17CA' }),
       condition: (data, matches) => data.zombie && !data.zombie[matches.target],
       mistake: (_data, matches) => {
@@ -74,14 +84,16 @@ export default {
     },
     {
       id: 'Weeping Headstone Shield Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '15E' }),
       run: (data, matches) => {
-        data.shield = data.shield || {};
+        data.shield ??= {};
         data.shield[matches.target] = true;
       },
     },
     {
       id: 'Weeping Headstone Shield Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '15E' }),
       run: (data, matches) => {
         data.shield = data.shield || {};
@@ -90,6 +102,7 @@ export default {
     },
     {
       id: 'Weeping Flaring Epigraph',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1856' }),
       condition: (data, matches) => data.shield && !data.shield[matches.target],
       mistake: (_data, matches) => {
@@ -99,6 +112,7 @@ export default {
     {
       // This ability name is helpfully called "Attack" so name it something else.
       id: 'Weeping Ozma Tank Laser',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ type: '22', id: '1831' }),
       mistake: (_data, matches) => {
         return {
@@ -117,6 +131,7 @@ export default {
     },
     {
       id: 'Weeping Ozma Holy',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '182E' }),
       deathReason: (_data, matches) => {
         return {
@@ -135,3 +150,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

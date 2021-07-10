@@ -87,6 +87,7 @@ export class DamageTracker {
       ShortName: (name?: string) => ShortNamify(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
       DamageFromMatches: (matches: NetMatches['Ability']) => UnscrambleDamage(matches?.damage),
+      options: this.options,
 
       // Deprecated.
       ParseLocaleFloat: parseFloat,

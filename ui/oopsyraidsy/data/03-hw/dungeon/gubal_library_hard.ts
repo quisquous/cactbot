@@ -1,9 +1,14 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
-export default {
+export interface Data extends OopsyData {
+  hasImp?: { [name: string]: boolean };
+}
+
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   damageWarn: {
     'GubalHm Terror Eye': '930', // Circle AoE, Spine Breaker trash
@@ -41,6 +46,7 @@ export default {
     {
       // Fire gate in hallway to boss 2, magnet failure on boss 2
       id: 'GubalHm Burns',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '10B' }),
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
@@ -49,14 +55,16 @@ export default {
     {
       // Helper for Thunder 3 failures
       id: 'GubalHm Imp Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '46E' }),
       run: (data, matches) => {
-        data.hasImp = data.hasImp || {};
+        data.hasImp ??= {};
         data.hasImp[matches.target] = true;
       },
     },
     {
       id: 'GubalHm Imp Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '46E' }),
       run: (data, matches) => {
         data.hasImp = data.hasImp || {};
@@ -66,8 +74,9 @@ export default {
     {
       // Targets with Imp when Thunder III resolves receive a vulnerability stack and brief stun
       id: 'GubalHm Imp Thunder',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '195[AB]', ...playerDamageFields }),
-      condition: (data, matches) => data.hasImp[matches.target],
+      condition: (data, matches) => data.hasImp?.[matches.target],
       mistake: (_data, matches) => {
         return {
           type: 'warn',
@@ -83,6 +92,7 @@ export default {
     },
     {
       id: 'GubalHm Quake',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '1956', ...playerDamageFields }),
       // Always hits target, but if correctly resolved will deal 0 damage
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
@@ -92,6 +102,7 @@ export default {
     },
     {
       id: 'GubalHm Tornado',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '195[78]', ...playerDamageFields }),
       // Always hits target, but if correctly resolved will deal 0 damage
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
@@ -101,3 +112,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
