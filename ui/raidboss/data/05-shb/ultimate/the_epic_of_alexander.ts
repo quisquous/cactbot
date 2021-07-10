@@ -1,8 +1,51 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
+import { Output, TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  phase?: string;
+  decOffset?: number;
+  nisiMap?: { [name: string]: number };
+  finalNisiMap?: { [name: string]: number };
+  swingCount?: number;
+  handOfPainCount?: number;
+  liquidTank?: string;
+  handTank?: string;
+  bruteTank?: string;
+  cruiseTank?: string;
+  puddle?: number;
+  enumerations?: string[];
+  buffMap?: { [name: string]: string };
+  tetherBois?: { [id: string]: string };
+  vuln?: { [name: string]: boolean };
+  limitCutNumber?: number;
+  limitCutDelay?: number;
+  seenGavel?: boolean;
+  opticalStack?: string[];
+  alphaSolidarity?: string;
+  alphaDefamation?: string;
+  alphaSeverity?: (string | undefined)[];
+  alphaNoDebuff?: (string | undefined)[];
+  firstAlphaOrdainedText?: string;
+  secondAlphaOrdainedText?: string;
+  safeAlphaIdx?: number;
+  safeAlphaPos?: string[];
+  betaBait?: (string | undefined)[];
+  betaJumps?: (string | undefined)[];
+  betaIndex?: number;
+  radiantSourceId?: string;
+  radiantOutputStringKey?: string;
+  betaIsOpticalStack?: boolean;
+  trine?: string[];
+  secondTrineResponse?: string;
+  trineLocations?: (number[] | undefined)[];
+}
 
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbotWormholeStrat = true;
@@ -33,7 +76,7 @@ import ZoneId from '../../../../../resources/zone_id';
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-const getHeadmarkerId = (data, matches) => {
+const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 004F.
   // (This makes the offset 0, and !0 is true.)
   if (typeof data.decOffset === 'undefined') {
@@ -49,19 +92,28 @@ const getHeadmarkerId = (data, matches) => {
 const kDecreeNisi = ['8AE', '8AF', '859', '85A'];
 const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
 
-const nisiToString = (nisiNum, output) => {
+const nisiToString = (nisiNum: number, output: Output) => {
   // nisiNum is 0-3
   // assume output is using nisiTypes.
   switch (nisiNum) {
   case 0:
-    return output.blueAlpha();
+    return output.blueAlpha!();
   case 1:
-    return output.orangeBeta();
+    return output.orangeBeta!();
   case 2:
-    return output.purpleGamma();
+    return output.purpleGamma!();
   case 3:
-    return output.greenDelta();
+    return output.greenDelta!();
   }
+};
+
+const resetState = (data: Data) => {
+  data.enumerations = [];
+  data.buffMap = {};
+  data.tetherBois = {};
+  data.vuln = {};
+  delete data.limitCutNumber;
+  delete data.limitCutDelay;
 };
 
 const ordainedOutputStrings = {
@@ -105,6 +157,7 @@ const ordainedOutputStrings = {
     cn: '最后静止',
     ko: '마지막엔 멈추기',
   },
+  unknown: Outputs.unknown,
 };
 
 const radiantOutputStrings = {
@@ -140,6 +193,7 @@ const radiantOutputStrings = {
     cn: '月环左（西）',
     ko: '성례: 서',
   },
+  unknown: Outputs.unknown,
 };
 
 const nisiTypes = {
@@ -222,19 +276,24 @@ const nisiPassOutputStrings = {
 };
 
 // Convenience function called for third and fourth nisi passes.
-const namedNisiPass = (data, output) => {
-  // error?
-  if (!(data.me in data.finalNisiMap))
-    return output.unknown();
+const namedNisiPass = (data: Data, output: Output) => {
+  const finalNisiMap = data.finalNisiMap;
+  const nisiMap = data.nisiMap;
+  if (!finalNisiMap || !nisiMap)
+    return output.unknown!();
+  if (!(data.me in finalNisiMap))
+    return output.unknown!();
 
-  if (data.me in data.nisiMap) {
+  if (data.me in nisiMap) {
     // If you have nisi, you need to pass it to the person who has that final
     // and who doesn't have nisi.
-    const myNisi = data.nisiMap[data.me];
-    let names = Object.keys(data.finalNisiMap);
-    names = names.filter((x) => data.finalNisiMap[x] === myNisi && x !== data.me);
+    const myNisi = nisiMap[data.me];
+    if (!myNisi)
+      return output.unknown!();
+    let names = Object.keys(finalNisiMap);
+    names = names.filter((x) => finalNisiMap[x] === myNisi && x !== data.me);
 
-    let namesWithoutNisi = names.filter((x) => !(x in data.nisiMap));
+    let namesWithoutNisi = names.filter((x) => !(x in nisiMap));
 
     // If somehow it's the case that you've had SUCH a late pass that there
     // isn't anybody without without nisi, at least use the names of folks who
@@ -245,28 +304,54 @@ const namedNisiPass = (data, output) => {
     // If somehow still there's nobody, give a message so that it's not silent
     // but you're probably in trouble.
     if (namesWithoutNisi.length === 0)
-      return output.passNisi({ type: nisiToString(myNisi, output) });
+      return output.passNisi!({ type: nisiToString(myNisi, output) });
 
     // The common case.  Hopefully there's only one person in the names list,
     // but you never know.
     const players = namesWithoutNisi.map((x) => data.ShortName(x)).join(', ');
-    return output.passNisiTo({ type: nisiToString(myNisi, output), players: players });
+    return output.passNisiTo!({ type: nisiToString(myNisi, output), players: players });
   }
 
   // If you don't have nisi, then you need to go get it from a person who does.
-  const myNisi = data.finalNisiMap[data.me];
-  let names = Object.keys(data.nisiMap);
-  names = names.filter((x) => data.nisiMap[x] === myNisi);
+  const myNisi = finalNisiMap[data.me];
+  if (!myNisi)
+    return output.unknown!();
+  let names = Object.keys(nisiMap);
+  names = names.filter((x) => nisiMap[x] === myNisi);
   if (names.length === 0)
-    return output.getNisi({ type: nisiToString(myNisi, output) });
+    return output.getNisi!({ type: nisiToString(myNisi, output) });
 
-  return output.getNisiFrom({
+  return output.getNisiFrom!({
     type: nisiToString(myNisi, output),
     player: data.ShortName(names[0]),
   });
 };
 
-export default {
+const betaInstructions = (idx: number | undefined, output: Output) => {
+  if (typeof idx !== 'number') {
+    console.error(`TEA Beta Instructions Callout: non-number idx: ${idx ?? 'undefined'}`);
+    return output.unknown!();
+  }
+  const strings: { [idx: string]: string } = {
+    '-1': output.unknown!(),
+    '0': output.purpleBait!(),
+    '1': output.orangeBait!(),
+    '2': output.purpleNoTether!(),
+    '3': output.orangeNoTether!(),
+    '4': output.purpleCloseTether!(),
+    '5': output.orangeCloseTether!(),
+    '6': output.purpleFarTether!(),
+    '7': output.orangeFarTether!(),
+  };
+
+  if (idx in strings)
+    return strings[idx];
+
+  console.error(`TEA Beta Instructions Callout: missing idx: ${idx}`);
+  return output.unknown!();
+};
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [
@@ -285,17 +370,17 @@ export default {
         const multipleSwings = data.swingCount === 2 || data.swingCount === 3;
         if (data.role === 'healer') {
           if (multipleSwings)
-            return output.tankBusters();
+            return output.tankBusters!();
 
           if (data.liquidTank)
-            return output.tankBusterOn({ player: data.ShortName(data.liquidTank) });
+            return output.tankBusterOn!({ player: data.ShortName(data.liquidTank) });
 
-          return output.tankBuster();
+          return output.tankBuster!();
         }
 
         if (data.role === 'tank') {
           if (data.me === data.handTank && multipleSwings || data.me === data.liquidTank)
-            return output.tankBusterOnYou();
+            return output.tankBusterOnYou!();
         }
       },
       infoText: (data, _matches, output) => {
@@ -304,7 +389,7 @@ export default {
           return;
         if (data.me === data.handTank && multipleSwings || data.me === data.liquidTank)
           return;
-        return output.tankCleave();
+        return output.tankCleave!();
       },
       outputStrings: {
         tankCleave: Outputs.tankCleave,
@@ -323,7 +408,7 @@ export default {
       beforeSeconds: 5,
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move Bosses',
@@ -347,7 +432,7 @@ export default {
       id: 'TEA Water and Thunder',
       regex: /Water and Thunder/,
       beforeSeconds: 3,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Water/Thunder in 3',
@@ -365,7 +450,7 @@ export default {
       beforeSeconds: 8,
       condition: (data) => data.me === data.bruteTank && data.phase === 'brute',
       suppressSeconds: 300,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Face Brute Towards Water',
@@ -381,7 +466,7 @@ export default {
       id: 'TEA Propeller Wind',
       regex: /Propeller Wind/,
       beforeSeconds: 15,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Hide Behind Ice',
@@ -409,16 +494,16 @@ export default {
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
         if (matches[1] === data.puddle)
-          return output.soakThisPuddle({ num: matches[1] });
+          return output.soakThisPuddle!({ num: matches[1] });
       },
       infoText: (data, matches, output) => {
         if (matches[1] === data.puddle)
           return;
-        return output.puddle({ num: matches[1] });
+        return output.puddle!({ num: matches[1] });
       },
       tts: (data, matches, output) => {
         if (matches[1] === data.puddle)
-          return output.soakThisPuddleTTS();
+          return output.soakThisPuddleTTS!();
       },
       outputStrings: {
         puddle: {
@@ -455,7 +540,7 @@ export default {
       regex: /^Ordained Capital Punishment$/,
       beforeSeconds: 6,
       condition: (data) => data.role === 'tank' || data.role === 'healer',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Shared Tankbuster',
@@ -471,6 +556,7 @@ export default {
   triggers: [
     {
       id: 'TEA Brute Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '483E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '483E', capture: false }),
@@ -479,19 +565,12 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
       run: (data) => {
         data.phase = 'brute';
-        data.resetState = () => {
-          data.enumerations = [];
-          data.buffMap = {};
-          data.tetherBois = {};
-          data.vuln = {};
-          delete data.limitCutNumber;
-          delete data.limitCutDelay;
-        };
-        data.resetState();
+        resetState(data);
       },
     },
     {
       id: 'TEA Inception Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '486F', capture: false }),
@@ -500,11 +579,12 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '486F', capture: false }),
       run: (data) => {
         data.phase = 'inception';
-        data.resetState();
+        resetState(data);
       },
     },
     {
       id: 'TEA Wormhole Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '486E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '486E', capture: false }),
@@ -513,11 +593,12 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '486E', capture: false }),
       run: (data) => {
         data.phase = 'wormhole';
-        data.resetState();
+        resetState(data);
       },
     },
     {
       id: 'TEA Fate Alpha Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487B', capture: false }),
@@ -526,11 +607,12 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487B', capture: false }),
       run: (data) => {
         data.phase = 'alpha';
-        data.resetState();
+        resetState(data);
       },
     },
     {
       id: 'TEA Fate Beta Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4B13', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4B13', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4B13', capture: false }),
@@ -539,11 +621,12 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4B13', capture: false }),
       run: (data) => {
         data.phase = 'beta';
-        data.resetState();
+        resetState(data);
       },
     },
     {
       id: 'TEA Liquid Tank',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
@@ -554,6 +637,7 @@ export default {
     },
     {
       id: 'TEA Hand Tank',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'membre liquide', id: '4979' }),
@@ -564,6 +648,7 @@ export default {
     },
     {
       id: 'TEA Cruise Chaser Tank',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
@@ -574,6 +659,7 @@ export default {
     },
     {
       id: 'TEA Brute Tank',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Brutalus', id: '497B' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Justicier', id: '497B' }),
@@ -584,6 +670,7 @@ export default {
     },
     {
       id: 'TEA Cascade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4826', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
@@ -595,13 +682,14 @@ export default {
     },
     {
       id: 'TEA Protean Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'belebtes Wasser', id: '4822', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Protean Wave',
@@ -615,6 +703,7 @@ export default {
     },
     {
       id: 'TEA Drainage Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Liquid Rage', id: '0003' }),
       netRegexDe: NetRegexes.tether({ source: 'levitierte Rage', id: '0003' }),
       netRegexFr: NetRegexes.tether({ source: 'furie liquide', id: '0003' }),
@@ -624,7 +713,7 @@ export default {
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Drainage tether on YOU',
@@ -638,6 +727,7 @@ export default {
     },
     {
       id: 'TEA Hand of Pain 5',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Liquid Hand', id: '482D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'belebte Hand', id: '482D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'membre liquide', id: '482D', capture: false }),
@@ -649,7 +739,7 @@ export default {
       },
       infoText: (data, _matches, output) => {
         if (data.handOfPainCount === 5)
-          return output.text();
+          return output.text!();
       },
       outputStrings: {
         text: {
@@ -664,10 +754,11 @@ export default {
     },
     {
       id: 'TEA Throttle',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC', capture: false }),
       condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cleanse Throttle',
@@ -682,6 +773,7 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
@@ -690,7 +782,7 @@ export default {
       },
       preRun: (data, matches) => {
         const correctedMatch = getHeadmarkerId(data, matches);
-        data.limitCutNumber = {
+        const limitCutNumberMap: { [id: string]: number } = {
           '004F': 1,
           '0050': 2,
           '0051': 3,
@@ -699,37 +791,35 @@ export default {
           '0054': 6,
           '0055': 7,
           '0056': 8,
-        }[correctedMatch];
-        if (data.phase === 'wormhole') {
-          data.limitCutDelay = {
-            '004F': 9.2,
-            '0050': 10.7,
-            '0051': 13.4,
-            '0052': 15.0,
-            '0053': 17.7,
-            '0054': 19.2,
-            '0055': 22.0,
-            '0056': 23.4,
-          }[correctedMatch];
-        } else {
-          data.limitCutDelay = {
-            '004F': 9.5,
-            '0050': 11,
-            '0051': 14.1,
-            '0052': 15.5,
-            '0053': 18.6,
-            '0054': 20,
-            '0055': 23.2,
-            '0056': 24.6,
-          }[correctedMatch];
-        }
+        };
+        data.limitCutNumber = limitCutNumberMap[correctedMatch];
+        const limitCutDelayMap: { [id: string]: number } = data.phase === 'wormhole' ? {
+          '004F': 9.2,
+          '0050': 10.7,
+          '0051': 13.4,
+          '0052': 15.0,
+          '0053': 17.7,
+          '0054': 19.2,
+          '0055': 22.0,
+          '0056': 23.4,
+        } : {
+          '004F': 9.5,
+          '0050': 11,
+          '0051': 14.1,
+          '0052': 15.5,
+          '0053': 18.6,
+          '0054': 20,
+          '0055': 23.2,
+          '0056': 24.6,
+        };
+        data.limitCutDelay = limitCutDelayMap[correctedMatch];
       },
       durationSeconds: (data) => {
         // Because people are very forgetful,
         // show the number until you are done.
         return data.limitCutDelay;
       },
-      alertText: (data, _matches, output) => output.text({ num: data.limitCutNumber }),
+      alertText: (data, _matches, output) => output.text!({ num: data.limitCutNumber }),
       outputStrings: {
         text: {
           en: '#${num}',
@@ -744,22 +834,24 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
-      delaySeconds: (data) => data.limitCutDelay - 5,
+      delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : undefined,
       alertText: (data, matches, output) => {
-        const isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 === 1;
+        const headMarkerInt = parseInt(getHeadmarkerId(data, matches), 16);
+        const isOddNumber = (headMarkerInt & 1) === 1;
         if (data.phase === 'wormhole') {
           if (isOddNumber)
-            return output.knockbackCleaveFaceOutside();
+            return output.knockbackCleaveFaceOutside!();
 
-          return output.knockbackChargeFaceMiddle();
+          return output.knockbackChargeFaceMiddle!();
         }
         if (isOddNumber)
-          return output.knockbackCleaveOnYou();
+          return output.knockbackCleaveOnYou!();
 
-        return output.knockback();
+        return output.knockback!();
       },
       outputStrings: {
         knockbackCleaveFaceOutside: {
@@ -791,6 +883,7 @@ export default {
     },
     {
       id: 'TEA Chakrams Out',
+      type: 'Ability',
       // Link Up
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
@@ -799,7 +892,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: (data) => data.phase === 'brute',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Out, Dodge Chakrams',
@@ -813,6 +906,7 @@ export default {
     },
     {
       id: 'TEA Chakrams In',
+      type: 'Ability',
       // Optical Sight
       netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Chaser-Mecha', id: '482F', capture: false }),
@@ -821,7 +915,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '482F', capture: false }),
       suppressSeconds: 1,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Run In',
@@ -835,6 +929,7 @@ export default {
     },
     {
       id: 'TEA Whirlwind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '49C2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
@@ -846,6 +941,7 @@ export default {
     },
     {
       id: 'TEA Spin Crusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4A72', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '4A72', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '4A72', capture: false }),
@@ -855,7 +951,7 @@ export default {
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
       condition: (data) => data.me === data.cruiseTank,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Spin Crusher',
@@ -869,9 +965,10 @@ export default {
     },
     {
       id: 'TEA Ice Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Freeze Tornado',
@@ -885,6 +982,7 @@ export default {
     },
     {
       id: 'TEA Hidden Minefield',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4851', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '4851', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '4851', capture: false }),
@@ -893,7 +991,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Mines',
@@ -907,9 +1005,10 @@ export default {
     },
     {
       id: 'TEA Enumeration YOU',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Enumeration on YOU',
@@ -923,17 +1022,18 @@ export default {
     },
     {
       id: 'TEA Enumeration Everyone',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '0041',
       preRun: (data, matches) => {
-        data.enumerations = data.enumerations || [];
+        data.enumerations ??= [];
         data.enumerations.push(matches.target);
       },
       infoText: (data, _matches, output) => {
-        if (data.enumerations.length !== 2)
+        if (data.enumerations?.length !== 2)
           return;
         const names = data.enumerations.sort();
-        return output.text({ players: names.map((x) => data.ShortName(x)).join(', ') });
+        return output.text!({ players: names.map((x) => data.ShortName(x)).join(', ') });
       },
       outputStrings: {
         text: {
@@ -948,6 +1048,7 @@ export default {
     },
     {
       id: 'TEA Limit Cut Shield',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '4833', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Chaser-Mecha', id: '4833', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Croiseur-chasseur', id: '4833', capture: false }),
@@ -955,7 +1056,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '4833', capture: false }),
       delaySeconds: 2,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Break Shield From Front',
@@ -969,9 +1070,10 @@ export default {
     },
     {
       id: 'TEA Compressed Water Initial',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Water on YOU',
@@ -985,13 +1087,14 @@ export default {
     },
     {
       id: 'TEA Compressed Water Explode',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (data.seenGavel)
           return;
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -1006,9 +1109,10 @@ export default {
     },
     {
       id: 'TEA Compressed Lightning Initial',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Lightning on YOU',
@@ -1022,13 +1126,14 @@ export default {
     },
     {
       id: 'TEA Compressed Lightning Explode',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (data.seenGavel)
           return;
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -1043,6 +1148,7 @@ export default {
     },
     {
       id: 'TEA Pass Nisi 1',
+      type: 'StartsUsing',
       // 4 seconds after Photon cast starts.
       netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '4836', capture: false }),
@@ -1052,7 +1158,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 10000,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Pass Nisi',
@@ -1066,6 +1172,7 @@ export default {
     },
     {
       id: 'TEA Pass Nisi 2',
+      type: 'Ability',
       // 1 second after enumeration.
       // TODO: find a startsUsing instead of matching an action.
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
@@ -1078,7 +1185,7 @@ export default {
       condition: (data) => data.phase === 'brute',
       delaySeconds: 1,
       suppressSeconds: 1,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Pass Nisi',
@@ -1092,6 +1199,7 @@ export default {
     },
     {
       id: 'TEA Pass Nisi 3',
+      type: 'StartsUsing',
       // 8 seconds after Flarethrower cast starts.
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
@@ -1106,39 +1214,43 @@ export default {
     },
     {
       id: 'TEA Decree Nisi Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: kDecreeNisi }),
       run: (data, matches) => {
         const num = kDecreeNisi.indexOf(matches.effectId.toUpperCase());
-        data.nisiMap = data.nisiMap || {};
+        data.nisiMap ??= {};
         data.nisiMap[matches.target] = num;
       },
     },
     {
       id: 'TEA Decree Nisi Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: kDecreeNisi }),
       run: (data, matches) => {
-        data.nisiMap = data.nisiMap || {};
+        data.nisiMap ??= {};
         delete data.nisiMap[matches.target];
       },
     },
     {
       id: 'TEA Final Judgment Nisi Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: kFinalJudgementNisi }),
       run: (data, matches) => {
         const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
-        data.finalNisiMap = data.finalNisiMap || {};
+        data.finalNisiMap ??= {};
         data.finalNisiMap[matches.target] = num;
       },
     },
     {
       id: 'TEA Final Judgment Nisi Verdict',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
       condition: Conditions.targetIsYou(),
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
       infoText: (_data, matches, output) => {
         const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
-        return output.verdict({ type: nisiToString(num, output) });
+        return output.verdict!({ type: nisiToString(num, output) });
       },
       outputStrings: {
         ...nisiTypes,
@@ -1154,6 +1266,7 @@ export default {
     },
     {
       id: 'TEA Gavel',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '483C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
@@ -1164,6 +1277,7 @@ export default {
     },
     {
       id: 'TEA Double Rocket Punch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4847' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '4847' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '4847' }),
@@ -1172,15 +1286,15 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.sharedTankbusterOnYou();
+          return output.sharedTankbusterOnYou!();
 
         if (data.role === 'tank' || data.role === 'healer')
-          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
+          return output.sharedTankbusterOn!({ player: data.ShortName(matches.target) });
       },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
           return;
-        return output.baitSuperJump();
+        return output.baitSuperJump!();
       },
       outputStrings: {
         baitSuperJump: {
@@ -1211,6 +1325,7 @@ export default {
     },
     {
       id: 'TEA Brute Ray',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
@@ -1218,7 +1333,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => data.phase === 'brute',
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'avoid ray',
@@ -1232,16 +1347,18 @@ export default {
     },
     {
       id: 'TEA Buff Collection',
+      type: 'GainsEffect',
       // Aggravated Assault, Shared Sentence, House Arrest, Restraining Order.
       netRegex: NetRegexes.gainsEffect({ effectId: '46[1234]' }),
       run: (data, matches) => {
-        data.buffMap = data.buffMap || {};
+        data.buffMap ??= {};
         // The values are for debugging; the logic is just about presence in the map.
         data.buffMap[matches.target] = matches.effect;
       },
     },
     {
       id: 'TEA Temporal Stasis No Buff',
+      type: 'GainsEffect',
       // This id is "restraining order".
       netRegex: NetRegexes.gainsEffect({ effectId: '464', capture: false }),
       condition: (data) => {
@@ -1253,9 +1370,9 @@ export default {
       durationSeconds: 10,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.me in data.buffMap)
+        if (data.buffMap?.[data.me])
           return;
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -1270,10 +1387,11 @@ export default {
     },
     {
       id: 'TEA Restraining Order',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '464' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Far Tethers',
@@ -1287,10 +1405,11 @@ export default {
     },
     {
       id: 'TEA House Arrest',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '463' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Close Tethers',
@@ -1304,10 +1423,11 @@ export default {
     },
     {
       id: 'TEA Shared Sentence',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Shared Sentence',
@@ -1321,10 +1441,11 @@ export default {
     },
     {
       id: 'TEA Shared Sentence Inception',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: (data) => data.phase === 'inception',
       delaySeconds: 3,
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Shared Sentence on ${player}',
@@ -1338,10 +1459,11 @@ export default {
     },
     {
       id: 'TEA Aggravated Assault',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Thunder',
@@ -1355,6 +1477,7 @@ export default {
     },
     {
       id: 'TEA Chastening Heat',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A80' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
@@ -1363,10 +1486,10 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.tankBusterOnYou();
+          return output.tankBusterOnYou!();
 
         if (data.role === 'healer')
-          return output.busterOn({ player: data.ShortName(matches.target) });
+          return output.busterOn!({ player: data.ShortName(matches.target) });
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
@@ -1376,7 +1499,7 @@ export default {
         if (data.role !== 'tank')
           return;
 
-        return output.busterOn({ player: data.ShortName(matches.target) });
+        return output.busterOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         busterOn: Outputs.tankBusterOnPlayer,
@@ -1385,9 +1508,10 @@ export default {
     },
     {
       id: 'TEA Judgment Crystal',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Crystal on YOU',
@@ -1401,6 +1525,7 @@ export default {
     },
     {
       id: 'TEA Judgment Crystal Placement',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485C', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '485C', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '485C', capture: false }),
@@ -1408,7 +1533,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
       suppressSeconds: 100,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Away From Crystals',
@@ -1422,6 +1547,7 @@ export default {
     },
     {
       id: 'TEA Terashatter Flarethrower',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Judgment Crystal', id: '4A88', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Urteilskristall', id: '4A88', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
@@ -1430,7 +1556,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 100,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait Brute\'s Flarethrower',
@@ -1444,12 +1570,17 @@ export default {
     },
     {
       id: 'TEA Inception Vuln Collection',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
       condition: (data) => data.phase === 'inception',
-      run: (data, matches) => data.vuln[matches.target] = true,
+      run: (data, matches) => {
+        data.vuln ??= {};
+        data.vuln[matches.target] = true;
+      },
     },
     {
       id: 'TEA Inception Alpha Sword',
+      type: 'Ability',
       // Sacrament cast.
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
@@ -1459,35 +1590,38 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase === 'inception',
       alarmText: (data, _matches, output) => {
+        data.vuln ??= {};
         const numVulns = Object.keys(data.vuln).length;
         if (data.role === 'tank' && data.vuln[data.me] && numVulns >= 5) {
           // If you're stacking three people in the shared sentence,
           // then probably the tank wants to handle jump with cooldowns.
           // TODO: we could probably determine where this is.
-          return output.baitJumpWithCooldowns();
+          return output.baitJumpWithCooldowns!();
         }
       },
       alertText: (data, _matches, output) => {
+        data.vuln ??= {};
         if (data.vuln[data.me])
           return;
 
         const numVulns = Object.keys(data.vuln).length;
         if (numVulns >= 5) {
           // In this case, jump was handled above for tanks.
-          return output.baitSword();
+          return output.baitSword!();
         }
 
         // Otherwise everybody without a vuln can do anything.
-        return output.baitSwordOrJump();
+        return output.baitSwordOrJump!();
       },
       infoText: (data, _matches, output) => {
+        data.vuln ??= {};
         if (data.vuln[data.me]) {
           // Tanks covered in the alarmText case above.
           const numVulns = Object.keys(data.vuln).length;
           if (data.role === 'tank' && numVulns >= 5)
             return;
 
-          return output.vulnAvoidCleavesAndJump();
+          return output.vulnAvoidCleavesAndJump!();
         }
       },
       outputStrings: {
@@ -1527,6 +1661,7 @@ export default {
     },
     {
       id: 'TEA Wormhole',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
@@ -1535,9 +1670,9 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.options.cactbotWormholeStrat)
-          return output.baitChakramsWormholeStrat();
+          return output.baitChakramsWormholeStrat!();
 
-        return output.baitChakrams();
+        return output.baitChakrams!();
       },
       outputStrings: {
         baitChakramsWormholeStrat: {
@@ -1560,6 +1695,7 @@ export default {
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => {
         if (!data.options.cactbotWormholeStrat)
@@ -1569,7 +1705,7 @@ export default {
         return data.phase === 'wormhole' && data.me === matches.target;
       },
       preRun: (data, matches) => {
-        data.puddle = {
+        const puddleMap: { [id: string]: number } = {
           '004F': 3,
           '0050': 3,
           '0051': 0,
@@ -1578,23 +1714,25 @@ export default {
           '0054': 1,
           '0055': 2,
           '0056': 2,
-        }[getHeadmarkerId(data, matches)];
+        };
+        data.puddle = puddleMap[getHeadmarkerId(data, matches)];
       },
       durationSeconds: 10,
       infoText: (data, matches, output) => {
         // Initial directions.
         // TODO: we could figure out which robot was left and right based
         // on chakrams, and call that out here too instead of just saying "Robot".
-        return {
-          '004F': output.marker1(),
-          '0050': output.marker2(),
-          '0051': output.marker3(),
-          '0052': output.marker4(),
-          '0053': output.marker5(),
-          '0054': output.marker6(),
-          '0055': output.marker7(),
-          '0056': output.marker8(),
-        }[getHeadmarkerId(data, matches)];
+        const outputMap: { [id: string]: string } = {
+          '004F': output.marker1!(),
+          '0050': output.marker2!(),
+          '0051': output.marker3!(),
+          '0052': output.marker4!(),
+          '0053': output.marker5!(),
+          '0054': output.marker6!(),
+          '0055': output.marker7!(),
+          '0056': output.marker8!(),
+        };
+        return outputMap[getHeadmarkerId(data, matches)];
       },
       outputStrings: {
         marker1: {
@@ -1665,6 +1803,7 @@ export default {
     },
     {
       id: 'TEA Cactbot Wormhole 4 Super Jump',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
@@ -1678,7 +1817,7 @@ export default {
           return;
         return data.limitCutNumber === 2 || data.limitCutNumber === 3;
       },
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move Behind Brute Justice?',
@@ -1692,9 +1831,10 @@ export default {
     },
     {
       id: 'TEA Incinerating Heat',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '005D',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stack Middle',
@@ -1708,13 +1848,14 @@ export default {
     },
     {
       id: 'TEA Mega Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'big aoe',
@@ -1728,6 +1869,7 @@ export default {
     },
     {
       id: 'TEA Summon Alexander',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A55', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A55', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A55', capture: false }),
@@ -1735,7 +1877,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
       delaySeconds: 10.4,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Kill Cruise Chaser First',
@@ -1749,6 +1891,7 @@ export default {
     },
     {
       id: 'TEA Divine Judgment',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '4879', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '4879', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
@@ -1757,7 +1900,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: (data) => data.role === 'tank',
       delaySeconds: 6,
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'TANK LB!!',
@@ -1771,34 +1914,37 @@ export default {
     },
     {
       id: 'TEA Perfect Optical Sight Spread',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '488A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '488A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '488A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.spread,
       },
     },
     {
       id: 'TEA Perfect Optical Sight Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ }),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '003E',
       preRun: (data, matches) => {
-        data.opticalStack = data.opticalStack || [];
+        data.opticalStack ??= [];
         data.opticalStack.push(matches.target);
       },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.stackOnYou();
+          return output.stackOnYou!();
       },
       infoText: (data, _matches, output) => {
+        data.opticalStack ??= [];
         if (data.opticalStack.length === 1)
           return;
         const names = data.opticalStack.map((x) => data.ShortName(x)).sort();
-        return output.opticalStackPlayers({ players: names.join(', ') });
+        return output.opticalStackPlayers!({ players: names.join(', ') });
       },
       outputStrings: {
         opticalStackPlayers: {
@@ -1814,6 +1960,7 @@ export default {
     },
     {
       id: 'TEA Ordained Motion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487E', capture: false }),
@@ -1821,7 +1968,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487E', capture: false }),
       durationSeconds: 4,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Keep Moving',
@@ -1835,13 +1982,14 @@ export default {
     },
     {
       id: 'TEA Ordained Stillness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487F', capture: false }),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'STOP LITERALLY EVERYTHING',
@@ -1855,9 +2003,10 @@ export default {
     },
     {
       id: 'TEA Contact Prohibition',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '868' }),
       condition: (data, matches) => data.me === matches.target,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       tts: {
         en: 'Orange',
         de: 'Orange',
@@ -1879,9 +2028,10 @@ export default {
     },
     {
       id: 'TEA Contact Regulation',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '869' }),
       condition: (data, matches) => data.me === matches.target,
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Orange Bait: Get Away',
@@ -1895,9 +2045,10 @@ export default {
     },
     {
       id: 'TEA Escape Prohibition',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '86A' }),
       condition: (data, matches) => data.me === matches.target,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       tts: {
         en: 'Purple',
         de: 'Lila',
@@ -1919,9 +2070,10 @@ export default {
     },
     {
       id: 'TEA Escape Detection',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '86B' }),
       condition: (data, matches) => data.me === matches.target,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Purple Bait: Be In Back Of Group',
@@ -1935,24 +2087,28 @@ export default {
     },
     {
       id: 'TEA Fate Tether Bois',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0062' }),
       run: (data, matches) => {
-        data.tetherBois = data.tetherBois || {};
+        data.tetherBois ??= {};
         data.tetherBois[matches.targetId] = matches.source;
       },
     },
     {
       id: 'TEA Alpha Instructions',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase === 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
       run: (data) => {
+        const tetherBois = data.tetherBois ??= {};
+
         // Let your actor id memes be dreams.
         // If you sort the actor ids of the clones, this will tell you what you have.
         // If anybody is dead, they will fill in from the lowest.
-        const sortedIds = Object.keys(data.tetherBois).sort().reverse();
-        const sortedNames = sortedIds.map((x) => data.tetherBois[x]);
+        const sortedIds = Object.keys(tetherBois).sort().reverse();
+        const sortedNames = sortedIds.map((x) => tetherBois[x]);
 
         data.alphaSolidarity = sortedNames[0];
         data.alphaDefamation = sortedNames[1];
@@ -1962,6 +2118,7 @@ export default {
     },
     {
       id: 'TEA Alpha Instructions Callout',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase === 'alpha',
       delaySeconds: 2,
@@ -1972,14 +2129,14 @@ export default {
       alarmText: (data, _matches, output) => {
         // Defamation will wipe the group, so gets an alarm.
         if (data.me === data.alphaDefamation)
-          return output.defamation();
+          return output.defamation!();
       },
       alertText: (data, _matches, output) => {
         // Folks who need to not stack, get an alert.
         if (data.me === data.alphaSolidarity)
-          return output.solidarity();
-        if (data.alphaSeverity.includes(data.me))
-          return output.severity();
+          return output.solidarity!();
+        if (data.alphaSeverity?.includes(data.me))
+          return output.severity!();
       },
       infoText: (data, _matches, output) => {
         // The other 4 people in the stack group just get info.
@@ -1987,16 +2144,16 @@ export default {
           return;
         if (data.me === data.alphaSolidarity)
           return;
-        if (data.alphaSeverity.includes(data.me))
+        if (data.alphaSeverity?.includes(data.me))
           return;
-        if (data.alphaNoDebuff.includes(data.me))
-          return output.noDebuff();
+        if (data.alphaNoDebuff?.includes(data.me))
+          return output.noDebuff!();
 
         // If enough people are alive, unknowns are probably no debuff stack.
-        if (Object.keys(data.tetherBois).length >= 5)
-          return output.unknownMaybeStack();
+        if (Object.keys(data.tetherBois ?? {}).length >= 5)
+          return output.unknownMaybeStack!();
         // Otherwise, gg.
-        return output.unknown();
+        return output.unknown!();
       },
       outputStrings: {
         unknownMaybeStack: {
@@ -2051,6 +2208,7 @@ export default {
     },
     {
       id: 'TEA Alpha Ordained Motion 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
@@ -2059,7 +2217,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0D', capture: false }),
       durationSeconds: 8,
       suppressSeconds: 20,
-      infoText: (_data, _matches, output) => output.motionFirst(),
+      infoText: (_data, _matches, output) => output.motionFirst!(),
       run: (data) => data.firstAlphaOrdainedText = 'motionFirst',
       outputStrings: {
         motionFirst: ordainedOutputStrings.motionFirst,
@@ -2067,6 +2225,7 @@ export default {
     },
     {
       id: 'TEA Alpha Ordained Stillness 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0E', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
@@ -2075,7 +2234,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0E', capture: false }),
       durationSeconds: 8,
       suppressSeconds: 20,
-      infoText: (_data, _matches, output) => output.stillnessFirst(),
+      infoText: (_data, _matches, output) => output.stillnessFirst!(),
       run: (data) => {
         data.firstAlphaOrdainedText = 'stillnessFirst';
       },
@@ -2085,6 +2244,7 @@ export default {
     },
     {
       id: 'TEA Alpha Ordained Motion 2',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
@@ -2095,16 +2255,17 @@ export default {
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
         data.secondAlphaOrdainedText = 'motionSecond';
-        return output.combined({
-          action1: output[data.firstAlphaOrdainedText](),
-          action2: output[data.secondAlphaOrdainedText](),
+        return output.combined!({
+          action1: output[data.firstAlphaOrdainedText ?? 'unknown']!(),
+          action2: output[data.secondAlphaOrdainedText]!(),
         });
       },
-      tts: (data, _matches, output) => output[data.secondAlphaOrdainedText](),
+      tts: (data, _matches, output) => output[data.secondAlphaOrdainedText ?? 'unknown']!(),
       outputStrings: ordainedOutputStrings,
     },
     {
       id: 'TEA Alpha Ordained Stillness 2',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
@@ -2115,16 +2276,17 @@ export default {
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
         data.secondAlphaOrdainedText = 'stillnessSecond';
-        return output.combined({
-          action1: output[data.firstAlphaOrdainedText](),
-          action2: output[data.secondAlphaOrdainedText](),
+        return output.combined!({
+          action1: output[data.firstAlphaOrdainedText ?? 'unknown']!(),
+          action2: output[data.secondAlphaOrdainedText]!(),
         });
       },
-      tts: (data, _matches, output) => output[data.secondAlphaOrdainedText](),
+      tts: (data, _matches, output) => output[data.secondAlphaOrdainedText ?? 'unknown']!(),
       outputStrings: ordainedOutputStrings,
     },
     {
       id: 'TEA Alpha Safe Spot',
+      type: 'Ability',
       // The non-safe alexanders use 489F.
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
@@ -2151,10 +2313,10 @@ export default {
         const rot1 = Math.atan2(91.00694 - 100, 100 - 78.28883);
         const scale = rot1 - rot0; // == Math.PI / 4
 
-        const x = matches.x - 100;
-        const y = 100 - matches.y;
+        const x = parseFloat(matches.x) - 100;
+        const y = 100 - parseFloat(matches.y);
         // idx is in [0, 1, 2, 3]
-        const idx = parseInt(Math.round((Math.atan2(x, y) - rot0) / scale));
+        const idx = Math.round((Math.atan2(x, y) - rot0) / scale);
 
         // Store in case anybody wants to mark this.
         data.safeAlphaIdx = idx;
@@ -2166,13 +2328,13 @@ export default {
 
         if (data.me === data.alphaDefamation) {
           if (idx === 1)
-            return output.defamationFrontLeft();
-          return output.defamationFrontRight();
+            return output.defamationFrontLeft!();
+          return output.defamationFrontRight!();
         }
 
         if (idx === 1)
-          return output.partyBackRight();
-        return output.partyBackLeft();
+          return output.partyBackRight!();
+        return output.partyBackLeft!();
       },
       outputStrings: {
         defamationFrontLeft: {
@@ -2211,6 +2373,7 @@ export default {
     },
     {
       id: 'TEA Alpha Resolve First Motion',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
@@ -2221,9 +2384,9 @@ export default {
       delaySeconds: 2.2,
       alertText: (data, _matches, output) => {
         if (data.firstAlphaOrdainedText === 'motionFirst')
-          return output.moveFirst();
+          return output.moveFirst!();
 
-        return output.stillnessFirst();
+        return output.stillnessFirst!();
       },
       outputStrings: {
         moveFirst: {
@@ -2246,6 +2409,7 @@ export default {
     },
     {
       id: 'TEA Alpha Resolve Second Motion',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
@@ -2256,9 +2420,9 @@ export default {
       delaySeconds: 7.2,
       alertText: (data, _matches, output) => {
         if (data.secondAlphaOrdainedText === 'motionSecond')
-          return output.keepMoving();
+          return output.keepMoving!();
 
-        return output.stopEverything();
+        return output.stopEverything!();
       },
       outputStrings: {
         keepMoving: {
@@ -2281,14 +2445,16 @@ export default {
     },
     {
       id: 'TEA Beta Instructions',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase === 'beta',
       delaySeconds: 1,
       suppressSeconds: 10,
       run: (data) => {
+        const tetherBois = data.tetherBois ??= {};
         // See notes in TEA Alpha Instructions about what's going on here.
-        const sortedIds = Object.keys(data.tetherBois).sort().reverse();
-        const sortedNames = sortedIds.map((x) => data.tetherBois[x]);
+        const sortedIds = Object.keys(tetherBois).sort().reverse();
+        const sortedNames = sortedIds.map((x) => tetherBois[x]);
 
         data.betaBait = [sortedNames[0], sortedNames[1]];
         data.betaJumps = [sortedNames[0], sortedNames[2], sortedNames[6]];
@@ -2298,58 +2464,32 @@ export default {
     },
     {
       id: 'TEA Beta Instructions Callout',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase === 'beta',
-      preRun: (data, _matches, output) => {
-        // data.betaIndex won't be resolved until 1s delay and 'TEA Beta Instructions' runs.
-        // So make this a function, and defer the lookup of data.betaIndex.
-        data.betaInstructions = (idx) => {
-          if (typeof idx !== 'number') {
-            console.error(`TEA Beta Instructions Callout: non-number idx: ${idx}`);
-            return output.unknown();
-          }
-          const strings = {
-            '-1': output.unknown(),
-            '0': output.purpleBait(),
-            '1': output.orangeBait(),
-            '2': output.purpleNoTether(),
-            '3': output.orangeNoTether(),
-            '4': output.purpleCloseTether(),
-            '5': output.orangeCloseTether(),
-            '6': output.purpleFarTether(),
-            '7': output.orangeFarTether(),
-          };
-
-          if (idx in strings)
-            return strings[idx];
-
-          console.error(`TEA Beta Instructions Callout: missing idx: ${idx}`);
-          return output.unknown();
-        };
-      },
       delaySeconds: 2,
       durationSeconds: 35,
       suppressSeconds: 10,
       // TODO: switch this all to a response.
-      alarmText: (data) => {
+      alarmText: (data, _matches, output) => {
         // Baiters get an alarm text.
-        if (data.betaBait.includes(data.me))
-          return data.betaInstructions(data.betaIndex);
+        if (data.betaBait?.includes(data.me))
+          return betaInstructions(data.betaIndex, output);
       },
-      alertText: (data) => {
+      alertText: (data, _matches, output) => {
         // The west and south jump get an alert text.
-        if (data.betaBait.includes(data.me))
+        if (data.betaBait?.includes(data.me))
           return;
-        if (data.betaJumps.includes(data.me))
-          return data.betaInstructions(data.betaIndex);
+        if (data.betaJumps?.includes(data.me))
+          return betaInstructions(data.betaIndex, output);
       },
-      infoText: (data) => {
+      infoText: (data, _matches, output) => {
         // The rest of the group (going north) gets info.
-        if (data.betaBait.includes(data.me))
+        if (data.betaBait?.includes(data.me))
           return;
-        if (data.betaJumps.includes(data.me))
+        if (data.betaJumps?.includes(data.me))
           return;
-        return data.betaInstructions(data.betaIndex);
+        return betaInstructions(data.betaIndex, output);
       },
       outputStrings: {
         unknown: {
@@ -2432,6 +2572,7 @@ export default {
     },
     {
       id: 'TEA Beta Radiant',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
@@ -2443,20 +2584,21 @@ export default {
         data.radiantSourceId = matches.sourceId;
 
         // Round location to nearest cardinal.
-        const x = matches.x - 100;
-        const y = 100 - matches.y;
+        const x = parseFloat(matches.x) - 100;
+        const y = 100 - parseFloat(matches.y);
         // 0 = N, 1 = E, 2 = S, 3 = W
         const idx = Math.round((Math.atan2(x, y) / Math.PI * 2 + 4)) % 4;
-        data.radiantOutputStringKey = {
+        const outputMap: { [dir: number]: string } = {
           // North shouldn't be possible.
           // But, leaving this here in case my math is wrong.
           0: 'north',
           1: 'east',
           2: 'south',
           3: 'west',
-        }[idx];
+        };
+        data.radiantOutputStringKey = outputMap[idx];
         if (data.radiantOutputStringKey)
-          return output[data.radiantOutputStringKey]();
+          return output[data.radiantOutputStringKey]!();
       },
       outputStrings: radiantOutputStrings,
     },
@@ -2467,13 +2609,14 @@ export default {
       // Spread (per person) is 48A2.
       // Stack (two people) is 48A3.
       id: 'TEA Beta Optical Spread',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '48A0', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.betaIsOpticalStack = false,
       outputStrings: {
         text: {
@@ -2488,13 +2631,14 @@ export default {
     },
     {
       id: 'TEA Beta Optical Stack',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '48A1', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.betaIsOpticalStack = true,
       outputStrings: {
         text: {
@@ -2509,6 +2653,7 @@ export default {
     },
     {
       id: 'TEA Beta Optical Final',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
@@ -2518,21 +2663,21 @@ export default {
       delaySeconds: 12.2,
       alertText: (data, _matches, output) => {
         if (!data.betaIsOpticalStack)
-          return output.opticalSpread();
+          return output.opticalSpread!();
 
-        if (data.betaBait.includes(data.me))
-          return output.opticalStackOnYou();
+        if (data.betaBait?.includes(data.me))
+          return output.opticalStackOnYou!();
       },
       infoText: (data, _matches, output) => {
         if (!data.betaIsOpticalStack)
           return;
 
         // Error?
-        if (data.betaBait.length === 0)
-          return output.opticalStack();
+        if (!data.betaBait || data.betaBait.length === 0)
+          return output.opticalStack!();
 
-        const names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown()).sort();
-        return output.opticalStackPlayers({ players: names.join(', ') });
+        const names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown!()).sort();
+        return output.opticalStackPlayers!({ players: names.join(', ') });
       },
       outputStrings: {
         unknown: Outputs.unknown,
@@ -2572,19 +2717,21 @@ export default {
     },
     {
       id: 'TEA Beta Radiant Final',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
-      condition: (data) => data.radiantOutputStringKey,
+      condition: (data) => !!data.radiantOutputStringKey,
       delaySeconds: 16,
-      alertText: (data, _matches, output) => output[data.radiantOutputStringKey](),
+      alertText: (data, _matches, output) => output[data.radiantOutputStringKey ?? 'unknown']!(),
       outputStrings: radiantOutputStrings,
     },
     {
       id: 'TEA Ordained Punishment',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4891' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4891' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
@@ -2596,13 +2743,14 @@ export default {
     },
     {
       id: 'TEA Trine Get Middle',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '488E', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '488E', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '488E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '488E', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stack Middle for Trine',
@@ -2616,6 +2764,7 @@ export default {
     },
     {
       id: 'TEA Trine Initial',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
@@ -2623,32 +2772,41 @@ export default {
       netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '488F', x: '100', y: '(?:92|100|108)' }),
       preRun: (data, matches) => {
-        data.trine = data.trine || [];
+        data.trine ??= [];
         // See: https://imgur.com/a/l1n9MhS
-        data.trine.push({
+        const trineMap: { [posY: number]: string } = {
           92: 'r',
           100: 'g',
           108: 'y',
-        }[matches.y]);
+        };
+        const thisTrine = trineMap[parseFloat(matches.y)];
+        if (!thisTrine)
+          throw new UnreachableCode();
+        data.trine.push(thisTrine);
       },
       alertText: (data, _matches, output) => {
         // Call out after two, because that's when the mechanic is fully known.
+        data.trine ??= [];
         if (data.trine.length !== 2)
           return;
 
         // Find the third one based on the first two.
-        const three = ['r', 'g', 'y'].filter((x) => !data.trine.includes(x));
+        const threeArr = ['r', 'g', 'y'].filter((x) => !data.trine?.includes(x));
+        const [three] = threeArr;
+        const [one] = data.trine;
+        if (!one || !three)
+          return;
 
         // Start on the third trine, then move to the first.
-        const threeOne = three + data.trine[0];
+        const threeOne = three + one;
 
         // For parks and other forestry solutions.
-        const locations = {
+        const locations: { [trine: string]: number[] } = {
           r: [92, 100],
           g: [100, 100],
           y: [108, 100],
         };
-        data.trineLocations = [locations[three], locations[data.trine[0]]];
+        data.trineLocations = [locations[three], locations[one]];
 
         // Here's the cactbot strategy.  We'll call this the Zed strategy,
         // as all the movement is along these five squares that form a Z.
@@ -2694,22 +2852,22 @@ export default {
         switch (threeOne) {
         case 'gr':
           data.secondTrineResponse = 'north';
-          return output.waitMiddleDodgeNorth();
+          return output.waitMiddleDodgeNorth!();
         case 'rg':
           data.secondTrineResponse = 'south';
-          return output.goNorthDodgeSouth();
+          return output.goNorthDodgeSouth!();
         case 'ry':
           data.secondTrineResponse = 'west';
-          return output.goNorthDodgeWest();
+          return output.goNorthDodgeWest!();
         case 'yr':
           data.secondTrineResponse = 'east';
-          return output.goSouthDodgeEast();
+          return output.goSouthDodgeEast!();
         case 'gy':
           data.secondTrineResponse = 'south';
-          return output.waitMiddleDodgeSouth();
+          return output.waitMiddleDodgeSouth!();
         case 'yg':
           data.secondTrineResponse = 'north';
-          return output.goSouthDodgeNorth();
+          return output.goSouthDodgeNorth!();
         }
       },
       outputStrings: {
@@ -2765,6 +2923,7 @@ export default {
     },
     {
       id: 'TEA Trine Second',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),
@@ -2772,7 +2931,7 @@ export default {
       netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
       suppressSeconds: 15,
-      alertText: (data, _matches, output) => output[data.secondTrineResponse](),
+      alertText: (data, _matches, output) => output[data.secondTrineResponse ?? 'unknown']!(),
       outputStrings: {
         north: Outputs.north,
         east: Outputs.east,
@@ -2791,6 +2950,7 @@ export default {
     },
     {
       id: 'TEA Irresistible Grace',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4894' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
@@ -3293,3 +3453,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
