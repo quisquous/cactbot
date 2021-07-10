@@ -116,7 +116,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     throw new UnreachableCode();
   }
 
-  async onEmulatorLog(logs: LineEvent[]): Promise<void> {
+  async onEmulatorLog(logs: LineEvent[], getCurrentLogLine: () => LineEvent): Promise<void> {
     for (const logObj of logs) {
       const log = logObj.properCaseConvertedLine ?? logObj.convertedLine;
 
@@ -138,10 +138,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
         this.OnTrigger(trigger, r, logObj.timestamp);
 
         resolver.setFinal(() => {
+          const currentLine = getCurrentLogLine();
           resolver.status.finalData = EmulatorCommon.cloneData(this.data);
           delete resolver.triggerHelper?.resolver;
           if (this.callback)
-            this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
+            this.callback(currentLine, resolver.triggerHelper, resolver.status, this.data);
         });
       }
 
@@ -163,10 +164,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
           this.OnTrigger(trigger, r, logObj.timestamp);
 
           resolver.setFinal(() => {
+            const currentLine = getCurrentLogLine();
             resolver.status.finalData = EmulatorCommon.cloneData(this.data);
             delete resolver.triggerHelper?.resolver;
             if (this.callback)
-              this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
+              this.callback(currentLine, resolver.triggerHelper, resolver.status, this.data);
           });
         }
       }

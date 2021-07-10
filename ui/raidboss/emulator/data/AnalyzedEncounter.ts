@@ -121,6 +121,13 @@ export default class AnalyzedEncounter extends EventBus {
     let currentLogIndex = 0;
     const partyMember = this.encounter.combatantTracker.combatants[id];
 
+    const getCurLogLine = (): LineEvent => {
+      const line = this.encounter.logLines[currentLogIndex];
+      if (!line)
+        throw new UnreachableCode();
+      return line;
+    };
+
     if (!partyMember)
       return;
 
@@ -171,10 +178,13 @@ export default class AnalyzedEncounter extends EventBus {
         popupText.OnTrigger(trigger, matches, currentLine.timestamp);
 
         resolver.setFinal(() => {
+          // Get the current log line when the callback is executed instead of the line
+          // when the trigger initially fires
+          const resolvedLine = getCurLogLine();
           resolver.status.finalData = EmulatorCommon.cloneData(popupText.getData());
           delete resolver.triggerHelper?.resolver;
           if (popupText.callback) {
-            popupText.callback(currentLine, resolver.triggerHelper,
+            popupText.callback(resolvedLine, resolver.triggerHelper,
                 resolver.status, popupText.getData());
           }
         });
@@ -216,7 +226,7 @@ export default class AnalyzedEncounter extends EventBus {
         this.updateState(combatant, log.timestamp, popupText);
 
       this.watchCombatantsOverride.tick(this, this.encounter.combatantTracker, log.timestamp);
-      await popupText.onEmulatorLog([log]);
+      await popupText.onEmulatorLog([log], getCurLogLine);
       timelineController.onEmulatorLogEvent([log]);
     }
 
