@@ -5,7 +5,7 @@ import { NetAnyMatches, NetMatches } from './net_matches';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 import { LocaleText, ZoneId } from './trigger';
 
-export type OopsyMistakeType = 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe';
+export type OopsyMistakeType = 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe' | 'damage' | 'heal' | 'good';
 
 export type OopsyField = boolean | number | string |
   OopsyMistake | OopsyMistake[] | OopsyDeathReason | void;
@@ -51,13 +51,18 @@ type OopsyTriggerRegex<T extends TriggerTypes> = {
   netRegexKo?: CactbotBaseRegExp<T>;
 };
 
+export type OopsyTriggerGeneric<Data, T> = BaseOopsyTrigger<Data, T> & OopsyTriggerRegex<T>;
+
 export type OopsyTrigger<Data extends OopsyData> =
-  TriggerTypes extends infer T ? T extends TriggerTypes ?
-  (BaseOopsyTrigger<Data, T> & OopsyTriggerRegex<T>) : never : never;
+  (TriggerTypes extends infer T ? T extends TriggerTypes ?
+    OopsyTriggerGeneric<Data, T> : never : never) | {
+    // Triggers that want to show up in the UI but are implemented internally.
+    id: string;
+    };
 
 type MistakeMap = { [mistakeId: string]: string };
 
-export type SimpleOopsyTriggerSet = {
+type SimpleOopsyTriggerSet = {
   zoneId: ZoneId | ZoneId[];
   damageWarn?: MistakeMap;
   damageFail?: MistakeMap;
