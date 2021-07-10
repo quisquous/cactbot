@@ -12,7 +12,7 @@ import { EventResponses } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches, NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
-import { LooseOopsyTrigger, LooseOopsyTriggerSet, MistakeMap, OopsyEvent, OopsyField, OopsyMistakeType, OopsyTrigger, OopsyTriggerField, OopsyDeathReason, OopsyMistake } from '../../types/oopsy';
+import { LooseOopsyTrigger, LooseOopsyTriggerSet, MistakeMap, OopsyField, OopsyMistakeType, OopsyTrigger, OopsyTriggerField, OopsyDeathReason, OopsyMistake } from '../../types/oopsy';
 import { ZoneId as ZoneIdType } from '../../types/trigger';
 
 import { OopsyFileData } from './data/oopsy_manifest.txt';
@@ -113,7 +113,7 @@ export class DamageTracker {
     for (const trigger of this.triggers) {
       const matches = trigger.localRegex.exec(line);
       if (matches)
-        this.OnTrigger(trigger, { line: line }, matches);
+        this.OnTrigger(trigger, matches);
     }
 
     const splitLine = e.line;
@@ -197,7 +197,7 @@ export class DamageTracker {
     };
   }
 
-  OnTrigger(trigger: LooseOopsyTrigger, evt: OopsyEvent, execMatches: RegExpExecArray): void {
+  OnTrigger(trigger: LooseOopsyTrigger, execMatches: RegExpExecArray): void {
     const triggerTime = Date.now();
 
     // TODO: turn this into a helper?? this was copied/pasted from popup-text.js
@@ -230,25 +230,25 @@ export class DamageTracker {
     }
 
     const ValueOrFunction = (f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
-        events: OopsyEvent, matches: Matches) => {
-      return (typeof f === 'function') ? f(events, this.data, matches) : f;
+        matches: Matches) => {
+      return (typeof f === 'function') ? f(this.data, matches) : f;
     };
 
     if ('condition' in trigger) {
-      const condition = ValueOrFunction(trigger.condition, evt, matches);
+      const condition = ValueOrFunction(trigger.condition, matches);
       if (!condition)
         return;
     }
 
-    const delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
+    const delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, matches) : 0;
 
-    const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds, evt, matches) : 0;
+    const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds, matches) : 0;
     if (trigger.id && typeof suppress === 'number' && suppress > 0)
       this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
 
     const f = (() => {
       if ('mistake' in trigger) {
-        const m = ValueOrFunction(trigger.mistake, evt, matches);
+        const m = ValueOrFunction(trigger.mistake, matches);
         if (typeof m === 'object') {
           if (Array.isArray(m)) {
             for (let i = 0; i < m.length; ++i)
@@ -259,14 +259,14 @@ export class DamageTracker {
         }
       }
       if ('deathReason' in trigger) {
-        const ret = ValueOrFunction(trigger.deathReason, evt, matches);
+        const ret = ValueOrFunction(trigger.deathReason, matches);
         if (ret && typeof ret === 'object' && !Array.isArray(ret)) {
           if (!isOopsyMistake(ret))
             this.AddImpliedDeathReason(ret);
         }
       }
       if ('run' in trigger)
-        ValueOrFunction(trigger.run, evt, matches);
+        ValueOrFunction(trigger.run, matches);
     });
 
     if (!delay || typeof delay !== 'number')
@@ -306,7 +306,7 @@ export class DamageTracker {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ id: id, ...playerDamageFields }),
-        mistake: (_e, _data, matches) => {
+        mistake: (_data, matches) => {
           return { type: type, blame: matches.target, text: matches.ability };
         },
       };
@@ -323,7 +323,7 @@ export class DamageTracker {
         id: key,
         type: 'GainsEffect',
         netRegex: NetRegexes.gainsEffect({ effectId: id }),
-        mistake: function(_e, _data, matches) {
+        mistake: (_data, matches) => {
           return { type: type, blame: matches.target, text: matches.effect };
         },
       };
@@ -342,7 +342,7 @@ export class DamageTracker {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
-        mistake: (_e, _data, matches) => {
+        mistake: (_data, matches) => {
           return { type: type, blame: matches.target, text: matches.ability };
         },
       };
@@ -359,7 +359,7 @@ export class DamageTracker {
         id: key,
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '21', id: id, ...playerDamageFields }),
-        mistake: (_e, _data, matches) => {
+        mistake: (_data, matches) => {
           return {
             type: type,
             blame: matches.target,
@@ -453,7 +453,7 @@ export class DamageTracker {
 
   ProcessTrigger(trigger: OopsyTrigger<OopsyData>): void {
     // This is a bit of a hack, but LooseOopsyTrigger extends OopsyTrigger<OopsyData>
-    // but not vice versa.  Because the NetMatches['Ability'] require a bunch
+    // but not vice versa.  Because the NetMatches['Ability'] requires a number
     // of fields, Matches cannot be assigned to Matches & NetMatches['Ability'].
     const looseTrigger = trigger as LooseOopsyTrigger;
 

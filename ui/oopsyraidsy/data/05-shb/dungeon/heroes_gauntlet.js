@@ -57,8 +57,8 @@ export default {
       id: 'THG Wild Rampage',
       netRegex: NetRegexes.abilityFull({ id: '5207', ...playerDamageFields }),
       // This is zero damage if you are in the crater.
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },

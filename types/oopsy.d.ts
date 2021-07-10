@@ -5,8 +5,6 @@ import { NetAnyMatches, NetMatches } from './net_matches';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 import { LocaleText, ZoneId } from './trigger';
 
-export type OopsyEvent = { line: string };
-
 export type OopsyMistakeType = 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe';
 
 export type OopsyField = boolean | number | string |
@@ -28,7 +26,7 @@ export type OopsyDeathReason = {
 }
 
 export type OopsyFunc<Data extends OopsyData, MatchType extends NetAnyMatches, Return> =
-    (evt: OopsyEvent, data: Data, matches: MatchType) => Return;
+    (data: Data, matches: MatchType) => Return;
 
 export type OopsyTriggerField<Data extends OopsyData,
     MatchType extends NetAnyMatches, Return> =

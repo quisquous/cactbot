@@ -22,7 +22,7 @@ export default {
       // The user might get hit by another petrifying ability before the effect ends.
       // There's no point in notifying for that.
       suppressSeconds: 10,
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
@@ -30,8 +30,8 @@ export default {
       id: 'O2N Earthquake',
       netRegex: NetRegexes.abilityFull({ id: '2515', ...playerDamageFields }),
       // This deals damage only to non-floating targets.
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },

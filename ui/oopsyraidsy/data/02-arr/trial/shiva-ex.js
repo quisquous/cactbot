@@ -34,11 +34,11 @@ export default {
       // Shiva also uses ability C8A on you, but it has the untranslated name
       // 透明：シヴァ：凍結レクト：ノックバック用/ヒロイック. So, use the effect instead for free translation.
       netRegex: NetRegexes.gainsEffect({ effectId: '1E7' }),
-      condition: (_e, _data, matches) => {
+      condition: (_data, matches) => {
         // The intermission also gets this effect, but for a shorter duration.
         return parseFloat(matches.duration) > 20;
       },
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },

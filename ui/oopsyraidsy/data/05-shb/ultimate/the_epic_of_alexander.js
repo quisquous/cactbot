@@ -62,8 +62,8 @@ export default {
       // but also themselves.
       id: 'TEA Exhaust',
       netRegex: NetRegexes.abilityFull({ id: '481F', ...playerDamageFields }),
-      condition: (_e, _data, matches) => matches.target === matches.source,
-      mistake: (_e, _data, matches) => {
+      condition: (_data, matches) => matches.target === matches.source,
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,
@@ -80,14 +80,14 @@ export default {
     {
       id: 'TEA Dropsy',
       netRegex: NetRegexes.gainsEffect({ effectId: '121' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'TEA Tether Tracking',
       netRegex: NetRegexes.tether({ source: 'Jagd Doll', id: '0011' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.jagdTether = data.jagdTether || {};
         data.jagdTether[matches.sourceId] = matches.target;
       },
@@ -95,7 +95,7 @@ export default {
     {
       id: 'TEA Reducible Complexity',
       netRegex: NetRegexes.abilityFull({ id: '4821', ...playerDamageFields }),
-      mistake: (_e, data, matches) => {
+      mistake: (data, matches) => {
         return {
           type: 'fail',
           // This may be undefined, which is fine.
@@ -113,15 +113,15 @@ export default {
     {
       id: 'TEA Drainage',
       netRegex: NetRegexes.abilityFull({ id: '4827', ...playerDamageFields }),
-      condition: (_e, data, matches) => !data.party.isTank(matches.target),
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => !data.party.isTank(matches.target),
+      mistake: (_data, matches) => {
         return { type: 'fail', name: matches.target, text: matches.ability };
       },
     },
     {
       id: 'TEA Throttle Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasThrottle = data.hasThrottle || {};
         data.hasThrottle[matches.target] = true;
       },
@@ -129,7 +129,7 @@ export default {
     {
       id: 'TEA Throttle Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '2BC' }),
-      run: (_e, data, matches) => {
+      run: (data, matches) => {
         data.hasThrottle = data.hasThrottle || {};
         data.hasThrottle[matches.target] = false;
       },
@@ -137,8 +137,8 @@ export default {
     {
       id: 'TEA Throttle',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
-      delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 0.5,
-      deathReason: (_e, data, matches) => {
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
+      deathReason: (data, matches) => {
         if (!data.hasThrottle)
           return;
         if (!data.hasThrottle[matches.target])
@@ -155,7 +155,7 @@ export default {
       id: 'TEA Outburst',
       netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
       suppressSeconds: 5,
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.source };
       },
     },

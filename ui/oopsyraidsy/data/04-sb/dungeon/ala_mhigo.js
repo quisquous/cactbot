@@ -35,7 +35,7 @@ export default {
       id: 'Ala Mhigo Art Of The Swell',
       // Damage Down
       netRegex: NetRegexes.gainsEffect({ effectId: '2B8' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },

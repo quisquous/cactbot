@@ -35,7 +35,7 @@ export default {
     {
       id: 'LeviUn Body Slam Knocked Off',
       netRegex: NetRegexes.ability({ id: '5CD2' }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

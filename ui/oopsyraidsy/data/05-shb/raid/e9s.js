@@ -50,8 +50,8 @@ export default {
       // it's ok to still show as a warning??
       id: 'E9S Condensed Anti-Air Particle Beam',
       netRegex: NetRegexes.abilityFull({ type: '22', id: '5615', ...playerDamageFields }),
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
@@ -59,8 +59,8 @@ export default {
       // Anti-air "out".  This can be invulned by a tank along with the spread above.
       id: 'E9S Anti-Air Phaser Unlimited',
       netRegex: NetRegexes.abilityFull({ id: '5612', ...playerDamageFields }),
-      condition: (_e, data, matches) => data.DamageFromMatches(matches) > 0,
-      mistake: (_e, _data, matches) => {
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },

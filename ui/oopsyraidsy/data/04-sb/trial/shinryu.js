@@ -26,7 +26,7 @@ export default {
       id: 'Shinryu Diamond Dust',
       // Thin Ice
       netRegex: NetRegexes.gainsEffect({ effectId: '38F' }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,
@@ -43,7 +43,7 @@ export default {
     {
       id: 'Shinryu Tidal Wave',
       netRegex: NetRegexes.abilityFull({ id: '1F8B', ...playerDamageFields }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,
@@ -61,7 +61,7 @@ export default {
       // Knockback from center.
       id: 'Shinryu Aerial Blast',
       netRegex: NetRegexes.abilityFull({ id: '1F90', ...playerDamageFields }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

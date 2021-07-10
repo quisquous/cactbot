@@ -86,7 +86,7 @@ export default {
       // 5EB1 = Knave Lunge
       // 5BF2 = Her Infloresence Shockwave
       netRegex: NetRegexes.ability({ id: ['5EB1', '5BF2'] }),
-      deathReason: (_e, _data, matches) => {
+      deathReason: (_data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

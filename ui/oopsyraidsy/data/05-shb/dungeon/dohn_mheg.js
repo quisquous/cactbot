@@ -24,21 +24,21 @@ export default {
     {
       id: 'Dohn Mheg Imp Choir',
       netRegex: NetRegexes.gainsEffect({ effectId: '46E' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'Dohn Mheg Toad Choir',
       netRegex: NetRegexes.gainsEffect({ effectId: '1B7' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'Dohn Mheg Fool\'s Tumble',
       netRegex: NetRegexes.gainsEffect({ effectId: '183' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },

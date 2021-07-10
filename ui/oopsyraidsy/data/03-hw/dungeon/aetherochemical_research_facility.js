@@ -41,7 +41,7 @@ export default {
     {
       id: 'ARF Petrifaction',
       netRegex: NetRegexes.gainsEffect({ effectId: '01' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },

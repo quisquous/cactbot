@@ -35,8 +35,8 @@ export default {
     {
       id: 'WOLEx True Walking Dead',
       netRegex: NetRegexes.gainsEffect({ effectId: '8FF' }),
-      delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 0.5,
-      deathReason: (_e, _data, matches) => {
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
+      deathReason: (_data, matches) => {
         return { type: 'fail', name: matches.target, reason: matches.effect };
       },
     },
@@ -58,7 +58,7 @@ export default {
     {
       id: 'WOLEx True Hallowed Ground',
       netRegex: NetRegexes.ability({ id: '4F44' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'fail', reason: matches.ability };
       },
     },
@@ -66,7 +66,7 @@ export default {
       // For Berserk and Deep Darkside
       id: 'WOLEx Missed Interrupt',
       netRegex: NetRegexes.ability({ id: ['5156', '5158'] }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'fail', reason: matches.ability };
       },
     },

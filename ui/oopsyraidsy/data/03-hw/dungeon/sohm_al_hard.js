@@ -34,7 +34,7 @@ export default {
       // Warns if players step into the lava puddles. There is unfortunately no direct damage event.
       id: 'SohmAlHm Burns',
       netRegex: NetRegexes.gainsEffect({ effectId: '11C' }),
-      mistake: (_e, _data, matches) => {
+      mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
