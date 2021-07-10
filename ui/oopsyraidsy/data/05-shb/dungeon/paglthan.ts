@@ -1,12 +1,13 @@
 import ZoneId from '../../../../../resources/zone_id';
-import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export { OopsyData as Data } from '../../../../../types/data';
+export type Data = OopsyData;
 
 // TODO: What to do about Kahn Rai 5B50?
 // It seems impossible for the marked person to avoid entirely.
 
-const triggerSet: SimpleOopsyTriggerSet = {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.Paglthan,
   damageWarn: {
     'Paglthan Telovouivre Plague Swipe': '60FC', // frontal conal cleave

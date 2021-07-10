@@ -1,12 +1,13 @@
 import ZoneId from '../../../../../resources/zone_id';
-import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export { OopsyData as Data } from '../../../../../types/data';
+export type Data = OopsyData;
 
 // TODO: failing to interrupt Mana Boost (3D8D)
 // TODO: failing to pass healer debuff?
 // TODO: what happens if you don't kill a meteor during four orbs?
-const triggerSet: SimpleOopsyTriggerSet = {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensGateResurrectionSavage,
   damageWarn: {
     'E1S Eden\'s Thunder III': '44F7',

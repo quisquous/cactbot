@@ -1,10 +1,11 @@
 import ZoneId from '../../../../../resources/zone_id';
-import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export { OopsyData as Data } from '../../../../../types/data';
+export type Data = OopsyData;
 
 // O1N - Deltascape 1.0 Normal
-const triggerSet: SimpleOopsyTriggerSet = {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV10,
   damageWarn: {
     'O1N Burn': '23D5', // Fireball explosion circle AoEs

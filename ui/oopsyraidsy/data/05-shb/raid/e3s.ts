@@ -1,7 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id';
-import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export { OopsyData as Data } from '../../../../../types/data';
+export type Data = OopsyData;
 
 // TODO: Scouring Tsunami (3CE0) on somebody other than target
 // TODO: Sweeping Tsunami (3FF5) on somebody other than tanks
@@ -9,7 +10,7 @@ export { OopsyData as Data } from '../../../../../types/data';
 // TODO: Boiled Alive (4006) is failing puddles???
 // TODO: failing to cleanse Splashing Waters
 // TODO: does getting hit by undersea quake cause an ability?
-const triggerSet: SimpleOopsyTriggerSet = {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensGateInundationSavage,
   damageWarn: {
     'E3S Monster Wave 1': '3FE5',

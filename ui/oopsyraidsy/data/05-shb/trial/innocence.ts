@@ -1,10 +1,11 @@
 import ZoneId from '../../../../../resources/zone_id';
-import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export { OopsyData as Data } from '../../../../../types/data';
+export type Data = OopsyData;
 
 // Innocence Normal
-const triggerSet: SimpleOopsyTriggerSet = {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheCrownOfTheImmaculate,
   damageWarn: {
     'Inno Daybreak': '3E9D',

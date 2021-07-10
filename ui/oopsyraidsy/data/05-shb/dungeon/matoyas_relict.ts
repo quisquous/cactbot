@@ -1,11 +1,12 @@
 import ZoneId from '../../../../../resources/zone_id';
-import { SimpleOopsyTriggerSet } from '../../../../../types/oopsy';
+import { OopsyData } from '../../../../../types/data';
+import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export { OopsyData as Data } from '../../../../../types/data';
+export type Data = OopsyData;
 
 // TODO: could include 5484 Mudman Rocky Roll as a shareWarn, but it's low damage and common.
 
-const triggerSet: SimpleOopsyTriggerSet = {
+const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.MatoyasRelict,
   damageWarn: {
     'Matoya Relict Werewood Ovation': '5518', // line aoe
