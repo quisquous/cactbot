@@ -33,10 +33,9 @@ export default {
       // first person listed damage-wise, so they are likely the culprit.
       id: 'UWU Featherlance',
       netRegex: NetRegexes.abilityFull({ id: '2B43', ...playerDamageFields }),
-      collectSeconds: 0.5,
       suppressSeconds: 5,
       mistake: (_e, _data, matches) => {
-        return { type: 'fail', blame: matches[0].target, text: matches[0].source };
+        return { type: 'fail', blame: matches.target, text: matches.source };
       },
     },
   ],

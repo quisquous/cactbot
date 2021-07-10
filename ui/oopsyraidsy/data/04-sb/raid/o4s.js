@@ -73,18 +73,6 @@ export default {
       },
     },
     {
-      id: 'O4S2 Double Attack',
-      netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
-      collectSeconds: 0.5,
-      mistake: (e) => {
-        if (e.length <= 2)
-          return;
-        // Hard to know who should be in this and who shouldn't, but
-        // it should never hit 3 people.
-        return { type: 'fail', fullText: e[0].abilityName + ' x ' + e.length };
-      },
-    },
-    {
       id: 'O4S2 Beyond Death Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       run: (_e, data, matches) => {
@@ -114,6 +102,29 @@ export default {
           reason: matches.effect,
         };
       },
+    },
+    {
+      id: 'O4S2 Double Attack Collect',
+      netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
+      run: (_e, data, matches) => {
+        data.doubleAttackMatches = data.doubleAttackMatches || [];
+        data.doubleAttackMatches.push(matches);
+      },
+    },
+    {
+      id: 'O4S2 Double Attack',
+      netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
+      mistake: (_e, data) => {
+        const arr = data.doubleAttackMatches;
+        if (!arr)
+          return;
+        if (arr.length <= 2)
+          return;
+        // Hard to know who should be in this and who shouldn't, but
+        // it should never hit 3 people.
+        return { type: 'fail', fullText: `${arr[0].ability} x ${arr.length}` };
+      },
+      run: (_e, data) => delete data.doubleAttackMatches,
     },
   ],
 };

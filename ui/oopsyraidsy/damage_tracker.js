@@ -295,34 +295,15 @@ export class DamageTracker {
       return (typeof f === 'function') ? f(events, this.data, matches) : f;
     };
 
-    const collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
-    const collectMultipleEvents = 'collectSeconds' in trigger;
-    if (collectMultipleEvents && trigger.id in this.activeTriggers) {
-      this.activeTriggers[trigger.id].events.push(evt);
-      this.activeTriggers[trigger.id].matches.push(matches);
-      return;
-    }
-    let delay;
-    if (collectMultipleEvents)
-      delay = collectSeconds || 0;
-    else
-      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
+    const delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
 
     const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
 
     const f = (function() {
-      let eventParam = evt;
-      let matchesParam = matches;
-      if (collectMultipleEvents) {
-        eventParam = this.activeTriggers[trigger.id].events;
-        matchesParam = this.activeTriggers[trigger.id].matches;
-        delete this.activeTriggers[trigger.id];
-      }
-
       if ('mistake' in trigger) {
-        const m = ValueOrFunction(trigger.mistake, eventParam, matchesParam);
+        const m = ValueOrFunction(trigger.mistake, evt, matches);
         if (Array.isArray(m)) {
           for (let i = 0; i < m.length; ++i)
             this.collector.OnMistakeObj(m[i]);
@@ -331,28 +312,15 @@ export class DamageTracker {
         }
       }
       if ('deathReason' in trigger) {
-        const ret = ValueOrFunction(trigger.deathReason, eventParam, matchesParam);
+        const ret = ValueOrFunction(trigger.deathReason, evt, matches);
         if (ret) {
           ret.reason = this.collector.Translate(ret.reason);
           this.AddImpliedDeathReason(ret);
         }
       }
       if ('run' in trigger)
-        ValueOrFunction(trigger.run, eventParam, matchesParam);
+        ValueOrFunction(trigger.run, evt, matches);
     }).bind(this);
-
-    // Even if delay = 0, if collectMultipleEvents is specified,
-    // then set this here so that events can be passed as an array for consistency.
-    if (collectMultipleEvents) {
-      if (!trigger.id) {
-        console.error('Missing trigger id with collectSeconds specified.');
-        return;
-      }
-      this.activeTriggers[trigger.id] = {
-        events: [evt],
-        matches: [matches],
-      };
-    }
 
     if (!delay)
       f();
@@ -545,10 +513,7 @@ export class DamageTracker {
       this.AddSoloTriggers('warn', set.soloWarn);
       this.AddSoloTriggers('fail', set.soloFail);
 
-      if (!set.triggers)
-        set.triggers = [];
-      for (let j = 0; j < set.triggers.length; ++j) {
-        const trigger = set.triggers[j];
+      for (const trigger of set.triggers ?? []) {
         if ('regex' in trigger) {
           trigger.regex = Regexes.parse(Regexes.anyOf(trigger.regex));
           this.generalTriggers.push(trigger);

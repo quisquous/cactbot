@@ -57,17 +57,6 @@ export default {
   },
   triggers: [
     {
-      // Balloon Popping.  It seems like the person who pops it is the
-      // first person listed damage-wise, so they are likely the culprit.
-      id: 'TEA Outburst',
-      netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
-      collectSeconds: 0.5,
-      suppressSeconds: 5,
-      mistake: (_e, _data, matches) => {
-        return { type: 'fail', blame: matches[0].target, text: matches[0].source };
-      },
-    },
-    {
       // "too much luminous aetheroplasm"
       // When this happens, the target explodes, hitting nearby people
       // but also themselves.
@@ -158,6 +147,16 @@ export default {
           name: matches.target,
           reason: matches.effect,
         };
+      },
+    },
+    {
+      // Balloon Popping.  It seems like the person who pops it is the
+      // first person listed damage-wise, so they are likely the culprit.
+      id: 'TEA Outburst',
+      netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
+      suppressSeconds: 5,
+      mistake: (_e, _data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.source };
       },
     },
   ],
