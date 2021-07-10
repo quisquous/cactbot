@@ -47,7 +47,7 @@ export class MistakeCollector {
   private startTime?: number;
   private stopTime?: number;
   private engageTime?: number;
-  private firstPuller?: string;
+  public firstPuller?: string;
 
   constructor(private options: OopsyOptions, private listView: OopsyListView) {
     this.Reset();
@@ -166,7 +166,7 @@ export class MistakeCollector {
     }
   }
 
-  AddDeath(name: string, matches: NetMatches['Ability']): void {
+  AddDeath(name: string, matches: Partial<NetMatches['Ability']>): void {
     let text;
     if (matches) {
       // Note: ACT just evaluates independently what the hp of everybody
@@ -181,10 +181,10 @@ export class MistakeCollector {
       let hp = '';
       if (matches.flags === kFlagInstantDeath) {
         // TODO: show something for infinite damage?
-      } else if ('targetCurrentHp' in matches) {
+      } else if (matches.targetCurrentHp && matches.damage) {
         hp = ` (${UnscrambleDamage(matches.damage)}/${matches.targetCurrentHp})`;
       }
-      text = `${matches.ability}${hp}`;
+      text = `${matches?.ability ?? '???'}${hp}`;
     }
     this.OnMistakeText('death', name, text);
 
@@ -193,7 +193,7 @@ export class MistakeCollector {
     // defeated.  Maybe the unparsed log entries have this??
   }
 
-  OnPartyWipeEvent(_e: EventResponses['onPartyWipe']): void {
+  OnPartyWipeEvent(): void {
     // TODO: record the time that StopCombat occurs and throw the party
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
