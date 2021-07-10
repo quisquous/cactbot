@@ -115,6 +115,7 @@ Options.Triggers.push({
         'The Tlachtli': 'Tlachtli',
         'The Vortex': 'Ursprung des Windes',
         'Tozol Huatotl': 'Tozol Huatotl',
+        'Floating Turret': 'Schwebend(?:e|er|es|en) Geschütz',
       },
       'replaceText': {
         '\\(buster\\)': '(Tankbuster)',

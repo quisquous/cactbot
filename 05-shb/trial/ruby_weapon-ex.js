@@ -71,6 +71,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away From Line Ends',
+          de: 'Weg von den Linienenden',
           ko: '선 끝나는 곳 피하기',
         },
       },
@@ -133,6 +134,7 @@ Options.Triggers.push({
         getMiddle: Outputs.goIntoMiddle,
         outOfMiddle: {
           en: 'Out Of Middle',
+          de: 'Raus aus der Mitte',
           ko: '가운데 피하기',
         },
       },
@@ -334,19 +336,23 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           text: {
             en: '${dir} (${suffix})',
+            de: '${dir} (${suffix})',
           },
           out: Outputs.out,
           in: Outputs.in,
           blueSuffix: {
             en: 'blue',
+            de: 'Blau',
             ko: '파랑',
           },
           redSuffix: {
             en: 'red',
+            de: 'Rot',
             ko: '빨강',
           },
           bothSuffix: {
             en: 'both',
+            de: 'Beides',
             ko: '둘 다',
           },
         };
@@ -437,12 +443,18 @@ Options.Triggers.push({
       // This trigger doesn't run for the initial tether because the add
       // spawns with the tether, but will run if somebody dies.
       netRegex: NetRegexes.tether({ source: 'White Agony', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ source: 'Naels Trauer', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ source: 'Angoisse De Nael', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ source: 'ネールの悲嘆', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '奈尔的悲叹', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ source: '넬의 비탄', id: '0011' }),
       condition: Conditions.targetIsYou(),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           text: {
             en: 'Blue Head (Go East)',
+            de: 'Blauer Kopf (Geh nach Osten)',
             ko: '파란색 (동쪽)',
           },
         };
@@ -457,12 +469,18 @@ Options.Triggers.push({
       // This trigger doesn't run for the initial tether because the add
       // spawns with the tether, but will run if somebody dies.
       netRegex: NetRegexes.tether({ source: 'White Fury', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ source: 'Naels Zorn', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ source: 'Fureur De Nael', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ source: 'ネールの憤怒', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '奈尔的愤怒', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ source: '넬의 분노', id: '0011' }),
       condition: Conditions.targetIsYou(),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           text: {
             en: 'Red Head (Go West)',
+            de: 'Roter Kopf (Geh nach Westen)',
             ko: '빨간색 (서쪽)',
           },
         };
@@ -644,6 +662,8 @@ Options.Triggers.push({
         'Raven\'s Image': 'Naels Trugbild',
         'Meteor': 'Meteor',
         'Comet': 'Komet',
+        'White Agony': 'Naels Trauer',
+        'White Fury': 'Naels Zorn',
       },
       'replaceText': {
         'Undermine': 'Untergraben',
