@@ -2,6 +2,13 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  lightfastCount?: number;
+  alliance?: string;
+}
 
 // The Copied Factory
 // TODO: Tell people where to stand for Engels wall saws
@@ -9,7 +16,7 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: Tell people where to go for 9S divebombs
 // TODO: Tell people where to go for 9S tethered tank
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheCopiedFactory,
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [
@@ -20,10 +27,10 @@ export default {
       infoText: (data, _matches, output) => {
         // The third lightfast blade comes very close to second,
         // so suppress its message.
-        data.lightfastCount = (data.lightfastCount || 0) + 1;
+        data.lightfastCount = (data.lightfastCount ?? 0) + 1;
         if (data.lightfastCount !== 3)
           return;
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -40,7 +47,7 @@ export default {
       id: 'Copied Engels Demolish Structure',
       regex: /Demolish Structure/,
       beforeSeconds: 15,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Move to South Edge',
@@ -56,6 +63,7 @@ export default {
   triggers: [
     {
       id: 'Copied Serial Forceful Impact',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48CF', source: 'Serial-Jointed Command Model', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48CF', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48CF', source: 'Modèle Multiarticulé : Commandant', capture: false }),
@@ -67,6 +75,7 @@ export default {
     },
     {
       id: 'Copied Serial Energy Assault',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48B5', source: 'Serial-Jointed Command Model', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48B5', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48B5', source: 'Modèle Multiarticulé : Commandant', capture: false }),
@@ -77,6 +86,7 @@ export default {
     },
     {
       id: 'Copied Serial High-Caliber Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48FA', source: 'Serial-Jointed Service Model', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48FA', source: 'Modell Mit Omnigelenk', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48FA', source: 'Modèle Multiarticulé : Soldat', capture: false }),
@@ -84,7 +94,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '48FA', source: '多关节型：士兵机', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48FA', source: '다관절형: 병정기', capture: false }),
       suppressSeconds: 15,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look for Lasers',
@@ -98,6 +108,7 @@ export default {
     },
     {
       id: 'Copied Serial Clanging Blow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48CE', source: 'Serial-Jointed Command Model' }),
       netRegexDe: NetRegexes.startsUsing({ id: '48CE', source: 'Befehlsmodell Mit Omnigelenk' }),
       netRegexFr: NetRegexes.startsUsing({ id: '48CE', source: 'Modèle Multiarticulé : Commandant' }),
@@ -108,6 +119,7 @@ export default {
     },
     {
       id: 'Copied Serial Centrifugal Spin',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48C8', source: 'Serial-Jointed Command Model', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48C8', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48C8', source: 'Modèle Multiarticulé : Commandant', capture: false }),
@@ -118,6 +130,7 @@ export default {
     },
     {
       id: 'Copied Serial Sidestriking Spin',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48CA', source: 'Serial-Jointed Command Model', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48CA', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48CA', source: 'Modèle Multiarticulé : Commandant', capture: false }),
@@ -128,6 +141,7 @@ export default {
     },
     {
       id: 'Copied Serial Shockwave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48C3', source: 'Serial-Jointed Command Model', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48C3', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48C3', source: 'Modèle Multiarticulé : Commandant', capture: false }),
@@ -138,6 +152,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Laser-Resistance Test',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4805', source: 'Hobbes', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4805', source: 'Hobbes', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4805', source: 'Hobbes', capture: false }),
@@ -149,14 +164,15 @@ export default {
     },
     {
       id: 'Copied Hobbes Right Arm',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The wall-mounted right arm begins to move.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte rechte Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural droit s\'active!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '壁面のライトアームが稼働を始めた……！.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '墙面的右臂开始运作…….*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 오른팔이 움직이기 시작합니다……!.*?', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
-      run: (data) => data.alliance = data.alliance || 'A',
+      infoText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.alliance = data.alliance ?? 'A',
       outputStrings: {
         text: {
           en: 'Dodge Moving Circle',
@@ -170,13 +186,14 @@ export default {
     },
     {
       id: 'Copied Hobbes Flamethrowers',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The wall-mounted flamethrowers activate\..*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die wandmontierten Flammenwerfer sind aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Les lance-flammes muraux s\'activent!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '壁面の火炎放射器が稼働を始めた……！.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '墙面的火炎放射器开始运作…….*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 화염 방사기가 가동되었습니다……!.*?', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.alliance = data.alliance || 'B',
       outputStrings: {
         text: {
@@ -191,6 +208,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Left Arm 1',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural gauche s\'active!.*?', capture: false }),
@@ -203,6 +221,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Left Arm 2',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural gauche s\'active!.*?', capture: false }),
@@ -210,7 +229,7 @@ export default {
       netRegexCn: NetRegexes.message({ line: '墙面的左臂开始运作…….*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       delaySeconds: 8,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Falling Walls',
@@ -224,6 +243,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Left Arm 3',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural gauche s\'active!.*?', capture: false }),
@@ -231,7 +251,7 @@ export default {
       netRegexCn: NetRegexes.message({ line: '墙面的左臂开始运作…….*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       delaySeconds: 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spread Tethers',
@@ -245,12 +265,14 @@ export default {
     },
     {
       id: 'Copied Hobbes Short Missile',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C4' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Copied Hobbes Laser Sight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
@@ -261,6 +283,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Electric Floor',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'You hear frenzied movement from machines beneath.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die Maschinenwesen zu deinen Füßen bewegen sich!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Les formes de vie mécaniques sous vos pieds s\'activent!.*?', capture: false }),
@@ -269,7 +292,7 @@ export default {
       netRegexKo: NetRegexes.message({ line: '바닥 아래의 기계생명체가 수상한 움직임을 보입니다……!.*?', capture: false }),
       durationSeconds: 10,
       suppressSeconds: 15,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Electric Floor',
@@ -283,13 +306,14 @@ export default {
     },
     {
       id: 'Copied Hobbes Conveyer Belts',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The conveyer belts whirr to life!.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die Fließbänder sind aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le tapis roulant s\'est mis en branle!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '床面のローラーコンベアが稼働を始めた……！.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '地面上的滚轴开始运作…….*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '바닥의 컨베이어가 움직이기 시작합니다……!.*?', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Conveyor Belts',
@@ -303,6 +327,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Oil 1',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'Flammable oil is leaking from the floor.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!.*?', capture: false }),
@@ -311,7 +336,7 @@ export default {
       netRegexKo: NetRegexes.message({ line: '바닥 밑에 가연성 액체가 차오릅니다……!.*?', capture: false }),
       durationSeconds: 3,
       suppressSeconds: 15,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Oil Vats',
@@ -325,6 +350,7 @@ export default {
     },
     {
       id: 'Copied Hobbes Oil 2',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'Flammable oil is leaking from the floor.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!.*?', capture: false }),
@@ -334,7 +360,7 @@ export default {
       delaySeconds: 6,
       durationSeconds: 3,
       suppressSeconds: 15,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Oil Vats',
@@ -348,6 +374,7 @@ export default {
     },
     {
       id: 'Copied Goliath Tank Exploder',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011', source: 'Medium Exploder' }),
       netRegexDe: NetRegexes.tether({ id: '0011', source: 'Mittelgroß(?:e|er|es|en) Selbstzerstörung' }),
       netRegexFr: NetRegexes.tether({ id: '0011', source: 'Unité Kamikaze Moyenne' }),
@@ -355,7 +382,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '0011', source: '中型自爆' }),
       netRegexKo: NetRegexes.tether({ id: '0011', source: '중형 자폭' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Exploder on YOU',
@@ -369,6 +396,7 @@ export default {
     },
     {
       id: 'Copied Flight Unit 360 Bombing Manuever',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4941', source: 'Flight Unit', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4941', source: 'Flugeinheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4941', source: 'Module De Vol', capture: false }),
@@ -380,12 +408,14 @@ export default {
     },
     {
       id: 'Copied Flight Unit Ballistic Impact',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Copied Engels Marx Smash Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
@@ -396,6 +426,7 @@ export default {
     },
     {
       id: 'Copied Engels Marx Smash Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4726', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4726', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4726', source: 'Engels', capture: false }),
@@ -406,13 +437,14 @@ export default {
     },
     {
       id: 'Copied Engels Marx Smash Forward',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '472E', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '472E', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '472E', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '472E', source: 'エンゲルス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '472E', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '472E', source: '엥겔스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Front and Center',
@@ -426,13 +458,14 @@ export default {
     },
     {
       id: 'Copied Engels Marx Smash Back',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '472A', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '472A', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '472A', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '472A', source: 'エンゲルス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '472A', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '472A', source: '엥겔스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Back and Sides',
@@ -446,13 +479,14 @@ export default {
     },
     {
       id: 'Copied Engels Marx Crush',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4746', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4746', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4746', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4746', source: 'エンゲルス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4746', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4746', source: '엥겔스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Kill Claws',
@@ -466,12 +500,14 @@ export default {
     },
     {
       id: 'Copied Engels Precision Guided Missile',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
       id: 'Copied Engels Diffuse Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4755', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4755', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4755', source: 'Engels', capture: false }),
@@ -486,13 +522,14 @@ export default {
       // always precedes it and is an earlier warning.
       // Also suggest going to the front for towers.
       id: 'Copied Engels Energy Barrage 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '473C', source: 'エンゲルス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '473C', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Sides (Near Front)',
@@ -506,6 +543,7 @@ export default {
     },
     {
       id: 'Copied Engels Energy Barrage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
@@ -513,7 +551,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '473C', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
       delaySeconds: 8,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Towers',
@@ -527,9 +565,10 @@ export default {
     },
     {
       id: 'Copied Engels Incendiary Bombing',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
@@ -543,9 +582,10 @@ export default {
     },
     {
       id: 'Copied Engels Guided Missile',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Out + Dodge Homing AoE',
@@ -559,6 +599,7 @@ export default {
     },
     {
       id: 'Copied Engels Reverse-Jointed Goliaths',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '473F', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '473F', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '473F', source: 'Engels', capture: false }),
@@ -566,7 +607,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '473F', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '473F', source: '엥겔스', capture: false }),
       durationSeconds: 4,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Adds (Ignore Small)',
@@ -580,13 +621,14 @@ export default {
     },
     {
       id: 'Copied Engels Incendiary Saturation Bombing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '474E', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '474E', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '474E', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '474E', source: 'エンゲルス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '474E', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '474E', source: '엥겔스', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Front and Center',
@@ -600,6 +642,7 @@ export default {
     },
     {
       id: 'Copied Engels Marx Thrust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48A8', source: 'Engels', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48A8', source: 'Engels', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48A8', source: 'Engels', capture: false }),
@@ -607,7 +650,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '48A8', source: '昂格士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48A8', source: '엥겔스', capture: false }),
       delaySeconds: 9,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look For Wall Saws',
@@ -621,6 +664,7 @@ export default {
     },
     {
       id: 'Copied 9S Neutralization',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48F5', source: '9S-Operated Walking Fortress' }),
       netRegexDe: NetRegexes.startsUsing({ id: '48F5', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer' }),
       netRegexFr: NetRegexes.startsUsing({ id: '48F5', source: '9S : Avec Multipède Esclave' }),
@@ -632,6 +676,7 @@ export default {
     },
     {
       id: 'Copied 9S Laser Saturation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48F6', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48F6', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48F6', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -643,6 +688,7 @@ export default {
     },
     {
       id: 'Copied 9S Laser Turret',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4A74', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4A74', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4A74', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -653,15 +699,17 @@ export default {
     },
     {
       id: 'Copied 9S Ballistic Impact',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Laser Buster on YOU',
@@ -675,6 +723,7 @@ export default {
     },
     {
       id: 'Copied 9S Fore-Hind Cannons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48DF', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48DF', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48DF', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -685,6 +734,7 @@ export default {
     },
     {
       id: 'Copied 9S Dual-Flank Cannons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48DE', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48DE', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48DE', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -695,6 +745,7 @@ export default {
     },
     {
       id: 'Copied 9S Engage Marx Support',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48D3', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48D3', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48D3', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -702,7 +753,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '48D3', source: '9S：接入多脚战车', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48D3', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 4,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Overhead Saws',
@@ -718,6 +769,7 @@ export default {
       // Use the ability before the adds show up, as looking for the added combatant
       // also triggers on the first boss.
       id: 'Copied 9S Serial-Jointed Service Models',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '48EA', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '48EA', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '48EA', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -728,6 +780,7 @@ export default {
     },
     {
       id: 'Copied 9S Engage Goliath Tank Support',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48E5', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48E5', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48E5', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -738,13 +791,14 @@ export default {
     },
     {
       id: 'Copied 9S Hack Goliath Tank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48E7', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48E7', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48E7', source: '9S : Avec Multipède Esclave', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '48E7', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '48E7', source: '9S：接入多脚战车', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48E7', source: '9S: 다각전차 종속', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Behind Untethered Tank',
@@ -758,6 +812,7 @@ export default {
     },
     {
       id: 'Copied 9S Shrapnel Impact',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48F3', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48F3', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48F3', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -769,6 +824,7 @@ export default {
     },
     {
       id: 'Copied 9S Bubble',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '48EB', source: '9S-Operated Walking Fortress', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '48EB', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '48EB', source: '9S : Avec Multipède Esclave', capture: false }),
@@ -776,7 +832,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '48EB', source: '9S：接入多脚战车', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48EB', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get in the bubble',
@@ -1256,3 +1312,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

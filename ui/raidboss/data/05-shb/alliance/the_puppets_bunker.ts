@@ -3,6 +3,15 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  phase?: string;
+  busterTargets?: string[];
+  swipe?: (string | undefined)[];
+  heavyPodCount?: number;
+}
 
 // TODO: is it worth adding triggers for gaining/losing shield protocol? effect 8F[0-2]
 // TODO: Incongruous Spin timeline trigger?
@@ -26,26 +35,29 @@ const swipeOutputStrings = {
   },
 };
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.ThePuppetsBunker,
   timelineFile: 'the_puppets_bunker.txt',
   triggers: [
     {
       id: 'Puppet Aegis Anti-Personnel Laser You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Puppet Aegis Anti-Personnel Laser Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
       run: (data, matches) => {
-        data.busterTargets = data.busterTargets || [];
+        data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
       },
     },
     {
       id: 'Puppet Aegis Anti-Personnel Laser Not You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C6', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
@@ -56,9 +68,9 @@ export default {
           return;
 
         if (data.role === 'healer')
-          return output.tankBuster();
+          return output.tankBuster!();
 
-        return output.avoidTankBuster();
+        return output.avoidTankBuster!();
       },
       run: (data) => delete data.busterTargets,
       outputStrings: {
@@ -75,13 +87,14 @@ export default {
     },
     {
       id: 'Puppet Aegis Beam Cannons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '5073', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '5073', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '5073', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5073', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '5073', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '5073', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go To Narrow Intersection',
@@ -95,9 +108,10 @@ export default {
     },
     {
       id: 'Puppet Aegis Aerial Support Surface Laser',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.phase !== 'superior',
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Chasing Laser: Get Away',
@@ -111,13 +125,14 @@ export default {
     },
     {
       id: 'Puppet Aegis Refraction Cannons 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '5080', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '5080', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '5080', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5080', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '5080', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '5080', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Left, Behind Wing',
@@ -131,13 +146,14 @@ export default {
     },
     {
       id: 'Puppet Aegis Refraction Cannons 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '507F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '507F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '507F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '507F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '507F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '507F', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Right, Behind Wing',
@@ -151,6 +167,7 @@ export default {
     },
     {
       id: 'Puppet Aegis High-Powered Laser',
+      type: 'StartsUsing',
       // This is also head marker 003E, but since there's three stacks, just say "stack".
       netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '508F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '508F', capture: false }),
@@ -162,6 +179,7 @@ export default {
     },
     {
       id: 'Puppet Aegis Life\'s Last Song',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '53B3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '53B3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '53B3', capture: false }),
@@ -171,7 +189,7 @@ export default {
       // This is more a "if you haven't done this ever or in a while, here's a reminder."
       // Tell it once, but as this repeats nearly continously forever, only say it once.
       suppressSeconds: 9999,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge into ring gap',
@@ -185,6 +203,7 @@ export default {
     },
     {
       id: 'Puppet Light Volt Array',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5211' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Leicht(?:e|er|es|en) Infanterieeinheit', id: '5211' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Unité Terrestre Légère', id: '5211' }),
@@ -198,6 +217,7 @@ export default {
     },
     {
       id: 'Puppet Spread Headmarker',
+      type: 'HeadMarker',
       // Used for:
       // Homing Missile (Light Artillery)
       // Mechanical Contusion (The Compound)
@@ -208,6 +228,7 @@ export default {
     },
     {
       id: 'Puppet Light Maneuver Martial Arm Target',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Leicht(?:e|er|es|en) Infanterieeinheit', id: '5213' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Unité Terrestre Légère', id: '5213' }),
@@ -219,6 +240,7 @@ export default {
     },
     {
       id: 'Puppet Light Maneuver Martial Arm Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Leicht(?:e|er|es|en) Infanterieeinheit', id: '5213' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Unité Terrestre Légère', id: '5213' }),
@@ -226,12 +248,13 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '轻型陆战装置', id: '5213' }),
       netRegexKo: NetRegexes.startsUsing({ source: '경장 육지전 유닛', id: '5213' }),
       run: (data, matches) => {
-        data.busterTargets = data.busterTargets || [];
+        data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
       },
     },
     {
       id: 'Puppet Light Maneuver Martial Arm Healer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Leicht(?:e|er|es|en) Infanterieeinheit', id: '5213', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Unité Terrestre Légère', id: '5213', capture: false }),
@@ -247,7 +270,7 @@ export default {
           return;
 
         if (data.role === 'healer')
-          return output.text();
+          return output.text!();
 
 
         // Note: this doesn't cleave, so don't say anything about avoiding it.
@@ -259,11 +282,13 @@ export default {
     },
     {
       id: 'Puppet Superior Shield Protocol',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FA[678]', capture: false }),
       run: (data) => data.phase = 'superior',
     },
     {
       id: 'Puppet Superior Missile Command',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FBD', capture: false }),
       condition: Conditions.caresAboutAOE(),
       suppressSeconds: 5,
@@ -272,9 +297,10 @@ export default {
     {
       // This is for Maneuver: Incendiary Bombing and Maneuver: Area Bombardment.
       id: 'Puppet Superior Incendiary Bombing',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.phase === 'superior',
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Fire Puddle on YOU',
@@ -288,10 +314,11 @@ export default {
     },
     {
       id: 'Puppet Superior High-Powered Laser',
+      type: 'StartsUsing',
       // Note: no 1B marker for this???
       netRegex: NetRegexes.startsUsing({ id: '4FB4', capture: false }),
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Line Stack (Point Outside)',
@@ -308,10 +335,11 @@ export default {
       // Sharp Turn ability ids differentiate left/right.  We could use effect ids to know group.
       // But how would you communicate where to stand? "behind and slightly/very right"?
       id: 'Puppet Superior Sharp Turn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FAB', capture: false }),
       delaySeconds: 3,
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge Sword Charges',
@@ -325,20 +353,23 @@ export default {
     },
     {
       id: 'Puppet Superior Precision Guided Missile You',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Puppet Superior Precision Guided Missile Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
       run: (data, matches) => {
-        data.busterTargets = data.busterTargets || [];
+        data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
       },
     },
     {
       id: 'Puppet Superior Precision Guided Missile Not You',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FC5', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
@@ -349,9 +380,9 @@ export default {
           return;
 
         if (data.role === 'healer')
-          return output.tankBuster();
+          return output.tankBuster!();
 
-        return output.avoidTankBuster();
+        return output.avoidTankBuster!();
       },
       run: (data) => delete data.busterTargets,
       outputStrings: {
@@ -368,32 +399,36 @@ export default {
     },
     {
       id: 'Puppet Superior Sliding Swipe First',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
       preRun: (data, matches) => {
-        data.swipe = data.swipe || [];
-        data.swipe.push({
+        data.swipe ??= [];
+        const swipeMap: { [id: string]: string } = {
           '4FAC': 'right',
           '4FAD': 'left',
           '550D': 'right',
           '550E': 'left',
           '550F': 'right',
           '5510': 'left',
-        }[matches.id]);
+        };
+        data.swipe.push(swipeMap[matches.id]);
       },
       durationSeconds: 6,
       alertText: (data, _matches, output) => {
+        data.swipe ??= [];
         if (data.swipe.length !== 1)
           return;
 
         // Call and clear the first swipe so we can not call it a second time below.
         const swipe = data.swipe[0];
-        data.swipe[0] = null;
-        return output[swipe]();
+        data.swipe[0] = undefined;
+        return output[swipe ?? 'unknown']!();
       },
       outputStrings: swipeOutputStrings,
     },
     {
       id: 'Puppet Superior Sliding Swipe Others',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['4FA[CD]', '550[DEF]', '5510'], capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.swipe)
@@ -406,12 +441,13 @@ export default {
           swipe = data.swipe.shift();
         if (!swipe)
           return;
-        return output[swipe]();
+        return output[swipe]!();
       },
       outputStrings: swipeOutputStrings,
     },
     {
       id: 'Puppet Heavy Volt Array',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5006', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '5006', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '5006', capture: false }),
@@ -423,13 +459,14 @@ export default {
     },
     {
       id: 'Puppet Heavy Active Laser Turret Initial',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FED', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '4FED', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '4FED', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '4FED', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '905P：装备重型陆战装置', id: '4FED', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '4FED', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Outside Upper Laser',
@@ -443,6 +480,7 @@ export default {
     },
     {
       id: 'Puppet Heavy Active Laser Turret Move',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5086', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '5086', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '5086', capture: false }),
@@ -455,9 +493,10 @@ export default {
     },
     {
       id: 'Puppet Heavy Unconventional Voltage',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Voltage cleave on YOU',
@@ -471,6 +510,7 @@ export default {
     },
     {
       id: 'Puppet Heavy Revolving Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5000', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '5000', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '5000', capture: false }),
@@ -481,6 +521,7 @@ export default {
     },
     {
       id: 'Puppet Heavy High-Powered Laser',
+      type: 'StartsUsing',
       // There's only one starts using, but it targets all the tanks sequentially.
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5001' }),
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '5001' }),
@@ -509,13 +550,14 @@ export default {
           },
         };
         if (data.role === 'tank' || matches.target === data.me)
-          return { alertText: output.tankCleaveOnYou() };
+          return { alertText: output.tankCleaveOnYou!() };
 
-        return { infoText: output.avoidTankCleaves() };
+        return { infoText: output.avoidTankCleaves!() };
       },
     },
     {
       id: 'Puppet Heavy Support Pod',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FE9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '4FE9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '4FE9', capture: false }),
@@ -525,16 +567,15 @@ export default {
       // This is approximately when the pods appear.
       delaySeconds: 6,
       alertText: (data, _matches, output) => {
-        data.heavyPodCount = data.heavyPodCount || 0;
-        data.heavyPodCount++;
+        data.heavyPodCount = (data.heavyPodCount ?? 0) + 1;
         if (data.heavyPodCount <= 2) {
           // The first two are lasers/hammers in either order.
           // The safe spot in both cases is the same direction.
-          return output.getOutsideBetweenPods();
+          return output.getOutsideBetweenPods!();
         }
         // There's nothing in the log that indicates what the screens do.
         // TODO: could check logs for tether target/source and say shift left/right?
-        return output.getBetweenLasersWatchTethers();
+        return output.getBetweenLasersWatchTethers!();
       },
       outputStrings: {
         getOutsideBetweenPods: {
@@ -557,6 +598,7 @@ export default {
     },
     {
       id: 'Puppet Heavy Synthesize Compound',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FEC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '4FEC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '4FEC', capture: false }),
@@ -564,7 +606,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '905P：装备重型陆战装置', id: '4FEC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '4FEC', capture: false }),
       // TODO: should this say "towers"? or...something else to indicate variable people needed?
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Turn Towers Blue',
@@ -578,9 +620,10 @@ export default {
     },
     {
       id: 'Puppet Hallway Targeted Laser',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Laser on YOU',
@@ -594,6 +637,7 @@ export default {
     },
     {
       id: 'Puppet Compound Mechanical Laceration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Compound', id: '51B8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Puppenklumpen', id: '51B8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Agglomérat De Pantins', id: '51B8', capture: false }),
@@ -606,6 +650,7 @@ export default {
     },
     {
       id: 'Puppet Compound Mechanical Dissection',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Compound', id: '51B3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Puppenklumpen', id: '51B3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Agglomérat De Pantins', id: '51B3', capture: false }),
@@ -616,6 +661,7 @@ export default {
     },
     {
       id: 'Puppet Compound Mechanical Decapitation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Compound', id: '51B4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Puppenklumpen', id: '51B4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Agglomérat De Pantins', id: '51B4', capture: false }),
@@ -626,6 +672,7 @@ export default {
     },
     {
       id: 'Puppet Compound 2P Centrifugal Slice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '51B8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Fusion', id: '51B8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: '51B8', capture: false }),
@@ -639,6 +686,7 @@ export default {
     },
     {
       id: 'Puppet Compound 2P Prime Blade Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['541F', '5198'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Fusion', id: ['541F', '5198'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: ['541F', '5198'], capture: false }),
@@ -649,6 +697,7 @@ export default {
     },
     {
       id: 'Puppet Compound 2P Prime Blade Behind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['5420', '5199'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Fusion', id: ['5420', '5199'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: ['5420', '5199'], capture: false }),
@@ -659,6 +708,7 @@ export default {
     },
     {
       id: 'Puppet Compound 2P Prime Blade In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['5421', '519A'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Fusion', id: ['5421', '519A'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: ['5421', '519A'], capture: false }),
@@ -669,17 +719,19 @@ export default {
     },
     {
       id: 'Puppet Compound 2P R012: Laser You',
+      type: 'HeadMarker',
       // R012: Laser also puts out 008B headmarkers on non-tanks.
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
       run: (data, matches) => {
-        data.busterTargets = data.busterTargets || [];
+        data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
       },
     },
     {
       id: 'Puppet Compound 2P R012: Laser Not You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
@@ -690,7 +742,7 @@ export default {
           return;
 
         if (data.role === 'healer')
-          return output.text();
+          return output.text!();
 
 
         // Note: do not call out "avoid tank" here because there's a lot of markers going out.
@@ -702,12 +754,14 @@ export default {
     },
     {
       id: 'Puppet Compound 2P Three Parts Disdain',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => data.phase === 'compound',
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Puppet Compound 2P Three Parts Disdain Knockback',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => data.phase === 'compound',
       // Knockback prevention is 6 seconds long, and there's ~9.6s between marker and final hit.
@@ -716,15 +770,17 @@ export default {
     },
     {
       id: 'Puppet Compound 2P Four Parts Resolve',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
-        return {
-          '004F': output.jump({ num: 1 }),
-          '0050': output.cleave({ num: 1 }),
-          '0051': output.jump({ num: 2 }),
-          '0052': output.cleave({ num: 2 }),
-        }[matches.id];
+        const fourPartsMap: { [id: string]: string } = {
+          '004F': output.jump!({ num: 1 }),
+          '0050': output.cleave!({ num: 1 }),
+          '0051': output.jump!({ num: 2 }),
+          '0052': output.cleave!({ num: 2 }),
+        };
+        return fourPartsMap[matches.id] ?? output.unknown!();
       },
       outputStrings: {
         jump: {
@@ -743,10 +799,12 @@ export default {
           cn: '直线劈砍#${num}点名',
           ko: '직선공격 #${num} 대상자',
         },
+        unknown: Outputs.unknown,
       },
     },
     {
       id: 'Puppet Compound 2P Energy Compression',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '51A6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Fusion', id: '51A6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: '51A6', capture: false }),
@@ -754,7 +812,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '2P：融合体', id: '51A6', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '2P: 융합체', id: '51A6', capture: false }),
       delaySeconds: 4,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Towers',
@@ -768,6 +826,7 @@ export default {
     },
     {
       id: 'Puppet Compound Pod R011: Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Compound Pod', id: '541B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Pod: Fusion', id: '541B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Pod : Amalgame', id: '541B', capture: false }),
@@ -776,7 +835,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '포드: 융합체', id: '541B', capture: false }),
       suppressSeconds: 2,
       // TODO: maybe this could be smarter and we could tell you where to go??
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Lasers',
@@ -790,6 +849,7 @@ export default {
     },
     {
       id: 'Puppet Puppet 2P Prime Blade Puppet Guaranteed In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '5421', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Spaltung', id: '5421', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clone', id: '5421', capture: false }),
@@ -799,7 +859,7 @@ export default {
       suppressSeconds: 2,
       // TODO: have only seen this happen for the guaranteed Puppet In at 6250.7 with 4 clones.
       // TODO: can this happen at other times??
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Under Clone Corner',
@@ -813,6 +873,7 @@ export default {
     },
     {
       id: 'Puppet Puppet 2P Prime Blade Puppet In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '519A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Spaltung', id: '519A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clone', id: '519A', capture: false }),
@@ -824,7 +885,7 @@ export default {
       // at corners and then teleport to two cardinals across from each other with fake
       // teleports on the other cardinals.
       // TODO: fix this if these clones can go to corners.
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Under Cardinal Clone',
@@ -838,6 +899,7 @@ export default {
     },
     {
       id: 'Puppet Puppet 2P Prime Blade Puppet Out Corner',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '5198', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: '2P: Spaltung', id: '5198', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clone', id: '5198', capture: false }),
@@ -848,7 +910,7 @@ export default {
       // Have seen this be either:
       // * 4 clones teleporting around the outside of the arena (corner to corner)
       // * 4 clones teleporting in (to cardinals)
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away From Clones',
@@ -1337,3 +1399,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
