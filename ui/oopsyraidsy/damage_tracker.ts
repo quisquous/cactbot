@@ -192,7 +192,7 @@ export class DamageTracker {
       return;
     this.lastDamage[obj.name] = {
       target: obj.name,
-      ability: this.collector.Translate(obj.reason),
+      ability: this.collector.Translate(obj.text),
       flags: kFlagInstantDeath,
       damage: '0',
     };

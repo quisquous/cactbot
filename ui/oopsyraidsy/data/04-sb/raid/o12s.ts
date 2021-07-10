@@ -53,7 +53,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Knocked off',
             de: 'Runtergefallen',
             fr: 'A été assommé(e)',

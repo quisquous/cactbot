@@ -15,12 +15,12 @@ export type OopsyMistake = {
   name?: string;
   // TODO: docs say blame can be an array but the code does not support that.
   blame?: string;
-  text?: string | LocaleText;
-};
+  text: string | LocaleText;
+}
 
 export type OopsyDeathReason = {
-  name?: string;
-  reason?: string | LocaleText;
+  name: string;
+  text: string | LocaleText;
 }
 
 export type OopsyFunc<Data extends OopsyData, MatchType extends NetAnyMatches, Return> =

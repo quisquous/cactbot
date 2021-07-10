@@ -35,7 +35,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Cleansers missed Doom!',
             de: 'Doom-Reinigung vergessen!',
             fr: 'N\'a pas été dissipé(e) du Glas !',
@@ -54,7 +54,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
             fr: 'A été poussé(e) !',

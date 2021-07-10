@@ -119,7 +119,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         return {
           name: matches.target,
-          reason: matches.effect,
+          text: matches.effect,
         };
       },
     },
@@ -153,7 +153,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         return {
           name: matches.target,
-          reason: matches.effect,
+          text: matches.effect,
         };
       },
     },

@@ -137,7 +137,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Slid off!',
             de: 'ist runtergerutscht!',
             fr: 'A glissé(e) !',

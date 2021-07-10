@@ -33,7 +33,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Slid off!',
             de: 'Runter gerutscht!',
             fr: 'A glissé(e) !',
@@ -51,7 +51,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
             fr: 'A été poussé(e) !',
@@ -70,7 +70,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
-          reason: {
+          text: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
             fr: 'A été pousser !',
