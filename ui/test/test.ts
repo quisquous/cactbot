@@ -50,7 +50,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     else if (detail.job === 'BRD' && detail.jobDetail)
       jobInfo.innerText = `${detail.jobDetail.songName} | ${detail.jobDetail.songProcs} | ${detail.jobDetail.soulGauge} | ${detail.jobDetail.songMilliseconds}`;
     else if (detail.job === 'DNC' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.feathers} | ${detail.jobDetail.esprit} | (${detail.jobDetail.steps}) | ${detail.jobDetail.currentStep}`;
+      jobInfo.innerText = `${detail.jobDetail.feathers} | ${detail.jobDetail.esprit} | [${detail.jobDetail.steps.join(', ')}] | ${detail.jobDetail.currentStep}`;
     else if (detail.job === 'NIN' && detail.jobDetail)
       jobInfo.innerText = `${detail.jobDetail.hutonMilliseconds} | ${detail.jobDetail.ninkiAmount}`;
     else if (detail.job === 'DRG' && detail.jobDetail)
@@ -68,7 +68,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     else if (detail.job === 'ACN' && detail.jobDetail)
       jobInfo.innerText = detail.jobDetail.aetherflowStacks.toString();
     else if (detail.job === 'AST' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.heldCard} (${detail.jobDetail.arcanums})`;
+      jobInfo.innerText = `${detail.jobDetail.heldCard} [${detail.jobDetail.arcanums.join(', ')}]`;
     else if (detail.job === 'MNK' && detail.jobDetail)
       jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${detail.jobDetail.lightningMilliseconds}) | ${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lightningTimerFrozen.toString()}`;
     else if (detail.job === 'PGL' && detail.jobDetail)
