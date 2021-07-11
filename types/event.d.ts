@@ -41,7 +41,7 @@ export interface JobDetail {
   };
   'AST': {
     heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
-    arcanums: string;
+    arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
   'PGL': {
     lightningMilliseconds: number;
@@ -88,7 +88,7 @@ export interface JobDetail {
     feathers: number;
     esprit: number;
     currentStep: number;
-    steps: string;
+    steps: ('Emboite' | 'Entrechat' | 'Jete' | 'Pirouette')[];
   };
   'THM': {
     umbralMilliseconds: number;
