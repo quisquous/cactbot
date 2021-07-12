@@ -1,9 +1,24 @@
 import EffectId from '../../../resources/effect_id';
+import TimerBox from '../../../resources/timerbox';
+import { JobDetail } from '../../../types/event';
+import { NetMatches } from '../../../types/net_matches';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
+
 import { Component } from './base';
 
 export default class BlmComponent extends Component {
-  setup() {
+  thunderDot: TimerBox;
+  thunderProc: TimerBox;
+  fireProc: TimerBox;
+  umbralTimer: HTMLDivElement;
+  xenoTimer: HTMLDivElement;
+  heartStacks: HTMLDivElement[];
+  xenoStacks: HTMLDivElement[];
+
+  constructor(bars: Bars) {
+    super(bars);
+
     this.thunderDot = this.addProcBox({
       id: 'blm-dot-thunder',
       fgColor: 'blm-color-dot',
@@ -57,50 +72,50 @@ export default class BlmComponent extends Component {
     }
   }
 
-  onJobDetailUpdate(jobDetail) {
+  onJobDetailUpdate(jobDetail: JobDetail['BLM']): void {
     if (this.bars.umbralStacks !== jobDetail.umbralStacks) {
       this.bars.umbralStacks = jobDetail.umbralStacks;
       this.bars._updateMPTicker();
     }
     const fouls = jobDetail.foulCount;
-    for (let i = 0; i < 2; ++i) {
-      if (fouls > i)
-        this.xenoStacks[i].classList.add('active');
+    this.xenoStacks.forEach((elem, index) => {
+      if (fouls > index)
+        elem.classList.add('active');
       else
-        this.xenoStacks[i].classList.remove('active');
-    }
+        elem.classList.remove('active');
+    });
     const hearts = jobDetail.umbralHearts;
-    for (let i = 0; i < 3; ++i) {
-      if (hearts > i)
-        this.heartStacks[i].classList.add('active');
+    this.heartStacks.forEach((elem, index) => {
+      if (hearts > index)
+        elem.classList.add('active');
       else
-        this.heartStacks[i].classList.remove('active');
-    }
+        elem.classList.remove('active');
+    });
 
     const stacks = jobDetail.umbralStacks;
     const seconds = Math.ceil(jobDetail.umbralMilliseconds / 1000.0);
-    const p = this.umbralTimer.parentNode;
+    const p = this.umbralTimer.parentNode as HTMLElement;
     if (!stacks) {
       this.umbralTimer.innerText = '';
       p.classList.remove('fire');
       p.classList.remove('ice');
     } else if (stacks > 0) {
-      this.umbralTimer.innerText = seconds;
+      this.umbralTimer.innerText = seconds.toString();
       p.classList.add('fire');
       p.classList.remove('ice');
     } else {
-      this.umbralTimer.innerText = seconds;
+      this.umbralTimer.innerText = seconds.toString();
       p.classList.remove('fire');
       p.classList.add('ice');
     }
 
-    const xp = this.xenoTimer.parentNode;
+    const xp = this.xenoTimer.parentNode as HTMLElement;
     if (!jobDetail.enochian) {
       this.xenoTimer.innerText = '';
       xp.classList.remove('active', 'pulse');
     } else {
       const nextPoly = jobDetail.nextPolyglotMilliseconds;
-      this.xenoTimer.innerText = Math.ceil(nextPoly / 1000.0);
+      this.xenoTimer.innerText = Math.ceil(nextPoly / 1000.0).toString();
       xp.classList.add('active');
 
       if (fouls === 2 && nextPoly < 5000)
@@ -110,19 +125,19 @@ export default class BlmComponent extends Component {
     }
   }
 
-  onUseAbility(action) {
+  onUseAbility(action: string): void {
     switch (action) {
     case kAbility.Thunder1:
     case kAbility.Thunder4:
-      this.thunderDot.duration = 18;
+      this.thunderDot.duration = '18';
       break;
 
     case kAbility.Thunder2:
-      this.thunderDot.duration = 12;
+      this.thunderDot.duration = '12';
       break;
 
     case kAbility.Thunder3:
-      this.thunderDot.duration = 24;
+      this.thunderDot.duration = '24';
       break;
 
     default:
@@ -130,7 +145,7 @@ export default class BlmComponent extends Component {
     }
   }
 
-  onGainEffect(effectId, matches) {
+  onGainEffect(effectId: string, matches: NetMatches['GainsEffect']): void {
     switch (effectId) {
     case EffectId.Thundercloud:
       this.thunderProc.duration = matches.duration;
@@ -149,14 +164,14 @@ export default class BlmComponent extends Component {
     }
   }
 
-  onLoseEffect(effectId, matches) {
+  onLoseEffect(effectId: string): void {
     switch (effectId) {
     case EffectId.Thundercloud:
-      this.thunderProc.duration = 0;
+      this.thunderProc.duration = '0';
       break;
 
     case EffectId.Firestarter:
-      this.fireProc.duration = 0;
+      this.fireProc.duration = '0';
       break;
 
     case EffectId.CircleOfPower:
@@ -168,10 +183,10 @@ export default class BlmComponent extends Component {
     }
   }
 
-  reset() {
-    this.thunderDot.duration = 0;
-    this.thunderProc.duration = 0;
-    this.fireProc.duration = 0;
+  reset(): void {
+    this.thunderDot.duration = '0';
+    this.thunderProc.duration = '0';
+    this.fireProc.duration = '0';
   }
 }
 

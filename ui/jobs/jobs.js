@@ -572,10 +572,8 @@ export class Bars {
     this.jobComponent?.reset();
 
     const JobComponent = getComponent(job);
-    if (JobComponent) {
+    if (JobComponent)
       this.jobComponent = new JobComponent(this);
-      this.jobComponent.setup();
-    }
   }
 
   _updateJobBarGCDs() {

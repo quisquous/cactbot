@@ -1,4 +1,9 @@
+import TimerBox from '../../../resources/timerbox';
+import { JobDetail } from '../../../types/event';
+import { NetMatches } from '../../../types/net_matches';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
+
 import { Component } from './base';
 
 const cardsMap = {
@@ -8,10 +13,17 @@ const cardsMap = {
   'Ewer': { 'bonus': 'range', 'seal': 'Lunar' },
   'Spear': { 'bonus': 'melee', 'seal': 'Celestial' },
   'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
-};
+} as const;
 
 export default class AstComponent extends Component {
-  setup() {
+  combustBox: TimerBox;
+  drawBox: TimerBox;
+  lucidBox: TimerBox;
+  cardBox: HTMLDivElement;
+  sealBox: HTMLDivElement;
+  constructor(bars: Bars) {
+    super(bars);
+
     this.combustBox = this.addProcBox({
       id: 'ast-procs-combust',
       fgColor: 'ast-color-combust',
@@ -37,13 +49,13 @@ export default class AstComponent extends Component {
     });
   }
 
-  onJobDetailUpdate(jobDetail) {
+  onJobDetailUpdate(jobDetail: JobDetail['AST']): void {
     const card = jobDetail.heldCard;
     const seals = jobDetail.arcanums;
 
     // Show on which kind of jobs your card plays better by color
     // Blue on melee, purple on ranged, and grey when no card
-    const cardParent = this.cardBox.parentNode;
+    const cardParent = this.cardBox.parentNode as HTMLElement;
     cardParent.classList.remove('melee', 'range');
     if (card in cardsMap)
       cardParent.classList.add(cardsMap[card].bonus);
@@ -61,30 +73,31 @@ export default class AstComponent extends Component {
     // Show how many kind of seals you already have
     // Turn green when you have all 3 kinds of seal
     const sealCount = new Set(seals).size;
-    this.sealBox.innerText = sealCount;
+    this.sealBox.innerText = sealCount.toString();
+    const sealParent = this.sealBox.parentNode as HTMLElement;
     if (sealCount === 3)
-      this.sealBox.parentNode.classList.add('ready');
+      sealParent.classList.add('ready');
     else
-      this.sealBox.parentNode.classList.remove('ready');
+      sealParent.classList.remove('ready');
   }
 
-  onUseAbility(action) {
+  onUseAbility(action: string): void {
     switch (action) {
     case kAbility.Combust:
-      this.combustBox.duration = 18;
+      this.combustBox.duration = '18';
       break;
 
     case kAbility.Combust2:
     case kAbility.Combust3:
-      this.combustBox.duration = 30;
+      this.combustBox.duration = '30';
       break;
 
     case kAbility.Draw:
-      this.drawBox.duration = 30;
+      this.drawBox.duration = '30';
       break;
 
     case kAbility.LucidDreaming:
-      this.lucidBox.duration = 60;
+      this.lucidBox.duration = '60';
       break;
 
     default:
@@ -92,18 +105,18 @@ export default class AstComponent extends Component {
     }
   }
 
-  onStatChange(stat) {
-    this.combustBox.valuescale = stat.gcdSpell;
-    this.combustBox.threshold = stat.gcdSpell + 1;
-    this.drawBox.valuescale = stat.gcdSpell;
-    this.drawBox.threshold = stat.gcdSpell + 1;
-    this.lucidBox.valuescale = stat.gcdSpell;
-    this.lucidBox.threshold = stat.gcdSpell + 1;
+  onStatChange(stat: NetMatches['PlayerStats'] & { gcdSkill: number; gcdSpell: number }): void {
+    this.combustBox.valuescale = stat.gcdSpell.toString();
+    this.combustBox.threshold = (stat.gcdSpell + 1).toString();
+    this.drawBox.valuescale = stat.gcdSpell.toString();
+    this.drawBox.threshold = (stat.gcdSpell + 1).toString();
+    this.lucidBox.valuescale = stat.gcdSpell.toString();
+    this.lucidBox.threshold = (stat.gcdSpell + 1).toString();
   }
 
-  reset() {
-    this.combustBox.duration = 0;
-    this.drawBox.duration = 0;
-    this.lucidBox.duration = 0;
+  reset(): void {
+    this.combustBox.duration = '0';
+    this.drawBox.duration = '0';
+    this.lucidBox.duration = '0';
   }
 }
