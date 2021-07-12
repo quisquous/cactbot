@@ -30,7 +30,7 @@ import {
   makeAuraTimerIcon,
   RegexesHolder,
 } from './utils';
-import { getReset, getSetup } from './components/index';
+import { getSetup, getReset, getComponent } from './components/index';
 
 import './jobs_config';
 import '../../resources/resourcebar';
@@ -52,11 +52,15 @@ const kPullText = {
   ko: '풀링',
 };
 
-class Bars {
+export class Bars {
   constructor(options) {
     this.options = options;
     this.init = false;
     this.o = {};
+    /**
+     * @type {Component}
+     */
+    this.jobComponent = undefined;
 
     this.me = undefined;
     this.level = 0;
@@ -342,9 +346,10 @@ class Bars {
       this.o.mpTicker.loop = true;
     }
 
-    const setup = getSetup(this.job);
-    if (setup)
-      setup.bind(null, this)();
+    // const setup = getSetup(this.job);
+    // if (setup)
+    //   setup.bind(null, this)();
+    this._updateJobComponent(this.job);
 
     this._validateKeys();
 
@@ -562,6 +567,17 @@ class Bars {
     this.comboFuncs.forEach((func) => func(skill));
   }
 
+  _updateJobComponent(job) {
+    if (this.jobComponent)
+      this.jobComponent.reset();
+
+    const JobComponent = getComponent(job);
+    if (JobComponent) {
+      this.jobComponent = new JobComponent(this);
+      this.jobComponent.setup();
+    }
+  }
+
   _updateJobBarGCDs() {
     const f = this.statChangeFuncMap[this.job];
     if (f)
@@ -762,9 +778,10 @@ class Bars {
     if (this.buffTracker)
       this.buffTracker.clear();
     // Reset job-specific ui
-    const reset = getReset(this.job);
-    if (reset)
-      reset.bind(null, this)();
+    // const reset = getReset(this.job);
+    // if (reset)
+    //   reset.bind(null, this)();
+    this.jobComponent?.reset();
   }
 
   _onInCombatChanged(e) {
@@ -938,6 +955,7 @@ class Bars {
       this.jobFuncs.forEach((func) => {
         func(e.detail.jobDetail);
       });
+      this.jobComponent?.onJobDetailUpdate(e.detail.jobDetail);
     }
   }
 
@@ -986,6 +1004,11 @@ class Bars {
         const stats = m.groups;
         this.skillSpeed = parseInt(stats.skillSpeed);
         this.spellSpeed = parseInt(stats.spellSpeed);
+        this.jobComponent?.onStatChange({
+          gcdSkill: this.gcdSkill,
+          gcdSpell: this.gcdSpell,
+          ...stats,
+        });
         this._updateJobBarGCDs();
       }
     } else if (type === '26') {
@@ -993,6 +1016,7 @@ class Bars {
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.gainEffectFuncMap[effectId];
+        this.jobComponent?.onGainEffect(effectId, m.groups);
         if (f)
           f(effectId, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
@@ -1016,6 +1040,7 @@ class Bars {
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.loseEffectFuncMap[effectId];
+        this.jobComponent?.onLoseEffect(effectId, m.groups);
         if (f)
           f(effectId, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
@@ -1042,6 +1067,7 @@ class Bars {
       if (m) {
         const id = m.groups.id;
         this.combo.HandleAbility(id);
+        this.jobComponent?.onUseAbility(id);
         const f = this.abilityFuncMap[id];
         if (f)
           f(id, m.groups);
