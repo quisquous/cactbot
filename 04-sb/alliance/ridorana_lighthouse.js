@@ -463,7 +463,7 @@ Options.Triggers.push({
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Move to Postive',
+          en: 'Move to Positive',
           de: 'Ins Positive laufen',
           fr: 'Allez sur le plus',
           ja: 'プラス（＋）へ',
