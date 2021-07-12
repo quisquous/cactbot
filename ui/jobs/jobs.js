@@ -568,8 +568,7 @@ export class Bars {
   }
 
   _updateJobComponent(job) {
-    if (this.jobComponent)
-      this.jobComponent.reset();
+    this.jobComponent?.reset();
 
     const JobComponent = getComponent(job);
     if (JobComponent) {
