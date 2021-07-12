@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아' }),
-      condition: (data) => !data.monitoringHP && data.currentPhase < 3,
+      condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) => Util.watchCombatant({
         ids: [parseInt(matches.sourceId, 16)],
