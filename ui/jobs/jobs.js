@@ -405,11 +405,11 @@ export class Bars {
     return boxes;
   }
 
-  addResourceBox({ classList }) {
+  addResourceBox(options/* : { classList } */) {
     const boxes = this.addJobBoxContainer();
     const boxDiv = document.createElement('div');
-    if (classList) {
-      classList.forEach((className) => {
+    if (options.classList) {
+      options.classList.forEach((className) => {
         boxDiv.classList.add(className, 'resourcebox');
       });
     }
@@ -422,16 +422,16 @@ export class Bars {
     return textDiv;
   }
 
-  addProcBox({
+  addProcBox(options, /* : {
     id,
     fgColor,
     threshold,
     scale,
     notifyWhenExpired,
-  }) {
+  } */) {
     const elementId = this.job.toLowerCase() + '-procs';
 
-    let container = document.getElementById(id);
+    let container = document.getElementById(options.id);
     if (!container) {
       container = document.createElement('div');
       container.id = elementId;
@@ -442,19 +442,19 @@ export class Bars {
     const timerBox = document.createElement('timer-box');
     container.appendChild(timerBox);
     timerBox.stylefill = 'empty';
-    if (fgColor)
-      timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
+    if (options.fgColor)
+      timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
     timerBox.toward = 'bottom';
-    timerBox.threshold = threshold ? threshold : 0;
-    timerBox.hideafter = null;
+    timerBox.threshold = `${options.threshold ?? 0}`;
+    timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
-    timerBox.valuescale = scale ? scale : 1;
-    if (id) {
-      timerBox.id = id;
+    timerBox.valuescale = `${options.scale ?? 1}`;
+    if (options.id) {
+      timerBox.id = options.id;
       timerBox.classList.add('timer-box');
     }
-    if (notifyWhenExpired) {
+    if (options.notifyWhenExpired) {
       timerBox.classList.add('notify-when-expired');
       if (this.options.NotifyExpiredProcsInCombatSound === 'threshold')
         timerBox.onThresholdReached(this.playNotification);
@@ -464,14 +464,14 @@ export class Bars {
     return timerBox;
   }
 
-  addTimerBar({
+  addTimerBar(options, /* : {
     id,
     fgColor,
-  }) {
+  } */) {
     const container = this.addJobBarContainer();
 
     const timerDiv = document.createElement('div');
-    timerDiv.id = id;
+    timerDiv.id = options.id;
     const timer = document.createElement('timer-bar');
     container.appendChild(timerDiv);
     timerDiv.appendChild(timer);
@@ -481,31 +481,31 @@ export class Bars {
     timer.height = window.getComputedStyle(timerDiv).height;
     timer.toward = 'left';
     timer.bg = computeBackgroundColorFrom(timer, 'bar-border-color');
-    if (fgColor)
-      timer.fg = computeBackgroundColorFrom(timer, fgColor);
+    if (options.fgColor)
+      timer.fg = computeBackgroundColorFrom(timer, options.fgColor);
 
     return timer;
   }
 
-  addResourceBar({
+  addResourceBar(options, /* : {
     id,
     fgColor,
     maxvalue,
-  }) {
+  } */) {
     const container = this.addJobBarContainer();
 
     const barDiv = document.createElement('div');
-    barDiv.id = id;
+    barDiv.id = options.id;
     const bar = document.createElement('resource-bar');
     container.appendChild(barDiv);
     barDiv.appendChild(bar);
     bar.classList.add('resourcebar');
 
     bar.bg = 'rgba(0, 0, 0, 0)';
-    bar.fg = computeBackgroundColorFrom(bar, fgColor);
+    bar.fg = computeBackgroundColorFrom(bar, options.fgColor);
     bar.width = window.getComputedStyle(barDiv).width;
     bar.height = window.getComputedStyle(barDiv).height;
-    bar.maxvalue = maxvalue;
+    bar.maxvalue = options.maxvalue;
 
     return bar;
   }
@@ -564,7 +564,8 @@ export class Bars {
   }
 
   _onComboChange(skill) {
-    this.comboFuncs.forEach((func) => func(skill));
+    // this.comboFuncs.forEach((func) => func(skill));
+    this.jobComponent?.onCombo(skill);
   }
 
   _updateJobComponent(job) {
