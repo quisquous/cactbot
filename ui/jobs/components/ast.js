@@ -1,5 +1,5 @@
 import { kAbility } from '../constants';
-import { Component } from './util';
+import { Component } from './base';
 
 const cardsMap = {
   'Balance': { 'bonus': 'melee', 'seal': 'Solar' },

@@ -1,6 +1,6 @@
 import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
-import { Component } from './util';
+import { Component } from './base';
 
 export default class BlmComponent extends Component {
   setup() {
