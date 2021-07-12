@@ -2,6 +2,7 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import { RaidbossOptions } from '../../raidboss_options';
 import EventBus from '../EventBus';
 import RaidEmulatorPopupText from '../overrides/RaidEmulatorPopupText';
+import RaidEmulatorWatchCombatantsOverride from '../overrides/RaidEmulatorWatchCombatantsOverride';
 
 import AnalyzedEncounter from './AnalyzedEncounter';
 import Encounter from './Encounter';
@@ -28,25 +29,27 @@ export default class RaidEmulator extends EventBus {
     this.encounters.push(encounter);
   }
 
-  private setCurrent(enc: Encounter): void {
+  private setCurrent(enc: Encounter,
+      watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride): void {
     // If language was autodetected from the encounter, set the current ParserLanguage
     // appropriately
     if (enc.language)
       this.options.ParserLanguage = enc.language;
 
-    this.currentEncounter = new AnalyzedEncounter(this.options, enc, this);
+    this.currentEncounter = new AnalyzedEncounter(this.options, enc, this, watchCombatantsOverride);
     void this.dispatch('preCurrentEncounterChanged', this.currentEncounter);
     void this.currentEncounter.analyze().then(() => {
       void this.dispatch('currentEncounterChanged', this.currentEncounter);
     });
   }
 
-  setCurrentByID(id: number): boolean {
+  setCurrentByID(id: number,
+      watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride): boolean {
     const enc = this.encounters.find((v) => v.id === id);
     if (!enc)
       return false;
 
-    this.setCurrent(enc);
+    this.setCurrent(enc, watchCombatantsOverride);
     return true;
   }
 
