@@ -26,7 +26,7 @@ export default class BlmComponent extends Component {
     this.umbralTimer = this.addResourceBox({
       classList: ['blm-umbral-timer'],
     });
-    const xenoTimer = this.addResourceBox({
+    this.xenoTimer = this.addResourceBox({
       classList: ['blm-xeno-timer'],
     });
 
@@ -43,7 +43,7 @@ export default class BlmComponent extends Component {
     for (let i = 0; i < 3; ++i) {
       const d = document.createElement('div');
       heartStacksContainer.appendChild(d);
-      heartStacks.push(d);
+      this.heartStacks.push(d);
     }
 
     const xenoStacksContainer = document.createElement('div');
@@ -53,7 +53,7 @@ export default class BlmComponent extends Component {
     for (let i = 0; i < 2; ++i) {
       const d = document.createElement('div');
       xenoStacksContainer.appendChild(d);
-      xenoStacks.push(d);
+      this.xenoStacks.push(d);
     }
   }
 
