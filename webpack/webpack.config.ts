@@ -152,7 +152,6 @@ export default (
       ],
     },
     plugins: [
-      new webpack.ProgressPlugin({}),
       new CleanWebpackPlugin(),
       new ForkTsCheckerWebpackPlugin(),
       new MiniCssExtractPlugin(),
