@@ -273,6 +273,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1753', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1753', capture: false }),
       condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
