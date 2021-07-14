@@ -19,6 +19,7 @@ import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
 import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
 import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
+import { EmulatorMap } from './emulator/ui/EmulatorMap';
 import EncounterTab from './emulator/ui/EncounterTab';
 import ProgressBar from './emulator/ui/ProgressBar';
 import Tooltip from './emulator/ui/Tooltip';
@@ -40,6 +41,7 @@ declare global {
       emulatedPartyInfo: EmulatedPartyInfo;
       emulatedWebSocket: RaidEmulatorOverlayApiHook;
       timelineUI: RaidEmulatorTimelineUI;
+      emulatorMap: EmulatorMap;
     };
   }
 }
@@ -120,6 +122,7 @@ const raidEmulatorOnLoad = async () => {
   }
 
   const emulator = new RaidEmulator(options);
+  const emulatorMap = new EmulatorMap(emulator);
   const progressBar = new ProgressBar(emulator);
   const encounterTab = new EncounterTab(persistor);
   const emulatedPartyInfo = new EmulatedPartyInfo(emulator);
@@ -453,6 +456,7 @@ const raidEmulatorOnLoad = async () => {
     emulatedPartyInfo: emulatedPartyInfo,
     emulatedWebSocket: emulatedWebSocket,
     timelineUI: timelineUI,
+    emulatorMap: emulatorMap,
   };
 };
 
