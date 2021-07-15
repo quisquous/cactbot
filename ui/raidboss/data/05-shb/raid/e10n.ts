@@ -3,8 +3,12 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensPromiseLitany,
   timelineFile: 'e10n.txt',
   timelineTriggers: [
@@ -19,6 +23,7 @@ export default {
   triggers: [
     {
       id: 'E10N Deepshadow Nova',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56E5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56E5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56E5', capture: false }),
@@ -30,6 +35,7 @@ export default {
     },
     {
       id: 'E10N Forward Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B4', capture: false }),
@@ -40,26 +46,28 @@ export default {
     },
     {
       id: 'E10N Backward Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56B7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56B7', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.goFront,
       },
     },
     {
       id: 'E10N Forward Shadow Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56B5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56B5', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Shadow Side',
@@ -73,13 +81,14 @@ export default {
     },
     {
       id: 'E10N Backward Shadow Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56B8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56B8', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Opposite Shadow',
@@ -93,6 +102,7 @@ export default {
     },
     {
       id: 'E10N Left Giga Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '56B1', source: 'Shadowkeeper', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '56B1', source: 'Schattenkönig', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '56B1', source: 'Roi De L\'Ombre', capture: false }),
@@ -103,6 +113,7 @@ export default {
     },
     {
       id: 'E10N Right Giga Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '56AE', source: 'Shadowkeeper', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '56AE', source: 'Schattenkönig', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '56AE', source: 'Roi De L\'Ombre', capture: false }),
@@ -113,13 +124,14 @@ export default {
     },
     {
       id: 'E10N Left Right Shadow Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Shadowkeeper' }),
       netRegexDe: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Schattenkönig' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Roi De L\'Ombre' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: '影の王' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: '影之王' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: '그림자의 왕' }),
-      alertText: (_data, matches, output) => matches.id === '56AF' ? output.left() : output.right(),
+      alertText: (_data, matches, output) => matches.id === '56AF' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Go Left of Shadows',
@@ -141,6 +153,7 @@ export default {
     },
     {
       id: 'E10N Shadow\'s Edge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B0B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B0B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B0B' }),
@@ -151,6 +164,7 @@ export default {
     },
     {
       id: 'E10N Voidgate',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56DD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56DD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56DD', capture: false }),
@@ -158,7 +172,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56DD', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56DD', capture: false }),
       delaySeconds: 10, // It's 17 seconds from the time Voidgate starts casting until towers.
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Puddles',
@@ -172,13 +186,14 @@ export default {
     },
     {
       id: 'E10N Shadow Warrior',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56E2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56E2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56E2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56E2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56E2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56E2', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Watch Tethered Dog',
@@ -192,6 +207,7 @@ export default {
     },
     {
       id: 'E10N Cloak of Shadows ',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B11', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B11', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B11', capture: false }),
@@ -199,7 +215,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5B11', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '5B11', capture: false }),
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           // TODO: this could be better if we knew where the shadow was
@@ -216,6 +232,7 @@ export default {
       // There is technically an AoE marker, but by the time it shows,
       // it's too late to get out if the player is inside the boss's hitbox.
       id: 'E10N Throne Of Shadow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56C7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56C7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56C7', capture: false }),
@@ -228,6 +245,7 @@ export default {
       // There is technically a visual, but it comes up at precisely the same time as puddles.
       // Best to make sure the user is reminded.
       id: 'E10N Distant Scream',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56C6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56C6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56C6', capture: false }),
@@ -384,3 +402,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

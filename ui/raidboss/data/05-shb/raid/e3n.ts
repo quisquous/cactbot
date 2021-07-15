@@ -2,13 +2,18 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensGateInundation,
   timelineFile: 'e3n.txt',
   triggers: [
     {
       id: 'E3N Tidal Roar',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3FC4', source: 'Léviathan', capture: false }),
@@ -20,12 +25,14 @@ export default {
     },
     {
       id: 'E3N Rip Current',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
       id: 'E3N Tidal Wave Look',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3FD2', source: 'Léviathan', capture: false }),
@@ -33,7 +40,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3FD2', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD2', source: '리바이어선', capture: false }),
       delaySeconds: 3,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Look for Wave',
@@ -47,6 +54,7 @@ export default {
     },
     {
       id: 'E3N Tidal Wave Knockback',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3FD2', source: 'Léviathan', capture: false }),
@@ -60,13 +68,14 @@ export default {
     },
     {
       id: 'E3N Undersea Quake Outside',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3FD0', source: 'Léviathan', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3FD0', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FD0', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD0', source: '리바이어선', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Middle',
@@ -80,6 +89,7 @@ export default {
     },
     {
       id: 'E3N Undersea Quake Inside',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3FCF', source: 'Léviathan', capture: false }),
@@ -90,6 +100,7 @@ export default {
     },
     {
       id: 'E3N Maelstrom',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3FD8', source: 'Léviathan', capture: false }),
@@ -97,7 +108,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3FD8', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD8', source: '리바이어선', capture: false }),
       delaySeconds: 8,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid Puddles and Dives',
@@ -111,12 +122,14 @@ export default {
     },
     {
       id: 'E3N Drenching Pulse Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Tsunami',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3FD4', source: 'Léviathan', capture: false }),
@@ -129,25 +142,29 @@ export default {
     {
       // Crashing Pulse and Smothering Waters
       id: 'E3N Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E3N Surging Waters Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AD' }),
       response: Responses.knockbackOn(),
     },
     {
       id: 'E3N Splashing Waters Spread',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0082' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Swirling Waters Donut',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0099' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Donut on YOU',
@@ -288,3 +305,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

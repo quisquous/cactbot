@@ -1,10 +1,25 @@
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
-
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export interface Data extends RaidbossData {
+  phaserOutputs?: string[];
+  phase?: string;
+  finalArtOfDarkness?: string;
+  artOfDarkness?: string[];
+  artOfDarknessIdMap?: { [id: string]: string };
+  artOfDarknessExpected?: string;
+  summon?: boolean;
+  boss?: PluginCombatantState;
+  clones?: PluginCombatantState[];
+}
 
 // TODO: Add N/S E/W callout to Rejuvenating Balm
 
@@ -56,6 +71,7 @@ const artOfDarknessOutputStrings = {
     cn: '散开',
     ko: '산개',
   },
+  unknown: Outputs.unknown,
 };
 
 const summonDirectionOutputStrings = {
@@ -126,24 +142,26 @@ const summonDirectionOutputStrings = {
   unknown: Outputs.unknown,
 };
 
-const convertBossHeadingToClonePosition = (boss) => {
+const convertBossHeadingToClonePosition = (boss: PluginCombatantState): PluginCombatantState => {
   // Snap heading to closest card/intercard (aka PI/4).  N = PI, E = PI/2.
   const closestRad = Math.round(boss.Heading * 4 / Math.PI) / 4 * Math.PI;
   // Find position opposite of the boss facing, centered on 100,100.
   return {
+    ...boss,
     PosX: 100 - 20 * Math.round(Math.sin(closestRad)),
     PosY: 100 - 20 * Math.round(Math.cos(closestRad)),
   };
 };
 
-const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
+const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginCombatantState,
+    clone2: PluginCombatantState, abilityId: string): string => {
   // Convert coordinates to 8 cardinal / intercardinal positions:
   // N at 0, NE at 1, ... NW at 7
   const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
   const c1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
   const c2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
 
-  const directions = {
+  const directions: { [idx: string]: string } = {
     '0': 'NNE',
     '1': 'ENE',
     '2': 'ESE',
@@ -154,7 +172,7 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
     '7': 'NNW',
   };
 
-  const badZones = [];
+  const badZones: number[] = [];
   for (const position of [b, c1, c2]) {
     for (let i = 0; i < 4; ++i) {
       let newPosition;
@@ -173,18 +191,20 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
     .filter((pos) => !badZones.includes(pos))
     .map((pos) => directions[pos]);
 
-  if (safeZones.length !== 1)
+  const safeZone = safeZones[0];
+  if (!safeZone || safeZones.length !== 1)
     return 'unknown';
 
-  return safeZones[0];
+  return safeZone;
 };
 
-export default {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensPromiseUmbraSavage,
   timelineFile: 'e9s.txt',
   triggers: [
     {
       id: 'E9S Ground-Razing Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5625', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5625', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5625', source: 'Nuage De Ténèbres', capture: false }),
@@ -197,6 +217,7 @@ export default {
     },
     {
       id: 'E9S The Art Of Darkness Protean',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Nuage De Ténèbres', capture: false }),
@@ -204,11 +225,12 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: '어둠의 구름', capture: false }),
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: { text: artOfDarknessOutputStrings.protean },
     },
     {
       id: 'E9S The Art Of Darkness Partner Stacks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Nuage De Ténèbres', capture: false }),
@@ -216,11 +238,12 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: '어둠의 구름', capture: false }),
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: { text: artOfDarknessOutputStrings.stackWithPartner },
     },
     {
       id: 'E9S Zero-Form Devouring Dark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.startsUsing({ id: '5623', source: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '5623', source: 'Nuage De Ténèbres' }),
@@ -230,17 +253,17 @@ export default {
       durationSeconds: 4,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.tankBusterOnYou();
+          return output.tankBusterOnYou!();
 
         if (data.role === 'tank')
-          return output.tankSwap();
+          return output.tankSwap!();
 
         if (data.role === 'healer')
-          return output.tankBusters({ player: data.ShortName(matches.target) });
+          return output.tankBusters!({ player: data.ShortName(matches.target) });
       },
       infoText: (data, _matches, output) => {
         if (data.role !== 'tank' && data.role !== 'healer')
-          return output.avoidLaser();
+          return output.avoidLaser!();
       },
       outputStrings: {
         tankBusterOnYou: Outputs.tankBusterOnYou,
@@ -258,6 +281,7 @@ export default {
     },
     {
       id: 'E9S Obscure Woods',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55EE', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55EE', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55EE', source: 'Nuage De Ténèbres', capture: false }),
@@ -270,6 +294,7 @@ export default {
     },
     {
       id: 'E9S Flood Of Obscurity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5907', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5907', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5907', source: 'Nuage De Ténèbres', capture: false }),
@@ -277,7 +302,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5907', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5907', source: '어둠의 구름', capture: false }),
       delaySeconds: 3,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Place Bramble',
@@ -291,6 +316,7 @@ export default {
     },
     {
       id: 'E9S Waste Away',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5617', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5617', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5617', source: 'Nuage De Ténèbres', capture: false }),
@@ -301,6 +327,7 @@ export default {
     },
     {
       id: 'E9S Rejuvenating Balm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5618', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5618', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5618', source: 'Nuage De Ténèbres', capture: false }),
@@ -308,7 +335,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5618', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5618', source: '어둠의 구름', capture: false }),
       durationSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away From Tethered Walls',
@@ -322,6 +349,7 @@ export default {
     },
     {
       id: 'E9S Stygian Break Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0012' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
@@ -329,6 +357,7 @@ export default {
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited List',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[23]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[23]', source: 'Nuage De Ténèbres', capture: false }),
@@ -342,12 +371,13 @@ export default {
           data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
-      run: (data) => data.phaserOutputs.shift(),
+      infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
+      run: (data) => data.phaserOutputs?.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[23]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[23]', source: 'Nuage De Ténèbres', capture: false }),
@@ -355,12 +385,16 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 7,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        const key = data.phaserOutputs?.shift();
+        if (key)
+          return output[key]!();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[23]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[23]', source: 'Nuage De Ténèbres', capture: false }),
@@ -368,12 +402,16 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        const key = data.phaserOutputs?.shift();
+        if (key)
+          return output[key]!();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited List',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560[DE]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560[DE]', source: 'Nuage De Ténèbres', capture: false }),
@@ -387,12 +425,13 @@ export default {
           data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
-      run: (data) => data.phaserOutputs.shift(),
+      infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
+      run: (data) => data.phaserOutputs?.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560[DE]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560[DE]', source: 'Nuage De Ténèbres', capture: false }),
@@ -400,12 +439,16 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 8,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        const key = data.phaserOutputs?.shift();
+        if (key)
+          return output[key]!();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560[DE]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560[DE]', source: 'Nuage De Ténèbres', capture: false }),
@@ -413,12 +456,16 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        const key = data.phaserOutputs?.shift();
+        if (key)
+          return output[key]!();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S The Second Art Of Darkness Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5601', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5601', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5601', source: 'Nuage De Ténèbres', capture: false }),
@@ -428,7 +475,7 @@ export default {
       // The fight goes Second Art -> Third Art -> Second Art, so we want
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => {
         data.artOfDarkness = [];
         if (!data.artOfDarknessIdMap)
@@ -447,6 +494,7 @@ export default {
     },
     {
       id: 'E9S The Second Art Of Darkness Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5602', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5602', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5602', source: 'Nuage De Ténèbres', capture: false }),
@@ -456,7 +504,7 @@ export default {
       // The fight goes Second Art -> Third Art -> Second Art, so we want
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => {
         data.artOfDarkness = [];
         if (!data.artOfDarknessIdMap)
@@ -477,6 +525,7 @@ export default {
       // The Art Of Darkness uses head markers with randomized offsets.  The first
       // charge is always left or right, and we can solve the rest from there.
       id: 'E9S The Second / Third Art Of Darkness Charge Solver',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
@@ -492,6 +541,8 @@ export default {
           idPivot = parseInt(matches.id, 16);
         else if (data.artOfDarknessExpected === 'right')
           idPivot = parseInt(matches.id, 16) - 1;
+        else
+          throw new UnreachableCode();
 
         delete data.artOfDarknessExpected;
 
@@ -499,12 +550,16 @@ export default {
         const artOfDarknessOutputKeys = ['goRight', 'goLeft', 'stackWithPartner', 'protean'];
         for (let i = 0; i < 4; ++i) {
           const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
-          data.artOfDarknessIdMap[hexPivot] = artOfDarknessOutputKeys[i];
+          const outputKey = artOfDarknessOutputKeys[i];
+          if (!outputKey)
+            throw new UnreachableCode();
+          data.artOfDarknessIdMap[hexPivot] = outputKey;
         }
       },
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Left / Right Charge',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
@@ -517,11 +572,12 @@ export default {
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'goRight' || output === 'goLeft';
       },
-      run: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
+      run: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
     },
     {
       // Fire the trigger on stack or protean since we want the callout as soon as possible.
       id: 'E9S The Second / Third Art Of Darkness Callout',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
@@ -534,20 +590,21 @@ export default {
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'stackWithPartner' || output === 'protean';
       },
-      preRun: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
+      preRun: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _matches, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
-        const callout = data.artOfDarkness.slice();
+        const callout = data.artOfDarkness?.slice();
         if (data.finalArtOfDarkness)
-          callout.push(data.finalArtOfDarkness);
-        return callout.map((key) => output[key]()).join(' -> ');
+          callout?.push(data.finalArtOfDarkness);
+        return callout?.map((key) => output[key]!()).join(' -> ');
       },
       run: (data) => delete data.artOfDarkness,
       outputStrings: artOfDarknessOutputStrings,
     },
     {
       id: 'E9S Empty Plane',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55EF', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55EF', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55EF', source: 'Nuage De Ténèbres', capture: false }),
@@ -561,13 +618,14 @@ export default {
     },
     {
       id: 'E9S Flood Of Emptiness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55F0', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55F0', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55F0', source: 'Nuage De Ténèbres', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '55F0', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '55F0', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '55F0', source: '어둠의 구름', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tile Positions',
@@ -581,10 +639,11 @@ export default {
     },
     {
       id: 'E9S Curse Of Darkness',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => matches.duration - 3,
-      alertText: (_data, _matches, output) => output.text(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Face Laser Out',
@@ -598,6 +657,7 @@ export default {
     },
     {
       id: 'E9S Hypercharged Condensation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560C', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560C', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560C', source: 'Nuage De Ténèbres', capture: false }),
@@ -610,6 +670,7 @@ export default {
     },
     {
       id: 'E9S The Art Of Darkness Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5A95', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5A95', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5A95', source: 'Nuage De Ténèbres', capture: false }),
@@ -619,16 +680,17 @@ export default {
       durationSeconds: 8,
       alertText: (data, _matches, output) => {
         if (!data.summon)
-          return output.text();
+          return output.text!();
       },
       infoText: (data, _matches, output) => {
         if (data.summon)
-          return output.text();
+          return output.text!();
       },
       outputStrings: { text: artOfDarknessOutputStrings.goLeft },
     },
     {
       id: 'E9S The Art Of Darkness Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5A96', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5A96', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5A96', source: 'Nuage De Ténèbres', capture: false }),
@@ -638,16 +700,17 @@ export default {
       durationSeconds: 8,
       alertText: (data, _matches, output) => {
         if (!data.summon)
-          return output.text();
+          return output.text!();
       },
       infoText: (data, _matches, output) => {
         if (data.summon)
-          return output.text();
+          return output.text!();
       },
       outputStrings: { text: artOfDarknessOutputStrings.goRight },
     },
     {
       id: 'E9S Full-Perimeter Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5629', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5629', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5629', source: 'Nuage De Ténèbres', capture: false }),
@@ -661,6 +724,7 @@ export default {
     },
     {
       id: 'E9S Deluge Of Darkness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55F1', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55F1', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55F1', source: 'Nuage De Ténèbres', capture: false }),
@@ -674,13 +738,14 @@ export default {
     },
     {
       id: 'E9S The Third Art Of Darkness Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5603', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5603', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5603', source: 'Nuage De Ténèbres', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5603', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5603', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5603', source: '어둠의 구름', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
@@ -699,13 +764,14 @@ export default {
     },
     {
       id: 'E9S The Third Art Of Darkness Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5604', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5604', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5604', source: 'Nuage De Ténèbres', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5604', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5604', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5604', source: '어둠의 구름', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
@@ -724,6 +790,7 @@ export default {
     },
     {
       id: 'E9S Particle Concentration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5620', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5620', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5620', source: 'Nuage De Ténèbres', capture: false }),
@@ -732,7 +799,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '5620', source: '어둠의 구름', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Towers',
@@ -746,6 +813,7 @@ export default {
     },
     {
       id: 'E9S Summon',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '5019', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '5019', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '5019', source: 'Nuage De Ténèbres', capture: false }),
@@ -756,6 +824,7 @@ export default {
     },
     {
       id: 'E9S Clone The Art Of Darkness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuée de Ténèbres' }),
@@ -813,7 +882,9 @@ export default {
           return;
 
         const [clone1, clone2] = data.clones;
-        return output[calculateSummonSafeZone(data.boss, clone1, clone2, matches.id)]();
+        if (!clone1 || !clone2)
+          return;
+        return output[calculateSummonSafeZone(data.boss, clone1, clone2, matches.id)]!();
       },
       run: (data) => delete data.summon,
       outputStrings: summonDirectionOutputStrings,
@@ -979,3 +1050,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
