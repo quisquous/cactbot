@@ -52,6 +52,32 @@ const kPullText = {
   ko: '풀링',
 };
 
+export class Player {
+  constructor() {
+    // basic info
+    this.name = undefined;
+    this.level = 0;
+    this.job = 'NONE';
+    this.hp = 0;
+    this.maxHP = 0;
+    this.currentShield = 0;
+    this.mp = 0;
+    this.prevMP = 0;
+    this.maxMP = 0;
+    this.cp = 0;
+    this.maxCP = 0;
+    this.gp = 0;
+    this.maxGP = 0;
+
+    this.skillSpeed = 0;
+    this.spellSpeed = 0;
+
+    // combat info
+    this.combo = undefined;
+    this.comboTimer = undefined;
+  }
+}
+
 export class Bars {
   constructor(options) {
     this.options = options;
@@ -61,6 +87,9 @@ export class Bars {
      * @type {Component}
      */
     this.jobComponent = undefined;
+
+    /** @type {Player} */
+    this.player = new Player();
 
     this.me = undefined;
     this.level = 0;
