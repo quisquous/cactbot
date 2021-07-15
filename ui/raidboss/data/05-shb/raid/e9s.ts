@@ -192,7 +192,7 @@ const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginComba
     .map((pos) => directions[pos]);
 
   const safeZone = safeZones[0];
-  if (safeZones?.length !== 1)
+  if (!safeZone || safeZones.length !== 1)
     return 'unknown';
 
   return safeZone;
