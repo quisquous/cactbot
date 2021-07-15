@@ -65,11 +65,44 @@ const kPullText = {
   ko: '풀링',
 };
 
-class Bars {
+export class Player {
+  constructor() {
+    // basic info
+    this.name = undefined;
+    this.level = 0;
+    this.job = 'NONE';
+    this.hp = 0;
+    this.maxHP = 0;
+    this.currentShield = 0;
+    this.mp = 0;
+    this.prevMP = 0;
+    this.maxMP = 0;
+    this.cp = 0;
+    this.maxCP = 0;
+    this.gp = 0;
+    this.maxGP = 0;
+
+    this.skillSpeed = 0;
+    this.spellSpeed = 0;
+
+    // combat info
+    this.combo = undefined;
+    this.comboTimer = undefined;
+  }
+}
+
+export class Bars {
   constructor(options) {
     this.options = options;
     this.init = false;
     this.o = {};
+    /**
+     * @type {Component}
+     */
+    this.jobComponent = undefined;
+
+    /** @type {Player} */
+    this.player = new Player();
 
     this.me = undefined;
     this.level = 0;
@@ -354,9 +387,10 @@ class Bars {
       this.o.mpTicker.loop = true;
     }
 
-    const setup = getSetup(this.job);
-    if (setup)
-      setup.bind(null, this)();
+    // const setup = getSetup(this.job);
+    // if (setup)
+    //   setup.bind(null, this)();
+    this._updateJobComponent(this.job);
 
     this._validateKeys();
 
@@ -412,11 +446,11 @@ class Bars {
     return boxes;
   }
 
-  addResourceBox({ classList }) {
+  addResourceBox(options/* : { classList } */) {
     const boxes = this.addJobBoxContainer();
     const boxDiv = document.createElement('div');
-    if (classList) {
-      classList.forEach((className) => {
+    if (options.classList) {
+      options.classList.forEach((className) => {
         boxDiv.classList.add(className, 'resourcebox');
       });
     }
@@ -429,16 +463,16 @@ class Bars {
     return textDiv;
   }
 
-  addProcBox({
+  addProcBox(options, /* : {
     id,
     fgColor,
     threshold,
     scale,
     notifyWhenExpired,
-  }) {
+  } */) {
     const elementId = this.job.toLowerCase() + '-procs';
 
-    let container = document.getElementById(id);
+    let container = document.getElementById(options.id);
     if (!container) {
       container = document.createElement('div');
       container.id = elementId;
@@ -449,19 +483,19 @@ class Bars {
     const timerBox = document.createElement('timer-box');
     container.appendChild(timerBox);
     timerBox.stylefill = 'empty';
-    if (fgColor)
-      timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
+    if (options.fgColor)
+      timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
     timerBox.toward = 'bottom';
-    timerBox.threshold = `${threshold ? threshold : 0}`;
+    timerBox.threshold = `${options.threshold ?? 0}`;
     timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
-    timerBox.valuescale = `${scale ? scale : 1}`;
-    if (id) {
-      timerBox.id = id;
+    timerBox.valuescale = `${options.scale ?? 1}`;
+    if (options.id) {
+      timerBox.id = options.id;
       timerBox.classList.add('timer-box');
     }
-    if (notifyWhenExpired) {
+    if (options.notifyWhenExpired) {
       timerBox.classList.add('notify-when-expired');
       if (this.options.NotifyExpiredProcsInCombatSound === 'threshold')
         timerBox.onThresholdReached(this.playNotification);
@@ -471,14 +505,14 @@ class Bars {
     return timerBox;
   }
 
-  addTimerBar({
+  addTimerBar(options, /* : {
     id,
     fgColor,
-  }) {
+  } */) {
     const container = this.addJobBarContainer();
 
     const timerDiv = document.createElement('div');
-    timerDiv.id = id;
+    timerDiv.id = options.id;
     const timer = document.createElement('timer-bar');
     container.appendChild(timerDiv);
     timerDiv.appendChild(timer);
@@ -488,31 +522,31 @@ class Bars {
     timer.height = window.getComputedStyle(timerDiv).height;
     timer.toward = 'left';
     timer.bg = computeBackgroundColorFrom(timer, 'bar-border-color');
-    if (fgColor)
-      timer.fg = computeBackgroundColorFrom(timer, fgColor);
+    if (options.fgColor)
+      timer.fg = computeBackgroundColorFrom(timer, options.fgColor);
 
     return timer;
   }
 
-  addResourceBar({
+  addResourceBar(options, /* : {
     id,
     fgColor,
     maxvalue,
-  }) {
+  } */) {
     const container = this.addJobBarContainer();
 
     const barDiv = document.createElement('div');
-    barDiv.id = id;
+    barDiv.id = options.id;
     const bar = document.createElement('resource-bar');
     container.appendChild(barDiv);
     barDiv.appendChild(bar);
     bar.classList.add('resourcebar');
 
     bar.bg = 'rgba(0, 0, 0, 0)';
-    bar.fg = computeBackgroundColorFrom(bar, fgColor);
+    bar.fg = computeBackgroundColorFrom(bar, options.fgColor);
     bar.width = window.getComputedStyle(barDiv).width;
     bar.height = window.getComputedStyle(barDiv).height;
-    bar.maxvalue = maxvalue;
+    bar.maxvalue = options.maxvalue;
 
     return bar;
   }
@@ -571,7 +605,14 @@ class Bars {
   }
 
   _onComboChange(skill) {
-    this.comboFuncs.forEach((func) => func(skill));
+    // this.comboFuncs.forEach((func) => func(skill));
+    this.jobComponent?.onCombo(skill);
+  }
+
+  _updateJobComponent(job) {
+    this.jobComponent?.reset();
+
+    this.JobComponent = ComponentFactory.getComponent(this, job);
   }
 
   _updateJobBarGCDs() {
@@ -766,9 +807,10 @@ class Bars {
     if (this.buffTracker)
       this.buffTracker.clear();
     // Reset job-specific ui
-    const reset = getReset(this.job);
-    if (reset)
-      reset.bind(null, this)();
+    // const reset = getReset(this.job);
+    // if (reset)
+    //   reset.bind(null, this)();
+    this.jobComponent?.reset();
   }
 
   _onInCombatChanged(e) {
@@ -936,6 +978,7 @@ class Bars {
       this.jobFuncs.forEach((func) => {
         func(e.detail.jobDetail);
       });
+      this.jobComponent?.onJobDetailUpdate(e.detail.jobDetail);
     }
   }
 
@@ -984,6 +1027,11 @@ class Bars {
         const stats = m.groups;
         this.skillSpeed = parseInt(stats.skillSpeed);
         this.spellSpeed = parseInt(stats.spellSpeed);
+        this.jobComponent?.onStatChange({
+          gcdSkill: this.gcdSkill,
+          gcdSpell: this.gcdSpell,
+          ...stats,
+        });
         this._updateJobBarGCDs();
       }
     } else if (type === '26') {
@@ -991,6 +1039,7 @@ class Bars {
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.gainEffectFuncMap[effectId];
+        this.jobComponent?.onGainEffect(effectId, m.groups);
         if (f)
           f(effectId, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
@@ -1014,6 +1063,7 @@ class Bars {
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.loseEffectFuncMap[effectId];
+        this.jobComponent?.onLoseEffect(effectId, m.groups);
         if (f)
           f(effectId, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
@@ -1040,6 +1090,7 @@ class Bars {
       if (m) {
         const id = m.groups.id;
         this.combo.HandleAbility(id);
+        this.jobComponent?.onUseAbility(id);
         const f = this.abilityFuncMap[id];
         if (f)
           f(id, m.groups);
