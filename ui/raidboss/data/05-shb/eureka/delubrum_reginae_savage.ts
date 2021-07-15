@@ -120,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.caresAboutAOE(),
       // Count the number of Glory of Bozja so that people alternating mitigation
       // can more easily assign themselves to even or odd glories.
-      preRun: (data) => data.gloryOfBozjaCount = (data.gloryOfBozjaCount || 0) + 1,
+      preRun: (data) => data.gloryOfBozjaCount = (data.gloryOfBozjaCount ?? 0) + 1,
       durationSeconds: 8,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => output.aoeNum!({ num: data.gloryOfBozjaCount }),
