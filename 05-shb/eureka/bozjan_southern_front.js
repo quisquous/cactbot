@@ -117,7 +117,6 @@ const tankBusterOnParty = (ceName) => (data, matches) => {
 };
 Options.Triggers.push({
   zoneId: ZoneId.TheBozjanSouthernFront,
-  resetWhenOutOfCombat: false,
   timelineFile: 'bozjan_southern_front.txt',
   timeline: [
     (data) => {
@@ -134,6 +133,7 @@ Options.Triggers.push({
       ];
     },
   ],
+  resetWhenOutOfCombat: false,
   timelineTriggers: [
     {
       id: 'Bozja South Castrum Lyon Winds\' Peak',
@@ -145,6 +145,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Bozja South Falling Asleep',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 7 Minuten vergangen..*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
@@ -155,6 +156,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Critical Engagement',
+      type: 'ActorControl',
       netRegex: NetRegexes.network6d({ command: '80000014' }),
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
@@ -164,10 +166,10 @@ Options.Triggers.push({
           // Stop any active timelines.
           data.StopCombat();
           // Prevent further triggers for any active CEs from firing.
-          data.ce = null;
+          delete data.ce;
           return;
         }
-        data.ce = null;
+        delete data.ce;
         const ceId = matches.data0.toUpperCase();
         for (const key in ceIds) {
           if (ceIds[key] === ceId) {
@@ -183,6 +185,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Choctober Choco Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Red Comet', id: '506C' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rot(?:e|er|es|en) Meteor', id: '506C' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Comète Rouge', id: '506C' }),
@@ -194,6 +197,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Bottom Check',
+      type: 'Ability',
       // TODO: netRegex could take (data) => {} here so we could do a target: data.me?
       netRegex: NetRegexes.ability({ source: '4th Legion Helldiver', id: '51FD' }),
       netRegexDe: NetRegexes.ability({ source: 'Höllentaucher Der Iv\\. Legion', id: '51FD' }),
@@ -206,6 +210,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Helldiver MRV Missile',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51FC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Höllentaucher Der Iv\\. Legion', id: '51FC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Plongeur Infernal De La 4E Légion', id: '51FC', capture: false }),
@@ -222,6 +227,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Helldiver Lateral Dive',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51EA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Höllentaucher Der Iv\\. Legion', id: '51EA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Plongeur Infernal De La 4E Légion', id: '51EA', capture: false }),
@@ -243,17 +249,19 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Helldiver Magitek Missiles',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51FE' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Höllentaucher Der Iv\\. Legion', id: '51FE' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Plongeur Infernal De La 4E Légion', id: '51FE' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ヘルダイバー', id: '51FE' }),
       netRegexCn: NetRegexes.startsUsing({ source: '第四军团地狱潜者', id: '51FE' }),
       netRegexKo: NetRegexes.startsUsing({ source: 'Iv군단 헬다이버', id: '51FE' }),
-      condition: tankBusterOnParty,
+      condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Helldiver Infrared Blast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51EC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Höllentaucher Der Iv\\. Legion', id: '51EC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Plongeur Infernal De La 4E Légion', id: '51EC', capture: false }),
@@ -276,6 +284,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Helldiver Joint Attack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51FE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Höllentaucher Der Iv\\. Legion', id: '51FE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Plongeur Infernal De La 4E Légion', id: '51FE', capture: false }),
@@ -287,17 +296,19 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Brionac Electric Anvil',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51DD' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brionac', id: '51DD' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Brionac', id: '51DD' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ブリューナク', id: '51DD' }),
       netRegexCn: NetRegexes.startsUsing({ source: '布里欧纳克', id: '51DD' }),
       netRegexKo: NetRegexes.startsUsing({ source: '브류나크', id: '51DD' }),
-      condition: tankBusterOnParty,
+      condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Brionac False Thunder Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51CE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brionac', id: '51CE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Brionac', id: '51CE', capture: false }),
@@ -309,6 +320,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Brionac False Thunder Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51CF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brionac', id: '51CF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Brionac', id: '51CF', capture: false }),
@@ -320,6 +332,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Brionac Anti-Warmachina Weaponry',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51CD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brionac', id: '51CD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Brionac', id: '51CD', capture: false }),
@@ -342,6 +355,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Brionac Energy Generation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51D0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Brionac', id: '51D0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Brionac', id: '51D0', capture: false }),
@@ -349,7 +363,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '布里欧纳克', id: '51D0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '브류나크', id: '51D0', capture: false }),
       condition: (data) => !data.helldiver,
-      preRun: (data) => data.energyCount = (data.energyCount || 0) + 1,
+      preRun: (data) => {
+        let _a; return data.energyCount = ((_a = data.energyCount) !== null && _a !== void 0 ? _a : 0) + 1;
+      },
       infoText: (data, _matches, output) => {
         if (data.energyCount === 1)
           return output.getUnderOrb();
@@ -391,6 +407,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Albeleo Baleful Gaze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Albeleo\'s Monstrosity', id: '5404', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Albeleos Biest', id: '5404', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Bête D\'Albeleo', id: '5404', capture: false }),
@@ -402,6 +419,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Albeleo Abyssal Cry',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Albeleo\'s Hrodvitnir', id: '5406' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5406' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5406' }),
@@ -413,6 +431,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Adrammelech Holy IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F96', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F96', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F96', capture: false }),
@@ -424,6 +443,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Adrammelech Flare',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F95' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F95' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F95' }),
@@ -431,11 +451,12 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '阿德拉梅里克', id: '4F95' }),
       netRegexKo: NetRegexes.startsUsing({ source: '아드람멜렉', id: '4F95' }),
       // TODO: this is probably magical.
-      condition: tankBusterOnParty,
+      condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Adrammelech Meteor',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F92', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F92', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F92', capture: false }),
@@ -457,14 +478,17 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Adrammelech Orb Collector',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '944[3-8]' }),
       run: (data, matches) => {
-        data.orbs = data.orbs || {};
+        let _a;
+        (_a = data.orbs) !== null && _a !== void 0 ? _a : (data.orbs = {});
         data.orbs[matches.id.toUpperCase()] = matches.npcNameId;
       },
     },
     {
       id: 'Bozja South Castrum Adrammelech Curse of the Fiend Orbs',
+      type: 'StartsUsing',
       // TODO: We could probably move this right after the orbs appear?
       netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F7B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F7B', capture: false }),
@@ -480,47 +504,55 @@ Options.Triggers.push({
       //  7.1: orb tethers appear
       // 10.1: Adrammelech uses Accursed Becoming
       // 17.3: Adrammelech uses orb ability #1.
-      preRun: (data) => data.fiendCount = (data.fiendCount || 0) + 1,
-      durationSeconds: (data) => (data.orbs || {}).length === 4 ? 23 : 14,
+      preRun: (data) => {
+        let _a; return data.fiendCount = ((_a = data.fiendCount) !== null && _a !== void 0 ? _a : 0) + 1;
+      },
+      durationSeconds: (data) => {
+        let _a; return Object.keys((_a = data.orbs) !== null && _a !== void 0 ? _a : {}).length === 4 ? 23 : 14;
+      },
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
+        let _a; let _b;
         // Let your actor id memes be dreams!
         // Orbs go off from highest actor id to lowest actor id, in pairs of two.
         const sortedOrbs = Object.keys(data.orbs || {}).sort().reverse();
         const orbIdToNameId = data.orbs;
         delete data.orbs;
-        if (sortedOrbs.length === 0)
+        if (!orbIdToNameId || sortedOrbs.length === 0)
           return output.unknown();
-        data.orbOutput = sortedOrbs.map((orbId) => {
+        let orbOutput = data.orbOutput = sortedOrbs.map((orbId) => {
           const nameId = orbIdToNameId[orbId];
+          if (!nameId)
+            return 'unknown';
           const output = orbNpcNameIdToOutputString[nameId];
           return output ? output : 'unknown';
         });
         // If there is a pair of orbs, and they are the same type, then this is the mechanic
         // introduction and only one orb goes off.
-        if (data.orbOutput.length === 2) {
-          if (data.orbOutput[0] === data.orbOutput[1])
-            data.orbOutput = [data.orbOutput[0]];
+        if (orbOutput.length === 2) {
+          if (orbOutput[0] === orbOutput[1])
+            orbOutput = [(_a = orbOutput[0]) !== null && _a !== void 0 ? _a : 'unknown'];
         }
         // Special case, fire + earth = stop far outside.
-        if (data.orbOutput.length >= 2) {
-          if (data.orbOutput[0] === 'stop' && data.orbOutput[1] === 'rings')
-            data.orbOutput[0] = 'stopOutside';
+        if (orbOutput.length >= 2) {
+          if (orbOutput[0] === 'stop' && orbOutput[1] === 'rings')
+            orbOutput[0] = 'stopOutside';
         }
-        if (data.orbOutput.length === 4) {
-          if (data.orbOutput[2] === 'stop' && data.orbOutput[3] === 'rings')
-            data.orbOutput[2] = 'stopOutside';
+        if (orbOutput.length === 4) {
+          if (orbOutput[2] === 'stop' && orbOutput[3] === 'rings')
+            orbOutput[2] = 'stopOutside';
         }
         // Don't bother outputting a single one, as it'll come up shortly.
         // This could get confusing saying "knockback" far enough ahead
         // that using knockback prevention would wear off before the mechanic.
         if (data.orbOutput.length > 1)
-          return data.orbOutput.map((key) => output[key]()).join(' => ');
+          return (_b = data.orbOutput) === null || _b === void 0 ? void 0 : _b.map((key) => output[key]()).join(' => ');
       },
       outputStrings: orbOutputStrings,
     },
     {
       id: 'Bozja South Castrum Adrammelech Accursed Becoming Orb 1',
+      type: 'Ability',
       // This ability happens once per pair of orbs (with the same timings).
       // So use these two triggers to handle the single, pair, and two pairs of orbs cases.
       netRegex: NetRegexes.ability({ source: 'Adrammelech', id: '4F7B', capture: false }),
@@ -533,7 +565,8 @@ Options.Triggers.push({
       delaySeconds: 7.2 - 5,
       durationSeconds: 4.5,
       alertText: (data, _matches, output) => {
-        data.orbOutput = data.orbOutput || [];
+        let _a;
+        (_a = data.orbOutput) !== null && _a !== void 0 ? _a : (data.orbOutput = []);
         const orb = data.orbOutput.shift();
         if (!orb)
           return;
@@ -543,6 +576,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Adrammelech Accursed Becoming Orb 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Adrammelech', id: '4F7B', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Adrammelech', id: '4F7B', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Adrammelech', id: '4F7B', capture: false }),
@@ -552,7 +586,8 @@ Options.Triggers.push({
       // 2.5 seconds warning, as it's weird if this shows up way before the first orb.
       delaySeconds: 9 - 2.5,
       alertText: (data, _matches, output) => {
-        data.orbOutput = data.orbOutput || [];
+        let _a;
+        (_a = data.orbOutput) !== null && _a !== void 0 ? _a : (data.orbOutput = []);
         const orb = data.orbOutput.shift();
         if (!orb)
           return;
@@ -562,17 +597,20 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Adrammelech Electric Charge Collector',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9449' }),
       run: (data, matches) => {
-        data.warped = data.warped || {};
+        let _a;
+        (_a = data.warped) !== null && _a !== void 0 ? _a : (data.warped = {});
         data.warped[matches.id.toUpperCase()] = {
-          x: matches.x,
-          y: matches.y,
+          x: parseFloat(matches.x),
+          y: parseFloat(matches.y),
         };
       },
     },
     {
       id: 'Bozja South Castrum Adrammelech Shock',
+      type: 'Tether',
       // This is the first Electric Charge tether.
       netRegex: NetRegexes.tether({ source: 'Adrammelech', target: 'Electric Charge' }),
       netRegexDe: NetRegexes.tether({ source: 'Adrammelech', target: 'Blitz' }),
@@ -650,6 +688,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Dawon Molting Plumage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
@@ -661,6 +700,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Dawon Molting Plumage Orbs',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
@@ -696,17 +736,19 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Dawon Scratch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '517B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dawon', id: '517B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dawon', id: '517B' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ドゥン', id: '517B' }),
       netRegexCn: NetRegexes.startsUsing({ source: '达温', id: '517B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '다우언', id: '517B' }),
-      condition: tankBusterOnParty,
+      condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Dawon Swooping Frenzy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '5175', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dawon', id: '5175', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dawon', id: '5175', capture: false }),
@@ -728,6 +770,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Lyon Passage',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Der Bestienkönig will einen Kampf auf seinem Podest.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Lyon attend des adversaires à sa taille sur la tribune des Souverains.*?', capture: false }),
@@ -748,17 +791,19 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Lyon Twin Agonies',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '5174' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Lyon (?:der|die|das) Bestienkönig', id: '5174' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Lyon Le Roi Bestial', id: '5174' }),
       netRegexJa: NetRegexes.startsUsing({ source: '獣王ライアン', id: '5174' }),
       netRegexCn: NetRegexes.startsUsing({ source: '兽王 莱昂', id: '5174' }),
       netRegexKo: NetRegexes.startsUsing({ source: '마수왕 라이언', id: '5174' }),
-      condition: tankBusterOnParty,
+      condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Lyon King\'s Notice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '516E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Lyon (?:der|die|das) Bestienkönig', id: '516E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Lyon Le Roi Bestial', id: '516E', capture: false }),
@@ -769,6 +814,7 @@ Options.Triggers.push({
     },
     {
       id: 'Bozja South Castrum Lyon Taste of Blood',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '5173', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Lyon (?:der|die|das) Bestienkönig', id: '5173', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Lyon Le Roi Bestial', id: '5173', capture: false }),

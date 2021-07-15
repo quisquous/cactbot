@@ -4,12 +4,12 @@ const seekerCenterY = 277.9735;
 const avowedCenterX = -272;
 const avowedCenterY = -82;
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (data) => {
-  if (data.target === data.me)
+const tankBusterOnParty = (data, matches) => {
+  if (matches.target === data.me)
     return true;
   if (data.role !== 'healer')
     return false;
-  return data.party.inParty(data.target);
+  return data.party.inParty(matches.target);
 };
 Options.Triggers.push({
   zoneId: ZoneId.DelubrumReginae,
@@ -18,6 +18,7 @@ Options.Triggers.push({
     // *** Trinity Seeker ***
     {
       id: 'Delubrum Seeker Verdant Tempest',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AB6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AB6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AB6', capture: false }),
@@ -28,6 +29,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Sword Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5B5D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5B5D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5B5D', capture: false }),
@@ -40,6 +42,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Mercy Swords',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
       netRegexDe: NetRegexes.gainsEffect({ target: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], effectId: '808' }),
       netRegexFr: NetRegexes.gainsEffect({ target: ['Trinité Soudée', 'Clone De La Trinité Soudée'], effectId: '808' }),
@@ -47,9 +50,10 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.gainsEffect({ target: ['求道之三位一体', '求道之分身'], effectId: '808' }),
       durationSeconds: 10,
       alertText: (data, matches, output) => {
+        let _a;
         if (data.calledSeekerSwords)
           return;
-        data.seekerSwords = data.seekerSwords || [];
+        (_a = data.seekerSwords) !== null && _a !== void 0 ? _a : (data.seekerSwords = []);
         data.seekerSwords.push(matches.count.toUpperCase());
         if (data.seekerSwords.length <= 1)
           return;
@@ -70,8 +74,14 @@ Options.Triggers.push({
             // Back left cleave.
             FA: [dir.north, dir.east],
           };
-          const first = cleavetoSafeZones[cleaves[0]];
-          const second = cleavetoSafeZones[cleaves[1]];
+          const cleave0 = cleaves[0];
+          const cleave1 = cleaves[1];
+          if (cleave0 === undefined || cleave1 === undefined)
+            throw new UnreachableCode();
+          const first = cleavetoSafeZones[cleave0];
+          const second = cleavetoSafeZones[cleave1];
+          if (first === undefined || second === undefined)
+            throw new UnreachableCode();
           const intersect = first.filter((safe) => second.includes(safe));
           if (intersect.length === 2) {
             console.error(`Sword: weird intersect: ${JSON.stringify(data.seekerSwords)}`);
@@ -109,11 +119,12 @@ Options.Triggers.push({
         // Find the cleave we're missing and add it to the list.
         const allCleaveKeys = Object.keys(cleaveToDirection);
         const finalCleaveList = allCleaveKeys.filter((id) => !cleaves.includes(id));
-        if (finalCleaveList.length !== 1) {
+        const finalCleave = finalCleaveList[0];
+        if (finalCleave === undefined || finalCleaveList.length !== 1) {
           console.error(`Swords: bad intersection ${JSON.stringify(data.seekerSwords)}`);
           return;
         }
-        cleaves.push(finalCleaveList[0]);
+        cleaves.push(finalCleave);
         data.calledSeekerSwords = true;
         const dirs = cleaves.map((id) => cleaveToDirection[id]);
         return output.quadruple({ dir1: dirs[0], dir2: dirs[1], dir3: dirs[2], dir4: dirs[3] });
@@ -174,6 +185,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Baleful Swath',
+      type: 'StartsUsing',
       // This is an early warning for casters for Baleful Swath on the Verdant Path cast.
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5A98', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5A98', capture: false }),
@@ -184,6 +196,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Baleful Blade Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA1', capture: false }),
@@ -203,6 +216,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Baleful Blade Knockback',
+      type: 'StartsUsing',
       // We could call this on Phantom Edge 5AA0, but maybe that's too early?
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA2', capture: false }),
@@ -224,11 +238,13 @@ Options.Triggers.push({
     {
       // There is no castbar for 5AB7, only this headmarker.
       id: 'Delubrum Seeker Merciful Arc',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00F3' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Delubrum Seeker Iron Impact',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5ADB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5ADB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5ADB', capture: false }),
@@ -248,12 +264,12 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Iron Splitter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA3' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA3' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3' }),
       netRegexCn: NetRegexes.startsUsing({ source: '求道之三位一体', id: '5AA3' }),
-      preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
         const seekerData = await callOverlayHandler({
           call: 'getCombatants',
@@ -272,6 +288,8 @@ Options.Triggers.push({
           return;
         }
         const seeker = seekerData.combatants[0];
+        if (!seeker)
+          throw new UnreachableCode();
         const x = seeker.PosX - seekerCenterX;
         const y = seeker.PosY - seekerCenterY;
         data.splitterDist = Math.hypot(x, y);
@@ -312,6 +330,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Burning Chains',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00EE' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -329,6 +348,7 @@ Options.Triggers.push({
     {
       // TODO: the FFXIV parser plugin does not include this as a "gains effect" line.
       id: 'Delubrum Seeker Burning Chains Move',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00EE' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 4,
@@ -336,12 +356,14 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Dead Iron',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00ED' }),
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
     {
       id: 'Delubrum Seeker Merciful Moon',
+      type: 'StartsUsing',
       // 3 second warning to match savage timings.
       netRegex: NetRegexes.startsUsing({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Magiekugel', id: '5AAC', capture: false }),
@@ -363,6 +385,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Seeker Merciful Blooms',
+      type: 'Ability',
       // Call this on the ability of Merciful Moon, it starts casting much earlier.
       netRegex: NetRegexes.ability({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Magiekugel', id: '5AAC', capture: false }),
@@ -385,6 +408,7 @@ Options.Triggers.push({
     // *** Dahu ***
     {
       id: 'Delubrum Dahu Shockwave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: ['5760', '5761', '5762', '5763'] }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: ['5760', '5761', '5762', '5763'] }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: ['5760', '5761', '5762', '5763'] }),
@@ -419,6 +443,7 @@ Options.Triggers.push({
     {
       // TODO: is this true if you see a Feral Howl #4 and onward?
       id: 'Delubrum Dahu Feral Howl',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
@@ -453,6 +478,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Dahu Hot Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5764', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5764', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5764', capture: false }),
@@ -474,6 +500,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Dahu Heat Breath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
@@ -483,6 +510,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Dahu Ripper Claw',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
@@ -493,6 +521,7 @@ Options.Triggers.push({
     // *** Queen's Guard ***
     {
       id: 'Delubrum Guard Secrets Revealed',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5B6E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5B6E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5B6E', capture: false }),
@@ -525,6 +554,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Rapid Sever Soldier',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5809' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5809' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5809' }),
@@ -535,6 +565,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Blood And Bone Soldier',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5808', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5808', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5808', capture: false }),
@@ -545,6 +576,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Shot In The Dark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5811' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '5811' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '5811' }),
@@ -555,6 +587,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Automatic Turret',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '580B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '580B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '580B', capture: false }),
@@ -574,6 +607,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Queen\'s Shot',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5810', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '5810', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '5810', capture: false }),
@@ -584,6 +618,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Reversal Of Forces',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '57FF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FF', capture: false }),
@@ -604,6 +639,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Above Board',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '57FC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FC', capture: false }),
@@ -628,6 +664,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Blood And Bone Warrior',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '5800', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '5800', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '5800', capture: false }),
@@ -638,6 +675,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Shield Omen',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57F1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57F1', capture: false }),
@@ -647,6 +685,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Sword Omen',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57F0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57F0', capture: false }),
@@ -656,6 +695,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Rapid Sever Knight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FB' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57FB' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57FB' }),
@@ -666,6 +706,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Guard Blood And Bone Knight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57FA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57FA', capture: false }),
@@ -677,6 +718,7 @@ Options.Triggers.push({
     // *** Bozjan Phantom
     {
       id: 'Delubrum Phantom Weave Miasma',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57A3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57A3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57A3', capture: false }),
@@ -710,6 +752,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Phantom Malediction Of Agony',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57AF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57AF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57AF', capture: false }),
@@ -720,6 +763,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Phantom Undying Hatred',
+      type: 'StartsUsing',
       // "57AB Summon" is used here to avoid an additional name to translate.
       // "57AC Undying Hatred" is from Stuffy Wraith.
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57AB', capture: false }),
@@ -744,6 +788,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Phantom Excruciation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '5809' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '5809' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '5809' }),
@@ -755,6 +800,7 @@ Options.Triggers.push({
     // *** Trinity Avowed
     {
       id: 'Delubrum Avowed Wrath Of Bozja',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5975' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5975' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5975' }),
@@ -764,6 +810,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Glory Of Bozja',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5976', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5976', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5976', capture: false }),
@@ -774,6 +821,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Hot And Cold',
+      type: 'GainsEffect',
       // 89D: Running Hot: +1
       // 8A4: Running Hot: +2
       // 8DC: Running Cold: -1
@@ -781,16 +829,18 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: ['89D', '8A4', '8DC', '8E2'] }),
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
-        data.avowedTemperature = {
+        const tempMap = {
           '89D': 1,
           '8A4': 2,
           '8DC': -1,
           '8E2': -2,
-        }[matches.effectId.toUpperCase()];
+        };
+        data.avowedTemperature = tempMap[matches.effectId.toUpperCase()];
       },
     },
     {
       id: 'Delubrum Avowed Freedom Of Bozja',
+      type: 'StartsUsing',
       // Arguably, the Elemental Impact (meteor falling) has different ids depending on orb type,
       // e.g. 5960, 5962, 4F55, 4556, 4F99, 4F9A.
       // So we could give directions here, but probably that's just more confusing.
@@ -859,6 +909,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Shimmering Shot',
+      type: 'StartsUsing',
       // See comments on Freedom Of Bozja above.
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '597F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '597F', capture: false }),
@@ -933,6 +984,7 @@ Options.Triggers.push({
       // 596F = left cleave, heat+1
       // 5970 = left cleave, cold+1
       id: 'Delubrum Avowed Hot And Cold Cleaves',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
@@ -1028,18 +1080,21 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Gleaming Arrow Collect',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
       netRegexCn: NetRegexes.startsUsing({ source: '誓约之分身', id: '5974' }),
       run: (data, matches) => {
-        data.unseenIds = data.unseenIds || [];
+        let _a;
+        (_a = data.unseenIds) !== null && _a !== void 0 ? _a : (data.unseenIds = []);
         data.unseenIds.push(parseInt(matches.sourceId, 16));
       },
     },
     {
       id: 'Delubrum Avowed Gleaming Arrow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974', capture: false }),
@@ -1049,6 +1104,8 @@ Options.Triggers.push({
       suppressSeconds: 10,
       promise: async (data) => {
         const unseenIds = data.unseenIds;
+        if (!unseenIds)
+          return;
         const unseenData = await callOverlayHandler({
           call: 'getCombatants',
           ids: unseenIds,
@@ -1076,11 +1133,11 @@ Options.Triggers.push({
           // The other coordinate is +/-25 from center.
           const maxDist = 22;
           if (Math.abs(x) < maxDist) {
-            const col = parseInt(Math.round((x + 20) / 10));
+            const col = Math.round((x + 20) / 10);
             data.unseenBadCols.push(col);
           }
           if (Math.abs(y) < maxDist) {
-            const row = parseInt(Math.round((y + 20) / 10));
+            const row = Math.round((y + 20) / 10);
             data.unseenBadRows.push(row);
           }
         }
@@ -1089,6 +1146,8 @@ Options.Triggers.push({
       },
       alertText: (data, _matches, output) => {
         delete data.unseenIds;
+        if (!data.unseenBadRows || !data.unseenBadCols)
+          return;
         // consider asserting that badCols are 0, 2, 4 here.
         if (data.unseenBadRows.includes(2))
           return output.bowLight();
@@ -1115,6 +1174,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Fury Of Bozja',
+      type: 'StartsUsing',
       // Allegiant Arsenal 5987 = staff (out), followed up with Fury of Bozja 5973
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5987', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5987', capture: false }),
@@ -1125,6 +1185,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Flashvane',
+      type: 'StartsUsing',
       // Allegiant Arsenal 5986 = bow (get behind), followed up by Flashvane 5972
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5986', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5986', capture: false }),
@@ -1135,6 +1196,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Infernal Slash',
+      type: 'StartsUsing',
       // Allegiant Arsenal 5985 = sword (get front), followed up by Infernal Slash 5971
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5985', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5985', capture: false }),
@@ -1156,6 +1218,7 @@ Options.Triggers.push({
     // *** The Queen
     {
       id: 'Delubrum Queen Empyrean Iniquity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C8', capture: false }),
@@ -1166,6 +1229,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Cleansing Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C5' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C5' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C5' }),
@@ -1178,6 +1242,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Cleansing Slash Bleed',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C5' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C5' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C5' }),
@@ -1199,6 +1264,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Northswain\'s Glow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C3', capture: false }),
@@ -1220,6 +1286,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Automatic Turret',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '59DE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '59DE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '59DE', capture: false }),
@@ -1239,6 +1306,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Reversal Of Forces',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '59D4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '59D4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '59D4', capture: false }),
@@ -1251,6 +1319,7 @@ Options.Triggers.push({
       // where the knockback line appears.  This is mostly because we don't know about
       // reversal at that point.
       id: 'Delubrum Queen Heaven\'s Wrath',
+      type: 'StartsUsing',
       // This is used sometimes by The Queen and sometimes by The Queen's Gunner (?!).
       // This could just be stale parser data though, as the name changes for the actual usage.
       netRegex: NetRegexes.startsUsing({ id: '59C7', capture: false }),
@@ -1298,6 +1367,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Judgment Blade Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C2', capture: false }),
@@ -1317,6 +1387,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Judgment Blade Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C1', capture: false }),
@@ -1336,6 +1407,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Gods Save The Queen',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C9', capture: false }),
@@ -1346,6 +1418,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Secrets Revealed',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5B8A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5B8A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5B8A', capture: false }),
@@ -1365,6 +1438,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Shield Omen',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '59CB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59CB', capture: false }),
@@ -1375,6 +1449,7 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Queen Sword Omen',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '59CA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59CA', capture: false }),

@@ -65,17 +65,6 @@ const ceIds = {
   dalriadaDiablo: '217',
 };
 const limitCutHeadmarkers = ['004F', '0050', '0051', '0052'];
-const numberOutputStrings = [0, 1, 2, 3, 4].map((n) => {
-  const str = n.toString();
-  return {
-    en: str,
-    de: str,
-    fr: str,
-    ja: str,
-    cn: str,
-    ko: str,
-  };
-});
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (ceName) => (data, matches) => {
   if (ceName && data.ce !== ceName)
@@ -88,11 +77,12 @@ const tankBusterOnParty = (ceName) => (data, matches) => {
 };
 Options.Triggers.push({
   zoneId: ZoneId.Zadnor,
-  resetWhenOutOfCombat: false,
   timelineFile: 'zadnor.txt',
+  resetWhenOutOfCombat: false,
   triggers: [
     {
       id: 'Zadnor Falling Asleep',
+      type: 'GameLog',
       netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 7 Minuten vergangen..*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
@@ -103,6 +93,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Critical Engagement',
+      type: 'ActorControl',
       netRegex: NetRegexes.network6d({ command: '80000014' }),
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
@@ -112,13 +103,14 @@ Options.Triggers.push({
           // Stop any active timelines.
           data.StopCombat();
           // Prevent further triggers for any active CEs from firing.
-          data.ce = null;
+          delete data.ce;
           return;
         }
-        data.ce = null;
+        delete data.ce;
         const ceId = matches.data0.toUpperCase();
-        for (const key in ceIds) {
-          if (ceIds[key] === ceId) {
+        const anonCEs = ceIds;
+        for (const key in anonCEs) {
+          if (anonCEs[key] === ceId) {
             if (data.options.Debug)
               console.log(`Start CE: ${key} (${ceId})`);
             data.ce = key;
@@ -132,6 +124,7 @@ Options.Triggers.push({
     // ***** On Serpents' Wings *****
     {
       id: 'Zadnor Serpents Turbine',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Stormborne Zirnitra', id: '5E54' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sturm-Zirnitra', id: '5E54' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Zirnitra Des Tempêtes', id: '5E54' }),
@@ -139,7 +132,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: 'Stormborne Zirnitra', id: '5E54' }),
       netRegexKo: NetRegexes.startsUsing({ source: 'Stormborne Zirnitra', id: '5E54' }),
       condition: (data) => data.ce === 'serpents',
-      preRun: (data) => data.serpentsTurbineCount = (data.serpentsTurbineCount || 0) + 1,
+      preRun: (data) => {
+        let _a; return data.serpentsTurbineCount = ((_a = data.serpentsTurbineCount) !== null && _a !== void 0 ? _a : 0) + 1;
+      },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       alertText: (data, _matches, output) => {
         // TODO: how does this loop?
@@ -182,6 +177,7 @@ Options.Triggers.push({
     // ***** Feeling the Burn *****
     {
       id: 'Zadnor Feeling Suppressive Magitek Rays',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C40', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand', id: '5C40', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Escarre', id: '5C40', capture: false }),
@@ -191,6 +187,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Feeling Chain Cannon You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
       condition: (data, matches) => data.ce === 'feeling' && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
@@ -204,6 +201,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Feeling Chain Cannon Not You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A4', capture: false }),
       condition: (data) => data.ce === 'feeling',
       delaySeconds: 3,
@@ -219,6 +217,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Feeling Analysis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C37', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand', id: '5C37', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Escarre', id: '5C37', capture: false }),
@@ -228,6 +227,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Feeling Read Orders Coordinated Assault',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C34', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand', id: '5C34', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Escarre', id: '5C34', capture: false }),
@@ -254,6 +254,7 @@ Options.Triggers.push({
     // ***** From Beyond the Grave *****
     {
       id: 'Zadnor Grave Soul Purge',
+      type: 'StartsUsing',
       // 5E23 = get out first
       // 5E25 = get in first
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: ['5E23', '5E25'] }),
@@ -272,6 +273,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Grave Soul Purge Second',
+      type: 'StartsUsing',
       // 5E23 = get out first (so get in second)
       // 5E25 = get in first (so get out second)
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: ['5E23', '5E25'] }),
@@ -291,6 +293,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Grave Devour Soul',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E20' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shemhazai Der Iv\\. Legion', id: '5E20' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shemhazai De La 4E Légion', id: '5E20' }),
@@ -300,6 +303,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Grave Blight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E1E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Shemhazai Der Iv\\. Legion', id: '5E1E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Shemhazai De La 4E Légion', id: '5E1E', capture: false }),
@@ -309,6 +313,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Grave Crimson Blade',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9934', capture: false }),
       condition: (data) => data.ce === 'grave',
       infoText: (_data, _matches, output) => output.text(),
@@ -322,6 +327,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Grave War Wraith',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9933', capture: false }),
       condition: (data) => data.ce === 'grave',
       // They hang out on the outside for a bit and then become targetable.
@@ -331,6 +337,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Grave Aethertide',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dyunbu The Accursed', id: '5E2A' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dyunbu (?:der|die|das) Unlauter(?:e|er|es|en)', id: '5E2A' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dyunbu L\'Impure', id: '5E2A' }),
@@ -340,6 +347,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Grave Forced March',
+      type: 'GainsEffect',
       // 871 = Forward March
       // 872 = About Face
       // 873 = Left Face
@@ -386,6 +394,7 @@ Options.Triggers.push({
     // ***** With Diremite and Main *****
     {
       id: 'Zadnor Diremite Crystal Needle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E15' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E15' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E15' }),
@@ -397,6 +406,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diremite Shardstrike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E17' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E17' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E17' }),
@@ -408,10 +418,12 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diremite Hailfire You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: limitCutHeadmarkers }),
       condition: (data, matches) => data.ce === 'diremite' && data.me === matches.target,
       preRun: (data, matches) => {
-        data.diremiteHailfire = data.diremiteHailfire || [];
+        let _a;
+        (_a = data.diremiteHailfire) !== null && _a !== void 0 ? _a : (data.diremiteHailfire = []);
         data.diremiteHailfire.push(matches.target);
       },
       alertText: (_data, matches, output) => {
@@ -423,10 +435,10 @@ Options.Triggers.push({
         return output.text({ num: numStr });
       },
       outputStrings: {
-        num1: numberOutputStrings[1],
-        num2: numberOutputStrings[2],
-        num3: numberOutputStrings[3],
-        num4: numberOutputStrings[4],
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
         text: {
           en: '${num} (spread for laser)',
           de: '${num} (verteile für Laser)',
@@ -436,6 +448,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diremite Hailfire Not You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: limitCutHeadmarkers, capture: false }),
       condition: (data) => data.ce === 'diremite',
       delaySeconds: 0.5,
@@ -458,6 +471,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diremite Crystaline Stingers',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E0D', capture: false }),
@@ -476,6 +490,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diremite Aetherial Stingers',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E0E', capture: false }),
@@ -494,6 +509,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diremite Sand Sphere',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E0F', capture: false }),
@@ -513,6 +529,7 @@ Options.Triggers.push({
     // ***** Here Comes the Cavalry *****
     {
       id: 'Zadnor Cavalry Gust Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D7D' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D7D' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D7D' }),
@@ -523,6 +540,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cavalry Raw Steel',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D87' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D87' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D87' }),
@@ -555,6 +573,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cavalry Call Raze',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D8C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D8C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D8C', capture: false }),
@@ -564,6 +583,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cavalry Magitek Blaster',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D90' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D90' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D90' }),
@@ -575,6 +595,7 @@ Options.Triggers.push({
     // ***** There Would Be Blood *****
     {
       id: 'Zadnor Blood Cloud Of Locusts',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C10', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C10', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C10', capture: false }),
@@ -584,6 +605,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Blood Plague Of Locusts',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C11', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C11', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C11', capture: false }),
@@ -593,6 +615,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Blood Dread Wind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE', capture: false }),
@@ -602,6 +625,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Blood Gale Cannon',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '53E3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '53E3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '53E3', capture: false }),
@@ -619,6 +643,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Blood Camisado',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE' }),
@@ -629,6 +654,7 @@ Options.Triggers.push({
     // ***** Never Cry Wolf *****
     {
       id: 'Zadnor Wolf Glaciation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C32', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C32', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C32', capture: false }),
@@ -638,6 +664,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Wolf Storm Without',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C2A', capture: false }),
@@ -647,6 +674,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Wolf Storm Within',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C2C', capture: false }),
@@ -656,6 +684,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Wolf Bracing Wind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ice Sprite', id: '5C22' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Eis-Exergon', id: '5C22' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Élémentaire De Glace', id: '5C22' }),
@@ -674,6 +703,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Wolf Lunar Cry',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C24', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C24', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C24', capture: false }),
@@ -693,6 +723,7 @@ Options.Triggers.push({
     // ***** Time To Burn *****
     {
       id: 'Zadnor Time Fire IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D9A' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '5D9A' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '5D9A' }),
@@ -702,6 +733,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Time Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D99' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '5D99' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '5D99' }),
@@ -711,6 +743,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Time Reproduce',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '60E9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '60E9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '60E9', capture: false }),
@@ -730,13 +763,15 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Time Time Bomb',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D95', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '5D95', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '5D95', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ベリアス', id: '5D95', capture: false }),
       condition: (data) => data.ce === 'time',
-      preRun: (data) => data.timeBombCount = (data.timeBombCount || 0) + 1,
       infoText: (data, _matches, output) => {
+        let _a;
+        data.timeBombCount = ((_a = data.timeBombCount) !== null && _a !== void 0 ? _a : 0) + 1;
         // Belias alternates 2 and 3 Time Bombs, starting with 2.
         return data.timeBombCount % 2 ? output.twoClocks() : output.threeClocks();
       },
@@ -760,6 +795,7 @@ Options.Triggers.push({
     // ***** Lean, Mean, Magitek Machines *****
     {
       id: 'Zadnor Machines Magnetic Field',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Campé', id: '5CFE', capture: false }),
@@ -768,6 +804,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Machines Fore-Hind Cannons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Campé', id: '5CFF', capture: false }),
@@ -777,6 +814,7 @@ Options.Triggers.push({
     // ***** Worn to a Shadow *****
     {
       id: 'Zadnor Shadow Bladed Beak',
+      type: 'StartsUsing',
       // Not a cleave.
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3B' }),
@@ -787,6 +825,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Shadow Nihility\'s Song',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3C', capture: false }),
@@ -796,6 +835,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Shadow Stormcall',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
@@ -812,6 +852,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Shadow Stormcall Away',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
@@ -830,6 +871,7 @@ Options.Triggers.push({
     // ***** A Familiar Face *****
     {
       id: 'Zadnor Face Ancient Quake IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Hashmal', id: '5D14', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallim Der Iv\\. Legion', id: '5D14', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hashmal De La 4E Légion', id: '5D14', capture: false }),
@@ -839,6 +881,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Face Rock Cutter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Hashmal', id: '5D13' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallim Der Iv\\. Legion', id: '5D13' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Hashmal De La 4E Légion', id: '5D13' }),
@@ -848,6 +891,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Face Extreme Edge Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Phantom Hashmal', id: '5D0E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallims Abbild', id: '5D0E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Hashmal', id: '5D0E', capture: false }),
@@ -863,6 +907,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Face Extreme Edge Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Phantom Hashmal', id: '5D0D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallims Abbild', id: '5D0D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Hashmal', id: '5D0D', capture: false }),
@@ -878,6 +923,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Face Hammer Round',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: '4th-Make Hashmal', id: '5D10', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Hashmallim Der Iv\\. Legion', id: '5D10', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Hashmal De La 4E Légion', id: '5D10', capture: false }),
@@ -894,6 +940,7 @@ Options.Triggers.push({
     // ***** Looks to Die For *****
     {
       id: 'Zadnor Looks Forelash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA9', capture: false }),
@@ -903,6 +950,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Looks Backlash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAA', capture: false }),
@@ -923,6 +971,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Looks Twisting Winds',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA2', capture: false }),
@@ -932,6 +981,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Looks Roar',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAD', capture: false }),
@@ -941,6 +991,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Looks Serpent\'s Edge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB1' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB1' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB1' }),
@@ -950,6 +1001,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Looks Levinbolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB0' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB0' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB0' }),
@@ -959,6 +1011,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Looks Thundercall',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5D9C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5D9C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5D9C', capture: false }),
@@ -975,6 +1028,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Looks Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA6', capture: false }),
@@ -994,6 +1048,7 @@ Options.Triggers.push({
     // ***** The Dalriada *****
     {
       id: 'Zadnor Sartauvoir Pyrokinesis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E7D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E7D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E7D', capture: false }),
@@ -1004,6 +1059,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Time Eruption',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E6C', '5E83'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: ['5E6C', '5E83'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: ['5E6C', '5E83'], capture: false }),
@@ -1021,6 +1077,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Reverse Time Eruption',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E6D', '5E84'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: ['5E6D', '5E84'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: ['5E6D', '5E84'], capture: false }),
@@ -1038,6 +1095,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Phenex',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E72', '5E85'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: ['5E72', '5E85'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: ['5E72', '5E85'], capture: false }),
@@ -1055,6 +1113,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Hyperpyroplexy',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E76', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Sartauvoir Eisenfeuer', id: '5E76', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Sartauvoir Le Fer Rouge', id: '5E76', capture: false }),
@@ -1075,6 +1134,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Burning Blade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E90' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E90' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E90' }),
@@ -1086,6 +1146,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Pyrocrisis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8F' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8F' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8F' }),
@@ -1093,7 +1154,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8F' }),
       netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8F' }),
       preRun: (data, matches) => {
-        data.sartauvoirPyrocrisis = data.sartauvoirPyrocrisis || [];
+        let _a;
+        (_a = data.sartauvoirPyrocrisis) !== null && _a !== void 0 ? _a : (data.sartauvoirPyrocrisis = []);
         data.sartauvoirPyrocrisis.push(matches.target);
       },
       alertText: (data, matches, output) => {
@@ -1106,6 +1168,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Pyrodoxy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8E' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8E' }),
@@ -1127,6 +1190,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame Warning',
+      type: 'Ability',
       // Triggered after Burning Blade.
       // TODO: does this ever happen again??
       netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E90', capture: false }),
@@ -1147,6 +1211,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E87', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E87', capture: false }),
@@ -1157,6 +1222,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame Away',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Sartauvoir Eisenfeuer', id: '5E87', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Sartauvoir Le Fer Rouge', id: '5E87', capture: false }),
@@ -1175,6 +1241,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Left Brand',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8C', capture: false }),
@@ -1185,6 +1252,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Sartauvoir Right Brand',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8B', capture: false }),
@@ -1195,6 +1263,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Blackburn Magitek Rays',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Blackburn', id: '5F12', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand Der Iv\\. Legion', id: '5F12', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Escarre De La 4E Légion', id: '5F12', capture: false }),
@@ -1203,6 +1272,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Blackburn Analysis',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Blackburn', id: '5F0F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand Der Iv\\. Legion', id: '5F0F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Escarre De La 4E Légion', id: '5F0F', capture: false }),
@@ -1217,12 +1287,14 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Blackburn Augur Sanctified Quake III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5F20', capture: false }),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Augur Pyroplexy',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: '4th Legion Augur', id: '5F1B', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Augur Der Iv\\. Legion', id: '5F1B', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Augure De La 4E Légion', id: '5F1B', capture: false }),
@@ -1243,6 +1315,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Augur Turbine',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Flameborne Zirnitra', id: '5F14' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Flammen-Zirnitra', id: '5F14' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Zirnitra Des Flammes', id: '5F14' }),
@@ -1261,6 +1334,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Alkonost Wind',
+      type: 'StartsUsing',
       // 5F21 = North Wind
       // 5F22 = South Wind
       netRegex: NetRegexes.startsUsing({ source: 'Tamed Carrion Crow', id: ['5F21', '5F22'] }),
@@ -1274,6 +1348,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Alkonost Stormcall Away',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Tamed Alkonost', id: '5F26', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gebändigt(?:e|er|es|en) Alkonost', id: '5F26', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost Dressé', id: '5F26', capture: false }),
@@ -1290,6 +1365,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Alkonost Nihility\'s Song',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5F28', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5F28', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5F28', capture: false }),
@@ -1298,6 +1374,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cuchulainn March',
+      type: 'GainsEffect',
       // 871 = Forward March
       // 872 = About Face
       // 873 = Left Face
@@ -1343,6 +1420,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cuchulainn Might Of Malice',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C92' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C92' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C92' }),
@@ -1352,6 +1430,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cuchulainn Putrified Soul',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C8F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C8F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C8F', capture: false }),
@@ -1360,6 +1439,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cuchulainn Fleshy Necromass',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C82', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C82', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C82', capture: false }),
@@ -1375,6 +1455,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cuchulainn Necrotic Billow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C86', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C86', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C86', capture: false }),
@@ -1391,6 +1472,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cuchulainn Ambient Pulsation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C8E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C8E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C8E', capture: false }),
@@ -1408,12 +1490,14 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Cuchulainn Fell Flow',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: (data, matches) => data.ce === 'dalriadaCuchulainn' && data.me === matches.target,
       response: Responses.earthshaker(),
     },
     {
       id: 'Zadnor Saunion High-Powered Magitek Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC5' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC5' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC5' }),
@@ -1422,6 +1506,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Magitek Halo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB5', capture: false }),
@@ -1430,11 +1515,12 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Magitek Crossray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: '5DB7', capture: false }),
-      alertText: (_data, _matches, outputs) => outputs.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Intercardinals',
@@ -1445,11 +1531,12 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Mobile Halo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
-      alertText: (_data, _matches, outputs) => outputs.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Under (towards charge)',
@@ -1460,12 +1547,13 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Mobile Crossray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
       suppressSeconds: 5,
-      alertText: (_data, _matches, outputs) => outputs.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Intercards (away from charge)',
@@ -1476,6 +1564,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Anti-Personnel Missile',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC2' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC2' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC2' }),
@@ -1485,6 +1574,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Missile Salvo',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC3' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC3' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC3' }),
@@ -1493,6 +1583,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Wildfire Winds',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DCD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DCD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DCD', capture: false }),
@@ -1513,6 +1604,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Tooth and Talon',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DD4' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD4' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD4' }),
@@ -1522,13 +1614,15 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Saunion Swooping Frenzy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DD0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ドゥンJr\\.', id: '5DD0', capture: false }),
       infoText: (data, _matches, output) => {
+        let _a;
         // Every other Swooping Frenzy is followed by a Frigid Pulse, starting with the first.
-        data.saunionSwoopingCount = (data.saunionSwoopingCount || 0) + 1;
+        data.saunionSwoopingCount = ((_a = data.saunionSwoopingCount) !== null && _a !== void 0 ? _a : 0) + 1;
         if (data.saunionSwoopingCount % 2)
           return output.text();
       },
@@ -1542,6 +1636,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Advanced Death Ray',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E6' }),
       condition: (data) => data.ce === 'dalriadaDiablo',
       // TODO: this is maybe worth promoting to responses?
@@ -1569,6 +1664,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Aetheric Explosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CC6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CC6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CC6', capture: false }),
@@ -1577,6 +1673,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Ultimate Psuedoterror',
+      type: 'StartsUsing',
       // This is triggered on Diabolic Gate with a delay, so it gives an extra +4 seconds.
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5C9F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5C9F', capture: false }),
@@ -1587,6 +1684,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Advanced Death IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CAF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CAF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CAF', capture: false }),
@@ -1604,6 +1702,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Advanced Death IV Followup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CAF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CAF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CAF', capture: false }),
@@ -1614,6 +1713,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Aetheric Boom Raidwide',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CB3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CB3', capture: false }),
@@ -1622,6 +1722,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Aetheric Boom Balloons',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CB3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CB3', capture: false }),
@@ -1640,6 +1741,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Deadly Dealing',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CC2' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CC2' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CC2' }),
@@ -1666,6 +1768,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Void Systems Overload',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CB7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CB7', capture: false }),
@@ -1674,11 +1777,13 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Pillar Of Shamash Spread',
+      type: 'HeadMarker',
       // 5CBC damage
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data) => data.ce === 'dalriadaDiablo',
       preRun: (data, matches) => {
-        data.diabloPillar = data.diabloPillar || [];
+        let _a;
+        (_a = data.diabloPillar) !== null && _a !== void 0 ? _a : (data.diabloPillar = []);
         data.diabloPillar.push(matches.target);
       },
       alertText: (data, matches, output) => {
@@ -1695,6 +1800,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Pillar Of Shamash Stack',
+      type: 'HeadMarker',
       // 5CBE damage (no headmarker???)
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       condition: (data) => data.ce === 'dalriadaDiablo',
@@ -1718,6 +1824,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Acceleration Bomb Dodge',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 4,
@@ -1741,6 +1848,7 @@ Options.Triggers.push({
     },
     {
       id: 'Zadnor Diablo Acceleration Bomb Stop',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
       condition: Conditions.targetIsYou(),
       // TODO: this could be better timed to be later for the dodge -> stop version and earlier
