@@ -269,11 +269,16 @@ const overrides = [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       // Only meant to be used for `output` parameters!
       '@typescript-eslint/no-non-null-assertion': 'off',
-      'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
       'prefer-arrow/prefer-arrow-functions': 'warn',
       'rulesdir/cactbot-output-strings': 'error',
       'rulesdir/cactbot-response-default-severities': 'error',
       'rulesdir/cactbot-timeline-triggers': 'error',
+    },
+  },
+  {
+    'files': ['**/oopsyraidsy/data/**/*.js', '**/raidboss/data/**/*.js'],
+    'rules': {
+      'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
     },
   },
   {
