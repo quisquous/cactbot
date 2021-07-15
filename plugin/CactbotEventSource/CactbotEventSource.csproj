@@ -111,6 +111,7 @@
     <Compile Include="WipeDetector.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="loc\Strings.zh.resx" />
     <EmbeddedResource Include="loc\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
