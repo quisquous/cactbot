@@ -46,6 +46,7 @@ const artOfDarknessOutputStrings = {
     cn: '散开',
     ko: '산개',
   },
+  unknown: Outputs.unknown,
 };
 const summonDirectionOutputStrings = {
   NNE: {
@@ -119,6 +120,7 @@ const convertBossHeadingToClonePosition = (boss) => {
   const closestRad = Math.round(boss.Heading * 4 / Math.PI) / 4 * Math.PI;
   // Find position opposite of the boss facing, centered on 100,100.
   return {
+    ...boss,
     PosX: 100 - 20 * Math.round(Math.sin(closestRad)),
     PosY: 100 - 20 * Math.round(Math.cos(closestRad)),
   };
@@ -157,9 +159,10 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
   const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
     .filter((pos) => !badZones.includes(pos))
     .map((pos) => directions[pos]);
-  if (safeZones.length !== 1)
+  const safeZone = safeZones[0];
+  if (!safeZone || safeZones.length !== 1)
     return 'unknown';
-  return safeZones[0];
+  return safeZone;
 };
 Options.Triggers.push({
   zoneId: ZoneId.EdensPromiseUmbraSavage,
@@ -167,6 +170,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E9S Ground-Razing Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5625', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5625', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5625', source: 'Nuage De Ténèbres', capture: false }),
@@ -179,6 +183,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S The Art Of Darkness Protean',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Nuage De Ténèbres', capture: false }),
@@ -191,6 +196,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S The Art Of Darkness Partner Stacks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Nuage De Ténèbres', capture: false }),
@@ -203,6 +209,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Zero-Form Devouring Dark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.startsUsing({ id: '5623', source: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '5623', source: 'Nuage De Ténèbres' }),
@@ -238,6 +245,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Obscure Woods',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55EE', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55EE', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55EE', source: 'Nuage De Ténèbres', capture: false }),
@@ -250,6 +258,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Flood Of Obscurity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5907', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5907', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5907', source: 'Nuage De Ténèbres', capture: false }),
@@ -271,6 +280,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Waste Away',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5617', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5617', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5617', source: 'Nuage De Ténèbres', capture: false }),
@@ -281,6 +291,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Rejuvenating Balm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5618', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5618', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5618', source: 'Nuage De Ténèbres', capture: false }),
@@ -302,6 +313,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Stygian Break Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0012' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
@@ -309,6 +321,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited List',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[23]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[23]', source: 'Nuage De Ténèbres', capture: false }),
@@ -322,12 +335,17 @@ Options.Triggers.push({
           data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
-      run: (data) => data.phaserOutputs.shift(),
+      infoText: (data, _matches, output) => {
+        let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]()).join(' -> ');
+      },
+      run: (data) => {
+        let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[23]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[23]', source: 'Nuage De Ténèbres', capture: false }),
@@ -335,12 +353,17 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 7,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        let _a;
+        const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+        if (key)
+          return output[key]();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[23]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[23]', source: 'Nuage De Ténèbres', capture: false }),
@@ -348,12 +371,17 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        let _a;
+        const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+        if (key)
+          return output[key]();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited List',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560[DE]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560[DE]', source: 'Nuage De Ténèbres', capture: false }),
@@ -367,12 +395,17 @@ Options.Triggers.push({
           data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
-      run: (data) => data.phaserOutputs.shift(),
+      infoText: (data, _matches, output) => {
+        let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]()).join(' -> ');
+      },
+      run: (data) => {
+        let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560[DE]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560[DE]', source: 'Nuage De Ténèbres', capture: false }),
@@ -380,12 +413,17 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 8,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        let _a;
+        const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+        if (key)
+          return output[key]();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560[DE]', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560[DE]', source: 'Nuage De Ténèbres', capture: false }),
@@ -393,12 +431,17 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _matches, output) => output[data.phaserOutputs[0]](),
-      run: (data) => data.phaserOutputs.shift(),
+      alertText: (data, _matches, output) => {
+        let _a;
+        const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+        if (key)
+          return output[key]();
+      },
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S The Second Art Of Darkness Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5601', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5601', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5601', source: 'Nuage De Ténèbres', capture: false }),
@@ -427,6 +470,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S The Second Art Of Darkness Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5602', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5602', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5602', source: 'Nuage De Ténèbres', capture: false }),
@@ -457,6 +501,7 @@ Options.Triggers.push({
       // The Art Of Darkness uses head markers with randomized offsets.  The first
       // charge is always left or right, and we can solve the rest from there.
       id: 'E9S The Second / Third Art Of Darkness Charge Solver',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
@@ -471,17 +516,23 @@ Options.Triggers.push({
           idPivot = parseInt(matches.id, 16);
         else if (data.artOfDarknessExpected === 'right')
           idPivot = parseInt(matches.id, 16) - 1;
+        else
+          throw new UnreachableCode();
         delete data.artOfDarknessExpected;
         // The left swipe is the lowest head marker, and the rest are sequential.
         const artOfDarknessOutputKeys = ['goRight', 'goLeft', 'stackWithPartner', 'protean'];
         for (let i = 0; i < 4; ++i) {
           const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
-          data.artOfDarknessIdMap[hexPivot] = artOfDarknessOutputKeys[i];
+          const outputKey = artOfDarknessOutputKeys[i];
+          if (!outputKey)
+            throw new UnreachableCode();
+          data.artOfDarknessIdMap[hexPivot] = outputKey;
         }
       },
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Left / Right Charge',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
@@ -494,11 +545,14 @@ Options.Triggers.push({
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'goRight' || output === 'goLeft';
       },
-      run: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
+      run: (data, matches) => {
+        let _a; let _b; let _c; return (_a = data.artOfDarkness) === null || _a === void 0 ? void 0 : _a.push((_c = (_b = data.artOfDarknessIdMap) === null || _b === void 0 ? void 0 : _b[matches.id]) !== null && _c !== void 0 ? _c : 'unknown');
+      },
     },
     {
       // Fire the trigger on stack or protean since we want the callout as soon as possible.
       id: 'E9S The Second / Third Art Of Darkness Callout',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
@@ -511,20 +565,24 @@ Options.Triggers.push({
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'stackWithPartner' || output === 'protean';
       },
-      preRun: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
+      preRun: (data, matches) => {
+        let _a; let _b; let _c; return (_a = data.artOfDarkness) === null || _a === void 0 ? void 0 : _a.push((_c = (_b = data.artOfDarknessIdMap) === null || _b === void 0 ? void 0 : _b[matches.id]) !== null && _c !== void 0 ? _c : 'unknown');
+      },
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _matches, output) => {
+        let _a;
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
-        const callout = data.artOfDarkness.slice();
+        const callout = (_a = data.artOfDarkness) === null || _a === void 0 ? void 0 : _a.slice();
         if (data.finalArtOfDarkness)
-          callout.push(data.finalArtOfDarkness);
-        return callout.map((key) => output[key]()).join(' -> ');
+          callout === null || callout === void 0 ? void 0 : callout.push(data.finalArtOfDarkness);
+        return callout === null || callout === void 0 ? void 0 : callout.map((key) => output[key]()).join(' -> ');
       },
       run: (data) => delete data.artOfDarkness,
       outputStrings: artOfDarknessOutputStrings,
     },
     {
       id: 'E9S Empty Plane',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55EF', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55EF', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55EF', source: 'Nuage De Ténèbres', capture: false }),
@@ -538,6 +596,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Flood Of Emptiness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55F0', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55F0', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55F0', source: 'Nuage De Ténèbres', capture: false }),
@@ -558,9 +617,10 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Curse Of Darkness',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => matches.duration - 3,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -575,6 +635,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Hypercharged Condensation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '560C', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '560C', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '560C', source: 'Nuage De Ténèbres', capture: false }),
@@ -587,6 +648,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S The Art Of Darkness Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5A95', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5A95', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5A95', source: 'Nuage De Ténèbres', capture: false }),
@@ -606,6 +668,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S The Art Of Darkness Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5A96', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5A96', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5A96', source: 'Nuage De Ténèbres', capture: false }),
@@ -625,6 +688,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Full-Perimeter Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5629', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5629', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5629', source: 'Nuage De Ténèbres', capture: false }),
@@ -638,6 +702,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Deluge Of Darkness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55F1', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55F1', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55F1', source: 'Nuage De Ténèbres', capture: false }),
@@ -651,6 +716,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S The Third Art Of Darkness Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5603', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5603', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5603', source: 'Nuage De Ténèbres', capture: false }),
@@ -676,6 +742,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S The Third Art Of Darkness Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5604', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5604', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5604', source: 'Nuage De Ténèbres', capture: false }),
@@ -701,6 +768,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Particle Concentration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5620', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5620', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5620', source: 'Nuage De Ténèbres', capture: false }),
@@ -723,6 +791,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Summon',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '5019', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '5019', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '5019', source: 'Nuage De Ténèbres', capture: false }),
@@ -733,6 +802,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9S Clone The Art Of Darkness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuée de Ténèbres' }),
@@ -780,6 +850,8 @@ Options.Triggers.push({
         if (!data.boss || !data.clones)
           return;
         const [clone1, clone2] = data.clones;
+        if (!clone1 || !clone2)
+          return;
         return output[calculateSummonSafeZone(data.boss, clone1, clone2, matches.id)]();
       },
       run: (data) => delete data.summon,

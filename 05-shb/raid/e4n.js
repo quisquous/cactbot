@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E4N Voice of the Land',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4N Earthen Fury',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
@@ -36,6 +38,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4N Stonecrusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F9', source: 'Titan' }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F9', source: 'Titan' }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F9', source: 'Titan' }),
@@ -47,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4N Massive Landslide',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
@@ -67,6 +71,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4N Seismic Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F2', source: 'Massive Boulder', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F2', source: 'Riesig(?:e|er|es|en) Felsen', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F2', source: 'Monolithe Géant', capture: false }),
@@ -89,6 +94,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4N Geocrush',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
@@ -99,6 +105,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4N Fault Zone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),

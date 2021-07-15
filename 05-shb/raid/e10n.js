@@ -13,6 +13,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E10N Deepshadow Nova',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56E5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56E5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56E5', capture: false }),
@@ -24,6 +25,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Forward Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B4', capture: false }),
@@ -34,6 +36,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Backward Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B7', capture: false }),
@@ -47,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Forward Shadow Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B5', capture: false }),
@@ -67,6 +71,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Backward Shadow Implosion',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56B8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56B8', capture: false }),
@@ -87,6 +92,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Left Giga Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '56B1', source: 'Shadowkeeper', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '56B1', source: 'Schattenkönig', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '56B1', source: 'Roi De L\'Ombre', capture: false }),
@@ -97,6 +103,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Right Giga Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '56AE', source: 'Shadowkeeper', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '56AE', source: 'Schattenkönig', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '56AE', source: 'Roi De L\'Ombre', capture: false }),
@@ -107,6 +114,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Left Right Shadow Slash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Shadowkeeper' }),
       netRegexDe: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Schattenkönig' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Roi De L\'Ombre' }),
@@ -135,6 +143,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Shadow\'s Edge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B0B' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B0B' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B0B' }),
@@ -145,6 +154,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Voidgate',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56DD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56DD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56DD', capture: false }),
@@ -166,6 +176,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Shadow Warrior',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56E2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56E2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56E2', capture: false }),
@@ -186,6 +197,7 @@ Options.Triggers.push({
     },
     {
       id: 'E10N Cloak of Shadows ',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B11', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B11', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B11', capture: false }),
@@ -210,6 +222,7 @@ Options.Triggers.push({
       // There is technically an AoE marker, but by the time it shows,
       // it's too late to get out if the player is inside the boss's hitbox.
       id: 'E10N Throne Of Shadow',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56C7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56C7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56C7', capture: false }),
@@ -222,6 +235,7 @@ Options.Triggers.push({
       // There is technically a visual, but it comes up at precisely the same time as puddles.
       // Best to make sure the user is reminded.
       id: 'E10N Distant Scream',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56C6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56C6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56C6', capture: false }),

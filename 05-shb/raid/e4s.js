@@ -16,6 +16,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E4S Earthen Gauntlets',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
@@ -29,6 +30,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Earthen Armor',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
@@ -42,6 +44,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Stonecrusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4116', source: 'Titan' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4116', source: 'Titan' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4116', source: 'Titan' }),
@@ -55,12 +58,14 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Pulse of the Land',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B9' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'E4S Evil Earth',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '410C', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '410C', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '410C', source: 'Titan', capture: false }),
@@ -82,12 +87,14 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Force of the Land',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BA' }),
       condition: Conditions.targetIsYou(),
       response: Responses.stackMarker(),
     },
     {
       id: 'E4S Voice of the Land',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4114', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4114', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4114', source: 'Titan', capture: false }),
@@ -99,6 +106,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Geocrush',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4113', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4113', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4113', source: 'Titan', capture: false }),
@@ -109,6 +117,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Massive Landslide - Front',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
@@ -129,6 +138,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Massive Landslide - Sides',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
@@ -139,6 +149,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Landslide',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '411A', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '411A', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '411A', source: 'Titan', capture: false }),
@@ -159,6 +170,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Crumbling Down',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -177,6 +189,7 @@ Options.Triggers.push({
       // Bomb positions are all x = (86 west, 100 mid, 114 east), y = (86, 100, 114).
       // Note: as these may hit multiple people, there may be multiple lines for the same bomb.
       id: 'E4S Bury Directions',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '4142', source: 'Bomb Boulder' }),
       netRegexDe: NetRegexes.abilityFull({ id: '4142', source: 'Bomber-Brocken' }),
       netRegexFr: NetRegexes.abilityFull({ id: '4142', source: 'Bombo Rocher' }),
@@ -186,8 +199,8 @@ Options.Triggers.push({
       condition: (data) => !data.printedBury,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
-        const x = matches.x;
-        const y = matches.y;
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
         if (data.phase === 'armor') {
           // Three line bombs (middle, e/w, w/e), with seismic wave.
           if (x < 95) {
@@ -250,6 +263,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Fault Line - Sides',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
@@ -270,6 +284,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Fault Line - Front',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
@@ -290,6 +305,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Magnitude 5.0',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4121', source: 'Titan', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4121', source: 'Titan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4121', source: 'Titan', capture: false }),
@@ -300,6 +316,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Earthen Fury',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4124', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4124', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4124', source: 'Maxi Titan', capture: false }),
@@ -311,6 +328,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Earthen Fist - Left/Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '412F', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '412F', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '412F', source: 'Maxi Titan', capture: false }),
@@ -331,6 +349,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Earthen Fist - Right/Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4130', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4130', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4130', source: 'Maxi Titan', capture: false }),
@@ -351,6 +370,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Earthen Fist - 2x Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4131', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4131', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4131', source: 'Maxi Titan', capture: false }),
@@ -371,6 +391,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Earthen Fist - 2x Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4132', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4132', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4132', source: 'Maxi Titan', capture: false }),
@@ -391,6 +412,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Dual Earthen Fists',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4135', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4135', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4135', source: 'Maxi Titan', capture: false }),
@@ -401,12 +423,14 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Weight of the World',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BB' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'E4S Megalith',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
       alertText: (data, matches, output) => {
         if (data.role !== 'tank')
@@ -430,6 +454,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Granite Gaol',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BF' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -452,6 +477,7 @@ Options.Triggers.push({
       // On the second set, could just say "go right" / "go front" and
       // keep track of which it has seen.
       id: 'E4S Plate Fracture - Front Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4125', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4125', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4125', source: 'Maxi Titan', capture: false }),
@@ -472,6 +498,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Plate Fracture - Back Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4126', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4126', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4126', source: 'Maxi Titan', capture: false }),
@@ -492,6 +519,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Plate Fracture - Back Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4127', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4127', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4127', source: 'Maxi Titan', capture: false }),
@@ -512,6 +540,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Plate Fracture - Front Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4128', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4128', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4128', source: 'Maxi Titan', capture: false }),
@@ -532,6 +561,7 @@ Options.Triggers.push({
     },
     {
       id: 'E4S Tumult',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '412A', source: 'Titan Maximum', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '412A', source: 'Gigantitan', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '412A', source: 'Maxi Titan', capture: false }),

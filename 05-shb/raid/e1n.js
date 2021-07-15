@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E1N Eden\'s Gravity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D94', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D94', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D94', source: 'Primo-Éden', capture: false }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1N Fragor Maximus',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DA4', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DA4', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DA4', source: 'Primo-Éden', capture: false }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1N Dimensional Shift',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D9C', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D9C', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D9C', source: 'Primo-Éden', capture: false }),
@@ -37,6 +40,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1N Eden\'s Flare',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D97', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D97', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D97', source: 'Primo-Éden', capture: false }),
@@ -47,6 +51,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1N Vice of Vanity You',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011', target: 'Eden Prime' }),
       netRegexDe: NetRegexes.tether({ id: '0011', target: 'Prim-Eden' }),
       netRegexFr: NetRegexes.tether({ id: '0011', target: 'Primo-Éden' }),
@@ -68,6 +73,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1N Spear Of Paradise',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DA1', source: 'Eden Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DA1', source: 'Prim-Eden' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DA1', source: 'Primo-Éden' }),
@@ -79,6 +85,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1N Vice of Apathy Mark',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001C' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -96,6 +103,7 @@ Options.Triggers.push({
     {
       // 10.5 second cast, maybe warn 6 seconds ahead so that folks bait outside.
       id: 'E1N Pure Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3DA3', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3DA3', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3DA3', source: 'Primo-Éden', capture: false }),

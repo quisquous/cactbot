@@ -71,6 +71,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E11N Burnished Glory',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5650', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5650', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5650', capture: false }),
@@ -82,6 +83,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Powder Mark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '564E' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '564E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '564E' }),
@@ -93,6 +95,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Powder Mark Explosion',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ source: 'Fatebreaker', effectId: '993' }),
       netRegexDe: NetRegexes.gainsEffect({ source: 'Fusioniert(?:e|er|es|en) Ascian', effectId: '993' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Sabreur De Destins', effectId: '993' }),
@@ -108,6 +111,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Burnt Strike Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '562C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '562C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '562C', capture: false }),
@@ -128,6 +132,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Burnt Strike Lightning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '562E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '562E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '562E', capture: false }),
@@ -148,6 +153,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Burnt Strike Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5630', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5630', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5630', capture: false }),
@@ -168,6 +174,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Burnt Strike Lightning Clone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5645', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abbild des fusionierten Ascians', id: '5645', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'double du Sabreur de destins', id: '5645', capture: false }),
@@ -188,6 +195,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Burnt Strike Fire Clone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5643', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abbild des fusionierten Ascians', id: '5643', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'double du Sabreur de destins', id: '5643', capture: false }),
@@ -208,20 +216,24 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Bound Of Faith Tether Collector',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: tetherIds }),
       run: (data, matches) => {
-        data.tethers = data.tethers || {};
+        let _a;
+        (_a = data.tethers) !== null && _a !== void 0 ? _a : (data.tethers = {});
         data.tethers[matches.target] = matches.sourceId;
       },
     },
     {
       id: 'E11N Bound Of Faith Tether Collector Cleanup',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: tetherIds, capture: false }),
       delaySeconds: 20,
       run: (data) => delete data.tethers,
     },
     {
       id: 'E11N Bound Of Faith Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '4B18', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '4B18', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '4B18', capture: false }),
@@ -232,6 +244,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Bound Of Faith Lightning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '4B19' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '4B19' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '4B19' }),
@@ -243,6 +256,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Bound Of Faith Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '4B1B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '4B1B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '4B1B', capture: false }),
@@ -253,6 +267,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Turn of the Heavens Fire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5639', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5639', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5639', capture: false }),
@@ -274,6 +289,7 @@ Options.Triggers.push({
     },
     {
       id: 'E11N Turn of the Heavens Lightning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '563A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '563A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '563A', capture: false }),

@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E6S Strike Spark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
@@ -46,12 +47,14 @@ Options.Triggers.push({
         if (!(combatantData !== null &&
                     combatantData.combatants &&
                     combatantData.combatants.length)) {
-          data.safeZone = null;
+          delete data.safeZone;
           return;
         }
         // we need to filter for the Ifrit with the highest ID
         // since that one is always the safe spot.
-        const currentHighestCombatant = combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
+        const currentHighestCombatant = combatantData.combatants.sort((a, b) => {
+          let _a; let _b; return ((_a = a.ID) !== null && _a !== void 0 ? _a : 0) - ((_b = b.ID) !== null && _b !== void 0 ? _b : 0);
+        }).pop();
         // all variation ranges for all the 9 ball positions for the kicking actors
         // north      x: 96-104   y: 85-93
         // northeast  x: 107-115  y: 85-93
@@ -63,6 +66,8 @@ Options.Triggers.push({
         // southwest  x: 85-93    y: 107-115
         let safeZone1 = null;
         let safeZone2 = null;
+        if (!currentHighestCombatant)
+          throw new UnreachableCode();
         // don't need to go through all the posibilities,
         // only those 4 ifs do reflect the above positions
         if (currentHighestCombatant.PosY > 84 && currentHighestCombatant.PosY < 94)
@@ -80,7 +85,7 @@ Options.Triggers.push({
         else if (safeZone2)
           data.safeZone = output.oneDir({ dir: safeZone2 });
         else
-          data.safeZone = null;
+          data.safeZone = undefined;
       },
       infoText: (data, _matches, output) => !data.safeZone ? output.unknown() : data.safeZone,
       outputStrings: {
@@ -109,6 +114,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Superstorm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
@@ -121,6 +127,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Ferostorm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
@@ -141,6 +148,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Air Bump',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
@@ -169,6 +177,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Touchdown',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
@@ -179,6 +188,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Inferno Howl',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
@@ -191,6 +201,7 @@ Options.Triggers.push({
     {
       // Save ability state since the generic tether used has multiple uses in this fight
       id: 'E6S Hands of Flame Start',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
@@ -203,6 +214,7 @@ Options.Triggers.push({
       // Tank swap if you're not the target
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6S Hands of Flame Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0068' }),
       condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
@@ -226,6 +238,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Hands of Flame Cast',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       netRegexDe: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       netRegexFr: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
@@ -237,6 +250,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Instant Incineration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
@@ -248,6 +262,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Meteor Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
@@ -258,6 +273,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Hands of Hell',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0016' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -274,6 +290,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Hated of the Vortex',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
@@ -284,6 +301,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Hated of the Vortex Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BB' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -300,6 +318,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Hated of the Embers Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BC' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -316,6 +335,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Raktapaksa Spawn',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
@@ -326,6 +346,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Downburst Knockback 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
@@ -336,6 +357,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Downburst Knockback 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
@@ -346,6 +368,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Conflag Strike',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
@@ -366,6 +389,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Irons Of Purgatory',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '006C' }),
       condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       alertText: (data, matches, output) => {
@@ -386,6 +410,7 @@ Options.Triggers.push({
     },
     {
       id: 'E6S Conflag Strike Behind',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),

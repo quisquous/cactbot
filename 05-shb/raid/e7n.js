@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E7N Empty Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C52', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C52', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C52', capture: false }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7N Unshadowed Stake',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
       netRegexDe: NetRegexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0025' }),
       netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7N Left With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -42,6 +45,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7N Right With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -58,6 +62,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7N Forward With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -74,6 +79,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7N Back With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -90,6 +96,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7N Strength In Numbers Donut',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4C', capture: false }),
@@ -113,6 +120,7 @@ Options.Triggers.push({
       // Ordinarily we might not warn on ground AoE markers. However, there are player-dropped
       // markers just before this, so it might be difficult to see.
       id: 'E7N Strength In Numbers Circle',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4D', capture: false }),
@@ -126,11 +134,13 @@ Options.Triggers.push({
       // For this and the following trigger, we warn the user only if they
       // will be struck by a color before their debuff expires.
       id: 'E7N Astral Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: (data, _matches, output) => {
-        data.colorCount = data.colorCount + 1 || 0;
+        let _a;
+        data.colorCount = ((_a = data.colorCount) !== null && _a !== void 0 ? _a : 0) + 1;
         if (data.colorCount === 3) {
           delete data.colorCount;
           return;
@@ -150,11 +160,13 @@ Options.Triggers.push({
     },
     {
       id: 'E7N Umbral Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: (data, _matches, output) => {
-        data.colorCount = data.colorCount + 1 || 0;
+        let _a;
+        data.colorCount = ((_a = data.colorCount) !== null && _a !== void 0 ? _a : 0) + 1;
         if (data.colorCount === 3) {
           delete data.colorCount;
           return;
@@ -175,6 +187,7 @@ Options.Triggers.push({
     {
       // Safety in case the user dies during Dark/Light Course.
       id: 'E7N Away With Thee Color Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C39', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C39', capture: false }),

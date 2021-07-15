@@ -7,7 +7,7 @@ Options.Triggers.push({
       const time = '275';
       if (Math.random() >= chance)
         return;
-      const goofs = {
+      const goofsByLang = {
         en: [
           'brb',
           ':zzz:',
@@ -53,16 +53,19 @@ Options.Triggers.push({
           '我柜子动了等下再玩',
           'CG',
         ],
-      }[data.displayLang];
+      };
+      const goofs = goofsByLang[data.displayLang];
       if (!goofs)
         return;
       const goof = goofs[Math.floor(Math.random() * goofs.length)];
-      return time + ' "' + goof + '"';
+      if (goof)
+        return `${time} "${goof}"`;
     },
   ],
   triggers: [
     {
       id: 'E1S Initial',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D70', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D70', source: 'Primo-Éden', capture: false }),
@@ -78,6 +81,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Paradise Regained',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Eden Prime', effectId: '7B6', capture: false }),
       netRegexDe: NetRegexes.gainsEffect({ target: 'Prim-Eden', effectId: '7B6', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Primo-Éden', effectId: '7B6', capture: false }),
@@ -88,6 +92,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Paradise Regained But Lost',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ target: 'Eden Prime', effectId: '7B6', capture: false }),
       netRegexDe: NetRegexes.losesEffect({ target: 'Prim-Eden', effectId: '7B6', capture: false }),
       netRegexFr: NetRegexes.losesEffect({ target: 'Primo-Éden', effectId: '7B6', capture: false }),
@@ -98,6 +103,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Eden\'s Gravity',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D70', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D70', source: 'Primo-Éden', capture: false }),
@@ -109,6 +115,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Fragor Maximus',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D8B', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D8B', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D8B', source: 'Primo-Éden', capture: false }),
@@ -120,6 +127,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Dimensional Shift',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D7F', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D7F', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D7F', source: 'Primo-Éden', capture: false }),
@@ -131,6 +139,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Spear Of Paradise',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D88', source: 'Eden Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D88', source: 'Prim-Eden' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D88', source: 'Primo-Éden' }),
@@ -142,6 +151,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Eden\'s Flare',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D73', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D73', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D73', source: 'Primo-Éden', capture: false }),
@@ -152,6 +162,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Delta Attack 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '44F4', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '44F4', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '44F4', source: 'Primo-Éden', capture: false }),
@@ -172,6 +183,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Delta Attack 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '44F8', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '44F8', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '44F8', source: 'Primo-Éden', capture: false }),
@@ -210,6 +222,7 @@ Options.Triggers.push({
       // 44F0: healer1
       // 3D7D: healer2
       id: 'E1S Vice and Virtue Tracker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Primo-Éden', capture: false }),
@@ -217,8 +230,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '에덴 프라임', capture: false }),
       run: (data) => {
+        let _a;
         // Note: this happens *after* the marks, so is setting up vice for the next marks.
-        data.viceCount++;
+        data.viceCount = ((_a = data.viceCount) !== null && _a !== void 0 ? _a : 0) + 1;
         const viceMap = {
           1: 'dps',
           2: 'tank',
@@ -239,6 +253,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue DPS 2 Tracker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),
@@ -249,6 +264,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Tank 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '44EE', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '44EE', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '44EE', source: 'Primo-Éden', capture: false }),
@@ -259,6 +275,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Tank 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D78', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D78', source: 'Primo-Éden', capture: false }),
@@ -269,6 +286,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Healer 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '44F0', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '44F0', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '44F0', source: 'Primo-Éden', capture: false }),
@@ -279,6 +297,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Healer 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D7D', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D7D', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D7D', source: 'Primo-Éden', capture: false }),
@@ -289,6 +308,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue DPS 1',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: (data, matches) => !data.paradise && data.vice === 'dps' && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
@@ -305,6 +325,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue DPS 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),
@@ -325,6 +346,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Tank Mark',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: (data, matches) => data.vice === 'tank' && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
@@ -341,6 +363,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Tank Stack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D78', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D78', source: 'Primo-Éden', capture: false }),
@@ -362,6 +385,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Healer Mark YOU',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '840' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
@@ -390,6 +414,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Vice and Virtue Healer Mark Not You',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '840', capture: false }),
       condition: (data) => {
         if (data.role === 'dps')
@@ -413,6 +438,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Mana Boost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D8D', source: 'Hüter Von Eden' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin' }),
@@ -425,6 +451,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Pure Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D8A', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D8A', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D8A', source: 'Primo-Éden', capture: false }),
@@ -435,6 +462,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Pure Beam 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D80', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D80', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D80', source: 'Primo-Éden', capture: false }),
@@ -455,6 +483,7 @@ Options.Triggers.push({
     },
     {
       id: 'E1S Pure Beam 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D82', source: 'Eden Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D82', source: 'Prim-Eden', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D82', source: 'Primo-Éden', capture: false }),

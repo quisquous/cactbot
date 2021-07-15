@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E9N Ground-Razing Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55ED', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55ED', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55ED', source: 'Nuage De Ténèbres', capture: false }),
@@ -16,6 +17,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N The Art Of Darkness Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5223', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5223', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5223', source: 'Nuage De Ténèbres', capture: false }),
@@ -27,6 +29,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N The Art Of Darkness Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5224', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5224', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5224', source: 'Nuage De Ténèbres', capture: false }),
@@ -38,6 +41,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Wide-Angle Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5AFF', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5AFF', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5AFF', source: 'Nuage De Ténèbres', capture: false }),
@@ -48,6 +52,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Zero-Form Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55EB', source: 'Cloud Of Darkness' }),
       netRegexDe: NetRegexes.startsUsing({ id: '55EB', source: 'Wolke Der Dunkelheit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '55EB', source: 'Nuage De Ténèbres' }),
@@ -59,6 +64,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Empty Plane',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FC6', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4FC6', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4FC6', source: 'Nuage De Ténèbres', capture: false }),
@@ -71,6 +77,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Obscure Woods',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FA2', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4FA2', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4FA2', source: 'Nuage De Ténèbres', capture: false }),
@@ -83,6 +90,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Waste Away',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55DE', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55DE', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55DE', source: 'Nuage De Ténèbres', capture: false }),
@@ -93,6 +101,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Stygian Tether',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000C' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -109,12 +118,14 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Stygian Break Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0012' }),
       condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
     {
       id: 'E9N Wide-Angle Phaser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['55DF', '55E[01]'], source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['55DF', '55E[01]'], source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['55DF', '55E[01]'], source: 'Nuage De Ténèbres', capture: false }),
@@ -137,6 +148,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Rejuvenating Balm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55E2', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55E2', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55E2', source: 'Nuage De Ténèbres', capture: false }),
@@ -158,6 +170,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Deluge Of Darkness',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5155', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5155', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5155', source: 'Nuage De Ténèbres', capture: false }),
@@ -170,6 +183,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Particle Concentration',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55E8', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55E8', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55E8', source: 'Nuage De Ténèbres', capture: false }),
@@ -192,6 +206,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Hypercharged Condensation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '532E', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '532E', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '532E', source: 'Nuage De Ténèbres', capture: false }),
@@ -204,6 +219,7 @@ Options.Triggers.push({
     },
     {
       id: 'E9N Anti-Air Particle Beam',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '55DC', source: 'Cloud Of Darkness', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '55DC', source: 'Wolke Der Dunkelheit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '55DC', source: 'Nuage De Ténèbres', capture: false }),

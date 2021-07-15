@@ -22,6 +22,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E2N Shadowflame Tank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E4D', source: 'Nichtswandler' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant' }),
@@ -33,6 +34,7 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Shadowflame Healer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E4D', source: 'Nichtswandler', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant', capture: false }),
@@ -48,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Entropy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E6D', source: 'Voidwalker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E6D', source: 'Nichtswandler', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E6D', source: 'Marcheuse Du Néant', capture: false }),
@@ -59,6 +62,7 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Doomvoid Slicer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E3C', source: 'Voidwalker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E3C', source: 'Nichtswandler', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E3C', source: 'Marcheuse Du Néant', capture: false }),
@@ -69,6 +73,7 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Empty Hate',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E46', source: 'The Hand Of Erebos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E46', source: 'Arm Des Erebos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E46', source: 'Bras D\'Érèbe', capture: false }),
@@ -79,6 +84,7 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Darkfire Counter',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E42', source: 'Voidwalker', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E42', source: 'Nichtswandler', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E42', source: 'Marcheuse Du Néant', capture: false }),
@@ -86,36 +92,41 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3E42', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E42', source: '보이드워커', capture: false }),
       run: (data) => {
-        data.fireCount = data.fireCount || 0;
-        data.fireCount++;
+        let _a; return data.fireCount = ((_a = data.fireCount) !== null && _a !== void 0 ? _a : 0) + 1;
       },
     },
     {
       id: 'E2N Dark Fire No Waiting',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '004C' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'E2N Unholy Darkness No Waiting',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2N Shadoweye No Waiting',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
       response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2N Dark Fire Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B5' }),
       run: (data, matches) => {
-        data.spell = data.spell || {};
+        let _a;
+        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
         data.spell[matches.target] = 'fire';
       },
     },
     {
       id: 'E2N Dark Fire Waiting',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B5' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -132,8 +143,11 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Countdown Marker Fire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => data.me === matches.target && data.spell[data.me] === 'fire',
+      condition: (data, matches) => {
+        let _a; return data.me === matches.target && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[data.me]) === 'fire';
+      },
       alertText: (data, _matches, output) => {
         if (data.fireCount === 3)
           return output.spreadDontStack();
@@ -153,14 +167,17 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Unholy Darkness Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B4' }),
       run: (data, matches) => {
-        data.spell = data.spell || {};
+        let _a;
+        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
         data.spell[matches.target] = 'stack';
       },
     },
     {
       id: 'E2N Unholy Darkness Waiting',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B4' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -177,26 +194,31 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Countdown Marker Unholy Darkness',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: (data, matches) => {
+        let _a; let _b;
         // The third fire coincides with stack.
         // These people should avoid.
-        if (data.spell[data.me] === 'fire' && data.fireCount === 3)
+        if (((_a = data.spell) === null || _a === void 0 ? void 0 : _a[data.me]) === 'fire' && data.fireCount === 3)
           return false;
-        return data.spell[matches.target] === 'stack';
+        return ((_b = data.spell) === null || _b === void 0 ? void 0 : _b[matches.target]) === 'stack';
       },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2N Shadoweye Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B7' }),
       run: (data, matches) => {
-        data.spell = data.spell || {};
+        let _a;
+        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
         data.spell[matches.target] = 'eye';
       },
     },
     {
       id: 'E2N Shadoweye Waiting',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B7' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -213,16 +235,21 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Countdown Marker Shadoweye',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => data.spell[matches.target] === 'eye',
+      condition: (data, matches) => {
+        let _a; return ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'eye';
+      },
       delaySeconds: 2,
       response: Responses.lookAwayFromTarget('alarm'),
     },
     {
       id: 'E2N Countdown Marker Shadoweye You',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: (data, matches) => {
-        return data.me === matches.target && data.spell[matches.target] === 'eye';
+        let _a;
+        return data.me === matches.target && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'eye';
       },
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text(),
@@ -239,9 +266,12 @@ Options.Triggers.push({
     },
     {
       id: 'E2N Countdown Marker Cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
-      run: (data, matches) => delete data.spell[matches.target],
+      run: (data, matches) => {
+        let _a; return (_a = data.spell) === null || _a === void 0 ? true : delete _a[matches.target];
+      },
     },
   ],
   timelineReplace: [

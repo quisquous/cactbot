@@ -95,6 +95,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'E12N Intermission Completion',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4B48', source: 'Eden\'s Promise', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '4B48', source: 'Edens Verheißung', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '4B48', source: 'Promesse D\'Éden', capture: false }),
@@ -105,6 +106,7 @@ Options.Triggers.push({
     },
     {
       id: 'E12N Maleficium',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5872', source: 'Eden\'s Promise', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5872', source: 'Edens Verheißung', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5872', source: 'Promesse D\'Éden', capture: false }),
@@ -116,6 +118,7 @@ Options.Triggers.push({
     },
     {
       id: 'E12N Formless Judgment',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5873', source: 'Eden\'s Promise' }),
       netRegexDe: NetRegexes.startsUsing({ id: '5873', source: 'Edens Verheißung' }),
       netRegexFr: NetRegexes.startsUsing({ id: '5873', source: 'Promesse D\'Éden' }),
@@ -131,17 +134,21 @@ Options.Triggers.push({
       // SE X: 11.31371 Y: -63.68629
       // NE X: 11.31371 Y: -86.3137
       id: 'E12N Bomb Collect',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9816' }),
       run: (data, matches) => {
-        const bomb = {};
-        bomb.north = parseFloat(matches.y) + 70 < 0;
-        bomb.east = parseFloat(matches.x) > 0;
-        data.bombs = data.bombs || [];
+        let _a;
+        const bomb = {
+          north: parseFloat(matches.y) + 70 < 0,
+          east: parseFloat(matches.x) > 0,
+        };
+        (_a = data.bombs) !== null && _a !== void 0 ? _a : (data.bombs = []);
         data.bombs.push(bomb);
       },
     },
     {
       id: 'E12N Boulders Impact',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '586E', source: 'Titanic Bomb Boulder', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '586E', source: 'Mega-Bomber-Brocken', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '586E', source: 'Méga Bombo Rocher', capture: false }),
@@ -150,12 +157,16 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ id: '586E', source: '거대 바위폭탄', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
+        let _a;
         // Whichever direction has two  Titanic Bombs, the safe spot is opposite.
+        const [firstBomb, secondBomb] = (_a = data.bombs) !== null && _a !== void 0 ? _a : [];
+        if (!firstBomb || !secondBomb)
+          return;
         let safe;
-        if (data.bombs[0].north === data.bombs[1].north)
-          safe = data.bombs[0].north ? 'south' : 'north';
+        if (firstBomb.north === secondBomb.north)
+          safe = firstBomb.north ? 'south' : 'north';
         else
-          safe = data.bombs[0].east ? 'west' : 'east';
+          safe = firstBomb.east ? 'west' : 'east';
         return output[safe]();
       },
       run: (data) => delete data.bombs,
@@ -163,6 +174,7 @@ Options.Triggers.push({
     },
     {
       id: 'E12N Boulders Explosion',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '586F', source: 'Titanic Bomb Boulder', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '586F', source: 'Mega-Bomber-Brocken', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '586F', source: 'Méga Bombo Rocher', capture: false }),
@@ -184,10 +196,12 @@ Options.Triggers.push({
     },
     {
       id: 'E12N Rapturous Reach Double',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => !data.seenIntermission,
       preRun: (data, matches) => {
-        data.stacks = data.stacks || [];
+        let _a;
+        (_a = data.stacks) !== null && _a !== void 0 ? _a : (data.stacks = []);
         data.stacks.push(matches.target);
       },
       alertText: (data, matches, output) => {
@@ -195,7 +209,7 @@ Options.Triggers.push({
           return output.stackOnYou();
       },
       infoText: (data, _matches, output) => {
-        if (data.stacks.length === 1)
+        if (!data.stacks || data.stacks.length === 1)
           return;
         const names = data.stacks.map((x) => data.ShortName(x)).sort();
         return output.stacks({ players: names.join(', ') });
@@ -214,18 +228,21 @@ Options.Triggers.push({
     },
     {
       id: 'E12N Rapturous Reach Cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 10,
       run: (data) => delete data.stacks,
     },
     {
       id: 'E12N Rapturous Reach Single',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => data.seenIntermission,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E12N Diamond Dust Mitigate',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5864', source: 'Edens Verheißung', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5864', source: 'Promesse D\'Éden', capture: false }),
@@ -237,6 +254,7 @@ Options.Triggers.push({
     },
     {
       id: 'E12N Diamond Dust Stop',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5864', source: 'Edens Verheißung', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5864', source: 'Promesse D\'Éden', capture: false }),
@@ -248,45 +266,56 @@ Options.Triggers.push({
     },
     {
       id: 'E12N Frigid Stone',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E12N Tether Collect',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: tetherIds }),
       run: (data, matches) => {
-        data.tethers = data.tethers || [];
+        let _a;
+        (_a = data.tethers) !== null && _a !== void 0 ? _a : (data.tethers = []);
         data.tethers.push(matches.id);
       },
     },
     {
       id: 'E12N Cast Release',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
-      preRun: (data) => data.tethers = data.tethers.sort(),
+      preRun: (data) => {
+        let _a; return data.tethers = (_a = data.tethers) === null || _a === void 0 ? void 0 : _a.sort();
+      },
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
-        if (data.tethers.length !== 2)
+        let _a;
+        const [firstTether, secondTether] = (_a = data.tethers) !== null && _a !== void 0 ? _a : [];
+        if (!firstTether || !secondTether)
           return;
         // Leviathan's mechanics aren't easily described in a single word,
         // so we special-case them.
-        const comboStr = data.tethers[0] + data.tethers[1];
+        const comboStr = firstTether + secondTether;
         if (comboStr in primalOutputStrings)
           return output[comboStr]();
         return output.combined({
-          safespot1: output[data.tethers[0]](),
-          safespot2: output[data.tethers[1]](),
+          safespot1: output[firstTether](),
+          safespot2: output[secondTether](),
         });
       },
       infoText: (data, _matches, output) => {
-        if (data.tethers.length === 2)
+        let _a; let _b;
+        const onlyTether = (_a = data.tethers) === null || _a === void 0 ? void 0 : _a[0];
+        if (!onlyTether || ((_b = data.tethers) === null || _b === void 0 ? void 0 : _b.length) === 2)
           return;
-        return output[data.tethers[0]]();
+        return output[onlyTether]();
       },
       outputStrings: primalOutputStrings,
     },
     {
       id: 'E12N Tether Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
       delaySeconds: 5,
       run: (data) => delete data.tethers,

@@ -1,9 +1,28 @@
+const colorMap = {
+  light: {
+    en: 'Dark',
+    de: 'Dunkel',
+    fr: 'Noir',
+    ja: '黒',
+    cn: '黑色',
+    ko: '어둠',
+  },
+  dark: {
+    en: 'Light',
+    de: 'Licht',
+    fr: 'Blanc',
+    ja: '白',
+    cn: '白色',
+    ko: '빛',
+  },
+};
 Options.Triggers.push({
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   timelineFile: 'e7s.txt',
   triggers: [
     {
       id: 'E7S Empty Wave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C8A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C8A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C8A', capture: false }),
@@ -15,6 +34,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Unshadowed Stake',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
       netRegexDe: NetRegexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0025' }),
       netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
@@ -26,6 +46,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Betwixt Worlds',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4CFD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4CFD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4CFD', capture: false }),
@@ -36,6 +57,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Betwixt Worlds Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0011' }),
       netRegexDe: NetRegexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0011' }),
@@ -44,7 +66,8 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0011' }),
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
-        data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
+        let _a;
+        (_a = data.betwixtWorldsTethers) !== null && _a !== void 0 ? _a : (data.betwixtWorldsTethers = []);
         data.betwixtWorldsTethers.push(matches.target);
       },
       infoText: (data, matches, output) => {
@@ -64,19 +87,22 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Betwixt Worlds Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
-        data.betwixtWorldsStack = data.betwixtWorldsStack || [];
+        let _a;
+        (_a = data.betwixtWorldsStack) !== null && _a !== void 0 ? _a : (data.betwixtWorldsStack = []);
         data.betwixtWorldsStack.push(matches.target);
       },
       alertText: (data, matches, output) => {
-        data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
+        let _a;
+        (_a = data.betwixtWorldsTethers) !== null && _a !== void 0 ? _a : (data.betwixtWorldsTethers = []);
         if (data.betwixtWorldsTethers.includes(data.me))
           return;
         if (data.me === matches.target)
           return output.stackOnYou();
-        if (data.betwixtWorldsStack.length === 1)
+        if (!data.betwixtWorldsStack || data.betwixtWorldsStack.length === 1)
           return;
         const names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
         return output.stackOn({ players: names.join(', ') });
@@ -95,6 +121,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Left With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -111,6 +138,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Right With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -127,6 +155,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Forward With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -143,6 +172,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Back With Thee',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -159,6 +189,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S False Midnight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C99', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C99', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C99', capture: false }),
@@ -169,10 +200,12 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Silver Shot',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: (data) => data.phase === 'falseMidnight',
       preRun: (data, matches) => {
-        data.falseMidnightSpread = data.falseMidnightSpread || [];
+        let _a;
+        (_a = data.falseMidnightSpread) !== null && _a !== void 0 ? _a : (data.falseMidnightSpread = []);
         data.falseMidnightSpread.push(matches.target);
       },
       infoText: (data, matches, output) => {
@@ -185,6 +218,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Silver Sledge',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: (data) => data.phase === 'falseMidnight',
       // The stack marker is in the middle of spreads,
@@ -192,7 +226,8 @@ Options.Triggers.push({
       // it is not called out on spreads.
       delaySeconds: 0.5,
       alertText: (data, matches, output) => {
-        data.falseMidnightSpread = data.falseMidnightSpread || [];
+        let _a;
+        (_a = data.falseMidnightSpread) !== null && _a !== void 0 ? _a : (data.falseMidnightSpread = []);
         if (data.falseMidnightSpread.includes(data.me))
           return;
         if (data.me === matches.target)
@@ -206,6 +241,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Adds',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Blasphemy', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Blasphemie', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Vol D\'idolâtries Impardonnables', capture: false }),
@@ -217,6 +253,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Advent Of Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C6E' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C6E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C6E' }),
@@ -229,16 +266,18 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Insatiable Light Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: (data) => data.phase === 'adds',
       preRun: (data, matches) => {
-        data.insatiableLightStack = data.insatiableLightStack || [];
+        let _a;
+        (_a = data.insatiableLightStack) !== null && _a !== void 0 ? _a : (data.insatiableLightStack = []);
         data.insatiableLightStack.push(matches.target);
       },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.stackOnYou();
-        if (data.insatiableLightStack.length === 1)
+        if (!data.insatiableLightStack || data.insatiableLightStack.length === 1)
           return;
         const names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
         return output.stackPlayers({ players: names.join(', ') });
@@ -257,6 +296,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Insatiable Light',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Idolatry', id: '4C6D', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Idolatrie', id: '4C6D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C6D', capture: false }),
@@ -267,6 +307,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Strength in Numbers',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C70', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C70', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'idolâtries Impardonnables', id: '4C70', capture: false }),
@@ -288,6 +329,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Unearned Envy',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Blasphemy', id: '4C74', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Blasphemie', id: '4C74', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C74', capture: false }),
@@ -301,6 +343,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Empty Flood',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '(?:4C8[BC]|4E5[56])', capture: false }),
@@ -312,47 +355,22 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     {
-      id: 'E7S Unjoined Aspect',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C3B', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C3B', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C3B', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C3B', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C3B', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C3B', capture: false }),
-      run: (data) => {
-        data.colorMap = {};
-        data.colorMap['light'] = {
-          en: 'Dark',
-          de: 'Dunkel',
-          fr: 'Noir',
-          ja: '黒',
-          cn: '黑色',
-          ko: '어둠',
-        };
-        data.colorMap['dark'] = {
-          en: 'Light',
-          de: 'Licht',
-          fr: 'Blanc',
-          ja: '白',
-          cn: '白色',
-          ko: '빛',
-        };
-      },
-    },
-    {
       id: 'E7S Astral Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.color = 'light',
     },
     {
       id: 'E7S Umbral Effect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.color = 'dark',
     },
     {
       id: 'E7S Boundless Tracker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5[CD]' }),
@@ -360,13 +378,15 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       run: (data, matches) => {
-        data.boundless = data.boundless || {};
+        let _a;
+        (_a = data.boundless) !== null && _a !== void 0 ? _a : (data.boundless = {});
         const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         data.boundless[oppositeColor] = matches.target;
       },
     },
     {
       id: 'E7S Boundless Light Dark Stack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]' }),
@@ -374,7 +394,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       condition: (data, matches) => {
-        if (Object.keys(data.boundless).length !== 2)
+        let _a;
+        if (Object.keys((_a = data.boundless) !== null && _a !== void 0 ? _a : {}).length !== 2)
           return false;
         const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         return data.color === oppositeColor;
@@ -404,6 +425,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Boundless Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]', capture: false }),
@@ -415,6 +437,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Words of Night',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '(?:4C2C|4C65)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '(?:4C2C|4C65)', capture: false }),
@@ -422,8 +445,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '(?:4C2C|4C65)', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '(?:4C2C|4C65)', capture: false }),
       alertText: (data, _matches, output) => {
-        data.colorMap = data.colorMap || {};
-        const colorTrans = data.colorMap[data.color] || {};
+        if (!data.color)
+          return;
+        const colorTrans = colorMap[data.color] || {};
         const color = colorTrans[data.displayLang];
         if (!color)
           return;
@@ -442,6 +466,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S False Dawn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C9A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C9A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C9A', capture: false }),
@@ -463,6 +488,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Crusade',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C76', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C76', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C76', capture: false }),
@@ -484,6 +510,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Unjoined Aspect P3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Idol Of Darkness', id: '4C7A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Götzenbild Der Dunkelheit', id: '4C7A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Idole Des Ténèbres', id: '4C7A', capture: false }),
@@ -528,6 +555,7 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Threefold Grace',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C7E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C7E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C7E', capture: false }),
@@ -535,8 +563,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C7E', capture: false }),
       alertText: (data, _matches, output) => {
-        data.colorMap = data.colorMap || {};
-        const colorTrans = data.colorMap[data.color] || {};
+        if (!data.color)
+          return;
+        const colorTrans = colorMap[data.color] || {};
         const color = colorTrans[data.displayLang];
         if (!color)
           return;
