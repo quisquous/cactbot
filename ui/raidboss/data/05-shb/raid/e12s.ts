@@ -233,8 +233,6 @@ const intermediateRelativityOutputStringsRaw = {
     ko: '에어로가',
   },
 };
-// TODO: eslint gets confused about `id` here in a type definition?
-// eslint-disable-next-line no-unused-vars
 type InterStrings = { [id in keyof typeof intermediateRelativityOutputStringsRaw]: LocaleText };
 const intermediateRelativityOutputStrings: InterStrings = intermediateRelativityOutputStringsRaw;
 
