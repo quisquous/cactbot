@@ -16,12 +16,12 @@ export const setup = (bars: Bars): void => {
     fgColor: 'gnb-color-nomercy',
   });
   bars.onUseAbility(kAbility.NoMercy, () => {
-    noMercyBox.duration = '20';
-    noMercyBox.threshold = '1000';
+    noMercyBox.duration = 20;
+    noMercyBox.threshold = 1000;
     noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
     tid1 = window.setTimeout(() => {
-      noMercyBox.duration = '40';
-      noMercyBox.threshold = (bars.gcdSkill + 1).toString();
+      noMercyBox.duration = 40;
+      noMercyBox.threshold = bars.gcdSkill + 1;
       noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
     }, 20000);
   });
@@ -31,15 +31,15 @@ export const setup = (bars: Bars): void => {
     fgColor: 'gnb-color-bloodfest',
   });
   bars.onUseAbility(kAbility.Bloodfest, () => {
-    bloodfestBox.duration = '90';
+    bloodfestBox.duration = 90;
   });
 
   bars.onStatChange('GNB', () => {
-    gnashingFangBox.valuescale = bars.gcdSkill.toString();
-    gnashingFangBox.threshold = (bars.gcdSkill * 3).toString();
-    noMercyBox.valuescale = bars.gcdSkill.toString();
-    bloodfestBox.valuescale = bars.gcdSkill.toString();
-    bloodfestBox.threshold = (bars.gcdSkill * 2 + 1).toString();
+    gnashingFangBox.valuescale = bars.gcdSkill;
+    gnashingFangBox.threshold = bars.gcdSkill * 3;
+    noMercyBox.valuescale = bars.gcdSkill;
+    bloodfestBox.valuescale = bars.gcdSkill;
+    bloodfestBox.threshold = bars.gcdSkill * 2 + 1;
   });
   // Combos
   const gnashingFangBox = bars.addProcBox({
@@ -55,24 +55,24 @@ export const setup = (bars: Bars): void => {
     fgColor: 'gnb-color-gnashingfang',
   });
   bars.onUseAbility(kAbility.GnashingFang, () => {
-    gnashingFangBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 30000).toString();
-    cartridgeComboTimer.duration = '0';
-    cartridgeComboTimer.duration = '15';
+    gnashingFangBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 30000);
+    cartridgeComboTimer.duration = 0;
+    cartridgeComboTimer.duration = 15;
   });
   bars.onUseAbility(kAbility.SavageClaw, () => {
-    cartridgeComboTimer.duration = '0';
-    cartridgeComboTimer.duration = '15';
+    cartridgeComboTimer.duration = 0;
+    cartridgeComboTimer.duration = 15;
   });
   bars.onUseAbility(kAbility.WickedTalon, () => {
-    cartridgeComboTimer.duration = '0';
+    cartridgeComboTimer.duration = 0;
   });
   bars.onCombo((skill) => {
-    comboTimer.duration = '0';
-    cartridgeComboTimer.duration = '0';
+    comboTimer.duration = 0;
+    cartridgeComboTimer.duration = 0;
     if (bars.combo.isFinalSkill)
       return;
     if (skill)
-      comboTimer.duration = '15';
+      comboTimer.duration = 15;
   });
 
   bars.onJobDetailUpdate((jobDetail: JobDetail['GNB']) => {
@@ -84,13 +84,13 @@ export const setup = (bars: Bars): void => {
   });
 
   resetFunc = (bars) => {
-    noMercyBox.duration = '0';
-    noMercyBox.threshold = (bars.gcdSkill + 1).toString();
+    noMercyBox.duration = 0;
+    noMercyBox.threshold = bars.gcdSkill + 1;
     noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
-    bloodfestBox.duration = '0';
-    gnashingFangBox.duration = '0';
-    cartridgeComboTimer.duration = '0';
-    comboTimer.duration = '0';
+    bloodfestBox.duration = 0;
+    gnashingFangBox.duration = 0;
+    cartridgeComboTimer.duration = 0;
+    comboTimer.duration = 0;
     clearTimeout(tid1);
   };
 };

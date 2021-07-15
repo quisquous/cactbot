@@ -179,7 +179,7 @@ export const makeAuraTimerIcon = (
     bar.width = iconWidth.toString();
     bar.height = barHeight.toString();
     bar.fg = barColor;
-    bar.duration = seconds.toString();
+    bar.duration = seconds;
     barDiv.appendChild(bar);
   }
 
@@ -207,7 +207,7 @@ export const makeAuraTimerIcon = (
     icon.text = iconText;
   icon.bordercolor = borderColor;
   icon.icon = auraIcon;
-  icon.duration = seconds.toString();
+  icon.duration = seconds;
 
   return div;
 };

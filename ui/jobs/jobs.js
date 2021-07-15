@@ -236,7 +236,7 @@ class Bars {
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
     this.o.pullCountdown.lefttext = kPullText[this.options.DisplayLanguage] || kPullText['en'];
     this.o.pullCountdown.righttext = 'remain';
-    this.o.pullCountdown.hideafter = '0';
+    this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
     this.o.pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
 
@@ -247,8 +247,8 @@ class Bars {
     this.o.rightBuffsList = document.createElement('widget-list');
     this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
 
-    this.o.rightBuffsList.rowcolsize = '7';
-    this.o.rightBuffsList.maxnumber = '7';
+    this.o.rightBuffsList.rowcolsize = 7;
+    this.o.rightBuffsList.maxnumber = 7;
     this.o.rightBuffsList.toward = 'right down';
     this.o.rightBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
 
@@ -256,8 +256,8 @@ class Bars {
       // Just alias these two together so the rest of the code doesn't have
       // to care that they're the same thing.
       this.o.leftBuffsList = this.o.rightBuffsList;
-      this.o.rightBuffsList.rowcolsize = '20';
-      this.o.rightBuffsList.maxnumber = '20';
+      this.o.rightBuffsList.rowcolsize = 20;
+      this.o.rightBuffsList.maxnumber = 20;
       // Hoist the buffs up to hide everything else.
       barsLayoutContainer.appendChild(this.o.rightBuffsContainer);
       barsLayoutContainer.classList.add('justbuffs');
@@ -269,8 +269,8 @@ class Bars {
       this.o.leftBuffsList = document.createElement('widget-list');
       this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
 
-      this.o.leftBuffsList.rowcolsize = '7';
-      this.o.leftBuffsList.maxnumber = '7';
+      this.o.leftBuffsList.rowcolsize = 7;
+      this.o.leftBuffsList.maxnumber = 7;
       this.o.leftBuffsList.toward = 'left down';
       this.o.leftBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
     }
@@ -453,10 +453,10 @@ class Bars {
       timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
     timerBox.bg = 'black';
     timerBox.toward = 'bottom';
-    timerBox.threshold = `${threshold ? threshold : 0}`;
-    timerBox.hideafter = '';
+    timerBox.threshold = threshold ? threshold : 0;
+    timerBox.hideafter = null;
     timerBox.roundupthreshold = false;
-    timerBox.valuescale = `${scale ? scale : 1}`;
+    timerBox.valuescale = scale ? scale : 1;
     if (id) {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
@@ -620,7 +620,7 @@ class Bars {
 
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
-      this.o.mpTicker.duration = '0';
+      this.o.mpTicker.duration = 0;
       this.o.mpTicker.stylefill = 'empty';
       return;
     }
@@ -637,7 +637,7 @@ class Bars {
 
     const mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
     if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
-      this.o.mpTicker.duration = kMPTickInterval.toString();
+      this.o.mpTicker.duration = kMPTickInterval;
 
     // Update color based on the astral fire/ice state
     let colorTag = 'mp-tick-color';
@@ -653,8 +653,8 @@ class Bars {
 
     if (!this.o.manaBar)
       return;
-    this.o.manaBar.value = this.mp.toString();
-    this.o.manaBar.maxvalue = this.maxMP.toString();
+    this.o.manaBar.value = this.mp;
+    this.o.manaBar.maxvalue = this.maxMP;
     let lowMP = -1;
     let mediumMP = -1;
     let far = -1;
@@ -686,15 +686,15 @@ class Bars {
   _updateCp() {
     if (!this.o.cpBar)
       return;
-    this.o.cpBar.value = this.cp.toString();
-    this.o.cpBar.maxvalue = this.maxCP.toString();
+    this.o.cpBar.value = this.cp;
+    this.o.cpBar.maxvalue = this.maxCP;
   }
 
   _updateGp() {
     if (!this.o.gpBar)
       return;
-    this.o.gpBar.value = this.gp.toString();
-    this.o.gpBar.maxvalue = this.maxGP.toString();
+    this.o.gpBar.value = this.gp;
+    this.o.gpBar.maxvalue = this.maxGP;
 
     // GP Alarm
     if (this.gp < this.options.GpAlarmPoint) {
@@ -814,7 +814,7 @@ class Bars {
     const inCountdown = seconds > 0;
     const showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
     if (inCountdown !== showingCountdown) {
-      this.o.pullCountdown.duration = seconds.toString();
+      this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
         const audio = new Audio('../../resources/sounds/freesound/sonar.ogg');
         audio.volume = 0.3;
