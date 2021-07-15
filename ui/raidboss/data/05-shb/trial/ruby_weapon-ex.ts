@@ -8,7 +8,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  playerMap?: { [name: string]: boolean };
   seenFlight?: boolean;
   ravens?: { [color: string]: string | undefined };
   colors?: { [name: string]: string };
@@ -414,8 +413,8 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         const numAdds = Object.keys(colorToAction).length;
-        let suffix: string | undefined;
-        let actionId: string | undefined;
+        let suffix: string;
+        let actionId: string;
 
         if (numAdds === 2 && colorToAction['blue'] === colorToAction['red']) {
           actionId = colorToAction['blue'];
