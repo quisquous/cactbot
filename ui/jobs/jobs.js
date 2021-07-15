@@ -600,9 +600,7 @@ export class Bars {
   _updateJobComponent(job) {
     this.jobComponent?.reset();
 
-    const JobComponent = getComponent(job);
-    if (JobComponent)
-      this.jobComponent = new JobComponent(this);
+    this.JobComponent = ComponentFactory.getComponent(this, job);
   }
 
   _updateJobBarGCDs() {

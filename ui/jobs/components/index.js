@@ -60,9 +60,17 @@ export function getReset(job) {
   }[job.toUpperCase()];
 }
 
-export function getComponent(job) {
-  return {
-    'AST': AstComponent,
-    'BLM': BlmComponent,
-  }[job.toUpperCase()];
+class ComponentFactory {
+  static getComponent(bars, job) {
+    switch (job.toUpperCase()) {
+    case 'AST':
+      return new AstComponent(bars);
+
+    case 'BLM':
+      return new BlmComponent(bars);
+
+    default:
+      break;
+    }
+  }
 }
