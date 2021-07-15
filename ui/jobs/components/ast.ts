@@ -4,7 +4,7 @@ import { NetMatches } from '../../../types/net_matches';
 import { kAbility } from '../constants';
 import { Bars } from '../jobs';
 
-import { Component } from './base';
+import { BaseComponent } from './base';
 
 const cardsMap = {
   'Balance': { 'bonus': 'melee', 'seal': 'Solar' },
@@ -15,7 +15,7 @@ const cardsMap = {
   'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
 } as const;
 
-export default class AstComponent extends Component {
+export default class AstComponent extends BaseComponent {
   combustBox: TimerBox;
   drawBox: TimerBox;
   lucidBox: TimerBox;

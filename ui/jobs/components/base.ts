@@ -5,7 +5,7 @@ import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
 import { Bars } from '../jobs';
 
-interface ComponentMethods {
+interface Component {
   bars: Bars;
   /**
    * (override) called on combo state changed
@@ -44,7 +44,7 @@ interface ComponentMethods {
   reset?: () => void;
 }
 
-export class Component implements ComponentMethods {
+export class BaseComponent implements Component {
   bars: Bars;
 
   constructor(bars: Bars) {

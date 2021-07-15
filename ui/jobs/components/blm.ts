@@ -5,9 +5,9 @@ import { NetMatches } from '../../../types/net_matches';
 import { kAbility } from '../constants';
 import { Bars } from '../jobs';
 
-import { Component } from './base';
+import { BaseComponent } from './base';
 
-export default class BlmComponent extends Component {
+export default class BlmComponent extends BaseComponent {
   thunderDot: TimerBox;
   thunderProc: TimerBox;
   fireProc: TimerBox;
