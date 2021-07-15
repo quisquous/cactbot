@@ -3,8 +3,8 @@
 // just switch over to using CSS grid.
 type Sorter = () => number;
 
-type LeftRight = `${'left' | 'right'}`;
-type UpDown = `${'up' | 'down'}`;
+type LeftRight = 'left' | 'right';
+type UpDown = 'up' | 'down';
 type Toward = `${LeftRight} ${UpDown}` | `${UpDown} ${LeftRight}`;
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
