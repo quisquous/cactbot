@@ -236,6 +236,7 @@ const tsOverrides = {
     }],
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-invalid-this': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
     '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
@@ -243,6 +244,7 @@ const tsOverrides = {
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': ['error', { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' }],
     'indent': 'off',
+    'no-invalid-this': 'off',
     'object-shorthand': ['error', 'consistent'],
   },
 };

@@ -1,4 +1,3 @@
-/* eslint-disable no-invalid-this */
 import webpack from 'webpack';
 
 const commentRegex = /(?<=^(?:[^"/]*(?:|"[^"]*"))[^"/]*(?:|sync\s*\/[^/]*\/[^"/]*))#.*$/i;

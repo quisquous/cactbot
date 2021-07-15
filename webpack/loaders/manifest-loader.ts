@@ -1,4 +1,3 @@
-/* eslint-disable no-invalid-this */
 import fs from 'fs';
 
 import webpack from 'webpack';
