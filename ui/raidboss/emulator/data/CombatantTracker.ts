@@ -16,7 +16,7 @@ export default class CombatantTracker {
   others: string[] = [];
   pets: string[] = [];
   mainCombatantID?: string;
-  initialStates: { [id: string]: Partial<CombatantState> } = {};
+  initialStates: { [id: string]: (Partial<CombatantState> & { timestamp?: number }) } = {};
   constructor(logLines: LineEvent[], language: Lang) {
     this.language = language;
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
@@ -43,12 +43,12 @@ export default class CombatantTracker {
     // Between passes: Create our initial combatant states
     for (const id in this.initialStates) {
       const state = this.initialStates[id] ?? {};
-      this.combatants[id]?.pushState(this.firstTimestamp, new CombatantState(
+      this.combatants[id]?.pushState(state.timestamp ?? this.firstTimestamp, new CombatantState(
           Number(state.posX),
           Number(state.posY),
           Number(state.posZ),
           Number(state.heading),
-          state.targetable ?? false,
+          state.targetable ?? state.timestamp !== undefined,
           Number(state.hp),
           Number(state.maxHp),
           Number(state.mp),
@@ -80,9 +80,7 @@ export default class CombatantTracker {
     // Figure out party/enemy/other status
     const petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
-      if (this.combatants[ID]?.job !== undefined &&
-        this.combatants[ID]?.job !== 'NONE' &&
-        ID.startsWith('1')) {
+      if (this.isPartyMember(ID)) {
         this.partyMembers.push(ID);
         return false;
       } else if (petNames.includes(this.combatants[ID]?.name ?? '')) {
@@ -104,6 +102,11 @@ export default class CombatantTracker {
   addCombatantFromLine(line: LineEventSource): void {
     const combatant = this.initCombatant(line.id, line.name);
     const initState = this.initialStates[line.id] ?? {};
+
+    if (initState.timestamp === undefined) {
+      if (line.decEvent !== 3 || this.isPartyMember(line.id))
+        initState.timestamp = line.timestamp;
+    }
 
     const extractedState = this.extractStateFromLine(line) ?? {};
 
@@ -131,6 +134,11 @@ export default class CombatantTracker {
   addCombatantFromTargetLine(line: LineEventTarget): void {
     this.initCombatant(line.targetId, line.targetName);
     const initState = this.initialStates[line.targetId] ?? {};
+
+    if (initState.timestamp === undefined) {
+      if (line.decEvent !== 3 || this.isPartyMember(line.targetId))
+        initState.timestamp = line.timestamp;
+    }
 
     const extractedState = this.extractStateFromTargetLine(line) ?? {};
 
@@ -210,5 +218,11 @@ export default class CombatantTracker {
     if (this.mainCombatantID)
       return this.combatants[this.mainCombatantID]?.name ?? 'Unknown';
     return 'Unknown';
+  }
+
+  private isPartyMember(ID: string): boolean {
+    return this.combatants[ID]?.job !== undefined &&
+        this.combatants[ID]?.job !== 'NONE' &&
+        ID.startsWith('1');
   }
 }
