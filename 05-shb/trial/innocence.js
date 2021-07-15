@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Inno Realmrazer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E9A', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
@@ -16,6 +17,7 @@ Options.Triggers.push({
     },
     {
       id: 'Inno Enthrall',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3E99', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
@@ -36,6 +38,7 @@ Options.Triggers.push({
     },
     {
       id: 'Inno Reprobation Swords 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EDC', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
@@ -58,6 +61,7 @@ Options.Triggers.push({
     },
     {
       id: 'Inno Shadowreaver',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
@@ -69,6 +73,7 @@ Options.Triggers.push({
     },
     {
       id: 'Inno Righteous Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EA3', source: 'Innozenz' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
@@ -80,6 +85,7 @@ Options.Triggers.push({
     },
     {
       id: 'Inno Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EC7', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
@@ -100,6 +106,7 @@ Options.Triggers.push({
     },
     {
       id: 'Inno Light Pillar',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '38FC', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
@@ -120,6 +127,7 @@ Options.Triggers.push({
     },
     {
       id: 'Inno Winged Drop Of Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -137,6 +145,7 @@ Options.Triggers.push({
     {
       // TODO: is there a left, or do all normal modes rotate right??
       id: 'Inno Soul And Body Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EB1', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),

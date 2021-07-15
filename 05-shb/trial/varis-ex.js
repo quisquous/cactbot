@@ -85,6 +85,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'VarisEx Phase 2',
+      type: 'Ability',
       // 4CCC: Vivere Militare Est
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
@@ -96,6 +97,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Phase 5',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CE2', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
@@ -106,6 +108,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Clones',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis-Doppelgänger', id: '4CB3', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'double de Varis', id: '4CB3', capture: false }),
@@ -116,6 +119,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Altius',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
@@ -136,6 +140,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Citius',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CF0' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
@@ -158,6 +163,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Alea Iacta Est',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
@@ -170,6 +176,7 @@ Options.Triggers.push({
       // This trigger match the fourth Alea Iacta Est that Varis used.
       // The player should go front to avoid the fifth one, which hits back.
       id: 'VarisEx Alea Iacta Est Front',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
@@ -192,6 +199,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Electrified Gunshield',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
@@ -203,6 +211,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Reinforced Gunshield',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
@@ -224,6 +233,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Reinforced Gunshield Sides',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
@@ -234,6 +244,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Reinforced Gunshield Front',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
@@ -244,6 +255,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Loaded Gunshield Final Warning',
+      type: 'Ability',
       // This ability id occurs ~3 seconds before the Magitek Burst spread damage.
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDE', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
@@ -263,6 +275,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Reinforcements',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
@@ -296,6 +309,7 @@ Options.Triggers.push({
     {
       // The warning is taken care of above with a timeline trigger.  See notes.
       id: 'VarisEx Festina Lente Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CC9', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
@@ -307,6 +321,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Terminus Est Clones',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
@@ -337,6 +352,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Magitek Torch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E4F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E4F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
@@ -347,6 +363,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Magitek Spark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
@@ -359,6 +376,7 @@ Options.Triggers.push({
     },
     {
       id: 'VarisEx Fortius',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),

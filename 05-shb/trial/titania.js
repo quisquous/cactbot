@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Titania Bright Sabbath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D5C', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D5C', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D5C', source: 'Titania', capture: false }),
@@ -16,6 +17,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Phantom Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D5D', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D5D', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D5D', source: 'Titania', capture: false }),
@@ -26,6 +28,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Phantom In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D5E', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D5E', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D5E', source: 'Titania', capture: false }),
@@ -36,6 +39,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Mist Failure',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Spirit Of Dew', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wasserfee', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Esprit Des Rosées', capture: false }),
@@ -46,6 +50,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Mist',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
@@ -66,6 +71,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
@@ -87,6 +93,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Divination',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D5B', source: 'Titania' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D5B', source: 'Titania' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D5B', source: 'Titania' }),
@@ -97,6 +104,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Frost Rune 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
@@ -117,6 +125,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Frost Rune 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
@@ -128,6 +137,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Frost Rune 3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
@@ -139,6 +149,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Growth Rune',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
@@ -159,23 +170,27 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Uplift Markers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Peasebomb Markers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BD' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Pucks Breath Markers',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Titania Knockback',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
@@ -196,6 +211,7 @@ Options.Triggers.push({
     },
     {
       id: 'Titania Mini Add Phase',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D31', source: 'Titania', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '3D31', source: 'Titania', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '3D31', source: 'Titania', capture: false }),

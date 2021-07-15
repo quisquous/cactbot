@@ -110,6 +110,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'WOLEx Terror Unleashed',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4F09', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4F09', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4F09', capture: false }),
@@ -132,6 +133,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Bait Confiteor',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F43', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F43', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F43', capture: false }),
@@ -152,6 +154,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx To The Limit',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F3[456]' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F3[456]' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F3[456]' }),
@@ -169,6 +172,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Absolute Stone III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F2C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2C', capture: false }),
@@ -182,6 +186,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Imbued Absolute Fire III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EF3', capture: false }),
@@ -189,12 +194,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF3', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF3', capture: false }),
       run: (data) => {
-        data.imbued = data.imbued || [];
+        let _a;
+        (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
         data.imbued.push('fire');
       },
     },
     {
       id: 'WOLEx Imbued Absolute Blizzard III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EF4', capture: false }),
@@ -202,12 +209,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF4', capture: false }),
       run: (data) => {
-        data.imbued = data.imbued || [];
+        let _a;
+        (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
         data.imbued.push('blizzard');
       },
     },
     {
       id: 'WOLEx Imbued Absolute Holy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EF5', capture: false }),
@@ -215,12 +224,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF5', capture: false }),
       run: (data) => {
-        data.imbued = data.imbued || [];
+        let _a;
+        (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
         data.imbued.push('holy');
       },
     },
     {
       id: 'WOLEx Imbued Absolute Stone III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EF6', capture: false }),
@@ -228,12 +239,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF6', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF6', capture: false }),
       run: (data) => {
-        data.imbued = data.imbued || [];
+        let _a;
+        (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
         data.imbued.push('stone');
       },
     },
     {
       id: 'WOLEx Imbued Coruscance In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F4A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F4A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F4A', capture: false }),
@@ -241,12 +254,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F4A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F4A', capture: false }),
       preRun: (data) => {
-        data.imbued = data.imbued || [];
+        let _a;
+        (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
         data.imbued.push('swordIn');
       },
       alertText: (data, _matches, output) => {
-        const strings = data.imbued.map((key) => output[key]());
-        const msg = strings.join(' + ');
+        let _a;
+        const strings = (_a = data.imbued) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]());
+        const msg = strings === null || strings === void 0 ? void 0 : strings.join(' + ');
         delete data.imbued;
         return msg;
       },
@@ -254,6 +269,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Imbued Coruscance Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F49', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F49', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F49', capture: false }),
@@ -261,12 +277,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F49', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F49', capture: false }),
       preRun: (data) => {
-        data.imbued = data.imbued || [];
+        let _a;
+        (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
         data.imbued.push('swordOut');
       },
       alertText: (data, _matches, output) => {
-        const strings = data.imbued.map((key) => output[key]());
-        const msg = strings.join(' + ');
+        let _a;
+        const strings = (_a = data.imbued) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]());
+        const msg = strings === null || strings === void 0 ? void 0 : strings.join(' + ');
         delete data.imbued;
         return msg;
       },
@@ -274,6 +292,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx The Bitter End',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F0A' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F0A' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F0A' }),
@@ -285,6 +304,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Summon Wyrm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F41', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F41', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F41', capture: false }),
@@ -306,12 +326,14 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Absolute Flash',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
       suppressSeconds: 5,
       response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'WOLEx Elddragon Dive',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F0B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F0B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F0B', capture: false }),
@@ -323,6 +345,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Add Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '5151', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '5151', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '5151', capture: false }),
@@ -333,6 +356,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Fatal Cleave / Blade Of Shadow',
+      type: 'StartsUsing',
       // Either tank buster, but don't be too noisy
       netRegex: NetRegexes.startsUsing({ source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[47]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Phantom-Berserker', 'Phantom-Dunkelritter'], id: '515[47]', capture: false }),
@@ -349,6 +373,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Berserk / Deep Darkside',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[68]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Phantom-Berserker', 'Phantom-Dunkelritter'], id: '515[68]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Berserker Spectral', 'Chevalier Noir Spectral'], id: '515[68]', capture: false }),
@@ -371,6 +396,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Adds Deluge of Death Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => !data.ultimateSeen && data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text(),
@@ -387,6 +413,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Spectral Egi Flare Breath',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Spectral Egi', id: '0054' }),
       netRegexDe: NetRegexes.tether({ source: 'Phantom-Primae', id: '0054' }),
       netRegexFr: NetRegexes.tether({ source: 'Egi Spectral', id: '0054' }),
@@ -409,6 +436,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Ultimate Crossover',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '5152', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '5152', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '5152', capture: false }),
@@ -438,6 +466,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Spectral Black Mage / White Mage',
+      type: 'StartsUsing',
       // Twincast tell (after Spectral and Limit, unfortunately).
       netRegex: NetRegexes.startsUsing({ source: 'Spectral Black Mage', id: '4F3D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Schwarzmagier', id: '4F3D', capture: false }),
@@ -461,6 +490,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Summoner / Warrior',
+      type: 'StartsUsing',
       // Imbued Fire/Ice tell.
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF[34]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF[34]', capture: false }),
@@ -484,6 +514,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Spectral Bard / Dark Knight',
+      type: 'StartsUsing',
       // Solemn Confiteor tell (after Limit).
       // This action happens in Spectral Ninja, but calledSpectral suppresses calling Ninja there.
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F43', capture: false }),
@@ -508,6 +539,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Spectral Ninja',
+      type: 'StartsUsing',
       // Imbued Stone/Holy tell.
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF[56]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF[56]', capture: false }),
@@ -532,6 +564,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Spectral Tell Cleanup',
+      type: 'Ability',
       // This is the "go back to the middle" sync that happens after all tells.
       netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4F45', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4F45', capture: false }),
@@ -544,6 +577,7 @@ Options.Triggers.push({
     {
       // Katon: San and Absolute Holy share markers
       id: 'WOLEx Spectral Ninja Cleanup',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: ['Warrior Of Light', 'Spectral Ninja'], id: '4EFD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Krieger Des Lichts', 'Phantom-Ninja'], id: '4EFD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Guerrier De La Lumière Primordial', 'Ninja Spectral'], id: '4EFD', capture: false }),
@@ -555,6 +589,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Suiton: San',
+      type: 'StartsUsing',
       // It's possible for this cast to originate from the Warrior of Light instead.
       // Allow for either so the callout isn't missed.
       netRegex: NetRegexes.startsUsing({ source: ['Warrior Of Light', 'Spectral Ninja'], id: '4EFD', capture: false }),
@@ -568,6 +603,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Katon: San',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A1', capture: false }),
       condition: (data) => data.ultimateSeen && data.ninja || data.isAddPhase,
       suppressSeconds: 2,
@@ -575,6 +611,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Perfect Decimation',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -591,6 +628,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Brimstone Earth',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0067' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -607,6 +645,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Deluge of Death Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => data.ultimateSeen && data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text(),
@@ -624,12 +663,14 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Absolute Holy',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       condition: (data) => !data.deluge && !data.ninja && !data.isAddPhase,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'WOLEx Coruscant Saber Out',
+      type: 'StartsUsing',
       // TODO: This once was out + stack ?
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF1', capture: false }),
@@ -641,6 +682,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Coruscant Saber In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EF2', capture: false }),
@@ -651,6 +693,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Quintuplecast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EEF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EEF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EEF', capture: false }),
@@ -664,6 +707,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Quintuplecast List',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4EEF', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4EEF', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4EEF', capture: false }),
@@ -672,8 +716,9 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4EEF', capture: false }),
       durationSeconds: 18.5,
       infoText: (data, _matches, output) => {
-        const strings = data.quintuplecasts.map((key) => output[key]());
-        const msg = strings.join(' > ');
+        let _a;
+        const strings = (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]());
+        const msg = strings === null || strings === void 0 ? void 0 : strings.join(' > ');
         return msg;
       },
       tts: null,
@@ -681,6 +726,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Quintuplecast Individual',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: ['4EEF', '4EF0'], capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: ['4EEF', '4EF0'], capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: ['4EEF', '4EF0'], capture: false }),
@@ -689,7 +735,8 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: ['4EEF', '4EF0'], capture: false }),
       durationSeconds: 3,
       alertText: (data, _matches, output) => {
-        const next = data.quintuplecasts.shift();
+        let _a;
+        const next = (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.shift();
         // The last cast of 4EF0 will not have a next mechanic to call.
         if (next)
           return output[next]();
@@ -698,60 +745,75 @@ Options.Triggers.push({
     },
     {
       id: 'WOLEx Quintuplecast Blizzard',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E2', capture: false }),
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.blizzard().toLowerCase()})`,
-      run: (data) => data.quintuplecasts.push('blizzard'),
+      run: (data) => {
+        let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('blizzard');
+      },
       outputStrings: {
         blizzard: quintupleOutputStrings.blizzard,
       },
     },
     {
       id: 'WOLEx Quintuplecast Holy',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00DD', capture: false }),
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.holy().toLowerCase()})`,
-      run: (data) => data.quintuplecasts.push('holy'),
+      run: (data) => {
+        let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('holy');
+      },
       outputStrings: {
         holy: quintupleOutputStrings.holy,
       },
     },
     {
       id: 'WOLEx Quintuplecast Stone',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00DE', capture: false }),
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.stone().toLowerCase()})`,
-      run: (data) => data.quintuplecasts.push('stone'),
+      run: (data) => {
+        let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('stone');
+      },
       outputStrings: {
         stone: quintupleOutputStrings.stone,
       },
     },
     {
       id: 'WOLEx Quintuplecast Fire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E4', capture: false }),
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.fire().toLowerCase()})`,
-      run: (data) => data.quintuplecasts.push('fire'),
+      run: (data) => {
+        let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('fire');
+      },
       outputStrings: {
         fire: quintupleOutputStrings.fire,
       },
     },
     {
       id: 'WOLEx Quintuplecast Flash',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00DF', capture: false }),
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.flash().toLowerCase()})`,
-      run: (data) => data.quintuplecasts.push('flash'),
+      run: (data) => {
+        let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('flash');
+      },
       outputStrings: {
         flash: quintupleOutputStrings.flash,
       },

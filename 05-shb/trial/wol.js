@@ -40,6 +40,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'WOL Terror Unleashed',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4F27', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4F27', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4F27', capture: false }),
@@ -62,6 +63,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Coruscant Saber In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F11', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F11', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F11', capture: false }),
@@ -72,6 +74,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Coruscant Saber Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F10', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F10', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F10', capture: false }),
@@ -82,6 +85,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Absolute Blizzard III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F2D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2D', capture: false }),
@@ -92,6 +96,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Absolute Fire III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F2E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2E', capture: false }),
@@ -103,6 +108,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Imbued Absolute Blizzard III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F13', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F13', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F13', capture: false }),
@@ -113,6 +119,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Imbued Absolute Fire III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F12', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F12', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F12', capture: false }),
@@ -123,6 +130,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Imbued Coruscance Out',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F4B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F4B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F4B', capture: false }),
@@ -165,6 +173,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Imbued Coruscance In',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F4C', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F4C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F4C', capture: false }),
@@ -207,6 +216,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Sword Of Light',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F42', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F42', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F42', capture: false }),
@@ -227,6 +237,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Summon Wyrm',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F41', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F41', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F41', capture: false }),
@@ -251,6 +262,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Bitter End',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F28' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F28' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F28' }),
@@ -262,6 +274,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Elddragon Dive',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F29', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F29', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F29', capture: false }),
@@ -273,6 +286,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Deluge of Death Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -290,6 +304,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Deluge of Death Cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057', capture: false }),
       delaySeconds: 10,
       run: (data) => {
@@ -300,6 +315,7 @@ Options.Triggers.push({
     {
       // Both for Absolute Holy and Katon San
       id: 'WOL Absolute Holy Katon San',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       condition: (data) => data.deluge !== data.me,
       delaySeconds: 0.5,
@@ -307,11 +323,13 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Radiant Braver',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00EA' }),
       response: Responses.earthshaker(),
     },
     {
       id: 'WOL Radiant Desperado',
+      type: 'StartsUsing',
       // There are two single target 4F46 lines to indicate who the stacks
       // are on, that come slightly after this starts casting.
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '515D', capture: false }),
@@ -334,6 +352,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Radiant Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E9' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -350,6 +369,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Suiton San',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Spectral Ninja', id: '4F38', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Phantom-Ninja', id: '4F38', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ninja Spectral', id: '4F38', capture: false }),
@@ -361,6 +381,7 @@ Options.Triggers.push({
     },
     {
       id: 'WOL Spectral Egi Flare Breath',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Spectral Egi', id: '0011' }),
       netRegexDe: NetRegexes.tether({ source: 'Phantom-Primae', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Egi Spectral', id: '0011' }),

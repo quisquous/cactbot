@@ -5,6 +5,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'InnoEx Starbirth Count',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEF', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
@@ -12,13 +13,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
       run: (data) => {
-        data.starbirthCount = data.starbirthCount || 0;
-        data.starbirthCount++;
+        let _a;
+        data.starbirthCount = ((_a = data.starbirthCount) !== null && _a !== void 0 ? _a : 0) + 1;
         data.starbirthActive = true;
       },
     },
     {
       id: 'InnoEx Reprobation Swords 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EDC', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
@@ -41,6 +43,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Starbirth Warning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEF', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
@@ -105,6 +108,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Shadowreaver',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
@@ -116,6 +120,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Righteous Bolt',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3ECD', source: 'Innocence' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3ECD', source: 'Innozenz' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3ECD', source: 'Innocence' }),
@@ -126,6 +131,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Holy Sword Healer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EC9', source: 'Geläutert(?:e|er|es|en) Wollust', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EC9', source: 'Débauche Pardonnée', capture: false }),
@@ -141,6 +147,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Holy Sword Me',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EC9', source: 'Geläutert(?:e|er|es|en) Wollust' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EC9', source: 'Débauche Pardonnée' }),
@@ -152,6 +159,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Charge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEE', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
@@ -184,6 +192,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Starbirth Avoid',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEF', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
@@ -206,6 +215,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Adds',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '42B0', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
@@ -227,6 +237,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Light Pillar',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence' }),
       netRegexDe: NetRegexes.ability({ id: '38FC', source: 'Innozenz' }),
       netRegexFr: NetRegexes.ability({ id: '38FC', source: 'Innocence' }),
@@ -234,8 +245,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ id: '38FC', source: '无瑕灵君' }),
       netRegexKo: NetRegexes.ability({ id: '38FC', source: '이노센스' }),
       preRun: (data) => {
-        data.lightPillar = data.lightPillar || 0;
-        data.lightPillar++;
+        let _a; return data.lightPillar = ((_a = data.lightPillar) !== null && _a !== void 0 ? _a : 0) + 1;
       },
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
@@ -278,6 +288,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Starbirth Explode',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3F3E', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3F3E', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3F3E', source: 'Innocence', capture: false }),
@@ -300,6 +311,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Winged Reprobation Tether',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -316,6 +328,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Winged Drop Of Light',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
@@ -344,6 +357,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx God Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EE[456]', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EE[456]', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EE[456]', source: 'Innocence', capture: false }),
@@ -365,6 +379,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Starbirth End 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
@@ -375,6 +390,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Starbirth End 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3EEE', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
@@ -385,6 +401,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Soul And Body Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3ED7', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3ED7', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3ED7', source: 'Innocence', capture: false }),
@@ -406,6 +423,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Soul And Body Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3ED9', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3ED9', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3ED9', source: 'Innocence', capture: false }),
@@ -427,6 +445,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Rood Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3ED3', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3ED3', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3ED3', source: 'Innocence', capture: false }),
@@ -448,6 +467,7 @@ Options.Triggers.push({
     },
     {
       id: 'InnoEx Rood Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3ED5', source: 'Innocence', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3ED5', source: 'Innozenz', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3ED5', source: 'Innocence', capture: false }),

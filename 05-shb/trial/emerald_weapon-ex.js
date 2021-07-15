@@ -28,6 +28,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'EmeraldEx Emerald Shot',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55B0' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55B0' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55B0' }),
@@ -39,6 +40,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Optimized Ultima',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['55B1', '5B10'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: ['55B1', '5B10'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['55B1', '5B10'], capture: false }),
@@ -50,6 +52,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Aetheroplasm Production',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55AA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55AA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55AA', capture: false }),
@@ -70,6 +73,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Magitek Magnetism',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5594', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5594', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5594', capture: false }),
@@ -94,6 +98,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Divide Et Impera P1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5537', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5537', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5537', capture: false }),
@@ -112,6 +117,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Magitek Magnetism Flare',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -128,6 +134,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Magitek Magnetism Bait',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -144,6 +151,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Expire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55[D9]1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55[D9]1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55[D9]1', capture: false }),
@@ -154,6 +162,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Divide Et Impera P2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '555B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '555B', capture: false }),
@@ -179,6 +188,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Primus Terminus Est',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55C3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55C3', capture: false }),
@@ -199,6 +209,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Tertius Terminus est',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55CC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55CC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55CC', capture: false }),
@@ -219,6 +230,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Sidescathe Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D5', capture: false }),
@@ -229,6 +241,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Sidescathe Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D4', capture: false }),
@@ -239,6 +252,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Emerald Crusher',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5585', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5585', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5585', capture: false }),
@@ -250,6 +264,7 @@ Options.Triggers.push({
     {
       // TODO: use headmarkers for this
       id: 'EmeraldEx Secundus Terminus est',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55C8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55C8', capture: false }),
@@ -270,6 +285,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Mechanized Maneuver',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55BA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gaius-Projektion', id: '55BA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55BA', capture: false }),
@@ -290,6 +306,7 @@ Options.Triggers.push({
     },
     {
       id: 'EmeraldEx Full Rank',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55C0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gaius-Projektion', id: '55C0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55C0', capture: false }),

@@ -13,6 +13,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'LeviUn Dive Counter Tidal Wave Reset',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CDE', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '5CDE', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '5CDE', capture: false }),
@@ -29,6 +30,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Dive Counter Body Slam Reset',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CD2', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '5CD2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '5CD2', capture: false }),
@@ -40,6 +42,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Dive Counter Wave Spume Adjust',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -53,6 +56,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Slam Location',
+      type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Léviathan', toggle: '00', capture: false }),
@@ -78,15 +82,16 @@ Options.Triggers.push({
         data.slamLevis = callData.combatants.filter((c) => c.BNpcID === 12669);
       },
       alertText: (data, _matches, output) => {
+        let _a; let _b;
         // Slams happen at +/-~14.6 +/-~13.
-        const filtered = data.slamLevis.filter((c) => {
+        const filtered = (_b = (_a = data.slamLevis) === null || _a === void 0 ? void 0 : _a.filter((c) => {
           const offsetX = Math.abs(Math.abs(c.PosX) - 14.6);
           const offsetY = Math.abs(Math.abs(c.PosY) - 13);
           return offsetX < 1 && offsetY < 1;
-        });
-        if (filtered.length !== 1)
-          return;
+        })) !== null && _b !== void 0 ? _b : [];
         const levi = filtered[0];
+        if (!levi || filtered.length !== 1)
+          return;
         if (levi.PosY > 0)
           return output.north();
         return output.south();
@@ -98,6 +103,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Veil of the Whorl',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CE5', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '5CE5', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '5CE5', capture: false }),
@@ -120,6 +126,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Mantle of the Whorl',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Leviathan\'s Tail', id: '5CE4', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Leviathans Schwanz', id: '5CE4', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Queue De Léviathan', id: '5CE4', capture: false }),
@@ -142,6 +149,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Wavespine Sahagin Add',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellendorn-Sahagin', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Épine-Du-Ressac', capture: false }),
@@ -156,6 +164,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Wavetooth Sahagin Add',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac', capture: false }),
@@ -176,6 +185,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Wavetooth Sahagin Stun',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin' }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin' }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac' }),
@@ -191,6 +201,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Gyre Spume',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtblase', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Concentrique', capture: false }),
@@ -212,6 +223,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Wave Spume',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -233,6 +245,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Wave Spume Explosion',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -258,6 +271,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Elemental Converter',
+      type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ name: 'Elemental Converter' }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Elementarumwandler' }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Activateur De La Barrière' }),
@@ -268,6 +282,7 @@ Options.Triggers.push({
     },
     {
       id: 'LeviUn Hit The Button',
+      type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Léviathan', toggle: '00', capture: false }),

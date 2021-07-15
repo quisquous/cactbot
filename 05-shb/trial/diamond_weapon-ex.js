@@ -23,13 +23,16 @@ Options.Triggers.push({
     // Phase 1&3
     {
       id: 'DiamondEx Diamond Rain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA7', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
-      run: (data) => data.phase = data.phase || 1,
+      run: (data) => {
+        let _a; return data.phase = (_a = data.phase) !== null && _a !== void 0 ? _a : 1;
+      },
     },
     // @TODO: There's probably a better callout for these mechanics, e.g.
     // `jump -> stay -> aoe`
@@ -41,6 +44,7 @@ Options.Triggers.push({
     // but need to figure out what side player is on
     {
       id: 'DiamondEx Adamant Purge West Diamond Rain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5F9B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9B', capture: false }),
@@ -59,6 +63,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Adamant Purge East Diamond Rain',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5F9A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9A', capture: false }),
@@ -77,6 +82,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Adamant Purge West Diamond Flash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA5', capture: false }),
@@ -95,6 +101,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Adamant Purge East Diamond Flash',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA4', capture: false }),
@@ -113,6 +120,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Adamant Purge West Homing Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA3', capture: false }),
@@ -131,6 +139,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Adamant Purge East Homing Laser',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA2', capture: false }),
@@ -150,6 +159,7 @@ Options.Triggers.push({
     // @TODO: Make this a collector with with flare/away from flare
     {
       id: 'DiamondEx Photon Burst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA8', capture: false }),
@@ -170,6 +180,7 @@ Options.Triggers.push({
     // @TODO: Phase transition tethers and KB
     {
       id: 'DiamondEx Code Chi-Xi-Stigma',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAD', capture: false }),
@@ -179,6 +190,7 @@ Options.Triggers.push({
     // Phase 2
     {
       id: 'DiamondEx Outrage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FBC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBC', capture: false }),
@@ -188,6 +200,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Auri Doomstead',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBD' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FBD' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBD' }),
@@ -198,6 +211,7 @@ Options.Triggers.push({
     // @TODO: Get boss facing and bits position, call out adjust?
     {
       id: 'DiamondEx P2 Zig-Zag',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAF', capture: false }),
@@ -217,6 +231,7 @@ Options.Triggers.push({
     // @TODO: Get boss facing and orb position, call out safe side?
     {
       id: 'DiamondEx P2 Zig-Zag Jump',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB2', capture: false }),
@@ -236,6 +251,7 @@ Options.Triggers.push({
     // @TODO: Get boss facing and orb count, call out towards/away?
     {
       id: 'DiamondEx P2 North/South Jump',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB5', capture: false }),
@@ -255,6 +271,7 @@ Options.Triggers.push({
     // @TODO: Get bit locations, call out north/south diagonal KB?
     {
       id: 'DiamondEx P2 Vertical Cleave',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB7', capture: false }),
@@ -273,6 +290,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx P2 Articulated Bits',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FC1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FC1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FC1', capture: false }),
@@ -292,6 +310,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Headmarker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       durationSeconds: 25,
       infoText: (data, matches, output) => {
@@ -321,6 +340,7 @@ Options.Triggers.push({
     // Phase 3
     {
       id: 'DiamondEx P3 Articulated Bits',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA9', capture: false }),
@@ -340,6 +360,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Diamond Shrapnel',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),
@@ -358,6 +379,7 @@ Options.Triggers.push({
     },
     {
       id: 'DiamondEx Burst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),

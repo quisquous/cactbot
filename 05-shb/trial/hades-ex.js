@@ -26,6 +26,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'HadesEx Shadow Spread 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
@@ -46,6 +47,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Shadow Spread 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
@@ -57,6 +59,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Ravenous Assault',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47A6', source: 'Hades' }),
       netRegexDe: NetRegexes.startsUsing({ id: '47A6', source: 'Hades' }),
       netRegexFr: NetRegexes.startsUsing({ id: '47A6', source: 'Hadès' }),
@@ -68,6 +71,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Bad Faith Left 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
@@ -78,6 +82,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Bad Faith Left 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
@@ -99,6 +104,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Bad Faith Right 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
@@ -109,6 +115,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Bad Faith Right 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
@@ -130,6 +137,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Arcane Control Orbs',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Arcane Globe', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Kugel', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Globe Arcanique', capture: false }),
@@ -152,6 +160,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Arcane Control Doors',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Arcane Font', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Körper', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Solide Arcanique', capture: false }),
@@ -174,6 +183,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Quake III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47B8', source: 'Nabriales\'s Shade', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47B8', source: 'Nabriales\' Schatten', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47B8', source: 'Spectre De Nabriales', capture: false }),
@@ -186,6 +196,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Dark II Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011', source: 'Shadow Of The Ancients' }),
       netRegexDe: NetRegexes.tether({ id: '0011', source: 'Schatten Der Alten' }),
       netRegexFr: NetRegexes.tether({ id: '0011', source: 'Spectre D\'Ascien' }),
@@ -207,6 +218,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Ancient Water 3',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -224,6 +236,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Ancient Darkness',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -241,6 +254,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Ancient Water Unmarked',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0060'], capture: false }),
       condition: (data) => !data.waterDarkMarker,
       delaySeconds: 0.5,
@@ -259,6 +273,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Shades Too Close',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '000E', source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
       netRegexDe: NetRegexes.tether({ id: '000E', source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], target: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
       netRegexFr: NetRegexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
@@ -281,6 +296,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Spheres',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47BD', source: 'Igeyorhm\'s Shade', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47BD', source: 'Igeyorhms Schatten', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47BD', source: 'Spectre D\'Igeyorhm', capture: false }),
@@ -294,7 +310,8 @@ Options.Triggers.push({
         return output.text();
       },
       run: (data) => {
-        data.sphereCount = (data.sphereCount || 0) + 1;
+        let _a;
+        data.sphereCount = ((_a = data.sphereCount) !== null && _a !== void 0 ? _a : 0) + 1;
       },
       outputStrings: {
         text: {
@@ -309,6 +326,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Annihilation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47BF', source: 'Lahabrea\'s And Igeyorhm\'s Shades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47BF', source: 'Lahabrea Und Igeyorhm', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47BF', source: 'Duo D\'Asciens', capture: false }),
@@ -320,6 +338,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Burning Brand',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '850' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -337,6 +356,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Freezing Brand',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '851' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -354,6 +374,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Blizzard IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47C3', source: 'Igeyorhm\'s Shade' }),
       netRegexDe: NetRegexes.startsUsing({ id: '47C3', source: 'Igeyorhms Schatten' }),
       netRegexFr: NetRegexes.startsUsing({ id: '47C3', source: 'Spectre D\'Igeyorhm' }),
@@ -365,6 +386,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Fire IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47C2', source: 'Lahabrea\'s Shade' }),
       netRegexDe: NetRegexes.startsUsing({ id: '47C2', source: 'Lahabreas Schatten' }),
       netRegexFr: NetRegexes.startsUsing({ id: '47C2', source: 'Spectre De Lahabrea' }),
@@ -376,6 +398,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Healers Blizzard/Fire IV',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
@@ -391,6 +414,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Doom',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '6E9', capture: false }),
       condition: (data) => data.role === 'healer',
       suppressSeconds: 5,
@@ -408,6 +432,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Shriek',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
       suppressSeconds: 2,
@@ -415,6 +440,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Beyond Death',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
@@ -432,6 +458,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Ancient Circle',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '83E' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
@@ -449,6 +476,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Forked Lightning',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
@@ -466,6 +494,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Blight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47CC', source: 'Ascian Prime\'s Shade', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47CC', source: 'Schatten Des Prim-Ascian', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47CC', source: 'Spectre De Primo-Ascien', capture: false }),
@@ -488,6 +517,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Height Of Chaos',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47D1', source: 'Ascian Prime\'s Shade' }),
       netRegexDe: NetRegexes.startsUsing({ id: '47D1', source: 'Schatten Des Prim-Ascian' }),
       netRegexFr: NetRegexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
@@ -516,6 +546,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Megiddo Flame',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47CD', source: 'Ascian Prime\'s Shade', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47CD', source: 'Schatten Des Prim-Ascian', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47CD', source: 'Spectre De Primo-Ascien', capture: false }),
@@ -537,6 +568,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Shadow Flare',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47D0', source: 'Ascian Prime\'s Shade', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47D0', source: 'Schatten Des Prim-Ascian', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47D0', source: 'Spectre De Primo-Ascien', capture: false }),
@@ -548,12 +580,14 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Captivity',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
       id: 'HadesEx Aetherial Gaol',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Aetherial Gaol', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Ätherkerker', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Geôle Éthérée', capture: false }),
@@ -574,6 +608,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Dark Flame',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -591,6 +626,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Dark Freeze',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C1' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -608,6 +644,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Wail Of The Lost',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47E1', source: 'Hadès', capture: false }),
@@ -629,6 +666,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Nether Blast',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -646,6 +684,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Bident',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47E3', source: 'Hadès', capture: false }),
@@ -667,6 +706,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Shadow Stream',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47EA', source: 'Hadès', capture: false }),
@@ -677,6 +717,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Polydegmon\'s Purgation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47EB', source: 'Hadès', capture: false }),
@@ -697,6 +738,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Dark Current',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47F1', source: 'Hadès', capture: false }),
@@ -719,6 +761,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Gigantomachy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47F3', source: 'Hadès', capture: false }),
@@ -730,6 +773,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Quadrastrike 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47F4', source: 'Hadès', capture: false }),
@@ -741,6 +785,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Quadrastrike 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47F6', source: 'Hadès', capture: false }),
@@ -771,6 +816,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Quadrastrike 3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '47F6', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '47F6', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '47F6', source: 'Hadès', capture: false }),
@@ -795,6 +841,7 @@ Options.Triggers.push({
     },
     {
       id: 'HadesEx Enrage Gigantomachy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '47F9', source: 'Hadès', capture: false }),

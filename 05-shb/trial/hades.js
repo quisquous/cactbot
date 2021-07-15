@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Hades Phase Tracker',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4180', source: 'Hadès', capture: false }),
@@ -14,6 +15,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Ravenous Assault',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4158', source: 'Hades' }),
       netRegexDe: NetRegexes.startsUsing({ id: '4158', source: 'Hades' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4158', source: 'Hadès' }),
@@ -46,6 +48,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Bad Faith Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4149', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4149', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4149', source: 'Hadès', capture: false }),
@@ -56,6 +59,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Bad Faith Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '414A', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '414A', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '414A', source: 'Hadès', capture: false }),
@@ -66,6 +70,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Broken Faith',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '414D', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '414D', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '414D', source: 'Hadès', capture: false }),
@@ -86,6 +91,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Echo Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4164', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4164', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4164', source: 'Hadès', capture: false }),
@@ -96,6 +102,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Echo Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4163', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4163', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4163', source: 'Hadès', capture: false }),
@@ -106,6 +113,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Titanomachy',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4180', source: 'Hadès', capture: false }),
@@ -117,6 +125,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Shadow Stream',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '415C', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '415C', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '415C', source: 'Hadès', capture: false }),
@@ -127,6 +136,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Purgation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4170', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4170', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4170', source: 'Hadès', capture: false }),
@@ -137,6 +147,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Doom',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -153,6 +164,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Wail of the Lost Right',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4166', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4166', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4166', source: 'Hadès', capture: false }),
@@ -173,6 +185,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Wail of the Lost Left',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4165', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4165', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4165', source: 'Hadès', capture: false }),
@@ -193,6 +206,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Dual Strike Healer',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4161', source: 'Hadès', capture: false }),
@@ -207,6 +221,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Dual Strike',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: (data, matches) => data.neoHades && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
@@ -223,6 +238,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Hellborn Yawp',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -239,6 +255,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Fetters',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -255,6 +272,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Life In Captivity',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4175', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '4175', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '4175', source: 'Hadès', capture: false }),
@@ -265,6 +283,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Gaol',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '417F', source: 'Hades', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '417F', source: 'Hades', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '417F', source: 'Hadès', capture: false }),
@@ -291,12 +310,14 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Nether Blast / Dark Eruption',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Hades Ancient Darkness',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: (data, matches) => !data.neoHades && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
@@ -313,27 +334,33 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Ancient Water III',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: Conditions.targetIsYou(),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Hades Ancient Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0060', '003E'] }),
       condition: (data) => !data.neoHades,
       run: (data, matches) => {
-        data.ancient = data.ancient || {};
+        let _a;
+        (_a = data.ancient) !== null && _a !== void 0 ? _a : (data.ancient = {});
         data.ancient[matches.target] = matches.id;
       },
     },
     {
       id: 'Hades Ancient No Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
-        if (data.ancient[data.me])
+        if (!data.ancient || !data.ancient[data.me])
           return;
-        const name = Object.keys(data.ancient).find((key) => data.ancient[key] === '003E');
+        const name = Object.keys(data.ancient).find((key) => {
+          let _a; return ((_a = data.ancient) === null || _a === void 0 ? void 0 : _a[key]) === '003E';
+        });
         return output.text({ player: data.ShortName(name) });
       },
       outputStrings: {
@@ -342,6 +369,7 @@ Options.Triggers.push({
     },
     {
       id: 'Hades Ancient Cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 10,
       run: (data) => delete data.ancient,

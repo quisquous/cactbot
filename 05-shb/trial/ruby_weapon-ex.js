@@ -39,6 +39,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'RubyEx Optimized Ultima',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ABE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ABE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ABE', capture: false }),
@@ -50,6 +51,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Stamp',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B03' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B03' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B03' }),
@@ -61,6 +63,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Ravensclaw',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ACC', capture: false }),
@@ -78,6 +81,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Undermine',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD0', capture: false }),
@@ -98,6 +102,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Liquefaction',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ACF', capture: false }),
@@ -118,6 +123,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Liquefaction Ravensflight',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AEC', capture: false }),
@@ -141,6 +147,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Ruby Ray',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B02', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B02', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B02', capture: false }),
@@ -151,6 +158,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Cut And Run',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B05', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B05', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B05', capture: false }),
@@ -161,6 +169,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx High-Powered Homing Lasers',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD8', capture: false }),
@@ -174,6 +183,7 @@ Options.Triggers.push({
       // Enrage can start casting before Ruby Weapon has finished their rotation
       // Give a friendly reminder to pop LB3 if you haven't already
       id: 'RubyEx Optimized Ultima Enrage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B2D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B2D', capture: false }),
@@ -194,6 +204,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Raven\'s Image',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Raven\'s Image' }),
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Naels Trugbild' }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Spectre De Nael' }),
@@ -201,12 +212,13 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '넬의 환영' }),
       run: (data, matches) => {
+        let _a;
         // 112,108 (east)
         // 88,108 (west)
         // TODO: it's impossible to do anything with this now,
         // as there's no actor id in the startsUsing line.  T_T
-        data.ravens = data.ravens || {};
-        if (matches.x < 100)
+        (_a = data.ravens) !== null && _a !== void 0 ? _a : (data.ravens = {});
+        if (parseFloat(matches.x) < 100)
           data.ravens.red = matches.id;
         else
           data.ravens.blue = matches.id;
@@ -214,14 +226,16 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Pall of Rage',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A2' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
       },
       run: (data, matches) => {
+        let _a;
         // data.colors is the color of the add you are attacking (this debuff is red).
-        data.colors = data.colors || {};
+        (_a = data.colors) !== null && _a !== void 0 ? _a : (data.colors = {});
         data.colors[matches.target] = 'blue';
       },
       outputStrings: {
@@ -237,14 +251,16 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Pall of Grief',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A3' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
       },
       run: (data, matches) => {
+        let _a;
         // data.colors is the color of the add you are attacking (this debuff is blue).
-        data.colors = data.colors || {};
+        (_a = data.colors) !== null && _a !== void 0 ? _a : (data.colors = {});
         data.colors[matches.target] = 'red';
       },
       outputStrings: {
@@ -260,12 +276,14 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Meteor Stream',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E0' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'RubyEx Ruby Claw',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Naels Trugbild', id: '4AFF' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Nael', id: '4AFF' }),
@@ -273,9 +291,11 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4AFF' }),
       netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4AFF' }),
       condition: (data, matches) => {
-        if (data.role !== 'healer' || data.role !== 'tank')
+        let _a; let _b;
+        if (data.role !== 'healer' && data.role !== 'tank')
           return false;
-        if (data.colors[data.me] === data.colors[matches.target])
+        const myColor = (_a = data.colors) === null || _a === void 0 ? void 0 : _a[data.me];
+        if (myColor && myColor === ((_b = data.colors) === null || _b === void 0 ? void 0 : _b[matches.target]))
           return true;
         return data.me === matches.target;
       },
@@ -284,6 +304,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Raven Death',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8A3', capture: false }),
       suppressSeconds: 10,
       run: (data) => {
@@ -295,17 +316,20 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Image Colors',
+      type: 'GainsEffect',
       // Blind to Rage: 8A0
       // Blind to Grief: 8A1
       netRegex: NetRegexes.gainsEffect({ effectId: ['8A0', '8A1'] }),
       run: (data, matches) => {
+        let _a;
         const isBlue = matches.effectId.toUpperCase() === '8A1';
-        data.colorToImageId = data.colorToImageId || {};
+        (_a = data.colorToImageId) !== null && _a !== void 0 ? _a : (data.colorToImageId = {});
         data.colorToImageId[isBlue ? 'blue' : 'red'] = matches.targetId;
       },
     },
     {
       id: 'RubyEx Image Chariot Dynamo Collect',
+      type: 'StartsUsing',
       // Lunar Dynamo = 4EB0
       // Iron Chariot = 4EB1
       netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: ['4EB0', '4EB1'] }),
@@ -315,12 +339,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: ['4EB0', '4EB1'] }),
       netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: ['4EB0', '4EB1'] }),
       run: (data, matches) => {
-        data.imageIdToAction = data.imageIdToAction || {};
+        let _a;
+        (_a = data.imageIdToAction) !== null && _a !== void 0 ? _a : (data.imageIdToAction = {});
         data.imageIdToAction[matches.sourceId] = matches.id;
       },
     },
     {
       id: 'RubyEx Image Chariot Dynamo',
+      type: 'StartsUsing',
       // Lunar Dynamo = 4EB0
       // Iron Chariot = 4EB1
       netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: ['4EB0', '4EB1'], capture: false }),
@@ -376,10 +402,12 @@ Options.Triggers.push({
           actionId = colorToAction['blue'];
           suffix = output.bothSuffix();
         } else if (numAdds === 1) {
-          const color = Object.keys(color)[0];
+          const color = Object.keys(colorToAction)[0];
+          if (!color)
+            throw new UnreachableCode();
           suffix = color === 'blue' ? output.blueSuffix() : output.redSuffix();
           actionId = colorToAction[color];
-        } else if (colorToAction[myColor]) {
+        } else if (myColor && colorToAction[myColor]) {
           suffix = myColor === 'blue' ? output.blueSuffix() : output.redSuffix();
           actionId = colorToAction[myColor];
         } else {
@@ -387,6 +415,8 @@ Options.Triggers.push({
           // Don't call anything out, because it'd be confusing.
           return;
         }
+        if (!suffix || !actionId)
+          return;
         const isDynamo = actionId === '4EB0';
         const text = isDynamo ? 'alertText' : 'alarmText';
         const actionStr = isDynamo ? output.in() : output.out();
@@ -396,6 +426,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Change of Heart',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AFC', capture: false }),
@@ -403,7 +434,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AFC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
       preRun: (data) => {
-        data.ravens = data.ravens || {};
+        let _a;
+        (_a = data.ravens) !== null && _a !== void 0 ? _a : (data.ravens = {});
         const tmp = data.ravens.red;
         data.ravens.red = data.ravens.blue;
         data.ravens.blue = tmp;
@@ -411,10 +443,14 @@ Options.Triggers.push({
       // This gets cast twice (maybe once for each add)?
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
+        let _a;
         // TODO: it'd be nice to call out which raven was alive?
         if (data.ravenDead)
           return;
-        if (data.colors[data.me] === 'red')
+        const color = (_a = data.colors) === null || _a === void 0 ? void 0 : _a[data.me];
+        if (!color)
+          return;
+        if (color === 'red')
           return output.attackRedEast();
         return output.attackBlueWest();
       },
@@ -439,6 +475,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx White Agony Tether',
+      type: 'Tether',
       // White Agony is the blue head.
       // This trigger doesn't run for the initial tether because the add
       // spawns with the tether, but will run if somebody dies.
@@ -465,6 +502,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx White Fury Tether',
+      type: 'Tether',
       // White Fury is the red head.
       // This trigger doesn't run for the initial tether because the add
       // spawns with the tether, but will run if somebody dies.
@@ -491,6 +529,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Negative Aura',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AFE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AFE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AFE', capture: false }),
@@ -501,6 +540,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 }),
@@ -517,6 +557,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Screech',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AEE', capture: false }),
@@ -527,6 +568,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Magitek Meteor Burst',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AF0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AF0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AF0', capture: false }),
@@ -547,6 +589,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Mark II Magitek Comet Tank',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
@@ -569,6 +612,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Mark II Magitek Comet Other',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
@@ -591,6 +635,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Bradamante',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
@@ -607,6 +652,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Mark II Magitek Comet Directions',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Comet' }),
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Komet' }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Comète' }),
@@ -617,9 +663,9 @@ Options.Triggers.push({
         // Possible positions:
         // 85.16,100.131 and 115.16,100.131
         // 100.16,85.13102 and 100.16,115.131
-        if (matches.y < 90)
+        if (parseFloat(matches.y) < 90)
           return output.cometsNorthSouth();
-        else if (matches.x < 90)
+        else if (parseFloat(matches.x) < 90)
           return output.cometsEastWest();
       },
       outputStrings: {
@@ -643,6 +689,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubyEx Outrage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B04', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B04', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B04', capture: false }),
