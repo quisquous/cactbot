@@ -2,8 +2,16 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  clonesActive?: boolean;
+  suppressDodgeCloneCall?: boolean;
+  phase?: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MemoriaMiseraExtreme,
   timelineFile: 'varis-ex.txt',
   timelineTriggers: [
@@ -65,9 +73,9 @@ export default {
           // In these cases, don't also call out "dodge clones", by setting this variable.
           // For cases where they are far apart, this gets cleared in the cleanup trigger.
           data.suppressDodgeCloneCall = true;
-          return { alertText: output.dodgeClonesAndStack() };
+          return { alertText: output.dodgeClonesAndStack!() };
         }
-        return { alertText: output.stackMarker() };
+        return { alertText: output.stackMarker!() };
       },
     },
     {
@@ -75,7 +83,7 @@ export default {
       regex: /^Magitek Burst$/,
       beforeSeconds: 15,
       durationSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spread Soon',
@@ -91,6 +99,7 @@ export default {
   triggers: [
     {
       id: 'VarisEx Phase 2',
+      type: 'Ability',
       // 4CCC: Vivere Militare Est
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
@@ -102,6 +111,7 @@ export default {
     },
     {
       id: 'VarisEx Phase 5',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CE2', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
@@ -112,6 +122,7 @@ export default {
     },
     {
       id: 'VarisEx Clones',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis-Doppelgänger', id: '4CB3', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'double de Varis', id: '4CB3', capture: false }),
@@ -122,13 +133,14 @@ export default {
     },
     {
       id: 'VarisEx Altius',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCA', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CCA', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait Slashes',
@@ -142,6 +154,7 @@ export default {
     },
     {
       id: 'VarisEx Citius',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CF0' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
@@ -151,12 +164,12 @@ export default {
       alertText: (data, matches, output) => {
         const target = matches.target;
         if (data.me === target)
-          return output.tankBusterOnYou();
+          return output.tankBusterOnYou!();
 
         if (data.role === 'dps')
-          return output.avoidTankCleave();
+          return output.avoidTankCleave!();
 
-        return output.tankBusterOn({ player: data.ShortName(target) });
+        return output.tankBusterOn!({ player: data.ShortName(target) });
       },
       outputStrings: {
         tankBusterOnYou: Outputs.tankBusterOnYou,
@@ -166,6 +179,7 @@ export default {
     },
     {
       id: 'VarisEx Alea Iacta Est',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
@@ -178,6 +192,7 @@ export default {
       // This trigger match the fourth Alea Iacta Est that Varis used.
       // The player should go front to avoid the fifth one, which hits back.
       id: 'VarisEx Alea Iacta Est Front',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
@@ -186,7 +201,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD5', capture: false }),
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go Front',
@@ -200,6 +215,7 @@ export default {
     },
     {
       id: 'VarisEx Electrified Gunshield',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
@@ -211,6 +227,7 @@ export default {
     },
     {
       id: 'VarisEx Reinforced Gunshield',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
@@ -218,7 +235,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD9', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD9', capture: false }),
       delaySeconds: (data) => data.phase === 2 ? 20 : 10,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stop attacking',
@@ -232,6 +249,7 @@ export default {
     },
     {
       id: 'VarisEx Reinforced Gunshield Sides',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
@@ -242,6 +260,7 @@ export default {
     },
     {
       id: 'VarisEx Reinforced Gunshield Front',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
@@ -252,6 +271,7 @@ export default {
     },
     {
       id: 'VarisEx Loaded Gunshield Final Warning',
+      type: 'Ability',
       // This ability id occurs ~3 seconds before the Magitek Burst spread damage.
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDE', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
@@ -266,11 +286,12 @@ export default {
         };
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.
-        return { [data.phase === 5 ? 'alarmText' : 'alertText']: output.text() };
+        return { [data.phase === 5 ? 'alarmText' : 'alertText']: output.text!() };
       },
     },
     {
       id: 'VarisEx Reinforcements',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
@@ -279,9 +300,9 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CEA', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
-          return output.grabTethers();
+          return output.grabTethers!();
 
-        return output.killAdds();
+        return output.killAdds!();
       },
       outputStrings: {
         grabTethers: {
@@ -305,6 +326,7 @@ export default {
     {
       // The warning is taken care of above with a timeline trigger.  See notes.
       id: 'VarisEx Festina Lente Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CC9', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
@@ -316,6 +338,7 @@ export default {
     },
     {
       id: 'VarisEx Terminus Est Clones',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
@@ -327,7 +350,7 @@ export default {
         // Sometimes this is called out with the stack mechanic.
         if (data.suppressDodgeCloneCall)
           return;
-        return output.text();
+        return output.text!();
       },
       run: (data) => {
         delete data.suppressDodgeCloneCall;
@@ -346,6 +369,7 @@ export default {
     },
     {
       id: 'VarisEx Magitek Torch',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E4F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E4F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
@@ -356,6 +380,7 @@ export default {
     },
     {
       id: 'VarisEx Magitek Spark',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
@@ -368,13 +393,14 @@ export default {
     },
     {
       id: 'VarisEx Fortius',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE[56]', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CE[56]', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait Puddles Out',
@@ -581,3 +607,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
