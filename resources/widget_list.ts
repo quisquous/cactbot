@@ -3,6 +3,10 @@
 // just switch over to using CSS grid.
 type Sorter = () => number;
 
+type LeftRight = `${'left' | 'right'}`;
+type UpDown = `${'up' | 'down'}`;
+type Toward = `${LeftRight} ${UpDown}` | `${UpDown} ${LeftRight}`;
+
 const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
 
 export default class WidgetList extends HTMLElement {
@@ -26,14 +30,17 @@ export default class WidgetList extends HTMLElement {
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string | null) {
+  set scale(s: number | null) {
     if (s === null)
       this.removeAttribute('scale');
     else
-      this.setAttribute('scale', s);
+      this.setAttribute('scale', s.toString());
   }
-  get scale(): string | null {
-    return this.getAttribute('scale');
+  get scale(): number | null {
+    const s = this.getAttribute('scale');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
   // The direction that the list should grow. It can specify two
@@ -42,14 +49,14 @@ export default class WidgetList extends HTMLElement {
   // and the second being the direction is wraps for the next
   // row/column. eg. "left down" will grow a list toward the left,
   // and subsequent rows will be below the first.
-  set toward(s: string | null) {
+  set toward(s: Toward | null) {
     if (s === null)
       this.removeAttribute('toward');
     else
       this.setAttribute('toward', s);
   }
-  get toward(): string | null {
-    return this.getAttribute('toward');
+  get toward(): Toward | null {
+    return this.getAttribute('toward') as Toward;
   }
 
   // The elementwidth of each element in the list.
@@ -76,25 +83,31 @@ export default class WidgetList extends HTMLElement {
 
   // The number of elements to show before wrapping to a new
   // row/column.
-  set rowcolsize(w: string | null) {
+  set rowcolsize(w: number | null) {
     if (w === null)
       this.removeAttribute('rowcolsize');
     else
-      this.setAttribute('rowcolsize', w);
+      this.setAttribute('rowcolsize', w.toString());
   }
-  get rowcolsize(): string | null {
-    return this.getAttribute('rowcolsize');
+  get rowcolsize(): number | null {
+    const w = this.getAttribute('rowcolsize');
+    if (w === null)
+      return null;
+    return parseInt(w);
   }
 
   // The maximum number of widgets to show at a time.
-  set maxnumber(w: string | null) {
+  set maxnumber(w: number | null) {
     if (w === null)
       this.removeAttribute('maxnumber');
     else
-      this.setAttribute('maxnumber', w);
+      this.setAttribute('maxnumber', w.toString());
   }
-  get maxnumber(): string | null {
-    return this.getAttribute('maxnumber');
+  get maxnumber(): number | null {
+    const w = this.getAttribute('maxnumber');
+    if (w === null)
+      return null;
+    return parseInt(w);
   }
 
   // This would be used with window.customElements.
