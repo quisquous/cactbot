@@ -414,7 +414,7 @@ const triggerSet: TriggerSet<Data> = {
 
         const numAdds = Object.keys(colorToAction).length;
         let suffix: string;
-        let actionId: string;
+        let actionId: string | undefined;
 
         if (numAdds === 2 && colorToAction['blue'] === colorToAction['red']) {
           actionId = colorToAction['blue'];
