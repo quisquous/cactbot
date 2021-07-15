@@ -5,7 +5,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// export type Data = RaidbossData;
 export interface Data extends RaidbossData {
   firstFrost?: string;
   rushCount?: number;
@@ -445,7 +444,7 @@ const triggerSet: TriggerSet<Data> = {
           // other alerts (akh rhai "move" and worm's lament numbers).
           return { [data.role === 'tank' ? 'infoText' : 'alarmText']: output.akhMornOnYou!() };
         }
-        if (!data.akhMornTargets || data.akhMornTargets.length !== 2)
+        if (data.akhMornTargets?.length !== 2)
           return;
         if (data.akhMornTargets.includes(data.me))
           return;

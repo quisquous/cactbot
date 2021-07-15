@@ -9,7 +9,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// export type Data = RaidbossData;
 export interface Data extends RaidbossData {
   phaserOutputs?: string[];
   phase?: string;
@@ -193,7 +192,7 @@ const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginComba
     .map((pos) => directions[pos]);
 
   const safeZone = safeZones[0];
-  if (safeZone === undefined || safeZones.length !== 1)
+  if (safeZones?.length !== 1)
     return 'unknown';
 
   return safeZone;

@@ -6,9 +6,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// export type Data = RaidbossData;
 export interface Data extends RaidbossData {
-  playerMap?: { [name: string]: boolean };
   phase?: string;
   printedBury?: boolean;
 }

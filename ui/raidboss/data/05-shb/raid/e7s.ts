@@ -6,7 +6,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// export type Data = RaidbossData;
 export interface Data extends RaidbossData {
   boundless?: { [name: string]: string };
   phase?: string;
@@ -410,7 +409,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       condition: (data, matches) => {
-        if (Object.keys(data.boundless ?? []).length !== 2)
+        if (Object.keys(data.boundless ?? {}).length !== 2)
           return false;
         const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         return data.color === oppositeColor;
