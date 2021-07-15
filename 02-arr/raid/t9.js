@@ -356,7 +356,7 @@ Options.Triggers.push({
         // Out, In, Out, In
         if (data.tetherCount % 2)
           return output.fireOutOnYou();
-        return output.fireInOnYou;
+        return output.fireInOnYou();
       },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
