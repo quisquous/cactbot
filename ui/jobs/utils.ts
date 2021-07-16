@@ -6,8 +6,8 @@ import Util from '../../resources/util';
 import { Job } from '../../types/job';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
-import { Bars } from './bar';
-import { kLevelMod, kMeleeWithMpJobs } from './constants';
+import { kMeleeWithMpJobs, kLevelMod } from './constants';
+import { Player } from './jobs';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
@@ -82,54 +82,54 @@ const getLightningStacksByLevel = (level: number): number =>
   level < 20 ? 1 : level < 40 ? 2 : level < 76 ? 3 : 4;
 
 // Source: http://theoryjerks.akhmorning.com/guide/speed/
-export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): number => {
+export const calcGCDFromStat = (player: Player, speed: number, actionDelay = 2500): number => {
   // If stats haven't been updated, use a reasonable default value.
-  if (stat === 0)
+  if (speed === 0)
     return actionDelay / 1000;
 
   let type1Buffs = 0;
   let type2Buffs = 0;
-  if (bars.job === 'BLM') {
-    type1Buffs += bars.speedBuffs.circleOfPower ? 15 : 0;
-  } else if (bars.job === 'WHM') {
-    type1Buffs += bars.speedBuffs.presenceOfMind ? 20 : 0;
-  } else if (bars.job === 'SAM') {
-    if (bars.speedBuffs.shifu) {
-      if (bars.level > 77)
+  if (player.job === 'BLM') {
+    type1Buffs += player.speedBuffs.circleOfPower ? 15 : 0;
+  } else if (player.job === 'WHM') {
+    type1Buffs += player.speedBuffs.presenceOfMind ? 20 : 0;
+  } else if (player.job === 'SAM') {
+    if (player.speedBuffs.shifu) {
+      if (player.level > 77)
         type1Buffs += 13;
       else
         type1Buffs += 10;
     }
   }
 
-  if (bars.job === 'NIN') {
-    type2Buffs += bars.speedBuffs.huton ? 15 : 0;
-  } else if (bars.job === 'MNK') {
-    type2Buffs += 5 * getLightningStacksByLevel(bars.level);
-  } else if (bars.job === 'BRD') {
-    type2Buffs += 4 * bars.speedBuffs.paeonStacks;
-    switch (bars.speedBuffs.museStacks) {
-      case 1:
-        type2Buffs += 1;
-        break;
-      case 2:
-        type2Buffs += 2;
-        break;
-      case 3:
-        type2Buffs += 4;
-        break;
-      case 4:
-        type2Buffs += 12;
-        break;
+  if (player.job === 'NIN') {
+    type2Buffs += player.speedBuffs.huton ? 15 : 0;
+  } else if (player.job === 'MNK') {
+    type2Buffs += 5 * player.speedBuffs.lightningStacks;
+  } else if (player.job === 'BRD') {
+    type2Buffs += 4 * player.speedBuffs.paeonStacks;
+    switch (player.speedBuffs.museStacks) {
+    case 1:
+      type2Buffs += 1;
+      break;
+    case 2:
+      type2Buffs += 2;
+      break;
+    case 3:
+      type2Buffs += 4;
+      break;
+    case 4:
+      type2Buffs += 12;
+      break;
     }
   }
   // TODO: this probably isn't useful to track
   const astralUmbralMod = 100;
 
-  const mod = kLevelMod[bars.level];
+  const mod = kLevelMod[player.level];
   if (!mod)
     throw new UnreachableCode();
-  const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - mod[0]) / mod[1])) * actionDelay / 1000;
+  const gcdMs = Math.floor(1000 - Math.floor(130 * (speed - mod[0]) / mod[1])) * actionDelay / 1000;
   const a = (100 - type1Buffs) / 100;
   const b = (100 - type2Buffs) / 100;
   const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
