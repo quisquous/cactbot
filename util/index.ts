@@ -2,7 +2,7 @@ import { ArgumentParser } from 'argparse';
 import inquirer, { Answers } from 'inquirer';
 import inquirerFuzzyPath, { FuzzyPathQuestionOptions } from 'inquirer-fuzzy-path';
 
-import { Lang, languages } from '../resources/languages';
+import { isLang, languages } from '../resources/languages';
 
 import { run as findMissingTranslations } from './find_missing_translations';
 import { default as generateEffectIds } from './gen_effect_id';
@@ -89,8 +89,7 @@ findParser.addArgument(['-f', '--filter'], {
 
 inquirer.registerPrompt('fuzzypath', inquirerFuzzyPath);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const run = (args: any) => {
+const run = (args: unknown) => {
   inquirer.prompt([{
     type: 'list',
     name: 'action',
@@ -123,8 +122,7 @@ const generateDataFiles = (args: unknown) => {
   });
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const translateTimelineFunc = (args: any) => {
+const translateTimelineFunc = (args: unknown) => {
   return inquirer.prompt([
     {
       type: 'fuzzypath',
@@ -143,21 +141,20 @@ const translateTimelineFunc = (args: any) => {
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
-    if (typeof answers.timeline === 'string' && typeof answers.locale === 'string' &&
-        isLang(answers.locale))
-      return translateTimeline(answers.timeline, answers.locale);
+    const timeline = getArgument(answers, 'timeline') || getArgument(args, 'timeline');
+    const locale = getArgument(answers, 'locale') || getArgument(args, 'locale');
+    if (typeof timeline === 'string' && typeof locale === 'string' && isLang(locale))
+      return translateTimeline(timeline, locale);
   });
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const findMissingTranslationsFunc = (args: any) => {
+const findMissingTranslationsFunc = (args: unknown) => {
   return inquirer.prompt([
     {
-      type: 'fuzzypath',
+      type: 'input',
       name: 'filter',
       message: 'Input a valid trigger JavaScript filename: ',
-      rootPath: 'ui/raidboss/data',
-      default: getArgument<string>(args, 'filter'),
+      default: getArgument<string>(args, 'filter') ?? '',
       when: () => typeof getArgument(args, 'filter') !== 'string',
     },
     {
@@ -165,15 +162,15 @@ const findMissingTranslationsFunc = (args: any) => {
       name: 'locale',
       message: 'Select a locale: ',
       choices: languages,
-      default: getArgument<string>(args, 'locale'),
+      default: [getArgument<string>(args, 'locale')],
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
-    if (answers.filter && answers.locale) {
-      const filter = answers.filter as string;
-      const locale = answers.locale as Lang[];
-      return findMissingTranslations(filter, locale);
-    }
+    const filter = getArgument(answers, 'filter') || getArgument(args, 'filter');
+    const locale = getArgument(answers, 'locale') || [getArgument(args, 'locale')];
+    if (typeof filter === 'string' && Array.isArray(locale) &&
+        locale.every((locale: string) => isLang(locale)))
+      return findMissingTranslations(answers.filter, answers.locale);
   });
 };
 

@@ -140,6 +140,6 @@ export const run = async (filter, locale) => {
         str += ` ${message}`;
       console.log(str);
     });
-    parseJavascriptFile(file, [locale]);
+    parseJavascriptFile(file, [locale].flat());
   }
 };
