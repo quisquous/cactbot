@@ -148,11 +148,11 @@ export default class BlmComponent extends BaseComponent {
   onGainEffect(effectId: string, matches: NetMatches['GainsEffect']): void {
     switch (effectId) {
     case EffectId.Thundercloud:
-      this.thunderProc.duration = matches.duration;
+      this.thunderProc.duration = parseFloat(matches.duration);
       break;
 
     case EffectId.Firestarter:
-      this.fireProc.duration = matches.duration;
+      this.fireProc.duration = parseFloat(matches.duration);
       break;
 
     case EffectId.CircleOfPower:
@@ -167,11 +167,11 @@ export default class BlmComponent extends BaseComponent {
   onLoseEffect(effectId: string): void {
     switch (effectId) {
     case EffectId.Thundercloud:
-      this.thunderProc.duration = '0';
+      this.thunderProc.duration = 0;
       break;
 
     case EffectId.Firestarter:
-      this.fireProc.duration = '0';
+      this.fireProc.duration = 0;
       break;
 
     case EffectId.CircleOfPower:
