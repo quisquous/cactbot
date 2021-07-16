@@ -73,32 +73,39 @@ export default class TimerBar extends HTMLElement {
   }
 
   // The total length of time to count down.
-  set duration(s: string) {
-    this.attributeChangedCallback('duration', this.duration, s);
+  set duration(s: number | null) {
+    if (s === null)
+      this.removeAttribute('duration');
+    else
+      this.setAttribute('duration', s.toString());
   }
-  get duration(): string {
-    return this._duration.toString();
+  get duration(): number | null {
+    const s = this.getAttribute('duration');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
   // The length remaining in the count down.
-  set value(s: string) {
-    this.attributeChangedCallback('value', this.value, s);
+  set value(s: number) {
+    this.setAttribute('value', s.toString());
   }
-  get value(): string {
+
+  get value(): number {
     if (!this._start)
-      return this._duration.toString();
+      return this._duration;
     const elapsedMs = new Date().getTime() - this._start;
-    return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
+    return Math.max(0, this._duration - (elapsedMs / 1000));
   }
 
   // The elapsed time.
-  set elapsed(s: string) {
-    this.attributeChangedCallback('elapsed', this.elapsed, s);
+  set elapsed(s: number) {
+    this.setAttribute('elapsed', s.toString());
   }
-  get elapsed(): string {
+  get elapsed(): number {
     if (!this._start)
-      return '0';
-    return ((new Date().getTime() - this._start) / 1000).toString();
+      return 0;
+    return (new Date().getTime() - this._start) / 1000;
   }
 
   // If "right" then animates left-to-right (the default). If "left"
@@ -125,16 +132,19 @@ export default class TimerBar extends HTMLElement {
     return this.getAttribute('stylefill') as 'empty' | 'fill';
   }
 
-  // When the bar reaches 0, it is hidden after this many seconds. If ""
+  // When the bar reaches 0, it is hidden after this many seconds. If null
   // then it is not hidden.
-  set hideafter(h: string | null) {
+  set hideafter(h: number | null) {
     if (h === null)
       this.removeAttribute('hideafter');
     else
-      this.setAttribute('hideafter', h);
+      this.setAttribute('hideafter', h.toString());
   }
-  get hideafter(): string | null {
-    return this.getAttribute('hideafter');
+  get hideafter(): number | null {
+    const h = this.getAttribute('hideafter');
+    if (h === null)
+      return null;
+    return parseInt(h);
   }
 
   // Chooses what should be shown in the text field in each area of
@@ -393,8 +403,8 @@ export default class TimerBar extends HTMLElement {
       if (update)
         this.updateText();
     } else if (name === 'hideafter') {
-      this._hideAfter = Math.max(parseFloat(this.hideafter ?? '0'), 0);
-      if (this.value === '0') {
+      this._hideAfter = Math.max(this.hideafter ?? 0, 0);
+      if (this.value === 0) {
         if (this._hideAfter >= 0)
           this.hide();
         else

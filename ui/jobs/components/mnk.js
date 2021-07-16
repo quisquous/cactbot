@@ -64,7 +64,7 @@ export function setup(bars) {
 
   bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
     // -0.5 for logline delay
-    twinSnakesBox.duration = (parseFloat(matches.duration) - 0.5).toString();
+    twinSnakesBox.duration = parseFloat(matches.duration) - 0.5;
   });
   bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
 
@@ -83,7 +83,7 @@ export function setup(bars) {
   bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
     if (!perfectBalanceActive) {
       formTimer.duration = 0;
-      formTimer.duration = parseFloat(matches.duration).toString();
+      formTimer.duration = parseFloat(matches.duration);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
       perfectBalanceActive = true;
     }

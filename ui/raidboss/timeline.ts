@@ -897,8 +897,8 @@ export class TimelineUI {
     const bar = document.createElement('timer-bar');
     div.classList.add('timer-bar');
     div.appendChild(bar);
-    bar.duration = `${channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds}`;
-    bar.value = `${e.time - fightNow}`;
+    bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
+    bar.value = e.time - fightNow;
     bar.righttext = 'remain';
     bar.lefttext = e.text;
     bar.toward = 'right';
@@ -1018,7 +1018,7 @@ export class TimelineUI {
       this.debugFightTimer = document.createElement('timer-bar');
       this.debugFightTimer.width = '100px';
       this.debugFightTimer.height = '17px';
-      this.debugFightTimer.duration = `${kBig}`;
+      this.debugFightTimer.duration = kBig;
       this.debugFightTimer.lefttext = 'elapsed';
       this.debugFightTimer.toward = 'right';
       this.debugFightTimer.stylefill = 'fill';
@@ -1028,8 +1028,8 @@ export class TimelineUI {
     }
 
     // Force this to be reset.
-    this.debugFightTimer.elapsed = '0';
-    this.debugFightTimer.elapsed = fightNow.toString();
+    this.debugFightTimer.elapsed = 0;
+    this.debugFightTimer.elapsed = fightNow;
   }
 }
 
