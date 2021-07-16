@@ -14,20 +14,15 @@ declare module 'inquirer' {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getArgument = <T = string>(obj: any, propertyName: string): T | undefined => {
-  if (typeof obj === 'undefined' || obj === null)
+const getArgument = <T>(obj: unknown, propertyName: string): T | undefined => {
+  if (typeof obj !== 'object' || obj === null)
     return;
-
   if (!(propertyName in obj))
     return;
 
-  const prop = (obj as { [s: string]: unknown })[propertyName] as T;
-
-  if (typeof prop === 'undefined' || prop === null)
-    return;
-
-  return prop;
+  const data = obj as { [key: string]: T };
+  // TODO: it'd be nice to check typeof data here too?
+  return data[propertyName];
 };
 
 const dataFilesMap: { readonly [filename: string]: () => Promise<void> } = {
@@ -114,8 +109,7 @@ const run = (args: any) => {
   }).catch(console.error);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const generateDataFiles = (args: any) => {
+const generateDataFiles = (args: unknown) => {
   return inquirer.prompt([{
     type: 'list',
     name: 'choice',
@@ -149,11 +143,9 @@ const translateTimelineFunc = (args: any) => {
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
-    if (answers.timeline && answers.locale) {
-      const timeline = answers.timeline as string;
-      const locale = answers.locale as Lang;
-      return translateTimeline(timeline, locale);
-    }
+    if (typeof answers.timeline === 'string' && typeof answers.locale === 'string' &&
+        isLang(answers.locale))
+      return translateTimeline(answers.timeline, answers.locale);
   });
 };
 
