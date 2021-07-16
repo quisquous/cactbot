@@ -57,7 +57,8 @@ export type ResponseOutput<Data extends RaidbossData, MatchType extends NetAnyMa
 } | undefined;
 // The type of a response trigger field.
 export type ResponseFunc<Data extends RaidbossData, MatchType extends NetAnyMatches> =
-    (data: Data, matches: MatchType, output: Output) => ResponseOutput<Data, MatchType>;
+    (data: Data, matches: MatchType, output: Output) =>
+    (ResponseOutput<Data, MatchType> | ResponseFunc<Data, MatchType>);
 
 export type ResponseField<Data extends RaidbossData, MatchType extends NetAnyMatches> =
     ResponseFunc<Data, MatchType> | ResponseOutput<Data, MatchType>;
@@ -155,6 +156,7 @@ type RequiredFieldsAsUnion<Type> =
 export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
+  timelineNeedsFixing?: boolean;
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;
   timelineFile?: string;

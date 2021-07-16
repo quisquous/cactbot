@@ -2,6 +2,7 @@ import ContentType from '../../resources/content_type';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import { BaseOptions } from '../../types/data';
+import { LooseOopsyTriggerSet } from '../../types/oopsy';
 // TODO: do we need a different name for this?
 // TODO: Should zone_id.ts export this type??
 import { ZoneId as ZoneIdType } from '../../types/trigger';
@@ -9,16 +10,18 @@ import { ZoneId as ZoneIdType } from '../../types/trigger';
 import { abilityNameMap } from './ability_name_map';
 
 export type DisabledTriggers = { [triggerId: string]: boolean };
+export type TriggerAutoConfig = { enabled: boolean };
+export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
 
 type OopsyNonConfigOptions = {
-  // TODO: add a type for oopsy triggers and trigger sets
-  Triggers: never[];
+  Triggers: LooseOopsyTriggerSet[];
   PlayerNicks: { [gameName: string]: string };
   DisabledTriggers: DisabledTriggers;
   // TODO: should content_type export what type it is?
   IgnoreContentTypes: number[];
   IgnoreZoneIds: ZoneIdType[];
   AbilityIdNameMap: { [id: string]: string };
+  PerTriggerAutoConfig: PerTriggerAutoConfig;
 };
 
 const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
@@ -37,6 +40,7 @@ const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
   ],
 
   AbilityIdNameMap: abilityNameMap,
+  PerTriggerAutoConfig: {},
 };
 
 // TODO: figure out how to get this type from oopsyraidsy_config??

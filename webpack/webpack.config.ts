@@ -2,9 +2,10 @@ import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {
@@ -29,6 +30,7 @@ export default (
       'oopsyraidsySummary',
       'radar',
       'raidboss',
+      'raidemulator',
       'test',
       'timerbarTest',
     ].includes(key))
@@ -77,14 +79,6 @@ export default (
     module: {
       rules: [
         {
-          // Worker has to go before normal js
-          test: /\.worker\.ts$/,
-          loader: 'worker-loader',
-          resolve: {
-            fullySpecified: false,
-          },
-        },
-        {
           // this will allow importing without extension in js files.
           test: /\.m?js$/,
           exclude: /(node_modules|bower_components)/,
@@ -108,6 +102,9 @@ export default (
         {
           test: /\.ts$/,
           loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
         },
         {
           test: /\.css$/,
@@ -137,7 +134,7 @@ export default (
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
-              loader: './webpack/loaders/manifest-loader.cjs',
+              loader: './webpack/loaders/manifest-loader.ts',
             },
           ],
         },
@@ -148,15 +145,15 @@ export default (
               loader: 'raw-loader',
             },
             {
-              loader: './webpack/loaders/timeline-loader.cjs',
+              loader: './webpack/loaders/timeline-loader.ts',
             },
           ],
         },
       ],
     },
     plugins: [
-      new webpack.ProgressPlugin({}),
       new CleanWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin(),
       new MiniCssExtractPlugin(),
       ...htmlPluginRules,
       new CopyPlugin({

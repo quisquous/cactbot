@@ -176,7 +176,8 @@ const testTriggerFile = (file) => {
             }
             // Built-in response functions can be safely called once.
             const output = new TestOutputProxy(trigger, {});
-            currentTriggerFunction = currentTriggerFunction({}, {}, output);
+            const data = triggerSet.initData ? triggerSet.initData() : {};
+            currentTriggerFunction = currentTriggerFunction(data, {}, output);
           }
           if (func === 'response' && typeof currentTriggerFunction === 'object') {
             // Treat a response object as its own trigger and look at all the functions it returns.
@@ -451,7 +452,8 @@ const testTriggerFile = (file) => {
           }
           const output = new TestOutputProxy(trigger, outputStrings);
           // Call the function to get the outputStrings.
-          response = trigger.response({}, {}, output);
+          const data = triggerSet.initData ? triggerSet.initData() : {};
+          response = trigger.response(data, {}, output);
 
           if (typeof outputStrings !== 'object') {
             assert.fail(`'${trigger.id}' built-in response did not set outputStrings.`);

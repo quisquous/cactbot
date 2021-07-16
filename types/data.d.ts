@@ -36,4 +36,20 @@ export interface RaidbossData {
   CanCleanse: () => boolean;
   CanFeint: () => boolean;
   CanAddle: () => boolean;
+  StopCombat: () => void;
+}
+
+export interface OopsyData {
+  job: Job;
+  me: string;
+  role: Role;
+  party: PartyTracker;
+  inCombat: boolean;
+  ShortName: (x?: string) => string;
+  IsPlayerId: (x?: string) => boolean;
+  DamageFromMatches: (matches: NetMatches['Ability']) => number;
+  options: BaseOptions;
+
+  /** @deprecated Use parseFloat instead */
+  ParseLocaleFloat: (string: string) => number;
 }

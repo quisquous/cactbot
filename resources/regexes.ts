@@ -1,3 +1,5 @@
+import { CactbotBaseRegExp } from '../types/net_trigger';
+
 export interface BaseRegExp<T extends string> extends RegExp {
   groups?: {
     [s in T]?: string;
@@ -699,7 +701,7 @@ export default class Regexes {
     return anyOfArray(array);
   }
 
-  static parse(regexpString: RegExp | string): RegExp {
+  static parse(regexpString: RegExp | string | CactbotBaseRegExp<'None'>): RegExp {
     const kCactbotCategories = {
       Timestamp: '^.{14}',
       NetTimestamp: '.{33}',

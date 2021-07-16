@@ -29,14 +29,17 @@ export default class TimerIcon extends HTMLElement {
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string | null) {
+  set scale(s: number | null) {
     if (s === null)
       this.removeAttribute('scale');
     else
-      this.setAttribute('scale', s);
+      this.setAttribute('scale', s.toString());
   }
-  get scale(): string | null {
-    return this.getAttribute('scale');
+  get scale(): number | null {
+    const s = this.getAttribute('scale');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
   // Border color.
@@ -84,26 +87,32 @@ export default class TimerIcon extends HTMLElement {
   }
 
   // The length of time to count down.
-  set duration(s: string | null) {
+  set duration(s: number | null) {
     if (s === null)
       this.removeAttribute('duration');
     else
-      this.setAttribute('duration', s);
+      this.setAttribute('duration', s.toString());
   }
-  get duration(): string | null {
-    return this.getAttribute('duration');
+  get duration(): number | null {
+    const s = this.getAttribute('duration');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
-  // When the timer reaches 0, it is hidden after this many seconds. If ""
+  // When the timer reaches 0, it is hidden after this many seconds. If null
   // then it is not hidden.
-  set hideafter(h: string | null) {
+  set hideafter(h: number | null) {
     if (h === null)
       this.removeAttribute('hideafter');
     else
-      this.setAttribute('hideafter', h);
+      this.setAttribute('hideafter', h.toString());
   }
-  get hideafter(): string | null {
-    return this.getAttribute('hideafter');
+  get hideafter(): number | null {
+    const s = this.getAttribute('hideafter');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
   // Sets the path to the image to show in the icon.
@@ -119,14 +128,17 @@ export default class TimerIcon extends HTMLElement {
 
   // Sets the number of pixels to zoom the icon. The image will be
   // grown by this amount and cropped to the widget.
-  set zoom(p: string | null) {
+  set zoom(p: number | null) {
     if (p === null)
       this.removeAttribute('zoom');
     else
-      this.setAttribute('zoom', p);
+      this.setAttribute('zoom', p.toString());
   }
-  get zoom(): string | null {
-    return this.getAttribute('zoom');
+  get zoom(): number | null {
+    const s = this.getAttribute('zoom');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
   // Sets what text should be shown in the icon. If empty, no text.
@@ -191,7 +203,7 @@ export default class TimerIcon extends HTMLElement {
     this._hideTimer = 0;
 
     if (this.duration !== null)
-      this._duration = Math.max(parseFloat(this.duration), 0);
+      this._duration = Math.max(this.duration, 0);
     if (this.width !== null)
       this._width = Math.max(parseInt(this.width), 1);
     if (this.height !== null)
@@ -201,13 +213,13 @@ export default class TimerIcon extends HTMLElement {
     if (this.bordersize !== null)
       this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
     if (this.scale !== null)
-      this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.hideafter !== null && this.hideafter !== '')
-      this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+      this._scale = Math.max(this.scale, 0.01);
+    if (this.hideafter !== null)
+      this._hideAfter = Math.max(this.hideafter, 0);
     if (this.icon !== null)
       this._icon = this.icon;
     if (this.zoom !== null)
-      this._zoom = Math.max(parseInt(this.zoom), 0);
+      this._zoom = Math.max(this.zoom, 0);
     if (this.text !== null)
       this._text = this.text;
     if (this.textcolor !== null)

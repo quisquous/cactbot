@@ -258,7 +258,7 @@ class UserConfig {
       if (isLang(displayLang))
         options.DisplayLanguage = displayLang;
       else
-        options.DisplayLanguage = 'en';
+        options.DisplayLanguage = options.ParserLanguage || 'en';
 
       document.body.classList.add(`lang-${options.DisplayLanguage}`);
       this.addUnlockText(options.DisplayLanguage);

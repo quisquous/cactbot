@@ -6,8 +6,8 @@ import LineEvent from './network_log_converter/LineEvent';
 import PersistorEncounter from './PersistorEncounter';
 
 export default class Persistor extends Dexie {
-  encounters: Dexie.Table<Encounter, number>;
-  encounterSummaries: Dexie.Table<PersistorEncounter, number>;
+  private encounters: Dexie.Table<Encounter, number>;
+  public encounterSummaries: Dexie.Table<PersistorEncounter, number>;
 
   constructor() {
     super('RaidEmulatorEncounters');
@@ -42,8 +42,10 @@ export default class Persistor extends Dexie {
                   });
 
                   // Check for encounter upgrade, re-save encounter if it's upgraded.
-                  if (obj.upgrade(obj.version))
-                    await this.encounters.put(obj, obj.id);
+                  if (obj.upgrade(obj.version)) {
+                    await this.persistEncounter(obj);
+                    return obj;
+                  }
                   obj.initialize();
 
                   return obj;
@@ -57,7 +59,15 @@ export default class Persistor extends Dexie {
     });
   }
 
-  async persistEncounter(baseEncounter: Encounter): Promise<unknown> {
+  public async loadEncounter(id: number): Promise<Encounter | undefined> {
+    return new Promise<Encounter | undefined>((res) => {
+      void this.transaction('readwrite', [this.encounters, this.encounterSummaries], async () => {
+        res(await this.encounters.get(id));
+      });
+    });
+  }
+
+  public async persistEncounter(baseEncounter: Encounter): Promise<unknown> {
     const summary = new PersistorEncounter(baseEncounter);
     if (baseEncounter.id !== undefined) {
       await this.encounterSummaries.put(summary, baseEncounter.id);
@@ -69,16 +79,21 @@ export default class Persistor extends Dexie {
     return this.encounterSummaries.add(summary, id);
   }
 
-  async clearDB(): Promise<void> {
+  public async deleteEncounter(id: number): Promise<unknown> {
+    await this.encounterSummaries.delete(id);
+    return this.encounters.delete(id);
+  }
+
+  public async clearDB(): Promise<void> {
     await this.encounters.clear();
     await this.encounterSummaries.clear();
   }
 
-  async exportDB(): Promise<Blob> {
+  public async exportDB(): Promise<Blob> {
     return this.export();
   }
 
-  async importDB(file: File): Promise<void> {
+  public async importDB(file: File): Promise<void> {
     return this.import(file);
   }
 }

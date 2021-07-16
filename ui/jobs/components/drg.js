@@ -36,7 +36,7 @@ export function setup(bars) {
   bars.onUseAbility(kAbility.LanceCharge, () => {
     lanceChargeBox.duration = 20;
     lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
-    tid1 = setTimeout(() => {
+    tid1 = window.setTimeout(() => {
       lanceChargeBox.duration = 70;
       lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
     }, 20000);
@@ -49,7 +49,7 @@ export function setup(bars) {
   bars.onUseAbility(kAbility.DragonSight, () => {
     dragonSightBox.duration = 20;
     dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
-    tid2 = setTimeout(() => {
+    tid2 = window.setTimeout(() => {
       dragonSightBox.duration = 100;
       dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
     }, 20000);

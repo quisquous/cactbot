@@ -236,7 +236,7 @@ class Bars {
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
     this.o.pullCountdown.lefttext = kPullText[this.options.DisplayLanguage] || kPullText['en'];
     this.o.pullCountdown.righttext = 'remain';
-    this.o.pullCountdown.hideafter = '0';
+    this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
     this.o.pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
 
@@ -247,8 +247,8 @@ class Bars {
     this.o.rightBuffsList = document.createElement('widget-list');
     this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
 
-    this.o.rightBuffsList.rowcolsize = '7';
-    this.o.rightBuffsList.maxnumber = '7';
+    this.o.rightBuffsList.rowcolsize = 7;
+    this.o.rightBuffsList.maxnumber = 7;
     this.o.rightBuffsList.toward = 'right down';
     this.o.rightBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
 
@@ -256,8 +256,8 @@ class Bars {
       // Just alias these two together so the rest of the code doesn't have
       // to care that they're the same thing.
       this.o.leftBuffsList = this.o.rightBuffsList;
-      this.o.rightBuffsList.rowcolsize = '20';
-      this.o.rightBuffsList.maxnumber = '20';
+      this.o.rightBuffsList.rowcolsize = 20;
+      this.o.rightBuffsList.maxnumber = 20;
       // Hoist the buffs up to hide everything else.
       barsLayoutContainer.appendChild(this.o.rightBuffsContainer);
       barsLayoutContainer.classList.add('justbuffs');
@@ -269,8 +269,8 @@ class Bars {
       this.o.leftBuffsList = document.createElement('widget-list');
       this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
 
-      this.o.leftBuffsList.rowcolsize = '7';
-      this.o.leftBuffsList.maxnumber = '7';
+      this.o.leftBuffsList.rowcolsize = 7;
+      this.o.leftBuffsList.maxnumber = 7;
       this.o.leftBuffsList.toward = 'left down';
       this.o.leftBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
     }
@@ -453,10 +453,10 @@ class Bars {
       timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
     timerBox.bg = 'black';
     timerBox.toward = 'bottom';
-    timerBox.threshold = `${threshold ? threshold : 0}`;
-    timerBox.hideafter = '';
+    timerBox.threshold = threshold ? threshold : 0;
+    timerBox.hideafter = null;
     timerBox.roundupthreshold = false;
-    timerBox.valuescale = `${scale ? scale : 1}`;
+    timerBox.valuescale = scale ? scale : 1;
     if (id) {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
@@ -620,7 +620,7 @@ class Bars {
 
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
-      this.o.mpTicker.duration = '0';
+      this.o.mpTicker.duration = 0;
       this.o.mpTicker.stylefill = 'empty';
       return;
     }
@@ -637,7 +637,7 @@ class Bars {
 
     const mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
     if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
-      this.o.mpTicker.duration = kMPTickInterval.toString();
+      this.o.mpTicker.duration = kMPTickInterval;
 
     // Update color based on the astral fire/ice state
     let colorTag = 'mp-tick-color';
@@ -653,8 +653,8 @@ class Bars {
 
     if (!this.o.manaBar)
       return;
-    this.o.manaBar.value = this.mp.toString();
-    this.o.manaBar.maxvalue = this.maxMP.toString();
+    this.o.manaBar.value = this.mp;
+    this.o.manaBar.maxvalue = this.maxMP;
     let lowMP = -1;
     let mediumMP = -1;
     let far = -1;
@@ -686,15 +686,15 @@ class Bars {
   _updateCp() {
     if (!this.o.cpBar)
       return;
-    this.o.cpBar.value = this.cp.toString();
-    this.o.cpBar.maxvalue = this.maxCP.toString();
+    this.o.cpBar.value = this.cp;
+    this.o.cpBar.maxvalue = this.maxCP;
   }
 
   _updateGp() {
     if (!this.o.gpBar)
       return;
-    this.o.gpBar.value = this.gp.toString();
-    this.o.gpBar.maxvalue = this.maxGP.toString();
+    this.o.gpBar.value = this.gp;
+    this.o.gpBar.maxvalue = this.maxGP;
 
     // GP Alarm
     if (this.gp < this.options.GpAlarmPoint) {
@@ -814,7 +814,7 @@ class Bars {
     const inCountdown = seconds > 0;
     const showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
     if (inCountdown !== showingCountdown) {
-      this.o.pullCountdown.duration = seconds.toString();
+      this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
         const audio = new Audio('../../resources/sounds/freesound/sonar.ogg');
         audio.volume = 0.3;
@@ -966,7 +966,27 @@ class Bars {
 
     const type = line[0];
 
-    if (type === '26') {
+    if (type === '00') {
+      const m = this.regexes.countdownStartRegex.exec(log);
+      if (m) {
+        const seconds = parseFloat(m.groups.time);
+        this._setPullCountdown(seconds);
+      }
+      if (this.regexes.countdownCancelRegex.test(log))
+        this._setPullCountdown(0);
+      if (/:test:jobs:/.test(log))
+        this._test();
+      if (Util.isCraftingJob(this.job))
+        this._onCraftingLog(log);
+    } else if (type === '12') {
+      const m = this.regexes.StatsRegex.exec(log);
+      if (m) {
+        const stats = m.groups;
+        this.skillSpeed = parseInt(stats.skillSpeed);
+        this.spellSpeed = parseInt(stats.spellSpeed);
+        this._updateJobBarGCDs();
+      }
+    } else if (type === '26') {
       let m = this.regexes.YouGainEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
@@ -1034,6 +1054,12 @@ class Bars {
         if (this.dotTarget.includes(m.groups.targetId))
           this.lastAttackedDotTarget = m.groups.targetId;
       }
+      if (this.regexes.cordialRegex.test(log)) {
+        this.gpPotion = true;
+        window.setTimeout(() => {
+          this.gpPotion = false;
+        }, 2000);
+      }
     } else if (type === '24') {
       // line[2] is dotted target id.
       // lastAttackedTarget, lastDotTarget may not be maintarget,
@@ -1045,54 +1071,6 @@ class Bars {
         this.updateDotTimerFuncs.forEach((f) => f());
       }
     }
-  }
-
-  _onLogEvent(e) {
-    if (!this.init || !this.regexes)
-      return;
-
-    e.detail.logs.forEach((log) => {
-      // TODO: only consider this when not in battle.
-      if (log[15] === '0') {
-        const m = this.regexes.countdownStartRegex.exec(log);
-        if (m) {
-          const seconds = parseFloat(m.groups.time);
-          this._setPullCountdown(seconds);
-          return;
-        }
-        if (this.regexes.countdownCancelRegex.test(log)) {
-          this._setPullCountdown(0);
-          return;
-        }
-        if (/:test:jobs:/.test(log)) {
-          this._test();
-          return;
-        }
-        if (log[16] === 'C') {
-          const m = this.regexes.StatsRegex.exec(log);
-          if (m) {
-            const stats = m.groups;
-            this.skillSpeed = parseInt(stats.skillSpeed);
-            this.spellSpeed = parseInt(stats.spellSpeed);
-            this._updateJobBarGCDs();
-            return;
-          }
-        }
-        if (Util.isCraftingJob(this.job))
-          this._onCraftingLog(log);
-      } else if (log[15] === '1') {
-        // TODO: consider flags for missing.
-        // flags:damage is 1:0 in most misses.
-        if (log[16] === '5' || log[16] === '6') {
-          if (this.regexes.cordialRegex.test(log)) {
-            this.gpPotion = true;
-            setTimeout(() => {
-              this.gpPotion = false;
-            }, 2000);
-          }
-        }
-      }
-    });
   }
 
   _test() {
@@ -1134,9 +1112,6 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   });
   addOverlayListener('ChangeZone', (e) => {
     bars._onChangeZone(e);
-  });
-  addOverlayListener('onLogEvent', (e) => {
-    bars._onLogEvent(e);
   });
   addOverlayListener('LogLine', (e) => {
     bars._onNetLog(e);

@@ -1,6 +1,6 @@
 // OverlayPlugin API setup
 
-import { EventMap, EventType, IOverlayHandler } from '../types/event';
+import { EventMap, EventType, IOverlayHandler, OverlayHandlerFuncs, OverlayHandlerTypes } from '../types/event';
 
 declare global {
   interface Window {
@@ -145,24 +145,36 @@ const callOverlayHandlerInternal: IOverlayHandler = (
   return p;
 };
 
-let callOverlayHandlerOverride: IOverlayHandler | undefined;
+type OverrideMap = { [call in OverlayHandlerTypes]?: OverlayHandlerFuncs[call] };
+const callOverlayHandlerOverrideMap: OverrideMap = {};
 
 export const callOverlayHandler: IOverlayHandler = (
     _msg: { [s: string]: unknown },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
-  if (callOverlayHandlerOverride) {
-    return callOverlayHandlerOverride(
-        _msg as Parameters<IOverlayHandler>[0],
-    ) as Promise<unknown>;
-  }
-  return callOverlayHandlerInternal(_msg as Parameters<IOverlayHandler>[0]);
+
+  // If this `as` is incorrect, then it will not find an override.
+  // TODO: we could also replace this with a type guard.
+  const type = _msg.call as keyof OverrideMap;
+  const callFunc = callOverlayHandlerOverrideMap[type] ?? callOverlayHandlerInternal;
+
+  // The `IOverlayHandler` type guarantees that parameters/return type match
+  // one of the overlay handlers.  The OverrideMap also only stores functions
+  // that match by the discriminating `call` field, and so any overrides
+  // should be correct here.
+  // eslint-disable-next-line max-len
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument
+  return callFunc(_msg as any);
 };
 
-export const setCallOverlayHandlerOverride = (override?: IOverlayHandler): IOverlayHandler => {
-  callOverlayHandlerOverride = override;
-  return callOverlayHandlerInternal;
+export const setOverlayHandlerOverride = <T extends keyof OverlayHandlerFuncs>(
+  type: T, override?: OverlayHandlerFuncs[T]): void => {
+  if (!override) {
+    delete callOverlayHandlerOverrideMap[type];
+    return;
+  }
+  callOverlayHandlerOverrideMap[type] = override;
 };
 
 export const init = (): void => {
@@ -221,7 +233,7 @@ export const init = (): void => {
 
           console.log('Trying to reconnect...');
           // Don't spam the server with retries.
-          setTimeout(() => {
+          window.setTimeout(() => {
             connectWs();
           }, 300);
         });
@@ -231,7 +243,7 @@ export const init = (): void => {
     } else {
       const waitForApi = function() {
         if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
-          setTimeout(waitForApi, 300);
+          window.setTimeout(waitForApi, 300);
           return;
         }
 

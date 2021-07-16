@@ -80,12 +80,12 @@ export default class FisherUI {
         bar.duration = min / 1000;
         bar.stylefill = 'fill';
         // Step two: empty until the maximum time
-        timeouts.push(setTimeout(() => {
+        timeouts.push(window.setTimeout(() => {
           row.style.opacity = 1;
           bar.stylefill = 'empty';
           bar.value = 0;
           bar.duration = (max - min) / 1000;
-          timeouts.push(setTimeout(() => {
+          timeouts.push(window.setTimeout(() => {
             row.style.opacity = 0.5;
           }, (max - min)));
         }, min));

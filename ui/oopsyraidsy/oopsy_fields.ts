@@ -2,10 +2,12 @@
 export const oopsyTriggerSetOutputFields = [
   'damageWarn',
   'damageFail',
-  'shareWarn',
-  'shareFail',
   'gainsEffectWarn',
   'gainsEffectFail',
+  'shareWarn',
+  'shareFail',
+  'soloWarn',
+  'soloFail',
   'triggers',
 ];
 

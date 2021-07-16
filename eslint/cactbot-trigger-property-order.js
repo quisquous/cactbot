@@ -69,7 +69,6 @@ module.exports = {
       'losesEffectRegex',
       'abilityRegex',
       'condition',
-      'collectSeconds',
       'delaySeconds',
       'suppressSeconds',
       'deathReason',

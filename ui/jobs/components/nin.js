@@ -52,7 +52,7 @@ export function setup(bars) {
     trickAttack.duration = 15;
     trickAttack.threshold = 1000;
     trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
-    tid1 = setTimeout(() => {
+    tid1 = window.setTimeout(() => {
       trickAttack.duration = 45;
       trickAttack.threshold = bars.gcdSkill * 4;
       trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');

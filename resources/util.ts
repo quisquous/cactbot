@@ -1,4 +1,4 @@
-import { GetCombatantsCall, GetCombatantsRet } from '../types/event';
+import { OverlayHandlerRequests, OverlayHandlerResponseTypes } from '../types/event';
 import { Job, Role } from '../types/job';
 
 import { callOverlayHandler } from './overlay_plugin_api';
@@ -89,7 +89,7 @@ type WatchCombatantParams = {
 };
 
 type WatchCombatantFunc = (params: WatchCombatantParams,
-  func: (ret: GetCombatantsRet) => boolean) => Promise<void>;
+  func: (ret: OverlayHandlerResponseTypes['getCombatants']) => boolean) => Promise<void>;
 
 type WatchCombatantMapEntry = {
   cancel: boolean;
@@ -111,7 +111,7 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
   return new Promise<void>((res, rej) => {
     const delay = params.delay ?? 1000;
 
-    const call: GetCombatantsCall = {
+    const call: OverlayHandlerRequests['getCombatants'] = {
       call: 'getCombatants',
     };
 

@@ -113,12 +113,12 @@ export function setup(bars) {
     wildFireBox.duration = 10 + 0.9; // animation delay
     wildFireBox.threshold = 1000;
     wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
-    tid1 = setTimeout(() => {
+    tid1 = window.setTimeout(() => {
       wildFireBox.duration = 110 - 0.9;
       wildFireBox.threshold = bars.gcdSkill + 1;
       wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
     }, 10000);
-    tid2 = setTimeout(() => {
+    tid2 = window.setTimeout(() => {
       stacksContainer.classList.add('hide');
       wildFireCounts = 0;
     }, 15000);

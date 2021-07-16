@@ -16,6 +16,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.startsUsing, lines);
 
     const matches = lines[0].match(NetRegexes.startsUsing()).groups;
+    assert.equal(matches.type, '20');
     assert.equal(matches.sourceId, '106E0DB3');
     assert.equal(matches.source, 'Potato Chippy');
     assert.equal(matches.id, '1D3F');
@@ -35,6 +36,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.abilityFull, lines);
 
     let matches = lines[0].match(NetRegexes.ability()).groups;
+    assert.equal(matches.type, '21');
     assert.equal(matches.sourceId, '105D4D8B');
     assert.equal(matches.source, 'Potato Chippy');
     assert.equal(matches.id, '4095');
@@ -43,6 +45,7 @@ describe('netregex tests', () => {
     assert.equal(matches.target, 'Shiva');
 
     matches = lines[0].match(NetRegexes.abilityFull()).groups;
+    assert.equal(matches.type, '21');
     assert.equal(matches.sourceId, '105D4D8B');
     assert.equal(matches.source, 'Potato Chippy');
     assert.equal(matches.id, '4095');
@@ -64,6 +67,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.headMarker, lines);
 
     const matches = lines[0].match(NetRegexes.headMarker()).groups;
+    assert.equal(matches.type, '27');
     assert.equal(matches.targetId, '107C73B8');
     assert.equal(matches.target, 'Aloo Gobi');
     assert.equal(matches.id, '00C0');
@@ -79,10 +83,12 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.addedCombatantFull, lines);
 
     let matches = lines[0].match(NetRegexes.addedCombatant()).groups;
+    assert.equal(matches.type, '03');
     assert.equal(matches.id, '1059c805');
     assert.equal(matches.name, 'Potato Chippy');
 
     matches = lines[0].match(NetRegexes.addedCombatantFull()).groups;
+    assert.equal(matches.type, '03');
     assert.equal(matches.id, '1059c805');
     assert.equal(matches.name, 'Potato Chippy');
     assert.equal(matches.job, '1b');
@@ -97,6 +103,7 @@ describe('netregex tests', () => {
     assert.equal(matches.heading, '2.118315');
 
     matches = lines[1].match(NetRegexes.addedCombatantFull()).groups;
+    assert.equal(matches.type, '03');
     assert.equal(matches.name, 'Earthen Aether');
     assert.equal(matches.npcNameId, '9321');
     assert.equal(matches.npcBaseId, '11632');
@@ -110,6 +117,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.removingCombatant, lines);
 
     const matches = lines[0].match(NetRegexes.removingCombatant()).groups;
+    assert.equal(matches.type, '04');
     assert.equal(matches.id, '106da5c0');
     assert.equal(matches.name, 'Tini Poutini');
     assert.equal(matches.hp, '85349');
@@ -123,6 +131,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.gainsEffect, lines);
 
     let matches = lines[0].match(NetRegexes.gainsEffect()).groups;
+    assert.equal(matches.type, '26');
     assert.equal(matches.effectId, '312');
     assert.equal(matches.effect, 'Battle Litany');
     assert.equal(matches.duration, '20.00');
@@ -146,6 +155,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.statusEffectExplicit, lines);
 
     const matches = lines[0].match(NetRegexes.statusEffectExplicit()).groups;
+    assert.equal(matches.type, '38');
     assert.equal(matches.targetId, '1065DD71');
     assert.equal(matches.target, 'Potato Chippy');
     assert.equal(matches.hp, '151776');
@@ -170,6 +180,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.losesEffect, lines);
 
     let matches = lines[0].match(NetRegexes.losesEffect()).groups;
+    assert.equal(matches.type, '30');
     assert.equal(matches.effectId, '323');
     assert.equal(matches.effect, 'Enhanced Wheeling Thrust');
     assert.equal(matches.sourceId, '106AF611');
@@ -179,11 +190,13 @@ describe('netregex tests', () => {
     assert.equal(matches.count, '00');
 
     matches = lines[1].match(NetRegexes.losesEffect()).groups;
+    assert.equal(matches.type, '30');
     assert.equal(matches.effectId, '8d1');
     assert.equal(matches.effect, 'Lightsteeped');
     assert.equal(matches.count, '01');
 
     matches = lines[2].match(NetRegexes.losesEffect()).groups;
+    assert.equal(matches.type, '30');
     assert.equal(matches.effectId, '49e');
     assert.equal(matches.effect, 'Meditative Brotherhood');
     assert.equal(matches.sourceId, '106AF612');
@@ -200,6 +213,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.tether, lines);
 
     const matches = lines[0].match(NetRegexes.tether()).groups;
+    assert.equal(matches.type, '35');
     assert.equal(matches.sourceId, '40026738');
     assert.equal(matches.source, 'Luminous Aether');
     assert.equal(matches.targetId, '400266A5');
@@ -215,6 +229,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.wasDefeated, lines);
 
     const matches = lines[0].match(NetRegexes.wasDefeated()).groups;
+    assert.equal(matches.type, '25');
     assert.equal(matches.targetId, '400002AB');
     assert.equal(matches.target, 'Ovni');
     assert.equal(matches.sourceId, '106AF612');
@@ -239,6 +254,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.dialog, dialogLines);
 
     matches = dialogLines[0].match(NetRegexes.dialog()).groups;
+    assert.equal(matches.type, '00');
     assert.equal(matches.name, 'Rhitahtyn sas Arvina');
     assert.equal(matches.line, 'My shields are impregnable! Join the countless challengers who have dashed themselves against them!');
 
@@ -249,6 +265,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.gameNameLog, dialogLines);
 
     matches = namedLines[0].match(NetRegexes.gameNameLog()).groups;
+    assert.equal(matches.type, '00');
     assert.equal(matches.code, '001d');
     assert.equal(matches.name, 'Tini Poutini');
     assert.equal(matches.line, 'Tini Poutini straightens her spectacles for you.');
@@ -261,6 +278,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.message, messageLines);
 
     matches = messageLines[0].match(NetRegexes.message()).groups;
+    assert.equal(matches.type, '00');
     assert.equal(matches.line, 'The Cranial Plate is no longer sealed!');
 
     const allLines = [];
@@ -279,6 +297,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.statChange, lines);
 
     const matches = lines[0].match(NetRegexes.statChange()).groups;
+    assert.equal(matches.type, '12');
     assert.equal(matches.job, '19');
     assert.equal(matches.strength, '3888');
     assert.equal(matches.dexterity, '324');
@@ -304,6 +323,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.changeZone, lines);
 
     const matches = lines[0].match(NetRegexes.changeZone()).groups;
+    assert.equal(matches.type, '01');
     assert.equal(matches.id, '174');
     assert.equal(matches.name, 'Syrcus Tower');
   });
@@ -317,6 +337,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.network6d, lines);
 
     const matches = lines[0].match(NetRegexes.network6d()).groups;
+    assert.equal(matches.type, '33');
     assert.equal(matches.instance, '80034E37');
     assert.equal(matches.command, '40000010');
     assert.equal(matches.data0, 'A91');
@@ -334,6 +355,7 @@ describe('netregex tests', () => {
     regexCaptureTest(NetRegexes.nameToggle, lines);
 
     const matches = lines[0].match(NetRegexes.nameToggle()).groups;
+    assert.equal(matches.type, '34');
     assert.equal(matches.id, '40003C60');
     assert.equal(matches.name, 'Elemental Converter');
     assert.equal(matches.toggle, '01');
