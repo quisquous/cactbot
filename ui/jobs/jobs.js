@@ -131,8 +131,6 @@ export class Bars {
 
     this.dotTarget = [];
     this.trackedDoTs = [];
-    this.comboFuncs = [];
-    this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.updateDotTimerFuncs = [];
     this.gainEffectFuncMap = {};
@@ -189,8 +187,6 @@ export class Bars {
   }
 
   _updateJob() {
-    this.comboFuncs = [];
-    this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
@@ -545,10 +541,6 @@ export class Bars {
     void audio.play();
   }
 
-  onCombo(callback) {
-    this.comboFuncs.push(callback);
-  }
-
   onMobGainsEffectFromYou(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobGainEffectFromYouFuncMap[id] = callback);
@@ -577,10 +569,6 @@ export class Bars {
       this.loseEffectFuncMap[effectIds] = callback;
   }
 
-  onJobDetailUpdate(callback) {
-    this.jobFuncs.push(callback);
-  }
-
   onStatChange(job, callback) {
     this.statChangeFuncMap[job] = callback;
   }
@@ -593,7 +581,6 @@ export class Bars {
   }
 
   _onComboChange(skill) {
-    // this.comboFuncs.forEach((func) => func(skill));
     this.jobComponent?.onCombo(skill);
   }
 
@@ -601,12 +588,6 @@ export class Bars {
     this.jobComponent?.reset();
 
     this.JobComponent = ComponentFactory.getComponent(this, job);
-  }
-
-  _updateJobBarGCDs() {
-    const f = this.statChangeFuncMap[this.job];
-    if (f)
-      f();
   }
 
   _updateHealth() {
@@ -976,12 +957,8 @@ export class Bars {
     if (updateLevel)
       this._updateFoodBuff();
 
-    if (e.detail.jobDetail) {
-      this.jobFuncs.forEach((func) => {
-        func(e.detail.jobDetail);
-      });
+    if (e.detail.jobDetail)
       this.jobComponent?.onJobDetailUpdate(e.detail.jobDetail);
-    }
   }
 
   _updateEnmityTargetData(e) {
@@ -1034,16 +1011,12 @@ export class Bars {
           gcdSpell: this.gcdSpell,
           ...stats,
         });
-        this._updateJobBarGCDs();
       }
     } else if (type === '26') {
       let m = this.regexes.YouGainEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        const f = this.gainEffectFuncMap[effectId];
         this.jobComponent?.onGainEffect(effectId, m.groups);
-        if (f)
-          f(effectId, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
       }
       m = this.regexes.MobGainsEffectRegex.exec(log);
@@ -1056,18 +1029,13 @@ export class Bars {
         const effectId = m.groups.effectId.toUpperCase();
         if (this.trackedDoTs.includes(effectId))
           this.dotTarget.push(m.groups.targetId);
-        const f = this.mobGainEffectFromYouFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
+        this.jobComponent?.onMobGainsEffectFromYou(effectId, m.groups);
       }
     } else if (type === '30') {
       let m = this.regexes.YouLoseEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        const f = this.loseEffectFuncMap[effectId];
         this.jobComponent?.onLoseEffect(effectId, m.groups);
-        if (f)
-          f(effectId, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
       }
       m = this.regexes.MobLosesEffectRegex.exec(log);
@@ -1083,9 +1051,7 @@ export class Bars {
           if (index > -1)
             this.dotTarget.splice(index, 1);
         }
-        const f = this.mobLoseEffectFromYouFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
+        this.jobComponent?.onMobLosesEffectFromYou(effectId, m.groups);
       }
     } else if (type === '21' || type === '22') {
       let m = this.regexes.YouUseAbilityRegex.exec(log);
@@ -1093,9 +1059,6 @@ export class Bars {
         const id = m.groups.id;
         this.combo.HandleAbility(id);
         this.jobComponent?.onUseAbility(id);
-        const f = this.abilityFuncMap[id];
-        if (f)
-          f(id, m.groups);
         this.buffTracker.onUseAbility(id, m.groups);
       } else {
         const m = this.regexes.AnybodyAbilityRegex.exec(log);

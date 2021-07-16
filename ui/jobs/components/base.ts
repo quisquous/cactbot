@@ -23,6 +23,16 @@ interface Component {
   onLoseEffect?: (effectId: string, matches: NetMatches['LosesEffect']) => void;
 
   /**
+    * (override) called on mob gains any effect from player
+    */
+  onMobGainEffectFromYou?: (effectId: string, matches: NetMatches['GainsEffect']) => void;
+
+  /**
+       * (override) called on mob loses any effect from player
+       */
+  onMobLoseEffectFromYou?: (effectId: string, matches: NetMatches['LosesEffect']) => void;
+
+  /**
     * (override) called on JobDetails data changed
     */
   onJobDetailUpdate?: (jobDetail: JobDetail[keyof JobDetail]) => void;
