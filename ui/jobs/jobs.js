@@ -74,6 +74,15 @@ export class Player {
     this.stats = {};
     this.gcdSkill = 0;
     this.gcdSpell = 0;
+    this.speedBuffs = {
+      presenceOfMind: 0,
+      shifu: 0,
+      huton: 0,
+      lightningStacks: 0,
+      paeonStacks: 0,
+      museStacks: 0,
+      circleOfPower: 0,
+    };
   }
 }
 
