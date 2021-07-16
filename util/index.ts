@@ -89,8 +89,8 @@ findParser.addArgument(['-f', '--filter'], {
 
 inquirer.registerPrompt('fuzzypath', inquirerFuzzyPath);
 
-const run = (args: unknown) => {
-  inquirer.prompt([{
+const run = (args: unknown): Promise<void> => {
+  return inquirer.prompt([{
     type: 'list',
     name: 'action',
     message: 'What do you want to do?',
@@ -108,7 +108,7 @@ const run = (args: unknown) => {
   }).catch(console.error);
 };
 
-const generateDataFiles = (args: unknown) => {
+const generateDataFiles = (args: unknown): Promise<void> => {
   return inquirer.prompt([{
     type: 'list',
     name: 'choice',
@@ -122,7 +122,7 @@ const generateDataFiles = (args: unknown) => {
   });
 };
 
-const translateTimelineFunc = (args: unknown) => {
+const translateTimelineFunc = (args: unknown): Promise<void> => {
   return inquirer.prompt([
     {
       type: 'fuzzypath',
@@ -148,7 +148,7 @@ const translateTimelineFunc = (args: unknown) => {
   });
 };
 
-const findMissingTranslationsFunc = (args: unknown) => {
+const findMissingTranslationsFunc = (args: unknown): Promise<void> => {
   return inquirer.prompt([
     {
       type: 'input',
@@ -173,4 +173,4 @@ const findMissingTranslationsFunc = (args: unknown) => {
   });
 };
 
-run(process.argv.length > 2 ? argumentParser.parseArgs() : undefined);
+void run(process.argv.length > 2 ? argumentParser.parseArgs() : undefined);
