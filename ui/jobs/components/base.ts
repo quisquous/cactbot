@@ -3,10 +3,12 @@ import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
-import { Bars } from '../jobs';
+import { Bars, Player } from '../jobs';
 
 interface Component {
   bars: Bars;
+  /** The player data for the current job. */
+  player: Player;
   /**
    * (override) called on combo state changed
    */
@@ -56,9 +58,11 @@ interface Component {
 
 export class BaseComponent implements Component {
   bars: Bars;
+  player: Player;
 
   constructor(bars: Bars) {
     this.bars = bars;
+    this.player = bars.player;
   }
 
   addCustomBar(element: HTMLElement): HTMLElement {
