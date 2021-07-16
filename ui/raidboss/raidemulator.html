@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Cactbot Raid Emulator</title>
+    <title class="translate title"></title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -15,108 +15,70 @@
   </head>
   <body class="bg-secondary">
     <div class="modal-backdrop hide"></div>
-    <div class="modal importProgressModal text-dark" tabindex="-1" role="dialog">
+    <div class="modal translate importProgressModal text-dark" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Log File Import Progress</h5>
+            <h5 class="modal-title"></h5>
           </div>
           <div class="modal-body">
             <div class="progress position-relative">
               <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
               <div class="position-absolute w-100 text-center label"></div>
             </div>
-            <p>
-              <h3>Latest encounter:</h3>
-              <span class="encounterLabel"></span>
-            </p>
+            <p class="modal-body-contents"></p>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" disabled>Done<span class="doneBtnTimeout"></span></button>
+            <button type="button" class="btn btn-primary translate doneButton" data-dismiss="modal" disabled></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal deleteDBModal text-dark" tabindex="-1" role="dialog">
+    <div class="modal translate deleteDBModal text-dark" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Delete Encounter Database</h5>
+            <h5 class="modal-title"></h5>
             <button type="button" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <p>You are about to delete the encounter database. Are you sure?</p>
-          </div>
+          <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Yes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary translate yesButton"></button>
+            <button type="button" class="btn btn-secondary translate noButton" data-dismiss="modal"></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal introModal text-dark" tabindex="-1" role="dialog">
+    <div class="modal translate introModal text-dark" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Introduction</h5>
+            <h5 class="modal-title"></h5>
             <button type="button" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <p>Welcome to the Raid Emulator.</p>
-            <p>This tool replays encounters and shows what triggers were fired when, and allows you to view the encounter from any player's perspective.</p>
-            <p>This tool optionally accepts an <strong>OVERLAY_WS</strong> parameter to connect to an ACT web socket with both ngld's OverlayPlugin and the Cactbot plugin loaded.</p>
-            <p>If connected to a web socket, this tool will load and respect user configuration files for cactbot/raidboss.</p>
-            <p>No overlays need to be created.</p>
-            <p>Current WebSocket status: <span class="d-none websocketConnected text-success">Connected</span><span class="websocketDisconnected text-warning">Disconnected</span>.</p>
-            <p>To get started, you need to import an encounter via one of the following options:</p>
-            <p>
-              <ul>
-                <li>Drag and drop a network log file from <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code> on to the page</li>
-                <li>Click the <code>Load Network Log</code> button in the bottom drawer and select a network log file from <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code></li>
-              </ul>
-            </p>
-            <p>Then, select an encounter via the bottom drawer.</p>
-            <p>Once you have loaded an encounter, you can:</p>
-            <p>
-              <ul>
-                <li>Change the current perspective by selecting a party member on the right</li>
-                <li>Seek to any point in the encounter by clicking the bar at the top</li>
-                <li>Hover over trigger indicators in the top bar to see their names</li>
-                <li>See detailed information about triggers fired by clicking their button</li>
-              </ul>
-            </p>
-          </div>
+          <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary pull-right translate closeButton" data-dismiss="modal"></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal disconnectedModal text-dark" tabindex="-1" role="dialog">
+    <div class="modal translate disconnectedModal text-dark" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Currently Disconnected</h5>
+            <h5 class="modal-title"></h5>
             <button type="button" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <p>Raid Emulator is currently disconnected from ACT.</p>
-            <p>Raid Emulator will use the default settings for raidboss. These are:</p>
-            <ul>
-              <li>Display language: <span class="discLangDisplay"></span></li>
-              <li>Default alert output: Text and Sound</li>
-              <li>Alerts language: <span class="discLangAlerts"></span></li>
-              <li>Timeline language: <span class="discLangTimeline"></span></li>
-            </ul>
-          </div>
+          <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary pull-right translate closeButton" data-dismiss="modal"></button>
           </div>
         </div>
       </div>
@@ -167,11 +129,11 @@
         <div class="col-auto">
           <span class="connectionIndicator">
             <i
-              class="connectedIndicator fa fa-plug text-success" data-toggle="tooltip"
-              title="Connected to websocket"></i>
+              class="translate connectedIndicator fa fa-plug text-success" data-toggle="tooltip"
+              title=""></i>
             <i
-              class="disconnectedIndicator fa fa-ban text-danger d-none" data-toggle="tooltip"
-              title="Disconnected from websocket"></i>
+              class="translate disconnectedIndicator fa fa-ban text-danger d-none" data-toggle="tooltip"
+              title=""></i>
           </span>
         </div>
       </div>
@@ -184,13 +146,13 @@
         </div>
         <div class="col-5 triggerInfoColumn border-dark border-left border-right">
           <div class="triggerCheckboxes">
-            <div class="triggerHideSkippedContainer" data-toggle="tooltip" title="Hide triggers that were not executed">
-              <input type="checkbox" name="hideSkipped" class="triggerHideSkipped" checked="checked" id="hideSkipped">
-              <label for="hideSkipped">Hide Skipped</label>
+            <div class="triggerHideSkippedContainer translate" data-toggle="tooltip" title="">
+              <input type="checkbox" name="hideSkipped" class="triggerHideSkipped translate" checked="checked" id="hideSkipped">
+              <label for="hideSkipped"></label>
             </div>
-            <div class="triggerHideCollectorContainer" data-toggle="tooltip" title="Hide triggers that had no output">
-              <input type="checkbox" name="hideCollector" class="triggerHideCollector" checked="checked" id="hideCollector">
-              <label for="hideCollector">Hide Collectors</label>
+            <div class="triggerHideCollectorContainer translate" data-toggle="tooltip" title="">
+              <input type="checkbox" name="hideCollector" class="triggerHideCollector translate" checked="checked" id="hideCollector">
+              <label for="hideCollector"></label>
             </div>
             <div style="clear: both"></div>
           </div>
@@ -218,10 +180,10 @@
           </button>
           <div class="collapse show" id="encountersTab">
             <div class="row flex-fill border-top border-dark">
-              <button class="btn btn-primary btn-sm loadNetworkLogButton mx-2" type="button">Load Network Log</button>
-              <button class="btn btn-primary btn-sm exportDBButton mx-2" type="button">Export DB</button>
-              <button class="btn btn-primary btn-sm importDBButton mx-2" type="button">Import DB</button>
-              <button class="btn btn-primary btn-sm clearDBButton mx-2" type="button">Clear DB</button>
+              <button class="btn btn-primary btn-sm translate loadNetworkLogButton mx-2" type="button"></button>
+              <button class="btn btn-primary btn-sm translate exportDBButton mx-2" type="button"></button>
+              <button class="btn btn-primary btn-sm translate importDBButton mx-2" type="button"></button>
+              <button class="btn btn-primary btn-sm translate clearDBButton mx-2" type="button"></button>
             </div>
             <div class="row flex-fill border-top border-dark encountersContainer">
               <div
@@ -315,17 +277,17 @@
       </template>
       <template class="encounterInfo">
         <div class="encounterInfo">
-          <div class="encounterLoad btn btn-primary pull-right mb-1">Load Encounter</div>
-          <div class="encounterParse btn btn-primary pull-right mb-1">Reparse Encounter</div>
-          <div class="encounterPrune btn btn-primary pull-right mb-1">Prune Encounter</div>
-          <div class="encounterDelete btn btn-primary pull-right mb-1">Delete Encounter</div>
-          <div class="encounterZone">Zone: <span class="label"></span></div>
-          <div class="encounterStart">Start: <span class="label"></span></div>
-          <div class="encounterDuration">Duration: <span class="label"></span></div>
-          <div class="encounterOffset">Pull At: <span class="label"></span></div>
-          <div class="encounterName">Name: <span class="label"></span></div>
-          <div class="encounterStartStatus">Start Status: <span class="label"></span></div>
-          <div class="encounterEndStatus">End Status: <span class="label"></span></div>
+          <div class="translate encounterLoad btn btn-primary pull-right mb-1"></div>
+          <div class="translate encounterParse btn btn-primary pull-right mb-1"></div>
+          <div class="translate encounterPrune btn btn-primary pull-right mb-1"></div>
+          <div class="translate encounterDelete btn btn-primary pull-right mb-1"></div>
+          <div class="translate encounterZone"></div>
+          <div class="translate encounterStart"></div>
+          <div class="translate encounterDuration"></div>
+          <div class="translate encounterOffset"></div>
+          <div class="translate encounterName"></div>
+          <div class="translate encounterStartStatus"></div>
+          <div class="translate encounterEndStatus"></div>
         </div>
       </template>
       <template id="topTooltipTemplate" class="tooltip top">
