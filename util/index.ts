@@ -158,19 +158,18 @@ const findMissingTranslationsFunc = (args: unknown) => {
       when: () => typeof getArgument(args, 'filter') !== 'string',
     },
     {
-      type: 'checkbox',
+      type: 'list',
       name: 'locale',
       message: 'Select a locale: ',
       choices: languages,
-      default: [getArgument<string>(args, 'locale')],
+      default: getArgument<string>(args, 'locale'),
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
     const filter = getArgument(answers, 'filter') || getArgument(args, 'filter');
-    const locale = getArgument(answers, 'locale') || [getArgument(args, 'locale')];
-    if (typeof filter === 'string' && Array.isArray(locale) &&
-        locale.every((locale: string) => isLang(locale)))
-      return findMissingTranslations(answers.filter, answers.locale);
+    const locale = getArgument(answers, 'locale') || getArgument(args, 'locale');
+    if (typeof filter === 'string' && typeof locale === 'string' && isLang(locale))
+      return findMissingTranslations(filter, locale);
   });
 };
 
