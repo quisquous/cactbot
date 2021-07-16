@@ -372,7 +372,7 @@ export class Bars {
 
     this._validateKeys();
 
-    this.jobComponent?.onStatChange({
+    this.jobComponent?.onStatChange?.({
       ...this.player.stats,
       gcdSkill: this.player.gcdSkill,
       gcdSpell: this.player.gcdSpell,
@@ -577,11 +577,11 @@ export class Bars {
   }
 
   _onComboChange(skill) {
-    this.jobComponent?.onCombo(skill);
+    this.jobComponent?.onCombo?.(skill);
   }
 
   _updateJobComponent(job) {
-    this.jobComponent?.reset();
+    this.jobComponent?.reset?.();
 
     this.jobComponent = ComponentFactory.getComponent(this, job);
   }
@@ -781,7 +781,7 @@ export class Bars {
     // const reset = getReset(this.job);
     // if (reset)
     //   reset.bind(null, this)();
-    this.jobComponent?.reset();
+    this.jobComponent?.reset?.();
   }
 
   _onInCombatChanged(e) {
@@ -952,7 +952,7 @@ export class Bars {
       this._updateFoodBuff();
 
     if (e.detail.jobDetail)
-      this.jobComponent?.onJobDetailUpdate(e.detail.jobDetail);
+      this.jobComponent?.onJobDetailUpdate?.(e.detail.jobDetail);
   }
 
   _updateEnmityTargetData(e) {
@@ -1001,7 +1001,7 @@ export class Bars {
         this.player.stats = stats;
         this.skillSpeed = parseInt(stats.skillSpeed);
         this.spellSpeed = parseInt(stats.spellSpeed);
-        this.jobComponent?.onStatChange({
+        this.jobComponent?.onStatChange?.({
           gcdSkill: this.player.gcdSkill,
           gcdSpell: this.player.gcdSpell,
           ...stats,
@@ -1011,7 +1011,7 @@ export class Bars {
       let m = this.regexes.YouGainEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        this.jobComponent?.onGainEffect(effectId, m.groups);
+        this.jobComponent?.onGainEffect?.(effectId, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
       }
       m = this.regexes.MobGainsEffectRegex.exec(log);
@@ -1024,13 +1024,13 @@ export class Bars {
         const effectId = m.groups.effectId.toUpperCase();
         if (this.trackedDoTs.includes(effectId))
           this.dotTarget.push(m.groups.targetId);
-        this.jobComponent?.onMobGainsEffectFromYou(effectId, m.groups);
+        this.jobComponent?.onMobGainsEffectFromYou?.(effectId, m.groups);
       }
     } else if (type === '30') {
       let m = this.regexes.YouLoseEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        this.jobComponent?.onLoseEffect(effectId, m.groups);
+        this.jobComponent?.onLoseEffect?.(effectId, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
       }
       m = this.regexes.MobLosesEffectRegex.exec(log);
@@ -1046,14 +1046,14 @@ export class Bars {
           if (index > -1)
             this.dotTarget.splice(index, 1);
         }
-        this.jobComponent?.onMobLosesEffectFromYou(effectId, m.groups);
+        this.jobComponent?.onMobLosesEffectFromYou?.(effectId, m.groups);
       }
     } else if (type === '21' || type === '22') {
       let m = this.regexes.YouUseAbilityRegex.exec(log);
       if (m) {
         const id = m.groups.id;
         this.combo.HandleAbility(id);
-        this.jobComponent?.onUseAbility(id, m.groups);
+        this.jobComponent?.onUseAbility?.(id, m.groups);
         this.buffTracker.onUseAbility(id, m.groups);
       } else {
         const m = this.regexes.AnybodyAbilityRegex.exec(log);
