@@ -147,7 +147,7 @@ export default class TimerBox extends HTMLElement {
       this.setAttribute('hideafter', h.toString());
   }
   get hideafter(): number | null {
-    const h = this.getAttribute('duration');
+    const h = this.getAttribute('hideafter');
     if (h === null)
       return null;
     return parseFloat(h);
