@@ -15,17 +15,6 @@ export function setup(bars) {
     classList: ['mnk-color-chakra'],
   });
 
-  const getLightningStacksViaLevel = (level) => {
-    if (level < 20)
-      return 1;
-    else if (level < 40)
-      return 2;
-    else if (level < 76)
-      return 3;
-    return 4;
-  };
-
-
   bars.onJobDetailUpdate((jobDetail) => {
     const chakra = jobDetail.chakraStacks;
     if (textBox.innerText !== chakra) {
@@ -36,10 +25,6 @@ export function setup(bars) {
       else
         p.classList.remove('dim');
     }
-
-    // After the 5.4 changes, we just assign bars.speedBuffs.lightningStacks
-    // as corresponding stacks via current level
-    bars.speedBuffs.lightningStacks = getLightningStacksViaLevel(bars.level);
   });
 
   const dragonKickBox = bars.addProcBox({
