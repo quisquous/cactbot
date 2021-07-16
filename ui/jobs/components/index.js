@@ -60,7 +60,7 @@ export function getReset(job) {
   }[job.toUpperCase()];
 }
 
-class ComponentFactory {
+export class ComponentFactory {
   static getComponent(bars, job) {
     switch (job.toUpperCase()) {
     case 'AST':

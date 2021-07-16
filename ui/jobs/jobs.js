@@ -22,6 +22,7 @@ import PartyTracker from '../../resources/party';
 
 import foodImage from '../../resources/ffxiv/status/food.png';
 
+import { ComponentFactory } from './components/index';
 import defaultOptions from './jobs_options';
 import {
   calcGCDFromStat,
@@ -30,7 +31,6 @@ import {
   makeAuraTimerIcon,
   RegexesHolder,
 } from './utils';
-import { getSetup, getReset, getComponent } from './components/index';
 
 import './jobs_config';
 import '../../resources/resourcebar';
@@ -69,12 +69,9 @@ export class Player {
     this.gp = 0;
     this.maxGP = 0;
 
+    this.stats = {};
     this.skillSpeed = 0;
     this.spellSpeed = 0;
-
-    // combat info
-    this.combo = undefined;
-    this.comboTimer = undefined;
   }
 }
 
@@ -83,16 +80,12 @@ export class Bars {
     this.options = options;
     this.init = false;
     this.o = {};
-    /**
-     * @type {Component}
-     */
+    /** @type {Component} */
     this.jobComponent = undefined;
 
     /** @type {Player} */
     this.player = new Player();
 
-    this.me = undefined;
-    this.level = 0;
     this.job = 'NONE';
     this.hp = 0;
     this.maxHP = 0;
@@ -378,9 +371,11 @@ export class Bars {
 
     this._validateKeys();
 
-    // Many jobs use the gcd to calculate thresholds and value scaling.
-    // Run this initially to set those values.
-    this._updateJobBarGCDs();
+    this.jobComponent?.onStatChange({
+      ...this.player.stats,
+      gcdSkill: this.player.gcdSkill,
+      gcdSpell: this.player.gcdSpell,
+    });
 
     // Hide UI except HP and MP bar if in pvp area.
     this._updateUIVisibility();
@@ -857,7 +852,7 @@ export class Bars {
       } else {
         this.crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
           const m = regex.exec(log);
-          return m && (!m.groups.player || m.groups.player === this.me);
+          return m && (!m.groups.player || m.groups.player === this.player.me);
         });
       }
     }
@@ -873,10 +868,10 @@ export class Bars {
   }
 
   _onPlayerChanged(e) {
-    if (this.me !== e.detail.name) {
-      this.me = e.detail.name;
+    if (this.player.me !== e.detail.name) {
+      this.player.me = e.detail.name;
       // setup regexes prior to the combo tracker
-      this.regexes = new RegexesHolder(this.options.ParserLanguage, this.me);
+      this.regexes = new RegexesHolder(this.options.ParserLanguage, this.player.me);
     }
 
     if (!this.init) {
@@ -901,8 +896,8 @@ export class Bars {
       if (!Util.isGatheringJob(this.job))
         this.gpAlarmReady = false;
     }
-    if (e.detail.level !== this.level) {
-      this.level = e.detail.level;
+    if (e.detail.level !== this.player.level) {
+      this.player.level = e.detail.level;
       updateLevel = true;
     }
     if (
@@ -939,12 +934,7 @@ export class Bars {
       this._updateProcBoxNotifyState();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-        this.options,
-        this.me,
-        this.o.leftBuffsList,
-        this.o.rightBuffsList,
-        this.partyTracker,
-      );
+          this.options, this.player.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);
     }
     if (updateHp)
       this._updateHealth();
@@ -1004,11 +994,12 @@ export class Bars {
       const m = this.regexes.StatsRegex.exec(log);
       if (m) {
         const stats = m.groups;
+        this.player.stats = stats;
         this.skillSpeed = parseInt(stats.skillSpeed);
         this.spellSpeed = parseInt(stats.spellSpeed);
         this.jobComponent?.onStatChange({
-          gcdSkill: this.gcdSkill,
-          gcdSpell: this.gcdSpell,
+          gcdSkill: this.player.gcdSkill,
+          gcdSpell: this.player.gcdSpell,
           ...stats,
         });
       }
@@ -1094,51 +1085,19 @@ export class Bars {
   _test() {
     const logs = [];
     const t = '[10:10:10.000] ';
-    logs.push(
-      t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me +
-        ' for 30.2 Seconds.',
-    );
-    logs.push(
-      t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.me +
-        ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.',
-    );
-    logs.push(
-      t +
-        '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.',
-    );
-    logs.push(
-      t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Left Eye from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Right Eye from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:',
-    );
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Medicated from ' + this.player.me + ' for 30.2 Seconds.');
+    logs.push(t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.player.me + ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7');
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of The Balance from  for 12 Seconds.');
+    logs.push(t + '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
+    logs.push(t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
     logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Devotion from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.',
-    );
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
     const e = { detail: { logs: logs } };
     this._onLogEvent(e);
   }
