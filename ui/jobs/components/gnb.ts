@@ -16,12 +16,12 @@ export default class GnbComponent extends BaseComponent {
   gnashingFangBox: TimerBox;
   comboTimer: TimerBar;
   cartridgeComboTimer: TimerBar;
-  tid1: number;
+  noMercyTimer: number;
 
   constructor(bars: Bars) {
     super(bars);
 
-    this.tid1 = 0;
+    this.noMercyTimer = 0;
 
     this.cartridgeBox = bars.addResourceBox({
       classList: ['gnb-color-cartridge'],
@@ -60,7 +60,7 @@ export default class GnbComponent extends BaseComponent {
       this.noMercyBox.duration = 20;
       this.noMercyBox.threshold = 1000;
       this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy.active');
-      this.tid1 = window.setTimeout(() => {
+      this.noMercyTimer = window.setTimeout(() => {
         this.noMercyBox.duration = 40;
         this.noMercyBox.threshold = this.player.gcdSkill + 1;
         this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy');
@@ -126,6 +126,6 @@ export default class GnbComponent extends BaseComponent {
     this.gnashingFangBox.duration = 0;
     this.cartridgeComboTimer.duration = 0;
     this.comboTimer.duration = 0;
-    clearTimeout(this.tid1);
+    clearTimeout(this.noMercyTimer);
   }
 }
