@@ -233,8 +233,13 @@ namespace Cactbot {
       var ui_lang = Config.DisplayLanguage;
       if (ui_lang == "default") ui_lang = language_;
       if (ui_lang == "cn") ui_lang = "zh";
-      CultureInfo culture = new CultureInfo(ui_lang, false);
-      CultureInfo.CurrentUICulture = culture;
+      try {
+        CultureInfo culture = new CultureInfo(ui_lang, false);
+        CultureInfo.CurrentUICulture = culture;
+      } catch {
+        // CultureInfo's constructor throws on nulls.
+        // TODO: remove this try/catch and verify a null check is sufficient?
+      }
 
       var versions = new VersionChecker(this);
       Version local = versions.GetCactbotVersion();
