@@ -23,6 +23,7 @@ import PartyTracker from '../../resources/party';
 import foodImage from '../../resources/ffxiv/status/food.png';
 
 import { ComponentFactory } from './components/index';
+import { BaseComponent } from './components/base';
 import defaultOptions from './jobs_options';
 import {
   calcGCDFromStat,
@@ -69,9 +70,10 @@ export class Player {
     this.gp = 0;
     this.maxGP = 0;
 
+    // player stats
     this.stats = {};
-    this.skillSpeed = 0;
-    this.spellSpeed = 0;
+    this.gcdSkill = 0;
+    this.gcdSpell = 0;
   }
 }
 
@@ -80,13 +82,12 @@ export class Bars {
     this.options = options;
     this.init = false;
     this.o = {};
-    /** @type {Component} */
+    /** @type {BaseComponent} */
     this.jobComponent = undefined;
 
     /** @type {Player} */
     this.player = new Player();
 
-    this.job = 'NONE';
     this.hp = 0;
     this.maxHP = 0;
     this.currentShield = 0;
@@ -214,16 +215,16 @@ export class Bars {
     barsLayoutContainer.id = 'jobs';
     container.appendChild(barsLayoutContainer);
 
-    barsLayoutContainer.classList.add(this.job.toLowerCase());
-    if (Util.isTankJob(this.job))
+    barsLayoutContainer.classList.add(this.player.job.toLowerCase());
+    if (Util.isTankJob(this.player.job))
       barsLayoutContainer.classList.add('tank');
-    else if (Util.isHealerJob(this.job))
+    else if (Util.isHealerJob(this.player.job))
       barsLayoutContainer.classList.add('healer');
-    else if (Util.isDpsJob(this.job))
+    else if (Util.isDpsJob(this.player.job))
       barsLayoutContainer.classList.add('dps');
-    else if (Util.isCraftingJob(this.job))
+    else if (Util.isCraftingJob(this.player.job))
       barsLayoutContainer.classList.add('crafting');
-    else if (Util.isGatheringJob(this.job))
+    else if (Util.isGatheringJob(this.player.job))
       barsLayoutContainer.classList.add('gathering');
 
     const pullCountdownContainer = document.createElement('div');
@@ -285,7 +286,7 @@ export class Bars {
       this.o.leftBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
     }
 
-    if (Util.isCraftingJob(this.job)) {
+    if (Util.isCraftingJob(this.player.job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
@@ -298,7 +299,7 @@ export class Bars {
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
       container.classList.add('hide');
       return;
-    } else if (Util.isGatheringJob(this.job)) {
+    } else if (Util.isGatheringJob(this.player.job)) {
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
@@ -312,9 +313,9 @@ export class Bars {
       return;
     }
 
-    const showHPNumber = this.options.ShowHPNumber.includes(this.job);
-    const showMPNumber = this.options.ShowMPNumber.includes(this.job);
-    const showMPTicker = this.options.ShowMPTicker.includes(this.job);
+    const showHPNumber = this.options.ShowHPNumber.includes(this.player.job);
+    const showMPNumber = this.options.ShowMPNumber.includes(this.player.job);
+    const showMPTicker = this.options.ShowMPTicker.includes(this.player.job);
 
     const healthText = showHPNumber ? 'value' : '';
     const manaText = showMPNumber ? 'value' : '';
@@ -333,7 +334,7 @@ export class Bars {
     this.o.healthBar.lefttext = healthText;
     this.o.healthBar.bg = computeBackgroundColorFrom(this.o.healthBar, 'bar-border-color');
 
-    if (doesJobNeedMPBar(this.job)) {
+    if (doesJobNeedMPBar(this.player.job)) {
       this.o.manaContainer = document.createElement('div');
       this.o.manaContainer.id = 'mp-bar';
       barsContainer.appendChild(this.o.manaContainer);
@@ -367,7 +368,7 @@ export class Bars {
     // const setup = getSetup(this.job);
     // if (setup)
     //   setup.bind(null, this)();
-    this._updateJobComponent(this.job);
+    this._updateJobComponent(this.player.job);
 
     this._validateKeys();
 
@@ -402,7 +403,7 @@ export class Bars {
   }
 
   addJobBarContainer() {
-    const id = this.job.toLowerCase() + '-bar';
+    const id = this.player.job.toLowerCase() + '-bar';
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
@@ -414,7 +415,7 @@ export class Bars {
   }
 
   addJobBoxContainer() {
-    const id = this.job.toLowerCase() + '-boxes';
+    const id = this.player.job.toLowerCase() + '-boxes';
     let boxes = document.getElementById(id);
     if (!boxes) {
       boxes = document.createElement('div');
@@ -449,7 +450,7 @@ export class Bars {
     scale,
     notifyWhenExpired,
   } */) {
-    const elementId = this.job.toLowerCase() + '-procs';
+    const elementId = this.player.job.toLowerCase() + '-procs';
 
     let container = document.getElementById(options.id);
     if (!container) {
@@ -582,7 +583,7 @@ export class Bars {
   _updateJobComponent(job) {
     this.jobComponent?.reset();
 
-    this.JobComponent = ComponentFactory.getComponent(this, job);
+    this.jobComponent = ComponentFactory.getComponent(this, job);
   }
 
   _updateHealth() {
@@ -664,16 +665,16 @@ export class Bars {
     let mediumMP = -1;
     let far = -1;
 
-    if (this.job === 'RDM' || this.job === 'BLM' || this.job === 'SMN' || this.job === 'ACN')
+    if (this.player.job === 'RDM' || this.player.job === 'BLM' || this.player.job === 'SMN' || this.player.job === 'ACN')
       far = this.options.FarThresholdOffence;
 
-    if (this.job === 'DRK') {
+    if (this.player.job === 'DRK') {
       lowMP = this.options.DrkLowMPThreshold;
       mediumMP = this.options.DrkMediumMPThreshold;
-    } else if (this.job === 'PLD') {
+    } else if (this.player.job === 'PLD') {
       lowMP = this.options.PldLowMPThreshold;
       mediumMP = this.options.PldMediumMPThreshold;
-    } else if (this.job === 'BLM') {
+    } else if (this.player.job === 'BLM') {
       lowMP = this.options.BlmLowMPThreshold;
       mediumMP = this.options.BlmMediumMPThreshold;
     }
@@ -716,10 +717,8 @@ export class Bars {
     const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
-    if (
-      this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job)
-    )
+    if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
+        Util.isCraftingJob(this.player.job) || Util.isGatheringJob(this.player.job))
       opacityContainer.style.opacity = '1.0';
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat.toString();
@@ -885,15 +884,15 @@ export class Bars {
     let updateCp = false;
     let updateGp = false;
     let updateLevel = false;
-    if (e.detail.job !== this.job) {
-      this.job = e.detail.job;
+    if (e.detail.job !== this.player.job) {
+      this.player.job = e.detail.job;
       // Combos are job specific.
       this.combo.AbortCombo();
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
       this._updateMPTicker();
       updateJob = updateHp = updateMp = updateCp = updateGp = true;
-      if (!Util.isGatheringJob(this.job))
+      if (!Util.isGatheringJob(this.player.job))
         this.gpAlarmReady = false;
     }
     if (e.detail.level !== this.player.level) {
@@ -934,7 +933,12 @@ export class Bars {
       this._updateProcBoxNotifyState();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-          this.options, this.player.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);
+          this.options,
+          this.player.me,
+          this.o.leftBuffsList,
+          this.o.rightBuffsList,
+          this.partyTracker,
+      );
     }
     if (updateHp)
       this._updateHealth();
@@ -988,7 +992,7 @@ export class Bars {
         this._setPullCountdown(0);
       if (/:test:jobs:/.test(log))
         this._test();
-      if (Util.isCraftingJob(this.job))
+      if (Util.isCraftingJob(this.player.job))
         this._onCraftingLog(log);
     } else if (type === '12') {
       const m = this.regexes.StatsRegex.exec(log);
@@ -1049,7 +1053,7 @@ export class Bars {
       if (m) {
         const id = m.groups.id;
         this.combo.HandleAbility(id);
-        this.jobComponent?.onUseAbility(id);
+        this.jobComponent?.onUseAbility(id, m.groups);
         this.buffTracker.onUseAbility(id, m.groups);
       } else {
         const m = this.regexes.AnybodyAbilityRegex.exec(log);
