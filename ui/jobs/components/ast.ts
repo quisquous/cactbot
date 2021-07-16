@@ -84,20 +84,20 @@ export default class AstComponent extends BaseComponent {
   onUseAbility(action: string): void {
     switch (action) {
     case kAbility.Combust:
-      this.combustBox.duration = '18';
+      this.combustBox.duration = 18;
       break;
 
     case kAbility.Combust2:
     case kAbility.Combust3:
-      this.combustBox.duration = '30';
+      this.combustBox.duration = 30;
       break;
 
     case kAbility.Draw:
-      this.drawBox.duration = '30';
+      this.drawBox.duration = 30;
       break;
 
     case kAbility.LucidDreaming:
-      this.lucidBox.duration = '60';
+      this.lucidBox.duration = 60;
       break;
 
     default:
@@ -106,17 +106,17 @@ export default class AstComponent extends BaseComponent {
   }
 
   onStatChange(stat: NetMatches['PlayerStats'] & { gcdSkill: number; gcdSpell: number }): void {
-    this.combustBox.valuescale = stat.gcdSpell.toString();
-    this.combustBox.threshold = (stat.gcdSpell + 1).toString();
-    this.drawBox.valuescale = stat.gcdSpell.toString();
-    this.drawBox.threshold = (stat.gcdSpell + 1).toString();
-    this.lucidBox.valuescale = stat.gcdSpell.toString();
-    this.lucidBox.threshold = (stat.gcdSpell + 1).toString();
+    this.combustBox.valuescale = stat.gcdSpell;
+    this.combustBox.threshold = stat.gcdSpell + 1;
+    this.drawBox.valuescale = stat.gcdSpell;
+    this.drawBox.threshold = stat.gcdSpell + 1;
+    this.lucidBox.valuescale = stat.gcdSpell;
+    this.lucidBox.threshold = stat.gcdSpell + 1;
   }
 
   reset(): void {
-    this.combustBox.duration = '0';
-    this.drawBox.duration = '0';
-    this.lucidBox.duration = '0';
+    this.combustBox.duration = 0;
+    this.drawBox.duration = 0;
+    this.lucidBox.duration = 0;
   }
 }

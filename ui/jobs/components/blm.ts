@@ -129,15 +129,15 @@ export default class BlmComponent extends BaseComponent {
     switch (action) {
     case kAbility.Thunder1:
     case kAbility.Thunder4:
-      this.thunderDot.duration = '18';
+      this.thunderDot.duration = 18;
       break;
 
     case kAbility.Thunder2:
-      this.thunderDot.duration = '12';
+      this.thunderDot.duration = 12;
       break;
 
     case kAbility.Thunder3:
-      this.thunderDot.duration = '24';
+      this.thunderDot.duration = 24;
       break;
 
     default:
@@ -184,9 +184,9 @@ export default class BlmComponent extends BaseComponent {
   }
 
   reset(): void {
-    this.thunderDot.duration = '0';
-    this.thunderProc.duration = '0';
-    this.fireProc.duration = '0';
+    this.thunderDot.duration = 0;
+    this.thunderProc.duration = 0;
+    this.fireProc.duration = 0;
   }
 }
 
