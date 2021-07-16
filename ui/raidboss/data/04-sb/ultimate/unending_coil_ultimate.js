@@ -743,7 +743,7 @@ export default {
         if (data.dooms)
           name = data.dooms[data.doomCount];
         data.doomCount++;
-        if (name)
+        if (name === data.me)
           return output.text({ num: data.doomCount, player: data.ShortName(name) });
       },
       outputStrings: {
