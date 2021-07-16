@@ -365,9 +365,6 @@ export class Bars {
       this.o.mpTicker.loop = true;
     }
 
-    // const setup = getSetup(this.job);
-    // if (setup)
-    //   setup.bind(null, this)();
     this._updateJobComponent(this.player.job);
 
     this._validateKeys();
@@ -777,10 +774,8 @@ export class Bars {
   _onPartyWipe(e) {
     if (this.buffTracker)
       this.buffTracker.clear();
+
     // Reset job-specific ui
-    // const reset = getReset(this.job);
-    // if (reset)
-    //   reset.bind(null, this)();
     this.jobComponent?.reset?.();
   }
 
