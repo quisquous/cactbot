@@ -134,7 +134,7 @@ export default (
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
-              loader: './webpack/loaders/manifest-loader.cjs',
+              loader: './webpack/loaders/manifest-loader.ts',
             },
           ],
         },
@@ -145,7 +145,7 @@ export default (
               loader: 'raw-loader',
             },
             {
-              loader: './webpack/loaders/timeline-loader.cjs',
+              loader: './webpack/loaders/timeline-loader.ts',
             },
           ],
         },

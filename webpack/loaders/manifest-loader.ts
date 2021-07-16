@@ -1,8 +1,8 @@
-'use strict';
+import fs from 'fs';
 
-const fs = require('fs');
+import webpack from 'webpack';
 
-module.exports = function(content, map, meta) {
+export default function(this: webpack.LoaderContext<never>, _content: string): string {
   this.cacheable(true);
   const contents = fs.readFileSync(this.resourcePath).toString();
   const lines = contents.trim().split(/\s*[\r\n]+\s*/);
@@ -10,17 +10,17 @@ module.exports = function(content, map, meta) {
   let importStr = '';
   let outputStr = 'export default {';
 
-  for (const fileIdx in lines) {
+  lines.forEach((rawName, fileIdx) => {
     // normalize filepaths between windows / unix
-    const name = lines[fileIdx].replace(/\\/g, '/').replace(/^\//, '');
+    const name = rawName.replace(/\\/g, '/').replace(/^\//, '');
 
     // Use static imports instead of dynamic ones to put files in the bundle.
     const fileVar = `file${fileIdx}`;
     importStr += `import ${fileVar} from './${name}';\n`;
     outputStr += `'${name}': ${fileVar},`;
-  }
+  });
 
   outputStr += '};';
 
   return `${importStr}\n${outputStr}`;
-};
+}

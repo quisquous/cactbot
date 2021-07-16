@@ -1,8 +1,8 @@
-'use strict';
+import webpack from 'webpack';
 
 const commentRegex = /(?<=^(?:[^"/]*(?:|"[^"]*"))[^"/]*(?:|sync\s*\/[^/]*\/[^"/]*))#.*$/i;
 
-module.exports = function(content, map, meta) {
+export default function(this: webpack.LoaderContext<never>, content: string): string {
   this.cacheable(true);
   let ret = '';
 
@@ -14,4 +14,4 @@ module.exports = function(content, map, meta) {
   });
 
   return ret;
-};
+}
