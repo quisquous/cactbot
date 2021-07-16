@@ -2,9 +2,10 @@ import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {
@@ -101,6 +102,9 @@ export default (
         {
           test: /\.ts$/,
           loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
         },
         {
           test: /\.css$/,
@@ -148,8 +152,8 @@ export default (
       ],
     },
     plugins: [
-      new webpack.ProgressPlugin({}),
       new CleanWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin(),
       new MiniCssExtractPlugin(),
       ...htmlPluginRules,
       new CopyPlugin({

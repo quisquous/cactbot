@@ -58,6 +58,7 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-rulesdir": "^0.1.0",
     "eslint-plugin-tsc": "^2.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.2.12",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^4.2.5",
     "json5": "^2.2.0",
