@@ -7,7 +7,8 @@
       }
     ],
     // Thanks to babel-loader, we don't need to set it as ES2019.
-    "target": "ESNext",
+    // But we need to set it as ES2020 to ensure mocha can run correctly.
+    "target": "ES2020",
     "module": "ESNext",
     "allowJs": true,
     "strict": true,
