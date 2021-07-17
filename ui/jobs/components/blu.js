@@ -1,58 +1,68 @@
 import { kAbility } from '../constants';
 import { calcGCDFromStat } from '../utils';
+import { BaseComponent } from './base';
 
-let resetFunc = null;
+export default class BluComponent extends BaseComponent {
+  constructor(bars) {
+    super(bars);
 
-export function setup(bars) {
-  const offguardBox = bars.addProcBox({
-    id: 'blu-procs-offguard',
-    fgColor: 'blu-color-offguard',
-  });
+    this.offguardBox = bars.addProcBox({
+      id: 'blu-procs-offguard',
+      fgColor: 'blu-color-offguard',
+    });
 
-  const tormentBox = bars.addProcBox({
-    id: 'blu-procs-torment',
-    fgColor: 'blu-color-torment',
-  });
+    this.tormentBox = bars.addProcBox({
+      id: 'blu-procs-torment',
+      fgColor: 'blu-color-torment',
+    });
 
-  const lucidBox = bars.addProcBox({
-    id: 'blu-procs-lucid',
-    fgColor: 'blu-color-lucid',
-  });
+    this.lucidBox = bars.addProcBox({
+      id: 'blu-procs-lucid',
+      fgColor: 'blu-color-lucid',
+    });
+  }
 
-  bars.onStatChange('BLU', () => {
-    offguardBox.threshold = bars.gcdSpell * 2;
-    tormentBox.threshold = bars.gcdSpell * 3;
-    lucidBox.threshold = bars.gcdSpell + 1;
-  });
+  onUseAbility(actionId) {
+    switch (actionId) {
+    case kAbility.OffGuard:
+      this.offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
+      break;
 
-  bars.onUseAbility(kAbility.OffGuard, () => {
-    offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
-  });
-  bars.onUseAbility(kAbility.PeculiarLight, () => {
-    offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
-  });
-  bars.onUseAbility(kAbility.SongOfTorment, () => {
-    tormentBox.duration = 30;
-  });
-  // +0.5&0.8 for animation delay
-  bars.onUseAbility(kAbility.AetherialSpark, () => {
-    tormentBox.duration = 15 + 0.5;
-  });
-  bars.onUseAbility(kAbility.Nightbloom, () => {
-    tormentBox.duration = 60 + 0.8;
-  });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
-  });
+    case PeculiarLight:
+      this.offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
+      break;
 
-  resetFunc = (bars) => {
-    tormentBox.duration = 0;
-    offguardBox.duration = 0;
-    lucidBox.duration = 0;
-  };
-}
+    case SongOfTorment:
+      this.tormentBox.duration = 30;
+      break;
 
-export function reset(bars) {
-  if (resetFunc)
-    resetFunc(bars);
+      // +0.5&0.8 for animation delay
+    case AetherialSpark:
+      this.tormentBox.duration = 15 + 0.5;
+      break;
+
+    case Nightbloom:
+      this.tormentBox.duration = 60 + 0.8;
+      break;
+
+    case LucidDreaming:
+      this.lucidBox.duration = 60;
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  onStatChange(stats) {
+    this.offguardBox.threshold = stats.gcdSpell * 2;
+    this.tormentBox.threshold = stats.gcdSpell * 3;
+    this.lucidBox.threshold = stats.gcdSpell + 1;
+  }
+
+  reset() {
+    this.tormentBox.duration = 0;
+    this.offguardBox.duration = 0;
+    this.lucidBox.duration = 0;
+  }
 }

@@ -1,157 +1,183 @@
 import EffectId from '../../../resources/effect_id';
 import { computeBackgroundColorFrom } from '../utils';
+import { BaseComponent } from './base';
 
-let resetFunc = null;
+export default class BrdComponent extends BaseComponent {
+  constructor(bars) {
+    super(bars);
 
-export function setup(bars) {
-  const straightShotProc = bars.addProcBox({
-    id: 'brd-procs-straightshotready',
-    fgColor: 'brd-color-straightshotready',
-    threshold: 1000,
-  });
-  straightShotProc.bigatzero = false;
-  bars.onYouGainEffect(EffectId.StraightShotReady, () => {
-    straightShotProc.duration = 10;
-  });
-  bars.onYouLoseEffect(EffectId.StraightShotReady, () => straightShotProc.duration = 0);
-  // DoT
-  const causticBiteBox = bars.addProcBox({
-    id: 'brd-procs-causticbite',
-    fgColor: 'brd-color-causticbite',
-    notifyWhenExpired: true,
-  });
-  const stormBiteBox = bars.addProcBox({
-    id: 'brd-procs-stormbite',
-    fgColor: 'brd-color-stormbite',
-    notifyWhenExpired: true,
-  });
-  // Iron jaws just refreshes these effects by gain once more,
-  // so it doesn't need to be handled separately.
-  // Log line of getting DoT comes a little late after DoT appear on target,
-  // so -0.5s
-  bars.onMobGainsEffectFromYou([
-    EffectId.Stormbite,
-    EffectId.Windbite,
-  ], () => {
-    stormBiteBox.duration = 30 - 0.5;
-  });
-  bars.onMobGainsEffectFromYou([
-    EffectId.CausticBite,
-    EffectId.VenomousBite,
-  ], () => {
-    causticBiteBox.duration = 30 - 0.5;
-  });
-  bars.onStatChange('BRD', () => {
-    stormBiteBox.valuescale = bars.gcdSkill;
-    stormBiteBox.threshold = bars.gcdSkill * 2;
-    causticBiteBox.valuescale = bars.gcdSkill;
-    causticBiteBox.threshold = bars.gcdSkill * 2;
-    songBox.valuescale = bars.gcdSkill;
-  });
+    this.straightShotProc = this.bars.addProcBox({
+      id: 'brd-procs-straightshotready',
+      fgColor: 'brd-color-straightshotready',
+      threshold: 1000,
+    });
+    this.straightShotProc.bigatzero = false;
 
-  // Song
-  const songBox = bars.addProcBox({
-    id: 'brd-procs-song',
-    fgColor: 'brd-color-song',
-  });
-  const repertoireBox = bars.addResourceBox({
-    classList: ['brd-color-song'],
-  });
-  const repertoireTimer = bars.addTimerBar({
-    id: 'brd-timers-repertoire',
-    fgColor: 'brd-color-song',
-  });
-  repertoireTimer.toward = 'right';
-  repertoireTimer.stylefill = 'fill';
-  // Only with-DoT-target you last attacked will trigger bars timer.
-  // So it work not well in multiple targets fight.
-  bars.updateDotTimerFuncs.push(() => repertoireTimer.duration = 2.91666);
-  const soulVoiceBox = bars.addResourceBox({
-    classList: ['brd-color-soulvoice'],
-  });
+    // DoTs
+    this.causticBiteBox = this.bars.addProcBox({
+      id: 'brd-procs-causticbite',
+      fgColor: 'brd-color-causticbite',
+      notifyWhenExpired: true,
+    });
+    this.stormBiteBox = this.bars.addProcBox({
+      id: 'brd-procs-stormbite',
+      fgColor: 'brd-color-stormbite',
+      notifyWhenExpired: true,
+    });
 
-  bars.onJobDetailUpdate((jobDetail) => {
-    songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
-    repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
-    repertoireBox.innerText = '';
+    // Songs
+    this.songBox = this.bars.addProcBox({
+      id: 'brd-procs-song',
+      fgColor: 'brd-color-song',
+    });
+    this.repertoireBox = this.bars.addResourceBox({
+      classList: ['brd-color-song'],
+    });
+    this.repertoireTimer = this.bars.addTimerBar({
+      id: 'brd-timers-repertoire',
+      fgColor: 'brd-color-song',
+    });
+    this.repertoireTimer.toward = 'right';
+    this.repertoireTimer.stylefill = 'fill';
+
+    // TODO: change to component functions?
+    // Only with-DoT-target you last attacked will trigger bars timer.
+    // So it work not well in multiple targets fight.
+    this.bars.updateDotTimerFuncs.push(() => this.repertoireTimer.duration = 2.91666);
+    this.soulVoiceBox = this.bars.addResourceBox({
+      classList: ['brd-color-soulvoice'],
+    });
+
+    // Bard is complicated
+    // Paeon -> Minuet/Ballad -> muse -> muse ends
+    // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
+    // Paeon -> runs out -> ethos -> ethos runs out
+    // Track Paeon Stacks through to next song GCD buff
+    this.ethosStacks = 0;
+  }
+
+  onGainEffect(effectId) {
+    switch (effectId) {
+    case EffectId.StraightShotReady:
+      this.straightShotProc.duration = 10;
+      break;
+
+    case EffectId.ArmysMuse:
+      // We just entered Minuet/Ballad, add muse effect
+    // If we let paeon run out, get the temp stacks from ethos
+      this.player.speedBuffs.museStacks = this.ethosStacks ?? this.player.speedBuffs.paeonStacks;
+      this.player.speedBuffs.paeonStacks = 0;
+      break;
+    case EffectId.ArmysEthos:
+    // Not under muse or paeon, so store the stacks
+      this.ethosStacks = this.player.speedBuffs.paeonStacks;
+      this.player.speedBuffs.paeonStacks = 0;
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  onLoseEffect(effectId) {
+    switch (effectId) {
+    case EffectId.StraightShotReady:
+      this.straightShotProc.duration = 0;
+      break;
+
+    case EffectId.ArmysMuse:
+      // Muse effect ends
+      this.player.speedBuffs.museStacks = 0;
+      this.player.speedBuffs.paeonStacks = 0;
+      break;
+    case EffectId.ArmysEthos:
+      // Didn't use a song and ethos ran out
+      this.ethosStacks = 0;
+      this.player.speedBuffs.museStacks = 0;
+      this.player.speedBuffs.paeonStacks = 0;
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  onMobGainsEffectFromYou(effectId) {
+    switch (effectId) {
+    // Iron jaws just refreshes these effects by gain once more,
+    // so it doesn't need to be handled separately.
+    // Log line of getting DoT comes a little late after DoT appear on target,
+    // so -0.5s
+    case EffectId.Stormbite:
+    case EffectId.Windbite:
+      this.stormBiteBox.duration = 30 - 0.5;
+      break;
+
+    case EffectId.CausticBite:
+    case EffectId.VenomousBite:
+      this.causticBiteBox.duration = 30 - 0.5;
+      break;
+    default:
+      break;
+    }
+  }
+
+  onJobDetailUpdate(jobDetail) {
+    this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song');
+    this.repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
+    this.repertoireBox.innerText = '';
     if (jobDetail.songName === 'Minuet') {
-      repertoireBox.innerText = jobDetail.songProcs;
-      repertoireBox.parentNode.classList.add('minuet');
-      songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.minuet');
-      songBox.threshold = 5;
-      repertoireBox.parentNode.classList.remove('full');
+      this.repertoireBox.innerText = jobDetail.songProcs;
+      this.repertoireBox.parentNode.classList.add('minuet');
+      this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song.minuet');
+      this.songBox.threshold = 5;
+      this.repertoireBox.parentNode.classList.remove('full');
       if (jobDetail.songProcs === 3)
-        repertoireBox.parentNode.classList.add('full');
+        this.repertoireBox.parentNode.classList.add('full');
     } else if (jobDetail.songName === 'Ballad') {
-      repertoireBox.innerText = '';
-      repertoireBox.parentNode.classList.add('ballad');
-      songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.ballad');
-      songBox.threshold = 3;
+      this.repertoireBox.innerText = '';
+      this.repertoireBox.parentNode.classList.add('ballad');
+      this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song.ballad');
+      this.songBox.threshold = 3;
     } else if (jobDetail.songName === 'Paeon') {
-      repertoireBox.innerText = jobDetail.songProcs;
-      repertoireBox.parentNode.classList.add('paeon');
-      songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.paeon');
-      songBox.threshold = 13;
+      this.repertoireBox.innerText = jobDetail.songProcs;
+      this.repertoireBox.parentNode.classList.add('paeon');
+      this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song.paeon');
+      this.songBox.threshold = 13;
     }
 
-    const oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
+    const oldSeconds = this.songBox.value;
     const seconds = jobDetail.songMilliseconds / 1000.0;
-    if (!songBox.duration || seconds > oldSeconds)
-      songBox.duration = seconds;
+    if (!this.songBox.duration || seconds > oldSeconds)
+      this.songBox.duration = seconds;
 
     // Soul Voice
-    if (jobDetail.soulGauge !== soulVoiceBox.innerText) {
-      soulVoiceBox.innerText = jobDetail.soulGauge;
-      soulVoiceBox.parentNode.classList.remove('high');
+    if (jobDetail.soulGauge !== this.soulVoiceBox.innerText) {
+      this.soulVoiceBox.innerText = jobDetail.soulGauge;
+      this.soulVoiceBox.parentNode.classList.remove('high');
       if (jobDetail.soulGauge >= 95)
-        soulVoiceBox.parentNode.classList.add('high');
+        this.soulVoiceBox.parentNode.classList.add('high');
     }
 
     // GCD calculate
-    if (jobDetail.songName === 'Paeon' && bars.speedBuffs.paeonStacks !== jobDetail.songProcs)
-      bars.speedBuffs.paeonStacks = jobDetail.songProcs;
-  });
-  let ethosStacks = 0;
+    if (jobDetail.songName === 'Paeon' && this.player.speedBuffs.paeonStacks !== jobDetail.songProcs)
+      this.player.speedBuffs.paeonStacks = jobDetail.songProcs;
+  }
 
-  // Bard is complicated
-  // Paeon -> Minuet/Ballad -> muse -> muse ends
-  // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
-  // Paeon -> runs out -> ethos -> ethos runs out
-  // Track Paeon Stacks through to next song GCD buff
-  bars.onYouGainEffect(EffectId.ArmysMuse, () => {
-    // We just entered Minuet/Ballad, add muse effect
-    // If we let paeon run out, get the temp stacks from ethos
-    bars.speedBuffs.museStacks = ethosStacks ? ethosStacks : bars.speedBuffs.paeonStacks;
-    bars.speedBuffs.paeonStacks = 0;
-  });
-  bars.onYouLoseEffect(EffectId.ArmysMuse, () => {
-    // Muse effect ends
-    bars.speedBuffs.museStacks = 0;
-    bars.speedBuffs.paeonStacks = 0;
-  });
-  bars.onYouGainEffect(EffectId.ArmysEthos, () => {
-    // Not under muse or paeon, so store the stacks
-    ethosStacks = bars.speedBuffs.paeonStacks;
-    bars.speedBuffs.paeonStacks = 0;
-  });
-  bars.onYouLoseEffect(EffectId.ArmysEthos, () => {
-    // Didn't use a song and ethos ran out
-    ethosStacks = 0;
-    bars.speedBuffs.museStacks = 0;
-    bars.speedBuffs.paeonStacks = 0;
-  });
+  onStatChange(stats) {
+    this.stormBiteBox.valuescale = stats.gcdSkill;
+    this.stormBiteBox.threshold = stats.gcdSkill * 2;
+    this.causticBiteBox.valuescale = stats.gcdSkill;
+    this.causticBiteBox.threshold = stats.gcdSkill * 2;
+    this.songBox.valuescale = stats.gcdSkill;
+  }
 
-  resetFunc = (bars) => {
-    straightShotProc.duration = 0;
-    stormBiteBox.duration = 0;
-    causticBiteBox.duration = 0;
-    repertoireTimer.duration = 0;
-    ethosStacks = 0;
-    songBox.duration = 0;
-  };
-}
-
-export function reset(bars) {
-  if (resetFunc)
-    resetFunc(bars);
+  reset() {
+    this.straightShotProc.duration = 0;
+    this.stormBiteBox.duration = 0;
+    this.causticBiteBox.duration = 0;
+    this.repertoireTimer.duration = 0;
+    this.ethosStacks = 0;
+    this.songBox.duration = 0;
+  }
 }

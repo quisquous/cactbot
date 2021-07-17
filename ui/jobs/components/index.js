@@ -9,13 +9,13 @@ import { setup as setupMnk, reset as resetMnk } from './mnk';
 import { setup as setupDrg, reset as resetDrg } from './drg';
 import { setup as setupNin, reset as resetNin } from './nin';
 import { setup as setupSam, reset as resetSam } from './sam';
-import { setup as setupBrd, reset as resetBrd } from './brd';
+import BrdComponent from './brd';
 import { setup as setupMch, reset as resetMch } from './mch';
 import { setup as setupDnc, reset as resetDnc } from './dnc';
 import BlmComponent from './blm';
 import SmnComponent from './smn';
 import { setup as setupRdm, reset as resetRdm } from './rdm';
-import { setup as setupBlu, reset as resetBlu } from './blu';
+import BluComponent from './blu';
 
 
 export function getSetup(job) {
@@ -28,11 +28,10 @@ export function getSetup(job) {
     'DRG': setupDrg,
     'NIN': setupNin,
     'SAM': setupSam,
-    'BRD': setupBrd,
+    // 'BRD': setupBrd,
     'MCH': setupMch,
     'DNC': setupDnc,
     'RDM': setupRdm,
-    'BLU': setupBlu,
   }[job.toUpperCase()];
 }
 
@@ -46,11 +45,10 @@ export function getReset(job) {
     'DRG': resetDrg,
     'NIN': resetNin,
     'SAM': resetSam,
-    'BRD': resetBrd,
+    // 'BRD': resetBrd,
     'MCH': resetMch,
     'DNC': resetDnc,
     'RDM': resetRdm,
-    'BLU': resetBlu,
   }[job.toUpperCase()];
 }
 
@@ -66,11 +64,17 @@ export class ComponentFactory {
     case 'AST':
       return new AstComponent(bars);
 
+    case 'BRD':
+      return new BrdComponent(bars);
+
     case 'BLM':
       return new BlmComponent(bars);
 
     case 'SMN':
       return new SmnComponent(bars);
+
+    case 'BLU':
+      return new BluComponent(bars);
 
     default:
       break;
