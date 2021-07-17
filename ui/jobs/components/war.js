@@ -37,32 +37,6 @@ export function setup(bars) {
   });
 
   bars.onCombo((skill) => {
-    // Min number of skills until eye without breaking combo.
-    let minSkillsUntilEye;
-    if (skill === kAbility.HeavySwing) {
-      minSkillsUntilEye = 2;
-    } else if (skill === kAbility.SkullSunder) {
-      minSkillsUntilEye = 4;
-    } else if (skill === kAbility.Maim) {
-      minSkillsUntilEye = 1;
-    } else {
-      // End of combo, or broken combo.
-      minSkillsUntilEye = 3;
-    }
-
-    // The new threshold is "can I finish the current combo and still
-    // have time to do a Storm's Eye".
-    const oldThreshold = parseFloat(eyeBox.threshold);
-    const newThreshold = (minSkillsUntilEye + 2) * bars.gcdSkill;
-
-    // Because thresholds are nonmonotonic (when finishing a combo)
-    // be careful about setting them in ways that are visually poor.
-    if (eyeBox.value >= oldThreshold &&
-      eyeBox.value >= newThreshold)
-      eyeBox.threshold = newThreshold;
-    else
-      eyeBox.threshold = oldThreshold;
-
     comboTimer.duration = 0;
     if (bars.combo.isFinalSkill)
       return;
@@ -78,13 +52,12 @@ export function setup(bars) {
   });
 
   bars.onStatChange('WAR', () => {
-    eyeBox.valuescale = bars.gcdSkill;
+    eyeBox.valuescale = bars.gcdSkill * 3 + 1;
   });
 
   resetFunc = (bars) => {
     eyeBox.duration = 0;
     comboTimer.duration = 0;
-    minSkillsUntilEye = 3;
   };
 }
 
