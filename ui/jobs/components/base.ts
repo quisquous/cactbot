@@ -50,6 +50,11 @@ interface Component {
   onUseAbility?: (action: string, matches: NetMatches['Ability']) => void;
 
   /**
+   * (override) called on zone changing
+   */
+  onZoneChange?: (zoneId: number, zoneName: string) => void;
+
+  /**
     * (override) called on job changed,
     * to clear variables that the previous job component used.
     */

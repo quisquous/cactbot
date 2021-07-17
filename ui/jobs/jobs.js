@@ -78,7 +78,6 @@ export class Player {
       presenceOfMind: 0,
       shifu: 0,
       huton: 0,
-      lightningStacks: 0,
       paeonStacks: 0,
       museStacks: 0,
       circleOfPower: 0,
@@ -811,8 +810,7 @@ export class Bars {
     if (this.buffTracker)
       this.buffTracker.clear();
 
-    for (const func of this.changeZoneFuncs)
-      func(e);
+    this.jobComponent?.onZoneChange?.(e.zoneID, e.zoneName);
 
     this.isPVPZone = false;
     if (zoneInfo) {

@@ -13,7 +13,7 @@ import { setup as setupBrd, reset as resetBrd } from './brd';
 import { setup as setupMch, reset as resetMch } from './mch';
 import { setup as setupDnc, reset as resetDnc } from './dnc';
 import BlmComponent from './blm';
-import { setup as setupSmn, reset as resetSmn } from './smn';
+import SmnComponent from './smn';
 import { setup as setupRdm, reset as resetRdm } from './rdm';
 import { setup as setupBlu, reset as resetBlu } from './blu';
 
@@ -31,7 +31,6 @@ export function getSetup(job) {
     'BRD': setupBrd,
     'MCH': setupMch,
     'DNC': setupDnc,
-    'SMN': setupSmn,
     'RDM': setupRdm,
     'BLU': setupBlu,
   }[job.toUpperCase()];
@@ -50,7 +49,6 @@ export function getReset(job) {
     'BRD': resetBrd,
     'MCH': resetMch,
     'DNC': resetDnc,
-    'SMN': resetSmn,
     'RDM': resetRdm,
     'BLU': resetBlu,
   }[job.toUpperCase()];
@@ -70,6 +68,9 @@ export class ComponentFactory {
 
     case 'BLM':
       return new BlmComponent(bars);
+
+    case 'SMN':
+      return new SmnComponent(bars);
 
     default:
       break;
