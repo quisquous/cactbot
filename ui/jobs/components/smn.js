@@ -115,10 +115,16 @@ export default class SmnComponent extends BaseComponent {
     const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
 
     // turn red when you have too much stacks before EnergyDrain ready.
+    // TODO: technically this should be registered to the `TimerBox` that would call a callback
+    // function when the remaining time become some value. But there isn't.
+    // FIXME: This stack box would got no update in some situation so that the color may not
+    // reaction immediately when its remaining time hits 8.
+    // Although `onJobDetailUpdate` function would be invoked when player moves or doing something
+    // that changed their parameters, which is usually happened in a dungeon every second.
+    // It shouldn't be a noticable issue, but note here that this is not a obvious approach.
     this.aetherflowStackBox.innerText = stack;
-    const s = parseFloat(this.energyDrainBox.duration || 0) -
-      parseFloat(this.energyDrainBox.elapsed);
-    if ((stack === 2) && (s <= 8))
+    const s = this.energyDrainBox.value;
+    if (stack === 2 && s <= 8)
       this.aetherflowStackBox.parentNode.classList.add('too-much-stacks');
     else
       this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
