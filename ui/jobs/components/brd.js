@@ -41,6 +41,7 @@ export default class BrdComponent extends BaseComponent {
     this.repertoireTimer.stylefill = 'fill';
 
     // TODO: change to component functions?
+    // FIXME: didn't work until `this.trackedDoTs` assgined
     // Only with-DoT-target you last attacked will trigger bars timer.
     // So it work not well in multiple targets fight.
     this.bars.updateDotTimerFuncs.push(() => this.repertoireTimer.duration = 2.91666);
@@ -64,8 +65,8 @@ export default class BrdComponent extends BaseComponent {
 
     case EffectId.ArmysMuse:
       // We just entered Minuet/Ballad, add muse effect
-    // If we let paeon run out, get the temp stacks from ethos
-      this.player.speedBuffs.museStacks = this.ethosStacks ?? this.player.speedBuffs.paeonStacks;
+      // If we let paeon run out, get the temp stacks from ethos
+      this.player.speedBuffs.museStacks = this.ethosStacks || this.player.speedBuffs.paeonStacks;
       this.player.speedBuffs.paeonStacks = 0;
       break;
     case EffectId.ArmysEthos:
