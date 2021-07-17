@@ -1,92 +1,96 @@
 import { kAbility } from '../constants';
+import { BaseComponent } from './base';
 
-let resetFunc = null;
+export default class SchComponent extends BaseComponent {
+  constructor(bars) {
+    super(bars);
 
-export function setup(bars) {
-  const aetherflowStackBox = bars.addResourceBox({
-    classList: ['sch-color-aetherflow'],
-  });
+    this.aetherflowStackBox = this.addResourceBox({
+      classList: ['sch-color-aetherflow'],
+    });
 
-  const fairyGaugeBox = bars.addResourceBox({
-    classList: ['sch-color-fairygauge'],
-  });
+    this.fairyGaugeBox = this.addResourceBox({
+      classList: ['sch-color-fairygauge'],
+    });
 
-  const bioBox = bars.addProcBox({
-    id: 'sch-procs-bio',
-    fgColor: 'sch-color-bio',
-    notifyWhenExpired: true,
-  });
+    this.bioBox = this.addProcBox({
+      id: 'sch-procs-bio',
+      fgColor: 'sch-color-bio',
+      notifyWhenExpired: true,
+    });
 
-  const aetherflowBox = bars.addProcBox({
-    id: 'sch-procs-aetherflow',
-    fgColor: 'sch-color-aetherflow',
-  });
+    this.aetherflowBox = this.addProcBox({
+      id: 'sch-procs-aetherflow',
+      fgColor: 'sch-color-aetherflow',
+    });
 
-  const lucidBox = bars.addProcBox({
-    id: 'sch-procs-luciddreaming',
-    fgColor: 'sch-color-lucid',
-  });
+    this.lucidBox = this.addProcBox({
+      id: 'sch-procs-luciddreaming',
+      fgColor: 'sch-color-lucid',
+    });
+  }
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  onJobDetailUpdate(jobDetail) {
     const aetherflow = jobDetail.aetherflowStacks;
     const fairygauge = jobDetail.fairyGauge;
     const milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
-    aetherflowStackBox.innerText = aetherflow;
-    fairyGaugeBox.innerText = fairygauge;
-    const f = fairyGaugeBox.parentNode;
+    this.aetherflowStackBox.innerText = aetherflow;
+    this.fairyGaugeBox.innerText = fairygauge;
+    const f = this.fairyGaugeBox.parentNode;
     if (jobDetail.fairyMilliseconds !== 0) {
       f.classList.add('bright');
-      fairyGaugeBox.innerText = milli;
+      this.fairyGaugeBox.innerText = milli;
     } else {
       f.classList.remove('bright');
-      fairyGaugeBox.innerText = fairygauge;
+      this.fairyGaugeBox.innerText = fairygauge;
     }
 
     // dynamically annouce user depends on their aetherflow stacks right now
-    aetherflowBox.threshold = bars.gcdSpell * (aetherflow || 1) + 1;
+    this.aetherflowBox.threshold = this.player.gcdSpell * (aetherflow || 1) + 1;
 
-    const p = aetherflowStackBox.parentNode;
-    const s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
+    const p = this.aetherflowStackBox.parentNode;
+    const s = this.aetherflowBox.value;
     if (parseFloat(aetherflow) * 5 >= s) {
       // turn red when stacks are too much before AF ready
       p.classList.add('too-much-stacks');
     } else {
       p.classList.remove('too-much-stacks');
     }
-  });
+  }
 
-  bars.onUseAbility([
-    kAbility.Bio,
-    kAbility.Bio2,
-    kAbility.Biolysis,
-  ], () => {
-    bioBox.duration = 30;
-  });
+  onUseAbility(abilityId) {
+    switch (abilityId) {
+    case kAbility.Bio:
+    case kAbility.Bio2:
+    case kAbility.Biolysis:
+      this.bioBox.duration = 30;
+      break;
 
-  bars.onUseAbility(kAbility.Aetherflow, () => {
-    aetherflowBox.duration = 60;
-    aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
-  });
+    case kAbility.Aetherflow:
+      this.aetherflowBox.duration = 60;
+      this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+      break;
 
-  bars.onStatChange('SCH', () => {
-    bioBox.valuescale = bars.gcdSpell;
-    bioBox.threshold = bars.gcdSpell + 1;
-    aetherflowBox.valuescale = bars.gcdSpell;
-    lucidBox.valuescale = bars.gcdSpell;
-    lucidBox.threshold = bars.gcdSpell + 1;
-  });
+    case kAbility.LucidDreaming:
+      this.lucidBox.duration = 60;
+      break;
 
-  resetFunc = (bars) => {
-    bioBox.duration = 0;
-    aetherflowBox.duration = 0;
-    lucidBox.duration = 0;
-  };
-}
+    default:
+      break;
+    }
+  }
 
-export function reset(bars) {
-  if (resetFunc)
-    resetFunc(bars);
+  onStatChange(stats) {
+    this.bioBox.valuescale = stats.gcdSpell;
+    this.bioBox.threshold = stats.gcdSpell + 1;
+    this.aetherflowBox.valuescale = stats.gcdSpell;
+    this.lucidBox.valuescale = stats.gcdSpell;
+    this.lucidBox.threshold = stats.gcdSpell + 1;
+  }
+
+  reset() {
+    this.bioBox.duration = 0;
+    this.aetherflowBox.duration = 0;
+    this.lucidBox.duration = 0;
+  }
 }

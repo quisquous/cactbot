@@ -3,7 +3,7 @@ import WarComponent from './war';
 import DrkComponent from './drk';
 import GnbComponent from './gnb';
 import WhmComponent from './whm';
-import { setup as setupSch, reset as resetSch } from './sch';
+import SchComponent from './sch';
 import AstComponent from './ast';
 import { setup as setupMnk, reset as resetMnk } from './mnk';
 import { setup as setupDrg, reset as resetDrg } from './drg';
@@ -20,7 +20,6 @@ import BluComponent from './blu';
 
 export function getSetup(job) {
   return {
-    'SCH': setupSch,
     'MNK': setupMnk,
     'DRG': setupDrg,
     'NIN': setupNin,
@@ -32,7 +31,6 @@ export function getSetup(job) {
 
 export function getReset(job) {
   return {
-    'SCH': resetSch,
     'MNK': resetMnk,
     'DRG': resetDrg,
     'NIN': resetNin,
@@ -59,6 +57,9 @@ export class ComponentFactory {
 
     case 'WHM':
       return new WhmComponent(bars);
+
+    case 'SCH':
+      return new SchComponent(bars);
 
     case 'AST':
       return new AstComponent(bars);
