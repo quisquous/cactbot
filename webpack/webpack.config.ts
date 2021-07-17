@@ -103,10 +103,29 @@ export default (
         },
         {
           test: /\.ts$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true,
+                cacheCompression: false,
+                presets: [
+                  [
+                    '@babel/preset-env',
+                    {
+                      targets: { chrome: '75' },
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+              },
+            },
+          ],
         },
         {
           test: /\.css$/,
