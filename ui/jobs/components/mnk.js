@@ -2,7 +2,6 @@ import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-const lightningFgColors = [];
 let resetFunc = null;
 
 export function setup(bars) {
