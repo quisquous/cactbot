@@ -22,7 +22,6 @@ export interface Bars {
     circleOfPower: boolean;
     presenceOfMind: boolean;
     paeonStacks: number;
-    lightningStacks: number;
     huton: boolean;
     shifu: boolean;
     museStacks: 1 | 2 | 3 | 4;
