@@ -1,4 +1,4 @@
-import { setup as setupPld, reset as resetPld } from './pld';
+import PldComponent from './pld';
 import { setup as setupWar, reset as resetWar } from './war';
 import DrkComponent from './drk';
 import GnbComponent from './gnb';
@@ -20,7 +20,6 @@ import BluComponent from './blu';
 
 export function getSetup(job) {
   return {
-    'PLD': setupPld,
     'WAR': setupWar,
     'WHM': setupWhm,
     'SCH': setupSch,
@@ -35,7 +34,6 @@ export function getSetup(job) {
 
 export function getReset(job) {
   return {
-    'PLD': resetPld,
     'WAR': resetWar,
     'WHM': resetWhm,
     'SCH': resetSch,
@@ -51,6 +49,9 @@ export function getReset(job) {
 export class ComponentFactory {
   static getComponent(bars, job) {
     switch (job.toUpperCase()) {
+    case 'PLD':
+      return new PldComponent(bars);
+
     case 'DRK':
       return new DrkComponent(bars);
 
