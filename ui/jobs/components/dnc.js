@@ -77,7 +77,7 @@ export default class DncComponent extends BaseComponent {
       this.tid1 = window.setTimeout(() => {
         this.technicalIsActive = false;
         this.technicalStep.duration = 100 - this.technicalStepElapsed;
-        this.technicalStep.threshold = bars.gcdSkill + 1;
+        this.technicalStep.threshold = this.player.gcdSkill + 1;
         this.technicalStep.fg = computeBackgroundColorFrom(this.technicalStep, 'dnc-color-technicalstep');
       }, this.technicalStep.duration * 1000);
       break;
@@ -91,7 +91,7 @@ export default class DncComponent extends BaseComponent {
       this.tid2 = window.setTimeout(() => {
         this.flourish.duration = 40;
         this.flourishIsActive = false;
-        this.flourish.threshold = bars.gcdSkill + 1;
+        this.flourish.threshold = this.player.gcdSkill + 1;
         this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
       }, this.flourish.duration * 1000);
       break;
@@ -108,13 +108,13 @@ export default class DncComponent extends BaseComponent {
     case EffectId.FlourishingShower:
     case EffectId.FlourishingWindmill:
     case EffectId.FlourishingFanDance:
-      if (!(flourishEffect.includes(effect)))
-        flourishEffect.push(effect);
-      if (flourishEffect.length === 5 && flourishIsActive) {
-        flourish.duration = 60 - flourish.elapsed;
-        flourishIsActive = false;
-        flourish.threshold = bars.gcdSkill + 1;
-        flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+      if (!(this.flourishEffect.includes(effectId)))
+        this.flourishEffect.push(effectId);
+      if (this.flourishEffect.length === 5 && this.flourishIsActive) {
+        this.flourish.duration = 60 - this.flourish.elapsed;
+        this.flourishIsActive = false;
+        this.flourish.threshold = this.player.gcdSkill + 1;
+        this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
       }
       break;
 
@@ -147,12 +147,12 @@ export default class DncComponent extends BaseComponent {
     this.technicalStep.duration = 0;
     this.technicalIsActive = false;
     this.technicalStepElapsed = 0;
-    this.technicalStep.threshold = this.bars.gcdSkill + 1;
+    this.technicalStep.threshold = this.player.gcdSkill + 1;
     this.technicalStep.fg = computeBackgroundColorFrom(this.technicalStep, 'dnc-color-technicalstep');
     this.flourish.duration = 0;
     this.flourishEffect = [];
     this.flourishIsActive = false;
-    this.flourish.threshold = this.bars.gcdSkill + 1;
+    this.flourish.threshold = this.player.gcdSkill + 1;
     this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
     clearTimeout(this.tid1);
     clearTimeout(this.tid2);
