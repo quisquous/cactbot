@@ -1,103 +1,130 @@
 import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
+import { BaseComponent } from './base';
 
-let resetFunc = null;
+export default class WhmComponent extends BaseComponent {
+  constructor(bars) {
+    super(bars);
 
-export function setup(bars) {
-  const lilyBox = bars.addResourceBox({
-    classList: ['whm-color-lily'],
-  });
-  const lilysecondBox = bars.addResourceBox({
-    classList: ['whm-color-lilysecond'],
-  });
+    this.lilyBox = this.addResourceBox({
+      classList: ['whm-color-lily'],
+    });
+    this.lilysecondBox = this.addResourceBox({
+      classList: ['whm-color-lilysecond'],
+    });
 
-  const diaBox = bars.addProcBox({
-    id: 'whm-procs-dia',
-    fgColor: 'whm-color-dia',
-    notifyWhenExpired: true,
-  });
-  const assizeBox = bars.addProcBox({
-    id: 'whm-procs-assize',
-    fgColor: 'whm-color-assize',
-  });
-  const lucidBox = bars.addProcBox({
-    id: 'whm-procs-lucid',
-    fgColor: 'whm-color-lucid',
-  });
-
-  // BloodLily Gauge
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'whm-stacks';
-  bars.addJobBarContainer().appendChild(stacksContainer);
-  const bloodlilyContainer = document.createElement('div');
-  bloodlilyContainer.id = 'whm-stacks-bloodlily';
-  stacksContainer.appendChild(bloodlilyContainer);
-  const bloodlilyStacks = [];
-  for (let i = 0; i < 3; ++i) {
-    const d = document.createElement('div');
-    bloodlilyContainer.appendChild(d);
-    bloodlilyStacks.push(d);
+    this.diaBox = this.addProcBox({
+      id: 'whm-procs-dia',
+      fgColor: 'whm-color-dia',
+      notifyWhenExpired: true,
+    });
+    this.assizeBox = this.addProcBox({
+      id: 'whm-procs-assize',
+      fgColor: 'whm-color-assize',
+    });
+    this.lucidBox = this.addProcBox({
+      id: 'whm-procs-lucid',
+      fgColor: 'whm-color-lucid',
+    });
+    // BloodLily Gauge
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'whm-stacks';
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
+    const bloodlilyContainer = document.createElement('div');
+    bloodlilyContainer.id = 'whm-stacks-bloodlily';
+    stacksContainer.appendChild(bloodlilyContainer);
+    this.bloodlilyStacks = [];
+    for (let i = 0; i < 3; ++i) {
+      const d = document.createElement('div');
+      bloodlilyContainer.appendChild(d);
+      this.bloodlilyStacks.push(d);
+    }
   }
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  onJobDetailUpdate(jobDetail) {
     const lily = jobDetail.lilyStacks;
     // bars milliseconds is countup, so use floor instead of ceil.
     const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
 
-    lilyBox.innerText = lily;
+    this.lilyBox.innerText = lily;
     if (lily === 3)
-      lilysecondBox.innerText = '';
+      this.lilysecondBox.innerText = '';
     else
-      lilysecondBox.innerText = 30 - lilysecond;
+      this.lilysecondBox.innerText = 30 - lilysecond;
 
     const bloodlilys = jobDetail.bloodlilyStacks;
     for (let i = 0; i < 3; ++i) {
       if (bloodlilys > i)
-        bloodlilyStacks[i].classList.add('active');
+        this.bloodlilyStacks[i].classList.add('active');
       else
-        bloodlilyStacks[i].classList.remove('active');
+        this.bloodlilyStacks[i].classList.remove('active');
     }
 
-    const l = lilysecondBox.parentNode;
+    const l = this.lilysecondBox.parentNode;
     if ((lily === 2 && 30 - lilysecond <= 5) || lily === 3)
       l.classList.add('full');
     else
       l.classList.remove('full');
-  });
+  }
 
-  bars.onUseAbility([kAbility.Aero, kAbility.Aero2], () => {
-    diaBox.duration = 18 + 1;
-  });
-  bars.onUseAbility(kAbility.Dia, () => {
-    diaBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.Assize, () => {
-    assizeBox.duration = 45;
-  });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
-  });
+  onGainEffect(effectId) {
+    switch (effectId) {
+    case EffectId.PresenceOfMind:
+      this.player.speedBuffs.presenceOfMind = 1;
+      break;
 
-  bars.onYouGainEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = 1);
-  bars.onYouLoseEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = 0);
+    default:
+      break;
+    }
+  }
 
-  bars.onStatChange('WHM', () => {
-    diaBox.valuescale = bars.gcdSpell;
-    diaBox.threshold = bars.gcdSpell + 1;
-    assizeBox.valuescale = bars.gcdSpell;
-    assizeBox.threshold = bars.gcdSpell + 1;
-    lucidBox.valuescale = bars.gcdSpell;
-    lucidBox.threshold = bars.gcdSpell + 1;
-  });
+  onLoseEffect(effectId) {
+    switch (effectId) {
+    case EffectId.PresenceOfMind:
+      this.player.speedBuffs.presenceOfMind = 0;
+      break;
 
-  resetFunc = (bars) => {
-    diaBox.duration = 0;
-    assizeBox.duration = 0;
-    lucidBox.duration = 0;
-  };
-}
+    default:
+      break;
+    }
+  }
 
-export function reset(bars) {
-  if (resetFunc)
-    resetFunc(bars);
+  onUseAbility(abilityId) {
+    switch (abilityId) {
+    case kAbility.Aero:
+    case kAbility.Aero2:
+      this.diaBox.duration = 18 + 1;
+      break;
+
+    case kAbility.Dia:
+      this.diaBox.duration = 30;
+      break;
+
+    case kAbility.Assize:
+      this.assizeBox.duration = 45;
+      break;
+
+    case kAbility.LucidDreaming:
+      this.lucidBox.duration = 60;
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  onStatChange(stats) {
+    this.diaBox.valuescale = stats.gcdSpell;
+    this.diaBox.threshold = stats.gcdSpell + 1;
+    this.assizeBox.valuescale = stats.gcdSpell;
+    this.assizeBox.threshold = stats.gcdSpell + 1;
+    this.lucidBox.valuescale = stats.gcdSpell;
+    this.lucidBox.threshold = stats.gcdSpell + 1;
+  }
+
+  reset() {
+    this.diaBox.duration = 0;
+    this.assizeBox.duration = 0;
+    this.lucidBox.duration = 0;
+  }
 }
