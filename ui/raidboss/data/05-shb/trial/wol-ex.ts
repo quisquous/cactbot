@@ -483,13 +483,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Spectral Black Mage / White Mage',
       type: 'StartsUsing',
-      // Twincast tell (after Spectral and Limit, unfortunately).
-      netRegex: NetRegexes.startsUsing({ source: 'Spectral Black Mage', id: '4F3D', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Schwarzmagier', id: '4F3D', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Mage Noir Spectral', id: '4F3D', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '幻光の黒魔道士', id: '4F3D', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '幻光黑魔法师', id: '4F3D', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '환상빛의 흑마도사', id: '4F3D', capture: false }),
+      // Specter of Light before To The Limit tell.
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F37', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F37', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F37', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F37', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F37', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F37', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
       alertText: (_data, _matches, output) => output.text!(),
@@ -531,14 +531,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Spectral Bard / Dark Knight',
       type: 'StartsUsing',
-      // Solemn Confiteor tell (after Limit).
-      // This action happens in Spectral Ninja, but calledSpectral suppresses calling Ninja there.
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F43', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F43', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F43', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F43', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F43', capture: false }),
+      // To The Limit before Specter Of Light tell.
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F3[456]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F3[456]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F3[456]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F3[456]', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F3[456]', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F3[456]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
       alertText: (_data, _matches, output) => output.text!(),
@@ -826,6 +825,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Spectral Ninja': 'Phantom-Ninja',
         'Warrior Of Light': 'Krieger des Lichts',
@@ -884,6 +884,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Spectral Ninja': 'ninja spectral',
         'Warrior Of Light': 'Guerrier de la Lumière primordial',
@@ -921,7 +922,7 @@ const triggerSet: TriggerSet<Data> = {
         'Imbued Ice/Fire': 'Magilame Méga Glace/Feu',
         'Katon\\: San': 'Katon : San',
         'Limit Break': 'Transcendance',
-        'Limit -> BLM/WHM': 'Transcendance -> MNO/MBL',
+        'BLM/WHM': 'MNO/MBL',
         'Limit -> DRK/BRD': 'Transcendance -> CHN/BRD',
         'Meteor Impact': 'Impact de météore',
         'Perfect Decimation': 'Décimation parfaite',
