@@ -295,8 +295,6 @@ namespace Cactbot {
                 return JObject.FromObject(*(SummonerJobMemory*)&p[0]);
             case EntityJob.SCH:
                 return JObject.FromObject(*(ScholarJobMemory*)&p[0]);
-            case EntityJob.PGL:
-                return JObject.FromObject(*(PugilistJobMemory*)&p[0]);
             case EntityJob.MNK:
                 return JObject.FromObject(*(MonkJobMemory*)&p[0]);
             case EntityJob.MCH:
@@ -586,34 +584,9 @@ namespace Cactbot {
     };
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct PugilistJobMemory {
-      [FieldOffset(0x00)]
-      public ushort lightningMilliseconds;
-
-      [FieldOffset(0x02)]
-      public byte lightningStacks;
-    };
-
-    [StructLayout(LayoutKind.Explicit)]
     public struct MonkJobMemory {
       [FieldOffset(0x00)]
-      public ushort lightningMilliseconds;
-
-      [FieldOffset(0x02)]
-      public byte lightningStacks;
-
-      [FieldOffset(0x03)]
       public byte chakraStacks;
-
-      [NonSerialized]
-      [FieldOffset(0x04)]
-      private byte _lightningTimerState;
-
-      public bool lightningTimerFrozen {
-        get {
-          return (_lightningTimerState > 0);
-        }
-      }
     };
 
     [StructLayout(LayoutKind.Explicit)]

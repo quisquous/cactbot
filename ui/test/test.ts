@@ -70,9 +70,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     else if (detail.job === 'AST' && detail.jobDetail)
       jobInfo.innerText = `${detail.jobDetail.heldCard} [${detail.jobDetail.arcanums.join(', ')}]`;
     else if (detail.job === 'MNK' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${detail.jobDetail.lightningMilliseconds}) | ${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lightningTimerFrozen.toString()}`;
-    else if (detail.job === 'PGL' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${detail.jobDetail.lightningMilliseconds})`;
+      jobInfo.innerText = `${detail.jobDetail.chakraStacks}`;
     else if (detail.job === 'MCH' && detail.jobDetail)
       jobInfo.innerText = `${detail.jobDetail.heat} (${detail.jobDetail.overheatMilliseconds}) | ${detail.jobDetail.battery} (${detail.jobDetail.batteryMilliseconds}) | last: ${detail.jobDetail.lastBatteryAmount} | ${detail.jobDetail.overheatActive.toString()} | ${detail.jobDetail.robotActive.toString()}`;
     else if (detail.job === 'SAM' && detail.jobDetail)

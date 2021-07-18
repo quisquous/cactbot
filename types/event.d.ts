@@ -43,15 +43,8 @@ export interface JobDetail {
     heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
     arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
-  'PGL': {
-    lightningMilliseconds: number;
-    lightningStacks: number;
-  };
   'MNK': {
-    lightningStacks: number;
-    lightningMilliseconds: number;
     chakraStacks: number;
-    lightningTimerFrozen: boolean;
   };
   'DRG': {
     eyesAmount: number;
