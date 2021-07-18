@@ -13,6 +13,7 @@ const validScope = [
   'ui',
   'pullcounter',
   'raidboss',
+  'raidemulater',
   'oopsy',
   'radar',
   'eureka',
@@ -21,6 +22,7 @@ const validScope = [
   'util',
   'config',
   'lint',
+  'build',
   'ci',
 ];
 
