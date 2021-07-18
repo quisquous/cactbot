@@ -80,7 +80,9 @@ export default (
       rules: [
         {
           // this will allow importing without extension in js files.
-          test: /\.m?js$/,
+          // Use babel to transform TypeScript files, but babel has no
+          // type checking, so we need ForkTsCheckerWebpackPlugin.
+          test: /\.(m?j|t)s$/,
           exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
@@ -94,38 +96,15 @@ export default (
                     targets: { chrome: '75' },
                   },
                 ],
+                [
+                  '@babel/preset-typescript',
+                ],
               ],
             },
           },
           resolve: {
             fullySpecified: false,
           },
-        },
-        {
-          test: /\.ts$/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                cacheDirectory: true,
-                cacheCompression: false,
-                presets: [
-                  [
-                    '@babel/preset-env',
-                    {
-                      targets: { chrome: '75' },
-                    },
-                  ],
-                ],
-              },
-            },
-            {
-              loader: 'ts-loader',
-              options: {
-                transpileOnly: true,
-              },
-            },
-          ],
         },
         {
           test: /\.css$/,
