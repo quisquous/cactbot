@@ -1,6 +1,5 @@
 Options.Triggers.push({
   zoneId: ZoneId.DunScaith,
-  timelineNeedsFixing: true,
   timelineFile: 'dun_scaith.txt',
   timelineTriggers: [
     {
