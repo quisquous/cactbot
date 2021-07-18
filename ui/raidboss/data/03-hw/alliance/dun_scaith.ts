@@ -14,7 +14,6 @@ export interface Data extends RaidbossData {
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DunScaith,
-  timelineNeedsFixing: true,
   timelineFile: 'dun_scaith.txt',
   timelineTriggers: [
     {
