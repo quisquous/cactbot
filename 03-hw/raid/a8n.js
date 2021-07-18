@@ -7,14 +7,22 @@ Options.Triggers.push({
     {
       id: 'A8N Hydrothermal Missile',
       regex: /Hydrothermal Missile/,
-      beforeSeconds: 3,
+      beforeSeconds: 4,
+      suppressSeconds: 5,
       response: Responses.tankCleave(),
     },
     {
       id: 'A8N Flarethrower',
       regex: /Flarethrower/,
-      beforeSeconds: 3,
+      beforeSeconds: 4,
       response: Responses.tankCleave(),
+    },
+    {
+      id: 'A8N Short Needle',
+      regex: /Short Needle/,
+      beforeSeconds: 4,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
     },
     {
       id: 'A8N Super Jump Soon',
@@ -249,18 +257,6 @@ Options.Triggers.push({
           ko: '산개하기! (광역 탱버)',
         },
       },
-    },
-    {
-      id: 'A8N Short Needle',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1753', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1753', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1753', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1753', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1753', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1753', capture: false }),
-      condition: Conditions.caresAboutAOE(),
-      response: Responses.aoe(),
     },
     {
       id: 'A8N Apocalyptic Ray',
