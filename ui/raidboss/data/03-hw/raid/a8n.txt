@@ -21,8 +21,8 @@ hideall "Brute Force"
 12.6 "Mega Beam" sync /:Onslaughter:1732:/
 
 18.8 "Perpetual Ray" sync /:Onslaughter:1730:/
-24.0 "Hydrothermal Missile" sync /:Onslaughter:172F:/
-27.1 "Hydrothermal Missile" sync /:Onslaughter:172F:/
+24.0 "Hydrothermal Missile" # sync /:Onslaughter:172F:/
+27.1 "Hydrothermal Missile" # sync /:Onslaughter:172F:/
 33.2 "Execution" sync /:Onslaughter:1632:/
 37.3 "Hydrothermal Missile" sync /:Onslaughter:172F:/
 45.5 "Seed Of The Sky" sync /:Onslaughter:1731:/
@@ -30,8 +30,8 @@ hideall "Brute Force"
 55.2 "--regulator check--" # sync /:Steam Regulator B:1735:/
 55.6 "Hydrothermal Missile" sync /:Onslaughter:172F:/
 61.8 "Perpetual Ray" sync /:Onslaughter:1730:/
-67.0 "Hydrothermal Missile" sync /:Onslaughter:172F:/
-70.1 "Hydrothermal Missile" sync /:Onslaughter:172F:/
+67.0 "Hydrothermal Missile" # sync /:Onslaughter:172F:/
+70.1 "Hydrothermal Missile" # sync /:Onslaughter:172F:/
 75.2 "Discoid" sync /:Onslaughter:162F:/
 79.3 "Hydrothermal Missile" sync /:Onslaughter:172F:/
 90.5 "Seed Of The Sky" sync /:Onslaughter:1731:/
