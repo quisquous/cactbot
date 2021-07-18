@@ -33,7 +33,7 @@ but it should be in the format of \`scope: description\`.
 ${validScope.map((s) => `  - ${s}`).join('\n')}
 
 ------
-This comment was mentained and kept updating by a bot.
+This comment is created and updated by a bot.
 `;
 
 /**
