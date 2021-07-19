@@ -152,9 +152,11 @@ const translateTimelineFunc = (args: unknown): Promise<void> => {
 const findMissingTranslationsFunc = (args: unknown): Promise<void> => {
   return inquirer.prompt([
     {
-      type: 'input',
+      type: 'fuzzypath',
       name: 'filter',
       message: 'Input a valid trigger JavaScript filename: ',
+      rootPath: 'ui',
+      suggestOnly: true,
       default: getArgument<string>(args, 'filter') ?? '',
       when: () => typeof getArgument(args, 'filter') !== 'string',
     },
@@ -167,7 +169,7 @@ const findMissingTranslationsFunc = (args: unknown): Promise<void> => {
       when: () => typeof getArgument(args, 'locale') !== 'string',
     },
   ]).then((answers: Answers) => {
-    const filter = getArgument(answers, 'filter') || getArgument(args, 'filter');
+    const filter = (getArgument(answers, 'filter') || getArgument(args, 'filter')) ?? '';
     const locale = getArgument(answers, 'locale') || getArgument(args, 'locale');
     if (typeof filter === 'string' && typeof locale === 'string' && isLang(locale))
       return findMissingTranslations(filter, locale);
