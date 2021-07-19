@@ -1,6 +1,6 @@
 import { kAbility } from '../constants';
 import EffectId from '../../../resources/effect_id';
-import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
+import { computeBackgroundColorFrom } from '../utils';
 import { BaseComponent } from './base';
 
 export default class MchComponent extends BaseComponent {
@@ -105,13 +105,12 @@ export default class MchComponent extends BaseComponent {
     switch (abilityId) {
     case kAbility.Drill:
     case kAbility.Bioblaster:
-      this.drillBox.duration = calcGCDFromStat(this.player, this.player.stats.skillSpeed, 20000);
+      this.drillBox.duration = this.player.getActionCooldown(20000, 'skill');
       break;
 
     case kAbility.AirAnchor:
     case kAbility.HotShot:
-      this.airAnchorBox.duration =
-        calcGCDFromStat(this.player, this.player.stats.skillSpeed, 40000);
+      this.airAnchorBox.duration = this.player.getActionCooldown(40000, 'skill');
       break;
 
     case kAbility.WildFire:

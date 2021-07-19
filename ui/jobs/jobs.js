@@ -92,6 +92,23 @@ export class Player {
   get gcdSpell() {
     return calcGCDFromStat(this, this.stats.spellSpeed);
   }
+
+  /**
+   * @param {number} originalCd
+   * @param {'skill' | 'spell'} type
+   * @return {number}
+   */
+  getActionCooldown(originalCd, type) {
+    let speed = 0;
+    if (type === 'skill')
+      speed = this.stats.skillSpeed;
+    else if (type === 'spell')
+      speed = this.stats.spellSpeed;
+    else
+      throw new Error('Invalid type: ' + type);
+
+    return calcGCDFromStat(this, speed, originalCd);
+  }
 }
 
 export class Bars {

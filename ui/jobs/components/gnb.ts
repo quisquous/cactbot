@@ -4,7 +4,7 @@ import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
 import { kAbility } from '../constants';
 import { Bars } from '../jobs';
-import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
+import { computeBackgroundColorFrom } from '../utils';
 
 import { BaseComponent } from './base';
 
@@ -72,8 +72,7 @@ export default class GnbComponent extends BaseComponent {
       break;
 
     case kAbility.GnashingFang:
-      this.gnashingFangBox.duration =
-        calcGCDFromStat(this.player, this.player.stats.skillSpeed, 30000);
+      this.gnashingFangBox.duration = this.player.getActionCooldown(30000, 'skill');
       this.cartridgeComboTimer.duration = 0;
       this.cartridgeComboTimer.duration = 15;
       break;

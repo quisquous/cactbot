@@ -1,5 +1,4 @@
 import { kAbility } from '../constants';
-import { calcGCDFromStat } from '../utils';
 import { BaseComponent } from './base';
 
 export default class BluComponent extends BaseComponent {
@@ -25,11 +24,11 @@ export default class BluComponent extends BaseComponent {
   onUseAbility(actionId) {
     switch (actionId) {
     case kAbility.OffGuard:
-      this.offguardBox.duration = calcGCDFromStat(this.player, this.player.stats.spellSpeed, 60000);
+      this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
       break;
 
     case PeculiarLight:
-      this.offguardBox.duration = calcGCDFromStat(bars, this.player.stats.spellSpeed, 60000);
+      this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
       break;
 
     case SongOfTorment:
