@@ -681,8 +681,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Absolute Holy',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
-      condition: (data) => !data.deluge && !data.ninja && !data.isAddPhase,
-      response: Responses.stackMarkerOn(),
+      condition: (data) => !data.ninja && !data.isAddPhase,
+      // This stack marker comes before the deluge markers.
+      delaySeconds: (data, matches) => matches.target !== data.me ? 0.4 : 0,
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.stackOnYou?.();
+        return output.stackOnTarget?.({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        stackOnYou: Outputs.stackOnYou,
+        stackOnTarget: Outputs.stackOnPlayer,
+      },
     },
     {
       id: 'WOLEx Coruscant Saber Out',
