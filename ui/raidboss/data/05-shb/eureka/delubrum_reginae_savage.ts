@@ -2070,8 +2070,8 @@ const triggerSet: TriggerSet<Data> = {
         // that one is always cleaving on one of the cardinals
         // Trinity Avowed is always East (-267, -87)
         const sortCombatants =
-          (a: PluginCombatantState, b: PluginCombatantState) => (b.ID ?? 0) - (a.ID ?? 0);
-        const eastCombatant = combatantDataBoss.combatants.sort(sortCombatants).pop();
+          (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const eastCombatant = combatantDataBoss.combatants.sort(sortCombatants).shift();
 
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
@@ -2285,8 +2285,6 @@ const triggerSet: TriggerSet<Data> = {
           call: 'getCombatants',
           ids: unseenIds,
         });
-        if (unseenData && unseenData.combatants)
-          console.error(`Gleaming Arrow: combatants: ${JSON.stringify(unseenData.combatants)}`);
 
         if (unseenData === null) {
           console.error(`Gleaming Arrow: null data`);
