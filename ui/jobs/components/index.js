@@ -14,21 +14,9 @@ import MchComponent from './mch';
 import DncComponent from './dnc';
 import BlmComponent from './blm';
 import SmnComponent from './smn';
-import { setup as setupRdm, reset as resetRdm } from './rdm';
+import RdmComponent from './rdm';
 import BluComponent from './blu';
 
-
-export function getSetup(job) {
-  return {
-    'RDM': setupRdm,
-  }[job.toUpperCase()];
-}
-
-export function getReset(job) {
-  return {
-    'RDM': resetRdm,
-  }[job.toUpperCase()];
-}
 
 export class ComponentFactory {
   static getComponent(bars, job) {
@@ -80,6 +68,9 @@ export class ComponentFactory {
 
     case 'SMN':
       return new SmnComponent(bars);
+
+    case 'RDM':
+      return new RdmComponent(bars);
 
     case 'BLU':
       return new BluComponent(bars);
