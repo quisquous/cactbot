@@ -30,7 +30,7 @@ import WidgetList from '../../resources/widget_list';
 import { NetMatches } from '../../types/net_matches';
 
 import { kAbility } from './constants';
-import { JobsOptions } from './types';
+import { JobsOptions } from './jobs_options';
 import { makeAuraTimerIcon } from './utils';
 
 export interface BuffInfo {
