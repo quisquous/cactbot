@@ -1981,9 +1981,9 @@ Options.Triggers.push({
         // that one is always cleaving on one of the cardinals
         // Trinity Avowed is always East (-267, -87)
         const sortCombatants = (a, b) => {
-          let _a; let _b; return ((_a = b.ID) !== null && _a !== void 0 ? _a : 0) - ((_b = a.ID) !== null && _b !== void 0 ? _b : 0);
+          let _a; let _b; return ((_a = a.ID) !== null && _a !== void 0 ? _a : 0) - ((_b = b.ID) !== null && _b !== void 0 ? _b : 0);
         };
-        const eastCombatant = combatantDataBoss.combatants.sort(sortCombatants).pop();
+        const eastCombatant = combatantDataBoss.combatants.sort(sortCombatants).shift();
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
         const [avatarOne, avatarTwo, avatarThree] = combatantDataAvatars.combatants.sort(sortCombatants);
@@ -2182,8 +2182,6 @@ Options.Triggers.push({
           call: 'getCombatants',
           ids: unseenIds,
         });
-        if (unseenData && unseenData.combatants)
-          console.error(`Gleaming Arrow: combatants: ${JSON.stringify(unseenData.combatants)}`);
         if (unseenData === null) {
           console.error(`Gleaming Arrow: null data`);
           return;
