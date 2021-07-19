@@ -1,7 +1,6 @@
 import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
-import { NetMatches } from '../../../types/net_matches';
 import { kAbility } from '../constants';
 import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
