@@ -512,7 +512,6 @@ Options.Triggers.push({
       },
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
-        let _a; let _b;
         // Let your actor id memes be dreams!
         // Orbs go off from highest actor id to lowest actor id, in pairs of two.
         const sortedOrbs = Object.keys(data.orbs || {}).sort().reverse();
@@ -520,7 +519,7 @@ Options.Triggers.push({
         delete data.orbs;
         if (!orbIdToNameId || sortedOrbs.length === 0)
           return output.unknown();
-        let orbOutput = data.orbOutput = sortedOrbs.map((orbId) => {
+        const orbOutput = data.orbOutput = sortedOrbs.map((orbId) => {
           const nameId = orbIdToNameId[orbId];
           if (!nameId)
             return 'unknown';
@@ -529,10 +528,8 @@ Options.Triggers.push({
         });
         // If there is a pair of orbs, and they are the same type, then this is the mechanic
         // introduction and only one orb goes off.
-        if (orbOutput.length === 2) {
-          if (orbOutput[0] === orbOutput[1])
-            orbOutput = [(_a = orbOutput[0]) !== null && _a !== void 0 ? _a : 'unknown'];
-        }
+        if (orbOutput.length === 2 && orbOutput[0] === orbOutput[1])
+          orbOutput.length = 1;
         // Special case, fire + earth = stop far outside.
         if (orbOutput.length >= 2) {
           if (orbOutput[0] === 'stop' && orbOutput[1] === 'rings')
@@ -545,8 +542,8 @@ Options.Triggers.push({
         // Don't bother outputting a single one, as it'll come up shortly.
         // This could get confusing saying "knockback" far enough ahead
         // that using knockback prevention would wear off before the mechanic.
-        if (data.orbOutput.length > 1)
-          return (_b = data.orbOutput) === null || _b === void 0 ? void 0 : _b.map((key) => output[key]()).join(' => ');
+        if (orbOutput.length > 1)
+          return orbOutput.map((key) => output[key]()).join(' => ');
       },
       outputStrings: orbOutputStrings,
     },
