@@ -68,7 +68,7 @@ export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEve
     this.jobId = parseInt(this.jobIdHex, 16);
     this.job = Util.jobEnumToJob(this.jobId);
     this.levelString = parts[fields.levelString] ?? '';
-    this.level = parseFloat(this.levelString);
+    this.level = parseInt(this.levelString, 16);
     this.ownerId = parts[fields.ownerId]?.toUpperCase() ?? '';
     this.worldId = parts[fields.worldId] ?? '';
     this.worldName = parts[fields.worldName] ?? '';
