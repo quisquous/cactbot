@@ -5,6 +5,11 @@ import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
 import { Bars, Player } from '../jobs';
 
+export type Stats = NetMatches['PlayerStats'] & {
+  gcdSkill: number;
+  gcdSpell: number;
+};
+
 interface Component {
   bars: Bars;
   /** The player data for the current job. */
@@ -42,7 +47,7 @@ interface Component {
   /**
     * (override) called on Stat data changed
     */
-  onStatChange?: (stat: NetMatches['PlayerStats'] & { gcdSkill: number; gcdSpell: number }) => void;
+  onStatChange?: (stat: Stats) => void;
 
   /**
     * (override) called on player used any actions

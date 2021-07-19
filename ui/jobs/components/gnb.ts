@@ -6,7 +6,7 @@ import { kAbility } from '../constants';
 import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
-import { BaseComponent } from './base';
+import { BaseComponent, Stats } from './base';
 
 
 export default class GnbComponent extends BaseComponent {
@@ -109,7 +109,7 @@ export default class GnbComponent extends BaseComponent {
       parent.classList.remove('full');
   }
 
-  onStatChange(stat: NetMatches['PlayerStats'] & { gcdSkill: number; gcdSpell: number }): void {
+  onStatChange(stat: Stats): void {
     this.gnashingFangBox.valuescale = stat.gcdSkill;
     this.gnashingFangBox.threshold = stat.gcdSkill * 3;
     this.noMercyBox.valuescale = stat.gcdSkill;

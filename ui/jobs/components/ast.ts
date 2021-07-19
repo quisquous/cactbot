@@ -1,10 +1,9 @@
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
-import { NetMatches } from '../../../types/net_matches';
 import { kAbility } from '../constants';
 import { Bars } from '../jobs';
 
-import { BaseComponent } from './base';
+import { BaseComponent, Stats } from './base';
 
 const cardsMap = {
   'Balance': { 'bonus': 'melee', 'seal': 'Solar' },
@@ -105,7 +104,7 @@ export default class AstComponent extends BaseComponent {
     }
   }
 
-  onStatChange(stat: NetMatches['PlayerStats'] & { gcdSkill: number; gcdSpell: number }): void {
+  onStatChange(stat: Stats): void {
     this.combustBox.valuescale = stat.gcdSpell;
     this.combustBox.threshold = stat.gcdSpell + 1;
     this.drawBox.valuescale = stat.gcdSpell;
