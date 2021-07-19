@@ -6,7 +6,7 @@ export default class BrdComponent extends BaseComponent {
   constructor(bars) {
     super(bars);
 
-    this.straightShotProc = this.bars.addProcBox({
+    this.straightShotProc = this.addProcBox({
       id: 'brd-procs-straightshotready',
       fgColor: 'brd-color-straightshotready',
       threshold: 1000,
@@ -14,26 +14,26 @@ export default class BrdComponent extends BaseComponent {
     this.straightShotProc.bigatzero = false;
 
     // DoTs
-    this.causticBiteBox = this.bars.addProcBox({
+    this.causticBiteBox = this.addProcBox({
       id: 'brd-procs-causticbite',
       fgColor: 'brd-color-causticbite',
       notifyWhenExpired: true,
     });
-    this.stormBiteBox = this.bars.addProcBox({
+    this.stormBiteBox = this.addProcBox({
       id: 'brd-procs-stormbite',
       fgColor: 'brd-color-stormbite',
       notifyWhenExpired: true,
     });
 
     // Songs
-    this.songBox = this.bars.addProcBox({
+    this.songBox = this.addProcBox({
       id: 'brd-procs-song',
       fgColor: 'brd-color-song',
     });
-    this.repertoireBox = this.bars.addResourceBox({
+    this.repertoireBox = this.addResourceBox({
       classList: ['brd-color-song'],
     });
-    this.repertoireTimer = this.bars.addTimerBar({
+    this.repertoireTimer = this.addTimerBar({
       id: 'brd-timers-repertoire',
       fgColor: 'brd-color-song',
     });
@@ -45,7 +45,7 @@ export default class BrdComponent extends BaseComponent {
     // Only with-DoT-target you last attacked will trigger bars timer.
     // So it work not well in multiple targets fight.
     this.bars.updateDotTimerFuncs.push(() => this.repertoireTimer.duration = 2.91666);
-    this.soulVoiceBox = this.bars.addResourceBox({
+    this.soulVoiceBox = this.addResourceBox({
       classList: ['brd-color-soulvoice'],
     });
 

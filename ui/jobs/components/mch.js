@@ -105,12 +105,13 @@ export default class MchComponent extends BaseComponent {
     switch (abilityId) {
     case kAbility.Drill:
     case kAbility.Bioblaster:
-      this.drillBox.duration = calcGCDFromStat(this.player, this.bars.skillSpeed, 20000);
+      this.drillBox.duration = calcGCDFromStat(this.player, this.player.stats.skillSpeed, 20000);
       break;
 
     case kAbility.AirAnchor:
     case kAbility.HotShot:
-      this.airAnchorBox.duration = calcGCDFromStat(this.player, this.bars.skillSpeed, 40000);
+      this.airAnchorBox.duration =
+        calcGCDFromStat(this.player, this.player.stats.skillSpeed, 40000);
       break;
 
     case kAbility.WildFire:

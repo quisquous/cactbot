@@ -7,32 +7,32 @@ export default class DncComponent extends BaseComponent {
   constructor(bars) {
     super(bars);
 
-    this.comboTimer = this.bars.addTimerBar({
+    this.comboTimer = this.addTimerBar({
       id: 'dnc-timers-combo',
       fgColor: 'combo-color',
     });
 
-    this.standardStep = this.bars.addProcBox({
+    this.standardStep = this.addProcBox({
       id: 'dnc-procs-standardstep',
       fgColor: 'dnc-color-standardstep',
     });
 
     // TechnicalStep cooldown on begin dance, but effect appear when TechnicalFinish.
-    this.technicalStep = this.bars.addProcBox({
+    this.technicalStep = this.addProcBox({
       id: 'dnc-procs-technicalstep',
       fgColor: 'dnc-color-technicalstep',
     });
 
     // When cast Flourish, show proc remain time until all procs have been used.
-    this.flourish = this.bars.addProcBox({
+    this.flourish = this.addProcBox({
       id: 'dnc-procs-flourish',
       fgColor: 'dnc-color-flourish',
     });
 
-    this.featherGauge = this.bars.addResourceBox({
+    this.featherGauge = this.addResourceBox({
       classList: ['dnc-color-feather'],
     });
-    this.espritGauge = this.bars.addResourceBox({
+    this.espritGauge = this.addResourceBox({
       classList: ['dnc-color-esprit'],
     });
 

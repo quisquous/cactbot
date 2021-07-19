@@ -24,34 +24,35 @@ export default class DrkComponent extends BaseComponent {
     this.tid2 = 0;
     this.tid3 = 0;
 
-    this.bloodBox = bars.addResourceBox({
+    this.bloodBox = this.addResourceBox({
       classList: ['drk-color-blood'],
     });
 
-    this.darksideBox = bars.addProcBox({
+    this.darksideBox = this.addProcBox({
+      id: 'drk-darkside',
       fgColor: 'drk-color-darkside',
       threshold: 10,
-    }) as TimerBox;
+    });
 
-    this.comboTimer = bars.addTimerBar({
+    this.comboTimer = this.addTimerBar({
       id: 'drk-timers-combo',
       fgColor: 'combo-color',
     });
 
-    this.bloodWeapon = bars.addProcBox({
+    this.bloodWeapon = this.addProcBox({
       id: 'drk-procs-bloodweapon',
       fgColor: 'drk-color-bloodweapon',
-    }) as TimerBox;
+    });
 
-    this.delirium = bars.addProcBox({
+    this.delirium = this.addProcBox({
       id: 'drk-procs-delirium',
       fgColor: 'drk-color-delirium',
-    }) as TimerBox;
+    });
 
-    this.livingShadow = bars.addProcBox({
+    this.livingShadow = this.addProcBox({
       id: 'drk-procs-livingshadow',
       fgColor: 'drk-color-livingshadow',
-    }) as TimerBox;
+    });
   }
 
   onCombo(skill: string): void {

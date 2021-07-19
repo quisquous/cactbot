@@ -23,32 +23,32 @@ export default class GnbComponent extends BaseComponent {
 
     this.noMercyTimer = 0;
 
-    this.cartridgeBox = bars.addResourceBox({
+    this.cartridgeBox = this.addResourceBox({
       classList: ['gnb-color-cartridge'],
     });
 
-    this.noMercyBox = bars.addProcBox({
+    this.noMercyBox = this.addProcBox({
       id: 'gnb-procs-nomercy',
       fgColor: 'gnb-color-nomercy',
-    }) as TimerBox;
+    });
 
-    this.bloodfestBox = bars.addProcBox({
+    this.bloodfestBox = this.addProcBox({
       id: 'gnb-procs-bloodfest',
       fgColor: 'gnb-color-bloodfest',
-    }) as TimerBox;
+    });
 
     // Combos
-    this.gnashingFangBox = bars.addProcBox({
+    this.gnashingFangBox = this.addProcBox({
       id: 'gnb-procs-gnashingfang',
       fgColor: 'gnb-color-gnashingfang',
-    }) as TimerBox;
+    });
 
-    this.comboTimer = bars.addTimerBar({
+    this.comboTimer = this.addTimerBar({
       id: 'gnb-timers-combo',
       fgColor: 'combo-color',
     });
 
-    this.cartridgeComboTimer = bars.addTimerBar({
+    this.cartridgeComboTimer = this.addTimerBar({
       id: 'gnb-timers-cartridgecombo',
       fgColor: 'gnb-color-gnashingfang',
     });
@@ -73,7 +73,7 @@ export default class GnbComponent extends BaseComponent {
 
     case kAbility.GnashingFang:
       this.gnashingFangBox.duration =
-        calcGCDFromStat(this.bars.player, this.bars.skillSpeed, 30000);
+        calcGCDFromStat(this.player, this.player.stats.skillSpeed, 30000);
       this.cartridgeComboTimer.duration = 0;
       this.cartridgeComboTimer.duration = 15;
       break;
@@ -114,13 +114,13 @@ export default class GnbComponent extends BaseComponent {
     this.gnashingFangBox.valuescale = stat.gcdSkill;
     this.gnashingFangBox.threshold = stat.gcdSkill * 3;
     this.noMercyBox.valuescale = stat.gcdSkill;
-    this.bloodfestBox.valuescale = this.bars.gcdSkill;
+    this.bloodfestBox.valuescale = this.player.gcdSkill;
     this.bloodfestBox.threshold = stat.gcdSkill * 2 + 1;
   }
 
   reset(): void {
     this.noMercyBox.duration = 0;
-    this.noMercyBox.threshold = this.bars.gcdSkill + 1;
+    this.noMercyBox.threshold = this.player.gcdSkill + 1;
     this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy');
     this.bloodfestBox.duration = 0;
     this.gnashingFangBox.duration = 0;

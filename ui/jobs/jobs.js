@@ -71,9 +71,10 @@ export class Player {
     this.maxGP = 0;
 
     // player stats
-    this.stats = {};
-    this.gcdSkill = 0;
-    this.gcdSpell = 0;
+    this.stats = {
+      skillSpeed: 0,
+      spellSpeed: 0,
+    };
     this.speedBuffs = {
       presenceOfMind: 0,
       shifu: 0,
@@ -82,6 +83,14 @@ export class Player {
       museStacks: 0,
       circleOfPower: 0,
     };
+  }
+
+  get gcdSkill() {
+    return calcGCDFromStat(this, this.stats.skillSpeed);
+  }
+
+  get gcdSpell() {
+    return calcGCDFromStat(this, this.stats.spellSpeed);
   }
 }
 

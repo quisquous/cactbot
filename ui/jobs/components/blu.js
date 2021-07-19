@@ -6,17 +6,17 @@ export default class BluComponent extends BaseComponent {
   constructor(bars) {
     super(bars);
 
-    this.offguardBox = bars.addProcBox({
+    this.offguardBox = this.addProcBox({
       id: 'blu-procs-offguard',
       fgColor: 'blu-color-offguard',
     });
 
-    this.tormentBox = bars.addProcBox({
+    this.tormentBox = this.addProcBox({
       id: 'blu-procs-torment',
       fgColor: 'blu-color-torment',
     });
 
-    this.lucidBox = bars.addProcBox({
+    this.lucidBox = this.addProcBox({
       id: 'blu-procs-lucid',
       fgColor: 'blu-color-lucid',
     });
@@ -25,11 +25,11 @@ export default class BluComponent extends BaseComponent {
   onUseAbility(actionId) {
     switch (actionId) {
     case kAbility.OffGuard:
-      this.offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
+      this.offguardBox.duration = calcGCDFromStat(this.player, this.player.stats.spellSpeed, 60000);
       break;
 
     case PeculiarLight:
-      this.offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
+      this.offguardBox.duration = calcGCDFromStat(bars, this.player.stats.spellSpeed, 60000);
       break;
 
     case SongOfTorment:

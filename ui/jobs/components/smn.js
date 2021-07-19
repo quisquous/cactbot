@@ -8,32 +8,32 @@ export default class SmnComponent extends BaseComponent {
   constructor(bars) {
     super(bars);
 
-    this.aetherflowStackBox = bars.addResourceBox({
+    this.aetherflowStackBox = this.addResourceBox({
       classList: ['smn-color-aetherflow'],
     });
 
-    this.demiSummoningBox = bars.addResourceBox({
+    this.demiSummoningBox = this.addResourceBox({
       classList: ['smn-color-demisummon'],
     });
 
-    this.miasmaBox = bars.addProcBox({
+    this.miasmaBox = this.addProcBox({
       id: 'smn-procs-miasma',
       fgColor: 'smn-color-miasma',
       notifyWhenExpired: true,
     });
 
-    this.bioSmnBox = bars.addProcBox({
+    this.bioSmnBox = this.addProcBox({
       id: 'smn-procs-biosmn',
       fgColor: 'smn-color-biosmn',
       notifyWhenExpired: true,
     });
 
-    this.energyDrainBox = bars.addProcBox({
+    this.energyDrainBox = this.addProcBox({
       id: 'smn-procs-energydrain',
       fgColor: 'smn-color-energydrain',
     });
 
-    this.tranceBox = bars.addProcBox({
+    this.tranceBox = this.addProcBox({
       id: 'smn-procs-trance',
       fgColor: 'smn-color-trance',
     });
