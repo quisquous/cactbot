@@ -542,7 +542,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!orbIdToNameId || sortedOrbs.length === 0)
           return output.unknown!();
 
-        let orbOutput = data.orbOutput = sortedOrbs.map((orbId) => {
+        const orbOutput = data.orbOutput = sortedOrbs.map((orbId) => {
           const nameId = orbIdToNameId[orbId];
           if (!nameId)
             return 'unknown';
@@ -552,10 +552,8 @@ const triggerSet: TriggerSet<Data> = {
 
         // If there is a pair of orbs, and they are the same type, then this is the mechanic
         // introduction and only one orb goes off.
-        if (orbOutput.length === 2) {
-          if (orbOutput[0] === orbOutput[1])
-            orbOutput = [orbOutput[0] ?? 'unknown'];
-        }
+        if (orbOutput.length === 2 && orbOutput[0] === orbOutput[1])
+          orbOutput.length = 1;
 
         // Special case, fire + earth = stop far outside.
         if (orbOutput.length >= 2) {
@@ -570,8 +568,8 @@ const triggerSet: TriggerSet<Data> = {
         // Don't bother outputting a single one, as it'll come up shortly.
         // This could get confusing saying "knockback" far enough ahead
         // that using knockback prevention would wear off before the mechanic.
-        if (data.orbOutput.length > 1)
-          return data.orbOutput?.map((key) => output[key]!()).join(' => ');
+        if (orbOutput.length > 1)
+          return orbOutput.map((key) => output[key]!()).join(' => ');
       },
       outputStrings: orbOutputStrings,
     },
