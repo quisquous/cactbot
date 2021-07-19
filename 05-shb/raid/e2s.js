@@ -200,8 +200,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'stack';
       },
     },
@@ -226,9 +225,7 @@ Options.Triggers.push({
       id: 'E2S Countdown Marker Unholy Darkness',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        let _a; return !data.hellWind && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'stack';
-      },
+      condition: (data, matches) => !data.hellWind && data.spell?.[matches.target] === 'stack',
       response: Responses.stackMarkerOn(),
     },
     {
@@ -244,8 +241,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '004C' }),
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'fire';
       },
     },
@@ -270,9 +266,7 @@ Options.Triggers.push({
       id: 'E2S Countdown Marker Fire',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        let _a; return data.me === matches.target && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[data.me]) === 'fire';
-      },
+      condition: (data, matches) => data.me === matches.target && data.spell?.[data.me] === 'fire',
       response: Responses.spread('alert'),
     },
     {
@@ -305,8 +299,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'eye';
       },
     },
@@ -331,9 +324,7 @@ Options.Triggers.push({
       id: 'E2S Countdown Marker Shadoweye Me',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        let _a; return ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'eye' && matches.target === data.me;
-      },
+      condition: (data, matches) => data.spell?.[matches.target] === 'eye' && matches.target === data.me,
       delaySeconds: 2,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -352,9 +343,7 @@ Options.Triggers.push({
       id: 'E2S Countdown Marker Shadoweye Other',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        let _a; let _b; return ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'eye' && ((_b = data.spell) === null || _b === void 0 ? void 0 : _b[data.me]) !== 'eye';
-      },
+      condition: (data, matches) => data.spell?.[matches.target] === 'eye' && data.spell?.[data.me] !== 'eye',
       delaySeconds: 2,
       suppressSeconds: 10,
       // Let's just assume these people are stacked.
@@ -384,8 +373,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'flare';
       },
     },
@@ -410,9 +398,7 @@ Options.Triggers.push({
       id: 'E2S Countdown Marker Flare',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        let _a; return data.me === matches.target && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[data.me]) === 'flare';
-      },
+      condition: (data, matches) => data.me === matches.target && data.spell?.[data.me] === 'flare',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -430,10 +416,9 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: (data, matches) => {
-        let _a; let _b;
         if (data.role !== 'healer')
           return;
-        return ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'flare' && ((_b = data.spell) === null || _b === void 0 ? void 0 : _b[data.me]) !== 'flare';
+        return data.spell?.[matches.target] === 'flare' && data.spell?.[data.me] !== 'flare';
       },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -481,8 +466,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'wind';
       },
     },
@@ -508,10 +492,9 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: (data, matches) => {
-        let _a;
         if (data.role === 'healer')
           return false;
-        return data.me === matches.target && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[data.me]) === 'wind';
+        return data.me === matches.target && data.spell?.[data.me] === 'wind';
       },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -530,10 +513,9 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: (data, matches) => {
-        let _a;
         if (data.role !== 'healer')
           return;
-        return ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'wind';
+        return data.spell?.[matches.target] === 'wind';
       },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -553,9 +535,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
-      run: (data, matches) => {
-        let _a; return (_a = data.spell) === null || _a === void 0 ? true : delete _a[matches.target];
-      },
+      run: (data, matches) => delete data.spell?.[matches.target],
     },
     {
       // TODO: add callouts for each of these

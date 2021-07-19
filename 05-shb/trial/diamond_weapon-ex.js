@@ -30,9 +30,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA7', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
-      run: (data) => {
-        let _a; return data.phase = (_a = data.phase) !== null && _a !== void 0 ? _a : 1;
-      },
+      run: (data) => data.phase = data.phase ?? 1,
     },
     // @TODO: There's probably a better callout for these mechanics, e.g.
     // `jump -> stay -> aoe`

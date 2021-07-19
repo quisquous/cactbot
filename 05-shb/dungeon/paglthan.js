@@ -173,9 +173,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'ルナバハムート', capture: false }),
-      run: (data) => {
-        let _a; return data.lunarFlares = ((_a = data.lunarFlares) !== null && _a !== void 0 ? _a : 0) + 1;
-      },
+      run: (data) => data.lunarFlares = (data.lunarFlares ?? 0) + 1,
     },
     {
       // Get middle is 4x5B4A and 4x5B4B, get outside is 5x5B4A

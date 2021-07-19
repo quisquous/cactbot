@@ -129,8 +129,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '23C' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.slashing) !== null && _a !== void 0 ? _a : (data.slashing = {});
+        data.slashing ?? (data.slashing = {});
         data.slashing[matches.target] = true;
       },
     },
@@ -139,8 +138,7 @@ Options.Triggers.push({
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '23C' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.slashing) !== null && _a !== void 0 ? _a : (data.slashing = {});
+        data.slashing ?? (data.slashing = {});
         data.slashing[matches.target] = false;
       },
     },
@@ -149,8 +147,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '23D' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.blunt) !== null && _a !== void 0 ? _a : (data.blunt = {});
+        data.blunt ?? (data.blunt = {});
         data.blunt[matches.target] = true;
       },
     },
@@ -159,8 +156,7 @@ Options.Triggers.push({
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '23D' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.blunt) !== null && _a !== void 0 ? _a : (data.blunt = {});
+        data.blunt ?? (data.blunt = {});
         data.blunt[matches.target] = false;
       },
     },

@@ -91,9 +91,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E42', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E42', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E42', source: '보이드워커', capture: false }),
-      run: (data) => {
-        let _a; return data.fireCount = ((_a = data.fireCount) !== null && _a !== void 0 ? _a : 0) + 1;
-      },
+      run: (data) => data.fireCount = (data.fireCount ?? 0) + 1,
     },
     {
       id: 'E2N Dark Fire No Waiting',
@@ -119,8 +117,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B5' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'fire';
       },
     },
@@ -145,9 +142,7 @@ Options.Triggers.push({
       id: 'E2N Countdown Marker Fire',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        let _a; return data.me === matches.target && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[data.me]) === 'fire';
-      },
+      condition: (data, matches) => data.me === matches.target && data.spell?.[data.me] === 'fire',
       alertText: (data, _matches, output) => {
         if (data.fireCount === 3)
           return output.spreadDontStack();
@@ -170,8 +165,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B4' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'stack';
       },
     },
@@ -197,12 +191,11 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: (data, matches) => {
-        let _a; let _b;
         // The third fire coincides with stack.
         // These people should avoid.
-        if (((_a = data.spell) === null || _a === void 0 ? void 0 : _a[data.me]) === 'fire' && data.fireCount === 3)
+        if (data.spell?.[data.me] === 'fire' && data.fireCount === 3)
           return false;
-        return ((_b = data.spell) === null || _b === void 0 ? void 0 : _b[matches.target]) === 'stack';
+        return data.spell?.[matches.target] === 'stack';
       },
       response: Responses.stackMarkerOn(),
     },
@@ -211,8 +204,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B7' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.spell) !== null && _a !== void 0 ? _a : (data.spell = {});
+        data.spell ?? (data.spell = {});
         data.spell[matches.target] = 'eye';
       },
     },
@@ -237,9 +229,7 @@ Options.Triggers.push({
       id: 'E2N Countdown Marker Shadoweye',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        let _a; return ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'eye';
-      },
+      condition: (data, matches) => data.spell?.[matches.target] === 'eye',
       delaySeconds: 2,
       response: Responses.lookAwayFromTarget('alarm'),
     },
@@ -248,8 +238,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: (data, matches) => {
-        let _a;
-        return data.me === matches.target && ((_a = data.spell) === null || _a === void 0 ? void 0 : _a[matches.target]) === 'eye';
+        return data.me === matches.target && data.spell?.[matches.target] === 'eye';
       },
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text(),
@@ -269,9 +258,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
-      run: (data, matches) => {
-        let _a; return (_a = data.spell) === null || _a === void 0 ? true : delete _a[matches.target];
-      },
+      run: (data, matches) => delete data.spell?.[matches.target],
     },
   ],
   timelineReplace: [

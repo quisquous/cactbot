@@ -71,9 +71,7 @@ Options.Triggers.push({
       condition: Conditions.caresAboutAOE(),
       // Count the number of Glory of Bozja so that people alternating mitigation
       // can more easily assign themselves to even or odd glories.
-      preRun: (data) => {
-        let _a; return data.gloryOfBozjaCount = ((_a = data.gloryOfBozjaCount) !== null && _a !== void 0 ? _a : 0) + 1;
-      },
+      preRun: (data) => data.gloryOfBozjaCount = (data.gloryOfBozjaCount ?? 0) + 1,
       durationSeconds: 8,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => output.aoeNum({ num: data.gloryOfBozjaCount }),
@@ -186,8 +184,7 @@ Options.Triggers.push({
       condition: (data) => !data.calledSeekerSwords,
       durationSeconds: 10,
       alertText: (data, matches, output) => {
-        let _a;
-        (_a = data.seekerSwords) !== null && _a !== void 0 ? _a : (data.seekerSwords = []);
+        data.seekerSwords ?? (data.seekerSwords = []);
         data.seekerSwords.push(matches.count.toUpperCase());
         if (data.seekerSwords.length <= 1 || data.seekerSwords.length >= 4)
           return;
@@ -289,9 +286,7 @@ Options.Triggers.push({
           FA: offsetDir.backLeft,
           F9: offsetDir.frontLeft,
         };
-        const offsetCleaves = cleaves.map((id) => {
-          let _a; return rotateDir((_a = cleaveToOffsetDir[id]) !== null && _a !== void 0 ? _a : 0);
-        });
+        const offsetCleaves = cleaves.map((id) => rotateDir(cleaveToOffsetDir[id] ?? 0));
         // Front is rotated to out.
         const cloneOffsetCleaveToDirection = {
           [offsetDir.frontRight]: output.in(),
@@ -613,8 +608,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ source: 'シーカーの分体', id: '5AD7' }),
       netRegexCn: NetRegexes.abilityFull({ source: '求道之分身', id: '5AD7' }),
       condition: (data, matches) => {
-        let _a;
-        (_a = data.seekerCometIds) !== null && _a !== void 0 ? _a : (data.seekerCometIds = []);
+        data.seekerCometIds ?? (data.seekerCometIds = []);
         data.seekerCometIds.push(parseInt(matches.sourceId, 16));
         return data.seekerCometIds.length === 2;
       },
@@ -623,12 +617,11 @@ Options.Triggers.push({
       // (Note: Suppressed status is checked before condition, but the field evaluated after.)
       suppressSeconds: 0.5,
       promise: async (data) => {
-        let _a;
         // The avatars get moved right before the comets, and the position data
         // is stale in the combat log.  :C
         const cometData = await callOverlayHandler({
           call: 'getCombatants',
-          ids: (_a = data.seekerCometIds) === null || _a === void 0 ? void 0 : _a.slice(0, 2),
+          ids: data.seekerCometIds?.slice(0, 2),
         });
         if (cometData === null) {
           console.error('Baleful Comet: null cometData');
@@ -657,8 +650,7 @@ Options.Triggers.push({
         // The returned data does not come back in the same order.
         // Sort by the original order.
         data.seekerCometData.sort((a, b) => {
-          let _a; let _b;
-          return cometIds.indexOf((_a = a.ID) !== null && _a !== void 0 ? _a : 0) - cometIds.indexOf((_b = b.ID) !== null && _b !== void 0 ? _b : 0);
+          return cometIds.indexOf(a.ID ?? 0) - cometIds.indexOf(b.ID ?? 0);
         });
         const [firstDir, secondDir] = data.seekerCometData.map((comet) => {
           const x = comet.PosX - seekerCenterX;
@@ -1636,8 +1628,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
       netRegexCn: NetRegexes.startsUsing({ source: ['誓约之三位一体', '誓约之分身'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.blades) !== null && _a !== void 0 ? _a : (data.blades = {});
+        data.blades ?? (data.blades = {});
         data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
       },
     },
@@ -1651,9 +1642,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '誓约之三位一体', id: '597F', capture: false }),
       durationSeconds: 5,
       alertText: (data, _matches, output) => {
-        let _a; let _b;
-        const currentBrand = (_a = data.currentBrand) !== null && _a !== void 0 ? _a : 0;
-        const currentTemperature = (_b = data.currentTemperature) !== null && _b !== void 0 ? _b : 0;
+        const currentBrand = data.currentBrand ?? 0;
+        const currentTemperature = data.currentTemperature ?? 0;
         const effectiveTemperature = (currentTemperature + currentBrand).toString();
         const tempToOutput = {
           '-2': output.plusTwo(),
@@ -1900,7 +1890,6 @@ Options.Triggers.push({
       durationSeconds: 9.5,
       suppressSeconds: 1,
       promise: async (data, _matches, output) => {
-        let _a; let _b; let _c; let _d;
         const trinityLocaleNames = {
           en: 'Trinity Avowed',
           de: 'Trinität Der Eingeschworenen',
@@ -1980,9 +1969,7 @@ Options.Triggers.push({
         // we need to filter for the Trinity Avowed with the lowest ID
         // that one is always cleaving on one of the cardinals
         // Trinity Avowed is always East (-267, -87)
-        const sortCombatants = (a, b) => {
-          let _a; let _b; return ((_a = a.ID) !== null && _a !== void 0 ? _a : 0) - ((_b = b.ID) !== null && _b !== void 0 ? _b : 0);
-        };
+        const sortCombatants = (a, b) => (a.ID ?? 0) - (b.ID ?? 0);
         const eastCombatant = combatantDataBoss.combatants.sort(sortCombatants).shift();
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
@@ -2005,10 +1992,10 @@ Options.Triggers.push({
         const northCombatantFacing = getFacing(northCombatant);
         const southCombatantFacing = getFacing(southCombatant);
         // Get Blade of Entropy data
-        const eastCombatantBlade = data.blades[(_a = eastCombatant === null || eastCombatant === void 0 ? void 0 : eastCombatant.ID) !== null && _a !== void 0 ? _a : 0];
-        const northCombatantBlade = data.blades[(_b = northCombatant === null || northCombatant === void 0 ? void 0 : northCombatant.ID) !== null && _b !== void 0 ? _b : 0];
-        const westCombatantBlade = data.blades[(_c = westCombatant === null || westCombatant === void 0 ? void 0 : westCombatant.ID) !== null && _c !== void 0 ? _c : 0];
-        const southCombatantBlade = data.blades[(_d = southCombatant === null || southCombatant === void 0 ? void 0 : southCombatant.ID) !== null && _d !== void 0 ? _d : 0];
+        const eastCombatantBlade = data.blades[eastCombatant?.ID ?? 0];
+        const northCombatantBlade = data.blades[northCombatant?.ID ?? 0];
+        const westCombatantBlade = data.blades[westCombatant?.ID ?? 0];
+        const southCombatantBlade = data.blades[southCombatant?.ID ?? 0];
         if (eastCombatantBlade === undefined || northCombatantBlade === undefined ||
                     westCombatantBlade === undefined || southCombatantBlade === undefined)
           throw new UnreachableCode();
@@ -2159,8 +2146,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '594D' }),
       netRegexCn: NetRegexes.startsUsing({ source: '誓约之分身', id: '594D' }),
       run: (data, matches) => {
-        let _a;
-        (_a = data.unseenIds) !== null && _a !== void 0 ? _a : (data.unseenIds = []);
+        data.unseenIds ?? (data.unseenIds = []);
         data.unseenIds.push(parseInt(matches.sourceId, 16));
       },
     },
