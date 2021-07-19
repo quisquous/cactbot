@@ -8,7 +8,7 @@ import AstComponent from './ast';
 import MnkComponent from './mnk';
 import DrgComponent from './drg';
 import NinComponent from './nin';
-import { setup as setupSam, reset as resetSam } from './sam';
+import SamComponent from './sam';
 import BrdComponent from './brd';
 import { setup as setupMch, reset as resetMch } from './mch';
 import DncComponent from './dnc';
@@ -20,7 +20,6 @@ import BluComponent from './blu';
 
 export function getSetup(job) {
   return {
-    'SAM': setupSam,
     'MCH': setupMch,
     'RDM': setupRdm,
   }[job.toUpperCase()];
@@ -28,7 +27,6 @@ export function getSetup(job) {
 
 export function getReset(job) {
   return {
-    'SAM': resetSam,
     'MCH': resetMch,
     'RDM': resetRdm,
   }[job.toUpperCase()];
@@ -66,6 +64,9 @@ export class ComponentFactory {
 
     case 'NIN':
       return new NinComponent(bars);
+
+    case 'SAM':
+      return new SamComponent(bars);
 
     case 'BRD':
       return new BrdComponent(bars);
