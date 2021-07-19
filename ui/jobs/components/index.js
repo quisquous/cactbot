@@ -5,8 +5,7 @@ import GnbComponent from './gnb';
 import WhmComponent from './whm';
 import SchComponent from './sch';
 import AstComponent from './ast';
-import { setup as setupMnk, reset as resetMnk } from './mnk';
-import { setup as setupDrg, reset as resetDrg } from './drg';
+import MnkComponent from './mnk';
 import { setup as setupNin, reset as resetNin } from './nin';
 import { setup as setupSam, reset as resetSam } from './sam';
 import BrdComponent from './brd';
@@ -64,6 +63,8 @@ export class ComponentFactory {
     case 'AST':
       return new AstComponent(bars);
 
+    case 'MNK':
+      return new MnkComponent(bars);
     case 'BRD':
       return new BrdComponent(bars);
 
