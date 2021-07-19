@@ -10,7 +10,7 @@ import DrgComponent from './drg';
 import NinComponent from './nin';
 import SamComponent from './sam';
 import BrdComponent from './brd';
-import { setup as setupMch, reset as resetMch } from './mch';
+import MchComponent from './mch';
 import DncComponent from './dnc';
 import BlmComponent from './blm';
 import SmnComponent from './smn';
@@ -20,14 +20,12 @@ import BluComponent from './blu';
 
 export function getSetup(job) {
   return {
-    'MCH': setupMch,
     'RDM': setupRdm,
   }[job.toUpperCase()];
 }
 
 export function getReset(job) {
   return {
-    'MCH': resetMch,
     'RDM': resetRdm,
   }[job.toUpperCase()];
 }
@@ -70,6 +68,9 @@ export class ComponentFactory {
 
     case 'BRD':
       return new BrdComponent(bars);
+
+    case 'MCH':
+      return new MchComponent(bars);
 
     case 'DNC':
       return new DncComponent(bars);

@@ -1,155 +1,171 @@
 import { kAbility } from '../constants';
 import EffectId from '../../../resources/effect_id';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
+import { BaseComponent } from './base';
 
-let resetFunc = null;
-let tid1;
-let tid2;
+export default class MchComponent extends BaseComponent {
+  constructor(bars) {
+    super(bars);
 
-export function setup(bars) {
-  const comboTimer = bars.addTimerBar({
-    id: 'mch-timers-combo',
-    fgColor: 'combo-color',
-  });
-  bars.onCombo((skill) => {
-    comboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
-      return;
-    if (skill)
-      comboTimer.duration = 15;
-  });
+    this.comboTimer = this.addTimerBar({
+      id: 'mch-timers-combo',
+      fgColor: 'combo-color',
+    });
 
-  const heatGauge = bars.addResourceBox({
-    classList: ['mch-color-heat'],
-  });
-  const batteryGauge = bars.addResourceBox({
-    classList: ['mch-color-battery'],
-  });
-  bars.onJobDetailUpdate((jobDetail) => {
-    heatGauge.innerText = jobDetail.heat;
-    batteryGauge.innerText = jobDetail.battery;
-    // These two seconds are shown by half adjust, not like others' ceil.
-    if (jobDetail.overheatMilliseconds > 0) {
-      heatGauge.parentNode.classList.add('overheat');
-      heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000);
-    } else {
-      heatGauge.parentNode.classList.remove('overheat');
-      heatGauge.innerText = jobDetail.heat;
+    this.heatGauge = this.addResourceBox({
+      classList: ['mch-color-heat'],
+    });
+    this.batteryGauge = this.addResourceBox({
+      classList: ['mch-color-battery'],
+    });
+
+    this.drillBox = this.addProcBox({
+      id: 'mch-procs-drill',
+      fgColor: 'mch-color-drill',
+    });
+
+    this.airAnchorBox = this.addProcBox({
+      id: 'mch-procs-airanchor',
+      fgColor: 'mch-color-airanchor',
+    });
+
+    this.wildFireBox = this.addProcBox({
+      id: 'mch-procs-wildfire',
+      fgColor: 'mch-color-wildfire',
+    });
+
+    // Wild Fire Gauge
+    this.stacksContainer = document.createElement('div');
+    this.stacksContainer.id = 'mch-stacks';
+    this.stacksContainer.classList.add('hide');
+    // TODO: convert this?
+    this.bars.addJobBarContainer().appendChild(this.stacksContainer);
+    const wildFireContainer = document.createElement('div');
+    wildFireContainer.id = 'mch-stacks-wildfire';
+    this.stacksContainer.appendChild(wildFireContainer);
+
+    this.wildFireStacks = [];
+    for (let i = 0; i < 6; ++i) {
+      const d = document.createElement('div');
+      wildFireContainer.appendChild(d);
+      this.wildFireStacks.push(d);
     }
-    if (jobDetail.batteryMilliseconds > 0) {
-      batteryGauge.parentNode.classList.add('robot-active');
-      batteryGauge.innerText = Math.round(jobDetail.batteryMilliseconds / 1000);
-    } else {
-      batteryGauge.parentNode.classList.remove('robot-active');
-      batteryGauge.innerText = jobDetail.battery;
-    }
-  });
 
-  const drillBox = bars.addProcBox({
-    id: 'mch-procs-drill',
-    fgColor: 'mch-color-drill',
-  });
-  bars.onUseAbility([
-    kAbility.Drill,
-    kAbility.Bioblaster,
-  ], () => {
-    drillBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 20000);
-  });
-
-  const airAnchorBox = bars.addProcBox({
-    id: 'mch-procs-airanchor',
-    fgColor: 'mch-color-airanchor',
-  });
-  bars.onUseAbility([
-    kAbility.AirAnchor,
-    kAbility.HotShot,
-  ], () => {
-    airAnchorBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 40000);
-  });
-
-  // Wild Fire Gauge
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'mch-stacks';
-  stacksContainer.classList.add('hide');
-  bars.addJobBarContainer().appendChild(stacksContainer);
-  const wildFireContainer = document.createElement('div');
-  wildFireContainer.id = 'mch-stacks-wildfire';
-  stacksContainer.appendChild(wildFireContainer);
-  const wildFireStacks = [];
-  for (let i = 0; i < 6; ++i) {
-    const d = document.createElement('div');
-    wildFireContainer.appendChild(d);
-    wildFireStacks.push(d);
+    this.wildFireCounts = 0;
+    this.wildFireActive = false;
+    this.tid1 = 0;
+    this.tid2 = 0;
   }
 
-  let wildFireCounts = 0;
-  let wildFireActive = false;
-  const refreshWildFireGauge = () => {
+  onCombo(skill) {
+    this.comboTimer.duration = 0;
+    if (this.bars.combo.isFinalSkill)
+      return;
+    if (skill)
+      this.comboTimer.duration = 15;
+  }
+
+  onMobGainsEffectFromYou(effectId) {
+    if (effectId === EffectId.Wildfire) {
+      this.wildFireActive = true;
+      this.wildFireCounts = e.count;
+      refreshWildFireGauge();
+      this.stacksContainer.classList.remove('hide');
+    }
+  }
+
+  onMobLosesEffectFromYou(effectId) {
+    if (effectId === EffectId.Wildfire) {
+      this.wildFireActive = false;
+      this.refreshWildFireGauge();
+    }
+  }
+
+  onJobDetailUpdate(jobDetail) {
+    this.heatGauge.innerText = jobDetail.heat;
+    this.batteryGauge.innerText = jobDetail.battery;
+    // These two seconds are shown by half adjust, not like others' ceil.
+    if (jobDetail.overheatMilliseconds > 0) {
+      this.heatGauge.parentNode.classList.add('overheat');
+      this.heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000);
+    } else {
+      this.heatGauge.parentNode.classList.remove('overheat');
+      this.heatGauge.innerText = jobDetail.heat;
+    }
+    if (jobDetail.batteryMilliseconds > 0) {
+      this.batteryGauge.parentNode.classList.add('robot-active');
+      this.batteryGauge.innerText = Math.round(jobDetail.batteryMilliseconds / 1000);
+    } else {
+      this.batteryGauge.parentNode.classList.remove('robot-active');
+      this.batteryGauge.innerText = jobDetail.battery;
+    }
+  }
+
+  onUseAbility(abilityId) {
+    switch (abilityId) {
+    case kAbility.Drill:
+    case kAbility.Bioblaster:
+      this.drillBox.duration = calcGCDFromStat(this.player, this.bars.skillSpeed, 20000);
+      break;
+
+    case kAbility.AirAnchor:
+    case kAbility.HotShot:
+      this.airAnchorBox.duration = calcGCDFromStat(this.player, this.bars.skillSpeed, 40000);
+      break;
+
+    case kAbility.WildFire:
+      this.wildFireBox.duration = 10 + 0.9; // animation delay
+      this.wildFireBox.threshold = 1000;
+      this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire.active');
+      this.tid1 = window.setTimeout(() => {
+        this.wildFireBox.duration = 110 - 0.9;
+        this.wildFireBox.threshold = this.player.gcdSkill + 1;
+        this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire');
+      }, 10000);
+      this.tid2 = window.setTimeout(() => {
+        this.stacksContainer.classList.add('hide');
+        this.wildFireCounts = 0;
+      }, 15000);
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  onStatChange(stats) {
+    this.drillBox.valuescale = stats.gcdSkill;
+    this.drillBox.threshold = stats.gcdSkill * 3 + 1;
+    this.airAnchorBox.valuescale = stats.gcdSkill;
+    this.airAnchorBox.threshold = stats.gcdSkill * 3 + 1;
+    this.wildFireBox.valuescale = stats.gcdSkill;
+    this.wildFireBox.threshold = stats.gcdSkill + 1;
+  }
+
+  reset() {
+    this.comboTimer.duration = 0;
+    this.drillBox.duration = 0;
+    this.airAnchorBox.duration = 0;
+    this.wildFireCounts = 0;
+    this.wildFireActive = false;
+    this.refreshWildFireGauge();
+    this.wildFireBox.duration = 0;
+    this.wildFireBox.threshold = this.player.gcdSkill + 1;
+    this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire');
+    this.stacksContainer.classList.add('hide');
+    clearTimeout(this.tid1);
+    clearTimeout(this.tid2);
+  }
+
+  refreshWildFireGauge() {
     for (let i = 0; i < 6; ++i) {
-      wildFireStacks[i].classList.remove('fix', 'active');
-      if (wildFireCounts > i) {
-        if (wildFireActive)
-          wildFireStacks[i].classList.add('active');
+      this.wildFireStacks[i].classList.remove('fix', 'active');
+      if (this.wildFireCounts > i) {
+        if (this.wildFireActive)
+          this.wildFireStacks[i].classList.add('active');
         else
-          wildFireStacks[i].classList.add('fix');
+          this.wildFireStacks[i].classList.add('fix');
       }
     }
-  };
-  bars.onMobGainsEffectFromYou(EffectId.Wildfire, (id, e) => {
-    wildFireActive = true;
-    wildFireCounts = e.count;
-    refreshWildFireGauge();
-    stacksContainer.classList.remove('hide');
-  });
-  bars.onMobLosesEffectFromYou(EffectId.Wildfire, () => {
-    wildFireActive = false;
-    refreshWildFireGauge();
-  });
-  const wildFireBox = bars.addProcBox({
-    id: 'mch-procs-wildfire',
-    fgColor: 'mch-color-wildfire',
-  });
-  bars.onUseAbility(kAbility.WildFire, () => {
-    wildFireBox.duration = 10 + 0.9; // animation delay
-    wildFireBox.threshold = 1000;
-    wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
-    tid1 = window.setTimeout(() => {
-      wildFireBox.duration = 110 - 0.9;
-      wildFireBox.threshold = bars.gcdSkill + 1;
-      wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
-    }, 10000);
-    tid2 = window.setTimeout(() => {
-      stacksContainer.classList.add('hide');
-      wildFireCounts = 0;
-    }, 15000);
-  });
-
-  bars.onStatChange('MCH', () => {
-    drillBox.valuescale = bars.gcdSkill;
-    drillBox.threshold = bars.gcdSkill * 3 + 1;
-    airAnchorBox.valuescale = bars.gcdSkill;
-    airAnchorBox.threshold = bars.gcdSkill * 3 + 1;
-    wildFireBox.valuescale = bars.gcdSkill;
-    wildFireBox.threshold = bars.gcdSkill + 1;
-  });
-
-  resetFunc = (bars) => {
-    comboTimer.duration = 0;
-    drillBox.duration = 0;
-    airAnchorBox.duration = 0;
-    wildFireCounts = 0;
-    wildFireActive = false;
-    refreshWildFireGauge();
-    wildFireBox.duration = 0;
-    wildFireBox.threshold = bars.gcdSkill + 1;
-    wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
-    stacksContainer.classList.add('hide');
-    clearTimeout(tid1);
-    clearTimeout(tid2);
-  };
-}
-
-export function reset(bars) {
-  if (resetFunc)
-    resetFunc(bars);
+  }
 }
