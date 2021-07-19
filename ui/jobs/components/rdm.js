@@ -6,16 +6,13 @@ export default class RdmComponent extends BaseComponent {
   constructor(bars) {
     super(bars);
 
-    // TODO: convert this method?
-    const container = this.bars.addJobBarContainer();
-
     // TODO: convert this?
     const incs = 20;
     for (let i = 0; i < 100; i += incs) {
       const marker = document.createElement('div');
       marker.classList.add('marker');
       marker.classList.add((i % 40 === 0) ? 'odd' : 'even');
-      container.appendChild(marker);
+      this.addCustomBar(marker);
       marker.style.left = i + '%';
       marker.style.width = incs + '%';
     }

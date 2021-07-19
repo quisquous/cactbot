@@ -42,7 +42,7 @@ export default class SamComponent extends BaseComponent {
 
     const senContainer = document.createElement('div');
     senContainer.id = 'sam-stacks';
-    bars.addJobBarContainer().appendChild(senContainer);
+    this.addCustomBar(senContainer);
     this.sen = [
       document.createElement('div'),
       document.createElement('div'),

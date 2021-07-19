@@ -41,7 +41,7 @@ export default class SmnComponent extends BaseComponent {
     // FurtherRuin Stack Gauge
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'smn-stacks';
-    bars.addJobBarContainer().appendChild(stacksContainer);
+    this.addCustomBar(stacksContainer);
     const ruin4Container = document.createElement('div');
     ruin4Container.id = 'smn-stacks-ruin4';
     stacksContainer.appendChild(ruin4Container);

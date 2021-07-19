@@ -38,8 +38,8 @@ export default class MchComponent extends BaseComponent {
     this.stacksContainer = document.createElement('div');
     this.stacksContainer.id = 'mch-stacks';
     this.stacksContainer.classList.add('hide');
-    // TODO: convert this?
-    this.bars.addJobBarContainer().appendChild(this.stacksContainer);
+
+    this.addCustomBar(this.stacksContainer);
     const wildFireContainer = document.createElement('div');
     wildFireContainer.id = 'mch-stacks-wildfire';
     this.stacksContainer.appendChild(wildFireContainer);
