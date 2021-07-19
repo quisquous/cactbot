@@ -1,114 +1,125 @@
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
+import { BaseComponent } from './base';
 
-let resetFunc = null;
-let tid1;
-let tid2;
+export default class DrgComponent extends BaseComponent {
+  constructor(bars) {
+    super(bars);
 
-export function setup(bars) {
-  // Boxes
-  const highJumpBox = bars.addProcBox({
-    id: 'drg-procs-highjump',
-    fgColor: 'drg-color-highjump',
-  });
+    // Boxes
+    this.highJumpBox = this.addProcBox({
+      id: 'drg-procs-highjump',
+      fgColor: 'drg-color-highjump',
+    });
 
-  bars.onUseAbility([
-    kAbility.HighJump,
-    kAbility.Jump,
-  ], () => {
-    highJumpBox.duration = 30;
-  });
+    this.disembowelBox = this.addProcBox({
+      id: 'drg-procs-disembowel',
+      fgColor: 'drg-color-disembowel',
+      notifyWhenExpired: true,
+    });
 
-  const disembowelBox = bars.addProcBox({
-    id: 'drg-procs-disembowel',
-    fgColor: 'drg-color-disembowel',
-    notifyWhenExpired: true,
-  });
-  bars.onCombo((skill) => {
+    this.lanceChargeBox = this.addProcBox({
+      id: 'drg-procs-lancecharge',
+      fgColor: 'drg-color-lancecharge',
+      threshold: 20,
+    });
+
+    this.dragonSightBox = this.addProcBox({
+      id: 'drg-procs-dragonsight',
+      fgColor: 'drg-color-dragonsight',
+      threshold: 20,
+    });
+
+    // Gauge
+    this.blood = this.addResourceBox({
+      classList: ['drg-color-blood'],
+    });
+    this.eyes = this.addResourceBox({
+      classList: ['drg-color-eyes'],
+    });
+
+    this.tid1 = 0;
+    this.tid2 = 0;
+  }
+
+  onCombo(skill) {
     if (skill === kAbility.Disembowel)
-      disembowelBox.duration = 30 + 1;
-  });
-  const lanceChargeBox = bars.addProcBox({
-    id: 'drg-procs-lancecharge',
-    fgColor: 'drg-color-lancecharge',
-    threshold: 20,
-  });
-  bars.onUseAbility(kAbility.LanceCharge, () => {
-    lanceChargeBox.duration = 20;
-    lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
-    tid1 = window.setTimeout(() => {
-      lanceChargeBox.duration = 70;
-      lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
-    }, 20000);
-  });
-  const dragonSightBox = bars.addProcBox({
-    id: 'drg-procs-dragonsight',
-    fgColor: 'drg-color-dragonsight',
-    threshold: 20,
-  });
-  bars.onUseAbility(kAbility.DragonSight, () => {
-    dragonSightBox.duration = 20;
-    dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
-    tid2 = window.setTimeout(() => {
-      dragonSightBox.duration = 100;
-      dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
-    }, 20000);
-  });
-  bars.onStatChange('DRG', () => {
-    disembowelBox.valuescale = bars.gcdSkill;
-    disembowelBox.threshold = bars.gcdSkill * 5;
-    highJumpBox.valuescale = bars.gcdSkill;
-    highJumpBox.threshold = bars.gcdSkill + 1;
-  });
+      this.disembowelBox.duration = 30 + 1;
+  }
 
-  // Gauge
-  const blood = bars.addResourceBox({
-    classList: ['drg-color-blood'],
-  });
-  const eyes = bars.addResourceBox({
-    classList: ['drg-color-eyes'],
-  });
-  bars.onJobDetailUpdate((jobDetail) => {
-    blood.parentNode.classList.remove('blood', 'life');
+  onUseAbility(abilityId) {
+    switch (abilityId) {
+    case kAbility.HighJump:
+    case kAbility.Jump:
+      this.highJumpBox.duration = 30;
+      break;
+
+    case kAbility.LanceCharge:
+      this.lanceChargeBox.duration = 20;
+      this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge.active');
+      this.tid1 = window.setTimeout(() => {
+        this.lanceChargeBox.duration = 70;
+        this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge');
+      }, 20000);
+      break;
+
+    case kAbility.DragonSight:
+      this.dragonSightBox.duration = 20;
+      this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight.active');
+      this.tid2 = window.setTimeout(() => {
+        this.dragonSightBox.duration = 100;
+        this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight');
+      }, 20000);
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  onJobDetailUpdate(jobDetail) {
+    this.blood.parentNode.classList.remove('blood', 'life');
     if (jobDetail.bloodMilliseconds > 0) {
-      blood.parentNode.classList.add('blood');
-      blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000);
+      this.blood.parentNode.classList.add('blood');
+      this.blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000);
       if (jobDetail.bloodMilliseconds < 5000)
-        blood.parentNode.classList.remove('blood');
+        this.blood.parentNode.classList.remove('blood');
     } else if (jobDetail.lifeMilliseconds > 0) {
-      blood.parentNode.classList.add('life');
-      blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
+      this.blood.parentNode.classList.add('life');
+      this.blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
     } else {
-      blood.innerText = '';
+      this.blood.innerText = '';
     }
 
-    eyes.parentNode.classList.remove('zero', 'one', 'two');
+    this.eyes.parentNode.classList.remove('zero', 'one', 'two');
     if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
-      eyes.innerText = jobDetail.eyesAmount;
+      this.eyes.innerText = jobDetail.eyesAmount;
       if (jobDetail.eyesAmount === 0)
-        eyes.parentNode.classList.add('zero');
+        this.eyes.parentNode.classList.add('zero');
       else if (jobDetail.eyesAmount === 1)
-        eyes.parentNode.classList.add('one');
+        this.eyes.parentNode.classList.add('one');
       else if (jobDetail.eyesAmount === 2)
-        eyes.parentNode.classList.add('two');
+        this.eyes.parentNode.classList.add('two');
     } else {
-      eyes.innerText = '';
+      this.eyes.innerText = '';
     }
-  });
+  }
 
-  resetFunc = (bars) => {
-    highJumpBox.duration = 0;
-    disembowelBox.duration = 0;
-    lanceChargeBox.duration = 0;
-    lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
-    dragonSightBox.duration = 0;
-    dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
-    clearTimeout(tid1);
-    clearTimeout(tid2);
-  };
-}
+  onStatChange(stats) {
+    this.disembowelBox.valuescale = stats.gcdSkill;
+    this.disembowelBox.threshold = stats.gcdSkill * 5;
+    this.highJumpBox.valuescale = stats.gcdSkill;
+    this.highJumpBox.threshold = stats.gcdSkill + 1;
+  }
 
-export function reset(bars) {
-  if (resetFunc)
-    resetFunc(bars);
+  reset() {
+    this.highJumpBox.duration = 0;
+    this.disembowelBox.duration = 0;
+    this.lanceChargeBox.duration = 0;
+    this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge');
+    this.dragonSightBox.duration = 0;
+    this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight');
+    clearTimeout(this.tid1);
+    clearTimeout(this.tid2);
+  }
 }

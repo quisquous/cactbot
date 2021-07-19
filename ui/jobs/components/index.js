@@ -6,6 +6,7 @@ import WhmComponent from './whm';
 import SchComponent from './sch';
 import AstComponent from './ast';
 import MnkComponent from './mnk';
+import DrgComponent from './drg';
 import { setup as setupNin, reset as resetNin } from './nin';
 import { setup as setupSam, reset as resetSam } from './sam';
 import BrdComponent from './brd';
@@ -19,8 +20,6 @@ import BluComponent from './blu';
 
 export function getSetup(job) {
   return {
-    'MNK': setupMnk,
-    'DRG': setupDrg,
     'NIN': setupNin,
     'SAM': setupSam,
     'MCH': setupMch,
@@ -30,8 +29,6 @@ export function getSetup(job) {
 
 export function getReset(job) {
   return {
-    'MNK': resetMnk,
-    'DRG': resetDrg,
     'NIN': resetNin,
     'SAM': resetSam,
     'MCH': resetMch,
@@ -65,6 +62,10 @@ export class ComponentFactory {
 
     case 'MNK':
       return new MnkComponent(bars);
+
+    case 'DRG':
+      return new DrgComponent(bars);
+
     case 'BRD':
       return new BrdComponent(bars);
 
