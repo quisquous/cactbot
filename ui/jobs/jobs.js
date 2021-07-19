@@ -14,6 +14,7 @@ import PartyTracker from '../../resources/party';
 
 import foodImage from '../../resources/ffxiv/status/food.png';
 
+import defaultOptions from './jobs_options';
 import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 import { getSetup, getReset } from './components/index';
 
@@ -27,33 +28,6 @@ import '../../resources/widget_list';
 import '../../resources/defaults.css';
 import './jobs.css';
 
-// See user/jobs-example.js for documentation.
-const defaultOptions = {
-  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],
-  ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'BLM', 'BLU'],
-
-  ShowMPTicker: ['BLM'],
-
-  MaxLevel: 80,
-
-  PerBuffOptions: {
-    // This is noisy since it's more or less permanently on you.
-    // Players are unlikely to make different decisions based on this.
-    standardFinish: {
-      hide: true,
-    },
-  },
-
-  FarThresholdOffence: 24,
-  PldMediumMPThreshold: 9400,
-  PldLowMPThreshold: 3600,
-  DrkMediumMPThreshold: 5999,
-  DrkLowMPThreshold: 2999,
-  // One more fire IV and then despair.
-  BlmMediumMPThreshold: 3999,
-  // Should cast despair.
-  BlmLowMPThreshold: 2399,
-};
 
 // text on the pull countdown.
 const kPullText = {
