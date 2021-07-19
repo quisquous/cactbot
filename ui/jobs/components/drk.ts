@@ -35,7 +35,7 @@ export const setup = (bars: Bars): void => {
       }
     }
 
-    const oldSeconds = darksideBox.duration ?? 0 - darksideBox.elapsed;
+    const oldSeconds = (darksideBox.duration ?? 0) - darksideBox.elapsed;
     const seconds = jobDetail.darksideMilliseconds / 1000.0;
     if (!darksideBox.duration || seconds > oldSeconds)
       darksideBox.duration = seconds;
