@@ -227,7 +227,7 @@ const namedNisiPass = (data, output) => {
     // If you have nisi, you need to pass it to the person who has that final
     // and who doesn't have nisi.
     const myNisi = nisiMap[data.me];
-    if (!myNisi)
+    if (myNisi === undefined)
       return output.unknown();
     let names = Object.keys(finalNisiMap);
     names = names.filter((x) => finalNisiMap[x] === myNisi && x !== data.me);
@@ -248,7 +248,7 @@ const namedNisiPass = (data, output) => {
   }
   // If you don't have nisi, then you need to go get it from a person who does.
   const myNisi = finalNisiMap[data.me];
-  if (!myNisi)
+  if (myNisi === undefined)
     return output.unknown();
   let names = Object.keys(nisiMap);
   names = names.filter((x) => nisiMap[x] === myNisi);
