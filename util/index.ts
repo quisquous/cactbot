@@ -126,6 +126,7 @@ const translateTimelineFunc = (args: unknown): Promise<void> => {
   return inquirer.prompt([
     {
       type: 'fuzzypath',
+      excludeFilter: (path: string) => !path.endsWith('.txt'),
       name: 'timeline',
       message: 'Input a valid timeline filename: ',
       rootPath: 'ui/raidboss/data',
