@@ -562,7 +562,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Évitez les AoE, tuez Connla',
           ja: 'AoEを避け、コンラを倒す',
           cn: '躲避AOE后击杀康拉',
-          ko: '장판 피하며 콘라 처치',
+          ko: '장판 피하고 콘라 처치',
         },
       },
     },
