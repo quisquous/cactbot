@@ -40,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
       (ret) => {
         const twintaniaBelowGivenHP = ret.combatants.some((c) => {
           const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
-          return currentHPCheck >= (c.CurrentHP / c.MaxHP);
+          return c.CurrentHP / c.MaxHP <= currentHPCheck;
         });
         return twintaniaBelowGivenHP;
       }),
