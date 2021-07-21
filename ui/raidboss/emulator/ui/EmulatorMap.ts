@@ -83,6 +83,8 @@ export class EmulatorMap {
   private mapPlayerTemplate: HTMLElement;
   private mapWaymarkerTemplate: HTMLElement;
 
+  private seeking = false;
+
   constructor(private emulator: RaidEmulator) {
     this.mapContainer = querySelectorSafe(document, '.map');
     this.mapEntryTemplate = getTemplateChild(document, 'template.mapEntry');
@@ -112,6 +114,9 @@ export class EmulatorMap {
           const lineCast = line as LineEvent0x01;
           this.setMap(parseInt(lineCast.zoneId, 16), line.timestamp);
         } else {
+          // If we're seeking, don't update combatants
+          if (this.seeking)
+            return;
           // Put this in `else` to avoid doubling up on combatant updates since setMap updates them
           this.updateCombatants(line.timestamp);
           if (line.decEvent === 28) {
@@ -130,6 +135,22 @@ export class EmulatorMap {
               }
             }
           }
+        }
+      }
+    });
+
+    emulator.on('preSeek', () => {
+      this.seeking = true;
+    });
+    emulator.on('postSeek', (timestamp: number) => {
+      this.seeking = false;
+      // After seek we need to update to most recent significant state to timestamp
+      if (this.currentMap) {
+        for (const combatant of this.combatantMap) {
+          const sigTimestamp = combatant.combatant.significantStates
+            .reverse().filter((ts) => ts <= timestamp)[0];
+          if (sigTimestamp)
+            this.updateCombatant(combatant, sigTimestamp);
         }
       }
     });
