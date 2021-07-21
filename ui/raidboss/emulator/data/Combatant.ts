@@ -43,8 +43,10 @@ export default class Combatant {
   pushState(timestamp: number, state: CombatantState): void {
     this.states[timestamp] = state;
     this.latestTimestamp = timestamp;
-    if (!this.significantStates.includes(timestamp))
+    if (!this.significantStates.includes(timestamp)) {
       this.significantStates.push(timestamp);
+      this.significantStates = this.significantStates.sort();
+    }
   }
 
   nextSignificantState(timestamp: number): CombatantState {
@@ -96,8 +98,10 @@ export default class Combatant {
     const oldStateJSON = JSON.stringify(this.states[lastSignificantStateTimestamp]);
     const newStateJSON = JSON.stringify(this.states[timestamp]);
 
-    if (lastSignificantStateTimestamp !== timestamp && newStateJSON !== oldStateJSON)
+    if (lastSignificantStateTimestamp !== timestamp && newStateJSON !== oldStateJSON) {
       this.significantStates.push(timestamp);
+      this.significantStates = this.significantStates.sort();
+    }
   }
 
   getState(timestamp: number): CombatantState {
