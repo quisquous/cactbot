@@ -3,8 +3,17 @@ import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  beganMonitoringHp?: boolean;
+  thornMap?: { [name: string]: string[] };
+  honey?: boolean;
+  seenLeafstorm?: boolean;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn1,
   timelineFile: 't6.txt',
   triggers: [
@@ -32,17 +41,17 @@ export default {
     },
     {
       id: 'T6 Thorn Whip Collect',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0012' }),
       run: (data, matches) => {
-        data.thornMap = data.thornMap || {};
-        data.thornMap[matches.source] = data.thornMap[matches.source] || [];
-        data.thornMap[matches.source].push(matches.target);
-        data.thornMap[matches.target] = data.thornMap[matches.target] || [];
-        data.thornMap[matches.target].push(matches.source);
+        data.thornMap ??= {};
+        (data.thornMap[matches.source] ??= []).push(matches.target);
+        (data.thornMap[matches.target] ??= []).push(matches.source);
       },
     },
     {
       id: 'T6 Thorn Whip',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
       netRegexDe: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
       netRegexFr: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
@@ -51,21 +60,21 @@ export default {
       netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
-        const partners = data.thornMap[data.me];
-        if (!partners)
-          return output.thornsOnYou();
+        const partners = data.thornMap?.[data.me] ?? [];
+        if (partners.length === 0)
+          return output.thornsOnYou!();
 
         if (partners.length === 1)
-          return output.oneTether({ player: data.ShortName(partners[0]) });
+          return output.oneTether!({ player: data.ShortName(partners[0]) });
 
         if (partners.length === 2) {
-          return output.twoTethers({
+          return output.twoTethers!({
             player1: data.ShortName(partners[0]),
             player2: data.ShortName(partners[1]),
           });
         }
 
-        return output.threeOrMoreTethers({ num: partners.length });
+        return output.threeOrMoreTethers!({ num: partners.length });
       },
       run: (data) => delete data.thornMap,
       outputStrings: {
@@ -102,35 +111,38 @@ export default {
     {
       // Honey-Glazed
       id: 'T6 Honey On',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.honey = true,
     },
     {
       id: 'T6 Honey Off',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
       condition: Conditions.targetIsYou(),
       run: (data) => delete data.honey,
     },
     {
       id: 'T6 Flower',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000D' }),
       alarmText: (data, _matches, output) => {
         if (data.honey)
-          return output.getEaten();
+          return output.getEaten!();
       },
       alertText: (data, matches, output) => {
         if (data.honey)
           return;
 
         if (data.me === matches.target)
-          return output.jumpInNewThorns();
+          return output.jumpInNewThorns!();
       },
       infoText: (data, matches, output) => {
         if (data.honey || data.me === matches.target)
           return;
 
-        return output.avoidDevour();
+        return output.avoidDevour!();
       },
       outputStrings: {
         avoidDevour: {
@@ -158,6 +170,7 @@ export default {
     },
     {
       id: 'T6 Blighted',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
@@ -168,6 +181,7 @@ export default {
     },
     {
       id: 'T6 Phase 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
@@ -180,13 +194,14 @@ export default {
     },
     {
       id: 'T6 Swarm Stack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stack for Acid',
@@ -199,6 +214,7 @@ export default {
     },
     {
       id: 'T6 Swarm',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
       netRegexDe: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
       netRegexFr: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
@@ -208,11 +224,11 @@ export default {
       condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.swarmOnYou();
+          return output.swarmOnYou!();
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.swarmOn({ player: data.ShortName(matches.target) });
+          return output.swarmOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         swarmOn: {
@@ -233,12 +249,13 @@ export default {
     },
     {
       id: 'T6 Rotten Stench',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.shareLaserOnYou();
+          return output.shareLaserOnYou!();
 
-        return output.shareLaserOn({ player: data.ShortName(matches.target) });
+        return output.shareLaserOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         shareLaserOnYou: {
@@ -366,3 +383,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
