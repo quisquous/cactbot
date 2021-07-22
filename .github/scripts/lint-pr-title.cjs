@@ -24,6 +24,7 @@ const validScope = [
   'lint',
   'build',
   'ci',
+  'i18n',
 ];
 
 const getComment = (title, userName) => `${userName ? '@' + userName : ''} Thanks for your contribution!🚀
