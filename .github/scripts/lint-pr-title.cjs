@@ -27,7 +27,14 @@ const validScope = [
   'i18n',
 ];
 
-const getComment = (title, userName) => `${userName ? '@' + userName : ''} Thanks for your contribution!🚀
+const thanksComment = (userName) => {
+  let userStr = '';
+  if (userName)
+    userStr = `@${userName} `;
+  return `${userStr}Thanks for your contribution!🚀`;
+};
+
+const getComment = (title, userName) => `${thanksComment(userName)}
 
 Currently your title is: ${title},
 but it should be in the format of \`scope: description\`.
@@ -71,7 +78,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
           owner,
           repo,
           'comment_id': myComment.id,
-          'body': `${userName ? '@' + userName : ''} Thanks for your contribution!🚀`,
+          'body': thanksComment(userName),
         });
       }
       return true;
