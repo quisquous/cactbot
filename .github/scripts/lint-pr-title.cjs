@@ -8,6 +8,8 @@
 
 const github = require('@actions/github');
 
+const botName = 'cactbotbot';
+
 const validScope = [
   'resources',
   'ui',
@@ -69,7 +71,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
     'issue_number': pullNumber,
   });
 
-  const myComment = comments.find(({ user }) => user?.login === 'cactbotbot');
+  const myComment = comments.find(({ user }) => user?.login === botName);
 
   if (m) {
     if (validScope.includes(m.scope)) {
