@@ -46,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Lady tether on YOU',
+          de: 'Verbindung auf DIR',
         },
       },
     },

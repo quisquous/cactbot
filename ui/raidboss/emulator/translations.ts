@@ -10,39 +10,49 @@ type Translation = { [selector: string]: LocaleText };
 const emulatorButtons: Translation = {
   '.yesButton': {
     en: 'Yes',
+    de: 'Ja',
   },
   '.noButton': {
     en: 'No',
+    de: 'Nein',
   },
   '.closeButton': {
     en: 'Close',
+    de: 'Schließen',
   },
   '.doneButton': {
     en: 'Done<span class="doneBtnTimeout"></span>',
+    de: 'Fertig<span class="doneBtnTimeout"></span>',
   },
   '.loadNetworkLogButton': {
     en: 'Load Network Log',
+    de: 'Lade Network Log',
   },
   '.exportDBButton': {
     en: 'Export DB',
+    de: 'DB exportieren',
   },
   '.importDBButton': {
     en: 'Import DB',
+    de: 'DB importieren',
   },
   '.clearDBButton': {
     en: 'Clear DB',
+    de: 'DB leeren',
   },
 } as const;
 
 const emulatorTitle: Translation = {
   '.title': {
     en: 'Cactbot Raid Emulator',
+    de: 'Cactbot Raid Emulator',
   },
 } as const;
 
 const emulatorImportModal: Translation = {
   '.importProgressModal .modal-title': {
     en: 'Log File Import Progress',
+    de: 'Fortschritt des Logdatei Imports',
   },
   '.importProgressModal .modal-body-contents': {
     en: `<h3>Latest encounter:</h3>
@@ -55,21 +65,34 @@ const emulatorImportModal: Translation = {
     Started By: <span class="startedBy"></span><br />
     End Status: <span class="endStatus"></span><br />
     Line Count: <span class="lineCount"></span><br />`,
+    de: `<h3>Letzter Kampf:</h3>
+    Zone: <span class="zone"></span><br />
+    Kampf: <span class="encounter"></span><br />
+    Start: <span class="start"></span><br />
+    Ende: <span class="end"></span><br />
+    Dauer: <span class="durMins"></span>m<span class="durSecs"></span>s<br />
+    Dauer des Versuchs: <span class="pullMins"></span>m<span class="pullSecs"></span>s<br />
+    Gestartet von: <span class="startedBy"></span><br />
+    Endstatus: <span class="endStatus"></span><br />
+    Zeilenanzahl: <span class="lineCount"></span><br />`,
   },
 } as const;
 
 const emulatorDeleteModal: Translation = {
   '.deleteDBModal .modal-title': {
     en: 'Delete Encounter Database',
+    de: 'Lösche Kampfdatenbank',
   },
   '.deleteDBModal .modal-body': {
     en: '<p>You are about to delete the encounter database. Are you sure?</p>',
+    de: '<p>YDu bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
   },
 } as const;
 
 const emulatorIntroModal: Translation = {
   '.introModal .modal-title': {
     en: 'Introduction',
+    de: 'Einführung',
   },
   '.introModal .modal-body': {
     en: `<p>Welcome to the Raid Emulator.</p>
@@ -101,6 +124,7 @@ const emulatorIntroModal: Translation = {
 const emulatorDisconnectedModal: Translation = {
   '.disconnectedModal .modal-title': {
     en: 'Currently Disconnected',
+    de: 'Momentan nicht vebunden',
   },
   '.disconnectedModal .modal-body': {
     en: `<p>Raid Emulator is currently disconnected from ACT.</p>
@@ -110,6 +134,14 @@ const emulatorDisconnectedModal: Translation = {
       <li>Default alert output: Text and Sound</li>
       <li>Alerts language: <span class="discLangAlerts"></span></li>
       <li>Timeline language: <span class="discLangTimeline"></span></li>
+    </ul>`,
+    de: `<p>Raid Emulator ist momentan nicht mit ACT verbunden.</p>
+    <p>Raid Emulator wird die Standardeinstellungen für Raidboss benutzen. Diese snd:</p>
+    <ul>
+      <li>Anzeigesprache: <span class="discLangDisplay"></span></li>
+      <li>Standard Alarm Ausgabe: Text und Ton</li>
+      <li>Alarmsprache: <span class="discLangAlerts"></span></li>
+      <li>Timeline Sprache: <span class="discLangTimeline"></span></li>
     </ul>`,
   },
 } as const;
@@ -141,36 +173,47 @@ const emulatorTooltips: Translation = {
 const emulatorEncounterInfo: Translation = {
   '.encounterLoad': {
     en: 'Load Encounter',
+    de: 'Lade Kampf',
   },
   '.encounterParse': {
     en: 'Reparse Encounter',
+    de: 'Kampf erneut analysieren',
   },
   '.encounterPrune': {
     en: 'Prune Encounter',
+    de: 'Kampf leeren',
   },
   '.encounterDelete': {
     en: 'Delete Encounter',
+    de: 'Kampf löschen',
   },
   '.encounterZone': {
     en: 'Zone: <span class="label"></span>',
+    de: 'Zone: <span class="label"></span>',
   },
   '.encounterStart': {
     en: 'Start: <span class="label"></span>',
+    de: 'Start: <span class="label"></span>',
   },
   '.encounterDuration': {
     en: 'Duration: <span class="label"></span>',
+    de: 'Dauer: <span class="label"></span>',
   },
   '.encounterOffset': {
     en: 'Pull At: <span class="label"></span>',
+    de: 'Start um: <span class="label"></span>',
   },
   '.encounterName': {
     en: 'Name: <span class="label"></span>',
+    de: 'Name: <span class="label"></span>',
   },
   '.encounterStartStatus': {
     en: 'Start Status: <span class="label"></span>',
+    de: 'Start Status: <span class="label"></span>',
   },
   '.encounterEndStatus': {
     en: 'End Status: <span class="label"></span>',
+    de: 'Endstatus: <span class="label"></span>',
   },
 } as const;
 
@@ -199,33 +242,42 @@ export const emulatorTemplateTranslations: { [selector: string]: Translation } =
 export const emulatorStartStatuses = {
   unknown: {
     en: 'Unknown',
+    de: 'Unbekannt',
   },
   countdown: {
     en: 'Countdown',
+    de: 'Countdown',
   },
   seal: {
     en: 'Seal',
+    de: 'Versiegeln',
   },
   engage: {
     en: 'Engage',
+    de: 'Start',
   },
 };
 
 export const emulatorEndStatuses = {
   unknown: {
     en: 'Unknown',
+    de: 'Unbekannt',
   },
   win: {
     en: 'Win',
+    de: 'Gewonnen',
   },
   wipe: {
     en: 'Wipe',
+    de: 'Wipe',
   },
   cactbotWipe: {
     en: 'Cactbot Wipe',
+    de: 'Cactbot Wipe',
   },
   unseal: {
     en: 'Unseal',
+    de: 'Entsiegeln',
   },
 };
 
