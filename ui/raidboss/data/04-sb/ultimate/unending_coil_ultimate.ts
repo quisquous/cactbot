@@ -1305,7 +1305,7 @@ const triggerSet: TriggerSet<Data> = {
         for (const marker of data.octetMarker) {
           uniqDict[marker] = true;
           if (!partyList.includes(marker)) {
-            console.error('Octet error: could not find ' + marker + ' in ' + JSON.stringify(partyList));
+            console.error(`Octet error: could not find ${marker} in ${JSON.stringify(partyList)}`);
             return;
           }
         }
