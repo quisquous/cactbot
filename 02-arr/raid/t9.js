@@ -1,12 +1,5 @@
 const diveDirections = {
-  unknown: {
-    en: '?',
-    de: '?',
-    fr: '?',
-    ja: '?',
-    cn: '?',
-    ko: '?',
-  },
+  unknown: Outputs.unknown,
   north: Outputs.dirN,
   northeast: Outputs.dirNE,
   east: Outputs.dirE,
@@ -131,12 +124,23 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Phase 2',
-      regex: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'ネール・デウス・ダーナス', hp: '64', capture: false }),
-      regexCn: Regexes.hasHP({ name: '奈尔·神·达纳斯', hp: '64', capture: false }),
-      regexKo: Regexes.hasHP({ name: '넬 데우스 다르누스', hp: '64', capture: false }),
+      type: 'Ability',
+      // Ravensclaw
+      netRegex: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
+      netRegexDe: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
+      netRegexFr: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
+      netRegexJa: NetRegexes.ability({ id: '7D5', source: 'ネール・デウス・ダーナス' }),
+      netRegexCn: NetRegexes.ability({ id: '7D5', source: '奈尔·神·达纳斯' }),
+      netRegexKo: NetRegexes.ability({ id: '7D5', source: '넬 데우스 다르누스' }),
+      condition: (data) => !data.beganMonitoringHp,
+      preRun: (data) => data.beganMonitoringHp = true,
+      promise: (_data, matches) => Util.watchCombatant({
+        ids: [parseInt(matches.sourceId, 16)],
+      }, (ret) => {
+        return ret.combatants.some((c) => {
+          return c.CurrentHP / c.MaxHP <= 0.64;
+        });
+      }),
       sound: 'Long',
     },
     {

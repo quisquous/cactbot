@@ -18,14 +18,14 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아' }),
-      condition: (data) => !data.monitoringHP && data.currentPhase < 3,
+      condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) => Util.watchCombatant({
         ids: [parseInt(matches.sourceId, 16)],
       }, (ret) => {
         const twintaniaBelowGivenHP = ret.combatants.some((c) => {
           const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
-          return currentHPCheck >= (c.CurrentHP / c.MaxHP);
+          return c.CurrentHP / c.MaxHP <= currentHPCheck;
         });
         return twintaniaBelowGivenHP;
       }),

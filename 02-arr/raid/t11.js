@@ -78,12 +78,23 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Phase 2',
-      regex: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'カーリア', hp: '60', capture: false }),
-      regexCn: Regexes.hasHP({ name: '卡利亚', hp: '60', capture: false }),
-      regexKo: Regexes.hasHP({ name: '칼리야', hp: '60', capture: false }),
+      type: 'Ability',
+      // Barofield
+      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
+      netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
+      netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
+      netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B6F' }),
+      netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B6F' }),
+      netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B6F' }),
+      condition: (data) => !data.beganMonitoringHp,
+      preRun: (data) => data.beganMonitoringHp = true,
+      promise: (_data, matches) => Util.watchCombatant({
+        ids: [parseInt(matches.sourceId, 16)],
+      }, (ret) => {
+        return ret.combatants.some((c) => {
+          return c.CurrentHP / c.MaxHP <= 0.60;
+        });
+      }),
       sound: 'Long',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

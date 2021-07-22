@@ -3,6 +3,27 @@ Options.Triggers.push({
   timelineFile: 't6.txt',
   triggers: [
     {
+      id: 'T6 Phase 2',
+      type: 'Ability',
+      // Bloody Caress.
+      netRegex: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
+      netRegexDe: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
+      netRegexFr: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
+      netRegexJa: NetRegexes.ability({ id: '797', source: 'ラフレシア' }),
+      netRegexCn: NetRegexes.ability({ id: '797', source: '大王花' }),
+      netRegexKo: NetRegexes.ability({ id: '797', source: '라플레시아' }),
+      condition: (data) => !data.beganMonitoringHp,
+      preRun: (data) => data.beganMonitoringHp = true,
+      promise: (_data, matches) => Util.watchCombatant({
+        ids: [parseInt(matches.sourceId, 16)],
+      }, (ret) => {
+        return ret.combatants.some((c) => {
+          return c.CurrentHP / c.MaxHP <= 0.7;
+        });
+      }),
+      sound: 'Long',
+    },
+    {
       id: 'T6 Thorn Whip Collect',
       netRegex: NetRegexes.tether({ id: '0012' }),
       run: (data, matches) => {
@@ -122,16 +143,6 @@ Options.Triggers.push({
           cn: '捕食点名',
         },
       },
-    },
-    {
-      id: 'T6 Phase 2',
-      regex: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'ラフレシア', hp: '70', capture: false }),
-      regexCn: Regexes.hasHP({ name: '大王花', hp: '70', capture: false }),
-      regexKo: Regexes.hasHP({ name: '라플레시아', hp: '70', capture: false }),
-      sound: 'Long',
     },
     {
       id: 'T6 Blighted',

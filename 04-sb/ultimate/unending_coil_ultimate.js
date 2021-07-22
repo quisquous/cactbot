@@ -2,6 +2,13 @@
 Options.Triggers.push({
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
+  initData: () => {
+    return {
+      monitoringHP: false,
+      hpThresholds: [0, 0, 0.75, 0.45],
+      currentPhase: 2,
+    };
+  },
   timelineTriggers: [
     {
       id: 'UCU Bahamut\'s Claw',
@@ -242,44 +249,39 @@ Options.Triggers.push({
       run: (data) => delete data.hatch,
     },
     {
-      id: 'UCU Twintania P2',
-      regex: Regexes.hasHP({ name: 'Twintania', hp: '75', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '75', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '75', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '75', capture: false }),
-      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '75', capture: false }),
-      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '75', capture: false }),
+      id: 'UCU Twintania Phase Change Watcher',
+      type: 'Ability',
+      // On Twister or Generate.
+      netRegex: NetRegexes.startsUsing({ id: '26A[AE]', source: 'Twintania' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26A[AE]', source: 'Twintania' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26A[AE]', source: 'Gémellia' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26A[AE]', source: 'ツインタニア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26A[AE]', source: '双塔尼亚' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26A[AE]', source: '트윈타니아' }),
+      condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
+      preRun: (data) => data.monitoringHP = true,
+      promise: (data, matches) => Util.watchCombatant({
+        ids: [parseInt(matches.sourceId, 16)],
+      }, (ret) => {
+        return ret.combatants.some((c) => {
+          const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
+          return c.CurrentHP / c.MaxHP <= currentHPCheck;
+        });
+      }),
       sound: 'Long',
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Phase 2 Push',
-          de: 'Phase 2 Stoß',
-          fr: 'Phase 2 poussée',
-          ja: 'フェーズ2',
-          cn: 'P2准备',
-          ko: '트윈 페이즈2',
-        },
+      infoText: (data, _matches, output) => output.text({ num: data.currentPhase }),
+      run: (data) => {
+        data.currentPhase++;
+        data.monitoringHP = false;
       },
-    },
-    {
-      id: 'UCU Twintania P3',
-      regex: Regexes.hasHP({ name: 'Twintania', hp: '45', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '45', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '45', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '45', capture: false }),
-      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '45', capture: false }),
-      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '45', capture: false }),
-      sound: 'Long',
-      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Phase 3 Push',
-          de: 'Phase 3 Stoß',
-          fr: 'Phase 3 poussée',
-          ja: 'フェーズ3',
-          cn: 'P3准备',
-          ko: '트윈 페이즈3',
+          en: 'Phase ${num} Push',
+          de: 'Phase ${num} Stoß',
+          fr: 'Phase ${num} poussée',
+          ja: 'フェーズ${num}',
+          cn: 'P${num}准备',
+          ko: '트윈 페이즈${num}',
         },
       },
     },
