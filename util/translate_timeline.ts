@@ -13,7 +13,7 @@ const rootDir = 'ui/raidboss/data';
 
 const findTriggersFile = (shortName: string): string | undefined => {
   // strip extensions if provided.
-  shortName = shortName.replace(/\.(?:[jt]s|txt)$/, '');
+  shortName = shortName.replace(/\.(?:[jt]s|txt)$/, '').split(path.sep).join(path.posix.sep);
 
   let found = undefined;
   walkDirSync(rootDir, (filename) => {
