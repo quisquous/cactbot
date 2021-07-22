@@ -811,7 +811,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Ninja': 'Phantom-Ninja',
         'Warrior Of Light': 'Krieger des Lichts',
@@ -856,6 +855,7 @@ Options.Triggers.push({
         'Shining Wave': 'Leuchtwelle',
         'Solemn Confiteor': 'Feierlicher Confiteor',
         'Specter Of Light': 'Heldenruf',
+        'Specter -> BLM/WHM': 'Heldenruf -> SMA/WMA',
         '(?<!Absolute )Stone(?! Earth)': 'Steinga',
         'Suiton\\: San': 'Suiton: San',
         'Summon(?! Wyrm)': 'Beschwörung',

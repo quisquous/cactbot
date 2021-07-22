@@ -37,6 +37,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Lady tether on YOU',
+          de: 'Verbindung auf DIR',
         },
       },
     },
