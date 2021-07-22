@@ -85,7 +85,7 @@ const emulatorDeleteModal: Translation = {
   },
   '.deleteDBModal .modal-body': {
     en: '<p>You are about to delete the encounter database. Are you sure?</p>',
-    de: '<p>YDu bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
+    de: '<p>Du bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
   },
 } as const;
 
@@ -116,6 +116,29 @@ const emulatorIntroModal: Translation = {
         <li>Seek to any point in the encounter by clicking the bar at the top</li>
         <li>Hover over trigger indicators in the top bar to see their names</li>
         <li>See detailed information about triggers fired by clicking their button</li>
+      </ul>
+    </p>`,
+    de: `<p>Willkommen zum Raid Emulator.</p>
+    <p>Dieses Tool gibt Kämpfe wieder und zeigt, welche Trigger wann ausgeführt wurden, und ermöglicht es, die Kämpfe aus der Perspektive eines beliebigen Spielers zu betrachten.</p>
+    <p>Dieses Tool akzeptiert optional einen <strong>OVERLAY_WS</strong>-Parameter, um sich mit einem ACT-Websocket zu verbinden, in dem sowohl das OverlayPlugin von ngld als auch das Cactbot-Plugin geladen sind.</p>
+    <p>Wenn eine Verbindung zu einem Websocket besteht, lädt dieses Tool die Konfigurationsdateien für cactbot/raidboss und benutzt diese.</p>
+    <p>Es müssen keine Overlays erstellt werden.</p>
+    <p>Aktueller WebSocket-Status: <span class="d-none websocketConnected text-success">Verbunden</span><span class="websocketDisconnected text-warning">Trennt die Verbindung</span>.</p>
+    <p>Um loszulegen, muss ein Kampf über eine der folgenden Optionen importiert werden:</p>
+    <p>
+      <ul>
+        <li>Ziehe eine Network-Logdatei aus <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code> auf die Seite</li>
+        <li>Klicke auf die Schaltfläche <code>Lade Network Log</code> in dem unteren Bereich und wähle ein Network Log aus <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code></li>
+      </ul>
+    </p>
+    <p>Dann wähle über den unteren Bereich einen Kampf aus.</p>
+    <p>Sobald ein Kampf geladen wurde, können folgende Aktionen ausgeführt werden:</p>
+    <p>
+      <ul>
+        <li>Wechseln der aktuelle Perspektive, indem ein Gruppenmitglied auf der rechten Seite ausgewählt wird</li>
+        <li>Mit einem Klick auf die Leiste am oberen Rand, um zu einem beliebigen Punkt in dem Kampf zu springen</li>
+        <li>Fahre mit dem Mauszeiger über Trigger-Indikatoren in der oberen Leiste, um deren Namen zu sehen</li>
+        <li>Detaillierte Informationen über aktivierten Trigger anzeigen lassen, indem auf die entsprechende Schaltfläche geklickt wird</li>
       </ul>
     </p>`,
   },
@@ -149,24 +172,30 @@ const emulatorDisconnectedModal: Translation = {
 const emulatorLabels: Translation = {
   ' label[for=hideSkipped]': {
     en: 'Hide Skipped',
+    de: 'Verstecke Übersprungene Einträge',
   },
   ' label[for=hideCollector]': {
     en: 'Hide Collectors',
+    de: 'Verstecke "Sammel" Einträge',
   },
 } as const;
 
 const emulatorTooltips: Translation = {
   '.triggerHideSkipped': {
     en: 'Hide triggers that were not executed',
+    de: 'Verstecke Trigger, die nicht ausgeführt wurden',
   },
   '.triggerHideCollector': {
     en: 'Hide triggers that had no output',
+    de: 'Verstecke Trigger, die keine Ausgabe hatten',
   },
   '.connectedIndicator': {
     en: 'Connected to websocket',
+    de: 'Mit Websocket verbunden',
   },
   '.disconnectedIndicator': {
     en: 'Disconnected from websocket',
+    de: 'Keine Verbindung zum Websocket',
   },
 } as const;
 
