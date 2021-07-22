@@ -29,6 +29,12 @@ const validScope = [
   'i18n',
 ];
 
+const validNonScope = [
+  '[WIP]',
+  '[wip]',
+  '!', // means `BREAKING CHANGE!`
+];
+
 const thanksComment = (userName) => {
   let userStr = '';
   if (userName)
@@ -39,10 +45,13 @@ const thanksComment = (userName) => {
 const getComment = (title, userName) => `${thanksComment(userName)}
 
 Currently your title is: ${title},
-but it should be in the format of \`scope: description\`.
+but it should be in the format of \`(nonscope) scope: description\`.
 
 \`scope\` can be any of the following:
 ${validScope.map((s) => `  - ${s}`).join('\n')}
+
+\`nonscope\` can be any of the following (although this is not always required):
+${validNonScope.map((s) => `  - ${s}`).join('\n')}
 
 ------
 This comment is created and updated by a bot.
@@ -63,7 +72,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
   });
   const { title, user } = pullRequest;
   const userName = user?.login;
-  const m = /^(?:\!|\[WIP\])?(?<scope>\w+):\s?.+$/.test(title);
+  const m = /^((?<nonscope>[\w!\[\]]*)\s*)?\b(?<scope>\w+):\s?.+$/.test(title);
 
   const { data: comments } = await octokit.rest.issues.listComments({
     owner,
@@ -74,7 +83,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
   const myComment = comments.find(({ user }) => user?.login === botName);
 
   if (m) {
-    if (validScope.includes(m.scope)) {
+    if (validScope.includes(m.scope) && validNonScope.includes(m.nonscope)) {
       if (myComment) {
         await octokit.rest.issues.updateComment({
           owner,
