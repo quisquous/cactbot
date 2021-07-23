@@ -87,10 +87,12 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
   condition?: TriggerField<Data, NetMatches[Type], boolean | undefined>;
   preRun?: TriggerField<Data, NetMatches[Type], void>;
   delaySeconds?: TriggerField<Data, NetMatches[Type], number>;
-  durationSeconds?: TriggerField<Data, NetMatches[Type], number>;
+  // Leave undefined to preserve defaults and default overrides
+  durationSeconds?: TriggerField<Data, NetMatches[Type], number | undefined>;
   suppressSeconds?: TriggerField<Data, NetMatches[Type], number>;
   promise?: TriggerField<Data, NetMatches[Type], Promise<void>>;
-  sound?: TriggerField<Data, NetMatches[Type], string>;
+  // Leave undefined to preserve defaults and default overrides
+  sound?: TriggerField<Data, NetMatches[Type], string | undefined>;
   soundVolume?: TriggerField<Data, NetMatches[Type], number>;
   response?: ResponseField<Data, NetMatches[Type]>;
   alarmText?: TriggerField<Data, NetMatches[Type], TriggerOutput<Data, NetMatches[Type]>>;
