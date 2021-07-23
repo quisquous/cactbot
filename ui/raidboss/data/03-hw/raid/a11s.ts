@@ -258,7 +258,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: Conditions.targetIsYou(),
-      durationSeconds: (data) => data.limitCutDelay,
+      durationSeconds: (data) => data.limitCutDelay ?? 0,
       infoText: (data, _matches, output) => output.text!({ num: data.limitCutNumber }),
       outputStrings: {
         text: {
