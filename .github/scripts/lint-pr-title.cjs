@@ -11,22 +11,28 @@ const github = require('@actions/github');
 const botName = 'cactbotbot';
 
 const validScope = [
-  'resources',
-  'ui',
+  // UI Module Scopes
+  'config',
+  'dps',
+  'eureka',
+  'fisher',
+  'jobs',
+  'oopsy',
   'pullcounter',
+  'radar',
   'raidboss',
   'raidemulater',
-  'oopsy',
-  'radar',
-  'eureka',
-  'jobs',
-  'test',
-  'util',
-  'config',
-  'lint',
-  'build',
-  'ci',
-  'i18n',
+
+  // Other Scopes
+  'build', // changes to webpack or TypeScript/babel toolchain
+  'ci', // changes in .github/
+  'docs', // documentation anywhere
+  'i18n', // translations anywhere
+  'lint', // eslint changes
+  'plugin', // code in plugin/
+  'resources', // code in resources/
+  'test', // code in test/ or ui/test/
+  'util', // code in util/
 ];
 
 const validNonScope = [
