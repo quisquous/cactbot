@@ -6,7 +6,7 @@
 02-arr/raid/t1.ts
 02-arr/raid/t10.ts
 02-arr/raid/t10.txt
-02-arr/raid/t11.js
+02-arr/raid/t11.ts
 02-arr/raid/t11.txt
 02-arr/raid/t12.ts
 02-arr/raid/t12.txt
@@ -17,13 +17,13 @@
 02-arr/raid/t4.txt
 02-arr/raid/t5.ts
 02-arr/raid/t5.txt
-02-arr/raid/t6.js
+02-arr/raid/t6.ts
 02-arr/raid/t6.txt
-02-arr/raid/t7.js
+02-arr/raid/t7.ts
 02-arr/raid/t7.txt
 02-arr/raid/t8.ts
 02-arr/raid/t8.txt
-02-arr/raid/t9.js
+02-arr/raid/t9.ts
 02-arr/raid/t9.txt
 02-arr/trial/cape_westwind.ts
 02-arr/trial/cape_westwind.txt
@@ -202,7 +202,7 @@
 04-sb/trial/yojimbo.txt
 04-sb/ultimate/ultima_weapon_ultimate.ts
 04-sb/ultimate/ultima_weapon_ultimate.txt
-04-sb/ultimate/unending_coil_ultimate.js
+04-sb/ultimate/unending_coil_ultimate.ts
 04-sb/ultimate/unending_coil_ultimate.txt
 05-shb/alliance/the_copied_factory.ts
 05-shb/alliance/the_copied_factory.txt
