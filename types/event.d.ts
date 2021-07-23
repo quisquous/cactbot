@@ -41,17 +41,10 @@ export interface JobDetail {
   };
   'AST': {
     heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
-    arcanums: string;
-  };
-  'PGL': {
-    lightningMilliseconds: number;
-    lightningStacks: number;
+    arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
   'MNK': {
-    lightningStacks: number;
-    lightningMilliseconds: number;
     chakraStacks: number;
-    lightningTimerFrozen: boolean;
   };
   'DRG': {
     eyesAmount: number;
@@ -88,7 +81,7 @@ export interface JobDetail {
     feathers: number;
     esprit: number;
     currentStep: number;
-    steps: string;
+    steps: ('Emboite' | 'Entrechat' | 'Jete' | 'Pirouette')[];
   };
   'THM': {
     umbralMilliseconds: number;

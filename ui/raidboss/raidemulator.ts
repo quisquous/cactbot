@@ -1,6 +1,6 @@
 import './raidboss_config';
 
-import { isLang, langMap } from '../../resources/languages';
+import { isLang, Lang, langMap } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
@@ -13,11 +13,12 @@ import Encounter from './emulator/data/Encounter';
 import LineEvent from './emulator/data/network_log_converter/LineEvent';
 import Persistor from './emulator/data/Persistor';
 import RaidEmulator from './emulator/data/RaidEmulator';
-import EmulatorCommon, { querySelectorSafe } from './emulator/EmulatorCommon';
+import EmulatorCommon, { getTemplateChild, querySelectorAllSafe, querySelectorSafe } from './emulator/EmulatorCommon';
 import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook';
 import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
 import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
+import { translate, emulatorTranslations, emulatorTooltipTranslations, lookupEndStatus, lookupStartStatuses, emulatorTemplateTranslations } from './emulator/translations';
 import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
 import EncounterTab from './emulator/ui/EncounterTab';
 import ProgressBar from './emulator/ui/ProgressBar';
@@ -66,6 +67,33 @@ const hideModal = (selector = '.modal.show'): HTMLElement => {
   modal.style.display = '';
   return modal;
 };
+
+const applyTranslation = (lang: Lang) => {
+  for (const [key, value] of Object.entries(emulatorTranslations)) {
+    querySelectorAllSafe(document, '.translate' + key).forEach(
+        (elem) => {
+          elem.innerHTML = translate(lang, value);
+        });
+  }
+  for (const [key, value] of Object.entries(emulatorTooltipTranslations)) {
+    querySelectorAllSafe(document, '.translate' + key).forEach(
+        (elem) => {
+          elem.title = translate(lang, value);
+        });
+  }
+  for (const [sel, trans] of Object.entries(emulatorTemplateTranslations)) {
+    const template = getTemplateChild(document, sel);
+    for (const [key, value] of Object.entries(trans)) {
+      querySelectorAllSafe(template, '.translate' + key).forEach(
+          (elem) => {
+            elem.innerHTML = translate(lang, value);
+          });
+    }
+  }
+};
+
+// Default language to en until we know what language to use
+applyTranslation('en');
 
 const raidEmulatorOnLoad = async () => {
   const persistor = new Persistor();
@@ -118,6 +146,10 @@ const raidEmulatorOnLoad = async () => {
     options.SpokenAlertsEnabled = false;
     options.GroupSpokenAlertsEnabled = false;
   }
+
+  // If DisplayLanguage isn't English, switch to correct lang for emulator display
+  if (options.DisplayLanguage !== 'en')
+    applyTranslation(options.DisplayLanguage);
 
   const emulator = new RaidEmulator(options);
   const progressBar = new ProgressBar(emulator);
@@ -256,8 +288,8 @@ const raidEmulatorOnLoad = async () => {
       bar.style.width = '0px';
       const label = querySelectorSafe(importModal, '.label');
       label.innerText = '';
-      const encLabel = querySelectorSafe(importModal, '.encounterLabel');
-      encLabel.innerText = 'N/A';
+      const encLabel = querySelectorSafe(importModal, '.modal-body-contents');
+      encLabel.classList.add('d-none');
 
       const doneButton = querySelectorSafe(importModal, '.btn');
       if (!(doneButton instanceof HTMLButtonElement))
@@ -279,21 +311,40 @@ const raidEmulatorOnLoad = async () => {
           break;
         case 'encounter':
           {
+            encLabel.classList.remove('d-none');
             const enc = msg.data.encounter;
 
-            encLabel.innerText = `
-            Zone: ${enc.encounterZoneName}
-            Encounter: ${msg.data.name}
-            Start: ${new Date(enc.startTimestamp).toString()}
-            End: ${new Date(enc.endTimestamp).toString()}
-            Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
-            Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
-            Started By: ${enc.startStatus}
-            End Status: ${enc.endStatus}
-            Line Count: ${enc.logLines.length}
-            `;
             // Objects sent via message are raw objects, not typed. Apply prototype chain
             Object.setPrototypeOf(enc.combatantTracker, CombatantTracker.prototype);
+
+            querySelectorSafe(encLabel, '.zone').innerText = enc.encounterZoneName;
+            querySelectorSafe(encLabel, '.encounter').innerText = msg.data.name;
+            querySelectorSafe(encLabel, '.start').innerText =
+              new Date(enc.startTimestamp).toString();
+            querySelectorSafe(encLabel, '.end').innerText =
+              new Date(enc.endTimestamp).toString();
+
+            const duration =
+              EmulatorCommon.timeToString(enc.endTimestamp - enc.startTimestamp, false)
+                .split(':');
+            const durationMins = duration[0] ?? '0';
+            const durationSecs = duration[1] ?? '00';
+            const pullDuration =
+              EmulatorCommon.timeToString(enc.endTimestamp - enc.initialTimestamp, false)
+                .split(':');
+            const pullDurationMins = pullDuration[0] ?? '0';
+            const pullDurationSecs = pullDuration[1] ?? '00';
+
+            querySelectorSafe(encLabel, '.durMins').innerText = durationMins;
+            querySelectorSafe(encLabel, '.durSecs').innerText = durationSecs;
+            querySelectorSafe(encLabel, '.pullMins').innerText = pullDurationMins;
+            querySelectorSafe(encLabel, '.pullSecs').innerText = pullDurationSecs;
+
+            querySelectorSafe(encLabel, '.startedBy').innerText =
+              lookupStartStatuses(options.DisplayLanguage, enc.startStatus);
+            querySelectorSafe(encLabel, '.endStatus').innerText =
+              lookupEndStatus(options.DisplayLanguage, enc.endStatus);
+            querySelectorSafe(encLabel, '.lineCount').innerText = enc.logLines.length.toString();
             if (promise) {
               void promise.then(() => {
                 promise = persistor.persistEncounter(enc);

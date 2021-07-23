@@ -2,7 +2,6 @@ import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-const lightningFgColors = [];
 let resetFunc = null;
 
 export function setup(bars) {
@@ -15,17 +14,6 @@ export function setup(bars) {
     classList: ['mnk-color-chakra'],
   });
 
-  const getLightningStacksViaLevel = (level) => {
-    if (level < 20)
-      return 1;
-    else if (level < 40)
-      return 2;
-    else if (level < 76)
-      return 3;
-    return 4;
-  };
-
-
   bars.onJobDetailUpdate((jobDetail) => {
     const chakra = jobDetail.chakraStacks;
     if (textBox.innerText !== chakra) {
@@ -36,10 +24,6 @@ export function setup(bars) {
       else
         p.classList.remove('dim');
     }
-
-    // After the 5.4 changes, we just assign bars.speedBuffs.lightningStacks
-    // as corresponding stacks via current level
-    bars.speedBuffs.lightningStacks = getLightningStacksViaLevel(bars.level);
   });
 
   const dragonKickBox = bars.addProcBox({
@@ -64,7 +48,7 @@ export function setup(bars) {
 
   bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
     // -0.5 for logline delay
-    twinSnakesBox.duration = (parseFloat(matches.duration) - 0.5).toString();
+    twinSnakesBox.duration = parseFloat(matches.duration) - 0.5;
   });
   bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
 
@@ -83,7 +67,7 @@ export function setup(bars) {
   bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
     if (!perfectBalanceActive) {
       formTimer.duration = 0;
-      formTimer.duration = parseFloat(matches.duration).toString();
+      formTimer.duration = parseFloat(matches.duration);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
       perfectBalanceActive = true;
     }

@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACTBaseInfo" xml:space="preserve">
+    <value>ACT: {0} {1}</value>
+  </data>
+  <data name="BaitSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>找到{0}个鱼饵内存签名</value>
+  </data>
+  <data name="CactbotBaseInfo" xml:space="preserve">
+    <value>cactbot: {0} {1} (目录: {2})</value>
+  </data>
+  <data name="CactbotUserDirectory" xml:space="preserve">
+    <value>cactbot用户文件夹目录: {0}</value>
+  </data>
+  <data name="CharmapSignatureConflictingMatchErrorMessage" xml:space="preserve">
+    <value>找到角色映射内存签名，但与匹配冲突</value>
+  </data>
+  <data name="CharmapSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>找到{0}个角色映射内存签名</value>
+  </data>
+  <data name="CheckDirectoryErrorMessage" xml:space="preserve">
+    <value>检查用户文件夹时出错: {0}</value>
+  </data>
+  <data name="CheckingDllRelDirErrorMessage" xml:space="preserve">
+    <value>检查dll文件的相对路径时出错: {0}: {1}</value>
+  </data>
+  <data name="CheckingHtmlRelDirErrorMessage" xml:space="preserve">
+    <value>检查html文件的相对路径时出错: {0}: {1}</value>
+  </data>
+  <data name="DeterminingLanguageErrorMessage" xml:space="preserve">
+    <value>检查语言设置时出错: {0}</value>
+  </data>
+  <data name="FFXIVPluginBaseInfo" xml:space="preserve">
+    <value>FFXIV解析插件: {0} {1}</value>
+  </data>
+  <data name="FoundDX9FFXIVErrorMessage" xml:space="preserve">
+    <value>发现DirectX9的FFXIV进程，请开启DirectX11。</value>
+  </data>
+  <data name="IgnoreUpdateDueToDotGitDirectoryMessage" xml:space="preserve">
+    <value>由于存在.git目录，已忽略更新。</value>
+  </data>
+  <data name="InCombatOffsetSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>找到{0}个战斗标志内存偏移</value>
+  </data>
+  <data name="InCombatSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>找到{0}个战斗标志内存签名</value>
+  </data>
+  <data name="InvalidSignaturePatternErrorMessage" xml:space="preserve">
+    <value>非法的内存签名序列: {0}</value>
+  </data>
+  <data name="JobSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>找到{0}个职业量谱内存签名</value>
+  </data>
+  <data name="LoadLastUpdateCheckSettingsFailed" xml:space="preserve">
+    <value>加载LastUpdateCheck设置失败: {0}</value>
+  </data>
+  <data name="LoadOverlayDataSettingsFailed" xml:space="preserve">
+    <value>加载OverlayData设置失败: {0}</value>
+  </data>
+  <data name="MultiplePluginsLoadedErrorMessage" xml:space="preserve">
+    <value>检测到多个FFXIV_ACT_Plugin.dll插件被加载</value>
+  </data>
+  <data name="NoFFXIVACTPluginFoundErrorMessage" xml:space="preserve">
+    <value>找不到FFXIV_ACT_Plugin.dll插件，无法自动获取语言设置。</value>
+  </data>
+  <data name="OverlayPluginBaseInfo" xml:space="preserve">
+    <value>OverlayPlugin: {0} {1}</value>
+  </data>
+  <data name="ParsingPluginLanguage" xml:space="preserve">
+    <value>解析插件语言: {0}</value>
+  </data>
+  <data name="PresetEureka" xml:space="preserve">
+    <value>优雷卡</value>
+  </data>
+  <data name="PresetFisher" xml:space="preserve">
+    <value>捕鱼</value>
+  </data>
+  <data name="PresetJobs" xml:space="preserve">
+    <value>职业量谱</value>
+  </data>
+  <data name="PresetOopsyRaidsy" xml:space="preserve">
+    <value>Oopsy</value>
+  </data>
+  <data name="PresetPullCounter" xml:space="preserve">
+    <value>开怪时钟</value>
+  </data>
+  <data name="PresetRadar" xml:space="preserve">
+    <value>雷达</value>
+  </data>
+  <data name="PresetRaidbossAlertOnly" xml:space="preserve">
+    <value>Raidboss 触发器</value>
+  </data>
+  <data name="PresetRaidbossCombined" xml:space="preserve">
+    <value>Raidboss (时间轴+触发器)</value>
+  </data>
+  <data name="PresetRaidbossTimelineOnly" xml:space="preserve">
+    <value>Raidboss 时间轴</value>
+  </data>
+  <data name="PresetRdmty" xml:space="preserve">
+    <value>Rdmty DPS悬浮窗</value>
+  </data>
+  <data name="PresetTest" xml:space="preserve">
+    <value>测试</value>
+  </data>
+  <data name="PresetXephero" xml:space="preserve">
+    <value>Xephero DPS悬浮窗</value>
+  </data>
+  <data name="PresetZeffUI" xml:space="preserve">
+    <value>ZeffUI</value>
+  </data>
+  <data name="RequireDotNetVersion" xml:space="preserve">
+    <value>要求.NET 4.6以上，当前使用 {0}</value>
+  </data>
+  <data name="SendFastRateEventsException" xml:space="preserve">
+    <value>SendFastRateEvents发生错误: {0}</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>源码: {0}</value>
+  </data>
+  <data name="Stack" xml:space="preserve">
+    <value>栈: {0}</value>
+  </data>
+  <data name="SystemLocale" xml:space="preserve">
+    <value>系统区域: {0}</value>
+  </data>
+  <data name="UnableUpdateDueToUnknownDirectoryErrorMessage" xml:space="preserve">
+    <value>cactbot文件夹非法，无法自动更新</value>
+  </data>
+  <data name="UserErrorFileException" xml:space="preserve">
+    <value>用户文件加载错误: {0}</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本: {0}</value>
+  </data>
+</root>

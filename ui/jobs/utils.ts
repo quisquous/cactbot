@@ -77,6 +77,10 @@ export class RegexesHolder {
 export const doesJobNeedMPBar = (job: Job): boolean =>
   Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 
+/** compute greased lightning stacks by player's level */
+const getLightningStacksByLevel = (level: number): number =>
+  level < 20 ? 1 : level < 40 ? 2 : level < 76 ? 3 : 4;
+
 // Source: http://theoryjerks.akhmorning.com/guide/speed/
 export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): number => {
   // If stats haven't been updated, use a reasonable default value.
@@ -102,7 +106,7 @@ export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): n
   if (bars.job === 'NIN') {
     type2Buffs += bars.speedBuffs.huton ? 15 : 0;
   } else if (bars.job === 'MNK') {
-    type2Buffs += 5 * bars.speedBuffs.lightningStacks;
+    type2Buffs += 5 * getLightningStacksByLevel(bars.level);
   } else if (bars.job === 'BRD') {
     type2Buffs += 4 * bars.speedBuffs.paeonStacks;
     switch (bars.speedBuffs.museStacks) {
@@ -179,7 +183,7 @@ export const makeAuraTimerIcon = (
     bar.width = iconWidth.toString();
     bar.height = barHeight.toString();
     bar.fg = barColor;
-    bar.duration = seconds.toString();
+    bar.duration = seconds;
     barDiv.appendChild(bar);
   }
 
@@ -207,7 +211,7 @@ export const makeAuraTimerIcon = (
     icon.text = iconText;
   icon.bordercolor = borderColor;
   icon.icon = auraIcon;
-  icon.duration = seconds.toString();
+  icon.duration = seconds;
 
   return div;
 };

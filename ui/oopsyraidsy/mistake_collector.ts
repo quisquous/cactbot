@@ -1,5 +1,6 @@
 import { EventResponses } from '../../types/event';
 import { NetMatches } from '../../types/net_matches';
+import { OopsyMistake } from '../../types/oopsy';
 import { LocaleText } from '../../types/trigger';
 
 import { ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled, kFlagInstantDeath } from './oopsy_common';
@@ -36,16 +37,6 @@ const kPartyWipeText = {
 // Internal trigger id for early pull
 const kEarlyPullId = 'General Early Pull';
 
-export type OopsyMistake = {
-  type: 'pull' | 'warn' | 'fail' | 'potion' | 'death' | 'wipe';
-  name?: string;
-  // TODO: docs say blame can be an array but the code does not support that.
-  blame?: string;
-  text?: string;
-  // TODO: remove fullText.
-  fullText?: string;
-};
-
 // Collector:
 // * processes mistakes, adds lines to the live list
 // * handles timing issues with starting/stopping/early pulls
@@ -56,7 +47,7 @@ export class MistakeCollector {
   private startTime?: number;
   private stopTime?: number;
   private engageTime?: number;
-  private firstPuller?: string;
+  public firstPuller?: string;
 
   constructor(private options: OopsyOptions, private listView: OopsyListView) {
     this.Reset();
@@ -118,10 +109,7 @@ export class MistakeCollector {
   OnMistakeObj(m?: OopsyMistake): void {
     if (!m)
       return;
-    if (m.fullText)
-      this.OnFullMistakeText(m.type, m.blame, this.Translate(m.fullText));
-    else
-      this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
+    this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
   }
 
   OnMistakeText(type: string, blame?: string, text?: string, time?: number): void {
@@ -129,12 +117,6 @@ export class MistakeCollector {
       return;
     const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
     this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
-  }
-
-  OnFullMistakeText(type: string, blame?: string, text?: string, time?: number): void {
-    if (!text)
-      return;
-    this.listView.AddLine(type, text, this.GetFormattedTime(time));
   }
 
   AddEngage(): void {
@@ -175,7 +157,7 @@ export class MistakeCollector {
     }
   }
 
-  AddDeath(name: string, matches: NetMatches['Ability']): void {
+  AddDeath(name: string, matches: Partial<NetMatches['Ability']>): void {
     let text;
     if (matches) {
       // Note: ACT just evaluates independently what the hp of everybody
@@ -190,10 +172,10 @@ export class MistakeCollector {
       let hp = '';
       if (matches.flags === kFlagInstantDeath) {
         // TODO: show something for infinite damage?
-      } else if ('targetCurrentHp' in matches) {
+      } else if (matches.targetCurrentHp && matches.damage) {
         hp = ` (${UnscrambleDamage(matches.damage)}/${matches.targetCurrentHp})`;
       }
-      text = `${matches.ability}${hp}`;
+      text = `${matches?.ability ?? '???'}${hp}`;
     }
     this.OnMistakeText('death', name, text);
 
@@ -202,12 +184,12 @@ export class MistakeCollector {
     // defeated.  Maybe the unparsed log entries have this??
   }
 
-  OnPartyWipeEvent(_e: EventResponses['onPartyWipe']): void {
+  OnPartyWipeEvent(): void {
     // TODO: record the time that StopCombat occurs and throw the party
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
-    this.OnFullMistakeText('wipe', undefined, this.Translate(kPartyWipeText));
+    this.OnMistakeText('wipe', undefined, this.Translate(kPartyWipeText));
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();

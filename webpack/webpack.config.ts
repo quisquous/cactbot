@@ -2,9 +2,10 @@ import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {
@@ -79,11 +80,15 @@ export default (
       rules: [
         {
           // this will allow importing without extension in js files.
-          test: /\.m?js$/,
+          // Use babel to transform TypeScript files, but babel has no
+          // type checking, so we need ForkTsCheckerWebpackPlugin.
+          test: /\.(m?j|t)s$/,
           exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
             options: {
+              cacheDirectory: true,
+              cacheCompression: false,
               presets: [
                 [
                   '@babel/preset-env',
@@ -91,16 +96,15 @@ export default (
                     targets: { chrome: '75' },
                   },
                 ],
+                [
+                  '@babel/preset-typescript',
+                ],
               ],
             },
           },
           resolve: {
             fullySpecified: false,
           },
-        },
-        {
-          test: /\.ts$/,
-          loader: 'ts-loader',
         },
         {
           test: /\.css$/,
@@ -130,7 +134,7 @@ export default (
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
-              loader: './webpack/loaders/manifest-loader.cjs',
+              loader: './webpack/loaders/manifest-loader.ts',
             },
           ],
         },
@@ -141,15 +145,15 @@ export default (
               loader: 'raw-loader',
             },
             {
-              loader: './webpack/loaders/timeline-loader.cjs',
+              loader: './webpack/loaders/timeline-loader.ts',
             },
           ],
         },
       ],
     },
     plugins: [
-      new webpack.ProgressPlugin({}),
       new CleanWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin(),
       new MiniCssExtractPlugin(),
       ...htmlPluginRules,
       new CopyPlugin({

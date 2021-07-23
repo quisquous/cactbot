@@ -99,10 +99,12 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           onYou: {
             en: '100Gs on YOU',
+            de: '100Gs auf DIR',
             ko: '중력 100 대상자',
           },
           beIn: {
             en: 'Be in 100Gs Circle',
+            de: 'Sei in einem 100Gs Kreis',
             ko: '중력 100 원 안에 있기',
           },
         };
@@ -325,6 +327,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Probe on YOU',
+          de: 'Sonde auf DIR',
           ko: '촉수 대상자',
         },
       },
@@ -338,6 +341,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Elevate (Unstable Gravity)',
+          de: 'Sei erhöht (Schwerkraftschwankung)',
           ko: '공중부양하기 (중력 폭발)',
         },
       },
@@ -352,6 +356,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Knocked to Edge',
+          de: 'Zur Kante zurückstoßen lassen',
         },
       },
     },

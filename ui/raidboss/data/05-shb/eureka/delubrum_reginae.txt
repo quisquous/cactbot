@@ -559,8 +559,9 @@ hideall "--sync--"
 9151.5 "Judgment Blade" sync /:The Queen:59C[12]:/
 9156.2 "--targetable--"
 
+# HP% push here.
 9160.5 "--middle--" sync /:The Queen:5BCB:/
-9163.9 "--sync--" sync /:The Queen:55A8:/
+9163.9 "--sync--" sync /:The Queen:55A8:/ window 200,10
 9171.0 "Gods Save The Queen" sync /:The Queen:59C9:/
 9192.3 "--middle--" sync /:The Queen:5BCB:/
 9200.7 "Queen's Edict" sync /:The Queen:59BE:/

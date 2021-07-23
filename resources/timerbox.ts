@@ -40,47 +40,59 @@ export default class TimerBox extends HTMLElement {
   // The full duration of the current countdown. When this is changed,
   // the countdown restarts at the new value. If set to 0 then countdowns
   // are stopped.
-  set duration(d: string | null) {
+  set duration(d: number | null) {
     if (d === null)
       this.removeAttribute('duration');
     else
-      this.setAttribute('duration', d);
+      this.setAttribute('duration', d.toString());
   }
-  get duration(): string | null {
-    return this.getAttribute('duration');
+  get duration(): number | null {
+    const s = this.getAttribute('duration');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
   // Below this a large box is shown, above it a small box is shown.
-  set threshold(t: string | null) {
+  set threshold(t: number | null) {
     if (t === null)
       this.removeAttribute('threshold');
     else
-      this.setAttribute('threshold', t);
+      this.setAttribute('threshold', t.toString());
   }
-  get threshold(): string | null {
-    return this.getAttribute('threshold');
+  get threshold(): number | null {
+    const t = this.getAttribute('threshold');
+    if (t === null)
+      return null;
+    return parseFloat(t);
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string | null) {
+  set scale(s: number | null) {
     if (s === null)
       this.removeAttribute('scale');
     else
-      this.setAttribute('scale', s);
+      this.setAttribute('scale', s.toString());
   }
-  get scale(): string | null {
-    return this.getAttribute('scale');
+  get scale(): number | null {
+    const s = this.getAttribute('scale');
+    if (s === null)
+      return null;
+    return parseFloat(s);
   }
 
   // The displayed value is scaled by this.
-  set valuescale(s: string | null) {
+  set valuescale(s: number | null) {
     if (s === null)
       this.removeAttribute('valuescale');
     else
-      this.setAttribute('valuescale', s);
+      this.setAttribute('valuescale', s.toString());
   }
-  get valuescale(): string | null {
-    return this.getAttribute('valuescale');
+  get valuescale(): number | null {
+    const v = this.getAttribute('valuescale');
+    if (v === null)
+      return null;
+    return parseFloat(v);
   }
 
   // Background color.
@@ -126,16 +138,19 @@ export default class TimerBox extends HTMLElement {
     return this.getAttribute('stylefill') as 'fill' | 'empty';
   }
 
-  // When the timer reaches 0, it is hidden after this many seconds. If ""
+  // When the timer reaches 0, it is hidden after this many seconds. If `null`
   // then it is not hidden.
-  set hideafter(h: string | null) {
+  set hideafter(h: number | null) {
     if (h === null)
       this.removeAttribute('hideafter');
     else
-      this.setAttribute('hideafter', h);
+      this.setAttribute('hideafter', h.toString());
   }
-  get hideafter(): string | null {
-    return this.getAttribute('hideafter');
+  get hideafter(): number | null {
+    const h = this.getAttribute('hideafter');
+    if (h === null)
+      return null;
+    return parseFloat(h);
   }
 
   // When the timer reaches 0, it is big if this is true.
@@ -147,18 +162,18 @@ export default class TimerBox extends HTMLElement {
   }
 
   // The length remaining in the count down.
-  get value(): string {
+  get value(): number {
     if (!this._start)
-      return this._duration.toString();
+      return this._duration;
     const elapsedMs = new Date().getTime() - this._start;
-    return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
+    return Math.max(0, this._duration - (elapsedMs / 1000));
   }
 
   // The elapsed time.
-  get elapsed(): string {
+  get elapsed(): number {
     if (!this._start)
-      return '0';
-    return ((new Date().getTime() - this._start) / 1000).toString();
+      return 0;
+    return (new Date().getTime() - this._start) / 1000;
   }
 
   // Whether to round up the value to the nearest integer before thresholding.
@@ -215,21 +230,21 @@ export default class TimerBox extends HTMLElement {
     this._notifyThresholdCallbacks = true;
 
     if (this.duration !== null)
-      this._duration = Math.max(parseFloat(this.duration), 0);
+      this._duration = Math.max(this.duration, 0);
     if (this.threshold !== null)
-      this._threshold = parseFloat(this.threshold);
+      this._threshold = this.threshold;
     if (this.bg !== null)
       this._bg = this.bg;
     if (this.fg !== null)
       this._fg = this.fg;
     if (this.scale !== null)
-      this._scale = Math.max(parseFloat(this.scale), 0.01);
+      this._scale = Math.max(this.scale, 0.01);
     if (this.toward !== null)
       this._towardTop = this.toward !== 'bottom';
     if (this.stylefill !== null)
       this._fill = this.stylefill !== 'empty';
-    if (this.hideafter !== null && this.hideafter !== '')
-      this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+    if (this.hideafter !== null && this.hideafter !== null)
+      this._hideAfter = Math.max(this.hideafter, 0);
   }
 
   init(root: ShadowRoot): void {
@@ -300,7 +315,7 @@ export default class TimerBox extends HTMLElement {
       this._fg = newValue;
       this.layout();
     } else if (name === 'hideafter') {
-      this._hideAfter = Math.max(parseFloat(this.hideafter ?? '0'), 0);
+      this._hideAfter = Math.max(this.hideafter ?? 0, 0);
       if (this._duration === 0 && this._hideAfter >= 0)
         this.hide();
       else if (this._hideAfter < 0)

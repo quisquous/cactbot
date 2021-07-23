@@ -14,10 +14,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '3.1.x'
+      - name: Set up msbuild
+        uses: microsoft/setup-msbuild@v1.0.2
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -52,8 +50,9 @@ jobs:
           npm run fetch-deps
         shell: bash
       - name: Build Cactbot Plugin
+        shell: cmd
         run: |
-          dotnet build plugin/Cactbot.sln /p:Configuration=Release /p:Platform=x64
+          msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
 
       - name: Build JavaScript UI Module Bundles
         run: |
