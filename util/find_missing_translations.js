@@ -1,25 +1,9 @@
-import argparse from 'argparse';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
 import { findMissing } from './find_missing_timeline_translations';
 import { walkDirSync } from './file_utils';
-
-const parser = new argparse.ArgumentParser({
-  addHelp: true,
-  description: 'Prints out a list of missing translations',
-});
-parser.addArgument(['-l', '--locale'], {
-  required: true,
-  help: 'The locale to find missing translations for, e.g. de',
-});
-parser.addArgument(['-f', '--filter'], {
-  nargs: '?',
-  defaultValue: '',
-  type: 'string',
-  help: 'Limits the results to only match specific files/path',
-});
 
 // Directory names to ignore when looking for JavaScript files.
 const ignoreDirs = [
@@ -143,10 +127,10 @@ const parseJavascriptFile = (file, locales) => {
   });
 };
 
-const run = async (args) => {
-  const files = findAllJavascriptFiles(args['filter']);
+export const run = async (filter, locale) => {
+  const files = findAllJavascriptFiles(filter);
   for (const file of files) {
-    await findMissing(file, args['locale'], (file, line, label, message) => {
+    await findMissing(file, locale, (file, line, label, message) => {
       let str = file;
       if (line)
         str += `:${line}`;
@@ -156,9 +140,6 @@ const run = async (args) => {
         str += ` ${message}`;
       console.log(str);
     });
-    parseJavascriptFile(file, [args['locale']]);
+    parseJavascriptFile(file, [locale]);
   }
 };
-
-const args = parser.parseArgs();
-run(args);
