@@ -51,13 +51,10 @@ const thanksComment = (userName) => {
 const getComment = (title, userName) => `${thanksComment(userName)}
 
 Currently your title is: ${title},
-but it should be in the format of \`(nonscope) scope: description\`.
+but it should be in the format of \`scope: description\`.
 
 \`scope\` can be any of the following:
 ${validScope.map((s) => `  - ${s}`).join('\n')}
-
-\`nonscope\` can be any of the following (although this is not always required):
-${validNonScope.map((s) => `  - ${s}`).join('\n')}
 
 ------
 This comment is created and updated by a bot.
