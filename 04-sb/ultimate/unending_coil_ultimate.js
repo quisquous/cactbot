@@ -1,12 +1,151 @@
+const resetTrio = (data, trio) => {
+  data.trio = trio;
+  data.shakers = [];
+  data.megaStack = [];
+};
+// Begin copy and paste from dragon_test.js.
+const modDistance = (mark, dragon) => {
+  const oneWay = (dragon - mark + 8) % 8;
+  const otherWay = (mark - dragon + 8) % 8;
+  const distance = Math.min(oneWay, otherWay);
+  console.assert(distance >= 0);
+  return distance;
+};
+const badSpots = (mark, dragon) => {
+  // All spots between mark and dragon are bad.  If distance == 1,
+  // then the dragon hits the spot behind the mark too.  e.g. N
+  // mark, NE dragon will also hit NW.
+  const bad = [];
+  const distance = modDistance(mark, dragon);
+  console.assert(distance > 0);
+  console.assert(distance <= 2);
+  if ((mark + distance + 8) % 8 === dragon) {
+    // Clockwise.
+    for (let i = 0; i <= distance; ++i)
+      bad.push((mark + i) % 8);
+    if (distance === 1)
+      bad.push((mark - 1 + 8) % 8);
+  } else {
+    // Widdershins.
+    for (let i = 0; i <= distance; ++i)
+      bad.push((mark - i + 8) % 8);
+    if (distance === 1)
+      bad.push((mark + 1) % 8);
+  }
+  return bad;
+};
+const findDragonMarks = (array) => {
+  const marks = [-1, -1, -1];
+  let isWideThirdDive = false;
+  const dragons = [];
+  for (let i = 0; i < 8; ++i) {
+    if (array[i])
+      dragons.push(i);
+  }
+  if (dragons.length !== 5)
+    return;
+  const [d0, d1, d2, d3, d4] = dragons;
+  if (d0 === undefined || d1 === undefined || d2 === undefined ||
+        d3 === undefined || d4 === undefined)
+    return;
+    // MARK 1: counterclockwise of #1 if adjacent, clockwise if not.
+  if (d0 + 1 === d1) {
+    // If the first two dragons are adjacent, they *must* go CCW.
+    // In the scenario of N, NE, SE, S, W dragons, the first marker
+    // could be E, but that forces the second mark to be S (instead
+    // of E), making SW unsafe for putting the mark between S and W.
+    // Arguably, NW could be used here for the third mark, but then
+    // the S dragon would cut off more of the middle of the arena
+    // than desired.  This still could happen anyway in the
+    // "tricksy" edge case below, but should be avoided if possible.
+    marks[0] = (d0 - 1 + 8) % 8;
+  } else {
+    // Split dragons.  Bias towards first dragon.
+    marks[0] = Math.floor((d0 + d1) / 2);
+  }
+  // MARK 2: go counterclockwise, unless dragon 2 is adjacent to 3.
+  if (d1 === d2 - 1) {
+    // Go clockwise.
+    marks[1] = d2 + 1;
+  } else {
+    // Go counterclockwise.
+    marks[1] = d2 - 1;
+  }
+  // MARK 3: if split, between 4 & 5.  If adjacent, clockwise of 5.
+  if (d3 + 1 === d4) {
+    // Adjacent dragons.
+    // Clockwise is always ok.
+    marks[2] = (d4 + 1) % 8;
+    // Minor optimization:
+    // See if counterclockwise is an option to avoid having mark 3
+    // in a place that the first pair covers.
+    //
+    // If dragon 3 is going counterclockwise, then only need one
+    // hole between #3 and #4, otherwise need all three holes.
+    // e.g. N, NE, E, W, NW dragon pattern should prefer third
+    // mark SW instead of N.
+    const distance = marks[1] === d2 - 1 ? 2 : 4;
+    if (d3 >= d2 + distance)
+      marks[2] = d3 - 1;
+  } else {
+    // Split dragons.  Common case: bias towards last dragon, in case
+    // 2nd charge is going towards this pair.
+    marks[2] = Math.ceil((d3 + d4) / 2);
+    if (marks[1] === d3 && marks[2] === marks[1] + 1) {
+      // Tricksy edge case, e.g. N, NE, E, SE, SW.  S not safe for
+      // third mark because second mark is at SE, and E dragon will
+      // clip S.  Send all dragons CW even if this means eating more
+      // arena space.
+      marks[2] = (d4 + 1) % 8;
+      isWideThirdDive = true;
+    }
+  }
+  const bad = badSpots(marks[0], d0);
+  bad.concat(badSpots(marks[0], d1));
+  return {
+    // Third drive is on a dragon three squares away and will cover
+    // more of the middle than usual, e.g. SE dragon, SW dragon,
+    // mark W (because S is unsafe from 2nd dive).
+    wideThirdDive: isWideThirdDive,
+    // Third mark spot is covered by the first dive so needs to be
+    // patient.  Third mark should always be patient, but you never
+    // know.
+    unsafeThirdMark: bad.includes(marks[2]),
+    marks: marks,
+  };
+};
+// End copy and paste.
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 Options.Triggers.push({
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
   initData: () => {
     return {
+      partyList: {},
       monitoringHP: false,
       hpThresholds: [0, 0, 0.75, 0.45],
       currentPhase: 2,
+      fireDebuff: false,
+      iceDebuff: false,
+      naelFireballCount: 0,
+      fireballs: {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+      },
+      seenDragon: {},
+      naelDragons: [0, 0, 0, 0, 0, 0, 0, 0],
+      calledNaelDragons: false,
+      wideThirdDive: false,
+      unsafeThirdMark: false,
+      naelDiveMarkerCount: 0,
+      shakers: [],
+      megaStack: [],
+      octetMarker: [],
+      exaflareCount: 0,
+      akhMornCount: 0,
+      mornAfahCount: 0,
     };
   },
   timelineTriggers: [
@@ -26,30 +165,35 @@ Options.Triggers.push({
     // --- State ---
     {
       id: 'UCU Firescorched Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = true,
     },
     {
       id: 'UCU Firescorched Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = false,
     },
     {
       id: 'UCU Icebitten Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = true,
     },
     {
       id: 'UCU Icebitten Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = false,
     },
     {
       id: 'UCU Fireball Counter',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '26C5', source: 'Firehorn' }),
       netRegexDe: NetRegexes.ability({ id: '26C5', source: 'Feuerhorn' }),
       netRegexFr: NetRegexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
@@ -57,89 +201,79 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ id: '26C5', source: '火角' }),
       netRegexKo: NetRegexes.ability({ id: '26C5', source: '화염뿔' }),
       run: (data, matches) => {
-        data.fireballs[data.naelFireballCount].push(matches.target);
+        let _a; let _b;
+        ((_a = data.fireballs)[_b = data.naelFireballCount] ?? (_a[_b] = [])).push(matches.target);
       },
     },
     {
       id: 'UCU Quickmarch Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '26E2', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
-      run: (data) => {
-        if (data.resetTrio)
-          data.resetTrio('quickmarch');
-      },
+      run: (data) => resetTrio(data, 'quickmarch'),
     },
     {
       id: 'UCU Blackfire Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '26E3', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
-      run: (data) => {
-        if (data.resetTrio)
-          data.resetTrio('blackfire');
-      },
+      run: (data) => resetTrio(data, 'blackfire'),
     },
     {
       id: 'UCU Fellruin Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '26E4', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
-      run: (data) => {
-        if (data.resetTrio)
-          data.resetTrio('fellruin');
-      },
+      run: (data) => resetTrio(data, 'fellruin'),
     },
     {
       id: 'UCU Heavensfall Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '26E5', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
-      run: (data) => {
-        if (data.resetTrio)
-          data.resetTrio('heavensfall');
-      },
+      run: (data) => resetTrio(data, 'heavensfall'),
     },
     {
       id: 'UCU Tenstrike Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '26E6', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
-      run: (data) => {
-        if (data.resetTrio)
-          data.resetTrio('tenstrike');
-      },
+      run: (data) => resetTrio(data, 'tenstrike'),
     },
     {
       id: 'UCU Octet Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '26E7', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
-      run: (data) => {
-        if (data.resetTrio)
-          data.resetTrio('octet');
-      },
+      run: (data) => resetTrio(data, 'octet'),
     },
     {
       id: 'UCU Ragnarok Party Tracker',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '26B8', source: 'Ragnarok' }),
       netRegexDe: NetRegexes.ability({ id: '26B8', source: 'Ragnarök' }),
       netRegexFr: NetRegexes.ability({ id: '26B8', source: 'Ragnarok' }),
@@ -150,13 +284,13 @@ Options.Triggers.push({
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
         // people by the time you get to octet.
-        data.partyList = data.partyList || {};
         data.partyList[matches.target] = true;
       },
     },
     // --- Twintania ---
     {
       id: 'UCU Twisters',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
@@ -177,6 +311,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Death Sentence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26A9', source: 'Gémellia', capture: false }),
@@ -198,14 +333,16 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Hatch Collect',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0076' }),
       run: (data, matches) => {
-        data.hatch = data.hatch || [];
+        data.hatch ?? (data.hatch = []);
         data.hatch.push(matches.target);
       },
     },
     {
       id: 'UCU Hatch Marker YOU',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0076' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
@@ -222,6 +359,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Hatch Callouts',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 0.25,
       infoText: (data, _matches, output) => {
@@ -244,13 +382,14 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Hatch Cleanup',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
       run: (data) => delete data.hatch,
     },
     {
       id: 'UCU Twintania Phase Change Watcher',
-      type: 'Ability',
+      type: 'StartsUsing',
       // On Twister or Generate.
       netRegex: NetRegexes.startsUsing({ id: '26A[AE]', source: 'Twintania' }),
       netRegexDe: NetRegexes.startsUsing({ id: '26A[AE]', source: 'Twintania' }),
@@ -289,6 +428,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6497?pretty=true
       id: 'UCU Nael Quote 1',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'From on high I descend, the hallowed moon to call.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Seht, ich steige herab, vom rotglühenden Monde.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Des cieux je vais descendre et révérer la lune.*?', capture: false }),
@@ -311,6 +451,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6496?pretty=true
       id: 'UCU Nael Quote 2',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'From on high I descend, the iron path to walk.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Seht, ich steige herab, um euch zu beherrschen.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Du haut des cieux, je vais descendre pour conquérir.*?', capture: false }),
@@ -333,6 +474,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6495?pretty=true
       id: 'UCU Nael Quote 3',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'Take fire, O hallowed moon.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Flammender Pfad, geschaffen vom roten Mond.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Baignez dans la bénédiction de la lune incandescente.*?', capture: false }),
@@ -355,6 +497,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6494?pretty=true
       id: 'UCU Nael Quote 4',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'Blazing path, lead me to iron rule.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Umloderter Pfad, führe mich zur Herrschaft.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'La voie marquée par l\'incandescence mène à la domination.*?', capture: false }),
@@ -376,6 +519,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6493?pretty=true
       id: 'UCU Nael Quote 5',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'O hallowed moon, take fire and scorch my foes.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'O roter Mond! Umlodere meinen Pfad.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Que l\'incandescence de la lune brûle mes ennemis.*?', capture: false }),
@@ -397,6 +541,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6492?pretty=true
       id: 'UCU Nael Quote 6',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'O hallowed moon, shine you the iron path.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'O roter Mond! Führe mich zur Herrschaft.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Ô lune! Éclaire la voie de la domination.*?', capture: false }),
@@ -418,6 +563,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Neues Gestirn! Glühe herab und umlodere meinen Pfad.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Supernova, brille de tout ton feu et irradie la terre rougie.*?', capture: false }),
@@ -441,6 +587,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6500?pretty=true
       id: 'UCU Nael Quote 8',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Neues Gestirn! Überstrahle jede Sternschnuppe.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Supernova, brille de tout ton feu et glorifie la lune rouge.*?', capture: false }),
@@ -464,6 +611,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6502?pretty=true
       id: 'UCU Nael Quote 9',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'From on high I descend, the moon and stars to bring.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Du haut des cieux, j\'appelle une pluie d\'étoiles.*?', capture: false }),
@@ -486,6 +634,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6503?pretty=true
       id: 'UCU Nael Quote 10',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, a rain of stars to bring.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Depuis la lune, j\'invoque une pluie d\'étoiles.*?', capture: false }),
@@ -508,6 +657,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6507?pretty=true
       id: 'UCU Nael Quote 11',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'From hallowed moon I bare iron, in my descent to wield.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'O roter Mond, als Künder deiner Herrschaft stieg ich herab.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'De la lune je m\'arme d\'acier et descends.*?', capture: false }),
@@ -530,6 +680,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6506?pretty=true
       id: 'UCU Nael Quote 12',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, upon burning earth to tread.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'De la lune, je descends et marche sur la terre ardente.*?', capture: false }),
@@ -552,6 +703,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6504?pretty=true
       id: 'UCU Nael Quote 13',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'Unbending iron, take fire and descend.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Ô noble acier! Rougis ardemment et deviens ma lame transperçante.*?', capture: false }),
@@ -574,6 +726,7 @@ Options.Triggers.push({
     {
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
+      type: 'GameLog',
       netRegex: NetRegexes.dialog({ line: 'Unbending iron, descend with fiery edge.*?', capture: false }),
       netRegexDe: NetRegexes.dialog({ line: 'Zur Herrschaft steige ich herab, auf umlodertem Pfad.*?', capture: false }),
       netRegexFr: NetRegexes.dialog({ line: 'Fier acier! Sois ma lame plongeante et deviens incandescent.*?', capture: false }),
@@ -595,6 +748,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Thunderstruck',
+      type: 'Ability',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
       netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '26C7' }),
@@ -618,16 +772,11 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Your Doom',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: (data, matches) => {
-        // FIXME: temporary workaround for "gains the effect for 9999.00"
-        // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
-        if (matches.duration > 1000)
-          return false;
         return data.me === matches.target;
       },
-      // FIXME: temporary workaround for multiple gains effects messages.
-      // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
       durationSeconds: (_data, matches) => {
         if (parseFloat(matches.duration) <= 6)
           return 3;
@@ -687,14 +836,10 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Doom Init',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      condition: (_data, matches) => {
-        // FIXME: temporary workaround for "gains the effect for 9999.00"
-        // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
-        return matches.duration < 1000;
-      },
       run: (data, matches) => {
-        data.dooms = data.dooms || [null, null, null];
+        data.dooms ?? (data.dooms = [null, null, null]);
         let order = null;
         if (parseFloat(matches.duration) < 9)
           order = 0;
@@ -710,6 +855,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Doom Cleanup',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2', capture: false }),
       delaySeconds: 20,
       run: (data) => {
@@ -719,6 +865,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Cleanse Callout',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Lichtklaue', id: '26CA', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Croc De Lumière', id: '26CA', capture: false }),
@@ -726,7 +873,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '光牙', id: '26CA', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 송곳니', id: '26CA', capture: false }),
       infoText: (data, _matches, output) => {
-        data.doomCount = data.doomCount || 0;
+        data.doomCount ?? (data.doomCount = 0);
         let name;
         if (data.dooms)
           name = data.dooms[data.doomCount];
@@ -747,6 +894,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Fireball 1',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
@@ -770,6 +918,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Fireball 2',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
@@ -784,11 +933,11 @@ Options.Triggers.push({
         // stack.  Therefore, make sure you stack.  It's possible you
         // can survive until fire 3 happens, but it's not 100%.
         // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
-        if (!data.fireballs[1].includes(data.me))
+        if (!data.fireballs[1]?.includes(data.me))
           return output.fireOutBeInIt();
       },
       infoText: (data, _matches, output) => {
-        if (data.fireballs[1].includes(data.me))
+        if (data.fireballs[1]?.includes(data.me))
           return output.fireOut();
       },
       run: (data) => data.naelFireballCount = 2,
@@ -813,6 +962,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Fireball 3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
@@ -824,16 +974,16 @@ Options.Triggers.push({
       alertText: (data, _matches, output) => {
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to not stack.
-        if (data.fireballs[1].includes(data.me) && data.fireballs[2].includes(data.me))
+        if (data.fireballs[1]?.includes(data.me) && data.fireballs[2]?.includes(data.me))
           return output.fireInAvoid();
       },
       infoText: (data, _matches, output) => {
-        const tookTwo = data.fireballs[1].filter((p) => {
-          return data.fireballs[2].includes(p);
+        const tookTwo = data.fireballs[1]?.filter((p) => {
+          return data.fireballs[2]?.includes(p);
         });
-        if (tookTwo.includes(data.me))
+        if (tookTwo?.includes(data.me))
           return;
-        if (tookTwo.length > 0) {
+        if (tookTwo && tookTwo.length > 0) {
           const players = tookTwo.map((name) => data.ShortName(name)).join(', ');
           return output.fireInPlayersOut({ players: players });
         }
@@ -869,6 +1019,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Fireball 4',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
@@ -878,11 +1029,11 @@ Options.Triggers.push({
       delaySeconds: 98,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
-        const tookTwo = data.fireballs[1].filter((p) => {
-          return data.fireballs[2].includes(p);
+        const tookTwo = data.fireballs[1]?.filter((p) => {
+          return data.fireballs[2]?.includes(p);
         });
-        const tookThree = tookTwo.filter((p) => {
-          return data.fireballs[3].includes(p);
+        const tookThree = (tookTwo ?? []).filter((p) => {
+          return data.fireballs[3]?.includes(p);
         });
         data.tookThreeFireballs = tookThree.includes(data.me);
         // It's possible that you can take 1, 2, and 3 even if nobody dies with
@@ -917,6 +1068,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Dragon Tracker',
+      type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       netRegexDe: NetRegexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       netRegexFr: NetRegexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
@@ -925,8 +1077,6 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       condition: (data, matches) => !data.seenDragon || !(matches.source in data.seenDragon),
       run: (data, matches) => {
-        // seenDragon[dragon name] => boolean
-        data.seenDragon = data.seenDragon || {};
         data.seenDragon[matches.source] = true;
         const x = parseFloat(matches.x);
         const y = parseFloat(matches.y);
@@ -934,12 +1084,12 @@ Options.Triggers.push({
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7
         const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
-        // naelDragons[direction 0-7 (N-NW)] => boolean
-        data.naelDragons = data.naelDragons || [0, 0, 0, 0, 0, 0, 0, 0];
         data.naelDragons[dir] = 1;
         if (Object.keys(data.seenDragon).length !== 5)
           return;
-        const output = data.findDragonMarks(data.naelDragons);
+        const result = findDragonMarks(data.naelDragons);
+        if (!result)
+          return;
         const langMap = {
           en: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
           de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
@@ -949,12 +1099,11 @@ Options.Triggers.push({
           ko: ['북', '북동', '동', '남동', '남', '남서', '서', '북서'],
         };
         const dirNames = langMap[data.displayLang] || langMap['en'];
-        data.naelMarks = output.marks.map((i) => {
-          return dirNames[i];
+        data.naelMarks = result.marks.map((i) => {
+          return dirNames[i] ?? '???';
         });
-        data.wideThirdDive = output.wideThirdDive;
-        data.unsafeThirdMark = output.unsafeThirdMark;
-        delete data.naelDragons;
+        data.wideThirdDive = result.wideThirdDive;
+        data.unsafeThirdMark = result.unsafeThirdMark;
         // In case you forget, print marks in the log.
         // TODO: Maybe only if Options.Debug?
         console.log(data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : ''));
@@ -962,6 +1111,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Ravensbeak',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
@@ -974,6 +1124,7 @@ Options.Triggers.push({
     {
       // Called out after the 1st Ravensbeak.
       id: 'UCU Nael Dragon Placement',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
@@ -985,9 +1136,9 @@ Options.Triggers.push({
       infoText: (data, _matches, output) => {
         data.calledNaelDragons = true;
         const params = {
-          dive1: data.naelMarks[0],
-          dive2: data.naelMarks[1],
-          dive3: data.naelMarks[2],
+          dive1: data.naelMarks?.[0],
+          dive2: data.naelMarks?.[1],
+          dive3: data.naelMarks?.[2],
         };
         if (data.wideThirdDive)
           return output.marksWide(params);
@@ -1014,10 +1165,10 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: (data) => !data.trio,
       alarmText: (data, matches, output) => {
-        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target !== data.me)
           return;
         const dir = data.naelMarks ? data.naelMarks[data.naelDiveMarkerCount] : undefined;
@@ -1038,10 +1189,10 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: (data) => !data.trio,
       infoText: (data, matches, output) => {
-        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target === data.me)
           return;
         const num = data.naelDiveMarkerCount + 1;
@@ -1060,6 +1211,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
       condition: (data) => !data.trio,
       run: (data) => data.naelDiveMarkerCount++,
@@ -1067,10 +1219,10 @@ Options.Triggers.push({
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: (data) => data.trio === 'octet',
       run: (data, matches) => {
-        data.octetMarker = data.octetMarker || [];
         data.octetMarker.push(matches.target);
         if (data.octetMarker.length !== 7)
           return;
@@ -1080,10 +1232,10 @@ Options.Triggers.push({
           return;
         }
         const uniqDict = {};
-        for (let i = 0; i < data.octetMarker.length; ++i) {
-          uniqDict[data.octetMarker[i]] = true;
-          if (!partyList.includes(data.octetMarker[i])) {
-            console.error('Octet error: could not find ' + data.octetMarker[i] + ' in ' + JSON.stringify(partyList));
+        for (const marker of data.octetMarker) {
+          uniqDict[marker] = true;
+          if (!partyList.includes(marker)) {
+            console.error(`Octet error: could not find ${marker} in ${JSON.stringify(partyList)}`);
             return;
           }
         }
@@ -1106,6 +1258,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Octet Nael Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0077' }),
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
@@ -1125,6 +1278,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Octet Dragon Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
@@ -1144,6 +1298,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Octet Baha Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
@@ -1163,6 +1318,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Octet Twin Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0029', capture: false }),
       condition: (data) => data.trio === 'octet',
       delaySeconds: 0.5,
@@ -1219,6 +1375,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Twister Dives',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '26B2', capture: false }),
@@ -1240,6 +1397,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Bahamut Gigaflare',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26D6', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26D6', source: 'Primo-Bahamut', capture: false }),
@@ -1260,6 +1418,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Megaflare Stack Me',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -1276,11 +1435,13 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Megaflare Stack Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
       run: (data, matches) => data.megaStack.push(matches.target),
     },
     {
       id: 'UCU Megaflare Tower',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
@@ -1336,6 +1497,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Megaflare Twin Tower',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
@@ -1369,17 +1531,20 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Earthshaker Me',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker('alarm'),
     },
     {
       id: 'UCU Earthshaker Tracking',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       run: (data, matches) => data.shakers.push(matches.target),
     },
     {
       id: 'UCU Earthshaker Not Me',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.trio !== 'quickmarch')
@@ -1433,16 +1598,14 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Morn Afah',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: '26EC', source: 'Prim-Bahamut' }),
       netRegexFr: NetRegexes.startsUsing({ id: '26EC', source: 'Primo-Bahamut' }),
       netRegexJa: NetRegexes.startsUsing({ id: '26EC', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '26EC', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '26EC', source: '바하무트 프라임' }),
-      preRun: (data) => {
-        data.mornAfahCount = data.mornAfahCount || 0;
-        data.mornAfahCount++;
-      },
+      preRun: (data) => data.mornAfahCount++,
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.mornAfahYou({ num: data.mornAfahCount });
@@ -1472,6 +1635,7 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Akh Morn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26EA', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26EA', source: 'Primo-Bahamut', capture: false }),
@@ -1479,7 +1643,6 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '26EA', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26EA', source: '바하무트 프라임', capture: false }),
       preRun: (data) => {
-        data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
       },
       infoText: (data, _matches, output) => output.text({ num: data.akhMornCount }),
@@ -1495,16 +1658,14 @@ Options.Triggers.push({
     },
     {
       id: 'UCU Exaflare',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '26EF', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '26EF', source: 'Primo-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '26EF', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26EF', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26EF', source: '바하무트 프라임', capture: false }),
-      preRun: (data) => {
-        data.exaflareCount = data.exaflareCount || 0;
-        data.exaflareCount++;
-      },
+      preRun: (data) => data.exaflareCount++,
       infoText: (data, _matches, output) => output.text({ num: data.exaflareCount }),
       outputStrings: {
         text: {
@@ -1515,150 +1676,6 @@ Options.Triggers.push({
           cn: '百京核爆 #${num}',
           ko: '엑사플레어 ${num}',
         },
-      },
-    },
-    {
-      // One time setup.
-      id: 'UCU Initial Setup',
-      netRegex: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
-      suppressSeconds: 99999,
-      run: (data) => {
-        // TODO: a late white puddle can cause dragons to get seen for the next
-        // phase so clear them again here.  Probably data for triggers needs
-        // to be cleared at more reliable times.
-        delete data.naelDragons;
-        delete data.seenDragon;
-        delete data.naelMarks;
-        delete data.wideThirdDive;
-        delete data.unsafeThirdMark;
-        data.naelFireballCount = 0;
-        data.fireballs = {
-          1: [],
-          2: [],
-          3: [],
-          4: [],
-        };
-        data.resetTrio = (trio) => {
-          data.trio = trio;
-          data.shakers = [];
-          data.megaStack = [];
-        };
-        // Begin copy and paste from dragon_test.js.
-        const modDistance = (mark, dragon) => {
-          const oneWay = (dragon - mark + 8) % 8;
-          const otherWay = (mark - dragon + 8) % 8;
-          const distance = Math.min(oneWay, otherWay);
-          console.assert(distance >= 0);
-          return distance;
-        };
-        const badSpots = (mark, dragon) => {
-          // All spots between mark and dragon are bad.  If distance == 1,
-          // then the dragon hits the spot behind the mark too.  e.g. N
-          // mark, NE dragon will also hit NW.
-          const bad = [];
-          const distance = modDistance(mark, dragon);
-          console.assert(distance > 0);
-          console.assert(distance <= 2);
-          if ((mark + distance + 8) % 8 === dragon) {
-            // Clockwise.
-            for (let i = 0; i <= distance; ++i)
-              bad.push((mark + i) % 8);
-            if (distance === 1)
-              bad.push((mark - 1 + 8) % 8);
-          } else {
-            // Widdershins.
-            for (let i = 0; i <= distance; ++i)
-              bad.push((mark - i + 8) % 8);
-            if (distance === 1)
-              bad.push((mark + 1) % 8);
-          }
-          return bad;
-        };
-        const findDragonMarks = (array) => {
-          const marks = [-1, -1, -1];
-          const ret = {
-            // Third drive is on a dragon three squares away and will cover
-            // more of the middle than usual, e.g. SE dragon, SW dragon,
-            // mark W (because S is unsafe from 2nd dive).
-            wideThirdDive: false,
-            // Third mark spot is covered by the first dive so needs to be
-            // patient.  Third mark should always be patient, but you never
-            // know.
-            unsafeThirdMark: false,
-            marks: ['error', 'error', 'error'],
-          };
-          const dragons = [];
-          for (let i = 0; i < 8; ++i) {
-            if (array[i])
-              dragons.push(i);
-          }
-          if (dragons.length !== 5)
-            return ret;
-          // MARK 1: counterclockwise of #1 if adjacent, clockwise if not.
-          if (dragons[0] + 1 === dragons[1]) {
-            // If the first two dragons are adjacent, they *must* go CCW.
-            // In the scenario of N, NE, SE, S, W dragons, the first marker
-            // could be E, but that forces the second mark to be S (instead
-            // of E), making SW unsafe for putting the mark between S and W.
-            // Arguably, NW could be used here for the third mark, but then
-            // the S dragon would cut off more of the middle of the arena
-            // than desired.  This still could happen anyway in the
-            // "tricksy" edge case below, but should be avoided if possible.
-            marks[0] = (dragons[0] - 1 + 8) % 8;
-          } else {
-            // Split dragons.  Bias towards first dragon.
-            marks[0] = Math.floor((dragons[0] + dragons[1]) / 2);
-          }
-          // MARK 2: go counterclockwise, unless dragon 2 is adjacent to 3.
-          if (dragons[1] === dragons[2] - 1) {
-            // Go clockwise.
-            marks[1] = dragons[2] + 1;
-          } else {
-            // Go counterclockwise.
-            marks[1] = dragons[2] - 1;
-          }
-          // MARK 3: if split, between 4 & 5.  If adjacent, clockwise of 5.
-          if (dragons[3] + 1 === dragons[4]) {
-            // Adjacent dragons.
-            // Clockwise is always ok.
-            marks[2] = (dragons[4] + 1) % 8;
-            // Minor optimization:
-            // See if counterclockwise is an option to avoid having mark 3
-            // in a place that the first pair covers.
-            //
-            // If dragon 3 is going counterclockwise, then only need one
-            // hole between #3 and #4, otherwise need all three holes.
-            // e.g. N, NE, E, W, NW dragon pattern should prefer third
-            // mark SW instead of N.
-            const distance = marks[1] === dragons[2] - 1 ? 2 : 4;
-            if (dragons[3] >= dragons[2] + distance)
-              marks[2] = dragons[3] - 1;
-          } else {
-            // Split dragons.  Common case: bias towards last dragon, in case
-            // 2nd charge is going towards this pair.
-            marks[2] = Math.ceil((dragons[3] + dragons[4]) / 2);
-            if (marks[1] === dragons[3] && marks[2] === marks[1] + 1) {
-              // Tricksy edge case, e.g. N, NE, E, SE, SW.  S not safe for
-              // third mark because second mark is at SE, and E dragon will
-              // clip S.  Send all dragons CW even if this means eating more
-              // arena space.
-              marks[2] = (dragons[4] + 1) % 8;
-              ret.wideThirdDive = true;
-            }
-          }
-          const bad = badSpots(marks[0], dragons[0]);
-          bad.concat(badSpots(marks[0], dragons[1]));
-          ret.unsafeThirdMark = bad.includes(marks[2]);
-          ret.marks = marks;
-          return ret;
-        };
-        // End copy and paste.
-        data.findDragonMarks = findDragonMarks;
       },
     },
   ],

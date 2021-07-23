@@ -4,13 +4,16 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T11 Secondary Head',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
       netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
       netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
       netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B73' }),
       netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B73' }),
       netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B73' }),
-      alertText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) => {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
       outputStrings: {
         text: {
           en: 'Stun on ${player}',
@@ -24,6 +27,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Seed River First',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
@@ -39,6 +43,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Seed Sea First',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
@@ -54,6 +59,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Seed River Second',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
@@ -66,6 +72,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Seed Sea Second',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
@@ -110,6 +117,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Forked Lightning',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B85', source: 'Electric Node' }),
       netRegexDe: NetRegexes.ability({ id: 'B85', source: 'Elektrisch(?:e|er|es|en) Modul' }),
       netRegexFr: NetRegexes.ability({ id: 'B85', source: 'Module D\'Électrochoc' }),
@@ -131,6 +139,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Phase 3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
@@ -152,6 +161,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Tether Accumulate A',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
       netRegexDe: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
       netRegexFr: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
@@ -159,12 +169,12 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚' }),
       netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야' }),
       run: (data, matches) => {
-        data.tetherA = data.tetherA || [];
-        data.tetherA.push(matches.source);
+        (data.tetherA ?? (data.tetherA = [])).push(matches.source);
       },
     },
     {
       id: 'T11 Tether Accumulate B',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
       netRegexDe: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
       netRegexFr: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
@@ -172,25 +182,28 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚' }),
       netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야' }),
       run: (data, matches) => {
-        data.tetherB = data.tetherB || [];
-        data.tetherB.push(matches.source);
+        (data.tetherB ?? (data.tetherB = [])).push(matches.source);
       },
     },
     {
       id: 'T11 Tether A',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
       netRegexDe: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
       netRegexFr: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
       netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야', capture: false }),
-      condition: (data) => data.tetherA.length === 2,
+      condition: (data) => data.tetherA?.length === 2,
       alarmText: (data, _matches, output) => {
-        let partner = undefined;
-        if (data.tetherA[0] === data.me)
-          partner = data.tetherA[1];
-        if (data.tetherA[1] === data.me)
-          partner = data.tetherA[0];
+        let partner;
+        const [player0, player1] = data.tetherA ?? [];
+        if (!player0 || !player1)
+          return;
+        if (player0 === data.me)
+          partner = player1;
+        if (player1 === data.me)
+          partner = player0;
         if (!partner)
           return;
         return output.text({ player: data.ShortName(partner) });
@@ -208,19 +221,23 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Tether B',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
       netRegexDe: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
       netRegexFr: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
       netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야', capture: false }),
-      condition: (data) => data.tetherB.length === 2,
+      condition: (data) => data.tetherB?.length === 2,
       alarmText: (data, _matches, output) => {
-        let partner = undefined;
-        if (data.tetherB[0] === data.me)
-          partner = data.tetherB[1];
-        if (data.tetherB[1] === data.me)
-          partner = data.tetherB[0];
+        let partner;
+        const [player0, player1] = data.tetherB ?? [];
+        if (!player0 || !player1)
+          return;
+        if (player0 === data.me)
+          partner = player1;
+        if (player1 === data.me)
+          partner = player0;
         if (!partner)
           return;
         return output.text({ player: data.ShortName(partner) });
@@ -238,6 +255,7 @@ Options.Triggers.push({
     },
     {
       id: 'T11 Tether Cleanup',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),

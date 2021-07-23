@@ -12,6 +12,14 @@ const diveDirections = {
 Options.Triggers.push({
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn4,
   timelineFile: 't9.txt',
+  initData: () => {
+    return {
+      monitoringHP: false,
+      seenFinalPhase: false,
+      tetherCount: 0,
+      naelDiveMarkerCount: 0,
+    };
+  },
   timelineTriggers: [
     {
       id: 'T9 Claw',
@@ -56,9 +64,10 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T9 Raven Blight You',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => matches.duration - 5,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -74,9 +83,10 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Raven Blight Not You',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
       condition: Conditions.targetIsNotYou(),
-      delaySeconds: (_data, matches) => matches.duration - 5,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -92,18 +102,21 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Meteor',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000[7A9]' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'T9 Meteor Stream',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'T9 Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000F' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -145,6 +158,7 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Earthshock',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7F5', source: 'Dalamud Spawn', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '7F5', source: 'Dalamud-Golem', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '7F5', source: 'Golem De Dalamud', capture: false }),
@@ -166,6 +180,7 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Heavensfall',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
@@ -186,6 +201,7 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Garotte Twist Gain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CE' }),
       condition: (data, matches) => data.me === matches.target && !data.garotte,
       infoText: (_data, _matches, output) => output.text(),
@@ -203,6 +219,7 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Ghost Death',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '7FA', source: 'Geist Von Meracydia', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '7FA', source: 'Fantôme Méracydien', capture: false }),
@@ -224,12 +241,14 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Garotte Twist Lose',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1CE' }),
       condition: (data, matches) => data.me === matches.target && data.garotte,
       run: (data) => delete data.garotte,
     },
     {
       id: 'T9 Final Phase',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
@@ -242,6 +261,7 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Dragon Locations',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ name: ['Firehorn', 'Iceclaw', 'Thunderwing'] }),
       netRegexDe: NetRegexes.addedCombatantFull({ name: ['Feuerhorn', 'Eisklaue', 'Donnerschwinge'] }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: ['Corne-De-Feu', 'Griffe-De-Glace', 'Aile-De-Foudre'] }),
@@ -272,12 +292,13 @@ Options.Triggers.push({
         // N = (0, -28), E = (28, 0), S = (0, 28), W = (-28, 0)
         // Map N = 0, NE = 1, ..., NW = 7
         const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
-        data.dragons = data.dragons || [0, 0, 0];
+        data.dragons ?? (data.dragons = [0, 0, 0]);
         data.dragons[idx] = dir;
       },
     },
     {
       id: 'T9 Final Phase Reset',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
@@ -287,16 +308,18 @@ Options.Triggers.push({
       run: (data) => {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
+        data.naelMarks = ['unknown', 'unknown'];
+        data.safeZone = 'unknown';
         // Missing dragons??
-        if (!data.dragons || data.dragons.length !== 3) {
-          data.naelMarks = ['unknown', 'unknown'];
-          data.safeZone = 'unknown';
+        if (!data.dragons || data.dragons.length !== 3)
           return;
-        }
         // T9 normal dragons are easy.
         // The first two are always split, so A is the first dragon + 1.
         // The last one is single, so B is the last dragon + 1.
         const dragons = data.dragons.sort();
+        const [d0, d1, d2] = dragons;
+        if (d0 === undefined || d1 === undefined || d2 === undefined)
+          return;
         const dirNames = [
           'north',
           'northeast',
@@ -307,18 +330,19 @@ Options.Triggers.push({
           'west',
           'northwest',
         ];
-        data.naelMarks = [dragons[0], dragons[2]].map((i) => dirNames[(i + 1) % 8]);
+        data.naelMarks = [d0, d2].map((i) => dirNames[(i + 1) % 8] ?? 'unknown');
         // Safe zone is one to the left of the first dragon, unless
         // the last dragon is diving there.  If that's true, use
         // one to the right of the second dragon.
-        let possibleSafe = (dragons[0] - 1 + 8) % 8;
-        if ((dragons[2] + 2) % 8 === possibleSafe)
-          possibleSafe = (dragons[1] + 1) % 8;
+        let possibleSafe = (d0 - 1 + 8) % 8;
+        if ((d2 + 2) % 8 === possibleSafe)
+          possibleSafe = (d1 + 1) % 8;
         data.safeZone = dirNames[possibleSafe];
       },
     },
     {
       id: 'T9 Dragon Marks',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
@@ -327,8 +351,8 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
       infoText: (data, _matches, output) => output.marks({
-        dir1: output[data.naelMarks[0]](),
-        dir2: output[data.naelMarks[1]](),
+        dir1: output[data.naelMarks?.[0] ?? 'unknown'](),
+        dir2: output[data.naelMarks?.[1] ?? 'unknown'](),
       }),
       outputStrings: {
         ...diveDirections,
@@ -344,6 +368,7 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', source: 'Firehorn' }),
       netRegexDe: NetRegexes.tether({ id: '0005', source: 'Feuerhorn' }),
       netRegexFr: NetRegexes.tether({ id: '0005', source: 'Corne-De-Feu' }),
@@ -351,7 +376,6 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ id: '0005', source: '火角' }),
       netRegexKo: NetRegexes.tether({ id: '0005', source: '화염뿔' }),
       preRun: (data) => {
-        data.tetherCount = data.tetherCount || 0;
         data.tetherCount++;
       },
       alertText: (data, matches, output) => {
@@ -403,6 +427,7 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Thunder',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '7FD' }),
       netRegexDe: NetRegexes.ability({ source: 'Donnerschwinge', id: '7FD' }),
       netRegexFr: NetRegexes.ability({ source: 'Aile-De-Foudre', id: '7FD' }),
@@ -424,11 +449,12 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Dragon Safe Zone',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
-      infoText: (data, _matches, output) => output.safeZone({ dir: output[data.safeZone]() }),
+      infoText: (data, _matches, output) => output.safeZone({ dir: output[data.safeZone ?? 'unknown']() }),
       outputStrings: {
         ...diveDirections,
         safeZone: {
@@ -443,18 +469,19 @@ Options.Triggers.push({
     },
     {
       id: 'T9 Dragon Marker',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
-        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
+        data.naelDiveMarkerCount ?? (data.naelDiveMarkerCount = 0);
         if (matches.target !== data.me)
           return;
         const marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
-        const dir = data.naelMarks[data.naelDiveMarkerCount];
+        const dir = data.naelMarks?.[data.naelDiveMarkerCount];
         return output.goToMarkerInDir({ marker: marker, dir: dir });
       },
       tts: (data, matches, output) => {
-        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
+        data.naelDiveMarkerCount ?? (data.naelDiveMarkerCount = 0);
         if (matches.target !== data.me)
           return;
         return output.goToMarker({ marker: ['A', 'B', 'C'][data.naelDiveMarkerCount] });

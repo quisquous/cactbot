@@ -37,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Ram',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimära', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '860', source: 'Protochimère', capture: false }),
@@ -59,6 +60,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Dragon',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '861', source: 'Proto-Chimera', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '861', source: 'Proto-Chimära', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '861', source: 'Protochimère', capture: false }),
@@ -81,6 +83,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Tail Slap',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
       netRegexDe: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
       netRegexFr: NetRegexes.ability({ id: '7A8', source: 'Mélusine' }),
@@ -104,6 +107,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Renaud',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
@@ -124,9 +128,10 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Cursed Voice',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => matches.duration - 3,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -141,6 +146,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Cursed Shriek',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       durationSeconds: 3,
       alarmText: (data, matches, output) => {
@@ -172,6 +178,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Cursed Shriek Reminder',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: 7,
       durationSeconds: 3,
@@ -201,6 +208,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Petrifaction 1',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia Prosector', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia-Prosektorin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia Dissectrice', capture: false }),
@@ -211,6 +219,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Petrifaction 2',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '7B1', source: 'Mélusine', capture: false }),
@@ -221,6 +230,7 @@ Options.Triggers.push({
     },
     {
       id: 'T7 Tail',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '7B2', source: 'Mélusine', capture: false }),

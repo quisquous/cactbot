@@ -25,17 +25,18 @@ Options.Triggers.push({
     },
     {
       id: 'T6 Thorn Whip Collect',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0012' }),
       run: (data, matches) => {
-        data.thornMap = data.thornMap || {};
-        data.thornMap[matches.source] = data.thornMap[matches.source] || [];
-        data.thornMap[matches.source].push(matches.target);
-        data.thornMap[matches.target] = data.thornMap[matches.target] || [];
-        data.thornMap[matches.target].push(matches.source);
+        let _a; let _b; let _c; let _d;
+        data.thornMap ?? (data.thornMap = {});
+        ((_a = data.thornMap)[_b = matches.source] ?? (_a[_b] = [])).push(matches.target);
+        ((_c = data.thornMap)[_d = matches.target] ?? (_c[_d] = [])).push(matches.source);
       },
     },
     {
       id: 'T6 Thorn Whip',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
       netRegexDe: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
       netRegexFr: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
@@ -44,8 +45,8 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
-        const partners = data.thornMap[data.me];
-        if (!partners)
+        const partners = data.thornMap?.[data.me] ?? [];
+        if (partners.length === 0)
           return output.thornsOnYou();
         if (partners.length === 1)
           return output.oneTether({ player: data.ShortName(partners[0]) });
@@ -92,18 +93,21 @@ Options.Triggers.push({
     {
       // Honey-Glazed
       id: 'T6 Honey On',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.honey = true,
     },
     {
       id: 'T6 Honey Off',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
       condition: Conditions.targetIsYou(),
       run: (data) => delete data.honey,
     },
     {
       id: 'T6 Flower',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000D' }),
       alarmText: (data, _matches, output) => {
         if (data.honey)
@@ -146,6 +150,7 @@ Options.Triggers.push({
     },
     {
       id: 'T6 Blighted',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
@@ -156,6 +161,7 @@ Options.Triggers.push({
     },
     {
       id: 'T6 Phase 3',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
@@ -168,6 +174,7 @@ Options.Triggers.push({
     },
     {
       id: 'T6 Swarm Stack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
@@ -187,6 +194,7 @@ Options.Triggers.push({
     },
     {
       id: 'T6 Swarm',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
       netRegexDe: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
       netRegexFr: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
@@ -221,6 +229,7 @@ Options.Triggers.push({
     },
     {
       id: 'T6 Rotten Stench',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
