@@ -764,7 +764,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
-      delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : undefined,
+      delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : 0,
       alertText: (data, matches, output) => {
         const headMarkerInt = parseInt(getHeadmarkerId(data, matches), 16);
         const isOddNumber = (headMarkerInt & 1) === 1;
