@@ -45,16 +45,14 @@ const thanksComment = (userName) => {
   let userStr = '';
   if (userName)
     userStr = `@${userName} `;
-  return `${userStr}Thanks for your contribution!🚀`;
+  return `${userStr}Thanks for your contribution! 🌵🚀`;
 };
 
 const getComment = (title, userName) => `${thanksComment(userName)}
 
-Currently your title is: ${title},
-but it should be in the format of \`scope: description\`.
+Currently your title is: \`${title}\`, but it should be in the format of \`scope: description\`.
 
-\`scope\` can be any of the following:
-${validScope.map((s) => `  - ${s}`).join('\n')}
+\`scope\` can be any of the following: ${validScope.map((s) => `\`${s}\``).join(', ')}.
 
 ------
 This comment is created and updated by a bot.
@@ -119,7 +117,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
     owner,
     repo,
     'issue_number': pullNumber,
-    'body': getComment(title),
+    'body': getComment(title, userName),
   });
 
   return false;
