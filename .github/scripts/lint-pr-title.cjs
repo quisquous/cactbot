@@ -21,7 +21,7 @@ const validScope = [
   'pullcounter',
   'radar',
   'raidboss',
-  'raidemulater',
+  'raidemulator',
 
   // Other Scopes
   'build', // changes to webpack or TypeScript/babel toolchain
