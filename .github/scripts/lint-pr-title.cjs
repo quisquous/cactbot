@@ -35,7 +35,7 @@ const validScope = [
   'util', // code in util/
 ];
 
-const validNonScope = [
+const validPrefix = [
   '[WIP]',
   '[wip]',
   '!', // means `BREAKING CHANGE!`
@@ -75,7 +75,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
   });
   const { title, user } = pullRequest;
   const userName = user?.login;
-  const m = /^((?<nonscope>[\w!\[\]]*)\s*)?\b(?<scope>\w+):\s?.+$/.test(title);
+  const m = /^((?<prefix>[\w!\[\]]*)\s*)?\b(?<scope>\w+):\s?.+$/.exec(title);
 
   const { data: comments } = await octokit.rest.issues.listComments({
     owner,
@@ -85,23 +85,36 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
 
   const myComment = comments.find(({ user }) => user?.login === botName);
 
-  if (m) {
-    if (validScope.includes(m.scope) && validNonScope.includes(m.nonscope)) {
+  if (m && m.groups) {
+    const groups = m.groups;
+    console.log(`Matches: scope: ${groups.scope}, prefix: ${groups.prefix}`);
+
+    const scopeValid = validScope.includes(groups.scope);
+    const prefixValid = validPrefix.includes(groups.prefix) || !groups.prefix;
+    if (scopeValid && prefixValid) {
       if (myComment) {
+        console.error('PR title good, updating comment.');
         await octokit.rest.issues.updateComment({
           owner,
           repo,
           'comment_id': myComment.id,
           'body': thanksComment(userName),
         });
+      } else {
+        console.error('PR title good, no comment to update.');
       }
       return true;
     }
+  } else {
+    console.error('PR title did not match.');
   }
 
-  if (myComment)
+  if (myComment) {
+    console.error('PR title still incorrect, leaving existing comment.');
     return false;
+  }
 
+  console.error('PR title incorrect, creating comment.');
   await octokit.rest.issues.createComment({
     owner,
     repo,
