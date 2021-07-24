@@ -192,14 +192,6 @@ export class Bars {
     }
   }
 
-  get gcdSkill() {
-    return calcGCDFromStat(this, this.skillSpeed);
-  }
-
-  get gcdSpell() {
-    return calcGCDFromStat(this, this.spellSpeed);
-  }
-
   _updateUIVisibility() {
     const bars = document.getElementById('bars');
     if (bars) {
