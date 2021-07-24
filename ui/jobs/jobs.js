@@ -53,6 +53,7 @@ const kPullText = {
   ko: '풀링',
 };
 
+/** Player data */
 export class Player {
   constructor() {
     // basic info
