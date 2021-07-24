@@ -26,7 +26,7 @@ import '../../resources/timericon';
 import '../../resources/widget_list';
 
 import '../../resources/defaults.css';
-import './jobs.css';
+import './jobs.styl';
 
 
 // text on the pull countdown.

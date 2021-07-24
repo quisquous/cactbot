@@ -6,6 +6,10 @@
   position: relative;
   top: 20px; /* Space for pull counter */
   left: 100px; /* Space for some left buffs */
+
+  .justbuffs & {
+    display: none;
+  }
 }
 
 #jobs-container.hide {
@@ -34,10 +38,6 @@
   font-size: 12px;
 }
 
-.justbuffs #bars {
-  display: none;
-}
-
 #mp-bar,
 #gnb-bar,
 #mnk-bar,
@@ -54,22 +54,23 @@
 #gp-bar {
   height: 18px;
 }
-
-.mnk #hp-bar {
-  height: 10px;
-}
-
-.pld #hp-bar,
-.drk #hp-bar,
-.whm #hp-bar,
-.sch #hp-bar,
-.ast #hp-bar,
-.blu #hp-bar {
-  height: 18px;
-}
-
 .blm #mp-bar {
   height: 24px;
+}
+
+#hp-bar {
+  .mnk &{
+    height: 10px;
+  }
+
+  .pld &,
+  .drk &,
+  .whm &,
+  .sch &,
+  .ast &,
+  .blu & {
+    height: 18px;
+  }
 }
 
 .bar-container {
@@ -94,25 +95,25 @@
   width: 200px; /* 202 minus borders */
   height: calc(8px * 2 - 4px);
   background: rgba(30, 30, 30, 0.7);
-}
 
-#rdm-bar .marker {
-  position: absolute;
-  height: 100%;
-}
+  /* Relative to #rdm-bar */
+  #rdm-white-bar,
+  #rdm-black-bar {
+    display: block;
+    position: relative;
+    margin: -1px -1px -2px -1px;
+    width: 100%;
+    height: calc(100% - 4px);
+  }
 
-#rdm-bar .marker.even {
-  background: rgba(0, 0, 0, 0.7);
-}
+  .marker {
+    position: absolute;
+    height: 100%;
 
-/* Relative to #rdm-bar */
-#rdm-white-bar,
-#rdm-black-bar {
-  display: block;
-  position: relative;
-  margin: -1px -1px -2px -1px;
-  width: 100%;
-  height: calc(100% - 4px);
+    &.even {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
 }
 
 /* Boxes */
@@ -123,76 +124,81 @@
   position: absolute;
   left: 202px;
   top: 0;
+
+    /*
+      Fit the exact height of the bars if not too small
+      Height of default/HP bar(show number)
+    */
+    > div {
+    display: inline-block;
+    margin-left: 4;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    width: 29px;
+    height: 29px;
+  }
+
+  .text {
+    text-align: center;
+    position: relative;
+    top: 5px;
+    font-size: 16px;
+    line-height: 1.1em;
+  }
 }
 
-/*
-  Fit the exact height of the bars if not too small
-  Height of default/HP bar(show number)
-*/
-.box-container > div {
-  display: inline-block;
-  margin-left: 4;
-  border: 1px solid rgba(0, 0, 0, 0.7);
-  width: 29px;
-  height: 29px;
+div {
+  /* Height of HP + MP bar(show number) */
+  #pld-boxes > &,
+  #drk-boxes > &,
+  #whm-boxes > &,
+  #sch-boxes > &,
+  #ast-boxes > & {
+    width: 35px;
+    height: 35px;
+  }
+
+  /* Height of something special */
+  #smn-boxes > &,
+  #rdm-boxes > & {
+    width: 28px;
+    height: 28px;
+  }
+
+  #mnk-boxes > &,
+  #blm-boxes > & {
+    width: 30px;
+    height: 30px;
+  }
 }
 
-.box-container .text {
-  text-align: center;
-  position: relative;
-  top: 5px;
-  font-size: 16px;
-  line-height: 1.1em;
-}
+.text {
+  common() {
+    text-align: center;
+    position: relative;
+  }
+  #pld-boxes &,
+  #drk-boxes &,
+  #whm-boxes &,
+  #sch-boxes &,
+  #ast-boxes & {
+    common();
+    top: 6px;
+    font-size: 20px;
+  }
 
-/* Height of HP + MP bar(show number) */
-#pld-boxes > div,
-#drk-boxes > div,
-#whm-boxes > div,
-#sch-boxes > div,
-#ast-boxes > div {
-  width: 35px;
-  height: 35px;
-}
+  #smn-boxes &,
+  #rdm-boxes & {
+    common();
+    top: 5px;
+    font-size: 16px;
+  }
 
-#pld-boxes .text,
-#drk-boxes .text,
-#whm-boxes .text,
-#sch-boxes .text,
-#ast-boxes .text {
-  text-align: center;
-  position: relative;
-  top: 6px;
-  font-size: 20px;
-}
-
-/* Height of something special */
-#smn-boxes > div,
-#rdm-boxes > div {
-  width: 28px;
-  height: 28px;
-}
-
-#smn-boxes .text,
-#rdm-boxes .text {
-  text-align: center;
-  position: relative;
-  top: 5px;
-  font-size: 16px;
-}
-
-#mnk-boxes > div,
-#blm-boxes > div {
-  width: 30px;
-  height: 30px;
-}
-
-#mnk-boxes .text,
-#blm-boxes .text {
-  text-align: center;
-  position: relative;
-  top: 6px;
-  font-size: 16px;
+  #mnk-boxes &,
+  #blm-boxes & {
+    common();
+    top: 6px;
+    font-size: 16px;
+  }
 }
 
 /* Left box */
@@ -215,73 +221,65 @@
 #left-side-icons {
   position: absolute;
   left: -2px;
-}
 
-.blm #left-side-icons {
-  left: -40px;
+  .blm & {
+    left: -40px;
+  }
 }
 
 /* Relative to #bars, default for 1 small box */
 #right-side-icons {
   position: absolute;
   left: 242px;
-}
 
-/* Space for no resource box */
-.blu #right-side-icons {
-  left: 204px;
-}
+  /* Space for no resource box */
+  .blu & {
+    left: 204px;
+  }
 
-/* Space for 2 resource boxes */
-.drg #right-side-icons,
-.sam #right-side-icons,
-.brd #right-side-icons,
-.mch #right-side-icons,
-.dnc #right-side-icons,
-.smn #right-side-icons,
-.rdm #right-side-icons {
-  left: 278px;
-}
+  /* Space for 2 resource boxes */
+  .drg &,
+  .sam &,
+  .brd &,
+  .mch &,
+  .dnc &,
+  .smn &,
+  .rdm & {
+    left: 278px;
+  }
 
-/* Space for 1 big resource box */
-.drk #right-side-icons,
-.nin #right-side-icons {
-  left: 250px;
-}
+  /* Space for 1 big resource box */
+  .drk &,
+  .nin & {
+    left: 250px;
+  }
 
-/* Space for 2 big resource box */
-.pld #right-side-icons,
-.whm #right-side-icons,
-.sch #right-side-icons,
-.ast #right-side-icons {
-  left: 288px;
-}
+  /* Space for 2 big resource box */
+  .pld &,
+  .whm &,
+  .sch &,
+  .ast & {
+    left: 288px;
+  }
 
-.justbuffs #right-side-icons {
-  position: fixed;
-  left: 0;
+  .justbuffs & {
+    position: fixed;
+    left: 0;
+  }
 }
 
 /* Stacks */
-#whm-stacks {
+$stacks {
   display: flex;
   margin-top: 1px;
-  width: 206px;
   height: 12px;
 }
 
-#sam-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 206px;
-  height: 12px;
-}
-
+#whm-stacks,
+#sam-stacks,
 #mch-stacks {
-  display: flex;
-  margin-top: 1px;
+  @extends $stacks;
   width: 206px;
-  height: 12px;
 }
 
 #mch-stacks.hide {
@@ -289,17 +287,13 @@
 }
 
 #blm-stacks {
-  display: flex;
-  margin-top: 1px;
+  @extends $stacks;
   width: 202px;
-  height: 12px;
 }
 
 #smn-stacks {
-  display: flex;
-  margin-top: 1px;
+  @extends $stacks;
   width: 204px;
-  height: 12px;
 }
 
 #whm-stacks-bloodlily,
@@ -315,52 +309,35 @@
   height: 100%;
 }
 
+stacks-inline(size, bgColor) {
+  background-color: bgColor;
+  margin-right: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  // stylus didn't support calc with variables natively
+  width: 'calc(%s - 4px)' % size;
+  height: 100%;
+}
+
 #sam-stacks-setsu,
 #sam-stacks-getsu,
-#sam-stacks-ka {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(33% - 4px);
-  height: 100%;
-}
-
+#sam-stacks-ka,
 #whm-stacks-bloodlily > div,
 #blm-stacks-heart > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(33% - 4px);
-  height: 100%;
+  stacks-inline(33%, rgba(174, 227, 235, 0.2));
 }
 
+
 #mch-stacks-wildfire > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(16% - 3px);
-  height: 100%;
+  stacks-inline(16%, rgba(174, 227, 235, 0.2));
 }
 
 #blm-stacks-xeno > div {
-  background-color: rgba(66, 19, 128, 0.2);
-  margin-left: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(50% - 4px);
-  height: 100%;
+  stacks-inline(50%, rgba(66, 19, 128, 0.2));
 }
 
 #smn-stacks-ruin4 > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(25% - 4px);
-  height: 100%;
+  stacks-inline(25%, rgba(174, 227, 235, 0.2));
 }
 
 #whm-stacks-bloodlily > div.active {
@@ -407,6 +384,8 @@
   of the ffxiv target+buffs bar, with the procs appearing underneath.
   All jobs should have procs in roughly the same spot, and the
   entire bars + procs should be roughly 250px wide, 210px tall.
+
+  TODO: this should refactored to use flex
 */
 .proc-box {
   position: absolute;
@@ -491,42 +470,42 @@
 
 .hp-color {
   background-color: rgb(59, 133, 4);
-}
 
-.hp-color.low {
-  background-color: rgb(190, 43, 30);
-}
+  &.low {
+    background-color: rgb(190, 43, 30);
+  }
 
-.hp-color.mid {
-  background-color: rgb(127, 185, 29);
+  &.mid {
+    background-color: rgb(127, 185, 29);
+  }
 }
 
 .mp-color {
   background-color: rgb(188, 55, 147);
-}
 
-.mp-color.far {
-  background-color: rgb(215, 120, 0);
-}
+  &.far {
+    background-color: rgb(215, 120, 0);
+  }
 
-.mp-color.low {
-  background-color: rgb(210, 20, 65);
-}
+  &.low {
+    background-color: rgb(210, 20, 65);
+  }
 
-.mp-color.medium {
-  background-color: rgb(65, 0, 200);
+  &.medium {
+    background-color: rgb(65, 0, 200);
+  }
 }
 
 .mp-tick-color {
   background-color: rgb(133, 192, 231);
-}
 
-.mp-tick-color.ice {
-  background-color: rgb(30, 80, 245);
-}
+  &.ice {
+    background-color: rgb(30, 80, 245);
+  }
 
-.mp-tick-color.fire {
-  background-color: rgb(229, 56, 53);
+  &.fire {
+    background-color: rgb(229, 56, 53);
+  }
 }
 
 .cp-color {
@@ -544,22 +523,22 @@
 /* PLD */
 .pld-color-oath {
   background-color: rgb(255, 210, 45);
-}
 
-.pld-color-oath.mid {
-  background-color: rgb(255, 255, 100);
-}
+  &.mid {
+    background-color: rgb(255, 255, 100);
+  }
 
-.pld-color-oath.low {
-  background-color: rgb(255, 255, 200);
+  &.low {
+    background-color: rgb(255, 255, 200);
+  }
 }
 
 .pld-color-atonement {
   background-color: rgb(214, 237, 255);
-}
 
-.pld-color-atonement.any {
-  background-color: rgb(25, 156, 255);
+  &.any {
+    background-color: rgb(25, 156, 255);
+  }
 }
 
 .pld-color-gore {
@@ -569,14 +548,14 @@
 /* WAR */
 .war-color-beast {
   background-color: rgb(230, 20, 20);
-}
 
-.war-color-beast.low {
-  background-color: rgb(255, 235, 153);
-}
+  &.low {
+    background-color: rgb(255, 235, 153);
+  }
 
-.war-color-beast.mid {
-  background-color: rgb(255, 153, 0);
+  &.mid {
+    background-color: rgb(255, 153, 0);
+  }
 }
 
 .war-color-eye {
@@ -586,14 +565,14 @@
 /* DRK */
 .drk-color-blood {
   background-color: rgb(255, 0, 10);
-}
 
-.drk-color-blood.low {
-  background-color: rgb(60, 0, 10);
-}
+  &.low {
+    background-color: rgb(60, 0, 10);
+  }
 
-.drk-color-blood.mid {
-  background-color: rgb(200, 0, 10);
+  &.mid {
+    background-color: rgb(200, 0, 10);
+  }
 }
 
 .drk-color-darkside {
@@ -602,35 +581,35 @@
 
 .drk-color-bloodweapon {
   background-color: rgb(133, 0, 0, 0.7);
-}
 
-.drk-color-bloodweapon.active {
-  background-color: rgb(199, 0, 0);
+  &.active {
+    background-color: rgb(199, 0, 0);
+  }
 }
 
 .drk-color-delirium {
   background-color: rgb(255, 80, 80, 0.6);
-}
 
-.drk-color-delirium.active {
-  background-color: rgb(255, 80, 80);
+  &.active {
+    background-color: rgb(255, 80, 80);
+  }
 }
 
 .drk-color-livingshadow {
   background-color: rgb(123, 58, 126, 0.5);
-}
 
-.drk-color-livingshadow.active {
-  background-color: rgb(179, 0, 189);
+  &.active {
+    background-color: rgb(179, 0, 189);
+  }
 }
 
 /* GNB */
 .gnb-color-cartridge {
   background-color: rgb(115, 218, 255);
-}
 
-.gnb-color-cartridge.full {
-  background-color: rgb(250, 86, 45);
+  $.full {
+    background-color: rgb(250, 86, 45);
+  }
 }
 
 .gnb-color-gnashingfang {
@@ -639,10 +618,10 @@
 
 .gnb-color-nomercy {
   background-color: rgba(232, 127, 127, 0.7);
-}
 
-.gnb-color-nomercy.active {
-  background-color: rgb(232, 127, 127);
+  $.active {
+    background-color: rgb(232, 127, 127);
+  }
 }
 
 .gnb-color-bloodfest {
@@ -668,10 +647,10 @@
 
 .whm-color-lilysecond {
   background-color: rgb(120, 170, 250);
-}
 
-.whm-color-lilysecond.full {
-  background-color: rgb(240, 30, 30);
+  $.full {
+    background-color: rgb(240, 30, 30);
+  }
 }
 
 /* SCH */
@@ -681,18 +660,18 @@
 
 .sch-color-aetherflow {
   background-color: rgb(255, 96, 207);
-}
 
-.sch-color-aetherflow.too-much-stacks {
-  background-color: rgb(240, 30, 30);
+  $.too-much-stacks {
+    background-color: rgb(240, 30, 30);
+  }
 }
 
 .sch-color-fairygauge {
   background-color: rgb(62, 224, 170);
-}
 
-.sch-color-fairygauge.bright {
-  background-color: rgb(120, 170, 250);
+  &.bright {
+    background-color: rgb(120, 170, 250);
+  }
 }
 
 .sch-color-lucid {
@@ -718,22 +697,22 @@
 
 .ast-color-card {
   background-color: rgb(180, 200, 220);
-}
 
-.ast-color-card.range {
-  background-color: rgb(255, 96, 207);
-}
+  &.range {
+    background-color: rgb(255, 96, 207);
+  }
 
-.ast-color-card.melee {
-  background-color: rgb(120, 170, 250);
+  &.melee {
+    background-color: rgb(120, 170, 250);
+}
 }
 
 .ast-color-seal {
   background-color: rgb(180, 200, 220);
-}
 
-.ast-color-seal.ready {
-  background-color: rgb(62, 224, 170);
+  &.ready {
+    background-color: rgb(62, 224, 170);
+  }
 }
 
 .ast-color-lucid {
@@ -743,10 +722,10 @@
 /* MNK */
 .mnk-color-chakra {
   background-color: rgb(230, 20, 20);
-}
 
-.mnk-color-chakra.dim {
-  background-color: rgba(244, 194, 66, 0.3);
+  &.dim {
+    background-color: rgba(244, 194, 66, 0.3);
+  }
 }
 
 .mnk-color-form {
@@ -775,31 +754,31 @@
 }
 
 .drg-color-blood {
-  background-color: rgba(180, 200, 220);
-}
+  background-color: rgb(180, 200, 220);
 
-.drg-color-blood.blood {
-  background-color: rgba(0, 89, 255, 0.5);
-}
+  &.blood {
+    background-color: rgba(0, 89, 255, 0.5);
+  }
 
-.drg-color-blood.life {
-  background-color: rgba(217, 51, 0);
+  &.life {
+    background-color: rgb(217, 51, 0);
+  }
 }
 
 .drg-color-eyes {
-  background-color: rgba(180, 200, 220);
-}
+  background-color: rgb(180, 200, 220);
 
-.drg-color-eyes.zero {
-  background-color: rgba(0, 89, 255, 0.5);
-}
+  &.zero {
+    background-color: rgba(0, 89, 255, 0.5);
+  }
 
-.drg-color-eyes.one {
-  background-color: rgba(200, 50, 200, 0.7);
-}
+  &.one {
+    background-color: rgba(200, 50, 200, 0.7);
+  }
 
-.drg-color-eyes.two {
-  background-color: rgba(217, 51, 0);
+  &.two {
+    background-color: rgb(217, 51, 0);
+  }
 }
 
 .drg-color-highjump {
@@ -808,18 +787,18 @@
 
 .drg-color-lancecharge {
   background-color: rgb(100, 15, 15);
-}
 
-.drg-color-lancecharge.active {
-  background-color: rgb(217, 51, 0);
+  &.active {
+    background-color: rgb(217, 51, 0);
+  }
 }
 
 .drg-color-dragonsight {
   background-color: rgb(187, 42, 42, 0.8);
-}
 
-.drg-color-dragonsight.active {
-  background-color: rgb(217, 51, 0);
+  &.active {
+    background-color: rgb(217, 51, 0);
+  }
 }
 
 /* NIN */
@@ -829,10 +808,10 @@
 
 .nin-color-trickattack {
   background-color: rgb(255, 200, 0, 0.6);
-}
 
-.nin-color-trickattack.active {
-  background-color: rgb(255, 200, 0);
+  &.active {
+    background-color: rgb(255, 200, 0);
+  }
 }
 
 .nin-color-bunshin {
@@ -843,33 +822,33 @@
   background-color: rgb(250, 150, 250);
 }
 
-.nin-color-ninki.low {
-  background-color: rgb(140, 90, 200);
-}
-
 .nin-color-ninki {
   background-color: rgb(200, 50, 20, 0.7);
-}
 
-.nin-color-ninki.high {
-  background-color: rgb(255, 42, 0);
+  &.low {
+    background-color: rgb(140, 90, 200);
+  }
+
+  &.high {
+    background-color: rgb(255, 42, 0);
+  }
 }
 
 /* SAM */
 .sam-color-kenki {
   background-color: rgb(255, 150, 150);
-}
 
-.sam-color-kenki.high {
-  background-color: rgb(255, 50, 50);
+  &.high {
+    background-color: rgb(255, 50, 50);
+  }
 }
 
 .sam-color-meditation {
   background-color: rgb(188, 76, 35);
-}
 
-.sam-color-meditation.high {
-  background-color: rgb(255, 255, 160);
+  &.high {
+    background-color: rgb(255, 255, 160);
+  }
 }
 
 .sam-color-shifu {
@@ -903,47 +882,47 @@
 
 .brd-color-song {
   background-color: rgb(180, 200, 220);
-}
 
-.brd-color-song.minuet {
-  background-color: rgb(100, 150, 100);
-}
+  &.minuet {
+    background-color: rgb(100, 150, 100);
 
-.brd-color-song.minuet.full {
-  background-color: rgb(250, 150, 0);
-}
+    &.full {
+      background-color: rgb(250, 150, 0);
+    }
+  }
 
-.brd-color-song.ballad {
-  background-color: rgb(143, 90, 143);
-}
+  &.ballad {
+    background-color: rgb(143, 90, 143);
+  }
 
-.brd-color-song.paeon {
-  background-color: rgb(207, 205, 52);
+  &.paeon {
+    background-color: rgb(207, 205, 52);
+  }
 }
 
 .brd-color-soulvoice {
   background-color: rgb(180, 200, 220);
-}
 
-.brd-color-soulvoice.high {
-  background-color: rgb(250, 100, 0);
+  &.high {
+    background-color: rgb(250, 100, 0);
+  }
 }
 
 /* MCH */
 .mch-color-heat {
   background-color: rgb(250, 100, 0);
-}
 
-.mch-color-heat.overheat {
-  background-color: rgb(250, 0, 0);
+  &.overheat {
+    background-color: rgb(250, 0, 0);
+  }
 }
 
 .mch-color-battery {
   background-color: rgb(60, 110, 110);
-}
 
-.mch-color-battery.robot-active {
-  background-color: rgb(80, 200, 200);
+  &.robot-active {
+    background-color: rgb(80, 200, 200);
+  }
 }
 
 .mch-color-drill {
@@ -955,11 +934,11 @@
 }
 
 .mch-color-wildfire {
-  background-color: rgba(190, 80, 70);
-}
+  background-color: rgb(190, 80, 70);
 
-.mch-color-wildfire.active {
-  background-color: rgba(250, 0, 0);
+  &.active {
+    background-color: rgb(250, 0, 0);
+  }
 }
 
 /* DNC */
@@ -969,26 +948,26 @@
 
 .dnc-color-technicalstep {
   background-color: rgb(80, 200, 200, 0.7);
-}
 
-.dnc-color-technicalstep.active {
-  background-color: rgb(80, 200, 200);
+  &.active {
+    background-color: rgb(80, 200, 200);
+  }
 }
 
 .dnc-color-flourish {
   background-color: rgb(150, 100, 0);
-}
 
-.dnc-color-flourish.active {
-  background-color: rgb(255, 145, 0);
+  &.active {
+    background-color: rgb(255, 145, 0);
+  }
 }
 
 .dnc-color-esprit {
   background-color: rgb(255, 200, 0, 0.7);
-}
 
-.dnc-color-esprit.high {
-  background-color: rgb(255, 50, 150);
+  &.high {
+    background-color: rgb(255, 50, 150);
+  }
 }
 
 .dnc-color-feather {
@@ -1006,45 +985,45 @@
 
 .blm-color-fire {
   background-color: rgb(217, 51, 0);
-}
 
-.blm-umbral-timer.fire {
-  background-color: rgb(229, 56, 53);
-}
+  &.fire {
+    background-color: rgb(229, 56, 53);
+  }
 
-.blm-umbral-timer.ice {
-  background-color: rgb(30, 80, 245);
+  &.ice {
+    background-color: rgb(30, 80, 245);
+  }
 }
 
 .blm-xeno-timer {
   background-color: rgba(0, 0, 0, 0.3);
-}
 
-.blm-xeno-timer.active {
-  background-color: rgb(200, 50, 200);
-}
-
-/* Pulse effect for xeno overwrite */
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0.7);
+  &.active {
+    background-color: rgb(200, 50, 200);
   }
 
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(200, 50, 200, 0);
+  /* Pulse effect for xeno overwrite */
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(200, 50, 200, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(200, 50, 200, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(200, 50, 200, 0);
+    }
   }
 
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0);
+  &.pulse {
+    box-shadow: 0 0 0 0 rgba(200, 50, 200, 1);
+    animation: pulse 1s infinite;
   }
-}
-
-.blm-xeno-timer.pulse {
-  box-shadow: 0 0 0 0 rgba(200, 50, 200, 1);
-  animation: pulse 1s infinite;
 }
 
 /* SMN */
@@ -1054,10 +1033,10 @@
 
 .smn-color-aetherflow {
   background-color: rgb(255, 96, 207);
-}
 
-.smn-color-aetherflow.too-much-stacks {
-  background-color: rgb(240, 30, 30);
+  &.too-much-stacks {
+    background-color: rgb(240, 30, 30);
+  }
 }
 
 .smn-color-biosmn {
@@ -1078,35 +1057,35 @@
 
 .smn-color-demisummon {
   background-color: rgb(180, 200, 220);
-}
 
-.smn-color-demisummon.bahamutready {
-  background-color: rgb(64, 65, 163);
-}
+  &.bahamutready {
+    background-color: rgb(64, 65, 163);
+  }
 
-.smn-color-demisummon.firebirdready {
-  background-color: orange;
-}
+  &.firebirdready {
+    background-color: orange;
+  }
 
-.smn-color-demisummon.last {
-  background-color: rgb(240, 30, 30);
+  &.last {
+    background-color: rgb(240, 30, 30);
+  }
 }
 
 /* RDM */
 .rdm-color-white-mana {
   background-color: rgb(220, 220, 240);
+
+  &.dim {
+    background-color: rgb(100, 100, 100);
+  }
 }
 
 .rdm-color-black-mana {
   background-color: rgb(47, 100, 208);
-}
 
-.rdm-color-white-mana.dim {
-  background-color: rgb(100, 100, 100);
-}
-
-.rdm-color-black-mana.dim {
-  background-color: rgb(13, 76, 80);
+  &.dim {
+    background-color: rgb(13, 76, 80);
+  }
 }
 
 .rdm-color-lucid {
@@ -1128,12 +1107,12 @@
 
 /* Proc box animation */
 .proc-box.in-combat .notify-when-expired.expired {
+  @keyframes proc-box-flash {
+    50% {
+      opacity: 0;
+    }
+  }
+
   display: block;
   animation: var(--proc-box-notfy-animation, proc-box-flash) var(--proc-box-notify-duration, 1s) var(--proc-box-notify-repeat, infinite);
-}
-
-@keyframes proc-box-flash {
-  50% {
-    opacity: 0;
-  }
 }

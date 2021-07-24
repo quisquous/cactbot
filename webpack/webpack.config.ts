@@ -122,6 +122,24 @@ export default (
           ],
         },
         {
+          test: /\.styl$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                // TODO: Migrate to url-loader
+                url: false,
+              },
+            },
+            {
+              loader: 'stylus-loader',
+            },
+          ],
+        },
+        {
           test: /\.(png|jpe?g)/,
           type: 'asset',
           parser: {

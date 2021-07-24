@@ -81,6 +81,8 @@
     "style-loader": "^2.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^19.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^6.1.0",
     "tar-fs": "^2.1.1",
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
