@@ -132,9 +132,15 @@ there will be something like a `cactbot-0.15.2` folder
 that corresponds to the initial version that you downloaded cactbot.
 This folder name does not matter and is cosmetic.
 
-Verify your plugins are in the correct order.
-The order should be: FFXIV Plugin first, then OverlayPlugin, then cactbot.
-If you have followed the above instructions, it should look like the following:
+### Plugin Load Order
+
+Because of cactbot’s dependencies,
+cactbot must be loaded after both OverlayPlugin and the FFXIV ACT plugin.
+Verify that your plugins are in this order:
+
+* FFIXV_ACT_Plugin.dll
+* OverlayPlugin.dll
+* CactbotOverlay.dll
 
 ![plugin order](screenshots/get_plugins_complete.png)
 
