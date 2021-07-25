@@ -32,6 +32,7 @@ import {
   makeAuraTimerIcon,
   RegexesHolder,
 } from './utils';
+import Player from './player';
 
 import './jobs_config';
 import '../../resources/resourcebar';
@@ -53,65 +54,6 @@ const kPullText = {
   ko: '풀링',
 };
 
-/** Player data */
-export class Player {
-  constructor() {
-    // basic info
-    this.name = undefined;
-    this.level = 0;
-    this.job = 'NONE';
-    this.hp = 0;
-    this.maxHP = 0;
-    this.currentShield = 0;
-    this.mp = 0;
-    this.prevMP = 0;
-    this.maxMP = 0;
-    this.cp = 0;
-    this.maxCP = 0;
-    this.gp = 0;
-    this.maxGP = 0;
-
-    // player stats
-    this.stats = {
-      skillSpeed: 0,
-      spellSpeed: 0,
-    };
-    this.speedBuffs = {
-      presenceOfMind: 0,
-      shifu: 0,
-      huton: 0,
-      paeonStacks: 0,
-      museStacks: 0,
-      circleOfPower: 0,
-    };
-  }
-
-  get gcdSkill() {
-    return calcGCDFromStat(this, this.stats.skillSpeed);
-  }
-
-  get gcdSpell() {
-    return calcGCDFromStat(this, this.stats.spellSpeed);
-  }
-
-  /**
-   * @param {number} originalCd
-   * @param {'skill' | 'spell'} type
-   * @return {number}
-   */
-  getActionCooldown(originalCd, type) {
-    let speed = 0;
-    if (type === 'skill')
-      speed = this.stats.skillSpeed;
-    else if (type === 'spell')
-      speed = this.stats.spellSpeed;
-    else
-      throw new Error('Invalid type: ' + type);
-
-    return calcGCDFromStat(this, speed, originalCd);
-  }
-}
-
 export class Bars {
   constructor(options) {
     this.options = options;
@@ -121,7 +63,7 @@ export class Bars {
     this.jobComponent = undefined;
 
     /** @type {Player} */
-    this.player = new Player();
+    this.player = undefined;
 
     this.hp = 0;
     this.maxHP = 0;
@@ -1130,10 +1072,13 @@ export class Bars {
 
 UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
+  const player = new Player();
   const bars = new Bars(options);
+  bars.player = player;
 
   addOverlayListener('onPlayerChangedEvent', (e) => {
     bars._onPlayerChanged(e);
+    player._onPlayerChanged(e);
   });
   addOverlayListener('EnmityTargetData', (e) => {
     bars._updateEnmityTargetData(e);

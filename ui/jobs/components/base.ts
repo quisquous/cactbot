@@ -3,7 +3,8 @@ import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
-import { Bars, Player } from '../jobs';
+import { Bars } from '../jobs';
+import Player from '../player';
 
 export type Stats = NetMatches['PlayerStats'] & {
   gcdSkill: number;
