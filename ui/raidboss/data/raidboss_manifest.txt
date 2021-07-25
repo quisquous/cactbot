@@ -78,6 +78,8 @@
 03-hw/raid/a4s.txt
 03-hw/raid/a5s.ts
 03-hw/raid/a5s.txt
+03-hw/raid/a6n.ts
+03-hw/raid/a6n.txt
 03-hw/raid/a6s.ts
 03-hw/raid/a6s.txt
 03-hw/raid/a7s.ts
