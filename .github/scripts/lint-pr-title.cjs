@@ -132,7 +132,8 @@ const run = async () => {
 
   const octokit = github.getOctokit(process.env.GH_TOKEN);
 
-  await checkTitle(octokit, owner, repo, pullNumber);
+  const result = await checkTitle(octokit, owner, repo, pullNumber);
+  process.exit(result ? 0 : 2);
 };
 
 run().catch((err) => {
