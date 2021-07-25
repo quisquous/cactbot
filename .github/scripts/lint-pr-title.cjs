@@ -10,6 +10,10 @@ const github = require('@actions/github');
 
 const botName = 'cactbotbot';
 
+const maxLength = 60;
+
+const boolToEmoji = (bool) => bool ? '✅' : '❌';
+
 const validScope = [
   // UI Module Scopes
   'config',
@@ -48,9 +52,11 @@ const thanksComment = (userName) => {
   return `${userStr}Thanks for your contribution! 🌵🚀`;
 };
 
-const getComment = (title, userName) => `${thanksComment(userName)}
+const getComment = (title, userName, formatValid, lengthValid) => `${thanksComment(userName)}
 
-Currently your title is: \`${title}\`, but it should be in the format of \`scope: description\`.
+Currently your title is: \`${title}\`, but it should:
+* ${boolToEmoji(formatValid)} be in the format of \`scope: description\`.
+* ${boolToEmoji(lengthValid)} have at most ${maxLength} characters.
 
 <details>
 <summary>More Information</summary>
@@ -88,6 +94,8 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
   const { title, user } = pullRequest;
   const userName = user?.login;
   const m = /^((?<prefix>[\w!\[\]]*)\s*)?\b(?<scope>\w+):\s?.+$/.exec(title);
+  const lengthValid = title.length <= maxLength;
+  let formatValid = false;
 
   const { data: comments } = await octokit.rest.issues.listComments({
     owner,
@@ -103,36 +111,47 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
 
     const scopeValid = validScope.includes(groups.scope);
     const prefixValid = validPrefix.includes(groups.prefix) || !groups.prefix;
-    if (scopeValid && prefixValid) {
-      if (myComment) {
-        console.error('PR title good, updating comment.');
-        await octokit.rest.issues.updateComment({
-          owner,
-          repo,
-          'comment_id': myComment.id,
-          'body': thanksComment(userName),
-        });
-      } else {
-        console.error('PR title good, no comment to update.');
-      }
-      return true;
-    }
+    formatValid = scopeValid && prefixValid;
   } else {
     console.error('PR title did not match.');
   }
 
-  if (myComment) {
-    console.error('PR title still incorrect, leaving existing comment.');
-    return false;
+  if (formatValid && lengthValid) {
+    if (myComment) {
+      console.error('PR title good, updating comment.');
+      await octokit.rest.issues.updateComment({
+        owner,
+        repo,
+        'comment_id': myComment.id,
+        'body': thanksComment(userName),
+      });
+    } else {
+      console.error('PR title good, no comment to update.');
+    }
+    return true;
   }
 
-  console.error('PR title incorrect, creating comment.');
-  await octokit.rest.issues.createComment({
-    owner,
-    repo,
-    'issue_number': pullNumber,
-    'body': getComment(title, userName),
-  });
+  const bodyText = getComment(title, userName, formatValid, lengthValid);
+  console.error(`Comment text:\n--snip--\n${bodyText}\n--snip--\n`);
+
+  if (myComment) {
+    console.error('PR title still incorrect, updating existing comment.');
+    console.error('PR title good, updating comment.');
+    await octokit.rest.issues.updateComment({
+      owner,
+      repo,
+      'comment_id': myComment.id,
+      'body': bodyText,
+    });
+  } else {
+    console.error('PR title incorrect, creating comment.');
+    await octokit.rest.issues.createComment({
+      owner,
+      repo,
+      'issue_number': pullNumber,
+      'body': bodyText,
+    });
+  }
 
   return false;
 };
