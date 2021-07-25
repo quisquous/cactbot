@@ -114,7 +114,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
 
     const scopes = groups.scope.split('/');
     const scopeValid = scopes.every((scope) => validScope.includes(scope));
-    const prefixValid = validPrefix.includes(groups.prefix) || !groups.prefix;
+    const prefixValid = !groups.prefix || validPrefix.includes(groups.prefix.trim());
     formatValid = scopeValid && prefixValid;
   } else {
     console.error('PR title did not match.');
