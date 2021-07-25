@@ -45,16 +45,28 @@ const thanksComment = (userName) => {
   let userStr = '';
   if (userName)
     userStr = `@${userName} `;
-  return `${userStr}Thanks for your contribution!🚀`;
+  return `${userStr}Thanks for your contribution! 🌵🚀`;
 };
 
 const getComment = (title, userName) => `${thanksComment(userName)}
 
-Currently your title is: ${title},
-but it should be in the format of \`scope: description\`.
+Currently your title is: \`${title}\`, but it should be in the format of \`scope: description\`.
+
+<details>
+<summary>More Information</summary>
 
 \`scope\` can be any of the following:
-${validScope.map((s) => `  - ${s}`).join('\n')}
+${[...validScope].sort().map((s) => `- \`${s}\``).join('\n')}
+
+Valid Title Examples:
+- \`i18n: translating a bunch of new stuff\`
+- \`raidboss: fix bug in New Ultimate Fight\`
+- \`plugin: update Bozja CE code for patch 6.34\`
+- \`lint: change @typescript/irritating-lint warning\`
+
+Drafts can also use \`[wip]\` as a prefix to show that they are a "work in progress", e.g. \`[wip] plugin: refactoring everything\`.
+
+</details>
 
 ------
 This comment is created and updated by a bot.
@@ -119,7 +131,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
     owner,
     repo,
     'issue_number': pullNumber,
-    'body': getComment(title),
+    'body': getComment(title, userName),
   });
 
   return false;
