@@ -38,27 +38,34 @@
   font-size: 12px;
 }
 
-#mp-bar,
+#mp-bar {
+  margin-top: 1px;
+
+  &.show-number {
+    height: 18px;
+  }
+
+  .blm & {
+    height: 24px;
+  }
+}
+
 #gnb-bar,
 #mnk-bar,
 #rdm-bar {
   margin-top: 1px;
 }
 
-#hp-bar.show-number {
-  height: 32px;
-}
-
-#mp-bar.show-number,
 #cp-bar,
 #gp-bar {
   height: 18px;
 }
-.blm #mp-bar {
-  height: 24px;
-}
 
 #hp-bar {
+  &.show-number {
+    height: 32px;
+  }
+
   .mnk &{
     height: 10px;
   }
