@@ -2007,6 +2007,7 @@ Options.Triggers.push({
           return;
         }
         if (!data.blades) {
+          console.error(`Avowed Avatar: missing blades`);
           delete data.safeZone;
           return;
         }
@@ -2031,7 +2032,7 @@ Options.Triggers.push({
         // as they cast cleave at the different cardinals
         const [avatarOne, avatarTwo, avatarThree] = combatantDataAvatars.combatants.sort(sortCombatants);
         if (!avatarOne || !avatarTwo || !avatarThree)
-          return;
+          throw new UnreachableCode();
         const combatantPositions = [];
         combatantPositions[getUnwaveringPosition(avatarOne)] = avatarOne;
         combatantPositions[getUnwaveringPosition(avatarTwo)] = avatarTwo;
@@ -2134,6 +2135,10 @@ Options.Triggers.push({
           };
         } else {
           // facing did not evaluate properly
+          console.error(`Avowed Avatar: facing error, ` +
+                        `${northCombatantFacing}, ${southCombatantFacing}, ` +
+                        `${JSON.stringify(bladeSides[northCombatantBlade])}, ` +
+                        `${JSON.stringify(bladeSides[southCombatantBlade])}`);
           data.safeZone = output.unknown();
           return;
         }
@@ -2161,12 +2166,14 @@ Options.Triggers.push({
         }
         // Callout safe spot and get cleaved spot if both are known
         // Callout safe spot only if no need to be cleaved
-        if (adjacentZone)
+        if (adjacentZone) {
           data.safeZone = output.getCleaved({ dir1: safeZone, dir2: adjacentZone });
-        else if (safeZone)
+        } else if (safeZone) {
           data.safeZone = output.safeSpot({ dir: safeZone });
-        else
-          data.safeZone = undefined;
+        } else {
+          console.error(`Avowed Avatar: undefined zones`);
+          data.safeZone = output.unknown();
+        }
       },
       alertText: (data, _matches, output) => !data.safeZone ? output.unknown() : data.safeZone,
       outputStrings: {
