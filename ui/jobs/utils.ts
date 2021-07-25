@@ -7,7 +7,7 @@ import { Job } from '../../types/job';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import { kMeleeWithMpJobs, kLevelMod } from './constants';
-import { Player } from './jobs';
+import Player from './player';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
