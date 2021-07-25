@@ -4,12 +4,7 @@ import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
 import { Bars } from '../jobs';
-import Player from '../player';
-
-export type Stats = NetMatches['PlayerStats'] & {
-  gcdSkill: number;
-  gcdSpell: number;
-};
+import Player, { Stats } from '../player';
 
 interface Component {
   bars: Bars;
@@ -48,7 +43,7 @@ interface Component {
   /**
     * (override) called on Stat data changed
     */
-  onStatChange?: (stat: Stats) => void;
+  onStatChange?: (stat: Required<Stats>) => void;
 
   /**
     * (override) called on player used any actions

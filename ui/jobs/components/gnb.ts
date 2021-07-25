@@ -3,9 +3,10 @@ import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { kAbility } from '../constants';
 import { Bars } from '../jobs';
+import { Stats } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
-import { BaseComponent, Stats } from './base';
+import { BaseComponent } from './base';
 
 
 export default class GnbComponent extends BaseComponent {
@@ -108,7 +109,7 @@ export default class GnbComponent extends BaseComponent {
       parent.classList.remove('full');
   }
 
-  onStatChange(stat: Stats): void {
+  onStatChange(stat: Required<Stats>): void {
     this.gnashingFangBox.valuescale = stat.gcdSkill;
     this.gnashingFangBox.threshold = stat.gcdSkill * 3;
     this.noMercyBox.valuescale = stat.gcdSkill;
