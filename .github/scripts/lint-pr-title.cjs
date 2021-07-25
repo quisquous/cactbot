@@ -132,7 +132,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
   }
 
   const bodyText = getComment(title, userName, formatValid, lengthValid);
-  console.error(bodyText);
+  console.error(`Comment text:\n--snip--\n${bodyText}\n--snip--\n`);
 
   if (myComment) {
     console.error('PR title still incorrect, updating existing comment.');
