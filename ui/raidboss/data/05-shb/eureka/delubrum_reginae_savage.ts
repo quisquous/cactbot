@@ -2268,10 +2268,12 @@ const triggerSet: TriggerSet<Data> = {
             [dirNum.south]: output.south!(),
             [dirNum.west]: output.west!(),
           };
-          const zoneClosestToZero = calculatedZones.sort((a, b) => b - a).pop();
+          const zoneClosestToZero = [...calculatedZones].sort((a, b) => b - a).pop();
           if (zoneClosestToZero === undefined)
             throw new UnreachableCode();
-          adjacentZone = dirs[Object.values(calculatedZones).indexOf(zoneClosestToZero)];
+          adjacentZone = dirs[calculatedZones.indexOf(zoneClosestToZero)];
+          if (adjacentZone === undefined)
+            throw new UnreachableCode();
         }
 
         // Callout safe spot and get cleaved spot if both are known
