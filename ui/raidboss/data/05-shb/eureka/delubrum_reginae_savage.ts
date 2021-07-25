@@ -2104,6 +2104,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         if (!data.blades) {
+          console.error(`Avowed Avatar: missing blades`);
           delete data.safeZone;
           return;
         }
@@ -2134,7 +2135,7 @@ const triggerSet: TriggerSet<Data> = {
         const [avatarOne, avatarTwo, avatarThree] =
           combatantDataAvatars.combatants.sort(sortCombatants);
         if (!avatarOne || !avatarTwo || !avatarThree)
-          return;
+          throw new UnreachableCode();
 
         const combatantPositions: PluginCombatantState[] = [];
         combatantPositions[getUnwaveringPosition(avatarOne)] = avatarOne;
@@ -2246,6 +2247,10 @@ const triggerSet: TriggerSet<Data> = {
           };
         } else {
           // facing did not evaluate properly
+          console.error(`Avowed Avatar: facing error, ` +
+            `${northCombatantFacing}, ${southCombatantFacing}, ` +
+            `${JSON.stringify(bladeSides[northCombatantBlade])}, ` +
+            `${JSON.stringify(bladeSides[southCombatantBlade])}`);
           data.safeZone = output.unknown!();
           return;
         }
@@ -2278,12 +2283,14 @@ const triggerSet: TriggerSet<Data> = {
 
         // Callout safe spot and get cleaved spot if both are known
         // Callout safe spot only if no need to be cleaved
-        if (adjacentZone)
+        if (adjacentZone) {
           data.safeZone = output.getCleaved!({ dir1: safeZone, dir2: adjacentZone });
-        else if (safeZone)
+        } else if (safeZone) {
           data.safeZone = output.safeSpot!({ dir: safeZone });
-        else
-          data.safeZone = undefined;
+        } else {
+          console.error(`Avowed Avatar: undefined zones`);
+          data.safeZone = output.unknown!();
+        }
       },
       alertText: (data, _matches, output) => !data.safeZone ? output.unknown!() : data.safeZone,
       outputStrings: {
