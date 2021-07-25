@@ -11,6 +11,10 @@ const fields = {
   targetId: 6,
   targetName: 7,
   duration: 8,
+  x: 9,
+  y: 10,
+  z: 11,
+  heading: 12,
 } as const;
 
 // Ability use event
@@ -26,6 +30,10 @@ export class LineEvent0x14 extends LineEvent
   public readonly targetId: string;
   public readonly targetName: string;
   public readonly duration: string;
+  public readonly x: number;
+  public readonly y: number;
+  public readonly z: number;
+  public readonly heading: number;
   public readonly isSource = true;
   public readonly isTarget = true;
   public readonly isAbility = true;
@@ -41,6 +49,10 @@ export class LineEvent0x14 extends LineEvent
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
     this.targetName = parts[fields.targetName] ?? '';
     this.duration = parts[fields.duration] ?? '';
+    this.x = parseFloat(parts[fields.x] ?? '');
+    this.y = parseFloat(parts[fields.y] ?? '');
+    this.z = parseFloat(parts[fields.z] ?? '');
+    this.heading = parseFloat(parts[fields.heading] ?? '');
 
     repo.updateCombatant(this.id, {
       job: undefined,

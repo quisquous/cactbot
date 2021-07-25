@@ -8,9 +8,9 @@ const { assert } = chai;
 describe('netregex tests', () => {
   it('startsUsing', () => {
     const lines = [
-      '20|2020-03-18T09:39:40.5230000-07:00|106E0DB3|Potato Chippy|1D3F|Midare Setsugekka|40000284|Green Dragon|1.53||ff0eb93ae3714f3e520b871c3d72cfee',
-      '20|2018-09-18T20:40:06.9110000-07:00|400069FE|The Manipulator|F5C|Mortal Revolution|400069FE|The Manipulator|5.70||a1e83a963cea8bb7f1dff1bbae7d6fd6',
-      '20|2020-03-18T09:35:50.6220000-07:00|103D4280|Tini Poutini|8B|Holy|103D4280|Tini Poutini|2.28||a0117bf7bdb350d53ad3dfae117caca9',
+      '20|2020-03-18T09:39:40.5230000-07:00|106E0DB3|Potato Chippy|1D3F|Midare Setsugekka|40000284|Green Dragon|1.53|-389.807|224.858|238.695|-3.132169||ff0eb93ae3714f3e520b871c3d72cfee',
+      '20|2018-09-18T20:40:06.9110000-07:00|400069FE|The Manipulator|F5C|Mortal Revolution|400069FE|The Manipulator|5.70|120.789|-90.37|0|1.872||a1e83a963cea8bb7f1dff1bbae7d6fd6',
+      '20|2020-03-18T09:35:50.6220000-07:00|103D4280|Tini Poutini|8B|Holy|103D4280|Tini Poutini|2.28|-80|92.3|0.01|-2.7113||a0117bf7bdb350d53ad3dfae117caca9',
     ];
 
     regexCaptureTest(NetRegexes.startsUsing, lines);
@@ -24,6 +24,10 @@ describe('netregex tests', () => {
     assert.equal(matches.targetId, '40000284');
     assert.equal(matches.target, 'Green Dragon');
     assert.equal(matches.castTime, '1.53');
+    assert.equal(matches.x, '-389.807');
+    assert.equal(matches.y, '224.858');
+    assert.equal(matches.z, '238.695');
+    assert.equal(matches.heading, '-3.132169');
   });
   it('ability', () => {
     const lines = [
