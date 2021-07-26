@@ -2,7 +2,7 @@ name: Lint PR Title
 
 on:
   pull_request_target:
-    types: [ opened, synchronize ]
+    types: [ edited, opened, reopened, synchronize ]
 
 jobs:
   main:
