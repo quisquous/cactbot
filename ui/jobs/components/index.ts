@@ -23,7 +23,7 @@ import WhmComponent from './whm';
 
 
 export class ComponentFactory {
-  static getComponent(bars: Bars, job: Job): BaseComponent<Job> | undefined {
+  static getComponent(bars: Bars, job: Job): BaseComponent<Job> {
     switch (job.toUpperCase()) {
     case 'PLD':
       return new PldComponent(bars);
@@ -80,7 +80,7 @@ export class ComponentFactory {
       return new BluComponent(bars);
 
     default:
-      break;
+      return new BaseComponent(bars);
     }
   }
 }
