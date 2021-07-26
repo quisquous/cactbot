@@ -2,7 +2,6 @@ import { addOverlayListener } from '../../resources/overlay_plugin_api';
 
 import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
-import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
 import Util from '../../resources/util';
 import ZoneInfo from '../../resources/zone_info';
