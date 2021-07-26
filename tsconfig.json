@@ -10,6 +10,7 @@
     "outDir": "./dist",
     "noImplicitAny": true,
     "noImplicitThis": true,
+    "noImplicitOverride": true,
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
