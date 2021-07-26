@@ -1335,7 +1335,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Lumière (non liée)',
           ja: '雷 (線なし)',
           cn: '雷 (无连线)',
-          ko: '보라색 장판 (선 없음)'
+          ko: '보라색 장판 (선 없음)',
         },
         bigNoTether: {
           en: 'Big Bomb (no tether)',
@@ -1942,7 +1942,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Suivez ${arrow}',
           ja: '${arrow}に従う',
           cn: '接${arrow}',
-          ko: '${arrow}쪽으로'
+          ko: '${arrow}쪽으로',
         },
         marchToArrow: {
           en: 'March ${dir} to ${arrow}',
