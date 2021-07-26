@@ -70,7 +70,7 @@ export default class WhmComponent extends BaseComponent {
   onGainEffect(effectId) {
     switch (effectId) {
     case EffectId.PresenceOfMind:
-      this.player.speedBuffs.presenceOfMind = 1;
+      this.player.speedBuffs.presenceOfMind = true;
       break;
 
     default:
@@ -81,7 +81,7 @@ export default class WhmComponent extends BaseComponent {
   onLoseEffect(effectId) {
     switch (effectId) {
     case EffectId.PresenceOfMind:
-      this.player.speedBuffs.presenceOfMind = 0;
+      this.player.speedBuffs.presenceOfMind = false;
       break;
 
     default:

@@ -83,12 +83,11 @@ export default class NinComponent extends BaseComponent {
   }
 
   onJobDetailUpdate(jobDetail) {
-    if (jobDetail.hutonMilliseconds > 0) {
-      if (this.player.speedBuffs.huton !== 1)
-        this.player.speedBuffs.huton = 1;
-    } else if (this.player.speedBuffs.huton === 1) {
-      this.player.speedBuffs.huton = 0;
-    }
+    if (jobDetail.hutonMilliseconds > 0)
+      this.player.speedBuffs.huton = true;
+    else
+      this.player.speedBuffs.huton = false;
+
     this.ninki.innerText = jobDetail.ninkiAmount;
     this.ninki.parentNode.classList.remove('high', 'low');
     if (jobDetail.ninkiAmount < 50)

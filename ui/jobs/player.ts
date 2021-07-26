@@ -12,12 +12,12 @@ export type Stats = Partial<{
 }>;
 
 export type SpeedBuffs = {
-  presenceOfMind: number;
-  shifu: number;
-  huton: number;
+  presenceOfMind: boolean;
+  shifu: boolean;
+  huton: boolean;
   paeonStacks: number;
   museStacks: number;
-  circleOfPower: number;
+  circleOfPower: boolean;
 };
 
 /** Player data */
@@ -57,12 +57,12 @@ export default class Player {
     // player stats
     this.stats = {};
     this.speedBuffs = {
-      presenceOfMind: 0,
-      shifu: 0,
-      huton: 0,
+      presenceOfMind: true,
+      shifu: true,
+      huton: true,
       paeonStacks: 0,
       museStacks: 0,
-      circleOfPower: 0,
+      circleOfPower: true,
     };
   }
 

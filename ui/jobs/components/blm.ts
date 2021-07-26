@@ -156,7 +156,7 @@ export default class BlmComponent extends BaseComponent {
       break;
 
     case EffectId.CircleOfPower:
-      this.player.speedBuffs.circleOfPower = 1;
+      this.player.speedBuffs.circleOfPower = true;
       break;
 
     default:
@@ -175,7 +175,7 @@ export default class BlmComponent extends BaseComponent {
       break;
 
     case EffectId.CircleOfPower:
-      this.player.speedBuffs.circleOfPower = 0;
+      this.player.speedBuffs.circleOfPower = false;
       break;
 
     default:

@@ -66,7 +66,7 @@ export default class SamComponent extends BaseComponent {
     switch (effectId) {
     case EffectId.Shifu:
       this.shifu.duration = matches.duration - 0.5; // -0.5s for log line delay
-      this.player.speedBuffs.shifu = 1;
+      this.player.speedBuffs.shifu = true;
       break;
 
     case EffectId.Jinpu:
@@ -82,7 +82,7 @@ export default class SamComponent extends BaseComponent {
     switch (effectId) {
     case EffectId.Shifu:
       this.shifu.duration = 0;
-      this.player.speedBuffs.shifu = 0;
+      this.player.speedBuffs.shifu = false;
       break;
 
     case EffectId.Jinpu:
