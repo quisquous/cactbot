@@ -109,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Entrez pour les comètes',
           ja: '中で避ける',
           cn: '中间躲避',
+          ko: '중앙에서 운석 맞기',
         },
       },
     },
@@ -131,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Grosse AoE + Saignement (#${num})',
           ja: '全体攻撃 + 継続ダメージ (#${num})',
           cn: '高伤AoE + DoT (#${num})',
+          ko: '쌘 광역 + 도트딜 (#${num})',
         },
       },
     },
@@ -401,6 +403,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '${dir1} > ${dir2}',
           ja: '${dir1} > ${dir2}',
           cn: '${dir1} > ${dir2}',
+          ko: '${dir1} > ${dir2}',
         },
         quadruple: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
@@ -408,6 +411,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           ja: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           cn: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          ko: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
@@ -446,6 +450,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez en intercardinal du boss',
           ja: 'ボスの斜めへ',
           cn: '去Boss的对角线方向',
+          ko: '보스의 대각선 방향으로 피하기',
         },
       },
     },
@@ -467,6 +472,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Passez derrière pour le package en ligne',
           ja: '後ろに直線頭割りを準備',
           cn: '去后方，准备直线分摊',
+          ko: '보스 뒤에서 직선 쉐어 맞기',
         },
       },
     },
@@ -489,6 +495,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Partagez le Tank buster',
             ja: '頭割りタンクバスター',
             cn: '分摊死刑',
+            ko: '쉐어 탱버',
           },
         };
 
@@ -514,6 +521,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Tank cleave solo',
           ja: 'ソロタンクバスター',
           cn: '单吃死刑顺劈',
+          ko: '광역 탱버 혼자맞기',
         },
       },
     },
@@ -534,6 +542,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Cachez-vous derrière la barricade',
           ja: '柵の後ろに',
           cn: '躲在栅栏后',
+          ko: '울타리 뒤에 숨기',
         },
       },
     },
@@ -554,6 +563,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Poussée contre la barricade',
           ja: '柵に吹き飛ばされる',
           cn: '击退到栅栏上',
+          ko: '울타리로 넉백당하기',
         },
       },
     },
@@ -575,6 +585,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Ne regardez pas l\'orbe',
           ja: '玉に背を向ける',
           cn: '背对白球',
+          ko: '구슬에게서 뒤돌기',
         },
       },
     },
@@ -597,6 +608,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Éloignez-vous du violet',
           ja: '花に避ける',
           cn: '远离紫花',
+          ko: '꽃 장판에서 멀리 떨어지기',
         },
       },
     },
@@ -619,6 +631,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Secousse, éloignez-vous du boss',
           ja: 'アースシェイカー、ボスから離れる',
           cn: '大地摇动，远离Boss',
+          ko: '어스징, 보스에게서 떨어지기',
         },
       },
     },
@@ -681,6 +694,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pierre bleue',
           ja: '青い床へ',
           cn: '去蓝色',
+          ko: '파랑 장판으로',
         },
         goWhite: {
           en: 'White Sand',
@@ -688,6 +702,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Sable blanc',
           ja: '白い床へ',
           cn: '去白色',
+          ko: '모래 장판으로',
         },
       },
     },
@@ -800,6 +815,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Sens horaire',
           ja: '時針回り',
           cn: '顺时针',
+          ko: '시계방향',
         },
         counterclockwise: {
           en: 'Counter-clock',
@@ -807,6 +823,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Anti-horaire',
           ja: '逆時針回り',
           cn: '逆时针',
+          ko: '반시계방향',
         },
         text: {
           en: 'Go ${dir}, then ${rotate}',
@@ -814,6 +831,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Direction ${dir}, puis ${rotate}',
           ja: '${dir}へ、そして${rotate}',
           cn: '去${dir}，然后${rotate}旋转',
+          ko: '${dir}으로 간 뒤, ${rotate}',
         },
       },
     },
@@ -926,6 +944,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Suivez 1 ou 2 charges',
           ja: '1回目や2回目の突進に追う',
           cn: '紧跟第一次或第二次冲锋',
+          ko: '첫번째나 두번째 돌진 따라가기',
         },
         followSecondCharge: {
           en: 'Follow Second Charge',
@@ -983,6 +1002,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Poussée en zone sûre',
           ja: '安置へノックバック',
           cn: '击退到安全点',
+          ko: '안전한 곳으로 넉백되기',
         },
       },
     },
@@ -1016,6 +1036,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Poussée (pas de brasier)',
             ja: 'ノックバック (フレアなし)',
             cn: '击退 (无核爆)',
+            ko: '넉백 (플레어 없음)',
           },
           knockbackWithFlare: {
             en: 'Flare + Knockback (get away)',
@@ -1023,6 +1044,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Brasier + poussée (éloignez-vous)',
             ja: 'フレア + ノックバック (離れる)',
             cn: '核爆 + 击退 (远离)',
+            ko: '플레어 + 넉백 (멀리)',
           },
         };
 
@@ -1080,6 +1102,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Prenez les bombes extérieur',
           ja: '外の爆弾を取る',
           cn: '吃外面的炸弹',
+          ko: '바깥쪽의 폭탄 사용하기',
         },
       },
     },
@@ -1101,6 +1124,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Poussée loin de la sphère',
           ja: 'ノックバック、玉から離れる',
           cn: '击退，远离球',
+          ko: '구슬 쪽에서 넉백',
         },
       },
     },
@@ -1121,6 +1145,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'À l\'extérieur, évitez les cleaves',
           ja: '外へ、範囲攻撃注意',
           cn: '远离，躲避顺劈',
+          ko: '가시 피하면서 밖으로',
         },
       },
     },
@@ -1141,6 +1166,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'À l\'intérieur, évitez les cleaves',
           ja: '中へ、範囲攻撃注意',
           cn: '靠近，躲避顺劈',
+          ko: '가시 피하면서 안으로',
         },
       },
     },
@@ -1162,6 +1188,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Retirez le jaune; appliquez le violet',
           ja: 'スチールを切り、スペルを使用',
           cn: '点掉钢刺，使用铸魔',
+          ko: '강철화살은 지우고, 마법연성 사용',
         },
       },
     },
@@ -1183,6 +1210,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Retirez le violet; appliquez le jaune',
           ja: 'スペルを切り、スチールを使用',
           cn: '点掉铸魔，使用钢刺',
+          ko: '마법연성은 지우고, 강철화살 사용',
         },
       },
     },
@@ -1203,6 +1231,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Dissipez le boost du Guerrier',
           ja: 'ウォリアーにディスペル',
           cn: '驱魔 > 战士',
+          ko: '여왕의 전사 디스펠',
         },
       },
     },
@@ -1223,6 +1252,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Dissipez la Tourelle dirigée',
           ja: 'ガンナータレットにディスペル',
           cn: '驱魔 > 炮台',
+          ko: '총포탑 디스펠',
         },
       },
     },
@@ -1297,6 +1327,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Vent (lié)',
           ja: '風 (線)',
           cn: '风 (连线)',
+          ko: '녹색 회오리 (선 연결)',
         },
         lightningNoTether: {
           en: 'Lightning (no tether)',
@@ -1304,6 +1335,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Lumière (non liée)',
           ja: '雷 (線なし)',
           cn: '雷 (无连线)',
+          ko: '보라색 장판 (선 없음)'
         },
         bigNoTether: {
           en: 'Big Bomb (no tether)',
@@ -1311,6 +1343,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Grosse bombe (non liée)',
           ja: '大きい爆弾 (線なし)',
           cn: '大炸弹 (无连线)',
+          ko: '큰 폭탄 (선 없음)',
         },
         bigWithTether: {
           en: 'Big Bomb (tethered)',
@@ -1318,6 +1351,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Grosse bombe (liée)',
           ja: '大きい爆弾 (線)',
           cn: '大炸弹 (连线)',
+          ko: '큰 폭탄 (선 연결)',
         },
         smallNoTether: {
           en: 'Small Bomb (no tether)',
@@ -1325,6 +1359,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Petite bombe (non liée)',
           ja: '小さい爆弾 (線なし)',
           cn: '小炸弹 (无连线)',
+          ko: '작은 폭탄 (선 없음)',
         },
         smallWithTether: {
           en: 'Small Bomb (tethered)',
@@ -1332,6 +1367,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Petite bombe (liée)',
           ja: '小さい爆弾 (線)',
           cn: '小炸弹 (连线)',
+          ko: '작은 폭탄 (선 연결)',
         },
       },
     },
@@ -1395,6 +1431,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pointez sur le Fusiller',
           ja: '切り目をガンナーに向く',
           cn: '将缺口对准枪手',
+          ko: '총사쪽으로 위치 맞추기',
         },
       },
     },
@@ -1418,6 +1455,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pointez sur le Fusiller (au nord-ouest)',
           ja: '切り目を (北西) ガンナーに向く',
           cn: '将缺口对准西北(左上)枪手',
+          ko: '(북서쪽에 있는) 총사쪽으로 위치 맞추기',
         },
       },
     },
@@ -1439,6 +1477,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pointez sur la Tourelle',
           ja: '切り目をタレットに向く',
           cn: '将缺口对准炮台',
+          ko: '포탑쪽으로 위치 맞추기',
         },
       },
     },
@@ -1500,6 +1539,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez au nord (donut bas/cercle haut)',
           ja: '北へ (下にドーナツ/上に円)',
           cn: '去下环上圆列北侧',
+          ko: '북쪽으로 (도넛이 아래, 원이 위인 곳)',
         },
         secondWeave: {
           en: 'Stay South (square bottom/circle top)',
@@ -1507,6 +1547,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Restez au sud (fond carré/cercle haut)',
           ja: '南へ（下に四角/上に円）',
           cn: '待在下方上圆列南侧',
+          ko: '남쪽으로 (사각형이 아래, 원이 위인 곳)',
         },
       },
     },
@@ -1527,6 +1568,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Allez au sud; Poussée du donut brillant',
             ja: '南へ、光ってるドーナツへノックバック',
             cn: '去发光环形列南侧',
+            ko: '남쪽으로, 빛나는 도넛쪽으로 넉백',
           },
           goNorth: {
             en: 'Go North; Knockback from Glowing Circle',
@@ -1534,6 +1576,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Allez au nord; Poussée du cercle brillant',
             ja: '北へ、光ってる円からノックバック',
             cn: '去发光圆形列北侧',
+            ko: '북쪽으로, 빛나는 원에서 넉백',
           },
         };
 
@@ -1574,6 +1617,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Arrêtez d\'attaquer, dissipez les pics de glace',
           ja: '攻撃停止、ファントムにディスペル',
           cn: '停手，驱魔 > 幻灵',
+          ko: '공격 중지, 보스 디스펠',
         },
       },
     },
@@ -1608,6 +1652,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Partagez le Tank buster',
             ja: '頭割りタンクバスター',
             cn: '分摊死刑',
+            ko: '쉐어 탱버',
           },
         };
 
@@ -1661,7 +1706,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Soyez devant',
           ja: 'ボスの正面へ',
           cn: '去Boss正面',
-          ko: '정면에 서기',
+          ko: '보스 정면에 서기',
         },
       },
     },
@@ -1817,6 +1862,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Flèche de chaleur +2',
           ja: '炎属性+2',
           cn: '火+2箭',
+          ko: '+2 불 화살',
         },
         plusOne: {
           en: '+1 Heat Arrow',
@@ -1824,6 +1870,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Flèche de chaleur +1',
           ja: '炎属性+1',
           cn: '火+1箭',
+          ko: '+1 불 화살',
         },
         emptySpot: {
           en: 'Empty Spot',
@@ -1831,6 +1878,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Emplacement vide',
           ja: 'そのままにする',
           cn: '空白',
+          ko: '빈 자리',
         },
         minusOne: {
           en: '-1 Cold Arrow',
@@ -1838,6 +1886,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Flèche de froid -1',
           ja: '氷属性-1',
           cn: '冰-1箭',
+          ko: '-1 얼음 화살',
         },
         minusTwo: {
           en: '-2 Cold Arrow',
@@ -1845,6 +1894,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Flèche de froid -2',
           ja: '氷属性-2',
           cn: '冰-2箭',
+          ko: '-2 얼음 화살',
         },
         unknownTemperature: {
           en: 'Opposite Arrow',
@@ -1852,6 +1902,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Flèche de l\'élément opposé',
           ja: '体温と逆のあみだ',
           cn: '相反温度的箭',
+          ko: '반대속성 화살',
         },
         forwards: {
           en: 'forwards',
@@ -1859,6 +1910,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Vers l\'avant',
           ja: '前',
           cn: '前',
+          ko: '앞',
         },
         backwards: {
           en: 'backwards',
@@ -1866,6 +1918,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Vers l\'arrière',
           ja: '後ろ',
           cn: '后',
+          ko: '뒤',
         },
         left: {
           en: 'left',
@@ -1873,6 +1926,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'À gauche',
           ja: '左',
           cn: '左',
+          ko: '왼쪽',
         },
         right: {
           en: 'right',
@@ -1880,6 +1934,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'À droite',
           ja: '右',
           cn: '右',
+          ko: '오른쪽',
         },
         followArrow: {
           en: 'Follow ${arrow}',
@@ -1887,6 +1942,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Suivez ${arrow}',
           ja: '${arrow}に従う',
           cn: '接${arrow}',
+          ko: '${arrow}쪽으로'
         },
         marchToArrow: {
           en: 'March ${dir} to ${arrow}',
@@ -1894,6 +1950,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Marqueur ${dir} de ${arrow}',
           ja: '強制移動: ${dir} > ${arrow}',
           cn: '强制移动：${dir} > ${arrow}',
+          ko: '강제이동 ${dir} > ${arrow}',
         },
       },
     },
@@ -1942,6 +1999,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Météore de chaleur +2',
           ja: '炎属性+2',
           cn: '火+2陨石',
+          ko: '+2 불 운석',
         },
         plusOne: {
           en: '+1 Heat Meteor',
@@ -1949,6 +2007,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Météore de chaleur +1',
           ja: '炎属性+1',
           cn: '火+1陨石',
+          ko: '+1 불 운석',
         },
         minusOne: {
           en: '-1 Cold Meteor',
@@ -1956,6 +2015,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Météore de froid -1',
           ja: '氷属性-1',
           cn: '冰-1陨石',
+          ko: '-1 얼음 운석',
         },
         minusTwo: {
           en: '-2 Cold Meteor',
@@ -1963,6 +2023,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Météore de froid -2',
           ja: '氷属性-2',
           cn: '冰-2陨石',
+          ko: '-2 얼음 운석',
         },
         unknownTemperature: {
           en: 'Opposite Meteor',
@@ -1970,6 +2031,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Météore de l\'élément opposé',
           ja: '体温と逆のメテオを受ける',
           cn: '去相反温度的陨石',
+          ko: '반대속성 운석',
         },
         forwards: {
           en: 'forwards',
@@ -1977,6 +2039,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Vers l\'avant',
           ja: '前',
           cn: '前',
+          ko: '앞',
         },
         backwards: {
           en: 'backwards',
@@ -1984,6 +2047,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Vers l\'arrière',
           ja: '後ろ',
           cn: '后',
+          ko: '뒤',
         },
         left: {
           en: 'left',
@@ -1991,6 +2055,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'À gauche',
           ja: '左',
           cn: '左',
+          ko: '왼쪽',
         },
         right: {
           en: 'right',
@@ -1998,6 +2063,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'À droite',
           ja: '右',
           cn: '右',
+          ko: '오른쪽',
         },
         goToMeteor: {
           en: 'Go to ${meteor} (watch clones)',
@@ -2005,6 +2071,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez au ${meteor} (regardez les clones)',
           ja: '${meteor}へ (分体を見る)',
           cn: '去${meteor}，观察分身',
+          ko: '${meteor}쪽으로 (분신 위치 확인)',
         },
         marchToMeteor: {
           en: 'March ${dir} to ${meteor}',
@@ -2012,6 +2079,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Marqueur ${dir} du ${meteor}',
           ja: '強制移動: ${dir} > ${meteor}',
           cn: '强制移动：${dir} > ${meteor}',
+          ko: '강제이동 ${dir} > ${meteor}',
         },
       },
     },
@@ -2045,6 +2113,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Trinité féale',
           ja: 'トリニティ・アヴァウ',
           cn: '誓约之三位一体',
+          ko: '맹세의 삼위일체',
         };
 
         const avatarLocaleNames: LocaleText = {
@@ -2053,6 +2122,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Clone de la Trinité féale',
           ja: 'アヴァウドの分体',
           cn: '誓约之分身',
+          ko: '맹세의 분열체',
         };
 
         // select the Trinity and Avatars
@@ -2300,6 +2370,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '${dir1} Zone sûre => ${dir2} pour le cleave',
           ja: '${dir1}に安置 => ${dir2}範囲攻撃に',
           cn: '去${dir1}方安全点 => 去${dir2}吃顺劈',
+          ko: '${dir1} 안전 지대 => ${dir2} 광역 맞기',
         },
         safeSpot: {
           en: '${dir} Safe Spot',
@@ -2307,6 +2378,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '${dir} Zone sûre',
           ja: '${dir}に安置',
           cn: '去${dir}方安全点',
+          ko: '${dir} 안전 지대',
         },
         unknown: Outputs.unknown,
         north: Outputs.north,
@@ -2428,6 +2500,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Foncée (E/O du centre)',
           ja: 'ダーク床 (東/西)',
           cn: '内圈东西(左右)暗色地板',
+          ko: '어두운 타일 (맵 중앙의 왼/오른쪽)',
         },
         bowLight: {
           en: 'Light (diagonal from center)',
@@ -2435,6 +2508,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Claire (diagonale du centre)',
           ja: 'ライト床 (中の対角)',
           cn: '内圈四角亮色地板',
+          ko: '밝은 타일 (맵 중앙의 대각선)',
         },
         staffOutsideCorner: {
           en: 'Outside Corner',
@@ -2442,6 +2516,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Coin extérieur',
           ja: '外のコーナー',
           cn: '外圈四角亮色地板',
+          ko: '맵 구석의 밝은 타일',
         },
         staffInsideCorner: {
           en: 'Inside Corner',
@@ -2449,6 +2524,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Coin intérieur',
           ja: '中のコーナー',
           cn: '内圈四角亮色地板',
+          ko: '구석에서 한칸 안쪽 밝은 타일',
         },
         staffOutsideColInsideRow: {
           en: 'N/S of Corner',
@@ -2456,6 +2532,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'N/S du coin',
           ja: '南北行のダーク床',
           cn: '外圈南北(上下)暗色地板',
+          ko: '맵 구석에서 북/남쪽의 어두운 타일',
         },
         staffInsideColOutsideRow: {
           en: 'E/W of Corner',
@@ -2463,6 +2540,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'E/O du coin',
           ja: '東西列のダーク床',
           cn: '外圈东西(左右)暗色地板',
+          ko: '맵 구석에서 왼/오른쪽의 어두운 타일',
         },
       },
     },
@@ -2489,6 +2567,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Tank Cleave sur ${player}',
             ja: '${player}に範囲攻撃',
             cn: '顺劈: ${player}',
+            ko: '${player}에게 광역 탱버',
           },
         };
         if (matches.target === data.me)
@@ -2515,6 +2594,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Déposez la foudre à l\'extérieur',
           ja: '外に捨てる',
           cn: '外圈放雷',
+          ko: '바깥에 번개장판 놓기',
         },
       },
     },
@@ -2549,6 +2629,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '(sacrifice à l\'extérieur, pour plus tard)',
           ja: '(外の切れ目に引き付ける)',
           cn: '(外缺口等待吸引)',
+          ko: '(저주의 말 시전하면 바깥쪽에 서기)',
         },
         getInLater: {
           en: '(wanderer in, for later)',
@@ -2556,6 +2637,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '(errant à l\'intérieur, pour plus tard)',
           ja: '(中の切れ目に吹き飛ばす)',
           cn: '(内缺口等待击退)',
+          ko: '(저주의 말 시전하면 안쪽에 서기)',
         },
       },
     },
@@ -2605,6 +2687,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez dans un recoin',
           ja: '切れ目に入る',
           cn: '进入缺口',
+          ko: '틈새에 들어가기',
         },
       },
     },
@@ -2651,6 +2734,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Invincible sur le Tank buster',
             ja: 'タンクバスター (被ダメージ上昇付き)',
             cn: '易伤死刑',
+            ko: '무적기로 탱버 처리',
           },
         };
 
@@ -2713,6 +2797,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Dissipez la Reine',
           ja: 'ボスにディスペル',
           cn: '驱魔 > 女王',
+          ko: '보스 디스펠',
         },
       },
     },
@@ -2730,6 +2815,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Reflétez les orbes',
           ja: '雷玉にリフレク',
           cn: '反射雷球',
+          ko: '리플렉트로 구슬 처리',
         },
       },
     },
@@ -2751,6 +2837,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez dans la bulle',
           ja: '泡に入る',
           cn: '进泡泡',
+          ko: '보호막 안에 들어가기',
         },
       },
     },
@@ -2851,6 +2938,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Multiple AoEs',
           ja: '連続AoE',
           cn: '连续AoE',
+          ko: '다중 광역공격',
         },
       },
     },
@@ -3794,17 +3882,17 @@ const triggerSet: TriggerSet<Data> = {
         'Trinity Avowed': '맹세의 삼위일체',
         'Trinity Seeker': '탐구의 삼위일체',
         'Viscous Clot': '찐득한 멍울',
-        // 'Why\\.\\.\\.won\'t\\.\\.\\.you\\.\\.\\.': '',
+        'Why\\.\\.\\.won\'t\\.\\.\\.you\\.\\.\\.': '그어어어어…… 내가…… 지다니……',
       },
       'replaceText': {
         '(?<!C)Rush': '돌진',
         '(?<!Inescapable )Entrapment': '함정 놓기',
-        // '--Spite Check--': '----',
+        '--Spite Check--': '--투기파--',
         '--adds--': '--쫄--',
         '--bleed--': '--고통--',
         '--chains--': '--사슬--',
         '--stunned--': '--기절--',
-        // '--tethers--': '----',
+        '--tethers--': '--선 연결--',
         '--unstunned--': '--기절풀림--',
         '1111-Tonze Swing': '1111톤즈 휘두르기',
         'Above Board': '부유파',
@@ -3837,8 +3925,8 @@ const triggerSet: TriggerSet<Data> = {
         'Devastating Bolt': '격뢰',
         'Devour': '포식',
         'Double Gambit': '환영술',
-        // 'Elemental Arrow': '',
-        // 'Elemental Blast': '',
+        'Elemental Arrow': '속성 화살',
+        'Elemental Blast': '속성 운석 폭발',
         'Elemental Brand': '얼음불 저주',
         'Elemental Impact': '착탄',
         'Empyrean Iniquity': '천마귀신폭',
