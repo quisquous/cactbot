@@ -100,7 +100,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   // Override `OnTrigger` so we can use our own exception handler
-  OnTrigger(trigger: LooseTrigger, matches: RegExpExecArray | null, currentTime: number): void {
+  override OnTrigger(trigger: LooseTrigger, matches: RegExpExecArray | null, currentTime: number): void {
     try {
       this.OnTriggerInternal(trigger, matches, currentTime);
     } catch (e) {
@@ -108,7 +108,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  OnLog(_e: LogEvent): void {
+  override OnLog(_e: LogEvent): void {
     throw new UnreachableCode();
   }
 
@@ -171,7 +171,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  OnNetLog(_e: EventResponses['LogLine']): void {
+  override OnNetLog(_e: EventResponses['LogLine']): void {
     throw new UnreachableCode();
   }
 
@@ -183,14 +183,14 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       });
   }
 
-  _onTriggerInternalCondition(triggerHelper: EmulatorTriggerHelper): boolean {
+  override _onTriggerInternalCondition(triggerHelper: EmulatorTriggerHelper): boolean {
     const ret = super._onTriggerInternalCondition(triggerHelper);
     if (triggerHelper.resolver)
       triggerHelper.resolver.status.condition = ret;
     return ret;
   }
 
-  _onTriggerInternalDelaySeconds(triggerHelper: EmulatorTriggerHelper): Promise<void> | undefined {
+  override _onTriggerInternalDelaySeconds(triggerHelper: EmulatorTriggerHelper): Promise<void> | undefined {
     // Can't inherit the default logic for delay since we don't
     // want to delay for mass processing of the timeline
     const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
@@ -203,7 +203,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  _onTriggerInternalPromise(triggerHelper: EmulatorTriggerHelper): Promise<void> | undefined {
+  override _onTriggerInternalPromise(triggerHelper: EmulatorTriggerHelper): Promise<void> | undefined {
     const ret = super._onTriggerInternalPromise(triggerHelper);
     if (triggerHelper.resolver)
       triggerHelper.resolver.status.promise = ret;
@@ -214,7 +214,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     return ret;
   }
 
-  _onTriggerInternalTTS(triggerHelper: EmulatorTriggerHelper): void {
+  override _onTriggerInternalTTS(triggerHelper: EmulatorTriggerHelper): void {
     super._onTriggerInternalTTS(triggerHelper);
     if (triggerHelper.ttsText !== undefined &&
       triggerHelper.resolver &&
@@ -224,7 +224,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  _onTriggerInternalRun(triggerHelper: EmulatorTriggerHelper): void {
+  override _onTriggerInternalRun(triggerHelper: EmulatorTriggerHelper): void {
     triggerHelper.resolver?.setRun(() => {
       if (triggerHelper.resolver)
         triggerHelper.resolver.status.executed = true;
@@ -232,7 +232,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     });
   }
 
-  _makeTextElement(triggerHelper: EmulatorTriggerHelper,
+  override _makeTextElement(triggerHelper: EmulatorTriggerHelper,
       text: string,
       _className: string): HTMLElement {
     if (triggerHelper.resolver)
@@ -240,7 +240,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     return document.createElement('div');
   }
 
-  _createTextFor(triggerHelper: EmulatorTriggerHelper,
+  override _createTextFor(triggerHelper: EmulatorTriggerHelper,
       text: string,
       textType: Text,
       _lowerTextKey: TextText,
@@ -252,7 +252,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  _playAudioFile(triggerHelper: EmulatorTriggerHelper,
+  override _playAudioFile(triggerHelper: EmulatorTriggerHelper,
       url: string,
       _volume: number): void {
     // No-op for functionality, but store off this info for feedback
@@ -270,7 +270,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  _onTriggerInternalGetHelper(
+  override _onTriggerInternalGetHelper(
       trigger: ProcessedTrigger,
       matches: Matches,
       now: number): EmulatorTriggerHelper {

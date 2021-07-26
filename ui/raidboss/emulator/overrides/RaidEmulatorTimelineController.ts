@@ -9,7 +9,7 @@ import RaidEmulatorTimeline from './RaidEmulatorTimeline';
 
 export default class RaidEmulatorTimelineController extends TimelineController {
   public emulator?: RaidEmulator;
-  public activeTimeline: RaidEmulatorTimeline | null = null;
+  public override activeTimeline: RaidEmulatorTimeline | null = null;
 
   bindTo(emulator: RaidEmulator): void {
     this.emulator = emulator;
@@ -18,7 +18,7 @@ export default class RaidEmulatorTimelineController extends TimelineController {
   }
 
   // Override
-  public SetActiveTimeline(timelineFiles: string[], timelines: string[],
+  public override SetActiveTimeline(timelineFiles: string[], timelines: string[],
       replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
       styles: TimelineStyle[]): void {
     this.activeTimeline = null;
@@ -47,7 +47,7 @@ export default class RaidEmulatorTimelineController extends TimelineController {
   }
 
   // Override
-  public OnLogEvent(_e: LogEvent): void {
+  public override OnLogEvent(_e: LogEvent): void {
     throw new UnreachableCode();
   }
 

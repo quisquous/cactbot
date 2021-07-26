@@ -13,7 +13,7 @@ export default class StubbedPopupText extends PopupText {
     super(options, timelineLoader, raidbossFileData);
   }
 
-  HookOverlays(): void {
+  override HookOverlays(): void {
     // Stubbed, we don't want overlay hooks
   }
 
