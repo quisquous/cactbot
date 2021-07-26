@@ -100,7 +100,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   // Override `OnTrigger` so we can use our own exception handler
-  override OnTrigger(trigger: LooseTrigger, matches: RegExpExecArray | null, currentTime: number): void {
+  override OnTrigger(
+      trigger: LooseTrigger,
+      matches: RegExpExecArray | null,
+      currentTime: number,
+  ): void {
     try {
       this.OnTriggerInternal(trigger, matches, currentTime);
     } catch (e) {
@@ -190,7 +194,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     return ret;
   }
 
-  override _onTriggerInternalDelaySeconds(triggerHelper: EmulatorTriggerHelper): Promise<void> | undefined {
+  override _onTriggerInternalDelaySeconds(
+      triggerHelper: EmulatorTriggerHelper,
+  ): Promise<void> | undefined {
     // Can't inherit the default logic for delay since we don't
     // want to delay for mass processing of the timeline
     const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
@@ -203,7 +209,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  override _onTriggerInternalPromise(triggerHelper: EmulatorTriggerHelper): Promise<void> | undefined {
+  override _onTriggerInternalPromise(
+      triggerHelper: EmulatorTriggerHelper,
+  ): Promise<void> | undefined {
     const ret = super._onTriggerInternalPromise(triggerHelper);
     if (triggerHelper.resolver)
       triggerHelper.resolver.status.promise = ret;
