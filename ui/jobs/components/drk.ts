@@ -7,7 +7,7 @@ import { computeBackgroundColorFrom } from '../utils';
 
 import { BaseComponent } from './base';
 
-export default class DrkComponent extends BaseComponent {
+export default class DrkComponent extends BaseComponent<'DRK'> {
   bloodBox: HTMLDivElement;
   darksideBox: TimerBox;
   comboTimer: TimerBar;

@@ -59,7 +59,7 @@ export class Bars {
     this.options = options;
     this.init = false;
     this.o = {};
-    /** @type {BaseComponent} */
+    /** @type {BaseComponent<Job>} */
     this.jobComponent = undefined;
 
     /** @type {Player} */

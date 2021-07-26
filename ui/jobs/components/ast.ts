@@ -15,7 +15,7 @@ const cardsMap = {
   'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
 } as const;
 
-export default class AstComponent extends BaseComponent {
+export default class AstComponent extends BaseComponent<'AST'> {
   combustBox: TimerBox;
   drawBox: TimerBox;
   lucidBox: TimerBox;

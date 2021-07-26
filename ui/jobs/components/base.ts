@@ -2,67 +2,12 @@ import ResourceBar from '../../../resources/resourcebar';
 import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
+import { Job } from '../../../types/job';
 import { NetMatches } from '../../../types/net_matches';
 import { Bars } from '../jobs';
 import Player, { Stats } from '../player';
 
-interface Component {
-  bars: Bars;
-  /** The player data for the current job. */
-  player: Player;
-  /**
-   * (override) called on combo state changed
-   */
-  onCombo?: (skill: string) => void;
-
-  /**
-    * (override) called on player gains any effect
-    */
-  onGainEffect?: (effectId: string, matches: NetMatches['GainsEffect']) => void;
-
-  /**
-    * (override) called on player loses any effect
-    */
-  onLoseEffect?: (effectId: string, matches: NetMatches['LosesEffect']) => void;
-
-  /**
-    * (override) called on mob gains any effect from player
-    */
-  onMobGainEffectFromYou?: (effectId: string, matches: NetMatches['GainsEffect']) => void;
-
-  /**
-       * (override) called on mob loses any effect from player
-       */
-  onMobLoseEffectFromYou?: (effectId: string, matches: NetMatches['LosesEffect']) => void;
-
-  /**
-    * (override) called on JobDetails data changed
-    */
-  onJobDetailUpdate?: (jobDetail: JobDetail[keyof JobDetail]) => void;
-
-  /**
-    * (override) called on Stat data changed
-    */
-  onStatChange?: (stat: Required<Stats>) => void;
-
-  /**
-    * (override) called on player used any actions
-    */
-  onUseAbility?: (action: string, matches: NetMatches['Ability']) => void;
-
-  /**
-   * (override) called on zone changing
-   */
-  onZoneChange?: (zoneId: number, zoneName: string) => void;
-
-  /**
-    * (override) called on job changed,
-    * to clear variables that the previous job component used.
-    */
-  reset?: () => void;
-}
-
-export class BaseComponent implements Component {
+export class BaseComponent<T extends Job> {
   bars: Bars;
   player: Player;
 
@@ -107,4 +52,63 @@ export class BaseComponent implements Component {
   }): TimerBar {
     return this.bars.addTimerBar(options);
   }
+
+  // In order to let inherited component work with full type definitions,
+  // we need to disable these rules.
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  /* eslint-disable @typescript-eslint/no-empty-function */
+
+  /**
+   * (override) called on combo state changed
+   */
+  onCombo(skill: string): void {}
+
+  /**
+   * (override) called on player gains any effect
+   */
+  onGainEffect(effectId: string, matches: NetMatches['GainsEffect']): void {}
+
+  /**
+   * (override) called on player loses any effect
+   */
+  onLoseEffect(effectId: string, matches: NetMatches['LosesEffect']): void {}
+
+  /**
+   * (override) called on mob gains any effect from player
+   */
+  onMobGainEffectFromYou(effectId: string, matches: NetMatches['GainsEffect']): void {}
+
+  /**
+   * (override) called on mob loses any effect from player
+   */
+  onMobLoseEffectFromYou(effectId: string, matches: NetMatches['LosesEffect']): void {}
+
+  /**
+   * (override) called on JobDetails data changed
+   */
+  onJobDetailUpdate(jobDetail: T extends keyof JobDetail ? JobDetail[T] : never): void {}
+
+  /**
+   * (override) called on Stat data changed
+   */
+  onStatChange(stat: Required<Stats>): void {}
+
+  /**
+   * (override) called on player used any actions
+   */
+  onUseAbility(action: string, matches: NetMatches['Ability']): void {}
+
+  /**
+   * (override) called on zone changing
+   */
+  onZoneChange(zoneId: number, zoneName: string): void {}
+
+  /**
+   * (override) called on job changed,
+   * to clear variables that the previous job component used.
+   */
+  reset(): void {}
+
+  /* eslint-enable @typescript-eslint/no-unused-vars */
+  /* eslint-enable @typescript-eslint/no-empty-function */
 }

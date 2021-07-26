@@ -1,25 +1,29 @@
-import PldComponent from './pld';
-import WarComponent from './war';
+import { Job } from '../../../types/job';
+import { Bars } from '../jobs';
+
+import AstComponent from './ast';
+import { BaseComponent } from './base';
+import BlmComponent from './blm';
+import BluComponent from './blu';
+import BrdComponent from './brd';
+import DncComponent from './dnc';
+import DrgComponent from './drg';
 import DrkComponent from './drk';
 import GnbComponent from './gnb';
-import WhmComponent from './whm';
-import SchComponent from './sch';
-import AstComponent from './ast';
-import MnkComponent from './mnk';
-import DrgComponent from './drg';
-import NinComponent from './nin';
-import SamComponent from './sam';
-import BrdComponent from './brd';
 import MchComponent from './mch';
-import DncComponent from './dnc';
-import BlmComponent from './blm';
-import SmnComponent from './smn';
+import MnkComponent from './mnk';
+import NinComponent from './nin';
+import PldComponent from './pld';
 import RdmComponent from './rdm';
-import BluComponent from './blu';
+import SamComponent from './sam';
+import SchComponent from './sch';
+import SmnComponent from './smn';
+import WarComponent from './war';
+import WhmComponent from './whm';
 
 
 export class ComponentFactory {
-  static getComponent(bars, job) {
+  static getComponent(bars: Bars, job: Job): BaseComponent<Job> | undefined {
     switch (job.toUpperCase()) {
     case 'PLD':
       return new PldComponent(bars);

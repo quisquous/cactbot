@@ -9,7 +9,7 @@ import { computeBackgroundColorFrom } from '../utils';
 import { BaseComponent } from './base';
 
 
-export default class GnbComponent extends BaseComponent {
+export default class GnbComponent extends BaseComponent<'GNB'> {
   cartridgeBox: HTMLDivElement;
   noMercyBox: TimerBox;
   bloodfestBox: TimerBox;

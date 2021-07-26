@@ -7,7 +7,7 @@ import { Bars } from '../jobs';
 
 import { BaseComponent } from './base';
 
-export default class BlmComponent extends BaseComponent {
+export default class BlmComponent extends BaseComponent<'BLM'> {
   thunderDot: TimerBox;
   thunderProc: TimerBox;
   fireProc: TimerBox;

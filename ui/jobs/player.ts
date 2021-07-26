@@ -74,6 +74,7 @@ export default class Player {
     return calcGCDFromStat(this, this.stats.spellSpeed ?? 0);
   }
 
+  /** compute cooldown based on the current player's stat data */
   getActionCooldown(originalCd: number, type: 'skill' | 'spell'): number {
     let speed = 0;
     if (type === 'skill')
