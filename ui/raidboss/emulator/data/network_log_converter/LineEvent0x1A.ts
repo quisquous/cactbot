@@ -23,7 +23,7 @@ export class LineEvent0x1A extends LineEvent implements LineEventAbility {
   public readonly resolvedName: string;
   public readonly resolvedTargetName: string;
   public readonly fallbackResolvedTargetName: string;
-  public readonly properCaseConvertedLine: string;
+  public override readonly properCaseConvertedLine: string;
 
   public readonly abilityId: number;
   public readonly abilityName: string;

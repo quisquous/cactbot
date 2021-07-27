@@ -100,7 +100,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     });
   }
 
-  OnLog(_e: LogEvent): void {
+  override OnLog(_e: LogEvent): void {
     throw new UnreachableCode();
   }
 
@@ -124,7 +124,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     }
   }
 
-  OnNetLog(_e: EventResponses['LogLine']): void {
+  override OnNetLog(_e: EventResponses['LogLine']): void {
     throw new UnreachableCode();
   }
 
@@ -179,7 +179,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     this.triggerSuppress = {};
   }
 
-  _createTextFor(
+  override _createTextFor(
       triggerHelper: TriggerHelper,
       text: string,
       textType: Text,
@@ -190,7 +190,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     this.addDisplayText(e, this.emulatedOffset + (duration * 1000));
   }
 
-  _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
+  override _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
     const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
 
     if (!delay || delay <= 0 || typeof delay !== 'number')
@@ -211,7 +211,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     return ret;
   }
 
-  _playAudioFile(triggerHelper: TriggerHelper, url: string, volume?: number): void {
+  override _playAudioFile(triggerHelper: TriggerHelper, url: string, volume?: number): void {
     if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
       .includes(url)) {
       const div = this._makeTextElement(triggerHelper, url, 'audio-file');
@@ -223,7 +223,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     super._playAudioFile(triggerHelper, url, volume);
   }
 
-  _makeTextElement(triggerHelper: TriggerHelper | undefined,
+  override _makeTextElement(triggerHelper: TriggerHelper | undefined,
       text: string,
       className: string): HTMLElement {
     const $ret = this.$textElementTemplate.cloneNode(true);

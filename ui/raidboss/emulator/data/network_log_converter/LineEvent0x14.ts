@@ -20,7 +20,7 @@ const fields = {
 // Ability use event
 export class LineEvent0x14 extends LineEvent
   implements LineEventSource, LineEventTarget, LineEventAbility {
-  public readonly properCaseConvertedLine: string;
+  public override readonly properCaseConvertedLine: string;
 
   public readonly id: string;
   public readonly name: string;

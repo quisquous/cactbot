@@ -10,14 +10,14 @@ export default class RaidEmulatorAnalysisTimelineUI extends RaidEmulatorTimeline
     this.$barContainer = document.createElement('div');
   }
 
-  updateBar(_bar: EmulatorTimerBar, _currentLogTime: number): void {
+  override updateBar(_bar: EmulatorTimerBar, _currentLogTime: number): void {
     // Stubbed out for performance
   }
-  OnAddTimer(_fightNow: number, _e: Event, _channeling: boolean): void {
+  override OnAddTimer(_fightNow: number, _e: Event, _channeling: boolean): void {
     // Stubbed out for performance
   }
 
-  OnRemoveTimer(_e: Event, _expired: boolean): void {
+  override OnRemoveTimer(_e: Event, _expired: boolean): void {
     // Stubbed out for performance
   }
 }

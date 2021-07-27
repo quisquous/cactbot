@@ -99,16 +99,16 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     bar.$bar.style.width = `${barProg}%`;
   }
 
-  Init(): void {
+  override Init(): void {
     // This space intentionally left blank
   }
 
-  AddDebugInstructions(): void {
+  override AddDebugInstructions(): void {
     // This space intentionally left blank
   }
 
   // Override
-  OnAddTimer(fightNow: number, e: Event, channeling: boolean): void {
+  override OnAddTimer(fightNow: number, e: Event, channeling: boolean): void {
     if (!this.timeline)
       throw new UnreachableCode();
 
@@ -151,7 +151,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
   }
 
   // Override
-  OnRemoveTimer(e: Event, expired: boolean): void {
+  override OnRemoveTimer(e: Event, expired: boolean): void {
     const bars = this.emulatedTimerBars.filter((bar) => bar.event.id === e.id);
 
     bars.forEach((bar) => {

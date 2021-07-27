@@ -12,7 +12,7 @@ const fields = {
 
 // Combatant defeated event
 export class LineEvent0x19 extends LineEvent {
-  public readonly properCaseConvertedLine: string;
+  public override readonly properCaseConvertedLine: string;
   public readonly id: string;
   public readonly name: string;
   public readonly targetId: string;

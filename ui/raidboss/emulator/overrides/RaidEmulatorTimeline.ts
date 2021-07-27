@@ -37,7 +37,7 @@ export default class RaidEmulatorTimeline extends Timeline {
     this._OnUpdateTimer(currentLogTime);
   }
 
-  _ScheduleUpdate(_fightNow: number): void {
+  override _ScheduleUpdate(_fightNow: number): void {
     // Override
   }
 }

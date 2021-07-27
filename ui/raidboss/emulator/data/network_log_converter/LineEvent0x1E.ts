@@ -7,7 +7,7 @@ import LogRepository from './LogRepository';
 // Extend the gain status event to reduce duplicate code since they're
 // the same from a data perspective
 export class LineEvent0x1E extends LineEvent0x1A {
-  public readonly properCaseConvertedLine: string;
+  public override readonly properCaseConvertedLine: string;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);

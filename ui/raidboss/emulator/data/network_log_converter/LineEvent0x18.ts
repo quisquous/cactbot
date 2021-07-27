@@ -23,7 +23,7 @@ const fields = {
 
 // DoT/HoT event
 export class LineEvent0x18 extends LineEvent implements LineEventSource {
-  public readonly properCaseConvertedLine: string;
+  public override readonly properCaseConvertedLine: string;
 
   public readonly id: string;
   public readonly name: string;

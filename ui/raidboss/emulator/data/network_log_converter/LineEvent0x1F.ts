@@ -22,7 +22,7 @@ const fields = {
 export class LineEvent0x1F extends LineEvent {
   public readonly jobGaugeBytes: string[];
   public readonly name: string;
-  public readonly properCaseConvertedLine: string;
+  public override readonly properCaseConvertedLine: string;
 
   public readonly id: string;
   public readonly dataBytes1: string;

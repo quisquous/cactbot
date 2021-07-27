@@ -10,7 +10,7 @@ const fields = {
 
 // Zone change event
 export class LineEvent0x01 extends LineEvent {
-  public readonly properCaseConvertedLine: string;
+  public override readonly properCaseConvertedLine: string;
 
   public readonly zoneId: string;
   public readonly zoneName: string;
