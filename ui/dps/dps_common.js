@@ -50,7 +50,6 @@ export const InitDpsModule = function(options, updateFunc, hideFunc) {
     const zoneInfo = ZoneInfo[e.zoneID];
     const contentType = zoneInfo ? zoneInfo.contentType : 0;
     gIgnoreCurrentZone = options.IgnoreContentTypes.includes(contentType);
-    console.log(`${newZone}, ${gIgnoreCurrentZone}`);
   });
 
   addOverlayListener('onInCombatChangedEvent', (e) => {
