@@ -81,9 +81,14 @@ export class Resolver {
   }
 }
 
+export type LineRegExpCache = Map<LineEvent, Map<ProcessedTrigger, RegExpExecArray | false>>;
+
 export default class PopupTextAnalysis extends StubbedPopupText {
   triggerResolvers: Resolver[] = [];
   currentResolver?: Resolver;
+
+  regexCache: LineRegExpCache;
+
   public callback?: (log: LineEvent,
     triggerHelper: EmulatorTriggerHelper | undefined,
     currentTriggerStatus: ResolverStatus,
@@ -94,6 +99,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       timelineLoader: TimelineLoader,
       raidbossFileData: RaidbossFileData) {
     super(options, timelineLoader, raidbossFileData);
+    this.regexCache = new Map;
     this.ttsSay = (_text: string) => {
       return;
     };
@@ -118,13 +124,26 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   async onEmulatorLog(logs: LineEvent[]): Promise<void> {
     for (const logObj of logs) {
+      if (!this.regexCache.has(logObj))
+        this.regexCache.set(logObj, new Map);
+      const lineCache = this.regexCache.get(logObj);
+      if (!lineCache)
+        continue;
       const log = logObj.properCaseConvertedLine ?? logObj.convertedLine;
 
       if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
 
       for (const trigger of this.triggers) {
-        const r = trigger.localRegex?.exec(log);
+        const regex = trigger.localRegex;
+        if (!regex)
+          continue;
+
+        let r = lineCache.get(trigger);
+        if (r === undefined) {
+          r = regex.exec(log) ?? false;
+          lineCache.set(trigger, r);
+        }
         if (!r)
           continue;
 
@@ -148,27 +167,36 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       await this.checkResolved(logObj);
 
       for (const trigger of this.netTriggers) {
-        const r = trigger.localNetRegex?.exec(logObj.networkLine);
-        if (r) {
-          const resolver = this.currentResolver = new Resolver({
-            initialData: EmulatorCommon.cloneData(this.data),
-            suppressed: false,
-            executed: false,
-          });
-          this.triggerResolvers.push(resolver);
+        const regex = trigger.localNetRegex;
+        if (!regex)
+          continue;
 
-          const matches = r.groups ?? {};
-
-          this._onTriggerInternalGetHelper(trigger, matches, logObj.timestamp);
-          this.OnTrigger(trigger, r, logObj.timestamp);
-
-          resolver.setFinal(() => {
-            resolver.status.finalData = EmulatorCommon.cloneData(this.data);
-            delete resolver.triggerHelper?.resolver;
-            if (this.callback)
-              this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
-          });
+        let r = lineCache.get(trigger);
+        if (r === undefined) {
+          r = regex.exec(logObj.networkLine) ?? false;
+          lineCache.set(trigger, r);
         }
+        if (!r)
+          continue;
+
+        const resolver = this.currentResolver = new Resolver({
+          initialData: EmulatorCommon.cloneData(this.data),
+          suppressed: false,
+          executed: false,
+        });
+        this.triggerResolvers.push(resolver);
+
+        const matches = r.groups ?? {};
+
+        this._onTriggerInternalGetHelper(trigger, matches, logObj.timestamp);
+        this.OnTrigger(trigger, r, logObj.timestamp);
+
+        resolver.setFinal(() => {
+          resolver.status.finalData = EmulatorCommon.cloneData(this.data);
+          delete resolver.triggerHelper?.resolver;
+          if (this.callback)
+            this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
+        });
       }
 
       await this.checkResolved(logObj);
