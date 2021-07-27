@@ -136,6 +136,10 @@ export default class NetRegexes {
       6: { field: 'targetId' },
       7: { field: 'target' },
       8: { field: 'castTime' },
+      9: { field: 'x' },
+      10: { field: 'y' },
+      11: { field: 'z' },
+      12: { field: 'heading' },
     });
   }
 

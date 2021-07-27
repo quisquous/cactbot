@@ -236,6 +236,10 @@ const logDefinitions = {
       6: 'targetId',
       7: 'target',
       8: 'castTime',
+      9: 'x',
+      10: 'y',
+      11: 'z',
+      12: 'heading',
     },
     optionalFields: [6],
     playerIds: {
