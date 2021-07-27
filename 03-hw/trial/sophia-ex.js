@@ -22,6 +22,7 @@ const callSafeDir = (callIndex, output) => {
     '1': output.goEastSoftTilt(),
     '-2': output.goWestHardTilt(),
     '-1': output.goWestSoftTilt(),
+    // Stringified because Javascript doesn't do negative-integer key values.
   };
   return outputs[callIndex.toString()];
 };

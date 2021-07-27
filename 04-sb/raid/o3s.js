@@ -347,7 +347,7 @@ Options.Triggers.push({
           fr: 'Danse de la reine : Livres',
           ja: '女王の舞い: 本',
           cn: '中间两排分格站位',
-          ko: '여왕의 춤: 책',
+          ko: '여왕의 춤: 책', // FIXME
         },
         magicHammer: {
           en: 'Books + Magic Hammer',
@@ -372,7 +372,7 @@ Options.Triggers.push({
           fr: 'Danse de la reine : Position',
           ja: '女王の舞い: 散開',
           cn: '万变水波站位',
-          ko: '여왕의 춤: 산개',
+          ko: '여왕의 춤: 산개', // FIXME
         },
       },
     },
@@ -393,7 +393,7 @@ Options.Triggers.push({
           fr: 'Danse de la reine : Carré de cristal',
           ja: '女王の舞い: 床',
           cn: '站在蓝地板',
-          ko: '여왕의 춤: 대지',
+          ko: '여왕의 춤: 대지', // FIXME
         },
       },
     },
@@ -414,7 +414,7 @@ Options.Triggers.push({
           fr: 'Danse de la reine : Liens',
           ja: '女王の舞い: 茨',
           cn: '先集中后扯线',
-          ko: '여왕의 춤: 가시',
+          ko: '여왕의 춤: 가시', // FIXME
         },
       },
     },

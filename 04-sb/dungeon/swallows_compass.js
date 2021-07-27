@@ -237,7 +237,7 @@ Options.Triggers.push({
       id: 'Swallows Compass Five Fingered Punishment',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackMarkerOn('info'),
+      response: Responses.stackMarkerOn('info'), // Info rather than alert to avoid collision with Both Ends.
     },
     {
       // The Long end is a knockback in phase 1, but not in phase 2.
