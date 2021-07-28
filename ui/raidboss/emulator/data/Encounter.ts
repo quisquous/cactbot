@@ -56,14 +56,14 @@ export default class Encounter {
   initialize(): void {
     const startStatuses = new Set<string>();
 
-    this.logLines.forEach((line, i) => {
+    for (const line of this.logLines) {
       if (!line)
         throw new UnreachableCode();
 
       let res: MatchStartInfo | MatchEndInfo | undefined =
           EmulatorCommon.matchStart(line.networkLine);
       if (res) {
-        this.firstLineIndex = i;
+        this.firstLineIndex = this.logLines.indexOf(line);
         if (res.StartType)
           startStatuses.add(res.StartType);
         const startIn = parseInt(res.StartIn);
@@ -94,7 +94,7 @@ export default class Encounter {
       const matchedLang = res?.language;
       if (isLang(matchedLang))
         this.language = matchedLang;
-    });
+    }
 
     this.combatantTracker = new CombatantTracker(this.logLines, this.language);
     this.startTimestamp = this.combatantTracker.firstTimestamp;

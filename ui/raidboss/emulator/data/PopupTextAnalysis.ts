@@ -131,8 +131,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
         continue;
       const log = logObj.properCaseConvertedLine ?? logObj.convertedLine;
 
-      if (log.includes('00:0038:cactbot wipe'))
-        this.SetInCombat(false);
+      // Deliberately exclude the check for `cactbot wipe` since that'll never happen here
 
       for (const trigger of this.triggers) {
         const regex = trigger.localRegex;
@@ -208,11 +207,13 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   async checkResolved(logObj: LineEvent): Promise<void> {
-    await Promise.all(
-        this.triggerResolvers.map(async (resolver) => await resolver.isResolved(logObj)))
-      .then((results) => {
-        this.triggerResolvers = this.triggerResolvers.filter((_, index) => !results[index]);
-      });
+    const resolved: number[] = [];
+    for (let i = 0; i < this.triggerResolvers.length; ++i) {
+      if (await this.triggerResolvers[i]?.isResolved(logObj))
+        resolved.push(i);
+    }
+    if (resolved.length)
+      this.triggerResolvers = this.triggerResolvers.filter((_, index) => !resolved.includes(index));
   }
 
   override _onTriggerInternalCondition(triggerHelper: EmulatorTriggerHelper): boolean {

@@ -72,9 +72,17 @@ export default class Combatant {
   pushPartialState(timestamp: number, props: Partial<CombatantState>): void {
     if (this.states[timestamp] === undefined) {
       // Clone the last state before this timestamp
-      const stateTimestamp = this.significantStates
-        .filter((s) => s < timestamp)
-        .sort((a, b) => b - a)[0] ?? this.significantStates[0];
+      let stateTimestamp = this.significantStates[0] ?? timestamp;
+      // It's faster to start at the last timestamp and work our way backwards
+      // since realistically timestamp skew is only a couple ms at most
+      // Additionally, because cloning a 3000+ element array a few thousand times is slow,
+      // don't for-in over a reverse of the array
+      for (let i = this.significantStates.length - 1; i >= 0; --i) {
+        const ts = this.significantStates[i] ?? 0;
+        if (ts <= timestamp)
+          stateTimestamp = ts;
+      }
+
       if (stateTimestamp === undefined)
         throw new UnreachableCode();
       const state = this.states[stateTimestamp];
@@ -93,10 +101,8 @@ export default class Combatant {
       this.significantStates[this.significantStates.length - 1];
     if (!lastSignificantStateTimestamp)
       throw new UnreachableCode();
-    const oldStateJSON = JSON.stringify(this.states[lastSignificantStateTimestamp]);
-    const newStateJSON = JSON.stringify(this.states[timestamp]);
 
-    if (lastSignificantStateTimestamp !== timestamp && newStateJSON !== oldStateJSON)
+    if (lastSignificantStateTimestamp !== timestamp)
       this.significantStates.push(timestamp);
   }
 

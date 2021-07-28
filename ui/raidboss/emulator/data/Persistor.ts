@@ -37,9 +37,8 @@ export default class Persistor extends Dexie {
 
                   Object.setPrototypeOf(obj, Encounter.prototype);
 
-                  obj.logLines.forEach((l) => {
-                    Object.setPrototypeOf(l, LineEvent.prototype);
-                  });
+                  for (const line of obj.logLines)
+                    Object.setPrototypeOf(line, LineEvent.prototype);
 
                   // Check for encounter upgrade, re-save encounter if it's upgraded.
                   if (obj.upgrade(obj.version)) {
