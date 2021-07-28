@@ -77,6 +77,10 @@ type NetStartsUsingFields = Fields & {
   targetId: 6;
   target: 7;
   castTime: 8;
+  x: 9;
+  y: 10;
+  z: 11;
+  heading: 12;
 };
 
 // 0x15
@@ -306,6 +310,16 @@ export type NetFields = {
   'ActionSync': NetActionSyncFields;
   'StatusEffect': NetStatusEffectFields;
   'None': Fields;
-}
+};
+
+type Reverse<T> = {
+  [P in T[keyof T]]: {
+    [K in keyof T]: T[K] extends P ? K : never
+  }[keyof T];
+};
+
+export type NetFieldsReverse = {
+  [K in keyof NetFields]: Reverse<NetFields[K]>;
+};
 
 export type NetAnyFields = NetFields[keyof NetFields];

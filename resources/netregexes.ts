@@ -1,12 +1,8 @@
+import { NetFieldsReverse } from '../types/net_fields';
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp, TriggerTypes } from '../types/net_trigger';
 
 import Regexes from './regexes';
-
-interface Fields {
-  field: string;
-  value?: string;
-}
 
 // Differences from Regexes:
 // * may have more fields
@@ -31,37 +27,70 @@ const keysThatRequireTranslation = [
   'line',
 ];
 
+type ParseHelperField<
+  T extends TriggerTypes,
+  T2 extends NetFieldsReverse[T],
+  field extends keyof T2
+> = {
+  field: T2[field] extends string ? T2[field] : never;
+  value?: string;
+};
+
+type ParseHelperFields<T extends TriggerTypes> = {
+  [field in keyof NetFieldsReverse[T]]: ParseHelperField<T, NetFieldsReverse[T], field>;
+};
+
+const test: ParseHelperFields<'StartsUsing'> = {
+  0: { field: 'type', value: '20' },
+  1: { field: 'timestamp' },
+  2: { field: 'sourceId' },
+  3: { field: 'source' },
+  4: { field: 'id' },
+  5: { field: 'ability' },
+  6: { field: 'targetId' },
+  7: { field: 'target' },
+  8: { field: 'castTime' },
+  9: { field: 'x' },
+  10: { field: 'y' },
+  11: { field: 'z' },
+  12: { field: 'heading' },
+};
+test;
+
 const parseHelper = <T extends TriggerTypes>(
   params: { timestamp?: string; capture?: boolean } | undefined,
   funcName: string,
-  fields: { [s: string]: Fields },
+  fields: Partial<ParseHelperFields<T>>,
 ): CactbotBaseRegExp<T> => {
   params = params ?? {};
   const validFields: string[] = [];
-  for (const value of Object.values(fields)) {
-    if (typeof value !== 'object')
-      continue;
-    validFields.push(value.field);
+
+  for (const index in fields) {
+    const field = fields[index];
+    if (field)
+      validFields.push(field.field);
   }
+
   Regexes.validateParams(params, funcName, ['capture', ...validFields]);
 
   // Find the last key we care about, so we can shorten the regex if needed.
   const capture = Regexes.trueIfUndefined(params.capture);
   const fieldKeys = Object.keys(fields);
-  let maxKey;
+  let _maxKey: string;
   if (capture) {
-    maxKey = fieldKeys[fieldKeys.length - 1];
+    _maxKey = fieldKeys[fieldKeys.length - 1] ?? '0';
   } else {
-    maxKey = 0;
-    for (const key of fieldKeys) {
+    _maxKey = '0';
+    for (const key in fields) {
       const value = fields[key] ?? {};
       if (typeof value !== 'object')
         continue;
       const fieldName = fields[key]?.field;
       if (fieldName && fieldName in params)
-        maxKey = key;
+        _maxKey = key;
     }
   }
+  const maxKey = parseInt(_maxKey);
 
   // For testing, it's useful to know if this is a regex that requires
   // translation.  We test this by seeing if there are any specified
@@ -85,12 +114,12 @@ const parseHelper = <T extends TriggerTypes>(
       str += `\\y{NetField}{${missingFields}}`;
     lastKey = key;
 
-    const value = fields[key];
+    const value = fields[_key];
     if (typeof value !== 'object')
       throw new Error(`${funcName}: invalid value: ${JSON.stringify(value)}`);
 
-    const fieldName = fields[key]?.field;
-    const fieldValue = fields[key]?.value?.toString() ?? matchDefault;
+    const fieldName = fields[_key]?.field;
+    const fieldValue = fields[_key]?.value?.toString() ?? matchDefault;
 
     if (fieldName) {
       str += Regexes.maybeCapture(
@@ -102,9 +131,8 @@ const parseHelper = <T extends TriggerTypes>(
       str += fieldValue + separator;
     }
 
-
     // Stop if we're not capturing and don't care about future fields.
-    if (key >= (maxKey ?? 0 as number))
+    if (key >= maxKey)
       break;
   }
   return Regexes.parse(str) as CactbotBaseRegExp<T>;
