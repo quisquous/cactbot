@@ -35,13 +35,15 @@ hideall "--sync--"
 149.0 "Flip" sync /:Midgardsormr:31CB:/
 151.4 "--sync--" sync /:Midgardsormr:35BB:/
 153.1 "Corners" sync /:Midgardsormr:31D0:/
+156.3 "--untargetable--"
 159.4 "--sync--" sync /:Midgardsormr:35BC:/
 167.2 "Cauterize" sync /:Midgardsormr:3241:/
 
 183.5 "Frost Breath" sync /:Ancient Dragon:33EE:/ window 30,30
 195.5 "Frost Breath ready"
 
-500.0 "Protostar" sync /:Midgardsormr:31C3:/ window 500,500
+500.0 "Protostar x4" sync /:Midgardsormr:31C3:/ window 500,500 duration 12
+523.4 "--targetable--"
 536.6 "Tail End" sync /:Midgardsormr:31C5:/
 544.6 "Exaflare"
 547.6 "Exaflare"
@@ -60,6 +62,7 @@ hideall "--sync--"
 604.2 "Flip" sync /:Midgardsormr:31CB:/
 608.2 "Corners" sync /:Midgardsormr:31D0:/
 611.2 "Thunderstorm" sync /:Midgardsormr:31D2:/
+615.4 "--untargetable--"
 621.2 "Exaflare"
 624.2 "Exaflare"
 624.7 "Cauterize" sync /:Midgardsormr:3241:/
@@ -67,6 +70,7 @@ hideall "--sync--"
 630.2 "Exaflare"
 633.2 "Exaflare"
 635.3 "Cauterize" sync /:Midgardsormr:3241:/
+642.7 "--targetable--"
 646.9 "Flip/Spin" sync /:Midgardsormr:31C[78]:/
 652.9 "Flip/Spin" sync /:Midgardsormr:31C[B9]:/
 656.9 "In/Out/Corners" sync /:Midgardsormr:31(CF|CD|D0):/
