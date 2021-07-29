@@ -312,6 +312,10 @@ export type NetFields = {
   'None': Fields;
 };
 
+// This type helper reverses the keys and values of a given type, e.g this:
+// {1: 'a'}
+// becomes this:
+// {a: 1}
 type Reverse<T> = {
   [P in T[keyof T]]: {
     [K in keyof T]: T[K] extends P ? K : never
