@@ -364,4 +364,20 @@ describe('netregex tests', () => {
     assert.equal(matches.name, 'Elemental Converter');
     assert.equal(matches.toggle, '01');
   });
+  it('map', () => {
+    const lines = [
+      '40|2021-07-30T19:43:08.6270000-07:00|578|Norvrandt|The Copied Factory|Upper Stratum|ee5b5fc06ab4610ef6b4f030fc95c90c',
+      '40|2021-07-30T19:46:49.3830000-07:00|575|Norvrandt|Excavation Tunnels||41e6dae1ab1a3fe18ce3754d7c45a5d0',
+      '40|2021-07-30T19:49:19.8180000-07:00|192|La Noscea|Mist|Mist Subdivision|f3506f063945500b5e7df2172e2ca4d3',
+    ];
+
+    regexCaptureTest(NetRegexes.map, lines);
+
+    const matches = lines[0].match(NetRegexes.map()).groups;
+    assert.equal(matches.type, '40');
+    assert.equal(matches.id, '578');
+    assert.equal(matches.regionName, 'Norvrandt');
+    assert.equal(matches.placeName, 'The Copied Factory');
+    assert.equal(matches.placeNameSub, 'Upper Stratum');
+  });
 });
