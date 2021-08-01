@@ -346,17 +346,17 @@ class Fisher {
       if (result) {
         switch (type) {
         // case 'bait': this.handleBait(result[1]); break;
-        case 'cast': this.handleCast(result[1]); break;
-        case 'bite': this.handleBite(); break;
-        case 'catch': this.handleCatch(result[1]); break;
-        case 'nocatch': this.handleNoCatch(); break;
-        case 'mooch': this.handleMooch(); break;
-        case 'snaggain': this.handleSnagGain(); break;
-        case 'snagfade': this.handleSnagFade(); break;
-        case 'chumgain': this.handleChumGain(); break;
-        case 'chumfade': this.handleChumFade(); break;
-        case 'quit': this.handleQuit(); break;
-        case 'discovered': this.handleDiscover(result[1]); break;
+          case 'cast': this.handleCast(result[1]); break;
+          case 'bite': this.handleBite(); break;
+          case 'catch': this.handleCatch(result[1]); break;
+          case 'nocatch': this.handleNoCatch(); break;
+          case 'mooch': this.handleMooch(); break;
+          case 'snaggain': this.handleSnagGain(); break;
+          case 'snagfade': this.handleSnagFade(); break;
+          case 'chumgain': this.handleChumGain(); break;
+          case 'chumfade': this.handleChumFade(); break;
+          case 'quit': this.handleQuit(); break;
+          case 'discovered': this.handleDiscover(result[1]); break;
         }
       }
     }

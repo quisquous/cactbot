@@ -61,8 +61,8 @@ const responsePromises: Record<number, (value: unknown) => void> = {};
 const subscribers: Subscriber<VoidFunc<unknown>> = {};
 
 const sendMessage = (
-    msg: { [s: string]: unknown },
-    cb?: (value: string | null) => unknown,
+  msg: { [s: string]: unknown },
+  cb?: (value: string | null) => unknown,
 ): void => {
   if (ws) {
     if (queue)
@@ -116,8 +116,8 @@ export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void =
 };
 
 const callOverlayHandlerInternal: IOverlayHandler = (
-    _msg: { [s: string]: unknown },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _msg: { [s: string]: unknown },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
 
@@ -149,8 +149,8 @@ type OverrideMap = { [call in OverlayHandlerTypes]?: OverlayHandlerFuncs[call] }
 const callOverlayHandlerOverrideMap: OverrideMap = {};
 
 export const callOverlayHandler: IOverlayHandler = (
-    _msg: { [s: string]: unknown },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _msg: { [s: string]: unknown },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
 

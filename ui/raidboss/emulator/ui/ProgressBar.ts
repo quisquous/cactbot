@@ -49,8 +49,8 @@ export default class ProgressBar {
     emulator.on('currentEncounterChanged', (encounter: AnalyzedEncounter) => {
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(0, false);
       this.$progressBarDuration.textContent = EmulatorCommon.timeToString(
-          encounter.encounter.duration - encounter.encounter.initialOffset,
-          false);
+        encounter.encounter.duration - encounter.encounter.initialOffset,
+        false);
       this.$progressBar.style.width = '0%';
       this.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration.toString());
       if (isNaN(encounter.encounter.initialOffset)) {

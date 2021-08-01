@@ -96,14 +96,14 @@ const nisiToString = (nisiNum: number, output: Output) => {
   // nisiNum is 0-3
   // assume output is using nisiTypes.
   switch (nisiNum) {
-  case 0:
-    return output.blueAlpha!();
-  case 1:
-    return output.orangeBeta!();
-  case 2:
-    return output.purpleGamma!();
-  case 3:
-    return output.greenDelta!();
+    case 0:
+      return output.blueAlpha!();
+    case 1:
+      return output.orangeBeta!();
+    case 2:
+      return output.purpleGamma!();
+    case 3:
+      return output.greenDelta!();
   }
 };
 
@@ -2850,24 +2850,24 @@ const triggerSet: TriggerSet<Data> = {
         // once the first has happened.
 
         switch (threeOne) {
-        case 'gr':
-          data.secondTrineResponse = 'north';
-          return output.waitMiddleDodgeNorth!();
-        case 'rg':
-          data.secondTrineResponse = 'south';
-          return output.goNorthDodgeSouth!();
-        case 'ry':
-          data.secondTrineResponse = 'west';
-          return output.goNorthDodgeWest!();
-        case 'yr':
-          data.secondTrineResponse = 'east';
-          return output.goSouthDodgeEast!();
-        case 'gy':
-          data.secondTrineResponse = 'south';
-          return output.waitMiddleDodgeSouth!();
-        case 'yg':
-          data.secondTrineResponse = 'north';
-          return output.goSouthDodgeNorth!();
+          case 'gr':
+            data.secondTrineResponse = 'north';
+            return output.waitMiddleDodgeNorth!();
+          case 'rg':
+            data.secondTrineResponse = 'south';
+            return output.goNorthDodgeSouth!();
+          case 'ry':
+            data.secondTrineResponse = 'west';
+            return output.goNorthDodgeWest!();
+          case 'yr':
+            data.secondTrineResponse = 'east';
+            return output.goSouthDodgeEast!();
+          case 'gy':
+            data.secondTrineResponse = 'south';
+            return output.waitMiddleDodgeSouth!();
+          case 'yg':
+            data.secondTrineResponse = 'north';
+            return output.goSouthDodgeNorth!();
         }
       },
       outputStrings: {

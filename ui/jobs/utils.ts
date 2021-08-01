@@ -110,18 +110,18 @@ export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): n
   } else if (bars.job === 'BRD') {
     type2Buffs += 4 * bars.speedBuffs.paeonStacks;
     switch (bars.speedBuffs.museStacks) {
-    case 1:
-      type2Buffs += 1;
-      break;
-    case 2:
-      type2Buffs += 2;
-      break;
-    case 3:
-      type2Buffs += 4;
-      break;
-    case 4:
-      type2Buffs += 12;
-      break;
+      case 1:
+        type2Buffs += 1;
+        break;
+      case 2:
+        type2Buffs += 2;
+        break;
+      case 3:
+        type2Buffs += 4;
+        break;
+      case 4:
+        type2Buffs += 12;
+        break;
     }
   }
   // TODO: this probably isn't useful to track
@@ -149,19 +149,19 @@ export const computeBackgroundColorFrom = (element: HTMLElement, classList: stri
 };
 
 export const makeAuraTimerIcon = (
-    name: string,
-    seconds: number,
-    opacity: number,
-    iconWidth: number,
-    iconHeight: number,
-    iconText: string,
-    barHeight: number,
-    textHeight: number,
-    textColor: string,
-    borderSize: number,
-    borderColor: string,
-    barColor: string,
-    auraIcon: string,
+  name: string,
+  seconds: number,
+  opacity: number,
+  iconWidth: number,
+  iconHeight: number,
+  iconText: string,
+  barHeight: number,
+  textHeight: number,
+  textColor: string,
+  borderSize: number,
+  borderColor: string,
+  barColor: string,
+  auraIcon: string,
 ): HTMLDivElement => {
   const div = document.createElement('div');
   div.style.opacity = opacity.toString();

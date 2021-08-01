@@ -12,9 +12,9 @@ export default class NetworkLogConverter extends EventBus {
   convertFile(data: string): LineEvent[] {
     const repo = new LogRepository();
     return this.convertLines(
-        // Split data into an array of separate lines, removing any blank lines.
-        data.split(NetworkLogConverter.lineSplitRegex).filter((l) => l !== ''),
-        repo,
+      // Split data into an array of separate lines, removing any blank lines.
+      data.split(NetworkLogConverter.lineSplitRegex).filter((l) => l !== ''),
+      repo,
     );
   }
 

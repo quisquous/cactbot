@@ -237,9 +237,9 @@ class TriggerOutputProxy {
   public unknownValue = '???';
 
   private constructor(
-      public trigger: ProcessedTrigger,
-      public displayLang: Lang,
-      public perTriggerAutoConfig?: PerTriggerAutoConfig) {
+    public trigger: ProcessedTrigger,
+    public displayLang: Lang,
+    public perTriggerAutoConfig?: PerTriggerAutoConfig) {
     this.outputStrings = trigger.outputStrings ?? {};
 
     if (trigger.id && perTriggerAutoConfig) {
@@ -318,11 +318,11 @@ class TriggerOutputProxy {
   }
 
   getReplacement(
-      // Can't use optional modifier for this arg since the others aren't optional
-      template: { [lang: string]: unknown } | string | undefined,
-      params: TriggerParams,
-      name: string,
-      id: string): string | undefined {
+    // Can't use optional modifier for this arg since the others aren't optional
+    template: { [lang: string]: unknown } | string | undefined,
+    params: TriggerParams,
+    name: string,
+    id: string): string | undefined {
     if (!template)
       return;
 
@@ -342,10 +342,10 @@ class TriggerOutputProxy {
       if (params && key in params) {
         const str = params[key];
         switch (typeof str) {
-        case 'string':
-          return str;
-        case 'number':
-          return str.toString();
+          case 'string':
+            return str;
+          case 'number':
+            return str.toString();
         }
         console.error(`Trigger ${id} has non-string param value ${key}.`);
         return this.unknownValue;
@@ -356,14 +356,14 @@ class TriggerOutputProxy {
   }
 
   static makeOutput(
-      trigger: ProcessedTrigger,
-      displayLang: Lang,
-      perTriggerAutoConfig?: PerTriggerAutoConfig): Output {
+    trigger: ProcessedTrigger,
+    displayLang: Lang,
+    perTriggerAutoConfig?: PerTriggerAutoConfig): Output {
     // `Output` is the common type used for the trigger data interface to support arbitrary
     // string keys and always returns a string. However, TypeScript doesn't have good support
     // for the Proxy representing this structure so we need to cast Proxy => unknown => Output
     return new TriggerOutputProxy(trigger, displayLang,
-        perTriggerAutoConfig) as unknown as Output;
+      perTriggerAutoConfig) as unknown as Output;
   }
 }
 
@@ -437,9 +437,9 @@ export class PopupText {
   }[] = [];
 
   constructor(
-      protected options: RaidbossOptions,
-      protected timelineLoader: TimelineLoader,
-      protected raidbossDataFiles: RaidbossFileData) {
+    protected options: RaidbossOptions,
+    protected timelineLoader: TimelineLoader,
+    protected raidbossDataFiles: RaidbossFileData) {
     this.options = options;
     this.timelineLoader = timelineLoader;
     this.ProcessDataFiles(raidbossDataFiles);
@@ -738,11 +738,11 @@ export class PopupText {
     this.Reset();
 
     this.timelineLoader.SetTimelines(
-        timelineFiles,
-        timelines,
-        replacements,
-        timelineTriggers,
-        timelineStyles,
+      timelineFiles,
+      timelines,
+      replacements,
+      timelineTriggers,
+      timelineStyles,
     );
   }
 
@@ -758,7 +758,7 @@ export class PopupText {
     delete trigger.localNetRegex;
 
     trigger.output = TriggerOutputProxy.makeOutput(trigger, this.options.DisplayLanguage,
-        this.options.PerTriggerAutoConfig);
+      this.options.PerTriggerAutoConfig);
   }
 
   OnJobChange(e: PlayerChangedDetail): void {
@@ -865,9 +865,9 @@ export class PopupText {
   }
 
   OnTrigger(
-      trigger: ProcessedTrigger,
-      matches: RegExpExecArray | null,
-      currentTime: number): void {
+    trigger: ProcessedTrigger,
+    matches: RegExpExecArray | null,
+    currentTime: number): void {
     try {
       this.OnTriggerInternal(trigger, matches, currentTime);
     } catch (e) {
@@ -876,9 +876,9 @@ export class PopupText {
   }
 
   OnTriggerInternal(
-      trigger: ProcessedTrigger,
-      matches: RegExpExecArray | null,
-      currentTime: number): void {
+    trigger: ProcessedTrigger,
+    matches: RegExpExecArray | null,
+    currentTime: number): void {
     if (this._onTriggerInternalCheckSuppressed(trigger, currentTime))
       return;
 
@@ -961,9 +961,9 @@ export class PopupText {
 
   // Build a default triggerHelper object for this trigger
   _onTriggerInternalGetHelper(
-      trigger: ProcessedTrigger,
-      matches: Matches,
-      now: number): TriggerHelper {
+    trigger: ProcessedTrigger,
+    matches: Matches,
+    now: number): TriggerHelper {
     const id = trigger.id;
     let options: PerTriggerOption = {};
     let config: TriggerAutoConfig = {};
@@ -1084,9 +1084,9 @@ export class PopupText {
 
   _onTriggerInternalPreRun(triggerHelper: TriggerHelper): void {
     triggerHelper.trigger?.preRun?.(
-        this.data,
-        triggerHelper.matches,
-        triggerHelper.output);
+      this.data,
+      triggerHelper.matches,
+      triggerHelper.output);
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
@@ -1134,9 +1134,9 @@ export class PopupText {
       const id = triggerHelper.trigger.id ?? 'Unknown';
       if (typeof triggerHelper.trigger.promise === 'function') {
         promise = triggerHelper.trigger.promise(
-            this.data,
-            triggerHelper.matches,
-            triggerHelper.output);
+          this.data,
+          triggerHelper.matches,
+          triggerHelper.output);
 
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
@@ -1266,7 +1266,7 @@ export class PopupText {
         ko: ' 그리고 ',
       };
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g,
-          arrowReplacement[this.displayLang]);
+        arrowReplacement[this.displayLang]);
       this.ttsSay(triggerHelper.ttsText);
     } else if (triggerHelper.soundUrl && triggerHelper.soundAlertsEnabled) {
       this._playAudioFile(triggerHelper, triggerHelper.soundUrl, triggerHelper.soundVol);
@@ -1275,17 +1275,17 @@ export class PopupText {
 
   _onTriggerInternalRun(triggerHelper: TriggerHelper): void {
     triggerHelper.trigger?.run?.(
-        this.data,
-        triggerHelper.matches,
-        triggerHelper.output);
+      this.data,
+      triggerHelper.matches,
+      triggerHelper.output);
   }
 
   _createTextFor(
-      triggerHelper: TriggerHelper,
-      text: string,
-      textType: Text,
-      lowerTextKey: TextText,
-      duration: number): void {
+    triggerHelper: TriggerHelper,
+    text: string,
+    textType: Text,
+    lowerTextKey: TextText,
+    duration: number): void {
     // info-text
     const textElementClass = textType + '-text';
     if (textType !== 'info')

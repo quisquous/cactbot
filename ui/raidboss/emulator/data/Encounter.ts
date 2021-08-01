@@ -46,10 +46,10 @@ export default class Encounter {
   initialTimestamp = Number.MAX_SAFE_INTEGER;
 
   constructor(
-      public encounterDay: string,
-      public encounterZoneId: string,
-      public encounterZoneName: string,
-      public logLines: LineEvent[]) {
+    public encounterDay: string,
+    public encounterZoneId: string,
+    public encounterZoneName: string,
+    public logLines: LineEvent[]) {
     this.version = Encounter.encounterVersion;
   }
 
@@ -133,8 +133,8 @@ export default class Encounter {
     const repo = new LogRepository();
     const converter = new NetworkLogConverter();
     this.logLines = converter.convertLines(
-        this.logLines.map((l) => l.networkLine),
-        repo,
+      this.logLines.map((l) => l.networkLine),
+      repo,
     );
     this.version = Encounter.encounterVersion;
     this.initialize();

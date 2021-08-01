@@ -723,14 +723,14 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this._updateFoodBuff.bind(this), showAfterMs);
     } else {
       const div = makeAuraTimerIcon(
-          'foodbuff', -1, 1,
-          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-          '',
-          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-          'white',
-          this.options.BigBuffBorderSize,
-          'yellow', 'yellow',
-          foodImage);
+        'foodbuff', -1, 1,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        '',
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        'white',
+        this.options.BigBuffBorderSize,
+        'yellow', 'yellow',
+        foodImage);
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
@@ -892,7 +892,7 @@ class Bars {
       this._updateProcBoxNotifyState();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);
+        this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);
     }
     if (updateHp)
       this._updateHealth();

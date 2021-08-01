@@ -595,10 +595,10 @@ function onOverlayDataUpdate(e) {
   container.style.display = 'block';
 
   React.render(
-      React.createElement(DamageMeter, {
-        parseData: e.detail,
-      }),
-      container,
+    React.createElement(DamageMeter, {
+      parseData: e.detail,
+    }),
+    container,
   );
   // console.log('rendered in ' + (+new Date() - start) + 'ms');
 }

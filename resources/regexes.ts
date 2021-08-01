@@ -307,7 +307,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
    */
   static addedCombatantFull(
-      f?: Params<AddedCombatantFullParams>,
+    f?: Params<AddedCombatantFullParams>,
   ): Regex<AddedCombatantFullParams> {
     if (typeof f === 'undefined')
       f = {};
@@ -377,7 +377,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
    */
   static statusEffectExplicit(
-      f?: Params<StatusEffectExplicitParams>,
+    f?: Params<StatusEffectExplicitParams>,
   ): Regex<StatusEffectExplicitParams> {
     if (typeof f === 'undefined')
       f = {};
@@ -650,10 +650,10 @@ export default class Regexes {
    * Helper function for building named capture group
    */
   static maybeCapture(
-      capture: boolean,
-      name: string,
-      value: string | string[] | undefined,
-      defaultValue?: string,
+    capture: boolean,
+    name: string,
+    value: string | string[] | undefined,
+    defaultValue?: string,
   ): string {
     if (!value)
       value = defaultValue;
@@ -748,9 +748,9 @@ export default class Regexes {
   }
 
   static validateParams(
-      f: Readonly<{ [s: string]: unknown }>,
-      funcName: string,
-      params: Readonly<string[]>,
+    f: Readonly<{ [s: string]: unknown }>,
+    funcName: string,
+    params: Readonly<string[]>,
   ): void {
     if (f === null)
       return;

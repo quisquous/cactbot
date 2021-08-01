@@ -930,16 +930,16 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 10,
       alertText: (data, _matches, output) => {
         switch (data.avowedTemperature) {
-        case 2:
-          return output.minusTwo!();
-        case 1:
-          return output.minusOne!();
-        case -1:
-          return output.plusOne!();
-        case -2:
-          return output.plusTwo!();
-        default:
-          return output.unknownTemperature!();
+          case 2:
+            return output.minusTwo!();
+          case 1:
+            return output.minusOne!();
+          case -1:
+            return output.plusOne!();
+          case -2:
+            return output.plusTwo!();
+          default:
+            return output.unknownTemperature!();
         }
       },
       outputStrings: {
@@ -998,16 +998,16 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 3,
       alertText: (data, _matches, output) => {
         switch (data.avowedTemperature) {
-        case 2:
-          return output.minusTwo!();
-        case 1:
-          return output.minusOne!();
-        case -1:
-          return output.plusOne!();
-        case -2:
-          return output.plusTwo!();
-        default:
-          return output.unknownTemperature!();
+          case 2:
+            return output.minusTwo!();
+          case 1:
+            return output.minusOne!();
+          case -1:
+            return output.plusOne!();
+          case -2:
+            return output.plusTwo!();
+          default:
+            return output.unknownTemperature!();
         }
       },
       outputStrings: {
@@ -1137,26 +1137,26 @@ const triggerSet: TriggerSet<Data> = {
         const avoidInfoText = { infoText: output.avoid!({ side: safeSide }) };
 
         switch (matches.id) {
-        case '5B66':
-        case '5B68':
-          if (data.avowedTemperature === 2)
-            return { alertText: output.minusTwo!({ side: side }) };
-          return avoidInfoText;
-        case '596E':
-        case '5970':
-          if (data.avowedTemperature === 1)
-            return { alertText: output.minusOne!({ side: side }) };
-          return avoidInfoText;
-        case '596D':
-        case '596F':
-          if (data.avowedTemperature === -1)
-            return { alertText: output.plusOne!({ side: side }) };
-          return avoidInfoText;
-        case '5B65':
-        case '5B67':
-          if (data.avowedTemperature === -2)
-            return { alertText: output.plusTwo!({ side: side }) };
-          return avoidInfoText;
+          case '5B66':
+          case '5B68':
+            if (data.avowedTemperature === 2)
+              return { alertText: output.minusTwo!({ side: side }) };
+            return avoidInfoText;
+          case '596E':
+          case '5970':
+            if (data.avowedTemperature === 1)
+              return { alertText: output.minusOne!({ side: side }) };
+            return avoidInfoText;
+          case '596D':
+          case '596F':
+            if (data.avowedTemperature === -1)
+              return { alertText: output.plusOne!({ side: side }) };
+            return avoidInfoText;
+          case '5B65':
+          case '5B67':
+            if (data.avowedTemperature === -2)
+              return { alertText: output.plusTwo!({ side: side }) };
+            return avoidInfoText;
         }
       },
     },

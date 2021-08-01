@@ -34,11 +34,11 @@ export default class Tooltip {
   private static templates: TemplatesType;
 
   constructor(
-      private target: HTMLElement,
-      private direction: ValidDirection,
-      text: string,
-      autoShow = true,
-      autoHide = true) {
+    private target: HTMLElement,
+    private direction: ValidDirection,
+    text: string,
+    autoShow = true,
+    autoHide = true) {
     Tooltip.initializeTemplates();
 
     if (!(target instanceof HTMLElement)) {
@@ -91,24 +91,24 @@ export default class Tooltip {
     const lrArrowHeight = (tooltipRect.height / 2) -
       (this.arrow.getBoundingClientRect().height / 2);
     switch (this.direction) {
-    case 'top':
-      this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
-      this.tooltip.style.bottom = toPx((targetRect.y - tooltipRect.height) + this.offset.y);
-      break;
-    case 'right':
-      this.tooltip.style.left = toPx(targetRect.right + this.offset.x);
-      this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
-      this.arrow.style.top = toPx(lrArrowHeight);
-      break;
-    case 'bottom':
-      this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
-      this.tooltip.style.top = toPx(targetRect.bottom + this.offset.y);
-      break;
-    case 'left':
-      this.tooltip.style.left = toPx((targetRect.left - tooltipRect.width) + this.offset.x);
-      this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
-      this.arrow.style.top = toPx(lrArrowHeight);
-      break;
+      case 'top':
+        this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
+        this.tooltip.style.bottom = toPx((targetRect.y - tooltipRect.height) + this.offset.y);
+        break;
+      case 'right':
+        this.tooltip.style.left = toPx(targetRect.right + this.offset.x);
+        this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
+        this.arrow.style.top = toPx(lrArrowHeight);
+        break;
+      case 'bottom':
+        this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
+        this.tooltip.style.top = toPx(targetRect.bottom + this.offset.y);
+        break;
+      case 'left':
+        this.tooltip.style.left = toPx((targetRect.left - tooltipRect.width) + this.offset.x);
+        this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
+        this.arrow.style.top = toPx(lrArrowHeight);
+        break;
     }
     this.tooltip.classList.add('show');
     this.tooltip.setAttribute('data-show', '');

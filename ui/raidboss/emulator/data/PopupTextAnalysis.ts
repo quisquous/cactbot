@@ -90,9 +90,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     finalData: DataType) => void;
 
   constructor(
-      options: RaidbossOptions,
-      timelineLoader: TimelineLoader,
-      raidbossFileData: RaidbossFileData) {
+    options: RaidbossOptions,
+    timelineLoader: TimelineLoader,
+    raidbossFileData: RaidbossFileData) {
     super(options, timelineLoader, raidbossFileData);
     this.ttsSay = (_text: string) => {
       return;
@@ -101,9 +101,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   // Override `OnTrigger` so we can use our own exception handler
   override OnTrigger(
-      trigger: LooseTrigger,
-      matches: RegExpExecArray | null,
-      currentTime: number,
+    trigger: LooseTrigger,
+    matches: RegExpExecArray | null,
+    currentTime: number,
   ): void {
     try {
       this.OnTriggerInternal(trigger, matches, currentTime);
@@ -181,7 +181,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   async checkResolved(logObj: LineEvent): Promise<void> {
     await Promise.all(
-        this.triggerResolvers.map(async (resolver) => await resolver.isResolved(logObj)))
+      this.triggerResolvers.map(async (resolver) => await resolver.isResolved(logObj)))
       .then((results) => {
         this.triggerResolvers = this.triggerResolvers.filter((_, index) => !results[index]);
       });
@@ -195,7 +195,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   override _onTriggerInternalDelaySeconds(
-      triggerHelper: EmulatorTriggerHelper,
+    triggerHelper: EmulatorTriggerHelper,
   ): Promise<void> | undefined {
     // Can't inherit the default logic for delay since we don't
     // want to delay for mass processing of the timeline
@@ -210,7 +210,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   override _onTriggerInternalPromise(
-      triggerHelper: EmulatorTriggerHelper,
+    triggerHelper: EmulatorTriggerHelper,
   ): Promise<void> | undefined {
     const ret = super._onTriggerInternalPromise(triggerHelper);
     if (triggerHelper.resolver)
@@ -241,18 +241,18 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   override _makeTextElement(triggerHelper: EmulatorTriggerHelper,
-      text: string,
-      _className: string): HTMLElement {
+    text: string,
+    _className: string): HTMLElement {
     if (triggerHelper.resolver)
       triggerHelper.resolver.status.result ??= text;
     return document.createElement('div');
   }
 
   override _createTextFor(triggerHelper: EmulatorTriggerHelper,
-      text: string,
-      textType: Text,
-      _lowerTextKey: TextText,
-      _duration: number): void {
+    text: string,
+    textType: Text,
+    _lowerTextKey: TextText,
+    _duration: number): void {
     // No-op for functionality, but store off this info for feedback
     if (triggerHelper.resolver) {
       triggerHelper.resolver.status.responseType = textType;
@@ -261,8 +261,8 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   override _playAudioFile(triggerHelper: EmulatorTriggerHelper,
-      url: string,
-      _volume: number): void {
+    url: string,
+    _volume: number): void {
     // No-op for functionality, but store off this info for feedback
 
     if (triggerHelper.resolver) {
@@ -279,9 +279,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   override _onTriggerInternalGetHelper(
-      trigger: ProcessedTrigger,
-      matches: Matches,
-      now: number): EmulatorTriggerHelper {
+    trigger: ProcessedTrigger,
+    matches: Matches,
+    now: number): EmulatorTriggerHelper {
     const ret: EmulatorTriggerHelper = {
       ...super._onTriggerInternalGetHelper(trigger, matches, now),
     };

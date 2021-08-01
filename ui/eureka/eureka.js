@@ -4438,7 +4438,7 @@ class EurekaTracker {
         document.getElementById('map-image').src = this.zoneInfo.mapImage;
         window.clearInterval(this.updateTimesHandle);
         this.updateTimesHandle = window.setInterval(() => this.UpdateTimes(),
-            this.options.RefreshRateMs);
+          this.options.RefreshRateMs);
         container.classList.remove('hide');
       }
       this.InitNMs();
@@ -4757,33 +4757,33 @@ class EurekaTracker {
     }
 
     switch (e.detail.eventType) {
-    case 'add':
-      for (const key of this.nmKeys) {
-        const nm = this.nms[key];
-        if (e.detail.fateID === nm.fateID) {
-          this.OnFatePop(nm);
-          return;
+      case 'add':
+        for (const key of this.nmKeys) {
+          const nm = this.nms[key];
+          if (e.detail.fateID === nm.fateID) {
+            this.OnFatePop(nm);
+            return;
+          }
         }
-      }
-      break;
-    case 'remove':
-      for (const key of this.nmKeys) {
-        const nm = this.nms[key];
-        if (e.detail.fateID === nm.fateID) {
-          this.OnFateKill(nm);
-          return;
+        break;
+      case 'remove':
+        for (const key of this.nmKeys) {
+          const nm = this.nms[key];
+          if (e.detail.fateID === nm.fateID) {
+            this.OnFateKill(nm);
+            return;
+          }
         }
-      }
-      break;
-    case 'update':
-      for (const key of this.nmKeys) {
-        const nm = this.nms[key];
-        if (e.detail.fateID === nm.fateID) {
-          this.OnFateUpdate(nm, e.detail.progress);
-          return;
+        break;
+      case 'update':
+        for (const key of this.nmKeys) {
+          const nm = this.nms[key];
+          if (e.detail.fateID === nm.fateID) {
+            this.OnFateUpdate(nm, e.detail.progress);
+            return;
+          }
         }
-      }
-      break;
+        break;
     }
   }
 
@@ -4809,16 +4809,16 @@ class EurekaTracker {
       return;
 
     switch (e.detail.eventType) {
-    case 'add':
-      this.OnFatePop(nm);
-      break;
-    case 'remove':
-      this.OnFateKill(nm);
-      break;
-    case 'update':
-      if (e.detail.data.status === 3)
-        this.OnFateUpdate(nm, e.detail.data.progress);
-      break;
+      case 'add':
+        this.OnFatePop(nm);
+        break;
+      case 'remove':
+        this.OnFateKill(nm);
+        break;
+      case 'update':
+        if (e.detail.data.status === 3)
+          this.OnFateUpdate(nm, e.detail.data.progress);
+        break;
     }
   }
 

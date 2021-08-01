@@ -206,7 +206,7 @@ class Radar {
   }
 
   AddMonster(log: string, hunt: HuntEntry,
-      matches: NetMatches['AddedCombatant']) {
+    matches: NetMatches['AddedCombatant']) {
     if (!this.playerPos)
       return;
     if (!matches)
@@ -342,8 +342,8 @@ class Radar {
     const playerVector = new Point2D(this.playerPos.x, this.playerPos.y);
     const targetVector = monster.pos;
     const deltaVector = new Point2D(
-        targetVector.x - playerVector.x,
-        targetVector.y - playerVector.y,
+      targetVector.x - playerVector.x,
+      targetVector.y - playerVector.y,
     );
     if (tr) {
       const node = tr.childNodes[1];
