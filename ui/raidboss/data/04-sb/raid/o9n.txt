@@ -40,11 +40,13 @@ hideall "--sync--"
 
 ## Fire->Water Midphase
 1204.1 "Bowels of Agony" sync /:Chaos:3169:/
+1208.1 "--untargetable--"
 1211.6 "--sync--" sync /:Chaos:3215:/
 1218.3 "Stray Flames" sync /:Chaos:316B:/
 1224.2 "Stray Spray" sync /:Chaos:316C:/
 1500.0 "--sync--" sync /YOU DARE!/ window 500,10
 1503.0 "Soul of Chaos" sync /:Chaos:316A:/ window 500,10
+1513.1 "--targetable--"
 # fake window into Water->Earth loop
 1530.0 "Chaotic Dispersion" sync /:Chaos:314F:/ window 50,50 jump 3015.7
 

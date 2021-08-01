@@ -41,12 +41,15 @@
 186.3 "Holy Edge" sync /:Halicarnassus:2463:/
 190.4 "The Queen's Waltz (Uplift)" sync /:Halicarnassus:2471:/
 202.4 "Aetherial Tear" sync /:Halicarnassus:2474:/ window 202.4,5
+206.5 "--untargetable--"
 
 # Intermission. Nothing of import happens here.
 216.6 "Aetherial Pull" sync /:Aetherial Tear:2475:/
 272.9 "Ultimum (Starry End)" # sync /:Halicarnassus:2477:/
-# There is unfortunately no way to continue to display 
+# There is unfortunately no way to continue to display
 # Ultimum if another player escapes before the user
+# We also haven't got a good way to display exactly when
+# Halicarnassus is targetable again.
 
 # Post-intermission.
 300.0 "Panel Swap" sync /:Halicarnassus:2304:/ window 150.10
