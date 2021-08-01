@@ -52,7 +52,7 @@ const settings = {
 // General rules for all files.
 const rules = {
   'arrow-spacing': [
-    'error',
+    'warn',
     {
       'after': true,
       'before': true,
@@ -65,7 +65,7 @@ const rules = {
     },
   ],
   'curly': [
-    'error',
+    'warn',
     'multi-or-nest',
     'consistent',
   ],
@@ -84,7 +84,7 @@ const rules = {
   ],
   'import/no-webpack-loader-syntax': 'error',
   'indent': [
-    'error',
+    'warn',
     2,
     {
       'ArrayExpression': 1,
@@ -135,8 +135,8 @@ const rules = {
     'always',
   ],
   'no-console': 'off',
-  'no-duplicate-imports': 'error',
-  'no-else-return': 'error',
+  'no-duplicate-imports': 'warn',
+  'no-else-return': 'warn',
   'no-eval': 'error',
   'no-implied-eval': 'error',
   'no-sequences': 'error',
@@ -152,7 +152,7 @@ const rules = {
     },
   ],
   'object-curly-spacing': [
-    'error',
+    'warn',
     'always',
   ],
   'object-property-newline': [
@@ -179,12 +179,12 @@ const rules = {
     ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
   ],
   'space-in-parens': [
-    'error',
+    'warn',
     'never',
   ],
-  'space-infix-ops': 'error',
+  'space-infix-ops': 'warn',
   'space-unary-ops': [
-    'error',
+    'warn',
     {
       'nonwords': false,
       'words': true,
@@ -240,7 +240,7 @@ const tsOverrides = {
     '@typescript-eslint/no-non-null-assertion': 'error',
     '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
-    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+    '@typescript-eslint/object-curly-spacing': ['warn', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': ['error', { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' }],
     'indent': 'off',
@@ -286,15 +286,15 @@ const overrides = [
   {
     'files': ['**/raidboss/data/**/*'],
     'rules': {
-      'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'raidboss' }],
-      'rulesdir/cactbot-triggerset-property-order': ['error', { 'module': 'raidboss' }],
+      'rulesdir/cactbot-trigger-property-order': ['warn', { 'module': 'raidboss' }],
+      'rulesdir/cactbot-triggerset-property-order': ['warn', { 'module': 'raidboss' }],
     },
   },
   {
     'files': ['**/oopsyraidsy/data/**/*'],
     'rules': {
-      'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'oopsyraidsy' }],
-      'rulesdir/cactbot-triggerset-property-order': ['error', { 'module': 'oopsyraidsy' }],
+      'rulesdir/cactbot-trigger-property-order': ['warn', { 'module': 'oopsyraidsy' }],
+      'rulesdir/cactbot-triggerset-property-order': ['warn', { 'module': 'oopsyraidsy' }],
     },
   },
 ];
