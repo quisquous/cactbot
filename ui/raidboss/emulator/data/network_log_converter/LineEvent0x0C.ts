@@ -1,24 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  class: 2,
-  strength: 3,
-  dexterity: 4,
-  vitality: 5,
-  intelligence: 6,
-  mind: 7,
-  piety: 8,
-  attackPower: 9,
-  directHit: 10,
-  criticalHit: 11,
-  attackMagicPotency: 12,
-  healMagicPotency: 13,
-  determination: 14,
-  skillSpeed: 15,
-  spellSpeed: 16,
-  tenacity: 18,
-} as const;
+const fields = logDefinitions.playerStats.fields;
 
 // Player stats event
 export class LineEvent0x0C extends LineEvent {
@@ -42,7 +27,7 @@ export class LineEvent0x0C extends LineEvent {
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.class = parts[fields.class] ?? '';
+    this.class = parts[fields.job] ?? '';
     this.strength = parts[fields.strength] ?? '';
     this.dexterity = parts[fields.dexterity] ?? '';
     this.vitality = parts[fields.vitality] ?? '';

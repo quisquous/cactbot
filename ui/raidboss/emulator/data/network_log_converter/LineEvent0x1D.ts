@@ -1,14 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  operation: 2,
-  waymark: 3,
-  id: 4,
-  name: 5,
-  targetId: 6,
-  targetName: 7,
-} as const;
+const fields = logDefinitions.networkTargetMarker.fields;
 
 // Waymarker
 export class LineEvent0x1D extends LineEvent {

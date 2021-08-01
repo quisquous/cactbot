@@ -1,21 +1,10 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
 import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent, { LineEventAbility, LineEventSource, LineEventTarget } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  abilityId: 4,
-  abilityName: 5,
-  targetId: 6,
-  targetName: 7,
-  duration: 8,
-  x: 9,
-  y: 10,
-  z: 11,
-  heading: 12,
-} as const;
+const fields = logDefinitions.networkStartsCasting.fields;
 
 // Shorten a few types so dprint doesn't complain when the line gets too long.
 type LESource = LineEventSource;
@@ -45,14 +34,14 @@ export class LineEvent0x14 extends LineEvent implements LESource, LETarget, LEAb
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.id = parts[fields.id]?.toUpperCase() ?? '';
-    this.name = parts[fields.name] ?? '';
-    this.abilityIdHex = parts[fields.abilityId]?.toUpperCase() ?? '';
+    this.id = parts[fields.sourceId]?.toUpperCase() ?? '';
+    this.name = parts[fields.source] ?? '';
+    this.abilityIdHex = parts[fields.id]?.toUpperCase() ?? '';
     this.abilityId = parseInt(this.abilityIdHex);
-    this.abilityName = parts[fields.abilityName] ?? '';
+    this.abilityName = parts[fields.ability] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
-    this.targetName = parts[fields.targetName] ?? '';
-    this.duration = parts[fields.duration] ?? '';
+    this.targetName = parts[fields.target] ?? '';
+    this.duration = parts[fields.castTime] ?? '';
     this.x = parseFloat(parts[fields.x] ?? '');
     this.y = parseFloat(parts[fields.y] ?? '');
     this.z = parseFloat(parts[fields.z] ?? '');

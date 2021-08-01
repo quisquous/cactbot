@@ -1,25 +1,10 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
 import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  type: 4,
-  effectId: 5,
-  damage: 6,
-  currentHp: 7,
-  maxHp: 8,
-  currentMp: 9,
-  maxMp: 10,
-  currentTp: 11,
-  maxTp: 12,
-  x: 13,
-  y: 14,
-  z: 15,
-  heading: 16,
-} as const;
+const fields = logDefinitions.networkDoT.fields;
 
 // DoT/HoT event
 export class LineEvent0x18 extends LineEvent implements LineEventSource {
@@ -34,8 +19,6 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
   public readonly maxHp: number;
   public readonly mp: number;
   public readonly maxMp: number;
-  public readonly tp: number;
-  public readonly maxTp: number;
   public readonly x: number;
   public readonly y: number;
   public readonly z: number;
@@ -56,8 +39,6 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
     this.maxHp = parseInt(parts[fields.maxHp] ?? '');
     this.mp = parseInt(parts[fields.currentMp] ?? '');
     this.maxMp = parseInt(parts[fields.maxMp] ?? '');
-    this.tp = parseInt(parts[fields.currentTp] ?? '');
-    this.maxTp = parseInt(parts[fields.maxTp] ?? '');
     this.x = parseFloat(parts[fields.x] ?? '');
     this.y = parseFloat(parts[fields.y] ?? '');
     this.z = parseFloat(parts[fields.z] ?? '');

@@ -1,3 +1,4 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
 import Util from '../../../../../resources/util';
 import { Job } from '../../../../../types/job';
 import EmulatorCommon from '../../EmulatorCommon';
@@ -5,21 +6,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  jobLevelData: 4,
-  currentHp: 5,
-  maxHp: 6,
-  currentMp: 7,
-  maxMp: 8,
-  currentTp: 9,
-  maxTp: 10,
-  x: 11,
-  y: 12,
-  z: 13,
-  heading: 14,
-} as const;
+const fields = logDefinitions.networkStatusEffects.fields;
 
 // Network status effect event
 export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEventJobLevel {
@@ -34,8 +21,6 @@ export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEve
   public readonly maxHp: number;
   public readonly mp: number;
   public readonly maxMp: number;
-  public readonly tp: number;
-  public readonly maxTp: number;
   public readonly x: number;
   public readonly y: number;
   public readonly z: number;
@@ -46,17 +31,15 @@ export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEve
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.id = parts[fields.id]?.toUpperCase() ?? '';
-    this.name = parts[fields.name] ?? '';
+    this.id = parts[fields.targetId]?.toUpperCase() ?? '';
+    this.name = parts[fields.target] ?? '';
 
     this.jobLevelData = parts[fields.jobLevelData] ?? '';
 
-    this.hp = parseInt(parts[fields.currentHp] ?? '');
+    this.hp = parseInt(parts[fields.hp] ?? '');
     this.maxHp = parseInt(parts[fields.maxHp] ?? '');
-    this.mp = parseInt(parts[fields.currentMp] ?? '');
+    this.mp = parseInt(parts[fields.mp] ?? '');
     this.maxMp = parseInt(parts[fields.maxMp] ?? '');
-    this.tp = parseInt(parts[fields.currentTp] ?? '');
-    this.maxTp = parseInt(parts[fields.maxTp] ?? '');
     this.x = parseFloat(parts[fields.x] ?? '');
     this.y = parseFloat(parts[fields.y] ?? '');
     this.z = parseFloat(parts[fields.z] ?? '');

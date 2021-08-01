@@ -1,3 +1,4 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
 import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent from './LineEvent';
@@ -10,13 +11,7 @@ const splitFunc = (s: string) => [
   s.substr(0, 2),
 ];
 
-const fields = {
-  id: 2,
-  dataBytes1: 3,
-  dataBytes2: 4,
-  dataBytes3: 5,
-  dataBytes4: 6,
-} as const;
+const fields = logDefinitions.networkGauge.fields;
 
 // Job gauge event
 export class LineEvent0x1F extends LineEvent {
@@ -34,10 +29,10 @@ export class LineEvent0x1F extends LineEvent {
     super(repo, line, parts);
 
     this.id = parts[fields.id]?.toUpperCase() ?? '';
-    this.dataBytes1 = EmulatorCommon.zeroPad(parts[fields.dataBytes1] ?? '');
-    this.dataBytes2 = EmulatorCommon.zeroPad(parts[fields.dataBytes2] ?? '');
-    this.dataBytes3 = EmulatorCommon.zeroPad(parts[fields.dataBytes3] ?? '');
-    this.dataBytes4 = EmulatorCommon.zeroPad(parts[fields.dataBytes4] ?? '');
+    this.dataBytes1 = EmulatorCommon.zeroPad(parts[fields.data0] ?? '');
+    this.dataBytes2 = EmulatorCommon.zeroPad(parts[fields.data1] ?? '');
+    this.dataBytes3 = EmulatorCommon.zeroPad(parts[fields.data2] ?? '');
+    this.dataBytes4 = EmulatorCommon.zeroPad(parts[fields.data3] ?? '');
 
     this.jobGaugeBytes = [
       ...splitFunc(this.dataBytes1),

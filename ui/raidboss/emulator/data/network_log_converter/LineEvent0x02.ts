@@ -1,10 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-} as const;
+const fields = logDefinitions.changePrimaryPlayer.fields;
 
 // Player change event
 export class LineEvent0x02 extends LineEvent {

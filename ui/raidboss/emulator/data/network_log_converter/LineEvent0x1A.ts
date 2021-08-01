@@ -1,20 +1,10 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
 import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  effectId: 2,
-  effect: 3,
-  durationString: 4,
-  id: 5,
-  name: 6,
-  targetId: 7,
-  targetName: 8,
-  stacks: 9,
-  targetHp: 10,
-  sourceHp: 11,
-} as const;
+const fields = logDefinitions.networkBuff.fields;
 
 // Gain status effect event
 // Deliberately don't flag this as LineEventSource or LineEventTarget
@@ -42,15 +32,15 @@ export class LineEvent0x1A extends LineEvent {
 
     this.effectId = parseInt(parts[fields.effectId]?.toUpperCase() ?? '');
     this.effect = parts[fields.effect] ?? '';
-    this.durationString = parts[fields.durationString] ?? '';
+    this.durationString = parts[fields.duration] ?? '';
     this.durationFloat = parseFloat(this.durationString);
-    this.id = parts[fields.id]?.toUpperCase() ?? '';
-    this.name = parts[fields.name] ?? '';
+    this.id = parts[fields.sourceId]?.toUpperCase() ?? '';
+    this.name = parts[fields.source] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
-    this.targetName = parts[fields.targetName] ?? '';
-    this.stacks = parseInt(parts[fields.stacks] ?? '0');
+    this.targetName = parts[fields.target] ?? '';
+    this.stacks = parseInt(parts[fields.count] ?? '0');
     this.targetHp = parseInt(parts[fields.targetHp] ?? '');
-    this.hp = parseInt(parts[fields.sourceHp] ?? '');
+    this.hp = parseInt(parts[fields.hp] ?? '');
 
     repo.updateCombatant(this.id, {
       name: this.name,
