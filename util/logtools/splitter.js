@@ -1,4 +1,4 @@
-import logDefinitions from './netlog_defs';
+import logDefinitions from '../../resources/netlog_defs';
 
 export default class Splitter {
   // startLine and stopLine are both inclusive.
