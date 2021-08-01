@@ -544,6 +544,18 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
+  '40': {
+    type: 'Map',
+    fields: {
+      0: 'logType',
+      1: 'timestamp',
+      2: 'id',
+      3: 'regionName',
+      4: 'placeName',
+      5: 'placeNameSub',
+    },
+    canAnonymize: true,
+  },
   '249': {
     type: 'ParserInfo',
     globalInclude: true,

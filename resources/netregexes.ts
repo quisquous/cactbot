@@ -493,4 +493,15 @@ export default class NetRegexes {
       6: { field: 'toggle' },
     });
   }
+
+  static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
+    return parseHelper(params, 'map', {
+      0: { field: 'type', value: '40' },
+      1: { field: 'timestamp' },
+      2: { field: 'id' },
+      3: { field: 'regionName' },
+      4: { field: 'placeName' },
+      5: { field: 'placeNameSub' },
+    });
+  }
 }
