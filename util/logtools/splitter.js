@@ -3,7 +3,12 @@ import logDefinitions from '../../resources/netlog_defs';
 export default class Splitter {
   // startLine and stopLine are both inclusive.
   constructor(startLine, stopLine, notifier) {
-    this.logTypes = logDefinitions;
+    // Remap logDefinitions from log type (instead of name) to definition.
+    this.logTypes = {};
+    for (const logName in logDefinitions) {
+      const def = logDefinitions[logName];
+      this.logTypes[def.type] = def;
+    }
 
     this.startLine = startLine;
     this.stopLine = stopLine;
