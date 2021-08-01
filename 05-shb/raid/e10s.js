@@ -248,18 +248,18 @@ Options.Triggers.push({
       alertText: (data, _matches, output) => {
         let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
-        case '973':
-          ret = output.west();
-          break;
-        case '974':
-          ret = output.east();
-          break;
-        case '975':
-          ret = output.north();
-          break;
-        case '976':
-          ret = output.south();
-          break;
+          case '973':
+            ret = output.west();
+            break;
+          case '974':
+            ret = output.east();
+            break;
+          case '975':
+            ret = output.north();
+            break;
+          case '976':
+            ret = output.south();
+            break;
         }
         delete data.gigaSlashCleaveDebuffId;
         delete data.gigaSlashCleaveDebuffDuration;
@@ -301,18 +301,18 @@ Options.Triggers.push({
       alertText: (data, _matches, output) => {
         let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
-        case '973':
-          ret = output.east();
-          break;
-        case '974':
-          ret = output.west();
-          break;
-        case '975':
-          ret = output.south();
-          break;
-        case '976':
-          ret = output.north();
-          break;
+          case '973':
+            ret = output.east();
+            break;
+          case '974':
+            ret = output.west();
+            break;
+          case '975':
+            ret = output.south();
+            break;
+          case '976':
+            ret = output.north();
+            break;
         }
         delete data.gigaSlashCleaveDebuffId;
         delete data.gigaSlashCleaveDebuffDuration;
