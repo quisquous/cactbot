@@ -22,7 +22,8 @@ module.exports = {
       },
     ],
     messages: {
-      sortKeys: 'Expected triggerSet properties ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
+      sortKeys:
+        'Expected triggerSet properties ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
     },
   },
   create: (context) => {

@@ -142,8 +142,7 @@ const missedFunc = <T extends 'Ability' | 'GainsEffect'>(args: {
   },
 ];
 
-const missedMitigationBuff = (args: { id: string; effectId: string;
-  ignoreSelf?: boolean; collectSeconds?: number; }) => {
+const missedMitigationBuff = (args: { id: string; effectId: string; ignoreSelf?: boolean; collectSeconds?: number }) => {
   if (!args.effectId)
     console.error('Missing effectId: ' + JSON.stringify(args));
   return missedFunc({
@@ -157,8 +156,7 @@ const missedMitigationBuff = (args: { id: string; effectId: string;
   });
 };
 
-const missedDamageAbility = (args: { id: string; abilityId: string;
-  ignoreSelf?: boolean; collectSeconds?: number; }) => {
+const missedDamageAbility = (args: { id: string; abilityId: string; ignoreSelf?: boolean; collectSeconds?: number }) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
   return missedFunc({
@@ -172,8 +170,7 @@ const missedDamageAbility = (args: { id: string; abilityId: string;
   });
 };
 
-const missedHeal = (args: { id: string; abilityId: string;
-  ignoreSelf?: boolean; collectSeconds?: number; }) => {
+const missedHeal = (args: { id: string; abilityId: string; ignoreSelf?: boolean; collectSeconds?: number }) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
   return missedFunc({

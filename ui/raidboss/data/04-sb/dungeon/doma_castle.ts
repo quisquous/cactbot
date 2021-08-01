@@ -7,8 +7,7 @@ export type Data = RaidbossData;
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DomaCastle,
   timelineFile: 'doma_castle.txt',
-  triggers: [
-  ],
+  triggers: [],
 };
 
 export default triggerSet;

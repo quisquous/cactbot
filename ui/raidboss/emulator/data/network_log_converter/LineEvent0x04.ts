@@ -15,4 +15,4 @@ export class LineEvent0x04 extends LineEvent0x03 {
   }
 }
 
-export class LineEvent04 extends LineEvent0x04 { }
+export class LineEvent04 extends LineEvent0x04 {}

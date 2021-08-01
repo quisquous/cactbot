@@ -7,8 +7,7 @@ export type Data = RaidbossData;
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',
-  triggers: [
-  ],
+  triggers: [],
   timelineReplace: [
     {
       'locale': 'de',

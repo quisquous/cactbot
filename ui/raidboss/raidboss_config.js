@@ -464,16 +464,20 @@ class RaidbossConfigurator {
           triggerDetails.appendChild(this.buildTriggerOptions(trig, triggerDiv));
 
         if (trig.isMissingId) {
-          addTriggerDetail(triggerDetails,
+          addTriggerDetail(
+            triggerDetails,
             this.base.translate(kMiscTranslations.warning),
-            this.base.translate(kMiscTranslations.missingId));
+            this.base.translate(kMiscTranslations.missingId),
+          );
         }
         if (trig.overriddenByFile) {
           const baseText = this.base.translate(kMiscTranslations.overriddenByFile);
           const detailText = baseText.replace('${file}', trig.overriddenByFile);
-          addTriggerDetail(triggerDetails,
+          addTriggerDetail(
+            triggerDetails,
             this.base.translate(kMiscTranslations.warning),
-            detailText);
+            detailText,
+          );
         }
 
         // Append some details about the trigger so it's more obvious what it is.
@@ -496,10 +500,12 @@ class RaidbossConfigurator {
             detailText = trig[detailKey];
           }
 
-          addTriggerDetail(triggerDetails,
+          addTriggerDetail(
+            triggerDetails,
             this.base.translate(kDetailKeys[detailKey].label),
             detailText,
-            detailCls);
+            detailCls,
+          );
         }
 
         if (!canBeConfigured(trig))
@@ -594,7 +600,8 @@ class RaidbossConfigurator {
           input.type = 'text';
           input.placeholder = template;
           input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, key, '');
-          const setFunc = () => this.base.setOption('raidboss', 'triggers', trig.id, optionKey, key, input.value);
+          const setFunc = () =>
+            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, key, input.value);
           input.onchange = setFunc;
           input.oninput = setFunc;
 
@@ -619,7 +626,9 @@ class RaidbossConfigurator {
         const escapedTriggerId = trig.id.replace(/'/g, '\\\'');
         const uriComponent = encodeURIComponent(`id: '${escapedTriggerId}'`).replace(/'/g, '%27');
         const urlString = `${baseUrl}/${urlFilepath}.js#:~:text=${uriComponent}`;
-        div.innerHTML = `<a href="${urlString}" target="_blank">(${this.base.translate(kMiscTranslations.viewTriggerSource)})</a>`;
+        div.innerHTML = `<a href="${urlString}" target="_blank">(${
+          this.base.translate(kMiscTranslations.viewTriggerSource)
+        })</a>`;
 
         triggerDetails.appendChild(div);
       }
@@ -695,7 +704,6 @@ class RaidbossConfigurator {
     for (let i = 0; i < kFakeData.length; ++i)
       kFakeData[i] = Object.assign({}, kFakeData[i], kBaseFakeData);
 
-
     const kFakeMatches = {
       // TODO: really should convert all triggers to use regexes.js.
       // Mooooost triggers use matches[1] to be a name.
@@ -720,7 +728,6 @@ class RaidbossConfigurator {
       name: 'Name',
       capture: true,
     };
-
 
     const output = {};
     const keys = ['alarmText', 'alertText', 'infoText', 'tts', 'sound'];

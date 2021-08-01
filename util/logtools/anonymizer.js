@@ -82,7 +82,6 @@ export default class Anonymizer {
     if (!canAnonymizeSubField && !type.canAnonymize)
       return;
 
-
     // If nothing to anonymize, we're done.
     if (!type.playerIds)
       return splitLine.join('|');

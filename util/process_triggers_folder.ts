@@ -11,7 +11,9 @@ import defaultRaidbossOptions from '../ui/raidboss/raidboss_options';
 import { walkDirAsync } from './file_utils';
 
 const root = '../dist/triggers/ui/raidboss/data/';
-const tscCmd = `${['..', 'node_modules', '.bin', 'tsc'].join(path.sep)} --build ${['..', 'tsconfig.triggers.json'].join(path.sep)}`;
+const tscCmd = `${['..', 'node_modules', '.bin', 'tsc'].join(path.sep)} --build ${
+  ['..', 'tsconfig.triggers.json'].join(path.sep)
+}`;
 
 // Probably we could do this more cleanly with babel, but we'll just regex for simplicitly.
 const removeImports = (lines: string[]) => {
@@ -48,7 +50,9 @@ const changeExportToPush = (lines: string[]) => {
   });
 
   if (replacedExportCount !== 1 || replacedClosingCount !== 1) {
-    console.error(`Found ${replacedExportCount} export lines and ${replacedClosingCount} closing lines, aborting.`);
+    console.error(
+      `Found ${replacedExportCount} export lines and ${replacedClosingCount} closing lines, aborting.`,
+    );
     process.exit(3);
   }
 

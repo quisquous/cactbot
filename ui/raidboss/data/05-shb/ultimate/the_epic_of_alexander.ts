@@ -72,7 +72,6 @@ export interface Data extends RaidbossData {
 // * inception orb tethers (likely some "new combatant" flag, like suzex birbs?)
 // * escape/contact regulator/prohibition headmarkers
 
-
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
@@ -774,7 +773,7 @@ const triggerSet: TriggerSet<Data> = {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
@@ -793,25 +792,27 @@ const triggerSet: TriggerSet<Data> = {
           '0056': 8,
         };
         data.limitCutNumber = limitCutNumberMap[correctedMatch];
-        const limitCutDelayMap: { [id: string]: number } = data.phase === 'wormhole' ? {
-          '004F': 9.2,
-          '0050': 10.7,
-          '0051': 13.4,
-          '0052': 15.0,
-          '0053': 17.7,
-          '0054': 19.2,
-          '0055': 22.0,
-          '0056': 23.4,
-        } : {
-          '004F': 9.5,
-          '0050': 11,
-          '0051': 14.1,
-          '0052': 15.5,
-          '0053': 18.6,
-          '0054': 20,
-          '0055': 23.2,
-          '0056': 24.6,
-        };
+        const limitCutDelayMap: { [id: string]: number } = data.phase === 'wormhole'
+          ? {
+            '004F': 9.2,
+            '0050': 10.7,
+            '0051': 13.4,
+            '0052': 15.0,
+            '0053': 17.7,
+            '0054': 19.2,
+            '0055': 22.0,
+            '0056': 23.4,
+          }
+          : {
+            '004F': 9.5,
+            '0050': 11,
+            '0051': 14.1,
+            '0052': 15.5,
+            '0053': 18.6,
+            '0054': 20,
+            '0055': 23.2,
+            '0056': 24.6,
+          };
         data.limitCutDelay = limitCutDelayMap[correctedMatch];
       },
       durationSeconds: (data) => {
@@ -835,7 +836,7 @@ const triggerSet: TriggerSet<Data> = {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : 0,
@@ -966,7 +967,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Ice Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1006,7 +1007,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Enumeration YOU',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1023,7 +1024,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Enumeration Everyone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '0041',
       preRun: (data, matches) => {
         data.enumerations ??= [];
@@ -1509,7 +1510,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Judgment Crystal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1696,7 +1697,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Cactbot Wormhole Strat',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1832,7 +1833,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Incinerating Heat',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '005D',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1929,7 +1930,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Perfect Optical Sight Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => getHeadmarkerId(data, matches) === '003E',
       preRun: (data, matches) => {
         data.opticalStack ??= [];

@@ -25,7 +25,22 @@ export default class TimerBar extends HTMLElement {
   private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
-    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'stylefill', 'toward', 'loop'];
+    return [
+      'duration',
+      'value',
+      'elapsed',
+      'hideafter',
+      'lefttext',
+      'centertext',
+      'righttext',
+      'width',
+      'height',
+      'bg',
+      'fg',
+      'stylefill',
+      'toward',
+      'loop',
+    ];
   }
 
   // Background color.
@@ -565,7 +580,6 @@ export default class TimerBar extends HTMLElement {
       this.rootElement.style.display = 'none';
   }
 }
-
 
 window.customElements.define('timer-bar', TimerBar);
 

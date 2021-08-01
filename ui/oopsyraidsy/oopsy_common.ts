@@ -81,8 +81,10 @@ Examples:
 
 /* eslint-enable */
 
-export const ShortNamify = (name: string | undefined,
-  playerNicks: { [name: string]: string }): string => {
+export const ShortNamify = (
+  name: string | undefined,
+  playerNicks: { [name: string]: string },
+): string => {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
   if (!name)

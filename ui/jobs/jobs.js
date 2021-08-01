@@ -7,7 +7,15 @@ import UserConfig from '../../resources/user_config';
 import Util from '../../resources/util';
 import ZoneInfo from '../../resources/zone_info';
 import ZoneId from '../../resources/zone_id';
-import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants';
+import {
+  kMPCombatRate,
+  kMPNormalRate,
+  kMPTickInterval,
+  kMPUI1Rate,
+  kMPUI2Rate,
+  kMPUI3Rate,
+  kWellFedContentTypes,
+} from './constants';
 import { BuffTracker } from './buff_tracker';
 import ComboTracker from './combo_tracker';
 import PartyTracker from '../../resources/party';
@@ -15,8 +23,14 @@ import PartyTracker from '../../resources/party';
 import foodImage from '../../resources/ffxiv/status/food.png';
 
 import defaultOptions from './jobs_options';
-import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
-import { getSetup, getReset } from './components/index';
+import {
+  calcGCDFromStat,
+  computeBackgroundColorFrom,
+  doesJobNeedMPBar,
+  makeAuraTimerIcon,
+  RegexesHolder,
+} from './utils';
+import { getReset, getSetup } from './components/index';
 
 import './jobs_config';
 import '../../resources/resourcebar';
@@ -27,7 +41,6 @@ import '../../resources/widget_list';
 
 import '../../resources/defaults.css';
 import './jobs.css';
-
 
 // text on the pull countdown.
 const kPullText = {
@@ -111,7 +124,9 @@ class Bars {
 
   updateProcBoxNotifyRepeat() {
     if (this.options.NotifyExpiredProcsInCombat >= 0) {
-      const repeats = this.options.NotifyExpiredProcsInCombat === 0 ? 'infinite' : this.options.NotifyExpiredProcsInCombat;
+      const repeats = this.options.NotifyExpiredProcsInCombat === 0
+        ? 'infinite'
+        : this.options.NotifyExpiredProcsInCombat;
 
       document.documentElement.style.setProperty('--proc-box-notify-repeat', repeats);
     }
@@ -684,8 +699,10 @@ class Bars {
     const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
-    if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
+    if (
+      this.inCombat || !this.options.LowerOpacityOutOfCombat ||
+      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job)
+    )
       opacityContainer.style.opacity = '1.0';
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat.toString();
@@ -723,14 +740,20 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this._updateFoodBuff.bind(this), showAfterMs);
     } else {
       const div = makeAuraTimerIcon(
-        'foodbuff', -1, 1,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        'foodbuff',
+        -1,
+        1,
+        this.options.BigBuffIconWidth,
+        this.options.BigBuffIconHeight,
         '',
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        this.options.BigBuffBarHeight,
+        this.options.BigBuffTextHeight,
         'white',
         this.options.BigBuffBorderSize,
-        'yellow', 'yellow',
-        foodImage);
+        'yellow',
+        'yellow',
+        foodImage,
+      );
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
@@ -800,8 +823,7 @@ class Bars {
     // Hide CP Bar when not crafting
     const container = document.getElementById('jobs-container');
 
-    const anyRegexMatched = (line, array) =>
-      array.some((regex) => regex.test(line));
+    const anyRegexMatched = (line, array) => array.some((regex) => regex.test(line));
 
     if (!this.crafting) {
       if (anyRegexMatched(log, this.regexes.craftingStartRegexes))
@@ -860,8 +882,10 @@ class Bars {
       this.level = e.detail.level;
       updateLevel = true;
     }
-    if (e.detail.currentHP !== this.hp || e.detail.maxHP !== this.maxHP ||
-      e.detail.currentShield !== this.currentShield) {
+    if (
+      e.detail.currentHP !== this.hp || e.detail.maxHP !== this.maxHP ||
+      e.detail.currentShield !== this.currentShield
+    ) {
       this.hp = e.detail.currentHP;
       this.maxHP = e.detail.maxHP;
       this.currentShield = e.detail.currentShield;
@@ -892,7 +916,12 @@ class Bars {
       this._updateProcBoxNotifyState();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-        this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);
+        this.options,
+        this.me,
+        this.o.leftBuffsList,
+        this.o.rightBuffsList,
+        this.partyTracker,
+      );
     }
     if (updateHp)
       this._updateHealth();
@@ -1037,9 +1066,11 @@ class Bars {
       // line[2] is dotted target id.
       // lastAttackedTarget, lastDotTarget may not be maintarget,
       // but lastAttackedDotTarget must be your main target.
-      if (line[2] === this.lastAttackedDotTarget &&
+      if (
+        line[2] === this.lastAttackedDotTarget &&
         line[4] === 'DoT' &&
-        line[5] === '0') {
+        line[5] === '0'
+      ) {
         // 0 if not field setting DoT
         this.updateDotTimerFuncs.forEach((f) => f());
       }
@@ -1049,19 +1080,51 @@ class Bars {
   _test() {
     const logs = [];
     const t = '[10:10:10.000] ';
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30.2 Seconds.');
-    logs.push(t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.me + ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
-    logs.push(t + '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
-    logs.push(t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
-    logs.push(t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(
+      t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me +
+        ' for 30.2 Seconds.',
+    );
+    logs.push(
+      t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.me +
+        ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.',
+    );
+    logs.push(
+      t +
+        '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.',
+    );
+    logs.push(
+      t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.me +
+        ' gains the effect of Left Eye from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.me +
+        ' gains the effect of Right Eye from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:',
+    );
     logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
+    logs.push(
+      t + '1A:10000000:' + this.me +
+        ' gains the effect of Devotion from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.me +
+        ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.me +
+        ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.',
+    );
     const e = { detail: { logs: logs } };
     this._onLogEvent(e);
   }

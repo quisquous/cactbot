@@ -7,7 +7,7 @@ import { Job } from '../../types/job';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import { Bars } from './bar';
-import { kMeleeWithMpJobs, kLevelMod } from './constants';
+import { kLevelMod, kMeleeWithMpJobs } from './constants';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
@@ -86,7 +86,6 @@ export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): n
   // If stats haven't been updated, use a reasonable default value.
   if (stat === 0)
     return actionDelay / 1000;
-
 
   let type1Buffs = 0;
   let type2Buffs = 0;

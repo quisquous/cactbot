@@ -2,7 +2,11 @@ import { Lang } from '../../../resources/languages';
 import NetRegexes from '../../../resources/netregexes';
 import { UnreachableCode } from '../../../resources/not_reached';
 import { LocaleNetRegex } from '../../../resources/translations';
-import { CactbotBaseRegExp, CactbotRegExpExecArray, TriggerTypes } from '../../../types/net_trigger';
+import {
+  CactbotBaseRegExp,
+  CactbotRegExpExecArray,
+  TriggerTypes,
+} from '../../../types/net_trigger';
 
 // Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -154,7 +158,9 @@ export default class EmulatorCommon {
 
   static dateTimeToString(time: number, includeMillis = false): string {
     const date = new Date(time);
-    return `${this.dateObjectToDateString(date)} ${this.dateObjectToTimeString(date, includeMillis)}`;
+    return `${this.dateObjectToDateString(date)} ${
+      this.dateObjectToTimeString(date, includeMillis)
+    }`;
   }
 
   static zeroPad(str: string, len = 2): string {
@@ -171,9 +177,10 @@ export default class EmulatorCommon {
     return str.padStart(len, ' ');
   }
 
-  static doesLineMatch<T extends TriggerTypes>(line: string,
-    regexes: Record<Lang, RegExp> | RegExp | CactbotBaseRegExp<T>):
-      RegExpExecArray | CactbotRegExpExecArray<T> | null {
+  static doesLineMatch<T extends TriggerTypes>(
+    line: string,
+    regexes: Record<Lang, RegExp> | RegExp | CactbotBaseRegExp<T>,
+  ): RegExpExecArray | CactbotRegExpExecArray<T> | null {
     if (regexes instanceof RegExp)
       return regexes.exec(line);
 

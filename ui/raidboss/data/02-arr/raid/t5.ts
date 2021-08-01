@@ -34,16 +34,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ source: '트윈타니아' }),
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
-      promise: (data, matches) => Util.watchCombatant({
-        ids: [parseInt(matches.sourceId, 16)],
-      },
-      (ret) => {
-        const twintaniaBelowGivenHP = ret.combatants.some((c) => {
-          const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
-          return c.CurrentHP / c.MaxHP <= currentHPCheck;
-        });
-        return twintaniaBelowGivenHP;
-      }),
+      promise: (data, matches) =>
+        Util.watchCombatant({
+          ids: [parseInt(matches.sourceId, 16)],
+        }, (ret) => {
+          const twintaniaBelowGivenHP = ret.combatants.some((c) => {
+            const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
+            return c.CurrentHP / c.MaxHP <= currentHPCheck;
+          });
+          return twintaniaBelowGivenHP;
+        }),
       sound: 'Long',
       run: (data) => {
         data.currentPhase++;

@@ -1,5 +1,9 @@
 import { setOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
-import { OverlayHandlerRequests, OverlayHandlerResponses, PluginCombatantState } from '../../../../types/event';
+import {
+  OverlayHandlerRequests,
+  OverlayHandlerResponses,
+  PluginCombatantState,
+} from '../../../../types/event';
 import AnalyzedEncounter from '../data/AnalyzedEncounter';
 import LineEvent, { isLineEventSource } from '../data/network_log_converter/LineEvent';
 import { LineEvent0x03 } from '../data/network_log_converter/LineEvent0x03';

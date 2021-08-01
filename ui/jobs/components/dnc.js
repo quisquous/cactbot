@@ -97,7 +97,6 @@ export function setup(bars) {
     }
   });
 
-
   const featherGauge = bars.addResourceBox({
     classList: ['dnc-color-feather'],
   });

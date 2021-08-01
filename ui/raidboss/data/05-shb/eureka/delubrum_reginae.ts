@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
           const dir = { north: 0, east: 1, south: 2, west: 3 };
 
           // Find boss-relative safe zones.
-          const cleavetoSafeZones: { [ cleave: string]: number[] } = {
+          const cleavetoSafeZones: { [cleave: string]: number[] } = {
             // Front right cleave.
             F7: [dir.south, dir.west],
             // Back right cleave.
@@ -144,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-        const cleaveToDirection: { [ cleave: string]: string } = {
+        const cleaveToDirection: { [cleave: string]: string } = {
           // Front right cleave.
           F7: output.west!(),
           // Back right cleave.

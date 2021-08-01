@@ -20,7 +20,15 @@
 
 import { RaidbossData as Data } from '../types/data';
 import { Matches } from '../types/net_matches';
-import { LocaleText, ResponseOutput, ResponseFunc, TriggerFunc, TargetedMatches, Output, TriggerOutput } from '../types/trigger';
+import {
+  LocaleText,
+  Output,
+  ResponseFunc,
+  ResponseOutput,
+  TargetedMatches,
+  TriggerFunc,
+  TriggerOutput,
+} from '../types/trigger';
 
 import Outputs from './outputs';
 
@@ -114,8 +122,12 @@ const getSource = (matches: TargetedMatches) => {
 };
 
 // FIXME: make this work for any number of pairs of params
-const combineFuncs = function(text1: SevText, func1: TargetedFunc,
-  text2: SevText, func2: TargetedFunc) {
+const combineFuncs = function(
+  text1: SevText,
+  func1: TargetedFunc,
+  text2: SevText,
+  func2: TargetedFunc,
+) {
   const obj: TargetedResponseOutput = {};
 
   if (text1 !== text2) {
@@ -185,8 +197,12 @@ export const Responses = {
       return output.busterOnTarget?.({ player: data.ShortName(target) });
     };
 
-    const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
-      defaultInfoText(otherSev), otherFunc);
+    const combined = combineFuncs(
+      defaultAlertText(targetSev),
+      targetFunc,
+      defaultInfoText(otherSev),
+      otherFunc,
+    );
     return (_data: unknown, _matches: unknown, output: Output): TargetedResponseOutput => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
@@ -217,37 +233,42 @@ export const Responses = {
       return output.busterOnTarget?.({ player: data.ShortName(target) });
     };
 
-    const combined = combineFuncs(defaultAlarmText(swapSev), tankSwapFunc,
-      defaultAlertText(busterSev), busterFunc);
+    const combined = combineFuncs(
+      defaultAlarmText(swapSev),
+      tankSwapFunc,
+      defaultAlertText(busterSev),
+      busterFunc,
+    );
     return (_data: Data, _matches: unknown, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
       return combined;
     };
   },
-  tankCleave: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      cleaveOnYou: Outputs.tankCleaveOnYou,
-      cleaveNoTarget: Outputs.tankCleave,
-      avoidCleave: Outputs.avoidTankCleave,
-    };
-    return {
-      [defaultInfoText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
-        const target = getTarget(matches);
-        if (target === data.me)
-          return output.cleaveOnYou?.();
-        if (data.role === 'tank' || data.job === 'BLU') {
-          // targetless tank cleave
-          // BLU players should always get this generic cleave message.
-          // We have no robust way to determine whether they have tank Mimicry on,
-          // and it's really annoying for a BLU tank to be told to avoid cleaves when they can't.
-          return output.cleaveNoTarget?.();
-        }
-        return output.avoidCleave?.();
-      },
-    };
-  },
+  tankCleave: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        cleaveOnYou: Outputs.tankCleaveOnYou,
+        cleaveNoTarget: Outputs.tankCleave,
+        avoidCleave: Outputs.avoidTankCleave,
+      };
+      return {
+        [defaultInfoText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+          const target = getTarget(matches);
+          if (target === data.me)
+            return output.cleaveOnYou?.();
+          if (data.role === 'tank' || data.job === 'BLU') {
+            // targetless tank cleave
+            // BLU players should always get this generic cleave message.
+            // We have no robust way to determine whether they have tank Mimicry on,
+            // and it's really annoying for a BLU tank to be told to avoid cleaves when they can't.
+            return output.cleaveNoTarget?.();
+          }
+          return output.avoidCleave?.();
+        },
+      };
+    },
   miniBuster: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.miniBuster),
   aoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.aoe),
   bigAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bigAoe),
@@ -256,21 +277,22 @@ export const Responses = {
   stackMarker: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.stackMarker),
   // for getting together without stack marker
   getTogether: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getTogether),
-  stackMarkerOn: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      stackOnYou: Outputs.stackOnYou,
-      stackOnTarget: Outputs.stackOnPlayer,
-    };
-    return {
-      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
-        const target = getTarget(matches);
-        if (target === data.me)
-          return output.stackOnYou?.();
-        return output.stackOnTarget?.({ player: data.ShortName(target) });
-      },
-    };
-  },
+  stackMarkerOn: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        stackOnYou: Outputs.stackOnYou,
+        stackOnTarget: Outputs.stackOnPlayer,
+      };
+      return {
+        [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+          const target = getTarget(matches);
+          if (target === data.me)
+            return output.stackOnYou?.();
+          return output.stackOnTarget?.({ player: data.ShortName(target) });
+        },
+      };
+    },
   stackMiddle: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.stackMiddle),
   doritoStack: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.doritoStack),
   spreadThenStack: (sev?: Severity) => {
@@ -297,8 +319,12 @@ export const Responses = {
       if (target !== data.me)
         return output.knockbackOnTarget?.({ player: data.ShortName(target) });
     };
-    const combined = combineFuncs(defaultInfoText(targetSev), targetFunc,
-      defaultInfoText(otherSev), otherFunc);
+    const combined = combineFuncs(
+      defaultInfoText(targetSev),
+      targetFunc,
+      defaultInfoText(otherSev),
+      otherFunc,
+    );
     return (_data: Data, _matches: unknown, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
@@ -307,36 +333,38 @@ export const Responses = {
   },
   lookTowards: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookTowardsBoss),
   lookAway: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookAway),
-  lookAwayFromTarget: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      lookAwayFrom: Outputs.lookAwayFromTarget,
-    };
-    return {
-      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
-        const target = getTarget(matches);
-        if (target === data.me)
-          return;
-        const name = isPlayerId(matches?.targetId) ? data.ShortName(target) : target;
-        return output.lookAwayFrom?.({ name: name });
-      },
-    };
-  },
-  lookAwayFromSource: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      lookAwayFrom: Outputs.lookAwayFromTarget,
-    };
-    return {
-      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
-        const source = getSource(matches);
-        if (source === data.me)
-          return;
-        const name = isPlayerId(matches?.sourceId) ? data.ShortName(source) : source;
-        return output.lookAwayFrom?.({ name: name });
-      },
-    };
-  },
+  lookAwayFromTarget: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        lookAwayFrom: Outputs.lookAwayFromTarget,
+      };
+      return {
+        [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+          const target = getTarget(matches);
+          if (target === data.me)
+            return;
+          const name = isPlayerId(matches?.targetId) ? data.ShortName(target) : target;
+          return output.lookAwayFrom?.({ name: name });
+        },
+      };
+    },
+  lookAwayFromSource: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        lookAwayFrom: Outputs.lookAwayFromTarget,
+      };
+      return {
+        [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+          const source = getSource(matches);
+          if (source === data.me)
+            return;
+          const name = isPlayerId(matches?.sourceId) ? data.ShortName(source) : source;
+          return output.lookAwayFrom?.({ name: name });
+        },
+      };
+    },
   getBehind: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getBehind),
   goFrontOrSides: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.goFrontOrSides),
   // .getUnder() is used when you have to get into the bosses hitbox
@@ -362,42 +390,45 @@ export const Responses = {
   // .killExtraAdd() is used for adds that appear if a mechanic was not played correctly
   killExtraAdd: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.killExtraAdd),
   awayFromFront: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.awayFromFront),
-  sleep: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      sleep: Outputs.sleepTarget,
-    };
-    return {
-      [defaultAlertText(sev)]: (_data: Data, matches: TargetedMatches, output: Output) => {
-        const source = getSource(matches);
-        return output.sleep?.({ name: source });
-      },
-    };
-  },
-  stun: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      stun: Outputs.stunTarget,
-    };
-    return {
-      [defaultAlertText(sev)]: (_data: Data, matches: TargetedMatches, output: Output) => {
-        const source = getSource(matches);
-        return output.stun?.({ name: source });
-      },
-    };
-  },
-  interrupt: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      interrupt: Outputs.interruptTarget,
-    };
-    return {
-      [defaultAlertText(sev)]: (_data: Data, matches: TargetedMatches, output: Output) => {
-        const source = getSource(matches);
-        return output.interrupt?.({ name: source });
-      },
-    };
-  },
+  sleep: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        sleep: Outputs.sleepTarget,
+      };
+      return {
+        [defaultAlertText(sev)]: (_data: Data, matches: TargetedMatches, output: Output) => {
+          const source = getSource(matches);
+          return output.sleep?.({ name: source });
+        },
+      };
+    },
+  stun: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        stun: Outputs.stunTarget,
+      };
+      return {
+        [defaultAlertText(sev)]: (_data: Data, matches: TargetedMatches, output: Output) => {
+          const source = getSource(matches);
+          return output.stun?.({ name: source });
+        },
+      };
+    },
+  interrupt: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        interrupt: Outputs.interruptTarget,
+      };
+      return {
+        [defaultAlertText(sev)]: (_data: Data, matches: TargetedMatches, output: Output) => {
+          const source = getSource(matches);
+          return output.interrupt?.({ name: source });
+        },
+      };
+    },
   preyOn: (targetSev?: Severity, otherSev?: Severity) => {
     const outputStrings = {
       preyOnYou: Outputs.preyOnYou,
@@ -416,29 +447,34 @@ export const Responses = {
         return output.preyOnTarget?.({ player: data.ShortName(target) });
     };
 
-    const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
-      defaultInfoText(otherSev), otherFunc);
+    const combined = combineFuncs(
+      defaultAlertText(targetSev),
+      targetFunc,
+      defaultInfoText(otherSev),
+      otherFunc,
+    );
     return (_data: Data, _matches: unknown, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
       return combined;
     };
   },
-  awayFrom: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      awayFromGroup: Outputs.awayFromGroup,
-      awayFromTarget: Outputs.awayFromPlayer,
-    };
-    return {
-      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
-        const target = getTarget(matches);
-        if (data.me === target)
-          return output.awayFromGroup?.();
-        return output.awayFromTarget?.({ player: data.ShortName(target) });
-      },
-    };
-  },
+  awayFrom: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        awayFromGroup: Outputs.awayFromGroup,
+        awayFromTarget: Outputs.awayFromPlayer,
+      };
+      return {
+        [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+          const target = getTarget(matches);
+          if (data.me === target)
+            return output.awayFromGroup?.();
+          return output.awayFromTarget?.({ player: data.ShortName(target) });
+        },
+      };
+    },
   meteorOnYou: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.meteorOnYou),
   stopMoving: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.stopMoving),
   stopEverything: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.stopEverything),
@@ -447,22 +483,23 @@ export const Responses = {
   // move around (e.g. jumping) to avoid being frozen
   moveAround: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveAround),
   breakChains: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.breakChains),
-  moveChainsTogether: (sev?: Severity) => staticResponse(defaultInfoText(sev),
-    Outputs.moveChainsTogether),
-  earthshaker: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      earthshaker: Outputs.earthshakerOnYou,
-    };
-    return {
-      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
-        const target = getTarget(matches);
-        if (target !== data.me)
-          return;
-        return output.earthshaker?.();
-      },
-    };
-  },
+  moveChainsTogether: (sev?: Severity) =>
+    staticResponse(defaultInfoText(sev), Outputs.moveChainsTogether),
+  earthshaker: (sev?: Severity) =>
+    (_data: Data, _matches: unknown, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        earthshaker: Outputs.earthshakerOnYou,
+      };
+      return {
+        [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+          const target = getTarget(matches);
+          if (target !== data.me)
+            return;
+          return output.earthshaker?.();
+        },
+      };
+    },
   wakeUp: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.wakeUp),
 } as const;
 

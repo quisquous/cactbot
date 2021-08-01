@@ -11,9 +11,17 @@ export default class CombatantState {
   mp: number;
   maxMp: number;
 
-  constructor(posX: number, posY: number, posZ: number, heading: number,
+  constructor(
+    posX: number,
+    posY: number,
+    posZ: number,
+    heading: number,
     targetable: boolean,
-    hp: number, maxHp: number, mp: number, maxMp: number) {
+    hp: number,
+    maxHp: number,
+    mp: number,
+    maxMp: number,
+  ) {
     this.posX = posX;
     this.posY = posY;
     this.posZ = posZ;
@@ -35,7 +43,8 @@ export default class CombatantState {
       props.hp ?? this.hp,
       props.maxHp ?? this.maxHp,
       props.mp ?? this.mp,
-      props.maxMp ?? this.maxMp);
+      props.maxMp ?? this.maxMp,
+    );
   }
 
   toPluginState(): PluginCombatantState {

@@ -3,7 +3,13 @@ import { NetMatches } from '../../types/net_matches';
 import { OopsyMistake } from '../../types/oopsy';
 import { LocaleText } from '../../types/trigger';
 
-import { ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled, kFlagInstantDeath } from './oopsy_common';
+import {
+  IsPlayerId,
+  IsTriggerEnabled,
+  kFlagInstantDeath,
+  ShortNamify,
+  UnscrambleDamage,
+} from './oopsy_common';
 import { OopsyListView } from './oopsy_list_view';
 import { OopsyOptions } from './oopsy_options';
 

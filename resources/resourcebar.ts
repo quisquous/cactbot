@@ -27,7 +27,21 @@ export default class ResourceBar extends HTMLElement {
   private _connected: boolean;
 
   static get observedAttributes(): string[] {
-    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'stylefill', 'extravalue', 'extracolor'];
+    return [
+      'value',
+      'maxvalue',
+      'lefttext',
+      'centertext',
+      'righttext',
+      'width',
+      'height',
+      'bg',
+      'fg',
+      'toward',
+      'stylefill',
+      'extravalue',
+      'extracolor',
+    ];
   }
 
   // All visual dimensions are scaled by this.
@@ -419,8 +433,8 @@ export default class ResourceBar extends HTMLElement {
     lTextStyle.width = ((this._width - widthPadding) * this._scale).toString();
     const heightPadding = this.kBorderSize * 4 + this.kTextTopBottomEdgePadding * 2;
     lTextStyle.height = ((this._height - heightPadding) * this._scale).toString();
-    lTextStyle.left =
-      ((this.kBorderSize + this.kTextLeftRightEdgePadding) * this._scale).toString();
+    lTextStyle.left = ((this.kBorderSize + this.kTextLeftRightEdgePadding) * this._scale)
+      .toString();
     lTextStyle.top = ((this.kBorderSize + this.kTextTopBottomEdgePadding) * this._scale).toString();
     lTextStyle.fontSize = lTextStyle.height;
 
@@ -433,17 +447,23 @@ export default class ResourceBar extends HTMLElement {
 
   updateText(): void {
     // These values are filled in during draw() when the values change.
-    if (this._leftText !== 'value' && this._leftText !== 'maxvalue' &&
-        this._leftText !== 'percent') {
+    if (
+      this._leftText !== 'value' && this._leftText !== 'maxvalue' &&
+      this._leftText !== 'percent'
+    ) {
       // Otherwise the value is fixed so it can be set here.
       this.leftTextElement.innerHTML = this._leftText;
     }
-    if (this._centerText !== 'value' && this._centerText !== 'maxvalue' &&
-        this._centerText !== 'percent')
+    if (
+      this._centerText !== 'value' && this._centerText !== 'maxvalue' &&
+      this._centerText !== 'percent'
+    )
       this.centerTextElement.innerHTML = this._centerText;
 
-    if (this._rightText !== 'value' && this._rightText !== 'maxvalue' &&
-        this._rightText !== 'percent')
+    if (
+      this._rightText !== 'value' && this._rightText !== 'maxvalue' &&
+      this._rightText !== 'percent'
+    )
       this.rightTextElement.innerHTML = this._rightText;
   }
 
@@ -456,13 +476,14 @@ export default class ResourceBar extends HTMLElement {
     this.foregroundElement.style.transform = `scale(${percent},1)`;
 
     // Calculate extra bars.
-    const extraUnderPercent =
-      Math.min(this._maxValue - this._value, this._extraValue) / this._maxValue;
+    const extraUnderPercent = Math.min(this._maxValue - this._value, this._extraValue) /
+      this._maxValue;
     const valueWidth = percent * this.foregroundElement.clientWidth * (this._towardRight ? 1 : -1);
-    this.extraUnderElement.style.transform = `translate(${valueWidth}px,0px) scale(${extraUnderPercent},1)`;
+    this.extraUnderElement.style.transform =
+      `translate(${valueWidth}px,0px) scale(${extraUnderPercent},1)`;
 
-    let extraOverPercent =
-      Math.max(this._extraValue + this._value - this._maxValue, 0) / this._maxValue;
+    let extraOverPercent = Math.max(this._extraValue + this._value - this._maxValue, 0) /
+      this._maxValue;
     if (!this._maxValue)
       extraOverPercent = 0;
     this.extraOverElement.style.transform = `scale(${extraOverPercent},1)`;

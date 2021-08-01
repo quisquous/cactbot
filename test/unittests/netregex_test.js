@@ -115,7 +115,8 @@ describe('netregex tests', () => {
   it('removingCombatant', () => {
     // NOTE: these lines don't capitalize hex, like other lines??
     const lines = [
-      '04|2020-02-24T17:43:13.2330000-08:00|106da5c0|Tini Poutini|16|50|0|49|Balmung|0|0|81234|85349|10000|0|0|0|-47.33836|30.6029|84.19505|-0.4369516||2bf363ca9ba965e27326e4d7a19dd496', '04|2020-02-24T09:54:18.4450000-08:00|400263e6|Eos|0|50|10696f5f|0||1398|1008|0|0|0|0|0|0|99.71765|100.2975|0|2.712743||1adce9f3da74fab90640fde2184b6d21',
+      '04|2020-02-24T17:43:13.2330000-08:00|106da5c0|Tini Poutini|16|50|0|49|Balmung|0|0|81234|85349|10000|0|0|0|-47.33836|30.6029|84.19505|-0.4369516||2bf363ca9ba965e27326e4d7a19dd496',
+      '04|2020-02-24T09:54:18.4450000-08:00|400263e6|Eos|0|50|10696f5f|0||1398|1008|0|0|0|0|0|0|99.71765|100.2975|0|2.712743||1adce9f3da74fab90640fde2184b6d21',
       '04|2020-02-24T17:49:24.6160000-08:00|e0000000|Shiva|0|0|0|0||9353|11627|0|0|0|0|0|0|99.99231|99.6261|-2.384186E-07|-0.009347916||46581fd9755c874575841f46b746a1c2',
     ];
     regexCaptureTest(NetRegexes.removingCombatant, lines);
@@ -260,7 +261,10 @@ describe('netregex tests', () => {
     matches = dialogLines[0].match(NetRegexes.dialog()).groups;
     assert.equal(matches.type, '00');
     assert.equal(matches.name, 'Rhitahtyn sas Arvina');
-    assert.equal(matches.line, 'My shields are impregnable! Join the countless challengers who have dashed themselves against them!');
+    assert.equal(
+      matches.line,
+      'My shields are impregnable! Join the countless challengers who have dashed themselves against them!',
+    );
 
     const namedLines = [
       '00|2020-03-10T18:29:02.0000000-07:00|001d|Tini Poutini|Tini Poutini straightens her spectacles for you.|05ca458b4d400d1f878d3c420f962b99',
@@ -296,7 +300,6 @@ describe('netregex tests', () => {
     const lines = [
       '12|2020-03-18T20:40:30.0380000-07:00|19|3888|324|4292|207|343|340|3888|1600|3158|206|341|1868|902|380|0|853|45c4bb87c4e26bb1f1e85c0df980fca6',
       '12|2020-02-25T01:43:47.6620000-08:00|27|321|360|4720|5108|284|340|321|2832|3556|5108|284|1158|380|1990|0|380|9da93db71ca9bf64c28c912d112e7907',
-
     ];
     regexCaptureTest(NetRegexes.statChange, lines);
 

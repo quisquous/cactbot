@@ -110,7 +110,6 @@ const primalOutputStrings = {
   },
 };
 
-
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EdensPromiseEternity,
   timelineFile: 'e12n.txt',

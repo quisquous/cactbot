@@ -1368,8 +1368,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // Sort effect ids descending by duration.
-        const sortedIds =
-          unsortedIds.sort((a, b) => (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0));
+        const sortedIds = unsortedIds.sort((a, b) => (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0));
         const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
 
         const [key0, key1, key2] = keys;

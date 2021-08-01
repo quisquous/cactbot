@@ -2,7 +2,7 @@ import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
 import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
 import { BaseOptions } from '../../types/data';
 import { EventMap } from '../../types/event';
@@ -62,7 +62,7 @@ type Monster = {
   puller?: string;
   // already pulled before being detected
   skipPuller: boolean;
-}
+};
 
 const defaultOptions: RadarOptions = {
   ...UserConfig.getDefaultBaseOptions(),
@@ -149,7 +149,6 @@ const posToMap = (h: number) => {
   return h * pitch + offset;
 };
 
-
 const PlaySound = (monster: Monster, options: RadarOptions) => {
   if (options.TTS) {
     void callOverlayHandler({
@@ -187,7 +186,8 @@ class Radar {
     this.regexes = {
       abilityFull: NetRegexes.abilityFull(),
       addedCombatantFull: NetRegexes.addedCombatantFull(),
-      instanceChanged: instanceChangedRegexes[this.options.ParserLanguage] || instanceChangedRegexes['en'],
+      instanceChanged: instanceChangedRegexes[this.options.ParserLanguage] ||
+        instanceChangedRegexes['en'],
       wasDefeated: NetRegexes.wasDefeated(),
     };
 
@@ -205,22 +205,22 @@ class Radar {
     }
   }
 
-  AddMonster(log: string, hunt: HuntEntry,
-    matches: NetMatches['AddedCombatant']) {
+  AddMonster(log: string, hunt: HuntEntry, matches: NetMatches['AddedCombatant']) {
     if (!this.playerPos)
       return;
     if (!matches)
       return;
-    if (matches.id === undefined ||
-        matches.name === undefined ||
-        matches.npcNameId === undefined ||
-        matches.hp === undefined ||
-        matches.currentHp === undefined ||
-        matches.x === undefined ||
-        matches.y === undefined ||
-        matches.z === undefined)
+    if (
+      matches.id === undefined ||
+      matches.name === undefined ||
+      matches.npcNameId === undefined ||
+      matches.hp === undefined ||
+      matches.currentHp === undefined ||
+      matches.x === undefined ||
+      matches.y === undefined ||
+      matches.z === undefined
+    )
       throw new UnreachableCode();
-
 
     if (hunt.id && matches.npcNameId !== hunt.id)
       return;
@@ -255,8 +255,7 @@ class Radar {
       // Get positions
       const playerPos = new Point2D(this.playerPos.x, this.playerPos.y);
       const oldPos = targetMob.pos;
-      const newPos =
-        new Point2D(parseFloat(matches.x), parseFloat(matches.y));
+      const newPos = new Point2D(parseFloat(matches.x), parseFloat(matches.y));
 
       // Calculate distances
       const oldDistance = playerPos.distance(oldPos);
@@ -354,7 +353,8 @@ class Radar {
         node.innerHTML += '<br>' + deltaVector.length().toFixed(2) + 'm';
         if (Date.now().valueOf() / 1000 <= monster.battleTime + 60) {
           node.innerHTML += ' ' + (monster.currentHp * 100 /
-            monster.hp).toFixed(2) + '%';
+            monster.hp).toFixed(2) +
+            '%';
         }
         if (monster.puller)
           node.innerHTML += '&nbsp;&nbsp;' + monster.puller;

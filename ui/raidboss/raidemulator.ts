@@ -13,12 +13,23 @@ import Encounter from './emulator/data/Encounter';
 import LineEvent from './emulator/data/network_log_converter/LineEvent';
 import Persistor from './emulator/data/Persistor';
 import RaidEmulator from './emulator/data/RaidEmulator';
-import EmulatorCommon, { getTemplateChild, querySelectorAllSafe, querySelectorSafe } from './emulator/EmulatorCommon';
+import EmulatorCommon, {
+  getTemplateChild,
+  querySelectorAllSafe,
+  querySelectorSafe,
+} from './emulator/EmulatorCommon';
 import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook';
 import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
 import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
-import { translate, emulatorTranslations, emulatorTooltipTranslations, lookupEndStatus, lookupStartStatuses, emulatorTemplateTranslations } from './emulator/translations';
+import {
+  emulatorTemplateTranslations,
+  emulatorTooltipTranslations,
+  emulatorTranslations,
+  lookupEndStatus,
+  lookupStartStatuses,
+  translate,
+} from './emulator/translations';
 import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
 import EncounterTab from './emulator/ui/EncounterTab';
 import ProgressBar from './emulator/ui/ProgressBar';
@@ -73,13 +84,15 @@ const applyTranslation = (lang: Lang) => {
     querySelectorAllSafe(document, '.translate' + key).forEach(
       (elem) => {
         elem.innerHTML = translate(lang, value);
-      });
+      },
+    );
   }
   for (const [key, value] of Object.entries(emulatorTooltipTranslations)) {
     querySelectorAllSafe(document, '.translate' + key).forEach(
       (elem) => {
         elem.title = translate(lang, value);
-      });
+      },
+    );
   }
   for (const [sel, trans] of Object.entries(emulatorTemplateTranslations)) {
     const template = getTemplateChild(document, sel);
@@ -87,7 +100,8 @@ const applyTranslation = (lang: Lang) => {
       querySelectorAllSafe(template, '.translate' + key).forEach(
         (elem) => {
           elem.innerHTML = translate(lang, value);
-        });
+        },
+      );
     }
   }
 };
@@ -157,16 +171,24 @@ const raidEmulatorOnLoad = async () => {
   const emulatedPartyInfo = new EmulatedPartyInfo(emulator);
   const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
   emulatedWebSocket.connected = websocketConnected;
-  const logConverterWorker = new Worker(new URL('./emulator/data/NetworkLogConverter.worker.ts', import.meta.url));
+  const logConverterWorker = new Worker(
+    new URL('./emulator/data/NetworkLogConverter.worker.ts', import.meta.url),
+  );
 
   // Initialize the Raidboss components, bind them to the emulator for event listeners
   const timelineUI = new RaidEmulatorTimelineUI(options);
   timelineUI.bindTo(emulator);
-  const timelineController =
-      new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
+  const timelineController = new RaidEmulatorTimelineController(
+    options,
+    timelineUI,
+    raidbossFileData,
+  );
   timelineController.bindTo(emulator);
   const popupText = new RaidEmulatorPopupText(
-    options, new TimelineLoader(timelineController), raidbossFileData);
+    options,
+    new TimelineLoader(timelineController),
+    raidbossFileData,
+  );
   popupText.bindTo(emulator);
 
   timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
@@ -306,7 +328,8 @@ const raidEmulatorOnLoad = async () => {
             {
               const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
               bar.style.width = percent + '%';
-              label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
+              label.innerText =
+                `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
             }
             break;
           case 'encounter':
@@ -319,18 +342,21 @@ const raidEmulatorOnLoad = async () => {
 
               querySelectorSafe(encLabel, '.zone').innerText = enc.encounterZoneName;
               querySelectorSafe(encLabel, '.encounter').innerText = msg.data.name;
-              querySelectorSafe(encLabel, '.start').innerText =
-              new Date(enc.startTimestamp).toString();
-              querySelectorSafe(encLabel, '.end').innerText =
-              new Date(enc.endTimestamp).toString();
+              querySelectorSafe(encLabel, '.start').innerText = new Date(enc.startTimestamp)
+                .toString();
+              querySelectorSafe(encLabel, '.end').innerText = new Date(enc.endTimestamp).toString();
 
-              const duration =
-              EmulatorCommon.timeToString(enc.endTimestamp - enc.startTimestamp, false)
+              const duration = EmulatorCommon.timeToString(
+                enc.endTimestamp - enc.startTimestamp,
+                false,
+              )
                 .split(':');
               const durationMins = duration[0] ?? '0';
               const durationSecs = duration[1] ?? '00';
-              const pullDuration =
-              EmulatorCommon.timeToString(enc.endTimestamp - enc.initialTimestamp, false)
+              const pullDuration = EmulatorCommon.timeToString(
+                enc.endTimestamp - enc.initialTimestamp,
+                false,
+              )
                 .split(':');
               const pullDurationMins = pullDuration[0] ?? '0';
               const pullDurationSecs = pullDuration[1] ?? '00';
@@ -340,10 +366,14 @@ const raidEmulatorOnLoad = async () => {
               querySelectorSafe(encLabel, '.pullMins').innerText = pullDurationMins;
               querySelectorSafe(encLabel, '.pullSecs').innerText = pullDurationSecs;
 
-              querySelectorSafe(encLabel, '.startedBy').innerText =
-              lookupStartStatuses(options.DisplayLanguage, enc.startStatus);
-              querySelectorSafe(encLabel, '.endStatus').innerText =
-              lookupEndStatus(options.DisplayLanguage, enc.endStatus);
+              querySelectorSafe(encLabel, '.startedBy').innerText = lookupStartStatuses(
+                options.DisplayLanguage,
+                enc.startStatus,
+              );
+              querySelectorSafe(encLabel, '.endStatus').innerText = lookupEndStatus(
+                options.DisplayLanguage,
+                enc.endStatus,
+              );
               querySelectorSafe(encLabel, '.lineCount').innerText = enc.logLines.length.toString();
               if (promise) {
                 void promise.then(() => {

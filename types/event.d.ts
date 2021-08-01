@@ -143,8 +143,9 @@ export interface EventMap {
 
   'OnlineStatusChanged': (ev: {
     type: 'OnlineStatusChanged';
-    target: string; rawStatus:
-    number; status: string;
+    target: string;
+    rawStatus: number;
+    status: string;
   }) => void;
 
   'PartyChanged': (ev: {
@@ -281,8 +282,9 @@ interface CactbotLoadUserRet {
 }
 
 // Structured JSON data saved in OverlayPlugin config files.
-export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
-   { [nestedName: string]: SavedConfigEntry };
+export type SavedConfigEntry = string | number | boolean | [SavedConfigEntry] | {
+  [nestedName: string]: SavedConfigEntry;
+};
 export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
@@ -293,7 +295,7 @@ type PlayerChangedJobDetails<T> = {
 } | {
   job: Job;
   jobDetail: null;
-}
+};
 
 type PlayerChangedBase = {
   name: string;
@@ -317,8 +319,9 @@ type PlayerChangedBase = {
   debugJob: string;
 };
 
-type PlayerChangedRet = Job extends infer T ? T extends Job ?
-  PlayerChangedJobDetails<T> & PlayerChangedBase : never : never;
+type PlayerChangedRet = Job extends infer T
+  ? T extends Job ? PlayerChangedJobDetails<T> & PlayerChangedBase : never
+  : never;
 
 // Member names taken from OverlayPlugin's MiniParse.cs
 // Types taken from FFXIV parser plugin
@@ -425,11 +428,13 @@ export type OverlayHandlerResponses = {
 export type OverlayHandlerAnyResponse = OverlayHandlerResponses[OverlayHandlerTypes];
 
 export type OverlayHandlerFuncs = {
-  [call in OverlayHandlerTypes]:
-    (msg: Parameters<OverlayHandlerAll[call]>[0]) => OverlayHandlerResponses[call];
+  [call in OverlayHandlerTypes]: (
+    msg: Parameters<OverlayHandlerAll[call]>[0],
+  ) => OverlayHandlerResponses[call];
 };
 
 // Thanks, https://stackoverflow.com/a/50375286.
-type UnionToIntersection<U> =
-  (U extends U ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
+type UnionToIntersection<U> = (U extends U ? (k: U) => void : never) extends ((k: infer I) => void)
+  ? I
+  : never;
 export type IOverlayHandler = UnionToIntersection<OverlayHandlerFuncs[OverlayHandlerTypes]>;

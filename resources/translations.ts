@@ -50,7 +50,8 @@ const localeLines = {
   // HQ icon is \ue03c
   craftingStart: {
     en: 'You begin synthesizing (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)\\.',
-    de: 'Du hast begonnen, durch Synthese (?<count>(ein(e|es|em|er)?|\\d+) )?\ue0bb(?<recipe>.*) herzustellen\\.',
+    de:
+      'Du hast begonnen, durch Synthese (?<count>(ein(e|es|em|er)?|\\d+) )?\ue0bb(?<recipe>.*) herzustellen\\.',
     fr: 'Vous commencez à fabriquer (?<count>(une?|\\d+) )?\ue0bb(?<recipe>.*)\\.',
     ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)(×(?<count>\\d+))?の製作を開始した。',
     cn: '(?<player>\\y{Name})开始制作“\ue0bb(?<recipe>.*)”(×(?<count>\\d+))?。',
@@ -66,7 +67,8 @@ const localeLines = {
   },
   craftingFinish: {
     en: 'You synthesize (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
-    de: 'Du hast erfolgreich (?<count>(ein(e|es|em|er)?|\\d+) )?(?<recipe>.*)(\ue03c)? hergestellt\\.',
+    de:
+      'Du hast erfolgreich (?<count>(ein(e|es|em|er)?|\\d+) )?(?<recipe>.*)(\ue03c)? hergestellt\\.',
     fr: 'Vous fabriquez (?<count>(une?|\\d+) )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
     ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)(\ue03c)?(×(?<count>\\d+))?を完成させた！',
     cn: '(?<player>\\y{Name})制作“\ue0bb(?<recipe>.*)(\ue03c)?”(×(?<count>\\d+))?成功！',
@@ -91,7 +93,8 @@ const localeLines = {
   trialCraftingFail: {
     en: 'Your trial synthesis of \ue0bb(?<recipe>.*) failed\\.{3}',
     de: 'Die Testsynthese von \ue0bb(?<recipe>.*) ist fehlgeschlagen\\.{3}',
-    fr: 'Votre synthèse d\'essai pour fabriquer \ue0bb(?<recipe>.*) s\'est soldée par un échec\\.{3}',
+    fr:
+      'Votre synthèse d\'essai pour fabriquer \ue0bb(?<recipe>.*) s\'est soldée par un échec\\.{3}',
     ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)の製作練習に失敗した……',
     cn: '(?<player>\\y{Name})练习制作\ue0bb(?<recipe>.*)失败了……',
     ko: '\ue0bb(?<recipe>.*) 제작 연습에 실패했습니다……\\.',
@@ -125,14 +128,20 @@ class RegexSet {
   get localeRegex(): LocaleRegexesObj {
     if (this.regexes)
       return this.regexes;
-    this.regexes = this.buildLocaleRegexes(localeLines, (s: string) => Regexes.gameLog({ line: s + '.*?' }));
+    this.regexes = this.buildLocaleRegexes(
+      localeLines,
+      (s: string) => Regexes.gameLog({ line: s + '.*?' }),
+    );
     return this.regexes;
   }
 
   get localeNetRegex(): LocaleRegexesObj {
     if (this.netRegexes)
       return this.netRegexes;
-    this.netRegexes = this.buildLocaleRegexes(localeLines, (s: string) => NetRegexes.gameLog({ line: s + '[^|]*?' }));
+    this.netRegexes = this.buildLocaleRegexes(
+      localeLines,
+      (s: string) => NetRegexes.gameLog({ line: s + '[^|]*?' }),
+    );
     return this.netRegexes;
   }
 
@@ -147,7 +156,8 @@ class RegexSet {
     ) as LocaleRegexesObj;
   }
 
-  buildLocaleRegex(lines: LocaleLine,
+  buildLocaleRegex(
+    lines: LocaleLine,
     builder: (s: string) => CactbotBaseRegExp<'GameLog'> | RegExp,
   ): Record<Lang, CactbotBaseRegExp<'GameLog'> | RegExp> {
     const regexEn = builder(lines.en);

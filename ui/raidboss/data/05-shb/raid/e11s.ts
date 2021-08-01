@@ -325,8 +325,10 @@ const triggerSet: TriggerSet<Data> = {
           fireTarget = firstTarget;
           lightningTarget = secondTarget;
         } else {
-          console.error(`Weird Shifting Sky tether targets: ${JSON.stringify(data.tethers)}` +
-            `, ${JSON.stringify(matches)}`);
+          console.error(
+            `Weird Shifting Sky tether targets: ${JSON.stringify(data.tethers)}` +
+              `, ${JSON.stringify(matches)}`,
+          );
           return;
         }
 
@@ -391,8 +393,10 @@ const triggerSet: TriggerSet<Data> = {
           fireTarget = firstTarget;
           holyTarget = secondTarget;
         } else {
-          console.error(`Weird Sundered Sky tether targets: ${JSON.stringify(data.tethers)}` +
-            `, ${JSON.stringify(matches)}`);
+          console.error(
+            `Weird Sundered Sky tether targets: ${JSON.stringify(data.tethers)}` +
+              `, ${JSON.stringify(matches)}`,
+          );
           return;
         }
 
@@ -417,7 +421,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '56A4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '56A4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '56A4', capture: false }),
-
 
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),

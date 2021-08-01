@@ -169,14 +169,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ id: '7D5', source: '넬 데우스 다르누스' }),
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
-      promise: (_data, matches) => Util.watchCombatant({
-        ids: [parseInt(matches.sourceId, 16)],
-      },
-      (ret) => {
-        return ret.combatants.some((c) => {
-          return c.CurrentHP / c.MaxHP <= 0.64;
-        });
-      }),
+      promise: (_data, matches) =>
+        Util.watchCombatant({
+          ids: [parseInt(matches.sourceId, 16)],
+        }, (ret) => {
+          return ret.combatants.some((c) => {
+            return c.CurrentHP / c.MaxHP <= 0.64;
+          });
+        }),
       sound: 'Long',
     },
     {
@@ -381,10 +381,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
-      infoText: (data, _matches, output) => output.marks!({
-        dir1: output[data.naelMarks?.[0] ?? 'unknown']!(),
-        dir2: output[data.naelMarks?.[1] ?? 'unknown']!(),
-      }),
+      infoText: (data, _matches, output) =>
+        output.marks!({
+          dir1: output[data.naelMarks?.[0] ?? 'unknown']!(),
+          dir2: output[data.naelMarks?.[1] ?? 'unknown']!(),
+        }),
       outputStrings: {
         ...diveDirections,
         marks: {

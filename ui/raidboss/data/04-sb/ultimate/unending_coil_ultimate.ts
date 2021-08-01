@@ -78,8 +78,7 @@ const badSpots = (mark: number, dragon: number) => {
   return bad;
 };
 
-const findDragonMarks = (array: number[]):
-    undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
+const findDragonMarks = (array: number[]): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
   const marks = [-1, -1, -1];
   let isWideThirdDive = false;
 
@@ -93,8 +92,10 @@ const findDragonMarks = (array: number[]):
     return;
 
   const [d0, d1, d2, d3, d4] = dragons;
-  if (d0 === undefined || d1 === undefined || d2 === undefined ||
-      d3 === undefined || d4 === undefined)
+  if (
+    d0 === undefined || d1 === undefined || d2 === undefined ||
+    d3 === undefined || d4 === undefined
+  )
     return;
 
   // MARK 1: counterclockwise of #1 if adjacent, clockwise if not.
@@ -454,15 +455,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.startsUsing({ id: '26A[AE]', source: '트윈타니아' }),
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
-      promise: (data, matches) => Util.watchCombatant({
-        ids: [parseInt(matches.sourceId, 16)],
-      },
-      (ret) => {
-        return ret.combatants.some((c) => {
-          const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
-          return c.CurrentHP / c.MaxHP <= currentHPCheck;
-        });
-      }),
+      promise: (data, matches) =>
+        Util.watchCombatant({
+          ids: [parseInt(matches.sourceId, 16)],
+        }, (ret) => {
+          return ret.combatants.some((c) => {
+            const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
+            return c.CurrentHP / c.MaxHP <= currentHPCheck;
+          });
+        }),
       sound: 'Long',
       infoText: (data, _matches, output) => output.text!({ num: data.currentPhase }),
       run: (data) => {

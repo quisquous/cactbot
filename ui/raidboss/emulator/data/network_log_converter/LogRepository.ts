@@ -3,7 +3,7 @@ export type Combatant = {
   job?: string;
   spawn: number;
   despawn: number;
-}
+};
 
 export default class LogRepository {
   Combatants: { [id: string]: Combatant } = {};
@@ -38,7 +38,8 @@ export default class LogRepository {
     id: string,
     name: string,
     fallbackId: string | null = null,
-    fallbackName: string | null = null): string {
+    fallbackName: string | null = null,
+  ): string {
     let ret = name;
 
     if (fallbackId !== null) {

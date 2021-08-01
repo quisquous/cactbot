@@ -111,8 +111,17 @@ export class Buff {
       this.addReady(source);
     };
 
-    this.cooldown[source] = this.makeAura(cooldownKey, this.cooldownList, showSeconds,
-      secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
+    this.cooldown[source] = this.makeAura(
+      cooldownKey,
+      this.cooldownList,
+      showSeconds,
+      secondsUntilShow,
+      this.cooldownSortKeyBase,
+      'grey',
+      '',
+      0.5,
+      addReadyCallback,
+    );
   }
 
   addReady(source: string): void {
@@ -130,8 +139,16 @@ export class Buff {
     const color = this.info.borderColor;
 
     const readyKey = 'r:' + this.name + ':' + source;
-    this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
-      this.readySortKeyBase, color, txt, 0.6);
+    this.ready[source] = this.makeAura(
+      readyKey,
+      this.readyList,
+      -1,
+      0,
+      this.readySortKeyBase,
+      color,
+      txt,
+      0.6,
+    );
 
     // if a readied raidbuff not be used in 3min, we can assume that
     // this player has left the battlefield, or at least his raidbuff is unexpectable.
@@ -166,14 +183,20 @@ export class Buff {
 
       addCallback: () => {
         const elem = makeAuraTimerIcon(
-          key, seconds, opacity,
-          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+          key,
+          seconds,
+          opacity,
+          this.options.BigBuffIconWidth,
+          this.options.BigBuffIconHeight,
           txt,
-          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          this.options.BigBuffBarHeight,
+          this.options.BigBuffTextHeight,
           textColor,
           this.options.BigBuffBorderSize,
-          this.info.borderColor, this.info.borderColor,
-          this.info.icon);
+          this.info.borderColor,
+          this.info.borderColor,
+          this.info.icon,
+        );
         list.addElement(key, elem, this.info.sortKey + adjustSort);
         aura.addTimeout = null;
 
@@ -194,7 +217,6 @@ export class Buff {
       aura.addTimeout = window.setTimeout(aura.addCallback, secondsUntilShow * 1000);
     else
       aura.addCallback();
-
 
     return aura;
   }
@@ -710,7 +732,13 @@ export class BuffTracker {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name: string, seconds = 0, info: BuffInfo, source = '', option: 'active' | 'cooldown'): void {
+  onBigBuff(
+    name: string,
+    seconds = 0,
+    info: BuffInfo,
+    source = '',
+    option: 'active' | 'cooldown',
+  ): void {
     let list = this.rightBuffDiv;
     if (info.side === 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;

@@ -327,7 +327,7 @@ export type NetFields = {
 // {a: 1}
 type Reverse<T> = {
   [P in T[keyof T]]: {
-    [K in keyof T]: T[K] extends P ? K : never
+    [K in keyof T]: T[K] extends P ? K : never;
   }[keyof T];
 };
 
