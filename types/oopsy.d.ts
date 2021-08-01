@@ -3,7 +3,7 @@ import { Lang } from '../resources/languages';
 import { OopsyData } from './data';
 import { NetAnyMatches, NetMatches } from './net_matches';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
-import { LocaleText, ZoneId } from './trigger';
+import { LocaleText, ZoneIdType } from './trigger';
 
 export type OopsyMistakeType =
   | 'pull'
@@ -80,7 +80,7 @@ export type OopsyTrigger<Data extends OopsyData> =
 type MistakeMap = { [mistakeId: string]: string };
 
 type SimpleOopsyTriggerSet = {
-  zoneId: ZoneId | ZoneId[];
+  zoneId: ZoneIdType | ZoneIdType[];
   damageWarn?: MistakeMap;
   damageFail?: MistakeMap;
   gainsEffectWarn?: MistakeMap;

@@ -29,7 +29,7 @@ export type LocaleObject<T> =
 
 export type LocaleText = LocaleObject<string>;
 
-export type ZoneId = number | null;
+export type ZoneIdType = number | null;
 
 export type OutputStrings = { [outputKey: string]: LocaleText | string };
 
@@ -181,7 +181,7 @@ type RequiredFieldsAsUnion<Type> = {
 
 export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
-  zoneId: ZoneId | number[];
+  zoneId: ZoneIdType | number[];
   timelineNeedsFixing?: boolean;
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;

@@ -1,3 +1,5 @@
+import { ZoneIdType } from '../types/trigger';
+
 import ZoneId from './zone_id';
 
 // Ordered as per duty finder.  This is intended to be used as ordering for
@@ -6,7 +8,7 @@ import ZoneId from './zone_id';
 // These are not things that cactbot necessarily supports, but things that it
 // theoretically could be supporting in the future with raidboss and oopsy.
 
-const contentList: (number | null)[] = [
+const contentList: (ZoneIdType)[] = [
   // General (cactbot custom zone id)
   ZoneId.MatchAll,
 
