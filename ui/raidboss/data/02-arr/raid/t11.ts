@@ -110,14 +110,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B6F' }),
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
-      promise: (_data, matches) => Util.watchCombatant({
-        ids: [parseInt(matches.sourceId, 16)],
-      },
-      (ret) => {
-        return ret.combatants.some((c) => {
-          return c.CurrentHP / c.MaxHP <= 0.60;
-        });
-      }),
+      promise: (_data, matches) =>
+        Util.watchCombatant({
+          ids: [parseInt(matches.sourceId, 16)],
+        }, (ret) => {
+          return ret.combatants.some((c) => {
+            return c.CurrentHP / c.MaxHP <= 0.60;
+          });
+        }),
       sound: 'Long',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

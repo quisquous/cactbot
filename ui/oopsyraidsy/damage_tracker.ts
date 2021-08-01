@@ -12,14 +12,31 @@ import { EventResponses } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches, NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
-import { LooseOopsyTrigger, LooseOopsyTriggerSet, MistakeMap, OopsyField, OopsyMistakeType, OopsyTrigger, OopsyTriggerField, OopsyDeathReason, OopsyMistake } from '../../types/oopsy';
+import {
+  LooseOopsyTrigger,
+  LooseOopsyTriggerSet,
+  MistakeMap,
+  OopsyDeathReason,
+  OopsyField,
+  OopsyMistake,
+  OopsyMistakeType,
+  OopsyTrigger,
+  OopsyTriggerField,
+} from '../../types/oopsy';
 import { ZoneId as ZoneIdType } from '../../types/trigger';
 
 import { OopsyFileData } from './data/oopsy_manifest.txt';
 import { MistakeCollector } from './mistake_collector';
 import {
-  ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled,
-  kFieldFlags, kShiftFlagValues, kFlagInstantDeath, kAttackFlags, playerDamageFields,
+  IsPlayerId,
+  IsTriggerEnabled,
+  kAttackFlags,
+  kFieldFlags,
+  kFlagInstantDeath,
+  kShiftFlagValues,
+  playerDamageFields,
+  ShortNamify,
+  UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
@@ -46,7 +63,7 @@ export class DamageTracker {
   private defeatedRegex: CactbotBaseRegExp<'WasDefeated'>;
   private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
   private lastDamage: { [name: string]: Partial<NetMatches['Ability']> } = {};
-  private triggerSuppress: { [ triggerId: string]: number } = {};
+  private triggerSuppress: { [triggerId: string]: number } = {};
   private data: OopsyData;
 
   private job: Job = 'NONE';
@@ -56,8 +73,11 @@ export class DamageTracker {
   private zoneId: ZoneIdType = ZoneId.MatchAll;
   private contentType = 0;
 
-  constructor(private options: OopsyOptions, private collector: MistakeCollector,
-    private dataFiles: OopsyFileData) {
+  constructor(
+    private options: OopsyOptions,
+    private collector: MistakeCollector,
+    private dataFiles: OopsyFileData,
+  ) {
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
@@ -230,8 +250,10 @@ export class DamageTracker {
       }
     }
 
-    const ValueOrFunction = (f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
-      matches: Matches) => {
+    const ValueOrFunction = (
+      f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
+      matches: Matches,
+    ) => {
       return (typeof f === 'function') ? f(this.data, matches) : f;
     };
 
@@ -243,7 +265,9 @@ export class DamageTracker {
 
     const delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, matches) : 0;
 
-    const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds, matches) : 0;
+    const suppress = 'suppressSeconds' in trigger
+      ? ValueOrFunction(trigger.suppressSeconds, matches)
+      : 0;
     if (trigger.id && typeof suppress === 'number' && suppress > 0)
       this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
 
@@ -397,7 +421,10 @@ export class DamageTracker {
 
     for (const set of this.triggerSets) {
       if ('zoneId' in set) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
+        if (
+          set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId &&
+          !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId))
+        )
           continue;
       } else if ('zoneRegex' in set) {
         const zoneError = (s: string) => {

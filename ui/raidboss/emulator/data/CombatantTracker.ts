@@ -4,7 +4,14 @@ import PetNamesByLang from '../../../../resources/pet_names';
 import Combatant from './Combatant';
 import CombatantJobSearch from './CombatantJobSearch';
 import CombatantState from './CombatantState';
-import LineEvent, { isLineEventJobLevel, isLineEventAbility, isLineEventSource, isLineEventTarget, LineEventSource, LineEventTarget } from './network_log_converter/LineEvent';
+import LineEvent, {
+  isLineEventAbility,
+  isLineEventJobLevel,
+  isLineEventSource,
+  isLineEventTarget,
+  LineEventSource,
+  LineEventTarget,
+} from './network_log_converter/LineEvent';
 
 export default class CombatantTracker {
   language: Lang;
@@ -43,17 +50,20 @@ export default class CombatantTracker {
     // Between passes: Create our initial combatant states
     for (const id in this.initialStates) {
       const state = this.initialStates[id] ?? {};
-      this.combatants[id]?.pushState(this.firstTimestamp, new CombatantState(
-        Number(state.posX),
-        Number(state.posY),
-        Number(state.posZ),
-        Number(state.heading),
-        state.targetable ?? false,
-        Number(state.hp),
-        Number(state.maxHp),
-        Number(state.mp),
-        Number(state.maxMp),
-      ));
+      this.combatants[id]?.pushState(
+        this.firstTimestamp,
+        new CombatantState(
+          Number(state.posX),
+          Number(state.posY),
+          Number(state.posZ),
+          Number(state.heading),
+          state.targetable ?? false,
+          Number(state.hp),
+          Number(state.maxHp),
+          Number(state.mp),
+          Number(state.maxMp),
+        ),
+      );
     }
 
     // Second pass: Analyze combatant information for tracking
@@ -80,9 +90,11 @@ export default class CombatantTracker {
     // Figure out party/enemy/other status
     const petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
-      if (this.combatants[ID]?.job !== undefined &&
+      if (
+        this.combatants[ID]?.job !== undefined &&
         this.combatants[ID]?.job !== 'NONE' &&
-        ID.startsWith('1')) {
+        ID.startsWith('1')
+      ) {
         this.partyMembers.push(ID);
         return false;
       } else if (petNames.includes(this.combatants[ID]?.name ?? '')) {

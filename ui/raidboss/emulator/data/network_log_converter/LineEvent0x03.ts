@@ -120,4 +120,4 @@ export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEve
   }
 }
 
-export class LineEvent03 extends LineEvent0x03 { }
+export class LineEvent03 extends LineEvent0x03 {}

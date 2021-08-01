@@ -128,7 +128,6 @@ const findDragonMarks = function(array) {
 
 // End copy and paste
 
-
 // Test functions
 
 function testModDistance() {

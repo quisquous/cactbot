@@ -21,8 +21,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'E8N Reflected Biting Frost': '4DFE', // 270-degree frontal AoE, Frozen Mirror
     'E8N Reflected Driving Frost': '4DFF', // Cone AoE, Frozen Mirror
   },
-  damageFail: {
-  },
+  damageFail: {},
   triggers: [
     {
       id: 'E8N Shining Armor',

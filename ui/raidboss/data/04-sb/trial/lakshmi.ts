@@ -110,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
       // Nobody with a different marker should be told to stack.
       id: 'Lakshmi Headmarker Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       run: (data, matches) => {
         data.avoidStack ??= [];
         if (matches.id !== '003E')

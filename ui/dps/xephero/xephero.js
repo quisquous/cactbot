@@ -1,7 +1,7 @@
 import { addOverlayListener } from '../../../resources/overlay_plugin_api';
 
 import DpsPhaseTracker from './dps_phase_tracker';
-import { InitDpsModule, defaultOptions } from '../dps_common';
+import { defaultOptions, InitDpsModule } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
 
 import '../../../resources/defaults.css';
@@ -42,13 +42,11 @@ function update(dps, tracker) {
   if (!isNaN(rdps) && rdps !== Infinity)
     rdpsMax = Math.max(rdpsMax, rdps);
 
-
   const header = template.clone();
   if (encounter.encdps.length <= 7)
     header.find('.dps').text(encounter.encdps);
   else
     header.find('.dps').text(encounter.ENCDPS);
-
 
   header.find('.name').text(tracker.title || '');
   header.find('.number').text(encounter.duration);
@@ -68,7 +66,6 @@ function update(dps, tracker) {
     if (!maxdps)
       maxdps = parseFloat(combatant.encdps);
 
-
     if (combatant.name === 'YOU')
       row.addClass('you');
 
@@ -87,8 +84,10 @@ function update(dps, tracker) {
 
   if (tracker.phases.length >= 1) {
     // Don't show the first phase if it starts immediately with the encounter.
-    if (tracker.phases[0].start && tracker.phases[0].start.Encounter.DURATION > 1 ||
-        tracker.phases.length >= 2) {
+    if (
+      tracker.phases[0].start && tracker.phases[0].start.Encounter.DURATION > 1 ||
+      tracker.phases.length >= 2
+    ) {
       for (let i = 0; i < tracker.phases.length; ++i)
         updatePhase(tracker.phases[i], dpsOrder);
     }
@@ -98,7 +97,6 @@ function update(dps, tracker) {
 function updatePhase(phase, dpsOrder) {
   if (!phase.diff)
     return;
-
 
   if (!phase.element) {
     const container = $('#phasesource ol').clone();

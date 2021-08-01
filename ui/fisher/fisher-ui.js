@@ -97,10 +97,8 @@ export default class FisherUI {
       if (row.getAttribute('data-tug'))
         bar.fg = this.options.Colors[this.tugNames[row.getAttribute('data-tug')]];
 
-
       while (row.lastChild)
         row.removeChild(row.lastChild);
-
 
       row.appendChild(bar);
 
@@ -146,9 +144,12 @@ export default class FisherUI {
     });
 
     // Remove current values from all wells
-    Array.prototype.forEach.call(this.element.querySelectorAll('.well-entry, .table-row'), (node) => {
-      node.parentNode.removeChild(node);
-    });
+    Array.prototype.forEach.call(
+      this.element.querySelectorAll('.well-entry, .table-row'),
+      (node) => {
+        node.parentNode.removeChild(node);
+      },
+    );
 
     for (let i = 0; i < sortedKeys.length; i++) {
       // First, draw on the well

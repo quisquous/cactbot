@@ -92,7 +92,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
 
     'Copied 9S Serial Spin 1': '48A5',
     'Copied 9S Serial Spin 2': '48A7',
-
   },
   shareWarn: {
     'Copied Hobbes Short-Range Missile': '4815',

@@ -2,7 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
-import { playerDamageFields, kFlagInstantDeath } from '../../../oopsy_common';
+import { kFlagInstantDeath, playerDamageFields } from '../../../oopsy_common';
 
 export interface Data extends OopsyData {
   hasDoom?: { [name: string]: boolean };

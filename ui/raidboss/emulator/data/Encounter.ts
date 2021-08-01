@@ -1,4 +1,4 @@
-import { Lang, isLang } from '../../../../resources/languages';
+import { isLang, Lang } from '../../../../resources/languages';
 import { UnreachableCode } from '../../../../resources/not_reached';
 import PetNamesByLang from '../../../../resources/pet_names';
 import EmulatorCommon, { MatchEndInfo, MatchStartInfo } from '../EmulatorCommon';
@@ -49,7 +49,8 @@ export default class Encounter {
     public encounterDay: string,
     public encounterZoneId: string,
     public encounterZoneName: string,
-    public logLines: LineEvent[]) {
+    public logLines: LineEvent[],
+  ) {
     this.version = Encounter.encounterVersion;
   }
 
@@ -60,8 +61,9 @@ export default class Encounter {
       if (!line)
         throw new UnreachableCode();
 
-      let res: MatchStartInfo | MatchEndInfo | undefined =
-          EmulatorCommon.matchStart(line.networkLine);
+      let res: MatchStartInfo | MatchEndInfo | undefined = EmulatorCommon.matchStart(
+        line.networkLine,
+      );
       if (res) {
         this.firstLineIndex = i;
         if (res.StartType)
@@ -75,8 +77,10 @@ export default class Encounter {
           if (res.EndType)
             this.endStatus = res.EndType;
         } else if (isLineEventSource(line) && isLineEventTarget(line)) {
-          if (line.id.startsWith('1') ||
-            (line.id.startsWith('4') && isPetName(line.name, this.language))) {
+          if (
+            line.id.startsWith('1') ||
+            (line.id.startsWith('4') && isPetName(line.name, this.language))
+          ) {
             // Player or pet ability
             if (line.targetId.startsWith('4') && !isPetName(line.targetName, this.language)) {
               // Targetting non player or pet

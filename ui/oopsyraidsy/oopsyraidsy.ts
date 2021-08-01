@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../resources/not_reached';
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
 
 import { DamageTracker } from './damage_tracker';

@@ -50,14 +50,15 @@ export default class ProgressBar {
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(0, false);
       this.$progressBarDuration.textContent = EmulatorCommon.timeToString(
         encounter.encounter.duration - encounter.encounter.initialOffset,
-        false);
+        false,
+      );
       this.$progressBar.style.width = '0%';
       this.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration.toString());
       if (isNaN(encounter.encounter.initialOffset)) {
         this.$engageIndicator.classList.add('d-none');
       } else {
-        const initialPercent =
-          (encounter.encounter.initialOffset / encounter.encounter.duration) * 100;
+        const initialPercent = (encounter.encounter.initialOffset / encounter.encounter.duration) *
+          100;
         this.$engageIndicator.classList.remove('d-none');
         this.$engageIndicator.style.left = `${initialPercent}%`;
       }

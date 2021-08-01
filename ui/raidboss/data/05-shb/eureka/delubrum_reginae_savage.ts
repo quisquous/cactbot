@@ -271,7 +271,7 @@ const triggerSet: TriggerSet<Data> = {
           const dir = { north: 0, east: 1, south: 2, west: 3 };
 
           // Find boss-relative safe zones.
-          const cleavetoSafeZones: { [ cleave: string]: number[] } = {
+          const cleavetoSafeZones: { [cleave: string]: number[] } = {
             // Front right cleave.
             F7: [dir.south, dir.west],
             // Back right cleave.
@@ -336,7 +336,6 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-
         // Find the cleave we're missing and add it to the list.
         const finalCleaveList = ['F7', 'F8', 'F9', 'FA'].filter((id) => !cleaves.includes(id));
         const finalCleave = finalCleaveList[0];
@@ -378,7 +377,8 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         const offsetCleaveToDirection = isClone
-          ? cloneOffsetCleaveToDirection : bossOffsetCleaveToDirection;
+          ? cloneOffsetCleaveToDirection
+          : bossOffsetCleaveToDirection;
 
         data.calledSeekerSwords = true;
         const dirs = offsetCleaves.map((dir) => offsetCleaveToDirection[dir]);
@@ -1840,7 +1840,8 @@ const triggerSet: TriggerSet<Data> = {
           '2': output.minusTwo!(),
         };
         const arrowStr = effectiveTemperature in tempToOutput
-          ? tempToOutput[effectiveTemperature] : output.unknownTemperature!();
+          ? tempToOutput[effectiveTemperature]
+          : output.unknownTemperature!();
 
         const marchStrMap: { [id: string]: string } = {
           '50D': output.forwards!(),
@@ -1977,7 +1978,8 @@ const triggerSet: TriggerSet<Data> = {
           '2': output.minusTwo!(),
         };
         const meteorStr = effectiveTemperature in tempToOutput
-          ? tempToOutput[effectiveTemperature] : output.unknownTemperature!();
+          ? tempToOutput[effectiveTemperature]
+          : output.unknownTemperature!();
 
         const marchStrMap: { [id: string]: string } = {
           '50D': output.forwards!(),
@@ -2196,14 +2198,12 @@ const triggerSet: TriggerSet<Data> = {
         // we need to filter for the Trinity Avowed with the lowest ID
         // that one is always cleaving on one of the cardinals
         // Trinity Avowed is always East (-267, -87)
-        const sortCombatants =
-          (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
         const eastCombatant = combatantDataBoss.combatants.sort(sortCombatants).shift();
 
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
-        const [avatarOne, avatarTwo, avatarThree] =
-          combatantDataAvatars.combatants.sort(sortCombatants);
+        const [avatarOne, avatarTwo, avatarThree] = combatantDataAvatars.combatants.sort(sortCombatants);
         if (!avatarOne || !avatarTwo || !avatarThree)
           throw new UnreachableCode();
 
@@ -2230,8 +2230,10 @@ const triggerSet: TriggerSet<Data> = {
         const northCombatantBlade = data.blades[northCombatant?.ID ?? 0];
         const westCombatantBlade = data.blades[westCombatant?.ID ?? 0];
         const southCombatantBlade = data.blades[southCombatant?.ID ?? 0];
-        if (eastCombatantBlade === undefined || northCombatantBlade === undefined ||
-            westCombatantBlade === undefined || southCombatantBlade === undefined)
+        if (
+          eastCombatantBlade === undefined || northCombatantBlade === undefined ||
+          westCombatantBlade === undefined || southCombatantBlade === undefined
+        )
           throw new UnreachableCode();
 
         const bladeValues: { [id: string]: number } = {
@@ -2262,8 +2264,10 @@ const triggerSet: TriggerSet<Data> = {
         const northCombatantBladeValue = bladeValues[northCombatantBlade];
         const westCombatantBladeValue = bladeValues[westCombatantBlade];
         const southCombatantBladeValue = bladeValues[southCombatantBlade];
-        if (eastCombatantBladeValue === undefined || northCombatantBladeValue === undefined ||
-          westCombatantBladeValue === undefined || southCombatantBladeValue === undefined)
+        if (
+          eastCombatantBladeValue === undefined || northCombatantBladeValue === undefined ||
+          westCombatantBladeValue === undefined || southCombatantBladeValue === undefined
+        )
           throw new UnreachableCode();
 
         // Create map to improve readability of safeZone conditions
@@ -2275,8 +2279,10 @@ const triggerSet: TriggerSet<Data> = {
         // clone and the middle square is safe
         let safeZone = null;
         let adjacentZones: { [dir: number]: number } = {};
-        if ((northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) ||
-          (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])) {
+        if (
+          (northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) ||
+          (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])
+        ) {
           // North clone cleaving inside east (and therefore east clone cleaving north).
           safeZone = output.southwest!();
           adjacentZones = {
@@ -2285,8 +2291,10 @@ const triggerSet: TriggerSet<Data> = {
             [dirNum.south]: southCombatantBladeValue,
             [dirNum.west]: westCombatantBladeValue,
           };
-        } else if ((northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) ||
-          (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])) {
+        } else if (
+          (northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) ||
+          (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])
+        ) {
           // North clone cleaving inside west (and therefore west clone cleaving north).
           safeZone = output.southeast!();
           adjacentZones = {
@@ -2295,8 +2303,10 @@ const triggerSet: TriggerSet<Data> = {
             [dirNum.south]: southCombatantBladeValue,
             [dirNum.west]: northCombatantBladeValue,
           };
-        } else if ((southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) ||
-          (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])) {
+        } else if (
+          (southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) ||
+          (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])
+        ) {
           // South clone cleaving inside west (and therefore west clone cleaving south).
           safeZone = output.northeast!();
           adjacentZones = {
@@ -2305,8 +2315,10 @@ const triggerSet: TriggerSet<Data> = {
             [dirNum.south]: westCombatantBladeValue,
             [dirNum.west]: southCombatantBladeValue,
           };
-        } else if ((southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
-          (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])) {
+        } else if (
+          (southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
+          (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])
+        ) {
           // South clone cleaving inside east (and therefore east clone cleaving south).
           safeZone = output.northwest!();
           adjacentZones = {
@@ -2317,10 +2329,12 @@ const triggerSet: TriggerSet<Data> = {
           };
         } else {
           // facing did not evaluate properly
-          console.error(`Avowed Avatar: facing error, ` +
-            `${northCombatantFacing}, ${southCombatantFacing}, ` +
-            `${JSON.stringify(bladeSides[northCombatantBlade])}, ` +
-            `${JSON.stringify(bladeSides[southCombatantBlade])}`);
+          console.error(
+            `Avowed Avatar: facing error, ` +
+              `${northCombatantFacing}, ${southCombatantFacing}, ` +
+              `${JSON.stringify(bladeSides[northCombatantBlade])}, ` +
+              `${JSON.stringify(bladeSides[southCombatantBlade])}`,
+          );
           data.safeZone = output.unknown!();
           return;
         }
@@ -2333,8 +2347,7 @@ const triggerSet: TriggerSet<Data> = {
         let adjacentZone = null;
         if (effectiveTemperature && adjacentZones) {
           // Find the adjacent zone that gets closest to 0
-          const calculatedZones = Object.values(adjacentZones).map((i: number) =>
-            Math.abs(effectiveTemperature + i));
+          const calculatedZones = Object.values(adjacentZones).map((i: number) => Math.abs(effectiveTemperature + i));
 
           // Use zone closest to zero as output
           const dirs = {

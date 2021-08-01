@@ -38,7 +38,8 @@ export default class Tooltip {
     private direction: ValidDirection,
     text: string,
     autoShow = true,
-    autoHide = true) {
+    autoHide = true,
+  ) {
     Tooltip.initializeTemplates();
 
     if (!(target instanceof HTMLElement)) {

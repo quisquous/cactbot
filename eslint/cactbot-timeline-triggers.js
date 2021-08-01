@@ -12,14 +12,19 @@ module.exports = {
 
   create: (context) => {
     return {
-      'Property[key.name=\'timelineTriggers\'] > ArrayExpression > ObjectExpression > Property[key.name=\'regex\'] > :not(Identifier, Literal)': (node) => context.report({
-        node,
-        message: 'timelineTrigger regex has to be a regular expression literal, such as /^Ability Name$/',
-      }),
-      'Property[key.name=\'timelineTriggers\'] > ArrayExpression > ObjectExpression > Property[key.name=/(?:netRegex.{0,2}|regex.{2})/]': (node) => context.report({
-        node,
-        message: 'timelineTriggers only support "regex"',
-      }),
+      'Property[key.name=\'timelineTriggers\'] > ArrayExpression > ObjectExpression > Property[key.name=\'regex\'] > :not(Identifier, Literal)':
+        (node) =>
+          context.report({
+            node,
+            message:
+              'timelineTrigger regex has to be a regular expression literal, such as /^Ability Name$/',
+          }),
+      'Property[key.name=\'timelineTriggers\'] > ArrayExpression > ObjectExpression > Property[key.name=/(?:netRegex.{0,2}|regex.{2})/]':
+        (node) =>
+          context.report({
+            node,
+            message: 'timelineTriggers only support "regex"',
+          }),
     };
   },
 };

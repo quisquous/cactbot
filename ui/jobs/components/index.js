@@ -1,22 +1,21 @@
-import { setup as setupPld, reset as resetPld } from './pld';
-import { setup as setupWar, reset as resetWar } from './war';
-import { setup as setupDrk, reset as resetDrk } from './drk';
-import { setup as setupGnb, reset as resetGnb } from './gnb';
-import { setup as setupWhm, reset as resetWhm } from './whm';
-import { setup as setupSch, reset as resetSch } from './sch';
-import { setup as setupAst, reset as resetAst } from './ast';
-import { setup as setupMnk, reset as resetMnk } from './mnk';
-import { setup as setupDrg, reset as resetDrg } from './drg';
-import { setup as setupNin, reset as resetNin } from './nin';
-import { setup as setupSam, reset as resetSam } from './sam';
-import { setup as setupBrd, reset as resetBrd } from './brd';
-import { setup as setupMch, reset as resetMch } from './mch';
-import { setup as setupDnc, reset as resetDnc } from './dnc';
-import { setup as setupBlm, reset as resetBlm } from './blm';
-import { setup as setupSmn, reset as resetSmn } from './smn';
-import { setup as setupRdm, reset as resetRdm } from './rdm';
-import { setup as setupBlu, reset as resetBlu } from './blu';
-
+import { reset as resetPld, setup as setupPld } from './pld';
+import { reset as resetWar, setup as setupWar } from './war';
+import { reset as resetDrk, setup as setupDrk } from './drk';
+import { reset as resetGnb, setup as setupGnb } from './gnb';
+import { reset as resetWhm, setup as setupWhm } from './whm';
+import { reset as resetSch, setup as setupSch } from './sch';
+import { reset as resetAst, setup as setupAst } from './ast';
+import { reset as resetMnk, setup as setupMnk } from './mnk';
+import { reset as resetDrg, setup as setupDrg } from './drg';
+import { reset as resetNin, setup as setupNin } from './nin';
+import { reset as resetSam, setup as setupSam } from './sam';
+import { reset as resetBrd, setup as setupBrd } from './brd';
+import { reset as resetMch, setup as setupMch } from './mch';
+import { reset as resetDnc, setup as setupDnc } from './dnc';
+import { reset as resetBlm, setup as setupBlm } from './blm';
+import { reset as resetSmn, setup as setupSmn } from './smn';
+import { reset as resetRdm, setup as setupRdm } from './rdm';
+import { reset as resetBlu, setup as setupBlu } from './blu';
 
 export function getSetup(job) {
   return {

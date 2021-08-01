@@ -1,6 +1,12 @@
 // OverlayPlugin API setup
 
-import { EventMap, EventType, IOverlayHandler, OverlayHandlerFuncs, OverlayHandlerTypes } from '../types/event';
+import {
+  EventMap,
+  EventType,
+  IOverlayHandler,
+  OverlayHandlerFuncs,
+  OverlayHandlerTypes,
+} from '../types/event';
 
 declare global {
   interface Window {
@@ -37,7 +43,6 @@ declare global {
   }
 }
 
-
 type IAddOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
 type IRemoveOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
 
@@ -52,8 +57,8 @@ let inited = false;
 let wsUrl: RegExpExecArray | null = null;
 let ws: WebSocket | null = null;
 let queue: (
-  { [s: string]: unknown } |
-  [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
+  | { [s: string]: unknown }
+  | [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
 )[] | null = [];
 let rseqCounter = 0;
 const responsePromises: Record<number, (value: unknown) => void> = {};
@@ -169,7 +174,9 @@ export const callOverlayHandler: IOverlayHandler = (
 };
 
 export const setOverlayHandlerOverride = <T extends keyof OverlayHandlerFuncs>(
-  type: T, override?: OverlayHandlerFuncs[T]): void => {
+  type: T,
+  override?: OverlayHandlerFuncs[T],
+): void => {
   if (!override) {
     delete callOverlayHandlerOverrideMap[type];
     return;

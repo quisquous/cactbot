@@ -80,8 +80,13 @@ function findLineNumberByTriggerId(text, id) {
 
 function findMissingRegex(findMissingArgs) {
   const {
-    triggerSet, triggerLines, timeline, trans,
-    triggersFile, locale, errorFunc,
+    triggerSet,
+    triggerLines,
+    timeline,
+    trans,
+    triggersFile,
+    locale,
+    errorFunc,
   } = findMissingArgs;
   const triggers = triggerSet.triggers;
   for (const trigger of triggers) {
@@ -125,8 +130,14 @@ function findMissingRegex(findMissingArgs) {
 
       // If we have a match, then something translated it *AND* it is
       // different than what is there.  This is the worst case scenario.
-      if (foundMatch)
-        errorFunc(triggersFile, lineNumber, trigger.id, `incorrect timelineReplace for regex, got '${transRegex}', needed ${localeReg} '${locRegex}'`);
+      if (foundMatch) {
+        errorFunc(
+          triggersFile,
+          lineNumber,
+          trigger.id,
+          `incorrect timelineReplace for regex, got '${transRegex}', needed ${localeReg} '${locRegex}'`,
+        );
+      }
     }
     // Things *might* be in a good state if we have any translation for this.
     if (foundMatch)
@@ -145,10 +156,21 @@ function findMissingRegex(findMissingArgs) {
       continue;
 
     // In any case, if we have no match for this, then this is missing.
-    if (locRegex)
-      errorFunc(triggersFile, lineNumber, trigger.id, `missing timelineReplace for regex '${origRegex}' (but have ${localeReg})`);
-    else
-      errorFunc(triggersFile, lineNumber, trigger.id, `missing timelineReplace for regex '${origRegex}'`);
+    if (locRegex) {
+      errorFunc(
+        triggersFile,
+        lineNumber,
+        trigger.id,
+        `missing timelineReplace for regex '${origRegex}' (but have ${localeReg})`,
+      );
+    } else {
+      errorFunc(
+        triggersFile,
+        lineNumber,
+        trigger.id,
+        `missing timelineReplace for regex '${origRegex}'`,
+      );
+    }
   }
 }
 
@@ -163,8 +185,9 @@ function findMissingTimeline(findMissingArgs) {
   const testCases = [
     {
       type: 'replaceSync',
-      items: new Set(timeline.syncStarts.map((x) =>
-        ({ text: x.regex.source, line: x.lineNumber }))),
+      items: new Set(
+        timeline.syncStarts.map((x) => ({ text: x.regex.source, line: x.lineNumber })),
+      ),
       replace: trans.replaceSync || {},
       label: 'sync',
     },

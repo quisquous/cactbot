@@ -19,7 +19,7 @@ type Meta = {
   'dest': string;
   'strip': number;
   'hash': [algorithm: string, hash: string];
-}
+};
 
 const projectRoot = path.resolve(); // path of git repo
 
@@ -43,7 +43,6 @@ const isDir = async (p: string): Promise<boolean> => {
   }
 };
 
-
 const endsWith = (s: string, suffix: Iterable<string>): boolean => {
   for (const ext of suffix) {
     if (s.endsWith(ext))
@@ -66,7 +65,6 @@ const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void })
 const hash = (algorithm: string, content: string | NodeJS.ArrayBufferView): string => {
   return crypto.createHash(algorithm).update(content).digest('hex');
 };
-
 
 export const safeRmDir = async (path: string): Promise<void> => {
   let tries = 30;
@@ -155,37 +153,40 @@ export const main = async (updateHashes = false): Promise<void> => {
     const count = tmp.size;
     if (count) {
       console.log('Fetching missing or outdated dependencies...');
-      await Promise.all(Array.from(tmp, (key) => async () => {
-        const meta = deps[key];
-        if (_.isEmpty(meta) || !meta)
-          return;
-        const log = (...args: unknown[]) => console.log(chalk.red(`${key}:`), ...args);
-        const baseFileName = path.basename(meta['url']).split('.', 1)[0] ?? '';
-        const dlname = path.join(dlPath, baseFileName);
-        const dest = path.join(projectRoot, meta['dest']);
-        await downloadFile(meta['url'], dlname);
-        if (_.has(meta, 'hash')) {
-          log('Hashing...');
-          const content = (await fs.readFile(dlname)).slice(0, 16 * 1024);
-          const h = hash(meta['hash'][0], content);
-          if (updateHashes) {
-            hashUpdateMap[meta['hash'][1]] = h;
-            meta['hash'][1] = h;
-          } else if (h !== meta['hash'][1]) {
-            log(`ERROR: ${key} failed the hash check.`);
-            log('Expected hash: ', meta['hash'][1]);
-            log(`Actual hash: ${h}`);
-            return;
-          }
-        }
-        if (await isDir(dest)) {
-          console.log('Removing old files...');
-          await safeRmDir(dest);
-        }
-        log('Extracting...');
-        await extractFile(dlname, meta);
-        cache[key] = meta;
-      }).map((f) => f()));
+      await Promise.all(
+        Array.from(tmp, (key) =>
+          async () => {
+            const meta = deps[key];
+            if (_.isEmpty(meta) || !meta)
+              return;
+            const log = (...args: unknown[]) => console.log(chalk.red(`${key}:`), ...args);
+            const baseFileName = path.basename(meta['url']).split('.', 1)[0] ?? '';
+            const dlname = path.join(dlPath, baseFileName);
+            const dest = path.join(projectRoot, meta['dest']);
+            await downloadFile(meta['url'], dlname);
+            if (_.has(meta, 'hash')) {
+              log('Hashing...');
+              const content = (await fs.readFile(dlname)).slice(0, 16 * 1024);
+              const h = hash(meta['hash'][0], content);
+              if (updateHashes) {
+                hashUpdateMap[meta['hash'][1]] = h;
+                meta['hash'][1] = h;
+              } else if (h !== meta['hash'][1]) {
+                log(`ERROR: ${key} failed the hash check.`);
+                log('Expected hash: ', meta['hash'][1]);
+                log(`Actual hash: ${h}`);
+                return;
+              }
+            }
+            if (await isDir(dest)) {
+              console.log('Removing old files...');
+              await safeRmDir(dest);
+            }
+            log('Extracting...');
+            await extractFile(dlname, meta);
+            cache[key] = meta;
+          }).map((f) => f()),
+      );
     }
     if (obsolete.size) {
       console.log('Removing old dependencies...');
@@ -224,6 +225,5 @@ export const main = async (updateHashes = false): Promise<void> => {
     await safeRmDir(dlPath);
   }
 };
-
 
 void main(process.argv.includes('--update-hashes'));

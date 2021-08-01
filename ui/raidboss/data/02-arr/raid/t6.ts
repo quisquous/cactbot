@@ -29,14 +29,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ id: '797', source: '라플레시아' }),
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
-      promise: (_data, matches) => Util.watchCombatant({
-        ids: [parseInt(matches.sourceId, 16)],
-      },
-      (ret) => {
-        return ret.combatants.some((c) => {
-          return c.CurrentHP / c.MaxHP <= 0.7;
-        });
-      }),
+      promise: (_data, matches) =>
+        Util.watchCombatant({
+          ids: [parseInt(matches.sourceId, 16)],
+        }, (ret) => {
+          return ret.combatants.some((c) => {
+            return c.CurrentHP / c.MaxHP <= 0.7;
+          });
+        }),
       sound: 'Long',
     },
     {

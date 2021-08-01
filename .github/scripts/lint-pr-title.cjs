@@ -91,7 +91,8 @@ const thanksComment = (userName) => {
   return `${userStr}Thanks for your contribution! 🌵🚀`;
 };
 
-const getComment = (p) => `${thanksComment(p.userName)}
+const getComment = (p) =>
+  `${thanksComment(p.userName)}
 
 Currently your title is: \`${p.title}\`, but it should:
 * ${boolToEmoji(p.formatValid)} be in the format of \`scope: description\`.

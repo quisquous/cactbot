@@ -38,8 +38,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-  triggers: [
-  ],
+  triggers: [],
   timelineReplace: [
     {
       'locale': 'de',

@@ -272,7 +272,6 @@ const triggerSet: TriggerSet<Data> = {
         if (data.role === 'healer')
           return output.text!();
 
-
         // Note: this doesn't cleave, so don't say anything about avoiding it.
       },
       run: (data) => delete data.busterTargets,
@@ -743,7 +742,6 @@ const triggerSet: TriggerSet<Data> = {
 
         if (data.role === 'healer')
           return output.text!();
-
 
         // Note: do not call out "avoid tank" here because there's a lot of markers going out.
       },

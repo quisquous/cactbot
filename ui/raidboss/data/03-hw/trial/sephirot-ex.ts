@@ -7,8 +7,7 @@ export type Data = RaidbossData;
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.ContainmentBayS1T7Extreme,
   timelineFile: 'sephirot-ex.txt',
-  triggers: [
-  ],
+  triggers: [],
   timelineReplace: [
     {
       'locale': 'de',

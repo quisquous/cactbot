@@ -25,7 +25,18 @@ export default class TimerIcon extends HTMLElement {
   private _hideTimer: number | null;
   startTimeMs: number;
   static get observedAttributes(): string[] {
-    return ['icon', 'name', 'zoom', 'duration', 'width', 'height', 'bordercolor', 'bordersize', 'text', 'textcolor'];
+    return [
+      'icon',
+      'name',
+      'zoom',
+      'duration',
+      'width',
+      'height',
+      'bordercolor',
+      'bordersize',
+      'text',
+      'textcolor',
+    ];
   }
 
   // All visual dimensions are scaled by this.
@@ -297,7 +308,6 @@ export default class TimerIcon extends HTMLElement {
     } else if (name === 'textcolor') {
       this._textColor = newValue;
     }
-
 
     if (this._connected)
       this.draw();

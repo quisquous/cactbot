@@ -6,16 +6,26 @@ export interface BaseRegExp<T extends string> extends RegExp {
   };
 }
 
-export type Params<T extends string> =
-  Partial<Record<Exclude<T, 'timestamp' | 'capture'>, string | string[]> &
-  { 'timestamp': string; 'capture': boolean }>;
+export type Params<T extends string> = Partial<
+  & Record<Exclude<T, 'timestamp' | 'capture'>, string | string[]>
+  & { 'timestamp': string; 'capture': boolean }
+>;
 
 export type Regex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
 
 type ValidStringOrArray = string | string[];
 
 const startsUsingParams = ['timestamp', 'source', 'id', 'ability', 'target', 'capture'] as const;
-const abilityParams = ['timestamp', 'source', 'sourceId', 'id', 'ability', 'targetId', 'target', 'capture'] as const;
+const abilityParams = [
+  'timestamp',
+  'source',
+  'sourceId',
+  'id',
+  'ability',
+  'targetId',
+  'target',
+  'capture',
+] as const;
 const abilityFullParams = [
   'timestamp',
   'sourceId',
@@ -83,7 +93,15 @@ const removingCombatantParams = [
   'z',
   'capture',
 ] as const;
-const gainsEffectParams = ['timestamp', 'targetId', 'target', 'effect', 'source', 'duration', 'capture'] as const;
+const gainsEffectParams = [
+  'timestamp',
+  'targetId',
+  'target',
+  'effect',
+  'source',
+  'duration',
+  'capture',
+] as const;
 const statusEffectExplicitParams = [
   'timestamp',
   'targetId',
@@ -104,7 +122,14 @@ const statusEffectExplicitParams = [
   'data4',
   'capture',
 ] as const;
-const losesEffectParams = ['timestamp', 'targetId', 'target', 'effect', 'source', 'capture'] as const;
+const losesEffectParams = [
+  'timestamp',
+  'targetId',
+  'target',
+  'effect',
+  'source',
+  'capture',
+] as const;
 const statChangeParams = [
   'timestamp',
   'job',
@@ -125,7 +150,15 @@ const statChangeParams = [
   'tenacity',
   'capture',
 ] as const;
-const tetherParams = ['timestamp', 'source', 'sourceId', 'target', 'targetId', 'id', 'capture'] as const;
+const tetherParams = [
+  'timestamp',
+  'source',
+  'sourceId',
+  'target',
+  'targetId',
+  'id',
+  'capture',
+] as const;
 const wasDefeatedParams = ['timestamp', 'target', 'source', 'capture'] as const;
 const hasHPParams = ['timestamp', 'name', 'hp', 'capture'] as const;
 const echoParams = ['timestamp', 'code', 'line', 'capture'] as const;
@@ -134,7 +167,16 @@ const messageParams = ['timestamp', 'code', 'line', 'capture'] as const;
 const gameLogParams = ['timestamp', 'code', 'line', 'capture'] as const;
 const gameNameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
 const changeZoneParams = ['timestamp', 'name', 'capture'] as const;
-const network6dParams = ['timestamp', 'instance', 'command', 'data0', 'data1', 'data2', 'data3', 'capture'] as const;
+const network6dParams = [
+  'timestamp',
+  'instance',
+  'command',
+  'data0',
+  'data1',
+  'data2',
+  'data3',
+  'capture',
+] as const;
 
 type StartsUsingParams = typeof startsUsingParams[number];
 type AbilityParams = typeof abilityParams[number];
@@ -248,15 +290,19 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'flag13', f.flag13, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'flag14', f.flag13, '[^:]*?') + ':' +
       Regexes.optional(Regexes.maybeCapture(capture, 'targetHp', f.targetHp, '\\y{Float}')) + ':' +
-      Regexes.optional(Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '\\y{Float}')) +
+      ':' +
       Regexes.optional(Regexes.maybeCapture(capture, 'targetMp', f.targetMp, '\\y{Float}')) + ':' +
-      Regexes.optional(Regexes.maybeCapture(capture, 'targetMaxMp', f.targetMaxMp, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetMaxMp', f.targetMaxMp, '\\y{Float}')) +
+      ':' +
       Regexes.optional('\\y{Float}') + ':' + // Target TP
       Regexes.optional('\\y{Float}') + ':' + // Target Max TP
       Regexes.optional(Regexes.maybeCapture(capture, 'targetX', f.targetX, '\\y{Float}')) + ':' +
       Regexes.optional(Regexes.maybeCapture(capture, 'targetY', f.targetY, '\\y{Float}')) + ':' +
       Regexes.optional(Regexes.maybeCapture(capture, 'targetZ', f.targetZ, '\\y{Float}')) + ':' +
-      Regexes.optional(Regexes.maybeCapture(capture, 'targetHeading', f.targetHeading, '\\y{Float}')) + ':' +
+      Regexes.optional(
+        Regexes.maybeCapture(capture, 'targetHeading', f.targetHeading, '\\y{Float}'),
+      ) + ':' +
       Regexes.maybeCapture(capture, 'hp', f.hp, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'maxHp', f.maxHp, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'mp', f.mp, '\\y{Float}') + ':' +
@@ -270,7 +316,6 @@ export default class Regexes {
       '.*?$'; // Unknown last field
     return Regexes.parse(str);
   }
-
 
   /**
    * fields: targetId, target, id, capture
@@ -341,13 +386,14 @@ export default class Regexes {
       ':Removing combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
       '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
-      Regexes.optional('.*?Pos: \\(' +
-      Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
-      Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
-      Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)');
+      Regexes.optional(
+        '.*?Pos: \\(' +
+          Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
+          Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
+          Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)',
+      );
     return Regexes.parse(str);
   }
-
 
   // fields: targetId, target, effect, source, duration, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
@@ -411,7 +457,6 @@ export default class Regexes {
     return Regexes.parse(str);
   }
 
-
   /**
    * fields: targetId, target, effect, source, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
@@ -431,7 +476,6 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') + '\\.';
     return Regexes.parse(str);
   }
-
 
   /**
    * fields: source, sourceId, target, targetId, id, capture
@@ -453,7 +497,6 @@ export default class Regexes {
     return Regexes.parse(str);
   }
 
-
   /**
    * 'target' was defeated by 'source'
    * fields: target, source, capture
@@ -472,7 +515,6 @@ export default class Regexes {
     return Regexes.parse(str);
   }
 
-
   /**
    * fields: name, hp, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0d-combatanthp
@@ -490,7 +532,6 @@ export default class Regexes {
     return Regexes.parse(str);
   }
 
-
   /**
    * fields: code, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
@@ -505,7 +546,6 @@ export default class Regexes {
       code: '0038',
     });
   }
-
 
   /**
    * fields: code, line, name, capture
@@ -523,7 +563,6 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
     return Regexes.parse(str);
   }
-
 
   /**
    * fields: code, line, capture
@@ -555,7 +594,6 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
     return Regexes.parse(str);
   }
-
 
   /**
    * fields: code, name, line, capture
@@ -609,7 +647,6 @@ export default class Regexes {
     return Regexes.parse(str);
   }
 
-
   /**
    * fields: name, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
@@ -624,7 +661,6 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
     return Regexes.parse(str);
   }
-
 
   /**
    * fields: instance, command, data0, data1, data2, data3
@@ -682,11 +718,11 @@ export default class Regexes {
    * args may be strings or RegExp, although any additional markers to RegExp
    * like /insensitive/i are dropped.
    */
-  static anyOf(...args: (string|string[]|RegExp)[]): string {
-    const anyOfArray = (array: (string|RegExp)[]): string => {
+  static anyOf(...args: (string | string[] | RegExp)[]): string {
+    const anyOfArray = (array: (string | RegExp)[]): string => {
       return `(?:${array.map((elem) => elem instanceof RegExp ? elem.source : elem).join('|')})`;
     };
-    let array: (string|RegExp)[] = [];
+    let array: (string | RegExp)[] = [];
     if (args.length === 1) {
       if (Array.isArray(args[0]))
         array = args[0];
@@ -723,7 +759,7 @@ export default class Regexes {
     let modifiers = 'i';
     if (regexpString instanceof RegExp) {
       modifiers += (regexpString.global ? 'g' : '') +
-                    (regexpString.multiline ? 'm' : '');
+        (regexpString.multiline ? 'm' : '');
       regexpString = regexpString.source;
     }
     regexpString = regexpString.replace(/\\y\{(.*?)\}/g, (match, group) => {
@@ -760,8 +796,10 @@ export default class Regexes {
     for (let k = 0; k < keys.length; ++k) {
       const key = keys[k];
       if (key && !params.includes(key)) {
-        throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
-            `Valid params: ${JSON.stringify(params)}`);
+        throw new Error(
+          `${funcName}: invalid parameter '${key}'.  ` +
+            `Valid params: ${JSON.stringify(params)}`,
+        );
       }
     }
   }

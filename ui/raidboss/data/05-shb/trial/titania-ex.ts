@@ -10,7 +10,7 @@ export interface Data extends RaidbossData {
   seenMistRune?: boolean;
   seenFlameRune?: boolean;
   pummelCount?: number;
-  bomb?: { [ name: string]: boolean };
+  bomb?: { [name: string]: boolean };
   thunderCount?: number;
 }
 
@@ -366,7 +366,6 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.stackOnYou!();
-
 
         if (data.bomb && data.bomb[data.me])
           return;

@@ -52,8 +52,7 @@ const defaultOopsyConfigOptions = {
 };
 type OopsyConfigOptions = typeof defaultOopsyConfigOptions;
 
-export interface OopsyOptions
-  extends BaseOptions, OopsyNonConfigOptions, OopsyConfigOptions {}
+export interface OopsyOptions extends BaseOptions, OopsyNonConfigOptions, OopsyConfigOptions {}
 
 // See user/raidboss-example.js for documentation.
 const Options: OopsyOptions = {

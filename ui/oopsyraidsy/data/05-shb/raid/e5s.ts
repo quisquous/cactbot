@@ -10,7 +10,6 @@ export interface Data extends OopsyData {
   cloudMarkers?: string[];
 }
 
-
 // TODO: is there a different ability if the shield duty action isn't used properly?
 // TODO: is there an ability from Raiden (the bird) if you get eaten?
 // TODO: maybe chain lightning warning if you get hit while you have system shock (8B8)

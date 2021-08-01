@@ -23,7 +23,6 @@ const triggerSet: TriggerSet<Data> = {
       beforeSeconds: 5,
       response: Responses.knockback('info'),
     },
-
   ],
   triggers: [
     {
