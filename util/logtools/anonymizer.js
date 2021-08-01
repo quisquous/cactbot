@@ -8,7 +8,13 @@ import FakeNameGenerator from './fake_name_generator';
 
 export default class Anonymizer {
   constructor() {
-    this.logTypes = logDefinitions;
+    // Remap logDefinitions from log type (instead of name) to definition.
+    this.logTypes = {};
+    for (const logName in logDefinitions) {
+      const def = logDefinitions[logName];
+      this.logTypes[def.type] = def;
+    }
+
     this.nameGenerator = new FakeNameGenerator();
 
     // uppercase hex id -> name
@@ -55,9 +61,9 @@ export default class Anonymizer {
       for (const subFieldName in type.subFields) {
         // Find field idx.
         let fieldIdx = -1;
-        for (const idx in type.fields) {
-          if (type.fields[idx] === subFieldName) {
-            fieldIdx = idx;
+        for (const fieldName in type.fields) {
+          if (fieldName === subFieldName) {
+            fieldIdx = type.fields[fieldName];
             break;
           }
         }
