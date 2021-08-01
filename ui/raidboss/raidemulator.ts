@@ -71,23 +71,23 @@ const hideModal = (selector = '.modal.show'): HTMLElement => {
 const applyTranslation = (lang: Lang) => {
   for (const [key, value] of Object.entries(emulatorTranslations)) {
     querySelectorAllSafe(document, '.translate' + key).forEach(
-        (elem) => {
-          elem.innerHTML = translate(lang, value);
-        });
+      (elem) => {
+        elem.innerHTML = translate(lang, value);
+      });
   }
   for (const [key, value] of Object.entries(emulatorTooltipTranslations)) {
     querySelectorAllSafe(document, '.translate' + key).forEach(
-        (elem) => {
-          elem.title = translate(lang, value);
-        });
+      (elem) => {
+        elem.title = translate(lang, value);
+      });
   }
   for (const [sel, trans] of Object.entries(emulatorTemplateTranslations)) {
     const template = getTemplateChild(document, sel);
     for (const [key, value] of Object.entries(trans)) {
       querySelectorAllSafe(template, '.translate' + key).forEach(
-          (elem) => {
-            elem.innerHTML = translate(lang, value);
-          });
+        (elem) => {
+          elem.innerHTML = translate(lang, value);
+        });
     }
   }
 };
@@ -166,7 +166,7 @@ const raidEmulatorOnLoad = async () => {
       new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
   timelineController.bindTo(emulator);
   const popupText = new RaidEmulatorPopupText(
-      options, new TimelineLoader(timelineController), raidbossFileData);
+    options, new TimelineLoader(timelineController), raidbossFileData);
   popupText.bindTo(emulator);
 
   timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
@@ -302,74 +302,74 @@ const raidEmulatorOnLoad = async () => {
 
       logConverterWorker.onmessage = (msg: MessageEvent<ConverterWorkerMessage>) => {
         switch (msg.data.type) {
-        case 'progress':
-          {
-            const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
-            bar.style.width = percent + '%';
-            label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
-          }
-          break;
-        case 'encounter':
-          {
-            encLabel.classList.remove('d-none');
-            const enc = msg.data.encounter;
+          case 'progress':
+            {
+              const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
+              bar.style.width = percent + '%';
+              label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
+            }
+            break;
+          case 'encounter':
+            {
+              encLabel.classList.remove('d-none');
+              const enc = msg.data.encounter;
 
-            // Objects sent via message are raw objects, not typed. Apply prototype chain
-            Object.setPrototypeOf(enc.combatantTracker, CombatantTracker.prototype);
+              // Objects sent via message are raw objects, not typed. Apply prototype chain
+              Object.setPrototypeOf(enc.combatantTracker, CombatantTracker.prototype);
 
-            querySelectorSafe(encLabel, '.zone').innerText = enc.encounterZoneName;
-            querySelectorSafe(encLabel, '.encounter').innerText = msg.data.name;
-            querySelectorSafe(encLabel, '.start').innerText =
+              querySelectorSafe(encLabel, '.zone').innerText = enc.encounterZoneName;
+              querySelectorSafe(encLabel, '.encounter').innerText = msg.data.name;
+              querySelectorSafe(encLabel, '.start').innerText =
               new Date(enc.startTimestamp).toString();
-            querySelectorSafe(encLabel, '.end').innerText =
+              querySelectorSafe(encLabel, '.end').innerText =
               new Date(enc.endTimestamp).toString();
 
-            const duration =
+              const duration =
               EmulatorCommon.timeToString(enc.endTimestamp - enc.startTimestamp, false)
                 .split(':');
-            const durationMins = duration[0] ?? '0';
-            const durationSecs = duration[1] ?? '00';
-            const pullDuration =
+              const durationMins = duration[0] ?? '0';
+              const durationSecs = duration[1] ?? '00';
+              const pullDuration =
               EmulatorCommon.timeToString(enc.endTimestamp - enc.initialTimestamp, false)
                 .split(':');
-            const pullDurationMins = pullDuration[0] ?? '0';
-            const pullDurationSecs = pullDuration[1] ?? '00';
+              const pullDurationMins = pullDuration[0] ?? '0';
+              const pullDurationSecs = pullDuration[1] ?? '00';
 
-            querySelectorSafe(encLabel, '.durMins').innerText = durationMins;
-            querySelectorSafe(encLabel, '.durSecs').innerText = durationSecs;
-            querySelectorSafe(encLabel, '.pullMins').innerText = pullDurationMins;
-            querySelectorSafe(encLabel, '.pullSecs').innerText = pullDurationSecs;
+              querySelectorSafe(encLabel, '.durMins').innerText = durationMins;
+              querySelectorSafe(encLabel, '.durSecs').innerText = durationSecs;
+              querySelectorSafe(encLabel, '.pullMins').innerText = pullDurationMins;
+              querySelectorSafe(encLabel, '.pullSecs').innerText = pullDurationSecs;
 
-            querySelectorSafe(encLabel, '.startedBy').innerText =
+              querySelectorSafe(encLabel, '.startedBy').innerText =
               lookupStartStatuses(options.DisplayLanguage, enc.startStatus);
-            querySelectorSafe(encLabel, '.endStatus').innerText =
+              querySelectorSafe(encLabel, '.endStatus').innerText =
               lookupEndStatus(options.DisplayLanguage, enc.endStatus);
-            querySelectorSafe(encLabel, '.lineCount').innerText = enc.logLines.length.toString();
-            if (promise) {
-              void promise.then(() => {
+              querySelectorSafe(encLabel, '.lineCount').innerText = enc.logLines.length.toString();
+              if (promise) {
+                void promise.then(() => {
+                  promise = persistor.persistEncounter(enc);
+                });
+              } else {
                 promise = persistor.persistEncounter(enc);
-              });
-            } else {
-              promise = persistor.persistEncounter(enc);
-            }
-          }
-          break;
-        case 'done':
-          void Promise.all([promise]).then(() => {
-            encounterTab.refresh();
-            doneButton.disabled = false;
-            let seconds = 5;
-            doneButtonTimeout.innerText = ` (${seconds})`;
-            const interval = window.setInterval(() => {
-              --seconds;
-              doneButtonTimeout.innerText = ` (${seconds})`;
-              if (seconds === 0) {
-                window.clearInterval(interval);
-                hideModal('.importProgressModal');
               }
-            }, 1000);
-          });
-          break;
+            }
+            break;
+          case 'done':
+            void Promise.all([promise]).then(() => {
+              encounterTab.refresh();
+              doneButton.disabled = false;
+              let seconds = 5;
+              doneButtonTimeout.innerText = ` (${seconds})`;
+              const interval = window.setInterval(() => {
+                --seconds;
+                doneButtonTimeout.innerText = ` (${seconds})`;
+                if (seconds === 0) {
+                  window.clearInterval(interval);
+                  hideModal('.importProgressModal');
+                }
+              }, 1000);
+            });
+            break;
         }
       };
       void file.arrayBuffer().then((b) => {

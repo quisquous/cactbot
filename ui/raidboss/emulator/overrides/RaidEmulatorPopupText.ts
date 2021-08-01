@@ -34,8 +34,8 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   audioDebugTextDuration: number;
 
   constructor(options: RaidbossOptions,
-      timelineLoader: TimelineLoader,
-      raidbossFileData: RaidbossFileData) {
+    timelineLoader: TimelineLoader,
+    raidbossFileData: RaidbossFileData) {
     super(options, timelineLoader, raidbossFileData);
     const popupElem = document.querySelector('.popup-text-container-outer');
     if (!(popupElem instanceof HTMLElement))
@@ -180,11 +180,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   }
 
   override _createTextFor(
-      triggerHelper: TriggerHelper,
-      text: string,
-      textType: Text,
-      _lowerTextKey: TextText,
-      duration: number): void {
+    triggerHelper: TriggerHelper,
+    text: string,
+    textType: Text,
+    _lowerTextKey: TextText,
+    duration: number): void {
     const textElementClass = textType + '-text';
     const e = this._makeTextElement(triggerHelper, text, textElementClass);
     this.addDisplayText(e, this.emulatedOffset + (duration * 1000));
@@ -224,8 +224,8 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   }
 
   override _makeTextElement(triggerHelper: TriggerHelper | undefined,
-      text: string,
-      className: string): HTMLElement {
+    text: string,
+    className: string): HTMLElement {
     const $ret = this.$textElementTemplate.cloneNode(true);
     if (!($ret instanceof HTMLElement))
       throw new UnreachableCode();

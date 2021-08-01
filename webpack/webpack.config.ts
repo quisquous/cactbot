@@ -14,11 +14,11 @@ interface Configuration extends WebpackConfiguration {
 
 
 export default (
-    { cactbotModules, cactbotChunks, cactbotHtmlChunksMap }: {
-      cactbotModules: { [module: string]: string };
-      cactbotChunks: { [module: string]: string };
-      cactbotHtmlChunksMap: { [html: string]: HtmlWebpackPlugin.Options };
-    },
+  { cactbotModules, cactbotChunks, cactbotHtmlChunksMap }: {
+    cactbotModules: { [module: string]: string };
+    cactbotChunks: { [module: string]: string };
+    cactbotHtmlChunksMap: { [html: string]: HtmlWebpackPlugin.Options };
+  },
 ): Configuration => {
   const entries: { [module: string]: string } = {};
   Object.entries(cactbotModules).forEach(([key, module]) => {

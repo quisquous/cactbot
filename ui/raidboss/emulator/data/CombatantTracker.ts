@@ -44,15 +44,15 @@ export default class CombatantTracker {
     for (const id in this.initialStates) {
       const state = this.initialStates[id] ?? {};
       this.combatants[id]?.pushState(this.firstTimestamp, new CombatantState(
-          Number(state.posX),
-          Number(state.posY),
-          Number(state.posZ),
-          Number(state.heading),
-          state.targetable ?? false,
-          Number(state.hp),
-          Number(state.maxHp),
-          Number(state.mp),
-          Number(state.maxMp),
+        Number(state.posX),
+        Number(state.posY),
+        Number(state.posZ),
+        Number(state.heading),
+        state.targetable ?? false,
+        Number(state.hp),
+        Number(state.maxHp),
+        Number(state.mp),
+        Number(state.maxMp),
       ));
     }
 

@@ -20,7 +20,7 @@ type PlayerChangedFunc = (e: PlayerChangedDetail) => void;
 
 // @TODO: Swap the order of these arguments, make playerName optional instead
 export const addPlayerChangedOverrideListener = (func: PlayerChangedFunc,
-    playerName?: string): void => {
+  playerName?: string): void => {
   if (!func)
     return;
 

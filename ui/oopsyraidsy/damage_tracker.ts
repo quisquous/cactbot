@@ -57,7 +57,7 @@ export class DamageTracker {
   private contentType = 0;
 
   constructor(private options: OopsyOptions, private collector: MistakeCollector,
-      private dataFiles: OopsyFileData) {
+    private dataFiles: OopsyFileData) {
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
@@ -231,7 +231,7 @@ export class DamageTracker {
     }
 
     const ValueOrFunction = (f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
-        matches: Matches) => {
+      matches: Matches) => {
       return (typeof f === 'function') ? f(this.data, matches) : f;
     };
 

@@ -33,9 +33,9 @@ type Perspectives = { [id: string]: Perspective };
 export default class AnalyzedEncounter extends EventBus {
   perspectives: Perspectives = {};
   constructor(
-      public options: RaidbossOptions,
-      public encounter: Encounter,
-      public emulator: RaidEmulator) {
+    public options: RaidbossOptions,
+    public encounter: Encounter,
+    public emulator: RaidEmulator) {
     super();
   }
 
@@ -69,9 +69,9 @@ export default class AnalyzedEncounter extends EventBus {
   }
 
   updateState(
-      combatant: Combatant,
-      timestamp: number,
-      popupText: PopupTextAnalysis | RaidEmulatorPopupText): void {
+    combatant: Combatant,
+    timestamp: number,
+    popupText: PopupTextAnalysis | RaidEmulatorPopupText): void {
     const job = combatant.job;
     if (!job)
       throw new UnreachableCode();
@@ -136,7 +136,7 @@ export default class AnalyzedEncounter extends EventBus {
     timelineController.bindTo(this.emulator);
 
     const popupText = new PopupTextAnalysis(
-        this.options, new TimelineLoader(timelineController), raidbossFileData);
+      this.options, new TimelineLoader(timelineController), raidbossFileData);
 
     const generator = new PopupTextGenerator(popupText);
     timelineUI.SetPopupTextInterface(generator);
@@ -158,9 +158,9 @@ export default class AnalyzedEncounter extends EventBus {
         });
         resolver.triggerHelper =
           popupText._onTriggerInternalGetHelper(
-              trigger,
-              matches?.groups ?? {},
-              currentLine?.timestamp);
+            trigger,
+            matches?.groups ?? {},
+            currentLine?.timestamp);
         popupText.triggerResolvers.push(resolver);
 
         if (!currentLine)
@@ -173,7 +173,7 @@ export default class AnalyzedEncounter extends EventBus {
           delete resolver.triggerHelper?.resolver;
           if (popupText.callback) {
             popupText.callback(currentLine, resolver.triggerHelper,
-                resolver.status, popupText.getData());
+              resolver.status, popupText.getData());
           }
         });
       };

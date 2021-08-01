@@ -47,7 +47,7 @@ const floorTimeToStartOfWeather = (timeMs: number) => {
 };
 
 export const findNextWeather = (timeMs: number, zoneId: number, searchWeather: string,
-    maxTimeMs?: number): number | undefined => {
+  maxTimeMs?: number): number | undefined => {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
@@ -59,7 +59,7 @@ export const findNextWeather = (timeMs: number, zoneId: number, searchWeather: s
 };
 
 export const findNextWeatherNot = (timeMs: number, zoneId: number, searchWeather: string,
-    maxTimeMs?: number): number | undefined => {
+  maxTimeMs?: number): number | undefined => {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {

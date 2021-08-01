@@ -98,7 +98,7 @@ class UserConfig {
   }
 
   registerOptions(overlayName: string, optionTemplate: OptionsTemplate,
-      userFileCallback?: UserFileCallback) {
+    userFileCallback?: UserFileCallback) {
     this.optionTemplates[overlayName] = optionTemplate;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
@@ -269,9 +269,9 @@ class UserConfig {
       // any userOptions saved, as it sets up the defaults.
       this.savedConfig = (await readOptions)?.data ?? {};
       this.processOptions(
-          options,
-          this.savedConfig[overlayName] ?? {},
-          this.optionTemplates[overlayName],
+        options,
+        this.savedConfig[overlayName] ?? {},
+        this.optionTemplates[overlayName],
       );
 
       // If the overlay has a "Debug" setting, set to true via the config tool,

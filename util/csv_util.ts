@@ -83,7 +83,7 @@ export const readCsvContent =
 
 // inputs[0] is the key column for the returned map
 export const makeMap: GetTableFunc = async (
-    contents: string, inputs: (string | number)[], _outputs?: (string | number)[],
+  contents: string, inputs: (string | number)[], _outputs?: (string | number)[],
 ) => {
   const { keys, rows } = await readCsvContent(contents);
 
@@ -105,7 +105,7 @@ export const makeMap: GetTableFunc = async (
 };
 
 const getRemoteTable = async (
-    url: string, inputs: (string | number)[], outputs?: string[],
+  url: string, inputs: (string | number)[], outputs?: string[],
 ) => {
   const response = await fetch(url);
   const contents = await response.text();
@@ -113,21 +113,21 @@ const getRemoteTable = async (
 };
 
 export const getIntlTable: GetTableFunc = async (
-    table: string, inputs: (string | number)[], outputs?: string[],
+  table: string, inputs: (string | number)[], outputs?: string[],
 ) => {
   const url = `${baseGithub}${intlGithub}${table}.csv`;
   return getRemoteTable(url, inputs, outputs);
 };
 
 export const getKoTable: GetTableFunc = (
-    table: string, inputs: (string | number)[], outputs?: string[],
+  table: string, inputs: (string | number)[], outputs?: string[],
 ) => {
   const url = `${baseGithub}${koGithub}${table}.csv`;
   return getRemoteTable(url, inputs, outputs);
 };
 
 export const getCnTable: GetTableFunc = (
-    table: string, inputs: (string | number)[], outputs?: string[],
+  table: string, inputs: (string | number)[], outputs?: string[],
 ) => {
   const url = `${baseGithub}${cnGithub}${table}.csv`;
   return getRemoteTable(url, inputs, outputs);
@@ -142,10 +142,10 @@ export const getLocaleTable: {
     contents: string, locale: Lang, inputs: (string | number)[], outputs: [key: K, ...indices: T[]],
   ): Promise<Table<K, T>>;
 } = async (
-    table: string,
-    locale: Lang,
-    inputs: (string | number)[],
-    outputs?: [key: string, ...indices: (string | number)[]],
+  table: string,
+  locale: Lang,
+  inputs: (string | number)[],
+  outputs?: [key: string, ...indices: (string | number)[]],
 ): Promise<Table<string, string | number>> => {
   if (locale === 'cn')
     return getCnTable(table, inputs, outputs);

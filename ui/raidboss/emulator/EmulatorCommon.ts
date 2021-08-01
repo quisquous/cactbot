@@ -172,7 +172,7 @@ export default class EmulatorCommon {
   }
 
   static doesLineMatch<T extends TriggerTypes>(line: string,
-      regexes: Record<Lang, RegExp> | RegExp | CactbotBaseRegExp<T>):
+    regexes: Record<Lang, RegExp> | RegExp | CactbotBaseRegExp<T>):
       RegExpExecArray | CactbotRegExpExecArray<T> | null {
     if (regexes instanceof RegExp)
       return regexes.exec(line);

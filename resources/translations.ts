@@ -137,18 +137,18 @@ class RegexSet {
   }
 
   buildLocaleRegexes(
-      locales: typeof localeLines,
-      builder: (s: string) => CactbotBaseRegExp<'GameLog'> | RegExp,
+    locales: typeof localeLines,
+    builder: (s: string) => CactbotBaseRegExp<'GameLog'> | RegExp,
   ): LocaleRegexesObj {
     return Object.fromEntries(
-        Object
-          .entries(locales)
-          .map(([key, lines]) => [key, this.buildLocaleRegex(lines, builder)]),
+      Object
+        .entries(locales)
+        .map(([key, lines]) => [key, this.buildLocaleRegex(lines, builder)]),
     ) as LocaleRegexesObj;
   }
 
   buildLocaleRegex(lines: LocaleLine,
-      builder: (s: string) => CactbotBaseRegExp<'GameLog'> | RegExp,
+    builder: (s: string) => CactbotBaseRegExp<'GameLog'> | RegExp,
   ): Record<Lang, CactbotBaseRegExp<'GameLog'> | RegExp> {
     const regexEn = builder(lines.en);
     return {

@@ -95,12 +95,12 @@ const triggerSet: TriggerSet<Data> = {
         delete data.limitBreak;
 
         switch (num) {
-        case 1:
-          return output.limitBreak1!();
-        case 2:
-          return output.limitBreak2!();
-        case 3:
-          return output.limitBreak3!();
+          case 1:
+            return output.limitBreak1!();
+          case 2:
+            return output.limitBreak2!();
+          case 3:
+            return output.limitBreak3!();
         }
       },
       outputStrings: {

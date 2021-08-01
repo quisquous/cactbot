@@ -465,15 +465,15 @@ class RaidbossConfigurator {
 
         if (trig.isMissingId) {
           addTriggerDetail(triggerDetails,
-              this.base.translate(kMiscTranslations.warning),
-              this.base.translate(kMiscTranslations.missingId));
+            this.base.translate(kMiscTranslations.warning),
+            this.base.translate(kMiscTranslations.missingId));
         }
         if (trig.overriddenByFile) {
           const baseText = this.base.translate(kMiscTranslations.overriddenByFile);
           const detailText = baseText.replace('${file}', trig.overriddenByFile);
           addTriggerDetail(triggerDetails,
-              this.base.translate(kMiscTranslations.warning),
-              detailText);
+            this.base.translate(kMiscTranslations.warning),
+            detailText);
         }
 
         // Append some details about the trigger so it's more obvious what it is.
@@ -497,9 +497,9 @@ class RaidbossConfigurator {
           }
 
           addTriggerDetail(triggerDetails,
-              this.base.translate(kDetailKeys[detailKey].label),
-              detailText,
-              detailCls);
+            this.base.translate(kDetailKeys[detailKey].label),
+            detailText,
+            detailCls);
         }
 
         if (!canBeConfigured(trig))

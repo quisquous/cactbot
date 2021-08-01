@@ -60,10 +60,10 @@ const customMapping = {
 
 
 const printError = (
-    header: string,
-    what: string,
-    map: Record<string | number, unknown>,
-    key: string,
+  header: string,
+  what: string,
+  map: Record<string | number, unknown>,
+  key: string,
 ) =>
   console.error(`${header} ${what}: ${JSON.stringify(map[key])}`);
 
@@ -126,11 +126,11 @@ export default async (): Promise<void> => {
 
   const writer = new CoinachWriter(null, true);
   void writer.writeTypeScript(
-      path.join('resources', effectsOutputFile),
-      'gen_effect_id.ts',
-      null,
-      null,
-      true,
-      makeEffectMap(table),
+    path.join('resources', effectsOutputFile),
+    'gen_effect_id.ts',
+    null,
+    null,
+    true,
+    makeEffectMap(table),
   );
 };

@@ -115,7 +115,7 @@ const getSource = (matches: TargetedMatches) => {
 
 // FIXME: make this work for any number of pairs of params
 const combineFuncs = function(text1: SevText, func1: TargetedFunc,
-    text2: SevText, func2: TargetedFunc) {
+  text2: SevText, func2: TargetedFunc) {
   const obj: TargetedResponseOutput = {};
 
   if (text1 !== text2) {
@@ -186,7 +186,7 @@ export const Responses = {
     };
 
     const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
-        defaultInfoText(otherSev), otherFunc);
+      defaultInfoText(otherSev), otherFunc);
     return (_data: unknown, _matches: unknown, output: Output): TargetedResponseOutput => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
@@ -218,7 +218,7 @@ export const Responses = {
     };
 
     const combined = combineFuncs(defaultAlarmText(swapSev), tankSwapFunc,
-        defaultAlertText(busterSev), busterFunc);
+      defaultAlertText(busterSev), busterFunc);
     return (_data: Data, _matches: unknown, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
@@ -298,7 +298,7 @@ export const Responses = {
         return output.knockbackOnTarget?.({ player: data.ShortName(target) });
     };
     const combined = combineFuncs(defaultInfoText(targetSev), targetFunc,
-        defaultInfoText(otherSev), otherFunc);
+      defaultInfoText(otherSev), otherFunc);
     return (_data: Data, _matches: unknown, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
@@ -417,7 +417,7 @@ export const Responses = {
     };
 
     const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
-        defaultInfoText(otherSev), otherFunc);
+      defaultInfoText(otherSev), otherFunc);
     return (_data: Data, _matches: unknown, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
@@ -448,7 +448,7 @@ export const Responses = {
   moveAround: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveAround),
   breakChains: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.breakChains),
   moveChainsTogether: (sev?: Severity) => staticResponse(defaultInfoText(sev),
-      Outputs.moveChainsTogether),
+    Outputs.moveChainsTogether),
   earthshaker: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {

@@ -26,7 +26,7 @@ export default class RaidEmulatorOverlayApiHook {
   }
 
   _getCombatantsOverride(
-      msg: OverlayHandlerRequests['getCombatants'],
+    msg: OverlayHandlerRequests['getCombatants'],
   ): OverlayHandlerResponses['getCombatants'] {
     return new Promise<{ combatants: PluginCombatantState[] }>((res) => {
       const curEnc = this.emulator.currentEncounter;

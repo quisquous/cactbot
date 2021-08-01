@@ -35,10 +35,10 @@ export default class LogRepository {
   }
 
   resolveName(
-      id: string,
-      name: string,
-      fallbackId: string | null = null,
-      fallbackName: string | null = null): string {
+    id: string,
+    name: string,
+    fallbackId: string | null = null,
+    fallbackName: string | null = null): string {
     let ret = name;
 
     if (fallbackId !== null) {

@@ -106,9 +106,9 @@ const parseHelper = <T extends TriggerTypes>(
 
     if (fieldName) {
       str += Regexes.maybeCapture(
-          // more accurate type instead of `as` cast
-          // maybe this function needs a refactoring
-          capture, fieldName, (params as { [s: string]: string })[fieldName], fieldValue) +
+        // more accurate type instead of `as` cast
+        // maybe this function needs a refactoring
+        capture, fieldName, (params as { [s: string]: string })[fieldName], fieldValue) +
         separator;
     } else {
       str += fieldValue + separator;
@@ -230,7 +230,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
    */
   static addedCombatantFull(
-      params?: NetParams['AddedCombatant'],
+    params?: NetParams['AddedCombatant'],
   ): CactbotBaseRegExp<'AddedCombatant'> {
     return parseHelper(params, 'addedCombatantFull', {
       0: { field: 'type', value: '03' },
@@ -257,7 +257,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
    */
   static removingCombatant(
-      params?: NetParams['RemovedCombatant'],
+    params?: NetParams['RemovedCombatant'],
   ): CactbotBaseRegExp<'RemovedCombatant'> {
     return parseHelper(params, 'removingCombatant', {
       0: { field: 'type', value: '04' },
@@ -293,7 +293,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
    */
   static statusEffectExplicit(
-      params?: NetParams['StatusEffect'],
+    params?: NetParams['StatusEffect'],
   ): CactbotBaseRegExp<'StatusEffect'> {
     return parseHelper(params, 'statusEffectExplicit', {
       0: { field: 'type', value: '38' },
