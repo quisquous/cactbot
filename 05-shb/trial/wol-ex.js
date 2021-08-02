@@ -662,7 +662,8 @@ Options.Triggers.push({
             alertText: (data, matches, output) => {
                 if (matches.target === data.me)
                     return output.stackOnYou?.();
-                return output.stackOnTarget?.({ player: data.ShortName(matches.target) });
+                if (!data.deluge)
+                    return output.stackOnTarget?.({ player: data.ShortName(matches.target) });
             },
             outputStrings: {
                 stackOnYou: Outputs.stackOnYou,
