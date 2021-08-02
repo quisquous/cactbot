@@ -1,11 +1,11 @@
 import EmulatorCommon from '../../EmulatorCommon';
 
-import LineEvent, { LineEventAbility } from './LineEvent';
+import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
 const fields = {
-  abilityId: 2,
-  abilityName: 3,
+  effectId: 2,
+  effect: 3,
   durationString: 4,
   id: 5,
   name: 6,
@@ -19,14 +19,14 @@ const fields = {
 // Gain status effect event
 // Deliberately don't flag this as LineEventSource or LineEventTarget
 // because 0x1A line values aren't accurate
-export class LineEvent0x1A extends LineEvent implements LineEventAbility {
+export class LineEvent0x1A extends LineEvent {
   public readonly resolvedName: string;
   public readonly resolvedTargetName: string;
   public readonly fallbackResolvedTargetName: string;
   public override readonly properCaseConvertedLine: string;
 
-  public readonly abilityId: number;
-  public readonly abilityName: string;
+  public readonly effectId: number;
+  public readonly effect: string;
   public readonly durationFloat: number;
   public readonly durationString: string;
   public readonly id: string;
@@ -36,13 +36,12 @@ export class LineEvent0x1A extends LineEvent implements LineEventAbility {
   public readonly stacks: number;
   public readonly targetHp: number;
   public readonly hp: number;
-  public readonly isAbility = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.abilityId = parseInt(parts[fields.abilityId]?.toUpperCase() ?? '');
-    this.abilityName = parts[fields.abilityName] ?? '';
+    this.effectId = parseInt(parts[fields.effectId]?.toUpperCase() ?? '');
+    this.effect = parts[fields.effect] ?? '';
     this.durationString = parts[fields.durationString] ?? '';
     this.durationFloat = parseFloat(this.durationString);
     this.id = parts[fields.id]?.toUpperCase() ?? '';
@@ -75,18 +74,18 @@ export class LineEvent0x1A extends LineEvent implements LineEventAbility {
 
     let stackCountText = '';
     if (this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.abilityId))
+      LineEvent0x1A.showStackCountFor.includes(this.effectId))
       stackCountText = ' (' + this.stacks.toString() + ')';
 
     this.convertedLine = this.prefix() + this.targetId +
       ':' + this.targetName +
-      ' gains the effect of ' + this.abilityName +
+      ' gains the effect of ' + this.effect +
       ' from ' + this.fallbackResolvedTargetName +
       ' for ' + this.durationString + ' Seconds.' + stackCountText;
 
     this.properCaseConvertedLine = this.prefix() + this.targetId +
       ':' + EmulatorCommon.properCase(this.targetName) +
-      ' gains the effect of ' + this.abilityName +
+      ' gains the effect of ' + this.effect +
       ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
       ' for ' + this.durationString + ' Seconds.' + stackCountText;
   }
