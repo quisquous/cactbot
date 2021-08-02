@@ -3,9 +3,7 @@ import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import { BaseOptions } from '../../types/data';
 import { LooseOopsyTriggerSet } from '../../types/oopsy';
-// TODO: do we need a different name for this?
-// TODO: Should zone_id.ts export this type??
-import { ZoneId as ZoneIdType } from '../../types/trigger';
+import { ZoneIdType } from '../../types/trigger';
 
 import { abilityNameMap } from './ability_name_map';
 

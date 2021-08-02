@@ -23,7 +23,7 @@ import {
   OopsyTrigger,
   OopsyTriggerField,
 } from '../../types/oopsy';
-import { ZoneId as ZoneIdType } from '../../types/trigger';
+import { ZoneIdType } from '../../types/trigger';
 
 import { OopsyFileData } from './data/oopsy_manifest.txt';
 import { MistakeCollector } from './mistake_collector';
