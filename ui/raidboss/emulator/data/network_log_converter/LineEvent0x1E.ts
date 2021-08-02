@@ -14,18 +14,18 @@ export class LineEvent0x1E extends LineEvent0x1A {
 
     let stackCountText = '';
     if (this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.abilityId))
+      LineEvent0x1A.showStackCountFor.includes(this.effectId))
       stackCountText = ' (' + this.stacks.toString() + ')';
 
     this.convertedLine = this.prefix() + this.targetId +
       ':' + this.targetName +
-      ' loses the effect of ' + this.abilityName +
+      ' loses the effect of ' + this.effect +
       ' from ' + this.fallbackResolvedTargetName +
       ' for ' + this.durationString + ' Seconds.' + stackCountText;
 
     this.properCaseConvertedLine = this.prefix() + this.targetId +
       ':' + EmulatorCommon.properCase(this.targetName) +
-      ' loses the effect of ' + this.abilityName +
+      ' loses the effect of ' + this.effect +
       ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
       ' for ' + this.durationString + ' Seconds.' + stackCountText;
   }
