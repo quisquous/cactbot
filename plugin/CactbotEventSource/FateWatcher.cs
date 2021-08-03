@@ -41,43 +41,44 @@ namespace Cactbot {
       public int size;
       public int opcode;
     }
-    //
-    // CE Opcode History
-    // Intl
-    // v5.35            0x299
-    // v5.35h           0x143
-    // v5.40            0x3c1
-    // v5.40h           0x31b
-    // v5.41            0x31B
-    // v5.45            0x3e1
-    // v5.45h           0x1f5
-    // v5.5             0x2e7
-    // v5.5h            0x160
-    // v5.55            0x1ac
-    // v5.55h           0x248
-    // v5.57            0x3ce
-    // v5.58            0x10D
-    //
-    // CN
-    // v5.35            0x144
-    // v5.40            0x129
-    // v5.41            0x0120
-    // v5.45            0x009e
-    //
-    // KR
-    // v5.35            0x347
-    // v5.4             0x1d1
-    // v5.41            0x341
-    // v5.45            0x1c6
+        //
+        // CE Opcode History
+        // Intl
+        // v5.35            0x299
+        // v5.35h           0x143
+        // v5.40            0x3c1
+        // v5.40h           0x31b
+        // v5.41            0x31B
+        // v5.45            0x3e1
+        // v5.45h           0x1f5
+        // v5.5             0x2e7
+        // v5.5h            0x160
+        // v5.55            0x1ac
+        // v5.55h           0x248
+        // v5.57            0x3ce
+        // v5.58            0x10D
+        //
+        // CN
+        // v5.35            0x144
+        // v5.40            0x129
+        // v5.41            0x0120
+        // v5.45            0x009e
+        // v5.50            0x03be
+        //
+        // KR
+        // v5.35            0x347
+        // v5.4             0x1d1
+        // v5.41            0x341
+        // v5.45            0x1c6
 
-    private static readonly CEDirectorOPCodes cedirector_ko = new CEDirectorOPCodes(
+        private static readonly CEDirectorOPCodes cedirector_ko = new CEDirectorOPCodes(
       0x30,
       0x1c6
     );
 
     private static readonly CEDirectorOPCodes cedirector_cn = new CEDirectorOPCodes(
       0x30,
-      0x009e
+      0x03be
     );
 
     private static readonly CEDirectorOPCodes cedirector_intl = new CEDirectorOPCodes(

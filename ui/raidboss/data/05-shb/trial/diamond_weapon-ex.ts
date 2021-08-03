@@ -40,6 +40,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Diamond Rain',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA7', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA7', capture: false }),
@@ -59,6 +60,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Adamant Purge West Diamond Rain',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5F9B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5F9B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9B', capture: false }),
@@ -66,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go east -> aoe',
+          cn: 'go 东 -> aoe',
           de: 'Geh nach Osten -> AoE',
           fr: 'Allez à l\'est -> AoE',
           ja: '東へ -> AoE',
@@ -78,6 +81,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Adamant Purge East Diamond Rain',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5F9A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5F9A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9A', capture: false }),
@@ -85,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go west -> aoe',
+          cn: 'go 西 -> aoe',
           de: 'Geh nach Westen -> AoE',
           fr: 'Allez à l\'ouest -> AoE',
           ja: '西へ -> AoE',
@@ -97,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Adamant Purge West Diamond Flash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA5', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA5', capture: false }),
@@ -104,6 +110,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go east -> stack',
+          cn: 'go 东 -> stack',
           de: 'Geh nach Osten -> Sammeln',
           fr: 'Allez à l\'est -> Packez-vous',
           ja: '東へ -> 頭割り',
@@ -116,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Adamant Purge East Diamond Flash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA4', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA4', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA4', capture: false }),
@@ -123,6 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go west -> stack',
+          cn: 'go 西 -> stack',
           de: 'Geh nach Westen -> Sammeln',
           fr: 'Allez à l\'ouest -> Packez-vous',
           ja: '西へ -> 頭割り',
@@ -135,6 +144,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Adamant Purge West Homing Laser',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA3', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA3', capture: false }),
@@ -142,6 +152,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go east -> spread',
+          cn: 'go 东 -> spread',
           de: 'Geh nach Osten -> Verteilen',
           fr: 'Allez à l\'est -> Dispersez-vous',
           ja: '東へ -> 散開',
@@ -154,6 +165,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Adamant Purge East Homing Laser',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA2', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA2', capture: false }),
@@ -161,6 +173,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go west -> spread',
+          cn: 'go 西 -> spread',
           de: 'Geh nach Westen -> Verteilen',
           fr: 'Allez à l\'ouest -> Dispersez-vous',
           ja: '西へ -> 散開',
@@ -174,6 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Photon Burst',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA8', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA8', capture: false }),
@@ -182,6 +196,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Flare',
+          cn: '核爆',
           de: 'Flare',
           fr: 'Brasier',
           ja: 'フレア',
@@ -195,6 +210,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Code Chi-Xi-Stigma',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAD', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAD', capture: false }),
@@ -205,6 +221,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Outrage',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBC', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FBC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FBC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FBC', capture: false }),
@@ -215,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Auri Doomstead',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBD' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FBD' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FBD' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBD' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FBD' }),
@@ -226,6 +244,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx P2 Zig-Zag',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAF', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAF', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAF', capture: false }),
@@ -233,6 +252,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Zig-Zag',
+          cn: 'Dodge Zig-Zag',
           de: 'Zig-Zag ausweichen',
           fr: 'Esquivez le Zig-Zag',
           ja: 'ジグザグに避ける',
@@ -246,6 +266,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx P2 Zig-Zag Jump',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB2', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FB2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB2', capture: false }),
@@ -253,6 +274,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge East/West',
+          cn: 'Dodge 东/西',
           de: 'Orb vom Osten/Westen ausweichen',
           fr: 'Esquivez Est/Ouest',
           ja: '東/西へ',
@@ -266,6 +288,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx P2 North/South Jump',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB5', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FB5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB5', capture: false }),
@@ -273,6 +296,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Towards/Away',
+          cn: 'Dodge Towards/Away',
           de: 'Hin oder weg ausweichen',
           fr: 'Rapprochez-vous/Éloignez-vous',
           ja: '前/後ろへ',
@@ -286,6 +310,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx P2 Vertical Cleave',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB7', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FB7', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FB7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB7', capture: false }),
@@ -293,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diagonal Knockback',
+          cn: 'Diagonal Knockback',
           de: 'Diagonaler Rückstoß',
           fr: 'Poussée diagonale',
           ja: '斜めにノックバック',
@@ -305,6 +331,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx P2 Articulated Bits',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FC1', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FC1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FC1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FC1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FC1', capture: false }),
@@ -313,6 +340,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Bits',
+          cn: 'Dodge Bits',
           de: 'Satelliten ausweichen',
           fr: 'Esquivez les bras',
           ja: 'ビームを避ける',
@@ -357,6 +385,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx P3 Articulated Bits',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA9', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA9', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FA9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA9', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA9', capture: false }),
@@ -365,6 +394,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Bits',
+          cn: 'Dodge Bits',
           de: 'Satelliten ausweichen',
           fr: 'Esquivez les bras',
           ja: 'ビームを避ける',
@@ -377,6 +407,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Diamond Shrapnel',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAC', capture: false }),
@@ -384,6 +415,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Puddles',
+          cn: 'Bait Puddles',
           de: 'Flächen ködern',
           fr: 'Placez les zones au sol',
           ja: 'AoEを誘導',
@@ -396,6 +428,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DiamondEx Burst',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Diamant-Waffe', id: '5FAC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAC', capture: false }),
@@ -404,6 +437,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Towers',
+          cn: 'Towers',
           de: 'Türme',
           fr: 'Tours',
           ja: '塔を踏む',
@@ -497,6 +531,34 @@ const triggerSet: TriggerSet<Data> = {
         'Outrage': 'アウトレイジ',
         'Photon Burst': 'フォトンバースト',
         'Vertical Cleave': 'バーチカルクリーヴ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Articulated Bit': '飞手浮游炮',
+        'The Diamond Weapon': '钻石神兵',
+      },
+      'replaceText': {
+        'Adamant Purge': '装甲展开',
+        'Aetherial Bullet': '以太炮',
+        'Articulated Bits': '飞手浮游炮',
+        'Auri Arts': '敖龙技巧',
+        'Auri Cyclone': '敖龙旋风',
+        'Auri Doomstead': '敖龙厄运',
+        '(?<!Photon )Burst': '大爆炸',
+        'Claw Swipe': '利爪突进',
+        'Code Chi-Xi-Stigma': '代号666',
+        'Diamond Flash': '钻石闪光',
+        'Diamond Rain': '钻石雨',
+        'Diamond Shot': '钻石射击',
+        'Diamond Shrapnel': '钻石爆发ト',
+        'Flood Ray': '泛光射线イ',
+        'Homing Laser': '自控导弹',
+        'Outrage': '震怒',
+        'Photon Burst': '光子爆发',
+        'Vertical Cleave': '纵劈',
       },
     },
   ],
