@@ -6,7 +6,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.addCombatant.fields;
+const fields = logDefinitions.AddedCombatant.fields;
 
 // Added combatant event
 export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEventJobLevel {

@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkTether.fields;
+const fields = logDefinitions.Tether.fields;
 
 // Tether event
 export class LineEvent0x23 extends LineEvent {

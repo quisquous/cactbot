@@ -28,7 +28,7 @@ export type LogDefinitionMap = { [name: string]: LogDefinition };
 
 // TODO: build NetRegexes out of this, or somehow deduplicate.
 const logDefinitions = {
-  gameLog: {
+  GameLog: {
     type: '00',
     name: 'GameLog',
     fields: {
@@ -59,7 +59,7 @@ const logDefinitions = {
       },
     },
   },
-  changeZone: {
+  ChangeZone: {
     type: '01',
     name: 'ChangeZone',
     fields: {
@@ -71,7 +71,7 @@ const logDefinitions = {
     lastInclude: true,
     canAnonymize: true,
   },
-  changePrimaryPlayer: {
+  ChangedPlayer: {
     type: '02',
     name: 'ChangePrimaryPlayer',
     fields: {
@@ -86,7 +86,7 @@ const logDefinitions = {
     lastInclude: true,
     canAnonymize: true,
   },
-  addCombatant: {
+  AddedCombatant: {
     type: '03',
     name: 'AddCombatant',
     fields: {
@@ -118,7 +118,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  removeCombatant: {
+  RemovedCombatant: {
     type: '04',
     name: 'RemoveCombatant',
     fields: {
@@ -147,26 +147,46 @@ const logDefinitions = {
   addBuff: {
     type: '05',
     name: 'AddBuff',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
   removeBuff: {
     type: '06',
     name: 'RemoveBuff',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
   flyingText: {
     type: '07',
     name: 'FlyingText',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
   outgoingAbility: {
     type: '08',
     name: 'OutgoingAbility',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
   incomingAbility: {
     type: '09',
     name: 'IncomingAbility',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
   partyList: {
@@ -256,7 +276,7 @@ const logDefinitions = {
     canAnonymize: true,
     lastInclude: true,
   },
-  playerStats: {
+  PlayerStats: {
     type: '12',
     name: 'PlayerStats',
     fields: {
@@ -285,9 +305,13 @@ const logDefinitions = {
   combatantHP: {
     type: '13',
     name: 'CombatantHP',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
-  networkStartsCasting: {
+  StartsUsing: {
     type: '20',
     name: 'NetworkStartsCasting',
     fields: {
@@ -312,7 +336,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkAbility: {
+  Ability: {
     type: '21',
     name: 'NetworkAbility',
     fields: {
@@ -425,7 +449,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkDeath: {
+  WasDefeated: {
     type: '25',
     name: 'NetworkDeath',
     fields: {
@@ -442,7 +466,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkBuff: {
+  GainsEffect: {
     type: '26',
     name: 'NetworkBuff',
     fields: {
@@ -465,7 +489,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkTargetIcon: {
+  HeadMarker: {
     type: '27',
     name: 'NetworkTargetIcon',
     fields: {
@@ -514,7 +538,7 @@ const logDefinitions = {
       5: null,
     },
   },
-  networkBuffRemove: {
+  LosesEffect: {
     type: '30',
     name: 'NetworkBuffRemove',
     fields: {
@@ -557,9 +581,13 @@ const logDefinitions = {
   networkWorld: {
     type: '32',
     name: 'NetworkWorld',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
-  network6d: {
+  ActorControl: {
     type: '33',
     name: 'Network6D',
     fields: {
@@ -574,7 +602,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkNameToggle: {
+  NameToggle: {
     type: '34',
     name: 'NetworkNameToggle',
     fields: {
@@ -592,7 +620,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkTether: {
+  Tether: {
     type: '35',
     name: 'NetworkTether',
     fields: {
@@ -648,7 +676,7 @@ const logDefinitions = {
     firstUnknownField: 22,
     canAnonymize: true,
   },
-  networkStatusEffects: {
+  StatusEffect: {
     type: '38',
     name: 'NetworkStatusEffects',
     fields: {
@@ -701,7 +729,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  map: {
+  Map: {
     type: '40',
     name: 'Map',
     fields: {
@@ -717,40 +745,68 @@ const logDefinitions = {
   parserInfo: {
     type: '249',
     name: 'ParserInfo',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     globalInclude: true,
     canAnonymize: true,
   },
   processInfo: {
     type: '250',
     name: 'ProcessInfo',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     globalInclude: true,
     canAnonymize: true,
   },
   debug: {
     type: '251',
     name: 'Debug',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     globalInclude: true,
     canAnonymize: false,
   },
   packetDump: {
     type: '252',
     name: 'PacketDump',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     canAnonymize: false,
   },
   version: {
     type: '253',
     name: 'Version',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     globalInclude: true,
     canAnonymize: true,
   },
   error: {
     type: '254',
     name: 'Error',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     canAnonymize: false,
   },
   timer: {
     type: '255',
     name: 'Timer',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
     isUnknown: true,
   },
 } as const;
@@ -758,5 +814,22 @@ const logDefinitions = {
 // Verify that this has the right type, but export `as const`.
 const assertLogDefinitions: LogDefinitionMap = logDefinitions;
 console.assert(assertLogDefinitions);
+
+export type LogDefinitions = typeof logDefinitions;
+export type LogDefinitionTypes = keyof LogDefinitions;
+
+// This type helper reverses the keys and values of a given type, e.g this:
+// {1: 'a'}
+// becomes this:
+// {a: 1}
+type Reverse<T extends { [f: string]: number }> = {
+  [P in T[keyof T]]: {
+    [K in keyof T]: T[K] extends P ? K : never;
+  }[keyof T];
+};
+
+export type LogDefinitionsReverse = {
+  [type in keyof LogDefinitions]: Reverse<LogDefinitions[type]['fields']>;
+};
 
 export default logDefinitions;

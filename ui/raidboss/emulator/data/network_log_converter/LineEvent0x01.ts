@@ -4,7 +4,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.changeZone.fields;
+const fields = logDefinitions.ChangeZone.fields;
 
 // Zone change event
 export class LineEvent0x01 extends LineEvent {

@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkNameToggle.fields;
+const fields = logDefinitions.NameToggle.fields;
 
 // Nameplate toggle
 export class LineEvent0x22 extends LineEvent implements LineEventSource {

@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.changePrimaryPlayer.fields;
+const fields = logDefinitions.ChangedPlayer.fields;
 
 // Player change event
 export class LineEvent0x02 extends LineEvent {

@@ -6,7 +6,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkStatusEffects.fields;
+const fields = logDefinitions.StatusEffect.fields;
 
 // Network status effect event
 export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEventJobLevel {

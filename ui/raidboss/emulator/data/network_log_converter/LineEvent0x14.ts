@@ -4,7 +4,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent, { LineEventAbility, LineEventSource, LineEventTarget } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkStartsCasting.fields;
+const fields = logDefinitions.StartsUsing.fields;
 
 // Shorten a few types so dprint doesn't complain when the line gets too long.
 type LESource = LineEventSource;

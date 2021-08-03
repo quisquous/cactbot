@@ -4,7 +4,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkDeath.fields;
+const fields = logDefinitions.WasDefeated.fields;
 
 // Combatant defeated event
 export class LineEvent0x19 extends LineEvent {
