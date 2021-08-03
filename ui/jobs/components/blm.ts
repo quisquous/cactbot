@@ -72,7 +72,7 @@ export default class BlmComponent extends BaseComponent<'BLM'> {
     }
   }
 
-  onJobDetailUpdate(jobDetail: JobDetail['BLM']): void {
+  override onJobDetailUpdate(jobDetail: JobDetail['BLM']): void {
     if (this.bars.umbralStacks !== jobDetail.umbralStacks) {
       this.bars.umbralStacks = jobDetail.umbralStacks;
       this.bars._updateMPTicker();
@@ -125,7 +125,7 @@ export default class BlmComponent extends BaseComponent<'BLM'> {
     }
   }
 
-  onUseAbility(action: string): void {
+  override onUseAbility(action: string): void {
     switch (action) {
       case kAbility.Thunder1:
       case kAbility.Thunder4:
@@ -145,7 +145,7 @@ export default class BlmComponent extends BaseComponent<'BLM'> {
     }
   }
 
-  onGainEffect(effectId: string, matches: NetMatches['GainsEffect']): void {
+  override onGainEffect(effectId: string, matches: NetMatches['GainsEffect']): void {
     switch (effectId) {
       case EffectId.Thundercloud:
         this.thunderProc.duration = parseFloat(matches.duration);
@@ -164,7 +164,7 @@ export default class BlmComponent extends BaseComponent<'BLM'> {
     }
   }
 
-  onLoseEffect(effectId: string): void {
+  override onLoseEffect(effectId: string): void {
     switch (effectId) {
       case EffectId.Thundercloud:
         this.thunderProc.duration = 0;
@@ -183,7 +183,7 @@ export default class BlmComponent extends BaseComponent<'BLM'> {
     }
   }
 
-  reset(): void {
+  override reset(): void {
     this.thunderDot.duration = 0;
     this.thunderProc.duration = 0;
     this.fireProc.duration = 0;

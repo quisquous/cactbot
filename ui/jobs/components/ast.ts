@@ -49,7 +49,7 @@ export default class AstComponent extends BaseComponent<'AST'> {
     });
   }
 
-  onJobDetailUpdate(jobDetail: JobDetail['AST']): void {
+  override onJobDetailUpdate(jobDetail: JobDetail['AST']): void {
     const card = jobDetail.heldCard;
     const seals = jobDetail.arcanums;
 
@@ -81,7 +81,7 @@ export default class AstComponent extends BaseComponent<'AST'> {
       sealParent.classList.remove('ready');
   }
 
-  onUseAbility(action: string): void {
+  override onUseAbility(action: string): void {
     switch (action) {
       case kAbility.Combust:
         this.combustBox.duration = 18;
@@ -105,7 +105,7 @@ export default class AstComponent extends BaseComponent<'AST'> {
     }
   }
 
-  onStatChange(stat: Required<Stats>): void {
+  override onStatChange(stat: Required<Stats>): void {
     this.combustBox.valuescale = stat.gcdSpell;
     this.combustBox.threshold = stat.gcdSpell + 1;
     this.drawBox.valuescale = stat.gcdSpell;
@@ -114,7 +114,7 @@ export default class AstComponent extends BaseComponent<'AST'> {
     this.lucidBox.threshold = stat.gcdSpell + 1;
   }
 
-  reset(): void {
+  override reset(): void {
     this.combustBox.duration = 0;
     this.drawBox.duration = 0;
     this.lucidBox.duration = 0;

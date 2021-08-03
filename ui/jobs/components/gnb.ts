@@ -53,7 +53,7 @@ export default class GnbComponent extends BaseComponent<'GNB'> {
     });
   }
 
-  onUseAbility(actionId: string): void {
+  override onUseAbility(actionId: string): void {
     switch (actionId) {
       case kAbility.NoMercy:
         this.noMercyBox.duration = 20;
@@ -93,7 +93,7 @@ export default class GnbComponent extends BaseComponent<'GNB'> {
     }
   }
 
-  onCombo(skill: string): void {
+  override onCombo(skill: string): void {
     this.comboTimer.duration = 0;
     this.cartridgeComboTimer.duration = 0;
     if (this.bars?.combo?.isFinalSkill)
@@ -102,7 +102,7 @@ export default class GnbComponent extends BaseComponent<'GNB'> {
       this.comboTimer.duration = 15;
   }
 
-  onJobDetailUpdate(jobDetail: JobDetail['GNB']): void {
+  override onJobDetailUpdate(jobDetail: JobDetail['GNB']): void {
     this.cartridgeBox.innerText = jobDetail.cartridges.toString();
     const parent = this.cartridgeBox.parentNode as HTMLElement;
     if (jobDetail.cartridges === 2)
@@ -111,7 +111,7 @@ export default class GnbComponent extends BaseComponent<'GNB'> {
       parent.classList.remove('full');
   }
 
-  onStatChange(stat: Required<Stats>): void {
+  override onStatChange(stat: Required<Stats>): void {
     this.gnashingFangBox.valuescale = stat.gcdSkill;
     this.gnashingFangBox.threshold = stat.gcdSkill * 3;
     this.noMercyBox.valuescale = stat.gcdSkill;
@@ -119,7 +119,7 @@ export default class GnbComponent extends BaseComponent<'GNB'> {
     this.bloodfestBox.threshold = stat.gcdSkill * 2 + 1;
   }
 
-  reset(): void {
+  override reset(): void {
     this.noMercyBox.duration = 0;
     this.noMercyBox.threshold = this.player.gcdSkill + 1;
     this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy');

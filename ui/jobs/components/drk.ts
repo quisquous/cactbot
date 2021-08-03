@@ -55,7 +55,7 @@ export default class DrkComponent extends BaseComponent<'DRK'> {
     });
   }
 
-  onCombo(skill: string): void {
+  override onCombo(skill: string): void {
     this.comboTimer.duration = 0;
     if (this.bars?.combo?.isFinalSkill)
       return;
@@ -63,7 +63,7 @@ export default class DrkComponent extends BaseComponent<'DRK'> {
       this.comboTimer.duration = 15;
   }
 
-  onJobDetailUpdate(jobDetail: JobDetail['DRK']): void {
+  override onJobDetailUpdate(jobDetail: JobDetail['DRK']): void {
     const blood = jobDetail.blood;
     if (this.bloodBox.innerText !== blood.toString()) {
       this.bloodBox.innerText = blood.toString();
@@ -86,7 +86,7 @@ export default class DrkComponent extends BaseComponent<'DRK'> {
       this.darksideBox.duration = seconds;
   }
 
-  onUseAbility(actionId: string): void {
+  override onUseAbility(actionId: string): void {
     switch (actionId) {
       case kAbility.BloodWeapon:
         this.bloodWeapon.duration = 10;
@@ -138,7 +138,7 @@ export default class DrkComponent extends BaseComponent<'DRK'> {
     }
   }
 
-  reset(): void {
+  override reset(): void {
     this.comboTimer.duration = 0;
     this.bloodWeapon.duration = 0;
     this.bloodWeapon.threshold = this.player.gcdSkill * 2;
