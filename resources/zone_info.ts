@@ -7280,6 +7280,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '钻石神兵捕获作战',
       'de': 'Diamantblitz - Entfesselung',
       'en': 'The Cloud Deck',
       'fr': 'Le Tillac des Cirrus',
@@ -7294,6 +7295,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '钻石神兵狂想作战',
       'de': 'Diamantblitz - Trauma',
       'en': 'The Cloud Deck (Extreme)',
       'fr': 'Le Tillac des Cirrus (extrême)',
@@ -7356,6 +7358,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '希望之炮台：“塔”',
       'de': 'Der Turm, Paradigmenbrecher',
       'en': 'The Tower at Paradigm\'s Breach',
       'fr': 'La tour de la Contingence',
@@ -7385,6 +7388,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '利维亚桑幻巧战',
       'de': 'Traumprüfung - Leviathan',
       'en': 'The <Emphasis>Whorleater</Emphasis> (Unreal)',
       'fr': 'Le Briseur de marées (irréel)',
