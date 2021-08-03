@@ -53,7 +53,7 @@ export class BaseComponent<T extends Job> {
     return this.bars.addTimerBar(options);
   }
 
-  // In order to let inherited component work with full type definitions,
+  // In order to provide full type definitions for inherited components work,
   // we need to disable these rules.
   /* eslint-disable @typescript-eslint/no-unused-vars */
   /* eslint-disable @typescript-eslint/no-empty-function */
