@@ -1,10 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  valueHex: 2,
-  bars: 3,
-} as const;
+const fields = logDefinitions.limitBreak.fields;
 
 // Limit gauge event
 export class LineEvent0x24 extends LineEvent {

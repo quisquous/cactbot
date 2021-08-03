@@ -1,11 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  targetId: 2,
-  targetName: 3,
-  headmarkerId: 6,
-} as const;
+const fields = logDefinitions.networkTargetIcon.fields;
 
 // Head marker event
 export class LineEvent0x1B extends LineEvent implements LineEventSource {
@@ -18,8 +16,8 @@ export class LineEvent0x1B extends LineEvent implements LineEventSource {
     super(repo, line, parts);
 
     this.id = parts[fields.targetId]?.toUpperCase() ?? '';
-    this.name = parts[fields.targetName] ?? '';
-    this.headmarkerId = parts[fields.headmarkerId] ?? '';
+    this.name = parts[fields.target] ?? '';
+    this.headmarkerId = parts[fields.id] ?? '';
   }
 }
 

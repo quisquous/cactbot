@@ -1,10 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  type: 2,
-  speaker: 3,
-} as const;
+const fields = logDefinitions.gameLog.fields;
 
 // Chat event
 export class LineEvent0x00 extends LineEvent {
@@ -15,8 +14,8 @@ export class LineEvent0x00 extends LineEvent {
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.type = parts[fields.type] ?? '';
-    this.speaker = parts[fields.speaker] ?? '';
+    this.type = parts[fields.code] ?? '';
+    this.speaker = parts[fields.name] ?? '';
     this.message = parts.slice(4, -1).join('|');
 
     // The exact reason for this check isn't clear anymore but may be related to

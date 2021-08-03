@@ -1,13 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  targetId: 4,
-  targetName: 5,
-  targetable: 6,
-} as const;
+const fields = logDefinitions.networkNameToggle.fields;
 
 // Nameplate toggle
 export class LineEvent0x22 extends LineEvent implements LineEventSource {
@@ -25,7 +21,7 @@ export class LineEvent0x22 extends LineEvent implements LineEventSource {
     this.name = parts[fields.name] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
     this.targetName = parts[fields.targetName] ?? '';
-    this.targetable = !!parseInt(parts[fields.targetable] ?? '', 16);
+    this.targetable = !!parseInt(parts[fields.toggle] ?? '', 16);
   }
 }
 

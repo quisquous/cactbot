@@ -1,32 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent, { LineEventAbility, LineEventSource, LineEventTarget } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  flags: 8,
-  damage: 9,
-  abilityId: 4,
-  abilityName: 5,
-  targetId: 6,
-  targetName: 7,
-  targetHp: 24,
-  targetMaxHp: 25,
-  targetMp: 26,
-  targetMaxMp: 27,
-  targetX: 30,
-  targetY: 31,
-  targetZ: 32,
-  targetHeading: 33,
-  sourceHp: 34,
-  sourceMaxHp: 35,
-  sourceMp: 36,
-  sourceMaxMp: 37,
-  x: 40,
-  y: 41,
-  z: 42,
-  heading: 43,
-} as const;
+const fields = logDefinitions.networkAbility.fields;
 
 // Shorten a few types so dprint doesn't complain when the line gets too long.
 type LESource = LineEventSource;
@@ -66,32 +43,32 @@ export class LineEvent0x15 extends LineEvent implements LESource, LETarget, LEAb
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.id = parts[fields.id]?.toUpperCase() ?? '';
-    this.name = parts[fields.name] ?? '';
+    this.id = parts[fields.sourceId]?.toUpperCase() ?? '';
+    this.name = parts[fields.source] ?? '';
 
     this.flags = parts[fields.flags] ?? '';
 
     const fieldOffset = this.flags === '3F' ? 2 : 0;
 
     this.damage = LineEvent.calculateDamage(parts[fields.damage + fieldOffset] ?? '');
-    this.abilityId = parseInt(parts[fields.abilityId]?.toUpperCase() ?? '');
-    this.abilityName = parts[fields.abilityName] ?? '';
+    this.abilityId = parseInt(parts[fields.id]?.toUpperCase() ?? '');
+    this.abilityName = parts[fields.ability] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
-    this.targetName = parts[fields.targetName] ?? '';
+    this.targetName = parts[fields.target] ?? '';
 
-    this.targetHp = parseInt(parts[fields.targetHp + fieldOffset] ?? '');
+    this.targetHp = parseInt(parts[fields.targetCurrentHp + fieldOffset] ?? '');
     this.targetMaxHp = parseInt(parts[fields.targetMaxHp + fieldOffset] ?? '');
-    this.targetMp = parseInt(parts[fields.targetMp + fieldOffset] ?? '');
+    this.targetMp = parseInt(parts[fields.targetCurrentMp + fieldOffset] ?? '');
     this.targetMaxMp = parseInt(parts[fields.targetMaxMp + fieldOffset] ?? '');
     this.targetX = parseFloat(parts[fields.targetX + fieldOffset] ?? '');
     this.targetY = parseFloat(parts[fields.targetY + fieldOffset] ?? '');
     this.targetZ = parseFloat(parts[fields.targetZ + fieldOffset] ?? '');
     this.targetHeading = parseFloat(parts[fields.targetHeading + fieldOffset] ?? '');
 
-    this.hp = parseInt(parts[fields.sourceHp + fieldOffset] ?? '');
-    this.maxHp = parseInt(parts[fields.sourceMaxHp + fieldOffset] ?? '');
-    this.mp = parseInt(parts[fields.sourceMp + fieldOffset] ?? '');
-    this.maxMp = parseInt(parts[fields.sourceMaxMp + fieldOffset] ?? '');
+    this.hp = parseInt(parts[fields.currentHp + fieldOffset] ?? '');
+    this.maxHp = parseInt(parts[fields.maxHp + fieldOffset] ?? '');
+    this.mp = parseInt(parts[fields.currentMp + fieldOffset] ?? '');
+    this.maxMp = parseInt(parts[fields.maxMp + fieldOffset] ?? '');
     this.x = parseFloat(parts[fields.x + fieldOffset] ?? '');
     this.y = parseFloat(parts[fields.y + fieldOffset] ?? '');
     this.z = parseFloat(parts[fields.z + fieldOffset] ?? '');

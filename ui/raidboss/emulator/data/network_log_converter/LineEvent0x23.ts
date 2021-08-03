@@ -1,13 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  targetId: 4,
-  targetName: 5,
-  tetherId: 8,
-} as const;
+const fields = logDefinitions.networkTether.fields;
 
 // Tether event
 export class LineEvent0x23 extends LineEvent {
@@ -20,11 +16,11 @@ export class LineEvent0x23 extends LineEvent {
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.id = parts[fields.id]?.toUpperCase() ?? '';
-    this.name = parts[fields.name] ?? '';
+    this.id = parts[fields.sourceId]?.toUpperCase() ?? '';
+    this.name = parts[fields.source] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
-    this.targetName = parts[fields.targetName] ?? '';
-    this.tetherId = parts[fields.tetherId] ?? '';
+    this.targetName = parts[fields.target] ?? '';
+    this.tetherId = parts[fields.id] ?? '';
   }
 }
 

@@ -1,13 +1,9 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
+
 import LineEvent, { LineEventAbility, LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  abilityId: 4,
-  abilityName: 5,
-  reason: 6,
-} as const;
+const fields = logDefinitions.networkCancelAbility.fields;
 
 // Cancel ability event
 export class LineEvent0x17 extends LineEvent implements LineEventSource, LineEventAbility {
@@ -24,8 +20,8 @@ export class LineEvent0x17 extends LineEvent implements LineEventSource, LineEve
 
     this.id = parts[fields.id]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
-    this.abilityId = parseInt(parts[fields.abilityId]?.toUpperCase() ?? '');
-    this.abilityName = parts[fields.abilityName] ?? '';
+    this.abilityId = parseInt(parts[fields.id]?.toUpperCase() ?? '');
+    this.abilityName = parts[fields.name] ?? '';
     this.reason = parts[fields.reason] ?? '';
   }
 }

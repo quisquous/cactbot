@@ -1,3 +1,4 @@
+import logDefinitions from '../../../../../resources/netlog_defs';
 import Util from '../../../../../resources/util';
 import { Job } from '../../../../../types/job';
 import EmulatorCommon from '../../EmulatorCommon';
@@ -5,27 +6,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = {
-  id: 2,
-  name: 3,
-  jobIdHex: 4,
-  levelString: 5,
-  ownerId: 6,
-  worldId: 7,
-  worldName: 8,
-  npcNameId: 9,
-  npcBaseId: 10,
-  currentHp: 11,
-  maxHpString: 14,
-  currentMp: 13,
-  maxMpString: 14,
-  currentTp: 15,
-  maxTp: 16,
-  xString: 17,
-  yString: 18,
-  zString: 19,
-  heading: 20,
-} as const;
+const fields = logDefinitions.addCombatant.fields;
 
 // Added combatant event
 export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEventJobLevel {
@@ -47,8 +28,6 @@ export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEve
   public readonly mp: number;
   public readonly maxMpString: string;
   public readonly maxMp: number;
-  public readonly tp: number;
-  public readonly maxTp: number;
   public readonly xString: string;
   public readonly x: number;
   public readonly yString: string;
@@ -64,29 +43,27 @@ export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEve
 
     this.id = parts[fields.id]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
-    this.jobIdHex = parts[fields.jobIdHex]?.toUpperCase() ?? '';
+    this.jobIdHex = parts[fields.job]?.toUpperCase() ?? '';
     this.jobId = parseInt(this.jobIdHex, 16);
     this.job = Util.jobEnumToJob(this.jobId);
-    this.levelString = parts[fields.levelString] ?? '';
+    this.levelString = parts[fields.level] ?? '';
     this.level = parseInt(this.levelString, 16);
     this.ownerId = parts[fields.ownerId]?.toUpperCase() ?? '';
     this.worldId = parts[fields.worldId] ?? '';
-    this.worldName = parts[fields.worldName] ?? '';
+    this.worldName = parts[fields.world] ?? '';
     this.npcNameId = parts[fields.npcNameId] ?? '';
     this.npcBaseId = parts[fields.npcBaseId] ?? '';
     this.hp = parseFloat(parts[fields.currentHp] ?? '');
-    this.maxHpString = parts[fields.maxHpString] ?? '';
+    this.maxHpString = parts[fields.hp] ?? '';
     this.maxHp = parseFloat(this.maxHpString);
     this.mp = parseFloat(parts[fields.currentMp] ?? '');
-    this.maxMpString = parts[fields.maxMpString] ?? '';
+    this.maxMpString = parts[fields.mp] ?? '';
     this.maxMp = parseFloat(this.maxMpString);
-    this.tp = parseFloat(parts[fields.currentTp] ?? '');
-    this.maxTp = parseFloat(parts[fields.maxTp] ?? '');
-    this.xString = parts[fields.xString] ?? '';
+    this.xString = parts[fields.x] ?? '';
     this.x = parseFloat(this.xString);
-    this.yString = parts[fields.yString] ?? '';
+    this.yString = parts[fields.y] ?? '';
     this.y = parseFloat(this.yString);
-    this.zString = parts[fields.zString] ?? '';
+    this.zString = parts[fields.z] ?? '';
     this.z = parseFloat(this.zString);
     this.heading = parseFloat(parts[fields.heading] ?? '');
 
