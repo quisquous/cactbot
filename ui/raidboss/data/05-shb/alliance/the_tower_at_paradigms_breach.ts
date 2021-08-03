@@ -80,7 +80,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go E/W Sides',
-          cn: 'Go E/W Sides',
           de: 'Geh seitlich nach O/W',
           fr: 'Allez côtés E/O',
           ja: '東/西側へ',
@@ -89,7 +88,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         ttsText: {
           en: 'Go East/West Sides',
-          cn: 'Go East/West Sides',
           de: 'Geh seitlich nach Osten/Westen',
           fr: 'Allez côtés Est/Ouest',
           ja: '東側や西側へ',
@@ -113,7 +111,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go N/S Sides',
-          cn: 'Go N/S Sides',
           de: 'Geh seitlich nach N/S',
           fr: 'Allez côtés N/S',
           ja: '北/南側へ',
@@ -122,7 +119,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         ttsText: {
           en: 'Go North/South Sides',
-          cn: 'Go North/South Sides',
           de: 'Geh seitlich nach Norden/Süden',
           fr: 'Allez côtés Nord/Sud',
           ja: '北側や南側へ',
@@ -170,7 +166,6 @@ const triggerSet: TriggerSet<Data> = {
         tankBuster: Outputs.tankBuster,
         avoidTankBuster: {
           en: 'Avoid tank buster',
-          cn: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
           fr: 'Évitez le tank buster',
           ja: 'タンクバスターを避ける',
@@ -200,7 +195,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback (from boss)',
-          cn: 'Knockback (from boss)',
           de: 'Rückstoß (vom Boss)',
           fr: 'Poussée (depuis le boss)',
           ja: 'ノックバック (ボスから)',
@@ -225,7 +219,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback (from clone)',
-          cn: 'Knockback (from clone)',
           de: 'Rückstoß (vom Klon)',
           fr: 'Poussée (depuis le clone)',
           ja: 'ノックバック (複製体から)',
@@ -249,7 +242,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback -> Get Middle',
-          cn: 'Knockback -> Get Middle',
           de: 'Rückstoß -> Geh in die Mitte',
           fr: 'Poussée -> Allez au milieu',
           ja: 'ノックバック -> 中へ',
@@ -272,7 +264,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback -> Out of Middle',
-          cn: 'Knockback -> Out of Middle',
           de: 'Rückstoß -> Raus aus der Mitte',
           fr: 'Poussée -> Éloignez-vous du milieu',
           ja: 'ノックバック -> 外へ',
@@ -293,7 +284,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Attack Hansel',
-          cn: 'Attack 韩塞尔',
           de: 'Hänsel angreifen',
           fr: 'Attaquez Hansel',
           ja: 'ヘンゼルに攻撃',
@@ -314,7 +304,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Attack Gretel',
-          cn: 'Attack 格雷特',
           de: 'Gretel angreifen',
           fr: 'Attaquez Gretel',
           ja: 'グレーテルに攻撃',
@@ -327,6 +316,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Hansel/Gretel Wail',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5C7[67]', source: ['Hansel', 'Gretel'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5C7[67]', source: ['韩塞尔', '格雷特'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5C7[67]', source: ['Hänsel', 'Gretel'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5C7[67]', source: ['Hansel', 'Gretel'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C7[67]', source: ['ヘンゼル', 'グレーテル'], capture: false }),
@@ -337,6 +327,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Hansel/Gretel Crippling Blow',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5C7[89]', source: ['Hansel', 'Gretel'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5C7[89]', source: ['韩塞尔', '格雷特'] }),
       netRegexDe: NetRegexes.startsUsing({ id: '5C7[89]', source: ['Hänsel', 'Gretel'] }),
       netRegexFr: NetRegexes.startsUsing({ id: '5C7[89]', source: ['Hansel', 'Gretel'] }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C7[89]', source: ['ヘンゼル', 'グレーテル'] }),
@@ -385,6 +376,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Hansel/Gretel Lamentation',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5C7[34]', source: ['Hansel', 'Gretel'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5C7[34]', source: ['韩塞尔', '格雷特'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5C7[34]', source: ['Hänsel', 'Gretel'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5C7[34]', source: ['Hansel', 'Gretel'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C7[34]', source: ['ヘンゼル', 'グレーテル'], capture: false }),
@@ -419,7 +411,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Switch to white',
-          cn: 'Switch to white',
           de: 'Auf Weiß wechseln',
           fr: 'Changez en blanc',
           ja: '白に切替',
@@ -444,7 +435,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Switch to black',
-          cn: 'Switch to black',
           de: 'Auf Schwarz wechseln',
           fr: 'Changez en noir',
           ja: '黒に切替',
@@ -457,6 +447,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Meng-Zi/Xun-Zi Universal Assault',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5C06', source: ['Meng-Zi', 'Xun-Zi'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5C06', source: ['孟子', '荀子'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5C06', source: ['Meng-Zi', 'Xun-Zi'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5C06', source: ['Meng-Zi', 'Xun-Zi'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C06', source: ['モウシ', 'ジュンシ'], capture: false }),
@@ -506,7 +497,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Lighter Note on YOU',
-          cn: 'Lighter Note on YOU',
           de: 'Weißer Choral auf DIR',
           fr: 'Blanc : imprécation sur VOUS',
           ja: '自分に連続AoE',
@@ -553,7 +543,6 @@ const triggerSet: TriggerSet<Data> = {
         tankBuster: Outputs.tankBuster,
         avoidTankBuster: {
           en: 'Avoid tank buster',
-          cn: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
           fr: 'Évitez le tank buster',
           ja: 'タンクバスターを避ける',
@@ -587,7 +576,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Building Below',
-          cn: 'Dodge Building Below',
           de: 'Gebäude unter einem ausweichen',
           fr: 'Esquivez le bâtiment venant du dessous',
           ja: '下の建物に当たらないように',
@@ -610,6 +598,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Her Inflorescence Recreate Signal Collect',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0036', target: 'Her Inflorescence', capture: false }),
+      netRegexCn: NetRegexes.tether({ id: '0036', target: '开花的神明', capture: false }),
       netRegexDe: NetRegexes.tether({ id: '0036', target: 'Ihre Infloreszenz', capture: false }),
       netRegexFr: NetRegexes.tether({ id: '0036', target: 'Déesse Éclose', capture: false }),
       netRegexJa: NetRegexes.tether({ id: '0036', target: '開花シタ神', capture: false }),
@@ -622,7 +611,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go To Red Light',
-          cn: 'Go To Red Light',
           de: 'Geh zum roten Licht',
           fr: 'Allez au feu rouge',
           ja: '赤信号の線路へ',

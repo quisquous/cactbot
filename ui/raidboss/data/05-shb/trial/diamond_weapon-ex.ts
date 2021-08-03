@@ -68,7 +68,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go east -> aoe',
-          cn: 'go 东 -> aoe',
           de: 'Geh nach Osten -> AoE',
           fr: 'Allez à l\'est -> AoE',
           ja: '東へ -> AoE',
@@ -89,7 +88,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go west -> aoe',
-          cn: 'go 西 -> aoe',
           de: 'Geh nach Westen -> AoE',
           fr: 'Allez à l\'ouest -> AoE',
           ja: '西へ -> AoE',
@@ -110,7 +108,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go east -> stack',
-          cn: 'go 东 -> stack',
           de: 'Geh nach Osten -> Sammeln',
           fr: 'Allez à l\'est -> Packez-vous',
           ja: '東へ -> 頭割り',
@@ -131,7 +128,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go west -> stack',
-          cn: 'go 西 -> stack',
           de: 'Geh nach Westen -> Sammeln',
           fr: 'Allez à l\'ouest -> Packez-vous',
           ja: '西へ -> 頭割り',
@@ -152,7 +148,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go east -> spread',
-          cn: 'go 东 -> spread',
           de: 'Geh nach Osten -> Verteilen',
           fr: 'Allez à l\'est -> Dispersez-vous',
           ja: '東へ -> 散開',
@@ -173,7 +168,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'go west -> spread',
-          cn: 'go 西 -> spread',
           de: 'Geh nach Westen -> Verteilen',
           fr: 'Allez à l\'ouest -> Dispersez-vous',
           ja: '西へ -> 散開',
@@ -196,7 +190,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Flare',
-          cn: '核爆',
           de: 'Flare',
           fr: 'Brasier',
           ja: 'フレア',
@@ -252,7 +245,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Zig-Zag',
-          cn: 'Dodge Zig-Zag',
           de: 'Zig-Zag ausweichen',
           fr: 'Esquivez le Zig-Zag',
           ja: 'ジグザグに避ける',
@@ -274,7 +266,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge East/West',
-          cn: 'Dodge 东/西',
           de: 'Orb vom Osten/Westen ausweichen',
           fr: 'Esquivez Est/Ouest',
           ja: '東/西へ',
@@ -296,7 +287,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Towards/Away',
-          cn: 'Dodge Towards/Away',
           de: 'Hin oder weg ausweichen',
           fr: 'Rapprochez-vous/Éloignez-vous',
           ja: '前/後ろへ',
@@ -318,7 +308,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diagonal Knockback',
-          cn: 'Diagonal Knockback',
           de: 'Diagonaler Rückstoß',
           fr: 'Poussée diagonale',
           ja: '斜めにノックバック',
@@ -340,7 +329,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Bits',
-          cn: 'Dodge Bits',
           de: 'Satelliten ausweichen',
           fr: 'Esquivez les bras',
           ja: 'ビームを避ける',
@@ -394,7 +382,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Bits',
-          cn: 'Dodge Bits',
           de: 'Satelliten ausweichen',
           fr: 'Esquivez les bras',
           ja: 'ビームを避ける',
@@ -415,7 +402,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Puddles',
-          cn: 'Bait Puddles',
           de: 'Flächen ködern',
           fr: 'Placez les zones au sol',
           ja: 'AoEを誘導',
@@ -437,7 +423,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Towers',
-          cn: 'Towers',
           de: 'Türme',
           fr: 'Tours',
           ja: '塔を踏む',

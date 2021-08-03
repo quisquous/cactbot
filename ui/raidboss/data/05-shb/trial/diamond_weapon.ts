@@ -10,7 +10,6 @@ export type Data = RaidbossData;
 const sharedOutputStrings = {
   teleportEast: {
     en: 'Teleport to east platform',
-    cn: '传送到 东 平台',
     de: 'Teleport zur östlichen plattform',
     fr: 'Téléportez-vous vers la plateforme est',
     ja: '東の足場へテレポ',
@@ -19,7 +18,6 @@ const sharedOutputStrings = {
   },
   teleportWest: {
     en: 'Teleport to west platform',
-    cn: '传送到 西 平台',
     de: 'Teleport zur westlichen plattform',
     fr: 'Téléportez-vous vers la plateforme ouest',
     ja: '西の足場へテレポ',
@@ -76,7 +74,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Flare on YOU',
-          cn: '核爆 on YOU',
           de: 'Flare auf DIR',
           fr: 'Brasier sur VOUS',
           ja: '自分にフレア',
@@ -163,11 +160,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamond Shrapnel on YOU',
-          cn: 'xxx点名 on YOU',
           de: 'Diamantschub auf DIR',
           fr: 'Salve adamantine sur VOUS',
           ja: '自分にダイヤバースト',
-          cn: 'Diamond Shrapnel点名',
+          cn: '钻石爆发点名',
           ko: '장판 대상자',
         },
       },
@@ -184,7 +180,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Bits',
-          cn: '躲避浮游炮激光',
           de: 'Weiche den Satelliten aus',
           fr: 'Évitez les bras',
           ja: 'ビームを避ける',
@@ -206,7 +201,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Towers',
-          cn: '踩塔',
           de: 'Türme nehmen',
           fr: 'Prenez les tours',
           ja: '塔を踏む',
