@@ -49,31 +49,43 @@ export default class DrgComponent extends BaseComponent {
 
   onUseAbility(abilityId) {
     switch (abilityId) {
-    case kAbility.HighJump:
-    case kAbility.Jump:
-      this.highJumpBox.duration = 30;
-      break;
+      case kAbility.HighJump:
+      case kAbility.Jump:
+        this.highJumpBox.duration = 30;
+        break;
 
-    case kAbility.LanceCharge:
-      this.lanceChargeBox.duration = 20;
-      this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge.active');
-      this.tid1 = window.setTimeout(() => {
-        this.lanceChargeBox.duration = 70;
-        this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge');
-      }, 20000);
-      break;
+      case kAbility.LanceCharge:
+        this.lanceChargeBox.duration = 20;
+        this.lanceChargeBox.fg = computeBackgroundColorFrom(
+          this.lanceChargeBox,
+          'drg-color-lancecharge.active',
+        );
+        this.tid1 = window.setTimeout(() => {
+          this.lanceChargeBox.duration = 70;
+          this.lanceChargeBox.fg = computeBackgroundColorFrom(
+            this.lanceChargeBox,
+            'drg-color-lancecharge',
+          );
+        }, 20000);
+        break;
 
-    case kAbility.DragonSight:
-      this.dragonSightBox.duration = 20;
-      this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight.active');
-      this.tid2 = window.setTimeout(() => {
-        this.dragonSightBox.duration = 100;
-        this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight');
-      }, 20000);
-      break;
+      case kAbility.DragonSight:
+        this.dragonSightBox.duration = 20;
+        this.dragonSightBox.fg = computeBackgroundColorFrom(
+          this.dragonSightBox,
+          'drg-color-dragonsight.active',
+        );
+        this.tid2 = window.setTimeout(() => {
+          this.dragonSightBox.duration = 100;
+          this.dragonSightBox.fg = computeBackgroundColorFrom(
+            this.dragonSightBox,
+            'drg-color-dragonsight',
+          );
+        }, 20000);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
@@ -116,9 +128,15 @@ export default class DrgComponent extends BaseComponent {
     this.highJumpBox.duration = 0;
     this.disembowelBox.duration = 0;
     this.lanceChargeBox.duration = 0;
-    this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge');
+    this.lanceChargeBox.fg = computeBackgroundColorFrom(
+      this.lanceChargeBox,
+      'drg-color-lancecharge',
+    );
     this.dragonSightBox.duration = 0;
-    this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight');
+    this.dragonSightBox.fg = computeBackgroundColorFrom(
+      this.dragonSightBox,
+      'drg-color-dragonsight',
+    );
     clearTimeout(this.tid1);
     clearTimeout(this.tid2);
   }

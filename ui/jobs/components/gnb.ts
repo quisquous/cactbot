@@ -8,7 +8,6 @@ import { computeBackgroundColorFrom } from '../utils';
 
 import { BaseComponent } from './base';
 
-
 export default class GnbComponent extends BaseComponent<'GNB'> {
   cartridgeBox: HTMLDivElement;
   noMercyBox: TimerBox;
@@ -54,44 +53,47 @@ export default class GnbComponent extends BaseComponent<'GNB'> {
     });
   }
 
-  onUseAbility(actionId: string):void {
+  onUseAbility(actionId: string): void {
     switch (actionId) {
-    case kAbility.NoMercy:
-      this.noMercyBox.duration = 20;
-      this.noMercyBox.threshold = 1000;
-      this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy.active');
-      this.noMercyTimer = window.setTimeout(() => {
-        this.noMercyBox.duration = 40;
-        this.noMercyBox.threshold = this.player.gcdSkill + 1;
-        this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy');
-      }, 20000);
-      break;
+      case kAbility.NoMercy:
+        this.noMercyBox.duration = 20;
+        this.noMercyBox.threshold = 1000;
+        this.noMercyBox.fg = computeBackgroundColorFrom(
+          this.noMercyBox,
+          'gnb-color-nomercy.active',
+        );
+        this.noMercyTimer = window.setTimeout(() => {
+          this.noMercyBox.duration = 40;
+          this.noMercyBox.threshold = this.player.gcdSkill + 1;
+          this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy');
+        }, 20000);
+        break;
 
-    case kAbility.Bloodfest:
-      this.bloodfestBox.duration = 90;
-      break;
+      case kAbility.Bloodfest:
+        this.bloodfestBox.duration = 90;
+        break;
 
-    case kAbility.GnashingFang:
-      this.gnashingFangBox.duration = this.player.getActionCooldown(30000, 'skill');
-      this.cartridgeComboTimer.duration = 0;
-      this.cartridgeComboTimer.duration = 15;
-      break;
+      case kAbility.GnashingFang:
+        this.gnashingFangBox.duration = this.player.getActionCooldown(30000, 'skill');
+        this.cartridgeComboTimer.duration = 0;
+        this.cartridgeComboTimer.duration = 15;
+        break;
 
-    case kAbility.SavageClaw:
-      this.cartridgeComboTimer.duration = 0;
-      this.cartridgeComboTimer.duration = 15;
-      break;
+      case kAbility.SavageClaw:
+        this.cartridgeComboTimer.duration = 0;
+        this.cartridgeComboTimer.duration = 15;
+        break;
 
-    case kAbility.WickedTalon:
-      this.cartridgeComboTimer.duration = 0;
-      break;
+      case kAbility.WickedTalon:
+        this.cartridgeComboTimer.duration = 0;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
-  onCombo(skill: string):void {
+  onCombo(skill: string): void {
     this.comboTimer.duration = 0;
     this.cartridgeComboTimer.duration = 0;
     if (this.bars?.combo?.isFinalSkill)
@@ -100,7 +102,7 @@ export default class GnbComponent extends BaseComponent<'GNB'> {
       this.comboTimer.duration = 15;
   }
 
-  onJobDetailUpdate(jobDetail: JobDetail['GNB']):void {
+  onJobDetailUpdate(jobDetail: JobDetail['GNB']): void {
     this.cartridgeBox.innerText = jobDetail.cartridges.toString();
     const parent = this.cartridgeBox.parentNode as HTMLElement;
     if (jobDetail.cartridges === 2)

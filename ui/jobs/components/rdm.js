@@ -63,33 +63,33 @@ export default class RdmComponent extends BaseComponent {
 
   onGainEffect(effectId, matches) {
     switch (effectId) {
-    case EffectId.VerstoneReady:
-      this.whiteProc.duration = 0;
-      this.whiteProc.duration = matches.duration - this.player.gcdSpell;
-      break;
+      case EffectId.VerstoneReady:
+        this.whiteProc.duration = 0;
+        this.whiteProc.duration = matches.duration - this.player.gcdSpell;
+        break;
 
-    case EffectId.VerfireReady:
-      this.blackProc.duration = 0;
-      this.blackProc.duration = matches.duration - this.player.gcdSpell;
-      break;
+      case EffectId.VerfireReady:
+        this.blackProc.duration = 0;
+        this.blackProc.duration = matches.duration - this.player.gcdSpell;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId) {
     switch (effectId) {
-    case EffectId.VerstoneReady:
-      this.whiteProc.duration = 0;
-      break;
+      case EffectId.VerstoneReady:
+        this.whiteProc.duration = 0;
+        break;
 
-    case EffectId.VerfireReady:
-      this.blackProc.duration = 0;
-      break;
+      case EffectId.VerfireReady:
+        this.blackProc.duration = 0;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

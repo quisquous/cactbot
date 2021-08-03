@@ -88,41 +88,53 @@ export default class DrkComponent extends BaseComponent<'DRK'> {
 
   onUseAbility(actionId: string): void {
     switch (actionId) {
-    case kAbility.BloodWeapon:
-      this.bloodWeapon.duration = 10;
-      this.bloodWeapon.threshold = 10;
-      this.bloodWeapon.fg = computeBackgroundColorFrom(this.bloodWeapon, 'drk-color-bloodweapon.active');
-      this.tid1 = window.setTimeout(() => {
-        this.bloodWeapon.duration = 50;
-        this.bloodWeapon.threshold = this.player.gcdSkill * 2;
-        this.bloodWeapon.fg = computeBackgroundColorFrom(this.bloodWeapon, 'drk-color-bloodweapon');
-      }, 10000);
-      break;
+      case kAbility.BloodWeapon:
+        this.bloodWeapon.duration = 10;
+        this.bloodWeapon.threshold = 10;
+        this.bloodWeapon.fg = computeBackgroundColorFrom(
+          this.bloodWeapon,
+          'drk-color-bloodweapon.active',
+        );
+        this.tid1 = window.setTimeout(() => {
+          this.bloodWeapon.duration = 50;
+          this.bloodWeapon.threshold = this.player.gcdSkill * 2;
+          this.bloodWeapon.fg = computeBackgroundColorFrom(
+            this.bloodWeapon,
+            'drk-color-bloodweapon',
+          );
+        }, 10000);
+        break;
 
-    case kAbility.Delirium:
-      this.delirium.duration = 10.5;
-      this.delirium.threshold = 20;
-      this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium.active');
-      this.tid2 = window.setTimeout(() => {
-        this.delirium.duration = 79.5;
-        this.delirium.threshold = this.player.gcdSkill * 2;
-        this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium');
-      }, 10000);
-      break;
+      case kAbility.Delirium:
+        this.delirium.duration = 10.5;
+        this.delirium.threshold = 20;
+        this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium.active');
+        this.tid2 = window.setTimeout(() => {
+          this.delirium.duration = 79.5;
+          this.delirium.threshold = this.player.gcdSkill * 2;
+          this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium');
+        }, 10000);
+        break;
 
-    case kAbility.LivingShadow:
-      this.livingShadow.duration = 24;
-      this.livingShadow.threshold = 24;
-      this.livingShadow.fg = computeBackgroundColorFrom(this.livingShadow, 'drk-color-livingshadow.active');
-      this.tid3 = window.setTimeout(() => {
-        this.livingShadow.duration = 96;
-        this.livingShadow.threshold = this.player.gcdSkill * 4;
-        this.livingShadow.fg = computeBackgroundColorFrom(this.livingShadow, 'drk-color-livingshadow');
-      }, 24000);
-      break;
+      case kAbility.LivingShadow:
+        this.livingShadow.duration = 24;
+        this.livingShadow.threshold = 24;
+        this.livingShadow.fg = computeBackgroundColorFrom(
+          this.livingShadow,
+          'drk-color-livingshadow.active',
+        );
+        this.tid3 = window.setTimeout(() => {
+          this.livingShadow.duration = 96;
+          this.livingShadow.threshold = this.player.gcdSkill * 4;
+          this.livingShadow.fg = computeBackgroundColorFrom(
+            this.livingShadow,
+            'drk-color-livingshadow',
+          );
+        }, 24000);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

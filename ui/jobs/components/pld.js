@@ -35,23 +35,23 @@ export default class PldComponent extends BaseComponent {
 
   onGainEffect(effectId, matches) {
     switch (effectId) {
-    case EffectId.SwordOath:
-      this.setAtonement(atonementBox, parseInt(matches.count));
-      break;
+      case EffectId.SwordOath:
+        this.setAtonement(atonementBox, parseInt(matches.count));
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId, matches) {
     switch (effectId) {
-    case EffectId.SwordOath:
-      this.setAtonement(0);
-      break;
+      case EffectId.SwordOath:
+        this.setAtonement(0);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

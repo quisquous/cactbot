@@ -127,59 +127,59 @@ export default class BlmComponent extends BaseComponent<'BLM'> {
 
   onUseAbility(action: string): void {
     switch (action) {
-    case kAbility.Thunder1:
-    case kAbility.Thunder4:
-      this.thunderDot.duration = 18;
-      break;
+      case kAbility.Thunder1:
+      case kAbility.Thunder4:
+        this.thunderDot.duration = 18;
+        break;
 
-    case kAbility.Thunder2:
-      this.thunderDot.duration = 12;
-      break;
+      case kAbility.Thunder2:
+        this.thunderDot.duration = 12;
+        break;
 
-    case kAbility.Thunder3:
-      this.thunderDot.duration = 24;
-      break;
+      case kAbility.Thunder3:
+        this.thunderDot.duration = 24;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onGainEffect(effectId: string, matches: NetMatches['GainsEffect']): void {
     switch (effectId) {
-    case EffectId.Thundercloud:
-      this.thunderProc.duration = parseFloat(matches.duration);
-      break;
+      case EffectId.Thundercloud:
+        this.thunderProc.duration = parseFloat(matches.duration);
+        break;
 
-    case EffectId.Firestarter:
-      this.fireProc.duration = parseFloat(matches.duration);
-      break;
+      case EffectId.Firestarter:
+        this.fireProc.duration = parseFloat(matches.duration);
+        break;
 
-    case EffectId.CircleOfPower:
-      this.player.speedBuffs.circleOfPower = true;
-      break;
+      case EffectId.CircleOfPower:
+        this.player.speedBuffs.circleOfPower = true;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId: string): void {
     switch (effectId) {
-    case EffectId.Thundercloud:
-      this.thunderProc.duration = 0;
-      break;
+      case EffectId.Thundercloud:
+        this.thunderProc.duration = 0;
+        break;
 
-    case EffectId.Firestarter:
-      this.fireProc.duration = 0;
-      break;
+      case EffectId.Firestarter:
+        this.fireProc.duration = 0;
+        break;
 
-    case EffectId.CircleOfPower:
-      this.player.speedBuffs.circleOfPower = false;
-      break;
+      case EffectId.CircleOfPower:
+        this.player.speedBuffs.circleOfPower = false;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
@@ -189,4 +189,3 @@ export default class BlmComponent extends BaseComponent<'BLM'> {
     this.fireProc.duration = 0;
   }
 }
-

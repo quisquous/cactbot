@@ -59,67 +59,67 @@ export default class BrdComponent extends BaseComponent {
 
   onGainEffect(effectId) {
     switch (effectId) {
-    case EffectId.StraightShotReady:
-      this.straightShotProc.duration = 10;
-      break;
+      case EffectId.StraightShotReady:
+        this.straightShotProc.duration = 10;
+        break;
 
-    case EffectId.ArmysMuse:
-      // We just entered Minuet/Ballad, add muse effect
-      // If we let paeon run out, get the temp stacks from ethos
-      this.player.speedBuffs.museStacks = this.ethosStacks || this.player.speedBuffs.paeonStacks;
-      this.player.speedBuffs.paeonStacks = 0;
-      break;
-    case EffectId.ArmysEthos:
-    // Not under muse or paeon, so store the stacks
-      this.ethosStacks = this.player.speedBuffs.paeonStacks;
-      this.player.speedBuffs.paeonStacks = 0;
-      break;
+      case EffectId.ArmysMuse:
+        // We just entered Minuet/Ballad, add muse effect
+        // If we let paeon run out, get the temp stacks from ethos
+        this.player.speedBuffs.museStacks = this.ethosStacks || this.player.speedBuffs.paeonStacks;
+        this.player.speedBuffs.paeonStacks = 0;
+        break;
+      case EffectId.ArmysEthos:
+        // Not under muse or paeon, so store the stacks
+        this.ethosStacks = this.player.speedBuffs.paeonStacks;
+        this.player.speedBuffs.paeonStacks = 0;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId) {
     switch (effectId) {
-    case EffectId.StraightShotReady:
-      this.straightShotProc.duration = 0;
-      break;
+      case EffectId.StraightShotReady:
+        this.straightShotProc.duration = 0;
+        break;
 
-    case EffectId.ArmysMuse:
-      // Muse effect ends
-      this.player.speedBuffs.museStacks = 0;
-      this.player.speedBuffs.paeonStacks = 0;
-      break;
-    case EffectId.ArmysEthos:
-      // Didn't use a song and ethos ran out
-      this.ethosStacks = 0;
-      this.player.speedBuffs.museStacks = 0;
-      this.player.speedBuffs.paeonStacks = 0;
-      break;
+      case EffectId.ArmysMuse:
+        // Muse effect ends
+        this.player.speedBuffs.museStacks = 0;
+        this.player.speedBuffs.paeonStacks = 0;
+        break;
+      case EffectId.ArmysEthos:
+        // Didn't use a song and ethos ran out
+        this.ethosStacks = 0;
+        this.player.speedBuffs.museStacks = 0;
+        this.player.speedBuffs.paeonStacks = 0;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onMobGainsEffectFromYou(effectId) {
     switch (effectId) {
-    // Iron jaws just refreshes these effects by gain once more,
-    // so it doesn't need to be handled separately.
-    // Log line of getting DoT comes a little late after DoT appear on target,
-    // so -0.5s
-    case EffectId.Stormbite:
-    case EffectId.Windbite:
-      this.stormBiteBox.duration = 30 - 0.5;
-      break;
+      // Iron jaws just refreshes these effects by gain once more,
+      // so it doesn't need to be handled separately.
+      // Log line of getting DoT comes a little late after DoT appear on target,
+      // so -0.5s
+      case EffectId.Stormbite:
+      case EffectId.Windbite:
+        this.stormBiteBox.duration = 30 - 0.5;
+        break;
 
-    case EffectId.CausticBite:
-    case EffectId.VenomousBite:
-      this.causticBiteBox.duration = 30 - 0.5;
-      break;
-    default:
-      break;
+      case EffectId.CausticBite:
+      case EffectId.VenomousBite:
+        this.causticBiteBox.duration = 30 - 0.5;
+        break;
+      default:
+        break;
     }
   }
 
@@ -161,7 +161,9 @@ export default class BrdComponent extends BaseComponent {
     }
 
     // GCD calculate
-    if (jobDetail.songName === 'Paeon' && this.player.speedBuffs.paeonStacks !== jobDetail.songProcs)
+    if (
+      jobDetail.songName === 'Paeon' && this.player.speedBuffs.paeonStacks !== jobDetail.songProcs
+    )
       this.player.speedBuffs.paeonStacks = jobDetail.songProcs;
   }
 

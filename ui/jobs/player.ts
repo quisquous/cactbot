@@ -4,12 +4,14 @@ import { NetMatches } from '../../types/net_matches';
 
 import { calcGCDFromStat } from './utils';
 
-export type Stats = Partial<{
-  [k in keyof NetMatches['PlayerStats']]: number;
-} & {
-  gcdSkill: number;
-  gcdSpell: number;
-}>;
+export type Stats = Partial<
+  {
+    [k in keyof NetMatches['PlayerStats']]: number;
+  } & {
+    gcdSkill: number;
+    gcdSpell: number;
+  }
+>;
 
 export type SpeedBuffs = {
   presenceOfMind: boolean;

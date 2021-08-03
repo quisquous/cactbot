@@ -69,47 +69,47 @@ export default class WhmComponent extends BaseComponent {
 
   onGainEffect(effectId) {
     switch (effectId) {
-    case EffectId.PresenceOfMind:
-      this.player.speedBuffs.presenceOfMind = true;
-      break;
+      case EffectId.PresenceOfMind:
+        this.player.speedBuffs.presenceOfMind = true;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId) {
     switch (effectId) {
-    case EffectId.PresenceOfMind:
-      this.player.speedBuffs.presenceOfMind = false;
-      break;
+      case EffectId.PresenceOfMind:
+        this.player.speedBuffs.presenceOfMind = false;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onUseAbility(abilityId) {
     switch (abilityId) {
-    case kAbility.Aero:
-    case kAbility.Aero2:
-      this.diaBox.duration = 18 + 1;
-      break;
+      case kAbility.Aero:
+      case kAbility.Aero2:
+        this.diaBox.duration = 18 + 1;
+        break;
 
-    case kAbility.Dia:
-      this.diaBox.duration = 30;
-      break;
+      case kAbility.Dia:
+        this.diaBox.duration = 30;
+        break;
 
-    case kAbility.Assize:
-      this.assizeBox.duration = 45;
-      break;
+      case kAbility.Assize:
+        this.assizeBox.duration = 45;
+        break;
 
-    case kAbility.LucidDreaming:
-      this.lucidBox.duration = 60;
-      break;
+      case kAbility.LucidDreaming:
+        this.lucidBox.duration = 60;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

@@ -391,7 +391,7 @@ export class Bars {
     return boxes;
   }
 
-  addResourceBox(options/* : { classList } */) {
+  addResourceBox(options /* : { classList } */) {
     const boxes = this.addJobBoxContainer();
     const boxDiv = document.createElement('div');
     if (options.classList) {
@@ -408,13 +408,15 @@ export class Bars {
     return textDiv;
   }
 
-  addProcBox(options, /* : {
+  addProcBox(
+    options, /* : {
     id,
     fgColor,
     threshold,
     scale,
     notifyWhenExpired,
-  } */) {
+  } */
+  ) {
     const elementId = this.player.job.toLowerCase() + '-procs';
 
     let container = document.getElementById(options.id);
@@ -450,10 +452,12 @@ export class Bars {
     return timerBox;
   }
 
-  addTimerBar(options, /* : {
+  addTimerBar(
+    options, /* : {
     id,
     fgColor,
-  } */) {
+  } */
+  ) {
     const container = this.addJobBarContainer();
 
     const timerDiv = document.createElement('div');
@@ -473,11 +477,13 @@ export class Bars {
     return timer;
   }
 
-  addResourceBar(options, /* : {
+  addResourceBar(
+    options, /* : {
     id,
     fgColor,
     maxvalue,
-  } */) {
+  } */
+  ) {
     const container = this.addJobBarContainer();
 
     const barDiv = document.createElement('div');
@@ -630,7 +636,10 @@ export class Bars {
     let mediumMP = -1;
     let far = -1;
 
-    if (this.player.job === 'RDM' || this.player.job === 'BLM' || this.player.job === 'SMN' || this.player.job === 'ACN')
+    if (
+      this.player.job === 'RDM' || this.player.job === 'BLM' || this.player.job === 'SMN' ||
+      this.player.job === 'ACN'
+    )
       far = this.options.FarThresholdOffence;
 
     if (this.player.job === 'DRK') {
@@ -682,8 +691,10 @@ export class Bars {
     const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
-    if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        Util.isCraftingJob(this.player.job) || Util.isGatheringJob(this.player.job))
+    if (
+      this.inCombat || !this.options.LowerOpacityOutOfCombat ||
+      Util.isCraftingJob(this.player.job) || Util.isGatheringJob(this.player.job)
+    )
       opacityContainer.style.opacity = '1.0';
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat.toString();
@@ -1051,15 +1062,41 @@ export class Bars {
   _test() {
     const logs = [];
     const t = '[10:10:10.000] ';
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Medicated from ' + this.player.me + ' for 30.2 Seconds.');
-    logs.push(t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.player.me + ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7');
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of The Balance from  for 12 Seconds.');
-    logs.push(t + '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
-    logs.push(t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
-    logs.push(t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(
+      t + '1A:10000000:' + this.player.me + ' gains the effect of Medicated from ' +
+        this.player.me +
+        ' for 30.2 Seconds.',
+    );
+    logs.push(
+      t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.player.me +
+        ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.player.me +
+        ' gains the effect of Battle Litany from  for 25 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.player.me +
+        ' gains the effect of The Balance from  for 12 Seconds.',
+    );
+    logs.push(
+      t +
+        '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.',
+    );
+    logs.push(
+      t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.player.me +
+        ' gains the effect of Left Eye from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.player.me +
+        ' gains the effect of Right Eye from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:',
+    );
     logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
     logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
     logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');

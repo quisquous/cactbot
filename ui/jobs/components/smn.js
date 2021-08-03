@@ -3,7 +3,6 @@ import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 import { BaseComponent } from './base';
 
-
 export default class SmnComponent extends BaseComponent {
   constructor(bars) {
     super(bars);
@@ -55,57 +54,57 @@ export default class SmnComponent extends BaseComponent {
 
   onGainEffect(effectId, matches) {
     switch (effectId) {
-    case EffectId.FurtherRuin:
-      this.refreshFurtherRuin(parseInt(matches.count));
-      break;
+      case EffectId.FurtherRuin:
+        this.refreshFurtherRuin(parseInt(matches.count));
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId) {
     switch (effectId) {
-    case EffectId.FurtherRuin:
-      this.refreshFurtherRuin(0);
-      break;
+      case EffectId.FurtherRuin:
+        this.refreshFurtherRuin(0);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onUseAbility(actionId) {
     switch (actionId) {
-    case kAbility.Miasma:
-    case kAbility.Miasma3:
-      this.miasmaBox.duration = 30;
-      break;
+      case kAbility.Miasma:
+      case kAbility.Miasma3:
+        this.miasmaBox.duration = 30;
+        break;
 
-    case kAbility.BioSmn:
-    case kAbility.BioSmn2:
-    case kAbility.Bio3:
-      this.bioSmnBox.duration = 30;
-      break;
+      case kAbility.BioSmn:
+      case kAbility.BioSmn2:
+      case kAbility.Bio3:
+        this.bioSmnBox.duration = 30;
+        break;
 
-    case kAbility.Tridisaster:
-      this.miasmaBox.duration = 30;
-      this.bioSmnBox.duration = 30;
-      break;
+      case kAbility.Tridisaster:
+        this.miasmaBox.duration = 30;
+        this.bioSmnBox.duration = 30;
+        break;
 
-    case kAbility.EnergyDrain:
-    case kAbility.EnergySiphon:
-      this.energyDrainBox.duration = 30;
-      this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-      break;
+      case kAbility.EnergyDrain:
+      case kAbility.EnergySiphon:
+        this.energyDrainBox.duration = 30;
+        this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+        break;
 
-    case kAbility.DreadwyrmTrance:
-    case kAbility.FirebirdTrance:
-      this.tranceBox.duration = 60;
-      break;
+      case kAbility.DreadwyrmTrance:
+      case kAbility.FirebirdTrance:
+        this.tranceBox.duration = 60;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
@@ -141,7 +140,10 @@ export default class SmnComponent extends BaseComponent {
       this.demiSummoningBox.parentNode.classList.add('bahamutready');
     } else if (jobDetail.phoenixReady) {
       this.demiSummoningBox.parentNode.classList.add('firebirdready');
-      this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-demisummon.firebirdready');
+      this.tranceBox.fg = computeBackgroundColorFrom(
+        this.tranceBox,
+        'smn-color-demisummon.firebirdready',
+      );
     }
 
     // Turn red when only 7s summoning time remain, to alarm that cast the second Enkindle.

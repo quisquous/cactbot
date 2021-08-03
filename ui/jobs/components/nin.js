@@ -47,38 +47,38 @@ export default class NinComponent extends BaseComponent {
 
   onGainEffect(effectId) {
     switch (effectId) {
-    case EffectId.Mudra:
-      if (this.mudraTriggerCd) {
-        const old = this.ninjutsu.value;
-        if (old > 0)
-          this.ninjutsu.duration = old + 20;
-        else
-          this.ninjutsu.duration = 20 - 0.5;
+      case EffectId.Mudra:
+        if (this.mudraTriggerCd) {
+          const old = this.ninjutsu.value;
+          if (old > 0)
+            this.ninjutsu.duration = old + 20;
+          else
+            this.ninjutsu.duration = 20 - 0.5;
+          this.mudraTriggerCd = false;
+        }
+        break;
+
+      case EffectId.Kassatsu:
         this.mudraTriggerCd = false;
-      }
-      break;
+        break;
 
-    case EffectId.Kassatsu:
-      this.mudraTriggerCd = false;
-      break;
-
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId) {
     switch (effectId) {
-    case EffectId.Mudra:
-      this.mudraTriggerCd = true;
-      break;
+      case EffectId.Mudra:
+        this.mudraTriggerCd = true;
+        break;
 
-    case EffectId.Kassatsu:
-      this.mudraTriggerCd = true;
-      break;
+      case EffectId.Kassatsu:
+        this.mudraTriggerCd = true;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
@@ -102,27 +102,33 @@ export default class NinComponent extends BaseComponent {
 
   onUseAbility(abilityId) {
     switch (abilityId) {
-    case kAbility.Bunshin:
-      this.bunshin.duration = 90;
-      break;
+      case kAbility.Bunshin:
+        this.bunshin.duration = 90;
+        break;
 
-    case kAbility.Hide:
-      this.ninjutsu.duration = 0;
-      break;
+      case kAbility.Hide:
+        this.ninjutsu.duration = 0;
+        break;
 
-    case kAbility.TrickAttack:
-      this.trickAttack.duration = 15;
-      this.trickAttack.threshold = 1000;
-      this.trickAttack.fg = computeBackgroundColorFrom(this.trickAttack, 'nin-color-trickattack.active');
-      this.tid1 = window.setTimeout(() => {
-        this.trickAttack.duration = 45;
-        this.trickAttack.threshold = this.player.gcdSkill * 4;
-        this.trickAttack.fg = computeBackgroundColorFrom(this.trickAttack, 'nin-color-trickattack');
-      }, 15000);
-      break;
+      case kAbility.TrickAttack:
+        this.trickAttack.duration = 15;
+        this.trickAttack.threshold = 1000;
+        this.trickAttack.fg = computeBackgroundColorFrom(
+          this.trickAttack,
+          'nin-color-trickattack.active',
+        );
+        this.tid1 = window.setTimeout(() => {
+          this.trickAttack.duration = 45;
+          this.trickAttack.threshold = this.player.gcdSkill * 4;
+          this.trickAttack.fg = computeBackgroundColorFrom(
+            this.trickAttack,
+            'nin-color-trickattack',
+          );
+        }, 15000);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

@@ -21,66 +21,65 @@ import SmnComponent from './smn';
 import WarComponent from './war';
 import WhmComponent from './whm';
 
-
 export class ComponentFactory {
   static getComponent(bars: Bars, job: Job): BaseComponent<Job> {
     switch (job.toUpperCase()) {
-    case 'PLD':
-      return new PldComponent(bars);
+      case 'PLD':
+        return new PldComponent(bars);
 
-    case 'WAR':
-      return new WarComponent(bars);
+      case 'WAR':
+        return new WarComponent(bars);
 
-    case 'DRK':
-      return new DrkComponent(bars);
+      case 'DRK':
+        return new DrkComponent(bars);
 
-    case 'GNB':
-      return new GnbComponent(bars);
+      case 'GNB':
+        return new GnbComponent(bars);
 
-    case 'WHM':
-      return new WhmComponent(bars);
+      case 'WHM':
+        return new WhmComponent(bars);
 
-    case 'SCH':
-      return new SchComponent(bars);
+      case 'SCH':
+        return new SchComponent(bars);
 
-    case 'AST':
-      return new AstComponent(bars);
+      case 'AST':
+        return new AstComponent(bars);
 
-    case 'MNK':
-      return new MnkComponent(bars);
+      case 'MNK':
+        return new MnkComponent(bars);
 
-    case 'DRG':
-      return new DrgComponent(bars);
+      case 'DRG':
+        return new DrgComponent(bars);
 
-    case 'NIN':
-      return new NinComponent(bars);
+      case 'NIN':
+        return new NinComponent(bars);
 
-    case 'SAM':
-      return new SamComponent(bars);
+      case 'SAM':
+        return new SamComponent(bars);
 
-    case 'BRD':
-      return new BrdComponent(bars);
+      case 'BRD':
+        return new BrdComponent(bars);
 
-    case 'MCH':
-      return new MchComponent(bars);
+      case 'MCH':
+        return new MchComponent(bars);
 
-    case 'DNC':
-      return new DncComponent(bars);
+      case 'DNC':
+        return new DncComponent(bars);
 
-    case 'BLM':
-      return new BlmComponent(bars);
+      case 'BLM':
+        return new BlmComponent(bars);
 
-    case 'SMN':
-      return new SmnComponent(bars);
+      case 'SMN':
+        return new SmnComponent(bars);
 
-    case 'RDM':
-      return new RdmComponent(bars);
+      case 'RDM':
+        return new RdmComponent(bars);
 
-    case 'BLU':
-      return new BluComponent(bars);
+      case 'BLU':
+        return new BluComponent(bars);
 
-    default:
-      return new BaseComponent(bars);
+      default:
+        return new BaseComponent(bars);
     }
   }
 }

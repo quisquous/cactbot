@@ -23,33 +23,34 @@ export default class BluComponent extends BaseComponent {
 
   onUseAbility(actionId) {
     switch (actionId) {
-    case kAbility.OffGuard:
-      this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
-      break;
+      case kAbility.OffGuard:
+        this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
+        break;
 
-    case PeculiarLight:
-      this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
-      break;
+      case PeculiarLight:
+        this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
+        break;
 
-    case SongOfTorment:
-      this.tormentBox.duration = 30;
-      break;
+      case SongOfTorment:
+        this.tormentBox.duration = 30;
+        break;
 
-      // +0.5&0.8 for animation delay
-    case AetherialSpark:
-      this.tormentBox.duration = 15 + 0.5;
-      break;
+        // +0.5&0.8 for animation delay
 
-    case Nightbloom:
-      this.tormentBox.duration = 60 + 0.8;
-      break;
+      case AetherialSpark:
+        this.tormentBox.duration = 15 + 0.5;
+        break;
 
-    case LucidDreaming:
-      this.lucidBox.duration = 60;
-      break;
+      case Nightbloom:
+        this.tormentBox.duration = 60 + 0.8;
+        break;
 
-    default:
-      break;
+      case LucidDreaming:
+        this.lucidBox.duration = 60;
+        break;
+
+      default:
+        break;
     }
   }
 

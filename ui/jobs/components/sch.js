@@ -60,23 +60,23 @@ export default class SchComponent extends BaseComponent {
 
   onUseAbility(abilityId) {
     switch (abilityId) {
-    case kAbility.Bio:
-    case kAbility.Bio2:
-    case kAbility.Biolysis:
-      this.bioBox.duration = 30;
-      break;
+      case kAbility.Bio:
+      case kAbility.Bio2:
+      case kAbility.Biolysis:
+        this.bioBox.duration = 30;
+        break;
 
-    case kAbility.Aetherflow:
-      this.aetherflowBox.duration = 60;
-      this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-      break;
+      case kAbility.Aetherflow:
+        this.aetherflowBox.duration = 60;
+        this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+        break;
 
-    case kAbility.LucidDreaming:
-      this.lucidBox.duration = 60;
-      break;
+      case kAbility.LucidDreaming:
+        this.lucidBox.duration = 60;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

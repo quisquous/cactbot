@@ -103,33 +103,36 @@ export default class MchComponent extends BaseComponent {
 
   onUseAbility(abilityId) {
     switch (abilityId) {
-    case kAbility.Drill:
-    case kAbility.Bioblaster:
-      this.drillBox.duration = this.player.getActionCooldown(20000, 'skill');
-      break;
+      case kAbility.Drill:
+      case kAbility.Bioblaster:
+        this.drillBox.duration = this.player.getActionCooldown(20000, 'skill');
+        break;
 
-    case kAbility.AirAnchor:
-    case kAbility.HotShot:
-      this.airAnchorBox.duration = this.player.getActionCooldown(40000, 'skill');
-      break;
+      case kAbility.AirAnchor:
+      case kAbility.HotShot:
+        this.airAnchorBox.duration = this.player.getActionCooldown(40000, 'skill');
+        break;
 
-    case kAbility.WildFire:
-      this.wildFireBox.duration = 10 + 0.9; // animation delay
-      this.wildFireBox.threshold = 1000;
-      this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire.active');
-      this.tid1 = window.setTimeout(() => {
-        this.wildFireBox.duration = 110 - 0.9;
-        this.wildFireBox.threshold = this.player.gcdSkill + 1;
-        this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire');
-      }, 10000);
-      this.tid2 = window.setTimeout(() => {
-        this.stacksContainer.classList.add('hide');
-        this.wildFireCounts = 0;
-      }, 15000);
-      break;
+      case kAbility.WildFire:
+        this.wildFireBox.duration = 10 + 0.9; // animation delay
+        this.wildFireBox.threshold = 1000;
+        this.wildFireBox.fg = computeBackgroundColorFrom(
+          this.wildFireBox,
+          'mch-color-wildfire.active',
+        );
+        this.tid1 = window.setTimeout(() => {
+          this.wildFireBox.duration = 110 - 0.9;
+          this.wildFireBox.threshold = this.player.gcdSkill + 1;
+          this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire');
+        }, 10000);
+        this.tid2 = window.setTimeout(() => {
+          this.stacksContainer.classList.add('hide');
+          this.wildFireCounts = 0;
+        }, 15000);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

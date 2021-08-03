@@ -83,25 +83,25 @@ export default class AstComponent extends BaseComponent<'AST'> {
 
   onUseAbility(action: string): void {
     switch (action) {
-    case kAbility.Combust:
-      this.combustBox.duration = 18;
-      break;
+      case kAbility.Combust:
+        this.combustBox.duration = 18;
+        break;
 
-    case kAbility.Combust2:
-    case kAbility.Combust3:
-      this.combustBox.duration = 30;
-      break;
+      case kAbility.Combust2:
+      case kAbility.Combust3:
+        this.combustBox.duration = 30;
+        break;
 
-    case kAbility.Draw:
-      this.drawBox.duration = 30;
-      break;
+      case kAbility.Draw:
+        this.drawBox.duration = 30;
+        break;
 
-    case kAbility.LucidDreaming:
-      this.lucidBox.duration = 60;
-      break;
+      case kAbility.LucidDreaming:
+        this.lucidBox.duration = 60;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

@@ -109,18 +109,18 @@ export const calcGCDFromStat = (player: Player, speed: number, actionDelay = 250
   } else if (player.job === 'BRD') {
     type2Buffs += 4 * player.speedBuffs.paeonStacks;
     switch (player.speedBuffs.museStacks) {
-    case 1:
-      type2Buffs += 1;
-      break;
-    case 2:
-      type2Buffs += 2;
-      break;
-    case 3:
-      type2Buffs += 4;
-      break;
-    case 4:
-      type2Buffs += 12;
-      break;
+      case 1:
+        type2Buffs += 1;
+        break;
+      case 2:
+        type2Buffs += 2;
+        break;
+      case 3:
+        type2Buffs += 4;
+        break;
+      case 4:
+        type2Buffs += 12;
+        break;
     }
   }
   // TODO: this probably isn't useful to track

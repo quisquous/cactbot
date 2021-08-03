@@ -31,23 +31,23 @@ export default class WarComponent extends BaseComponent {
 
   onGainEffect(effectId, matches) {
     switch (effectId) {
-    case EffectId.StormsEye:
-      this.eyeBox.duration = matches.duration;
-      break;
+      case EffectId.StormsEye:
+        this.eyeBox.duration = matches.duration;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId) {
     switch (effectId) {
-    case EffectId.StormsEye:
-      this.eyeBox.duration = 0;
-      break;
+      case EffectId.StormsEye:
+        this.eyeBox.duration = 0;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 

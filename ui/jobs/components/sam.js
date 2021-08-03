@@ -64,33 +64,33 @@ export default class SamComponent extends BaseComponent {
 
   onGainEffect(effectId, matches) {
     switch (effectId) {
-    case EffectId.Shifu:
-      this.shifu.duration = matches.duration - 0.5; // -0.5s for log line delay
-      this.player.speedBuffs.shifu = true;
-      break;
+      case EffectId.Shifu:
+        this.shifu.duration = matches.duration - 0.5; // -0.5s for log line delay
+        this.player.speedBuffs.shifu = true;
+        break;
 
-    case EffectId.Jinpu:
-      this.jinpu.duration = matches.duration - 0.5; // -0.5s for log line delay
-      break;
+      case EffectId.Jinpu:
+        this.jinpu.duration = matches.duration - 0.5; // -0.5s for log line delay
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
   onLoseEffect(effectId) {
     switch (effectId) {
-    case EffectId.Shifu:
-      this.shifu.duration = 0;
-      this.player.speedBuffs.shifu = false;
-      break;
+      case EffectId.Shifu:
+        this.shifu.duration = 0;
+        this.player.speedBuffs.shifu = false;
+        break;
 
-    case EffectId.Jinpu:
-      this.jinpu.duration = 0;
-      break;
+      case EffectId.Jinpu:
+        this.jinpu.duration = 0;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
@@ -101,14 +101,14 @@ export default class SamComponent extends BaseComponent {
 
   onUseAbility(abilityId) {
     switch (abilityId) {
-    case kAbility.KaeshiHiganbana:
-    case kAbility.KaeshiGoken:
-    case kAbility.KaeshiSetsugekka:
-      this.tsubameGaeshi.duration = 60;
-      break;
+      case kAbility.KaeshiHiganbana:
+      case kAbility.KaeshiGoken:
+      case kAbility.KaeshiSetsugekka:
+        this.tsubameGaeshi.duration = 60;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
   }
 
