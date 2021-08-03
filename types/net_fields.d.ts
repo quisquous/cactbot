@@ -11,7 +11,7 @@ export type NetFields = {
   'ChangeZone': typeof logDefinitions.changeZone.fields;
   'ChangedPlayer': typeof logDefinitions.changePrimaryPlayer.fields;
   'AddedCombatant': typeof logDefinitions.addCombatant.fields;
-  'RemovedCombatant': typeof logDefinitions.addCombatant.fields;
+  'RemovedCombatant': typeof logDefinitions.removeCombatant.fields;
   'PlayerStats': typeof logDefinitions.playerStats.fields;
   'StartsUsing': typeof logDefinitions.networkStartsCasting.fields;
   'Ability': typeof logDefinitions.networkAbility.fields;
