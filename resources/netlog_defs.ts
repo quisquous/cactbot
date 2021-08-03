@@ -26,7 +26,6 @@ export type LogDefinition = {
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 
-// TODO: build NetRegexes out of this, or somehow deduplicate.
 const logDefinitions = {
   GameLog: {
     type: '00',
