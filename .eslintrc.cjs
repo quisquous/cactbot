@@ -40,6 +40,9 @@ const settings = {
     'plugin/',
     'publish/',
     'resources/lib/',
+    // dprint+eslint is exceptionally slow on this generated file so skip it
+    // if somebody has generated it locally.
+    'util/coverage/coverage_report.ts',
   ],
   'parserOptions': {
     'ecmaVersion': 2020,
