@@ -808,6 +808,15 @@ const logDefinitions = {
     },
     isUnknown: true,
   },
+  None: {
+    type: '[0-9]+',
+    name: 'None',
+    fields: {
+      type: 0,
+      timestamp: 1,
+    },
+    isUnknown: true,
+  },
 } as const;
 
 // Verify that this has the right type, but export `as const`.
@@ -816,19 +825,5 @@ console.assert(assertLogDefinitions);
 
 export type LogDefinitions = typeof logDefinitions;
 export type LogDefinitionTypes = keyof LogDefinitions;
-
-// This type helper reverses the keys and values of a given type, e.g this:
-// {1: 'a'}
-// becomes this:
-// {a: 1}
-type Reverse<T extends { [f: string]: number }> = {
-  [P in T[keyof T]]: {
-    [K in keyof T]: T[K] extends P ? K : never;
-  }[keyof T];
-};
-
-export type LogDefinitionsReverse = {
-  [type in keyof LogDefinitions]: Reverse<LogDefinitions[type]['fields']>;
-};
 
 export default logDefinitions;
