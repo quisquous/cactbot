@@ -231,13 +231,33 @@ const writeCoverageReport = async (outputFileName, coverage, totals) => {
     `export const coverage = ${JSON.stringify(coverage, undefined, 2)};\n\n` +
     `export const coverageTotals = ${JSON.stringify(totals, undefined, 2)};\n`;
 
-  const linter = new eslint.ESLint({ fix: true });
-  const results = await linter.lintText(str, { filePath: outputFileName });
+  const dprintLinter = new eslint.ESLint({ fix: true });
+
+  // Get the default config for output file, remove dprint
+  const config = JSON.parse(
+    JSON.stringify(await dprintLinter.calculateConfigForFile(outputFileName)),
+  );
+  config.plugins = config.plugins.filter((p) => p !== 'dprint');
+  delete config.rules['dprint/dprint'];
+
+  const linter = new eslint.ESLint({ fix: true, useEslintrc: false, baseConfig: config });
+  const eslintResults = await linter.lintText(str, { filePath: outputFileName });
+
+  const eslintLintResult = eslintResults[0];
+  if (eslintLintResult.errorCount > 0 || eslintLintResult.warningCount > 0) {
+    console.error('Lint (eslint) ran with errors, aborting.');
+    process.exit(2);
+  }
+
+  const results = await dprintLinter.lintText(
+    eslintLintResult.output,
+    { filePath: outputFileName },
+  );
 
   // There's only one result from lintText, as per documentation.
   const lintResult = results[0];
   if (lintResult.errorCount > 0 || lintResult.warningCount > 0) {
-    console.error('Lint ran with errors, aborting.');
+    console.error('Lint (eslint+dprint) ran with errors, aborting.');
     process.exit(2);
   }
 
