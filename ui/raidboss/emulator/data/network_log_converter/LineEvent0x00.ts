@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.gameLog.fields;
+const fields = logDefinitions.GameLog.fields;
 
 // Chat event
 export class LineEvent0x00 extends LineEvent {

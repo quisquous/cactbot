@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.playerStats.fields;
+const fields = logDefinitions.PlayerStats.fields;
 
 // Player stats event
 export class LineEvent0x0C extends LineEvent {

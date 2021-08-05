@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkTargetIcon.fields;
+const fields = logDefinitions.HeadMarker.fields;
 
 // Head marker event
 export class LineEvent0x1B extends LineEvent implements LineEventSource {

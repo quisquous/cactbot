@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent, { LineEventAbility, LineEventSource, LineEventTarget } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkAbility.fields;
+const fields = logDefinitions.Ability.fields;
 
 // Shorten a few types so dprint doesn't complain when the line gets too long.
 type LESource = LineEventSource;

@@ -4,7 +4,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkBuff.fields;
+const fields = logDefinitions.GainsEffect.fields;
 
 // Gain status effect event
 // Deliberately don't flag this as LineEventSource or LineEventTarget
