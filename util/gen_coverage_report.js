@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import eslint from 'eslint';
 import ZoneInfo from '../resources/zone_info';
 import contentList from '../resources/content_list';
 import ZoneId from '../resources/zone_id';
@@ -230,10 +231,15 @@ const writeCoverageReport = async (outputFileName, coverage, totals) => {
     `export const coverage = ${JSON.stringify(coverage, undefined, 2)};\n\n` +
     `export const coverageTotals = ${JSON.stringify(totals, undefined, 2)};\n`;
 
-  // FIXME: It would be nice to programatically run eslint (as we have in the past)
-  // but dprint + eslint takes about 20 minutes to run on this file, and so is
-  // unreasonable to run.  So, don't run lint, just verify that it loads below.
-  // Maybe there's some rule that's particularly bad?
+  const linter = new eslint.ESLint({ fix: true });
+  const results = await linter.lintText(str, { filePath: outputFileName });
+
+  // There's only one result from lintText, as per documentation.
+  const lintResult = results[0];
+  if (lintResult.errorCount > 0 || lintResult.warningCount > 0) {
+    console.error('Lint ran with errors, aborting.');
+    process.exit(2);
+  }
 
   // Overwrite the file, if it already exists.
   const flags = 'w';
@@ -243,22 +249,7 @@ const writeCoverageReport = async (outputFileName, coverage, totals) => {
     process.exit(-1);
   });
 
-  writer.end(str);
-  writer.close();
-
-  // Verify that the file can be imported without errors, as this is the only
-  // check that the coverage report will load properly.
-  try {
-    // FIXME: why does this need an explicit extension in order for the loader to find it?
-    const exports = await import(`./${outputFileName.replace('.ts', '.js')}`);
-    if (!exports.coverage || !exports.coverageTotals) {
-      console.error(`Failed to write properly.`);
-      process.exit(-2);
-    }
-  } catch (e) {
-    console.error(e);
-    process.exit(-3);
-  }
+  writer.write(lintResult.output);
 };
 
 (async () => {
