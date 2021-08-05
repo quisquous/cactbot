@@ -906,11 +906,11 @@ export class Bars {
       this._updateProcBoxNotifyState();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-          this.options,
-          this.player.me,
-          this.o.leftBuffsList,
-          this.o.rightBuffsList,
-          this.partyTracker,
+        this.options,
+        this.player.me,
+        this.o.leftBuffsList,
+        this.o.rightBuffsList,
+        this.partyTracker,
       );
     }
     if (updateHp)
@@ -1098,9 +1098,18 @@ export class Bars {
       t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:',
     );
     logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.player.me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
+    logs.push(
+      t + '1A:10000000:' + this.player.me +
+        ' gains the effect of Devotion from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.player.me +
+        ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.',
+    );
+    logs.push(
+      t + '1A:10000000:' + this.player.me +
+        ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.',
+    );
     const e = { detail: { logs: logs } };
     this._onLogEvent(e);
   }
