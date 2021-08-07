@@ -84,10 +84,6 @@ and enable it in the list of plugins.
 
 ![startup wizard download screenshot](screenshots/ffxiv_plugin_parsing_plugin.png)
 
-Additionally, you must enable parsing from the network and make sure that ACT is not firewalled.
-Make sure the settings for the FFXIV plugin have the "Include HP for Triggers" button checked.
-This is under `Plugins` ->`FFXIV Settings` -> `Options`.
-
 Alternative FFXIV Plugin Guides:
 
 * [fflogs video guide](https://www.fflogs.com/help/start/)

@@ -73,8 +73,6 @@ cactbot提供以下模块：
 
 ![开始向导下载屏幕截图](../../screenshots/ffxiv_plugin_parsing_plugin.png)
 
-此外，您必须启用网络解析方式，并确保为ACT开启防火墙准入。 请确保FFXIV解析插件的设置中已勾选“包含HP用于触发器”按钮。 此选项在 `插件列表` ->`FFXIV Settings` -> `Options`中。
-
 其他FFXIV插件指南：
 
 * [fflogs video guide](https://www.fflogs.com/help/start/)
