@@ -1,6 +1,5 @@
-<!-- Disable MD004, markdown-magic generates TOC with - instead of * -->
 <!-- Disable MD024, duplicate headers are under different subheaders -->
-<!-- markdownlint-disable MD004 MD024 -->
+<!-- markdownlint-disable MD024 -->
 # Log Lines and Triggers
 
 This is intended to be a comprehensive guide to log lines
@@ -8,13 +7,13 @@ for folks who want to write ACT triggers for ff14.
 
 This guide was last updated for:
 
-* [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 4.58
-* [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 1.7.2.13
+- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 4.58
+- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 1.7.2.13
 
 With updates for:
 
-* [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.08
-* [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 2.0.4.0
+- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.08
+- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 2.0.4.0
 
 ## TOC
 
@@ -210,9 +209,9 @@ to disk.
 
 The network log lines are used by some tools, such as:
 
-* fflogs uploader
-* ffxivmon
-* cactbot make_timeline utility
+- fflogs uploader
+- ffxivmon
+- cactbot make_timeline utility
 
 If you [import a network log file into ACT](#importing-an-old-fight),
 then it you can view the ACT log lines in the fight.
@@ -356,10 +355,10 @@ ACT Log Line Examples:
 
 There are a number of reasons to avoid basing triggers on game log lines:
 
-* can show up later than ACT log lines (often up to half a second)
-* inconsistent text (gains effect vs suffers effect, begins casting vs readies, you vs player name)
-* often vague (the attack misses)
-* can change spelling at the whim of SquareEnix
+- can show up later than ACT log lines (often up to half a second)
+- inconsistent text (gains effect vs suffers effect, begins casting vs readies, you vs player name)
+- often vague (the attack misses)
+- can change spelling at the whim of SquareEnix
 
 Instead, the recommendation is to base your triggers on ACT log lines that are not type `00`.
 Prefer using `1A` "gains the effect" message instead of `00` "suffers the effect" messages.  Prefer using the `14` "starts using" instead of `00` "readies" or "begins casting".
@@ -739,19 +738,19 @@ This means that there's a number of caveats going on to handling all the data in
 
 Damage bitmasks:
 
-* 0x01 = dodge
-* 0x03 = damage done
-* 0x05 = blocked damage
-* 0x06 = parried damage
-* 0x33 = instant death
-* 0x100 = crit damage
-* 0x200 = direct hit damage
-* 0x300 = crit direct hit damage
+- 0x01 = dodge
+- 0x03 = damage done
+- 0x05 = blocked damage
+- 0x06 = parried damage
+- 0x33 = instant death
+- 0x100 = crit damage
+- 0x200 = direct hit damage
+- 0x300 = crit direct hit damage
 
 Heal bitmasks:
 
-* 0x00004 = heal
-* 0x10004 = crit heal
+- 0x00004 = heal
+- 0x10004 = crit heal
 
 Other bitmasks appear on particular abilities, and can indicate whether bane
 missed or hit recipients.  However, these all appear ability-specific.
@@ -1044,11 +1043,11 @@ The remaining bytes are a copy of the job gauge memory.
 This job is `0x19` (or black mage).
 Interpreting these [values](https://github.com/goaaats/Dalamud/blob/4ad5bee0c62128315b0a247466d28f42264c3069/Dalamud/Game/ClientState/Structs/JobGauge/BLMGauge.cs) means:
 
-* `short TimeUntilNextPolyglot` = 0x0000 = 0
-* `short ElementTimeRemaining` = 0x32C8 = 13000ms
-* `byte ElementStance` = 0xFD = -3 (three stacks of ice)
-* `byte NumUmbralHearts` = 0x00 = 0
-* `byte EnoState` = 0x00 = 0 (no enochian)
+- `short TimeUntilNextPolyglot` = 0x0000 = 0
+- `short ElementTimeRemaining` = 0x32C8 = 13000ms
+- `byte ElementStance` = 0xFD = -3 (three stacks of ice)
+- `byte NumUmbralHearts` = 0x00 = 0
+- `byte EnoState` = 0x00 = 0 (no enochian)
 
 There are a number of references for job gauge memory:
 
@@ -1071,10 +1070,10 @@ To control aspects of the user interface, the game sends packets called Actor Co
 
 Actor control commands are identified by a category, with parameters passed to it as a handler. DirectorUpdate is a category of ActorControlSelf and is used to control the events inside content for an individual player:
 
-* BGM change
-* some cutscenes
-* barrier up/down
-* fade in/out
+- BGM change
+- some cutscenes
+- barrier up/down
+- fade in/out
 
 Structure:
 `21:TypeAndInstanceContentId:Command (4 bytes):Data (4x 4? byte extra data)`
@@ -1098,22 +1097,22 @@ such as coil turns where there is a zone seal.
 
 Known types:
 
-* Initial commence: `21:content:40000001:time:` (time is the lockout time in seconds)
-* Recommence: `21:content:40000006:time:00:00:00`
-* Lockout time adjust: `21:content:80000004:time:00:00:00`
-* Charge boss limit break: `21:content:8000000C:value1:value2:00:00`
-* Music change: `21:content:80000001:value:00:00:00`
-* Fade out: `21:content:40000005:00:00:00:00` (wipe)
-* Fade in: `21:content:40000010:00:00:00:00` (always paired with barrier up)
-* Barrier up: `21:content:40000012:00:00:00:00` (always comes after fade in)
-* Victory: `21:zone:40000003:00:00:00:00`
+- Initial commence: `21:content:40000001:time:` (time is the lockout time in seconds)
+- Recommence: `21:content:40000006:time:00:00:00`
+- Lockout time adjust: `21:content:80000004:time:00:00:00`
+- Charge boss limit break: `21:content:8000000C:value1:value2:00:00`
+- Music change: `21:content:80000001:value:00:00:00`
+- Fade out: `21:content:40000005:00:00:00:00` (wipe)
+- Fade in: `21:content:40000010:00:00:00:00` (always paired with barrier up)
+- Barrier up: `21:content:40000012:00:00:00:00` (always comes after fade in)
+- Victory: `21:zone:40000003:00:00:00:00`
 
 Note: cactbot uses "fade in" as the wipe trigger,
 but probably should switch to "fade out" after testing.
 
 Still unknown:
 
-* `21:zone:40000007:00:00:00:00`
+- `21:zone:40000007:00:00:00:00`
 
 ### 22: NetworkNameToggle
 
@@ -1154,11 +1153,11 @@ Type is consistent across fights and represents a particular visual style of tet
 
 There are also a number of examples where tethers are generated in some other way:
 
-* ultima aetheroplasm orbs: NpcSpawn parentActorId set to opposite orb
-* t12 redfire orb: NpcSpawn parentActorId set to target
-* t13 dark aether orbs: NpcSpawn parentActorId and targetId set to target player
-* Suzaku Extreme birbs: who knows
-* player to player tethers (dragonsight, cover, fairy tether)
+- ultima aetheroplasm orbs: NpcSpawn parentActorId set to opposite orb
+- t12 redfire orb: NpcSpawn parentActorId set to target
+- t13 dark aether orbs: NpcSpawn parentActorId and targetId set to target player
+- Suzaku Extreme birbs: who knows
+- player to player tethers (dragonsight, cover, fairy tether)
 
 ## 24: LimitBreak
 
@@ -1278,12 +1277,12 @@ Theoretically used when memory-parsing is used, but I haven't seen them.
 
 It'd be nice for folks to dig into network data to figure out how some specific mechanics work that are currently not exposed in the log.
 
-* Boss headmarkers for Lamebrix Strikebocks (both A10S and Eureka Pyros)
-* Running into insta-kill walls
-* Figure out how t13 Dark Aether and Suzaku EX adds tether
-* Find network data zone sealing so game log lines don't have to be used
-* Network data for Absolute Virtue clone buffs (they're currently just game log lines)
-* How to detect a wipe in older content like coil?
-* How to differentiate fake mobs from real mobs in the added combatant data so they can be filtered out.
+- Boss headmarkers for Lamebrix Strikebocks (both A10S and Eureka Pyros)
+- Running into insta-kill walls
+- Figure out how t13 Dark Aether and Suzaku EX adds tether
+- Find network data zone sealing so game log lines don't have to be used
+- Network data for Absolute Virtue clone buffs (they're currently just game log lines)
+- How to detect a wipe in older content like coil?
+- How to differentiate fake mobs from real mobs in the added combatant data so they can be filtered out.
 
 See: [importing into ffxivmon](#importing-into-ffxivmon).
