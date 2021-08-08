@@ -196,7 +196,7 @@ The network log lines are used by some tools, such as:
 * cactbot make_timeline utility
 
 If you [import a network log file into ACT](#importing-an-old-fight),
-then it you can view the ACT log lines in the fight.  
+then it you can view the ACT log lines in the fight.
 
 ### ACT Log Lines
 
@@ -281,19 +281,6 @@ The examples in these sections do not include the time prefix for brevity.
 
 ### 00: LogLine
 
-Structure:
-`00:[Message Type ID]:Message displayed In-Game`
-
-Examples:
-
-```log
-00:0839:The Right Hand of Bahamut is no longer sealed!
-00:0840:The Final Coil of Bahamut - Turn 2 completion time: 8:37.
-00:0b3a:You are defeated by the oppressor 0.5.
-00:302b:The gravity node uses Forked Lightning.
-00:322a:The attack misses.
-```
-
 These are what this document calls "game log lines".
 There is a two byte log type and then a string.
 Because these are not often used for triggers
@@ -301,6 +288,48 @@ Because these are not often used for triggers
 the full set of LogTypes is not well-documented.
 
 (Pull requests welcome!)
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=GameLog&lang=en) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+00|2021-04-26T14:11:35.0000000-04:00|[code]|[name]|[line]
+
+ACT Log Line Structure:
+[14:11:35.0] 00:[code]:[name]:
+```
+
+#### Regexes
+
+```log
+Network Regex:
+^(?<type>(?:00))\|(?<timestamp>(?:[^|]*))\|(?<code>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<line>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 00:(?<code>(?:....)):(?<line>(?:.*))$
+```
+
+#### Examples
+
+```log
+Network Examples:
+00|2021-04-26T14:12:30.0000000-04:00|0839||You change to warrior.|d8c450105ea12854e26eb687579564df
+00|2021-04-26T16:57:41.0000000-04:00|0840||You can now summon the antelope stag mount.|caa3526e9f127887766e9211e87e0e8f
+00|2021-04-26T14:17:11.0000000-04:00|0b3a||You defeat the embodiment.|ef3b7b7f1e980f2c08e903edd51c70c7
+00|2021-04-26T14:12:30.0000000-04:00|302b||The gravity node uses Forked Lightning.|45d50c5f5322adf787db2bd00d85493d
+00|2021-04-26T14:12:30.0000000-04:00|322a||The attack misses.|f9f57724eb396a6a94232e9159175e8c
+
+ACT Log Line Examples:
+[14:12:30.0] 00:0839:You change to warrior.
+[16:57:41.0] 00:0840:You can now summon the antelope stag mount.
+[14:17:11.0] 00:0b3a:You defeat the embodiment.
+[14:12:30.0] 00:302b:The gravity node uses Forked Lightning.
+[14:12:30.0] 00:322a:The attack misses.
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 #### Don't Write Triggers Against Game Log Lines
 
@@ -328,64 +357,134 @@ and does not consistently show up first.
 
 This message is sent when first logging in and whenever the zone is changed.
 
-Structure:
-`01:Changed Zone to [Zone Name].`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangeZone&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-01:Changed Zone to The Lavender Beds.
-01:Changed Zone to The Unending Coil Of Bahamut (Ultimate).
+Network Log Line Structure:
+01|2021-04-26T14:11:35.0000000-04:00|[id]|[name]
+
+ACT Log Line Structure:
+[14:11:35.0] 01:Changed Zone to [Name].
 ```
+
+#### Regexes
+
+```log
+Network Regex:
+^(?<type>(?:01))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 01:Changed Zone to (?<name>(?:.*?))\.
+```
+
+#### Examples
+
+```log
+Network Examples:
+01|2021-04-26T14:13:17.9930000-04:00|326|Kugane Ohashi|b9f401c0aa0b8bc454b239b201abc1b8
+01|2021-04-26T14:22:04.5490000-04:00|31f|Alphascape (V2.0)|8299b97fa36500118fc3a174ed208fe4
+
+ACT Log Line Examples:
+[14:13:17.993] 01:Changed Zone to Kugane Ohashi.
+[14:22:04.549] 01:Changed Zone to Alphascape (V2.0).
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 02: ChangePrimaryPlayer
 
 This redundant message follows every [ChangeZone](#01-changezone) message to indicate the name of the player.
 
-Structure:
-`02:Changed primary player to [Player Name].`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangeZone&lang=en) -->
 
-Examples
+#### Structure
 
 ```log
-02:Changed primary player to Potato Chippy.
-02:Changed primary player to Tini Poutini.
+Network Log Line Structure:
+01|2021-04-26T14:11:35.0000000-04:00|[id]|[name]
+
+ACT Log Line Structure:
+[14:11:35.0] 01:Changed Zone to [Name].
 ```
+
+#### Regexes
+
+```log
+Network Regex:
+^(?<type>(?:01))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 01:Changed Zone to (?<name>(?:.*?))\.
+```
+
+#### Examples
+
+```log
+Network Examples:
+01|2021-04-26T14:13:17.9930000-04:00|326|Kugane Ohashi|b9f401c0aa0b8bc454b239b201abc1b8
+01|2021-04-26T14:22:04.5490000-04:00|31f|Alphascape (V2.0)|8299b97fa36500118fc3a174ed208fe4
+
+ACT Log Line Examples:
+[14:13:17.993] 01:Changed Zone to Kugane Ohashi.
+[14:22:04.549] 01:Changed Zone to Alphascape (V2.0).
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 03: AddCombatant
 
 This message is sent when a new object is added to the scene or
 becomes close enough to the player that they can view its actions.
 
-Structure:
-`03:[ObjectId]:Added new combatant [Combatant Name].  Job: [Job-ID] Level: [Level-Value] Max HP: [Max-HP-Value] Max MP: [Max-MP-Value] Pos: ([X-Pos],[Z-Pos],[Y-Pos]).`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=AddedCombatant&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-03:40123456:Added new combatant Pagos Deepeye.  Job: N/A Level: 70 Max HP: 348652 Max MP: 12000 Pos: (-720.9337,90.80706,-679.6056).
-03:10987654:Added new combatant Tater Tot (Jenova).  Job: 28 Level: 70 Max HP: 39835 Max MP: 16461 Pos: (-143.9604,168.5795,-4.999999).
+Network Log Line Structure:
+03|2021-04-26T14:11:35.0000000-04:00|[id]|[name]|[job]|[level]|[ownerId]|[worldId]|[world]|[npcNameId]|[npcBaseId]|[currentHp]|[hp]|[currentMp]|[mp]|||[x]|[y]|[z]|[heading]
+
+ACT Log Line Structure:
+[14:11:35.0] 03:[ID]:Added new combatant [name]([world]).  Job: NONE Level: [level] Max HP: [hp] Max MP: [mp] Pos: ([x],[y],[z]) ([npcNameId][npcBaseId]).
 ```
+
+#### Regexes
+
+```log
+Network Regex:
+^(?<type>(?:03))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<level>(?:[^|]*))\|(?<ownerId>(?:[^|]*))\|(?<worldId>(?:[^|]*))\|(?<world>(?:[^|]*))\|(?<npcNameId>(?:[^|]*))\|(?<npcBaseId>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<hp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<mp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 03:(?<id>(?:[0-9A-F]{8})):Added new combatant (?<name>(?:[^:]*?))\. {2}Job: (?<job>(?:[^:]*?)) Level: (?<level>(?:[^:]*?)) Max HP: (?<hp>(?:[0-9]+))..*?Pos: \((?<x>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)),(?<y>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)),(?<z>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?))\)(?: \((?<npcId>(?:.*?))\))?\.
+```
+
+#### Examples
+
+```log
+Network Examples:
+03|2021-06-16T20:46:38.5450000-07:00|10ff0001|Tini Poutini|24|46|0|28|Jenova|0|0|30460|30460|10000|10000|0|0|-0.76|15.896|0|-3.141593||c0e6f1c201e7285884fb6bf107c533ee
+03|2021-06-16T21:35:11.3060000-07:00|4000b364|Catastrophe|0|46|0|0||5631|6358|57250|57250|0|10000|0|0|0|0|0|-4.792213E-05||9c22c852e1995ed63ff4b71c09b7d1a7
+03|2021-06-16T21:35:11.3060000-07:00|4000b363|Catastrophe|0|46|0|0||5631|6358|57250|57250|0|10000|0|0|0|0|0|-4.792213E-05||9438b02195d9b785e07383bc84b2bf37
+03|2021-06-16T21:35:11.3060000-07:00|4000b362|Catastrophe|0|46|0|0||5631|7305|13165210|13165210|10000|10000|0|0|0|-15|0|-4.792213E-05||1c4bc8f27640fab6897dc90c02bba79d
+03|2021-06-16T21:35:11.4020000-07:00|4000b365|Catastrophe|0|46|0|0||5631|6358|57250|57250|0|10000|0|0|0|0|0|-4.792213E-05||8b3f6cf1939428dd9ab0a319aba44910
+03|2021-06-16T21:35:11.4020000-07:00|4000b36a|Catastrophe|0|46|0|0||5631|6358|57250|57250|0|10000|0|0|0|0|0|-4.792213E-05||b3b3b4f926bcadd8b6ef008232d58922
+
+ACT Log Line Examples:
+[23:46:38.545] 03:10FF0001:Added new combatant Tini Poutini(Jenova).  Job: BLU Level: 46 Max HP: 30460 Max MP: 10000 Pos: (-0.76,15.896,0).
+[00:35:11.306] 03:4000B364:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+[00:35:11.306] 03:4000B363:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+[00:35:11.306] 03:4000B362:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 13165210 Max MP: 10000 Pos: (0,-15,0) (56310000007305).
+[00:35:11.402] 03:4000B365:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+[00:35:11.402] 03:4000B36A:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 This combatant may be invisible and fake.  The real ones have more HP.
-For example, at the start of t5 you will see messages like this:
-
-```log
-03:40123450:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123451:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123452:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123453:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123454:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123455:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123456:Added new combatant The Scourge Of Meracydia.  Job: N/A Level: 50 Max HP: 20307 Max MP: 0 Pos: (-8.42909,17.4637,50.15326).
-03:40123457:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 514596 Max MP: 0 Pos: (2.251731,4.753533,50.03756).
-03:40123458:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
-03:40123459:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
-03:40123460:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123461:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:40123462:Added new combatant The Scourge Of Meracydia.  Job: N/A Level: 50 Max HP: 20307 Max MP: 0 Pos: (8.960839,18.12193,50.66183).
-03:40123463:Added new combatant The Scourge Of Meracydia.  Job: N/A Level: 50 Max HP: 20307 Max MP: 0 Pos: (18.30528,3.778645,50.44044).
-```
+For example, at the start of Deltascape V2.0 you will see messages like the
+latter 5 examples above.
 
 In heavy zones (e.g. Eureka), combatants may be culled if there are too many
 things nearby.
@@ -400,15 +499,41 @@ This message is sent when an object is removed from the scene, either because
 the player has moved too far away from it, it has died, or the player has
 changed zones.
 
-Structure:
-`04:[ObjectId]:Removing combatant [Combatant Name].  Max HP: [Max-HP-Value]. Pos: ([X-Pos],[Z-Pos],[Y-Pos])`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=RemovedCombatant&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-04:10987654:Removing combatant Potato Chippy.  Max HP: 28784. Pos: (-776.6765,152.5261,-671.2197)
-04:40123462:Removing combatant Frozen Void Dragon.  Max HP: 348652. Pos: (-710.7075,49.39039,-646.7071)
+Network Log Line Structure:
+04|2021-04-26T14:11:35.0000000-04:00|[id]|[name]|[job]|[level]|[owner]||[world]|[npcNameId]|[npcBaseId]||[hp]|||||[x]|[y]|[z]|[heading]
+
+ACT Log Line Structure:
+[14:11:35.0] 04:[ID]:Removing combatant [name]. Max MP: . Pos: ([x],[y],[z])
 ```
+
+#### Regexes
+
+```log
+Network Regex:
+^(?<type>(?:04))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<level>(?:[^|]*))\|(?<owner>(?:[^|]*))\|(?:[^|]*\|)(?<world>(?:[^|]*))\|(?<npcNameId>(?:[^|]*))\|(?<npcBaseId>(?:[^|]*))\|(?:[^|]*\|)(?<hp>(?:[^|]*))\|(?:[^|]*\|){4}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 04:(?<id>(?:[0-9A-F]{8})):Removing combatant (?<name>(?:.*?))\..*?Max HP: (?<hp>(?:[0-9]+)).(?:.*?Pos: \((?<x>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)),(?<y>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)),(?<z>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?))\))?
+```
+
+#### Examples
+
+```log
+Network Examples:
+04|2021-07-23T23:01:27.5480000-07:00|10ff0001|Tini Poutini|5|1e|0|35|Jenova|0|0|816|816|10000|10000|0|0|-66.24337|-292.0904|20.06466|1.789943||4fbfc851937873eacf94f1f69e0e2ba9
+04|2021-06-16T21:37:36.0740000-07:00|4000b39c|Petrosphere|0|46|0|0||6712|7308|0|57250|0|10000|0|0|-16.00671|-0.01531982|0|1.53875||980552ad636f06249f1b5c7a6e675aad
+
+ACT Log Line Examples:
+[02:01:27.548] 04:10FF0001:Removing combatant Tini Poutini. Max MP: 10000. Pos: (-66.24337,-292.0904,20.06466)
+[00:37:36.74] 04:4000B39C:Removing combatant Petrosphere. Max MP: 10000. Pos: (-16.00671,-0.01531982,0)
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 05: AddBuff
 
