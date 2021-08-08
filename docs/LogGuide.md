@@ -16,63 +16,80 @@ With updates for:
 <!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
 ## TOC
 
-* [Data Flow](#data-flow)
-  * [Viewing logs after a fight](#viewing-logs-after-a-fight)
-  * [Importing an old fight](#importing-an-old-fight)
-  * [Importing into ffxivmon](#importing-into-ffxivmon)
-* [Glossary of Terms](#glossary-of-terms)
-  * [Network Data](#network-data)
-  * [Network Log Lines](#network-log-lines)
-  * [ACT Log Lines](#act-log-lines)
-  * [Game Log Lines](#game-log-lines)
-  * [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
-  * [Object ID](#object-id)
-  * [Ability ID](#ability-id)
-* [Log Line Overview](#log-line-overview)
-  * [00: LogLine](#00-logline)
-    * [Don't Write Triggers Against Game Log Lines](#dont-write-triggers-against-game-log-lines)
-  * [01: ChangeZone](#01-changezone)
-  * [02: ChangePrimaryPlayer](#02-changeprimaryplayer)
-  * [03: AddCombatant](#03-addcombatant)
-  * [04: RemoveCombatant](#04-removecombatant)
-  * [05: AddBuff](#05-addbuff)
-  * [06: RemoveBuff](#06-removebuff)
-  * [07: FlyingText](#07-flyingtext)
-  * [08: OutgoingAbility](#08-outgoingability)
-  * [0A: IncomingAbility](#0a-incomingability)
-  * [0B: PartyList](#0b-partylist)
-  * [0C: PlayerStats](#0c-playerstats)
-  * [0D: CombatantHP](#0d-combatanthp)
-  * [14: NetworkStartsCasting](#14-networkstartscasting)
-  * [15: NetworkAbility](#15-networkability)
-    * [Ability Flags](#ability-flags)
-    * [Ability Damage](#ability-damage)
-    * [Special Case Shifts](#special-case-shifts)
-    * [Ability Examples](#ability-examples)
-  * [16: NetworkAOEAbility](#16-networkaoeability)
-  * [17: NetworkCancelAbility](#17-networkcancelability)
-  * [18: NetworkDoT](#18-networkdot)
-  * [19: NetworkDeath](#19-networkdeath)
-  * [1A: NetworkBuff](#1a-networkbuff)
-  * [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers)
-  * [1C: NetworkRaidMarker](#1c-networkraidmarker)
-  * [1D: NetworkTargetMarker](#1d-networktargetmarker)
-  * [1E: NetworkBuffRemove](#1e-networkbuffremove)
-  * [1F: NetworkGauge](#1f-networkgauge)
-  * [20: NetworkWorld](#20-networkworld)
-  * [21: Network6D (Actor Control Lines)](#21-network6d-actor-control-lines)
-  * [22: NetworkNameToggle](#22-networknametoggle)
-  * [23: NetworkTether](#23-networktether)
-  * [24: LimitBreak](#24-limitbreak)
-  * [25: NetworkActionSync](#25-NetworkActionSync)
-  * [26: NetworkStatusEffects](#26-networkstatuseffects)
-  * [27: NetworkUpdateHP](#27-networkupdatehp)
-  * [FB: Debug](#fb-debug)
-  * [FC: PacketDump](#fc-packetdump)
-  * [FD: Version](#fd-version)
-  * [FE: Error](#fe-error)
-  * [FF: Timer](#ff-timer)
-* [Future Network Data Science](#future-network-data-science)
+<!-- AUTO-GENERATED-CONTENT:START (TOC) -->
+- [Data Flow](#data-flow)
+  - [Viewing logs after a fight](#viewing-logs-after-a-fight)
+  - [Importing an old fight](#importing-an-old-fight)
+  - [Importing into ffxivmon](#importing-into-ffxivmon)
+- [Glossary of Terms](#glossary-of-terms)
+  - [Network Data](#network-data)
+  - [Network Log Lines](#network-log-lines)
+  - [ACT Log Lines](#act-log-lines)
+  - [Game Log Lines](#game-log-lines)
+  - [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
+  - [Object ID](#object-id)
+  - [Ability ID](#ability-id)
+- [Log Line Overview](#log-line-overview)
+  - [00: LogLine](#00-logline)
+    - [Structure](#structure)
+    - [Regexes](#regexes)
+    - [Examples](#examples)
+    - [Don't Write Triggers Against Game Log Lines](#dont-write-triggers-against-game-log-lines)
+  - [01: ChangeZone](#01-changezone)
+    - [Structure](#structure-1)
+    - [Regexes](#regexes-1)
+    - [Examples](#examples-1)
+  - [02: ChangePrimaryPlayer](#02-changeprimaryplayer)
+    - [Structure](#structure-2)
+    - [Regexes](#regexes-2)
+    - [Examples](#examples-2)
+  - [03: AddCombatant](#03-addcombatant)
+    - [Structure](#structure-3)
+    - [Regexes](#regexes-3)
+    - [Examples](#examples-3)
+  - [04: RemoveCombatant](#04-removecombatant)
+    - [Structure](#structure-4)
+    - [Regexes](#regexes-4)
+    - [Examples](#examples-4)
+  - [05: AddBuff](#05-addbuff)
+  - [06: RemoveBuff](#06-removebuff)
+  - [07: FlyingText](#07-flyingtext)
+  - [08: OutgoingAbility](#08-outgoingability)
+  - [0A: IncomingAbility](#0a-incomingability)
+  - [0B: PartyList](#0b-partylist)
+  - [0C: PlayerStats](#0c-playerstats)
+  - [0D: CombatantHP](#0d-combatanthp)
+  - [14: NetworkStartsCasting](#14-networkstartscasting)
+  - [15: NetworkAbility](#15-networkability)
+    - [Ability Flags](#ability-flags)
+    - [Ability Damage](#ability-damage)
+    - [Special Case Shifts](#special-case-shifts)
+    - [Ability Examples](#ability-examples)
+  - [16: NetworkAOEAbility](#16-networkaoeability)
+  - [17: NetworkCancelAbility](#17-networkcancelability)
+  - [18: NetworkDoT](#18-networkdot)
+  - [19: NetworkDeath](#19-networkdeath)
+  - [1A: NetworkBuff](#1a-networkbuff)
+  - [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers)
+  - [1C: NetworkRaidMarker](#1c-networkraidmarker)
+  - [1D: NetworkTargetMarker](#1d-networktargetmarker)
+  - [1E: NetworkBuffRemove](#1e-networkbuffremove)
+  - [1F: NetworkGauge](#1f-networkgauge)
+  - [20: NetworkWorld](#20-networkworld)
+  - [21: Network6D (Actor Control Lines)](#21-network6d-actor-control-lines)
+  - [22: NetworkNameToggle](#22-networknametoggle)
+  - [23: NetworkTether](#23-networktether)
+- [24: LimitBreak](#24-limitbreak)
+- [25: NetworkActionSync](#25-networkactionsync)
+- [26: NetworkStatusEffects](#26-networkstatuseffects)
+- [27: NetworkUpdateHP](#27-networkupdatehp)
+  - [FB: Debug](#fb-debug)
+  - [FC: PacketDump](#fc-packetdump)
+  - [FD: Version](#fd-version)
+  - [FE: Error](#fe-error)
+  - [FF: Timer](#ff-timer)
+- [Future Network Data Science](#future-network-data-science)
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
 
@@ -304,7 +321,7 @@ ACT Log Line Structure:
 #### Regexes
 
 ```log
-Network Regex:
+Network Log Line Regex:
 ^(?<type>(?:00))\|(?<timestamp>(?:[^|]*))\|(?<code>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<line>(?:[^|]*))\|
 
 ACT Log Line Regex:
@@ -314,12 +331,13 @@ ACT Log Line Regex:
 #### Examples
 
 ```log
-Network Examples:
+Network Log Line Examples:
 00|2021-04-26T14:12:30.0000000-04:00|0839||You change to warrior.|d8c450105ea12854e26eb687579564df
 00|2021-04-26T16:57:41.0000000-04:00|0840||You can now summon the antelope stag mount.|caa3526e9f127887766e9211e87e0e8f
 00|2021-04-26T14:17:11.0000000-04:00|0b3a||You defeat the embodiment.|ef3b7b7f1e980f2c08e903edd51c70c7
 00|2021-04-26T14:12:30.0000000-04:00|302b||The gravity node uses Forked Lightning.|45d50c5f5322adf787db2bd00d85493d
 00|2021-04-26T14:12:30.0000000-04:00|322a||The attack misses.|f9f57724eb396a6a94232e9159175e8c
+00|2021-07-05T18:01:21.0000000-04:00|0044|Tsukuyomi|Oh...it's going to be a long night.|1a81d186fd4d19255f2e01a1694c7607
 
 ACT Log Line Examples:
 [14:12:30.0] 00:0839:You change to warrior.
@@ -327,6 +345,7 @@ ACT Log Line Examples:
 [14:17:11.0] 00:0b3a:You defeat the embodiment.
 [14:12:30.0] 00:302b:The gravity node uses Forked Lightning.
 [14:12:30.0] 00:322a:The attack misses.
+[18:01:21.0] 00:0044:Tsukuyomi:Oh...it's going to be a long night.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -372,7 +391,7 @@ ACT Log Line Structure:
 #### Regexes
 
 ```log
-Network Regex:
+Network Log Line Regex:
 ^(?<type>(?:01))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|
 
 ACT Log Line Regex:
@@ -382,7 +401,7 @@ ACT Log Line Regex:
 #### Examples
 
 ```log
-Network Examples:
+Network Log Line Examples:
 01|2021-04-26T14:13:17.9930000-04:00|326|Kugane Ohashi|b9f401c0aa0b8bc454b239b201abc1b8
 01|2021-04-26T14:22:04.5490000-04:00|31f|Alphascape (V2.0)|8299b97fa36500118fc3a174ed208fe4
 
@@ -412,7 +431,7 @@ ACT Log Line Structure:
 #### Regexes
 
 ```log
-Network Regex:
+Network Log Line Regex:
 ^(?<type>(?:01))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|
 
 ACT Log Line Regex:
@@ -422,7 +441,7 @@ ACT Log Line Regex:
 #### Examples
 
 ```log
-Network Examples:
+Network Log Line Examples:
 01|2021-04-26T14:13:17.9930000-04:00|326|Kugane Ohashi|b9f401c0aa0b8bc454b239b201abc1b8
 01|2021-04-26T14:22:04.5490000-04:00|31f|Alphascape (V2.0)|8299b97fa36500118fc3a174ed208fe4
 
@@ -453,7 +472,7 @@ ACT Log Line Structure:
 #### Regexes
 
 ```log
-Network Regex:
+Network Log Line Regex:
 ^(?<type>(?:03))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<level>(?:[^|]*))\|(?<ownerId>(?:[^|]*))\|(?<worldId>(?:[^|]*))\|(?<world>(?:[^|]*))\|(?<npcNameId>(?:[^|]*))\|(?<npcBaseId>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<hp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<mp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
 
 ACT Log Line Regex:
@@ -463,7 +482,7 @@ ACT Log Line Regex:
 #### Examples
 
 ```log
-Network Examples:
+Network Log Line Examples:
 03|2021-06-16T20:46:38.5450000-07:00|10ff0001|Tini Poutini|24|46|0|28|Jenova|0|0|30460|30460|10000|10000|0|0|-0.76|15.896|0|-3.141593||c0e6f1c201e7285884fb6bf107c533ee
 03|2021-06-16T21:35:11.3060000-07:00|4000b364|Catastrophe|0|46|0|0||5631|6358|57250|57250|0|10000|0|0|0|0|0|-4.792213E-05||9c22c852e1995ed63ff4b71c09b7d1a7
 03|2021-06-16T21:35:11.3060000-07:00|4000b363|Catastrophe|0|46|0|0||5631|6358|57250|57250|0|10000|0|0|0|0|0|-4.792213E-05||9438b02195d9b785e07383bc84b2bf37
@@ -514,7 +533,7 @@ ACT Log Line Structure:
 #### Regexes
 
 ```log
-Network Regex:
+Network Log Line Regex:
 ^(?<type>(?:04))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<level>(?:[^|]*))\|(?<owner>(?:[^|]*))\|(?:[^|]*\|)(?<world>(?:[^|]*))\|(?<npcNameId>(?:[^|]*))\|(?<npcBaseId>(?:[^|]*))\|(?:[^|]*\|)(?<hp>(?:[^|]*))\|(?:[^|]*\|){4}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
 
 ACT Log Line Regex:
@@ -524,7 +543,7 @@ ACT Log Line Regex:
 #### Examples
 
 ```log
-Network Examples:
+Network Log Line Examples:
 04|2021-07-23T23:01:27.5480000-07:00|10ff0001|Tini Poutini|5|1e|0|35|Jenova|0|0|816|816|10000|10000|0|0|-66.24337|-292.0904|20.06466|1.789943||4fbfc851937873eacf94f1f69e0e2ba9
 04|2021-06-16T21:37:36.0740000-07:00|4000b39c|Petrosphere|0|46|0|0||6712|7308|0|57250|0|10000|0|0|-16.00671|-0.01531982|0|1.53875||980552ad636f06249f1b5c7a6e675aad
 

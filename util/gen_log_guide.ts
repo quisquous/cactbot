@@ -19,7 +19,7 @@ type LineDocTypes = Exclude<LogDefinitionTypes, ExcludedLineDocs>;
 
 type LineDocType = {
   // We can generate `network` type automatically for everything but regex
-  regexes: {
+  regexes?: {
     network: string;
     logLine: string;
   };
@@ -61,11 +61,6 @@ const lineDocs: Partial<LineDocs> = {
     },
   },
   ChangedPlayer: {
-    regexes: {
-      // @TODO: Add this to NetRegexes/Regexes if we're going to mention them in the log guide?
-      network: '',
-      logLine: '',
-    },
     examples: {
       en: [
         '02|2021-04-26T14:11:31.0200000-04:00|10ff0001|Tini Poutini|5b0a5800460045f29db38676e0c3f79a',
@@ -163,6 +158,8 @@ const config: markdownMagic.Configuration = {
         return line?.properCaseConvertedLine ?? line?.convertedLine;
       }).join('\n') ?? '';
 
+      const regexes = lineDoc.regexes;
+
       ret += `
 #### Structure
 
@@ -173,17 +170,23 @@ ${structureNetwork}
 ACT Log Line Structure:
 ${structureLog}
 \`\`\`
+`;
 
+      if (regexes) {
+        ret += `
 #### Regexes
 
 \`\`\`log
 Network Log Line Regex:
-${lineDoc.regexes.network}
+${regexes.network}
 
 ACT Log Line Regex:
-${lineDoc.regexes.logLine}
+${regexes.logLine}
 \`\`\`
+`;
+      }
 
+      ret += `
 #### Examples
 
 \`\`\`log
