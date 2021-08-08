@@ -177,7 +177,7 @@ ${structureLog}
 #### Regexes
 
 \`\`\`log
-Network Regex:
+Network Log Line Regex:
 ${lineDoc.regexes.network}
 
 ACT Log Line Regex:
@@ -187,7 +187,7 @@ ${lineDoc.regexes.logLine}
 #### Examples
 
 \`\`\`log
-Network Examples:
+Network Log Line Examples:
 ${examplesNetwork}
 
 ACT Log Line Examples:
