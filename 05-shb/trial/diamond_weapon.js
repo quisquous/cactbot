@@ -300,12 +300,13 @@ Options.Triggers.push({
         },
         {
             'locale': 'cn',
-            'missingTranslations': true,
             'replaceSync': {
                 'Articulated Bit': '飞手浮游炮',
                 'The Diamond Weapon': '钻石神兵',
             },
             'replaceText': {
+                '\\(Jump\\)': '(跳)',
+                '\\(Cleave\\)': '(冲锋)',
                 'Adamant Purge': '装甲展开',
                 'Adamant Sphere': '钻石球',
                 'Aetherial Bullet': '以太炮',
@@ -314,7 +315,7 @@ Options.Triggers.push({
                 'Auri Arts': '敖龙技巧',
                 'Auri Cyclone': '敖龙旋风',
                 'Auri Doomstead': '敖龙厄运',
-                '(?<!Photon )Burst': '爆発',
+                '(?<!Photon )Burst': '爆炸',
                 'Claw Swipe': '利爪突进',
                 'Code Chi-Xi-Stigma': '代号666',
                 'Diamond Flash': '钻石闪光',

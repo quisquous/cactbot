@@ -343,7 +343,6 @@ Options.Triggers.push({
         {
             'locale': 'cn',
             'replaceSync': {
-                '\\(explosions\\)': '(爆炸)',
                 'Amhuluk': '阿姆鲁克',
                 'Lunar Bahamut': '真月巴哈姆特',
                 'Magitek Fortress': '魔导要塞',
@@ -352,8 +351,9 @@ Options.Triggers.push({
                 'The Gathering Ring': '佐尔玛刻祭场',
             },
             'replaceText': {
-                '--Levin orbs--': '--电球--',
                 '\\(circles\\)': '圈',
+                '\\(explosions\\)': '(爆炸)',
+                '--Levin orbs--': '--电球--',
                 'Akh Morn': '死亡轮回',
                 'Big Burst': '大爆炸',
                 'Critical Rip': '暴击撕裂',
