@@ -1,3 +1,6 @@
+<!-- Disable MD004, markdown-magic generates TOC with - instead of * -->
+<!-- Disable MD024, duplicate headers are under different subheaders -->
+<!-- markdownlint-disable MD004 MD024 -->
 # Log Lines and Triggers
 
 This is intended to be a comprehensive guide to log lines
@@ -13,7 +16,6 @@ With updates for:
 * [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.08
 * [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 2.0.4.0
 
-<!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
 ## TOC
 
 <!-- AUTO-GENERATED-CONTENT:START (TOC) -->
