@@ -520,12 +520,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Articulated Bit': '飞手浮游炮',
         'The Diamond Weapon': '钻石神兵',
       },
       'replaceText': {
+        '\\(Jump\\)': '(跳)',
+        '\\(Cleave\\)': '(冲锋)',
         'Adamant Purge': '装甲展开',
         'Aetherial Bullet': '以太炮',
         'Articulated Bits': '飞手浮游炮',
@@ -538,8 +539,8 @@ const triggerSet: TriggerSet<Data> = {
         'Diamond Flash': '钻石闪光',
         'Diamond Rain': '钻石雨',
         'Diamond Shot': '钻石射击',
-        'Diamond Shrapnel': '钻石爆发ト',
-        'Flood Ray': '泛光射线イ',
+        'Diamond Shrapnel': '钻石爆发',
+        'Flood Ray': '泛光射线',
         'Homing Laser': '自控导弹',
         'Outrage': '震怒',
         'Photon Burst': '光子爆发',
