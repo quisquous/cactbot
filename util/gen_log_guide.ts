@@ -392,6 +392,10 @@ const config: markdownMagic.Configuration = {
       mappedLogLines[language]?.push(lineType);
 
       const logRepo = new LogRepository();
+      // Add the default combatants to the repo for name lookup when names are blank
+      logRepo.Combatants['10FF0001'] = { spawn: 0, despawn: 0, name: 'Tini Poutini' };
+      logRepo.Combatants['10FF0002'] = { spawn: 0, despawn: 0, name: 'Potato Chippy' };
+
       let ret = '';
       const lineDef = logDefinitions[lineType];
       const structureNetworkArray = [
