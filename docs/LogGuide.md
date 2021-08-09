@@ -58,32 +58,81 @@ With updates for:
   - [08: OutgoingAbility](#08-outgoingability)
   - [0A: IncomingAbility](#0a-incomingability)
   - [0B: PartyList](#0b-partylist)
+    - [Structure](#structure-5)
+    - [Examples](#examples-5)
   - [0C: PlayerStats](#0c-playerstats)
+    - [Structure](#structure-6)
+    - [Regexes](#regexes-5)
+    - [Examples](#examples-6)
   - [0D: CombatantHP](#0d-combatanthp)
+    - [CombatantHP is an ACT-only line](#combatanthp-is-an-act-only-line)
   - [14: NetworkStartsCasting](#14-networkstartscasting)
+    - [Structure](#structure-7)
+    - [Regexes](#regexes-6)
+    - [Examples](#examples-7)
   - [15: NetworkAbility](#15-networkability)
+    - [Structure](#structure-8)
+    - [Regexes](#regexes-7)
+    - [Examples](#examples-8)
     - [Ability Flags](#ability-flags)
     - [Ability Damage](#ability-damage)
     - [Special Case Shifts](#special-case-shifts)
     - [Ability Examples](#ability-examples)
   - [16: NetworkAOEAbility](#16-networkaoeability)
   - [17: NetworkCancelAbility](#17-networkcancelability)
+    - [Structure](#structure-9)
+    - [Examples](#examples-9)
   - [18: NetworkDoT](#18-networkdot)
+    - [Structure](#structure-10)
+    - [Examples](#examples-10)
   - [19: NetworkDeath](#19-networkdeath)
+    - [Structure](#structure-11)
+    - [Regexes](#regexes-8)
+    - [Examples](#examples-11)
   - [1A: NetworkBuff](#1a-networkbuff)
+    - [Structure](#structure-12)
+    - [Regexes](#regexes-9)
+    - [Examples](#examples-12)
   - [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers)
+    - [Structure](#structure-13)
+    - [Regexes](#regexes-10)
+    - [Examples](#examples-13)
   - [1C: NetworkRaidMarker](#1c-networkraidmarker)
+    - [Structure](#structure-14)
+    - [Regexes](#regexes-11)
+    - [Examples](#examples-14)
   - [1D: NetworkTargetMarker](#1d-networktargetmarker)
+    - [Structure](#structure-15)
+    - [Examples](#examples-15)
   - [1E: NetworkBuffRemove](#1e-networkbuffremove)
+    - [Structure](#structure-16)
+    - [Examples](#examples-16)
   - [1F: NetworkGauge](#1f-networkgauge)
+    - [Structure](#structure-17)
+    - [Examples](#examples-17)
   - [20: NetworkWorld](#20-networkworld)
   - [21: Network6D (Actor Control Lines)](#21-network6d-actor-control-lines)
+    - [Structure](#structure-18)
+    - [Regexes](#regexes-12)
+    - [Examples](#examples-18)
   - [22: NetworkNameToggle](#22-networknametoggle)
+    - [Structure](#structure-19)
+    - [Examples](#examples-19)
   - [23: NetworkTether](#23-networktether)
+    - [Structure](#structure-20)
+    - [Regexes](#regexes-13)
+    - [Examples](#examples-20)
 - [24: LimitBreak](#24-limitbreak)
+    - [Structure](#structure-21)
+    - [Examples](#examples-21)
 - [25: NetworkActionSync](#25-networkactionsync)
 - [26: NetworkStatusEffects](#26-networkstatuseffects)
+    - [Structure](#structure-22)
+    - [Regexes](#regexes-14)
+    - [Examples](#examples-22)
 - [27: NetworkUpdateHP](#27-networkupdatehp)
+    - [Structure](#structure-23)
+    - [Examples](#examples-23)
   - [FB: Debug](#fb-debug)
   - [FC: PacketDump](#fc-packetdump)
   - [FD: Version](#fd-version)
@@ -626,21 +675,75 @@ Examples:
 
 ### 0B: PartyList
 
-Lines are printed, but with blank data.  :sob:
+This line represents the players currently in the party, and is sent whenever the party makeup changes.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=partyList&lang=en) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+11|2021-04-26T14:11:35.0000000-04:00|[partyCount]|[id0]|[id1]|[id2]|[id3]|[id4]|[id5]|[id6]|[id7]|[id8]|[id9]|[id10]|[id11]|[id12]|[id13]|[id14]|[id15]|[id16]|[id17]|[id18]|[id19]|[id20]|[id21]|[id22]|[id23]
+
+ACT Log Line Structure:
+[14:11:35.0] 0B:11:2021-04-26T14:11:35.0000000-04:00:[partyCount]:[id0]:[id1]:[id2]:[id3]:[id4]:[id5]:[id6]:[id7]:[id8]:[id9]:[id10]:[id11]:[id12]:[id13]:[id14]:[id15]:[id16]:[id17]:[id18]:[id19]:[id20]:[id21]:[id22]:[id23]
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+11|2021-06-16T20:46:38.5450000-07:00|8|10FF0002|10FF0003|10FF0004|10FF0001|10FF0005|10FF0006|10FF0007|10FF0008|
+11|2021-06-16T21:47:56.7170000-07:00|4|10FF0002|10FF0001|10FF0003|10FF0004|
+
+ACT Log Line Examples:
+[23:46:38.545] 0B:11:2021-06-16T20:46:38.5450000-07:00:8:10FF0002:10FF0003:10FF0004:10FF0001:10FF0005:10FF0006:10FF0007:10FF0008:
+[00:47:56.717] 0B:11:2021-06-16T21:47:56.7170000-07:00:4:10FF0002:10FF0001:10FF0003:10FF0004:
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 0C: PlayerStats
 
 This message is sent whenever your player's stats change and upon entering a new zone/instance.
 
-Structure:
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=PlayerStats&lang=en) -->
 
-`0C:Player Stats: JOB:STR:DEX:VIT:INT:MND:PIE:ATTACK POWER:DHIT:CRIT:ATTACK MAGIC POTENCY:HEAL MAGIC POTENCY:DET:SkS:SpS:0:TENACITY`
-
-Example:
+#### Structure
 
 ```log
-0C:Player Stats: 23:305:4240:4405:290:275:340:4240:2694:2795:290:275:2473:578:380:0:380
+Network Log Line Structure:
+12|2021-04-26T14:11:35.0000000-04:00|[job]|[strength]|[dexterity]|[vitality]|[intelligence]|[mind]|[piety]|[attackPower]|[directHit]|[criticalHit]|[attackMagicPotency]|[healMagicPotency]|[determination]|[skillSpeed]|[spellSpeed]||[tenacity]
+
+ACT Log Line Structure:
+[14:11:35.0] 0C:Player Stats: [job]:[strength]:[dexterity]:[vitality]:[intelligence]:[mind]:[piety]:[attackPower]:[directHit]:[criticalHit]:[attackMagicPotency]:[healMagicPotency]:[determination]:[skillSpeed]:[spellSpeed]:
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:12))\|(?<timestamp>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<strength>(?:[^|]*))\|(?<dexterity>(?:[^|]*))\|(?<vitality>(?:[^|]*))\|(?<intelligence>(?:[^|]*))\|(?<mind>(?:[^|]*))\|(?<piety>(?:[^|]*))\|(?<attackPower>(?:[^|]*))\|(?<directHit>(?:[^|]*))\|(?<criticalHit>(?:[^|]*))\|(?<attackMagicPotency>(?:[^|]*))\|(?<healMagicPotency>(?:[^|]*))\|(?<determination>(?:[^|]*))\|(?<skillSpeed>(?:[^|]*))\|(?<spellSpeed>(?:[^|]*))\|(?:[^|]*\|)(?<tenacity>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 0C:Player Stats: (?<job>(?:\d+)):(?<strength>(?:\d+)):(?<dexterity>(?:\d+)):(?<vitality>(?:\d+)):(?<intelligence>(?:\d+)):(?<mind>(?:\d+)):(?<piety>(?:\d+)):(?<attackPower>(?:\d+)):(?<directHit>(?:\d+)):(?<criticalHit>(?:\d+)):(?<attackMagicPotency>(?:\d+)):(?<healMagicPotency>(?:\d+)):(?<determination>(?:\d+)):(?<skillSpeed>(?:\d+)):(?<spellSpeed>(?:\d+)):0:(?<tenacity>(?:\d+))
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+12|2021-04-26T14:30:07.4910000-04:00|21|5456|326|6259|135|186|340|5456|380|3863|135|186|2628|1530|380|0|1260|4000174AE14AB6|3c03ce9ee4afccfaae74695376047054
+12|2021-04-26T14:31:25.5080000-04:00|24|189|360|5610|356|5549|1431|189|1340|3651|5549|5549|1661|380|1547|0|380|4000174AE14AB6|53b98d383806c5a29dfe33720f514288
+12|2021-08-06T10:29:35.3400000-04:00|38|308|4272|4443|288|271|340|4272|1210|2655|288|271|2002|1192|380|0|380|4000174AE14AB6|4ce3eac3dbd0eb1d6e0044425d9e091d
+
+ACT Log Line Examples:
+[14:30:07.491] 0C:Player Stats: 21:5456:326:6259:135:186:340:5456:380:3863:135:186:2628:1530:380:0:1260:4000174AE14AB6
+[14:31:25.508] 0C:Player Stats: 24:189:360:5610:356:5549:1431:189:1340:3651:5549:5549:1661:380:1547:0:380:4000174AE14AB6
+[10:29:35.340] 0C:Player Stats: 38:308:4272:4443:288:271:340:4272:1210:2655:288:271:2002:1192:380:0:380:4000174AE14AB6
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 0D: CombatantHP
 
@@ -648,7 +751,7 @@ If you have the **Include HP for Triggers** setting turned on
 in the **FFXIV Settings** tab of ACT, then it will emit log lines
 for every percentage change of every entity.
 
-This is often used for phase change triggers.
+This can be used for phase change triggers.
 
 ![include hp screenshot](images/logguide_includehp.png)
 
@@ -662,21 +765,59 @@ Examples:
 0D:Tini Poutini HP at 98%.
 ```
 
+#### CombatantHP is an ACT-only line
+
+CombatantHP lines are only sent over the ACT log line format and are not included
+as a network log line. As such, triggers which depend on an enemy's HP reaching a
+certain threshold should instead use the `Util.watchCombatant` promise helper.
+
 ### 14: NetworkStartsCasting
 
 For abilities with cast bars, this is the log line that specifies that a player or a monster has started casting an ability.
 This precedes a log line of type `15`, `16`, or `17`
 where it uses the ability or is interrupted.
 
-Structure:
-`14:[Source ID]:[Source Name] starts using [Ability Name] on [Target Name].`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StartsUsing&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-14:5B2:Twintania starts using Death Sentence on Potato Chippy.
-14:DF9:Tini Poutini starts using Fire IV on Striking Dummy.
+Network Log Line Structure:
+20|2021-04-26T14:11:35.0000000-04:00|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[castTime]|[x]|[y]|[z]|[heading]
+
+ACT Log Line Structure:
+[14:11:35.0] 14:[ID]:[Source] starts using [ability] on [Target].
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:20))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<castTime>(?:[^|]*))\|(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 14:(?<id>(?:[0-9A-Fa-f]{1,8})):(?<source>(?:.*?)) starts using (?<ability>(?:.*?)) on (?<target>(?:.*?))\.
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+20|2021-07-27T12:47:23.1740000-04:00|40024FC4|The Manipulator|F63|Carnage|40024FC4|The Manipulator|4.70|-0.01531982|-13.86256|10.59466|-4.792213E-05||488abf3044202807c62fa32c2e36ee81
+20|2021-07-27T12:48:33.5420000-04:00|10FF0001|Tini Poutini|DF0|Stone III|40024FC4|The Manipulator|2.35|-0.06491255|-9.72675|10.54466|-3.141591||2a24845eab5ed48d4f043f7b6269ef70
+20|2021-07-27T12:48:36.0460000-04:00|10FF0002|Potato Chippy|BA|Succor|10FF0002|Potato Chippy|1.93|-0.7477417|-5.416992|10.54466|2.604979||99a70e6f12f3fcb012e59b3f098fd69b
+20|2021-07-27T12:48:29.7830000-04:00|40024FD0|The Manipulator|13BE|Judgment Nisi|10FF0001|Tini Poutini|3.20|8.055649|-17.03842|10.58736|-4.792213E-05||bc1c3d72782de2199bfa90637dbfa9b8
+20|2021-07-27T12:48:36.1310000-04:00|40024FCE|The Manipulator|13D0|Seed Of The Sky|E0000000||2.70|8.055649|-17.03842|10.58736|-4.792213E-05||5377da9551e7ca470709dc08e996bb75
+
+ACT Log Line Examples:
+[12:47:23.174] 14:F63:The Manipulator starts using Carnage on The Manipulator.
+[12:48:33.542] 14:DF0:Tini Poutini starts using Stone III on The Manipulator.
+[12:48:36.46] 14:BA:Potato Chippy starts using Succor on Potato Chippy.
+[12:48:29.783] 14:13BE:The Manipulator starts using Judgment Nisi on Tini Poutini.
+[12:48:36.131] 14:13D0:The Manipulator starts using Seed Of The Sky on Unknown.
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 The value after `14` is the 4 byte [ability id](#ability-id).
 
@@ -693,8 +834,47 @@ If one person runs the fireball out and it only hits them, then it is type `15` 
 If your trigger includes the message type, it is usually best to write your regex as `1[56]` to include both possibilities.
 Ground AOEs that don't hit anybody are type `16`.
 
-Example:
-`15:10532971:Tini Poutini:07:Attack:40001299:Striking Dummy:710003:9420000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0:0:1000:1000:-653.9767:-807.7275:31.99997:66480:74095:4560:4560:1000:1000:-653.0394:-807.9677:31.99997:`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Ability&lang=en) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+21|2021-04-26T14:11:35.0000000-04:00|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags]|[damage]|||||||||||||||[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|||[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|||[x]|[y]|[z]|[heading]
+
+ACT Log Line Structure:
+[14:11:35.0] 15:21:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:::::::::::::::[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:::[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:::[x]:[y]:[z]:[heading]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:2[12]))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<flags>(?:[^|]*))\|(?<damage>(?:[^|]*))\|(?:[^|]*\|){14}(?<targetCurrentHp>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<targetCurrentMp>(?:[^|]*))\|(?<targetMaxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<targetX>(?:[^|]*))\|(?<targetY>(?:[^|]*))\|(?<targetZ>(?:[^|]*))\|(?<targetHeading>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 1[56]:(?<sourceId>(?:[0-9A-F]{8})):(?<source>(?:[^:]*?)):(?<id>(?:[0-9A-Fa-f]{1,8})):(?<ability>(?:[^:]*?)):(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:[^:]*?)):(?<flags>(?:[^:]*?)):(?<flag0>(?:[^:]*?)):(?<flag1>(?:[^:]*?)):(?<flag2>(?:[^:]*?)):(?<flag3>(?:[^:]*?)):(?<flag4>(?:[^:]*?)):(?<flag5>(?:[^:]*?)):(?<flag6>(?:[^:]*?)):(?<flag7>(?:[^:]*?)):(?<flag8>(?:[^:]*?)):(?<flag9>(?:[^:]*?)):(?<flag10>(?:[^:]*?)):(?<flag11>(?:[^:]*?)):(?<flag12>(?:[^:]*?)):(?<flag13>(?:[^:]*?)):(?<flag14>(?:[^:]*?)):(?:(?<targetHp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<targetMaxHp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<targetMp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<targetMaxMp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)?:(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)?:(?:(?<targetX>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<targetY>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<targetZ>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<targetHeading>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?<hp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<maxHp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<mp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<maxMp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?:(?<x>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<y>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<z>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<heading>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):.*?$
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+21|2021-07-27T12:48:22.4630000-04:00|40024FD1|Steam Bit|F67|Aetherochemical Laser|10FF0001|Tini Poutini|750003|4620000|1B|F678000|0|0|0|0|0|0|0|0|0|0|0|0|36022|36022|5200|10000|0|1000|1.846313|-12.31409|10.60608|-2.264526|16000|16000|8840|10000|0|1000|-9.079163|-14.02307|18.7095|1.416605|0000DE1F|0|5d60825d70bb46d7fcc8fc0339849e8e
+21|2021-07-27T12:46:22.9530000-04:00|10FF0002|Potato Chippy|07|Attack|40024FC5|Right Foreleg|710003|3910000|0|0|0|0|0|0|0|0|0|0|0|0|0|0|378341|380640|8840|10000|0|1000|-6.37015|-7.477235|10.54466|0.02791069|26396|26396|10000|10000|0|1000|-5.443688|-1.163282|10.54466|-2.9113|0000DB6E|0|58206bdd1d0bd8d70f27f3fb2523912b
+21|2021-07-27T12:46:21.5820000-04:00|10FF0001|Tini Poutini|03|Sprint|10FF0001|Tini Poutini|1E00000E|320000|0|0|0|0|0|0|0|0|0|0|0|0|0|0|19053|26706|10000|10000|0|1000|-1.210526|17.15058|10.69944|-2.88047|19053|26706|10000|10000|0|1000|-1.210526|17.15058|10.69944|-2.88047|0000DB68|0|29301d52854712315e0951abff146adc
+21|2021-07-27T12:47:28.4670000-04:00|40025026|Steam Bit|F6F|Laser Absorption|40024FC4|The Manipulator|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|685814|872320|8840|10000|0|1000|-0.01531982|-13.86256|10.59466|-4.792213E-05|16000|16000|8840|10000|0|1000|0|22.5|10.64999|-3.141593|0000DCEC|0|0f3be60aec05333aae73a042edb7edb4
+21|2021-07-27T12:48:39.1260000-04:00|40024FCE|The Manipulator|13D0|Seed Of The Sky|E0000000||0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|||||||||||16000|16000|8840|10000|0|1000|8.055649|-17.03842|10.58736|-4.792213E-05|0000DE92|0|ca5594611cf4ca4e276f64f2cfba5ffa
+
+ACT Log Line Examples:
+[12:48:22.463] 15:21:2021-07-27T12:48:22.4630000-04:00:40024FD1:Steam Bit:F67:Aetherochemical Laser:10FF0001:Tini Poutini:750003:4620000:1B:F678000:0:0:0:0:0:0:0:0:0:0:0:0:36022:36022:5200:10000:0:1000:1.846313:-12.31409:10.60608:-2.264526:16000:16000:8840:10000:0:1000:-9.079163:-14.02307:18.7095:1.416605:0000DE1F:0:5d60825d70bb46d7fcc8fc0339849e8e
+[12:46:22.953] 15:21:2021-07-27T12:46:22.9530000-04:00:10FF0002:Potato Chippy:07:Attack:40024FC5:Right Foreleg:710003:3910000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:378341:380640:8840:10000:0:1000:-6.37015:-7.477235:10.54466:0.02791069:26396:26396:10000:10000:0:1000:-5.443688:-1.163282:10.54466:-2.9113:0000DB6E:0:58206bdd1d0bd8d70f27f3fb2523912b
+[12:46:21.582] 15:21:2021-07-27T12:46:21.5820000-04:00:10FF0001:Tini Poutini:03:Sprint:10FF0001:Tini Poutini:1E00000E:320000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:19053:26706:10000:10000:0:1000:-1.210526:17.15058:10.69944:-2.88047:19053:26706:10000:10000:0:1000:-1.210526:17.15058:10.69944:-2.88047:0000DB68:0:29301d52854712315e0951abff146adc
+[12:47:28.467] 15:21:2021-07-27T12:47:28.4670000-04:00:40025026:Steam Bit:F6F:Laser Absorption:40024FC4:The Manipulator:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:685814:872320:8840:10000:0:1000:-0.01531982:-13.86256:10.59466:-4.792213E-05:16000:16000:8840:10000:0:1000:0:22.5:10.64999:-3.141593:0000DCEC:0:0f3be60aec05333aae73a042edb7edb4
+[12:48:39.126] 15:21:2021-07-27T12:48:39.1260000-04:00:40024FCE:The Manipulator:13D0:Seed Of The Sky:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:::::::::::16000:16000:8840:10000:0:1000:8.055649:-17.03842:10.58736:-4.792213E-05:0000DE92:0:ca5594611cf4ca4e276f64f2cfba5ffa
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 Index | Example | Explanation
 --- | --- | ---
@@ -836,15 +1016,33 @@ See: [15: NetworkAbility](#15-networkability) for a discussion of the difference
 
 For abilities with cast bars, this is the log line that specifies that the cast was cancelled either due to movement or an interrupt and it won't go off.
 
-Structure:
-`17:[Source ID]:[Source Name]:[Ability ID]:[Ability Name]:Cancelled.`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkCancelAbility&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-17:105EDD08:Potato Chippy:1D07:Stone IV:Cancelled:
-17:40000FE3:Raiden:3878:Ultimate Zantetsuken:Cancelled:
+Network Log Line Structure:
+23|2021-04-26T14:11:35.0000000-04:00|[sourceId]|[source]|[id]|[name]|[reason]
+
+ACT Log Line Structure:
+[14:11:35.0] 17:23:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[id]:[name]:[reason]
 ```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+23|2021-07-27T13:04:38.7790000-04:00|10FF0002|Potato Chippy|408D|Veraero II|Cancelled||dbce3801c08020cb8ae7da9102034131
+23|2021-07-27T13:04:39.0930000-04:00|40000132|Garm|D10|The Dragon's Voice|Interrupted||bd936fde66bab0e8cf2874ebd75df77c
+23|2021-07-27T13:04:39.1370000-04:00|4000012F||D52|Unknown_D52|Cancelled||8a15bad31745426d65cc13b8e0d50005
+
+ACT Log Line Examples:
+[13:04:38.779] 17:23:2021-07-27T13:04:38.7790000-04:00:10FF0002:Potato Chippy:408D:Veraero II:Cancelled::dbce3801c08020cb8ae7da9102034131
+[13:04:39.93] 17:23:2021-07-27T13:04:39.0930000-04:00:40000132:Garm:D10:The Dragon's Voice:Interrupted::bd936fde66bab0e8cf2874ebd75df77c
+[13:04:39.137] 17:23:2021-07-27T13:04:39.1370000-04:00:4000012F::D52:Unknown_D52:Cancelled::8a15bad31745426d65cc13b8e0d50005
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 18: NetworkDoT
 
@@ -857,16 +1055,33 @@ Instead, if a boss has 20 dots applied to it,
 then it returns the total tick amount for all of these dots.
 Parsers are left to estimate what the individual dot amounts are.
 
-Structure:
-`18:[Type Name] on [Source Name] for [Value] damage.`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkDoT&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-18:DoT Tick on Ovni for 13003 damage.
-18:HoT Tick on Tini Poutini for 2681 damage.
-18:Shadow Flare DoT Tick on Arsenal Centaur for 151 damage.
+Network Log Line Structure:
+24|2021-04-26T14:11:35.0000000-04:00|[id]|[name]|[which]|[effectId]|[damage]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|||[x]|[y]|[z]|[heading]
+
+ACT Log Line Structure:
+[14:11:35.0] 18:24 Tick on [Name] for NaN damage.
 ```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+24|2021-07-27T12:47:05.5100000-04:00|10FF0002|Potato Chippy|HoT|0|3A1|21194|21194|8964|10000|0|1000|-1.815857|-5.630676|10.55192|2.929996||63d7d7e99108018a1890f367f89eae43
+24|2021-07-27T12:47:05.5990000-04:00|10FF0001|Tini Poutini|HoT|0|3BC|26396|26396|10000|10000|0|1000|-0.1373901|-8.438293|10.54466|3.122609||21b814e6f165bc1cde4a6dc23046ecb0
+24|2021-07-27T12:47:06.9340000-04:00|40024FC4|The Manipulator|DoT|0|B7F|709685|872320|8840|10000|0|1000|-0.01531982|-13.86256|10.59466|-4.792213E-05||ce3fd23ca493a37ab7663b8212044e78
+
+ACT Log Line Examples:
+[12:47:05.510] 18:24 Tick on Potato Chippy for 929 damage.
+[12:47:05.599] 18:24 Tick on Tini Poutini for 956 damage.
+[12:47:06.934] 18:24 Tick on The Manipulator for 2943 damage.
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 Ground effect dots get listed separately.
 
@@ -874,30 +1089,99 @@ Ground effect dots get listed separately.
 
 This message corresponds to an actor being defeated and killed.  This usually comes along with a battle log message such as `You defeat the worm's heart.`
 
-Structure:
-`19:[Target Name] was defeated by [Source Name].`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=WasDefeated&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-19:Tini Poutini was defeated by Ovni.
-19:The Scourge Of Meracydia was defeated by Unknown.
+Network Log Line Structure:
+25|2021-04-26T14:11:35.0000000-04:00|[targetId]|[target]|[sourceId]|[source]
+
+ACT Log Line Structure:
+[14:11:35.0] 19:[Target] was defeated by [Source].
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:25))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 19:(?<target>(?:.*?)) was defeated by (?<source>(?:.*?))\.
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+25|2021-07-27T13:11:08.6990000-04:00|10FF0002|Potato Chippy|4000016E|Angra Mainyu||fd3760add061a5d2e23f63003cd7101d
+25|2021-07-27T13:11:09.4110000-04:00|10FF0001|Tini Poutini|4000016E|Angra Mainyu||933d5e946659aa9cc493079d4f6934b3
+25|2021-07-27T13:11:11.6840000-04:00|4000016E|Angra Mainyu|10FF0002|Potato Chippy||0b79669140c20f9aa92ad5559be75022
+25|2021-07-27T13:13:10.6310000-04:00|400001D1|Queen Scylla|10FF0001|Tini Poutini||8798f2cb87c42fde4601258ae94ffb7f
+
+ACT Log Line Examples:
+[13:11:08.699] 19:Potato Chippy was defeated by Angra Mainyu.
+[13:11:09.411] 19:Tini Poutini was defeated by Angra Mainyu.
+[13:11:11.684] 19:Angra Mainyu was defeated by Potato Chippy.
+[13:13:10.631] 19:Queen Scylla was defeated by Tini Poutini.
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 1A: NetworkBuff
 
 This message is the "gains effect" message for players and mobs gaining effects whether they are good or bad.
 
-Structure:
-`1A:[ObjectId]:[Target Name] gains the effect of [Status] from [Source Name] for [Float_Value] Seconds`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=GainsEffect&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-1A:105EDD08:Tini Poutini gains the effect of Sprint from Tini Poutini for 20.00 Seconds.
-1A:10660108:Potato Chippy gains the effect of Protect from Tater Tot for 1800.00 Seconds.
-1A:405EFA09:Ovni gains the effect of Aero II from  for 18.00 Seconds.
+Network Log Line Structure:
+26|2021-04-26T14:11:35.0000000-04:00|[effectId]|[effect]|[duration]|[sourceId]|[source]|[targetId]|[target]|[count]|[targetHp]|[hp]
+
+ACT Log Line Structure:
+[14:11:35.0] 1A:[TARGETID]:[Target] gains the effect of [effect] from [Source] for [duration] Seconds.
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:26))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?<duration>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|(?<targetHp>(?:[^|]*))\|(?<hp>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 1A:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:.*?)) gains the effect of (?<effect>(?:.*?)) from (?<source>(?:.*?)) for (?<duration>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)) Seconds\.
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+26|2021-04-26T14:36:09.4340000-04:00|35|Physical Damage Up|15.00|400009D5|Dark General|400009D5|Dark General|00|48865|48865||cbcfac4df1554b8f59f343f017ebd793
+26|2021-04-26T14:40:04.3810000-04:00|74d|Gale Enforcer|9.00|40000A3F|Garuda-Egi|40000A3F|Garuda-Egi|00|4439|4439||d31868a54e5032a255823c3578ca1bd7
+26|2021-04-26T14:23:38.3570000-04:00|f6|Demolish|18.00|10FF0001|Tini Poutini|4000B262|Midgardsormr|00|10851737|55189||fa360eae5d0b81647855b4fe4044c957
+26|2021-04-26T14:23:38.7560000-04:00|13b|Whispering Dawn|21.00|4000B283|Selene|10FF0002|Potato Chippy|4000016E|00|51893|49487||c7400f0eed1fe9d29834369affc22d3b
+26|2021-04-26T14:17:14.3270000-04:00|f6|Demolish|18.00|10FF0001|Tini Poutini|4001C48F|Embodiment|00|515250|55714||daaf86ce75560793e829a7c0891ec2a8
+26|2021-04-26T14:17:42.8900000-04:00|34b|Combust II|30.00|10FF0002|Potato Chippy|4000016E|4001C490|Yojimbo|00|8522235|52418||fb0bb0e7e9432991cc57c9df52e51e33
+26|2021-04-26T14:14:09.1650000-04:00|79a|Wildfire|10.00|10FF0002|Potato Chippy|4000016E|10FF0002|Potato Chippy|4000016E|00|57744|57744||033a0110024e447188cd03916733c63a
+26|2021-05-11T14:36:17.2510000-04:00|7c|Venomous Bite|30.00|4002E660||4002E66C|Speckled Spider|14|116300|||878cc5c4f151d16cc02e1336cd32697b
+26|2021-07-02T21:57:07.9110000-04:00|82c|Damage Down|30.00|40003D9F|Eden's Promise|40003D9D||00|148000|63981880||86ff6bf4cfdd68491274fce1db5677e8
+
+ACT Log Line Examples:
+[14:36:09.434] 1A:400009D5:Dark General gains the effect of Physical Damage Up from Dark General for 15.00 Seconds.
+[14:40:04.381] 1A:40000A3F:Garuda-Egi gains the effect of Gale Enforcer from Garuda-Egi for 9.00 Seconds.
+[14:23:38.357] 1A:4000B262:Midgardsormr gains the effect of Demolish from Tini Poutini for 18.00 Seconds.
+[14:23:38.756] 1A:10FF0002:Potato Chippy gains the effect of Whispering Dawn from Selene for 21.00 Seconds.
+[14:17:14.327] 1A:4001C48F:Embodiment gains the effect of Demolish from Tini Poutini for 18.00 Seconds.
+[14:17:42.890] 1A:4000016E:4001c490 gains the effect of Combust II from Potato Chippy for 30.00 Seconds.
+[14:14:09.165] 1A:4000016E:10ff0002 gains the effect of Wildfire from Potato Chippy for 10.00 Seconds.
+[14:36:17.251] 1A:4002E66C:Speckled Spider gains the effect of Venomous Bite from  for 30.00 Seconds.
+[21:57:07.911] 1A:40003D9D: gains the effect of Damage Down from Eden's Promise for 30.00 Seconds.
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 The "Source Name" can be blank here (and there will be two spaces like the above example if that's the case).
 
@@ -915,17 +1199,49 @@ This matters for cases such as ucob Nael phase doom debuffs.
 
 ### 1B: NetworkTargetIcon (Head Markers)
 
-Structure:
-`1B:[ObjectId]:[Player Name]:[Unknown1 (4 bytes)]:[Unknown2 (4 bytes)]:[Type (4 bytes)]:0000:0000:0000`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=HeadMarker&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-1B:10532971:Tini Poutini:0000:0000:0027:0000:0000:0000:
-1B:106F0213:Potato Chippy:0000:0EE3:0061:0000:0000:0000:
+Network Log Line Structure:
+27|2021-04-26T14:11:35.0000000-04:00|[targetId]|[target]|||[id]
+
+ACT Log Line Structure:
+[14:11:35.0] 1B:27:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:::[id]
 ```
 
-The different headmarker types (e.g. `0027` or `0061` in the examples above) are consistent across fights as far as which marker they *visually* represent. (Correct *resolution* for the marker mechanic may not be.)  For example, `0039` is the meteor marker in Shinryu EX adds phase and the Baldesion Arsenal Ozma fight.  The data following the type always appears to be zero in practice, although `Unknown1` and `Unknown2` infrequently have non-zero values.
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:27))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?:[^|]*\|){2}(?<id>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 1B:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:[^:]*?)):....:....:(?<id>(?:....)):
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+27|2021-04-26T14:37:48.3550000-04:00|10FF0001|Tini Poutini|0000|0000|0018|0000|0000|0000||051a1ab18b11a70c22fe56d716a75a20
+27|2021-04-26T14:38:00.0360000-04:00|10FF0001|Tini Poutini|0000|0000|001A|0000|0000|0000||81351db91d8a53406106f4fe94dccf3a
+27|2021-04-26T14:29:35.7180000-04:00|10FF0001|Tini Poutini|0000|E000|00A0|0000|0000|0000||44b502d374749978aa96969869b49afc
+27|2021-04-26T14:17:31.6980000-04:00|10FF0001|Tini Poutini|0000|A9B9|0057|0000|0000|0000||4fb326d8899ffbd4cbfeb29bbc3080f8
+27|2021-05-11T13:48:45.3370000-04:00|40000950|Copied Knave|0000|0000|0117|0000|0000|0000||fa2e93fccf397a41aac73a3a38aa7410
+
+ACT Log Line Examples:
+[14:37:48.355] 1B:27:2021-04-26T14:37:48.3550000-04:00:10FF0001:Tini Poutini:0000:0000:0018:0000:0000:0000::051a1ab18b11a70c22fe56d716a75a20
+[14:38:00.36] 1B:27:2021-04-26T14:38:00.0360000-04:00:10FF0001:Tini Poutini:0000:0000:001A:0000:0000:0000::81351db91d8a53406106f4fe94dccf3a
+[14:29:35.718] 1B:27:2021-04-26T14:29:35.7180000-04:00:10FF0001:Tini Poutini:0000:E000:00A0:0000:0000:0000::44b502d374749978aa96969869b49afc
+[14:17:31.698] 1B:27:2021-04-26T14:17:31.6980000-04:00:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
+[13:48:45.337] 1B:27:2021-05-11T13:48:45.3370000-04:00:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+The different headmarker types (e.g. `0018` or `001A` in the examples above) are consistent across fights as far as which marker they *visually* represent. (Correct *resolution* for the marker mechanic may not be.)  For example, `0039` is the meteor marker in Shinryu EX adds phase and the Baldesion Arsenal Ozma fight.  The data following the type always appears to be zero in practice, although `Unknown1` and `Unknown2` infrequently have non-zero values.
 
 Note: It's unclear when the head markers disappear.  Maybe `Unknown2` is a duration time? It's not clear what either of these unknown values mean.
 
@@ -990,38 +1306,144 @@ Marker Code | Name | Sample Locations | Consistent meaning?
 
 ### 1C: NetworkRaidMarker
 
-Unknown?
+This message indicates a floor waymarker was added or deleted.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=HeadMarker&lang=en) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+27|2021-04-26T14:11:35.0000000-04:00|[targetId]|[target]|||[id]
+
+ACT Log Line Structure:
+[14:11:35.0] 1B:27:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:::[id]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:27))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?:[^|]*\|){2}(?<id>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 1B:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:[^:]*?)):....:....:(?<id>(?:....)):
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+27|2021-04-26T14:37:48.3550000-04:00|10FF0001|Tini Poutini|0000|0000|0018|0000|0000|0000||051a1ab18b11a70c22fe56d716a75a20
+27|2021-04-26T14:38:00.0360000-04:00|10FF0001|Tini Poutini|0000|0000|001A|0000|0000|0000||81351db91d8a53406106f4fe94dccf3a
+27|2021-04-26T14:29:35.7180000-04:00|10FF0001|Tini Poutini|0000|E000|00A0|0000|0000|0000||44b502d374749978aa96969869b49afc
+27|2021-04-26T14:17:31.6980000-04:00|10FF0001|Tini Poutini|0000|A9B9|0057|0000|0000|0000||4fb326d8899ffbd4cbfeb29bbc3080f8
+27|2021-05-11T13:48:45.3370000-04:00|40000950|Copied Knave|0000|0000|0117|0000|0000|0000||fa2e93fccf397a41aac73a3a38aa7410
+
+ACT Log Line Examples:
+[14:37:48.355] 1B:27:2021-04-26T14:37:48.3550000-04:00:10FF0001:Tini Poutini:0000:0000:0018:0000:0000:0000::051a1ab18b11a70c22fe56d716a75a20
+[14:38:00.36] 1B:27:2021-04-26T14:38:00.0360000-04:00:10FF0001:Tini Poutini:0000:0000:001A:0000:0000:0000::81351db91d8a53406106f4fe94dccf3a
+[14:29:35.718] 1B:27:2021-04-26T14:29:35.7180000-04:00:10FF0001:Tini Poutini:0000:E000:00A0:0000:0000:0000::44b502d374749978aa96969869b49afc
+[14:17:31.698] 1B:27:2021-04-26T14:17:31.6980000-04:00:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
+[13:48:45.337] 1B:27:2021-05-11T13:48:45.3370000-04:00:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 1D: NetworkTargetMarker
 
-Unknown?
+This message indicates a target marker placed above or removed from a combatant's head by a player.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkTargetMarker&lang=en) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+29|2021-04-26T14:11:35.0000000-04:00|[operation]|[waymark]|[id]|[name]|[targetId]|[targetName]
+
+ACT Log Line Structure:
+[14:11:35.0] 1D:29:2021-04-26T14:11:35.0000000-04:00:[operation]:[waymark]:[id]:[name]:[targetId]:[targetName]
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+29|2021-06-10T20:15:15.1000000-04:00|Delete|0|10FF0001|Tini Poutini|4000641D|||50460af5ff3f8ec9ad03e6953d3d1ba9
+29|2021-06-10T20:15:15.1000000-04:00|Add|0|10FF0001|Tini Poutini|400075A9|||0afeb301004fc6d8c7bd5f6cbda9dce7
+29|2021-05-25T22:54:32.5660000-04:00|Add|6|10FF0001|Tini Poutini|10FF0002|Potato Chippy||70a8c8a728d09af83e0a486e8271cc57
+
+ACT Log Line Examples:
+[20:15:15.100] 1D:29:2021-06-10T20:15:15.1000000-04:00:Delete:0:10FF0001:Tini Poutini:4000641D:::50460af5ff3f8ec9ad03e6953d3d1ba9
+[20:15:15.100] 1D:29:2021-06-10T20:15:15.1000000-04:00:Add:0:10FF0001:Tini Poutini:400075A9:::0afeb301004fc6d8c7bd5f6cbda9dce7
+[22:54:32.566] 1D:29:2021-05-25T22:54:32.5660000-04:00:Add:6:10FF0001:Tini Poutini:10FF0002:Potato Chippy::70a8c8a728d09af83e0a486e8271cc57
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 1E: NetworkBuffRemove
 
 This is the paired "end" message to the [1A: NetworkBuff](#1a-networkbuff) "begin" message.
 This message corresponds to the loss of effects (either positive or negative).
 
-Structure:
-`1E:[ObjectId]:[Target Name] loses the effect of [Status] from [Source Name]`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkTargetMarker&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-1E:10657868:Tini Poutini loses the effect of Sprint from Tini Poutini.
-1E:10299838:Potato Chippy loses the effect of Protect from Tater Tot.
-1E:40686258:Ovni loses the effect of Aero II.
+Network Log Line Structure:
+29|2021-04-26T14:11:35.0000000-04:00|[operation]|[waymark]|[id]|[name]|[targetId]|[targetName]
+
+ACT Log Line Structure:
+[14:11:35.0] 1D:29:2021-04-26T14:11:35.0000000-04:00:[operation]:[waymark]:[id]:[name]:[targetId]:[targetName]
 ```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+29|2021-06-10T20:15:15.1000000-04:00|Delete|0|10FF0001|Tini Poutini|4000641D|||50460af5ff3f8ec9ad03e6953d3d1ba9
+29|2021-06-10T20:15:15.1000000-04:00|Add|0|10FF0001|Tini Poutini|400075A9|||0afeb301004fc6d8c7bd5f6cbda9dce7
+29|2021-05-25T22:54:32.5660000-04:00|Add|6|10FF0001|Tini Poutini|10FF0002|Potato Chippy||70a8c8a728d09af83e0a486e8271cc57
+
+ACT Log Line Examples:
+[20:15:15.100] 1D:29:2021-06-10T20:15:15.1000000-04:00:Delete:0:10FF0001:Tini Poutini:4000641D:::50460af5ff3f8ec9ad03e6953d3d1ba9
+[20:15:15.100] 1D:29:2021-06-10T20:15:15.1000000-04:00:Add:0:10FF0001:Tini Poutini:400075A9:::0afeb301004fc6d8c7bd5f6cbda9dce7
+[22:54:32.566] 1D:29:2021-05-25T22:54:32.5660000-04:00:Add:6:10FF0001:Tini Poutini:10FF0002:Potato Chippy::70a8c8a728d09af83e0a486e8271cc57
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 1F: NetworkGauge
 
 Info about the current player's job gauge.
 
-Examples:
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkGauge&lang=en) -->
+
+#### Structure
 
 ```log
-1F:10532971:Tini Poutini:C8000019:FD32:D0DF8C00:7FC0
-1F:10532971:Potato Chippy:C863AC19:1000332:D0DF8C00:7FC0
+Network Log Line Structure:
+31|2021-04-26T14:11:35.0000000-04:00|[id]|[data0]|[data1]|[data2]|[data3]
+
+ACT Log Line Structure:
+[14:11:35.0] 1F:[ID]::[data0]:[data1]:[data2]:[data3]
 ```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+31|2019-11-27T23:22:40.6960000-05:00|10FF0001|FA753019|FD37|E9A55201|7F47|f17ea56b26ff020d1c0580207f6f4673
+31|2021-04-28T00:26:19.1320000-04:00|10FF0002|BF000018|10035|40006600|00|f31bf7667388ce9b11bd5dd2626c7b99
+
+ACT Log Line Examples:
+[23:22:40.696] 1F:10FF0001::FA753019:FD37:E9A55201:7F47
+[00:26:19.132] 1F:10FF0002::BF000018:10035:40006600:00
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 Each of the values after the name represents the memory for the job gauge,
 interpreted as a 4 byte integer.
@@ -1075,16 +1497,43 @@ Actor control commands are identified by a category, with parameters passed to i
 - barrier up/down
 - fade in/out
 
-Structure:
-`21:TypeAndInstanceContentId:Command (4 bytes):Data (4x 4? byte extra data)`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ActorControl&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-21:8003753A:40000010:00:00:00:00
-21:80034E52:8000000D:1601:00:00:00
-21:80037543:80000004:257:00:00:00
+Network Log Line Structure:
+33|2021-04-26T14:11:35.0000000-04:00|[instance]|[command]|[data0]|[data1]|[data2]|[data3]
+
+ACT Log Line Structure:
+[14:11:35.0] 21:33:2021-04-26T14:11:35.0000000-04:00:[instance]:[command]:[data0]:[data1]:[data2]:[data3]
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:33))\|(?<timestamp>(?:[^|]*))\|(?<instance>(?:[^|]*))\|(?<command>(?:[^|]*))\|(?<data0>(?:[^|]*))\|(?<data1>(?:[^|]*))\|(?<data2>(?:[^|]*))\|(?<data3>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 21:(?<instance>(?:.*?)):(?<command>(?:.*?)):(?<data0>(?:.*?)):(?<data1>(?:.*?)):(?<data2>(?:.*?)):(?<data3>(?:.*?))$
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+33|2021-04-26T14:17:16.7440000-04:00|80034E5B|8000000C|16|E74|00|00|55e425f79b5cadd724dbc718b86f70b1
+33|2021-04-26T14:17:31.6980000-04:00|80034E5B|8000000C|16|FFFFFFFF|00|00|b543f3c5c715e93d9de2aa65b8fe83ad
+33|2021-04-26T14:18:39.0120000-04:00|80034E5B|40000007|00|01|00|00|7a2b827bbc7a58ecc0c5edbdf14a2c14
+
+ACT Log Line Examples:
+[14:17:16.744] 21:33:2021-04-26T14:17:16.7440000-04:00:80034E5B:8000000C:16:E74:00:00:55e425f79b5cadd724dbc718b86f70b1
+[14:17:31.698] 21:33:2021-04-26T14:17:31.6980000-04:00:80034E5B:8000000C:16:FFFFFFFF:00:00:b543f3c5c715e93d9de2aa65b8fe83ad
+[14:18:39.12] 21:33:2021-04-26T14:18:39.0120000-04:00:80034E5B:40000007:00:01:00:00:7a2b827bbc7a58ecc0c5edbdf14a2c14
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 `TypeAndContentId` is 2 bytes of a type enum,
 where `8003` is the update type for instanced content.
@@ -1119,15 +1568,35 @@ Still unknown:
 This log message toggles whether the nameplate for a particular entity is visible or not.
 This can help you know when a mob is targetable, for example.
 
-Structure:
-`22:[ObjectId]:[Target Name]:[ObjectId]:[Target Name]:[Display State]`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NameToggle&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-22:105E3321:Tini Poutini:105E3321:Tini Poutini:01
-22:40018065:Twintania:40018065:Twintania:00
+Network Log Line Structure:
+34|2021-04-26T14:11:35.0000000-04:00|[id]|[name]|[targetId]|[targetName]|[toggle]
+
+ACT Log Line Structure:
+[14:11:35.0] 22:34:2021-04-26T14:11:35.0000000-04:00:[id]:[name]:[targetId]:[targetName]:[toggle]
 ```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+34|2021-04-26T14:19:48.0400000-04:00|4001C51C|Dragon's Head|4001C51C|Dragon's Head|00|a7248aab1da528bf94faf2f4b1728fc3
+34|2021-04-26T14:22:19.1960000-04:00|4000B283|Selene|4000B283|Selene|01|734eef0f5b1b10810af8f7257d738c67
+34|2021-04-26T14:25:06.0720000-04:00|4000B262|Midgardsormr|4000B262|Midgardsormr|00|e3482e01bb9e1c358c23a843b6c63556
+34|2021-04-26T14:18:00.9980000-04:00|10FF0001|Tini Poutini|10FF0001|Tini Poutini|00|5b840ff5e79d908b3f9a3e806a64fd0b
+
+ACT Log Line Examples:
+[14:19:48.40] 22:34:2021-04-26T14:19:48.0400000-04:00:4001C51C:Dragon's Head:4001C51C:Dragon's Head:00:a7248aab1da528bf94faf2f4b1728fc3
+[14:22:19.196] 22:34:2021-04-26T14:22:19.1960000-04:00:4000B283:Selene:4000B283:Selene:01:734eef0f5b1b10810af8f7257d738c67
+[14:25:06.72] 22:34:2021-04-26T14:25:06.0720000-04:00:4000B262:Midgardsormr:4000B262:Midgardsormr:00:e3482e01bb9e1c358c23a843b6c63556
+[14:18:00.998] 22:34:2021-04-26T14:18:00.9980000-04:00:10FF0001:Tini Poutini:10FF0001:Tini Poutini:00:5b840ff5e79d908b3f9a3e806a64fd0b
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 23: NetworkTether
 
@@ -1135,16 +1604,47 @@ This log line is for tethers between enemies or enemies and players.
 This does not appear to be used for player to player skill tethers like dragonsight or cover.
 (It can be used for enemy-inflicted player to player tethers such as burning chains in Shinryu N/EX.)
 
-Structure:
-`23:[SourceId]:[SourceName]:[TargetId]:[TargetName]:[Unknown1 (4 bytes)]:[Unknown2 (4 bytes)]:[Type (4 bytes)]:[TargetId]:[Unknown3 (4 bytes)]:[Unknown4 (4 bytes)]:`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Tether&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-23:40015B4E:Weapons Node:40015B4D:Gravity Node:751E:0000:000E:40015B4D:000F:7F4B:
-23:4000E84B:Zu Cockerel:1048638C:Tini Poutini:0000:0000:0006:1048638C:000F:7FEF:
-23:40001614:Omega:10532971:Potato Chippy:0023:0000:0054:10532971:000F:0000:
+Network Log Line Structure:
+35|2021-04-26T14:11:35.0000000-04:00|[sourceId]|[source]|[targetId]|[target]|||[id]
+
+ACT Log Line Structure:
+[14:11:35.0] 23:35:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[targetId]:[target]:::[id]
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:33))\|(?<timestamp>(?:[^|]*))\|(?<instance>(?:[^|]*))\|(?<command>(?:[^|]*))\|(?<data0>(?:[^|]*))\|(?<data1>(?:[^|]*))\|(?<data2>(?:[^|]*))\|(?<data3>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 21:(?<instance>(?:.*?)):(?<command>(?:.*?)):(?<data0>(?:.*?)):(?<data1>(?:.*?)):(?<data2>(?:.*?)):(?<data3>(?:.*?))$
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+35|2021-04-26T17:27:07.0310000-04:00|40003202|Articulated Bit|10FF0001|Tini Poutini|0000|0000|0001|10029769|000F|0000||ad71d456437e6792f68b19dbef9507d5
+35|2021-04-27T22:36:58.1060000-04:00|10FF0001|Tini Poutini|4000943B|Bomb Boulder|0000|0000|0007|4000943B|000F|0000||a6adfcdf5dad0ef891deeade4d285eb2
+35|2021-06-13T17:41:34.2230000-04:00|10FF0001|Tini Poutini|10FF0002|Potato Chippy|0000|0000|006E|1068E3EF|000F|0000||c022382c6803d1d6c1f84681b7d8db20
+35|2021-04-26T21:12:22.3130000-04:00|4000158E|Copied Knave|40001590|Knave Of Hearts|0000|0000|0098|40001590|000F|0000||f980da434aac6cfb97c19ec26359c3b9
+35|2021-04-26T19:10:04.7570000-04:00|40009B34||40009B33||A1FA|0000|009C|40009B33|000F|7FF0||467cec67b35e7de046e5ed9ce8986a54
+
+ACT Log Line Examples:
+[17:27:07.31] 23:35:2021-04-26T17:27:07.0310000-04:00:40003202:Articulated Bit:10FF0001:Tini Poutini:0000:0000:0001:10029769:000F:0000::ad71d456437e6792f68b19dbef9507d5
+[22:36:58.106] 23:35:2021-04-27T22:36:58.1060000-04:00:10FF0001:Tini Poutini:4000943B:Bomb Boulder:0000:0000:0007:4000943B:000F:0000::a6adfcdf5dad0ef891deeade4d285eb2
+[17:41:34.223] 23:35:2021-06-13T17:41:34.2230000-04:00:10FF0001:Tini Poutini:10FF0002:Potato Chippy:0000:0000:006E:1068E3EF:000F:0000::c022382c6803d1d6c1f84681b7d8db20
+[21:12:22.313] 23:35:2021-04-26T21:12:22.3130000-04:00:4000158E:Copied Knave:40001590:Knave Of Hearts:0000:0000:0098:40001590:000F:0000::f980da434aac6cfb97c19ec26359c3b9
+[19:10:04.757] 23:35:2021-04-26T19:10:04.7570000-04:00:40009B34::40009B33::A1FA:0000:009C:40009B33:000F:7FF0::467cec67b35e7de046e5ed9ce8986a54
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.
 
@@ -1173,14 +1673,35 @@ but other actions taken can cause extra increments to happen independent of the 
 Each limit break bar is 0x2710 (10,000 decimal) units.
 Thus, the maximum possible recorded value would be 0x7530.
 
-Structure:
-`24:Limit Break: [Value]`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=limitBreak&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-24:Limit Break: 7530
+Network Log Line Structure:
+36|2021-04-26T14:11:35.0000000-04:00|[valueHex]|[bars]
+
+ACT Log Line Structure:
+[14:11:35.0] 24:Limit Break: [valueHex]
 ```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+36|2021-04-26T14:20:09.6880000-04:00|6A90|3|88ce578cb8f05d74feb3a7fa155bedc5
+36|2021-04-26T14:20:19.6580000-04:00|4E20|2|a3bf154ba550e147d4fbbd4266db4eb9
+36|2021-04-26T14:20:23.9040000-04:00|0000|0|703872b50849730773f7b21897698d00
+36|2021-04-26T14:22:03.8370000-04:00|0000|1|c85f02ac4780e208357383afb6cbc232
+
+ACT Log Line Examples:
+[14:20:09.688] 24:Limit Break: 6A90
+[14:20:19.658] 24:Limit Break: 4E20
+[14:20:23.904] 24:Limit Break: 0000
+[14:22:03.837] 24:Limit Break: 0000
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## 25: NetworkActionSync
 
@@ -1214,14 +1735,43 @@ For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github
 [1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
  and [25:NetworkActionSync](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#25-NetworkActionSync).
 
-Structure:
-`26:[Target Id]:[Target Name]:[Job Levels]:[Current HP]:[Max Hp]:[Current Mp]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:<status list; format unknown>`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StatusEffect&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-26:12345678:PlayerOne:3C503C1C:24136:24136:9045:10000:4:0:-0.4730835:-158.1598:-23.9:3.110625:03E8:45:0:020130:0:106501CA:0129:4172D113:106501CA:012A:4168C8B4:106501CA:012B:40919168:106501CA:0232:40E00000:E0000000:
+Network Log Line Structure:
+38|2021-04-26T14:11:35.0000000-04:00|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|||[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]|[data3]|[data4]
+
+ACT Log Line Structure:
+[14:11:35.0] 26:38:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:::[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:38))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<jobLevelData>(?:[^|]*))\|(?<hp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<mp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|(?<data0>(?:[^|]*))\|(?<data1>(?:[^|]*))\|(?<data2>(?:[^|]*))\|(?<data3>(?:[^|]*))\|(?<data4>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 26:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:[^:]*?)):[0-9A-F]{0,6}(?<job>(?:[0-9A-F]{0,2})):(?<hp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<maxHp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<mp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):(?<maxMp>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)):.*?:.*?:(?:(?<x>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<y>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<z>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?:(?<heading>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)))?:(?<data0>(?:[^:]*?)):(?<data1>(?:[^:]*?)):(?:(?<data2>(?:[^:]*?)):)?(?:(?<data3>(?:[^:]*?)):)?(?:(?<data4>(?:[^:]*?)):)?
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+38|2021-04-26T14:13:16.2760000-04:00|10FF0001|Tini Poutini|46504615|75407|75407|10000|10000|24|0|-645.238|-802.7854|8|1.091302|1500|3C|0|0A016D|41F00000|E0000000|1E016C|41F00000|E0000000||c1b3e1d63f03a265ffa85f1517c1501e
+38|2021-04-26T14:13:16.2760000-04:00|10FF0001||46504621|49890|49890|10000|10000|24|0|||||1500|3C|0||f62dbda5c947fa4c11b63c90c6ee4cd9
+38|2021-04-26T14:13:44.5020000-04:00|10FF0002|Potato Chippy|46504621|52418|52418|10000|10000|32|0|99.93127|113.8475|-1.862645E-09|3.141593|200F|20|0|0A016D|41F00000|E0000000|1E016C|41F00000|E0000000|0345|41E8D4FC|10FF0001|0347|80000000|10FF0002||d57fd29c6c4856c091557968667da39d
+
+ACT Log Line Examples:
+[14:13:16.276] 26:38:2021-04-26T14:13:16.2760000-04:00:10FF0001:Tini Poutini:46504615:75407:75407:10000:10000:24:0:-645.238:-802.7854:8:1.091302:1500:3C:0:0A016D:41F00000:E0000000:1E016C:41F00000:E0000000::c1b3e1d63f03a265ffa85f1517c1501e
+[14:13:16.276] 26:38:2021-04-26T14:13:16.2760000-04:00:10FF0001::46504621:49890:49890:10000:10000:24:0:::::1500:3C:0::f62dbda5c947fa4c11b63c90c6ee4cd9
+[14:13:44.502] 26:38:2021-04-26T14:13:44.5020000-04:00:10FF0002:Potato Chippy:46504621:52418:52418:10000:10000:32:0:99.93127:113.8475:-1.862645E-09:3.141593:200F:20:0:0A016D:41F00000:E0000000:1E016C:41F00000:E0000000:0345:41E8D4FC:10FF0001:0347:80000000:10FF0002::d57fd29c6c4856c091557968667da39d
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 It seems likely that this line was added in order to extend functionality
 for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
@@ -1232,14 +1782,39 @@ It's not completely clear what triggers this log line,
 but it contains basic information comparable to `25` and `26`.
 It applies to allies and fairies/pets.
 
-Structure:
-`27:[Target ID]:[Target Name]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[position X]:[position Y]:[position Z]:[Facing]`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkUpdateHP&lang=en) -->
 
-Examples:
+#### Structure
 
 ```log
-27:12345678:Eos:22851:22851:10000:10000:0:0:12.13086:-169.9398:-23.90031:-2.310888:
+Network Log Line Structure:
+39|2021-04-26T14:11:35.0000000-04:00|[id]|[name]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|||[x]|[y]|[z]|[heading]
+
+ACT Log Line Structure:
+[14:11:35.0] 27:39:2021-04-26T14:11:35.0000000-04:00:[id]:[name]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:::[x]:[y]:[z]:[heading]
 ```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+39|2021-04-26T14:12:29.5060000-04:00|10FF0001|Tini Poutini|121087|121087|10000|10000|0|0|-648.3234|-804.5252|8.570148|1.010669||a0cca3b79b0fd65541e3fa6b11fa386e
+39|2021-04-26T14:12:32.4990000-04:00|10FF0001|Tini Poutini|140281|191948|10000|10000|0|0|-648.3234|-804.5252|8.570148|1.010669||de4c6c2f99d2f1bf2f3b5e5eb3250d4b
+39|2021-04-26T14:12:35.4830000-04:00|10FF0001|Tini Poutini|159475|191948|10000|10000|0|0|-648.3234|-804.5252|8.570148|1.010669||e34562c0c4e117e3709cf28a0c7759f6
+39|2021-04-26T14:12:38.5160000-04:00|10FF0001|Tini Poutini|178669|191948|10000|10000|0|0|-648.3234|-804.5252|8.570148|1.010669||7ebe348673aa2a11e4036274becabc81
+39|2021-04-26T14:13:21.6370000-04:00|10592642|Senor Esteban|54792|54792|10000|10000|0|0|100.268|114.22|-1.837917E-09|3.141593||883da0db11a9c950eefdbcbc50e86eca
+39|2021-04-26T14:13:21.6370000-04:00|106F5D49|O'ndanya Voupin|79075|79075|10000|10000|0|0|99.93127|114.2443|-1.862645E-09|-3.141593||8ed73ee57c4ab7159628584e2f4d5243
+
+ACT Log Line Examples:
+[14:12:29.506] 27:39:2021-04-26T14:12:29.5060000-04:00:10FF0001:Tini Poutini:121087:121087:10000:10000:0:0:-648.3234:-804.5252:8.570148:1.010669::a0cca3b79b0fd65541e3fa6b11fa386e
+[14:12:32.499] 27:39:2021-04-26T14:12:32.4990000-04:00:10FF0001:Tini Poutini:140281:191948:10000:10000:0:0:-648.3234:-804.5252:8.570148:1.010669::de4c6c2f99d2f1bf2f3b5e5eb3250d4b
+[14:12:35.483] 27:39:2021-04-26T14:12:35.4830000-04:00:10FF0001:Tini Poutini:159475:191948:10000:10000:0:0:-648.3234:-804.5252:8.570148:1.010669::e34562c0c4e117e3709cf28a0c7759f6
+[14:12:38.516] 27:39:2021-04-26T14:12:38.5160000-04:00:10FF0001:Tini Poutini:178669:191948:10000:10000:0:0:-648.3234:-804.5252:8.570148:1.010669::7ebe348673aa2a11e4036274becabc81
+[14:13:21.637] 27:39:2021-04-26T14:13:21.6370000-04:00:10592642:Senor Esteban:54792:54792:10000:10000:0:0:100.268:114.22:-1.837917E-09:3.141593::883da0db11a9c950eefdbcbc50e86eca
+[14:13:21.637] 27:39:2021-04-26T14:13:21.6370000-04:00:106F5D49:O'ndanya Voupin:79075:79075:10000:10000:0:0:99.93127:114.2443:-1.862645E-09:-3.141593::8ed73ee57c4ab7159628584e2f4d5243
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### FB: Debug
 
