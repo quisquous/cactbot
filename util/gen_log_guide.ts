@@ -414,13 +414,18 @@ const config: markdownMagic.Configuration = {
       for (let index = 2; index <= lastIndex; ++index)
         structureNetworkArray[index] ??= '';
 
-      const structureNetwork = structureNetworkArray.join('|');
+      let structureNetwork = structureNetworkArray.join('|');
       const structureLogLine = ParseLine.parse(logRepo, structureNetwork);
-      const structureLog = structureLogLine?.properCaseConvertedLine ??
+      let structureLog = structureLogLine?.properCaseConvertedLine ??
         structureLogLine?.convertedLine;
 
       if (!structureLog)
         throw new UnreachableCode();
+
+      // Replace default timestamp with `[timestamp]` indicator
+      // We have to do this here because LineEvent needs to parse the timestamp to convert
+      structureNetwork = structureNetwork.replace(/^(\d+)\|[^|]+\|/, '$1|[timestamp]|');
+      structureLog = structureLog.replace(/^\[[^\]]+\]/, '[timestamp]');
 
       const examples = translate(language, lineDoc.examples);
 
