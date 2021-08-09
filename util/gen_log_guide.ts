@@ -2,14 +2,15 @@ import path from 'path';
 
 import markdownMagic from 'markdown-magic';
 
-import { isLang, languages, NonEnLang } from '../resources/languages';
+import { isLang, languages } from '../resources/languages';
 import logDefinitions, { LogDefinitionTypes } from '../resources/netlog_defs';
 import NetRegexes from '../resources/netregexes';
+import { UnreachableCode } from '../resources/not_reached';
 import Regexes from '../resources/regexes';
+import { LocaleObject } from '../types/trigger';
 import LogRepository from '../ui/raidboss/emulator/data/network_log_converter/LogRepository';
 import ParseLine from '../ui/raidboss/emulator/data/network_log_converter/ParseLine';
-
-type LangObject<T> = { en: T } & { [lang in NonEnLang]?: T };
+import { translate } from '../ui/raidboss/emulator/translations';
 
 const curPath = path.resolve();
 
@@ -44,7 +45,7 @@ type LineDocType = {
     network: string;
     logLine: string;
   };
-  examples: LangObject<readonly string[]>;
+  examples: LocaleObject<readonly string[]>;
 };
 
 type LineDocs = {
@@ -361,7 +362,7 @@ const isLineType = (type?: string): type is LineDocTypes => {
   return type !== undefined && type in lineDocs;
 };
 
-const mappedLogLines: LangObject<LineDocTypes[]> = {
+const mappedLogLines: LocaleObject<LineDocTypes[]> = {
   en: [],
 };
 
@@ -412,11 +413,18 @@ const config: markdownMagic.Configuration = {
       const structureNetwork = structureNetworkArray.join('|');
       const structureLogLine = ParseLine.parse(logRepo, structureNetwork);
       const structureLog = structureLogLine?.properCaseConvertedLine ??
-        structureLogLine?.convertedLine ?? '';
+        structureLogLine?.convertedLine;
 
-      const examplesNetwork = lineDoc.examples[language]?.join('\n') ?? '';
-      const examplesLogLine = lineDoc.examples[language]?.map((e) => {
+      if (!structureLog)
+        throw new UnreachableCode();
+
+      const examples = translate(language, lineDoc.examples);
+
+      const examplesNetwork = examples.join('\n') ?? '';
+      const examplesLogLine = examples.map((e) => {
         const line = ParseLine.parse(logRepo, e);
+        if (!line)
+          throw new UnreachableCode();
         return line?.properCaseConvertedLine ?? line?.convertedLine;
       }).join('\n') ?? '';
 
