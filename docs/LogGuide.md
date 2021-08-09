@@ -122,15 +122,15 @@ With updates for:
     - [Structure](#structure-20)
     - [Regexes](#regexes-13)
     - [Examples](#examples-20)
-- [24: LimitBreak](#24-limitbreak)
+  - [24: LimitBreak](#24-limitbreak)
     - [Structure](#structure-21)
     - [Examples](#examples-21)
-- [25: NetworkActionSync](#25-networkactionsync)
-- [26: NetworkStatusEffects](#26-networkstatuseffects)
+  - [25: NetworkActionSync](#25-networkactionsync)
+  - [26: NetworkStatusEffects](#26-networkstatuseffects)
     - [Structure](#structure-22)
     - [Regexes](#regexes-14)
     - [Examples](#examples-22)
-- [27: NetworkUpdateHP](#27-networkupdatehp)
+  - [27: NetworkUpdateHP](#27-networkupdatehp)
     - [Structure](#structure-23)
     - [Examples](#examples-23)
   - [FB: Debug](#fb-debug)
@@ -1659,7 +1659,7 @@ There are also a number of examples where tethers are generated in some other wa
 - Suzaku Extreme birbs: who knows
 - player to player tethers (dragonsight, cover, fairy tether)
 
-## 24: LimitBreak
+### 24: LimitBreak
 
 This log line is recorded every server tick where limit break energy is generated while in combat in a light or full party.
 (Generation is not recorded while at cap.)
@@ -1703,7 +1703,7 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-## 25: NetworkActionSync
+### 25: NetworkActionSync
 
 This log line is a sync packet that tells the client to render an action that has previously resolved.
 (This can be an animation or text in one of the game text logs.)
@@ -1728,7 +1728,7 @@ Examples:
 25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:
 ```
 
-## 26: NetworkStatusEffects
+### 26: NetworkStatusEffects
 
 For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
 For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
@@ -1776,7 +1776,7 @@ ACT Log Line Examples:
 It seems likely that this line was added in order to extend functionality
 for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
 
-## 27: NetworkUpdateHP
+### 27: NetworkUpdateHP
 
 It's not completely clear what triggers this log line,
 but it contains basic information comparable to `25` and `26`.
