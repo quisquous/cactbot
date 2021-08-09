@@ -42,15 +42,14 @@ With updates for:
     - [Examples](#examples-1)
   - [02: ChangePrimaryPlayer](#02-changeprimaryplayer)
     - [Structure](#structure-2)
-    - [Regexes](#regexes-2)
     - [Examples](#examples-2)
   - [03: AddCombatant](#03-addcombatant)
     - [Structure](#structure-3)
-    - [Regexes](#regexes-3)
+    - [Regexes](#regexes-2)
     - [Examples](#examples-3)
   - [04: RemoveCombatant](#04-removecombatant)
     - [Structure](#structure-4)
-    - [Regexes](#regexes-4)
+    - [Regexes](#regexes-3)
     - [Examples](#examples-4)
   - [05: AddBuff](#05-addbuff)
   - [06: RemoveBuff](#06-removebuff)
@@ -62,17 +61,17 @@ With updates for:
     - [Examples](#examples-5)
   - [0C: PlayerStats](#0c-playerstats)
     - [Structure](#structure-6)
-    - [Regexes](#regexes-5)
+    - [Regexes](#regexes-4)
     - [Examples](#examples-6)
   - [0D: CombatantHP](#0d-combatanthp)
     - [CombatantHP is an ACT-only line](#combatanthp-is-an-act-only-line)
   - [14: NetworkStartsCasting](#14-networkstartscasting)
     - [Structure](#structure-7)
-    - [Regexes](#regexes-6)
+    - [Regexes](#regexes-5)
     - [Examples](#examples-7)
   - [15: NetworkAbility](#15-networkability)
     - [Structure](#structure-8)
-    - [Regexes](#regexes-7)
+    - [Regexes](#regexes-6)
     - [Examples](#examples-8)
     - [Ability Flags](#ability-flags)
     - [Ability Damage](#ability-damage)
@@ -87,25 +86,25 @@ With updates for:
     - [Examples](#examples-10)
   - [19: NetworkDeath](#19-networkdeath)
     - [Structure](#structure-11)
-    - [Regexes](#regexes-8)
+    - [Regexes](#regexes-7)
     - [Examples](#examples-11)
   - [1A: NetworkBuff](#1a-networkbuff)
     - [Structure](#structure-12)
-    - [Regexes](#regexes-9)
+    - [Regexes](#regexes-8)
     - [Examples](#examples-12)
   - [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers)
     - [Structure](#structure-13)
-    - [Regexes](#regexes-10)
+    - [Regexes](#regexes-9)
     - [Examples](#examples-13)
   - [1C: NetworkRaidMarker](#1c-networkraidmarker)
     - [Structure](#structure-14)
-    - [Regexes](#regexes-11)
     - [Examples](#examples-14)
   - [1D: NetworkTargetMarker](#1d-networktargetmarker)
     - [Structure](#structure-15)
     - [Examples](#examples-15)
   - [1E: NetworkBuffRemove](#1e-networkbuffremove)
     - [Structure](#structure-16)
+    - [Regexes](#regexes-10)
     - [Examples](#examples-16)
   - [1F: NetworkGauge](#1f-networkgauge)
     - [Structure](#structure-17)
@@ -113,14 +112,14 @@ With updates for:
   - [20: NetworkWorld](#20-networkworld)
   - [21: Network6D (Actor Control Lines)](#21-network6d-actor-control-lines)
     - [Structure](#structure-18)
-    - [Regexes](#regexes-12)
+    - [Regexes](#regexes-11)
     - [Examples](#examples-18)
   - [22: NetworkNameToggle](#22-networknametoggle)
     - [Structure](#structure-19)
     - [Examples](#examples-19)
   - [23: NetworkTether](#23-networktether)
     - [Structure](#structure-20)
-    - [Regexes](#regexes-13)
+    - [Regexes](#regexes-12)
     - [Examples](#examples-20)
   - [24: LimitBreak](#24-limitbreak)
     - [Structure](#structure-21)
@@ -128,7 +127,7 @@ With updates for:
   - [25: NetworkActionSync](#25-networkactionsync)
   - [26: NetworkStatusEffects](#26-networkstatuseffects)
     - [Structure](#structure-22)
-    - [Regexes](#regexes-14)
+    - [Regexes](#regexes-13)
     - [Examples](#examples-22)
   - [27: NetworkUpdateHP](#27-networkupdatehp)
     - [Structure](#structure-23)
@@ -466,38 +465,28 @@ ACT Log Line Examples:
 
 This redundant message follows every [ChangeZone](#01-changezone) message to indicate the name of the player.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangeZone&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangedPlayer&lang=en) -->
 
 #### Structure
 
 ```log
 Network Log Line Structure:
-01|2021-04-26T14:11:35.0000000-04:00|[id]|[name]
+02|2021-04-26T14:11:35.0000000-04:00|[id]|[name]
 
 ACT Log Line Structure:
-[14:11:35.0] 01:Changed Zone to [Name].
-```
-
-#### Regexes
-
-```log
-Network Log Line Regex:
-^(?<type>(?:01))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|
-
-ACT Log Line Regex:
-(?<timestamp>(?:^.{14})) 01:Changed Zone to (?<name>(?:.*?))\.
+[14:11:35.0] 02:Changed primary player to [name].
 ```
 
 #### Examples
 
 ```log
 Network Log Line Examples:
-01|2021-04-26T14:13:17.9930000-04:00|326|Kugane Ohashi|b9f401c0aa0b8bc454b239b201abc1b8
-01|2021-04-26T14:22:04.5490000-04:00|31f|Alphascape (V2.0)|8299b97fa36500118fc3a174ed208fe4
+02|2021-04-26T14:11:31.0200000-04:00|10ff0001|Tini Poutini|5b0a5800460045f29db38676e0c3f79a
+02|2021-04-26T14:13:17.9930000-04:00|10ff0002|Potato Chippy|34b657d75218545f5a49970cce218ce6
 
 ACT Log Line Examples:
-[14:13:17.993] 01:Changed Zone to Kugane Ohashi.
-[14:22:04.549] 01:Changed Zone to Alphascape (V2.0).
+[14:11:31.20] 02:Changed primary player to Tini Poutini.
+[14:13:17.993] 02:Changed primary player to Potato Chippy.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1308,44 +1297,28 @@ Marker Code | Name | Sample Locations | Consistent meaning?
 
 This message indicates a floor waymarker was added or deleted.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=HeadMarker&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkRaidMarker&lang=en) -->
 
 #### Structure
 
 ```log
 Network Log Line Structure:
-27|2021-04-26T14:11:35.0000000-04:00|[targetId]|[target]|||[id]
+28|2021-04-26T14:11:35.0000000-04:00|[operation]|[waymark]|[id]|[name]|[x]|[y]|[z]
 
 ACT Log Line Structure:
-[14:11:35.0] 1B:27:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:::[id]
-```
-
-#### Regexes
-
-```log
-Network Log Line Regex:
-^(?<type>(?:27))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?:[^|]*\|){2}(?<id>(?:[^|]*))\|
-
-ACT Log Line Regex:
-(?<timestamp>(?:^.{14})) 1B:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:[^:]*?)):....:....:(?<id>(?:....)):
+[14:11:35.0] 1C:28:2021-04-26T14:11:35.0000000-04:00:[operation]:[waymark]:[id]:[name]:[x]:[y]:[z]
 ```
 
 #### Examples
 
 ```log
 Network Log Line Examples:
-27|2021-04-26T14:37:48.3550000-04:00|10FF0001|Tini Poutini|0000|0000|0018|0000|0000|0000||051a1ab18b11a70c22fe56d716a75a20
-27|2021-04-26T14:38:00.0360000-04:00|10FF0001|Tini Poutini|0000|0000|001A|0000|0000|0000||81351db91d8a53406106f4fe94dccf3a
-27|2021-04-26T14:29:35.7180000-04:00|10FF0001|Tini Poutini|0000|E000|00A0|0000|0000|0000||44b502d374749978aa96969869b49afc
-27|2021-04-26T14:17:31.6980000-04:00|10FF0001|Tini Poutini|0000|A9B9|0057|0000|0000|0000||4fb326d8899ffbd4cbfeb29bbc3080f8
-27|2021-05-11T13:48:45.3370000-04:00|40000950|Copied Knave|0000|0000|0117|0000|0000|0000||fa2e93fccf397a41aac73a3a38aa7410
+28|2021-04-26T19:04:39.1920000-04:00|Delete|7|10FF0001|Tini Poutini|0|0|0|b714a8b5b34ea60f8bf9f480508dc427
+28|2021-04-26T19:27:23.5340000-04:00|Add|4|10FF0001|Tini Poutini|76.073|110.588|0|bcf81fb146fe88230333bbfd649eb240
 
 ACT Log Line Examples:
-[14:37:48.355] 1B:27:2021-04-26T14:37:48.3550000-04:00:10FF0001:Tini Poutini:0000:0000:0018:0000:0000:0000::051a1ab18b11a70c22fe56d716a75a20
-[14:38:00.36] 1B:27:2021-04-26T14:38:00.0360000-04:00:10FF0001:Tini Poutini:0000:0000:001A:0000:0000:0000::81351db91d8a53406106f4fe94dccf3a
-[14:29:35.718] 1B:27:2021-04-26T14:29:35.7180000-04:00:10FF0001:Tini Poutini:0000:E000:00A0:0000:0000:0000::44b502d374749978aa96969869b49afc
-[14:17:31.698] 1B:27:2021-04-26T14:17:31.6980000-04:00:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
-[13:48:45.337] 1B:27:2021-05-11T13:48:45.3370000-04:00:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
+[19:04:39.192] 1C:28:2021-04-26T19:04:39.1920000-04:00:Delete:7:10FF0001:Tini Poutini:0:0:0:b714a8b5b34ea60f8bf9f480508dc427
+[19:27:23.534] 1C:28:2021-04-26T19:27:23.5340000-04:00:Add:4:10FF0001:Tini Poutini:76.073:110.588:0:bcf81fb146fe88230333bbfd649eb240
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1387,30 +1360,40 @@ ACT Log Line Examples:
 This is the paired "end" message to the [1A: NetworkBuff](#1a-networkbuff) "begin" message.
 This message corresponds to the loss of effects (either positive or negative).
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkTargetMarker&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LosesEffect&lang=en) -->
 
 #### Structure
 
 ```log
 Network Log Line Structure:
-29|2021-04-26T14:11:35.0000000-04:00|[operation]|[waymark]|[id]|[name]|[targetId]|[targetName]
+30|2021-04-26T14:11:35.0000000-04:00|[effectId]|[effect]||[sourceId]|[source]|[targetId]|[target]|[count]
 
 ACT Log Line Structure:
-[14:11:35.0] 1D:29:2021-04-26T14:11:35.0000000-04:00:[operation]:[waymark]:[id]:[name]:[targetId]:[targetName]
+[14:11:35.0] 1E:[TARGETID]:[Target] loses the effect of [effect] from [Source] for  Seconds.
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:30))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?:[^|]*\|)(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|
+
+ACT Log Line Regex:
+(?<timestamp>(?:^.{14})) 1E:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:.*?)) loses the effect of (?<effect>(?:.*?)) from (?<source>(?:.*?))\.
 ```
 
 #### Examples
 
 ```log
 Network Log Line Examples:
-29|2021-06-10T20:15:15.1000000-04:00|Delete|0|10FF0001|Tini Poutini|4000641D|||50460af5ff3f8ec9ad03e6953d3d1ba9
-29|2021-06-10T20:15:15.1000000-04:00|Add|0|10FF0001|Tini Poutini|400075A9|||0afeb301004fc6d8c7bd5f6cbda9dce7
-29|2021-05-25T22:54:32.5660000-04:00|Add|6|10FF0001|Tini Poutini|10FF0002|Potato Chippy||70a8c8a728d09af83e0a486e8271cc57
+30|2021-04-26T14:38:09.6990000-04:00|13a|Inferno|0.00|400009FF|Ifrit-Egi|400009FD|Scylla|00|941742|4933||19164478551c91375dc13d0998365130
+30|2021-04-26T14:37:12.8740000-04:00|77b|Summon Order|0.00|400009E8|Eos|400009E8|Eos|01|5810|5810||b1736ae2cf65864623f9779635c361cd
+30|2021-04-26T14:23:38.8440000-04:00|bd|Bio II|0.00|10FF0001|Tini Poutini|4000B262|Midgardsormr|00|10851737|51654||e34ec8d3a8db783fe34f152178775804
 
 ACT Log Line Examples:
-[20:15:15.100] 1D:29:2021-06-10T20:15:15.1000000-04:00:Delete:0:10FF0001:Tini Poutini:4000641D:::50460af5ff3f8ec9ad03e6953d3d1ba9
-[20:15:15.100] 1D:29:2021-06-10T20:15:15.1000000-04:00:Add:0:10FF0001:Tini Poutini:400075A9:::0afeb301004fc6d8c7bd5f6cbda9dce7
-[22:54:32.566] 1D:29:2021-05-25T22:54:32.5660000-04:00:Add:6:10FF0001:Tini Poutini:10FF0002:Potato Chippy::70a8c8a728d09af83e0a486e8271cc57
+[14:38:09.699] 1E:400009FD:Scylla loses the effect of Inferno from Ifrit-Egi for 0.00 Seconds.
+[14:37:12.874] 1E:400009E8:Eos loses the effect of Summon Order from Eos for 0.00 Seconds.
+[14:23:38.844] 1E:4000B262:Midgardsormr loses the effect of Bio II from Tini Poutini for 0.00 Seconds.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
