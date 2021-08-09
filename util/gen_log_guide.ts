@@ -412,7 +412,7 @@ const config: markdownMagic.Configuration = {
       }
 
       for (let index = 2; index <= lastIndex; ++index)
-        structureNetworkArray[index] ??= '';
+        structureNetworkArray[index] ??= '[?]';
 
       let structureNetwork = structureNetworkArray.join('|');
       const structureLogLine = ParseLine.parse(logRepo, structureNetwork);

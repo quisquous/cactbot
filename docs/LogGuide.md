@@ -502,7 +502,7 @@ becomes close enough to the player that they can view its actions.
 
 ```log
 Network Log Line Structure:
-03|[timestamp]|[id]|[name]|[job]|[level]|[ownerId]|[worldId]|[world]|[npcNameId]|[npcBaseId]|[currentHp]|[hp]|[currentMp]|[mp]|||[x]|[y]|[z]|[heading]
+03|[timestamp]|[id]|[name]|[job]|[level]|[ownerId]|[worldId]|[world]|[npcNameId]|[npcBaseId]|[currentHp]|[hp]|[currentMp]|[mp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
 [timestamp] 03:[ID]:Added new combatant [name]([world]).  Job: NONE Level: [level] Max HP: [hp] Max MP: [mp] Pos: ([x],[y],[z]) ([npcNameId][npcBaseId]).
@@ -563,10 +563,10 @@ changed zones.
 
 ```log
 Network Log Line Structure:
-04|[timestamp]|[id]|[name]|[job]|[level]|[owner]||[world]|[npcNameId]|[npcBaseId]||[hp]|||||[x]|[y]|[z]|[heading]
+04|[timestamp]|[id]|[name]|[job]|[level]|[owner]|[?]|[world]|[npcNameId]|[npcBaseId]|[?]|[hp]|[?]|[?]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 04:[ID]:Removing combatant [name]. Max MP: . Pos: ([x],[y],[z])
+[timestamp] 04:[ID]:Removing combatant [name]. Max MP: [?]. Pos: ([x],[y],[z])
 ```
 
 #### Regexes
@@ -702,10 +702,10 @@ This message is sent whenever your player's stats change and upon entering a new
 
 ```log
 Network Log Line Structure:
-12|[timestamp]|[job]|[strength]|[dexterity]|[vitality]|[intelligence]|[mind]|[piety]|[attackPower]|[directHit]|[criticalHit]|[attackMagicPotency]|[healMagicPotency]|[determination]|[skillSpeed]|[spellSpeed]||[tenacity]
+12|[timestamp]|[job]|[strength]|[dexterity]|[vitality]|[intelligence]|[mind]|[piety]|[attackPower]|[directHit]|[criticalHit]|[attackMagicPotency]|[healMagicPotency]|[determination]|[skillSpeed]|[spellSpeed]|[?]|[tenacity]
 
 ACT Log Line Structure:
-[timestamp] 0C:Player Stats: [job]:[strength]:[dexterity]:[vitality]:[intelligence]:[mind]:[piety]:[attackPower]:[directHit]:[criticalHit]:[attackMagicPotency]:[healMagicPotency]:[determination]:[skillSpeed]:[spellSpeed]:
+[timestamp] 0C:Player Stats: [job]:[strength]:[dexterity]:[vitality]:[intelligence]:[mind]:[piety]:[attackPower]:[directHit]:[criticalHit]:[attackMagicPotency]:[healMagicPotency]:[determination]:[skillSpeed]:[spellSpeed]:[?]
 ```
 
 #### Regexes
@@ -829,10 +829,10 @@ Ground AOEs that don't hit anybody are type `16`.
 
 ```log
 Network Log Line Structure:
-21|[timestamp]|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags]|[damage]|||||||||||||||[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|||[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|||[x]|[y]|[z]|[heading]
+21|[timestamp]|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags]|[damage]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|[?]|[?]|[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 15:21:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:::::::::::::::[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:::[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:::[x]:[y]:[z]:[heading]
+[timestamp] 15:21:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:[?]:[?]:[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
 ```
 
 #### Regexes
@@ -1050,7 +1050,7 @@ Parsers are left to estimate what the individual dot amounts are.
 
 ```log
 Network Log Line Structure:
-24|[timestamp]|[id]|[name]|[which]|[effectId]|[damage]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|||[x]|[y]|[z]|[heading]
+24|[timestamp]|[id]|[name]|[which]|[effectId]|[damage]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
 [timestamp] 18:24 Tick on [Name] for NaN damage.
@@ -1194,10 +1194,10 @@ This matters for cases such as ucob Nael phase doom debuffs.
 
 ```log
 Network Log Line Structure:
-27|[timestamp]|[targetId]|[target]|||[id]
+27|[timestamp]|[targetId]|[target]|[?]|[?]|[id]
 
 ACT Log Line Structure:
-[timestamp] 1B:27:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:::[id]
+[timestamp] 1B:27:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:[?]:[?]:[id]
 ```
 
 #### Regexes
@@ -1366,10 +1366,10 @@ This message corresponds to the loss of effects (either positive or negative).
 
 ```log
 Network Log Line Structure:
-30|[timestamp]|[effectId]|[effect]||[sourceId]|[source]|[targetId]|[target]|[count]
+30|[timestamp]|[effectId]|[effect]|[?]|[sourceId]|[source]|[targetId]|[target]|[count]
 
 ACT Log Line Structure:
-[timestamp] 1E:[TARGETID]:[Target] loses the effect of [effect] from [Source] for  Seconds.
+[timestamp] 1E:[TARGETID]:[Target] loses the effect of [effect] from [Source] for [?] Seconds.
 ```
 
 #### Regexes
@@ -1593,10 +1593,10 @@ This does not appear to be used for player to player skill tethers like dragonsi
 
 ```log
 Network Log Line Structure:
-35|[timestamp]|[sourceId]|[source]|[targetId]|[target]|||[id]
+35|[timestamp]|[sourceId]|[source]|[targetId]|[target]|[?]|[?]|[id]
 
 ACT Log Line Structure:
-[timestamp] 23:35:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[targetId]:[target]:::[id]
+[timestamp] 23:35:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[targetId]:[target]:[?]:[?]:[id]
 ```
 
 #### Regexes
@@ -1724,10 +1724,10 @@ For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github
 
 ```log
 Network Log Line Structure:
-38|[timestamp]|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|||[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]|[data3]|[data4]
+38|[timestamp]|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]|[data3]|[data4]
 
 ACT Log Line Structure:
-[timestamp] 26:38:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:::[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]
+[timestamp] 26:38:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]
 ```
 
 #### Regexes
@@ -1771,10 +1771,10 @@ It applies to allies and fairies/pets.
 
 ```log
 Network Log Line Structure:
-39|[timestamp]|[id]|[name]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|||[x]|[y]|[z]|[heading]
+39|[timestamp]|[id]|[name]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 27:39:2021-04-26T14:11:35.0000000-04:00:[id]:[name]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:::[x]:[y]:[z]:[heading]
+[timestamp] 27:39:2021-04-26T14:11:35.0000000-04:00:[id]:[name]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
 ```
 
 #### Examples
