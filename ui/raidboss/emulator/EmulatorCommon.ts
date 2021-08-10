@@ -146,7 +146,7 @@ export default class EmulatorCommon {
     const second = EmulatorCommon.zeroPad(date.getSeconds().toString());
     let ret = `${hour}:${minute}:${second}`;
     if (includeMillis)
-      ret = ret + `.${date.getMilliseconds()}`;
+      ret = ret + `.${EmulatorCommon.zeroPad(date.getMilliseconds().toString(), 3)}`;
 
     return ret;
   }

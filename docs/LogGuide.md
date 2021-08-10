@@ -392,12 +392,12 @@ Network Log Line Examples:
 00|2021-07-05T18:01:21.0000000-04:00|0044|Tsukuyomi|Oh...it's going to be a long night.|1a81d186fd4d19255f2e01a1694c7607
 
 ACT Log Line Examples:
-[14:12:30.0] 00:0839:You change to warrior.
-[16:57:41.0] 00:0840:You can now summon the antelope stag mount.
-[14:17:11.0] 00:0b3a:You defeat the embodiment.
-[14:12:30.0] 00:302b:The gravity node uses Forked Lightning.
-[14:12:30.0] 00:322a:The attack misses.
-[18:01:21.0] 00:0044:Tsukuyomi:Oh...it's going to be a long night.
+[14:12:30.000] 00:0839:You change to warrior.
+[16:57:41.000] 00:0840:You can now summon the antelope stag mount.
+[14:17:11.000] 00:0b3a:You defeat the embodiment.
+[14:12:30.000] 00:302b:The gravity node uses Forked Lightning.
+[14:12:30.000] 00:322a:The attack misses.
+[18:01:21.000] 00:0044:Tsukuyomi:Oh...it's going to be a long night.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -488,7 +488,7 @@ Network Log Line Examples:
 02|2021-04-26T14:13:17.9930000-04:00|10ff0002|Potato Chippy|34b657d75218545f5a49970cce218ce6
 
 ACT Log Line Examples:
-[14:11:31.20] 02:Changed primary player to Tini Poutini.
+[14:11:31.020] 02:Changed primary player to Tini Poutini.
 [14:13:17.993] 02:Changed primary player to Potato Chippy.
 ```
 
@@ -591,7 +591,7 @@ Network Log Line Examples:
 
 ACT Log Line Examples:
 [02:01:27.548] 04:10FF0001:Removing combatant Tini Poutini. Max MP: 10000. Pos: (-66.24337,-292.0904,20.06466)
-[00:37:36.74] 04:4000B39C:Removing combatant Petrosphere. Max MP: 10000. Pos: (-16.00671,-0.01531982,0)
+[00:37:36.074] 04:4000B39C:Removing combatant Petrosphere. Max MP: 10000. Pos: (-16.00671,-0.01531982,0)
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -804,7 +804,7 @@ Network Log Line Examples:
 ACT Log Line Examples:
 [12:47:23.174] 14:F63:The Manipulator starts using Carnage on The Manipulator.
 [12:48:33.542] 14:DF0:Tini Poutini starts using Stone III on The Manipulator.
-[12:48:36.46] 14:BA:Potato Chippy starts using Succor on Potato Chippy.
+[12:48:36.046] 14:BA:Potato Chippy starts using Succor on Potato Chippy.
 [12:48:29.783] 14:13BE:The Manipulator starts using Judgment Nisi on Tini Poutini.
 [12:48:36.131] 14:13D0:The Manipulator starts using Seed Of The Sky on Unknown.
 ```
@@ -1030,7 +1030,7 @@ Network Log Line Examples:
 
 ACT Log Line Examples:
 [13:04:38.779] 17:23:2021-07-27T13:04:38.7790000-04:00:10FF0002:Potato Chippy:408D:Veraero II:Cancelled::dbce3801c08020cb8ae7da9102034131
-[13:04:39.93] 17:23:2021-07-27T13:04:39.0930000-04:00:40000132:Garm:D10:The Dragon's Voice:Interrupted::bd936fde66bab0e8cf2874ebd75df77c
+[13:04:39.093] 17:23:2021-07-27T13:04:39.0930000-04:00:40000132:Garm:D10:The Dragon's Voice:Interrupted::bd936fde66bab0e8cf2874ebd75df77c
 [13:04:39.137] 17:23:2021-07-27T13:04:39.1370000-04:00:4000012F::D52:Unknown_D52:Cancelled::8a15bad31745426d65cc13b8e0d50005
 ```
 
@@ -1524,7 +1524,7 @@ Network Log Line Examples:
 ACT Log Line Examples:
 [17:23:28.678] 21:33:2021-04-26T17:23:28.6780000-04:00:80034E6C:40000010:B5D:00:00:00:f777621829447c53c82c9a24aa25348f
 [14:17:31.698] 21:33:2021-04-26T14:17:31.6980000-04:00:80034E5B:8000000C:16:FFFFFFFF:00:00:b543f3c5c715e93d9de2aa65b8fe83ad
-[14:18:39.12] 21:33:2021-04-26T14:18:39.0120000-04:00:80034E5B:40000007:00:01:00:00:7a2b827bbc7a58ecc0c5edbdf14a2c14
+[14:18:39.012] 21:33:2021-04-26T14:18:39.0120000-04:00:80034E5B:40000007:00:01:00:00:7a2b827bbc7a58ecc0c5edbdf14a2c14
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1582,7 +1582,7 @@ Network Log Line Examples:
 34|2021-04-26T14:22:19.1960000-04:00|4000B283|Selene|4000B283|Selene|01|734eef0f5b1b10810af8f7257d738c67
 
 ACT Log Line Examples:
-[14:19:48.40] 22:34:2021-04-26T14:19:48.0400000-04:00:4001C51C:Dragon's Head:4001C51C:Dragon's Head:00:a7248aab1da528bf94faf2f4b1728fc3
+[14:19:48.040] 22:34:2021-04-26T14:19:48.0400000-04:00:4001C51C:Dragon's Head:4001C51C:Dragon's Head:00:a7248aab1da528bf94faf2f4b1728fc3
 [14:22:19.196] 22:34:2021-04-26T14:22:19.1960000-04:00:4000B283:Selene:4000B283:Selene:01:734eef0f5b1b10810af8f7257d738c67
 ```
 
@@ -1625,7 +1625,7 @@ Network Log Line Examples:
 35|2021-06-13T17:41:34.2230000-04:00|10FF0001|Tini Poutini|10FF0002|Potato Chippy|0000|0000|006E|1068E3EF|000F|0000||c022382c6803d1d6c1f84681b7d8db20
 
 ACT Log Line Examples:
-[17:27:07.31] 23:35:2021-04-26T17:27:07.0310000-04:00:40003202:Articulated Bit:10FF0001:Tini Poutini:0000:0000:0001:10029769:000F:0000::ad71d456437e6792f68b19dbef9507d5
+[17:27:07.031] 23:35:2021-04-26T17:27:07.0310000-04:00:40003202:Articulated Bit:10FF0001:Tini Poutini:0000:0000:0001:10029769:000F:0000::ad71d456437e6792f68b19dbef9507d5
 [22:36:58.106] 23:35:2021-04-27T22:36:58.1060000-04:00:10FF0001:Tini Poutini:4000943B:Bomb Boulder:0000:0000:0007:4000943B:000F:0000::a6adfcdf5dad0ef891deeade4d285eb2
 [17:41:34.223] 23:35:2021-06-13T17:41:34.2230000-04:00:10FF0001:Tini Poutini:10FF0002:Potato Chippy:0000:0000:006E:1068E3EF:000F:0000::c022382c6803d1d6c1f84681b7d8db20
 ```
