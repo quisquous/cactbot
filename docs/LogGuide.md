@@ -1153,8 +1153,8 @@ Network Log Line Examples:
 26|2021-04-26T14:23:38.3570000-04:00|f6|Demolish|18.00|10FF0001|Tini Poutini|4000B262|Midgardsormr|00|10851737|55189||fa360eae5d0b81647855b4fe4044c957
 26|2021-04-26T14:23:38.7560000-04:00|13b|Whispering Dawn|21.00|4000B283|Selene|10FF0002|Potato Chippy|4000016E|00|51893|49487||c7400f0eed1fe9d29834369affc22d3b
 26|2021-04-26T14:17:14.3270000-04:00|f6|Demolish|18.00|10FF0001|Tini Poutini|4001C48F|Embodiment|00|515250|55714||daaf86ce75560793e829a7c0891ec2a8
-26|2021-04-26T14:17:42.8900000-04:00|34b|Combust II|30.00|10FF0002|Potato Chippy|4000016E|4001C490|Yojimbo|00|8522235|52418||fb0bb0e7e9432991cc57c9df52e51e33
-26|2021-04-26T14:14:09.1650000-04:00|79a|Wildfire|10.00|10FF0002|Potato Chippy|4000016E|10FF0002|Potato Chippy|4000016E|00|57744|57744||033a0110024e447188cd03916733c63a
+26|2021-04-26T14:17:42.8900000-04:00|34b|Combust II|30.00|10FF0002|Potato Chippy|4001C490|Yojimbo|00|8522235|52418||fb0bb0e7e9432991cc57c9df52e51e33
+26|2021-04-26T14:14:09.1650000-04:00|79a|Wildfire|10.00|10FF0002|Potato Chippy|10FF0002|Potato Chippy|4000016E|00|57744|57744||033a0110024e447188cd03916733c63a
 26|2021-05-11T14:36:17.2510000-04:00|7c|Venomous Bite|30.00|4002E660||4002E66C|Speckled Spider|14|116300|||878cc5c4f151d16cc02e1336cd32697b
 26|2021-07-02T21:57:07.9110000-04:00|82c|Damage Down|30.00|40003D9F|Eden's Promise|40003D9D||00|148000|63981880||86ff6bf4cfdd68491274fce1db5677e8
 
@@ -1164,8 +1164,8 @@ ACT Log Line Examples:
 [14:23:38.357] 1A:4000B262:Midgardsormr gains the effect of Demolish from Tini Poutini for 18.00 Seconds.
 [14:23:38.756] 1A:10FF0002:Potato Chippy gains the effect of Whispering Dawn from Selene for 21.00 Seconds.
 [14:17:14.327] 1A:4001C48F:Embodiment gains the effect of Demolish from Tini Poutini for 18.00 Seconds.
-[14:17:42.890] 1A:4000016E:4001c490 gains the effect of Combust II from Potato Chippy for 30.00 Seconds.
-[14:14:09.165] 1A:4000016E:10ff0002 gains the effect of Wildfire from Potato Chippy for 10.00 Seconds.
+[14:17:42.890] 1A:4001C490:Yojimbo gains the effect of Combust II from Potato Chippy for 30.00 Seconds.
+[14:14:09.165] 1A:10FF0002:Potato Chippy gains the effect of Wildfire from Potato Chippy for 10.00 Seconds.
 [14:36:17.251] 1A:4002E66C:Speckled Spider gains the effect of Venomous Bite from  for 30.00 Seconds.
 [21:57:07.911] 1A:40003D9D: gains the effect of Damage Down from Eden's Promise for 30.00 Seconds.
 ```
