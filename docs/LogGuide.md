@@ -1308,6 +1308,23 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+| ID  | Description |
+| --- | ----------- |
+| 0   | Hexagon 1   |
+| 1   | Hexagon 2   |
+| 2   | Hexagon 3   |
+| 3   | Hexagon 4   |
+| 4   | Hexagon 5   |
+| 5   | Chain 1     |
+| 6   | Chain 2     |
+| 7   | Chain 3     |
+| 8   | Ignore 1    |
+| 9   | Ignore 2    |
+| 10  | Square      |
+| 11  | Circle      |
+| 12  | Plus        |
+| 13  | Triangle    |
+
 ### 1D: NetworkTargetMarker
 
 This message indicates a target marker placed above or removed from a combatant's head by a player.
@@ -1337,6 +1354,17 @@ ACT Log Line Examples:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+| ID  | Description |
+| --- | ----------- |
+| 0   | A           |
+| 1   | B           |
+| 2   | C           |
+| 3   | D           |
+| 4   | 1           |
+| 5   | 2           |
+| 6   | 3           |
+| 7   | 4           |
 
 ### 1E: NetworkBuffRemove
 
