@@ -33,7 +33,8 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
 
     this.type = parts[fields.type] ?? '';
     this.effectId = parts[fields.effectId]?.toUpperCase() ?? '';
-    this.damage = parseInt(parts[fields.damage] ?? '', 16);
+    const damageString = parts[fields.damage] ?? '';
+    this.damage = parseInt(damageString, 16);
 
     this.hp = parseInt(parts[fields.currentHp] ?? '');
     this.maxHp = parseInt(parts[fields.maxHp] ?? '');
@@ -61,13 +62,15 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
     if (effectName)
       effectPart = effectName + ' ';
 
+    const damageStringConverted = isNaN(this.damage) ? damageString : this.damage.toString();
+
     this.convertedLine = this.prefix() + effectPart + this.type +
       ' Tick on ' + resolvedName +
-      ' for ' + this.damage.toString() + ' damage.';
+      ' for ' + damageStringConverted + ' damage.';
 
     this.properCaseConvertedLine = this.prefix() + effectPart + this.type +
       ' Tick on ' + EmulatorCommon.properCase(resolvedName) +
-      ' for ' + this.damage.toString() + ' damage.';
+      ' for ' + damageStringConverted + ' damage.';
   }
 
   static showEffectNamesFor: { [effectId: string]: string } = {

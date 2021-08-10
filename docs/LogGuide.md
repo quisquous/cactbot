@@ -1053,7 +1053,7 @@ Network Log Line Structure:
 24|[timestamp]|[id]|[name]|[which]|[effectId]|[damage]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 18:24 Tick on [Name] for NaN damage.
+[timestamp] 18:24 Tick on [Name] for [damage] damage.
 ```
 
 #### Examples
