@@ -1,4 +1,4 @@
-import { LogDefinitions } from '../resources/netlog_defs';
+import { LogDefinitions, LogDefinitionTypes } from '../resources/netlog_defs';
 
 // This type helper reverses the keys and values of a given type, e.g this:
 // {1: 'a'}
@@ -11,11 +11,11 @@ type Reverse<T extends { [f: string]: number }> = {
 };
 
 export type NetFields = {
-  [type in keyof LogDefinitions]: LogDefinitions[type]['fields'];
+  [type in LogDefinitionTypes]: LogDefinitions[type]['fields'];
 };
 
 export type NetFieldsReverse = {
-  [type in keyof LogDefinitions]: Reverse<LogDefinitions[type]['fields']>;
+  [type in LogDefinitionTypes]: Reverse<LogDefinitions[type]['fields']>;
 };
 
 export type NetAnyFields = NetFields[keyof NetFields];

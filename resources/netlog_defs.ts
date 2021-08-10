@@ -72,7 +72,7 @@ const logDefinitions = {
   },
   ChangedPlayer: {
     type: '02',
-    name: 'ChangePrimaryPlayer',
+    name: 'ChangedPlayer',
     fields: {
       type: 0,
       timestamp: 1,
@@ -87,7 +87,7 @@ const logDefinitions = {
   },
   AddedCombatant: {
     type: '03',
-    name: 'AddCombatant',
+    name: 'AddedCombatant',
     fields: {
       type: 0,
       timestamp: 1,
@@ -119,7 +119,7 @@ const logDefinitions = {
   },
   RemovedCombatant: {
     type: '04',
-    name: 'RemoveCombatant',
+    name: 'RemovedCombatant',
     fields: {
       type: 0,
       timestamp: 1,
@@ -143,7 +143,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  addBuff: {
+  AddBuff: {
     type: '05',
     name: 'AddBuff',
     fields: {
@@ -152,7 +152,7 @@ const logDefinitions = {
     },
     isUnknown: true,
   },
-  removeBuff: {
+  RemoveBuff: {
     type: '06',
     name: 'RemoveBuff',
     fields: {
@@ -161,7 +161,7 @@ const logDefinitions = {
     },
     isUnknown: true,
   },
-  flyingText: {
+  FlyingText: {
     type: '07',
     name: 'FlyingText',
     fields: {
@@ -170,7 +170,7 @@ const logDefinitions = {
     },
     isUnknown: true,
   },
-  outgoingAbility: {
+  OutgoingAbility: {
     type: '08',
     name: 'OutgoingAbility',
     fields: {
@@ -179,7 +179,7 @@ const logDefinitions = {
     },
     isUnknown: true,
   },
-  incomingAbility: {
+  IncomingAbility: {
     type: '09',
     name: 'IncomingAbility',
     fields: {
@@ -188,7 +188,7 @@ const logDefinitions = {
     },
     isUnknown: true,
   },
-  partyList: {
+  PartyList: {
     type: '11',
     name: 'PartyList',
     fields: {
@@ -301,7 +301,7 @@ const logDefinitions = {
     canAnonymize: true,
     lastInclude: true,
   },
-  combatantHP: {
+  CombatantHP: {
     type: '13',
     name: 'CombatantHP',
     fields: {
@@ -312,7 +312,7 @@ const logDefinitions = {
   },
   StartsUsing: {
     type: '20',
-    name: 'NetworkStartsCasting',
+    name: 'StartsUsing',
     fields: {
       type: 0,
       timestamp: 1,
@@ -337,7 +337,7 @@ const logDefinitions = {
   },
   Ability: {
     type: '21',
-    name: 'NetworkAbility',
+    name: 'Ability',
     fields: {
       type: 0,
       timestamp: 1,
@@ -378,7 +378,7 @@ const logDefinitions = {
     firstUnknownField: 44,
     canAnonymize: true,
   },
-  networkAOEAbility: {
+  NetworkAOEAbility: {
     type: '22',
     name: 'NetworkAOEAbility',
     fields: {
@@ -404,7 +404,7 @@ const logDefinitions = {
     firstUnknownField: 44,
     canAnonymize: true,
   },
-  networkCancelAbility: {
+  NetworkCancelAbility: {
     type: '23',
     name: 'NetworkCancelAbility',
     fields: {
@@ -421,7 +421,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkDoT: {
+  NetworkDoT: {
     type: '24',
     name: 'NetworkDoT',
     fields: {
@@ -450,7 +450,7 @@ const logDefinitions = {
   },
   WasDefeated: {
     type: '25',
-    name: 'NetworkDeath',
+    name: 'WasDefeated',
     fields: {
       type: 0,
       timestamp: 1,
@@ -467,7 +467,7 @@ const logDefinitions = {
   },
   GainsEffect: {
     type: '26',
-    name: 'NetworkBuff',
+    name: 'GainsEffect',
     fields: {
       type: 0,
       timestamp: 1,
@@ -490,7 +490,7 @@ const logDefinitions = {
   },
   HeadMarker: {
     type: '27',
-    name: 'NetworkTargetIcon',
+    name: 'HeadMarker',
     fields: {
       type: 0,
       timestamp: 1,
@@ -503,7 +503,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkRaidMarker: {
+  NetworkRaidMarker: {
     type: '28',
     name: 'NetworkRaidMarker',
     fields: {
@@ -519,7 +519,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkTargetMarker: {
+  NetworkTargetMarker: {
     type: '29',
     name: 'NetworkTargetMarker',
     fields: {
@@ -539,7 +539,7 @@ const logDefinitions = {
   },
   LosesEffect: {
     type: '30',
-    name: 'NetworkBuffRemove',
+    name: 'LosesEffect',
     fields: {
       type: 0,
       timestamp: 1,
@@ -557,7 +557,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkGauge: {
+  NetworkGauge: {
     type: '31',
     name: 'NetworkGauge',
     fields: {
@@ -577,7 +577,7 @@ const logDefinitions = {
     firstUnknownField: 3,
     canAnonymize: true,
   },
-  networkWorld: {
+  NetworkWorld: {
     type: '32',
     name: 'NetworkWorld',
     fields: {
@@ -588,7 +588,7 @@ const logDefinitions = {
   },
   ActorControl: {
     type: '33',
-    name: 'Network6D',
+    name: 'ActorControl',
     fields: {
       type: 0,
       timestamp: 1,
@@ -603,7 +603,7 @@ const logDefinitions = {
   },
   NameToggle: {
     type: '34',
-    name: 'NetworkNameToggle',
+    name: 'NameToggle',
     fields: {
       type: 0,
       timestamp: 1,
@@ -621,7 +621,7 @@ const logDefinitions = {
   },
   Tether: {
     type: '35',
-    name: 'NetworkTether',
+    name: 'Tether',
     fields: {
       type: 0,
       timestamp: 1,
@@ -638,7 +638,7 @@ const logDefinitions = {
     canAnonymize: true,
     firstUnknownField: 9,
   },
-  limitBreak: {
+  LimitBreak: {
     type: '36',
     name: 'LimitBreak',
     fields: {
@@ -649,7 +649,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  networkEffectResult: {
+  NetworkEffectResult: {
     type: '37',
     name: 'NetworkEffectResult',
     fields: {
@@ -677,7 +677,7 @@ const logDefinitions = {
   },
   StatusEffect: {
     type: '38',
-    name: 'NetworkStatusEffects',
+    name: 'StatusEffect',
     fields: {
       type: 0,
       timestamp: 1,
@@ -704,7 +704,7 @@ const logDefinitions = {
     firstUnknownField: 20,
     canAnonymize: true,
   },
-  networkUpdateHP: {
+  NetworkUpdateHP: {
     type: '39',
     name: 'NetworkUpdateHP',
     fields: {
@@ -741,7 +741,7 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  parserInfo: {
+  ParserInfo: {
     type: '249',
     name: 'ParserInfo',
     fields: {
@@ -751,7 +751,7 @@ const logDefinitions = {
     globalInclude: true,
     canAnonymize: true,
   },
-  processInfo: {
+  ProcessInfo: {
     type: '250',
     name: 'ProcessInfo',
     fields: {
@@ -761,7 +761,7 @@ const logDefinitions = {
     globalInclude: true,
     canAnonymize: true,
   },
-  debug: {
+  Debug: {
     type: '251',
     name: 'Debug',
     fields: {
@@ -771,7 +771,7 @@ const logDefinitions = {
     globalInclude: true,
     canAnonymize: false,
   },
-  packetDump: {
+  PacketDump: {
     type: '252',
     name: 'PacketDump',
     fields: {
@@ -780,7 +780,7 @@ const logDefinitions = {
     },
     canAnonymize: false,
   },
-  version: {
+  Version: {
     type: '253',
     name: 'Version',
     fields: {
@@ -790,7 +790,7 @@ const logDefinitions = {
     globalInclude: true,
     canAnonymize: true,
   },
-  error: {
+  Error: {
     type: '254',
     name: 'Error',
     fields: {
@@ -799,7 +799,7 @@ const logDefinitions = {
     },
     canAnonymize: false,
   },
-  timer: {
+  Timer: {
     type: '255',
     name: 'Timer',
     fields: {

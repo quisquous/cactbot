@@ -11,7 +11,7 @@ const splitFunc = (s: string) => [
   s.substr(0, 2),
 ];
 
-const fields = logDefinitions.networkGauge.fields;
+const fields = logDefinitions.NetworkGauge.fields;
 
 // Job gauge event
 export class LineEvent0x1F extends LineEvent {

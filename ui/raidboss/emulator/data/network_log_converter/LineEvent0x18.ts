@@ -4,7 +4,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkDoT.fields;
+const fields = logDefinitions.NetworkDoT.fields;
 
 // DoT/HoT event
 export class LineEvent0x18 extends LineEvent implements LineEventSource {

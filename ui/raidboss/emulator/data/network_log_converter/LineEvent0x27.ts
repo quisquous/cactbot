@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkUpdateHP.fields;
+const fields = logDefinitions.NetworkUpdateHP.fields;
 
 // Network update hp event
 export class LineEvent0x27 extends LineEvent implements LineEventSource {
