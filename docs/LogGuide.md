@@ -96,12 +96,15 @@ With updates for:
     - [Structure](#structure-13)
     - [Regexes](#regexes-9)
     - [Examples](#examples-13)
+    - [Head Marker Codes](#head-marker-codes)
   - [1C: NetworkRaidMarker](#1c-networkraidmarker)
     - [Structure](#structure-14)
     - [Examples](#examples-14)
+    - [Combatant Marker Codes](#combatant-marker-codes)
   - [1D: NetworkTargetMarker](#1d-networktargetmarker)
     - [Structure](#structure-15)
     - [Examples](#examples-15)
+    - [Floor Marker Codes](#floor-marker-codes)
   - [1E: NetworkBuffRemove](#1e-networkbuffremove)
     - [Structure](#structure-16)
     - [Regexes](#regexes-10)
@@ -1223,6 +1226,8 @@ Also, this appears to only be true on later fights.
 Turn 5 fireball and conflag headmarkers are actions from Twintania and not `1B` lines.
 It seems likely this was implemented later and nobody wanted to break old content by updating it to use newer types.
 
+#### Head Marker Codes
+
 Marker Code | Name | Sample Locations | Consistent meaning?
 --- | --- | --- | ---
 000[1-2, 4] | Prey Circle (orange) | o6s, The Burn boss 2 | Yes
@@ -1308,6 +1313,8 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+#### Combatant Marker Codes
+
 | ID  | Description |
 | --- | ----------- |
 | 0   | A           |
@@ -1348,6 +1355,8 @@ ACT Log Line Examples:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+#### Floor Marker Codes
 
 | ID  | Description |
 | --- | ----------- |
