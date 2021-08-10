@@ -494,17 +494,12 @@ markdownMagic(
   config,
   (_error, output) => {
     let exitCode = 0;
-    for (const lang of languages) {
-      // Only check this lang if it was converted/base file existed
-      if (
-        !(
-          output.some((o) =>
-            RegExp(('[^\\w]' + lang + '[^\\w]')).exec(o.originalPath.toLowerCase())
-          ) ||
-          (lang === 'en' && !output.some((o) => o.originalPath.includes(enLogGuidePath)))
-        )
-      )
-        continue;
+    for (const file of output) {
+      const filePath = file.originalPath;
+      // Figure out what language this file is by checking the path, default to 'en'
+      const lang = languages.filter((lang) =>
+        RegExp(('[^\\w]' + lang + '[^\\w]')).exec(filePath.toLowerCase())
+      )[0] ?? 'en';
       const convertedLines = mappedLogLines[lang];
       for (const type in logDefinitions) {
         if (!isLineType(type))
