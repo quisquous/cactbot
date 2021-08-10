@@ -17,22 +17,22 @@ const curPath = path.resolve();
 // Exclude these types since they're not relevant or covered elsewhere
 type ExcludedLineDocs =
   | 'None'
-  | 'addBuff'
-  | 'removeBuff'
-  | 'flyingText'
-  | 'outgoingAbility'
-  | 'incomingAbility'
-  | 'combatantHP'
-  | 'networkAOEAbility'
-  | 'networkWorld'
-  | 'networkEffectResult'
-  | 'parserInfo'
-  | 'processInfo'
-  | 'debug'
-  | 'packetDump'
-  | 'version'
-  | 'error'
-  | 'timer';
+  | 'AddBuff'
+  | 'RemoveBuff'
+  | 'FlyingText'
+  | 'OutgoingAbility'
+  | 'IncomingAbility'
+  | 'CombatantHP'
+  | 'NetworkAOEAbility'
+  | 'NetworkWorld'
+  | 'NetworkEffectResult'
+  | 'ParserInfo'
+  | 'ProcessInfo'
+  | 'Debug'
+  | 'PacketDump'
+  | 'Version'
+  | 'Error'
+  | 'Timer';
 
 // @TODO: These types are missing or unused
 type MissingLineDocs = 'Map';
@@ -118,7 +118,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  partyList: {
+  PartyList: {
     examples: {
       en: [
         '11|2021-06-16T20:46:38.5450000-07:00|8|10FF0002|10FF0003|10FF0004|10FF0001|10FF0005|10FF0006|10FF0007|10FF0008|',
@@ -169,7 +169,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  networkCancelAbility: {
+  NetworkCancelAbility: {
     examples: {
       en: [
         '23|2021-07-27T13:04:38.7790000-04:00|10FF0002|Potato Chippy|408D|Veraero II|Cancelled||dbce3801c08020cb8ae7da9102034131',
@@ -178,7 +178,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  networkDoT: {
+  NetworkDoT: {
     examples: {
       en: [
         '24|2021-07-27T12:47:05.5100000-04:00|10FF0002|Potato Chippy|HoT|0|3A1|21194|21194|8964|10000|0|1000|-1.815857|-5.630676|10.55192|2.929996||63d7d7e99108018a1890f367f89eae43',
@@ -235,7 +235,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  networkRaidMarker: {
+  NetworkRaidMarker: {
     examples: {
       en: [
         '28|2021-04-26T19:04:39.1920000-04:00|Delete|7|10FF0001|Tini Poutini|0|0|0|b714a8b5b34ea60f8bf9f480508dc427',
@@ -243,7 +243,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  networkTargetMarker: {
+  NetworkTargetMarker: {
     examples: {
       en: [
         '29|2021-06-10T20:15:15.1000000-04:00|Delete|0|10FF0001|Tini Poutini|4000641D|||50460af5ff3f8ec9ad03e6953d3d1ba9',
@@ -265,7 +265,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  networkGauge: {
+  NetworkGauge: {
     examples: {
       en: [
         '31|2019-11-27T23:22:40.6960000-05:00|10FF0001|FA753019|FD37|E9A55201|7F47|f17ea56b26ff020d1c0580207f6f4673',
@@ -316,7 +316,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  limitBreak: {
+  LimitBreak: {
     examples: {
       en: [
         '36|2021-04-26T14:20:09.6880000-04:00|6A90|3|88ce578cb8f05d74feb3a7fa155bedc5',
@@ -339,7 +339,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  networkUpdateHP: {
+  NetworkUpdateHP: {
     examples: {
       en: [
         '39|2021-04-26T14:12:29.5060000-04:00|10FF0001|Tini Poutini|121087|121087|10000|10000|0|0|-648.3234|-804.5252|8.570148|1.010669||a0cca3b79b0fd65541e3fa6b11fa386e',

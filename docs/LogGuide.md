@@ -666,7 +666,7 @@ Examples:
 
 This line represents the players currently in the party, and is sent whenever the party makeup changes.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=partyList&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=PartyList&lang=en) -->
 
 #### Structure
 
@@ -1005,7 +1005,7 @@ See: [15: NetworkAbility](#15-networkability) for a discussion of the difference
 
 For abilities with cast bars, this is the log line that specifies that the cast was cancelled either due to movement or an interrupt and it won't go off.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkCancelAbility&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkCancelAbility&lang=en) -->
 
 #### Structure
 
@@ -1044,7 +1044,7 @@ Instead, if a boss has 20 dots applied to it,
 then it returns the total tick amount for all of these dots.
 Parsers are left to estimate what the individual dot amounts are.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkDoT&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkDoT&lang=en) -->
 
 #### Structure
 
@@ -1297,7 +1297,7 @@ Marker Code | Name | Sample Locations | Consistent meaning?
 
 This message indicates a floor waymarker was added or deleted.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkRaidMarker&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkRaidMarker&lang=en) -->
 
 #### Structure
 
@@ -1327,7 +1327,7 @@ ACT Log Line Examples:
 
 This message indicates a target marker placed above or removed from a combatant's head by a player.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkTargetMarker&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkTargetMarker&lang=en) -->
 
 #### Structure
 
@@ -1402,7 +1402,7 @@ ACT Log Line Examples:
 
 Info about the current player's job gauge.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkGauge&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkGauge&lang=en) -->
 
 #### Structure
 
@@ -1656,7 +1656,7 @@ but other actions taken can cause extra increments to happen independent of the 
 Each limit break bar is 0x2710 (10,000 decimal) units.
 Thus, the maximum possible recorded value would be 0x7530.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=limitBreak&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LimitBreak&lang=en) -->
 
 #### Structure
 
@@ -1765,7 +1765,7 @@ It's not completely clear what triggers this log line,
 but it contains basic information comparable to `25` and `26`.
 It applies to allies and fairies/pets.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=networkUpdateHP&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkUpdateHP&lang=en) -->
 
 #### Structure
 
