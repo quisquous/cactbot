@@ -678,7 +678,7 @@ Network Log Line Structure:
 11|[timestamp]|[partyCount]|[id0]|[id1]|[id2]|[id3]|[id4]|[id5]|[id6]|[id7]|[id8]|[id9]|[id10]|[id11]|[id12]|[id13]|[id14]|[id15]|[id16]|[id17]|[id18]|[id19]|[id20]|[id21]|[id22]|[id23]
 
 ACT Log Line Structure:
-[timestamp] 0B:11:2021-04-26T14:11:35.0000000-04:00:[partyCount]:[id0]:[id1]:[id2]:[id3]:[id4]:[id5]:[id6]:[id7]:[id8]:[id9]:[id10]:[id11]:[id12]:[id13]:[id14]:[id15]:[id16]:[id17]:[id18]:[id19]:[id20]:[id21]:[id22]:[id23]
+[timestamp] 0B:[partyCount]:[id0]:[id1]:[id2]:[id3]:[id4]:[id5]:[id6]:[id7]:[id8]:[id9]:[id10]:[id11]:[id12]:[id13]:[id14]:[id15]:[id16]:[id17]:[id18]:[id19]:[id20]:[id21]:[id22]:[id23]
 ```
 
 #### Examples
@@ -689,8 +689,8 @@ Network Log Line Examples:
 11|2021-06-16T21:47:56.7170000-07:00|4|10FF0002|10FF0001|10FF0003|10FF0004|
 
 ACT Log Line Examples:
-[23:46:38.545] 0B:11:2021-06-16T20:46:38.5450000-07:00:8:10FF0002:10FF0003:10FF0004:10FF0001:10FF0005:10FF0006:10FF0007:10FF0008:
-[00:47:56.717] 0B:11:2021-06-16T21:47:56.7170000-07:00:4:10FF0002:10FF0001:10FF0003:10FF0004:
+[23:46:38.545] 0B:8:10FF0002:10FF0003:10FF0004:10FF0001:10FF0005:10FF0006:10FF0007:10FF0008:
+[00:47:56.717] 0B:4:10FF0002:10FF0001:10FF0003:10FF0004:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -835,7 +835,7 @@ Network Log Line Structure:
 21|[timestamp]|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags]|[damage]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|[?]|[?]|[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 15:21:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:[?]:[?]:[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
+[timestamp] 15:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:[?]:[?]:[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
 ```
 
 #### Regexes
@@ -859,11 +859,11 @@ Network Log Line Examples:
 21|2021-07-27T12:48:39.1260000-04:00|40024FCE|The Manipulator|13D0|Seed Of The Sky|E0000000||0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|||||||||||16000|16000|8840|10000|0|1000|8.055649|-17.03842|10.58736|-4.792213E-05|0000DE92|0|ca5594611cf4ca4e276f64f2cfba5ffa
 
 ACT Log Line Examples:
-[12:48:22.463] 15:21:2021-07-27T12:48:22.4630000-04:00:40024FD1:Steam Bit:F67:Aetherochemical Laser:10FF0001:Tini Poutini:750003:4620000:1B:F678000:0:0:0:0:0:0:0:0:0:0:0:0:36022:36022:5200:10000:0:1000:1.846313:-12.31409:10.60608:-2.264526:16000:16000:8840:10000:0:1000:-9.079163:-14.02307:18.7095:1.416605:0000DE1F:0:5d60825d70bb46d7fcc8fc0339849e8e
-[12:46:22.953] 15:21:2021-07-27T12:46:22.9530000-04:00:10FF0002:Potato Chippy:07:Attack:40024FC5:Right Foreleg:710003:3910000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:378341:380640:8840:10000:0:1000:-6.37015:-7.477235:10.54466:0.02791069:26396:26396:10000:10000:0:1000:-5.443688:-1.163282:10.54466:-2.9113:0000DB6E:0:58206bdd1d0bd8d70f27f3fb2523912b
-[12:46:21.582] 15:21:2021-07-27T12:46:21.5820000-04:00:10FF0001:Tini Poutini:03:Sprint:10FF0001:Tini Poutini:1E00000E:320000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:19053:26706:10000:10000:0:1000:-1.210526:17.15058:10.69944:-2.88047:19053:26706:10000:10000:0:1000:-1.210526:17.15058:10.69944:-2.88047:0000DB68:0:29301d52854712315e0951abff146adc
-[12:47:28.467] 15:21:2021-07-27T12:47:28.4670000-04:00:40025026:Steam Bit:F6F:Laser Absorption:40024FC4:The Manipulator:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:685814:872320:8840:10000:0:1000:-0.01531982:-13.86256:10.59466:-4.792213E-05:16000:16000:8840:10000:0:1000:0:22.5:10.64999:-3.141593:0000DCEC:0:0f3be60aec05333aae73a042edb7edb4
-[12:48:39.126] 15:21:2021-07-27T12:48:39.1260000-04:00:40024FCE:The Manipulator:13D0:Seed Of The Sky:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:::::::::::16000:16000:8840:10000:0:1000:8.055649:-17.03842:10.58736:-4.792213E-05:0000DE92:0:ca5594611cf4ca4e276f64f2cfba5ffa
+[12:48:22.463] 15:40024FD1:Steam Bit:F67:Aetherochemical Laser:10FF0001:Tini Poutini:750003:4620000:1B:F678000:0:0:0:0:0:0:0:0:0:0:0:0:36022:36022:5200:10000:0:1000:1.846313:-12.31409:10.60608:-2.264526:16000:16000:8840:10000:0:1000:-9.079163:-14.02307:18.7095:1.416605:0000DE1F:0:5d60825d70bb46d7fcc8fc0339849e8e
+[12:46:22.953] 15:10FF0002:Potato Chippy:07:Attack:40024FC5:Right Foreleg:710003:3910000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:378341:380640:8840:10000:0:1000:-6.37015:-7.477235:10.54466:0.02791069:26396:26396:10000:10000:0:1000:-5.443688:-1.163282:10.54466:-2.9113:0000DB6E:0:58206bdd1d0bd8d70f27f3fb2523912b
+[12:46:21.582] 15:10FF0001:Tini Poutini:03:Sprint:10FF0001:Tini Poutini:1E00000E:320000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:19053:26706:10000:10000:0:1000:-1.210526:17.15058:10.69944:-2.88047:19053:26706:10000:10000:0:1000:-1.210526:17.15058:10.69944:-2.88047:0000DB68:0:29301d52854712315e0951abff146adc
+[12:47:28.467] 15:40025026:Steam Bit:F6F:Laser Absorption:40024FC4:The Manipulator:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:685814:872320:8840:10000:0:1000:-0.01531982:-13.86256:10.59466:-4.792213E-05:16000:16000:8840:10000:0:1000:0:22.5:10.64999:-3.141593:0000DCEC:0:0f3be60aec05333aae73a042edb7edb4
+[12:48:39.126] 15:40024FCE:The Manipulator:13D0:Seed Of The Sky:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:::::::::::16000:16000:8840:10000:0:1000:8.055649:-17.03842:10.58736:-4.792213E-05:0000DE92:0:ca5594611cf4ca4e276f64f2cfba5ffa
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1017,7 +1017,7 @@ Network Log Line Structure:
 23|[timestamp]|[sourceId]|[source]|[id]|[name]|[reason]
 
 ACT Log Line Structure:
-[timestamp] 17:23:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[id]:[name]:[reason]
+[timestamp] 17:[sourceId]:[source]:[id]:[name]:[reason]
 ```
 
 #### Examples
@@ -1029,9 +1029,9 @@ Network Log Line Examples:
 23|2021-07-27T13:04:39.1370000-04:00|4000012F||D52|Unknown_D52|Cancelled||8a15bad31745426d65cc13b8e0d50005
 
 ACT Log Line Examples:
-[13:04:38.779] 17:23:2021-07-27T13:04:38.7790000-04:00:10FF0002:Potato Chippy:408D:Veraero II:Cancelled::dbce3801c08020cb8ae7da9102034131
-[13:04:39.093] 17:23:2021-07-27T13:04:39.0930000-04:00:40000132:Garm:D10:The Dragon's Voice:Interrupted::bd936fde66bab0e8cf2874ebd75df77c
-[13:04:39.137] 17:23:2021-07-27T13:04:39.1370000-04:00:4000012F::D52:Unknown_D52:Cancelled::8a15bad31745426d65cc13b8e0d50005
+[13:04:38.779] 17:10FF0002:Potato Chippy:408D:Veraero II:Cancelled::dbce3801c08020cb8ae7da9102034131
+[13:04:39.093] 17:40000132:Garm:D10:The Dragon's Voice:Interrupted::bd936fde66bab0e8cf2874ebd75df77c
+[13:04:39.137] 17:4000012F::D52:Unknown_D52:Cancelled::8a15bad31745426d65cc13b8e0d50005
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1188,7 +1188,7 @@ Network Log Line Structure:
 27|[timestamp]|[targetId]|[target]|[?]|[?]|[id]
 
 ACT Log Line Structure:
-[timestamp] 1B:27:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:[?]:[?]:[id]
+[timestamp] 1B:[targetId]:[target]:[?]:[?]:[id]
 ```
 
 #### Regexes
@@ -1209,8 +1209,8 @@ Network Log Line Examples:
 27|2021-05-11T13:48:45.3370000-04:00|40000950|Copied Knave|0000|0000|0117|0000|0000|0000||fa2e93fccf397a41aac73a3a38aa7410
 
 ACT Log Line Examples:
-[14:17:31.698] 1B:27:2021-04-26T14:17:31.6980000-04:00:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
-[13:48:45.337] 1B:27:2021-05-11T13:48:45.3370000-04:00:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
+[14:17:31.698] 1B:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
+[13:48:45.337] 1B:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1291,7 +1291,7 @@ Network Log Line Structure:
 28|[timestamp]|[operation]|[waymark]|[id]|[name]|[x]|[y]|[z]
 
 ACT Log Line Structure:
-[timestamp] 1C:28:2021-04-26T14:11:35.0000000-04:00:[operation]:[waymark]:[id]:[name]:[x]:[y]:[z]
+[timestamp] 1C:[operation]:[waymark]:[id]:[name]:[x]:[y]:[z]
 ```
 
 #### Examples
@@ -1302,8 +1302,8 @@ Network Log Line Examples:
 28|2021-04-26T19:27:23.5340000-04:00|Add|4|10FF0001|Tini Poutini|76.073|110.588|0|bcf81fb146fe88230333bbfd649eb240
 
 ACT Log Line Examples:
-[19:04:39.192] 1C:28:2021-04-26T19:04:39.1920000-04:00:Delete:7:10FF0001:Tini Poutini:0:0:0:b714a8b5b34ea60f8bf9f480508dc427
-[19:27:23.534] 1C:28:2021-04-26T19:27:23.5340000-04:00:Add:4:10FF0001:Tini Poutini:76.073:110.588:0:bcf81fb146fe88230333bbfd649eb240
+[19:04:39.192] 1C:Delete:7:10FF0001:Tini Poutini:0:0:0:b714a8b5b34ea60f8bf9f480508dc427
+[19:27:23.534] 1C:Add:4:10FF0001:Tini Poutini:76.073:110.588:0:bcf81fb146fe88230333bbfd649eb240
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1332,7 +1332,7 @@ Network Log Line Structure:
 29|[timestamp]|[operation]|[waymark]|[id]|[name]|[targetId]|[targetName]
 
 ACT Log Line Structure:
-[timestamp] 1D:29:2021-04-26T14:11:35.0000000-04:00:[operation]:[waymark]:[id]:[name]:[targetId]:[targetName]
+[timestamp] 1D:[operation]:[waymark]:[id]:[name]:[targetId]:[targetName]
 ```
 
 #### Examples
@@ -1343,8 +1343,8 @@ Network Log Line Examples:
 29|2021-05-25T22:54:32.5660000-04:00|Add|6|10FF0001|Tini Poutini|10FF0002|Potato Chippy||70a8c8a728d09af83e0a486e8271cc57
 
 ACT Log Line Examples:
-[20:15:15.100] 1D:29:2021-06-10T20:15:15.1000000-04:00:Delete:0:10FF0001:Tini Poutini:4000641D:::50460af5ff3f8ec9ad03e6953d3d1ba9
-[22:54:32.566] 1D:29:2021-05-25T22:54:32.5660000-04:00:Add:6:10FF0001:Tini Poutini:10FF0002:Potato Chippy::70a8c8a728d09af83e0a486e8271cc57
+[20:15:15.100] 1D:Delete:0:10FF0001:Tini Poutini:4000641D:::50460af5ff3f8ec9ad03e6953d3d1ba9
+[22:54:32.566] 1D:Add:6:10FF0001:Tini Poutini:10FF0002:Potato Chippy::70a8c8a728d09af83e0a486e8271cc57
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1500,7 +1500,7 @@ Network Log Line Structure:
 33|[timestamp]|[instance]|[command]|[data0]|[data1]|[data2]|[data3]
 
 ACT Log Line Structure:
-[timestamp] 21:33:2021-04-26T14:11:35.0000000-04:00:[instance]:[command]:[data0]:[data1]:[data2]:[data3]
+[timestamp] 21:[instance]:[command]:[data0]:[data1]:[data2]:[data3]
 ```
 
 #### Regexes
@@ -1522,9 +1522,9 @@ Network Log Line Examples:
 33|2021-04-26T14:18:39.0120000-04:00|80034E5B|40000007|00|01|00|00|7a2b827bbc7a58ecc0c5edbdf14a2c14
 
 ACT Log Line Examples:
-[17:23:28.678] 21:33:2021-04-26T17:23:28.6780000-04:00:80034E6C:40000010:B5D:00:00:00:f777621829447c53c82c9a24aa25348f
-[14:17:31.698] 21:33:2021-04-26T14:17:31.6980000-04:00:80034E5B:8000000C:16:FFFFFFFF:00:00:b543f3c5c715e93d9de2aa65b8fe83ad
-[14:18:39.012] 21:33:2021-04-26T14:18:39.0120000-04:00:80034E5B:40000007:00:01:00:00:7a2b827bbc7a58ecc0c5edbdf14a2c14
+[17:23:28.678] 21:80034E6C:40000010:B5D:00:00:00:f777621829447c53c82c9a24aa25348f
+[14:17:31.698] 21:80034E5B:8000000C:16:FFFFFFFF:00:00:b543f3c5c715e93d9de2aa65b8fe83ad
+[14:18:39.012] 21:80034E5B:40000007:00:01:00:00:7a2b827bbc7a58ecc0c5edbdf14a2c14
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1571,7 +1571,7 @@ Network Log Line Structure:
 34|[timestamp]|[id]|[name]|[targetId]|[targetName]|[toggle]
 
 ACT Log Line Structure:
-[timestamp] 22:34:2021-04-26T14:11:35.0000000-04:00:[id]:[name]:[targetId]:[targetName]:[toggle]
+[timestamp] 22:[id]:[name]:[targetId]:[targetName]:[toggle]
 ```
 
 #### Examples
@@ -1582,8 +1582,8 @@ Network Log Line Examples:
 34|2021-04-26T14:22:19.1960000-04:00|4000B283|Selene|4000B283|Selene|01|734eef0f5b1b10810af8f7257d738c67
 
 ACT Log Line Examples:
-[14:19:48.040] 22:34:2021-04-26T14:19:48.0400000-04:00:4001C51C:Dragon's Head:4001C51C:Dragon's Head:00:a7248aab1da528bf94faf2f4b1728fc3
-[14:22:19.196] 22:34:2021-04-26T14:22:19.1960000-04:00:4000B283:Selene:4000B283:Selene:01:734eef0f5b1b10810af8f7257d738c67
+[14:19:48.040] 22:4001C51C:Dragon's Head:4001C51C:Dragon's Head:00:a7248aab1da528bf94faf2f4b1728fc3
+[14:22:19.196] 22:4000B283:Selene:4000B283:Selene:01:734eef0f5b1b10810af8f7257d738c67
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1603,7 +1603,7 @@ Network Log Line Structure:
 35|[timestamp]|[sourceId]|[source]|[targetId]|[target]|[?]|[?]|[id]
 
 ACT Log Line Structure:
-[timestamp] 23:35:2021-04-26T14:11:35.0000000-04:00:[sourceId]:[source]:[targetId]:[target]:[?]:[?]:[id]
+[timestamp] 23:[sourceId]:[source]:[targetId]:[target]:[?]:[?]:[id]
 ```
 
 #### Regexes
@@ -1625,9 +1625,9 @@ Network Log Line Examples:
 35|2021-06-13T17:41:34.2230000-04:00|10FF0001|Tini Poutini|10FF0002|Potato Chippy|0000|0000|006E|1068E3EF|000F|0000||c022382c6803d1d6c1f84681b7d8db20
 
 ACT Log Line Examples:
-[17:27:07.031] 23:35:2021-04-26T17:27:07.0310000-04:00:40003202:Articulated Bit:10FF0001:Tini Poutini:0000:0000:0001:10029769:000F:0000::ad71d456437e6792f68b19dbef9507d5
-[22:36:58.106] 23:35:2021-04-27T22:36:58.1060000-04:00:10FF0001:Tini Poutini:4000943B:Bomb Boulder:0000:0000:0007:4000943B:000F:0000::a6adfcdf5dad0ef891deeade4d285eb2
-[17:41:34.223] 23:35:2021-06-13T17:41:34.2230000-04:00:10FF0001:Tini Poutini:10FF0002:Potato Chippy:0000:0000:006E:1068E3EF:000F:0000::c022382c6803d1d6c1f84681b7d8db20
+[17:27:07.031] 23:40003202:Articulated Bit:10FF0001:Tini Poutini:0000:0000:0001:10029769:000F:0000::ad71d456437e6792f68b19dbef9507d5
+[22:36:58.106] 23:10FF0001:Tini Poutini:4000943B:Bomb Boulder:0000:0000:0007:4000943B:000F:0000::a6adfcdf5dad0ef891deeade4d285eb2
+[17:41:34.223] 23:10FF0001:Tini Poutini:10FF0002:Potato Chippy:0000:0000:006E:1068E3EF:000F:0000::c022382c6803d1d6c1f84681b7d8db20
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1730,7 +1730,7 @@ Network Log Line Structure:
 38|[timestamp]|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]|[data3]|[data4]
 
 ACT Log Line Structure:
-[timestamp] 26:38:2021-04-26T14:11:35.0000000-04:00:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]
+[timestamp] 26:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]
 ```
 
 #### Regexes
@@ -1752,9 +1752,9 @@ Network Log Line Examples:
 38|2021-04-26T14:13:44.5020000-04:00|10FF0002|Potato Chippy|46504621|52418|52418|10000|10000|32|0|99.93127|113.8475|-1.862645E-09|3.141593|200F|20|0|0A016D|41F00000|E0000000|1E016C|41F00000|E0000000|0345|41E8D4FC|10FF0001|0347|80000000|10FF0002||d57fd29c6c4856c091557968667da39d
 
 ACT Log Line Examples:
-[14:13:16.276] 26:38:2021-04-26T14:13:16.2760000-04:00:10FF0001:Tini Poutini:46504615:75407:75407:10000:10000:24:0:-645.238:-802.7854:8:1.091302:1500:3C:0:0A016D:41F00000:E0000000:1E016C:41F00000:E0000000::c1b3e1d63f03a265ffa85f1517c1501e
-[14:13:16.276] 26:38:2021-04-26T14:13:16.2760000-04:00:10FF0001::46504621:49890:49890:10000:10000:24:0:::::1500:3C:0::f62dbda5c947fa4c11b63c90c6ee4cd9
-[14:13:44.502] 26:38:2021-04-26T14:13:44.5020000-04:00:10FF0002:Potato Chippy:46504621:52418:52418:10000:10000:32:0:99.93127:113.8475:-1.862645E-09:3.141593:200F:20:0:0A016D:41F00000:E0000000:1E016C:41F00000:E0000000:0345:41E8D4FC:10FF0001:0347:80000000:10FF0002::d57fd29c6c4856c091557968667da39d
+[14:13:16.276] 26:10FF0001:Tini Poutini:46504615:75407:75407:10000:10000:24:0:-645.238:-802.7854:8:1.091302:1500:3C:0:0A016D:41F00000:E0000000:1E016C:41F00000:E0000000::c1b3e1d63f03a265ffa85f1517c1501e
+[14:13:16.276] 26:10FF0001::46504621:49890:49890:10000:10000:24:0:::::1500:3C:0::f62dbda5c947fa4c11b63c90c6ee4cd9
+[14:13:44.502] 26:10FF0002:Potato Chippy:46504621:52418:52418:10000:10000:32:0:99.93127:113.8475:-1.862645E-09:3.141593:200F:20:0:0A016D:41F00000:E0000000:1E016C:41F00000:E0000000:0345:41E8D4FC:10FF0001:0347:80000000:10FF0002::d57fd29c6c4856c091557968667da39d
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1779,7 +1779,7 @@ Network Log Line Structure:
 39|[timestamp]|[id]|[name]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 27:39:2021-04-26T14:11:35.0000000-04:00:[id]:[name]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
+[timestamp] 27:[id]:[name]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
 ```
 
 #### Examples
@@ -1791,9 +1791,9 @@ Network Log Line Examples:
 39|2021-04-26T14:13:21.6370000-04:00|106F5D49|O'ndanya Voupin|79075|79075|10000|10000|0|0|99.93127|114.2443|-1.862645E-09|-3.141593||8ed73ee57c4ab7159628584e2f4d5243
 
 ACT Log Line Examples:
-[14:12:38.516] 27:39:2021-04-26T14:12:38.5160000-04:00:10FF0001:Tini Poutini:178669:191948:10000:10000:0:0:-648.3234:-804.5252:8.570148:1.010669::7ebe348673aa2a11e4036274becabc81
-[14:13:21.637] 27:39:2021-04-26T14:13:21.6370000-04:00:10592642:Senor Esteban:54792:54792:10000:10000:0:0:100.268:114.22:-1.837917E-09:3.141593::883da0db11a9c950eefdbcbc50e86eca
-[14:13:21.637] 27:39:2021-04-26T14:13:21.6370000-04:00:106F5D49:O'ndanya Voupin:79075:79075:10000:10000:0:0:99.93127:114.2443:-1.862645E-09:-3.141593::8ed73ee57c4ab7159628584e2f4d5243
+[14:12:38.516] 27:10FF0001:Tini Poutini:178669:191948:10000:10000:0:0:-648.3234:-804.5252:8.570148:1.010669::7ebe348673aa2a11e4036274becabc81
+[14:13:21.637] 27:10592642:Senor Esteban:54792:54792:10000:10000:0:0:100.268:114.22:-1.837917E-09:3.141593::883da0db11a9c950eefdbcbc50e86eca
+[14:13:21.637] 27:106F5D49:O'ndanya Voupin:79075:79075:10000:10000:0:0:99.93127:114.2443:-1.862645E-09:-3.141593::8ed73ee57c4ab7159628584e2f4d5243
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
