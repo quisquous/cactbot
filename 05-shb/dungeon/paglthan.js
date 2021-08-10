@@ -66,7 +66,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '5C97', source: 'Magitek-Festung', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '5C97', source: 'Forteresse Magitek', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '5C97', source: '魔導フォートレス', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '5C97', source: '魔导核心', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '5C97', source: '魔导要塞', capture: false }),
             response: Responses.knockback(),
         },
         {
