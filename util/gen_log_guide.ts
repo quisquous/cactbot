@@ -410,6 +410,10 @@ const config: markdownMagic.Configuration = {
       structureNetwork = structureNetwork.replace(/^(\d+)\|[^|]+\|/, '$1|[timestamp]|');
       structureLog = structureLog.replace(/^\[[^\]]+\]/, '[timestamp]');
 
+      // Correct the structure for the AddedCombatant line not allowing a placeholder for job
+      if (lineType === 'AddedCombatant')
+        structureLog = structureLog.replace(/Job: NONE/, 'Job: [job]');
+
       const examples = translate(language, lineDoc.examples);
 
       const examplesNetwork = examples.join('\n') ?? '';

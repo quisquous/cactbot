@@ -511,7 +511,7 @@ Network Log Line Structure:
 03|[timestamp]|[id]|[name]|[job]|[level]|[ownerId]|[worldId]|[world]|[npcNameId]|[npcBaseId]|[currentHp]|[hp]|[currentMp]|[mp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 03:[ID]:Added new combatant [name]([world]).  Job: NONE Level: [level] Max HP: [hp] Max MP: [mp] Pos: ([x],[y],[z]) ([npcNameId][npcBaseId]).
+[timestamp] 03:[ID]:Added new combatant [name]([world]).  Job: [job] Level: [level] Max HP: [hp] Max MP: [mp] Pos: ([x],[y],[z]) ([npcNameId][npcBaseId]).
 ```
 
 #### Regexes
