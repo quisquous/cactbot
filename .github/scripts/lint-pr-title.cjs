@@ -140,7 +140,9 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
   });
   const { title, user } = pullRequest;
   const userName = user?.login;
-  const m = /^(?<prefix>(?:[\w\[\]]*\s+)!?)?(?<scope>[^:]+):\s?(?<description>.+)$/.exec(title);
+  const m =
+    /^(?<prefix>(?:[\w\[\]]*\s+)!?)?(?<scope>[^:]+?)(?:\((?<subscope>[^:\(\)]+)\))?:\s?(?<description>.+)$/
+      .exec(title);
   const lengthValid = title.length <= maxLength;
   let formatValid = false;
 
@@ -157,6 +159,8 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
     console.log(`Matches: scope: ${groups.scope}, prefix: ${groups.prefix}`);
 
     const scopes = groups.scope.split('/');
+    scopes.push(...groups.subscope.split('/'));
+
     const scopeValid = scopes.every((scope) => validScope.includes(scope));
     const prefixValid = !groups.prefix || validPrefix.includes(groups.prefix.trim());
     formatValid = scopeValid && prefixValid;
