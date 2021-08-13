@@ -159,7 +159,8 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
     console.log(`Matches: scope: ${groups.scope}, prefix: ${groups.prefix}`);
 
     const scopes = groups.scope.split('/');
-    scopes.push(...groups.subscope.split('/'));
+    if (scopes.subscope)
+      scopes.push(...groups.subscope.split('/'));
 
     const scopeValid = scopes.every((scope) => validScope.includes(scope));
     const prefixValid = !groups.prefix || validPrefix.includes(groups.prefix.trim());
