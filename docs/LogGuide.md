@@ -133,7 +133,7 @@ With updates for:
     - [Structure](#structure-22)
     - [Regexes](#regexes-13)
     - [Examples](#examples-22)
-  - [Line 39 (0x276): NetworkUpdateHP](#line-39-0x276-networkupdatehp)
+  - [Line 39 (0x27): NetworkUpdateHP](#line-39-0x27-networkupdatehp)
     - [Structure](#structure-23)
     - [Examples](#examples-23)
   - [Line 251 (0xFB): Debug](#line-251-0xfb-debug)
@@ -1700,7 +1700,7 @@ ACT Log Line Examples:
 
 The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.
 
-Like [NetworkTargetIcon (Head Markers)](#line27),
+Like [NetworkTargetIcon (Head Marker)](#line27),
 Type is consistent across fights and represents a particular visual style of tether.
 
 There are also a number of examples where tethers are generated in some other way:
@@ -1836,7 +1836,7 @@ for the `18`, `1A`, and `1E` log lines without breaking previous content or plug
 
 <a name="line39"></a>
 
-### Line 39 (0x276): NetworkUpdateHP
+### Line 39 (0x27): NetworkUpdateHP
 
 It's not completely clear what triggers this log line,
 but it contains basic information comparable to `25` and `26`.
