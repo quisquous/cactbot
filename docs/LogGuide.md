@@ -8,13 +8,8 @@ for folks who want to write ACT triggers for ff14.
 
 This guide was last updated for:
 
-- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 4.58
-- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 1.7.2.13
-
-With updates for:
-
-- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.08
-- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 2.0.4.0
+- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.58
+- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.2.0.9
 
 ## TOC
 
@@ -136,6 +131,10 @@ With updates for:
   - [Line 39 (0x27): NetworkUpdateHP](#line-39-0x27-networkupdatehp)
     - [Structure](#structure-23)
     - [Examples](#examples-23)
+  - [Line 40 (0x28): Map](#line-40-0x28-map)
+    - [Structure](#structure-24)
+    - [Regexes](#regexes-14)
+    - [Examples](#examples-24)
   - [Line 251 (0xFB): Debug](#line-251-0xfb-debug)
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
@@ -1868,6 +1867,56 @@ ACT Log Line Examples:
 [14:12:38.516] 27:10FF0001:Tini Poutini:178669:191948:10000:10000:0:0:-648.3234:-804.5252:8.570148:1.010669::7ebe348673aa2a11e4036274becabc81
 [14:13:21.637] 27:10592642:Senor Esteban:54792:54792:10000:10000:0:0:100.268:114.22:-1.837917E-09:3.141593::883da0db11a9c950eefdbcbc50e86eca
 [14:13:21.637] 27:106F5D49:O'ndanya Voupin:79075:79075:10000:10000:0:0:99.93127:114.2443:-1.862645E-09:-3.141593::8ed73ee57c4ab7159628584e2f4d5243
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<a name="line40"></a>
+
+### Line 40 (0x28): Map
+
+This line is sent when the map changes.
+It will be sent when changing zones,
+but is also sent when changing subzones where the map changes
+(e.g. crossing a zone line while in a dungeon).
+
+The ACT log line is blank for this type,
+and the information is only emitted in the network log line.
+
+`regionName` and `placeName` are always present,
+but `placeNameSub` is optional.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Map&lang=en) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+40|[timestamp]|[id]|[regionName]|[placeName]|[placeNameSub]
+
+ACT Log Line Structure:
+[timestamp] 28:
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>(?:40))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<regionName>(?:[^|]*))\|(?<placeName>(?:[^|]*))\|(?<placeNameSub>(?:[^|]*))\|
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+40|2021-07-30T19:43:08.6270000-04:00|578|Norvrandt|The Copied Factory|Upper Stratum|ee5b5fc06ab4610ef6b4f030fc95c90c
+40|2021-07-30T19:46:49.3830000-04:00|575|Norvrandt|Excavation Tunnels||41e6dae1ab1a3fe18ce3754d7c45a5d0
+40|2021-07-30T19:49:19.8180000-04:00|192|La Noscea|Mist|Mist Subdivision|f3506f063945500b5e7df2172e2ca4d3
+
+ACT Log Line Examples:
+[19:43:08.627] 28:
+[19:46:49.383] 28:
+[19:49:19.818] 28:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
