@@ -1,5 +1,6 @@
 <!-- Disable MD024, duplicate headers are under different subheaders -->
-<!-- markdownlint-disable MD024 -->
+<!-- Disable MD033, no inline HTML for anchors on headings and diagrams -->
+<!-- markdownlint-disable MD024 MD033 -->
 # Log Lines and Triggers
 
 This is intended to be a comprehensive guide to log lines
@@ -31,45 +32,45 @@ With updates for:
   - [Object ID](#object-id)
   - [Ability ID](#ability-id)
 - [Log Line Overview](#log-line-overview)
-  - [00: LogLine](#00-logline)
+  - [Line 00 (0x00): LogLine](#line-00-0x00-logline)
     - [Structure](#structure)
     - [Regexes](#regexes)
     - [Examples](#examples)
     - [Don't Write Triggers Against Game Log Lines](#dont-write-triggers-against-game-log-lines)
-  - [01: ChangeZone](#01-changezone)
+  - [Line 01 (0x01): ChangeZone](#line-01-0x01-changezone)
     - [Structure](#structure-1)
     - [Regexes](#regexes-1)
     - [Examples](#examples-1)
-  - [02: ChangePrimaryPlayer](#02-changeprimaryplayer)
+  - [Line 02 (0x02): ChangePrimaryPlayer](#line-02-0x02-changeprimaryplayer)
     - [Structure](#structure-2)
     - [Examples](#examples-2)
-  - [03: AddCombatant](#03-addcombatant)
+  - [Line 03 (0x03): AddCombatant](#line-03-0x03-addcombatant)
     - [Structure](#structure-3)
     - [Regexes](#regexes-2)
     - [Examples](#examples-3)
-  - [04: RemoveCombatant](#04-removecombatant)
+  - [Line 04 (0x04): RemoveCombatant](#line-04-0x04-removecombatant)
     - [Structure](#structure-4)
     - [Regexes](#regexes-3)
     - [Examples](#examples-4)
-  - [05: AddBuff](#05-addbuff)
-  - [06: RemoveBuff](#06-removebuff)
-  - [07: FlyingText](#07-flyingtext)
-  - [08: OutgoingAbility](#08-outgoingability)
-  - [0A: IncomingAbility](#0a-incomingability)
-  - [0B: PartyList](#0b-partylist)
+  - [Line 05 (0x05): AddBuff](#line-05-0x05-addbuff)
+  - [Line 06 (0x06): RemoveBuff](#line-06-0x06-removebuff)
+  - [Line 07 (0x07): FlyingText](#line-07-0x07-flyingtext)
+  - [Line 08 (0x08): OutgoingAbility](#line-08-0x08-outgoingability)
+  - [Line 09 (0x09): IncomingAbility](#line-09-0x09-incomingability)
+  - [Line 11 (0x0B): PartyList](#line-11-0x0b-partylist)
     - [Structure](#structure-5)
     - [Examples](#examples-5)
-  - [0C: PlayerStats](#0c-playerstats)
+  - [Line 12 (0x0C): PlayerStats](#line-12-0x0c-playerstats)
     - [Structure](#structure-6)
     - [Regexes](#regexes-4)
     - [Examples](#examples-6)
-  - [0D: CombatantHP](#0d-combatanthp)
+  - [Line 13 (0x0D): CombatantHP](#line-13-0x0d-combatanthp)
     - [CombatantHP is an ACT-only line](#combatanthp-is-an-act-only-line)
-  - [14: NetworkStartsCasting](#14-networkstartscasting)
+  - [Line 20 (0x14): NetworkStartsCasting](#line-20-0x14-networkstartscasting)
     - [Structure](#structure-7)
     - [Regexes](#regexes-5)
     - [Examples](#examples-7)
-  - [15: NetworkAbility](#15-networkability)
+  - [Line 21 (0x15): NetworkAbility](#line-21-0x15-networkability)
     - [Structure](#structure-8)
     - [Regexes](#regexes-6)
     - [Examples](#examples-8)
@@ -77,69 +78,69 @@ With updates for:
     - [Ability Damage](#ability-damage)
     - [Special Case Shifts](#special-case-shifts)
     - [Ability Examples](#ability-examples)
-  - [16: NetworkAOEAbility](#16-networkaoeability)
-  - [17: NetworkCancelAbility](#17-networkcancelability)
+  - [Line 22 (0x16): NetworkAOEAbility](#line-22-0x16-networkaoeability)
+  - [Line 23 (0x17): NetworkCancelAbility](#line-23-0x17-networkcancelability)
     - [Structure](#structure-9)
     - [Examples](#examples-9)
-  - [18: NetworkDoT](#18-networkdot)
+  - [Line 24 (0x18): NetworkDoT](#line-24-0x18-networkdot)
     - [Structure](#structure-10)
     - [Examples](#examples-10)
-  - [19: NetworkDeath](#19-networkdeath)
+  - [Line 25 (0x19): NetworkDeath](#line-25-0x19-networkdeath)
     - [Structure](#structure-11)
     - [Regexes](#regexes-7)
     - [Examples](#examples-11)
-  - [1A: NetworkBuff](#1a-networkbuff)
+  - [Line 26 (0x1A): NetworkBuff](#line-26-0x1a-networkbuff)
     - [Structure](#structure-12)
     - [Regexes](#regexes-8)
     - [Examples](#examples-12)
-  - [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers)
+  - [Line 27 (0x1B): NetworkTargetIcon (Head Marker)](#line-27-0x1b-networktargeticon-head-marker)
     - [Structure](#structure-13)
     - [Regexes](#regexes-9)
     - [Examples](#examples-13)
     - [Head Marker Codes](#head-marker-codes)
-  - [1C: NetworkRaidMarker](#1c-networkraidmarker)
+  - [Line 28 (0x1C): NetworkRaidMarker (Floor Marker)](#line-28-0x1c-networkraidmarker-floor-marker)
     - [Structure](#structure-14)
     - [Examples](#examples-14)
     - [Combatant Marker Codes](#combatant-marker-codes)
-  - [1D: NetworkTargetMarker](#1d-networktargetmarker)
+  - [Line 29 (0x1D): NetworkTargetMarker (Player Marker)](#line-29-0x1d-networktargetmarker-player-marker)
     - [Structure](#structure-15)
     - [Examples](#examples-15)
     - [Floor Marker Codes](#floor-marker-codes)
-  - [1E: NetworkBuffRemove](#1e-networkbuffremove)
+  - [Line 30 (0x1E): NetworkBuffRemove](#line-30-0x1e-networkbuffremove)
     - [Structure](#structure-16)
     - [Regexes](#regexes-10)
     - [Examples](#examples-16)
-  - [1F: NetworkGauge](#1f-networkgauge)
+  - [Line 31 (0x1F): NetworkGauge](#line-31-0x1f-networkgauge)
     - [Structure](#structure-17)
     - [Examples](#examples-17)
-  - [20: NetworkWorld](#20-networkworld)
-  - [21: Network6D (Actor Control Lines)](#21-network6d-actor-control-lines)
+  - [Line 32 (0x20): NetworkWorld](#line-32-0x20-networkworld)
+  - [Line 33 (0x21): Network6D (Actor Control)](#line-33-0x21-network6d-actor-control)
     - [Structure](#structure-18)
     - [Regexes](#regexes-11)
     - [Examples](#examples-18)
-  - [22: NetworkNameToggle](#22-networknametoggle)
+  - [Line 34 (0x22): NetworkNameToggle](#line-34-0x22-networknametoggle)
     - [Structure](#structure-19)
     - [Examples](#examples-19)
-  - [23: NetworkTether](#23-networktether)
+  - [Line 35 (0x22): NetworkTether](#line-35-0x22-networktether)
     - [Structure](#structure-20)
     - [Regexes](#regexes-12)
     - [Examples](#examples-20)
-  - [24: LimitBreak](#24-limitbreak)
+  - [Line 36 (0x24): LimitBreak](#line-36-0x24-limitbreak)
     - [Structure](#structure-21)
     - [Examples](#examples-21)
-  - [25: NetworkActionSync](#25-networkactionsync)
-  - [26: NetworkStatusEffects](#26-networkstatuseffects)
+  - [Line 37 (0x25): NetworkActionSync](#line-37-0x25-networkactionsync)
+  - [Line 38 (0x26): NetworkStatusEffects](#line-38-0x26-networkstatuseffects)
     - [Structure](#structure-22)
     - [Regexes](#regexes-13)
     - [Examples](#examples-22)
-  - [27: NetworkUpdateHP](#27-networkupdatehp)
+  - [Line 39 (0x27): NetworkUpdateHP](#line-39-0x27-networkupdatehp)
     - [Structure](#structure-23)
     - [Examples](#examples-23)
-  - [FB: Debug](#fb-debug)
-  - [FC: PacketDump](#fc-packetdump)
-  - [FD: Version](#fd-version)
-  - [FE: Error](#fe-error)
-  - [FF: Timer](#ff-timer)
+  - [Line 251 (0xFB): Debug](#line-251-0xfb-debug)
+  - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
+  - [Line 253 (0xFD): Version](#line-253-0xfd-version)
+  - [Line 254 (0xFE): Error](#line-254-0xfe-error)
+  - [Line 255 (0xFF): Timer](#line-255-0xff-timer)
 - [Future Network Data Science](#future-network-data-science)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -147,7 +148,6 @@ With updates for:
 
 ![Alt text](https://g.gravizo.com/source/data_flow?https%3A%2F%2Fraw.githubusercontent.com%2Fquisquous%2Fcactbot%2Fmain%2Fdocs%2FLogGuide.md)
 
-<!-- markdownlint-disable MD033 -->
 <details>
 <summary></summary>
 data_flow
@@ -169,7 +169,6 @@ data_flow
   }
 data_flow
 </details>
-<!-- markdownlint-enable MD033 -->
 
 ### Viewing logs after a fight
 
@@ -289,7 +288,7 @@ These log lines also appear directly in your chat windows in game,
 possibly in the Battle Log tab.
 Try to [avoid writing triggers](#dont-write-triggers-against-game-log-lines) using these lines.
 
-See: [00: Log Lines](#00-logline) for examples.
+See: [Line 00](#line00) for examples.
 
 ### Object/Actor/Entity/Mob/Combatant
 
@@ -314,7 +313,7 @@ One thing to note is that in most raids,
 there are many mobs in the scene with the same name.
 For example, in t13, there are about twenty Bahamut Prime mobs in the zone,
 most of which are invisible.
-You can often differentiate these by HP values (see [AddCombatant](#03-addcombatant) log lines).
+You can often differentiate these by HP values (see [AddCombatant](#line03) log lines).
 Often these invisible mobs are used as the damaging actors,
 which is why in UWU Titan Phase, both Garuda and Titan use Rock Throw to put people in jails.
 
@@ -351,7 +350,9 @@ The examples in these sections do not include the time prefix for brevity.
 Many line types can have missing combatant names.
 Lines 02 (ChangePrimaryPlayer) and 03 (AddCombatant) should always have combatant names.
 
-### 00: LogLine
+<a name="line00"></a>
+
+### Line 00 (0x00): LogLine
 
 These are what this document calls "game log lines".
 There is a two byte log type and then a string.
@@ -427,7 +428,9 @@ but it is on the order of tens of milliseconds
 and does not consistently show up first.
 `15` "ability" lines always seem to show up before the `00` "uses" lines.
 
-### 01: ChangeZone
+<a name="line01"></a>
+
+### Line 01 (0x01): ChangeZone
 
 This message is sent when first logging in and whenever the zone is changed.
 
@@ -467,9 +470,11 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 02: ChangePrimaryPlayer
+<a name="line02"></a>
 
-This redundant message follows every [ChangeZone](#01-changezone) message to indicate the name of the player.
+### Line 02 (0x02): ChangePrimaryPlayer
+
+This redundant message follows every [ChangeZone](#line01) message to indicate the name of the player.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangedPlayer&lang=en) -->
 
@@ -497,7 +502,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 03: AddCombatant
+<a name="line03"></a>
+
+### Line 03 (0x03): AddCombatant
 
 This message is sent when a new object is added to the scene or
 becomes close enough to the player that they can view its actions.
@@ -557,7 +564,9 @@ Eureka NMs (and S ranks) solve this by having a flag on them
 that allows them to be seen via AddCombatant message from anywhere in the zone,
 which is why it is possible to write triggers for when these pop.
 
-### 04: RemoveCombatant
+<a name="line04"></a>
+
+### Line 04 (0x04): RemoveCombatant
 
 This message is sent when an object is removed from the scene, either because
 the player has moved too far away from it, it has died, or the player has
@@ -599,9 +608,11 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 05: AddBuff
+<a name="line05"></a>
 
-This is the memory-parsing equivalent of [1A: NetworkBuff](#1a-networkbuff).
+### Line 05 (0x05): AddBuff
+
+This is the memory-parsing equivalent of [NetworkBuff](#line26).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Structure:
@@ -614,9 +625,11 @@ Examples:
 05:Potato Chippy gains the effect of Passage Of Arms from Potato Chippy.
 ```
 
-### 06: RemoveBuff
+<a name="line06"></a>
 
-This is the memory-parsing equivalent of [1E: NetworkBuffRemove](#1e-networkbuffremove).
+### Line 06 (0x06): RemoveBuff
+
+This is the memory-parsing equivalent of [NetworkBuffRemove](#line30).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Structure:
@@ -629,9 +642,11 @@ Examples:
 06:Striking Dummy loses the effect of Circle Of Scorn from Potato Chippy.
 ```
 
-### 07: FlyingText
+<a name="line07"></a>
 
-This is the memory-parsing equivalent of [18: NetworkDoT](#18-networkdot).
+### Line 07 (0x07): FlyingText
+
+This is the memory-parsing equivalent of [NetworkDoT](#line24).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Structure:
@@ -643,9 +658,11 @@ Examples:
 07:DoT tick on Striking Dummy for 509 damage.
 ```
 
-### 08: OutgoingAbility
+<a name="line08"></a>
 
-This is the memory-parsing equivalent of [14: NetworkStartsCasting](#14-networkstartscasting).
+### Line 08 (0x08): OutgoingAbility
+
+This is the memory-parsing equivalent of [NetworkStartsCasting](#line20).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Structure:
@@ -657,9 +674,11 @@ Examples:
 08:Potato Chippy starts using Circle Of Scorn on Striking Dummy.
 ```
 
-### 0A: IncomingAbility
+<a name="line09"></a>
 
-This is the memory-parsing equivalent of [15: NetworkAbility](#15-networkability) and [16: NetworkAOEAbility](#16-networkaoeability).
+### Line 09 (0x09): IncomingAbility
+
+This is the memory-parsing equivalent of [NetworkAbility](#line21) and [NetworkAOEAbility](#line22).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Examples:
@@ -668,7 +687,9 @@ Examples:
 0A:10532971:Potato Chippy:17:Circle Of Scorn:40001299:Striking Dummy:710003:6850000:ef010f:f80000:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0
 ```
 
-### 0B: PartyList
+<a name="line11"></a>
+
+### Line 11 (0x0B): PartyList
 
 This line represents the players currently in the party, and is sent whenever the party makeup changes.
 
@@ -698,7 +719,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 0C: PlayerStats
+<a name="line12"></a>
+
+### Line 12 (0x0C): PlayerStats
 
 This message is sent whenever your player's stats change and upon entering a new zone/instance.
 
@@ -740,7 +763,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 0D: CombatantHP
+<a name="line13"></a>
+
+### Line 13 (0x0D): CombatantHP
 
 If you have the **Include HP for Triggers** setting turned on
 in the **FFXIV Settings** tab of ACT, then it will emit log lines
@@ -766,7 +791,9 @@ CombatantHP lines are only sent over the ACT log line format and are not include
 as a network log line. As such, triggers which depend on an enemy's HP reaching a
 certain threshold should instead use the `Util.watchCombatant` promise helper.
 
-### 14: NetworkStartsCasting
+<a name="line20"></a>
+
+### Line 20 (0x14): NetworkStartsCasting
 
 For abilities with cast bars, this is the log line that specifies that a player or a monster has started casting an ability.
 This precedes a log line of type `15`, `16`, or `17`
@@ -820,7 +847,9 @@ These are usually (but not always) associated with game log lines that either lo
 `00:282B:Shinryu readies Earthen Fury.`
 or `00:302b:The proto-chimera begins casting The Ram's Voice.`
 
-### 15: NetworkAbility
+<a name="line21"></a>
+
+### Line 21 (0x15): NetworkAbility
 
 This is an ability that ends up hitting a single target (possibly the caster's self).
 The reason this is worded as "ends up hitting" is that some AOE abilities may only hit a single target, in which case they still result in type `15`.
@@ -1001,13 +1030,17 @@ Therefore, these should also be shifted over two to find the real flags.
 6) zero damage targetless aoe (E0000000 target)
 `16:103AAEE4:Potato Chippy:B1:Miasma II:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0::::::::::19400:40287:17649:17633:1000:1000:-0.656189:-3.799561:-5.960464E-08:`
 
-### 16: NetworkAOEAbility
+<a name="line22"></a>
+
+### Line 22 (0x16): NetworkAOEAbility
 
 This is an ability usage in game that ends up hitting multiple actors or no actors at all.
 
-See: [15: NetworkAbility](#15-networkability) for a discussion of the difference between `NetworkAbility` and `NetworkAOEAbility`.
+See: [NetworkAbility](#line21) for a discussion of the difference between `NetworkAbility` and `NetworkAOEAbility`.
 
-### 17: NetworkCancelAbility
+<a name="line23"></a>
+
+### Line 23 (0x17): NetworkCancelAbility
 
 For abilities with cast bars, this is the log line that specifies that the cast was cancelled either due to movement or an interrupt and it won't go off.
 
@@ -1039,7 +1072,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 18: NetworkDoT
+<a name="line24"></a>
+
+### Line 24 (0x18): NetworkDoT
 
 HoT (heal over time) and DoT (damage over time) amounts.
 These are the aggregated quantities of damage for every hot or dot on that target.
@@ -1080,7 +1115,9 @@ ACT Log Line Examples:
 
 Ground effect dots get listed separately.
 
-### 19: NetworkDeath
+<a name="line25"></a>
+
+### Line 25 (0x19): NetworkDeath
 
 This message corresponds to an actor being defeated and killed.  This usually comes along with a battle log message such as `You defeat the worm's heart.`
 
@@ -1124,7 +1161,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 1A: NetworkBuff
+<a name="line26"></a>
+
+### Line 26 (0x1A): NetworkBuff
 
 This message is the "gains effect" message for players and mobs gaining effects whether they are good or bad.
 
@@ -1180,7 +1219,9 @@ You cannot count on the time remaining to be precise.
 In rare cases, the time will already have counted down a tiny bit.
 This matters for cases such as ucob Nael phase doom debuffs.
 
-### 1B: NetworkTargetIcon (Head Markers)
+<a name="line27"></a>
+
+### Line 27 (0x1B): NetworkTargetIcon (Head Marker)
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=HeadMarker&lang=en) -->
 
@@ -1283,7 +1324,9 @@ Marker Code | Name | Sample Locations | Consistent meaning?
 00BD | Purple Spread Circle (giant) | TItania N/EX | Yes
 00BF | Granite Gaol | e4s | N/A
 
-### 1C: NetworkRaidMarker
+<a name="line28"></a>
+
+### Line 28 (0x1C): NetworkRaidMarker (Floor Marker)
 
 This message indicates a floor waymarker was added or deleted.
 
@@ -1326,7 +1369,9 @@ ACT Log Line Examples:
 | 6   | 3           |
 | 7   | 4           |
 
-### 1D: NetworkTargetMarker
+<a name="line29"></a>
+
+### Line 29 (0x1D): NetworkTargetMarker (Player Marker)
 
 This message indicates a target marker placed above or removed from a combatant's head by a player.
 
@@ -1375,9 +1420,11 @@ ACT Log Line Examples:
 | 12  | Plus        |
 | 13  | Triangle    |
 
-### 1E: NetworkBuffRemove
+<a name="line30"></a>
 
-This is the paired "end" message to the [1A: NetworkBuff](#1a-networkbuff) "begin" message.
+### Line 30 (0x1E): NetworkBuffRemove
+
+This is the paired "end" message to the [NetworkBuff](#line26) "begin" message.
 This message corresponds to the loss of effects (either positive or negative).
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=LosesEffect&lang=en) -->
@@ -1418,7 +1465,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 1F: NetworkGauge
+<a name="line31"></a>
+
+### Line 31 (0x1F): NetworkGauge
 
 Info about the current player's job gauge.
 
@@ -1483,11 +1532,15 @@ Unfortunately, network data about other player's gauge is not sent.
 You are unable to see the abilities of other players, only your own.
 (This is probably by design to cut down on the amount of network data sent.)
 
-### 20: NetworkWorld
+<a name="line32"></a>
+
+### Line 32 (0x20): NetworkWorld
 
 Unused.
 
-### 21: Network6D (Actor Control Lines)
+<a name="line33"></a>
+
+### Line 33 (0x21): Network6D (Actor Control)
 
 See also: [nari director update documentation](https://xivlogs.github.io/nari/types/event/directorupdate.html)
 
@@ -1566,7 +1619,9 @@ Still unknown:
 
 - `21:zone:40000007:00:00:00:00`
 
-### 22: NetworkNameToggle
+<a name="line34"></a>
+
+### Line 34 (0x22): NetworkNameToggle
 
 This log message toggles whether the nameplate for a particular entity is visible or not.
 This can help you know when a mob is targetable, for example.
@@ -1597,7 +1652,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 23: NetworkTether
+<a name="line35"></a>
+
+### Line 35 (0x22): NetworkTether
 
 This log line is for tethers between enemies or enemies and players.
 This does not appear to be used for player to player skill tethers like dragonsight or cover.
@@ -1643,7 +1700,7 @@ ACT Log Line Examples:
 
 The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.
 
-Like [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers),
+Like [NetworkTargetIcon (Head Marker)](#line27),
 Type is consistent across fights and represents a particular visual style of tether.
 
 There are also a number of examples where tethers are generated in some other way:
@@ -1654,7 +1711,9 @@ There are also a number of examples where tethers are generated in some other wa
 - Suzaku Extreme birbs: who knows
 - player to player tethers (dragonsight, cover, fairy tether)
 
-### 24: LimitBreak
+<a name="line36"></a>
+
+### Line 36 (0x24): LimitBreak
 
 This log line is recorded every server tick where limit break energy is generated while in combat in a light or full party.
 (Generation is not recorded while at cap.)
@@ -1698,7 +1757,9 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 25: NetworkActionSync
+<a name="line37"></a>
+
+### Line 37 (0x25): NetworkActionSync
 
 This log line is a sync packet that tells the client to render an action that has previously resolved.
 (This can be an animation or text in one of the game text logs.)
@@ -1723,7 +1784,9 @@ Examples:
 25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:
 ```
 
-### 26: NetworkStatusEffects
+<a name="line38"></a>
+
+### Line 38 (0x26): NetworkStatusEffects
 
 For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
 For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
@@ -1771,7 +1834,9 @@ ACT Log Line Examples:
 It seems likely that this line was added in order to extend functionality
 for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
 
-### 27: NetworkUpdateHP
+<a name="line39"></a>
+
+### Line 39 (0x27): NetworkUpdateHP
 
 It's not completely clear what triggers this log line,
 but it contains basic information comparable to `25` and `26`.
@@ -1807,14 +1872,18 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### FB: Debug
+<a name="line251"></a>
+
+### Line 251 (0xFB): Debug
 
 Lines are printed, but with blank data.
 
 As network log lines, they often have information like this:
 `251|2019-05-21T19:11:02.0268703-07:00|ProcessTCPInfo: New connection detected for Process [2644]: 192.168.1.70:49413=>204.2.229.85:55021|909171c500bed915f8d79fc04d3589fa`
 
-### FC: PacketDump
+<a name="line252"></a>
+
+### Line 252 (0xFC): PacketDump
 
 If the setting to dump all network data to logfiles is turned on,
 then ACT will emit all network data into the network log itself.
@@ -1824,18 +1893,24 @@ This can be used to import a network log file into ffxivmon and inspect packet d
 
 ![dump network data screenshot](images/logguide_dumpnetworkdata.png)
 
-### FD: Version
+<a name="line253"></a>
+
+### Line 253 (0xFD): Version
 
 Lines are printed, but with blank data.
 
 As network log lines, they usually look like this:
 `253|2019-05-21T19:11:02.0268703-07:00|FFXIV PLUGIN VERSION: 1.7.2.12, CLIENT MODE: FFXIV_64|845e2929259656c833460402c9263d5c`
 
-### FE: Error
+<a name="line254"></a>
+
+### Line 254 (0xFE): Error
 
 These are lines emitted directly by the ffxiv plugin when something goes wrong.
 
-### FF: Timer
+<a name="line255"></a>
+
+### Line 255 (0xFF): Timer
 
 Theoretically used when memory-parsing is used, but I haven't seen them.
 
