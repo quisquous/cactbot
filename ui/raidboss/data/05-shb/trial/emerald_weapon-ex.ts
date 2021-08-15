@@ -1,14 +1,30 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
+
+// TODO: is there a way to know if a Tertius Terminus Est sword is X or +?
+// 55CD has no heading.
+// 55CE has a heading of 45 degrees, but that's too late to know.
+// https://jp.finalfantasyxiv.com/lodestone/character/28705669/blog/4618012/
+
+// TODO: handle mechanized maneuver with GetCombatnats?
+// TODO: handle divebombs during mechanized maneuver with GetCombatants?
 
 export interface Data extends RaidbossData {
   seenMines?: boolean;
+  orbs?: NetMatches['AddedCombatant'][];
+  primusPlayers?: string[];
+  tertius?: NetMatches['StartsUsing'][];
 }
+
+const centerX = 100;
+const centerY = 100;
 
 const sharedOutputStrings = {
   sharedTankStack: {
@@ -85,6 +101,65 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'EmeraldEx Aetheroplasm Rotate',
+      type: 'AddedCombatant',
+      // 9705 = Ceruleum Sphere, 9706 = Nitrosphere
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9706' }),
+      condition: (data, matches) => {
+        (data.orbs ??= []).push(matches);
+        return data.orbs.length === 4;
+      },
+      alertText: (data, _matches, output) => {
+        if (!data.orbs)
+          return;
+        const isNitro = [false, false, false, false, false, false, false, false];
+
+        for (const orb of data.orbs) {
+          const x = parseFloat(orb.x) - centerX;
+          const y = parseFloat(orb.y) - centerY;
+
+          // Positions: N = (100, 78), E = (122, 100), S = (100, 122), W = (78, 100)
+          // Dirs: N = 0, NE = 1, ..., NW = 7
+          const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+          if (isNitro[dir]) {
+            console.error('Aetheroplasm collision');
+            return;
+          }
+          isNitro[dir] = true;
+        }
+
+        // Check if west must rotate clockwise to avoid taking two in a row.
+        // There are only two patterns here, so it's sufficient to check west.
+        if (isNitro[6] === isNitro[7])
+          return output.counterclock!();
+        return output.clockwise!();
+      },
+      outputStrings: {
+        clockwise: {
+          en: 'Rotate Clockwise',
+        },
+        counterclock: {
+          en: 'Rotate Counterclockwise',
+        },
+      },
+    },
+    {
+      id: 'EmeraldEx Aire Tam Storm',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['558F', '55D0'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: ['558F', '55D0'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['558F', '55D0'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: ['558F', '55D0'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: ['558F', '55D0'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: ['558F', '55D0'], capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Away From Red Circle',
+        },
+      },
+    },
+    {
       id: 'EmeraldEx Magitek Magnetism',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5594', capture: false }),
@@ -93,10 +168,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5594', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5594', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5594', capture: false }),
-      condition: (data) => data.seenMines || data.role !== 'tank',
       delaySeconds: 9,
       durationSeconds: 6,
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => {
+        // Suppress first magnetism call for tanks, who are handling flares.
+        if (!data.seenMines && data.role === 'tank')
+          return;
+        return output.text!();
+      },
       run: (data) => data.seenMines = true,
       outputStrings: {
         text: {
@@ -133,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Flare on YOU',
@@ -201,27 +280,52 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EmeraldEx Primus Terminus Est',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C3', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55C3', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55C3', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55C3', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55C3', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55C3', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '00F[9ABC]' }),
+      condition: (data, matches) => {
+        (data.primusPlayers ??= []).push(matches.target);
+        return data.me === matches.target;
+      },
+      alertText: (_data, matches, output) => {
+        const id = matches.id.toUpperCase();
+        if (id === '00F9')
+          return output.text!({ dir: output.south!() });
+        if (id === '00FA')
+          return output.text!({ dir: output.west!() });
+        if (id === '00FB')
+          return output.text!({ dir: output.north!() });
+        if (id === '00FC')
+          return output.text!({ dir: output.east!() });
+      },
       outputStrings: {
         text: {
-          en: 'Go sides, aim across',
-          de: 'Geh zu den Seiten, ziehle nach gegenüber',
-          fr: 'Allez sur les côtés, ne chevauchez pas les lignes',
-          ja: '四隅を避けて矢印を配置',
-          cn: '靠边，注意箭头朝向',
-          ko: '구석으로, 서로 겹치지 않게',
+          en: 'Go ${dir}, Aim Across',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'EmeraldEx Primus Terminus Est Dodge',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '00F[9ABC]', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (!data.primusPlayers?.includes(data.me))
+          return output.text!();
+      },
+      run: (data) => delete data.primusPlayers,
+      outputStrings: {
+        text: {
+          en: 'Dodge Arrow Lines',
         },
       },
     },
     {
-      id: 'EmeraldEx Tertius Terminus est',
+      id: 'EmeraldEx Tertius Terminus Cleanup',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55CC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55CC', capture: false }),
@@ -229,15 +333,50 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55CC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55CC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55CC', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
+      run: (data) => delete data.tertius,
+    },
+    {
+      id: 'EmeraldEx Tertius Terminus Est',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'BitBlade', id: '55CD' }),
+      durationSeconds: 7,
+      alertText: (data, matches, output) => {
+        (data.tertius ??= []).push(matches);
+        if (data.tertius.length !== 6)
+          return;
+
+        const [s0, s1, s2, s3, s4, s5] = data.tertius.map((sword) => {
+          const x = parseFloat(sword.x) - centerX;
+          const y = parseFloat(sword.y) - centerY;
+          if (Math.abs(x) < 10 && Math.abs(y) < 10)
+            return output.middle!();
+          if (x < 0)
+            return y < 0 ? output.dirNW!() : output.dirSW!();
+          return y < 0 ? output.dirNE!() : output.dirSE!();
+        });
+
+        if (!s0 || !s1 || !s2 || !s3 || !s4 || !s5)
+          throw new UnreachableCode();
+        // A pair of swords s0/s1, s2/s3, s4/s5 is either two intercard corners or two middle.
+        // The second pair (s2/s3) is never the middle pair of swords.
+        // Therefore, if the first two are not the same, they are not the middle
+        // and so the first safe is the middle set of swords (s4, s5).
+        const firstSafeIsMiddle = s0 !== s1;
+        if (firstSafeIsMiddle)
+          return output.middleFirst!({ middle: s4, dir1: s0, dir2: s1 });
+        return output.middleLast!({ middle: s0, dir1: s4, dir2: s5 });
+      },
       outputStrings: {
-        text: {
-          en: 'Swords',
-          de: 'Schwerter',
-          fr: 'Épées',
-          ja: '剣',
-          cn: '剑',
-          ko: '검',
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+        middle: Outputs.middle,
+        middleFirst: {
+          en: '${middle} -> ${dir1} / ${dir2}',
+        },
+        middleLast: {
+          en: '${dir1} / ${dir2} -> ${middle}',
         },
       },
     },
@@ -272,50 +411,38 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5585', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5585', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5585', capture: false }),
-      response: Responses.knockback(),
+      // Don't collide with Tertius Terminus Est alert, and this is important.
+      response: Responses.knockback('alarm'),
     },
     {
-      // TODO: use headmarkers for this
-      id: 'EmeraldEx Secundus Terminus est',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C8', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55C8', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55C8', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55C8', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55C8', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55C8', capture: false }),
+      id: 'EmeraldEx Secundus Terminus Est Plus',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '00FD' }),
+      condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'X to cards, + to intercards',
-          de: 'X in die Cardinalen, + in die Intercardinale Himmelsrichtungen',
-          fr: 'X sur les cardinaux, + en intercadinal',
-          ja: 'クロスは東西南北に、十字は四隅に',
-          cn: '靠边放剑(十字四角)',
-          ko: 'X는 동서남북, +는 대각위치로',
+          en: 'Intercard + Out (Plus)',
         },
       },
     },
     {
-      id: 'EmeraldEx Mechanized Maneuver',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55BA', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Gaius-Projektion', id: '55BA', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55BA', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55BA', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '盖乌斯的幻影', id: '55BA', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '가이우스의 환영', id: '55BA', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
+      id: 'EmeraldEx Secundus Terminus Est Cross',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '00FE' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Numbered Divebombs',
-          de: 'Nummerierte Sturzflüge',
-          fr: 'Mines numérotées',
-          ja: '番号を覚える',
-          cn: '观察飞机数字',
-          ko: '엑사플레어 준비',
+          en: 'Cardinal + Out (Cross)',
         },
       },
+    },
+    {
+      id: 'EmeraldEx Magitek Cannon',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'Reaper Image', id: '55BE', capture: false }),
+      response: Responses.goMiddle(),
     },
     {
       id: 'EmeraldEx Full Rank',
@@ -326,22 +453,30 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55C0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '盖乌斯的幻影', id: '55C0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '가이우스의 환영', id: '55C0', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'watch rank-and-file soldiers',
-          de: 'Achte auf die Lücken zwischen den Soldaten',
-          fr: 'Regardez les soldats en rangs',
-          ja: '飛行部隊と射撃部隊を見覚える',
-          cn: '观察士兵队列',
-          ko: '엑사플레어 순서, 빈 공간 확인',
+          en: 'Go North; Dodge Soldiers/Divebombs',
+          de: 'Achte auf die Lücken zwischen den Soldaten', // FIXME
+          fr: 'Regardez les soldats en rangs', // FIXME
+          ja: '飛行部隊と射撃部隊を見覚える', // FIXME
+          cn: '观察士兵队列', // FIXME
+          ko: '엑사플레어 순서, 빈 공간 확인', // FIXME
         },
       },
     },
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Emerald Crusher / Aire Tam Storm': 'Crusher / Aire Tam',
+        'Aire Tam Storm / Emerald Crusher': 'Aire Tam / Crusher',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'Gaius-Projektion',
         'Imperial Image': 'garleisch(?:e|er|es|en) Soldat',
@@ -373,6 +508,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'spectre de Gaius',
         'Imperial Image': 'spectre de soldat impérial',
@@ -404,6 +540,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'ガイウスの幻影',
         'Imperial Image': '帝国兵の幻影',
@@ -435,6 +572,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': '盖乌斯的幻影',
         'Imperial Image': '帝国兵的幻影',
@@ -466,6 +604,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': '가이우스의 환영',
         'Imperial Image': '제국 병사의 환영',
