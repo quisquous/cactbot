@@ -1,9 +1,7 @@
+import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
-
 import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
-import ZoneId from '../../resources/zone_id';
-import ZoneInfo from '../../resources/zone_info';
 import {
   findNextDay,
   findNextNight,
@@ -12,19 +10,31 @@ import {
   getWeather,
   isNightTime,
 } from '../../resources/weather';
+import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
+import { BaseOptions } from '../../types/data';
+import { EventResponses } from '../../types/event';
+import { LocaleObject, LocaleText, ZoneIdType } from '../../types/trigger';
 
 import './eureka_config';
 import anemosMap from './anemos.png';
+import bozjaSouthernMap from './bozjasouthern.png';
+import hydatosMap from './hydatos.png';
 import pagosMap from './pagos.png';
 import pyrosMap from './pyros.png';
-import hydatosMap from './hydatos.png';
-import bozjaSouthernMap from './bozjasouthern.png';
 import zadnorMap from './zadnor.png';
 
 import '../../resources/defaults.css';
 import './eureka.css';
 
-const bunnyLabel = {
+// TODO: move each EurekaZoneInfo entry to its own file
+// TODO: get all of the elements required up front in the constructor
+// TODO: split NMInfo from some new InitializedNMInfo, which includes required element/timeElement
+// TODO: switch to using NetRegexes
+
+const numWeatherElem = 5;
+
+const bunnyLabel: LocaleText = {
   en: 'Bunny',
   de: 'Hase',
   fr: 'Lapin',
@@ -33,8 +43,107 @@ const bunnyLabel = {
   ko: '토끼',
 };
 
-const defaultOptions = {
-  Debug: false,
+type WeatherForFunc = (nowMs: number, stopTime?: number) => string;
+type WeatherInFunc = (nowMs: number, startTime: number) => string;
+type WeatherTimeForFunc = (dayNightMin: number) => string;
+
+type FieldNote = {
+  id: number;
+  name: LocaleText;
+  shortName: LocaleText;
+  rarity: number;
+};
+
+type NMInfo = {
+  label: LocaleText;
+  x: number;
+  y: number;
+  respawnMinutes?: number;
+
+  // Modified
+  element?: HTMLElement;
+  progressElement?: HTMLElement;
+  timeElement?: HTMLElement;
+  respawnTimeMsLocal?: number;
+  respawnTimeMsTracker?: number;
+
+  // Eureka
+  fateID?: number;
+  trackerName?: LocaleText;
+  weather?: string;
+  time?: string;
+  bunny?: boolean;
+
+  // Bozja
+  ceKey?: number;
+  shortLabel?: LocaleText;
+  fieldNotes?: number;
+  isCritical?: boolean;
+  isCEPrecursor?: boolean;
+  isDuel?: boolean;
+  isDuelPrecursor?: boolean;
+};
+
+type EurekaZoneInfo = {
+  mapImage: string;
+  mapWidth: number;
+  mapHeight: number;
+  shortName: string;
+  mapToPixelXScalar: number;
+  mapToPixelXConstant: number;
+  mapToPixelYScalar: number;
+  mapToPixelYConstant: number;
+  nms: { [nmId: string]: NMInfo };
+
+  // Eureka
+  hasTracker?: boolean;
+  primaryWeather?: string[];
+  fairy?: LocaleText;
+
+  // Bozja
+  onlyShowInactiveWithExplicitRespawns?: boolean;
+  treatNMsAsSkirmishes?: boolean;
+  fieldNotes?: FieldNote[];
+};
+
+const defaultEurekaConfigOtions = {
+  FlagTimeoutMs: 90,
+  CompleteNamesSTQ: false,
+  EnrichedSTQ: false,
+  PopNoiseForNM: true,
+  PopNoiseForBunny: true,
+  PopNoiseForSkirmish: false,
+  PopNoiseForCriticalEngagement: true,
+  PopNoiseForDuel: false,
+  PopVolume: 1,
+  BunnyPopVolume: 0.3,
+  CriticalPopVolume: 0.3,
+  RefreshRateMs: 1000,
+};
+type EurekaConfigOptions = typeof defaultEurekaConfigOtions;
+
+export interface EurekaOptions extends BaseOptions, EurekaConfigOptions {
+  PopSound: string;
+  BunnyPopSound: string;
+  CriticalPopSound: string;
+  timeStrings: {
+    weatherFor: LocaleObject<WeatherForFunc>;
+    weatherIn: LocaleObject<WeatherInFunc>;
+    timeFor: LocaleObject<WeatherTimeForFunc>;
+    minute: LocaleText;
+  };
+  Regex: LocaleObject<{
+    gFlagRegex: RegExp;
+    gTrackerRegex: RegExp;
+    gImportRegex: RegExp;
+    gTimeRegex: RegExp;
+  }>;
+  ZoneInfo: { [zoneId: number]: EurekaZoneInfo };
+}
+
+const defaultOptions: EurekaOptions = {
+  ...UserConfig.getDefaultBaseOptions(),
+  ...defaultEurekaConfigOtions,
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/freesound/water_drop.ogg',
   CriticalPopSound: '../../resources/sounds/freesound/sonar.ogg',
@@ -43,42 +152,42 @@ const defaultOptions = {
       en: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
-          return ' for ' + Math.ceil(min) + 'm';
+          return ` for ${Math.ceil(min)}m`;
         }
         return ' for ???';
       },
       de: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
-          return ' für ' + Math.ceil(min) + 'min';
+          return ` für ${Math.ceil(min)}min`;
         }
         return ' für ???';
       },
       fr: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
-          return ' pour ' + Math.ceil(min) + ' min ';
+          return ` pour ${Math.ceil(min)} min `;
         }
         return ' pour ???';
       },
       ja: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
-          return ' 終わるまであと ' + Math.ceil(min) + ' 分 ';
+          return ` 終わるまであと ${Math.ceil(min)} 分 `;
         }
         return ' 終わるまであと ???';
       },
       cn: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
-          return ' ' + Math.ceil(min) + '分钟后结束';
+          return ` ${Math.ceil(min)}分钟后结束`;
         }
         return ' ??? 分钟';
       },
       ko: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
-          return ' ' + Math.ceil(min) + '분 동안';
+          return ` ${Math.ceil(min)}분 동안`;
         }
         return ' ??? 동안';
       },
@@ -87,65 +196,53 @@ const defaultOptions = {
       en: (nowMs, startTime) => {
         if (startTime) {
           const min = (startTime - nowMs) / 1000 / 60;
-          return ' in ' + Math.ceil(min) + 'm';
+          return ` in ${Math.ceil(min)}m`;
         }
         return ' in ???';
       },
       de: (nowMs, startTime) => {
         if (startTime) {
           const min = (startTime - nowMs) / 1000 / 60;
-          return ' in ' + Math.ceil(min) + 'min';
+          return ` in ${Math.ceil(min)}min`;
         }
         return ' in ???';
       },
       fr: (nowMs, startTime) => {
         if (startTime) {
           const min = (startTime - nowMs) / 1000 / 60;
-          return ' dans ' + Math.ceil(min) + ' min ';
+          return ` dans ${Math.ceil(min)} min `;
         }
         return ' dans ???';
       },
       ja: (nowMs, startTime) => {
         if (startTime) {
           const min = (startTime - nowMs) / 1000 / 60;
-          return ' あと ' + Math.ceil(min) + ' 分 ';
+          return ` あと ${Math.ceil(min)} 分 `;
         }
         return ' あと ???';
       },
       cn: (nowMs, startTime) => {
         if (startTime) {
           const min = (startTime - nowMs) / 1000 / 60;
-          return ' ' + Math.ceil(min) + '分钟后';
+          return ` ${Math.ceil(min)}分钟后`;
         }
         return ' ??? 后';
       },
       ko: (nowMs, startTime) => {
         if (startTime) {
           const min = (startTime - nowMs) / 1000 / 60;
-          return ' ' + Math.ceil(min) + '분 후';
+          return ` ${Math.ceil(min)}분 후`;
         }
         return ' ??? 후';
       },
     },
     timeFor: {
-      en: (dayNightMin) => {
-        return ' for ' + dayNightMin + 'm';
-      },
-      de: (dayNightMin) => {
-        return ' für ' + dayNightMin + 'min';
-      },
-      fr: (dayNightMin) => {
-        return ' pour ' + dayNightMin + ' min ';
-      },
-      ja: (dayNightMin) => {
-        return ' ' + dayNightMin + '分';
-      },
-      cn: (dayNightMin) => {
-        return ' ' + dayNightMin + '分钟';
-      },
-      ko: (dayNightMin) => {
-        return ' ' + dayNightMin + '분 동안';
-      },
+      en: (dayNightMin) => ` for ${dayNightMin}m`,
+      de: (dayNightMin) => ` für ${dayNightMin}min`,
+      fr: (dayNightMin) => ` pour ${dayNightMin} min `,
+      ja: (dayNightMin) => ` ${dayNightMin}分`,
+      cn: (dayNightMin) => ` ${dayNightMin}分钟`,
+      ko: (dayNightMin) => ` ${dayNightMin}분 동안`,
     },
     minute: {
       en: 'm',
@@ -4237,7 +4334,7 @@ const defaultOptions = {
   },
 };
 
-const gWeatherIcons = {
+const gWeatherIcons: { [weather: string]: string } = {
   'Gales': '&#x1F300;',
   'Fog': '&#x2601;',
   'Blizzards': '&#x2744;',
@@ -4249,52 +4346,65 @@ const gWeatherIcons = {
   'Thunderstorms': '&#x26A1;',
   'Showers': '&#x2614;',
   'Gloom': '&#x2639;',
-};
+} as const;
 const gNightIcon = '&#x1F319;';
 const gDayIcon = '&#x263C;';
 // ✭ for rarity for field notes listing
 const gRarityIcon = '&#x272D;';
 
 class EurekaTracker {
-  constructor(options) {
-    this.options = options;
-    this.zoneInfo = null;
+  private zoneId?: ZoneIdType;
+  private zoneInfo?: EurekaZoneInfo;
+  private updateTimesHandle?: number;
+  private fateQueue: EventResponses['onFateEvent'][] = [];
+  private CEQueue: EventResponses['onCEEvent'][] = [];
+
+  private playerElement?: HTMLElement;
+  private fairyRegex?: ReturnType<typeof Regexes.addedCombatantFull>;
+  private currentTracker = '';
+
+  // Convenience members from current this.zoneInfo.
+  private nms: EurekaZoneInfo['nms'] = {};
+
+  constructor(private options: EurekaOptions) {
     this.ResetZone();
-    this.updateTimesHandle = null;
-    this.fateQueue = [];
-    this.CEQueue = [];
   }
 
-  TransByParserLang(obj, key) {
-    const fromObj = obj[this.options.ParserLanguage] || obj['en'];
-    if (!key)
-      return fromObj;
-    return fromObj ? fromObj[key] : obj['en'][key];
+  TransObjectByParserLang<T>(obj: LocaleObject<{ [key: string]: T }>, key: string): T {
+    const fromObj = obj[this.options.ParserLanguage] ?? obj['en'];
+    const value = fromObj ? fromObj[key] : obj['en'][key];
+    // `key` must be valid.
+    if (value === undefined)
+      throw new UnreachableCode();
+    return value;
   }
 
-  TransByDispLang(obj, key) {
-    const fromObj = obj[this.options.DisplayLanguage] || obj['en'];
-    if (!key)
-      return fromObj;
-    return fromObj ? fromObj[key] : obj['en'][key];
+  TransByParserLang<T>(obj: LocaleObject<T>): T {
+    return obj[this.options.ParserLanguage] ?? obj['en'];
   }
 
-  SetStyleFromMap(style, mx, my) {
+  TransByDispLang<T>(obj: LocaleObject<T>): T {
+    return obj[this.options.DisplayLanguage] ?? obj['en'];
+  }
+
+  SetStyleFromMap(style: CSSStyleDeclaration, mx: number, my: number) {
     if (mx === undefined) {
       style.display = 'none';
       return;
     }
 
-    const zi = this.zoneInfo;
-    const px = zi.mapToPixelXScalar * mx + zi.mapToPixelXConstant;
-    const py = zi.mapToPixelYScalar * my + zi.mapToPixelYConstant;
+    const zoneInfo = this.zoneInfo;
+    if (!zoneInfo)
+      throw new UnreachableCode();
+    const px = zoneInfo.mapToPixelXScalar * mx + zoneInfo.mapToPixelXConstant;
+    const py = zoneInfo.mapToPixelYScalar * my + zoneInfo.mapToPixelYConstant;
 
-    style.left = (px / zi.mapWidth * 100) + '%';
-    style.top = (py / zi.mapHeight * 100) + '%';
+    style.left = `${px / zoneInfo.mapWidth * 100}%`;
+    style.top = `${py / zoneInfo.mapHeight * 100}%`;
   }
 
   // TODO: maybe this should be in a more shared location.
-  EntityToMap(coord, sizeFactor, offset) {
+  EntityToMap(coord: number, sizeFactor: number, offset: number) {
     // Relicensed from MIT License, by viion / Vekien
     // https://github.com/xivapi/xivapi-mappy/blob/3ea58cc5431db6808053bd3164a1b7859e3bcee1/Mappy/Helpers/MapHelper.cs#L10-L15
 
@@ -4303,25 +4413,39 @@ class EurekaTracker {
     return ((41 / scale) * ((val + 1024) / 2048)) + 1;
   }
 
-  EntityToMapX(x) {
+  EntityToMapX(x: number) {
+    if (!this.zoneId)
+      throw new UnreachableCode();
     // TODO: it's kind of awkard to have this.zoneInfo and ZoneInfo simultaneously.
     const zoneInfo = ZoneInfo[this.zoneId];
+    if (!zoneInfo)
+      throw new UnreachableCode();
     return this.EntityToMap(x, zoneInfo.sizeFactor, zoneInfo.offsetX);
   }
 
-  EntityToMapY(y) {
+  EntityToMapY(y: number) {
+    if (!this.zoneId)
+      throw new UnreachableCode();
+    // TODO: it's kind of awkard to have this.zoneInfo and ZoneInfo simultaneously.
     const zoneInfo = ZoneInfo[this.zoneId];
+    if (!zoneInfo)
+      throw new UnreachableCode();
     return this.EntityToMap(y, zoneInfo.sizeFactor, zoneInfo.offsetY);
   }
 
-  SetStyleFromEntity(style, ex, ey) {
+  SetStyleFromEntity(style: CSSStyleDeclaration, ex: number, ey: number) {
     const mx = this.EntityToMapX(ex);
     const my = this.EntityToMapY(ey);
     this.SetStyleFromMap(style, mx, my);
   }
 
-  AddElement(container, nmKey) {
+  AddElement(container: HTMLElement, nmKey: string) {
+    if (!this.zoneInfo)
+      throw new UnreachableCode();
+
     const nm = this.nms[nmKey];
+    if (!nm)
+      throw new UnreachableCode();
     const label = document.createElement('div');
     const fieldNotesList = this.zoneInfo.fieldNotes;
     label.classList.add('nm');
@@ -4351,7 +4475,7 @@ class EurekaTracker {
       if (this.options.CompleteNamesSTQ) {
         name.innerText = this.TransByDispLang(nm.label);
       } else {
-        const shortLabel = nm.shortLabel[this.options.DisplayLanguage];
+        const shortLabel = nm.shortLabel?.[this.options.DisplayLanguage];
         if (shortLabel !== undefined)
           name.innerText = shortLabel;
         // If the short label is not set, fall back to the full label.
@@ -4379,7 +4503,7 @@ class EurekaTracker {
     // Enriched options for Save-The-Queen content
     // Adds field note drops, name, id & rarity of those
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
-      for (const note of fieldNotesList) {
+      for (const note of fieldNotesList ?? []) {
         if (note.id === nm.fieldNotes) {
           enriched.innerHTML = `#${note.id}: ${this.TransByDispLang(note.shortName)} ${
             gRarityIcon.repeat(note.rarity)
@@ -4403,20 +4527,21 @@ class EurekaTracker {
   }
 
   InitNMs() {
+    if (!this.zoneInfo)
+      throw new UnreachableCode();
     this.nms = this.zoneInfo.nms;
-    // Anemos has no bunny fates
-    this.nmKeys = Object.keys(this.nms);
 
     const container = document.getElementById('nm-labels');
+    if (!container)
+      throw new UnreachableCode();
     container.classList.add(this.zoneInfo.shortName);
 
-    for (const key of this.nmKeys)
+    for (const key in this.nms)
       this.AddElement(container, key);
 
-    this.fairy = this.zoneInfo.fairy;
-    if (this.fairy) {
-      const fairyName = this.TransByParserLang(this.fairy);
-      this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
+    if (this.zoneInfo.fairy) {
+      const fairyName = this.TransByParserLang(this.zoneInfo.fairy);
+      this.fairyRegex = Regexes.addedCombatantFull({ name: fairyName });
     }
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');
@@ -4425,32 +4550,40 @@ class EurekaTracker {
 
   ResetZone() {
     const container = document.getElementById('nm-labels');
+    if (!container)
+      throw new UnreachableCode();
     container.innerHTML = '';
-    this.currentTracker = null;
+    this.currentTracker = '';
     container.className = '';
   }
 
-  OnPlayerChange(e) {
-    if (!this.zoneInfo)
+  OnPlayerChange(e: EventResponses['onPlayerChangedEvent']) {
+    if (!this.zoneInfo || !this.playerElement)
       return;
     this.SetStyleFromEntity(this.playerElement.style, e.detail.pos.x, e.detail.pos.y);
   }
 
-  OnChangeZone(e) {
+  OnChangeZone(e: EventResponses['ChangeZone']) {
     this.zoneId = e.zoneID;
 
     this.zoneInfo = this.options.ZoneInfo[this.zoneId];
     const container = document.getElementById('container');
+    if (!container)
+      throw new UnreachableCode();
     if (this.zoneInfo) {
       this.ResetZone();
 
       const aspect = document.getElementById('aspect-ratio');
-      while (aspect.classList.length > 0)
-        aspect.classList.remove(aspect.classList.item(0));
+      if (!aspect)
+        throw new UnreachableCode();
+      aspect.classList.remove(...aspect.classList);
       aspect.classList.add('aspect-ratio-' + this.zoneInfo.shortName);
 
       if (this.zoneInfo.mapImage) {
-        document.getElementById('map-image').src = this.zoneInfo.mapImage;
+        const mapImageElement = document.getElementById('map-image');
+        if (!mapImageElement || !(mapImageElement instanceof HTMLImageElement))
+          throw new UnreachableCode();
+        mapImageElement.src = this.zoneInfo.mapImage;
         window.clearInterval(this.updateTimesHandle);
         this.updateTimesHandle = window.setInterval(
           () => this.UpdateTimes(),
@@ -4469,25 +4602,26 @@ class EurekaTracker {
     }
 
     const flags = document.getElementById('flag-labels');
-
-    for (let i = 0; i < flags.children.length; ++i)
-      flags.removeChild(flags.children[i]);
+    while (flags?.lastChild)
+      flags.removeChild(flags.lastChild);
   }
 
-  RespawnTime(nm) {
+  RespawnTime(nm: NMInfo) {
     let respawnTimeMs = 120 * 60 * 1000;
-    if ('respawnMinutes' in nm)
+    if (nm.respawnMinutes)
       respawnTimeMs = nm.respawnMinutes * 60 * 1000;
     return respawnTimeMs + (+new Date());
   }
 
-  DebugPrint(str) {
+  DebugPrint(str: string) {
     if (this.options.Debug)
       console.log(str);
   }
 
-  OnFatePop(fate) {
+  OnFatePop(fate: NMInfo) {
     this.DebugPrint(`OnFatePop: ${this.TransByDispLang(fate.label)}`);
+    if (!fate.element)
+      throw new UnreachableCode();
     const classList = fate.element.classList;
     if (fate.isCritical)
       classList.add('critical-pop');
@@ -4509,102 +4643,132 @@ class EurekaTracker {
       if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
         this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
-      const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
-        !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+      const shouldPlay = this.zoneInfo?.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
+        !this.zoneInfo?.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
       if (shouldPlay && this.options.PopSound && this.options.PopVolume)
         this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
   }
 
-  PlaySound(sound, volume) {
+  PlaySound(sound: string, volume: number) {
     const audio = new Audio(sound);
     audio.volume = volume;
-    audio.play();
+    void audio.play();
   }
 
-  OnFateUpdate(fate, percent) {
+  OnFateUpdate(fate: NMInfo, percent: number) {
     this.DebugPrint(`OnFateUpdate: ${this.TransByDispLang(fate.label)}: ${percent}%`);
     if (
-      fate.element.classList.contains('nm-pop') || fate.element.classList.contains('critical-pop')
-    )
-      fate.progressElement.innerText = percent + '%';
+      fate.element?.classList.contains('nm-pop') || fate.element?.classList.contains('critical-pop')
+    ) {
+      if (fate.progressElement)
+        fate.progressElement.innerText = `${percent}%`;
+    }
   }
 
-  OnFateKill(fate) {
+  OnFateKill(fate: NMInfo) {
     this.DebugPrint(`OnFateKill: ${this.TransByDispLang(fate.label)}`);
     this.UpdateTimes();
-    if (fate.element.classList.contains('nm-pop')) {
-      if (this.zoneInfo.onlyShowInactiveWithExplicitRespawns && !fate.respawnMinutes)
+    if (fate.element?.classList.contains('nm-pop')) {
+      if (this.zoneInfo?.onlyShowInactiveWithExplicitRespawns && !fate.respawnMinutes)
         fate.element.classList.add('nm-hidden');
       fate.element.classList.add('nm-down');
       fate.element.classList.remove('nm-pop');
-      fate.progressElement.innerText = null;
+      if (fate.progressElement)
+        fate.progressElement.innerText = '';
       return;
-    } else if (fate.element.classList.contains('critical-pop')) {
-      if (this.zoneInfo.onlyShowInactiveWithExplicitRespawns && !fate.respawnMinutes)
+    } else if (fate.element?.classList.contains('critical-pop')) {
+      if (this.zoneInfo?.onlyShowInactiveWithExplicitRespawns && !fate.respawnMinutes)
         fate.element.classList.add('nm-hidden');
       fate.element.classList.add('critical-down');
       fate.element.classList.remove('critical-pop');
-      fate.progressElement.innerText = null;
+      if (fate.progressElement)
+        fate.progressElement.innerText = '';
       return;
     }
   }
 
   ProcessFateQueue() {
-    while (this.fateQueue.length !== 0)
-      this.OnFate(this.fateQueue.pop());
+    for (const fate of this.fateQueue)
+      this.OnFate(fate);
+    this.fateQueue = [];
   }
 
   ProcessCEQueue() {
-    while (this.CEQueue.length !== 0)
-      this.OnCE(this.CEQueue.pop());
+    for (const ce of this.CEQueue)
+      this.OnCE(ce);
+    this.CEQueue = [];
   }
 
   UpdateTimes() {
+    const zoneId = this.zoneId;
+    if (!zoneId)
+      return;
     const nowMs = +new Date();
 
-    const primaryWeatherList = this.zoneInfo.primaryWeather;
+    const primaryWeatherList = this.zoneInfo?.primaryWeather;
+    const currentWeather = getWeather(nowMs, zoneId);
     if (primaryWeatherList) {
-      for (let i = 0; i < 5; ++i) {
-        document.getElementById('label-weather-icon' + i).innerHTML = '';
-        document.getElementById('label-weather-text' + i).innerHTML = '';
+      for (let i = 0; i < numWeatherElem; ++i) {
+        const iconElem = document.getElementById(`label-weather-icon${i}`);
+        const textElem = document.getElementById(`label-weather-text${i}`);
+        if (!iconElem || !textElem)
+          throw new UnreachableCode();
+        iconElem.innerHTML = '';
+        textElem.innerHTML = '';
       }
 
-      for (let i = 0; i < 5 && i < primaryWeatherList.length; ++i) {
-        const primaryWeather = primaryWeatherList[i];
-        if (!primaryWeather)
-          continue;
-        const weather = getWeather(nowMs, this.zoneId);
+      primaryWeatherList.forEach((primaryWeather, i) => {
         const weatherIcon = gWeatherIcons[primaryWeather];
-        let weatherStr;
-        if (weather === primaryWeather) {
-          const stopTime = findNextWeatherNot(nowMs, this.zoneId, primaryWeather);
+        let weatherStr = '';
+        if (currentWeather === primaryWeather) {
+          const stopTime = findNextWeatherNot(nowMs, zoneId, primaryWeather);
           weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
         } else {
-          const startTime = findNextWeather(nowMs, this.zoneId, primaryWeather);
-          weatherStr = this.TransByDispLang(this.options.timeStrings.weatherIn)(nowMs, startTime);
+          const startTime = findNextWeather(nowMs, zoneId, primaryWeather);
+          if (startTime !== undefined)
+            weatherStr = this.TransByDispLang(this.options.timeStrings.weatherIn)(nowMs, startTime);
         }
-        document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
-        document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
-      }
-    } else {
-      const currentWeather = getWeather(nowMs, this.zoneId);
-      const stopTime = findNextWeatherNot(nowMs, this.zoneId, currentWeather);
+        const iconElem = document.getElementById(`label-weather-icon${i}`);
+        const textElem = document.getElementById(`label-weather-text${i}`);
+        if (!iconElem || !textElem)
+          throw new UnreachableCode();
+
+        iconElem.innerHTML = weatherIcon ?? '';
+        textElem.innerHTML = weatherStr;
+      });
+    } else if (currentWeather) {
+      const stopTime = findNextWeatherNot(nowMs, zoneId, currentWeather);
       const weatherIcon = gWeatherIcons[currentWeather];
       let weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
-      document.getElementById('label-weather-icon0').innerHTML = weatherIcon;
-      document.getElementById('label-weather-text0').innerHTML = weatherStr;
+
+      const iconElem = document.getElementById(`label-weather-icon0`);
+      const textElem = document.getElementById(`label-weather-text0`);
+      if (!iconElem || !textElem)
+        throw new UnreachableCode();
+      iconElem.innerHTML = weatherIcon ?? '';
+      textElem.innerHTML = weatherStr;
 
       // round up current time
       let lastTime = nowMs;
       let lastWeather = currentWeather;
       for (let i = 1; i < 5; ++i) {
-        const startTime = findNextWeatherNot(lastTime, this.zoneId, lastWeather);
-        const weather = getWeather(startTime + 1, this.zoneId);
+        const startTime = findNextWeatherNot(lastTime, zoneId, lastWeather);
+        if (startTime === undefined)
+          continue;
+        const weather = getWeather(startTime + 1, zoneId);
+        if (weather === undefined)
+          continue;
         const weatherIcon = gWeatherIcons[weather];
         weatherStr = this.TransByDispLang(this.options.timeStrings.weatherIn)(nowMs, startTime);
-        document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
-        document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
+
+        const iconElem = document.getElementById(`label-weather-icon${i}`);
+        const textElem = document.getElementById(`label-weather-text${i}`);
+        if (!iconElem || !textElem)
+          throw new UnreachableCode();
+
+        iconElem.innerHTML = weatherIcon ?? '';
+        textElem.innerHTML = weatherStr;
         lastTime = startTime;
         lastWeather = weather;
       }
@@ -4620,32 +4784,39 @@ class EurekaTracker {
 
     const dayNightMin = Math.ceil((Math.min(nextDay, nextNight) - nowMs) / 1000 / 60);
     const timeStr = this.TransByDispLang(this.options.timeStrings.timeFor)(dayNightMin);
-    document.getElementById('label-time-icon').innerHTML = timeIcon;
-    document.getElementById('label-time-text').innerHTML = timeStr;
 
-    document.getElementById('label-tracker').innerHTML = this.currentTracker;
+    const timeIconElem = document.getElementById('label-time-icon');
+    const timeTextElem = document.getElementById('label-time-text');
+    const labelTrackerElem = document.getElementById('label-tracker');
+    if (!timeIconElem || !timeTextElem || !labelTrackerElem)
+      throw new UnreachableCode();
 
-    for (let i = 0; i < this.nmKeys.length; ++i) {
-      const nm = this.nms[this.nmKeys[i]];
+    timeIconElem.innerHTML = timeIcon;
+    timeTextElem.innerHTML = timeStr;
+    labelTrackerElem.innerHTML = this.currentTracker;
 
-      let respawnMs = null;
+    for (const nm of Object.values(this.nms)) {
+      let respawnMs: number | undefined;
       if (nm.respawnTimeMsLocal)
         respawnMs = nm.respawnTimeMsLocal;
       else if (nm.respawnTimeMsTracker)
         respawnMs = nm.respawnTimeMsTracker;
+      if (respawnMs === undefined)
+        continue;
 
       const popRespawnMs = respawnMs;
 
       // Ignore respawns in the past.
-      respawnMs = Math.max(respawnMs, nowMs);
+      if (respawnMs !== undefined)
+        respawnMs = Math.max(respawnMs, nowMs);
       let respawnIcon = '';
 
       if (nm.weather) {
-        const respawnWeather = getWeather(respawnMs, this.zoneId);
+        const respawnWeather = getWeather(respawnMs, zoneId);
         if (respawnWeather !== nm.weather) {
-          const weatherStartTime = findNextWeather(respawnMs, this.zoneId, nm.weather);
-          if (weatherStartTime > respawnMs) {
-            respawnIcon = gWeatherIcons[nm.weather];
+          const weatherStartTime = findNextWeather(respawnMs, zoneId, nm.weather);
+          if (weatherStartTime && weatherStartTime > respawnMs) {
+            respawnIcon = gWeatherIcons[nm.weather] ?? '';
             respawnMs = weatherStartTime;
           }
         }
@@ -4663,11 +4834,18 @@ class EurekaTracker {
       }
 
       const remainingMs = respawnMs - nowMs;
+
+      // TODO: figure out some better way to initialize nm to ensure these exist.
+      const timeElement = nm.timeElement;
+      const element = nm.element;
+      if (!timeElement || !element)
+        throw new UnreachableCode();
+
       if (remainingMs <= 0) {
         let openUntil = null;
         if (nm.weather) {
-          const weatherStartTime = findNextWeatherNot(nowMs, this.zoneId, nm.weather);
-          respawnIcon = gWeatherIcons[nm.weather];
+          const weatherStartTime = findNextWeatherNot(nowMs, zoneId, nm.weather);
+          respawnIcon = gWeatherIcons[nm.weather] ?? '';
           openUntil = weatherStartTime;
         }
         if (nm.time === 'Night') {
@@ -4677,72 +4855,72 @@ class EurekaTracker {
 
         if (openUntil) {
           const openMin = (openUntil - nowMs) / 1000 / 60;
-          const nmString = respawnIcon + Math.ceil(openMin) +
+          const nmString = `${respawnIcon}${Math.ceil(openMin)}` +
             this.TransByDispLang(this.options.timeStrings.minute);
-          nm.timeElement.innerHTML = nmString;
+          timeElement.innerHTML = nmString;
         } else {
-          nm.timeElement.innerText = '';
+          timeElement.innerText = '';
         }
-        nm.element.classList.remove('nm-down');
+        element.classList.remove('nm-down');
       } else {
         // If still waiting on pop, don't show an icon.
         if (popRespawnMs > nowMs)
           respawnIcon = '';
 
         const remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
-        const nmString = respawnIcon + remainingMinutes +
+        const nmString = `${respawnIcon}${remainingMinutes}` +
           this.TransByDispLang(this.options.timeStrings.minute);
-        if (nm.timeElement.innerHTML !== nmString)
-          nm.timeElement.innerHTML = nmString;
+        if (timeElement.innerHTML !== nmString)
+          timeElement.innerHTML = nmString;
 
-        if (!this.zoneInfo.treatNMsAsSkirmishes)
-          nm.element.classList.add('nm-down');
+        if (!this.zoneInfo?.treatNMsAsSkirmishes)
+          element.classList.add('nm-down');
       }
     }
   }
 
-  ImportFromTracker(importText) {
-    const trackerToNM = {};
-    for (let i = 0; i < this.nmKeys.length; ++i) {
-      const nm = this.nms[this.nmKeys[i]];
+  ImportFromTracker(importText: string) {
+    const trackerToNM: { [trackerName: string]: NMInfo } = {};
+    for (const nm of Object.values(this.nms)) {
       if (!nm.trackerName)
         continue;
       trackerToNM[this.TransByParserLang(nm.trackerName).toLowerCase()] = nm;
     }
 
-    let regex = this.TransByParserLang(this.options.Regex);
-    regex = regex['gTimeRegex'];
+    const regex = this.TransObjectByParserLang(this.options.Regex, 'gTimeRegex');
     const importList = importText.split(' → ');
-    for (let i = 0; i < importList.length; i++) {
-      const m = importList[i].match(regex);
+    for (const entry of importList) {
+      const m = regex.exec(entry);
       if (!m) {
-        console.error('Unknown tracker entry: ' + importList[i]);
+        console.error(`Unknown tracker entry: ${entry}`);
         continue;
       }
       const name = m[1];
       const time = m[2];
+      if (name === undefined || time === undefined)
+        throw new UnreachableCode();
       const nm = trackerToNM[name.toLowerCase()];
       if (nm)
-        nm.respawnTimeMsTracker = (time * 60 * 1000) + (+new Date());
+        nm.respawnTimeMsTracker = (parseFloat(time) * 60 * 1000) + (+new Date());
       else
-        console.error('Invalid NM Import: ' + name);
+        console.error(`Invalid NM Import: ${name}`);
     }
 
     this.UpdateTimes();
   }
 
-  OnLog(e) {
+  OnLog(e: EventResponses['onLogEvent']) {
     if (!this.zoneInfo)
       return;
     for (const log of e.detail.logs) {
-      const gFlagRegex = this.TransByParserLang(this.options.Regex, 'gFlagRegex');
-      let match = log.match(gFlagRegex);
-      if (match)
-        this.AddFlag(match[2], match[3], match[1], match[4]);
+      const flagRegex = this.TransObjectByParserLang(this.options.Regex, 'gFlagRegex');
+      let match = flagRegex.exec(log);
+      if (match && match[1] && match[2] && match[3] && match[4])
+        this.AddFlag(parseFloat(match[2]), parseFloat(match[3]), match[1], match[4]);
 
-      if (this.fairy) {
+      if (this.fairyRegex) {
         if (log.includes(' 03:') || log.includes('00:0839:')) {
-          match = log.match(this.fairy.regex);
+          match = this.fairyRegex.exec(log);
           if (match)
             this.AddFairy(match.groups);
         }
@@ -4751,20 +4929,20 @@ class EurekaTracker {
       if (!this.zoneInfo.hasTracker)
         return;
 
-      const gTrackerRegex = this.TransByParserLang(this.options.Regex, 'gTrackerRegex');
-      match = log.match(gTrackerRegex);
-      if (match)
+      const trackerRegex = this.TransObjectByParserLang(this.options.Regex, 'gTrackerRegex');
+      match = trackerRegex.exec(log);
+      if (match && match[1])
         this.currentTracker = match[1];
-      const gImportRegex = this.TransByParserLang(this.options.Regex, 'gImportRegex');
-      match = log.match(gImportRegex);
-      if (match) {
+      const importRegex = this.TransObjectByParserLang(this.options.Regex, 'gImportRegex');
+      match = importRegex.exec(log);
+      if (match && match[2]) {
         this.ImportFromTracker(match[2]);
         continue;
       }
     }
   }
 
-  OnFate(e) {
+  OnFate(e: EventResponses['onFateEvent']) {
     // Upon entering Eureka we usually receive the fate info before
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
@@ -4775,8 +4953,7 @@ class EurekaTracker {
 
     switch (e.detail.eventType) {
       case 'add':
-        for (const key of this.nmKeys) {
-          const nm = this.nms[key];
+        for (const nm of Object.values(this.nms)) {
           if (e.detail.fateID === nm.fateID) {
             this.OnFatePop(nm);
             return;
@@ -4784,8 +4961,7 @@ class EurekaTracker {
         }
         break;
       case 'remove':
-        for (const key of this.nmKeys) {
-          const nm = this.nms[key];
+        for (const nm of Object.values(this.nms)) {
           if (e.detail.fateID === nm.fateID) {
             this.OnFateKill(nm);
             return;
@@ -4793,8 +4969,7 @@ class EurekaTracker {
         }
         break;
       case 'update':
-        for (const key of this.nmKeys) {
-          const nm = this.nms[key];
+        for (const nm of Object.values(this.nms)) {
           if (e.detail.fateID === nm.fateID) {
             this.OnFateUpdate(nm, e.detail.progress);
             return;
@@ -4804,7 +4979,7 @@ class EurekaTracker {
     }
   }
 
-  OnCE(e) {
+  OnCE(e: EventResponses['onCEEvent']) {
     // Upon entering Eureka we usually receive the CE info before
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
@@ -4815,13 +4990,7 @@ class EurekaTracker {
       return;
     }
 
-    let nm = null;
-    for (const key of this.nmKeys) {
-      if (e.detail.data.ceKey === this.nms[key].ceKey) {
-        nm = this.nms[key];
-        break;
-      }
-    }
+    const nm = Object.values(this.nms).find((nm) => e.detail.data.ceKey === nm.ceKey);
     if (!nm)
       return;
 
@@ -4839,8 +5008,8 @@ class EurekaTracker {
     }
   }
 
-  SimplifyText(beforeText, afterText) {
-    const str = (beforeText + ' ' + afterText).toLowerCase();
+  SimplifyText(beforeText: string, afterText: string) {
+    const str = `${beforeText} ${afterText}`.toLowerCase();
 
     const dict = {
       'train': [
@@ -4876,18 +5045,15 @@ class EurekaTracker {
         '狗狗',
       ],
     };
-    const keys = Object.keys(dict);
-    for (let i = 0; i < keys.length; ++i) {
-      const key = keys[i];
-      for (let j = 0; j < dict[key].length; ++j) {
-        const m = dict[key][j];
-        if (str.includes(m))
+    for (const [key, entry] of Object.entries(dict)) {
+      for (const value of entry) {
+        if (str.includes(value))
           return key;
       }
     }
   }
 
-  AddFlag(x, y, beforeText, afterText) {
+  AddFlag(x: number, y: number, beforeText: string, afterText: string) {
     const simplify = this.SimplifyText(beforeText, afterText);
     if (simplify) {
       beforeText = simplify;
@@ -4896,6 +5062,8 @@ class EurekaTracker {
     beforeText = beforeText.replace(/(?: at|@)$/, '');
 
     const container = document.getElementById('flag-labels');
+    if (!container)
+      throw new UnreachableCode();
     const label = document.createElement('div');
     label.classList.add('flag');
     this.SetStyleFromMap(label.style, x, y);
@@ -4920,7 +5088,10 @@ class EurekaTracker {
     }, this.options.FlagTimeoutMs);
   }
 
-  AddFairy(matches) {
+  AddFairy(matches: RegExpMatchArray['groups']) {
+    if (matches?.x === undefined || matches?.y === undefined || !this.zoneInfo?.fairy)
+      return;
+
     const mx = this.EntityToMapX(parseFloat(matches.x));
     const my = this.EntityToMapY(parseFloat(matches.y));
     this.AddFlag(mx, my, this.TransByParserLang(this.zoneInfo.fairy), '');
