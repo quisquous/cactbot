@@ -1,14 +1,23 @@
+import { Lang } from '../../resources/languages';
+import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
-
-import { LocaleRegex } from '../../resources/translations';
 import Regexes from '../../resources/regexes';
+import { LocaleRegex } from '../../resources/translations';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
+import { BaseOptions } from '../../types/data';
+import { EventResponses, Party, SavedConfig } from '../../types/event';
+import { ZoneIdType } from '../../types/trigger';
 
 import '../../resources/defaults.css';
 import './pullcounter.css';
 
-const defaultOptions = {
+interface PullCounterOptions extends BaseOptions {
+  Language: Lang;
+}
+
+const defaultOptions: PullCounterOptions = {
+  ...UserConfig.getDefaultBaseOptions(),
   Language: 'en',
 };
 
@@ -18,7 +27,15 @@ const defaultOptions = {
 // and so it's also not worth going back and adding these as there is
 // no backwards compatibility issue for other languages.
 
-const gBossFightTriggers = [
+type Boss = {
+  readonly id: string;
+  readonly zoneId?: ZoneIdType;
+  readonly startRegex?: RegExp;
+  readonly countdownStarts?: boolean;
+  readonly preventAutoStart?: boolean;
+};
+
+const bossFightTriggers: readonly Boss[] = [
   {
     id: 'test',
     zoneId: ZoneId.MiddleLaNoscea,
@@ -127,31 +144,38 @@ const gBossFightTriggers = [
     preventAutoStart: true,
   },
   {
+    id: 'The Southern Bozja Front',
     zoneId: ZoneId.TheBozjanSouthernFront,
     countdownStarts: false,
     preventAutoStart: true,
   },
   {
+    id: 'Zadnor',
     zoneId: ZoneId.Zadnor,
     countdownStarts: false,
     preventAutoStart: true,
   },
-];
+] as const;
 
 class PullCounter {
-  constructor(options, element) {
-    this.options = options;
-    this.element = element;
-    this.zoneName = null;
-    this.bossStarted = false;
-    this.party = [];
-    this.bosses = [];
+  private zoneId?: ZoneIdType;
+  private zoneName = '(unknown)';
+  private party: Party[] = [];
+  private bosses: Boss[] = [];
+  private resetRegex = Regexes.echo({ line: '.*pullcounter reset.*?' });
+  private countdownEngageRegex: RegExp;
+  private pullCounts: { [bossId: string]: number } = {};
 
-    this.resetRegex = Regexes.echo({ line: '.*pullcounter reset.*?' });
+  private bossStarted = false;
+  private countdownBoss?: Boss;
+
+  constructor(private options: PullCounterOptions, private element: HTMLElement) {
+    this.party = [];
+
     this.countdownEngageRegex = LocaleRegex.countdownEngage[this.options.ParserLanguage] ||
       LocaleRegex.countdownEngage['en'];
 
-    callOverlayHandler({
+    void callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'pullcounter',
     }).then((data) => this.SetSaveData(data));
@@ -159,28 +183,28 @@ class PullCounter {
     this.ReloadTriggers();
   }
 
-  OnFightStart(boss) {
-    this.pullCounts[boss.id] = (this.pullCounts[boss.id] || 0) + 1;
+  OnFightStart(boss: Boss) {
+    this.pullCounts[boss.id] = (this.pullCounts[boss.id] ?? 0) + 1;
     this.bossStarted = true;
 
     this.ShowElementFor(boss.id);
     this.SaveData();
   }
 
-  ShowElementFor(id) {
-    this.element.innerText = this.pullCounts[id];
+  ShowElementFor(id: string) {
+    this.element.innerText = (this.pullCounts[id] ?? 0).toString();
     this.element.classList.remove('wipe');
   }
 
   SaveData() {
-    callOverlayHandler({
+    void callOverlayHandler({
       call: 'cactbotSaveData',
       overlay: 'pullcounter',
       data: JSON.stringify(this.pullCounts),
     });
   }
 
-  OnLogEvent(e) {
+  OnLogEvent(e: EventResponses['onLogEvent']) {
     if (this.bossStarted)
       return;
     for (const log of e.detail.logs) {
@@ -202,7 +226,7 @@ class PullCounter {
     }
   }
 
-  OnChangeZone(e) {
+  OnChangeZone(e: EventResponses['ChangeZone']) {
     this.element.innerText = '';
     this.zoneName = e.zoneName;
     this.zoneId = e.zoneID;
@@ -216,9 +240,10 @@ class PullCounter {
     // zone ids when we load that zone and a pull count exists?
     // Proper-case zone names to match ACT.
     this.zoneName = this.zoneName.split(' ').map((word) => {
-      if (!word || word.length === 0)
+      const firstChar = word[0];
+      if (firstChar === undefined)
         return '';
-      return word[0].toUpperCase() + word.substr(1);
+      return firstChar.toUpperCase() + word.substr(1);
     }).join(' ');
 
     this.ReloadTriggers();
@@ -229,12 +254,12 @@ class PullCounter {
       for (const boss of this.bosses) {
         const id = boss.id;
         this.pullCounts[id] = 0;
-        console.log('resetting pull count of: ' + id);
+        console.log(`resetting pull count of: ${id}`);
         this.ShowElementFor(id);
       }
     } else {
       const id = this.zoneName;
-      console.log('resetting pull count of: ' + id);
+      console.log(`resetting pull count of: ${id}`);
       this.ShowElementFor(id);
     }
 
@@ -243,25 +268,25 @@ class PullCounter {
 
   ReloadTriggers() {
     this.bosses = [];
-    this.countdownBoss = null;
+    this.countdownBoss = undefined;
 
-    if (!this.zoneName || !this.pullCounts)
+    if (!this.zoneId || !this.pullCounts)
       return;
 
-    for (const boss of gBossFightTriggers) {
+    for (const boss of bossFightTriggers) {
       if (this.zoneId !== boss.zoneId)
         continue;
       this.bosses.push(boss);
       if (boss.countdownStarts) {
         // Only one boss can be started with countdown in a zone.
         if (this.countdownBoss)
-          console.error('Countdown boss conflict: ' + boss.id + ', ' + this.countdownBoss.id);
+          console.error(`Countdown boss conflict: ${boss.id}, ${this.countdownBoss.id}`);
         this.countdownBoss = boss;
       }
     }
   }
 
-  OnInCombatChange(e) {
+  OnInCombatChange(e: EventResponses['onInCombatChangedEvent']) {
     if (!e.detail.inGameCombat) {
       this.bossStarted = false;
       return;
@@ -279,11 +304,11 @@ class PullCounter {
     if (this.party.length !== 8)
       return;
 
-    if (this.bosses.length === 1) {
-      const boss = this.bosses[0];
-      if (boss.preventAutoStart)
+    const firstBoss = this.bosses[0];
+    if (firstBoss) {
+      if (firstBoss.preventAutoStart)
         return;
-      this.OnFightStart(boss);
+      this.OnFightStart(firstBoss);
       return;
     }
 
@@ -297,18 +322,33 @@ class PullCounter {
     this.element.classList.add('wipe');
   }
 
-  OnPartyChange(e) {
+  OnPartyChange(e: EventResponses['PartyChanged']) {
     this.party = e.party;
   }
 
-  SetSaveData(e) {
+  SetSaveData(e?: SavedConfig) {
+    if (!e || !e.data) {
+      this.pullCounts = {};
+      this.ReloadTriggers();
+      return;
+    }
+
     try {
-      if (e && e.data)
-        this.pullCounts = JSON.parse(e.data);
-      else
-        this.pullCounts = {};
+      if (typeof e.data !== 'string')
+        throw new Error(e.data.toString());
+
+      const parsed: unknown = JSON.parse(e.data);
+      if (!parsed || typeof parsed !== 'object')
+        throw new Error(e.data);
+
+      for (const [id, count] of Object.entries(parsed ?? {})) {
+        if (typeof count !== 'number')
+          throw new Error(e.data);
+        this.pullCounts[id] = count;
+      }
     } catch (err) {
-      console.error('onSendSaveData parse error: ' + err.message);
+      console.error(`onSendSaveData parse error`);
+      console.error(err);
     }
     this.ReloadTriggers();
   }
@@ -316,7 +356,12 @@ class PullCounter {
 
 UserConfig.getUserConfigLocation('pullcounter', defaultOptions, () => {
   const options = { ...defaultOptions };
-  const pullcounter = new PullCounter(options, document.getElementById('pullcounttext'));
+
+  const element = document.getElementById('pullcounttext');
+  if (!element)
+    throw new UnreachableCode();
+
+  const pullcounter = new PullCounter(options, element);
 
   addOverlayListener('onLogEvent', (e) => pullcounter.OnLogEvent(e));
   addOverlayListener('ChangeZone', (e) => pullcounter.OnChangeZone(e));
