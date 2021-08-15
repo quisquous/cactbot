@@ -206,7 +206,7 @@ const lineDocs: LineDocs = {
       en: [
         '26|2021-04-26T14:36:09.4340000-04:00|35|Physical Damage Up|15.00|400009D5|Dark General|400009D5|Dark General|00|48865|48865||cbcfac4df1554b8f59f343f017ebd793',
         '26|2021-04-26T14:23:38.7560000-04:00|13b|Whispering Dawn|21.00|4000B283|Selene|10FF0002|Potato Chippy|4000016E|00|51893|49487||c7400f0eed1fe9d29834369affc22d3b',
-        '26|2021-07-02T21:57:07.9110000-04:00|82c|Damage Down|30.00|40003D9F|Eden\'s Promise|40003D9D||00|148000|63981880||86ff6bf4cfdd68491274fce1db5677e8',
+        '26|2021-07-02T21:57:07.9110000-04:00|d2|Doom|9.97|40003D9F||10FF0001|Tini Poutini|00|26396|26396||86ff6bf4cfdd68491274fce1db5677e8',
       ],
     },
   },

@@ -26,7 +26,7 @@ This guide was last updated for:
   - [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
   - [Object ID](#object-id)
   - [Ability ID](#ability-id)
-- [Log Line Overview](#log-line-overview)
+- [ACT Log Line Overview](#act-log-line-overview)
   - [Line 00 (0x00): LogLine](#line-00-0x00-logline)
     - [Structure](#structure)
     - [Regexes](#regexes)
@@ -92,7 +92,7 @@ This guide was last updated for:
     - [Structure](#structure-13)
     - [Regexes](#regexes-9)
     - [Examples](#examples-13)
-    - [Head Marker Codes](#head-marker-codes)
+    - [Head Marker IDs](#head-marker-ids)
   - [Line 28 (0x1C): NetworkRaidMarker (Floor Marker)](#line-28-0x1c-networkraidmarker-floor-marker)
     - [Structure](#structure-14)
     - [Examples](#examples-14)
@@ -140,7 +140,6 @@ This guide was last updated for:
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
   - [Line 254 (0xFE): Error](#line-254-0xfe-error)
   - [Line 255 (0xFF): Timer](#line-255-0xff-timer)
-- [Future Network Data Science](#future-network-data-science)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -161,10 +160,11 @@ data_flow
     network -> fflogs [label="upload"]
     network -> ffxivmon [label="import"]
     network -> ACT [label="import"]
-    network -> timeline [label="process"]
-    timeline [label="cactbot make_timeline.py"]
+    network -> util [label="process"]
+    util [label="cactbot util scripts"]
     plugins [label="triggers, ACT plugins"]
     ACT -> plugins [label="ACT log lines"]
+    ACT -> plugins [label="network log lines"]
   }
 data_flow
 </details>
@@ -195,7 +195,8 @@ Or, somebody else sends you a log, and you want to make triggers from it.
 To do this, click the **Import/Export** tab,
 click on **Import a Log File**,
 click on **Select File...**
-select the **Network_date.log** log file,
+select the **Network_plugin_date.log** log file,
+(where `plugin` and `date` are the FFXIV plugin version and day)
 and finally click the **YOU** button.
 
 ![import screenshot](images/logguide_import.png)
@@ -236,7 +237,7 @@ so this document does not focus very much on this type of data.
 ### Network Log Lines
 
 These represent the lines that the ffxiv plugin writes to disk in
-**Network_20191002.log** files in your log directory.
+**Network_22009_20210801.log** files in your log directory.
 These lines are still processed and filtered by the ffxiv plugin,
 and are (mostly) not raw network data.
 
@@ -262,13 +263,19 @@ The network log lines are used by some tools, such as:
 - ffxivmon
 - cactbot make_timeline utility
 
+In the past,
+cactbot used to use [ACT log lines](#act-log-lines) for all triggers
+but has switched to using network log lines instead
+as they have more information.
+Timelines still use ACT log lines for syncing (for now).
+
 If you [import a network log file into ACT](#importing-an-old-fight),
 then it you can view the ACT log lines in the fight.
 
 ### ACT Log Lines
 
 These are the log lines that come out of the ffxiv plugin at runtime and are
-exposed to plugins for triggers.
+also exposed to plugins for triggers.
 These are what the [View Logs](#viewing-logs-after-a-fight) option in ACT shows.
 
 Data in ACT log lines is separated by colons, i.e. `:`.
@@ -330,33 +337,31 @@ so this link will give you more information about it:
 
 This works for both players and enemies, abilities and spells.
 
-## Log Line Overview
+## ACT Log Line Overview
 
-Here's an example of a typical log line:
+Here's an example of a typical ACT log line:
 `[12:01:48.293] 21:80034E29:40000001:E10:00:00:00`.
-This log line happens to be the actor control line (type=`0x21`) for commencing Titan Extreme.
+This log line happens to be the [actor control line](#line33) (type=`0x21`) for commencing Titan Extreme.
 
-Log lines always start with the time in square brackets.
+ACT log lines lines always start with the time in square brackets.
 This time is formatted to be in your local time zone.
-The time is followed with a hex value (in this case 0x21) that indicates the type of the log line it is.
+The time is followed with a hex value (in this case 0x21) that indicates the type of the line it is.
 These types are internal to the ffxiv plugin
 and represent its conversion of network data and memory data into discrete events.
 
-The rest of the data in the log line needs to be interpreted based on what type it is.
-See the following sections that describe each log line.
-The examples in these sections do not include the time prefix for brevity.
+The rest of the data in the line needs to be interpreted based on what type it is.
+See the following sections that describe each line.
 
 Many line types can have missing combatant names.
-Lines 02 (ChangePrimaryPlayer) and 03 (AddCombatant) should always have combatant names.
+[ChangePrimaryPlayer](#line02) and [AddCombatant](#line03) lines should always have combatant names.
 
 <a name="line00"></a>
 
 ### Line 00 (0x00): LogLine
 
 These are what this document calls "game log lines".
-There is a two byte log type and then a string.
 Because these are not often used for triggers
-(other than `0839` messages),
+(other than `0839` and `0044` messages),
 the full set of LogTypes is not well-documented.
 
 (Pull requests welcome!)
@@ -414,18 +419,19 @@ There are a number of reasons to avoid basing triggers on game log lines:
 - often vague (the attack misses)
 - can change spelling at the whim of SquareEnix
 
-Instead, the recommendation is to base your triggers on ACT log lines that are not type `00`.
-Prefer using `1A` "gains the effect" message instead of `00` "suffers the effect" messages.  Prefer using the `14` "starts using" instead of `00` "readies" or "begins casting".
+Instead, the recommendation is to base your triggers on ACT log lines that are not type `0x00`.
+Prefer using [NetworkBuff](#line26) line instead of "suffers the effect" game log lines.
+Prefer using the [NetworkStartsCasting](#line20) "starts using" line instead of the "readies" or "begins casting" game log lines.
 
 At the moment, there are some cases where you must use game log lines,
 such as sealing and unsealing of zones, or boss rp text for phase transitions.
 
 Note:
-There are examples where `14` "starts using" lines show up
+There are examples where [NetworkStartsCasting](#line20) lines show up
 after the corresponding `00` "readies" line,
 but it is on the order of tens of milliseconds
 and does not consistently show up first.
-`15` "ability" lines always seem to show up before the `00` "uses" lines.
+[NetworkAbility](#line21) lines always seem to show up before the `00` "uses" lines.
 
 <a name="line01"></a>
 
@@ -770,8 +776,6 @@ If you have the **Include HP for Triggers** setting turned on
 in the **FFXIV Settings** tab of ACT, then it will emit log lines
 for every percentage change of every entity.
 
-This can be used for phase change triggers.
-
 ![include hp screenshot](images/logguide_includehp.png)
 
 Structure:
@@ -786,16 +790,21 @@ Examples:
 
 #### CombatantHP is an ACT-only line
 
-CombatantHP lines are only sent over the ACT log line format and are not included
-as a network log line. As such, triggers which depend on an enemy's HP reaching a
-certain threshold should instead use the `Util.watchCombatant` promise helper.
+CombatantHP lines are only sent over the ACT log line format
+and are not included as a network log line.
+As such,
+triggers which depend on an enemy's HP reaching a certain threshold
+should instead use the `Util.watchCombatant` promise helper.
 
 <a name="line20"></a>
 
 ### Line 20 (0x14): NetworkStartsCasting
 
-For abilities with cast bars, this is the log line that specifies that a player or a monster has started casting an ability.
-This precedes a log line of type `15`, `16`, or `17`
+For abilities with cast bars,
+this is the log line that specifies that a player or a monster has started casting an ability.
+This precedes a [NetworkAbility](#line21),
+[NetworkAOEAbility](#line22),
+or [NetworkCancelAbility](#line23)
 where it uses the ability or is interrupted.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=StartsUsing&lang=en) -->
@@ -840,9 +849,7 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-The value after `14` is the 4 byte [ability id](#ability-id).
-
-These are usually (but not always) associated with game log lines that either look like
+These lines are usually (but not always) associated with game log lines that either look like
 `00:282B:Shinryu readies Earthen Fury.`
 or `00:302b:The proto-chimera begins casting The Ram's Voice.`
 
@@ -851,11 +858,17 @@ or `00:302b:The proto-chimera begins casting The Ram's Voice.`
 ### Line 21 (0x15): NetworkAbility
 
 This is an ability that ends up hitting a single target (possibly the caster's self).
-The reason this is worded as "ends up hitting" is that some AOE abilities may only hit a single target, in which case they still result in type `15`.
-For example, in ucob, if Firehorn's fireball in nael phase hits the whole group, it will be a `16` type.
-If one person runs the fireball out and it only hits them, then it is type `15` because there's only one target.
-If your trigger includes the message type, it is usually best to write your regex as `1[56]` to include both possibilities.
-Ground AOEs that don't hit anybody are type `16`.
+The reason this is worded as "ends up hitting" is that some AOE abilities may only hit a single target,
+in which case they still result in this type
+
+For example, in ucob, if Firehorn's fireball in nael phase hits the whole group, it will be a `22/0x16` type.
+If one person runs the fireball out and it only hits them, then it is type `21/0x15` because there's only one target.
+If your trigger includes the message type,
+it is usually best to write your ACT log line regex `1[56]`
+and your network log line regex as `2[12]`
+to include both possibilities.
+
+Ground AOEs that don't hit anybody are considered [NetworkAOEAbility](#line22) lines.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=Ability&lang=en) -->
 
@@ -1118,7 +1131,8 @@ Ground effect dots get listed separately.
 
 ### Line 25 (0x19): NetworkDeath
 
-This message corresponds to an actor being defeated and killed.  This usually comes along with a battle log message such as `You defeat the worm's heart.`
+This message corresponds to an actor being defeated and killed.
+This usually comes along with a game log message such as `You defeat the worm's heart.`
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=WasDefeated&lang=en) -->
 
@@ -1194,25 +1208,25 @@ ACT Log Line Regex:
 Network Log Line Examples:
 26|2021-04-26T14:36:09.4340000-04:00|35|Physical Damage Up|15.00|400009D5|Dark General|400009D5|Dark General|00|48865|48865||cbcfac4df1554b8f59f343f017ebd793
 26|2021-04-26T14:23:38.7560000-04:00|13b|Whispering Dawn|21.00|4000B283|Selene|10FF0002|Potato Chippy|4000016E|00|51893|49487||c7400f0eed1fe9d29834369affc22d3b
-26|2021-07-02T21:57:07.9110000-04:00|82c|Damage Down|30.00|40003D9F|Eden's Promise|40003D9D||00|148000|63981880||86ff6bf4cfdd68491274fce1db5677e8
++26|2021-07-02T21:57:07.9110000-04:00|d2|Doom|9.97|40003D9F||10FF0001|Tini Poutini|00|26396|26396||86ff6bf4cfdd68491274fce1db5677e8
 
 ACT Log Line Examples:
-[14:36:09.434] 1A:400009D5:Dark General gains the effect of Physical Damage Up from Dark General for 15.00 Seconds.
-[14:23:38.756] 1A:10FF0002:Potato Chippy gains the effect of Whispering Dawn from Selene for 21.00 Seconds.
-[21:57:07.911] 1A:40003D9D: gains the effect of Damage Down from Eden's Promise for 30.00 Seconds.
+[11:36:09.434] 1A:400009D5:Dark General gains the effect of Physical Damage Up from Dark General for 15.00 Seconds.
+[11:23:38.756] 1A:10FF0002:Potato Chippy gains the effect of Whispering Dawn from Selene for 21.00 Seconds.
+[18:57:07.911] 1A:10FF0001:Tini Poutini gains the effect of Doom from  for 9.97 Seconds.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-The "Source Name" can be blank here (and there will be two spaces like the above example if that's the case).
+The `source` can be blank here (and there will be two spaces like the above example if that's the case).
 
-This corresponds to game log messages that look like this:
+This line corresponds to game log lines that look like this:
 `00:12af:The worm's heart suffers the effect of Slashing Resistance Down.`
 `00:112e:Tini Poutini gains the effect of The Balance.`
-`00:08af;You suffer the effect of Burning Chains.`
+`00:08af:You suffer the effect of Burning Chains.`
 
-Although game messages differentiate between buffs and debuffs,
-log message type `1A` includes all effect types (both positive and negative).
+Although game log lines differentiate between buffs and debuffs,
+this `NetworkBuff` line includes all effect types (both positive and negative).
 
 You cannot count on the time remaining to be precise.
 In rare cases, the time will already have counted down a tiny bit.
@@ -1252,23 +1266,29 @@ Network Log Line Examples:
 27|2021-05-11T13:48:45.3370000-04:00|40000950|Copied Knave|0000|0000|0117|0000|0000|0000||fa2e93fccf397a41aac73a3a38aa7410
 
 ACT Log Line Examples:
-[14:17:31.698] 1B:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
-[13:48:45.337] 1B:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
+[11:17:31.698] 1B:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
+[10:48:45.337] 1B:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-The different headmarker types (e.g. `0018` or `001A` in the examples above) are consistent across fights as far as which marker they *visually* represent. (Correct *resolution* for the marker mechanic may not be.)  For example, `0039` is the meteor marker in Shinryu EX adds phase and the Baldesion Arsenal Ozma fight.  The data following the type always appears to be zero in practice, although `Unknown1` and `Unknown2` infrequently have non-zero values.
+The different headmarker IDs (e.g. `0018` or `001A` in the examples above)
+are consistent across fights as far as which marker they *visually* represent.
+(Correct *resolution* for the marker mechanic may not be.)
+For example, `0039` is the meteor marker in Shinryu EX adds phase and the Baldesion Arsenal Ozma fight.
+The fields following `id` always appears to be zero in practice,
+although the fields before the `id` infrequently have non-zero values.
 
-Note: It's unclear when the head markers disappear.  Maybe `Unknown2` is a duration time? It's not clear what either of these unknown values mean.
+Note: It's unclear when the head markers disappear.
+Maybe one of these fields is a duration time? It's not clear what either of these unknown values mean.
 
 Also, this appears to only be true on later fights.
-Turn 5 fireball and conflag headmarkers are actions from Twintania and not `1B` lines.
+Turn 5 fireball and conflag headmarkers are actions from Twintania and not `NetworkTargetIcon` lines.
 It seems likely this was implemented later and nobody wanted to break old content by updating it to use newer types.
 
-#### Head Marker Codes
+#### Head Marker IDs
 
-Marker Code | Name | Sample Locations | Consistent meaning?
+ID | Name | Sample Locations | Consistent meaning?
 --- | --- | --- | ---
 000[1-2, 4] | Prey Circle (orange) | o6s, The Burn boss 2 | Yes
 0007 | Green Meteor | t9n/s | N/A
@@ -1543,9 +1563,13 @@ Unused.
 
 See also: [nari director update documentation](https://xivlogs.github.io/nari/types/event/directorupdate.html)
 
-To control aspects of the user interface, the game sends packets called Actor Controls. These are broken into 3 types: ActorControl, ActorControlSelf, and ActorControlTarget. If ActorControl is global, then ActorControlSelf / ActorControlTarget affects individual actor(s).
+To control aspects of the user interface, the game sends packets called Actor Controls.
+These are broken into 3 types: ActorControl, ActorControlSelf, and ActorControlTarget.
+If ActorControl is global, then ActorControlSelf / ActorControlTarget affects individual actor(s).
 
-Actor control commands are identified by a category, with parameters passed to it as a handler. DirectorUpdate is a category of ActorControlSelf and is used to control the events inside content for an individual player:
+Actor control commands are identified by a category,
+with parameters passed to it as a handler.
+DirectorUpdate is a category of ActorControlSelf and is used to control the events inside content for an individual player:
 
 - BGM change
 - some cutscenes
@@ -1590,13 +1614,17 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-`TypeAndContentId` is 2 bytes of a type enum,
-where `8003` is the update type for instanced content.
-It's then followed by 2 bytes of a content id.
-This is the ID from the InstanceContent table.
+`instance` is 4 bytes made up of two internal fields.
+The first two bytes are the update type (e.g. `8003` is the update type for instanced content).
+The second two bytes are the `InstanceContentType`,
+from the [InstanceContent table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/InstanceContent.csv).
+For example, if `instance` is `80034E6C` then `0x4E6C` is the `InstanceContentType`.
+`0x4E6C` is 20076 in decimal, and corresponds to Diamond Weapon (Savage):
+<https://xivapi.com/InstanceContent/20076?pretty=true>.
 
 Wipes on most raids and primals these days can be detected via this regex:
-`21:........:40000010:`.  However, this does not occur on some older fights,
+`21:........:40000010:`.
+However, this does not occur on some older fights,
 such as coil turns where there is a zone seal.
 
 Known types:
@@ -1624,6 +1652,8 @@ Still unknown:
 
 This log message toggles whether the nameplate for a particular entity is visible or not.
 This can help you know when a mob is targetable, for example.
+
+The `toggle` value is either `00` (hide nameplate) or `01` (show nameplate).
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=NameToggle&lang=en) -->
 
@@ -1697,7 +1727,7 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.
+The type of tether in the above three lines are `0001`, `0007`, and `006E` respectively.
 
 Like [NetworkTargetIcon (Head Marker)](#line27),
 Type is consistent across fights and represents a particular visual style of tether.
@@ -1716,15 +1746,15 @@ There are also a number of examples where tethers are generated in some other wa
 
 This log line is recorded every server tick where limit break energy is generated while in combat in a light or full party.
 (Generation is not recorded while at cap.)
-It starts at 0x0000 at the beginning of the instance (or encounter in the caseof a single-encounter instance,)
-and counts up by 0x00DC (220 decimal,) until the limit break is used,
+It starts at `0x0000` at the beginning of the instance (or encounter in the caseof a single-encounter instance,)
+and counts up by `0x00DC` (220 decimal,) until the limit break is used,
 or the instance's maximum limit value is reached.
 This rate of increase is constant,
 but other actions taken can cause extra increments to happen independent of the base increase.
 (These other increments occur in the same packet as the base rate, but separately.)
 
-Each limit break bar is 0x2710 (10,000 decimal) units.
-Thus, the maximum possible recorded value would be 0x7530.
+Each limit break bar is `0x2710` (10,000 decimal) units.
+Thus, the maximum possible recorded value would be `0x7530`.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=LimitBreak&lang=en) -->
 
@@ -1763,16 +1793,17 @@ ACT Log Line Examples:
 This log line is a sync packet that tells the client to render an action that has previously resolved.
 (This can be an animation or text in one of the game text logs.)
 It seems that it is emitted at the moment an action "actually happens" in-game,
-while the `14/15` line is emitted before, at the moment the action is "locked in".
+while the [NetworkAbility](#line21) or [NetworkAOEAbility](#line22) line is emitted before,
+at the moment the action is "locked in".
+
 [As Ravahn explains it](https://discordapp.com/channels/551474815727304704/551476873717088279/733336512443187231):
 
-> "If I cast a spell, I will get [a `NetworkAbility`] packet (line type [`14/15`]) showing the damage amount,
-but the target isn't expected to actually take that damage yet.
-The [`25` log line]  has a unique identifier in it which refers back to the [`14/15`] line[,]
-and indicates that the damage should now take effect on the target.
-> [The] FFXIV plugin doesn't use these lines currently, they are used by FFLogs.
-It would help though if I did, but ACT doesn't do multi-line parsing very easily[,]
-so I would need to do a lot of work-arounds."
+> if I cast a spell, i will get an effectresult packet (line type 21/22) showing the damage amount,
+> but the target isnt expected to actually take that damage yet.
+> the line 37 has a unique identifier in it which refers back to the 21/22 line and indicates that the damage should now take effect on the target.
+> The FFXIV plugin doesn't use these lines currently, they are used by FFLogs.
+> It would help though if I did, but ACT doesn't do multi-line parsing very easily,
+> so I would need to do a lot of work-arounds."
 
 Structure:
 `25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
@@ -1787,10 +1818,10 @@ Examples:
 
 ### Line 38 (0x26): NetworkStatusEffects
 
-For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
-For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
-[1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
- and [25:NetworkActionSync](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#25-NetworkActionSync).
+For NPC opponents (and possibly PvP) this log line is generated alongside [NetworkDoT](#line24) lines.
+For non-fairy allies, it is generated alongside [NetworkBuff](#line26),
+[NetworkBuffRemove](#line30),
+and [NetworkActionSync](#line37).
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=StatusEffect&lang=en) -->
 
@@ -1831,14 +1862,17 @@ ACT Log Line Examples:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 It seems likely that this line was added in order to extend functionality
-for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
+for the [NetworkBuff](#line26),
+[NetworkBuffRemove](#line30),
+and [NetworkActionSync](#line37)
+log lines without breaking previous content or plugins.
 
 <a name="line39"></a>
 
 ### Line 39 (0x27): NetworkUpdateHP
 
 It's not completely clear what triggers this log line,
-but it contains basic information comparable to `25` and `26`.
+but it contains basic information comparable to [NetworkActionSync](#line37) and [NetworkStatusEffects](#line38).
 It applies to allies and fairies/pets.
 
 This log line tends to fire roughly every 3 seconds in some cases.
@@ -1925,10 +1959,10 @@ ACT Log Line Examples:
 
 ### Line 251 (0xFB): Debug
 
-Lines are printed, but with blank data.
-
 As network log lines, they often have information like this:
 `251|2019-05-21T19:11:02.0268703-07:00|ProcessTCPInfo: New connection detected for Process [2644]: 192.168.1.70:49413=>204.2.229.85:55021|909171c500bed915f8d79fc04d3589fa`
+
+ACT log lines are blank for this type.
 
 <a name="line252"></a>
 
@@ -1936,9 +1970,9 @@ As network log lines, they often have information like this:
 
 If the setting to dump all network data to logfiles is turned on,
 then ACT will emit all network data into the network log itself.
-In the ACT log, these log lines are printed, but with blank data.
-
 This can be used to import a network log file into ffxivmon and inspect packet data.
+
+ACT log lines are blank for this type.
 
 ![dump network data screenshot](images/logguide_dumpnetworkdata.png)
 
@@ -1946,10 +1980,10 @@ This can be used to import a network log file into ffxivmon and inspect packet d
 
 ### Line 253 (0xFD): Version
 
-Lines are printed, but with blank data.
-
 As network log lines, they usually look like this:
 `253|2019-05-21T19:11:02.0268703-07:00|FFXIV PLUGIN VERSION: 1.7.2.12, CLIENT MODE: FFXIV_64|845e2929259656c833460402c9263d5c`
+
+ACT log lines are blank for this type.
 
 <a name="line254"></a>
 
@@ -1962,17 +1996,3 @@ These are lines emitted directly by the ffxiv plugin when something goes wrong.
 ### Line 255 (0xFF): Timer
 
 Theoretically used when memory-parsing is used, but I haven't seen them.
-
-## Future Network Data Science
-
-It'd be nice for folks to dig into network data to figure out how some specific mechanics work that are currently not exposed in the log.
-
-- Boss headmarkers for Lamebrix Strikebocks (both A10S and Eureka Pyros)
-- Running into insta-kill walls
-- Figure out how t13 Dark Aether and Suzaku EX adds tether
-- Find network data zone sealing so game log lines don't have to be used
-- Network data for Absolute Virtue clone buffs (they're currently just game log lines)
-- How to detect a wipe in older content like coil?
-- How to differentiate fake mobs from real mobs in the added combatant data so they can be filtered out.
-
-See: [importing into ffxivmon](#importing-into-ffxivmon).
