@@ -28,6 +28,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Bubble Explosions',
           de: 'Vermeide die Blasen-Explosionen',
+          ja: '泡の爆発から避ける',
+          cn: '躲开泡泡爆炸',
         },
       },
     },
@@ -127,6 +129,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Ring on YOU',
           de: 'Ring auf DIR',
+          ja: '自分にドーナツ範囲',
+          cn: '环形AoE点名',
         },
       },
     },
@@ -140,6 +144,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Cross on YOU',
           de: 'Kreuz auf DIR',
+          ja: '自分に十字範囲',
+          cn: '十字AoE点名',
         },
       },
     },
@@ -313,7 +319,7 @@ const triggerSet: TriggerSet<Data> = {
         'Circle Of Chaos': '混沌之圈',
         'Cross Of Chaos': '混沌十字',
         'Eye Of The Fire': '惧乱之眼',
-        'Gallop': 'ギャロップ',
+        'Gallop': '飞驰',
         'Hydro Pull': '水力吸引',
         'Hydro Push': '水力推行',
         'Mystic Flame': '魔光炎',
