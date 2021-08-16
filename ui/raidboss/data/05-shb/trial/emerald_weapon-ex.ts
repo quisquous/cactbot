@@ -138,10 +138,12 @@ const triggerSet: TriggerSet<Data> = {
         clockwise: {
           en: 'Rotate Clockwise',
           de: 'Im Uhrzeigersinn rotieren',
+          cn: '顺时针转',
         },
         counterclock: {
           en: 'Rotate Counterclockwise',
           de: 'Gegen den Uhrzeigersinn rotieren',
+          cn: '逆时针转',
         },
       },
     },
@@ -159,6 +161,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Red Circle',
           de: 'Weg vom roten Kreis',
+          cn: '远离红圈',
         },
       },
     },
@@ -304,6 +307,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go ${dir}, Aim Across',
           de: 'Geh nach ${dir}, schau Gegenüber',
+          cn: '去${dir}, 看好对面',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -326,6 +330,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge Arrow Lines',
           de: 'Weiche den Pfeillinien aus',
+          cn: '避开箭头路径',
         },
       },
     },
@@ -385,10 +390,12 @@ const triggerSet: TriggerSet<Data> = {
         middleFirst: {
           en: '${middle} -> ${dir1} / ${dir2}',
           de: '${middle} -> ${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2} -> ${middle}',
         },
         middleLast: {
           en: '${dir1} / ${dir2} -> ${middle}',
           de: '${dir1} / ${dir2} -> ${middle}',
+          cn: '${dir1} / ${dir2} -> ${middle}',
         },
       },
     },
@@ -436,6 +443,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Intercard + Out (Plus)',
           de: 'Interkardinal + Raus (Plus)',
+          cn: '去场边角落 (十字)',
         },
       },
     },
@@ -449,6 +457,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Cardinal + Out (Cross)',
           de: 'Kardinal + Raus (Kreuz)',
+          cn: '去场边中点 (X字)',
         },
       },
     },
@@ -479,7 +488,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geh nach Norden; Achte auf die Lücken zwischen den Soldaten',
           fr: 'Regardez les soldats en rangs', // FIXME
           ja: '飛行部隊と射撃部隊を見覚える', // FIXME
-          cn: '观察士兵队列', // FIXME
+          cn: '去北边；躲避士兵射击/飞机轰炸',
           ko: '엑사플레어 순서, 빈 공간 확인', // FIXME
         },
       },
@@ -611,7 +620,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'bitblade': '枪刃浮游炮',
         'Black Wolf\'s Image': '盖乌斯的幻影',
