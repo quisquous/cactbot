@@ -173,7 +173,7 @@ const defaultOptions: EurekaOptions = {
       ja: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
-          return ` 終わるまであと ${Math.ceil(min)} 分 `;
+          return ` 終わるまであと${Math.ceil(min)}分 `;
         }
         return ' 終わるまであと ???';
       },
