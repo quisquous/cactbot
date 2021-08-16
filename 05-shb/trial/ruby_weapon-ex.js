@@ -75,6 +75,8 @@ Options.Triggers.push({
                 text: {
                     en: 'Away From Line Ends',
                     de: 'Weg von den Linienenden',
+                    ja: '線の端から避ける',
+                    cn: '远离线末端',
                     ko: '선 끝나는 곳 피하기',
                 },
             },
@@ -141,6 +143,8 @@ Options.Triggers.push({
                 outOfMiddle: {
                     en: 'Out Of Middle',
                     de: 'Raus aus der Mitte',
+                    ja: '横へ',
+                    cn: '远离中间',
                     ko: '가운데 피하기',
                 },
             },
@@ -357,22 +361,30 @@ Options.Triggers.push({
                     text: {
                         en: '${dir} (${suffix})',
                         de: '${dir} (${suffix})',
+                        ja: '${dir} (${suffix})',
+                        cn: '${dir} (${suffix})',
                     },
                     out: Outputs.out,
                     in: Outputs.in,
                     blueSuffix: {
                         en: 'blue',
                         de: 'Blau',
+                        ja: '青',
+                        cn: '蓝',
                         ko: '파랑',
                     },
                     redSuffix: {
                         en: 'red',
                         de: 'Rot',
+                        ja: '赤',
+                        cn: '红',
                         ko: '빨강',
                     },
                     bothSuffix: {
                         en: 'both',
                         de: 'Beides',
+                        ja: '両方',
+                        cn: '全部',
                         ko: '둘 다',
                     },
                 };
@@ -484,6 +496,8 @@ Options.Triggers.push({
                     text: {
                         en: 'Blue Head (Go East)',
                         de: 'Blauer Kopf (Geh nach Osten)',
+                        ja: '青いヘッド (東へ)',
+                        cn: '蓝头 (去东边)',
                         ko: '파란색 (동쪽)',
                     },
                 };
@@ -511,6 +525,8 @@ Options.Triggers.push({
                     text: {
                         en: 'Red Head (Go West)',
                         de: 'Roter Kopf (Geh nach Westen)',
+                        ja: '赤いヘッド (西へ)',
+                        cn: '红头 (去西边)',
                         ko: '빨간색 (서쪽)',
                     },
                 };
