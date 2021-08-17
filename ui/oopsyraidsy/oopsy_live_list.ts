@@ -1,7 +1,7 @@
 import { UnreachableCode } from '../../resources/not_reached';
 import { EventResponses } from '../../types/event';
 
-import { OopsyListView } from './oopsy_list_view';
+import { MistakeObserver } from './mistake_observer';
 import { OopsyOptions } from './oopsy_options';
 
 const kCopiedMessage = {
@@ -13,7 +13,7 @@ const kCopiedMessage = {
   ko: '복사 완료!',
 };
 
-export class OopsyLiveList implements OopsyListView {
+export class OopsyLiveList implements MistakeObserver {
   private container: Element;
   private inCombat = false;
   private numItems = 0;

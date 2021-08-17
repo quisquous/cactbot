@@ -3,6 +3,7 @@ import { NetMatches } from '../../types/net_matches';
 import { OopsyMistake } from '../../types/oopsy';
 import { LocaleText } from '../../types/trigger';
 
+import { MistakeObserver } from './mistake_observer';
 import {
   IsPlayerId,
   IsTriggerEnabled,
@@ -10,7 +11,6 @@ import {
   ShortNamify,
   UnscrambleDamage,
 } from './oopsy_common';
-import { OopsyListView } from './oopsy_list_view';
 import { OopsyOptions } from './oopsy_options';
 
 const kEarlyPullText = {
@@ -55,7 +55,7 @@ export class MistakeCollector {
   private engageTime?: number;
   public firstPuller?: string;
 
-  constructor(private options: OopsyOptions, private listView: OopsyListView) {
+  constructor(private options: OopsyOptions, private mistakeObserver: MistakeObserver) {
     this.Reset();
   }
 
@@ -89,7 +89,7 @@ export class MistakeCollector {
     // period of time.  Gross.
     //
     // Because damage comes before in combat (regardless of where engage
-    // occurs), StartCombat has to be responsible for clearing the listView
+    // occurs), StartCombat has to be responsible for clearing the mistakeObserver
     // list.
     const now = Date.now();
     const kMinimumSecondsAfterWipe = 5;
@@ -122,7 +122,7 @@ export class MistakeCollector {
     if (!text)
       return;
     const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
-    this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
+    this.mistakeObserver.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
   AddEngage(): void {
@@ -219,7 +219,7 @@ export class MistakeCollector {
       else
         this.StopCombat();
 
-      this.listView.SetInCombat(this.inGameCombat);
+      this.mistakeObserver.SetInCombat(this.inGameCombat);
     }
 
     const inACTCombat = e.detail.inACTCombat;
@@ -230,7 +230,7 @@ export class MistakeCollector {
         // for when combat started.  Starting here is not the right
         // time if this plugin is loaded while ACT is already in combat.
         this.baseTime = Date.now();
-        this.listView.StartNewACTCombat();
+        this.mistakeObserver.StartNewACTCombat();
       }
     }
   }

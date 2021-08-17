@@ -1,6 +1,6 @@
 import { EventResponses } from '../../types/event';
 
-export interface OopsyListView {
+export interface MistakeObserver {
   SetInCombat: (inCombat: boolean) => void;
   AddLine: (iconClass: string, text: string, time: string) => void;
   StartNewACTCombat: () => void;
