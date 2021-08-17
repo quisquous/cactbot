@@ -54,9 +54,14 @@ export class MistakeCollector {
   private stopTime?: number;
   private engageTime?: number;
   public firstPuller?: string;
+  private observers: MistakeObserver[] = [];
 
-  constructor(private options: OopsyOptions, private mistakeObserver: MistakeObserver) {
+  constructor(private options: OopsyOptions) {
     this.Reset();
+  }
+
+  AddObserver(observer: MistakeObserver): void {
+    this.observers.push(observer);
   }
 
   Reset(): void {
@@ -122,7 +127,8 @@ export class MistakeCollector {
     if (!text)
       return;
     const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
-    this.mistakeObserver.AddLine(type, blameText + text, this.GetFormattedTime(time));
+    for (const observer of this.observers)
+      observer.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
   AddEngage(): void {
@@ -219,7 +225,8 @@ export class MistakeCollector {
       else
         this.StopCombat();
 
-      this.mistakeObserver.SetInCombat(this.inGameCombat);
+      for (const observer of this.observers)
+        observer.SetInCombat(this.inGameCombat);
     }
 
     const inACTCombat = e.detail.inACTCombat;
@@ -230,12 +237,15 @@ export class MistakeCollector {
         // for when combat started.  Starting here is not the right
         // time if this plugin is loaded while ACT is already in combat.
         this.baseTime = Date.now();
-        this.mistakeObserver.StartNewACTCombat();
+        for (const observer of this.observers)
+          observer.StartNewACTCombat();
       }
     }
   }
 
   OnChangeZone(_e: EventResponses['ChangeZone']): void {
     this.Reset();
+    for (const observer of this.observers)
+      observer.OnChangeZone(_e);
   }
 }
