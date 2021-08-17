@@ -1,14 +1,17 @@
 import { EventResponses } from '../../types/event';
+import { OopsyMistake } from '../../types/oopsy';
 
 import { MistakeObserver } from './mistake_observer';
+import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 export class OopsySummaryList implements MistakeObserver {
   private pullIdx = 0;
   private zoneName?: string;
   private currentDiv: HTMLElement | null = null;
+  private baseTime?: number;
 
-  constructor(_options: OopsyOptions, private container: HTMLElement) {
+  constructor(private options: OopsyOptions, private container: HTMLElement) {
     this.container.classList.remove('hide');
   }
 
@@ -60,6 +63,16 @@ export class OopsySummaryList implements MistakeObserver {
     this.currentDiv = null;
   }
 
+  OnMistakeObj(m: OopsyMistake): void {
+    const iconClass = m.type;
+    const blame = m.name ?? m.blame;
+    const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
+    const text = Translate(this.options.DisplayLanguage, m.text);
+    if (!text)
+      return;
+    this.AddLine(iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, Date.now()));
+  }
+
   AddLine(iconClass: string, text: string, time: string): void {
     const currentSection = this.StartNewSectionIfNeeded();
 
@@ -89,6 +102,7 @@ export class OopsySummaryList implements MistakeObserver {
   StartNewACTCombat(): void {
     this.EndSection();
     this.StartNewSectionIfNeeded();
+    this.baseTime = Date.now();
   }
 
   OnChangeZone(e: EventResponses['ChangeZone']): void {

@@ -1,7 +1,9 @@
 import { UnreachableCode } from '../../resources/not_reached';
 import { EventResponses } from '../../types/event';
+import { OopsyMistake } from '../../types/oopsy';
 
 import { MistakeObserver } from './mistake_observer';
+import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 const kCopiedMessage = {
@@ -18,6 +20,7 @@ export class OopsyLiveList implements MistakeObserver {
   private inCombat = false;
   private numItems = 0;
   private items: HTMLElement[] = [];
+  private baseTime?: number;
 
   constructor(private options: OopsyOptions, private scroller: HTMLElement) {
     const container = this.scroller.children[0];
@@ -41,6 +44,16 @@ export class OopsyLiveList implements MistakeObserver {
       this.container.classList.add('out-of-combat');
       this.ShowAllItems();
     }
+  }
+
+  OnMistakeObj(m: OopsyMistake): void {
+    const iconClass = m.type;
+    const blame = m.name ?? m.blame;
+    const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
+    const text = Translate(this.options.DisplayLanguage, m.text);
+    if (!text)
+      return;
+    this.AddLine(iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, Date.now()));
   }
 
   AddLine(iconClass: string, text: string, time: string): void {
@@ -130,6 +143,7 @@ export class OopsyLiveList implements MistakeObserver {
 
   StartNewACTCombat(): void {
     this.Reset();
+    this.baseTime = Date.now();
   }
 
   OnChangeZone(_e: EventResponses['ChangeZone']): void {

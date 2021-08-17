@@ -1,8 +1,9 @@
 import { EventResponses } from '../../types/event';
+import { OopsyMistake } from '../../types/oopsy';
 
 export interface MistakeObserver {
   SetInCombat: (inCombat: boolean) => void;
-  AddLine: (iconClass: string, text: string, time: string) => void;
+  OnMistakeObj: (m: OopsyMistake) => void;
   StartNewACTCombat: () => void;
   OnChangeZone: (e: EventResponses['ChangeZone']) => void;
 }

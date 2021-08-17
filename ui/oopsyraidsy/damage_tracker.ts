@@ -36,6 +36,7 @@ import {
   kShiftFlagValues,
   playerDamageFields,
   ShortNamify,
+  Translate,
   UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
@@ -212,7 +213,7 @@ export class DamageTracker {
       return;
     this.lastDamage[obj.name] = {
       target: obj.name,
-      ability: this.collector.Translate(obj.text),
+      ability: Translate(this.options.DisplayLanguage, obj.text),
       flags: kFlagInstantDeath,
       damage: '0',
     };
