@@ -1,3 +1,6 @@
+import { Lang } from '../../resources/languages';
+import { LocaleText } from '../../types/trigger';
+
 import { OopsyOptions } from './oopsy_options';
 
 // Fields for net log ability lines.
@@ -96,6 +99,21 @@ export const ShortNamify = (
 
   const idx = name.indexOf(' ');
   return idx < 0 ? name : name.substr(0, idx);
+};
+
+export const Translate = (lang: Lang, obj?: LocaleText | string): string | undefined => {
+  if (typeof obj !== 'object')
+    return obj;
+  return obj[lang] ?? obj['en'];
+};
+
+export const GetFormattedTime = (baseTime: number | undefined, time: number): string => {
+  if (!baseTime)
+    return '';
+  const totalSeconds = Math.floor((time - baseTime) / 1000);
+  const seconds = totalSeconds % 60;
+  const minutes = Math.floor(totalSeconds / 60);
+  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 };
 
 // Turns a scrambled string damage field into an integer.
