@@ -5,7 +5,7 @@ import UserConfig from '../../resources/user_config';
 import { DamageTracker } from './damage_tracker';
 import oopsyFileData from './data/oopsy_manifest.txt';
 import { MistakeCollector } from './mistake_collector';
-import { OopsyListView } from './oopsy_list_view';
+import { MistakeObserver } from './mistake_observer';
 import { OopsyLiveList } from './oopsy_live_list';
 import defaultOptions from './oopsy_options';
 import { OopsySummaryList } from './oopsy_summary_list';
@@ -17,7 +17,7 @@ import './oopsy_common.css';
 
 UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   const options = { ...defaultOptions };
-  let initListView: OopsyListView;
+  let initListView: MistakeObserver;
   let initMistakeCollector: MistakeCollector;
 
   const summaryElement = document.getElementById('summary');

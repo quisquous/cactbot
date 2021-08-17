@@ -1,9 +1,9 @@
 import { EventResponses } from '../../types/event';
 
-import { OopsyListView } from './oopsy_list_view';
+import { MistakeObserver } from './mistake_observer';
 import { OopsyOptions } from './oopsy_options';
 
-export class OopsySummaryList implements OopsyListView {
+export class OopsySummaryList implements MistakeObserver {
   private pullIdx = 0;
   private zoneName?: string;
   private currentDiv: HTMLElement | null = null;
