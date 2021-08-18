@@ -565,6 +565,10 @@ export class PopupText {
 
     const orderedTriggers = new OrderedTriggerList();
 
+    // Some user timelines may rely on having valid init data
+    // Don't use `this.Reset()` since that clears other things as well
+    this.data = this.getDataObject();
+
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
     const addTimeline = (function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
