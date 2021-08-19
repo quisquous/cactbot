@@ -1,17 +1,33 @@
-import webpack from 'webpack';
+import { transform } from 'suo-parser';
+import { LoaderContext } from 'webpack';
 
-const commentRegex = /(?<=^(?:[^"/]*(?:|"[^"]*"))[^"/]*(?:|sync\s*\/[^/]*\/[^"/]*))#.*$/i;
+interface AdditionalData {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [index: string]: any;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  webpackAST: object;
+}
 
-export default function(this: webpack.LoaderContext<never>, content: string): string {
+export default function(
+  this: LoaderContext<never>,
+  content: string,
+  map?: string,
+  meta?: AdditionalData,
+): void {
   this.cacheable(true);
-  let ret = '';
+  const callback = this.async();
 
-  content.split(/\r?\n/).forEach((_line) => {
-    const line = _line.replace(commentRegex, '').trim();
-    if (!line)
+  transform(content, (err, output) => {
+    if (err) {
+      callback(err);
       return;
-    ret += line + '\r\n';
-  });
+    }
 
-  return ret;
+    if (!output) {
+      callback(new Error('Invalid timeline file'));
+      return;
+    }
+
+    callback(null, output, map, meta);
+  });
 }
