@@ -137,9 +137,13 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         clockwise: {
           en: 'Rotate Clockwise',
+          de: 'Im Uhrzeigersinn rotieren',
+          cn: '顺时针转',
         },
         counterclock: {
           en: 'Rotate Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn rotieren',
+          cn: '逆时针转',
         },
       },
     },
@@ -156,6 +160,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away From Red Circle',
+          de: 'Weg vom roten Kreis',
+          cn: '远离红圈',
         },
       },
     },
@@ -300,6 +306,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go ${dir}, Aim Across',
+          de: 'Geh nach ${dir}, schau Gegenüber',
+          cn: '去${dir}, 看好对面',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -321,6 +329,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge Arrow Lines',
+          de: 'Weiche den Pfeillinien aus',
+          cn: '避开箭头路径',
         },
       },
     },
@@ -339,6 +349,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EmeraldEx Tertius Terminus Est',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'BitBlade', id: '55CD' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Revolverklingen-Arm', id: '55CD' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Pistolame Volante', id: '55CD' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガンブレードビット', id: '55CD' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '枪刃浮游炮', id: '55CD' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '건블레이드 비트', id: '55CD' }),
       durationSeconds: 7,
       alertText: (data, matches, output) => {
         (data.tertius ??= []).push(matches);
@@ -374,9 +389,13 @@ const triggerSet: TriggerSet<Data> = {
         middle: Outputs.middle,
         middleFirst: {
           en: '${middle} -> ${dir1} / ${dir2}',
+          de: '${middle} -> ${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2} -> ${middle}',
         },
         middleLast: {
           en: '${dir1} / ${dir2} -> ${middle}',
+          de: '${dir1} / ${dir2} -> ${middle}',
+          cn: '${dir1} / ${dir2} -> ${middle}',
         },
       },
     },
@@ -423,6 +442,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Intercard + Out (Plus)',
+          de: 'Interkardinal + Raus (Plus)',
+          cn: '去场边角落 (十字)',
         },
       },
     },
@@ -435,6 +456,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cardinal + Out (Cross)',
+          de: 'Kardinal + Raus (Kreuz)',
+          cn: '去场边中点 (X字)',
         },
       },
     },
@@ -442,6 +465,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EmeraldEx Magitek Cannon',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Reaper Image', id: '55BE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schnitter-Projektion', id: '55BE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Faucheuse', id: '55BE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リーパーの幻影', id: '55BE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '魔导死神的幻影', id: '55BE', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '리퍼의 환영', id: '55BE', capture: false }),
       response: Responses.goMiddle(),
     },
     {
@@ -457,10 +485,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go North; Dodge Soldiers/Divebombs',
-          de: 'Achte auf die Lücken zwischen den Soldaten', // FIXME
+          de: 'Geh nach Norden; Achte auf die Lücken zwischen den Soldaten',
           fr: 'Regardez les soldats en rangs', // FIXME
           ja: '飛行部隊と射撃部隊を見覚える', // FIXME
-          cn: '观察士兵队列', // FIXME
+          cn: '去北边；躲避士兵射击/飞机轰炸',
           ko: '엑사플레어 순서, 빈 공간 확인', // FIXME
         },
       },
@@ -476,8 +504,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
+        'bitblade': 'Revolverklingen-Arm',
         'Black Wolf\'s Image': 'Gaius-Projektion',
         'Imperial Image': 'garleisch(?:e|er|es|en) Soldat',
         'Reaper Image': 'Schnitter-Projektion',
@@ -504,12 +532,19 @@ const triggerSet: TriggerSet<Data> = {
         'Sidescathe': 'Flankenbeschuss',
         'Split': 'Segregation',
         'Tertius Terminus Est': 'Terminus Est: Tres',
+        'Mechanized Maneuver': 'Bewegungsmanöver',
+        'Bombs Away': 'Bombardierungsbefehl',
+        'Emerald Crusher': 'Smaragdspalter',
+        'Full Rank': 'Truppenappell',
+        'Final Formation': 'Schlachtreihe',
+        'Fatal Fire': 'Feuergefecht',
       },
     },
     {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        'bitblade': 'pistolame volante',
         'Black Wolf\'s Image': 'spectre de Gaius',
         'Imperial Image': 'spectre de soldat impérial',
         'Reaper Image': 'spectre de faucheuse',
@@ -536,12 +571,19 @@ const triggerSet: TriggerSet<Data> = {
         'Sidescathe': 'Salve latérale',
         'Split': 'Séparation',
         'Tertius Terminus Est': 'Terminus Est : Tres',
+        'Mechanized Maneuver': 'Murmuration stratégique',
+        'Bombs Away': 'Ordre de bombardement',
+        'Emerald Crusher': 'Écraseur émeraude',
+        'Full Rank': 'Regroupement de toutes les unités',
+        'Final Formation': 'Alignement de toutes les unités',
+        'Fatal Fire': 'Attaque groupée',
       },
     },
     {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        'bitblade': 'ガンブレードビット',
         'Black Wolf\'s Image': 'ガイウスの幻影',
         'Imperial Image': '帝国兵の幻影',
         'Reaper Image': 'リーパーの幻影',
@@ -568,12 +610,18 @@ const triggerSet: TriggerSet<Data> = {
         'Sidescathe': '側面掃射',
         'Split': '分離',
         'Tertius Terminus Est': 'ターミナス・エスト：トレース',
+        'Mechanized Maneuver': '機動戦術',
+        'Bombs Away': '空爆命令',
+        'Emerald Crusher': 'エメラルドクラッシャー',
+        'Full Rank': '全軍集結',
+        'Final Formation': '全軍整列',
+        'Fatal Fire': '全軍攻撃',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
+        'bitblade': '枪刃浮游炮',
         'Black Wolf\'s Image': '盖乌斯的幻影',
         'Imperial Image': '帝国兵的幻影',
         'Reaper Image': '魔导死神的幻影',
@@ -600,12 +648,19 @@ const triggerSet: TriggerSet<Data> = {
         'Sidescathe': '侧面扫射',
         'Split': '分离',
         'Tertius Terminus Est': '恩惠终结：叁',
+        'Mechanized Maneuver': '机动战术',
+        'Bombs Away': '轰炸命令',
+        'Emerald Crusher': '绿宝石碎击',
+        'Full Rank': '全军集合',
+        'Final Formation': '全军列队',
+        'Fatal Fire': '全军攻击',
       },
     },
     {
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
+        'bitblade': '건블레이드 비트',
         'Black Wolf\'s Image': '가이우스의 환영',
         'Imperial Image': '제국 병사의 환영',
         'Reaper Image': '리퍼의 환영',
@@ -632,6 +687,12 @@ const triggerSet: TriggerSet<Data> = {
         'Sidescathe': '측면 소사',
         'Split': '분리',
         'Tertius Terminus Est': '파멸의 종착역 III',
+        'Mechanized Maneuver': '기동 전술',
+        'Bombs Away': '공중 폭격 명령',
+        'Emerald Crusher': '에메랄드 분쇄',
+        'Full Rank': '전군 집결',
+        'Final Formation': '전군 정렬',
+        'Fatal Fire': '전군 공격',
       },
     },
   ],
