@@ -28,6 +28,7 @@ export default (
       [
         'oopsyraidsyLive',
         'oopsyraidsySummary',
+        'pullcounter',
         'radar',
         'raidboss',
         'raidemulator',
