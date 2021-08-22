@@ -5,6 +5,97 @@ import { MistakeObserver } from './mistake_observer';
 import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
+type TableEntry = {
+  count: number;
+  elem: HTMLElement;
+};
+
+type TableRow = {
+  [type: string]: TableEntry;
+};
+
+export class OopsySummaryTable implements MistakeObserver {
+  private mistakes?: {
+    [name: string]: TableRow;
+  };
+  // TODO: should this come from options?
+  private types: readonly string[] = ['death', 'fail', 'warn', 'pull'];
+
+  constructor(private options: OopsyOptions, private table: HTMLElement) {
+    // this.table has one column for name, and then one for each of the types.
+    document.documentElement.style.setProperty('--table-cols', (this.types.length + 1).toString());
+  }
+
+  BuildHeaderRow(parent: HTMLElement): void {
+    const dummyFirstDiv = document.createElement('div');
+    dummyFirstDiv.classList.add('header', 'name');
+    parent.appendChild(dummyFirstDiv);
+    for (const type of this.types) {
+      const typeElem = document.createElement('div');
+      typeElem.classList.add('header', 'mistake-icon', type);
+      parent.appendChild(typeElem);
+    }
+  }
+
+  BuildPlayerRow(parent: HTMLElement, name: string): TableRow {
+    const row: TableRow = {};
+
+    const nameElem = document.createElement('div');
+    nameElem.classList.add('name');
+    nameElem.innerText = name;
+    parent.appendChild(nameElem);
+
+    for (const type of this.types) {
+      const elem = document.createElement('div');
+      elem.classList.add('number');
+      parent.appendChild(elem);
+      row[type] = {
+        count: 0,
+        elem: elem,
+      };
+    }
+
+    return row;
+  }
+
+  OnMistakeObj(m: OopsyMistake): void {
+    const longName = m.name ?? m.blame;
+    if (!longName || !m.text)
+      return;
+    const name = ShortNamify(longName, this.options.PlayerNicks);
+
+    // Don't create a player row if the summary doesn't care about this type of mistake.
+    if (!this.types.includes(m.type))
+      return;
+
+    if (!this.mistakes) {
+      // Wait until we've seen any mistakes to start the table.
+      this.BuildHeaderRow(this.table);
+      this.mistakes = {};
+    }
+
+    const row = this.mistakes[name] ??= this.BuildPlayerRow(this.table, name);
+
+    const entry = row[m.type];
+    if (!entry)
+      return;
+    entry.count++;
+    entry.elem.innerText = entry.count.toString();
+  }
+
+  SetInCombat(_inCombat: boolean): void {
+    // noop
+  }
+
+  StartNewACTCombat(): void {
+    // noop
+  }
+
+  OnChangeZone(_e: EventResponses['ChangeZone']): void {
+    // noop
+  }
+}
+
 export class OopsySummaryList implements MistakeObserver {
   private pullIdx = 0;
   private zoneName?: string;
@@ -66,7 +157,7 @@ export class OopsySummaryList implements MistakeObserver {
   OnMistakeObj(m: OopsyMistake): void {
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
-    const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
+    const blameText = blame ? `${ShortNamify(blame, this.options.PlayerNicks)}: ` : '';
     const text = Translate(this.options.DisplayLanguage, m.text);
     if (!text)
       return;
