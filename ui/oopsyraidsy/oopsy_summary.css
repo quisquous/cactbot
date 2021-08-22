@@ -71,6 +71,7 @@ html {
 /* first row */
 .mistake-table .header {
   border-bottom: solid black 2px;
+  order: -1;
 }
 
 /* first row, not first column */
