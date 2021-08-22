@@ -11,7 +11,10 @@ type TableEntry = {
 };
 
 type TableRow = {
-  [type: string]: TableEntry;
+  nameElem: HTMLElement;
+  entries: {
+    [type: string]: TableEntry;
+  };
 };
 
 export class OopsySummaryTable implements MistakeObserver {
@@ -20,6 +23,8 @@ export class OopsySummaryTable implements MistakeObserver {
   };
   // TODO: should this come from options?
   private types: readonly string[] = ['death', 'fail', 'warn', 'pull'];
+  private sortCol = 'death';
+  private sortAsc = false;
 
   constructor(private options: OopsyOptions, private table: HTMLElement) {
     // this.table has one column for name, and then one for each of the types.
@@ -34,22 +39,33 @@ export class OopsySummaryTable implements MistakeObserver {
       const typeElem = document.createElement('div');
       typeElem.classList.add('header', 'mistake-icon', type);
       parent.appendChild(typeElem);
+
+      typeElem.addEventListener('click', () => {
+        if (this.sortCol === type) {
+          this.sortAsc = !this.sortAsc;
+          this.SortTable();
+          return;
+        }
+        this.sortAsc = false;
+        this.sortCol = type;
+        this.SortTable();
+      });
     }
   }
 
   BuildPlayerRow(parent: HTMLElement, name: string): TableRow {
-    const row: TableRow = {};
-
     const nameElem = document.createElement('div');
     nameElem.classList.add('name');
     nameElem.innerText = name;
     parent.appendChild(nameElem);
 
+    const row: TableRow = { nameElem: nameElem, entries: {} };
+
     for (const type of this.types) {
       const elem = document.createElement('div');
       elem.classList.add('number');
       parent.appendChild(elem);
-      row[type] = {
+      row.entries[type] = {
         count: 0,
         elem: elem,
       };
@@ -76,11 +92,41 @@ export class OopsySummaryTable implements MistakeObserver {
 
     const row = this.mistakes[name] ??= this.BuildPlayerRow(this.table, name);
 
-    const entry = row[m.type];
+    const entry = row.entries[m.type];
     if (!entry)
       return;
     entry.count++;
     entry.elem.innerText = entry.count.toString();
+
+    if (m.type === this.sortCol)
+      this.SortTable();
+  }
+
+  SortTable(): void {
+    if (!this.mistakes)
+      return;
+
+    // Generate counts.
+    const counts: { [name: string]: number } = {};
+    for (const [name, row] of Object.entries(this.mistakes)) {
+      const entry = row.entries[this.sortCol];
+      counts[name] = entry?.count ?? 0;
+    }
+
+    // Sort names by counts.
+    const names = Object.keys(counts);
+    if (this.sortAsc)
+      names.sort((a, b) => (counts[a] ?? -1) - (counts[b] ?? -1));
+    else
+      names.sort((a, b) => (counts[b] ?? -1) - (counts[a] ?? -1));
+
+    // Apply style to sort by ordering.
+    for (const [name, row] of Object.entries(this.mistakes)) {
+      const idx = names.indexOf(name).toString();
+      row.nameElem.style.setProperty('order', idx);
+      for (const entry of Object.values(row.entries))
+        entry.elem.style.setProperty('order', idx);
+    }
   }
 
   SetInCombat(_inCombat: boolean): void {
