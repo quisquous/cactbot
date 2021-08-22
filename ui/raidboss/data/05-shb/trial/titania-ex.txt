@@ -87,7 +87,7 @@ hideall "--sync--"
 852.3 "Growth Rune" sync /:Titania:3D2E:/
 860.4 "Flame Hammer 1" #sync /:Spirit of Flame:3D48:/
 862.6 "Flame Hammer 2" #sync /:Spirit of Flame:3D48:/
-880.2 "Phantom Rune" sync /:Titania:3D4D:/
+880.2 "Phantom Rune" sync /:Titania:3D4[CD]:/
 891.2 "Bright Sabbath" sync /:Titania:3D4B:/
 903.2 "Fae Light" sync /:Titania:3D2C:/
 906.2 "Fae Light 1" #sync /:Titania:3D2D:/
