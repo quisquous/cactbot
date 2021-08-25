@@ -252,7 +252,7 @@ const tsOverrides = {
     '@typescript-eslint/no-invalid-this': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
     '@typescript-eslint/no-unsafe-argument': 'error',
-    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
+    '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['warn', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': [
@@ -302,7 +302,7 @@ const overrides = [
   {
     'files': ['**/oopsyraidsy/data/**/*.js', '**/raidboss/data/**/*.js'],
     'rules': {
-      'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
+      'no-unused-vars': ['warn', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
     },
   },
   {
