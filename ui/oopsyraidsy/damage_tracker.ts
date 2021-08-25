@@ -118,6 +118,8 @@ export class DamageTracker {
       timestamp: timestamp,
       callback: callback,
     });
+    // Sort earliest to latest.
+    this.timestampCallbacks.sort((a, b) => a.timestamp - b.timestamp);
   }
 
   GetDataObject(): OopsyData {
