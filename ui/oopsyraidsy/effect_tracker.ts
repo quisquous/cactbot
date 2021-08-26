@@ -19,6 +19,9 @@ const defaultCollectSeconds = 0.5;
 
 const emptyId = 'E0000000';
 
+// TODO: add this to effect_id.ts?
+const raiseEffectId = '94';
+
 type CollectedBuff = {
   timestamp: number;
   expireTimestamp: number;
@@ -146,6 +149,7 @@ class MissedBuffCollector {
 export class EffectTracker {
   private missedBuffCollector;
   private partyIds: Set<string> = new Set();
+  private deadIds: Set<string> = new Set();
   private petIdToOwnerId: { [petId: string]: string } = {};
   private abilityIdToBuff: { [abilityId: string]: MissableAbility } = {};
   private effectIdToBuff: { [effectId: string]: MissableEffect } = {};
@@ -194,6 +198,9 @@ export class EffectTracker {
     // Clear this dictionary periodically so it doesn't have false positives.
     // TODO: we could track combatant removal too?
     this.petIdToOwnerId = {};
+
+    // Probably nobody is dead if you change zones.
+    this.deadIds.clear();
   }
 
   OnAddedCombatant(line: string, splitLine: string[]): void {
@@ -220,6 +227,10 @@ export class EffectTracker {
     if (!this.IsInParty(targetId) && !this.IsInParty(sourceId))
       return;
 
+    // Just in case, if a target is performing actions, then they are alive.
+    if (sourceId !== undefined)
+      this.deadIds.delete(sourceId);
+
     const abilityId = splitLine[logDefinitions.Ability.fields.id];
     if (abilityId === undefined)
       return;
@@ -230,12 +241,17 @@ export class EffectTracker {
 
   OnGainsEffect(line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
-    if (!this.IsInParty(targetId))
+    if (!targetId || !this.IsInParty(targetId))
       return;
 
     const effectId = splitLine[logDefinitions.GainsEffect.fields.effectId];
     if (effectId === undefined)
       return;
+
+    // Upon coming back to life, players get Transcendent / Weakness / Brink of Death.
+    // However, they also get a Raise effect prior to coming back to life.
+    if (effectId !== raiseEffectId)
+      this.deadIds.delete(targetId);
 
     const buff = this.effectIdToBuff[effectId.toUpperCase()];
     if (buff)
@@ -244,6 +260,13 @@ export class EffectTracker {
 
   OnLosesEffect(_line: string, _splitLine: string[]): void {
     // TODO: use this when tracking all buffs on party members
+  }
+
+  OnDefeated(line: string, splitLine: string[]): void {
+    const targetId = splitLine[logDefinitions.WasDefeated.fields.targetId];
+    if (!targetId || !this.IsInParty(targetId))
+      return;
+    this.deadIds.add(targetId);
   }
 
   private OnBuffCollected(collected: CollectedBuff): void {
@@ -266,7 +289,13 @@ export class EffectTracker {
     for (const id of collected.targetIds)
       gotBuffMap[id] = true;
 
-    const missedIds = this.partyTracker.partyIds.filter((id) => !gotBuffMap[id] && id !== emptyId);
+    const missedIds = this.partyTracker.partyIds.filter((id) => {
+      // Filter out any empty ids here.
+      if (id === emptyId)
+        return false;
+      // A player is missed if they didn't get the buff and aren't dead.
+      return !gotBuffMap[id] && !this.deadIds.has(id);
+    });
     if (missedIds.length === 0)
       return;
 

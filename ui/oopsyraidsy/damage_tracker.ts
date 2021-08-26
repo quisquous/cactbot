@@ -195,6 +195,7 @@ export class DamageTracker {
       this.effectTracker.OnAbility(line, splitLine);
     } else if (type === '25') {
       this.OnDefeated(line);
+      this.effectTracker.OnDefeated(line, splitLine);
     } else if (type === '26') {
       this.effectTracker.OnGainsEffect(line, splitLine);
     } else if (type === '30') {
