@@ -297,15 +297,15 @@ Options.PlayerNicks = {
 用户文件以 `eval` 的方式加载，因此无法像内置的触发器文件那样使用 import 语句。
 用户文件可以访问如下的变量：
 
-- [Conditions](../resources/conditions.ts)
-- [ContentType](../resources/content_type.ts)
-- [NetRegexes](../resources/netregexes.ts)
-- [Regexes](../resources/regexes.ts)
-- [Responses](../resources/responses.ts)
-- [Outputs](../resources/outputs.ts)
-- [Util](../resources/util.ts)
-- [ZoneId](../resources/zone_id.ts)
-- [ZoneInfo](../resources/zone_info.ts)
+- [Conditions](../../resources/conditions.ts)
+- [ContentType](../../resources/content_type.ts)
+- [NetRegexes](../../resources/netregexes.ts)
+- [Regexes](../../resources/regexes.ts)
+- [Responses](../../resources/responses.ts)
+- [Outputs](../../resources/outputs.ts)
+- [Util](../../resources/util.ts)
+- [ZoneId](../../resources/zone_id.ts)
+- [ZoneInfo](../../resources/zone_info.ts)
 
 ## 用户文件的调试
 
