@@ -303,7 +303,7 @@ const emulatorEncounterInfo: Translation = {
   '.encounterName': {
     en: 'Name: <span class="label"></span>',
     de: 'Name: <span class="label"></span>',
-    fr: Nom : <span class="label"></span>',
+    fr: 'Nom : <span class="label"></span>',
   },
   '.encounterStartStatus': {
     en: 'Start Status: <span class="label"></span>',
