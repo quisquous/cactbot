@@ -219,7 +219,7 @@ const emulatorDisconnectedModal: Translation = {
       <li>Alerte par défaut : Texte et Son</li>
       <li>Langue des alertes : <span class="discLangAlerts"></span></li>
       <li>Langue des timelines : <span class="discLangTimeline"></span></li>
-    </ul>`
+    </ul>`,
   },
 } as const;
 
