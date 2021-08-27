@@ -212,7 +212,7 @@ const emulatorDisconnectedModal: Translation = {
       <li>Alarmsprache: <span class="discLangAlerts"></span></li>
       <li>Timeline Sprache: <span class="discLangTimeline"></span></li>
     </ul>`,
-    en: `<p>Raid Emulator est actuellement déconnecté d'ACT.</p>
+    fr: `<p>Raid Emulator est actuellement déconnecté d'ACT.</p>
     <p>Raid Emulator utilise les paramètres par défaut pour raidboss :</p>
     <ul>
       <li>Langue d'affichage : <span class="discLangDisplay"></span></li>
