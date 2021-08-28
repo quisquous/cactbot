@@ -47,6 +47,7 @@ const defaultOopsyConfigOptions = {
   Debug: false,
   NumLiveListItemsInCombat: 5,
   MinimumTimeForPullMistake: 0.4,
+  TimeToShowDeathReportMs: 4000,
 };
 type OopsyConfigOptions = typeof defaultOopsyConfigOptions;
 

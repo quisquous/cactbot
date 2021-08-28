@@ -1,4 +1,5 @@
 import { Lang } from '../resources/languages';
+import { DeathReport } from '../ui/oopsyraidsy/death_report';
 
 import { OopsyData } from './data';
 import { NetAnyMatches, NetMatches } from './net_matches';
@@ -31,6 +32,8 @@ export type OopsyMistake = {
   // TODO: docs say blame can be an array but the code does not support that.
   blame?: string;
   text: string | LocaleText;
+  // TODO: change type so this only exists for type='death'.
+  report?: DeathReport;
 };
 
 export type OopsyDeathReason = {

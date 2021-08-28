@@ -263,5 +263,23 @@ UserConfig.registerOptions('oopsyraidsy', {
       type: 'float',
       default: 0.4,
     },
+    {
+      id: 'TimeToShowDeathReportSeconds',
+      name: {
+        en: 'Seconds to show death report on death (0=none)',
+      },
+      type: 'float',
+      default: 4,
+      setterFunc: (options, value) => {
+        let seconds;
+        if (typeof value === 'string')
+          seconds = parseFloat(value);
+        else if (typeof value === 'number')
+          seconds = value;
+        else
+          return;
+        options['TimeToShowDeathReportMs'] = seconds * 1000;
+      },
+    },
   ],
 });

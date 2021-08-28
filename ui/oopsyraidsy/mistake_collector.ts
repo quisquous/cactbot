@@ -3,13 +3,7 @@ import { NetMatches } from '../../types/net_matches';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { MistakeObserver } from './mistake_observer';
-import {
-  IsPlayerId,
-  IsTriggerEnabled,
-  kFlagInstantDeath,
-  Translate,
-  UnscrambleDamage,
-} from './oopsy_common';
+import { IsPlayerId, IsTriggerEnabled, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 const kEarlyPullText = {
@@ -157,37 +151,6 @@ export class MistakeCollector {
         }
       }
     }
-  }
-
-  AddDeath(name: string, matches: Partial<NetMatches['Ability']>): void {
-    let text = '';
-    if (matches) {
-      // Note: ACT just evaluates independently what the hp of everybody
-      // is and so may be out of date modulo one hp regen tick with
-      // respect to the "current" hp value, e.g. charybdis may appear to do
-      // more damage than you have hp, "killing" you.  This is good enough.
-
-      // TODO: record the last N seconds of damage, as often folks are
-      // killed by 2+ things (e.g. 3x flares, or 2x Blizzard III).
-
-      // hp string = (damage/hp at time of death)
-      let hp = '';
-      if (matches.flags === kFlagInstantDeath) {
-        // TODO: show something for infinite damage?
-      } else if (matches.targetCurrentHp && matches.damage) {
-        hp = ` (${UnscrambleDamage(matches.damage)}/${matches.targetCurrentHp})`;
-      }
-      text = `${matches?.ability ?? '???'}${hp}`;
-    }
-    this.OnMistakeObj({
-      type: 'death',
-      name: name,
-      text: text,
-    });
-
-    // TODO: some things don't have abilities, e.g. jumping off titan ex.
-    // This will just show the last thing that hit you before you were
-    // defeated.  Maybe the unparsed log entries have this??
   }
 
   OnPartyWipeEvent(): void {
