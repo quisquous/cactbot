@@ -59,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Feu sur ${player}',
           ja: '${player} にマーカー',
           cn: '喷火点${player}',
+          ko: '${player} 불징',
         },
       },
     },
