@@ -16,7 +16,7 @@ import { BaseOptions } from '../../types/data';
 import { EventResponses } from '../../types/event';
 import { LocaleObject, LocaleText, ZoneIdType } from '../../types/trigger';
 
-import './eureka_config';
+import { timeStrings } from './eureka_translations';
 import { zoneInfoAnemos } from './zone_anemos';
 import { zoneInfoBozjaSouthern } from './zone_bozja_southern';
 import { zoneInfoHydatos } from './zone_hydatos';
@@ -24,24 +24,15 @@ import { zoneInfoPagos } from './zone_pagos';
 import { zoneInfoPyros } from './zone_pyros';
 import { zoneInfoZadnor } from './zone_zadnor';
 
+import './eureka_config';
 import '../../resources/defaults.css';
 import './eureka.css';
 
-// TODO: move each EurekaZoneInfo entry to its own file
 // TODO: get all of the elements required up front in the constructor
 // TODO: split NMInfo from some new InitializedNMInfo, which includes required element/timeElement
 // TODO: switch to using NetRegexes
 
 const numWeatherElem = 5;
-
-export const bunnyLabel: LocaleText = {
-  en: 'Bunny',
-  de: 'Hase',
-  fr: 'Lapin',
-  ja: 'うさぎ',
-  cn: '兔子',
-  ko: '토끼',
-};
 
 type WeatherForFunc = (nowMs: number, stopTime?: number) => string;
 type WeatherInFunc = (nowMs: number, startTime: number) => string;
@@ -106,7 +97,7 @@ export type EurekaZoneInfo = {
   fieldNotes?: FieldNote[];
 };
 
-const defaultEurekaConfigOtions = {
+const defaultEurekaConfigOptions = {
   FlagTimeoutMs: 90,
   CompleteNamesSTQ: false,
   EnrichedSTQ: false,
@@ -120,18 +111,20 @@ const defaultEurekaConfigOtions = {
   CriticalPopVolume: 0.3,
   RefreshRateMs: 1000,
 };
-type EurekaConfigOptions = typeof defaultEurekaConfigOtions;
+type EurekaConfigOptions = typeof defaultEurekaConfigOptions;
+
+export type EurekaTimeStrings = {
+  weatherFor: LocaleObject<WeatherForFunc>;
+  weatherIn: LocaleObject<WeatherInFunc>;
+  timeFor: LocaleObject<WeatherTimeForFunc>;
+  minute: LocaleText;
+};
 
 export interface EurekaOptions extends BaseOptions, EurekaConfigOptions {
   PopSound: string;
   BunnyPopSound: string;
   CriticalPopSound: string;
-  timeStrings: {
-    weatherFor: LocaleObject<WeatherForFunc>;
-    weatherIn: LocaleObject<WeatherInFunc>;
-    timeFor: LocaleObject<WeatherTimeForFunc>;
-    minute: LocaleText;
-  };
+  timeStrings: EurekaTimeStrings;
   Regex: LocaleObject<{
     gFlagRegex: RegExp;
     gTrackerRegex: RegExp;
@@ -143,116 +136,11 @@ export interface EurekaOptions extends BaseOptions, EurekaConfigOptions {
 
 const defaultOptions: EurekaOptions = {
   ...UserConfig.getDefaultBaseOptions(),
-  ...defaultEurekaConfigOtions,
+  ...defaultEurekaConfigOptions,
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/freesound/water_drop.ogg',
   CriticalPopSound: '../../resources/sounds/freesound/sonar.ogg',
-  timeStrings: {
-    weatherFor: {
-      en: (nowMs, stopTime) => {
-        if (stopTime) {
-          const min = (stopTime - nowMs) / 1000 / 60;
-          return ` for ${Math.ceil(min)}m`;
-        }
-        return ' for ???';
-      },
-      de: (nowMs, stopTime) => {
-        if (stopTime) {
-          const min = (stopTime - nowMs) / 1000 / 60;
-          return ` für ${Math.ceil(min)}min`;
-        }
-        return ' für ???';
-      },
-      fr: (nowMs, stopTime) => {
-        if (stopTime) {
-          const min = (stopTime - nowMs) / 1000 / 60;
-          return ` pour ${Math.ceil(min)} min `;
-        }
-        return ' pour ???';
-      },
-      ja: (nowMs, stopTime) => {
-        if (stopTime) {
-          const min = (stopTime - nowMs) / 1000 / 60;
-          return ` 終わるまであと${Math.ceil(min)}分 `;
-        }
-        return ' 終わるまであと ???';
-      },
-      cn: (nowMs, stopTime) => {
-        if (stopTime) {
-          const min = (stopTime - nowMs) / 1000 / 60;
-          return ` ${Math.ceil(min)}分钟后结束`;
-        }
-        return ' ??? 分钟';
-      },
-      ko: (nowMs, stopTime) => {
-        if (stopTime) {
-          const min = (stopTime - nowMs) / 1000 / 60;
-          return ` ${Math.ceil(min)}분 동안`;
-        }
-        return ' ??? 동안';
-      },
-    },
-    weatherIn: {
-      en: (nowMs, startTime) => {
-        if (startTime) {
-          const min = (startTime - nowMs) / 1000 / 60;
-          return ` in ${Math.ceil(min)}m`;
-        }
-        return ' in ???';
-      },
-      de: (nowMs, startTime) => {
-        if (startTime) {
-          const min = (startTime - nowMs) / 1000 / 60;
-          return ` in ${Math.ceil(min)}min`;
-        }
-        return ' in ???';
-      },
-      fr: (nowMs, startTime) => {
-        if (startTime) {
-          const min = (startTime - nowMs) / 1000 / 60;
-          return ` dans ${Math.ceil(min)} min `;
-        }
-        return ' dans ???';
-      },
-      ja: (nowMs, startTime) => {
-        if (startTime) {
-          const min = (startTime - nowMs) / 1000 / 60;
-          return ` あと ${Math.ceil(min)} 分 `;
-        }
-        return ' あと ???';
-      },
-      cn: (nowMs, startTime) => {
-        if (startTime) {
-          const min = (startTime - nowMs) / 1000 / 60;
-          return ` ${Math.ceil(min)}分钟后`;
-        }
-        return ' ??? 后';
-      },
-      ko: (nowMs, startTime) => {
-        if (startTime) {
-          const min = (startTime - nowMs) / 1000 / 60;
-          return ` ${Math.ceil(min)}분 후`;
-        }
-        return ' ??? 후';
-      },
-    },
-    timeFor: {
-      en: (dayNightMin) => ` for ${dayNightMin}m`,
-      de: (dayNightMin) => ` für ${dayNightMin}min`,
-      fr: (dayNightMin) => ` pour ${dayNightMin} min `,
-      ja: (dayNightMin) => ` ${dayNightMin}分`,
-      cn: (dayNightMin) => ` ${dayNightMin}分钟`,
-      ko: (dayNightMin) => ` ${dayNightMin}분 동안`,
-    },
-    minute: {
-      en: 'm',
-      de: 'min',
-      fr: ' min ',
-      ja: '分',
-      cn: '分',
-      ko: '분',
-    },
-  },
+  timeStrings: timeStrings,
   Regex: {
     // de, fr, ja languages all share the English regexes here.
     // If you ever need to add another language, include all of the regexes for it.

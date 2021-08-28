@@ -1,4 +1,5 @@
-import { bunnyLabel, EurekaZoneInfo } from './eureka';
+import { EurekaZoneInfo } from './eureka';
+import { bunnyLabel } from './eureka_translations';
 import pyrosMap from './pyros.png';
 
 // https://xivapi.com/search?indexes=Fate&filters=ID>=1388,ID<=1408&columns=Description,Name,Url
