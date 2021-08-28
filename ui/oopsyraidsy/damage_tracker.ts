@@ -26,6 +26,7 @@ import {
 import { ZoneIdType } from '../../types/trigger';
 
 import { OopsyFileData } from './data/oopsy_manifest.txt';
+import { EffectTracker } from './effect_tracker';
 import { MistakeCollector } from './mistake_collector';
 import {
   IsPlayerId,
@@ -58,6 +59,7 @@ export class DamageTracker {
   private timers: number[] = [];
   private triggers: ProcessedOopsyTrigger[] = [];
   private partyTracker: PartyTracker;
+  private effectTracker: EffectTracker;
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
@@ -66,6 +68,10 @@ export class DamageTracker {
   private lastDamage: { [name: string]: Partial<NetMatches['Ability']> } = {};
   private triggerSuppress: { [triggerId: string]: number } = {};
   private data: OopsyData;
+  private timestampCallbacks: {
+    timestamp: number;
+    callback: () => void;
+  }[] = [];
 
   private job: Job = 'NONE';
   private role: Role = 'none';
@@ -82,7 +88,16 @@ export class DamageTracker {
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
+      this.effectTracker.OnPartyChanged();
     });
+    const timestampCallback = (timestamp: number, callback: () => void) =>
+      this.OnRequestTimestampCallback(timestamp, callback);
+    this.effectTracker = new EffectTracker(
+      this.options,
+      this.partyTracker,
+      this.collector,
+      timestampCallback,
+    );
 
     const lang = this.options.ParserLanguage;
     this.countdownEngageRegex = LocaleNetRegex.countdownEngage[lang] ||
@@ -96,6 +111,15 @@ export class DamageTracker {
 
     this.data = this.GetDataObject();
     this.Reset();
+  }
+
+  OnRequestTimestampCallback(timestamp: number, callback: () => void): void {
+    this.timestampCallbacks.push({
+      timestamp: timestamp,
+      callback: callback,
+    });
+    // Sort earliest to latest.
+    this.timestampCallbacks.sort((a, b) => a.timestamp - b.timestamp);
   }
 
   GetDataObject(): OopsyData {
@@ -141,15 +165,40 @@ export class DamageTracker {
     const splitLine = e.line;
     const type = splitLine[0];
 
+    // If we're waiting on a timestamp callback, check if any have passed with this line.
+    // Ignore game log lines, which don't track milliseconds.
+    if (type !== '00') {
+      let timestampCallback = this.timestampCallbacks[0];
+      while (timestampCallback) {
+        const timeField = splitLine[1];
+        if (!timeField)
+          break;
+        const thisTimestamp = new Date(timeField).getTime();
+        if (thisTimestamp < timestampCallback.timestamp)
+          break;
+
+        timestampCallback.callback();
+        this.timestampCallbacks.shift();
+        timestampCallback = this.timestampCallbacks[0];
+      }
+    }
+
     if (type === '00') {
       if (this.countdownEngageRegex.test(line))
         this.collector.AddEngage();
       if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
         this.collector.Reset();
+    } else if (type === '03') {
+      this.effectTracker.OnAddedCombatant(line, splitLine);
     } else if (type === '21' || type === '22') {
       this.OnAbilityEvent(line, splitLine);
+      this.effectTracker.OnAbility(line, splitLine);
     } else if (type === '25') {
       this.OnDefeated(line);
+    } else if (type === '26') {
+      this.effectTracker.OnGainsEffect(line, splitLine);
+    } else if (type === '30') {
+      this.effectTracker.OnLosesEffect(line, splitLine);
     }
   }
 
@@ -315,6 +364,7 @@ export class DamageTracker {
     const zoneInfo = ZoneInfo[this.zoneId];
     this.contentType = zoneInfo?.contentType ?? 0;
 
+    this.effectTracker.OnChangeZone(e);
     this.ReloadTriggers();
   }
 
