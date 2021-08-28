@@ -19,6 +19,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Avoid Bubble Explosions',
                     de: 'Vermeide die Blasen-Explosionen',
+                    fr: 'Évitez les explosions des bulles',
                     ja: '泡の爆発から避ける',
                     cn: '躲开泡泡爆炸',
                 },
@@ -92,7 +93,7 @@ Options.Triggers.push({
                 text: {
                     en: 'tail cleave',
                     de: 'Schweif-Flächenangriff',
-                    fr: 'évitez la queue',
+                    fr: 'Évitez la queue',
                     ja: 'しっぽ！',
                     cn: '尾巴攻击',
                     ko: '꼬리쓸기',
@@ -120,6 +121,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Ring on YOU',
                     de: 'Ring auf DIR',
+                    fr: 'Anneau sur VOUS',
                     ja: '自分にドーナツ範囲',
                     cn: '环形AoE点名',
                 },
@@ -135,6 +137,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Cross on YOU',
                     de: 'Kreuz auf DIR',
+                    fr: 'Croix sur VOUS',
                     ja: '自分に十字範囲',
                     cn: '十字AoE点名',
                 },
@@ -242,7 +245,7 @@ Options.Triggers.push({
                 'Circle Of Chaos': 'Cercle du chaos',
                 'Cross Of Chaos': 'Croix du chaos',
                 'Eye Of The Fire': 'Œil des flammes',
-                'Gallop': 'ギャロップ',
+                'Gallop': 'Galop',
                 'Hydro Pull': 'Hydrotraction',
                 'Hydro Push': 'Hydropoussée',
                 'Mystic Flame': 'Flammes mystiques',

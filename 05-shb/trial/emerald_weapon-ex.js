@@ -108,11 +108,13 @@ Options.Triggers.push({
                 clockwise: {
                     en: 'Rotate Clockwise',
                     de: 'Im Uhrzeigersinn rotieren',
+                    fr: 'Tournez dans le sens horaire',
                     cn: '顺时针转',
                 },
                 counterclock: {
                     en: 'Rotate Counterclockwise',
                     de: 'Gegen den Uhrzeigersinn rotieren',
+                    fr: 'Tournez dans le sens anti-horaire',
                     cn: '逆时针转',
                 },
             },
@@ -131,6 +133,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away From Red Circle',
                     de: 'Weg vom roten Kreis',
+                    fr: 'Éloignez vous du cercle rouge',
                     cn: '远离红圈',
                 },
             },
@@ -277,6 +280,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go ${dir}, Aim Across',
                     de: 'Geh nach ${dir}, schau Gegenüber',
+                    fr: 'Allez direction ${dir}, visez en face',
                     cn: '去${dir}, 看好对面',
                 },
                 north: Outputs.north,
@@ -300,6 +304,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Dodge Arrow Lines',
                     de: 'Weiche den Pfeillinien aus',
+                    fr: 'Évitez les flèches (lignes)',
                     cn: '避开箭头路径',
                 },
             },
@@ -358,11 +363,13 @@ Options.Triggers.push({
                 middleFirst: {
                     en: '${middle} -> ${dir1} / ${dir2}',
                     de: '${middle} -> ${dir1} / ${dir2}',
+                    fr: '${middle} -> ${dir1} / ${dir2}',
                     cn: '${dir1} / ${dir2} -> ${middle}',
                 },
                 middleLast: {
                     en: '${dir1} / ${dir2} -> ${middle}',
                     de: '${dir1} / ${dir2} -> ${middle}',
+                    fr: '${dir1} / ${dir2} -> ${middle}',
                     cn: '${dir1} / ${dir2} -> ${middle}',
                 },
             },
@@ -411,6 +418,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Intercard + Out (Plus)',
                     de: 'Interkardinal + Raus (Plus)',
+                    fr: 'Intercardinal + Extérieur (Plus)',
                     cn: '去场边角落 (十字)',
                 },
             },
@@ -425,6 +433,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Cardinal + Out (Cross)',
                     de: 'Kardinal + Raus (Kreuz)',
+                    fr: 'Cardinal + Extérieur (Croix)',
                     cn: '去场边中点 (X字)',
                 },
             },
@@ -454,7 +463,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go North; Dodge Soldiers/Divebombs',
                     de: 'Geh nach Norden; Achte auf die Lücken zwischen den Soldaten',
-                    fr: 'Regardez les soldats en rangs',
+                    fr: 'Allez au Nord, Évitez les soldats et les bombes',
                     ja: '飛行部隊と射撃部隊を見覚える',
                     cn: '去北边；躲避士兵射击/飞机轰炸',
                     ko: '엑사플레어 순서, 빈 공간 확인', // FIXME

@@ -102,6 +102,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Knockback Arrow on YOU',
                     de: 'Rückstoß-Pfeil auf DIR',
+                    fr: 'Flèche-Poussée sur VOUS',
                     ja: '自分に吹き飛ばし矢印',
                     cn: '击退箭头点名',
                     ko: '넉백 화살표 대상자',
@@ -118,6 +119,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go Cardinal With Sword',
                     de: 'Geh mit dem Schwert zu Kardinalen',
+                    fr: 'Allez au cardinal avec l\'épée',
                     ja: '辺の中心に捨てる',
                     cn: '四边放刀',
                     ko: '동서남북으로 이동',
@@ -134,6 +136,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go Intercardinal With Sword',
                     de: 'Geh mit dem Schwert zu Interkardinalen',
+                    fr: 'Allez à l\'intercardinal avec l\'épée',
                     ja: '四隅に捨てる',
                     cn: '四角放刀',
                     ko: '대각위치로 이동',
