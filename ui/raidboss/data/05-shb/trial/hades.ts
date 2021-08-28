@@ -316,7 +316,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Kill Jail',
           de: 'Gefängniss zerstören',
-          fr: 'Tuez la prison',
+          fr: 'Détruisez la prison',
           ja: 'ジェイルに攻撃',
           cn: '攻击牢狱',
           ko: '감옥',
