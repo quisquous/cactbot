@@ -548,12 +548,12 @@ Network Log Line Examples:
 03|2021-06-16T21:35:11.4020000-07:00|4000b36a|Catastrophe|0|46|0|0||5631|6358|57250|57250|0|10000|0|0|0|0|0|-4.792213E-05||b3b3b4f926bcadd8b6ef008232d58922
 
 ACT Log Line Examples:
-[23:46:38.545] 03:10FF0001:Added new combatant Tini Poutini(Jenova).  Job: BLU Level: 46 Max HP: 30460 Max MP: 10000 Pos: (-0.76,15.896,0).
-[00:35:11.306] 03:4000B364:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
-[00:35:11.306] 03:4000B363:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
-[00:35:11.306] 03:4000B362:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 13165210 Max MP: 10000 Pos: (0,-15,0) (56310000007305).
-[00:35:11.402] 03:4000B365:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
-[00:35:11.402] 03:4000B36A:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+[20:46:38.545] 03:10FF0001:Added new combatant Tini Poutini(Jenova).  Job: BLU Level: 46 Max HP: 30460 Max MP: 10000 Pos: (-0.76,15.896,0).
+[21:35:11.306] 03:4000B364:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+[21:35:11.306] 03:4000B363:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+[21:35:11.306] 03:4000B362:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 13165210 Max MP: 10000 Pos: (0,-15,0) (56310000007305).
+[21:35:11.402] 03:4000B365:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
+[21:35:11.402] 03:4000B36A:Added new combatant Catastrophe.  Job: NONE Level: 46 Max HP: 57250 Max MP: 10000 Pos: (0,0,0) (56310000006358).
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -607,8 +607,8 @@ Network Log Line Examples:
 04|2021-06-16T21:37:36.0740000-07:00|4000b39c|Petrosphere|0|46|0|0||6712|7308|0|57250|0|10000|0|0|-16.00671|-0.01531982|0|1.53875||980552ad636f06249f1b5c7a6e675aad
 
 ACT Log Line Examples:
-[02:01:27.548] 04:10FF0001:Removing combatant Tini Poutini. Max MP: 10000. Pos: (-66.24337,-292.0904,20.06466)
-[00:37:36.074] 04:4000B39C:Removing combatant Petrosphere. Max MP: 10000. Pos: (-16.00671,-0.01531982,0)
+[23:01:27.548] 04:10FF0001:Removing combatant Tini Poutini. Max MP: 10000. Pos: (-66.24337,-292.0904,20.06466)
+[21:37:36.074] 04:4000B39C:Removing combatant Petrosphere. Max MP: 10000. Pos: (-16.00671,-0.01531982,0)
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -718,8 +718,8 @@ Network Log Line Examples:
 11|2021-06-16T21:47:56.7170000-07:00|4|10FF0002|10FF0001|10FF0003|10FF0004|
 
 ACT Log Line Examples:
-[23:46:38.545] 0B:8:10FF0002:10FF0003:10FF0004:10FF0001:10FF0005:10FF0006:10FF0007:10FF0008:
-[00:47:56.717] 0B:4:10FF0002:10FF0001:10FF0003:10FF0004:
+[20:46:38.545] 0B:8:10FF0002:10FF0003:10FF0004:10FF0001:10FF0005:10FF0006:10FF0007:10FF0008:
+[21:47:56.717] 0B:4:10FF0002:10FF0001:10FF0003:10FF0004:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1208,12 +1208,12 @@ ACT Log Line Regex:
 Network Log Line Examples:
 26|2021-04-26T14:36:09.4340000-04:00|35|Physical Damage Up|15.00|400009D5|Dark General|400009D5|Dark General|00|48865|48865||cbcfac4df1554b8f59f343f017ebd793
 26|2021-04-26T14:23:38.7560000-04:00|13b|Whispering Dawn|21.00|4000B283|Selene|10FF0002|Potato Chippy|4000016E|00|51893|49487||c7400f0eed1fe9d29834369affc22d3b
-+26|2021-07-02T21:57:07.9110000-04:00|d2|Doom|9.97|40003D9F||10FF0001|Tini Poutini|00|26396|26396||86ff6bf4cfdd68491274fce1db5677e8
+26|2021-07-02T21:57:07.9110000-04:00|d2|Doom|9.97|40003D9F||10FF0001|Tini Poutini|00|26396|26396||86ff6bf4cfdd68491274fce1db5677e8
 
 ACT Log Line Examples:
-[11:36:09.434] 1A:400009D5:Dark General gains the effect of Physical Damage Up from Dark General for 15.00 Seconds.
-[11:23:38.756] 1A:10FF0002:Potato Chippy gains the effect of Whispering Dawn from Selene for 21.00 Seconds.
-[18:57:07.911] 1A:10FF0001:Tini Poutini gains the effect of Doom from  for 9.97 Seconds.
+[14:36:09.434] 1A:400009D5:Dark General gains the effect of Physical Damage Up from Dark General for 15.00 Seconds.
+[14:23:38.756] 1A:10FF0002:Potato Chippy gains the effect of Whispering Dawn from Selene for 21.00 Seconds.
+[21:57:07.911] 1A:10FF0001:Tini Poutini gains the effect of Doom from  for 9.97 Seconds.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1266,8 +1266,8 @@ Network Log Line Examples:
 27|2021-05-11T13:48:45.3370000-04:00|40000950|Copied Knave|0000|0000|0117|0000|0000|0000||fa2e93fccf397a41aac73a3a38aa7410
 
 ACT Log Line Examples:
-[11:17:31.698] 1B:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
-[10:48:45.337] 1B:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
+[14:17:31.698] 1B:10FF0001:Tini Poutini:0000:A9B9:0057:0000:0000:0000::4fb326d8899ffbd4cbfeb29bbc3080f8
+[13:48:45.337] 1B:40000950:Copied Knave:0000:0000:0117:0000:0000:0000::fa2e93fccf397a41aac73a3a38aa7410
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1943,9 +1943,9 @@ Network Log Line Regex:
 
 ```log
 Network Log Line Examples:
-40|2021-07-30T19:43:08.6270000-04:00|578|Norvrandt|The Copied Factory|Upper Stratum|ee5b5fc06ab4610ef6b4f030fc95c90c
-40|2021-07-30T19:46:49.3830000-04:00|575|Norvrandt|Excavation Tunnels||41e6dae1ab1a3fe18ce3754d7c45a5d0
-40|2021-07-30T19:49:19.8180000-04:00|192|La Noscea|Mist|Mist Subdivision|f3506f063945500b5e7df2172e2ca4d3
+40|2021-07-30T19:43:08.6270000-07:00|578|Norvrandt|The Copied Factory|Upper Stratum|ee5b5fc06ab4610ef6b4f030fc95c90c
+40|2021-07-30T19:46:49.3830000-07:00|575|Norvrandt|Excavation Tunnels||41e6dae1ab1a3fe18ce3754d7c45a5d0
+40|2021-07-30T19:49:19.8180000-07:00|192|La Noscea|Mist|Mist Subdivision|f3506f063945500b5e7df2172e2ca4d3
 
 ACT Log Line Examples:
 [19:43:08.627] 28:
