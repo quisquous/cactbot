@@ -30,7 +30,7 @@ export default class LineEvent {
     this.timestamp = new Date(timestampString).getTime();
     this.checksum = parts.slice(-1)[0] ?? '';
     repo.updateTimestamp(this.timestamp);
-    this.convertedLine = this.prefix() + (parts.slice(2).join(':')).replace('|', ':');
+    this.convertedLine = this.prefix() + (parts.slice(2, -1).join(':')).replace('|', ':');
   }
 
   prefix(): string {

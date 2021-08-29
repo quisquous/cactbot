@@ -406,7 +406,8 @@ const config: markdownMagic.Configuration = {
         structureNetworkArray[index] ??= '[?]';
 
       let structureNetwork = structureNetworkArray.join('|');
-      const structureLogLine = ParseLine.parse(logRepo, structureNetwork);
+      structureNetworkArray.push('placeholder for hash removal');
+      const structureLogLine = ParseLine.parse(logRepo, structureNetworkArray.join('|'));
       let structureLog = structureLogLine?.convertedLine;
 
       if (!structureLog)
