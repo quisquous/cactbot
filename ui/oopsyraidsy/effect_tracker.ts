@@ -269,6 +269,11 @@ export class EffectTracker {
     this.deadIds.add(targetId);
   }
 
+  OnWipe(_line: string, _splitLine: string[]): void {
+    this.petIdToOwnerId = {};
+    this.deadIds.clear();
+  }
+
   private OnBuffCollected(collected: CollectedBuff): void {
     const type: OopsyMistakeType = collected.buff.type === 'mitigation'
       ? 'heal'

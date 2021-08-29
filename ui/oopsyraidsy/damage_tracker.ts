@@ -1,3 +1,4 @@
+import logDefinitions from '../../resources/netlog_defs';
 import NetRegexes from '../../resources/netregexes';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
@@ -41,6 +42,8 @@ import {
   UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
+
+const actorControlFadeInCommand = '40000010';
 
 const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
 
@@ -200,6 +203,9 @@ export class DamageTracker {
       this.effectTracker.OnGainsEffect(line, splitLine);
     } else if (type === '30') {
       this.effectTracker.OnLosesEffect(line, splitLine);
+    } else if (type === '33') {
+      if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand)
+        this.effectTracker.OnWipe(line, splitLine);
     }
   }
 
