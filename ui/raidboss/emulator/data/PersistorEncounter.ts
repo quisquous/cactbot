@@ -7,6 +7,7 @@ export default class PersistorEncounter {
   name: string;
   start: number;
   offset: number;
+  tzOffsetMillis: number;
   startStatus: string;
   endStatus: string;
   zoneId: string;
@@ -20,6 +21,7 @@ export default class PersistorEncounter {
     this.name = encounter.combatantTracker.getMainCombatantName();
     this.start = encounter.startTimestamp;
     this.offset = encounter.initialOffset;
+    this.tzOffsetMillis = encounter.tzOffsetMillis;
     this.startStatus = encounter.startStatus;
     this.endStatus = encounter.endStatus;
     this.zoneId = encounter.encounterZoneId;
