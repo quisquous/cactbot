@@ -8,8 +8,6 @@ const fields = logDefinitions.ChangeZone.fields;
 
 // Zone change event
 export class LineEvent0x01 extends LineEvent {
-  public override readonly properCaseConvertedLine: string;
-
   public readonly zoneId: string;
   public readonly zoneName: string;
   public readonly zoneNameProperCase: string;
@@ -22,8 +20,6 @@ export class LineEvent0x01 extends LineEvent {
     this.zoneNameProperCase = EmulatorCommon.properCase(this.zoneName);
 
     this.convertedLine = this.prefix() +
-      'Changed Zone to ' + this.zoneName + '.';
-    this.properCaseConvertedLine = this.prefix() +
       'Changed Zone to ' + this.zoneNameProperCase + '.';
   }
 }

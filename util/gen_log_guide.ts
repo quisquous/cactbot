@@ -407,8 +407,7 @@ const config: markdownMagic.Configuration = {
 
       let structureNetwork = structureNetworkArray.join('|');
       const structureLogLine = ParseLine.parse(logRepo, structureNetwork);
-      let structureLog = structureLogLine?.properCaseConvertedLine ??
-        structureLogLine?.convertedLine;
+      let structureLog = structureLogLine?.convertedLine;
 
       if (!structureLog)
         throw new UnreachableCode();
@@ -429,7 +428,7 @@ const config: markdownMagic.Configuration = {
         const line = ParseLine.parse(logRepo, e);
         if (!line)
           throw new UnreachableCode();
-        return line?.properCaseConvertedLine ?? line?.convertedLine;
+        return line?.convertedLine;
       }).join('\n') ?? '';
 
       const regexes = lineDoc.regexes;

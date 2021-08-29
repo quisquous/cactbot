@@ -13,7 +13,6 @@ export class LineEvent0x1A extends LineEvent {
   public readonly resolvedName: string;
   public readonly resolvedTargetName: string;
   public readonly fallbackResolvedTargetName: string;
-  public override readonly properCaseConvertedLine: string;
 
   public readonly effectId: number;
   public readonly effect: string;
@@ -59,21 +58,21 @@ export class LineEvent0x1A extends LineEvent {
     this.resolvedName = repo.resolveName(this.id, this.name);
     this.resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
 
-    this.fallbackResolvedTargetName =
-      repo.resolveName(this.id, this.name, this.targetId, this.targetName);
+    this.fallbackResolvedTargetName = repo.resolveName(
+      this.id,
+      this.name,
+      this.targetId,
+      this.targetName,
+    );
 
     let stackCountText = '';
-    if (this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.effectId))
+    if (
+      this.stacks > 0 && this.stacks < 20 &&
+      LineEvent0x1A.showStackCountFor.includes(this.effectId)
+    )
       stackCountText = ' (' + this.stacks.toString() + ')';
 
     this.convertedLine = this.prefix() + this.targetId +
-      ':' + this.targetName +
-      ' gains the effect of ' + this.effect +
-      ' from ' + this.fallbackResolvedTargetName +
-      ' for ' + this.durationString + ' Seconds.' + stackCountText;
-
-    this.properCaseConvertedLine = this.prefix() + this.targetId +
       ':' + EmulatorCommon.properCase(this.targetName) +
       ' gains the effect of ' + this.effect +
       ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
