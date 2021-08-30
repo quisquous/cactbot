@@ -45,7 +45,7 @@ export class LineEvent0x0C extends LineEvent {
     this.tenacity = parts[fields.tenacity] ?? '';
 
     this.convertedLine = this.prefix() +
-      'Player Stats: ' + parts.slice(2, parts.length - 1).join(':').replace(/\|/g, ':');
+      'Player Stats: ' + parts.slice(2, -1).join(':').replace(/\|/g, ':');
   }
 }
 
