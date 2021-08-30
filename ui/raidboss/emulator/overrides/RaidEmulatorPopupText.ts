@@ -106,13 +106,12 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
 
   onEmulatorLog(logs: LineEvent[]): void {
     for (const l of logs) {
-      const log = l.properCaseConvertedLine || l.convertedLine;
       const currentTime = l.timestamp;
-      if (log.includes('00:0038:cactbot wipe'))
+      if (l.convertedLine.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
 
       for (const trigger of this.triggers) {
-        const r = trigger.localRegex?.exec(log);
+        const r = trigger.localRegex?.exec(l.convertedLine);
         if (r)
           this.OnTrigger(trigger, r, currentTime);
       }

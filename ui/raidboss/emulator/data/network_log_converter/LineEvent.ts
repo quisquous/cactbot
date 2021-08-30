@@ -1,5 +1,5 @@
 import { Job } from '../../../../../types/job';
-import EmulatorCommon from '../../EmulatorCommon';
+import EmulatorCommon, { getTimezoneOffsetMillis } from '../../EmulatorCommon';
 
 import LogRepository from './LogRepository';
 
@@ -20,19 +20,22 @@ export default class LineEvent {
   public readonly hexEvent: string;
   public readonly timestamp: number;
   public readonly checksum: string;
-  public readonly properCaseConvertedLine?: string;
+  public readonly tzOffsetMillis: number;
 
   constructor(repo: LogRepository, public networkLine: string, parts: string[]) {
+    const timestampString = parts[fields.timestamp] ?? '0';
+    this.tzOffsetMillis = getTimezoneOffsetMillis(timestampString);
     this.decEvent = parseInt(parts[fields.event] ?? '0');
     this.hexEvent = EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
-    this.timestamp = new Date(parts[fields.timestamp] ?? '0').getTime();
+    this.timestamp = new Date(timestampString).getTime();
     this.checksum = parts.slice(-1)[0] ?? '';
     repo.updateTimestamp(this.timestamp);
     this.convertedLine = this.prefix() + (parts.slice(2).join(':')).replace('|', ':');
   }
 
   prefix(): string {
-    return '[' + EmulatorCommon.timeToTimeString(this.timestamp, true) + '] ' + this.hexEvent + ':';
+    const timeString = EmulatorCommon.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
+    return '[' + timeString + '] ' + this.hexEvent + ':';
   }
 
   static isDamageHallowed(damage: string): boolean {

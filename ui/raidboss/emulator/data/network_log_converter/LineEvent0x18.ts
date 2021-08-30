@@ -8,8 +8,6 @@ const fields = logDefinitions.NetworkDoT.fields;
 
 // DoT/HoT event
 export class LineEvent0x18 extends LineEvent implements LineEventSource {
-  public override readonly properCaseConvertedLine: string;
-
   public readonly id: string;
   public readonly name: string;
   public readonly type: string;
@@ -65,10 +63,6 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
     const damageStringConverted = isNaN(this.damage) ? damageString : this.damage.toString();
 
     this.convertedLine = this.prefix() + effectPart + this.type +
-      ' Tick on ' + resolvedName +
-      ' for ' + damageStringConverted + ' damage.';
-
-    this.properCaseConvertedLine = this.prefix() + effectPart + this.type +
       ' Tick on ' + EmulatorCommon.properCase(resolvedName) +
       ' for ' + damageStringConverted + ' damage.';
   }
@@ -87,4 +81,4 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
   };
 }
 
-export class LineEvent24 extends LineEvent0x18 { }
+export class LineEvent24 extends LineEvent0x18 {}

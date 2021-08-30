@@ -13,8 +13,6 @@ type LEAbility = LineEventAbility;
 
 // Ability use event
 export class LineEvent0x14 extends LineEvent implements LESource, LETarget, LEAbility {
-  public override readonly properCaseConvertedLine: string;
-
   public readonly id: string;
   public readonly name: string;
   public readonly abilityId: number;
@@ -64,10 +62,6 @@ export class LineEvent0x14 extends LineEvent implements LESource, LETarget, LEAb
     const target = this.targetName.length === 0 ? 'Unknown' : this.targetName;
 
     this.convertedLine = this.prefix() + this.abilityIdHex +
-      ':' + this.name +
-      ' starts using ' + this.abilityName +
-      ' on ' + target + '.';
-    this.properCaseConvertedLine = this.prefix() + this.abilityIdHex +
       ':' + EmulatorCommon.properCase(this.name) +
       ' starts using ' + this.abilityName +
       ' on ' + EmulatorCommon.properCase(target) + '.';
