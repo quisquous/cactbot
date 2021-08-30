@@ -199,9 +199,9 @@ This is done by adding a `timelineTriggers` section to the triggers file.
 
 Examples:
 
-* [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/alliance/orbonne_monastery.js)
-* [T9](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/02-arr/raid/t9.js)
-* [O12 normal](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/raid/o12n.js)
+* [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/alliance/orbonne_monastery.ts)
+* [T9](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/02-arr/raid/t9.ts)
+* [O12 normal](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/raid/o12n.ts)
 
 These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/README.txt) as normal triggers.
 They still allow you to use functions if you want to return something.
@@ -242,7 +242,7 @@ This has two purposes.
 The first purpose is for tools, to autogenerate regular expression translations for triggers.
 
 The second purpose is for timelines at runtime.
-cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line,
+cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text/` on a timeline line,
 and the `replaceText` section to auto-replace anything inside the ability text.
 
 These match only the exact text of the regex within the line, not the entire line.
@@ -274,6 +274,7 @@ Good guidelines for getting good logs are:
 ### Software prerequisites
 
 * [Python 3](https://www.python.org/downloads/release/python-373/)
+* [Node.js](https://nodejs.org/en/)
 * A copy of cactbot's [source code](https://github.com/quisquous/cactbot/archive/main.zip)
 
 You should do a system-wide installation of Python 3 if you can,
@@ -298,12 +299,12 @@ so the triggers file is always required.
 An initial triggers file should look like the following:
 
 ```javascript
-[{
+export default {
   zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',
   triggers: [
   ],
-}];
+};
 ```
 
 (3) Update the manifest file.
@@ -311,10 +312,18 @@ An initial triggers file should look like the following:
 Update **ui/raidboss/data/raidboss_manifest.txt** with both the name of the
 new triggers file and the new timeline file.
 
-(4) Reload raidboss
+(4) Build cactbot.
 
+Run `npm run build` in the cactbot source directory.
+If you never run `npm install` before, you'll need to do that first.
+
+(5) Reload raidboss
+
+Make sure the raidboss URL is pointed to `dist/ui/raidboss/raidboss.html`.
 If you've changed any of these files, reload your cactbot raidboss
 plugin to pick up the changes.
+
+If you are using `webpack-dev-server`, it will automatically reload whenever you change the source files.
 
 ### Generating an initial timeline file
 
@@ -523,7 +532,7 @@ The best tool for making perfect loops is **util/timeline_adjust.py**.
 This script will walk through a timeline file and print out the same
 timeline file, adjusted by any amount, positive or negative.
 
-If you are using VSCode, you can also use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from the [cactbot-highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
+If you are using VSCode, you can also use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from the [Cactbot Highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
 which offer a simple way to adjust time in one-click.
 
 (Note: they both will not adjust jumps.)
@@ -561,7 +570,7 @@ at least make a loop that goes 30 seconds ahead.
 Here's what a completed version of the first phase loop looks like.
 
 Note that we've used the times from **timeline_adjust.py** rather
-than the original times. (You could also use `cactbot-highlight` if you prefer that.)
+than the original times. (You could also use `Cactbot Highlight` if you prefer that.)
 This is so that when we jump from 52.2 to 24.4 that all of the
 relative times stay the same.  In both cases when `Gate Of Tartarus`
 occurs, there's a `Shield Skewer` in 5.4 seconds after it.
@@ -771,7 +780,7 @@ added back in:
 Without recorded video, it's not 100% clear from the logs
 whether the `Shrapnel Shell` is part of phase 3 or phase 4.
 I know from observation that `Magitek Missiles` is the last phase,
-so because the Shrapnel Shell breaks the pattern let's assume
+so because the `Shrapnel Shell` breaks the pattern let's assume
 it starts phase 4.
 We'll test this later.
 
