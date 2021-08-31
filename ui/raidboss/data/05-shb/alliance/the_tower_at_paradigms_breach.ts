@@ -969,7 +969,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         '2P-Operated Flight Unit': '2P：装备飞行装置',
         'Beyond': '塔顶',
@@ -996,6 +995,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hansel & Gretel': '韩塞尔与格雷特',
       },
       'replaceText': {
+        '--targetable\\?--': '--可选中?--',
         'Black Dissonance': '侵蚀：黑',
         '(?<!Tandem Assault: )Bloody Sweep': '横扫',
         '(?<!Tandem Assault: )Breakthrough': '重突进',

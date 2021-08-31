@@ -86,10 +86,6 @@ Startup Wizard에서,
 
 ![startup wizard 다운로드 스크린샷](../../screenshots/ffxiv_plugin_parsing_plugin.png)
 
-더해서, 네트워크를 통해 파싱해야 하기 때문에 ACT가 방화벽에서 차단되어 있지 않도록 하세요.
-FFXIV plugin 설정에 "Include HP for Triggers" 버튼이 체크되어 있는지 확인하세요.
-이 설정은 `Plugins` ->`FFXIV Settings` -> `Options`에 있습니다.
-
 다른 FFXIV Plugin 가이드:
 
 * [fflogs 동영상 가이드](https://www.fflogs.com/help/start/)

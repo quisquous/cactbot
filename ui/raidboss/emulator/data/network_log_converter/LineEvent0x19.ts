@@ -8,7 +8,6 @@ const fields = logDefinitions.WasDefeated.fields;
 
 // Combatant defeated event
 export class LineEvent0x19 extends LineEvent {
-  public override readonly properCaseConvertedLine: string;
   public readonly targetId: string;
   public readonly targetName: string;
   public readonly sourceId: string;
@@ -47,11 +46,9 @@ export class LineEvent0x19 extends LineEvent {
 
     const defeatedName = (resolvedTargetName ?? this.sourceName);
     const killerName = (resolvedSourceName ?? this.sourceName);
-    this.convertedLine = this.prefix() + defeatedName +
-      ' was defeated by ' + killerName + '.';
-    this.properCaseConvertedLine = this.prefix() + EmulatorCommon.properCase(defeatedName) +
+    this.convertedLine = this.prefix() + EmulatorCommon.properCase(defeatedName) +
       ' was defeated by ' + EmulatorCommon.properCase(killerName) + '.';
   }
 }
 
-export class LineEvent25 extends LineEvent0x19 { }
+export class LineEvent25 extends LineEvent0x19 {}

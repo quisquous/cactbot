@@ -118,13 +118,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   async onEmulatorLog(logs: LineEvent[]): Promise<void> {
     for (const logObj of logs) {
-      const log = logObj.properCaseConvertedLine ?? logObj.convertedLine;
-
-      if (log.includes('00:0038:cactbot wipe'))
+      if (logObj.convertedLine.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
 
       for (const trigger of this.triggers) {
-        const r = trigger.localRegex?.exec(log);
+        const r = trigger.localRegex?.exec(logObj.convertedLine);
         if (!r)
           continue;
 

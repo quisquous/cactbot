@@ -58,6 +58,33 @@ export const cloneSafe = (node: HTMLElement): HTMLElement => {
   return cloned;
 };
 
+// For performance reasons to prevent re-calculating this every single line,
+// store already calculated values
+const tzOffsetMap: { [key: string]: number } = {};
+
+export const getTimezoneOffsetMillis = (timeString: string): number => {
+  const timezoneOffsetString = timeString.substr(-6);
+  const mappedValue = tzOffsetMap[timezoneOffsetString];
+  if (mappedValue)
+    return mappedValue;
+  const defaultOffset = new Date().getTimezoneOffset() * 1000;
+  if (timezoneOffsetString === undefined)
+    return defaultOffset;
+  const operator = timezoneOffsetString.substr(0, 1);
+  if (operator !== '+' && operator !== '-')
+    return defaultOffset;
+  const timezoneOffsetParts = timezoneOffsetString.substr(1).split(':');
+  const hoursString = timezoneOffsetParts[0];
+  const minutesString = timezoneOffsetParts[1];
+  if (hoursString === undefined || minutesString === undefined)
+    return defaultOffset;
+  const hours = parseInt(hoursString);
+  const minutes = parseInt(minutesString);
+  const tzOffset = (((hours * 60) + minutes) * 60 * 1000) * (operator === '-' ? -1 : 1);
+  tzOffsetMap[timezoneOffsetString] = tzOffset;
+  return tzOffset;
+};
+
 export default class EmulatorCommon {
   static cloneData(data: DataType, exclude = ['options', 'party']): DataType {
     const ret: DataType = {};
@@ -125,28 +152,30 @@ export default class EmulatorCommon {
     return negative + mins + ':' + secs + (includeMillis ? '.' + millis : '');
   }
 
-  static timeToDateString(time: number): string {
-    return this.dateObjectToDateString(new Date(time));
+  static timeToDateString(time: number, tzOffsetMillis: number): string {
+    return this.dateObjectToDateString(new Date(time), tzOffsetMillis);
   }
 
-  static dateObjectToDateString(date: Date): string {
-    const year = date.getFullYear();
-    const month = EmulatorCommon.zeroPad((date.getMonth() + 1).toString());
-    const day = EmulatorCommon.zeroPad(date.getDate().toString());
+  static dateObjectToDateString(date: Date, tzOffsetMillis: number): string {
+    const convDate = new Date(date.getTime() + tzOffsetMillis);
+    const year = convDate.getUTCFullYear();
+    const month = EmulatorCommon.zeroPad((convDate.getUTCMonth() + 1).toString());
+    const day = EmulatorCommon.zeroPad(convDate.getUTCDate().toString());
     return `${year}-${month}-${day}`;
   }
 
-  static timeToTimeString(time: number, includeMillis = false): string {
-    return this.dateObjectToTimeString(new Date(time), includeMillis);
+  static timeToTimeString(time: number, tzOffsetMillis: number, includeMillis = false): string {
+    return this.dateObjectToTimeString(new Date(time), tzOffsetMillis, includeMillis);
   }
 
-  static dateObjectToTimeString(date: Date, includeMillis = false): string {
-    const hour = EmulatorCommon.zeroPad(date.getHours().toString());
-    const minute = EmulatorCommon.zeroPad(date.getMinutes().toString());
-    const second = EmulatorCommon.zeroPad(date.getSeconds().toString());
+  static dateObjectToTimeString(date: Date, tzOffsetMillis: number, includeMillis = false): string {
+    const convDate = new Date(date.getTime() + tzOffsetMillis);
+    const hour = EmulatorCommon.zeroPad(convDate.getUTCHours().toString());
+    const minute = EmulatorCommon.zeroPad(convDate.getUTCMinutes().toString());
+    const second = EmulatorCommon.zeroPad(convDate.getUTCSeconds().toString());
     let ret = `${hour}:${minute}:${second}`;
     if (includeMillis)
-      ret = ret + `.${date.getMilliseconds()}`;
+      ret = ret + `.${EmulatorCommon.zeroPad(convDate.getUTCMilliseconds().toString(), 3)}`;
 
     return ret;
   }
@@ -156,11 +185,11 @@ export default class EmulatorCommon {
     return tmp.replace(':', 'm') + 's';
   }
 
-  static dateTimeToString(time: number, includeMillis = false): string {
+  static dateTimeToString(time: number, tzOffsetMillis: number, includeMillis = false): string {
     const date = new Date(time);
-    return `${this.dateObjectToDateString(date)} ${
-      this.dateObjectToTimeString(date, includeMillis)
-    }`;
+    const dateString = this.dateObjectToDateString(date, tzOffsetMillis);
+    const timeString = this.dateObjectToTimeString(date, tzOffsetMillis, includeMillis);
+    return dateString + ' ' + timeString;
   }
 
   static zeroPad(str: string, len = 2): string {

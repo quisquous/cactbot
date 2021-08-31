@@ -1,4 +1,3 @@
-00-misc/buffs.ts
 00-misc/general.ts
 00-misc/test.ts
 02-arr/trial/ifrit-nm.ts

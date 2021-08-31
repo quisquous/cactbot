@@ -56,8 +56,9 @@ export default class EncounterTab extends EventBus {
     void this.persistor.encounterSummaries.toArray().then((encounters: PersistorEncounter[]) => {
       for (const enc of encounters) {
         const zone = enc.zoneName;
-        const encDate = EmulatorCommon.timeToDateString(enc.start);
-        const encTime = EmulatorCommon.timeToTimeString(enc.start);
+        // ?? operator here to account for old encounters that don't have the property
+        const encDate = EmulatorCommon.timeToDateString(enc.start, enc.tzOffsetMillis ?? 0);
+        const encTime = EmulatorCommon.timeToTimeString(enc.start, enc.tzOffsetMillis ?? 0);
         const encDuration = EmulatorCommon.msToDuration(enc.duration);
         const zoneObj = this.encounters[zone] = this.encounters[zone] || {};
         const dateObj = zoneObj[encDate] = zoneObj[encDate] || [];
@@ -253,8 +254,9 @@ export default class EncounterTab extends EventBus {
       void this.dispatch('delete', enc.id);
     });
     querySelectorSafe($info, '.encounterZone .label').textContent = enc.zoneName;
+    // ?? operator here to account for old encounters that don't have the property
     querySelectorSafe($info, '.encounterStart .label').textContent = EmulatorCommon
-      .dateTimeToString(enc.start);
+      .dateTimeToString(enc.start, enc.tzOffsetMillis ?? 0);
     querySelectorSafe($info, '.encounterDuration .label').textContent = EmulatorCommon.timeToString(
       enc.duration,
       false,

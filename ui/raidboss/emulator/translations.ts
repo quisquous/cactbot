@@ -11,34 +11,42 @@ const emulatorButtons: Translation = {
   '.yesButton': {
     en: 'Yes',
     de: 'Ja',
+    fr: 'Oui',
   },
   '.noButton': {
     en: 'No',
     de: 'Nein',
+    fr: 'Non',
   },
   '.closeButton': {
     en: 'Close',
     de: 'Schließen',
+    fr: 'Fermer',
   },
   '.doneButton': {
     en: 'Done<span class="doneBtnTimeout"></span>',
     de: 'Fertig<span class="doneBtnTimeout"></span>',
+    fr: 'Terminé<span class="doneBtnTimeout"></span>',
   },
   '.loadNetworkLogButton': {
     en: 'Load Network Log',
     de: 'Lade Network Log',
+    fr: 'Charger Network Log',
   },
   '.exportDBButton': {
     en: 'Export DB',
     de: 'DB exportieren',
+    fr: 'Export DB',
   },
   '.importDBButton': {
     en: 'Import DB',
     de: 'DB importieren',
+    fr: 'Import DB',
   },
   '.clearDBButton': {
     en: 'Clear DB',
     de: 'DB leeren',
+    fr: 'Nettoyer DB',
   },
 } as const;
 
@@ -46,6 +54,7 @@ const emulatorTitle: Translation = {
   '.title': {
     en: 'Cactbot Raid Emulator',
     de: 'Cactbot Raid Emulator',
+    fr: 'Cactbot Raid Emulator',
   },
 } as const;
 
@@ -53,6 +62,7 @@ const emulatorImportModal: Translation = {
   '.importProgressModal .modal-title': {
     en: 'Log File Import Progress',
     de: 'Fortschritt des Logdatei Imports',
+    fr: 'Import du fichier log en cours',
   },
   '.importProgressModal .modal-body-contents': {
     en: `<h3>Latest encounter:</h3>
@@ -75,6 +85,16 @@ const emulatorImportModal: Translation = {
     Gestartet von: <span class="startedBy"></span><br />
     Endstatus: <span class="endStatus"></span><br />
     Zeilenanzahl: <span class="lineCount"></span><br />`,
+    fr: `<h3>Dernier Combat :</h3>
+    Zone : <span class="zone"></span><br />
+    Combatant : <span class="encounter"></span><br />
+    Début : <span class="start"></span><br />
+    Fin : <span class="end"></span><br />
+    Durée : <span class="durMins"></span>m<span class="durSecs"></span>s<br />
+    Durée du pull : <span class="pullMins"></span>m<span class="pullSecs"></span>s<br />
+    Démarré par : <span class="startedBy"></span><br />
+    Status de fin : <span class="endStatus"></span><br />
+    Nombre de lignes : <span class="lineCount"></span><br />`,
   },
 } as const;
 
@@ -82,10 +102,13 @@ const emulatorDeleteModal: Translation = {
   '.deleteDBModal .modal-title': {
     en: 'Delete Encounter Database',
     de: 'Lösche Kampfdatenbank',
+    fr: 'Effacer la base de données du combat',
   },
   '.deleteDBModal .modal-body': {
     en: '<p>You are about to delete the encounter database. Are you sure?</p>',
     de: '<p>Du bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
+    fr:
+      '<p>Vous êtes sur le point de supprimer la base de données du combat. En êtes-vous sûr ?</p>',
   },
 } as const;
 
@@ -93,6 +116,7 @@ const emulatorIntroModal: Translation = {
   '.introModal .modal-title': {
     en: 'Introduction',
     de: 'Einführung',
+    fr: 'Introduction',
   },
   '.introModal .modal-body': {
     en: `<p>Welcome to the Raid Emulator.</p>
@@ -141,6 +165,29 @@ const emulatorIntroModal: Translation = {
         <li>Detaillierte Informationen über aktivierten Trigger anzeigen lassen, indem auf die entsprechende Schaltfläche geklickt wird</li>
       </ul>
     </p>`,
+    fr: `<p>Bienvenue dans l'émulateur de raid.</p>
+    <p>Cet outil rejoue les rencontres et montre quels triggers ont été déclenchés à quel moment, et vous permet de voir la rencontre du point de vue de n'importe quel joueur.</p>
+    <p>Cet outil accepte éventuellement le paramètre <strong>OVERLAY_WS</strong> pour se connecter à un Web socket ACT avec à la fois OverlayPlugin de ngld et le plugin Cactbot chargés.</p>
+    <p>S'il est connecté à un Web socket, cet outil chargera et respectera les fichiers de configuration utilisateur pour cactbot/raidboss.</p>
+    <p>Aucun overlay n'a besoin d'être créée.</p>
+    <p>État actuel de WebSocket : <span class="d-none websocketConnected text-success">Connecté</span><span class="websocketDisconnected text-warning">Déconnecté</span>.</p>
+    <p>Pour commencer, vous devez importer une rencontre via l'une des options suivantes :</p>
+    <p>
+      <ul>
+        <li>Faites glisser et déposez un fichier log depuis <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code> sur la page</li>
+        <li>Cliquez sur le bouton <code>Charger Network Log</code> dans le tiroir du bas et sélectionnez un fichier log dans <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code></li>
+      </ul>
+    </p>
+    <p>Ensuite, sélectionnez une rencontre via le tiroir du bas.</p>
+    <p>Une fois que vous avez chargé une rencontre, vous pouvez :</p>
+    <p>
+      <ul>
+        <li>Modifiez la perspective actuelle en sélectionnant un membre du groupe sur la droite</li>
+        <li>Recherchez n'importe quel point de la rencontre en cliquant sur la barre en haut</li>
+        <li>Passez la souris sur les indicateurs des triggers dans la barre supérieure pour voir leurs noms</li>
+        <li>Voir des informations détaillées sur les triggers déclenchés en cliquant sur leur bouton</li>
+      </ul>
+    </p>`,
   },
 } as const;
 
@@ -166,6 +213,14 @@ const emulatorDisconnectedModal: Translation = {
       <li>Alarmsprache: <span class="discLangAlerts"></span></li>
       <li>Timeline Sprache: <span class="discLangTimeline"></span></li>
     </ul>`,
+    fr: `<p>Raid Emulator est actuellement déconnecté d'ACT.</p>
+    <p>Raid Emulator utilise les paramètres par défaut pour raidboss :</p>
+    <ul>
+      <li>Langue d'affichage : <span class="discLangDisplay"></span></li>
+      <li>Alerte par défaut : Texte et Son</li>
+      <li>Langue des alertes : <span class="discLangAlerts"></span></li>
+      <li>Langue des timelines : <span class="discLangTimeline"></span></li>
+    </ul>`,
   },
 } as const;
 
@@ -173,10 +228,12 @@ const emulatorLabels: Translation = {
   ' label[for=hideSkipped]': {
     en: 'Hide Skipped',
     de: 'Verstecke Übersprungene Einträge',
+    fr: 'Masquer les entrées sautées',
   },
   ' label[for=hideCollector]': {
     en: 'Hide Collectors',
     de: 'Verstecke "Sammel" Einträge',
+    fr: 'Masquer les entrées "Collecté"',
   },
 } as const;
 
@@ -184,18 +241,22 @@ const emulatorTooltips: Translation = {
   '.triggerHideSkipped': {
     en: 'Hide triggers that were not executed',
     de: 'Verstecke Trigger, die nicht ausgeführt wurden',
+    fr: 'Masquer les triggers non-executés',
   },
   '.triggerHideCollector': {
     en: 'Hide triggers that had no output',
     de: 'Verstecke Trigger, die keine Ausgabe hatten',
+    fr: 'Masquer les triggers sans sortie',
   },
   '.connectedIndicator': {
     en: 'Connected to websocket',
     de: 'Mit Websocket verbunden',
+    fr: 'Connecté au Websocket',
   },
   '.disconnectedIndicator': {
     en: 'Disconnected from websocket',
     de: 'Keine Verbindung zum Websocket',
+    fr: 'Déconnecté du Websocket',
   },
 } as const;
 
@@ -203,46 +264,57 @@ const emulatorEncounterInfo: Translation = {
   '.encounterLoad': {
     en: 'Load Encounter',
     de: 'Lade Kampf',
+    fr: 'Charger combat',
   },
   '.encounterParse': {
     en: 'Reparse Encounter',
     de: 'Kampf erneut analysieren',
+    fr: 'Reparser le combat',
   },
   '.encounterPrune': {
     en: 'Prune Encounter',
     de: 'Kampf leeren',
+    fr: 'Combat vide',
   },
   '.encounterDelete': {
     en: 'Delete Encounter',
     de: 'Kampf löschen',
+    fr: 'Effacer combat',
   },
   '.encounterZone': {
     en: 'Zone: <span class="label"></span>',
     de: 'Zone: <span class="label"></span>',
+    fr: 'Zone : <span class="label"></span>',
   },
   '.encounterStart': {
     en: 'Start: <span class="label"></span>',
     de: 'Start: <span class="label"></span>',
+    fr: 'Début : <span class="label"></span>',
   },
   '.encounterDuration': {
     en: 'Duration: <span class="label"></span>',
     de: 'Dauer: <span class="label"></span>',
+    fr: 'Durée : <span class="label"></span>',
   },
   '.encounterOffset': {
     en: 'Pull At: <span class="label"></span>',
     de: 'Start um: <span class="label"></span>',
+    fr: 'Pull à : <span class="label"></span>',
   },
   '.encounterName': {
     en: 'Name: <span class="label"></span>',
     de: 'Name: <span class="label"></span>',
+    fr: 'Nom : <span class="label"></span>',
   },
   '.encounterStartStatus': {
     en: 'Start Status: <span class="label"></span>',
     de: 'Start Status: <span class="label"></span>',
+    fr: 'État du démarrage : <span class="label"></span>',
   },
   '.encounterEndStatus': {
     en: 'End Status: <span class="label"></span>',
     de: 'Endstatus: <span class="label"></span>',
+    fr: 'État de fin : <span class="label"></span>',
   },
 } as const;
 
@@ -272,18 +344,22 @@ export const emulatorStartStatuses = {
   unknown: {
     en: 'Unknown',
     de: 'Unbekannt',
+    fr: 'Inconnu',
   },
   countdown: {
     en: 'Countdown',
     de: 'Countdown',
+    fr: 'Compte à rebours',
   },
   seal: {
     en: 'Seal',
     de: 'Versiegeln',
+    fr: 'Fermeture',
   },
   engage: {
     en: 'Engage',
     de: 'Start',
+    fr: 'À l\'attaque',
   },
 };
 
@@ -291,22 +367,27 @@ export const emulatorEndStatuses = {
   unknown: {
     en: 'Unknown',
     de: 'Unbekannt',
+    fr: 'Inconnu',
   },
   win: {
     en: 'Win',
     de: 'Gewonnen',
+    fr: 'Gagné',
   },
   wipe: {
     en: 'Wipe',
     de: 'Wipe',
+    fr: 'Wipe',
   },
   cactbotWipe: {
     en: 'Cactbot Wipe',
     de: 'Cactbot Wipe',
+    fr: 'Cactbot Wipe',
   },
   unseal: {
     en: 'Unseal',
     de: 'Entsiegeln',
+    fr: 'Ouverture',
   },
 };
 

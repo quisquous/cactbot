@@ -7106,6 +7106,7 @@ const data: ZoneInfoType = {
     'contentType': 2,
     'exVersion': 3,
     'name': {
+      'cn': '黄金平原帕戈尔赞草原',
       'de': 'Die Goldene Ebene von Paglth\'an',
       'en': 'Paglth\'an',
       'fr': 'La grande prairie de Paglth\'an',

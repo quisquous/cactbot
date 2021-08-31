@@ -77,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '5C97', source: 'Magitek-Festung', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5C97', source: 'Forteresse Magitek', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C97', source: '魔導フォートレス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '5C97', source: '魔导核心', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5C97', source: '魔导要塞', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -354,7 +354,6 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
-        '\\(explosions\\)': '(爆炸)',
         'Amhuluk': '阿姆鲁克',
         'Lunar Bahamut': '真月巴哈姆特',
         'Magitek Fortress': '魔导要塞',
@@ -363,8 +362,9 @@ const triggerSet: TriggerSet<Data> = {
         'The Gathering Ring': '佐尔玛刻祭场',
       },
       'replaceText': {
-        '--Levin orbs--': '--电球--',
         '\\(circles\\)': '圈',
+        '\\(explosions\\)': '(爆炸)',
+        '--Levin orbs--': '--电球--',
         'Akh Morn': '死亡轮回',
         'Big Burst': '大爆炸',
         'Critical Rip': '暴击撕裂',

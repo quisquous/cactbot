@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent, { LineEventAbility, LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkCancelAbility.fields;
+const fields = logDefinitions.NetworkCancelAbility.fields;
 
 // Cancel ability event
 export class LineEvent0x17 extends LineEvent implements LineEventSource, LineEventAbility {

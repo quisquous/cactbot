@@ -4,12 +4,10 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkDoT.fields;
+const fields = logDefinitions.NetworkDoT.fields;
 
 // DoT/HoT event
 export class LineEvent0x18 extends LineEvent implements LineEventSource {
-  public override readonly properCaseConvertedLine: string;
-
   public readonly id: string;
   public readonly name: string;
   public readonly type: string;
@@ -33,7 +31,8 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
 
     this.type = parts[fields.type] ?? '';
     this.effectId = parts[fields.effectId]?.toUpperCase() ?? '';
-    this.damage = parseInt(parts[fields.damage] ?? '', 16);
+    const damageString = parts[fields.damage] ?? '';
+    this.damage = parseInt(damageString, 16);
 
     this.hp = parseInt(parts[fields.currentHp] ?? '');
     this.maxHp = parseInt(parts[fields.maxHp] ?? '');
@@ -61,13 +60,11 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
     if (effectName)
       effectPart = effectName + ' ';
 
-    this.convertedLine = this.prefix() + effectPart + this.type +
-      ' Tick on ' + resolvedName +
-      ' for ' + this.damage.toString() + ' damage.';
+    const damageStringConverted = isNaN(this.damage) ? damageString : this.damage.toString();
 
-    this.properCaseConvertedLine = this.prefix() + effectPart + this.type +
+    this.convertedLine = this.prefix() + effectPart + this.type +
       ' Tick on ' + EmulatorCommon.properCase(resolvedName) +
-      ' for ' + this.damage.toString() + ' damage.';
+      ' for ' + damageStringConverted + ' damage.';
   }
 
   static showEffectNamesFor: { [effectId: string]: string } = {
@@ -84,4 +81,4 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
   };
 }
 
-export class LineEvent24 extends LineEvent0x18 { }
+export class LineEvent24 extends LineEvent0x18 {}

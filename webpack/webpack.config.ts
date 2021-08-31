@@ -21,13 +21,15 @@ export default (
 ): Configuration => {
   const entries: { [module: string]: string } = {};
   Object.entries(cactbotModules).forEach(([key, module]) => {
-    // TDOO: Remove when everything is TypeScript, convert to:
+    // TODO: Remove when everything is TypeScript, convert to:
     // entries[module] = `./${module}.ts`;
     let extension = 'js';
     if (
       [
+        'eureka',
         'oopsyraidsyLive',
         'oopsyraidsySummary',
+        'pullcounter',
         'radar',
         'raidboss',
         'raidemulator',

@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkRaidMarker.fields;
+const fields = logDefinitions.NetworkRaidMarker.fields;
 
 // Floor waymarker event
 export class LineEvent0x1C extends LineEvent {
