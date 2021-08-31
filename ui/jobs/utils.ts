@@ -1,8 +1,11 @@
+import ContentType from '../../resources/content_type';
 import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
+import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
 import { Job } from '../../types/job';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
@@ -78,8 +81,8 @@ export const doesJobNeedMPBar = (job: Job): boolean =>
   Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 
 /** compute greased lightning stacks by player's level */
-const getLightningStacksByLevel = (level: number): number =>
-  level < 20 ? 1 : level < 40 ? 2 : level < 76 ? 3 : 4;
+// const getLightningStacksByLevel = (level: number): number =>
+//   level < 20 ? 1 : level < 40 ? 2 : level < 76 ? 3 : 4;
 
 // Source: http://theoryjerks.akhmorning.com/guide/speed/
 export const calcGCDFromStat = (player: Player, speed: number, actionDelay = 2500): number => {
@@ -213,4 +216,10 @@ export const makeAuraTimerIcon = (
   icon.duration = seconds;
 
   return div;
+};
+
+export const isPVPZone = (zoneId: number): boolean => {
+  const zoneInfo = ZoneInfo[zoneId];
+  const contentType = zoneInfo ? zoneInfo.contentType : 0;
+  return contentType === ContentType.Pvp || zoneId === ZoneId.WolvesDenPier;
 };
