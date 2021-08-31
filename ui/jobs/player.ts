@@ -20,6 +20,7 @@ export type SpeedBuffs = {
   paeonStacks: number;
   museStacks: number;
   circleOfPower: boolean;
+  lightningStacks: number;
 };
 
 /** Player data */
@@ -29,7 +30,7 @@ export default class Player {
   job: Job;
   hp: number;
   maxHP: number;
-  currentShield: number;
+  shield: number;
   mp: number;
   prevMP: number;
   maxMP: number;
@@ -37,6 +38,12 @@ export default class Player {
   maxCP: number;
   gp: number;
   maxGP: number;
+  pos: {
+    x: number;
+    y: number;
+    z: number;
+    rotation: number;
+  };
   stats: Stats;
   speedBuffs: SpeedBuffs;
 
@@ -47,7 +54,7 @@ export default class Player {
     this.job = 'NONE';
     this.hp = 0;
     this.maxHP = 0;
-    this.currentShield = 0;
+    this.shield = 0;
     this.mp = 0;
     this.prevMP = 0;
     this.maxMP = 0;
@@ -55,6 +62,13 @@ export default class Player {
     this.maxCP = 0;
     this.gp = 0;
     this.maxGP = 0;
+
+    this.pos = {
+      x: 0,
+      y: 0,
+      z: 0,
+      rotation: 0,
+    };
 
     // player stats
     this.stats = {};
@@ -65,6 +79,7 @@ export default class Player {
       paeonStacks: 0,
       museStacks: 0,
       circleOfPower: true,
+      lightningStacks: 0,
     };
   }
 

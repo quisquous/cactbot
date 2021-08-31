@@ -23,6 +23,7 @@ import foodImage from '../../resources/ffxiv/status/food.png';
 
 import { ComponentFactory } from './components/index';
 import { BaseComponent } from './components/base';
+import { JobsEventEmitter } from './event';
 import defaultOptions from './jobs_options';
 import {
   calcGCDFromStat,
@@ -53,8 +54,10 @@ const kPullText = {
   ko: '풀링',
 };
 
-export class Bars {
+export class Bars extends JobsEventEmitter {
   constructor(options) {
+    super();
+
     this.options = options;
     this.init = false;
     this.o = {};
@@ -1133,9 +1136,6 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   });
   addOverlayListener('onInCombatChangedEvent', (e) => {
     bars._onInCombatChanged(e);
-  });
-  addOverlayListener('ChangeZone', (e) => {
-    bars._onChangeZone(e);
   });
   addOverlayListener('LogLine', (e) => {
     bars._onNetLog(e);
