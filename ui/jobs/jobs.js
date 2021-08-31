@@ -64,9 +64,6 @@ export class Bars extends JobsEventEmitter {
     /** @type {BaseComponent<Job>} */
     this.jobComponent = undefined;
 
-    /** @type {Player} */
-    this.player = undefined;
-
     this.hp = 0;
     this.maxHP = 0;
     this.currentShield = 0;
