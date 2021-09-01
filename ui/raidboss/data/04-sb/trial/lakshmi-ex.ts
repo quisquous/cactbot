@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Vrill + Pair Up',
           de: 'Vril + Pärchen bilden',
-          fr: 'Vril + Formé une paire',
+          fr: 'Vril + Paire',
           ja: 'エーテル + 完全なる惑乱',
           cn: '完全惑乱',
           ko: '락슈미 에테르 + 파트너끼리',
@@ -168,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
         vrillStackOnYou: {
           en: 'Vrill + Stack on YOU',
           de: 'Vril + Stack auf DIR',
-          fr: 'vril + Package sur VOUS',
+          fr: 'Vril + Package sur VOUS',
           ja: '自分に頭割り (エーテル)',
           cn: '元气攻击点名',
           ko: '락슈미 에테르 + 쉐어징 대상자',

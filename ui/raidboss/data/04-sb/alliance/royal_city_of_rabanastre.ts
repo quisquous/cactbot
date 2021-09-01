@@ -64,7 +64,7 @@ const triggerSet: TriggerSet<Data> = {
         breathless: {
           en: 'Breathless: ${num}',
           de: 'Atemnot: ${num}',
-          fr: 'Suffocation :${num}',
+          fr: 'Suffocation : ${num}',
           ja: '呼吸困難 :${num}',
           cn: '窒息层数:${num}',
           ko: '호흡곤란: ${num}',
@@ -140,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move Away',
           de: 'Weg da',
-          fr: 'Eloignez-vous',
+          fr: 'Éloignez-vous',
           ja: 'ハンマーから離れる',
           cn: '远离大锤落点',
           ko: '기둥으로부터 피하기',
@@ -204,7 +204,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Ram Voice: Move Out',
           de: 'Stimme Des Widders: Raus',
-          fr: 'Voix Du Bélier : Eloignez-vous',
+          fr: 'Voix Du Bélier : Éloignez-vous',
           ja: '氷結の咆哮：外へ',
           cn: '寒冰咆哮: 远离',
           ko: '빙결의 포효: 바깥으로',

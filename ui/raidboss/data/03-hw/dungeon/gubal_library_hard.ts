@@ -171,7 +171,7 @@ const triggerSet: TriggerSet<Data> = {
         stunMechanoscribe: {
           en: 'Stun Mechanoscribe',
           de: 'betäube Mechanoscholar',
-          fr: 'Stun sur le Mécano-scribe',
+          fr: 'Étourdissez sur le Mécano-scribe',
           ja: 'スタン：メカノスクライブ',
           cn: '眩晕人偶',
           ko: '기계 서기 기절',

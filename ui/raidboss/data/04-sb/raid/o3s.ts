@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dragon Cleave',
           de: 'Drachen-Cleave',
+          fr: 'Cleave du dragon',
         },
       },
     },
@@ -333,6 +334,7 @@ const triggerSet: TriggerSet<Data> = {
         kill: {
           en: 'Kill ${name}',
           de: 'Töte ${name}',
+          fr: 'Tuez ${name}',
         },
       },
     },
@@ -346,6 +348,7 @@ const triggerSet: TriggerSet<Data> = {
         kill: {
           en: 'Kill Giant + Ninjas',
           de: 'Töte Riese + Ninjas',
+          fr: 'Tuez le Géant + Ninjas',
         },
       },
     },
@@ -373,7 +376,7 @@ const triggerSet: TriggerSet<Data> = {
         books: {
           en: 'Books (One Per Square)',
           de: 'Bücher (Eins pro Feld)',
-          fr: 'Danse de la reine : Livres', // FIXME
+          fr: 'Livres (Un par carré)',
           ja: '女王の舞い: 本', // FIXME
           cn: '中间两排分格站位', // FIXME
           ko: '여왕의 춤: 책', // FIXME
@@ -381,6 +384,7 @@ const triggerSet: TriggerSet<Data> = {
         magicHammer: {
           en: 'Books + Magic Hammer',
           de: 'Bücher + Zauberhammer',
+          fr: 'Livres + Marteau magique',
         },
       },
     },
@@ -398,7 +402,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Clock',
           de: 'Himmelsrichtungen',
-          fr: 'Danse de la reine : Position', // FIXME
+          fr: 'Positions',
           ja: '女王の舞い: 散開', // FIXME
           cn: '万变水波站位', // FIXME
           ko: '여왕의 춤: 산개', // FIXME
@@ -419,7 +423,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Be On Blue Square',
           de: 'Stehe auf einem blauem Feld',
-          fr: 'Danse de la reine : Carré de cristal', // FIXME
+          fr: 'Placez-vous sur un carré bleu',
           ja: '女王の舞い: 床', // FIXME
           cn: '站在蓝地板', // FIXME
           ko: '여왕의 춤: 대지', // FIXME
@@ -440,7 +444,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Tethers',
           de: 'Dornenranken-Verbindungen',
-          fr: 'Danse de la reine : Liens', // FIXME
+          fr: 'Liens',
           ja: '女王の舞い: 茨', // FIXME
           cn: '先集中后扯线', // FIXME
           ko: '여왕의 춤: 가시', // FIXME
@@ -461,6 +465,7 @@ const triggerSet: TriggerSet<Data> = {
         breakTether: {
           en: 'Break Tether (${player})',
           de: 'Verbindung trennen (${player})',
+          fr: 'Cassez le lien (${player})',
           ko: '가시줄 끊기 ("${player}")',
         },
       },
@@ -515,18 +520,22 @@ const triggerSet: TriggerSet<Data> = {
         nwOutside: {
           en: 'NW Outside',
           de: 'NW Außen',
+          fr: 'NO Extérieur',
         },
         nwInside: {
           en: 'NW Inside',
           de: 'NW Innen',
+          fr: 'NO Intérieur',
         },
         seInside: {
           en: 'SE Inside',
           de: 'SO Innen',
+          fr: 'SE Intérieur',
         },
         seOutside: {
           en: 'SE Outside',
           de: 'SO Außen',
+          fr: 'SE Intérieur',
         },
       },
     },
