@@ -1,6 +1,9 @@
+import isDeepEqual from 'lodash/isEqual';
+
 import { EventEmitter } from '../../resources/eventemitter';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
-import { Party, PlayerChangedRet } from '../../types/event';
+import { JobDetail, Party, PlayerChangedRet } from '../../types/event';
+import { Job } from '../../types/job';
 
 import Player from './player';
 
@@ -8,19 +11,17 @@ export interface JobsEventMap {
   'zone/change': (id: number, name: string) => void;
   'party/change': (party: Party[]) => void;
   'party/wipe': () => void;
-  player: (player: PlayerChangedRet) => void;
-  'player/level': (level: number, prevLevel: number) => void;
+  'player': (player: PlayerChangedRet) => void;
+  'player/job': (job: string, jobId?: number) => void;
+  'player/level': (level: number, prevLevel?: number) => void;
   'player/hp': (hp: number, maxHp: number, prevHp?: number) => void;
   'player/mp': (mp: number, maxMp: number, prevMp?: number) => void;
   'player/cp': (cp: number, maxCp: number, prevCp?: number) => void;
   'player/gp': (gp: number, maxGp: number, prevGp?: number) => void;
   'player/shield': (shield: number, prevShield?: number) => void;
-  'player/position': (pos: {
-    x: number;
-    y: number;
-    z: number;
-    rotation: number;
-  }) => void;
+  'player/position': (pos: { x: number; y: number; z: number; rotation: number }) => void;
+  'player/jobDetail': (jobDetail: JobDetail[keyof JobDetail], job?: Job, jobId?: number) => void;
+  'fisher/bait': (baitId: number) => void;
 }
 
 export type JobsEvent = keyof JobsEventMap;
@@ -50,34 +51,22 @@ export class JobsEventEmitter extends EventEmitter {
     });
   }
 
-  override on<E extends JobsEvent>(
-    type: E,
-    listener: JobsEventMap[E]
-  ): JobsEventEmitter {
+  override on<E extends JobsEvent>(type: E, listener: JobsEventMap[E]): JobsEventEmitter {
     super.on(type, listener);
     return this;
   }
 
-  override once<E extends JobsEvent>(
-    type: E,
-    listener: JobsEventMap[E]
-  ): JobsEventEmitter {
+  override once<E extends JobsEvent>(type: E, listener: JobsEventMap[E]): JobsEventEmitter {
     super.once(type, listener);
     return this;
   }
 
-  override off<E extends JobsEvent>(
-    type: E,
-    listener: JobsEventMap[E]
-  ): JobsEventEmitter {
+  override off<E extends JobsEvent>(type: E, listener: JobsEventMap[E]): JobsEventEmitter {
     super.off(type, listener);
     return this;
   }
 
-  override emit<E extends JobsEvent>(
-    type: E,
-    ...args: Parameters<JobsEventMap[E]>
-  ): boolean {
+  override emit<E extends JobsEvent>(type: E, ...args: Parameters<JobsEventMap[E]>): boolean {
     return super.emit(type, ...args);
   }
 
@@ -85,6 +74,11 @@ export class JobsEventEmitter extends EventEmitter {
     this.emit('player', data);
 
     this.player.name = data.name;
+
+    if (data.job !== this.player.job) {
+      this.emit('player/job', data.job);
+      this.player.job = data.job;
+    }
 
     if (data.level !== this.player.level) {
       this.emit('player/level', data.level, this.player.level);
@@ -131,5 +125,14 @@ export class JobsEventEmitter extends EventEmitter {
       this.player.pos.z = data.pos.z;
       this.player.pos.rotation = data.rotation;
     }
+
+    if (data.jobDetail && !isDeepEqual(this.player.jobDetail, data.jobDetail)) {
+      const jobDetail = data.jobDetail as JobDetail[keyof JobDetail];
+      this.emit('player/jobDetail', jobDetail, data.job);
+      this.player.jobDetail = jobDetail;
+    }
+
+    if (data.bait)
+      this.emit('fisher/bait', data.bait);
   }
 }

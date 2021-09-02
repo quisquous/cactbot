@@ -1,4 +1,4 @@
-import { EventResponses } from '../../types/event';
+import { JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetMatches } from '../../types/net_matches';
 
@@ -7,9 +7,6 @@ import { calcGCDFromStat } from './utils';
 export type Stats = Partial<
   {
     [k in keyof NetMatches['PlayerStats']]: number;
-  } & {
-    gcdSkill: number;
-    gcdSpell: number;
   }
 >;
 
@@ -46,6 +43,7 @@ export default class Player {
   };
   stats: Stats;
   speedBuffs: SpeedBuffs;
+  jobDetail?: JobDetail[keyof JobDetail];
 
   constructor() {
     // basic info
@@ -102,13 +100,5 @@ export default class Player {
       throw new Error(`Invalid type: ${type as string}`);
 
     return calcGCDFromStat(this, speed, originalCd);
-  }
-
-  _onPlayerChanged(e: EventResponses['onPlayerChangedEvent']): void {
-    if (this.name !== e.detail.name)
-      this.name = e.detail.name;
-
-    if (this.job !== e.detail.job)
-      this.job = e.detail.job;
   }
 }
