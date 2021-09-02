@@ -2,7 +2,7 @@ import isDeepEqual from 'lodash/isEqual';
 
 import { EventEmitter } from '../../resources/eventemitter';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
-import { JobDetail, Party, PlayerChangedRet } from '../../types/event';
+import { EventResponses, JobDetail, Party, PlayerChangedRet } from '../../types/event';
 import { Job } from '../../types/job';
 
 import Player from './player';
@@ -10,7 +10,8 @@ import Player from './player';
 export interface JobsEventMap {
   'zone/change': (id: number, name: string) => void;
   'party/change': (party: Party[]) => void;
-  'party/wipe': () => void;
+  'battle/pull': () => void;
+  'battle/wipe': () => void;
   'player': (player: PlayerChangedRet) => void;
   'player/job': (job: string, jobId?: number) => void;
   'player/level': (level: number, prevLevel?: number) => void;
@@ -22,6 +23,23 @@ export interface JobsEventMap {
   'player/position': (pos: { x: number; y: number; z: number; rotation: number }) => void;
   'player/jobDetail': (jobDetail: JobDetail[keyof JobDetail], job?: Job, jobId?: number) => void;
   'fisher/bait': (baitId: number) => void;
+  'target': (target: {
+    name: string;
+    id: number;
+    distance: number;
+    effectiveDistance: number;
+  }) => void;
+  'log': (line: string[], rawLine: string) => void;
+  'log/ability/start': (data: StartAbilityPayload) => void;
+  'log/ability/start/self': (data: StartAbilityPayload) => void;
+  'log/ability/use': (data: UseAbilityPayload) => void;
+  'log/ability/use/self': (data: UseAbilityPayload) => void;
+  'log/effect/gain': (data: GainsEffectPayload) => void;
+  'log/effect/gain/self': (data: GainsEffectPayload) => void;
+  'log/effect/lose': (data: LosesEffectPayload) => void;
+  'log/effect/lose/self': (data: LosesEffectPayload) => void;
+  'craft/start': () => void;
+  'craft/end': () => void;
 }
 
 export type JobsEvent = keyof JobsEventMap;
@@ -38,16 +56,24 @@ export class JobsEventEmitter extends EventEmitter {
       this.emit('zone/change', ev.zoneID, ev.zoneName);
     });
 
+    addOverlayListener('EnmityTargetData', (ev) => {
+      this.emitTargetData(ev);
+    });
+
     addOverlayListener('PartyChanged', (ev) => {
       this.emit('party/change', ev.party);
     });
 
     addOverlayListener('onPartyWipe', () => {
-      this.emit('party/wipe');
+      this.emit('battle/wipe');
     });
 
     addOverlayListener('onPlayerChangedEvent', (ev) => {
       this.emitPlayerData(ev.detail);
+    });
+
+    addOverlayListener('LogLine', (ev) => {
+      this.emit('log', ev.line, ev.rawLine);
     });
   }
 
@@ -135,4 +161,53 @@ export class JobsEventEmitter extends EventEmitter {
     if (data.bait)
       this.emit('fisher/bait', data.bait);
   }
+
+  private emitTargetData(data: EventResponses['EnmityTargetData']) {
+    const target = data.Target;
+    this.emit('target', {
+      name: target.Name,
+      id: target.ID,
+      distance: target.Distance,
+      effectiveDistance: target.EffectiveDistance,
+    });
+  }
 }
+
+export type LosesEffectPayload = {
+  effect: string;
+  effectId: number;
+  stacks: number;
+  target: string;
+  targetId: number;
+  source: string;
+  sourceId: number;
+};
+
+export type GainsEffectPayload = LosesEffectPayload & {
+  duration: number;
+};
+
+type CombatantBase = {
+  id: number;
+  name: string;
+}
+
+type CombatantPosition = {
+  x: number;
+  y: number;
+  z: number;
+  heading: number;
+}
+
+export type StartAbilityPayload = {
+  source: CombatantBase & CombatantPosition;
+  abilityId: number;
+  ability: string;
+  target: CombatantBase;
+  castTime: number;
+};
+
+export type UseAbilityPayload = StartAbilityPayload & {
+  abilityType: 'Single' | 'AoE';
+  target: CombatantBase & CombatantPosition;
+};
