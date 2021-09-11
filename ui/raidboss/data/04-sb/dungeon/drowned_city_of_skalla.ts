@@ -16,7 +16,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Skalla Torpedo',
       regex: /Torpedo/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
@@ -46,7 +45,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '2650', source: 'ケルピー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2650', source: '凯尔派', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2650', source: '켈피', capture: false }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {

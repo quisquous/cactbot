@@ -1,4 +1,3 @@
-import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -35,7 +34,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanHm Tumult',
       regex: /Tumult/,
       beforeSeconds: 5,
-      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
   ],

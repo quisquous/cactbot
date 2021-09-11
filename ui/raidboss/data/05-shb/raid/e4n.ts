@@ -1,4 +1,3 @@
-import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -20,7 +19,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '40F7', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40F7', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F7', source: '타이탄', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

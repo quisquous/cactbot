@@ -21,7 +21,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3220', source: '朱雀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3220', source: '朱雀' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3220', source: '주작' }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
@@ -33,7 +32,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3221', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3221', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3221', source: '주작', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -59,7 +57,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3234', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3234', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3234', source: '주작', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -70,7 +67,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3231', source: '朱雀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3231', source: '朱雀' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3231', source: '주작' }),
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {

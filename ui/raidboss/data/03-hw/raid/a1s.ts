@@ -41,7 +41,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A1S Gunnery Pod',
       regex: /Gunnery Pod/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],
@@ -73,7 +72,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A1S Hydrothermal Healer',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
-      condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
       infoText: (data, _matches, output) => {
         if (data.hydro.length === 0)
@@ -156,10 +154,6 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
         if (data.hyper.includes(data.me))
-          return;
-        // TODO: maybe need some way to make calling Conditions look less
-        // awkward inside of functions.
-        if (!Conditions.caresAboutMagical()(data))
           return;
         return output.text!();
       },

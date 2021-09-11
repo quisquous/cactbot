@@ -1,4 +1,3 @@
-import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -16,7 +15,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Fractal Atmospheric Displacement',
       regex: /Atmospheric Displacement/,
       beforeSeconds: 5,
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -29,7 +27,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Fractal Unholy',
       regex: /Unholy/,
       beforeSeconds: 5,
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],
