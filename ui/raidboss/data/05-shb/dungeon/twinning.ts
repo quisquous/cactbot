@@ -102,7 +102,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -171,7 +170,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DFB', source: '泰空' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

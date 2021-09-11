@@ -15,7 +15,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Temple Pounce',
       regex: /Pounce/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {

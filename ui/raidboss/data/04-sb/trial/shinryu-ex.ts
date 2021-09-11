@@ -476,7 +476,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.deathSentenceOn!({ player: data.ShortName(matches.target) });
       },
       infoText: (data, matches, output) => {
-        if (matches.target !== data.me && data.role === 'tank')
+        if (matches.target !== data.me && data.role !== 'healer')
           return output.deathSentenceOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

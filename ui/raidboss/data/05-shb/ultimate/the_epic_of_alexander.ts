@@ -423,7 +423,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA J Kick',
       regex: /J Kick/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
       suppressSeconds: 1,
       response: Responses.aoe(),
     },

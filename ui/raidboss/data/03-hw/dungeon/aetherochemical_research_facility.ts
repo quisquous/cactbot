@@ -15,14 +15,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Facility Bastardbluss',
       regex: /Bastardbluss/,
       beforeSeconds: 4,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
       id: 'Facility Hood Swing',
       regex: /Hood Swing/,
       beforeSeconds: 4,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
