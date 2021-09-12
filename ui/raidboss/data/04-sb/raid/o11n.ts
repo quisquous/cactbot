@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -31,6 +32,17 @@ const triggerSet: TriggerSet<Data> = {
     },
   ],
   triggers: [
+    {
+      id: 'O11N Atomic Ray',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '3286', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3286', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3286', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3286', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3286', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3286', source: '오메가', capture: false }),
+      response: Responses.aoe(),
+    },
     {
       id: 'O11N Mustard Bomb',
       type: 'StartsUsing',
@@ -158,10 +170,46 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'O11N Ballistic Missile',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Drop Fire Outside',
+        },
+      },
+    },
+    {
+      id: 'O11N Electric Slide',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'O11N Delta Attack',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '327B', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '327B', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '327B', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '327B', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '327B', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '327B', source: '오메가', capture: false }),
+      delaySeconds: 3,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Use duty action on Conductive Focus',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'Reinitialisiere Deltaprotokoll',
         'Level Checker': 'Monitor',
@@ -188,6 +236,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'Nécessité d\'utiliser l\'attaque Delta',
         'Level Checker': 'vérifiniveau',
@@ -214,6 +263,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'デルタアタックの必要性を認定します',
         'Level Checker': 'レベルチェッカー',
@@ -240,6 +290,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': '认定有必要使用三角攻击。',
         'Level Checker': '等级检测仪',
@@ -266,6 +317,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': '델타 공격의 필요성을 인정합니다',
         'Level Checker': '레벨 측정기',
