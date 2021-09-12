@@ -28,6 +28,10 @@
 04-sb/raid/o4n.ts
 04-sb/raid/o4s.ts
 04-sb/raid/o7s.ts
+04-sb/raid/o9n.ts
+04-sb/raid/o10n.ts
+04-sb/raid/o11n.ts
+04-sb/raid/o12n.ts
 04-sb/raid/o12s.ts
 04-sb/trial/byakko-ex.ts
 04-sb/trial/shinryu.ts
