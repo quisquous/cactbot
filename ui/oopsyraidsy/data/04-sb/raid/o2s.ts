@@ -8,7 +8,7 @@ export type Data = OopsyData;
 
 // O2S - Deltascape 2.0 Savage
 const triggerSet: OopsyTriggerSet<Data> = {
-  zoneId: ZoneId.DeltascapeV10Savage,
+  zoneId: ZoneId.DeltascapeV20Savage,
   damageWarn: {
     'O2S Weighted Wing': '23EF', // Unstable Gravity explosions on players (after Long Drop)
     'O2S Gravitational Explosion 1': '2367', // failing Four Fold Sacrifice 4 person stack

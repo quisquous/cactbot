@@ -11,7 +11,7 @@ export type Data = OopsyData;
 
 // O3S - Deltascape 3.0 Savage
 const triggerSet: OopsyTriggerSet<Data> = {
-  zoneId: ZoneId.DeltascapeV10Savage,
+  zoneId: ZoneId.DeltascapeV30Savage,
   damageWarn: {
     'O3S Spellblade Fire III': '22EC', // donut
     'O3S Spellblade Thunder III': '22EE', // line
