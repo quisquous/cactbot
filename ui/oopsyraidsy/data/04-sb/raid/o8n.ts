@@ -32,6 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O8N Indolent Will',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '292C', ...playerDamageFields }),
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
@@ -41,6 +42,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O8N Ave Maria',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '292B', ...playerDamageFields }),
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
