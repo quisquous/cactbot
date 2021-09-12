@@ -96,6 +96,14 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Morbid Advance/Morbid Retreat': 'Morbid Advance/Retreat',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
