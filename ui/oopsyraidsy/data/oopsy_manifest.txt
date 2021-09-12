@@ -31,7 +31,11 @@
 04-sb/raid/o3s.ts
 04-sb/raid/o4n.ts
 04-sb/raid/o4s.ts
+04-sb/raid/o5n.ts
+04-sb/raid/o6n.ts
+04-sb/raid/o7n.ts
 04-sb/raid/o7s.ts
+04-sb/raid/o8n.ts
 04-sb/raid/o9n.ts
 04-sb/raid/o10n.ts
 04-sb/raid/o11n.ts
