@@ -10,11 +10,6 @@ export interface Data extends RaidbossData {
   stackMarker?: string[];
 }
 
-// TODO: knockdown flare marker
-// TODO: knockback in earth phase (3148??)
-// TODO: dual stack marker in earth phase
-// TODO: knockbac in air phase (316D?)
-
 // O9N - Alphascape 1.0
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlphascapeV10,
@@ -175,6 +170,28 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Split into stack groups',
         },
       },
+    },
+    {
+      id: 'O9N Earthquake Knockback',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3148', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3148', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3148', source: '카오스', capture: false }),
+      response: Responses.knockback(),
+    },
+    {
+      id: 'O9N Cyclone Knockback',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '316D', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '316D', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '316D', source: '카오스', capture: false }),
+      response: Responses.knockback(),
     },
   ],
   timelineReplace: [
