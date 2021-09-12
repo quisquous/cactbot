@@ -44,7 +44,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O5S Possess',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '28AC' }),
-      condition: (data, matches) => data.hasThrottle?.[matches.target],
+      condition: (data, matches) => !data.hasThrottle?.[matches.target],
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
