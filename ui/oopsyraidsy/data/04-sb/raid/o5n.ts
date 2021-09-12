@@ -3,6 +3,8 @@ import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
+// TODO: Diabolic Wind (28B9) always seems to be 0x16 not 0x15.
+
 interface Data extends OopsyData {
   hasThrottle?: { [name: string]: boolean };
 }
@@ -13,9 +15,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
   damageWarn: {
     'O5N Wroth Ghost Encumber': '28AE', // squares that ghosts appear in
     'O5N Saintly Beam': '28AA', // chasing circles that destroy ghosts
-  },
-  shareWarn: {
-    'O5N Diabolic Wind': '28B9', // green spread markers
   },
   triggers: [
     {
@@ -45,7 +44,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O5N Possess',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '28AC' }),
-      condition: (data, matches) => data.hasThrottle?.[matches.target],
+      condition: (data, matches) => !data.hasThrottle?.[matches.target],
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },

@@ -37,7 +37,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O6N Flash Fire',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '280B' }),
-      condition: (data, matches) => data.hasFireResist?.[matches.target],
+      condition: (data, matches) => !data.hasFireResist?.[matches.target],
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
