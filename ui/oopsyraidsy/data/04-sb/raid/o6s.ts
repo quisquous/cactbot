@@ -54,6 +54,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O6S Divine Lure',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '2822', ...playerDamageFields }),
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
