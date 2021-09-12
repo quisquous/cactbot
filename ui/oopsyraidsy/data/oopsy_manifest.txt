@@ -23,8 +23,11 @@
 04-sb/dungeon/temple_of_the_fist.ts
 04-sb/dungeon/the_burn.ts
 04-sb/raid/o1n.ts
+04-sb/raid/o1s.ts
 04-sb/raid/o2n.ts
+04-sb/raid/o2s.ts
 04-sb/raid/o3n.ts
+04-sb/raid/o3s.ts
 04-sb/raid/o4n.ts
 04-sb/raid/o4s.ts
 04-sb/raid/o7s.ts
