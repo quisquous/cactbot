@@ -191,7 +191,6 @@ export class EffectTracker {
     // TODO: do we need to clean anything else up here if this changes?
     // Or, do we just assume party doesn't change unless at zone change, so ignore edge cases?
     this.partyIds = new Set(this.partyTracker.partyIds);
-    console.log(`party ids: ${JSON.stringify(this.partyTracker.partyIds)}`);
   }
 
   OnChangeZone(_e: EventResponses['ChangeZone']): void {
