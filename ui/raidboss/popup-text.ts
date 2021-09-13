@@ -1335,6 +1335,11 @@ export class PopupText {
         text = text.toString();
       if (typeof text !== 'string')
         text = String(text);
+      // Ignore empty strings so that config ui "blank spaces" are ignored.
+      text = text.trim();
+      if (text === '')
+        return;
+
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText ?? text;
       if (text && typeof text === 'string' && triggerHelper.textAlertsEnabled) {
         // per-trigger option > trigger field > option duration by text type
