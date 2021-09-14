@@ -22,6 +22,7 @@
 04-sb/dungeon/ghimlyt_dark.ts
 04-sb/dungeon/hells_lid.ts
 04-sb/dungeon/kugane_castle.ts
+04-sb/dungeon/shisui_of_the_violet_tides.ts
 04-sb/dungeon/sirensong_sea.ts
 04-sb/dungeon/st_mocianne_hard.ts
 04-sb/dungeon/swallows_compass.ts
