@@ -2,6 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: Diabolic Wind (28B9) always seems to be 0x16 not 0x15.
 
@@ -21,7 +22,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O5N Throttle Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3AA' }),
-      run: (data, matches) => (data.hasThrottle ??= {})[matches.target] = true,
+      run: (data, matches) => {
+        (data.hasThrottle ??= {})[matches.target] = true;
+        console.log(JSON.stringify(data.hasThrottle));
+      },
     },
     {
       id: 'O5N Throttle Death',
@@ -37,13 +41,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'O5N Throttle Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '3AA' }),
-      run: (data, matches) => (data.hasThrottle ??= {})[matches.target] = false,
+      run: (data, matches) => {
+        (data.hasThrottle ??= {})[matches.target] = false;
+        console.log(JSON.stringify(data.hasThrottle));
+      },
     },
     {
       // Getting hit by a ghost without throttle (the mandatory post-chimney one).
       id: 'O5N Possess',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '28AC' }),
+      netRegex: NetRegexes.abilityFull({ id: '28AC', ...playerDamageFields }),
       condition: (data, matches) => !data.hasThrottle?.[matches.target],
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
