@@ -2,6 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: Diabolic Wind (28BD) always seems to be 0x16 not 0x15.
 
@@ -43,7 +44,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Getting hit by a ghost without throttle (the mandatory post-chimney one).
       id: 'O5S Possess',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '28AC' }),
+      netRegex: NetRegexes.abilityFull({ id: '28AC', ...playerDamageFields }),
       condition: (data, matches) => !data.hasThrottle?.[matches.target],
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
