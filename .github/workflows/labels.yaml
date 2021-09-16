@@ -14,16 +14,9 @@ jobs:
         with:
           node-version: '14'
 
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Extract Yarn Cache
         run: |
-          npm ci
+          yarn
 
       - name: Run Label Script
         run: |

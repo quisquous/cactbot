@@ -38,7 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Extract Yarn Cache
+      - name: Extract pip Cache
         run: |
           pip install -r requirements.txt
 

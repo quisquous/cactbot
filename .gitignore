@@ -29,6 +29,8 @@ __pycache__
 env/
 venv/
 
+package-lock.json
+
 # Yarn berry
 .yarn/*
 !.yarn/cache
