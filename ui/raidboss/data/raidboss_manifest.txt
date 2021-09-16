@@ -106,6 +106,8 @@
 04-sb/dungeon/ala_mhigo.txt
 04-sb/dungeon/bardams_mettle.ts
 04-sb/dungeon/bardams_mettle.txt
+04-sb/dungeon/castrum_abania.ts
+04-sb/dungeon/castrum_abania.txt
 04-sb/dungeon/doma_castle.ts
 04-sb/dungeon/doma_castle.txt
 04-sb/dungeon/drowned_city_of_skalla.ts
