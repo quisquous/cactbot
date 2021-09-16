@@ -568,18 +568,20 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Articulated Bit': '암 비트',
         'The Diamond Weapon': '다이아몬드 웨폰',
       },
       'replaceText': {
+        '\\(Jump\\)': '(점프)',
+        '\\(Cleave\\)': '(광역 탱버)',
         'Adamant Purge': '장갑 전개',
         'Aetherial Bullet': '에테르 탄환',
         'Articulated Bits': '암 비트',
         'Auri Arts': '아우라의 무예',
         'Auri Cyclone': '아우라의 선풍',
         'Auri Doomstead': '아우라의 파멸',
+        '(?<!Photon )Burst': '대폭발',
         'Claw Swipe': '발톱 휘두르기',
         'Code Chi-Xi-Stigma': '코드 666',
         'Diamond Flash': '다이아몬드 섬광',
