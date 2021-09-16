@@ -29,6 +29,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA7', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA7', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA7', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA7', capture: false }),
             condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
             run: (data) => data.phase = data.phase ?? 1,
@@ -49,6 +50,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9B', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9B', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5F9B', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5F9B', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -69,6 +71,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5F9A', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9A', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5F9A', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5F9A', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -89,6 +92,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA5', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA5', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA5', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA5', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -109,6 +113,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA4', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA4', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA4', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA4', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -129,6 +134,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA3', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA3', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA3', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA3', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -149,6 +155,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA2', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA2', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA2', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA2', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -170,6 +177,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA8', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA8', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA8', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA8', capture: false }),
             condition: Conditions.caresAboutMagical(),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -192,6 +200,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAD', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAD', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAD', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FAD', capture: false }),
             run: (data) => data.phase = 2,
         },
         // Phase 2
@@ -203,6 +212,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBC', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FBC', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FBC', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FBC', capture: false }),
             condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
@@ -214,6 +224,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FBD' }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FBD' }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FBD' }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FBD' }),
             condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBusterSwap(),
         },
@@ -226,6 +237,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAF', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAF', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAF', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FAF', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -247,6 +259,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB2', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB2', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FB2', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FB2', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -268,6 +281,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB5', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB5', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FB5', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FB5', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -289,6 +303,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FB7', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FB7', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FB7', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FB7', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -309,6 +324,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FC1', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FC1', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FC1', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FC1', capture: false }),
             durationSeconds: 15,
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -360,6 +376,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FA9', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA9', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA9', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA9', capture: false }),
             durationSeconds: 20,
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -381,6 +398,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAC', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAC', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FAC', capture: false }),
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -401,6 +419,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ source: 'Arme Diamant', id: '5FAC', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FAC', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FAC', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FAC', capture: false }),
             delaySeconds: 15,
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -528,6 +547,33 @@ Options.Triggers.push({
                 'Outrage': '震怒',
                 'Photon Burst': '光子爆发',
                 'Vertical Cleave': '纵劈',
+            },
+        },
+        {
+            'locale': 'ko',
+            'missingTranslations': true,
+            'replaceSync': {
+                'Articulated Bit': '암 비트',
+                'The Diamond Weapon': '다이아몬드 웨폰',
+            },
+            'replaceText': {
+                'Adamant Purge': '장갑 전개',
+                'Aetherial Bullet': '에테르 탄환',
+                'Articulated Bits': '암 비트',
+                'Auri Arts': '아우라의 무예',
+                'Auri Cyclone': '아우라의 선풍',
+                'Auri Doomstead': '아우라의 파멸',
+                'Claw Swipe': '발톱 휘두르기',
+                'Code Chi-Xi-Stigma': '코드 666',
+                'Diamond Flash': '다이아몬드 섬광',
+                'Diamond Rain': '다이아몬드 비',
+                'Diamond Shot': '다이아몬드 발사',
+                'Diamond Shrapnel': '다이아몬드 유산탄',
+                'Flood Ray': '침수광',
+                'Homing Laser': '추적 레이저',
+                'Outrage': '격노',
+                'Photon Burst': '광자 폭발',
+                'Vertical Cleave': '수직 쪼개기',
             },
         },
     ],
