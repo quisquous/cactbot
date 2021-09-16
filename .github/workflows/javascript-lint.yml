@@ -30,22 +30,26 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
       - name: Cache Dependencies
         id: cache
         uses: actions/cache@v2
         with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: modules-${{ hashFiles('yarn.lock') }}
 
-      - name: Install Dependencies
+      - name: Extract Yarn Cache
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          npm ci --ignore-scripts
+          yarn
 
       - name: TypeScript checking
         run: |
-          npm run tsc-no-emit
+          yarn run tsc-no-emit
 
-      - name: npm run lint
+      - name: yarn run lint
         run: |
-          npm run lint
+          yarn run lint

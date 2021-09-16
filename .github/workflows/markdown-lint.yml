@@ -24,22 +24,26 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
       - name: Cache Dependencies
         id: cache
         uses: actions/cache@v2
         with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: modules-${{ hashFiles('yarn.lock') }}
 
       - name: Add Custom Problem Matcher
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
 
-      - name: Install Dependencies
+      - name: Extract Yarn Cache
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          npm ci --ignore-scripts
+          yarn
 
-      - name: npm run markdownlint
+      - name: yarn run markdownlint
         run: |
-          npm run markdownlint
+          yarn run markdownlint

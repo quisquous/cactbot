@@ -24,13 +24,13 @@ jobs:
         id: npm-cache
         with:
           path: ~/.npm
-          key: modules-${{ hashFiles('package-lock.json') }}
+          key: modules-${{ hashFiles('yarn.lock') }}
 
       - name: Fetch NPM Dependencies
         # TODO: fix cache@v2 to cache node_modules
         # if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |
-          npm ci --ignore-scripts
+          yarn
 
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version
@@ -48,7 +48,7 @@ jobs:
       - name: Fetch Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
-          npm run fetch-deps
+          yarn run fetch-deps
         shell: bash
       - name: Build Cactbot Plugin
         shell: cmd
@@ -57,7 +57,7 @@ jobs:
 
       - name: Build JavaScript UI Module Bundles
         run: |
-          npm run build
+          yarn run build
       - name: Setup Staging Directory
         run: |
           ./util/publish.sh
