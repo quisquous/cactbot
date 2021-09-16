@@ -10,14 +10,21 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length", "100"],
+  "python.formatting.blackArgs": [
+    "--line-length",
+    "100"
+  ],
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": false,
-  "python.linting.pylintArgs": ["--errors-only"],
+  "python.linting.pylintArgs": [
+    "--errors-only"
+  ],
   "python.linting.pylintEnabled": true,
   "search.exclude": {
     "**/node_modules": true,
-    "dist/**": true
+    "dist/**": true,
+    "**/.yarn": true,
+    "**/.pnp.*": true
   },
   "[python]": {
     "editor.tabSize": 4,
@@ -28,5 +35,8 @@
       */
     "editor.formatOnSaveMode": "file"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "eslint.nodePath": ".yarn/sdks",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "stylelint.stylelintPath": ".yarn/sdks/stylelint/lib/index.js"
 }

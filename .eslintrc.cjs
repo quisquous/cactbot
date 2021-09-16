@@ -40,6 +40,8 @@ const settings = {
     'plugin/',
     'publish/',
     'resources/lib/',
+    '.pnp.cjs',
+    '.yarn/',
   ],
   'parserOptions': {
     'ecmaVersion': 2020,

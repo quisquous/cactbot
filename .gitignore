@@ -28,3 +28,12 @@ __pycache__
 .venv
 env/
 venv/
+
+# Yarn berry
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

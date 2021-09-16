@@ -4,6 +4,8 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "EditorConfig.EditorConfig",
-    "maikotan.cactbot-highlight"
+    "maikotan.cactbot-highlight",
+    "arcanis.vscode-zipfs",
+    "stylelint.vscode-stylelint"
   ]
 }
