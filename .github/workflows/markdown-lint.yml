@@ -30,7 +30,7 @@ jobs:
 
       - name: Extract Yarn Cache
         run: |
-          yarn
+          yarn install
 
       - name: yarn run markdownlint
         run: |

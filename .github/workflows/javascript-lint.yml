@@ -32,7 +32,7 @@ jobs:
 
       - name: Extract Yarn Cache
         run: |
-          yarn
+          yarn install
 
       - name: TypeScript checking
         run: |

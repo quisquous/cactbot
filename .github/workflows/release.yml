@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract Yarn Cache
         run: |
-          yarn
+          yarn install
 
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version

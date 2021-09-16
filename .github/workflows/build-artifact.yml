@@ -52,7 +52,7 @@ jobs:
 
     - name: Extract Yarn Cache
       run: |
-        yarn
+        yarn install
 
     - name: Fetch dependencies
       if: steps.cache-dependencies.outputs.cache-hit != 'true'
