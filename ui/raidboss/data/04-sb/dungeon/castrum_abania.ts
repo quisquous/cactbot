@@ -99,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'CastrumAbania Inferno Rahu Ray',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004A', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '004A' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
