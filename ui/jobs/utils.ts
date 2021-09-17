@@ -16,7 +16,7 @@ export class RegexesHolder {
   craftingFinishRegexes: RegExp[];
   craftingStopRegexes: RegExp[];
 
-  constructor(lang: Lang, _playerName: string) {
+  constructor(lang: Lang) {
     const localeRegexes = getLocaleRegexes(lang);
 
     // use of GP Potion
