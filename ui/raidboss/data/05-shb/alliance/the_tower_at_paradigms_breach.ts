@@ -1102,7 +1102,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         '2P-Operated Flight Unit': '2P: 비행 유닛 장비',
         'Beyond': '정상',
@@ -1129,7 +1128,12 @@ const triggerSet: TriggerSet<Data> = {
         'Hansel(?! &)': '헨젤',
       },
       'replaceText': {
+        '--targetable\\?--': '--타겟 가능?--',
+        '\\(G\\)': '(그레텔)',
+        '\\(H\\)': '(헨젤)',
         'Black Dissonance': '침식: 흑',
+        '(?<!Tandem Assault: )Bloody Sweep': '내리치기',
+        '(?<!Tandem Assault: )Breakthrough': '육중한 돌진',
         'Child\'s Play': '인형 놀이',
         'Colossal Impact': '강공격',
         'Crash': '충돌',
@@ -1159,6 +1163,7 @@ const triggerSet: TriggerSet<Data> = {
         'Maneuver: Standard Laser': '공격: 레이저',
         'Manipulate Energy': '에너지 집중',
         'Mixed Signals': '신호 변경',
+        '(?<!Tandem Assault: )Passing Lance': '창 돌진',
         'Pervasion': '투과',
         'Pillar Impact': '고드름 낙하',
         'Place Of Power': '역장 생성',
@@ -1182,6 +1187,7 @@ const triggerSet: TriggerSet<Data> = {
         'Spheroids': '구체 방출',
         'Stacking The Deck': '연계 공격',
         'Sublime Transcendence': '초월',
+        'Tandem(?! Assault)': '연계',
         'Tandem Assault: Bloody Sweep': '연계 공격: 내리치기',
         'Tandem Assault: Breakthrough': '연계 공격: 육중한 돌진',
         'Tandem Assault: Passing Lance': '연계 공격: 창 돌진',
