@@ -991,21 +991,22 @@ class Bars {
       case logDefinitions.GainsEffect.type: {
         const fields = logDefinitions.GainsEffect.fields;
         const log = normalizeLogLine(line, fields);
+        const effectId = log.effectId?.toUpperCase();
+        if (!effectId)
+          break;
+
         if (log.target === this.me) {
-          const effectId = log.effectId.toUpperCase();
           const f = this.gainEffectFuncMap[effectId];
           if (f)
             f(effectId, log);
           this.buffTracker.onYouGainEffect(effectId, log);
         }
         // Mobs id starts with "4"
-        if (log.targetId.startsWith('4')) {
-          const effectId = log.effectId.toUpperCase();
+        if (log.targetId?.startsWith('4')) {
           this.buffTracker.onMobGainsEffect(effectId, log);
 
           // if the effect is from me.
           if (log.source === this.me) {
-            const effectId = log.effectId.toUpperCase();
             if (this.trackedDoTs.includes(effectId))
               this.dotTarget.push(log.targetId);
             const f = this.mobGainEffectFromYouFuncMap[effectId];
@@ -1019,21 +1020,22 @@ class Bars {
       case logDefinitions.LosesEffect.type: {
         const fields = logDefinitions.LosesEffect.fields;
         const log = normalizeLogLine(line, fields);
+        const effectId = log.effectId?.toUpperCase();
+        if (!effectId)
+          break;
+
         if (log.target === this.me) {
-          const effectId = log.effectId.toUpperCase();
           const f = this.loseEffectFuncMap[effectId];
           if (f)
             f(effectId, log);
           this.buffTracker.onYouLoseEffect(effectId, log);
         }
         // Mobs id starts with "4"
-        if (log.targetId.startsWith('4')) {
-          const effectId = log.effectId.toUpperCase();
+        if (log.targetId?.startsWith('4')) {
           this.buffTracker.onMobLosesEffect(effectId, log);
 
           // if the effect is from me.
           if (log.source === this.me) {
-            const effectId = log.effectId.toUpperCase();
             if (this.trackedDoTs.includes(effectId)) {
               const index = this.dotTarget.indexOf(log.targetId);
               if (index > -1)
@@ -1051,8 +1053,11 @@ class Bars {
       case logDefinitions.NetworkAOEAbility.type: {
         const fields = logDefinitions.Ability.fields;
         const log = normalizeLogLine(line, fields);
+        const id = log.id;
+        if (!id)
+          break;
+
         if (log.source === this.me) {
-          const id = log.id;
           this.combo.HandleAbility(id);
           const f = this.abilityFuncMap[id];
           if (f)
@@ -1062,14 +1067,14 @@ class Bars {
           if (this.dotTarget.includes(log.targetId))
             this.lastAttackedDotTarget = log.targetId;
 
-          if (this.regexes.cordialRegex.test(log.id)) {
+          if (this.regexes.cordialRegex.test(id)) {
             this.gpPotion = true;
             window.setTimeout(() => {
               this.gpPotion = false;
             }, 2000);
           }
         } else {
-          this.buffTracker.onUseAbility(log.id, log);
+          this.buffTracker.onUseAbility(id, log);
         }
         break;
       }

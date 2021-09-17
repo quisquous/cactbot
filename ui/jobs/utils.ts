@@ -185,7 +185,7 @@ export const makeAuraTimerIcon = (
 export const normalizeLogLine = <Fields extends NetAnyFields>(
   line: string[],
   fields: Fields,
-): Record<keyof Fields, string> => {
+): Partial<Record<keyof Fields, string>> => {
   return new Proxy({}, {
     get(_target, property) {
       if (typeof property === 'string' && property in fields) {
