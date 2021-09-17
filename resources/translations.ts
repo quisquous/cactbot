@@ -121,6 +121,30 @@ type LocaleLine = { en: string } & Partial<Record<Exclude<Lang, 'en'>, string>>;
 
 type LocaleRegexesObj = Record<keyof typeof localeLines, Record<Lang, RegExp>>;
 
+declare global {
+  interface ProxyConstructor {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    new<TSource extends object, TTarget extends object>(
+      target: TSource,
+      handler: ProxyHandler<TSource>,
+    ): TTarget;
+  }
+}
+
+type LocaleRegexes = Record<keyof typeof localeLines, RegExp>;
+
+export const getLocaleRegexes = (lang: Lang): LocaleRegexes => {
+  return new Proxy<Record<string, never>, LocaleRegexes>({}, {
+    get: (_target, property) => {
+      if (typeof property === 'string' && property in localeLines) {
+        const line = localeLines[property as keyof typeof localeLines];
+        const localeLine = line[lang] ?? line.en;
+        return Regexes.parse('^' + localeLine + '.*?$');
+      }
+    },
+  });
+};
+
 class RegexSet {
   regexes?: LocaleRegexesObj;
   netRegexes?: LocaleRegexesObj;

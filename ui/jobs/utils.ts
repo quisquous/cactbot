@@ -1,76 +1,43 @@
 import { Lang } from '../../resources/languages';
-import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
-import { LocaleNetRegex } from '../../resources/translations';
+import { getLocaleRegexes } from '../../resources/translations';
 import Util from '../../resources/util';
 import { Job } from '../../types/job';
-import { CactbotBaseRegExp } from '../../types/net_trigger';
+import { NetAnyFields } from '../../types/net_fields';
 
 import { Bars } from './bar';
 import { kLevelMod, kMeleeWithMpJobs } from './constants';
 
-const getLocaleRegex = (locale: string, regexes: {
-  'en': RegExp;
-  [x: string]: RegExp;
-}): RegExp => regexes[locale] ?? regexes['en'];
-
 export class RegexesHolder {
-  StatsRegex: CactbotBaseRegExp<'PlayerStats'>;
-  YouGainEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
-  YouLoseEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
-  YouUseAbilityRegex: CactbotBaseRegExp<'Ability'>;
-  AnybodyAbilityRegex: CactbotBaseRegExp<'Ability'>;
-  MobGainsEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
-  MobLosesEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
-  MobGainsEffectFromYouRegex: CactbotBaseRegExp<'GainsEffect'>;
-  MobLosesEffectFromYouRegex: CactbotBaseRegExp<'LosesEffect'>;
-  cordialRegex: CactbotBaseRegExp<'Ability'>;
+  cordialRegex: RegExp;
   countdownStartRegex: RegExp;
   countdownCancelRegex: RegExp;
   craftingStartRegexes: RegExp[];
   craftingFinishRegexes: RegExp[];
   craftingStopRegexes: RegExp[];
 
-  constructor(lang: Lang, playerName: string) {
-    this.StatsRegex = NetRegexes.statChange();
+  constructor(lang: Lang, _playerName: string) {
+    const localeRegexes = getLocaleRegexes(lang);
 
-    this.YouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
-    this.YouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
-    this.YouUseAbilityRegex = NetRegexes.ability({ source: playerName });
-    this.AnybodyAbilityRegex = NetRegexes.ability();
-    this.MobGainsEffectRegex = NetRegexes.gainsEffect({ targetId: '4.{7}' });
-    this.MobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
-    this.MobGainsEffectFromYouRegex = NetRegexes.gainsEffect({
-      targetId: '4.{7}',
-      source: playerName,
-    });
-    this.MobLosesEffectFromYouRegex = NetRegexes.losesEffect({
-      targetId: '4.{7}',
-      source: playerName,
-    });
     // use of GP Potion
-    this.cordialRegex = NetRegexes.ability({
-      source: playerName,
-      id: '20(017FD|F5A3D|F844F|0420F|0317D)',
-    });
+    this.cordialRegex = /20(017FD|F5A3D|F844F|0420F|0317D)/;
 
-    const getCurrentRegex = getLocaleRegex.bind(this, lang);
-    this.countdownStartRegex = getCurrentRegex(LocaleNetRegex.countdownStart);
-    this.countdownCancelRegex = getCurrentRegex(LocaleNetRegex.countdownCancel);
+    this.countdownStartRegex = localeRegexes.countdownStart;
+    this.countdownCancelRegex = localeRegexes.countdownCancel;
     this.craftingStartRegexes = [
-      LocaleNetRegex.craftingStart,
-      LocaleNetRegex.trialCraftingStart,
-    ].map(getCurrentRegex);
+      localeRegexes.craftingStart,
+      localeRegexes.trialCraftingStart,
+    ];
     this.craftingFinishRegexes = [
-      LocaleNetRegex.craftingFinish,
-      LocaleNetRegex.trialCraftingFinish,
-    ].map(getCurrentRegex);
+      localeRegexes.craftingFinish,
+      localeRegexes.trialCraftingFinish,
+    ];
     this.craftingStopRegexes = [
-      LocaleNetRegex.craftingFail,
-      LocaleNetRegex.craftingCancel,
-      LocaleNetRegex.trialCraftingFail,
-      LocaleNetRegex.trialCraftingCancel,
-    ].map(getCurrentRegex);
+      localeRegexes.craftingFail,
+      localeRegexes.craftingCancel,
+      localeRegexes.trialCraftingFail,
+      localeRegexes.trialCraftingCancel,
+    ];
   }
 }
 
@@ -213,4 +180,18 @@ export const makeAuraTimerIcon = (
   icon.duration = seconds;
 
   return div;
+};
+
+export const normalizeLogLine = <Fields extends NetAnyFields>(
+  line: string[],
+  fields: Fields,
+): Record<keyof Fields, string> => {
+  return new Proxy({}, {
+    get(_target, property) {
+      if (typeof property === 'string' && property in fields) {
+        const fieldKey = fields[property as keyof Fields];
+        return line[fieldKey as unknown as number];
+      }
+    },
+  });
 };
