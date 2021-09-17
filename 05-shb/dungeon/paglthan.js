@@ -386,7 +386,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Amhuluk': '아물룩',
                 'Lunar Bahamut': '루나 바하무트',
@@ -396,6 +395,9 @@ Options.Triggers.push({
                 'The Gathering Ring': '졸마크 제단',
             },
             'replaceText': {
+                '\\(circles\\)': '원',
+                '\\(explosions\\)': '(폭발)',
+                '--Levin orbs--': '--번개 구슬--',
                 'Akh Morn': '아크 몬',
                 'Big Burst': '대폭발',
                 'Critical Rip': '찢어가르기',
@@ -405,6 +407,7 @@ Options.Triggers.push({
                 'Kan Rhai': '칸 라이',
                 'Lightning Bolt': '번개 발생',
                 'Lunar Flare': '루나 플레어',
+                'Megaflare(?! Dive)': '메가플레어',
                 'Megaflare Dive': '메가플레어 다이브',
                 'Perigean Breath': '근지점 입김',
                 'Spike Flail': '가시 매타작',
