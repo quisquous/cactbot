@@ -17,23 +17,20 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Parse Plugin Version
+      - name: Parse Version
         id: parse-version
         run: |
-          # Parse new tag from AssemblyFileVersion
-          VERSION="$(cat plugin/CactbotEventSource/Properties/AssemblyInfo.cs | sed -ne 's/.*AssemblyFileVersion.*"\([0-9]*\.[0-9]*\.[0-9]*\)\.0".*/\1/p')"
+          # Parse new tag from package.json
+          VERSION="$(cat package.json | sed -ne 's/"version": "\([0-9]*\.[0-9]*\.[0-9]*\)",/\1/p')"
 
-          # Check both AssemblyInfo files have the correct version
-          if cat plugin/CactbotEventSource/Properties/AssemblyInfo.cs | grep -q ${VERSION} && cat plugin/CactbotOverlay/Properties/AssemblyInfo.cs | grep -q ${VERSION}; then
-            echo "TAG_NAME=v$VERSION" >> $GITHUB_ENV
-            echo "Matching assembly file version values found."
-          else
-            echo "Different assembly file version values found. Skipping tag creation..."
-            exit 1
-          fi
+          # Write version to both AssemblyInfo files
+          sed -i "s/\(.*Version.*\)\"\([0-9]*\.[0-9]*\.[0-9]*\.0\)\"/\1\"${VERSION}.0\"/g" plugin/CactbotEventSource/Properties/AssemblyInfo.cs plugin/CactbotOverlay/Properties/AssemblyInfo.cs
+
+          # Output version
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Check Existing Tags
         run: |
-          if ! curl -fsL https://api.github.com/repos/quisquous/cactbot/git/refs/tags/${{ env.TAG_NAME }}; then
+          if ! curl -fsL https://api.github.com/repos/quisquous/cactbot/git/refs/tags/v${{ env.VERSION }}; then
             echo "No existing tags for the version number exist. Creating new tag..."
           else
             echo "Tagged version already exists. Skipping tag creation..."
@@ -49,7 +46,7 @@ jobs:
           -H "Authorization: token $GITHUB_TOKEN" \
           -d @- << EOF
           {
-            "ref": "refs/tags/${{ env.TAG_NAME }}",
+            "ref": "refs/tags/v${{ env.VERSION }}",
             "sha": "$commit"
           }
           EOF
