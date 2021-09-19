@@ -189,8 +189,10 @@ export const normalizeLogLine = <Fields extends NetAnyFields>(
   return new Proxy({}, {
     get(_target, property) {
       if (typeof property === 'string' && property in fields) {
-        const fieldKey = fields[property as keyof Fields];
-        return line[fieldKey as unknown as number];
+        const looseFields: { [prop: string]: number } = fields;
+        const fieldKey: number | undefined = looseFields[property];
+        if (fieldKey)
+          return line[fieldKey];
       }
     },
   });

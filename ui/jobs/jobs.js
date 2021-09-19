@@ -1080,7 +1080,7 @@ class Bars {
       }
 
       case logDefinitions.NetworkDoT.type: {
-        // line[2] is dotted target id.
+        // line[fields.id] is dotted target id.
         // lastAttackedTarget, lastDotTarget may not be maintarget,
         // but lastAttackedDotTarget must be your main target.
         const fields = logDefinitions.NetworkDoT.fields;
