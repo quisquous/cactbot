@@ -10,17 +10,17 @@ export type Data = OopsyData;
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.HellsKier,
   damageWarn: {
-    'Ashes To Ashes': '321F', // Scarlet Lady add, raidwide explosion if not killed in time
-    'Fleeting Summer': '3223', // Cone AoE (randomly targeted)
-    'Wing And A Prayer': '3225', // Circle AoEs from unkilled plumes
-    'Phantom Half': '3233', // Giant half-arena AoE follow-up after tank buster
-    'Well Of Flame': '3236', // Large rectangle AoE (randomly targeted)
-    'Hotspot': '3238', // Platform fire when the runes are activated
-    'Swoop': '323B', // Star cross line AoEs
-    'Burn': '323D', // Tower mechanic failure on Incandescent Interlude (party failure, not personal)
+    'Suzaku Normal Ashes To Ashes': '321F', // Scarlet Lady add, raidwide explosion if not killed in time
+    'Suzaku Normal Fleeting Summer': '3223', // Cone AoE (randomly targeted)
+    'Suzaku Normal Wing And A Prayer': '3225', // Circle AoEs from unkilled plumes
+    'Suzaku Normal Phantom Half': '3233', // Giant half-arena AoE follow-up after tank buster
+    'Suzaku Normal Well Of Flame': '3236', // Large rectangle AoE (randomly targeted)
+    'Suzaku Normal Hotspot': '3238', // Platform fire when the runes are activated
+    'Suzaku Normal Swoop': '323B', // Star cross line AoEs
+    'Suzaku Normal Burn': '323D', // Tower mechanic failure on Incandescent Interlude (party failure, not personal)
   },
   shareWarn: {
-    'Rekindle': '3235', // Purple spread circles
+    'Suzaku Normal Rekindle': '3235', // Purple spread circles
   },
   triggers: [
     {
