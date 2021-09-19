@@ -32,6 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Ghimlyt Soranus Duo Stunning Sweep': '3C72', // centered circle
     'Ghimlyt Soranus Duo Crosshatch': '3722', // repeated X charges during intermissions
     'Ghimlyt Soranus Duo Ceruleum Tank Burst': '371A', // ceruleum tank circle explosions
+    'Ghimlyt Soranus Duo Quaternity': '3733', // series of X line charges
   },
   gainsEffectWarn: {
     'Ghimlyt Mark III-B Magitek Colossus Burns': '1F7', // standing in Magitek Slash fire pie slice
