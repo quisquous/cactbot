@@ -31,6 +31,7 @@
 04-sb/raid/o12s.ts
 04-sb/trial/byakko-ex.ts
 04-sb/trial/shinryu.ts
+04-sb/trial/susano.ts
 04-sb/trial/susano-ex.ts
 04-sb/trial/suzaku.ts
 04-sb/ultimate/ultima_weapon_ultimate.ts

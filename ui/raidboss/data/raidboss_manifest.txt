@@ -192,6 +192,8 @@
 04-sb/trial/shinryu.txt
 04-sb/trial/shinryu-ex.ts
 04-sb/trial/shinryu-ex.txt
+04-sb/trial/susano.ts
+04-sb/trial/susano.txt
 04-sb/trial/susano-ex.ts
 04-sb/trial/susano-ex.txt
 04-sb/trial/suzaku.ts
