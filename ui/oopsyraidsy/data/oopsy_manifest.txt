@@ -52,6 +52,7 @@
 04-sb/raid/o12n.ts
 04-sb/raid/o12s.ts
 04-sb/trial/byakko-ex.ts
+04-sb/trial/lakshmi.ts
 04-sb/trial/seiryu-ex.ts
 04-sb/trial/seiryu.ts
 04-sb/trial/shinryu-ex.ts
