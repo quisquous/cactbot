@@ -1,43 +1,77 @@
 import { Lang } from '../../resources/languages';
+import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
-import { getLocaleRegexes } from '../../resources/translations';
+import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
 import { Job } from '../../types/job';
 import { NetAnyFields } from '../../types/net_fields';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import { Bars } from './bar';
 import { kLevelMod, kMeleeWithMpJobs } from './constants';
 
+const getLocaleRegex = (locale: string, regexes: {
+  'en': RegExp;
+  [x: string]: RegExp;
+}): RegExp => regexes[locale] ?? regexes['en'];
+
 export class RegexesHolder {
-  cordialRegex: RegExp;
+  StatsRegex: CactbotBaseRegExp<'PlayerStats'>;
+  YouGainEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
+  YouLoseEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
+  YouUseAbilityRegex: CactbotBaseRegExp<'Ability'>;
+  AnybodyAbilityRegex: CactbotBaseRegExp<'Ability'>;
+  MobGainsEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
+  MobLosesEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
+  MobGainsEffectFromYouRegex: CactbotBaseRegExp<'GainsEffect'>;
+  MobLosesEffectFromYouRegex: CactbotBaseRegExp<'LosesEffect'>;
+  cordialRegex: CactbotBaseRegExp<'Ability'>;
   countdownStartRegex: RegExp;
   countdownCancelRegex: RegExp;
   craftingStartRegexes: RegExp[];
   craftingFinishRegexes: RegExp[];
   craftingStopRegexes: RegExp[];
 
-  constructor(lang: Lang) {
-    const localeRegexes = getLocaleRegexes(lang);
+  constructor(lang: Lang, playerName: string) {
+    this.StatsRegex = NetRegexes.statChange();
 
+    this.YouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
+    this.YouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
+    this.YouUseAbilityRegex = NetRegexes.ability({ source: playerName });
+    this.AnybodyAbilityRegex = NetRegexes.ability();
+    this.MobGainsEffectRegex = NetRegexes.gainsEffect({ targetId: '4.{7}' });
+    this.MobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
+    this.MobGainsEffectFromYouRegex = NetRegexes.gainsEffect({
+      targetId: '4.{7}',
+      source: playerName,
+    });
+    this.MobLosesEffectFromYouRegex = NetRegexes.losesEffect({
+      targetId: '4.{7}',
+      source: playerName,
+    });
     // use of GP Potion
-    this.cordialRegex = /20(017FD|F5A3D|F844F|0420F|0317D)/;
+    this.cordialRegex = NetRegexes.ability({
+      source: playerName,
+      id: '20(017FD|F5A3D|F844F|0420F|0317D)',
+    });
 
-    this.countdownStartRegex = localeRegexes.countdownStart;
-    this.countdownCancelRegex = localeRegexes.countdownCancel;
+    const getCurrentRegex = getLocaleRegex.bind(this, lang);
+    this.countdownStartRegex = getCurrentRegex(LocaleNetRegex.countdownStart);
+    this.countdownCancelRegex = getCurrentRegex(LocaleNetRegex.countdownCancel);
     this.craftingStartRegexes = [
-      localeRegexes.craftingStart,
-      localeRegexes.trialCraftingStart,
-    ];
+      LocaleNetRegex.craftingStart,
+      LocaleNetRegex.trialCraftingStart,
+    ].map(getCurrentRegex);
     this.craftingFinishRegexes = [
-      localeRegexes.craftingFinish,
-      localeRegexes.trialCraftingFinish,
-    ];
+      LocaleNetRegex.craftingFinish,
+      LocaleNetRegex.trialCraftingFinish,
+    ].map(getCurrentRegex);
     this.craftingStopRegexes = [
-      localeRegexes.craftingFail,
-      localeRegexes.craftingCancel,
-      localeRegexes.trialCraftingFail,
-      localeRegexes.trialCraftingCancel,
-    ];
+      LocaleNetRegex.craftingFail,
+      LocaleNetRegex.craftingCancel,
+      LocaleNetRegex.trialCraftingFail,
+      LocaleNetRegex.trialCraftingCancel,
+    ].map(getCurrentRegex);
   }
 }
 

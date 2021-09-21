@@ -77,7 +77,7 @@ class Bars {
     this.inCombat = false;
     this.combo = undefined;
     this.comboTimer = undefined;
-    this.regexes = new RegexesHolder(this.options.ParserLanguage);
+    this.regexes = undefined;
     this.partyTracker = new PartyTracker();
 
     this.skillSpeed = 0;
@@ -852,6 +852,12 @@ class Bars {
   }
 
   _onPlayerChanged(e) {
+    if (this.me !== e.detail.name) {
+      this.me = e.detail.name;
+      // setup regexes prior to the combo tracker
+      this.regexes = new RegexesHolder(this.options.ParserLanguage, this.me);
+    }
+
     if (!this.init) {
       this.combo = ComboTracker.setup(this._onComboChange.bind(this));
       this.init = true;
@@ -957,26 +963,26 @@ class Bars {
   }
 
   _onNetLog(e) {
-    if (!this.init)
+    if (!this.init || !this.regexes)
       return;
     const line = e.line;
+    const log = e.rawLine;
 
     const type = line[logDefinitions.None.fields.type];
 
     switch (type) {
       case logDefinitions.GameLog.type: {
-        const message = line[logDefinitions.GameLog.fields.line];
-        const m = this.regexes.countdownStartRegex.exec(message);
+        const m = this.regexes.countdownStartRegex.exec(log);
         if (m && m.groups?.time) {
           const seconds = parseFloat(m.groups.time);
           this._setPullCountdown(seconds);
         }
-        if (this.regexes.countdownCancelRegex.test(message))
+        if (this.regexes.countdownCancelRegex.test(log))
           this._setPullCountdown(0);
-        if (/:test:jobs:/.test(message))
+        if (/:test:jobs:/.test(log))
           this._test();
         if (Util.isCraftingJob(this.job))
-          this._onCraftingLog(message);
+          this._onCraftingLog(log);
         break;
       }
 
