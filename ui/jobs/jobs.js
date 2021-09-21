@@ -28,6 +28,7 @@ import {
   computeBackgroundColorFrom,
   doesJobNeedMPBar,
   makeAuraTimerIcon,
+  normalizeLogLine,
   RegexesHolder,
 } from './utils';
 import { getReset, getSetup } from './components/index';
@@ -41,6 +42,7 @@ import '../../resources/widget_list';
 
 import '../../resources/defaults.css';
 import './jobs.css';
+import logDefinitions from '../../resources/netlog_defs';
 
 // text on the pull countdown.
 const kPullText = {
@@ -819,21 +821,21 @@ class Bars {
     }
   }
 
-  _onCraftingLog(log) {
+  _onCraftingLog(message) {
     // Hide CP Bar when not crafting
     const container = document.getElementById('jobs-container');
 
     const anyRegexMatched = (line, array) => array.some((regex) => regex.test(line));
 
     if (!this.crafting) {
-      if (anyRegexMatched(log, this.regexes.craftingStartRegexes))
+      if (anyRegexMatched(message, this.regexes.craftingStartRegexes))
         this.crafting = true;
     } else {
-      if (anyRegexMatched(log, this.regexes.craftingStopRegexes)) {
+      if (anyRegexMatched(message, this.regexes.craftingStopRegexes)) {
         this.crafting = false;
       } else {
         this.crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
-          const m = regex.exec(log);
+          const m = regex.exec(message);
           return m && (!m.groups.player || m.groups.player === this.me);
         });
       }
@@ -966,113 +968,137 @@ class Bars {
     const line = e.line;
     const log = e.rawLine;
 
-    const type = line[0];
+    const type = line[logDefinitions.None.fields.type];
 
-    if (type === '00') {
-      const m = this.regexes.countdownStartRegex.exec(log);
-      if (m) {
-        const seconds = parseFloat(m.groups.time);
-        this._setPullCountdown(seconds);
-      }
-      if (this.regexes.countdownCancelRegex.test(log))
-        this._setPullCountdown(0);
-      if (/:test:jobs:/.test(log))
-        this._test();
-      if (Util.isCraftingJob(this.job))
-        this._onCraftingLog(log);
-    } else if (type === '12') {
-      const m = this.regexes.StatsRegex.exec(log);
-      if (m) {
-        const stats = m.groups;
-        this.skillSpeed = parseInt(stats.skillSpeed);
-        this.spellSpeed = parseInt(stats.spellSpeed);
-        this._updateJobBarGCDs();
-      }
-    } else if (type === '26') {
-      let m = this.regexes.YouGainEffectRegex.exec(log);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        const f = this.gainEffectFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
-        this.buffTracker.onYouGainEffect(effectId, m.groups);
-      }
-      m = this.regexes.MobGainsEffectRegex.exec(log);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        this.buffTracker.onMobGainsEffect(effectId, m.groups);
-      }
-      m = this.regexes.MobGainsEffectFromYouRegex.exec(log);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        if (this.trackedDoTs.includes(effectId))
-          this.dotTarget.push(m.groups.targetId);
-        const f = this.mobGainEffectFromYouFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
-      }
-    } else if (type === '30') {
-      let m = this.regexes.YouLoseEffectRegex.exec(log);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        const f = this.loseEffectFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
-        this.buffTracker.onYouLoseEffect(effectId, m.groups);
-      }
-      m = this.regexes.MobLosesEffectRegex.exec(log);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        this.buffTracker.onMobLosesEffect(effectId, m.groups);
-      }
-      m = this.regexes.MobLosesEffectFromYouRegex.exec(log);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        if (this.trackedDoTs.includes(effectId)) {
-          const index = this.dotTarget.indexOf(m.groups.targetId);
-          if (index > -1)
-            this.dotTarget.splice(index, 1);
+    switch (type) {
+      case logDefinitions.GameLog.type: {
+        const m = this.regexes.countdownStartRegex.exec(log);
+        if (m && m.groups?.time) {
+          const seconds = parseFloat(m.groups.time);
+          this._setPullCountdown(seconds);
         }
-        const f = this.mobLoseEffectFromYouFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
+        if (this.regexes.countdownCancelRegex.test(log))
+          this._setPullCountdown(0);
+        if (/:test:jobs:/.test(log))
+          this._test();
+        if (Util.isCraftingJob(this.job))
+          this._onCraftingLog(log);
+        break;
       }
-    } else if (type === '21' || type === '22') {
-      let m = this.regexes.YouUseAbilityRegex.exec(log);
-      if (m) {
-        const id = m.groups.id;
-        this.combo.HandleAbility(id);
-        const f = this.abilityFuncMap[id];
-        if (f)
-          f(id, m.groups);
-        this.buffTracker.onUseAbility(id, m.groups);
-      } else {
-        const m = this.regexes.AnybodyAbilityRegex.exec(log);
-        if (m)
-          this.buffTracker.onUseAbility(m.groups.id, m.groups);
+
+      case logDefinitions.PlayerStats.type: {
+        const fields = logDefinitions.PlayerStats.fields;
+        this.skillSpeed = parseInt(line[fields.skillSpeed]);
+        this.spellSpeed = parseInt(line[fields.spellSpeed]);
+        this._updateJobBarGCDs();
+        break;
       }
-      m = this.regexes.YouUseAbilityRegex.exec(log);
-      if (m) {
-        if (this.dotTarget.includes(m.groups.targetId))
-          this.lastAttackedDotTarget = m.groups.targetId;
+
+      case logDefinitions.GainsEffect.type: {
+        const fields = logDefinitions.GainsEffect.fields;
+        const log = normalizeLogLine(line, fields);
+        const effectId = log.effectId?.toUpperCase();
+        if (!effectId)
+          break;
+
+        if (log.target === this.me) {
+          const f = this.gainEffectFuncMap[effectId];
+          if (f)
+            f(effectId, log);
+          this.buffTracker.onYouGainEffect(effectId, log);
+        }
+        // Mobs id starts with "4"
+        if (log.targetId?.startsWith('4')) {
+          this.buffTracker.onMobGainsEffect(effectId, log);
+
+          // if the effect is from me.
+          if (log.source === this.me) {
+            if (this.trackedDoTs.includes(effectId))
+              this.dotTarget.push(log.targetId);
+            const f = this.mobGainEffectFromYouFuncMap[effectId];
+            if (f)
+              f(effectId, log);
+          }
+        }
+        break;
       }
-      if (this.regexes.cordialRegex.test(log)) {
-        this.gpPotion = true;
-        window.setTimeout(() => {
-          this.gpPotion = false;
-        }, 2000);
+
+      case logDefinitions.LosesEffect.type: {
+        const fields = logDefinitions.LosesEffect.fields;
+        const log = normalizeLogLine(line, fields);
+        const effectId = log.effectId?.toUpperCase();
+        if (!effectId)
+          break;
+
+        if (log.target === this.me) {
+          const f = this.loseEffectFuncMap[effectId];
+          if (f)
+            f(effectId, log);
+          this.buffTracker.onYouLoseEffect(effectId, log);
+        }
+        // Mobs id starts with "4"
+        if (log.targetId?.startsWith('4')) {
+          this.buffTracker.onMobLosesEffect(effectId, log);
+
+          // if the effect is from me.
+          if (log.source === this.me) {
+            if (this.trackedDoTs.includes(effectId)) {
+              const index = this.dotTarget.indexOf(log.targetId);
+              if (index > -1)
+                this.dotTarget.splice(index, 1);
+            }
+            const f = this.mobLoseEffectFromYouFuncMap[effectId];
+            if (f)
+              f(effectId, log);
+          }
+        }
+        break;
       }
-    } else if (type === '24') {
-      // line[2] is dotted target id.
-      // lastAttackedTarget, lastDotTarget may not be maintarget,
-      // but lastAttackedDotTarget must be your main target.
-      if (
-        line[2] === this.lastAttackedDotTarget &&
-        line[4] === 'DoT' &&
-        line[5] === '0'
-      ) {
-        // 0 if not field setting DoT
-        this.updateDotTimerFuncs.forEach((f) => f());
+
+      case logDefinitions.Ability.type:
+      case logDefinitions.NetworkAOEAbility.type: {
+        const fields = logDefinitions.Ability.fields;
+        const log = normalizeLogLine(line, fields);
+        const id = log.id;
+        if (!id)
+          break;
+
+        if (log.source === this.me) {
+          this.combo.HandleAbility(id);
+          const f = this.abilityFuncMap[id];
+          if (f)
+            f(id, log);
+          this.buffTracker.onUseAbility(id, log);
+
+          if (this.dotTarget.includes(log.targetId))
+            this.lastAttackedDotTarget = log.targetId;
+
+          if (this.regexes.cordialRegex.test(id)) {
+            this.gpPotion = true;
+            window.setTimeout(() => {
+              this.gpPotion = false;
+            }, 2000);
+          }
+        } else {
+          this.buffTracker.onUseAbility(id, log);
+        }
+        break;
+      }
+
+      case logDefinitions.NetworkDoT.type: {
+        // line[fields.id] is dotted target id.
+        // lastAttackedTarget, lastDotTarget may not be maintarget,
+        // but lastAttackedDotTarget must be your main target.
+        const fields = logDefinitions.NetworkDoT.fields;
+        if (
+          line[fields.id] === this.lastAttackedDotTarget &&
+          line[fields.which] === 'DoT' &&
+          line[fields.effectId] === '0'
+        ) {
+          // 0 if not field setting DoT
+          this.updateDotTimerFuncs.forEach((f) => f());
+        }
+        break;
       }
     }
   }
