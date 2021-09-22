@@ -26,7 +26,7 @@ import { Responses as _Responses } from './responses';
 const Responses = _Responses;
 import _Outputs from './outputs';
 const Outputs = _Outputs;
-import _Util from './util';
+import * as _Util from './util';
 const Util = _Util;
 import _ZoneId from './zone_id';
 const ZoneId = _ZoneId;

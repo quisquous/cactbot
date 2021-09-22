@@ -4,7 +4,13 @@ import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
 import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
-import Util from '../../resources/util';
+import {
+  isCraftingJob,
+  isDpsJob,
+  isGatheringJob,
+  isHealerJob,
+  isTankJob,
+} from '../../resources/util';
 import ZoneInfo from '../../resources/zone_info';
 import ZoneId from '../../resources/zone_id';
 import {
@@ -195,15 +201,15 @@ class Bars {
     container.appendChild(barsLayoutContainer);
 
     barsLayoutContainer.classList.add(this.job.toLowerCase());
-    if (Util.isTankJob(this.job))
+    if (isTankJob(this.job))
       barsLayoutContainer.classList.add('tank');
-    else if (Util.isHealerJob(this.job))
+    else if (isHealerJob(this.job))
       barsLayoutContainer.classList.add('healer');
-    else if (Util.isDpsJob(this.job))
+    else if (isDpsJob(this.job))
       barsLayoutContainer.classList.add('dps');
-    else if (Util.isCraftingJob(this.job))
+    else if (isCraftingJob(this.job))
       barsLayoutContainer.classList.add('crafting');
-    else if (Util.isGatheringJob(this.job))
+    else if (isGatheringJob(this.job))
       barsLayoutContainer.classList.add('gathering');
 
     const pullCountdownContainer = document.createElement('div');
@@ -265,7 +271,7 @@ class Bars {
       this.o.leftBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
     }
 
-    if (Util.isCraftingJob(this.job)) {
+    if (isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
@@ -278,7 +284,7 @@ class Bars {
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
       container.classList.add('hide');
       return;
-    } else if (Util.isGatheringJob(this.job)) {
+    } else if (isGatheringJob(this.job)) {
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
@@ -703,7 +709,7 @@ class Bars {
       return;
     if (
       this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job)
+      isCraftingJob(this.job) || isGatheringJob(this.job)
     )
       opacityContainer.style.opacity = '1.0';
     else
@@ -877,7 +883,7 @@ class Bars {
       this.umbralStacks = 0;
       this._updateMPTicker();
       updateJob = updateHp = updateMp = updateCp = updateGp = true;
-      if (!Util.isGatheringJob(this.job))
+      if (!isGatheringJob(this.job))
         this.gpAlarmReady = false;
     }
     if (e.detail.level !== this.level) {
@@ -981,7 +987,7 @@ class Bars {
           this._setPullCountdown(0);
         if (/:test:jobs:/.test(log))
           this._test();
-        if (Util.isCraftingJob(this.job))
+        if (isCraftingJob(this.job))
           this._onCraftingLog(log);
         break;
       }
