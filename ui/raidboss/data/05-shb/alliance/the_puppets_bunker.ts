@@ -678,6 +678,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '２Ｐ：融合体', id: '51B8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '2P：融合体', id: '51B8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '2P: 융합체', id: '51B8', capture: false }),
+      // Centrifugal Slice is a physical damage raidwide
       condition: data => data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.CanTactician() || data.CanPersonalMitigation() || data.job === 'BLU',
       response: Responses.aoe(),
       // Cover this phase for the checkpoint as well.
