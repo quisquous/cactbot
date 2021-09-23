@@ -86,7 +86,13 @@ const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): voi
   init();
 
   const subs = subscribers[msg.type];
-  subs?.forEach((sub) => sub(msg));
+  subs?.forEach((sub) => {
+        try {
+            sub(msg)
+        } catch (e) {
+            console.error(e);
+        }
+  });
 };
 
 export const dispatchOverlayEvent = processEvent;
@@ -115,7 +121,7 @@ export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void =
     const list = subscribers[event];
     const pos = list?.indexOf(cb as VoidFunc<unknown>);
 
-    if (pos && pos > -1)
+    if (pos !== undefined && pos > -1)
       list?.splice(pos, 1);
   }
 };
@@ -192,7 +198,7 @@ export const init = (): void => {
     wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(window.location.href);
     if (wsUrl) {
       const connectWs = function() {
-        ws = new WebSocket(wsUrl?.[1] as string);
+        ws = new WebSocket(decodeURIComponent(wsUrl?.[1] as string));
 
         ws.addEventListener('error', (e) => {
           console.error(e);
