@@ -338,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '4124', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4124', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4124', source: '거대 타이탄', capture: false }),
-      condition: (data) => data.role === 'healer',
+      condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
     {

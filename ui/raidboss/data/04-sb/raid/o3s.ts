@@ -73,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '22F6', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '22F6', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '22F6', source: '할리카르나소스', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

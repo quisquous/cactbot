@@ -209,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47B8', source: '나브리알레스의 그림자', capture: false }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
+      condition: Conditions.caresAboutAOE(),
       delaySeconds: 25,
       response: Responses.aoe(),
     },

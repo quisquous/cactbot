@@ -35,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanHm Tumult',
       regex: /Tumult/,
       beforeSeconds: 5,
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],

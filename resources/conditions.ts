@@ -13,14 +13,14 @@ export default {
   },
   caresAboutAOE(): (data: Data) => boolean {
     return (data: Data) =>
-      data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
+      data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.CanTactician() || data.CanPersonalMitigation() || data.job === 'BLU';
   },
   caresAboutMagical(): (data: Data) => boolean {
     return (data: Data) =>
-      data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
+      data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.CanTactician() || data.job === 'BLU';
   },
   caresAboutPhysical(): (data: Data) => boolean {
     return (data: Data) =>
-      data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.job === 'BLU';
+      data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.CanTactician() || data.job === 'BLU';
   },
 };

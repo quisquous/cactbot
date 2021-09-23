@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA8', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -228,7 +228,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FBC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FBC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FBC', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

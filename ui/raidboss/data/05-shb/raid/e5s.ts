@@ -182,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '4BB5', source: 'ラムウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BB5', source: '拉姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BB5', source: '라무', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

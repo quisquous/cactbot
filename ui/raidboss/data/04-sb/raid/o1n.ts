@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '23DB', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23DB', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DB', source: '알테 로이테', capture: false }),
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       // Alert rather than info, as any further raid damage is lethal if unhealed.
       response: Responses.aoe('alert'),
     },
@@ -110,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '23D7', source: 'アルテ・ロイテ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '23D7', source: '老者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '23D7', source: '알테 로이테' }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
+      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       response: Responses.tankBuster(),
     },
     {

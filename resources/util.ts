@@ -63,6 +63,8 @@ const silenceJobs: Job[] = ['BLU', ...tankJobs, ...rangedDpsJobs];
 const sleepJobs: Job[] = ['BLM', 'BLU', ...healerJobs];
 const feintJobs: Job[] = [...meleeDpsJobs];
 const addleJobs: Job[] = [...casterDpsJobs];
+const tacticianJobs: Job[] = ['BRD', 'MCH', 'DNC'];
+const personalMitigationJobs: Job[] = ['MNK', 'SAM', 'THM', 'BLM'];
 const cleanseJobs: Job[] = ['BLU', 'BRD', ...healerJobs];
 
 const jobToRoleMap: Map<Job, Role> = (() => {
@@ -184,6 +186,8 @@ const Util = {
   canCleanse: (job: Job) => cleanseJobs.includes(job),
   canFeint: (job: Job) => feintJobs.includes(job),
   canAddle: (job: Job) => addleJobs.includes(job),
+  canTactician: (job: Job) => tacticianJobs.includes(job),
+  canPersonalMitigation: (job: Job) => personalMitigationJobs.includes(job),
   watchCombatant: watchCombatant,
   clearWatchCombatants: () => {
     while (watchCombatantMap.length > 0) {

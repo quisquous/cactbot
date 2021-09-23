@@ -643,7 +643,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '融合シタ人形タチ', id: '51B8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '融合的人偶群', id: '51B8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '융합한 인형들', id: '51B8', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
       run: (data) => data.phase = 'compound',
     },
@@ -678,7 +678,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '２Ｐ：融合体', id: '51B8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '2P：融合体', id: '51B8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '2P: 융합체', id: '51B8', capture: false }),
-      condition: Conditions.caresAboutPhysical(),
+      condition: data => data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.CanTactician() || data.CanPersonalMitigation() || data.job === 'BLU',
       response: Responses.aoe(),
       // Cover this phase for the checkpoint as well.
       run: (data) => data.phase = 'compound',

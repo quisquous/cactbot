@@ -221,7 +221,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '17CB', source: '弗加尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '17CB', source: '포르갈', capture: false }),
       // Hell Wind sets HP to single digits, so mitigations don't work. Don't notify non-healers.
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       response: Responses.aoe(),
     },
     {

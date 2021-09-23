@@ -103,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '4F60', source: '幻光のネクロマンサー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4F60', source: '幻光亡灵法师', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4F60', source: '환상빛의 강령술사', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -115,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '520C', source: '幻光のバーサーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '520C', source: '幻光狂战士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '520C', source: '환상빛의 광전사', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

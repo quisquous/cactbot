@@ -1028,7 +1028,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58F0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58F0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58F0', capture: false }),
-
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },

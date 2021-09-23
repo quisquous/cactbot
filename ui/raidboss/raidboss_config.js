@@ -671,6 +671,8 @@ class RaidbossConfigurator {
       CanCleanse: () => Util.canCleanse(this.job),
       CanFeint: () => Util.canFeint(this.job),
       CanAddle: () => Util.canAddle(this.job),
+      CanTactician: () => Util.canTactician(this.job),
+      CanPersonalMitigation: () =>Util.canPersonalMitigation(this.job),
     };
 
     const kFakeData = [

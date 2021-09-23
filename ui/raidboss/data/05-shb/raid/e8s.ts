@@ -90,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DCC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DCC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DCC', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -241,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D6C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D6C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D6C', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -346,7 +346,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D73', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D73', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D73', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -477,7 +477,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target)
           return output.mornAfahOnYou!();
 
-        if (data.role === 'tank' || data.role === 'healer' || data.CanAddle())
+        if (Conditions.caresAboutAOE())
           return output.mornAfahOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -545,7 +545,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7C', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

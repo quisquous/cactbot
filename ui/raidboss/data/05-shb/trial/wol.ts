@@ -295,7 +295,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F29', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F29', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F29', capture: false }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

@@ -36,6 +36,8 @@ export interface RaidbossData {
   CanCleanse: () => boolean;
   CanFeint: () => boolean;
   CanAddle: () => boolean;
+  CanTactician: () => boolean;
+  CanPersonalMitigation: () => boolean;
   StopCombat: () => void;
 }
 

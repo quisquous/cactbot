@@ -35,9 +35,15 @@ const jobs = (() => {
   gatheringJobs.forEach((job) => jobs.push(new Job(job, 'gatherer')));
 
   // Special classes
-  jobs.find((job) => job.name === 'BRD').actions.push('Cleanse');
+  jobs.find((job) => job.name === 'BRD').actions.push('Cleanse', 'Tactician');
   jobs.find((job) => job.name === 'BLM').actions.push('Sleep');
   jobs.find((job) => job.name === 'BLU').actions.push('Cleanse', 'Silence', 'Sleep', 'Stun');
+  jobs.find((job) => job.name === 'MCH').actions.push('Tactician');
+  jobs.find((job) => job.name === 'DNC').actions.push('Tactician');
+  jobs.find((job) => job.name === 'MNK').actions.push('PersonalMitigation');
+  jobs.find((job) => job.name === 'SAM').actions.push('PersonalMitigation');
+  jobs.find((job) => job.name === 'THM').actions.push('PersonalMitigation');
+  jobs.find((job) => job.name === 'BLM').actions.push('PersonalMitigation');
 
   return jobs;
 })();
@@ -52,6 +58,8 @@ describe('util tests', () => {
       ['Silence', Util.canSilence],
       ['Sleep', Util.canSleep],
       ['Stun', Util.canStun],
+      ['Tactician', Util.canTactician],
+      ['PersonalMitigation', Util.canPersonalMitigation],
     ]
       .forEach(([action, functionCall]) => {
         // If job can do X, assert canX returns true
