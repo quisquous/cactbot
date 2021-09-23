@@ -197,9 +197,11 @@ export const init = (): void => {
 
   if (typeof window !== 'undefined') {
     wsUrl = urlParams.get('OVERLAY_WS');
-    if (wsUrl) {
+    if (wsUrl !== null) {
       const connectWs = function() {
-        ws = new WebSocket((wsUrl as string));
+        if(wsUrl === null)
+          throw new TypeError('wsUrl is null, a string is required');
+        ws = new WebSocket(wsUrl);
 
         ws.addEventListener('error', (e) => {
           console.error(e);
