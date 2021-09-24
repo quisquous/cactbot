@@ -3,7 +3,6 @@
 # -p 202C:9.1 21C6:300 2032:400
 # -ii 203F 2038 2039 203A 203B 202E 2037 208D 203D 2031 2044
 
-
 hideall "--Reset--"
 hideall "--sync--"
 hideall "Yata-No-Kagami"
@@ -105,18 +104,18 @@ hideall "--cloud knockback--"
 739.6 "Seasplitter" sync /:Susano:25BD:/
 739.7 "The Parting Clouds" sync /:Thunderhead:2041:/
 741.4 "Brightstorm" sync /:Susano:2030:/
-748.5 "Ukehi" sync /:Susano:2036:/
+748.5 "Ukehi x3" sync /:Susano:2036:/
 
 760.0 "The Hidden Gate" sync /:Susano:2034:/
 776.0 "Stormsplitter" sync /:Susano:2033:/
 781.1 "Yasakani-No-Magatama" sync /:Susano:2040:/
-782.7 "Levinbolt" sync /:Susano:203C:/
+782.7 "Levinbolt 1" sync /:Susano:203C:/
 785.6 "The Sealed Gate" sync /:Ama-No-Iwato:2035:/
-788.2 "Levinbolt" sync /:Susano:203C:/
+788.2 "Levinbolt 2" sync /:Susano:203C:/
 791.9 "The Parting Clouds" sync /:Thunderhead:2041:/
-793.7 "Levinbolt" sync /:Susano:203C:/
+793.7 "Levinbolt 3" sync /:Susano:203C:/
 797.3 "Seasplitter" sync /:Susano:25BD:/
-799.2 "Levinbolt" sync /:Susano:203C:/
+799.2 "Levinbolt 4" sync /:Susano:203C:/
 807.3 "Yasakani-No-Magatama" sync /:Susano:2040:/
 812.4 "Rasen Kaikyo" sync /:Susano:202D:/
 814.8 "Yata-No-Kagami" sync /:Susano:202F:/
@@ -124,7 +123,7 @@ hideall "--cloud knockback--"
 819.2 "The Parting Clouds" sync /:Thunderhead:2041:/
 820.9 "Brightstorm" sync /:Susano:2030:/
 826.0 "Rasen Kaikyo" sync /:Susano:202D:/
-832.1 "Ukehi" sync /:Susano:2036:/
+832.1 "Ukehi x3" sync /:Susano:2036:/
 
 843.6 "The Hidden Gate" sync /:Susano:2034:/ window 40,40 jump 531.5
 859.3 "Rasen Kaikyo" #sync /:Susano:202D:/
