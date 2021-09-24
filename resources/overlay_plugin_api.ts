@@ -88,11 +88,11 @@ const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): voi
 
   const subs = subscribers[msg.type];
   subs?.forEach((sub) => {
-        try {
-            sub(msg)
-        } catch (e) {
-            console.error(e);
-        }
+    try {
+      sub(msg);
+    } catch (e) {
+      console.error(e);
+    }
   });
 };
 
@@ -198,9 +198,7 @@ export const init = (): void => {
   if (typeof window !== 'undefined') {
     wsUrl = urlParams.get('OVERLAY_WS');
     if (wsUrl !== null) {
-      const connectWs = function() {
-        if(wsUrl === null)
-          throw new TypeError('wsUrl is null, a string is required');
+      const connectWs = function(wsUrl: string) {
         ws = new WebSocket(wsUrl);
 
         ws.addEventListener('error', (e) => {
@@ -250,12 +248,12 @@ export const init = (): void => {
           console.log('Trying to reconnect...');
           // Don't spam the server with retries.
           window.setTimeout(() => {
-            connectWs();
+            connectWs(wsUrl);
           }, 300);
         });
       };
 
-      connectWs();
+      connectWs(wsUrl);
     } else {
       const waitForApi = function() {
         if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
