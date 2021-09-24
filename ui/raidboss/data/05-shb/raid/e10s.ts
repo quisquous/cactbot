@@ -42,7 +42,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '573E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '573E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '573E', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -191,7 +190,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5BAA' }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '5BAA' }),
-      condition: Conditions.caresAboutPhysical(),
       // Although this is a swap, use `tankBuster` here to give the off tank a warning and a chance
       // to shield the main tank.  The offtank swap is delayed into the swap trigger below.
       response: Responses.tankBuster(),

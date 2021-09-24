@@ -289,7 +289,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Superior Missile Command',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FBD', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       suppressSeconds: 5,
       response: Responses.aoe(),
     },
@@ -453,7 +452,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '5006', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '905P：装备重型陆战装置', id: '5006', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '5006', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -643,7 +641,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '融合シタ人形タチ', id: '51B8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '融合的人偶群', id: '51B8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '융합한 인형들', id: '51B8', capture: false }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
       run: (data) => data.phase = 'compound',
     },
@@ -678,7 +675,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '２Ｐ：融合体', id: '51B8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '2P：融合体', id: '51B8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '2P: 융합체', id: '51B8', capture: false }),
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.aoe(),
       // Cover this phase for the checkpoint as well.
       run: (data) => data.phase = 'compound',

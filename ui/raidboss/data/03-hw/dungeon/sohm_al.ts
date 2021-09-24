@@ -16,7 +16,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sohm Al Raskovnik Bloody Caress',
       regex: /Bloody Caress/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -29,7 +28,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sohm Al Tioman Abyssic Buster',
       regex: /Abyssic Buster/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankCleave(),
     },
   ],

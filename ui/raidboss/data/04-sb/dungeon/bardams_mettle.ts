@@ -48,7 +48,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1EFA', source: 'ガルラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1EFA', source: '加鲁拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1EFA', source: '가루라', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -152,7 +151,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1F0A', source: 'ヨル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1F0A', source: '胡鹰', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1F0A', source: '욜', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

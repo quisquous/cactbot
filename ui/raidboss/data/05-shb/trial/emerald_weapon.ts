@@ -22,7 +22,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5554' }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5554' }),
       netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5554' }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
@@ -34,7 +33,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: ['5555', '5556', '5B0F'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: ['5555', '5556', '5B0F'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: ['5555', '5556', '5B0F'], capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

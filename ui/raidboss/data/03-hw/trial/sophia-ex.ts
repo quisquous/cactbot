@@ -116,7 +116,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SophiaEX Cintamani',
       regex: /Cintamani/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

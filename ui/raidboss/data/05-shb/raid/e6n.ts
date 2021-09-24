@@ -34,7 +34,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ガルーダ', id: '4BD7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '迦楼罗', id: '4BD7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '가루다', id: '4BD7', capture: false }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
@@ -97,7 +96,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BF1', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BF1', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4BF1', capture: false }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
@@ -160,7 +158,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BED' }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BED' }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4BED' }),
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {

@@ -48,7 +48,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['2492', '2493'], source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2492', '2493'], source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2492', '2493'], source: '락슈미' }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -60,7 +59,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '249E', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '249E', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '249E', source: '락슈미', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
