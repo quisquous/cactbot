@@ -5,8 +5,9 @@
 
 hideall "--Reset--"
 hideall "--sync--"
-hideall "Yata-No-Kagami"
+# Seasplitter knockback marker appearing, hidden for noise reasons.
 hideall "Yasakani-No-Magatama"
+# Used for triggers.
 hideall "--knockback cloud--"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0

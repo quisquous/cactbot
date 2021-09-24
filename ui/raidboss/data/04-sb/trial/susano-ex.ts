@@ -245,6 +245,12 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Yata-No-Kagami': '--knockback--',
+      },
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
