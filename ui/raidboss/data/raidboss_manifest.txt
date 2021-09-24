@@ -118,6 +118,8 @@
 04-sb/dungeon/hells_lid.txt
 04-sb/dungeon/kugane_castle.ts
 04-sb/dungeon/kugane_castle.txt
+04-sb/dungeon/sirensong_sea.ts
+04-sb/dungeon/sirensong_sea.txt
 04-sb/dungeon/st_mocianne_hard.ts
 04-sb/dungeon/st_mocianne_hard.txt
 04-sb/dungeon/swallows_compass.ts

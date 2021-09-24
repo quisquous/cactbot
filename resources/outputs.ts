@@ -184,6 +184,10 @@ export default {
     cn: '集合 => 分散',
     ko: '집합 => 산개',
   },
+  drawIn: {
+    // Opposite of a knockback.
+    en: 'Draw In',
+  },
   knockback: {
     en: 'Knockback',
     de: 'Rückstoß',
