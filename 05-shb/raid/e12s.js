@@ -612,7 +612,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A9', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A9', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A9', capture: false }),
-            condition: Conditions.caresAboutPhysical(),
             response: (data, _matches, output) => {
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
@@ -744,7 +743,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A8', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A8', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -939,7 +937,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58F0', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58F0', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58F0', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -970,7 +967,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E0', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E0', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E0', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.bigAoe(),
         },
         {
@@ -982,7 +978,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E1', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E1', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E1', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.bigAoe(),
         },
         {
@@ -994,7 +989,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E2', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E2', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E2', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.bigAoe(),
         },
         {
@@ -1006,7 +1000,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E3', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E3', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E3', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.bigAoe(),
         },
         {
@@ -1169,7 +1162,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C7' }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C7' }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58C7' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {

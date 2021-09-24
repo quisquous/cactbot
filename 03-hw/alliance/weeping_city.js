@@ -6,7 +6,6 @@ Options.Triggers.push({
             id: 'Weeping City Dark Spike',
             regex: /Dark Spike/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -46,7 +45,6 @@ Options.Triggers.push({
             id: 'Weeping City Bloodied Nail',
             regex: /Bloodied Nail/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutPhysical(),
             suppressSeconds: 10,
             response: Responses.tankBuster(),
         },
@@ -61,7 +59,6 @@ Options.Triggers.push({
             id: 'Weeping City Aura Burst',
             regex: /Aura Burst/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
     ],
@@ -503,7 +500,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ id: '1819', source: 'カロフィステリ', capture: false }),
             netRegexCn: NetRegexes.ability({ id: '1819', source: '卡洛菲斯提莉', capture: false }),
             netRegexKo: NetRegexes.ability({ id: '1819', source: '칼로피스테리', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

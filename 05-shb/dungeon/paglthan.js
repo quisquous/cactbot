@@ -22,7 +22,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5C4E', source: 'アムルック' }),
             netRegexCn: NetRegexes.startsUsing({ id: '5C4E', source: '阿姆鲁克' }),
             netRegexKo: NetRegexes.startsUsing({ id: '5C4E', source: '아물룩' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -34,7 +33,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5C4D', source: 'アムルック', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '5C4D', source: '阿姆鲁克', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5C4D', source: '아물룩', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -81,7 +79,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5C9E', source: '魔導コア', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '5C9E', source: '魔导核心', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5C9E', source: '마도핵', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -93,7 +90,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5B47', source: 'ルナバハムート', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '5B47', source: '真月巴哈姆特', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5B47', source: '루나 바하무트', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -237,7 +233,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5B58', source: 'ルナバハムート' }),
             netRegexCn: NetRegexes.startsUsing({ id: '5B58', source: '真月巴哈姆特' }),
             netRegexKo: NetRegexes.startsUsing({ id: '5B58', source: '루나 바하무트' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -249,7 +244,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5B57', source: 'ルナバハムート', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '5B57', source: '真月巴哈姆特', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5B57', source: '루나 바하무트', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
     ],

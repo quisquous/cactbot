@@ -8,7 +8,6 @@ Options.Triggers.push({
             id: 'Fractal Hard Diffractive Laser',
             regex: /Diffractive Laser/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
     ],
@@ -180,7 +179,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2793', source: 'アルテマウォリアー' }),
             netRegexCn: NetRegexes.startsUsing({ id: '2793', source: '究极战士' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2793', source: '알테마 워리어' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {
@@ -345,7 +343,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '27B2', source: 'アルテマビースト', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '27B2', source: '究极神兽', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '27B2', source: '알테마 비스트', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

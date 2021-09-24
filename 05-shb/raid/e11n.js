@@ -78,7 +78,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5650', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5650', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5650', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -90,7 +89,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '564E' }),
             netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '564E' }),
             netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '564E' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {

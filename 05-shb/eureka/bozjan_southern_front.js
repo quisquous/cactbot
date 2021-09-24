@@ -217,12 +217,8 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ヘルダイバー', id: '51FC', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '第四军团地狱潜者', id: '51FC', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: 'Iv군단 헬다이버', id: '51FC', capture: false }),
-            condition: (data) => {
-                // This won't play the first time, but that seems better than a false positive for the top.
-                if (!data.helldiver)
-                    return false;
-                return Conditions.caresAboutAOE()(data);
-            },
+            // This won't play the first time, but that seems better than a false positive for the top.
+            condition: (data) => data.helldiver,
             response: Responses.aoe(),
         },
         {
@@ -436,7 +432,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'アドラメレク', id: '4F96', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '阿德拉梅里克', id: '4F96', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '아드람멜렉', id: '4F96', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -682,7 +677,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ドゥン', id: '517A', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '达温', id: '517A', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '다우언', id: '517A', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

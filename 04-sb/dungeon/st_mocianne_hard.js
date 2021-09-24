@@ -41,7 +41,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2E48', source: 'ヌルチュー' }),
             netRegexCn: NetRegexes.startsUsing({ id: '2E48', source: '泥口花' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2E48', source: '누루츄' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -105,7 +104,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '312A', source: 'ラハム' }),
             netRegexCn: NetRegexes.startsUsing({ id: '312A', source: '拉哈穆' }),
             netRegexKo: NetRegexes.startsUsing({ id: '312A', source: '라하무' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {
@@ -117,7 +115,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '312C', source: 'ラハム', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '312C', source: '拉哈穆', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '312C', source: '라하무', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -169,7 +166,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3135', source: 'トカップチ' }),
             netRegexCn: NetRegexes.startsUsing({ id: '3135', source: '枯腐泥妖' }),
             netRegexKo: NetRegexes.startsUsing({ id: '3135', source: '진흙장사' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {

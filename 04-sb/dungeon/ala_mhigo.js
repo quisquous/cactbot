@@ -19,7 +19,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '204D', source: 'ガードスコーピオン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '204D', source: '守卫机蝎', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '204D', source: '경비 전갈', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -31,7 +30,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '204F', source: 'アウルス・マル・アシナ', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '204F', source: '奥卢斯·玛尔·亚希纳', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '204F', source: '아울루스 말 아시나', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -129,7 +127,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '206D', source: 'ゼノス・イェー・ガルヴァス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '206D', source: '芝诺斯·耶·加尔乌斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '206D', source: '제노스 예 갈부스', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
     ],

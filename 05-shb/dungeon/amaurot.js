@@ -79,7 +79,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3CE3', source: 'メガセリオン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3CE3', source: '至大灾兽', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3CE3', source: '메가테리온', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

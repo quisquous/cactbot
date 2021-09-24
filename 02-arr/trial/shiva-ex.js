@@ -16,7 +16,6 @@ Options.Triggers.push({
             id: 'ShivaEx Absolute Zero',
             regex: /Absolute Zero/,
             beforeSeconds: 5,
-            condition: Conditions.caresAboutAOE(),
             // These are usually doubled, so avoid spamming.
             suppressSeconds: 10,
             response: Responses.aoe(),

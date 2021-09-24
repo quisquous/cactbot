@@ -6,14 +6,12 @@ Options.Triggers.push({
             id: 'Kugane Castle Issen',
             regex: /Issen/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankCleave(),
         },
         {
             id: 'Kugane Castle Wakizashi',
             regex: /Wakizashi/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
     ],
@@ -27,7 +25,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '1E93', source: 'ズイコウ丸', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '1E93', source: '瑞光丸', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '1E93', source: '즈이코우마루', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

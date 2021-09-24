@@ -11,7 +11,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '正体不明', id: ['4B69', '4B72'] }),
             netRegexCn: NetRegexes.startsUsing({ source: '不明物体', id: ['4B69', '4B72'] }),
             netRegexKo: NetRegexes.startsUsing({ source: '정체불명', id: ['4B69', '4B72'] }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -46,7 +45,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: '正体不明', id: '4B6A', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '不明物体', id: '4B6A', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '정체불명', id: '4B6A', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {
@@ -69,7 +67,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'クリュプス', id: '4B58', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '克琉普斯', id: '4B58', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '키클롭스', id: '4B58', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {
@@ -131,7 +128,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ルクスィー・ディーマ', id: '4B8C' }),
             netRegexCn: NetRegexes.startsUsing({ source: '鲁克嘶·蒂母', id: '4B8C' }),
             netRegexKo: NetRegexes.startsUsing({ source: '루크쉬 디마', id: '4B8C' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {

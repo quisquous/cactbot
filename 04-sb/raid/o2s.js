@@ -66,7 +66,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2371', source: 'カタストロフィー' }),
             netRegexCn: NetRegexes.startsUsing({ id: '2371', source: '灾变者' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2371', source: '카타스트로피' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBusterSwap(),
         },
         {
@@ -230,7 +229,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2372', source: 'カタストロフィー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '2372', source: '灾变者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2372', source: '카타스트로피', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

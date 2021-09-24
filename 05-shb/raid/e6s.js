@@ -119,7 +119,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ガルーダ', id: '4BF7', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '迦楼罗', id: '4BF7', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '가루다', id: '4BF7', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
             run: (data) => data.phase = 'garuda',
         },
@@ -193,7 +192,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C14', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4C14', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4C14', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {
@@ -255,7 +253,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0E' }),
             netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4C0E' }),
             netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4C0E' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {

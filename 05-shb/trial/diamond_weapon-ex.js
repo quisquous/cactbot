@@ -30,7 +30,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA7', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA7', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA7', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
             run: (data) => data.phase = data.phase ?? 1,
         },
@@ -178,7 +177,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA8', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA8', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA8', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -213,7 +211,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FBC', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FBC', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FBC', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {
@@ -225,7 +222,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FBD' }),
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FBD' }),
             netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FBD' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBusterSwap(),
         },
         // @TODO: Get boss facing and bits position, call out adjust?

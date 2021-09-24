@@ -6,7 +6,6 @@ Options.Triggers.push({
             id: 'A6N Mind Blast',
             regex: /Mind Blast/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

@@ -11,7 +11,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4FCB', source: '幻光のシーフ' }),
             netRegexCn: NetRegexes.startsUsing({ id: '4FCB', source: '幻光盗贼' }),
             netRegexKo: NetRegexes.startsUsing({ id: '4FCB', source: '환상빛의 도적' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -30,7 +29,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4FCC', source: '幻光のシーフ', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '4FCC', source: '幻光盗贼', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '4FCC', source: '환상빛의 도적', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -79,7 +77,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4F5E', source: '幻光のネクロマンサー' }),
             netRegexCn: NetRegexes.startsUsing({ id: '4F5E', source: '幻光亡灵法师' }),
             netRegexKo: NetRegexes.startsUsing({ id: '4F5E', source: '환상빛의 강령술사' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {
@@ -91,7 +88,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4F60', source: '幻光のネクロマンサー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '4F60', source: '幻光亡灵法师', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '4F60', source: '환상빛의 강령술사', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {
@@ -103,7 +99,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '520C', source: '幻光のバーサーカー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '520C', source: '幻光狂战士', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '520C', source: '환상빛의 광전사', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {

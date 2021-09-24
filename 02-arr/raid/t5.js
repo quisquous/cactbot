@@ -56,7 +56,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
-            condition: Conditions.caresAboutPhysical(),
             delaySeconds: 30,
             suppressSeconds: 5,
             infoText: (_data, _matches, output) => output.text(),

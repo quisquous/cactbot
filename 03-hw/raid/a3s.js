@@ -240,7 +240,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: 'EFE', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: 'EFE', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'EFE', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

@@ -20,7 +20,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ id: '282', source: 'タイタン', capture: false }),
             netRegexCn: NetRegexes.ability({ id: '282', source: '泰坦', capture: false }),
             netRegexKo: NetRegexes.ability({ id: '282', source: '타이탄', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             suppressSeconds: 2,
             response: Responses.aoe(),
         },

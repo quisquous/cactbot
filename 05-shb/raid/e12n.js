@@ -113,7 +113,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5872', source: 'プロミス・オブ・エデン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '5872', source: '伊甸之约', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5872', source: '에덴의 약속', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -246,7 +245,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '5864', source: 'プロミス・オブ・エデン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '5864', source: '伊甸之约', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5864', source: '에덴의 약속', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

@@ -23,7 +23,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3C8B', source: 'ロツァトル', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -115,7 +114,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3C92', source: 'バッツカッチ', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3C92', source: '大脚野蝠', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3C92', source: '배츠콰치', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -127,7 +125,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3C93', source: 'バッツカッチ', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3C93', source: '大脚野蝠', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3C93', source: '배츠콰치', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -151,7 +148,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3C9B', source: 'エロース', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3C9B', source: '艾洛斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3C9B', source: '에로스', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

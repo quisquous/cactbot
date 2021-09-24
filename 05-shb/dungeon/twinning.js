@@ -65,7 +65,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3D64', source: 'アルファ・ザグナル', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3D64', source: '扎戈斧龙一型', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3D64', source: '알파 자그날', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -187,7 +186,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3DFC', source: 'タイクーン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3DFC', source: '泰空', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3DFC', source: '타이쿤', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
     ],

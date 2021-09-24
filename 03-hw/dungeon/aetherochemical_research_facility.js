@@ -74,7 +74,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '1109', source: 'アシエン・プライム', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '1109', source: '至尊无影', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '1109', source: '아씨엔 프라임', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -85,7 +84,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '110A', source: 'アシエン・プライム', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '110A', source: '至尊无影', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '110A', source: '아씨엔 프라임', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

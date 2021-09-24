@@ -22,7 +22,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ id: '1C30', source: 'レイトンワード', capture: false }),
             netRegexCn: NetRegexes.ability({ id: '1C30', source: '莱顿瓦德', capture: false }),
             netRegexKo: NetRegexes.ability({ id: '1C30', source: '레이튼워드', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

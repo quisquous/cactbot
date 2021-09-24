@@ -21,7 +21,6 @@ Options.Triggers.push({
             id: 'A8N Short Needle',
             regex: /Short Needle/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -116,7 +115,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'オンスローター', id: '1730' }),
             netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '1730' }),
             netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '1730' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {
@@ -198,7 +196,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '174E' }),
             netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '174E' }),
             netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '174E' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {

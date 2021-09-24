@@ -105,7 +105,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A84', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A84', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A84', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

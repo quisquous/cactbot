@@ -11,7 +11,6 @@ Options.Triggers.push({
             id: 'A9S Panzerschreck',
             regex: /Panzerschreck/,
             beforeSeconds: 5,
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

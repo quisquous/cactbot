@@ -26,7 +26,6 @@ Options.Triggers.push({
             id: 'TitanHm Tumult',
             regex: /Tumult/,
             beforeSeconds: 5,
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
     ],

@@ -114,7 +114,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

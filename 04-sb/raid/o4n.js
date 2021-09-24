@@ -204,7 +204,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '24C6', source: 'エクスデス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '24C6', source: '艾克斯迪司', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '24C6', source: '엑스데스', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.bigAoe(),
         },
     ],

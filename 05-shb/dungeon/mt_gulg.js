@@ -77,7 +77,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3CFC', source: 'フォーギヴン・クルエルティー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3CFC', source: '得到宽恕的残忍', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3CFC', source: '면죄된 잔혹', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -123,7 +122,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3D0B', source: 'フォーギヴン・ウィムズィー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3D0B', source: '得到宽恕的无常', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3D0B', source: '면죄된 변덕', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -191,7 +189,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3D14', source: 'フォーギヴン・オブセニティー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3D14', source: '得到宽恕的猥亵', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3D14', source: '면죄된 외설', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

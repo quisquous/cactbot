@@ -17,7 +17,6 @@ Options.Triggers.push({
             id: 'A12S Holy Bleed',
             regex: /Holy Bleed/,
             beforeSeconds: 5,
-            condition: Conditions.caresAboutAOE(),
             response: Responses.bigAoe(),
         },
     ],
@@ -31,7 +30,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19E9' }),
             netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19E9' }),
             netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19E9' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {
@@ -104,7 +102,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EE', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19EE', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19EE', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -245,7 +242,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {

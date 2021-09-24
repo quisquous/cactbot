@@ -45,7 +45,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AA8', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AA8', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AA8', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -230,7 +229,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC8', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC8', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC8', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
     ],

@@ -603,7 +603,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -862,7 +861,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

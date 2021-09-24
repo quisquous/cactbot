@@ -152,7 +152,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2510', source: 'カタストロフィー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '2510', source: '灾变者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2510', source: '카타스트로피', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

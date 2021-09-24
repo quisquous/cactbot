@@ -40,7 +40,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '22EB', source: 'ハリカルナッソス' }),
             netRegexCn: NetRegexes.startsUsing({ id: '22EB', source: '哈利卡纳苏斯' }),
             netRegexKo: NetRegexes.startsUsing({ id: '22EB', source: '할리카르나소스' }),
-            condition: Conditions.caresAboutPhysical(),
             // "Use Awareness!! <se.6>"
             response: Responses.tankBuster(),
         },
@@ -53,7 +52,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '22F6', source: 'ハリカルナッソス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '22F6', source: '哈利卡纳苏斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '22F6', source: '할리카르나소스', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {

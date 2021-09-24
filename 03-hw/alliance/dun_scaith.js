@@ -6,7 +6,6 @@ Options.Triggers.push({
             id: 'Dun Scaith Spike Of Darkness',
             regex: /Spike Of Darkness/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
     ],
@@ -182,7 +181,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '1C98', source: 'フェルディア・ホロー' }),
             netRegexCn: NetRegexes.startsUsing({ id: '1C98', source: '虚空弗迪亚' }),
             netRegexKo: NetRegexes.startsUsing({ id: '1C98', source: '공허의 페르디아' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
         {
@@ -373,7 +371,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'プロトアルテマ', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '究极神兵原型', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '프로토 알테마', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -495,7 +492,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '1D32', source: 'スカアハ', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '1D32', source: '斯卡哈', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '1D32', source: '스카하크', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

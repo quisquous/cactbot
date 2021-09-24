@@ -11,7 +11,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2B95', source: 'オオテング', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '2B95', source: '大天狗', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2B95', source: '대텐구', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -23,7 +22,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2B94', source: 'オオテング' }),
             netRegexCn: NetRegexes.startsUsing({ id: '2B94', source: '大天狗' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2B94', source: '대텐구' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -132,7 +130,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ id: '2BA3', source: 'ダイダラボッチ', capture: false }),
             netRegexCn: NetRegexes.ability({ id: '2BA3', source: '大太法师', capture: false }),
             netRegexKo: NetRegexes.ability({ id: '2BA3', source: '다이다라봇치', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -162,7 +159,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: ['2BA6', '2D07'], source: ['セイテンタイセイ', 'セイテンタイセイの影'] }),
             netRegexCn: NetRegexes.startsUsing({ id: ['2BA6', '2D07'], source: ['齐天大圣', '齐天大圣的幻影'] }),
             netRegexKo: NetRegexes.startsUsing({ id: ['2BA6', '2D07'], source: ['제천대성', '제천대성의 분신'] }),
-            condition: Conditions.caresAboutPhysical(),
             suppressSeconds: 5,
             response: Responses.tankBuster(),
         },
@@ -175,7 +171,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['セイテンタイセイ', 'セイテンタイセイの影'], capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['齐天大圣', '齐天大圣的幻影'], capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['제천대성', '제천대성의 분신'], capture: false }),
-            condition: Conditions.caresAboutAOE(),
             suppressSeconds: 5,
             response: Responses.aoe(),
         },

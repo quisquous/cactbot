@@ -20,7 +20,6 @@ Options.Triggers.push({
             id: 'TitanUn Tumult',
             regex: /Tumult/,
             beforeSeconds: 5,
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {

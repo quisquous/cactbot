@@ -164,7 +164,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4BB5', source: 'ラムウ', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '4BB5', source: '拉姆', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '4BB5', source: '라무', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {
@@ -234,7 +233,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4BCA', source: 'ラムウ' }),
             netRegexCn: NetRegexes.startsUsing({ id: '4BCA', source: '拉姆' }),
             netRegexKo: NetRegexes.startsUsing({ id: '4BCA', source: '라무' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {

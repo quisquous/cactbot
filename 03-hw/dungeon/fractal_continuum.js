@@ -7,7 +7,6 @@ Options.Triggers.push({
             id: 'Fractal Atmospheric Displacement',
             regex: /Atmospheric Displacement/,
             beforeSeconds: 5,
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -20,7 +19,6 @@ Options.Triggers.push({
             id: 'Fractal Unholy',
             regex: /Unholy/,
             beforeSeconds: 5,
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
     ],

@@ -7,7 +7,6 @@ Options.Triggers.push({
             id: 'Xelphatol Short Burst',
             regex: /Short Burst/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutMagical(),
             suppressSeconds: 5,
             response: Responses.tankBuster(),
         },
@@ -25,7 +24,6 @@ Options.Triggers.push({
             id: 'Xelphatol Ixali Aero Buster',
             regex: /Ixali Aero \(buster\)/,
             beforeSeconds: 4,
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBuster(),
         },
     ],
@@ -38,7 +36,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '19C8', source: '飛天のヌザル・フェロック', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '19C8', source: '飞天枪 奴扎尔·怀罗克', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '19C8', source: '비천의 누잘 후엘록', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -86,7 +83,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '19D5', source: '晴嵐のトゾル・ファトトル', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '19D5', source: '晴天霹雳 托佐尔·法托特尔', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '19D5', source: '청풍의 토졸 후아토틀', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

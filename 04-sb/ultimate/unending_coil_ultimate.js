@@ -156,7 +156,6 @@ Options.Triggers.push({
             // It's tough to track who this is on, especially for the first one.
             // Both tanks should care about the tankbuster because they can throw
             // mitigation on the other, so just always play this for both tanks.
-            condition: Conditions.caresAboutPhysical(),
             suppressSeconds: 1,
             response: Responses.tankBuster(),
         },
@@ -1118,7 +1117,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ネール・デウス・ダーナス', id: '26B6' }),
             netRegexCn: NetRegexes.startsUsing({ source: '奈尔·神·达纳斯', id: '26B6' }),
             netRegexKo: NetRegexes.startsUsing({ source: '넬 데우스 다르누스', id: '26B6' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBusterSwap('alert'),
         },
         {

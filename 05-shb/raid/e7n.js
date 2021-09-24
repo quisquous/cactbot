@@ -11,7 +11,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C52', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C52', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C52', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

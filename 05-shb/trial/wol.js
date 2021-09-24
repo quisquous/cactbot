@@ -269,7 +269,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F28' }),
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F28' }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F28' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBusterSwap(),
         },
         {
@@ -281,7 +280,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F29', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F29', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F29', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {

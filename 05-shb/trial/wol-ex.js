@@ -291,7 +291,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F0A' }),
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F0A' }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F0A' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBusterSwap(),
         },
         {
@@ -332,7 +331,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F0B', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F0B', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F0B', capture: false }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.aoe(),
         },
         {
@@ -356,7 +354,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: ['幻光の狂戦士', '幻光の暗黒騎士'], id: '515[47]', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: ['幻光狂战士', '幻光暗黑骑士'], id: '515[47]', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: ['환상빛의 전사', '환상빛의 암흑기사'], id: '515[47]', capture: false }),
-            condition: Conditions.caresAboutPhysical(),
             suppressSeconds: 2,
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {

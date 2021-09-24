@@ -29,7 +29,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '376E', source: '魔導コロッサスIIIb型' }),
             netRegexCn: NetRegexes.startsUsing({ id: '376E', source: '魔导巨兵三型B式' }),
             netRegexKo: NetRegexes.startsUsing({ id: '376E', source: '마도 콜로서스 III-B형' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -48,7 +47,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3773', source: '魔導コロッサスIIIb型', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3773', source: '魔导巨兵三型B式', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3773', source: '마도 콜로서스 III-B형', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -91,7 +89,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3455', source: 'プロメテウス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3455', source: '普罗米修斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3455', source: '프로메테우스', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -103,7 +100,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3459', source: 'プロメテウス' }),
             netRegexCn: NetRegexes.startsUsing({ id: '3459', source: '普罗米修斯' }),
             netRegexKo: NetRegexes.startsUsing({ id: '3459', source: '프로메테우스' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -127,7 +123,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3727', source: 'ユリア・クォ・ソラノス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3727', source: '茱莉亚・库奥・索拉努斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3727', source: '율리아 쿠오 소라누스', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -139,7 +134,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3729', source: 'ユリア・クォ・ソラノス' }),
             netRegexCn: NetRegexes.startsUsing({ id: '3729', source: '茱莉亚・库奥・索拉努斯' }),
             netRegexKo: NetRegexes.startsUsing({ id: '3729', source: '율리아 쿠오 소라누스' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -151,7 +145,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '372A', source: 'アンニア・クォ・ソラノス' }),
             netRegexCn: NetRegexes.startsUsing({ id: '372A', source: '安妮亚・库奥・索拉努斯' }),
             netRegexKo: NetRegexes.startsUsing({ id: '372A', source: '안니아 쿠오 소라누스' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -159,7 +152,7 @@ Options.Triggers.push({
             id: 'Ghimlyt Dark Heirsbane',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0001' }),
-            condition: (data, matches) => matches.targetId[0] !== '4' && Conditions.caresAboutPhysical()(data),
+            condition: (data, matches) => matches.targetId[0] !== '4',
             response: Responses.tankBuster(),
         },
         {

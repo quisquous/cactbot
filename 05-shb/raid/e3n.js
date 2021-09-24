@@ -11,7 +11,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3FC4', source: 'リヴァイアサン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3FC4', source: '利维亚桑', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3FC4', source: '리바이어선', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -127,7 +126,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3FD4', source: 'リヴァイアサン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3FD4', source: '利维亚桑', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3FD4', source: '리바이어선', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

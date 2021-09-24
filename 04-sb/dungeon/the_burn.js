@@ -11,7 +11,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3193', source: 'ヘデテト' }),
             netRegexCn: NetRegexes.startsUsing({ id: '3193', source: '赫德提特' }),
             netRegexKo: NetRegexes.startsUsing({ id: '3193', source: '헤데테트' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -103,7 +102,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2D73', source: 'デフェクティブ・ドローン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '2D73', source: '次品无人机', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2D73', source: '고장난 무인기', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -115,7 +113,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2D72', source: 'デフェクティブ・ドローン' }),
             netRegexCn: NetRegexes.startsUsing({ id: '2D72', source: '次品无人机' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2D72', source: '고장난 무인기' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBuster(),
         },
         {
@@ -184,7 +181,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '314B', source: 'ミストドラゴン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '314B', source: '雾龙', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '314B', source: '안개 드래곤', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

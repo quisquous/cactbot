@@ -98,7 +98,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3E06', source: ['クラドセラケ', 'ドリオドゥス'], capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3E06', source: ['裂口鲨', '原祖鲨'], capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3E06', source: ['클라도셀라케', '돌리오두스'], capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -117,7 +116,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3E17', source: 'マーカス・モルボル', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3E17', source: '侯爵魔界花', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3E17', source: '몰볼 후작', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -153,7 +151,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3E24', source: 'ケツァクウァトル', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3E24', source: '克察尔科亚特尔', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3E24', source: '케찰코아틀', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

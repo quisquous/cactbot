@@ -148,7 +148,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'オンスローター', id: '162B' }),
             netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '162B' }),
             netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '162B' }),
-            condition: Conditions.caresAboutMagical(),
             response: Responses.tankBusterSwap(),
         },
         {
@@ -253,7 +252,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'スウィンドラー', id: '164A', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '欺诈者', id: '164A', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '조작자', id: '164A', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -356,7 +354,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1663' }),
             netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1663' }),
             netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1663' }),
-            condition: Conditions.caresAboutPhysical(),
             alertText: (data, matches, output) => {
                 if (data.me === matches.target)
                     return output.sharedTankbusterOnYou();
@@ -403,7 +400,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1668', capture: false }),
             netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1668', capture: false }),
             netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1668', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -882,7 +878,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '170C' }),
             netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '170C' }),
             netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '170C' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBusterSwap(),
         },
         {

@@ -25,7 +25,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AB6', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '求道之三位一体', id: '5AB6', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '탐구의 삼위일체', id: '5AB6', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -588,7 +587,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5808', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '女王士兵', id: '5808', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '여왕의 병사', id: '5808', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -633,7 +631,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '5810', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '女王枪手', id: '5810', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '여왕의 총사', id: '5810', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -693,7 +690,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '5800', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '女王战士', id: '5800', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '여왕의 전사', id: '5800', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -739,7 +735,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '57FA', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '女王骑士', id: '57FA', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '여왕의 기사', id: '57FA', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         // *** Bozjan Phantom
@@ -787,7 +782,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57AF', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '博兹雅幻灵', id: '57AF', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '보즈야 유령', id: '57AF', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -849,7 +843,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5976', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '誓约之三位一体', id: '5976', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '맹세의 삼위일체', id: '5976', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -1265,7 +1258,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C8', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '天佑女王', id: '59C8', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '세이브 더 퀸', id: '59C8', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {
@@ -1462,7 +1454,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C9', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '天佑女王', id: '59C9', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '세이브 더 퀸', id: '59C9', capture: false }),
-            condition: Conditions.caresAboutAOE(),
             response: Responses.aoe(),
         },
         {

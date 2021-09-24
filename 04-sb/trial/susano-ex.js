@@ -74,7 +74,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'スサノオ', id: '2033' }),
             netRegexCn: NetRegexes.startsUsing({ source: '须佐之男', id: '2033' }),
             netRegexKo: NetRegexes.startsUsing({ source: '스사노오', id: '2033' }),
-            condition: Conditions.caresAboutPhysical(),
             response: Responses.tankBusterSwap('alert', 'info'),
         },
         {
