@@ -15,13 +15,12 @@ export interface Data extends RaidbossData {
 // Susano Extreme
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.ThePoolOfTributeExtreme,
-  timelineNeedsFixing: true,
   timelineFile: 'susano-ex.txt',
   timelineTriggers: [
     {
       id: 'SusEx Cloud',
-      regex: /Knockback \(cloud\)/,
-      beforeSeconds: 1.5,
+      regex: /--knockback cloud--/,
+      beforeSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -33,6 +32,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '구름 확인',
         },
       },
+    },
+    {
+      id: 'SusEx Assail',
+      regex: /Assail/,
+      beforeSeconds: 6,
+      response: Responses.miniBuster(),
     },
   ],
   triggers: [
@@ -151,6 +156,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'SusEx Brightstorm Stack',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
       id: 'SusEx Levinbolt',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
@@ -203,15 +214,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'SusEx Levinbolt Debug',
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: (data, matches) => {
-        data.levinbolt = matches.target;
-        return (matches.target !== data.me);
-      },
-    },
-    {
       id: 'SusEx Levinbolt Stun',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006F' }),
@@ -244,11 +246,9 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ame-No-Murakumo': 'Ame no Murakumo',
-        'How our hearts sing in the chaos': 'Jahaha! Weiter so!',
-        'Let the revels begin': 'Kommt, lasst uns singen und tanzen!',
-        'REJOICE!': 'Uohhh!',
         'Susano': 'Susano',
         'Thunderhead': 'Gewitterwolke',
       },
@@ -279,11 +279,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ame-No-Murakumo': 'Ame no Murakumo',
-        'How our hearts sing in the chaos': 'HA HA, HA ! Je m\'amuse comme un fou !',
-        'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
-        'REJOICE!': 'MOUAAAAAAH !',
         'Susano': 'Susano',
         'Thunderhead': 'nuage orageux',
       },
@@ -312,11 +310,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ame-No-Murakumo': 'アメノムラクモ',
-        'How our hearts sing in the chaos': 'カッカッカッ、興が乗ったわ！ アメノムラクモの真なる姿、見せてくれよう！',
-        'Let the revels begin': 'いざ舞え、踊れ！　祭りである！ 神前たれども無礼を許す……武器を取れい！',
-        'REJOICE!': 'フンヌアァァァァ！',
         'Susano': 'スサノオ',
         'Thunderhead': 'サンダーヘッド',
       },
@@ -342,11 +338,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Ame-No-Murakumo': '天之丛云',
-        'How our hearts sing in the chaos': '有意思，真有意思！',
-        'Let the revels begin': '欢庆吧！跳舞吧！',
-        'REJOICE!': '哇啊啊啊！',
         'Susano': '须佐之男',
         'Thunderhead': '雷暴云砧',
       },
@@ -372,11 +366,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Ame-No-Murakumo(?! )': '아메노무라쿠모',
-        'How our hearts sing in the chaos': '카하하, 흥이 나는구나!',
-        'Let the revels begin': '자, 춤춰라! 제를 올려라!',
-        'REJOICE!': '흐아아아아압!',
         'Susano': '스사노오',
         'Thunderhead': '번개 머리',
       },
