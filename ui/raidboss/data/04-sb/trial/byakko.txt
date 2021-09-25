@@ -22,13 +22,13 @@ hideall "Clutch"
 36.1 "Highest Stakes" sync /:Byakko:27E2:/
 42.7 "Sweep The Leg" sync /:Byakko:2A2E:/
 54.9 "Heavenly Strike" sync /:Byakko:2A2D:/
-62.0 "--sync--" sync /:Byakko:2757:/
+62.0 "--middle--" sync /:Byakko:2757:/
 66.1 "Unrelenting Anguish" sync /:Byakko:27ED:/
 71.4 "Aratama" sync /:Aratama Force:2A48:/
 72.3 "Storm Pulse" sync /:Byakko:2A2F:/
 78.5 "Fire And Lightning" sync /:Byakko:2A2C:/
 85.8 "Fire And Lightning" sync /:Byakko:2A2C:/
-89.0 "--sync--" sync /:Byakko:2757:/
+89.0 "--jump--" sync /:Byakko:2757:/
 94.7 "Fire And Lightning" sync /:Byakko:2A2C:/
 105.9 "--sync--" sync /:Byakko:2757:/
 107.7 "Dance Of The Incomplete" sync /:Byakko:25D1:/
@@ -84,8 +84,8 @@ hideall "Clutch"
 367.8 "Fire And Lightning" sync /:Byakko:2A2C:/
 383.1 "Heavenly Strike" sync /:Byakko:2A2D:/
 393.2 "Sweep The Leg" sync /:Byakko:2A2E:/
-399.4 "--sync--" sync /:Byakko:2757:/
 
+399.4 "--middle--" sync /:Byakko:2757:/
 403.7 "Unrelenting Anguish" sync /:Byakko:27ED:/
 409.8 "Storm Pulse x2" sync /:Byakko:2A2F:/
 418.2 "Fire And Lightning" sync /:Byakko:2A2C:/
