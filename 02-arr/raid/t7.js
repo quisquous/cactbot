@@ -21,7 +21,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ id: '7A8', source: '멜뤼진' }),
             condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
             preRun: (data) => data.monitoringHP = true,
-            promise: (data, matches) => Util.watchCombatant({
+            promise: (data, matches) => watchCombatant({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 return ret.combatants.some((c) => {

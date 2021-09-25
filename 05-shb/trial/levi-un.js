@@ -109,7 +109,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '5CE5', capture: false }),
             netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '5CE5', capture: false }),
             netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '5CE5', capture: false }),
-            condition: (data) => Util.isCasterDpsJob(data.job) || Util.isHealerJob(data.job),
+            condition: (data) => isCasterDpsJob(data.job) || isHealerJob(data.job),
             suppressSeconds: 9999,
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -132,7 +132,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン・テール', id: '5CE4', capture: false }),
             netRegexCn: NetRegexes.ability({ source: '利维亚桑的尾巴', id: '5CE4', capture: false }),
             netRegexKo: NetRegexes.ability({ source: '리바이어선 꼬리', id: '5CE4', capture: false }),
-            condition: (data) => Util.isRangedDpsJob(data.job),
+            condition: (data) => isRangedDpsJob(data.job),
             suppressSeconds: 9999,
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {

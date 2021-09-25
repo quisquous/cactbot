@@ -147,7 +147,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ id: '7D5', source: '넬 데우스 다르누스' }),
             condition: (data) => !data.beganMonitoringHp,
             preRun: (data) => data.beganMonitoringHp = true,
-            promise: (_data, matches) => Util.watchCombatant({
+            promise: (_data, matches) => watchCombatant({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 return ret.combatants.some((c) => {

@@ -259,7 +259,7 @@ Options.Triggers.push({
             type: 'GameLog',
             netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
             netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
-            promise: (data) => Util.watchCombatant({
+            promise: (data) => watchCombatant({
                 names: [
                     data.me,
                     strikingDummyNames[data.lang] ?? strikingDummyNames['en'],
