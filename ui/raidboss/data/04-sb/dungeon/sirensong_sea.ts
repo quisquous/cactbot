@@ -60,6 +60,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Shadows',
+          de: 'Schatten ausweichen',
         },
       },
     },
@@ -105,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Forward March',
+          de: 'Marchiere Vorwärts',
         },
       },
     },
@@ -121,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Backwards March',
+          de: 'Marchiere Rückwärts',
         },
       },
     },
@@ -153,6 +156,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Groveller': 'Knecht',
         'Glowering Krautz': 'Krautz-Leuchtturm',
         'Lorelei': 'Loreley',
+        'Fleshless Captive': 'entfleischt(?:e|er|es|en) Gefangen(?:e|er|es|en)',
       },
       'replaceText': {
         'Amorphous Applause': 'Amorpher Applaus',
@@ -182,6 +186,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Groveller': 'Quémandeur',
         'Glowering Krautz': 'Phare de Krautz',
         'Lorelei': 'Lorelei',
+        'Fleshless Captive': 'fantôme de prisonnier',
       },
       'replaceText': {
         'Amorphous Applause': 'Applaudissement amorphe',
@@ -211,6 +216,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Groveller': 'グロヴェラー',
         'Glowering Krautz': 'クラウツ大灯台',
         'Lorelei': 'ローレライ',
+        'Fleshless Captive': 'レイス・プリズナー',
       },
       'replaceText': {
         'Amorphous Applause': 'ハンドクラップ',
@@ -240,6 +246,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Groveller': '奴仆',
         'Glowering Krautz': '克劳茨大灯塔',
         'Lorelei': '罗蕾莱',
+        'Fleshless Captive': '幽灵囚徒',
       },
       'replaceText': {
         'Amorphous Applause': '莫名击掌',
@@ -269,6 +276,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Groveller': '그림자 죄수',
         'Glowering Krautz': '크라우츠 대등대',
         'Lorelei': '로렐라이',
+        'Fleshless Captive': '망령 죄수',
       },
       'replaceText': {
         'Amorphous Applause': '무형의 갈채',
