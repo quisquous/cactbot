@@ -161,6 +161,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Drop Ice Outside',
+                    de: 'Eis draußen ablegen',
                 },
             },
         },

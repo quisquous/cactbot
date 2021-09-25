@@ -51,6 +51,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Avoid Shadows',
+                    de: 'Schatten ausweichen',
                 },
             },
         },
@@ -96,6 +97,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Forward March',
+                    de: 'Marchiere Vorwärts',
                 },
             },
         },
@@ -112,6 +114,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Backwards March',
+                    de: 'Marchiere Rückwärts',
                 },
             },
         },
@@ -144,6 +147,7 @@ Options.Triggers.push({
                 'The Groveller': 'Knecht',
                 'Glowering Krautz': 'Krautz-Leuchtturm',
                 'Lorelei': 'Loreley',
+                'Fleshless Captive': 'entfleischt(?:e|er|es|en) Gefangen(?:e|er|es|en)',
             },
             'replaceText': {
                 'Amorphous Applause': 'Amorpher Applaus',
@@ -173,6 +177,7 @@ Options.Triggers.push({
                 'The Groveller': 'Quémandeur',
                 'Glowering Krautz': 'Phare de Krautz',
                 'Lorelei': 'Lorelei',
+                'Fleshless Captive': 'fantôme de prisonnier',
             },
             'replaceText': {
                 'Amorphous Applause': 'Applaudissement amorphe',
@@ -202,6 +207,7 @@ Options.Triggers.push({
                 'The Groveller': 'グロヴェラー',
                 'Glowering Krautz': 'クラウツ大灯台',
                 'Lorelei': 'ローレライ',
+                'Fleshless Captive': 'レイス・プリズナー',
             },
             'replaceText': {
                 'Amorphous Applause': 'ハンドクラップ',
@@ -231,6 +237,7 @@ Options.Triggers.push({
                 'The Groveller': '奴仆',
                 'Glowering Krautz': '克劳茨大灯塔',
                 'Lorelei': '罗蕾莱',
+                'Fleshless Captive': '幽灵囚徒',
             },
             'replaceText': {
                 'Amorphous Applause': '莫名击掌',
@@ -260,6 +267,7 @@ Options.Triggers.push({
                 'The Groveller': '그림자 죄수',
                 'Glowering Krautz': '크라우츠 대등대',
                 'Lorelei': '로렐라이',
+                'Fleshless Captive': '망령 죄수',
             },
             'replaceText': {
                 'Amorphous Applause': '무형의 갈채',

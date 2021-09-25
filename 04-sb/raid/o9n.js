@@ -60,6 +60,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Stack for Donuts',
+                    de: 'Für Donuts sammeln',
                 },
             },
         },
@@ -130,6 +131,7 @@ Options.Triggers.push({
                     // "Big Bang" circle that appears from where this is dropped, on top of the
                     // proximity damage.  So this is trying to communicate more of a GTFO.
                     en: 'Drop Flare Away',
+                    de: 'Flare weit weg ablegen',
                 },
             },
         },
@@ -156,6 +158,7 @@ Options.Triggers.push({
                 stackOnYou: Outputs.stackOnYou,
                 stackGroups: {
                     en: 'Split into stack groups',
+                    de: 'In Sammel-Gruppen aufteilen',
                 },
             },
         },
