@@ -27,10 +27,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Byakko Imperial Guard': '2A43', // line aoe from tiger during midphase
   },
   gainsEffectWarn: {
-    'Byakko Bleeding': '111', // standing in Hakutei's Aratama circle (2A29).
+    'Byakko Bleeding': '111', // standing in Hakutei's Aratama circle (2A29)
   },
   shareWarn: {
-    'Byakko Bombogenesis': '27E7', // red spread marker
+    'Byakko Bombogenesis': '2A3B', // red spread marker
   },
 };
 
