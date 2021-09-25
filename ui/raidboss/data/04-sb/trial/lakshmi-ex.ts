@@ -304,6 +304,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
+      // Soloing can get you two of these.
+      suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -320,6 +322,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'verträumt(?:e|er|es|en) Kshatriya',
         'Lakshmi': 'Lakshmi',
@@ -347,6 +350,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'kshatriya rêveuse',
         'Lakshmi': 'Lakshmi',
@@ -374,6 +378,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'テンパード・クシャトリア',
         'Lakshmi': 'ラクシュミ',
@@ -400,6 +405,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': '梦寐的刹帝利',
         'Lakshmi': '吉祥天女',
@@ -425,6 +431,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': '신도화된 크샤트리아',
         'Lakshmi': '락슈미',
