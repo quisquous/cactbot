@@ -188,6 +188,8 @@
 04-sb/trial/lakshmi-ex.ts
 04-sb/trial/lakshmi-ex.txt
 04-sb/trial/rathalos-ex.ts
+04-sb/trial/seiryu.ts
+04-sb/trial/seiryu.txt
 04-sb/trial/seiryu-ex.ts
 04-sb/trial/seiryu-ex.txt
 04-sb/trial/shinryu.ts
