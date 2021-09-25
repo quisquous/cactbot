@@ -36,6 +36,151 @@ Options.Triggers.push({
                 },
             },
         },
+        {
+            id: 'O9N Entropy',
+            type: 'GainsEffect',
+            // This corresponds with an 0060 headmarker.
+            netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
+            condition: Conditions.targetIsYou(),
+            // Entropy comes out with 8 and 14 seconds during the Fire phase, for two sets of spreads.
+            // During the midphase, it is only 14.  To make this less complicated, add a delay that
+            // makes this work for all three cases.
+            delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+            response: Responses.spread(),
+        },
+        {
+            id: 'O9N Dynamic Fluid',
+            type: 'GainsEffect',
+            // This corresponds with an 0099 headmarker.
+            netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
+            // Dynamic Fluid is 8 and 14 seconds during the Water phase.  During midphase, it is 20.
+            // However, in all cases, there's no reason not to pre-position the donut stack.
+            condition: Conditions.targetIsYou(),
+            infoText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Stack for Donuts',
+                },
+            },
+        },
+        {
+            id: 'O9N Blaze',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '3165', source: 'Chaos', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '3165', source: 'Chaos', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '3165', source: 'Chaos', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '3165', source: 'カオス', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '3165', source: '卡奥斯', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '3165', source: '카오스', capture: false }),
+            response: Responses.aoe(),
+        },
+        {
+            id: 'O9N Tsunami',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '3166', source: 'Chaos', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '3166', source: 'Chaos', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '3166', source: 'Chaos', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '3166', source: 'カオス', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '3166', source: '卡奥斯', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '3166', source: '카오스', capture: false }),
+            response: Responses.aoe(),
+        },
+        {
+            id: 'O9N Cyclone',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '3167', source: 'Chaos', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '3167', source: 'Chaos', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '3167', source: 'Chaos', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '3167', source: 'カオス', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '3167', source: '卡奥斯', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '3167', source: '카오스', capture: false }),
+            response: Responses.aoe(),
+        },
+        {
+            id: 'O9N Earthquake',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '3168', source: 'Chaos', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '3168', source: 'Chaos', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '3168', source: 'Chaos', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '3168', source: 'カオス', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '3168', source: '卡奥斯', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '3168', source: '카오스', capture: false }),
+            response: Responses.aoe(),
+        },
+        {
+            id: 'O9N Bowels of Agony',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '3169', source: 'Chaos', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '3169', source: 'Chaos', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '3169', source: 'Chaos', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '3169', source: 'カオス', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '3169', source: '卡奥斯', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '3169', source: '카오스', capture: false }),
+            response: Responses.bigAoe(),
+        },
+        {
+            id: 'O9N Knockdown',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '0057' }),
+            condition: Conditions.targetIsYou(),
+            alarmText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    // This isn't quite "flare on you", because there's a follow-up large ground
+                    // "Big Bang" circle that appears from where this is dropped, on top of the
+                    // proximity damage.  So this is trying to communicate more of a GTFO.
+                    en: 'Drop Flare Away',
+                },
+            },
+        },
+        {
+            id: 'O9N Stack Collect',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '003E' }),
+            // these stack markers come out in pairs, so collect them.
+            run: (data, matches) => (data.stackMarker ?? (data.stackMarker = [])).push(matches.target),
+        },
+        {
+            id: 'O9N Stack',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+            delaySeconds: 0.5,
+            suppressSeconds: 1,
+            alertText: (data, _matches, output) => {
+                if (data.stackMarker?.includes(data.me))
+                    return output.stackOnYou();
+                return output.stackGroups();
+            },
+            run: (data) => delete data.stackMarker,
+            outputStrings: {
+                stackOnYou: Outputs.stackOnYou,
+                stackGroups: {
+                    en: 'Split into stack groups',
+                },
+            },
+        },
+        {
+            id: 'O9N Earthquake Knockback',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '3148', source: 'カオス', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '3148', source: '卡奥斯', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '3148', source: '카오스', capture: false }),
+            response: Responses.knockback(),
+        },
+        {
+            id: 'O9N Cyclone Knockback',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '316D', source: 'カオス', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '316D', source: '卡奥斯', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '316D', source: '카오스', capture: false }),
+            response: Responses.knockback(),
+        },
     ],
     timelineReplace: [
         {

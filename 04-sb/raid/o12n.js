@@ -22,7 +22,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['오메가', '오메가 M'] }),
             condition: (data, matches) => data.me === matches.target || data.role === 'healer',
             suppressSeconds: 1,
-            response: Responses.tankBuster(),
+            response: Responses.tankCleave('alert'),
         },
         {
             id: 'O12N Optimized Blade Dance',
@@ -36,6 +36,43 @@ Options.Triggers.push({
             condition: (data, matches) => data.me === matches.target || data.role === 'healer',
             suppressSeconds: 1,
             response: Responses.tankBuster(),
+        },
+        {
+            id: 'O12N Laser Shower',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: ['3311', '3312'], source: ['Omega', 'Omega-M'], capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: ['3311', '3312'], source: ['Omega', 'Omega-M'], capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: ['3311', '3312'], source: ['Oméga', 'Oméga-M'], capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: ['3311', '3312'], source: ['オメガ', 'オメガM'], capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: ['3311', '3312'], source: ['欧米茄', '欧米茄M'], capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: ['3311', '3312'], source: ['오메가', '오메가 M'], capture: false }),
+            suppressSeconds: 1,
+            response: Responses.aoe(),
+        },
+        {
+            id: 'O12N Cosmo Memory',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: ['331C', '331D'], source: ['Omega', 'Omega-M'], capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: ['331C', '331D'], source: ['Omega', 'Omega-M'], capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: ['331C', '331D'], source: ['Oméga', 'Oméga-M'], capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: ['331C', '331D'], source: ['オメガ', 'オメガM'], capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: ['331C', '331D'], source: ['欧米茄', '欧米茄M'], capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: ['331C', '331D'], source: ['오메가', '오메가 M'], capture: false }),
+            suppressSeconds: 1,
+            response: Responses.bigAoe(),
+        },
+        {
+            id: 'O12N Efficient Bladework',
+            type: 'Ability',
+            // 12.1 seconds after Subject Simulation M is an untelegraphed Efficient Bladework.
+            netRegex: NetRegexes.ability({ id: '32F4', source: 'Omega-M', capture: false }),
+            netRegexDe: NetRegexes.ability({ id: '32F4', source: 'Omega-M', capture: false }),
+            netRegexFr: NetRegexes.ability({ id: '32F4', source: 'Oméga-M', capture: false }),
+            netRegexJa: NetRegexes.ability({ id: '32F4', source: 'オメガM', capture: false }),
+            netRegexCn: NetRegexes.ability({ id: '32F4', source: '欧米茄M', capture: false }),
+            netRegexKo: NetRegexes.ability({ id: '32F4', source: '오메가 M', capture: false }),
+            delaySeconds: 8,
+            response: Responses.getOut(),
         },
         {
             id: 'O12N Local Resonance',
@@ -67,28 +104,13 @@ Options.Triggers.push({
             response: Responses.meteorOnYou(),
         },
         {
-            id: 'O12N Stack Spread Markers',
+            id: 'O12N Ground Zero',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '008B' }),
-            alertText: (data, matches, output) => {
-                if (data.me !== matches.target)
-                    return;
-                return output.getOut();
-            },
-            infoText: (data, matches, output) => {
-                if (data.me === matches.target)
-                    return;
-                return output.stack();
-            },
+            condition: Conditions.targetIsYou(),
+            alertText: (_data, _matches, output) => output.getOut(),
+            run: (data, matches) => data.groundZero = matches.target,
             outputStrings: {
-                stack: {
-                    en: 'Stack',
-                    de: 'Stacken',
-                    fr: 'Packez vous',
-                    ja: '頭割り',
-                    cn: '集合',
-                    ko: '쉐어징 대상자',
-                },
                 getOut: {
                     en: 'Get Out',
                     de: 'Raus da',
@@ -98,6 +120,45 @@ Options.Triggers.push({
                     ko: '파티에서 멀어지기',
                 },
             },
+        },
+        {
+            id: 'O12N Goo Instructions',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '008B', capture: false }),
+            delaySeconds: 8,
+            infoText: (_data, _matches, output) => output.text(),
+            run: (data) => delete data.groundZero,
+            outputStrings: {
+                text: {
+                    en: 'Knockback from F; Away from M',
+                },
+            },
+        },
+        {
+            id: 'O12N Stack Marker',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '003E' }),
+            delaySeconds: 0.3,
+            infoText: (data, matches, output) => {
+                if (data.me === data.groundZero)
+                    return;
+                // TODO: Should this say something different during the blob phase,
+                // since it's stack, but also get away from Ground Zero purple marker.
+                if (data.me === matches.target)
+                    return output.stackOnYou();
+                return output.stackOnPlayer({ player: data.ShortName(matches.target) });
+            },
+            outputStrings: {
+                stackOnYou: Outputs.stackOnYou,
+                stackOnPlayer: Outputs.stackOnPlayer,
+            },
+        },
+        {
+            id: 'O12N Optimized Fire III',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '0060' }),
+            condition: Conditions.targetIsYou(),
+            response: Responses.spread(),
         },
         {
             id: 'O12N Packet Filter F',
