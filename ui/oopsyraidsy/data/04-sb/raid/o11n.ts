@@ -11,7 +11,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'O11N Starboard Wave Cannon 1': '3281', // initial right cleave
     'O11N Starboard Wave Cannon 2': '3282', // follow-up right cleave
     'O11N Larboard Wave Cannon 1': '3283', // initial left cleave
-    'O11N Larboard Wave Cannon 2': '3284', // follow-up left cleave'
+    'O11N Larboard Wave Cannon 2': '3284', // follow-up left cleave
     'O11N Flame Thrower': '327D', // pinwheel conals
     'O11N Critical Storage Violation': '3279', // missing midphase towers
     'O11N Level Checker Reset': '35AA', // "get out" circle
