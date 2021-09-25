@@ -26,6 +26,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Byakko Sweep The Leg': '2A46', // donut during midphase
     'Byakko Imperial Guard': '2A43', // line aoe from tiger during midphase
   },
+  gainsEffectWarn: {
+    'Byakko Bleeding': '111', // standing in Hakutei's Aratama circle (2A29).
+  },
   shareWarn: {
     'Byakko Bombogenesis': '27E7', // red spread marker
   },
