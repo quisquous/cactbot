@@ -22,6 +22,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareWarn: {
     'O12N Solar Ray': '330F', // circular tankbuster
   },
+  soloWarn: {
+    'O12N Spotlight': '330A', // stack marker
+  },
   triggers: [
     {
       id: 'O12N Discharger Knocked Off',
