@@ -187,6 +187,7 @@ export default {
   drawIn: {
     // Opposite of a knockback.
     en: 'Draw In',
+    de: 'Einzug',
   },
   knockback: {
     en: 'Knockback',

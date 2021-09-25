@@ -143,6 +143,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback from F; Away from M',
+          de: 'Rückstoß von F; Weg von M',
         },
       },
     },

@@ -174,6 +174,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Drop Ice Outside',
+          de: 'Eis draußen ablegen',
         },
       },
     },
