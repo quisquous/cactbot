@@ -195,10 +195,11 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4ABF' }),
             netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4ABF' }),
             condition: (data, matches) => {
+                let _a; let _b;
                 if (data.role !== 'healer' && data.role !== 'tank')
                     return false;
-                const myColor = data.colors?.[data.me];
-                return myColor !== undefined && myColor === data.colors?.[matches.target];
+                const myColor = (_a = data.colors) === null || _a === void 0 ? void 0 : _a[data.me];
+                return myColor !== undefined && myColor === ((_b = data.colors) === null || _b === void 0 ? void 0 : _b[matches.target]);
             },
             suppressSeconds: 1,
             response: Responses.tankBuster(),

@@ -259,31 +259,35 @@ Options.Triggers.push({
             type: 'GameLog',
             netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
             netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
-            promise: (data) => watchCombatant({
-                names: [
-                    data.me,
-                    strikingDummyNames[data.lang] ?? strikingDummyNames['en'],
-                ],
-                // 50 seconds
-                maxDuration: 50000,
-            }, (ret) => {
-                const me = ret.combatants.find((c) => c.Name === data.me);
-                const dummyName = strikingDummyNames[data.lang] ?? strikingDummyNames['en'];
-                const dummies = ret.combatants.filter((c) => c.Name === dummyName);
-                if (me && dummies) {
-                    for (const dummy of dummies) {
-                        const distX = Math.abs(me.PosX - dummy.PosX);
-                        const distY = Math.abs(me.PosY - dummy.PosY);
-                        const dist = Math.hypot(distX, distY);
-                        console.log(`test watch: distX = ${distX}; distY = ${distY}; dist = ${dist}`);
-                        if (dist < 5)
-                            return true;
+            promise: (data) => {
+                let _a;
+                return watchCombatant({
+                    names: [
+                        data.me,
+                        (_a = strikingDummyNames[data.lang]) !== null && _a !== void 0 ? _a : strikingDummyNames['en'],
+                    ],
+                    // 50 seconds
+                    maxDuration: 50000,
+                }, (ret) => {
+                    let _a;
+                    const me = ret.combatants.find((c) => c.Name === data.me);
+                    const dummyName = (_a = strikingDummyNames[data.lang]) !== null && _a !== void 0 ? _a : strikingDummyNames['en'];
+                    const dummies = ret.combatants.filter((c) => c.Name === dummyName);
+                    if (me && dummies) {
+                        for (const dummy of dummies) {
+                            const distX = Math.abs(me.PosX - dummy.PosX);
+                            const distY = Math.abs(me.PosY - dummy.PosY);
+                            const dist = Math.hypot(distX, distY);
+                            console.log(`test watch: distX = ${distX}; distY = ${distY}; dist = ${dist}`);
+                            if (dist < 5)
+                                return true;
+                        }
+                        return false;
                     }
+                    console.log(`test watch: me = ${me ? 'true' : 'false'}; no dummies`);
                     return false;
-                }
-                console.log(`test watch: me = ${me ? 'true' : 'false'}; no dummies`);
-                return false;
-            }),
+                });
+            },
             infoText: (_data, _matches, output) => output.close(),
             outputStrings: {
                 close: {

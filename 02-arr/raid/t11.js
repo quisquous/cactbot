@@ -169,7 +169,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚' }),
             netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야' }),
             run: (data, matches) => {
-                (data.tetherA ?? (data.tetherA = [])).push(matches.source);
+                let _a;
+                ((_a = data.tetherA) !== null && _a !== void 0 ? _a : (data.tetherA = [])).push(matches.source);
             },
         },
         {
@@ -182,7 +183,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚' }),
             netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야' }),
             run: (data, matches) => {
-                (data.tetherB ?? (data.tetherB = [])).push(matches.source);
+                let _a;
+                ((_a = data.tetherB) !== null && _a !== void 0 ? _a : (data.tetherB = [])).push(matches.source);
             },
         },
         {
@@ -194,10 +196,13 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア', capture: false }),
             netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚', capture: false }),
             netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야', capture: false }),
-            condition: (data) => data.tetherA?.length === 2,
+            condition: (data) => {
+ let _a; return ((_a = data.tetherA) === null || _a === void 0 ? void 0 : _a.length) === 2;
+},
             alarmText: (data, _matches, output) => {
+                let _a;
                 let partner;
-                const [player0, player1] = data.tetherA ?? [];
+                const [player0, player1] = (_a = data.tetherA) !== null && _a !== void 0 ? _a : [];
                 if (!player0 || !player1)
                     return;
                 if (player0 === data.me)
@@ -228,10 +233,13 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア', capture: false }),
             netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚', capture: false }),
             netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야', capture: false }),
-            condition: (data) => data.tetherB?.length === 2,
+            condition: (data) => {
+ let _a; return ((_a = data.tetherB) === null || _a === void 0 ? void 0 : _a.length) === 2;
+},
             alarmText: (data, _matches, output) => {
+                let _a;
                 let partner;
-                const [player0, player1] = data.tetherB ?? [];
+                const [player0, player1] = (_a = data.tetherB) !== null && _a !== void 0 ? _a : [];
                 if (!player0 || !player1)
                     return;
                 if (player0 === data.me)

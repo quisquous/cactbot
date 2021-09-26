@@ -136,11 +136,12 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9816' }),
             run: (data, matches) => {
+                let _a;
                 const bomb = {
                     north: parseFloat(matches.y) + 70 < 0,
                     east: parseFloat(matches.x) > 0,
                 };
-                data.bombs ?? (data.bombs = []);
+                (_a = data.bombs) !== null && _a !== void 0 ? _a : (data.bombs = []);
                 data.bombs.push(bomb);
             },
         },
@@ -155,8 +156,9 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ id: '586E', source: '거대 바위폭탄', capture: false }),
             suppressSeconds: 5,
             infoText: (data, _matches, output) => {
+                let _a;
                 // Whichever direction has two  Titanic Bombs, the safe spot is opposite.
-                const [firstBomb, secondBomb] = data.bombs ?? [];
+                const [firstBomb, secondBomb] = (_a = data.bombs) !== null && _a !== void 0 ? _a : [];
                 if (!firstBomb || !secondBomb)
                     return;
                 let safe;
@@ -197,7 +199,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '003E' }),
             condition: (data) => !data.seenIntermission,
             preRun: (data, matches) => {
-                data.stacks ?? (data.stacks = []);
+                let _a;
+                (_a = data.stacks) !== null && _a !== void 0 ? _a : (data.stacks = []);
                 data.stacks.push(matches.target);
             },
             alertText: (data, matches, output) => {
@@ -271,7 +274,8 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: tetherIds }),
             run: (data, matches) => {
-                data.tethers ?? (data.tethers = []);
+                let _a;
+                (_a = data.tethers) !== null && _a !== void 0 ? _a : (data.tethers = []);
                 data.tethers.push(matches.id);
             },
         },
@@ -279,10 +283,13 @@ Options.Triggers.push({
             id: 'E12N Cast Release',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
-            preRun: (data) => data.tethers = data.tethers?.sort(),
+            preRun: (data) => {
+ let _a; return data.tethers = (_a = data.tethers) === null || _a === void 0 ? void 0 : _a.sort();
+},
             delaySeconds: 0.5,
             alertText: (data, _matches, output) => {
-                const [firstTether, secondTether] = data.tethers ?? [];
+                let _a;
+                const [firstTether, secondTether] = (_a = data.tethers) !== null && _a !== void 0 ? _a : [];
                 if (!firstTether || !secondTether)
                     return;
                 // Leviathan's mechanics aren't easily described in a single word,
@@ -296,8 +303,9 @@ Options.Triggers.push({
                 });
             },
             infoText: (data, _matches, output) => {
-                const onlyTether = data.tethers?.[0];
-                if (!onlyTether || data.tethers?.length === 2)
+                let _a; let _b;
+                const onlyTether = (_a = data.tethers) === null || _a === void 0 ? void 0 : _a[0];
+                if (!onlyTether || ((_b = data.tethers) === null || _b === void 0 ? void 0 : _b.length) === 2)
                     return;
                 return output[onlyTether]();
             },

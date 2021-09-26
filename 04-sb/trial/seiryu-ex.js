@@ -159,7 +159,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '00A9' }),
             condition: (data) => data.blazing,
             run: (data, matches) => {
-                data.markers ?? (data.markers = []);
+                let _a;
+                (_a = data.markers) !== null && _a !== void 0 ? _a : (data.markers = []);
                 data.markers.push(matches.target);
             },
         },
@@ -197,7 +198,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00A9', capture: false }),
             condition: (data) => {
-                if (!data.blazing || data.markers?.length !== 4)
+                let _a;
+                if (!data.blazing || ((_a = data.markers) === null || _a === void 0 ? void 0 : _a.length) !== 4)
                     return false;
                 return !data.markers.includes(data.me);
             },

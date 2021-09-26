@@ -97,7 +97,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({}),
             run: (data, matches) => {
-                data.avoidStack ?? (data.avoidStack = []);
+                let _a;
+                (_a = data.avoidStack) !== null && _a !== void 0 ? _a : (data.avoidStack = []);
                 if (matches.id !== '003E')
                     data.avoidStack.push(matches.target);
             },
@@ -129,7 +130,8 @@ Options.Triggers.push({
                 return output.dontStack();
             },
             infoText: (data, matches, output) => {
-                if (data.avoidStack?.includes(data.me))
+                let _a;
+                if ((_a = data.avoidStack) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return;
                 if (data.me === matches.target)
                     return output.stackOnYou();

@@ -194,7 +194,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF3', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF3', capture: false }),
             run: (data) => {
-                data.imbued ?? (data.imbued = []);
+                let _a;
+                (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
                 data.imbued.push('fire');
             },
         },
@@ -208,7 +209,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF4', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF4', capture: false }),
             run: (data) => {
-                data.imbued ?? (data.imbued = []);
+                let _a;
+                (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
                 data.imbued.push('blizzard');
             },
         },
@@ -222,7 +224,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF5', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF5', capture: false }),
             run: (data) => {
-                data.imbued ?? (data.imbued = []);
+                let _a;
+                (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
                 data.imbued.push('holy');
             },
         },
@@ -236,7 +239,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF6', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF6', capture: false }),
             run: (data) => {
-                data.imbued ?? (data.imbued = []);
+                let _a;
+                (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
                 data.imbued.push('stone');
             },
         },
@@ -250,12 +254,14 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F4A', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F4A', capture: false }),
             preRun: (data) => {
-                data.imbued ?? (data.imbued = []);
+                let _a;
+                (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
                 data.imbued.push('swordIn');
             },
             alertText: (data, _matches, output) => {
-                const strings = data.imbued?.map((key) => output[key]());
-                const msg = strings?.join(' + ');
+                let _a;
+                const strings = (_a = data.imbued) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]());
+                const msg = strings === null || strings === void 0 ? void 0 : strings.join(' + ');
                 delete data.imbued;
                 return msg;
             },
@@ -271,12 +277,14 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F49', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F49', capture: false }),
             preRun: (data) => {
-                data.imbued ?? (data.imbued = []);
+                let _a;
+                (_a = data.imbued) !== null && _a !== void 0 ? _a : (data.imbued = []);
                 data.imbued.push('swordOut');
             },
             alertText: (data, _matches, output) => {
-                const strings = data.imbued?.map((key) => output[key]());
-                const msg = strings?.join(' + ');
+                let _a;
+                const strings = (_a = data.imbued) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]());
+                const msg = strings === null || strings === void 0 ? void 0 : strings.join(' + ');
                 delete data.imbued;
                 return msg;
             },
@@ -657,10 +665,11 @@ Options.Triggers.push({
             // This stack marker comes before the deluge markers.
             delaySeconds: (data, matches) => matches.target !== data.me ? 0.4 : 0,
             alertText: (data, matches, output) => {
+                let _a; let _b;
                 if (matches.target === data.me)
-                    return output.stackOnYou?.();
+                    return (_a = output.stackOnYou) === null || _a === void 0 ? void 0 : _a.call(output);
                 if (!data.deluge)
-                    return output.stackOnTarget?.({ player: data.ShortName(matches.target) });
+                    return (_b = output.stackOnTarget) === null || _b === void 0 ? void 0 : _b.call(output, { player: data.ShortName(matches.target) });
             },
             outputStrings: {
                 stackOnYou: Outputs.stackOnYou,
@@ -715,8 +724,9 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4EEF', capture: false }),
             durationSeconds: 18.5,
             infoText: (data, _matches, output) => {
-                const strings = data.quintuplecasts?.map((key) => output[key]());
-                const msg = strings?.join(' > ');
+                let _a;
+                const strings = (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]());
+                const msg = strings === null || strings === void 0 ? void 0 : strings.join(' > ');
                 return msg;
             },
             tts: null,
@@ -733,7 +743,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: ['4EEF', '4EF0'], capture: false }),
             durationSeconds: 3,
             alertText: (data, _matches, output) => {
-                const next = data.quintuplecasts?.shift();
+                let _a;
+                const next = (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.shift();
                 // The last cast of 4EF0 will not have a next mechanic to call.
                 if (next)
                     return output[next]();
@@ -748,7 +759,9 @@ Options.Triggers.push({
             durationSeconds: 2,
             suppressSeconds: 5,
             infoText: (_data, _matches, output) => `(${output.blizzard().toLowerCase()})`,
-            run: (data) => data.quintuplecasts?.push('blizzard'),
+            run: (data) => {
+ let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('blizzard');
+},
             outputStrings: {
                 blizzard: quintupleOutputStrings.blizzard,
             },
@@ -761,7 +774,9 @@ Options.Triggers.push({
             durationSeconds: 2,
             suppressSeconds: 5,
             infoText: (_data, _matches, output) => `(${output.holy().toLowerCase()})`,
-            run: (data) => data.quintuplecasts?.push('holy'),
+            run: (data) => {
+ let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('holy');
+},
             outputStrings: {
                 holy: quintupleOutputStrings.holy,
             },
@@ -774,7 +789,9 @@ Options.Triggers.push({
             durationSeconds: 2,
             suppressSeconds: 5,
             infoText: (_data, _matches, output) => `(${output.stone().toLowerCase()})`,
-            run: (data) => data.quintuplecasts?.push('stone'),
+            run: (data) => {
+ let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('stone');
+},
             outputStrings: {
                 stone: quintupleOutputStrings.stone,
             },
@@ -787,7 +804,9 @@ Options.Triggers.push({
             durationSeconds: 2,
             suppressSeconds: 5,
             infoText: (_data, _matches, output) => `(${output.fire().toLowerCase()})`,
-            run: (data) => data.quintuplecasts?.push('fire'),
+            run: (data) => {
+ let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('fire');
+},
             outputStrings: {
                 fire: quintupleOutputStrings.fire,
             },
@@ -800,7 +819,9 @@ Options.Triggers.push({
             durationSeconds: 2,
             suppressSeconds: 5,
             infoText: (_data, _matches, output) => `(${output.flash().toLowerCase()})`,
-            run: (data) => data.quintuplecasts?.push('flash'),
+            run: (data) => {
+ let _a; return (_a = data.quintuplecasts) === null || _a === void 0 ? void 0 : _a.push('flash');
+},
             outputStrings: {
                 flash: quintupleOutputStrings.flash,
             },

@@ -256,7 +256,8 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: '0029' }),
             run: (data, matches) => {
-                data.tethers ?? (data.tethers = []);
+                let _a;
+                (_a = data.tethers) !== null && _a !== void 0 ? _a : (data.tethers = []);
                 data.tethers.push(matches.target);
             },
         },
@@ -266,7 +267,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.tether({ id: '0029', capture: false }),
             delaySeconds: 0.5,
             alertText: (data, _matches, output) => {
-                if (data.tethers?.includes(data.me)) {
+                let _a;
+                if ((_a = data.tethers) === null || _a === void 0 ? void 0 : _a.includes(data.me)) {
                     if (data.seenIntermission)
                         return output.target();
                     return output.knockback();

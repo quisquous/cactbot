@@ -229,7 +229,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
             condition: Conditions.targetIsYou(),
             preRun: (data) => {
-                data.firesDomain = (data.firesDomain ?? 0) + 1;
+                let _a;
+                data.firesDomain = ((_a = data.firesDomain) !== null && _a !== void 0 ? _a : 0) + 1;
             },
             infoText: (data, _matches, output) => {
                 if (data.firesDomain === 1)

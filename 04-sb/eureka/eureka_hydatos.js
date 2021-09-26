@@ -626,8 +626,9 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Lumière.*?', capture: false }),
             condition: (data) => data.sealed,
             run: (data) => {
+                let _a;
                 // RV clones get buffs in the reverse order that they do their attacks in.
-                data.clones ?? (data.clones = []);
+                (_a = data.clones) !== null && _a !== void 0 ? _a : (data.clones = []);
                 data.clones.push('astral');
             },
         },
@@ -640,8 +641,9 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres.*?', capture: false }),
             condition: (data) => data.sealed,
             run: (data) => {
+                let _a;
                 // RV clones get buffs in the reverse order that they do their attacks in.
-                data.clones ?? (data.clones = []);
+                (_a = data.clones) !== null && _a !== void 0 ? _a : (data.clones = []);
                 data.clones.push('umbral');
             },
         },
@@ -728,7 +730,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
             condition: (data) => data.sealed,
             preRun: (data) => {
-                data.blackHoleCount = (data.blackHoleCount ?? 0) + 1;
+                let _a;
+                data.blackHoleCount = ((_a = data.blackHoleCount) !== null && _a !== void 0 ? _a : 0) + 1;
             },
             alarmText: (data, _matches, output) => output.blackHole({ num: data.blackHoleCount }),
             tts: (data, _matches, output) => output.blackHoleTTS({ num: data.blackHoleCount }),

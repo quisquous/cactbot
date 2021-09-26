@@ -138,7 +138,8 @@ Options.Triggers.push({
             condition: Conditions.targetIsYou(),
             suppressSeconds: 3,
             infoText: (data, _matches, output) => {
-                data.colorCount = (data.colorCount ?? 0) + 1;
+                let _a;
+                data.colorCount = ((_a = data.colorCount) !== null && _a !== void 0 ? _a : 0) + 1;
                 if (data.colorCount === 3) {
                     delete data.colorCount;
                     return;
@@ -163,7 +164,8 @@ Options.Triggers.push({
             condition: Conditions.targetIsYou(),
             suppressSeconds: 3,
             infoText: (data, _matches, output) => {
-                data.colorCount = (data.colorCount ?? 0) + 1;
+                let _a;
+                data.colorCount = ((_a = data.colorCount) !== null && _a !== void 0 ? _a : 0) + 1;
                 if (data.colorCount === 3) {
                     delete data.colorCount;
                     return;

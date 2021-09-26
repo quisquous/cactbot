@@ -143,7 +143,9 @@ Options.Triggers.push({
                 if (!data.surgeProtection)
                     return output.text();
             },
-            run: (data) => data.furysFourteenCounter = (data.furysFourteenCounter ?? 0) + 1,
+            run: (data) => {
+ let _a; return data.furysFourteenCounter = ((_a = data.furysFourteenCounter) !== null && _a !== void 0 ? _a : 0) + 1;
+},
             outputStrings: {
                 text: {
                     en: 'Grab an orb',

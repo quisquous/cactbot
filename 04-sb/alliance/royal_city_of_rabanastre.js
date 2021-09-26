@@ -45,7 +45,8 @@ Options.Triggers.push({
                     return output.bubble();
             },
             run: (data) => {
-                data.breathless = (data.breathless ?? 0) + 1;
+                let _a;
+                data.breathless = ((_a = data.breathless) !== null && _a !== void 0 ? _a : 0) + 1;
             },
             outputStrings: {
                 breathless: {

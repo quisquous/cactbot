@@ -34,7 +34,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00C6' }),
             run: (data, matches) => {
-                data.busterTargets ?? (data.busterTargets = []);
+                let _a;
+                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -229,7 +230,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '轻型陆战装置', id: '5213' }),
             netRegexKo: NetRegexes.startsUsing({ source: '경장 육지전 유닛', id: '5213' }),
             run: (data, matches) => {
-                data.busterTargets ?? (data.busterTargets = []);
+                let _a;
+                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -340,7 +342,8 @@ Options.Triggers.push({
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
             run: (data, matches) => {
-                data.busterTargets ?? (data.busterTargets = []);
+                let _a;
+                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -377,7 +380,8 @@ Options.Triggers.push({
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
             preRun: (data, matches) => {
-                data.swipe ?? (data.swipe = []);
+                let _a;
+                (_a = data.swipe) !== null && _a !== void 0 ? _a : (data.swipe = []);
                 const swipeMap = {
                     '4FAC': 'right',
                     '4FAD': 'left',
@@ -390,13 +394,14 @@ Options.Triggers.push({
             },
             durationSeconds: 6,
             alertText: (data, _matches, output) => {
-                data.swipe ?? (data.swipe = []);
+                let _a;
+                (_a = data.swipe) !== null && _a !== void 0 ? _a : (data.swipe = []);
                 if (data.swipe.length !== 1)
                     return;
                 // Call and clear the first swipe so we can not call it a second time below.
                 const swipe = data.swipe[0];
                 data.swipe[0] = undefined;
-                return output[swipe ?? 'unknown']();
+                return output[swipe !== null && swipe !== void 0 ? swipe : 'unknown']();
             },
             outputStrings: swipeOutputStrings,
         },
@@ -538,7 +543,8 @@ Options.Triggers.push({
             // This is approximately when the pods appear.
             delaySeconds: 6,
             alertText: (data, _matches, output) => {
-                data.heavyPodCount = (data.heavyPodCount ?? 0) + 1;
+                let _a;
+                data.heavyPodCount = ((_a = data.heavyPodCount) !== null && _a !== void 0 ? _a : 0) + 1;
                 if (data.heavyPodCount <= 2) {
                     // The first two are lasers/hammers in either order.
                     // The safe spot in both cases is the same direction.
@@ -694,7 +700,8 @@ Options.Triggers.push({
             condition: Conditions.targetIsYou(),
             response: Responses.tankBuster(),
             run: (data, matches) => {
-                data.busterTargets ?? (data.busterTargets = []);
+                let _a;
+                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -740,13 +747,14 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
             condition: Conditions.targetIsYou(),
             alertText: (_data, matches, output) => {
+                let _a;
                 const fourPartsMap = {
                     '004F': output.jump({ num: 1 }),
                     '0050': output.cleave({ num: 1 }),
                     '0051': output.jump({ num: 2 }),
                     '0052': output.cleave({ num: 2 }),
                 };
-                return fourPartsMap[matches.id] ?? output.unknown();
+                return (_a = fourPartsMap[matches.id]) !== null && _a !== void 0 ? _a : output.unknown();
             },
             outputStrings: {
                 jump: {

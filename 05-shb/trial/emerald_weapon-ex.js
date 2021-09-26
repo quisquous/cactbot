@@ -77,7 +77,8 @@ Options.Triggers.push({
             // 9705 = Ceruleum Sphere, 9706 = Nitrosphere
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9706' }),
             condition: (data, matches) => {
-                (data.orbs ?? (data.orbs = [])).push(matches);
+                let _a;
+                ((_a = data.orbs) !== null && _a !== void 0 ? _a : (data.orbs = [])).push(matches);
                 return data.orbs.length === 4;
             },
             alertText: (data, _matches, output) => {
@@ -263,7 +264,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00F[9ABC]' }),
             condition: (data, matches) => {
-                (data.primusPlayers ?? (data.primusPlayers = [])).push(matches.target);
+                let _a;
+                ((_a = data.primusPlayers) !== null && _a !== void 0 ? _a : (data.primusPlayers = [])).push(matches.target);
                 return data.me === matches.target;
             },
             alertText: (_data, matches, output) => {
@@ -298,7 +300,8 @@ Options.Triggers.push({
             delaySeconds: 0.5,
             suppressSeconds: 1,
             alertText: (data, _matches, output) => {
-                if (!data.primusPlayers?.includes(data.me))
+                let _a;
+                if (!((_a = data.primusPlayers) === null || _a === void 0 ? void 0 : _a.includes(data.me)))
                     return output.text();
             },
             run: (data) => delete data.primusPlayers,
@@ -334,7 +337,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ source: '건블레이드 비트', id: '55CD' }),
             durationSeconds: 7,
             alertText: (data, matches, output) => {
-                (data.tertius ?? (data.tertius = [])).push(matches);
+                let _a;
+                ((_a = data.tertius) !== null && _a !== void 0 ? _a : (data.tertius = [])).push(matches);
                 if (data.tertius.length !== 6)
                     return;
                 const [s0, s1, s2, s3, s4, s5] = data.tertius.map((sword) => {

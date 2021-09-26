@@ -27,7 +27,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
             run: (data) => {
-                data.phase = (data.phase ?? 0) + 1;
+                let _a;
+                data.phase = ((_a = data.phase) !== null && _a !== void 0 ? _a : 0) + 1;
                 delete data.seenHolyThisPhase;
             },
         },
@@ -86,10 +87,11 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
             condition: (data, matches) => {
+                let _a;
                 // Library phase stack markers behave differently.
                 if (data.phase === 3)
                     return false;
-                data.holyTargets ?? (data.holyTargets = []);
+                (_a = data.holyTargets) !== null && _a !== void 0 ? _a : (data.holyTargets = []);
                 data.holyTargets.push(matches.target);
                 return true;
             },
@@ -333,7 +335,8 @@ Options.Triggers.push({
                 return data.phase !== 3 || !data.seenHolyThisPhase;
             },
             alertText: (data, _matches, output) => {
-                data.bookCount = (data.bookCount ?? 0) + 1;
+                let _a;
+                data.bookCount = ((_a = data.bookCount) !== null && _a !== void 0 ? _a : 0) + 1;
                 // The second books (with the Apanda) has big magic hammer circles.
                 // Usually folks handle this by going to the inner corners.
                 return data.bookCount !== 2 ? output.books() : output.magicHammer();
@@ -439,7 +442,8 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5634' }),
             alertText: (data, matches, output) => {
-                data.reapers ?? (data.reapers = []);
+                let _a;
+                (_a = data.reapers) !== null && _a !== void 0 ? _a : (data.reapers = []);
                 data.reapers.push(matches);
                 if (data.reapers.length !== 4)
                     return;

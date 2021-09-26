@@ -193,8 +193,9 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5510', '5511'] }),
             run: (data, matches) => {
-                data.cursing ?? (data.cursing = []);
-                data.wailing ?? (data.wailing = []);
+                let _a; let _b;
+                (_a = data.cursing) !== null && _a !== void 0 ? _a : (data.cursing = []);
+                (_b = data.wailing) !== null && _b !== void 0 ? _b : (data.wailing = []);
                 const id = matches.id.toUpperCase();
                 matches.npcNameId === '5510' ? data.wailing.push(id) : data.cursing.push(id);
             },
@@ -207,9 +208,10 @@ Options.Triggers.push({
             netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'] }),
             delaySeconds: .5,
             run: (data, matches) => {
-                data.sphere ?? (data.sphere = []);
-                data.donut ?? (data.donut = []);
-                const target = data.wailing?.includes(matches.targetId) ? 'wailing' : 'cursing';
+                let _a; let _b; let _c;
+                (_a = data.sphere) !== null && _a !== void 0 ? _a : (data.sphere = []);
+                (_b = data.donut) !== null && _b !== void 0 ? _b : (data.donut = []);
+                const target = ((_c = data.wailing) === null || _c === void 0 ? void 0 : _c.includes(matches.targetId)) ? 'wailing' : 'cursing';
                 if (matches.id === '1C9F')
                     data.sphere.push(target);
                 else
@@ -223,21 +225,22 @@ Options.Triggers.push({
             delaySeconds: 1,
             suppressSeconds: 5,
             alertText: (data, _matches, output) => {
-                if (data.donut?.length === 2) {
+                let _a; let _b; let _c; let _d; let _e;
+                if (((_a = data.donut) === null || _a === void 0 ? void 0 : _a.length) === 2) {
                     return output.goToAnyUntethered();
-                } else if (data.sphere?.length === 2) {
+                } else if (((_b = data.sphere) === null || _b === void 0 ? void 0 : _b.length) === 2) {
                     return output.avoidAllUntethered();
-                } else if (data.donut?.length === 1) {
+                } else if (((_c = data.donut) === null || _c === void 0 ? void 0 : _c.length) === 1) {
                     // Wailing Atomos is blue, Cursing Atomos is yellow.
                     // If there's exactly 1 Chakram, the other Atomos is irrelevant.
                     // (Any Chakram Atomos is guaranteed to be safe.)
-                    if (data.donut?.[0] === 'wailing')
+                    if (((_d = data.donut) === null || _d === void 0 ? void 0 : _d[0]) === 'wailing')
                         return output.goToUntetheredBlue();
                     return output.goToUntetheredYellow();
                 }
                 // If there's only a Sphere on the field, the other Atomos color isn't guaranteed safe.
                 // Therefore we need to specify staying away from the Sphere-tethered Atomos.
-                if (data.sphere?.[0] === 'wailing')
+                if (((_e = data.sphere) === null || _e === void 0 ? void 0 : _e[0]) === 'wailing')
                     return output.avoidUntetheredBlue();
                 return output.avoidUntetheredYellow();
             },

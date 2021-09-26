@@ -47,7 +47,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
             run: (data) => {
-                data.thunderCount = (data.thunderCount ?? 0) + 1;
+                let _a;
+                data.thunderCount = ((_a = data.thunderCount) !== null && _a !== void 0 ? _a : 0) + 1;
             },
         },
         {
@@ -193,12 +194,14 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '2401', source: '艾克斯迪司' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2401', source: '엑스데스' }),
             condition: (data, matches) => {
-                data.flareTargets ?? (data.flareTargets = []);
+                let _a;
+                (_a = data.flareTargets) !== null && _a !== void 0 ? _a : (data.flareTargets = []);
                 data.flareTargets.push(matches.target);
                 return data.flareTargets.length === 3;
             },
             alarmText: (data, _matches, output) => {
-                if (data.flareTargets?.includes(data.me))
+                let _a;
+                if ((_a = data.flareTargets) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return output.text();
             },
             run: (data) => delete data.flareTargets,
@@ -224,8 +227,9 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
             run: (data) => {
+                let _a;
                 data.phase = 'alpha';
-                data.alphaCount = (data.alphaCount ?? 0) + 1;
+                data.alphaCount = ((_a = data.alphaCount) !== null && _a !== void 0 ? _a : 0) + 1;
                 // TODO: should have options for this.
                 data.dieOnLaser = 1;
             },
@@ -628,6 +632,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '新生艾克斯迪司', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '네오 엑스데스', capture: false }),
             run: (data) => {
+                let _a;
                 if (data.phase !== 'omega')
                     return;
                 // See comments in shouldDieOnLaser.  Beyond Death
@@ -636,7 +641,7 @@ Options.Triggers.push({
                 // before the next laser appears.
                 if (shouldDieOnLaser(data))
                     data.omegaProbablyDiedOnLaser = true;
-                data.omegaLaserCount = (data.omegaLaserCount ?? 1) + 1;
+                data.omegaLaserCount = ((_a = data.omegaLaserCount) !== null && _a !== void 0 ? _a : 1) + 1;
             },
         },
         {
@@ -1075,7 +1080,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: '2417', source: '네오 엑스데스', capture: false }),
             alertText: (_data, _matches, output) => output.almagest(),
             run: (data) => {
-                data.almagestCount = (data.almagestCount ?? 0) + 1;
+                let _a;
+                data.almagestCount = ((_a = data.almagestCount) !== null && _a !== void 0 ? _a : 0) + 1;
             },
             outputStrings: {
                 almagest: {
@@ -1098,20 +1104,24 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '2401', source: '新生艾克斯迪司' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2401', source: '네오 엑스데스' }),
             condition: (data, matches) => {
-                data.flareTargets ?? (data.flareTargets = []);
+                let _a;
+                (_a = data.flareTargets) !== null && _a !== void 0 ? _a : (data.flareTargets = []);
                 data.flareTargets.push(matches.target);
                 return data.flareTargets.length === 3;
             },
             alarmText: (data, _matches, output) => {
-                if (data.flareTargets?.includes(data.me))
+                let _a;
+                if ((_a = data.flareTargets) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return output.flareOnYou();
             },
             infoText: (data, _matches, output) => {
-                if (!data.flareTargets?.includes(data.me))
+                let _a;
+                if (!((_a = data.flareTargets) === null || _a === void 0 ? void 0 : _a.includes(data.me)))
                     return output.stack();
             },
             tts: (data, _matches, output) => {
-                if (data.flareTargets?.includes(data.me))
+                let _a;
+                if ((_a = data.flareTargets) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return output.flareOnYou();
                 return output.stackTTS();
             },

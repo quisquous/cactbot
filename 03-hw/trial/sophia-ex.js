@@ -1,4 +1,5 @@
 const findSafeDir = (data) => {
+    let _a; let _b;
     // Tethers are ordered with all East tethers first. This *doesn't* mean that the East
     // or West tethers are themselves in order within their half!
     // The eight scale entities are listed in the data object, with West at indices 0-3,
@@ -8,8 +9,8 @@ const findSafeDir = (data) => {
     // This will give us the tilt direction for all but the 1/1, 2/2, and 3/3 cases.
     // The safe side is represented here by whether safeDir is positive or negative.
     // (West/negative, East/positive.)
-    for (const tether of data.quasarTethers ?? []) {
-        const idx = data.scaleSophias?.indexOf(tether);
+    for (const tether of (_a = data.quasarTethers) !== null && _a !== void 0 ? _a : []) {
+        const idx = (_b = data.scaleSophias) === null || _b === void 0 ? void 0 : _b.indexOf(tether);
         if (idx === undefined)
             throw new UnreachableCode();
         safeDir += idx < 4 ? -1 : 1;
@@ -275,7 +276,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.addedCombatantFull({ name: '移涌' }),
             netRegexKo: NetRegexes.addedCombatantFull({ name: '아이온 소피아' }),
             run: (data, matches) => {
-                data.cloneSpots ?? (data.cloneSpots = {});
+                let _a;
+                (_a = data.cloneSpots) !== null && _a !== void 0 ? _a : (data.cloneSpots = {});
                 const x = parseFloat(matches.x);
                 const y = parseFloat(matches.y);
                 // We start with Y since it's a binary choice.
@@ -297,14 +299,15 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: '002D' }),
             run: (data, matches) => {
-                const spot = data.cloneSpots?.[matches.sourceId];
+                let _a; let _b; let _c;
+                const spot = (_a = data.cloneSpots) === null || _a === void 0 ? void 0 : _a[matches.sourceId];
                 if (!spot)
                     throw new UnreachableCode();
                 if (data.seenThunder) {
-                    data.aeroClones ?? (data.aeroClones = []);
+                    (_b = data.aeroClones) !== null && _b !== void 0 ? _b : (data.aeroClones = []);
                     data.aeroClones.push(spot);
                 } else {
-                    data.thunderClones ?? (data.thunderClones = []);
+                    (_c = data.thunderClones) !== null && _c !== void 0 ? _c : (data.thunderClones = []);
                     data.thunderClones.push(spot);
                 }
             },
@@ -451,6 +454,7 @@ Options.Triggers.push({
             // We *really* shouldn't have to suppress this...
             suppressSeconds: 5,
             run: (data, matches) => {
+                let _a;
                 let offset;
                 const yKey = Math.floor(parseFloat(matches.y)).toString();
                 if (parseFloat(matches.x) < 0) {
@@ -474,7 +478,7 @@ Options.Triggers.push({
                     throw new UnreachableCode();
                 const seqStart = parseInt(matches.sourceId, 16) - offset;
                 for (let i = 0; i < 8; i++) {
-                    data.scaleSophias ?? (data.scaleSophias = []);
+                    (_a = data.scaleSophias) !== null && _a !== void 0 ? _a : (data.scaleSophias = []);
                     data.scaleSophias.push((seqStart + i).toString(16).toUpperCase());
                 }
             },
@@ -496,7 +500,8 @@ Options.Triggers.push({
                 return !data.clonesActive;
             },
             run: (data, matches) => {
-                data.quasarTethers ?? (data.quasarTethers = []);
+                let _a;
+                (_a = data.quasarTethers) !== null && _a !== void 0 ? _a : (data.quasarTethers = []);
                 data.quasarTethers.push(matches.sourceId);
             },
         },
@@ -549,12 +554,13 @@ Options.Triggers.push({
             durationSeconds: 10,
             suppressSeconds: 5,
             alertText: (data, matches, output) => {
+                let _a; let _b;
                 let safeDir = findSafeDir(data);
                 // If this is the first set of Meteor Quasars, there is no tilt.
-                if (data.quasarTethers?.length === 4 && safeDir !== 0)
+                if (((_a = data.quasarTethers) === null || _a === void 0 ? void 0 : _a.length) === 4 && safeDir !== 0)
                     return;
                 if (safeDir === 0) {
-                    const idx = data.scaleSophias?.indexOf(matches.sourceId);
+                    const idx = (_b = data.scaleSophias) === null || _b === void 0 ? void 0 : _b.indexOf(matches.sourceId);
                     if (idx === undefined)
                         throw new UnreachableCode();
                     safeDir = idx < 4 ? 2 : -2;

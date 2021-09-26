@@ -261,7 +261,7 @@ const namedNisiPass = (data, output) => {
 };
 const betaInstructions = (idx, output) => {
     if (typeof idx !== 'number') {
-        console.error(`TEA Beta Instructions Callout: non-number idx: ${idx ?? 'undefined'}`);
+        console.error(`TEA Beta Instructions Callout: non-number idx: ${idx !== null && idx !== void 0 ? idx : 'undefined'}`);
         return output.unknown();
     }
     const strings = {
@@ -950,11 +950,13 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({}),
             condition: (data, matches) => getHeadmarkerId(data, matches) === '0041',
             preRun: (data, matches) => {
-                data.enumerations ?? (data.enumerations = []);
+                let _a;
+                (_a = data.enumerations) !== null && _a !== void 0 ? _a : (data.enumerations = []);
                 data.enumerations.push(matches.target);
             },
             infoText: (data, _matches, output) => {
-                if (data.enumerations?.length !== 2)
+                let _a;
+                if (((_a = data.enumerations) === null || _a === void 0 ? void 0 : _a.length) !== 2)
                     return;
                 const names = data.enumerations.sort();
                 return output.text({ players: names.map((x) => data.ShortName(x)).join(', ') });
@@ -1141,8 +1143,9 @@ Options.Triggers.push({
             type: 'GainsEffect',
             netRegex: NetRegexes.gainsEffect({ effectId: kDecreeNisi }),
             run: (data, matches) => {
+                let _a;
                 const num = kDecreeNisi.indexOf(matches.effectId.toUpperCase());
-                data.nisiMap ?? (data.nisiMap = {});
+                (_a = data.nisiMap) !== null && _a !== void 0 ? _a : (data.nisiMap = {});
                 data.nisiMap[matches.target] = num;
             },
         },
@@ -1151,7 +1154,8 @@ Options.Triggers.push({
             type: 'LosesEffect',
             netRegex: NetRegexes.losesEffect({ effectId: kDecreeNisi }),
             run: (data, matches) => {
-                data.nisiMap ?? (data.nisiMap = {});
+                let _a;
+                (_a = data.nisiMap) !== null && _a !== void 0 ? _a : (data.nisiMap = {});
                 delete data.nisiMap[matches.target];
             },
         },
@@ -1160,8 +1164,9 @@ Options.Triggers.push({
             type: 'GainsEffect',
             netRegex: NetRegexes.gainsEffect({ effectId: kFinalJudgementNisi }),
             run: (data, matches) => {
+                let _a;
                 const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
-                data.finalNisiMap ?? (data.finalNisiMap = {});
+                (_a = data.finalNisiMap) !== null && _a !== void 0 ? _a : (data.finalNisiMap = {});
                 data.finalNisiMap[matches.target] = num;
             },
         },
@@ -1274,7 +1279,8 @@ Options.Triggers.push({
             // Aggravated Assault, Shared Sentence, House Arrest, Restraining Order.
             netRegex: NetRegexes.gainsEffect({ effectId: '46[1234]' }),
             run: (data, matches) => {
-                data.buffMap ?? (data.buffMap = {});
+                let _a;
+                (_a = data.buffMap) !== null && _a !== void 0 ? _a : (data.buffMap = {});
                 // The values are for debugging; the logic is just about presence in the map.
                 data.buffMap[matches.target] = matches.effect;
             },
@@ -1293,7 +1299,8 @@ Options.Triggers.push({
             durationSeconds: 10,
             suppressSeconds: 1,
             infoText: (data, _matches, output) => {
-                if (data.buffMap?.[data.me])
+                let _a;
+                if ((_a = data.buffMap) === null || _a === void 0 ? void 0 : _a[data.me])
                     return;
                 return output.text();
             },
@@ -1495,7 +1502,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
             condition: (data) => data.phase === 'inception',
             run: (data, matches) => {
-                data.vuln ?? (data.vuln = {});
+                let _a;
+                (_a = data.vuln) !== null && _a !== void 0 ? _a : (data.vuln = {});
                 data.vuln[matches.target] = true;
             },
         },
@@ -1511,7 +1519,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
             condition: (data) => data.phase === 'inception',
             alarmText: (data, _matches, output) => {
-                data.vuln ?? (data.vuln = {});
+                let _a;
+                (_a = data.vuln) !== null && _a !== void 0 ? _a : (data.vuln = {});
                 const numVulns = Object.keys(data.vuln).length;
                 if (data.role === 'tank' && data.vuln[data.me] && numVulns >= 5) {
                     // If you're stacking three people in the shared sentence,
@@ -1521,7 +1530,8 @@ Options.Triggers.push({
                 }
             },
             alertText: (data, _matches, output) => {
-                data.vuln ?? (data.vuln = {});
+                let _a;
+                (_a = data.vuln) !== null && _a !== void 0 ? _a : (data.vuln = {});
                 if (data.vuln[data.me])
                     return;
                 const numVulns = Object.keys(data.vuln).length;
@@ -1533,7 +1543,8 @@ Options.Triggers.push({
                 return output.baitSwordOrJump();
             },
             infoText: (data, _matches, output) => {
-                data.vuln ?? (data.vuln = {});
+                let _a;
+                (_a = data.vuln) !== null && _a !== void 0 ? _a : (data.vuln = {});
                 if (data.vuln[data.me]) {
                     // Tanks covered in the alarmText case above.
                     const numVulns = Object.keys(data.vuln).length;
@@ -1849,7 +1860,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({}),
             condition: (data, matches) => getHeadmarkerId(data, matches) === '003E',
             preRun: (data, matches) => {
-                data.opticalStack ?? (data.opticalStack = []);
+                let _a;
+                (_a = data.opticalStack) !== null && _a !== void 0 ? _a : (data.opticalStack = []);
                 data.opticalStack.push(matches.target);
             },
             alertText: (data, matches, output) => {
@@ -1857,7 +1869,8 @@ Options.Triggers.push({
                     return output.stackOnYou();
             },
             infoText: (data, _matches, output) => {
-                data.opticalStack ?? (data.opticalStack = []);
+                let _a;
+                (_a = data.opticalStack) !== null && _a !== void 0 ? _a : (data.opticalStack = []);
                 if (data.opticalStack.length === 1)
                     return;
                 const names = data.opticalStack.map((x) => data.ShortName(x)).sort();
@@ -2007,7 +2020,8 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: '0062' }),
             run: (data, matches) => {
-                data.tetherBois ?? (data.tetherBois = {});
+                let _a;
+                (_a = data.tetherBois) !== null && _a !== void 0 ? _a : (data.tetherBois = {});
                 data.tetherBois[matches.targetId] = matches.source;
             },
         },
@@ -2019,7 +2033,8 @@ Options.Triggers.push({
             delaySeconds: 1,
             suppressSeconds: 10,
             run: (data) => {
-                const tetherBois = data.tetherBois ?? (data.tetherBois = {});
+                let _a;
+                const tetherBois = (_a = data.tetherBois) !== null && _a !== void 0 ? _a : (data.tetherBois = {});
                 // Let your actor id memes be dreams.
                 // If you sort the actor ids of the clones, this will tell you what you have.
                 // If anybody is dead, they will fill in from the lowest.
@@ -2047,24 +2062,26 @@ Options.Triggers.push({
                     return output.defamation();
             },
             alertText: (data, _matches, output) => {
+                let _a;
                 // Folks who need to not stack, get an alert.
                 if (data.me === data.alphaSolidarity)
                     return output.solidarity();
-                if (data.alphaSeverity?.includes(data.me))
+                if ((_a = data.alphaSeverity) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return output.severity();
             },
             infoText: (data, _matches, output) => {
+                let _a; let _b; let _c;
                 // The other 4 people in the stack group just get info.
                 if (data.me === data.alphaDefamation)
                     return;
                 if (data.me === data.alphaSolidarity)
                     return;
-                if (data.alphaSeverity?.includes(data.me))
+                if ((_a = data.alphaSeverity) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return;
-                if (data.alphaNoDebuff?.includes(data.me))
+                if ((_b = data.alphaNoDebuff) === null || _b === void 0 ? void 0 : _b.includes(data.me))
                     return output.noDebuff();
                 // If enough people are alive, unknowns are probably no debuff stack.
-                if (Object.keys(data.tetherBois ?? {}).length >= 5)
+                if (Object.keys((_c = data.tetherBois) !== null && _c !== void 0 ? _c : {}).length >= 5)
                     return output.unknownMaybeStack();
                 // Otherwise, gg.
                 return output.unknown();
@@ -2168,13 +2185,16 @@ Options.Triggers.push({
             durationSeconds: 15,
             suppressSeconds: 20,
             infoText: (data, _matches, output) => {
+                let _a;
                 data.secondAlphaOrdainedText = 'motionSecond';
                 return output.combined({
-                    action1: output[data.firstAlphaOrdainedText ?? 'unknown'](),
+                    action1: output[(_a = data.firstAlphaOrdainedText) !== null && _a !== void 0 ? _a : 'unknown'](),
                     action2: output[data.secondAlphaOrdainedText](),
                 });
             },
-            tts: (data, _matches, output) => output[data.secondAlphaOrdainedText ?? 'unknown'](),
+            tts: (data, _matches, output) => {
+ let _a; return output[(_a = data.secondAlphaOrdainedText) !== null && _a !== void 0 ? _a : 'unknown']();
+},
             outputStrings: ordainedOutputStrings,
         },
         {
@@ -2189,13 +2209,16 @@ Options.Triggers.push({
             durationSeconds: 15,
             suppressSeconds: 20,
             infoText: (data, _matches, output) => {
+                let _a;
                 data.secondAlphaOrdainedText = 'stillnessSecond';
                 return output.combined({
-                    action1: output[data.firstAlphaOrdainedText ?? 'unknown'](),
+                    action1: output[(_a = data.firstAlphaOrdainedText) !== null && _a !== void 0 ? _a : 'unknown'](),
                     action2: output[data.secondAlphaOrdainedText](),
                 });
             },
-            tts: (data, _matches, output) => output[data.secondAlphaOrdainedText ?? 'unknown'](),
+            tts: (data, _matches, output) => {
+ let _a; return output[(_a = data.secondAlphaOrdainedText) !== null && _a !== void 0 ? _a : 'unknown']();
+},
             outputStrings: ordainedOutputStrings,
         },
         {
@@ -2356,7 +2379,8 @@ Options.Triggers.push({
             delaySeconds: 1,
             suppressSeconds: 10,
             run: (data) => {
-                const tetherBois = data.tetherBois ?? (data.tetherBois = {});
+                let _a;
+                const tetherBois = (_a = data.tetherBois) !== null && _a !== void 0 ? _a : (data.tetherBois = {});
                 // See notes in TEA Alpha Instructions about what's going on here.
                 const sortedIds = Object.keys(tetherBois).sort().reverse();
                 const sortedNames = sortedIds.map((x) => tetherBois[x]);
@@ -2375,22 +2399,25 @@ Options.Triggers.push({
             suppressSeconds: 10,
             // TODO: switch this all to a response.
             alarmText: (data, _matches, output) => {
+                let _a;
                 // Baiters get an alarm text.
-                if (data.betaBait?.includes(data.me))
+                if ((_a = data.betaBait) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return betaInstructions(data.betaIndex, output);
             },
             alertText: (data, _matches, output) => {
+                let _a; let _b;
                 // The west and south jump get an alert text.
-                if (data.betaBait?.includes(data.me))
+                if ((_a = data.betaBait) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return;
-                if (data.betaJumps?.includes(data.me))
+                if ((_b = data.betaJumps) === null || _b === void 0 ? void 0 : _b.includes(data.me))
                     return betaInstructions(data.betaIndex, output);
             },
             infoText: (data, _matches, output) => {
+                let _a; let _b;
                 // The rest of the group (going north) gets info.
-                if (data.betaBait?.includes(data.me))
+                if ((_a = data.betaBait) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return;
-                if (data.betaJumps?.includes(data.me))
+                if ((_b = data.betaJumps) === null || _b === void 0 ? void 0 : _b.includes(data.me))
                     return;
                 return betaInstructions(data.betaIndex, output);
             },
@@ -2564,9 +2591,10 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
             delaySeconds: 12.2,
             alertText: (data, _matches, output) => {
+                let _a;
                 if (!data.betaIsOpticalStack)
                     return output.opticalSpread();
-                if (data.betaBait?.includes(data.me))
+                if ((_a = data.betaBait) === null || _a === void 0 ? void 0 : _a.includes(data.me))
                     return output.opticalStackOnYou();
             },
             infoText: (data, _matches, output) => {
@@ -2625,7 +2653,9 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
             condition: (data) => !!data.radiantOutputStringKey,
             delaySeconds: 16,
-            alertText: (data, _matches, output) => output[data.radiantOutputStringKey ?? 'unknown'](),
+            alertText: (data, _matches, output) => {
+ let _a; return output[(_a = data.radiantOutputStringKey) !== null && _a !== void 0 ? _a : 'unknown']();
+},
             outputStrings: radiantOutputStrings,
         },
         {
@@ -2671,7 +2701,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
             netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '488F', x: '100', y: '(?:92|100|108)' }),
             preRun: (data, matches) => {
-                data.trine ?? (data.trine = []);
+                let _a;
+                (_a = data.trine) !== null && _a !== void 0 ? _a : (data.trine = []);
                 // See: https://imgur.com/a/l1n9MhS
                 const trineMap = {
                     92: 'r',
@@ -2684,12 +2715,15 @@ Options.Triggers.push({
                 data.trine.push(thisTrine);
             },
             alertText: (data, _matches, output) => {
+                let _a;
                 // Call out after two, because that's when the mechanic is fully known.
-                data.trine ?? (data.trine = []);
+                (_a = data.trine) !== null && _a !== void 0 ? _a : (data.trine = []);
                 if (data.trine.length !== 2)
                     return;
                 // Find the third one based on the first two.
-                const threeArr = ['r', 'g', 'y'].filter((x) => !data.trine?.includes(x));
+                const threeArr = ['r', 'g', 'y'].filter((x) => {
+ let _a; return !((_a = data.trine) === null || _a === void 0 ? void 0 : _a.includes(x));
+});
                 const [three] = threeArr;
                 const [one] = data.trine;
                 if (!one || !three)
@@ -2824,7 +2858,9 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
             netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
             suppressSeconds: 15,
-            alertText: (data, _matches, output) => output[data.secondTrineResponse ?? 'unknown'](),
+            alertText: (data, _matches, output) => {
+ let _a; return output[(_a = data.secondTrineResponse) !== null && _a !== void 0 ? _a : 'unknown']();
+},
             outputStrings: {
                 north: Outputs.north,
                 east: Outputs.east,

@@ -218,7 +218,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.wasDefeated({ target: '그림자 망령', capture: false }),
             soundVolume: 0,
             infoText: (data, _matches, output) => {
-                data.wraithCount = (data.wraithCount ?? 0) + 1;
+                let _a;
+                data.wraithCount = ((_a = data.wraithCount) !== null && _a !== void 0 ? _a : 0) + 1;
                 return output.text({ num: data.wraithCount });
             },
             outputStrings: {

@@ -127,7 +127,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00DA' }),
             run: (data, matches) => {
-                data.busterTargets ?? (data.busterTargets = []);
+                let _a;
+                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -331,7 +332,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0060' }),
             preRun: (data, matches) => {
-                data.seedTargets ?? (data.seedTargets = []);
+                let _a;
+                (_a = data.seedTargets) !== null && _a !== void 0 ? _a : (data.seedTargets = []);
                 data.seedTargets.push(matches.target);
             },
             infoText: (data, matches, output) => {
@@ -511,7 +513,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '008B' }),
             run: (data, matches) => {
-                data.busterTargets ?? (data.busterTargets = []);
+                let _a;
+                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -597,10 +600,13 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.tether({ id: '0036', target: '開花シタ神', capture: false }),
             netRegexCn: NetRegexes.tether({ id: '0036', target: '开花的神明', capture: false }),
             netRegexKo: NetRegexes.tether({ id: '0036', target: '꽃피운 신', capture: false }),
-            preRun: (data) => data.signalCount = (data.signalCount ?? 0) + 1,
+            preRun: (data) => {
+ let _a; return data.signalCount = ((_a = data.signalCount) !== null && _a !== void 0 ? _a : 0) + 1;
+},
             durationSeconds: 5,
             alertText: (data, _matches, output) => {
-                if ((data.signalCount ?? 0) % 5 === 0)
+                let _a;
+                if (((_a = data.signalCount) !== null && _a !== void 0 ? _a : 0) % 5 === 0)
                     return output.text();
             },
             outputStrings: {

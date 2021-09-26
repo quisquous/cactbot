@@ -42,11 +42,13 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
             condition: (data, matches) => data.me === matches.target || matches.targetId.slice(0, 1) === '4',
             preRun: (data, matches) => {
-                data.markers ?? (data.markers = []);
+                let _a;
+                (_a = data.markers) !== null && _a !== void 0 ? _a : (data.markers = []);
                 data.markers.push(matches.id);
             },
             infoText: (data, _matches, output) => {
-                if (data.markers?.length === 2) {
+                let _a;
+                if (((_a = data.markers) === null || _a === void 0 ? void 0 : _a.length) === 2) {
                     const sameMarkers = data.markers[0] === data.markers[1];
                     delete data.markers;
                     if (sameMarkers)

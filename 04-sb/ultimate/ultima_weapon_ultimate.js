@@ -290,13 +290,15 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
             netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
             preRun: (data, matches) => {
-                data.titanGaols ?? (data.titanGaols = []);
+                let _a;
+                (_a = data.titanGaols) !== null && _a !== void 0 ? _a : (data.titanGaols = []);
                 data.titanGaols.push(matches.target);
                 if (data.titanGaols.length === 3)
                     data.titanGaols.sort();
             },
             alertText: (data, _matches, output) => {
-                if (data.titanGaols?.length !== 3)
+                let _a;
+                if (((_a = data.titanGaols) === null || _a === void 0 ? void 0 : _a.length) !== 3)
                     return;
                 const idx = data.titanGaols.indexOf(data.me);
                 if (idx < 0)
@@ -305,7 +307,8 @@ Options.Triggers.push({
                 return output.num({ num: idx + 1 });
             },
             infoText: (data, _matches, output) => {
-                if (data.titanGaols?.length !== 3)
+                let _a;
+                if (((_a = data.titanGaols) === null || _a === void 0 ? void 0 : _a.length) !== 3)
                     return;
                 return output.text({
                     player1: data.ShortName(data.titanGaols[0]),

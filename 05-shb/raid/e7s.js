@@ -65,7 +65,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0011' }),
             condition: (data) => data.phase === 'betwixtWorlds',
             preRun: (data, matches) => {
-                data.betwixtWorldsTethers ?? (data.betwixtWorldsTethers = []);
+                let _a;
+                (_a = data.betwixtWorldsTethers) !== null && _a !== void 0 ? _a : (data.betwixtWorldsTethers = []);
                 data.betwixtWorldsTethers.push(matches.target);
             },
             infoText: (data, matches, output) => {
@@ -89,11 +90,13 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '0064' }),
             condition: (data) => data.phase === 'betwixtWorlds',
             preRun: (data, matches) => {
-                data.betwixtWorldsStack ?? (data.betwixtWorldsStack = []);
+                let _a;
+                (_a = data.betwixtWorldsStack) !== null && _a !== void 0 ? _a : (data.betwixtWorldsStack = []);
                 data.betwixtWorldsStack.push(matches.target);
             },
             alertText: (data, matches, output) => {
-                data.betwixtWorldsTethers ?? (data.betwixtWorldsTethers = []);
+                let _a;
+                (_a = data.betwixtWorldsTethers) !== null && _a !== void 0 ? _a : (data.betwixtWorldsTethers = []);
                 if (data.betwixtWorldsTethers.includes(data.me))
                     return;
                 if (data.me === matches.target)
@@ -200,7 +203,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '0065' }),
             condition: (data) => data.phase === 'falseMidnight',
             preRun: (data, matches) => {
-                data.falseMidnightSpread ?? (data.falseMidnightSpread = []);
+                let _a;
+                (_a = data.falseMidnightSpread) !== null && _a !== void 0 ? _a : (data.falseMidnightSpread = []);
                 data.falseMidnightSpread.push(matches.target);
             },
             infoText: (data, matches, output) => {
@@ -221,7 +225,8 @@ Options.Triggers.push({
             // it is not called out on spreads.
             delaySeconds: 0.5,
             alertText: (data, matches, output) => {
-                data.falseMidnightSpread ?? (data.falseMidnightSpread = []);
+                let _a;
+                (_a = data.falseMidnightSpread) !== null && _a !== void 0 ? _a : (data.falseMidnightSpread = []);
                 if (data.falseMidnightSpread.includes(data.me))
                     return;
                 if (data.me === matches.target)
@@ -264,7 +269,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '0064' }),
             condition: (data) => data.phase === 'adds',
             preRun: (data, matches) => {
-                data.insatiableLightStack ?? (data.insatiableLightStack = []);
+                let _a;
+                (_a = data.insatiableLightStack) !== null && _a !== void 0 ? _a : (data.insatiableLightStack = []);
                 data.insatiableLightStack.push(matches.target);
             },
             alertText: (data, matches, output) => {
@@ -371,7 +377,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
             netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
             run: (data, matches) => {
-                data.boundless ?? (data.boundless = {});
+                let _a;
+                (_a = data.boundless) !== null && _a !== void 0 ? _a : (data.boundless = {});
                 const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
                 data.boundless[oppositeColor] = matches.target;
             },
@@ -386,7 +393,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
             netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
             condition: (data, matches) => {
-                if (Object.keys(data.boundless ?? {}).length !== 2)
+                let _a;
+                if (Object.keys((_a = data.boundless) !== null && _a !== void 0 ? _a : {}).length !== 2)
                     return false;
                 const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
                 return data.color === oppositeColor;

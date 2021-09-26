@@ -24,7 +24,8 @@ Options.Triggers.push({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 const twintaniaBelowGivenHP = ret.combatants.some((c) => {
-                    const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
+                    let _a;
+                    const currentHPCheck = (_a = data.hpThresholds[data.currentPhase]) !== null && _a !== void 0 ? _a : -1;
                     return c.CurrentHP / c.MaxHP <= currentHPCheck;
                 });
                 return twintaniaBelowGivenHP;
