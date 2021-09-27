@@ -27,7 +27,7 @@ const isValidTimestamp = (timestamp: number) => {
 };
 
 export default class Encounter {
-  private static readonly encounterVersion = 1;
+  private static readonly encounterVersion = 2;
   public id?: number;
   version: number;
   initialOffset = Number.MAX_SAFE_INTEGER;
@@ -41,6 +41,7 @@ export default class Encounter {
   startTimestamp = 0;
   endTimestamp = 0;
   duration = 0;
+  tzOffsetMillis = 0;
   playbackOffset = 0;
   language: Lang = 'en';
   initialTimestamp = Number.MAX_SAFE_INTEGER;
@@ -60,6 +61,8 @@ export default class Encounter {
     this.logLines.forEach((line, i) => {
       if (!line)
         throw new UnreachableCode();
+
+      this.tzOffsetMillis = line.tzOffsetMillis;
 
       let res: MatchStartInfo | MatchEndInfo | undefined = EmulatorCommon.matchStart(
         line.networkLine,

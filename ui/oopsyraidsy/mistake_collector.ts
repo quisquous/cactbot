@@ -1,16 +1,15 @@
 import { EventResponses } from '../../types/event';
 import { NetMatches } from '../../types/net_matches';
 import { OopsyMistake } from '../../types/oopsy';
-import { LocaleText } from '../../types/trigger';
 
+import { MistakeObserver } from './mistake_observer';
 import {
   IsPlayerId,
   IsTriggerEnabled,
   kFlagInstantDeath,
-  ShortNamify,
+  Translate,
   UnscrambleDamage,
 } from './oopsy_common';
-import { OopsyListView } from './oopsy_list_view';
 import { OopsyOptions } from './oopsy_options';
 
 const kEarlyPullText = {
@@ -49,14 +48,18 @@ const kEarlyPullId = 'General Early Pull';
 export class MistakeCollector {
   private inACTCombat = false;
   private inGameCombat = false;
-  private baseTime?: number;
   private startTime?: number;
   private stopTime?: number;
   private engageTime?: number;
   public firstPuller?: string;
+  private observers: MistakeObserver[] = [];
 
-  constructor(private options: OopsyOptions, private listView: OopsyListView) {
+  constructor(private options: OopsyOptions) {
     this.Reset();
+  }
+
+  AddObserver(observer: MistakeObserver): void {
+    this.observers.push(observer);
   }
 
   Reset(): void {
@@ -64,17 +67,6 @@ export class MistakeCollector {
     this.stopTime = undefined;
     this.firstPuller = undefined;
     this.engageTime = undefined;
-  }
-
-  GetFormattedTime(time?: number): string {
-    if (!this.baseTime)
-      return '';
-    if (!time)
-      time = Date.now();
-    const totalSeconds = Math.floor((time - this.baseTime) / 1000);
-    const seconds = totalSeconds % 60;
-    const minutes = Math.floor(totalSeconds / 60);
-    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   }
 
   StartCombat(): void {
@@ -89,7 +81,7 @@ export class MistakeCollector {
     // period of time.  Gross.
     //
     // Because damage comes before in combat (regardless of where engage
-    // occurs), StartCombat has to be responsible for clearing the listView
+    // occurs), StartCombat has to be responsible for clearing the mistakeObserver
     // list.
     const now = Date.now();
     const kMinimumSecondsAfterWipe = 5;
@@ -106,23 +98,11 @@ export class MistakeCollector {
     this.engageTime = undefined;
   }
 
-  Translate(obj: LocaleText | string | undefined): string | undefined {
-    if (typeof obj !== 'object')
-      return obj;
-    return obj[this.options.DisplayLanguage] ?? obj['en'];
-  }
-
   OnMistakeObj(m?: OopsyMistake): void {
     if (!m)
       return;
-    this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
-  }
-
-  OnMistakeText(type: string, blame?: string, text?: string, time?: number): void {
-    if (!text)
-      return;
-    const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
-    this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
+    for (const observer of this.observers)
+      observer.OnMistakeObj(m);
   }
 
   AddEngage(): void {
@@ -136,9 +116,17 @@ export class MistakeCollector {
     }
     const seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      const text = `${this.Translate(kEarlyPullText) ?? ''} (${seconds.toFixed(1)}s)`;
-      if (IsTriggerEnabled(this.options, kEarlyPullId))
-        this.OnMistakeText('pull', this.firstPuller, text);
+      const text = `${Translate(this.options.DisplayLanguage, kEarlyPullText) ?? ''} (${
+        seconds.toFixed(1)
+      }s)`;
+      if (IsTriggerEnabled(this.options, kEarlyPullId)) {
+        this.OnMistakeObj({
+          type: 'pull',
+          name: this.firstPuller,
+          blame: this.firstPuller,
+          text: text,
+        });
+      }
     }
   }
 
@@ -155,16 +143,24 @@ export class MistakeCollector {
       if (this.engageTime) {
         const seconds = ((Date.now() - this.engageTime) / 1000);
         if (seconds >= this.options.MinimumTimeForPullMistake) {
-          const text = `${this.Translate(kLatePullText) ?? ''} (${seconds.toFixed(1)}s)`;
-          if (IsTriggerEnabled(this.options, kEarlyPullId))
-            this.OnMistakeText('pull', this.firstPuller, text);
+          const text = `${Translate(this.options.DisplayLanguage, kLatePullText) ?? ''} (${
+            seconds.toFixed(1)
+          }s)`;
+          if (IsTriggerEnabled(this.options, kEarlyPullId)) {
+            this.OnMistakeObj({
+              type: 'pull',
+              name: this.firstPuller,
+              blame: this.firstPuller,
+              text: text,
+            });
+          }
         }
       }
     }
   }
 
   AddDeath(name: string, matches: Partial<NetMatches['Ability']>): void {
-    let text;
+    let text = '';
     if (matches) {
       // Note: ACT just evaluates independently what the hp of everybody
       // is and so may be out of date modulo one hp regen tick with
@@ -183,7 +179,11 @@ export class MistakeCollector {
       }
       text = `${matches?.ability ?? '???'}${hp}`;
     }
-    this.OnMistakeText('death', name, text);
+    this.OnMistakeObj({
+      type: 'death',
+      name: name,
+      text: text,
+    });
 
     // TODO: some things don't have abilities, e.g. jumping off titan ex.
     // This will just show the last thing that hit you before you were
@@ -195,7 +195,10 @@ export class MistakeCollector {
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
-    this.OnMistakeText('wipe', undefined, this.Translate(kPartyWipeText));
+    this.OnMistakeObj({
+      type: 'wipe',
+      text: kPartyWipeText,
+    });
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();
@@ -219,7 +222,8 @@ export class MistakeCollector {
       else
         this.StopCombat();
 
-      this.listView.SetInCombat(this.inGameCombat);
+      for (const observer of this.observers)
+        observer.SetInCombat(this.inGameCombat);
     }
 
     const inACTCombat = e.detail.inACTCombat;
@@ -229,13 +233,15 @@ export class MistakeCollector {
         // TODO: This message should probably include the timestamp
         // for when combat started.  Starting here is not the right
         // time if this plugin is loaded while ACT is already in combat.
-        this.baseTime = Date.now();
-        this.listView.StartNewACTCombat();
+        for (const observer of this.observers)
+          observer.StartNewACTCombat();
       }
     }
   }
 
   OnChangeZone(_e: EventResponses['ChangeZone']): void {
     this.Reset();
+    for (const observer of this.observers)
+      observer.OnChangeZone(_e);
   }
 }

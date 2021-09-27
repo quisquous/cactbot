@@ -1,7 +1,6 @@
-import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
+import { watchCombatant } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -35,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
-        Util.watchCombatant({
+        watchCombatant({
           ids: [parseInt(matches.sourceId, 16)],
         }, (ret) => {
           const twintaniaBelowGivenHP = ret.combatants.some((c) => {
@@ -71,7 +70,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
-      condition: Conditions.caresAboutPhysical(),
       delaySeconds: 30,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),

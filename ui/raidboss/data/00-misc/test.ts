@@ -1,6 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
-import Util from '../../../../resources/util';
+import { watchCombatant } from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
 import { LocaleText, TriggerSet } from '../../../../types/trigger';
@@ -274,7 +274,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
       promise: (data) =>
-        Util.watchCombatant({
+        watchCombatant({
           names: [
             data.me,
             strikingDummyNames[data.lang] ?? strikingDummyNames['en'],

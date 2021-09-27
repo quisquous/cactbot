@@ -135,7 +135,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -316,7 +315,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Kill Jail',
           de: 'Gefängniss zerstören',
-          fr: 'Tuez la prison',
+          fr: 'Détruisez la prison',
           ja: 'ジェイルに攻撃',
           cn: '攻击牢狱',
           ko: '감옥',

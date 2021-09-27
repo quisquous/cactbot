@@ -118,7 +118,6 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Glory Of Bozja(?! Enrage)/,
       // Cast itself is 5.5 seconds, add more warning
       beforeSeconds: 8,
-      condition: Conditions.caresAboutAOE(),
       // Count the number of Glory of Bozja so that people alternating mitigation
       // can more easily assign themselves to even or odd glories.
       preRun: (data) => data.gloryOfBozjaCount = (data.gloryOfBozjaCount ?? 0) + 1,
@@ -150,7 +149,6 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Thunderous Discharge/,
       // Cast in the timeline is 5 seconds, but there is an additional .5 second cast before damage
       beforeSeconds: 7,
-      condition: Conditions.caresAboutAOE(),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -159,7 +157,6 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Empyrean Iniquity/,
       // Cast itself is 5 seconds, add more warning
       beforeSeconds: 9,
-      condition: Conditions.caresAboutAOE(),
       durationSeconds: 9,
       suppressSeconds: 1,
       response: Responses.bigAoe('alert'),
@@ -169,7 +166,6 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Gods Save The Queen$/,
       // Cast in the timeline is 5 seconds, but there is an additional 1 second cast before damage
       beforeSeconds: 7,
-      condition: Conditions.caresAboutAOE(),
       durationSeconds: 5,
       suppressSeconds: 1,
       response: Responses.aoe(),
@@ -198,7 +194,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '求道之三位一体', id: '5AD3', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '탐구의 삼위일체', id: '5AD3', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -1065,7 +1060,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト'], id: ['5831', '5821'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['女王战士', '女王骑士'], id: ['5831', '5821'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['여왕의 전사', '여왕의 기사'], id: ['5831', '5821'], capture: false }),
-      condition: Conditions.caresAboutAOE(),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -1080,7 +1074,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: ['5854', '5841'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['女王枪手', '女王士兵'], id: ['5854', '5841'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['여왕의 총사', '여왕의 병사'], id: ['5854', '5841'], capture: false }),
-      condition: Conditions.caresAboutAOE(),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -1513,7 +1506,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BD', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '博兹雅幻灵', id: '57BD', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '보즈야 유령', id: '57BD', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -2940,7 +2932,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト', 'クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['女王战士', '女王骑士', '女王枪手', '女王士兵'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['여왕의 전사', '여왕의 기사', '여왕의 총사', '여왕의 병사'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
-      condition: Conditions.caresAboutAOE(),
       // Only call out the beginning of a set of two casts
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),

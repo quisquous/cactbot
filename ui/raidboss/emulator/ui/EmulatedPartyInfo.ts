@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import Util from '../../../../resources/util';
+import { jobToRole } from '../../../../resources/util';
 import AnalyzedEncounter, { PerspectiveTrigger } from '../data/AnalyzedEncounter';
 import RaidEmulator from '../data/RaidEmulator';
 import EmulatorCommon, { cloneSafe, getTemplateChild, querySelectorSafe } from '../EmulatorCommon';
@@ -212,7 +212,7 @@ export default class EmulatedPartyInfo extends EventBus {
       bar.classList.remove('dps');
       if (combatant.job) {
         bar.classList.add(
-          Util.jobToRole(combatant.job),
+          jobToRole(combatant.job),
         );
       }
 

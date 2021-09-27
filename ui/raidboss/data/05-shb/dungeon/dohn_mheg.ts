@@ -1,4 +1,3 @@
-import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -93,7 +92,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1E8E', source: '美眼のインク＝ゾン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1E8E', source: '美眼 因克·佐恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1E8E', source: '눈이 예쁜 잉크 돈', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -111,7 +109,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '22D3', source: 'グリオール', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '22D3', source: '格里奥勒', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '22D3', source: '그리올', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -157,7 +154,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '358C', source: '楽聖のインク＝ゾン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '358C', source: '乐圣 因克·佐恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '358C', source: '대음악가 잉크 돈', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],
@@ -293,10 +289,10 @@ const triggerSet: TriggerSet<Data> = {
         'Painted Sapling': '그리올 묘목',
         'Aenc Thon, Lord of the Lengthsome Gait': '대음악가 잉크 돈',
         'Shade of Fear': '공포의 환영',
-        'Dohnfast Fuath': '禁园水妖',
-        'Dohnfast Basket': '禁园篮筐',
-        'Dohnfast Etainmoth': '禁园爱蒂恩蛾',
-        'Dohnfast Kelpie': '禁园凯尔派',
+        'Dohnfast Fuath': '도느 푸아',
+        'Dohnfast Basket': '도느 바구니',
+        'Dohnfast Etainmoth': '도느 에다인나방',
+        'Dohnfast Kelpie': '도느 켈피',
       },
       'replaceText': {
         'Swinge': '징벌',

@@ -56,9 +56,7 @@ export default class RaidEmulatorTimelineController extends TimelineController {
       return;
 
     for (const line of logs) {
-      this.activeTimeline.OnLogLine(
-        line.properCaseConvertedLine || line.convertedLine,
-        line.timestamp);
+      this.activeTimeline.OnLogLine(line.convertedLine, line.timestamp);
       // Only call _OnUpdateTimer if we have a timebase from the previous call to OnLogLine
       // This avoids spamming the console with a ton of messages
       if (this.activeTimeline.timebase)

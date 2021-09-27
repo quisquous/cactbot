@@ -1,4 +1,7 @@
+import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
+
+import { generateBuffTriggers } from './buff_map';
 import oopsyFileData from './data/oopsy_manifest.txt';
 
 const oopsyHelpers = [
@@ -154,6 +157,22 @@ class OopsyConfigurator {
   processOopsyFiles(files) {
     const map = this.base.processFiles(files);
 
+    // Hackily insert "missed buffs" into the list of triggers.
+    const generalEntry = map['00-misc-general'];
+    if (!generalEntry)
+      throw new UnreachableCode();
+    const fakeBuffs = {
+      ...generalEntry,
+      fileKey: '00-misc-buffs',
+      filename: 'buff_map.ts',
+      title: this.base.translate({
+        en: 'Missed Buffs',
+        de: 'Verfehlte Buffs',
+      }),
+      triggerSet: { triggers: generateBuffTriggers() },
+    };
+    map[fakeBuffs.fileKey] = fakeBuffs;
+
     for (const [key, item] of Object.entries(map)) {
       item.triggers = [];
       const triggerSet = item.triggerSet;
@@ -170,8 +189,8 @@ class OopsyConfigurator {
       for (const trigger of triggerSet.triggers) {
         if (!trigger.id)
           continue;
-        // Skip triggers that just set data.
-        if (!trigger.mistake)
+        // Skip triggers that just set data, but include triggers that are just ids.
+        if (trigger.run && !trigger.mistake)
           continue;
         item.triggers.push(trigger);
       }

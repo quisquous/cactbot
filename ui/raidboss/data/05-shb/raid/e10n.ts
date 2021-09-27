@@ -1,4 +1,3 @@
-import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -16,7 +15,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E10N Umbra Smash',
       regex: /Umbra Smash/,
       beforeSeconds: 5,
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
   ],
@@ -30,7 +28,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56E5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56E5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56E5', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

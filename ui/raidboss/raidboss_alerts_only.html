@@ -1,1 +1,10 @@
-<meta http-equiv="refresh" content="0; url=raidboss.html?timeline=0&alerts=1" />
+<script type="text/javascript">
+  let redirUrl = 'raidboss.html?timeline=0&alerts=1';
+  if (typeof window !== 'undefined') {
+    const wsUrl = /[\?&](OVERLAY_WS=[^&]+)/.exec(window.location.href);
+    if (wsUrl) {
+      redirUrl += '&' + wsUrl[1];
+    }
+  }
+  window.location.href = redirUrl;
+</script>

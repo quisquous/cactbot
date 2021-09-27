@@ -15,7 +15,7 @@ export interface Data extends RaidbossData {
   timeBombCount?: number;
   sartauvoirPyrocrisis?: string[];
   saunionSwoopingCount?: number;
-  diabloSeenDealing?: boolean;
+  diabloDealingCount?: number;
   diabloPillar?: string[];
 }
 
@@ -1774,10 +1774,9 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: these feel really late with 5 seconds, should they call instantly at 7?
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       alertText: (data, _matches, output) => {
-        // TODO: how does this loop?
-        return data.diabloSeenDealing ? output.knockbackNox!() : output.knockbackBits!();
+        data.diabloDealingCount = (data.diabloDealingCount ?? 0) + 1;
+        return data.diabloDealingCount % 2 ? output.knockbackBits!() : output.knockbackNox!();
       },
-      run: (data) => data.diabloSeenDealing = true,
       outputStrings: {
         knockbackBits: {
           en: 'Knockback (away from bits)',

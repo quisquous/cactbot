@@ -4,7 +4,16 @@ import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_
 import PartyTracker from '../../resources/party';
 import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
-import Util from '../../resources/util';
+import {
+  canAddle,
+  canCleanse,
+  canFeint,
+  canSilence,
+  canSleep,
+  canStun,
+  clearWatchCombatants,
+  jobToRole,
+} from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import { RaidbossData } from '../../types/data';
 import { EventResponses, LogEvent } from '../../types/event';
@@ -565,6 +574,10 @@ export class PopupText {
 
     const orderedTriggers = new OrderedTriggerList();
 
+    // Some user timelines may rely on having valid init data
+    // Don't use `this.Reset()` since that clears other things as well
+    this.data = this.getDataObject();
+
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
     const addTimeline = (function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
@@ -764,7 +777,7 @@ export class PopupText {
   OnJobChange(e: PlayerChangedDetail): void {
     this.me = e.detail.name;
     this.job = e.detail.job;
-    this.role = Util.jobToRole(this.job);
+    this.role = jobToRole(this.job);
     this.ReloadTimelines();
   }
 
@@ -812,7 +825,7 @@ export class PopupText {
   }
 
   Reset(): void {
-    Util.clearWatchCombatants();
+    clearWatchCombatants();
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
@@ -1331,6 +1344,11 @@ export class PopupText {
         text = text.toString();
       if (typeof text !== 'string')
         text = String(text);
+      // Ignore empty strings so that config ui "blank spaces" are ignored.
+      text = text.trim();
+      if (text === '')
+        return;
+
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText ?? text;
       if (text && typeof text === 'string' && triggerHelper.textAlertsEnabled) {
         // per-trigger option > trigger field > option duration by text type
@@ -1383,12 +1401,12 @@ export class PopupText {
       ShortName: this.ShortNamify.bind(this),
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
-      CanStun: () => Util.canStun(this.job),
-      CanSilence: () => Util.canSilence(this.job),
-      CanSleep: () => Util.canSleep(this.job),
-      CanCleanse: () => Util.canCleanse(this.job),
-      CanFeint: () => Util.canFeint(this.job),
-      CanAddle: () => Util.canAddle(this.job),
+      CanStun: () => canStun(this.job),
+      CanSilence: () => canSilence(this.job),
+      CanSleep: () => canSleep(this.job),
+      CanCleanse: () => canCleanse(this.job),
+      CanFeint: () => canFeint(this.job),
+      CanAddle: () => canAddle(this.job),
     };
   }
 }

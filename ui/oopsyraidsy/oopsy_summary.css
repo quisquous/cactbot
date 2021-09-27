@@ -1,3 +1,7 @@
+:root {
+  --table-cols: 5;
+}
+
 html {
   overflow: visible !important;
 }
@@ -7,7 +11,7 @@ html {
   align-items: center;
 }
 
-.mistake-icon {
+.mistake-row .mistake-icon {
   order: 2;
   margin-right: 3px;
   font-size: 20px;
@@ -46,4 +50,46 @@ html {
 .section-rows {
   padding-left: 10px;
   max-width: 500px;
+}
+
+.mistake-table {
+  display: grid;
+  grid-template-columns: repeat(var(--table-cols), max-content);
+  margin: 20px;
+}
+
+.mistake-table div {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: right;
+  box-sizing: border-box;
+
+  /* give all columns a light border, override first column below */
+  border-right: solid grey 1px;
+}
+
+/* first row */
+.mistake-table .header {
+  border-bottom: solid black 2px;
+  order: -1;
+}
+
+/* first row, not first column */
+.mistake-table .mistake-icon {
+  text-align: center;
+  min-width: 30px;
+  width: 100%;
+}
+
+/* first column */
+.mistake-table .name {
+  padding-right: 5px;
+  border-right: solid black 2px;
+}
+
+/* not first column, not first row */
+.mistake-table .number {
+  /* numbers are aligned right, but "centered" a little with padding */
+  padding-left: 12px;
+  padding-right: 12px;
 }

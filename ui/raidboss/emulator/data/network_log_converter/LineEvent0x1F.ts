@@ -11,13 +11,12 @@ const splitFunc = (s: string) => [
   s.substr(0, 2),
 ];
 
-const fields = logDefinitions.networkGauge.fields;
+const fields = logDefinitions.NetworkGauge.fields;
 
 // Job gauge event
 export class LineEvent0x1F extends LineEvent {
   public readonly jobGaugeBytes: string[];
   public readonly name: string;
-  public override readonly properCaseConvertedLine: string;
 
   public readonly id: string;
   public readonly dataBytes1: string;
@@ -51,12 +50,6 @@ export class LineEvent0x1F extends LineEvent {
     });
 
     this.convertedLine = this.prefix() +
-      this.id + ':' + this.name +
-      ':' + this.dataBytes1 +
-      ':' + this.dataBytes2 +
-      ':' + this.dataBytes3 +
-      ':' + this.dataBytes4;
-    this.properCaseConvertedLine = this.prefix() +
       this.id + ':' + (EmulatorCommon.properCase(this.name)) +
       ':' + this.dataBytes1 +
       ':' + this.dataBytes2 +

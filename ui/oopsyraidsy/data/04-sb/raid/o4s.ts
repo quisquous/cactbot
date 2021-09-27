@@ -5,6 +5,8 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
+// TODO: taking the wrong color white/black antilight
+
 export interface Data extends OopsyData {
   isDecisiveBattleElement?: boolean;
   isNeoExdeath?: boolean;
@@ -16,12 +18,25 @@ export interface Data extends OopsyData {
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV40Savage,
   damageWarn: {
-    'O4S2 Neo Vacuum Wave': '241D',
-    'O4S2 Acceleration Bomb': '2431',
-    'O4S2 Emptiness': '2422',
+    'O4S1 Vine Clearout': '240C', // circle of vines
+    'O4S1 Zombie Breath': '240B', // tree exdeath conal
+    'O4S1 Vacuum Wave': '23FE', // circle centered on exdeath
+    'O4S2 Neo Vacuum Wave': '241D', // "out of melee"
+    'O4S2 Death Bomb': '2431', // failed acceleration bomb
+    'O4S2 Emptiness 1': '2421', // exaflares initial
+    'O4S2 Emptiness 2': '2422', // exaflares moving
   },
   damageFail: {
-    'O4S2 Double Laser': '2415',
+    'O4S1 Black Hole Black Spark': '2407', // black hole catching you
+    'O4S2 Edge Of Death': '2415', // standing between the two color lasers
+    'O4S2 Inner Antilight': '244C', // inner laser
+    'O4S2 Outer Antilight': '2410', // outer laser
+  },
+  shareWarn: {
+    'O4S1 Fire III': '23F6', // spread explosion
+  },
+  shareFail: {
+    'O4S1 Thunder III': '23FA', // tankbuster
   },
   triggers: [
     {

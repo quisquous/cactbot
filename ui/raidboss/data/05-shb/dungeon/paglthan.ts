@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '5C4E', source: 'Amhuluk' }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C4E', source: 'アムルック' }),
       netRegexCn: NetRegexes.startsUsing({ id: '5C4E', source: '阿姆鲁克' }),
-      condition: Conditions.caresAboutPhysical(),
+      netRegexKo: NetRegexes.startsUsing({ id: '5C4E', source: '아물룩' }),
       response: Responses.tankBuster(),
     },
     {
@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '5C4D', source: 'Amhuluk', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C4D', source: 'アムルック', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5C4D', source: '阿姆鲁克', capture: false }),
-      condition: Conditions.caresAboutAOE(),
+      netRegexKo: NetRegexes.startsUsing({ id: '5C4D', source: '아물룩', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -77,7 +77,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '5C97', source: 'Magitek-Festung', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5C97', source: 'Forteresse Magitek', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5C97', source: '魔導フォートレス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '5C97', source: '魔导核心', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5C97', source: '魔导要塞', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '5C97', source: '마도 요새', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -89,7 +90,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '5C9E', source: '魔導コア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5C9E', source: '魔导核心', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5C9E', source: '마도핵', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '5B47', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5B47', source: 'ルナバハムート', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5B47', source: '真月巴哈姆特', capture: false }),
-      condition: Conditions.caresAboutAOE(),
+      netRegexKo: NetRegexes.startsUsing({ id: '5B47', source: '루나 바하무트', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -124,6 +124,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '5B4D', source: 'Luna-Bahamut' }),
       netRegexJa: NetRegexes.ability({ id: '5B4D', source: 'ルナバハムート' }),
       netRegexCn: NetRegexes.ability({ id: '5B4D', source: '真月巴哈姆特' }),
+      netRegexKo: NetRegexes.ability({ id: '5B4D', source: '루나 바하무트' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -162,6 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '5B4F', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5B4F', source: 'ルナバハムート', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '5B4F', source: '真月巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '5B4F', source: '루나 바하무트', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -182,6 +184,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '5B49', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5B49', source: 'ルナバハムート', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '5B49', source: '真月巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '5B49', source: '루나 바하무트', capture: false }),
       run: (data) => data.lunarFlares = 0,
     },
     {
@@ -192,6 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'ルナバハムート', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5B4[AB]', source: '真月巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '5B4[AB]', source: '루나 바하무트', capture: false }),
       run: (data) => data.lunarFlares = (data.lunarFlares ?? 0) + 1,
     },
     {
@@ -203,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'ルナバハムート', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5B4[AB]', source: '真月巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '5B4[AB]', source: '루나 바하무트', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -238,7 +243,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '5B58', source: 'Luna-Bahamut' }),
       netRegexJa: NetRegexes.startsUsing({ id: '5B58', source: 'ルナバハムート' }),
       netRegexCn: NetRegexes.startsUsing({ id: '5B58', source: '真月巴哈姆特' }),
-      condition: Conditions.caresAboutPhysical(),
+      netRegexKo: NetRegexes.startsUsing({ id: '5B58', source: '루나 바하무트' }),
       response: Responses.tankBuster(),
     },
     {
@@ -249,7 +254,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '5B57', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5B57', source: 'ルナバハムート', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5B57', source: '真月巴哈姆特', capture: false }),
-      condition: Conditions.caresAboutAOE(),
+      netRegexKo: NetRegexes.startsUsing({ id: '5B57', source: '루나 바하무트', capture: false }),
       response: Responses.aoe(),
     },
   ],
@@ -382,6 +387,39 @@ const triggerSet: TriggerSet<Data> = {
         'Twisted Scream': '异形咆哮',
         'Upburst': '顶起',
         'Wide Blaster': '广域冲击波',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Amhuluk': '아물룩',
+        'Lunar Bahamut': '루나 바하무트',
+        'Magitek Fortress': '마도 요새',
+        'Magitek Core': '마도핵',
+        'Sunseat': '황혼의 뜰',
+        'The Gathering Ring': '졸마크 제단',
+      },
+      'replaceText': {
+        '\\(circles\\)': '원',
+        '\\(explosions\\)': '(폭발)',
+        '--Levin orbs--': '--번개 구슬--',
+        'Akh Morn': '아크 몬',
+        'Big Burst': '대폭발',
+        'Critical Rip': '찢어가르기',
+        'Electric Burst': '전하 폭발',
+        'Flatten': '압사',
+        'Gigaflare': '기가플레어',
+        'Kan Rhai': '칸 라이',
+        'Lightning Bolt': '번개 발생',
+        'Lunar Flare': '루나 플레어',
+        'Megaflare(?! Dive)': '메가플레어',
+        'Megaflare Dive': '메가플레어 다이브',
+        'Perigean Breath': '근지점 입김',
+        'Spike Flail': '가시 매타작',
+        'Thundercall': '초뢰',
+        'Twisted Scream': '기괴한 포효',
+        'Upburst': '돌출',
+        'Wide Blaster': '광범위 블래스터',
       },
     },
   ],

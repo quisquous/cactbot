@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -31,6 +32,17 @@ const triggerSet: TriggerSet<Data> = {
     },
   ],
   triggers: [
+    {
+      id: 'O11N Atomic Ray',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '3286', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3286', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3286', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3286', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3286', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3286', source: '오메가', capture: false }),
+      response: Responses.aoe(),
+    },
     {
       id: 'O11N Mustard Bomb',
       type: 'StartsUsing',
@@ -158,6 +170,43 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'O11N Ballistic Missile',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Drop Fire Outside',
+          de: 'Feuer draußen ablegen',
+        },
+      },
+    },
+    {
+      id: 'O11N Electric Slide',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'O11N Delta Attack',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '327B', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '327B', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '327B', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '327B', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '327B', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '327B', source: '오메가', capture: false }),
+      delaySeconds: 3,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Use duty action on Conductive Focus',
+          de: 'Benutze Spezialkommando auf "Ziel des Blitzstrahls"',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -177,6 +226,7 @@ const triggerSet: TriggerSet<Data> = {
         'Electric Slide': 'Elektrosturz',
         'Executable': 'Programmstart',
         'Flamethrower': 'Flammenwerfer',
+        'Force Quit': 'Erzwungenes Herunterfahren',
         'Mustard Bomb': 'Senfbombe',
         'Peripheral Synthesis': 'Ausdrucken',
         'Program Loop': 'Programmschleife',
@@ -203,6 +253,7 @@ const triggerSet: TriggerSet<Data> = {
         'Electric Slide': 'Glissement Oméga',
         'Executable': 'Exécution de programme',
         'Flamethrower': 'Lance-flammes',
+        'Force Quit': 'Interruption forcée',
         'Mustard Bomb': 'Obus d\'ypérite',
         'Peripheral Synthesis': 'Impression',
         'Program Loop': 'Boucle de programme',
@@ -229,6 +280,7 @@ const triggerSet: TriggerSet<Data> = {
         'Electric Slide': 'オメガスライド',
         'Executable': 'プログラム実行',
         'Flamethrower': '火炎放射',
+        'Force Quit': '強制終了',
         'Mustard Bomb': 'マスタードボム',
         'Peripheral Synthesis': 'プリントアウト',
         'Program Loop': 'サークルプログラム',
@@ -255,6 +307,7 @@ const triggerSet: TriggerSet<Data> = {
         'Electric Slide': '欧米茄滑跃',
         'Executable': '运行程序',
         'Flamethrower': '火焰喷射器',
+        'Force Quit': '强制结束',
         'Mustard Bomb': '芥末爆弹',
         'Peripheral Synthesis': '生成外设',
         'Program Loop': '循环程序',
@@ -281,6 +334,7 @@ const triggerSet: TriggerSet<Data> = {
         'Electric Slide': '오메가 슬라이드',
         'Executable': '프로그램 실행',
         'Flamethrower': '화염 방사',
+        'Force Quit': '강제 종료',
         'Mustard Bomb': '겨자 폭탄',
         'Peripheral Synthesis': '출력',
         'Program Loop': '순환 프로그램',

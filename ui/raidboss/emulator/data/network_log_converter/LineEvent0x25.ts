@@ -3,7 +3,7 @@ import logDefinitions from '../../../../../resources/netlog_defs';
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
-const fields = logDefinitions.networkEffectResult.fields;
+const fields = logDefinitions.NetworkEffectResult.fields;
 
 // Action sync event
 export class LineEvent0x25 extends LineEvent implements LineEventSource {

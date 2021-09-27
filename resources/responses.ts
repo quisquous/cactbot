@@ -331,6 +331,7 @@ export const Responses = {
       return combined;
     };
   },
+  drawIn: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.drawIn),
   lookTowards: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookTowardsBoss),
   lookAway: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookAway),
   lookAwayFromTarget: (sev?: Severity) =>
@@ -403,6 +404,25 @@ export const Responses = {
         },
       };
     },
+  stunOrInterruptIfPossible: (sev?: Severity) => {
+    return (data: Data, _matches: TargetedMatches, output: Output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = {
+        stun: Outputs.stunTarget,
+        interrupt: Outputs.interruptTarget,
+      };
+
+      return {
+        [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+          const source = getSource(matches);
+          if (data.CanSilence())
+            return output.interrupt?.({ name: source });
+          else if (data.CanStun())
+            return output.stun?.({ name: source });
+        },
+      };
+    };
+  },
   stun: (sev?: Severity) =>
     (_data: Data, _matches: unknown, output: Output) => {
       // cactbot-builtin-response

@@ -385,6 +385,8 @@ type CactbotSayHandler = (msg: {
 
 type CactbotSaveDataHandler = (msg: {
   call: 'cactbotSaveData';
+  overlay: string;
+  data: unknown;
 }) => void;
 
 type CactbotLoadDataHandler = (msg: {

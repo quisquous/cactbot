@@ -42,7 +42,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A10S Goblin Rush',
       regex: /Goblin Rush/,
       beforeSeconds: 5,
-      condition: Conditions.caresAboutPhysical(),
       suppressSeconds: 1,
       response: Responses.miniBuster(),
     },
@@ -214,7 +213,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '傭兵のレイムプリクス', id: '1A9F' }),
       netRegexCn: NetRegexes.startsUsing({ source: '佣兵雷姆普里克斯', id: '1A9F' }),
       netRegexKo: NetRegexes.startsUsing({ source: '용병 레임브릭스', id: '1A9F' }),
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
