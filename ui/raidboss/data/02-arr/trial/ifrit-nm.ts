@@ -44,6 +44,8 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'de',
       'replaceSync': {
         'Ifrit': 'Ifrit',
+        'Succumb': 'Verglühe zu Asche im heiligen Inferno!',
+        'Surrender': 'Die Flammen werden das Fleisch von deinen Knochen sengen ...',
       },
       'replaceText': {
         'Eruption': 'Eruption',
@@ -58,6 +60,8 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'replaceSync': {
         'Ifrit': 'Ifrit',
+        'Succumb': 'Succombez aux enfers !',
+        'Surrender': 'Que le feu du jugement purifie vos âmes !',
       },
       'replaceText': {
         'Eruption': 'Éruption',
@@ -72,6 +76,8 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'replaceSync': {
         'Ifrit': 'イフリート',
+        'Succumb': '力戦奮闘……。\\s*されど我が敵にあらず！',
+        'Surrender': '兵貴神速……。\\s*「炎獄の楔」にて、この者へ裁きを！',
       },
       'replaceText': {
         'Eruption': 'エラプション',
@@ -86,6 +92,8 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'cn',
       'replaceSync': {
         'Ifrit': '伊弗利特',
+        'Succumb': '骁勇善战……\\s*蝼蚁之辈！妄想弑神？',
+        'Surrender': '兵贵神速……\\s*火狱之楔！施以审判！',
       },
       'replaceText': {
         'Eruption': '地火喷发',
@@ -100,6 +108,8 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ko',
       'replaceSync': {
         'Ifrit': '이프리트',
+        'Succumb': '역전분투……. 허나 이 몸의 적수는 되지 못하리니!',
+        'Surrender': '병귀신속……. \'염옥의 말뚝\'으로 심판을 내리노라!',
       },
       'replaceText': {
         'Eruption': '용암 분출',
