@@ -2468,6 +2468,7 @@ const triggerSet: TriggerSet<Data> = {
         'Nihility\'s Song': '虚无之歌',
         'North Wind': '北风',
         'Obey': '服从',
+        '(?<!Verd)Orb': '球',
         'Pain Storm': '痛苦风暴',
         'Painful Gust': '极痛突风',
         'Pentagust': '五向突风',
