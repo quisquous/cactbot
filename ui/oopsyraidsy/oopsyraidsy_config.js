@@ -168,6 +168,7 @@ class OopsyConfigurator {
       title: this.base.translate({
         en: 'Missed Buffs',
         de: 'Verfehlte Buffs',
+        fr: 'Buffs manqués',
       }),
       triggerSet: { triggers: generateBuffTriggers() },
     };
