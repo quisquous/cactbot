@@ -2471,7 +2471,7 @@ Options.Triggers.push({
                     de: 'Lila, nahe Verbindungr: O->N',
                     fr: 'Violet, lien rapproché : E->N',
                     ja: '逃亡禁止, 接近強制: 東から北へ',
-                    cn: '小暗, 接近连线: 东->北',
+                    cn: '近线近线近线近线近线近线,
                     ko: '보라/도망금지/강제접근: 동→북',
                 },
                 orangeCloseTether: {
