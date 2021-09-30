@@ -7409,6 +7409,7 @@ const data: ZoneInfoType = {
     'contentType': 29,
     'exVersion': 3,
     'name': {
+      'cn': '扎杜诺尔高原',
       'de': 'Zadnor-Hochebene',
       'en': 'Zadnor',
       'fr': 'Hauts plateaux de Zadnor',
@@ -7423,6 +7424,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 3,
     'name': {
+      'cn': '死斗至黎明',
       'de': 'Kampf im Morgengrauen',
       'en': 'Death Unto Dawn',
       'fr': 'Aube meurtrière',
