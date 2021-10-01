@@ -16,7 +16,9 @@
 03-hw/raid/a12n.ts
 04-sb/dungeon/ala_mhigo.ts
 04-sb/dungeon/bardams_mettle.ts
+04-sb/dungeon/doma_castle.ts
 04-sb/dungeon/drowned_city_of_skalla.ts
+04-sb/dungeon/hells_lid.ts
 04-sb/dungeon/kugane_castle.ts
 04-sb/dungeon/sirensong_sea.ts
 04-sb/dungeon/st_mocianne_hard.ts
@@ -48,11 +50,13 @@
 04-sb/raid/o12n.ts
 04-sb/raid/o12s.ts
 04-sb/trial/byakko-ex.ts
+04-sb/trial/seiryu-ex.ts
 04-sb/trial/seiryu.ts
 04-sb/trial/shinryu-ex.ts
 04-sb/trial/shinryu.ts
 04-sb/trial/susano-ex.ts
 04-sb/trial/suzaku.ts
+04-sb/trial/tsukuyomi-ex.ts
 04-sb/ultimate/ultima_weapon_ultimate.ts
 04-sb/ultimate/unending_coil_ultimate.ts
 05-shb/alliance/the_copied_factory.ts

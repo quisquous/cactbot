@@ -304,6 +304,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
+      // Soloing can get you two of these.
+      suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -319,7 +321,18 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Blissful Arrow': 'Blissful Arrow (cross)',
+        'Blissful Hammer': 'Blissful Hammer (circle)',
+        'The Pall Of Light': 'Pall Of Light (stack)',
+        'The Path Of Light': 'Path Of Light (OT cleave)',
+        'The Pull Of Light': 'Pull Of Light (MT buster)',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'verträumt(?:e|er|es|en) Kshatriya',
         'Lakshmi': 'Lakshmi',
@@ -347,6 +360,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'kshatriya rêveuse',
         'Lakshmi': 'Lakshmi',
@@ -374,6 +388,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'テンパード・クシャトリア',
         'Lakshmi': 'ラクシュミ',
@@ -400,6 +415,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': '梦寐的刹帝利',
         'Lakshmi': '吉祥天女',
@@ -425,6 +441,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': '신도화된 크샤트리아',
         'Lakshmi': '락슈미',
