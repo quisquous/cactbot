@@ -26,7 +26,7 @@ hideall "--sync--"
 126.1 "Incinerate"
 
 # 70%
-200.0 "--sync--" sync /00:0044:Ifrit:Succumb/ window 200,0
+200.0 "--sync--" sync /00:0044:Ifrit:Succumb to the inferno/ window 200,0
 201.0 "Incinerate" sync /:Ifrit:1C5:/
 209.0 "Eruption" sync /:Ifrit:1C7:/ window 210,5
 213.5 "Vulcan Burst" sync /:Ifrit:1C6:/
@@ -41,7 +41,7 @@ hideall "--sync--"
 278.6 "Eruption"
 
 # 50%
-300.0 "--sync--" sync /00:0044:Ifrit:Surrender/ window 300,0
+300.0 "--sync--" sync /00:0044:Ifrit:Surrender thyself to the fires of judgment/ window 300,0
 305.0 "Nail Add"
 306.7 "Incinerate" sync /:Ifrit:1C5:/
 314.4 "Vulcan Burst" sync /:Ifrit:1C6:/
