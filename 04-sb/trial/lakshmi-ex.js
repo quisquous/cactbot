@@ -285,6 +285,8 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0017' }),
             condition: Conditions.targetIsYou(),
+            // Soloing can get you two of these.
+            suppressSeconds: 1,
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -300,7 +302,18 @@ Options.Triggers.push({
     ],
     timelineReplace: [
         {
+            'locale': 'en',
+            'replaceText': {
+                'Blissful Arrow': 'Blissful Arrow (cross)',
+                'Blissful Hammer': 'Blissful Hammer (circle)',
+                'The Pall Of Light': 'Pall Of Light (stack)',
+                'The Path Of Light': 'Path Of Light (OT cleave)',
+                'The Pull Of Light': 'Pull Of Light (MT buster)',
+            },
+        },
+        {
             'locale': 'de',
+            'missingTranslations': true,
             'replaceSync': {
                 'Dreaming Kshatriya': 'verträumt(?:e|er|es|en) Kshatriya',
                 'Lakshmi': 'Lakshmi',
@@ -328,6 +341,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
+            'missingTranslations': true,
             'replaceSync': {
                 'Dreaming Kshatriya': 'kshatriya rêveuse',
                 'Lakshmi': 'Lakshmi',
@@ -355,6 +369,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'ja',
+            'missingTranslations': true,
             'replaceSync': {
                 'Dreaming Kshatriya': 'テンパード・クシャトリア',
                 'Lakshmi': 'ラクシュミ',
@@ -381,6 +396,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'cn',
+            'missingTranslations': true,
             'replaceSync': {
                 'Dreaming Kshatriya': '梦寐的刹帝利',
                 'Lakshmi': '吉祥天女',
@@ -406,6 +422,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
+            'missingTranslations': true,
             'replaceSync': {
                 'Dreaming Kshatriya': '신도화된 크샤트리아',
                 'Lakshmi': '락슈미',
