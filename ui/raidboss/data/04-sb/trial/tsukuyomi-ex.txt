@@ -33,7 +33,7 @@ hideall "--Reset--"
 252.7 "Steel Of The Underworld 3" #sync /:Tsukuyomi:2BBF:/
 255.9 "--sync--" sync /:Tsukuyomi:2BC0:/
 267.0 "Reprimand" sync /:Tsukuyomi:2BBA:/
-281.0 "Nightbloom" sync /:Tsukuyomi:2BC7:/
+281.0 "Nightbloom" #sync /:Tsukuyomi:2BC7:/
 281.8 "--untargetable--"
 
 # Steel first
@@ -47,7 +47,7 @@ hideall "--Reset--"
 551.8 "Lead Of The Underworld" sync /:Tsukuyomi:2BBE:/
 556.9 "--sync--" sync /:Tsukuyomi:2CCF:/
 567.0 "Reprimand" sync /:Tsukuyomi:2BBA:/
-581.0 "Nightbloom" sync /:Tsukuyomi:2BC7:/
+581.0 "Nightbloom" #sync /:Tsukuyomi:2BC7:/
 581.8 "--untargetable--"
 
 # Add phase
@@ -94,6 +94,7 @@ hideall "--Reset--"
 1246.3 "Lead Of The Underworld/Steel Of The Underworld" sync /:Tsukuyomi:2BBE:/
 
 # Torment Unto Death can be delayed by ~2s if it's Steel
+1257.5 "--sync--" sync /:2BBB:Tsukuyomi/ window 10,10
 1262.5 "Torment Unto Death" sync /:Tsukuyomi:2BBB:/
 1273.8 "Supreme Selenomancy" sync /:Tsukuyomi:2EB0:/
 1282.8 "Lunar Halo" sync /:Moonlight:2BD6:/
