@@ -37,6 +37,8 @@ Options.Triggers.push({
             'locale': 'de',
             'replaceSync': {
                 'Ifrit': 'Ifrit',
+                'Succumb to the inferno': 'Verglühe zu Asche im heiligen Inferno!',
+                'Surrender thyself to the fires of judgment': 'Die Flammen werden das Fleisch von deinen Knochen sengen ...',
             },
             'replaceText': {
                 'Eruption': 'Eruption',
@@ -51,6 +53,8 @@ Options.Triggers.push({
             'locale': 'fr',
             'replaceSync': {
                 'Ifrit': 'Ifrit',
+                'Succumb to the inferno': 'Succombez aux enfers !',
+                'Surrender thyself to the fires of judgment': 'Que le feu du jugement purifie vos âmes !',
             },
             'replaceText': {
                 'Eruption': 'Éruption',
@@ -65,6 +69,8 @@ Options.Triggers.push({
             'locale': 'ja',
             'replaceSync': {
                 'Ifrit': 'イフリート',
+                'Succumb to the inferno': '力戦奮闘……。\\s*されど我が敵にあらず！',
+                'Surrender thyself to the fires of judgment': '兵貴神速……。\\s*「炎獄の楔」にて、この者へ裁きを！',
             },
             'replaceText': {
                 'Eruption': 'エラプション',
@@ -79,6 +85,8 @@ Options.Triggers.push({
             'locale': 'cn',
             'replaceSync': {
                 'Ifrit': '伊弗利特',
+                'Succumb to the inferno': '骁勇善战……\\s*蝼蚁之辈！妄想弑神？',
+                'Surrender thyself to the fires of judgment': '兵贵神速……\\s*火狱之楔！施以审判！',
             },
             'replaceText': {
                 'Eruption': '地火喷发',
@@ -93,6 +101,8 @@ Options.Triggers.push({
             'locale': 'ko',
             'replaceSync': {
                 'Ifrit': '이프리트',
+                'Succumb to the inferno': '역전분투……. 허나 이 몸의 적수는 되지 못하리니!',
+                'Surrender thyself to the fires of judgment': '병귀신속……. \'염옥의 말뚝\'으로 심판을 내리노라!',
             },
             'replaceText': {
                 'Eruption': '용암 분출',
