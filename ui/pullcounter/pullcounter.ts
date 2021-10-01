@@ -7,7 +7,8 @@ import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import { BaseOptions } from '../../types/data';
 import { EventResponses, Party, SavedConfig } from '../../types/event';
-import { ZoneIdType } from '../../types/trigger';
+import { CactbotBaseRegExp, TriggerTypes } from '../../types/net_trigger';
+import { LocaleObject, ZoneIdType } from '../../types/trigger';
 
 import '../../resources/defaults.css';
 import './pullcounter.css';
@@ -30,7 +31,7 @@ const defaultOptions: PullCounterOptions = {
 type Boss = {
   readonly id: string;
   readonly zoneId?: ZoneIdType;
-  readonly startRegex?: RegExp;
+  readonly startRegex?: LocaleObject<CactbotBaseRegExp<TriggerTypes>>;
   readonly countdownStarts?: boolean;
   readonly preventAutoStart?: boolean;
 };
@@ -39,7 +40,14 @@ const bossFightTriggers: readonly Boss[] = [
   {
     id: 'test',
     zoneId: ZoneId.MiddleLaNoscea,
-    startRegex: /:You bow courteously to the striking dummy/,
+    startRegex: {
+      en: Regexes.gameLog({ line: 'You bow courteously to the striking dummy.*?' }),
+      de: Regexes.gameLog({ line: 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe.*?' }),
+      fr: Regexes.gameLog({ line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?' }),
+      ja: Regexes.gameLog({ line: '.*は木人にお辞儀した.*?' }),
+      cn: Regexes.gameLog({ line: '.*恭敬地对木人行礼.*?' }),
+      ko: Regexes.gameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
+    },
     countdownStarts: true,
     preventAutoStart: true,
   },
@@ -58,13 +66,29 @@ const bossFightTriggers: readonly Boss[] = [
   {
     id: 'o4s-exdeath',
     zoneId: ZoneId.DeltascapeV40Savage,
-    startRegex: /:Exdeath uses Dualcast/,
+    // 23F4 Dualcast
+    startRegex: {
+      en: Regexes.ability({ source: 'Exdeath', id: '23F4' }),
+      de: Regexes.ability({ source: 'Exdeath', id: '23F4' }),
+      fr: Regexes.ability({ source: 'Exdeath', id: '23F4' }),
+      ja: Regexes.ability({ source: 'エクスデス', id: '23F4' }),
+      cn: Regexes.ability({ source: '艾克斯迪司', id: '23F4' }),
+      ko: Regexes.ability({ source: '엑스데스', id: '23F4' }),
+    },
     preventAutoStart: true,
   },
   {
     id: 'o4s-neo',
     zoneId: ZoneId.DeltascapeV40Savage,
-    startRegex: /:Neo Exdeath uses Almagest/,
+    // 2417 Almagest
+    startRegex: {
+      en: Regexes.ability({ source: 'Neo Exdeath', id: '2417' }),
+      de: Regexes.ability({ source: 'Neo Exdeath', id: '2417' }),
+      fr: Regexes.ability({ source: 'Neo Exdeath', id: '2417' }),
+      ja: Regexes.ability({ source: 'ネオエクスデス', id: '2417' }),
+      cn: Regexes.ability({ source: '新生艾克斯迪司', id: '2417' }),
+      ko: Regexes.ability({ source: '네오 엑스데스', id: '2417' }),
+    },
     preventAutoStart: true,
   },
   {
@@ -90,13 +114,27 @@ const bossFightTriggers: readonly Boss[] = [
   {
     id: 'o8s-kefka',
     zoneId: ZoneId.SigmascapeV40Savage,
-    startRegex: / 15:........:Kefka:28C2:/,
+    startRegex: {
+      en: Regexes.startsUsing({ source: 'Kefka', id: '28C2' }),
+      de: Regexes.startsUsing({ source: 'Kefka', id: '28C2' }),
+      fr: Regexes.startsUsing({ source: 'Kefka', id: '28C2' }),
+      ja: Regexes.startsUsing({ source: 'ケフカ', id: '28C2' }),
+      cn: Regexes.startsUsing({ source: '凯夫卡', id: '28C2' }),
+      ko: Regexes.startsUsing({ source: '케프카', id: '28C2' }),
+    },
     preventAutoStart: true,
   },
   {
     id: 'o8s-god kefka',
     zoneId: ZoneId.SigmascapeV40Savage,
-    startRegex: / 15:........:Kefka:28EC:/,
+    startRegex: {
+      en: Regexes.startsUsing({ source: 'Kefka', id: '28EC' }),
+      de: Regexes.startsUsing({ source: 'Kefka', id: '28EC' }),
+      fr: Regexes.startsUsing({ source: 'Kefka', id: '28EC' }),
+      ja: Regexes.startsUsing({ source: 'ケフカ', id: '28EC' }),
+      cn: Regexes.startsUsing({ source: '凯夫卡', id: '28EC' }),
+      ko: Regexes.startsUsing({ source: '케프카', id: '28EC' }),
+    },
     preventAutoStart: true,
   },
   {
@@ -134,13 +172,27 @@ const bossFightTriggers: readonly Boss[] = [
   {
     id: 'o12s-door',
     zoneId: ZoneId.AlphascapeV40Savage,
-    startRegex: /:Omega-M:337D:/,
+    startRegex: {
+      en: Regexes.ability({ source: 'Omega-M', id: '337D' }),
+      de: Regexes.ability({ source: 'Omega-M', id: '337D' }),
+      fr: Regexes.ability({ source: 'Oméga-M', id: '337D' }),
+      ja: Regexes.ability({ source: 'オメガM', id: '337D' }),
+      cn: Regexes.ability({ source: '欧米茄M', id: '337D' }),
+      ko: Regexes.ability({ source: '오메가 M', id: '337D' }),
+    },
     preventAutoStart: true,
   },
   {
     id: 'o12s-final',
     zoneId: ZoneId.AlphascapeV40Savage,
-    startRegex: /:Omega:336C:/,
+    startRegex: {
+      en: Regexes.ability({ source: 'Omega', id: '336C' }),
+      de: Regexes.ability({ source: 'Omega', id: '336C' }),
+      fr: Regexes.ability({ source: 'Oméga', id: '336C' }),
+      ja: Regexes.ability({ source: 'オメガ', id: '336C' }),
+      cn: Regexes.ability({ source: '欧米茄', id: '336C' }),
+      ko: Regexes.ability({ source: '오메가', id: '336C' }),
+    },
     preventAutoStart: true,
   },
   {
@@ -156,6 +208,10 @@ const bossFightTriggers: readonly Boss[] = [
     preventAutoStart: true,
   },
 ] as const;
+
+const getLocaleObject = <T>(object: LocaleObject<T>, lang: Lang): T => {
+  return object[lang] || object.en;
+};
 
 class PullCounter {
   private zoneId?: ZoneIdType;
@@ -218,7 +274,9 @@ class PullCounter {
         return;
       }
       for (const boss of this.bosses) {
-        if (boss.startRegex && boss.startRegex.test(log)) {
+        if (
+          boss.startRegex && getLocaleObject(boss.startRegex, this.options.ParserLanguage).test(log)
+        ) {
           this.OnFightStart(boss);
           return;
         }
