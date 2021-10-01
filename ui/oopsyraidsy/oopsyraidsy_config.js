@@ -169,6 +169,8 @@ class OopsyConfigurator {
         en: 'Missed Buffs',
         de: 'Verfehlte Buffs',
         fr: 'Buffs manqués',
+        ja: '欠けバフ',
+        cn: '遗漏Buff',
       }),
       triggerSet: { triggers: generateBuffTriggers() },
     };
