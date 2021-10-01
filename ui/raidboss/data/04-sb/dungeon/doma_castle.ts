@@ -37,8 +37,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Get Tower',
           de: 'Turm nehmen',
           fr: 'Prenez les tours', // FIXME
-          ja: '塔を踏む', // FIXME
-          cn: '踩塔', // FIXME
+          ja: '塔を踏む',
+          cn: '踩塔',
           ko: '장판 하나씩 들어가기', // FIXME
         },
         getTowers: {
@@ -162,7 +162,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': '魔导六轮装甲浮游炮',
         'Hypertuned Grynewaht': '强化格林瓦特',
@@ -176,6 +175,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '2-Tonze Magitek Missile': '大型魔导导弹',
+        'Bits Activate': '浮游炮激活',
         'Cermet Pile': '陶瓷合金桩',
         'Chainsaw': '链锯',
         'Circle Of Death': '死亡回旋',
@@ -183,8 +183,10 @@ const triggerSet: TriggerSet<Data> = {
         'Delay-Action Charge': '定时炸弹',
         'Garlean Fire': '加雷马火炎',
         'Gunsaw': '链锯枪',
+        'Hexadrone Bits': '魔导六轮装甲浮游炮',
         'Magitek Missiles': '魔导飞弹',
         'Magitek Ray': '魔导激光',
+        'Rearguard Mines': '魔导后卫炸雷',
         'Thermobaric Charge': '气化炸弹',
       },
     },
