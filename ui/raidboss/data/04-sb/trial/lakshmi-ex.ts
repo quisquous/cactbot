@@ -321,6 +321,16 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Blissful Arrow': 'Blissful Arrow (cross)',
+        'Blissful Hammer': 'Blissful Hammer (circle)',
+        'The Pall Of Light': 'Pall Of Light (stack)',
+        'The Path Of Light': 'Path Of Light (OT cleave)',
+        'The Pull Of Light': 'Pull Of Light (MT buster)',
+      },
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
