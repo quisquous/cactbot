@@ -332,7 +332,7 @@ const emulatorEncounterInfo: Translation = {
     en: 'Reparse Encounter',
     de: 'Kampf erneut analysieren',
     fr: 'Reparser le combat',
-    cn: '重解析战斗',
+    cn: '重新解析战斗',
   },
   '.encounterPrune': {
     en: 'Prune Encounter',
