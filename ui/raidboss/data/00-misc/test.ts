@@ -308,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
         close: {
           en: 'Dummy close!',
           de: 'Puppe beendet!',
-          cn: '木人结束！',
+          cn: '靠近木人！',
         },
       },
     },
