@@ -241,7 +241,7 @@ const emulatorDisconnectedModal: Translation = {
   '.disconnectedModal .modal-title': {
     en: 'Currently Disconnected',
     de: 'Momentan nicht vebunden',
-    cn: '当前已断开连接',
+    cn: '已断开连接',
   },
   '.disconnectedModal .modal-body': {
     en: `<p>Raid Emulator is currently disconnected from ACT.</p>
