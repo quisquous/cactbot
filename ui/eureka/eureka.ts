@@ -764,8 +764,8 @@ class EurekaTracker {
         this.AddFlag(
           parseFloat(match[2]),
           parseFloat(match[3]),
-          match[1] as string,
-          match[4] as string,
+          match[1] ?? '',
+          match[4] ?? '',
         );
       }
 
