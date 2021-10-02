@@ -130,7 +130,7 @@ const emulatorDeleteModal: Translation = {
     de: '<p>Du bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
     fr:
       '<p>Vous êtes sur le point de supprimer la base de données du combat. En êtes-vous sûr ?</p>',
-    cn: '<p>您即将删除战斗数据库。确定吗？</p>',
+    cn: '<p>即将删除战斗数据库。确定删除吗？</p>',
   },
 } as const;
 
