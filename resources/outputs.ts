@@ -188,6 +188,7 @@ export default {
     // Opposite of a knockback.
     en: 'Draw In',
     de: 'Einzug',
+    cn: '吸引',
   },
   knockback: {
     en: 'Knockback',

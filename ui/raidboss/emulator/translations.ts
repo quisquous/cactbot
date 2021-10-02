@@ -12,41 +12,49 @@ const emulatorButtons: Translation = {
     en: 'Yes',
     de: 'Ja',
     fr: 'Oui',
+    cn: '是',
   },
   '.noButton': {
     en: 'No',
     de: 'Nein',
     fr: 'Non',
+    cn: '否',
   },
   '.closeButton': {
     en: 'Close',
     de: 'Schließen',
     fr: 'Fermer',
+    cn: '关闭',
   },
   '.doneButton': {
     en: 'Done<span class="doneBtnTimeout"></span>',
     de: 'Fertig<span class="doneBtnTimeout"></span>',
     fr: 'Terminé<span class="doneBtnTimeout"></span>',
+    cn: '完成<span class="doneBtnTimeout"></span>',
   },
   '.loadNetworkLogButton': {
     en: 'Load Network Log',
     de: 'Lade Network Log',
     fr: 'Charger Network Log',
+    cn: '加载网络日志',
   },
   '.exportDBButton': {
     en: 'Export DB',
     de: 'DB exportieren',
     fr: 'Export DB',
+    cn: '导出数据库',
   },
   '.importDBButton': {
     en: 'Import DB',
     de: 'DB importieren',
     fr: 'Import DB',
+    cn: '导入数据库',
   },
   '.clearDBButton': {
     en: 'Clear DB',
     de: 'DB leeren',
     fr: 'Nettoyer DB',
+    cn: '清除数据库',
   },
 } as const;
 
@@ -55,6 +63,7 @@ const emulatorTitle: Translation = {
     en: 'Cactbot Raid Emulator',
     de: 'Cactbot Raid Emulator',
     fr: 'Cactbot Raid Emulator',
+    cn: 'Cactbot Raid 模拟器',
   },
 } as const;
 
@@ -63,6 +72,7 @@ const emulatorImportModal: Translation = {
     en: 'Log File Import Progress',
     de: 'Fortschritt des Logdatei Imports',
     fr: 'Import du fichier log en cours',
+    cn: '日志文件导入进度',
   },
   '.importProgressModal .modal-body-contents': {
     en: `<h3>Latest encounter:</h3>
@@ -95,6 +105,16 @@ const emulatorImportModal: Translation = {
     Démarré par : <span class="startedBy"></span><br />
     Status de fin : <span class="endStatus"></span><br />
     Nombre de lignes : <span class="lineCount"></span><br />`,
+    cn: `<h3>最新的战斗: </h3>
+    区域: <span class="zone"></span><br />
+    战斗: <span class="encounter"></span><br />
+    开始: <span class="start"></span><br />
+    结束: <span class="end"></span><br />
+    持续时间: <span class="durMins"></span>m<span class="durSecs"></span>s<br />
+    尝试时间: <span class="pullMins"></span>m<span class="pullSecs"></span>s<br />
+    开始于: <span class="startedBy"></span><br />
+    结束状态: <span class="endStatus"></span><br />
+    行数: <span class="lineCount"></span><br />`,
   },
 } as const;
 
@@ -103,12 +123,14 @@ const emulatorDeleteModal: Translation = {
     en: 'Delete Encounter Database',
     de: 'Lösche Kampfdatenbank',
     fr: 'Effacer la base de données du combat',
+    cn: '删除战斗数据库',
   },
   '.deleteDBModal .modal-body': {
     en: '<p>You are about to delete the encounter database. Are you sure?</p>',
     de: '<p>Du bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
     fr:
       '<p>Vous êtes sur le point de supprimer la base de données du combat. En êtes-vous sûr ?</p>',
+    cn: '<p>您即将删除战斗数据库。确定吗？</p>',
   },
 } as const;
 
@@ -117,6 +139,7 @@ const emulatorIntroModal: Translation = {
     en: 'Introduction',
     de: 'Einführung',
     fr: 'Introduction',
+    cn: '简介',
   },
   '.introModal .modal-body': {
     en: `<p>Welcome to the Raid Emulator.</p>
@@ -188,6 +211,29 @@ const emulatorIntroModal: Translation = {
         <li>Voir des informations détaillées sur les triggers déclenchés en cliquant sur leur bouton</li>
       </ul>
     </p>`,
+    cn: `<p>欢迎来到Raid模拟器。</p>
+    <p>此工具可以重现战斗，显示什么触发器在什么时候触发，并允许你从任何玩家的角度查看战斗。</p>
+    <p>此工具可以选择开启<strong>OVERLAY_WS</strong>参数，以连接到一个同时加载了ngld的OverlayPlugin和Cactbot插件的ACT网络接口。</p>
+    <p>如果连接到网络接口，此工具将加载并遵循cactbot/raidboss的用户配置文件。</p>
+    <p>不需要创建悬浮窗。</p>
+    <p>当前的WebSocket状态: <span class="d-none websocketConnected text-success">已连接</span><span class="websocketDisconnected text-warning">已断开</span>.</p>
+    <p>首先，你需要通过以下方法之一导入一场战斗: </p>
+    <p>
+      <ul>
+        <li>从<code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code>中选取一个网络日志文件拖放到页面上。</li>
+        <li>点击下方的<code>加载网络日志</code>按钮，从<code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code>中选取一个网络日志文件。</li>
+      </ul>
+    </p>
+    <p>然后，在窗口底部选择一场战斗。</p>
+    <p>一旦你加载了一场战斗，你可以: </p>
+    <p>
+      <ul>
+        <li>通过在右边选择一名队员来改变当前视角</li>
+        <li>通过点击顶部的条状图来寻找战斗中的任何一个时间点</li>
+        <li>悬停在顶栏的触发器指示器上，可以看到它们的名称</li>
+        <li>点击触发器的按钮，可以看到关于它们的详细信息</li>
+      </ul>
+    </p>`,
   },
 } as const;
 
@@ -195,6 +241,7 @@ const emulatorDisconnectedModal: Translation = {
   '.disconnectedModal .modal-title': {
     en: 'Currently Disconnected',
     de: 'Momentan nicht vebunden',
+    cn: '当前已断开连接',
   },
   '.disconnectedModal .modal-body': {
     en: `<p>Raid Emulator is currently disconnected from ACT.</p>
@@ -221,6 +268,14 @@ const emulatorDisconnectedModal: Translation = {
       <li>Langue des alertes : <span class="discLangAlerts"></span></li>
       <li>Langue des timelines : <span class="discLangTimeline"></span></li>
     </ul>`,
+    cn: `<p>Raid模拟器目前与ACT断开了连接。</p>
+    <p>Raid模拟器将使用raidboss的默认设置。这些设置是:</p>
+    <ul>
+      <li>显示语言: <span class="discLangDisplay"></span></li>
+      <li>默认警报提示信息输出方式: 文字显示与提示音</li>
+      <li>警报提示文字的语言: <span class="discLangAlerts"></span></li>
+      <li>时间轴文本的语言: <span class="discLangTimeline"></span></li>
+    </ul>`,
   },
 } as const;
 
@@ -229,11 +284,13 @@ const emulatorLabels: Translation = {
     en: 'Hide Skipped',
     de: 'Verstecke Übersprungene Einträge',
     fr: 'Masquer les entrées sautées',
+    cn: '隐藏跳过',
   },
   ' label[for=hideCollector]': {
     en: 'Hide Collectors',
     de: 'Verstecke "Sammel" Einträge',
     fr: 'Masquer les entrées "Collecté"',
+    cn: '隐藏收集器',
   },
 } as const;
 
@@ -242,21 +299,25 @@ const emulatorTooltips: Translation = {
     en: 'Hide triggers that were not executed',
     de: 'Verstecke Trigger, die nicht ausgeführt wurden',
     fr: 'Masquer les triggers non-executés',
+    cn: '隐藏未执行的触发器',
   },
   '.triggerHideCollector': {
     en: 'Hide triggers that had no output',
     de: 'Verstecke Trigger, die keine Ausgabe hatten',
     fr: 'Masquer les triggers sans sortie',
+    cn: '隐藏没有输出的触发器',
   },
   '.connectedIndicator': {
     en: 'Connected to websocket',
     de: 'Mit Websocket verbunden',
     fr: 'Connecté au Websocket',
+    cn: '连接到websocket',
   },
   '.disconnectedIndicator': {
     en: 'Disconnected from websocket',
     de: 'Keine Verbindung zum Websocket',
     fr: 'Déconnecté du Websocket',
+    cn: '与websocket断开连接',
   },
 } as const;
 
@@ -265,56 +326,67 @@ const emulatorEncounterInfo: Translation = {
     en: 'Load Encounter',
     de: 'Lade Kampf',
     fr: 'Charger combat',
+    cn: '加载战斗',
   },
   '.encounterParse': {
     en: 'Reparse Encounter',
     de: 'Kampf erneut analysieren',
     fr: 'Reparser le combat',
+    cn: '重解析战斗',
   },
   '.encounterPrune': {
     en: 'Prune Encounter',
     de: 'Kampf leeren',
     fr: 'Combat vide',
+    cn: '裁剪战斗',
   },
   '.encounterDelete': {
     en: 'Delete Encounter',
     de: 'Kampf löschen',
     fr: 'Effacer combat',
+    cn: '删除战斗',
   },
   '.encounterZone': {
     en: 'Zone: <span class="label"></span>',
     de: 'Zone: <span class="label"></span>',
     fr: 'Zone : <span class="label"></span>',
+    cn: '区域: <span class="label"></span>',
   },
   '.encounterStart': {
     en: 'Start: <span class="label"></span>',
     de: 'Start: <span class="label"></span>',
     fr: 'Début : <span class="label"></span>',
+    cn: '开始: <span class="label"></span>',
   },
   '.encounterDuration': {
     en: 'Duration: <span class="label"></span>',
     de: 'Dauer: <span class="label"></span>',
     fr: 'Durée : <span class="label"></span>',
+    cn: '持续时间: <span class="label"></span>',
   },
   '.encounterOffset': {
     en: 'Pull At: <span class="label"></span>',
     de: 'Start um: <span class="label"></span>',
     fr: 'Pull à : <span class="label"></span>',
+    cn: '开始于: <span class="label"></span>',
   },
   '.encounterName': {
     en: 'Name: <span class="label"></span>',
     de: 'Name: <span class="label"></span>',
     fr: 'Nom : <span class="label"></span>',
+    cn: '名称: <span class="label"></span>',
   },
   '.encounterStartStatus': {
     en: 'Start Status: <span class="label"></span>',
     de: 'Start Status: <span class="label"></span>',
     fr: 'État du démarrage : <span class="label"></span>',
+    cn: '开始状态: <span class="label"></span>',
   },
   '.encounterEndStatus': {
     en: 'End Status: <span class="label"></span>',
     de: 'Endstatus: <span class="label"></span>',
     fr: 'État de fin : <span class="label"></span>',
+    cn: '结束状态: <span class="label"></span>',
   },
 } as const;
 
@@ -345,21 +417,25 @@ export const emulatorStartStatuses = {
     en: 'Unknown',
     de: 'Unbekannt',
     fr: 'Inconnu',
+    cn: '未知',
   },
   countdown: {
     en: 'Countdown',
     de: 'Countdown',
     fr: 'Compte à rebours',
+    cn: '倒计时',
   },
   seal: {
     en: 'Seal',
     de: 'Versiegeln',
     fr: 'Fermeture',
+    cn: '封锁',
   },
   engage: {
     en: 'Engage',
     de: 'Start',
     fr: 'À l\'attaque',
+    cn: '战斗中',
   },
 };
 
@@ -368,26 +444,31 @@ export const emulatorEndStatuses = {
     en: 'Unknown',
     de: 'Unbekannt',
     fr: 'Inconnu',
+    cn: '未知',
   },
   win: {
     en: 'Win',
     de: 'Gewonnen',
     fr: 'Gagné',
+    cn: '胜利',
   },
   wipe: {
     en: 'Wipe',
     de: 'Wipe',
     fr: 'Wipe',
+    cn: '团灭',
   },
   cactbotWipe: {
     en: 'Cactbot Wipe',
     de: 'Cactbot Wipe',
     fr: 'Cactbot Wipe',
+    cn: 'Cactbot团灭',
   },
   unseal: {
     en: 'Unseal',
     de: 'Entsiegeln',
     fr: 'Ouverture',
+    cn: '解封',
   },
 };
 

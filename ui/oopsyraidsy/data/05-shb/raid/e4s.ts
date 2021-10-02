@@ -62,7 +62,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             de: 'Wurde überfahren',
             fr: 'A été écrasé(e)',
             ja: matches.ability, // FIXME
-            cn: matches.ability, // FIXME
+            cn: '被碾了',
             ko: matches.ability, // FIXME
           },
         };
