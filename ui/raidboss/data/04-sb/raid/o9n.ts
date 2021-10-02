@@ -73,6 +73,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack for Donuts',
           de: 'Für Donuts sammeln',
+          cn: '集合水环',
         },
       },
     },
@@ -144,6 +145,7 @@ const triggerSet: TriggerSet<Data> = {
           // proximity damage.  So this is trying to communicate more of a GTFO.
           en: 'Drop Flare Away',
           de: 'Flare weit weg ablegen',
+          cn: '核爆放在远处',
         },
       },
     },
@@ -171,6 +173,7 @@ const triggerSet: TriggerSet<Data> = {
         stackGroups: {
           en: 'Split into stack groups',
           de: 'In Sammel-Gruppen aufteilen',
+          cn: '分组分摊',
         },
       },
     },
@@ -273,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
-        'Chaos': '混沌',
+        'Chaos': '卡奥斯',
         'YOU DARE!': '居然……把黑水晶给……',
       },
       'replaceText': {

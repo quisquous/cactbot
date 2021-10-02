@@ -180,6 +180,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Drop Fire Outside',
           de: 'Feuer draußen ablegen',
+          cn: '把火放在外面',
         },
       },
     },
@@ -204,6 +205,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Use duty action on Conductive Focus',
           de: 'Benutze Spezialkommando auf "Ziel des Blitzstrahls"',
+          cn: '在雷力投射点上使用任务指令',
         },
       },
     },

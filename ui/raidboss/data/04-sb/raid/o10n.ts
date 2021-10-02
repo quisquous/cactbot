@@ -175,6 +175,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Drop Ice Outside',
           de: 'Eis draußen ablegen',
+          cn: '把冰放在外面',
         },
       },
     },

@@ -45,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Lady tether on YOU',
           de: 'Verbindung auf DIR',
+          cn: '连线点名',
         },
       },
     },

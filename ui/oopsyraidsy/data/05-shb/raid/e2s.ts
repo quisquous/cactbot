@@ -45,7 +45,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             de: 'Nyx berührt',
             fr: 'Malus de dégâts',
             ja: matches.ability, // FIXME
-            cn: matches.ability, // FIXME
+            cn: '吃头了',
             ko: '닉스',
           },
         };

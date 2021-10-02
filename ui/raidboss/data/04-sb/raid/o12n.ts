@@ -144,6 +144,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback from F; Away from M',
           de: 'Rückstoß von F; Weg von M',
+          cn: '被女性击退; 远离男性',
         },
       },
     },
