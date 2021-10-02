@@ -239,7 +239,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
-        'Pack Armadillo': '群落犰狳',
+        'Pack Armadillo': '무리 아르마딜로',
         'Terminus': '광차 종점',
         'Malikah\'s Gift': '말리카의 수원',
         'Unquestioned Acceptance': '시민 별장',
