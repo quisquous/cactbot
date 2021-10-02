@@ -422,7 +422,7 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': '폭탄',
-        'Boomtype Magitek Gobwalker G-VII': '7号哥布林战车L型',
+        'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 L형',
         'Padlock': '자물쇠',
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',
