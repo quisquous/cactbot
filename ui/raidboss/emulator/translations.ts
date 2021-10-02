@@ -215,7 +215,7 @@ const emulatorIntroModal: Translation = {
     <p>此工具可以回放战斗，显示各个触发器的触发时机，你还可以从任意小队成员的角度查看战斗。</p>
     <p>此工具可以选择开启<strong>OVERLAY_WS</strong>参数，以连接到一个同时加载了ngld的OverlayPlugin和Cactbot插件的ACT网络接口。</p>
     <p>如果连接到网络接口，此工具将加载并遵循cactbot/raidboss的用户配置文件。</p>
-    <p>不需要创建悬浮窗。</p>
+    <p>你不需要创建悬浮窗。</p>
     <p>当前的WebSocket状态: <span class="d-none websocketConnected text-success">已连接</span><span class="websocketDisconnected text-warning">已断开</span>.</p>
     <p>首先，你需要通过以下方法之一导入一场战斗: </p>
     <p>
