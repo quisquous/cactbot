@@ -61,6 +61,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack for Donuts',
                     de: 'Für Donuts sammeln',
+                    cn: '集合水环',
                 },
             },
         },
@@ -132,6 +133,7 @@ Options.Triggers.push({
                     // proximity damage.  So this is trying to communicate more of a GTFO.
                     en: 'Drop Flare Away',
                     de: 'Flare weit weg ablegen',
+                    cn: '核爆放在远处',
                 },
             },
         },
@@ -162,6 +164,7 @@ Options.Triggers.push({
                 stackGroups: {
                     en: 'Split into stack groups',
                     de: 'In Sammel-Gruppen aufteilen',
+                    cn: '分组分摊',
                 },
             },
         },
@@ -264,7 +267,7 @@ Options.Triggers.push({
         {
             'locale': 'cn',
             'replaceSync': {
-                'Chaos': '混沌',
+                'Chaos': '卡奥斯',
                 'YOU DARE!': '居然……把黑水晶给……',
             },
             'replaceText': {

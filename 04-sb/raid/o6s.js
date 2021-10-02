@@ -231,7 +231,7 @@ Options.Triggers.push({
                 'Portrayal of Fire': '火之画作',
                 'Portrayal of Water': '水之画作',
                 'Portrayal of Wind': '风之画作',
-                'The Storm\'s Grip': '暴风域',
+                'The Storm\'s Grip': '暴风领域',
             },
             'replaceText': {
                 'Demonic Howl': '恶魔啸',

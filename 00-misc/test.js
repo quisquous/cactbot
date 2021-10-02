@@ -1,6 +1,7 @@
 const strikingDummyNames = {
     en: 'Striking Dummy',
     de: 'Trainingspuppe',
+    cn: '木人',
 };
 Options.Triggers.push({
     zoneId: ZoneId.MiddleLaNoscea,
@@ -220,6 +221,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
             netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
             netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
+            netRegexCn: NetRegexes.echo({ line: 'cactbot语言.*?', capture: false }),
             netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
             infoText: (data, _matches, output) => output.text({ lang: data.parserLang }),
             outputStrings: {
@@ -238,6 +240,7 @@ Options.Triggers.push({
             type: 'GameLog',
             netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
             netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
+            netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
             response: (_data, _matches, output) => {
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
@@ -259,6 +262,7 @@ Options.Triggers.push({
             type: 'GameLog',
             netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
             netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
+            netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
             promise: (data) => {
                 let _a;
                 return watchCombatant({
@@ -293,6 +297,7 @@ Options.Triggers.push({
                 close: {
                     en: 'Dummy close!',
                     de: 'Puppe beendet!',
+                    cn: '靠近木人！',
                 },
             },
         },

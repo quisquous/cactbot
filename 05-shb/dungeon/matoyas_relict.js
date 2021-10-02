@@ -352,7 +352,7 @@ Options.Triggers.push({
         {
             'locale': 'cn',
             'replaceSync': {
-                'Aeolian Cave Sprite': '风洞元精',
+                'Aeolian Cave Sprite': '洞窟风元精',
                 'The Clayclot Cauldron': '发光的挖土场',
                 'The Clearnote Cauldron': '凉爽的打水场',
                 'Mother Porxie': '仙子猪之母',

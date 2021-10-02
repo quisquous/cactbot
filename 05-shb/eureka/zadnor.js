@@ -336,7 +336,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Behind Hernais',
                     de: 'Geh hinter Hernais',
-                    cn: '去忠犬背后',
+                    cn: '去腐犬背后',
                     ko: 'Hernais 뒤로',
                 },
             },
@@ -2369,6 +2369,7 @@ Options.Triggers.push({
                 '4Th-Make Cuchulainn': '第四军团丘库雷因',
                 '4th-Make Hashmal': '第四军团哈修马利姆',
                 '4th-Make Shemhazai': '第四军团谢米哈扎',
+                '7 minutes have elapsed since your last activity.': '已经7分钟没有进行任何操作',
                 '(?<!4Th Legion )Blackburn': '黑色燃焰',
                 'Dawon The Younger': '小达温',
                 'Diabolic Bit': '迪亚布罗浮游炮',

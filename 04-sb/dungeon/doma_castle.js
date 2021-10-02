@@ -58,6 +58,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Drop Charge Away',
                     de: 'Lege Markierung weit weg ab',
+                    cn: '将标记放远',
                 },
             },
         },

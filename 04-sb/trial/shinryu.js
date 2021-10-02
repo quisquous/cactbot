@@ -127,7 +127,7 @@ Options.Triggers.push({
                     de: 'In Wasser stacken',
                     fr: 'Packez-vous dans l\'eau',
                     ja: '水に集合',
-                    cn: '在水圈攻击',
+                    cn: '水圈集合',
                     ko: '물 장판에 모이기',
                 },
             },
@@ -406,7 +406,7 @@ Options.Triggers.push({
             },
             'replaceText': {
                 'Akh Morn': '死亡轮回',
-                'Elemental Attack': '大气爆发/制裁之雷/钻石星尘/地狱之火炎/大地之怒/巨浪',
+                'Elemental Attack': '元素攻击',
                 'Dark Matter': '暗物质',
                 'Dragonfist': '龙掌',
                 'Earth Breath': '大地吐息',

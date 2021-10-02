@@ -205,7 +205,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'cn',
-            'missingTranslations': true,
             'replaceSync': {
                 'Daigoro': '大五郎',
                 'Dojun-Maru': '道顺丸',
@@ -218,6 +217,8 @@ Options.Triggers.push({
                 'Zuiko-Maru': '瑞光丸',
             },
             'replaceText': {
+                '\\(inner\\)': '(内)',
+                '\\(outer\\)': '(外)',
                 'Clearout': '横扫',
                 'Clockwork Medium': '机关召集',
                 'Clockwork Raiton': '机关雷遁',

@@ -402,6 +402,7 @@ Options.Triggers.push({
                 'Byakko': '白虎',
                 'Hakutei': '白帝',
                 'There is no turning back!': '我体内的冲动已无法抑制！',
+                'Twofold is my wrath, twice-cursed my foes!': '半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！',
             },
             'replaceText': {
                 'Distant Clap': '远雷',

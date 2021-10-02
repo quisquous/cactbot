@@ -1136,7 +1136,7 @@ Options.Triggers.push({
                 'Blaster(?! Mirage)': '爆破者',
                 'Brawler': '争斗者',
                 'Brute Justice': '残暴正义号',
-                'Hidden Mine': '地雷爆炸',
+                'Hidden Mine': '隐形地雷',
                 'Onslaughter': '突击者',
                 'Steam Chakram': '蒸汽战轮',
                 'Steam Regulator B': '蒸汽调整者β',

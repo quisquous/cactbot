@@ -12,6 +12,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Dragon Cleave',
                     de: 'Drachen-Cleave',
+                    cn: '巨龙吐息',
                 },
             },
         },
@@ -304,6 +305,7 @@ Options.Triggers.push({
                 kill: {
                     en: 'Kill ${name}',
                     de: 'Töte ${name}',
+                    cn: '击杀 ${name}',
                 },
             },
         },
@@ -317,6 +319,7 @@ Options.Triggers.push({
                 kill: {
                     en: 'Kill Giant + Ninjas',
                     de: 'Töte Riese + Ninjas',
+                    cn: '击杀 巨人 + 忍者',
                 },
             },
         },
@@ -353,6 +356,7 @@ Options.Triggers.push({
                 magicHammer: {
                     en: 'Books + Magic Hammer',
                     de: 'Bücher + Zauberhammer',
+                    cn: '书 + 魔法锤',
                 },
             },
         },
@@ -372,7 +376,7 @@ Options.Triggers.push({
                     de: 'Himmelsrichtungen',
                     fr: 'Danse de la reine : Position',
                     ja: '女王の舞い: 散開',
-                    cn: '万变水波站位',
+                    cn: '八方站位',
                     ko: '여왕의 춤: 산개', // FIXME
                 },
             },
@@ -433,6 +437,7 @@ Options.Triggers.push({
                 breakTether: {
                     en: 'Break Tether (${player})',
                     de: 'Verbindung trennen (${player})',
+                    cn: '扯断连线 (${player})',
                     ko: '가시줄 끊기 ("${player}")',
                 },
             },
@@ -481,18 +486,22 @@ Options.Triggers.push({
                 nwOutside: {
                     en: 'NW Outside',
                     de: 'NW Außen',
+                    cn: '西北 外',
                 },
                 nwInside: {
                     en: 'NW Inside',
                     de: 'NW Innen',
+                    cn: '西北 内',
                 },
                 seInside: {
                     en: 'SE Inside',
                     de: 'SO Innen',
+                    cn: '东南 内',
                 },
                 seOutside: {
                     en: 'SE Outside',
                     de: 'SO Außen',
+                    cn: '东南 外',
                 },
             },
         },
@@ -661,19 +670,25 @@ Options.Triggers.push({
         },
         {
             'locale': 'cn',
-            'missingTranslations': true,
             'replaceSync': {
                 'Halicarnassus': '哈利卡纳苏斯',
                 'Apanda': '阿班达',
                 'Soul Reaper': '灵魂收割者',
             },
             'replaceText': {
-                '\\(Random\\)': '(随机)',
                 '\\(Apanda\\)': '(阿班达)',
                 '\\(Books\\)': '(图书)',
+                '\\(Cave\\)': '(监狱)',
                 '\\(Clock\\)': '(八方)',
                 '\\(Crystals\\)': '(水晶)',
-                '\\(Ultimate\\)': '(狂暴)',
+                '\\(Great Dragon\\)': '(巨龙)',
+                '\\(library\\)': '(图书馆)',
+                '\\(Ninjas/Giant\\)': '(忍者/巨人)',
+                '\\(Random\\)': '(随机)',
+                '\\(Soul Reapers\\)': '(死神)',
+                '\\(Spellblade Books\\)': '(魔法剑)',
+                '\\(Thorns\\)': '(荆棘)',
+                '\\(White Flame\\)': '(白焰)',
                 'Blizzard': '冰结',
                 'Critical Hit': '暴击',
                 'Dimensional Wave': '次元波动',
@@ -681,7 +696,6 @@ Options.Triggers.push({
                 'Haste': '加速',
                 'Magic Hammer': '魔法锤',
                 'Mindjack': '精神控制',
-                'Ninjas/Giant': '忍者/巨人',
                 'Oink': '哼哼哼哼哼！',
                 'Panel Swap': '刷新盘面',
                 'Place Dark Token': '召唤死形',

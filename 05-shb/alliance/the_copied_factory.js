@@ -1130,6 +1130,12 @@ Options.Triggers.push({
                 'Warehouse A': '仓库A',
                 'Warehouse B': '仓库B',
                 'Warehouse C': '仓库C',
+                'The wall-mounted right arm begins to move': '墙面的右臂开始运作……',
+                'The wall-mounted flamethrowers activate\.': '墙面的火炎放射器开始运作……',
+                'The wall-mounted left arm begins to move': '墙面的左臂开始运作……',
+                'You hear frenzied movement from machines beneath': '地板下的机械生物动作很可疑……',
+                'The conveyer belts whirr to life!': '地面上的滚轴开始运作……',
+                'Flammable oil is leaking from the floor': '地板下开始充满可燃性液体……',
             },
             'replaceText': {
                 '360-Degree Bombing Maneuver': '攻击：周边导弹轰炸',

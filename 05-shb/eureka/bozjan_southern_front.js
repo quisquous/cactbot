@@ -775,7 +775,7 @@ Options.Triggers.push({
                     de: 'Lyon Zugang offen',
                     fr: 'Passage du Lyon ouvert',
                     ja: '獣王ライオンフェイス開始',
-                    cn: '挑战兽王莱恩',
+                    cn: '挑战兽王莱昂',
                     ko: '라이언 포탈 개방',
                 },
             },

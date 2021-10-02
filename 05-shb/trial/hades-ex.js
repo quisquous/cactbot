@@ -1052,6 +1052,7 @@ Options.Triggers.push({
         {
             'locale': 'cn',
             'replaceSync': {
+                'Aetherial Gaol': '以太牢狱',
                 'Arcane Font': '立体魔法阵',
                 'Arcane Globe': '球体魔法阵',
                 'Ascian Prime\'s Shade': '至尊无影之影',

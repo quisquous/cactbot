@@ -3188,6 +3188,7 @@ Options.Triggers.push({
                 'Brute Justice': '残暴正义号',
                 'Cruise Chaser': '巡航驱逐者',
                 'Jagd Doll': '狩猎人偶',
+                'Judgment Crystal': '审判结晶',
                 'Liquid Hand': '活水之手',
                 'Liquid Rage': '活水之怒',
                 'Living Liquid': '有生命活水',

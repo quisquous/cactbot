@@ -876,6 +876,9 @@ Options.Triggers.push({
                 'Ruby Bit': '红宝石浮游炮',
                 'Raven\'s Image': '奈尔的幻影',
                 'Meteor': '陨石',
+                'Comet': '彗星',
+                'White Agony': '奈尔的悲叹',
+                'White Fury': '奈尔的愤怒',
             },
             'replaceText': {
                 '--cutscene--': '--过场动画--',
