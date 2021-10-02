@@ -761,7 +761,7 @@ class EurekaTracker {
       const flagRegex = this.TransObjectByParserLang(this.options.Regex, 'gFlagRegex');
       let match = flagRegex.exec(log);
       if (match && match[2] && match[3])
-        this.AddFlag(parseFloat(match[2]), parseFloat(match[3]), match[1], match[4]);
+        this.AddFlag(parseFloat(match[2]), parseFloat(match[3]), match[1] as string, match[4] as string);
 
       if (this.fairyRegex) {
         if (log.includes(' 03:') || log.includes('00:0839:')) {
