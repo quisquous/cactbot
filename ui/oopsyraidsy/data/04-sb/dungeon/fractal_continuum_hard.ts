@@ -2,7 +2,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-// TODO Dischordant Cleansing (279C) first, then 297A
+// TODO: Dischordant Cleansing (279C) first, then 297A?
 
 export type Data = OopsyData;
 
@@ -34,6 +34,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Fractalhard Ultima Beast Light Pillar 1': '227BA', // initial point of light pillar circles
     'Fractalhard Ultima Beast Light Pillar 2': '27BB', // follow up light pillar hits
   },
+  damageFail: {
+    'FractalHard Motherbit False Gravity': '27A7', // standing in Allagan Gravity puddle, gives Heavy
+  },
   gainsEffectWarn: {
     'FractalHard Ultima Warrior Infinite Anguish': '487', // Personally failing Zurvan towers
     'FractalHard Ultima Warrior Reduced Immunity': '143', // Failing Sophia Dischordant Cleansing
@@ -43,9 +46,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'FractalHard Ultima Warrior Aetheroplasm': '2793', // tankbuster cleave
     'FractalHard Ultima Warrior Ratzon': '2797', // Sephirot phase bubble drop
     'Fractalhard Ultima Beast Allagan Gravity': '27B9', // spread
-  },
-  shareFail: {
-    'FractalHard Motherbit False Gravity': '27A7', // standing in Allagan Gravity puddle, gives Heavy
   },
   soloWarn: {
     'FractalHard Ultima Warrior Mass Aetheroplasm': '2795', // tankbuster cleave
