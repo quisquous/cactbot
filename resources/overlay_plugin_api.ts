@@ -62,7 +62,6 @@ let queue: (
 )[] | null = [];
 let rseqCounter = 0;
 const responsePromises: Record<number, (value: unknown) => void> = {};
-const urlParams = new URLSearchParams(window.location.search);
 
 const subscribers: Subscriber<VoidFunc<unknown>> = {};
 
@@ -196,7 +195,7 @@ export const init = (): void => {
     return;
 
   if (typeof window !== 'undefined') {
-    wsUrl = urlParams.get('OVERLAY_WS');
+    wsUrl = new URLSearchParams(window.location.search).get('OVERLAY_WS');
     if (wsUrl !== null) {
       const connectWs = function(wsUrl: string) {
         ws = new WebSocket(wsUrl);
