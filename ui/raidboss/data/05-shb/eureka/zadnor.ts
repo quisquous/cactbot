@@ -363,7 +363,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Behind Hernais',
           de: 'Geh hinter Hernais',
-          cn: '去忠犬背后',
+          cn: '去腐犬背后',
           ko: 'Hernais 뒤로',
         },
       },
