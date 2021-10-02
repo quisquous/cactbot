@@ -43,13 +43,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.tether({ id: ['0001', '0039'] }),
       condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       suppressSeconds: 10,
-      alertText: (data, matches, output) => {
-        const partner = data.me === matches.target ? matches.source : matches.target;
-        return output.text!({ player: data.ShortName(partner) });
-      },
+      alertText: (data, matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Away From ${player}',
+          en: 'Away From Boss',
         },
       },
     },

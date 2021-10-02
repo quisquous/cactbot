@@ -51,17 +51,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '276B', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276B', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276B', source: '가디언', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Get out of front',
-          de: 'Weg von vorn',
-          fr: 'Partez du devant',
-          ja: '正面から離れる',
-          cn: '远离正面',
-          ko: '정면 피하기',
-        },
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'O7N Arm And Hammer',
