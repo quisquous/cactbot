@@ -276,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
-      netRegexCn: NetRegexes.echo({ line: 'cactbot观察测试.*?', capture: false }),
+      netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
       promise: (data) =>
         watchCombatant({
           names: [
