@@ -284,7 +284,7 @@ const emulatorLabels: Translation = {
     en: 'Hide Skipped',
     de: 'Verstecke Übersprungene Einträge',
     fr: 'Masquer les entrées sautées',
-    cn: '隐藏跳过',
+    cn: '隐藏已跳过项目',
   },
   ' label[for=hideCollector]': {
     en: 'Hide Collectors',
