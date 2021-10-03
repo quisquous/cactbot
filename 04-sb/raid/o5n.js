@@ -68,6 +68,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Bait ghost into light circle',
+                    de: 'Geist in das Licht ködern',
                     cn: '诱导幽灵进光圈',
                 },
             },
@@ -81,7 +82,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Drop Marker Away',
-                    de: 'Licht',
+                    de: 'Licht am Rand ablegen',
                     fr: 'Lumière',
                     ja: '魔界の光',
                     cn: '远离放置光点名',
@@ -105,6 +106,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Touch ghost',
+                    de: 'Geist berühren',
                     cn: '撞幽灵',
                 },
             },

@@ -37,6 +37,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Away From Boss',
+                    de: 'Weg vom Boss',
                     cn: '远离BOSS',
                 },
             },

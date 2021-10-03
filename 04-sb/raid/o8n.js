@@ -103,6 +103,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Get Outside Destination',
+                    de: 'Geh aus dem Zielkreis raus',
                     cn: '去传送目的地的外圈',
                 },
             },
