@@ -37,6 +37,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Away From Boss',
+                    cn: '远离BOSS',
                 },
             },
         },
@@ -52,7 +53,7 @@ Options.Triggers.push({
                     de: 'AoEs weglocken',
                     fr: 'Posez les AoE au loin',
                     ja: '離れてAoEを置く',
-                    cn: '远离放置AOE',
+                    cn: '远离放置追踪AOE',
                     ko: '장판 멀리빼기', // FIXME
                 },
             },
