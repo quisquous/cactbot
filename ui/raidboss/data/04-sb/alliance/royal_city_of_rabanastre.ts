@@ -37,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Rab Mateus Breathless Gain',
+      id: 'Rab Mateus Breathless',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
