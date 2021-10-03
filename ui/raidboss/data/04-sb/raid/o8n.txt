@@ -1,4 +1,4 @@
-# Omega - Sigmascape V4.0 - O6N
+# Omega - Sigmascape V4.0 - O8N
 
 hideall "--Reset--"
 hideall "--sync--"
