@@ -47,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away From Boss',
+          cn: '远离BOSS',
         },
       },
     },
@@ -62,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'AoEs weglocken', // FIXME
           fr: 'Posez les AoE au loin', // FIXME
           ja: '離れてAoEを置く', // FIXME
-          cn: '远离放置AOE', // FIXME
+          cn: '远离放置追踪AOE',
           ko: '장판 멀리빼기', // FIXME
         },
       },

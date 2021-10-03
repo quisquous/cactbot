@@ -232,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Tlachtli': '塔帕索利斗技场',
         'The Vortex': '风神祭坛',
         'Tozol Huatotl': '晴天霹雳 托佐尔·法托特尔',
+        'Floating Turret': '气球炮塔',
       },
       'replaceText': {
         '\\(buster\\)': '(死刑)',

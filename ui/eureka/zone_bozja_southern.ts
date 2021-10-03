@@ -676,6 +676,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         en: 'Seeq',
         de: 'Rüpel',
         fr: 'Ménagerie',
+        cn: '兽性兽心的驯兽师',
       },
       x: 28.9,
       y: 26.1,
