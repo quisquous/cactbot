@@ -1,19 +1,17 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// export type Data = RaidbossData;
 export interface Data extends RaidbossData {
-  breathless?: number;
   maskValue?: boolean;
 }
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheRoyalCityOfRabanastre,
-  timelineNeedsFixing: true,
   timelineFile: 'royal_city_of_rabanastre.txt',
   triggers: [
     {
@@ -39,26 +37,18 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // Note: this could probably use |matches.count| directly instead of
-      // using data.breathless to count the stacks.
       id: 'Rab Mateus Breathless Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _matches, output) => {
-        if (data.breathless === 6)
+      alarmText: (data, matches, output) => {
+        if (parseInt(matches.count) === 6)
           return output.getInBubble!();
       },
-      infoText: (data, _matches, output) => {
-        if (data.breathless && data.breathless >= 7)
-          return output.breathless!({ num: (data.breathless + 1) });
-      },
-      tts: (data, _matches, output) => {
-        if (data.breathless === 6)
-          return output.bubble!();
-      },
-      run: (data) => {
-        data.breathless = (data.breathless ?? 0) + 1;
+      infoText: (data, matches, output) => {
+        const count = parseInt(matches.count);
+        if (count >= 7)
+          return output.breathless!({ num: count });
       },
       outputStrings: {
         breathless: {
@@ -77,22 +67,7 @@ const triggerSet: TriggerSet<Data> = {
           cn: '进气泡',
           ko: '물방울 안으로',
         },
-        bubble: {
-          en: 'bubble',
-          de: 'blase',
-          fr: 'bulle',
-          ja: '泡',
-          cn: '进气泡',
-          ko: '숨쉬어!',
-        },
       },
-    },
-    {
-      id: 'Rab Mateus Breathless Lose',
-      type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '595' }),
-      condition: Conditions.targetIsYou(),
-      run: (data) => data.breathless = 0,
     },
     {
       id: 'Rab Mateus Blizzard IV',
@@ -116,6 +91,49 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'Rab Hashmal Quake IV',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '25D8', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25D8', source: 'Hashmallim der Einiger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25D8', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25D8', source: '統制者ハシュマリム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25D8', source: '统治者哈修马利姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25D8', source: '통제자 하쉬말림', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Rab Hashmal Extreme Edge Left',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '25D0', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25D0', source: 'Hashmallim der Einiger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25D0', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25D0', source: '統制者ハシュマリム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25D0', source: '统治者哈修马利姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25D0', source: '통제자 하쉬말림', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Find Hashmal; Dodge Left',
+        },
+      },
+    },
+    {
+      id: 'Rab Hashmal Extreme Edge Right',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '25CE', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25CE', source: 'Hashmallim der Einiger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25CE', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25CE', source: '統制者ハシュマリム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25CE', source: '统治者哈修马利姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25CE', source: '통제자 하쉬말림', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Find Hashmal; Dodge Right',
+        },
+      },
+    },
+    {
       id: 'Rab Hashmal Rock Cutter',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmal, Bringer Of Order' }),
@@ -125,6 +143,31 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '25D7', source: '统治者哈修马利姆' }),
       netRegexKo: NetRegexes.startsUsing({ id: '25D7', source: '통제자 하쉬말림' }),
       response: Responses.tankCleave(),
+    },
+    {
+      id: 'Rab Hashmal Falling Boulder',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '25D2', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25D2', source: 'Hashmallim der Einiger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25D2', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25D2', source: '統制者ハシュマリム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25D2', source: '统治者哈修马利姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25D2', source: '통제자 하쉬말림', capture: false }),
+      // There's three of these, so just say stack.
+      suppressSeconds: 1,
+      response: Responses.stackMarker(),
+    },
+    {
+      id: 'Rab Hashmal Falling Rock',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '25D3', source: 'Hashmal, Bringer Of Order' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25D3', source: 'Hashmallim der Einiger' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25D3', source: 'Hashmal Le Grand Ordonnateur' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25D3', source: '統制者ハシュマリム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25D3', source: '统治者哈修马利姆' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25D3', source: '통제자 하쉬말림' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
     },
     {
       id: 'Rab Hashmal Earth Hammer',
@@ -178,17 +221,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: 'D10', source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'D10', source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'D10', source: '원시 키마이라', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Dragon Voice: Move In',
-          de: 'Stimme Des Drachen: Rein',
-          fr: 'Voix Du Dragon : Packez-vous',
-          ja: '雷電の咆哮：中へ',
-          cn: '雷电咆哮: 靠近',
-          ko: '뇌전의 포효: 안으로',
-        },
-      },
+      response: Responses.getUnder(),
     },
     {
       id: 'Rab Trash Ram Voice',
@@ -199,24 +232,28 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '원시 키마이라', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Ram Voice: Move Out',
-          de: 'Stimme Des Widders: Raus',
-          fr: 'Voix Du Bélier : Eloignez-vous',
-          ja: '氷結の咆哮：外へ',
-          cn: '寒冰咆哮: 远离',
-          ko: '빙결의 포효: 바깥으로',
-        },
-      },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Rab Rofocale Crush Helm',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '2681', source: 'Rofocale' }),
+      netRegexDe: NetRegexes.ability({ id: '2681', source: 'Rofocale' }),
+      netRegexFr: NetRegexes.ability({ id: '2681', source: 'Rofocale Le Roi Centaure' }),
+      netRegexJa: NetRegexes.ability({ id: '2681', source: '人馬王ロフォカレ' }),
+      netRegexCn: NetRegexes.ability({ id: '2681', source: '人马王洛弗卡勒' }),
+      netRegexKo: NetRegexes.ability({ id: '2681', source: '인마왕 로포칼레' }),
+      suppressSeconds: 10,
+      // 2680 is on Rofocale with a castbar, then multiple 2681 and a final 2682 ability.
+      // TODO: should this say "multi-hit tankbuster?"
+      response: Responses.tankBuster(),
     },
     {
       id: 'Rab Rofocale Chariot',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.getIn(),
+      response: Responses.getIn('alarm'),
     },
     {
       id: 'Rab Rofocale Trample',
@@ -236,6 +273,49 @@ const triggerSet: TriggerSet<Data> = {
           ja: '蹂躙',
           cn: '蹂躏',
           ko: '유린',
+        },
+      },
+    },
+    {
+      id: 'Rab Argath Fire IV',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '冷血剣アルガス', id: '261A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '冷血剑阿加斯', id: '261A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '냉혈검 아르가스', id: '261A', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Rab Argath Crippling Blow',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '262D' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '262D' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '262D' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '冷血剣アルガス', id: '262D' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '冷血剑阿加斯', id: '262D' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '냉혈검 아르가스', id: '261262DA' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Rab Argath Trepidation',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2622', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2622', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2622', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '冷血剣アルガス', id: '2622', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '冷血剑阿加斯', id: '2622', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '냉혈검 아르가스', id: '2622', capture: false }),
+      infoText: (_data, _matches, output) => output.getTowers!(),
+      outputStrings: {
+        getTowers: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '장판 하나씩 들어가기',
         },
       },
     },
@@ -273,22 +353,8 @@ const triggerSet: TriggerSet<Data> = {
         return output.stop!();
       },
       outputStrings: {
-        move: {
-          en: 'Move',
-          de: 'Bewegen',
-          fr: 'Bougez',
-          ja: '動け',
-          cn: '动起来',
-          ko: '움직이기',
-        },
-        stop: {
-          en: 'Stop',
-          de: 'Stopp',
-          fr: 'Stop',
-          ja: '動くな',
-          cn: '不要动',
-          ko: '멈추기',
-        },
+        move: Outputs.moveAround,
+        stop: Outputs.stopEverything,
       },
     },
     {
@@ -303,26 +369,18 @@ const triggerSet: TriggerSet<Data> = {
         return output.lookTowards!();
       },
       outputStrings: {
-        lookAway: {
-          en: 'Look Away',
-          de: 'Wegschauen',
-          fr: 'Regardez ailleurs',
-          ja: '見ない',
-          cn: '背对BOSS',
-          ko: '바라보지 말기',
-        },
-        lookTowards: {
-          en: 'Look Towards',
-          de: 'Anschauen',
-          fr: 'Regardez le boss',
-          ja: 'ボスを見る',
-          cn: '面对BOSS',
-          ko: '바라보기',
-        },
+        lookAway: Outputs.lookAway,
+        lookTowards: Outputs.lookTowardsBoss,
       },
     },
   ],
   timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Mask Of Truth/Mask Of Lies': 'Mask Of Truth/Lies',
+      },
+    },
     {
       'locale': 'de',
       'missingTranslations': true,
@@ -439,6 +497,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'アルケオデーモン',
         'command tower': '支配の塔',
@@ -514,6 +573,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'command tower': '支配之塔',
