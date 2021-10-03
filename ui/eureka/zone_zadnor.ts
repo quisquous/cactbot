@@ -801,7 +801,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       shortLabel: {
         en: 'Dalriada',
-        de: 'The Dalriada',
+        de: 'Dalriada',
         fr: 'Dal\'riada',
         ja: '旗艦ダル・リアータ攻略戦',
         cn: '旗舰战',

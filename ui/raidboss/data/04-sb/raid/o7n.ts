@@ -103,6 +103,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stand in glowing bomb circle',
+          de: 'Steh im grün-leuchtenden Kreis der Bombe',
           cn: '站在炸弹发光圈内',
         },
       },
@@ -120,6 +121,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Activate 3 person towers',
+          de: 'Aktiviere 3 Spieler-Türme',
           cn: '3人踩塔',
         },
       },
@@ -138,6 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         kill: {
           en: 'Kill ${name} add',
+          de: 'Besiege ${name} Add',
           cn: '击杀 ${name} 小怪',
         },
       },
