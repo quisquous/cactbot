@@ -1,8 +1,20 @@
+// TODO: handle paintings? <_<
 // O6N - Sigmascape 2.0 Normal
 Options.Triggers.push({
     zoneId: ZoneId.SigmascapeV20,
     timelineFile: 'o6n.txt',
     triggers: [
+        {
+            id: 'O6N Demonic Howl',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '282C', source: 'Demon Chadarnook', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '282C', source: 'Gefallen(?:e|er|es|en) Chadarnook', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '282C', source: 'Démon Chadarnouk', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '282C', source: 'チャダルヌーク・デーモン', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '282C', source: '恶魔查达奴克', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '282C', source: '차다르누크 악령', capture: false }),
+            response: Responses.aoe(),
+        },
         {
             id: 'O6N Demonic Shear',
             type: 'StartsUsing',
@@ -15,19 +27,33 @@ Options.Triggers.push({
             response: Responses.tankBuster(),
         },
         {
-            id: 'O6N Meteors',
+            id: 'O6N Demonic Pain',
+            type: 'Tether',
+            // 0001 = far enough, 0039 = too close
+            netRegex: NetRegexes.tether({ id: ['0001', '0039'] }),
+            condition: (data, matches) => data.me === matches.target || data.me === matches.source,
+            suppressSeconds: 10,
+            alertText: (data, matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Away From Boss',
+                },
+            },
+        },
+        {
+            id: 'O6N Demonic Stone',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0001' }),
             condition: Conditions.targetIsYou(),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Drop AOEs Away',
+                    en: 'Drop Chasing AOE Away',
                     de: 'AoEs weglocken',
                     fr: 'Posez les AoE au loin',
                     ja: '離れてAoEを置く',
                     cn: '远离放置AOE',
-                    ko: '장판 멀리빼기',
+                    ko: '장판 멀리빼기', // FIXME
                 },
             },
         },

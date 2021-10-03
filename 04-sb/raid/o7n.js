@@ -2,7 +2,36 @@
 Options.Triggers.push({
     zoneId: ZoneId.SigmascapeV30,
     timelineFile: 'o7n.txt',
+    timelineTriggers: [
+        {
+            id: 'O7N Chakra Burst Towers',
+            regex: /Chakra Burst/,
+            beforeSeconds: 9,
+            infoText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Get Towers',
+                    de: 'Türme nehmen',
+                    fr: 'Prenez les tours',
+                    ja: '塔を踏む',
+                    cn: '踩塔',
+                    ko: '장판 하나씩 들어가기',
+                },
+            },
+        },
+    ],
     triggers: [
+        {
+            id: 'O7N Diffractive Plasma',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '276E', source: 'Guardian', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '276E', source: 'Wächter', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '276E', source: 'Gardien', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '276E', source: 'ガーディアン', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '276E', source: '守护者', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '276E', source: '가디언', capture: false }),
+            response: Responses.aoe(),
+        },
         {
             id: 'O7N Magitek Ray',
             type: 'StartsUsing',
@@ -12,17 +41,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '276B', source: 'ガーディアン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '276B', source: '守护者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '276B', source: '가디언', capture: false }),
-            alertText: (_data, _matches, output) => output.text(),
-            outputStrings: {
-                text: {
-                    en: 'Magitek Ray',
-                    de: 'Magitek-Laser',
-                    fr: 'Rayon Magitek',
-                    ja: '魔導レーザー',
-                    cn: '直线AOE',
-                    ko: '마도 레이저',
-                },
-            },
+            response: Responses.awayFromFront(),
         },
         {
             id: 'O7N Arm And Hammer',
@@ -48,13 +67,11 @@ Options.Triggers.push({
         },
         {
             id: 'O7N Diffractive Laser',
-            type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '2761', source: 'Guardian', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '2761', source: 'Wächter', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '2761', source: 'Gardien', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '2761', source: 'ガーディアン', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '2761', source: '守护者', capture: false }),
-            netRegexKo: NetRegexes.startsUsing({ id: '2761', source: '가디언', capture: false }),
+            type: 'GainsEffect',
+            // Air Force Simulation effect happens ~3 seconds before Diffractive Laser (2761) starts casting.
+            netRegex: NetRegexes.gainsEffect({ effectId: '5D2', capture: false }),
+            // All of the various hidden Guardian adds all get this effect.
+            suppressSeconds: 5,
             response: Responses.getOut(),
         },
         {
@@ -62,6 +79,55 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '001E' }),
             response: Responses.preyOn('info'),
+        },
+        {
+            id: 'O7N Bomb Deployment',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '2762', source: 'Guardian', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '2762', source: 'Wächter', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '2762', source: 'Gardien', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '2762', source: 'ガーディアン', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '2762', source: '守护者', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '2762', source: '가디언', capture: false }),
+            infoText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Stand in glowing bomb circle',
+                },
+            },
+        },
+        {
+            id: 'O7N Demon Simulation',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '2752', source: 'Guardian', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '2752', source: 'Wächter', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '2752', source: 'Gardien', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '2752', source: 'ガーディアン', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '2752', source: '守护者', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '2752', source: '가디언', capture: false }),
+            infoText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Activate 3 person towers',
+                },
+            },
+        },
+        {
+            id: 'O7N Kill Phase Adds',
+            type: 'AddedCombatant',
+            // 7018 = Air Force
+            // 7110 = Dadaluma
+            // 7111 = Ultros
+            // 7113 = Bibliotaph
+            netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['7018', '7110', '7111', '7113'] }),
+            infoText: (data, matches, output) => {
+                return output.kill({ name: matches.name });
+            },
+            outputStrings: {
+                kill: {
+                    en: 'Kill ${name} add',
+                },
+            },
         },
     ],
     timelineReplace: [

@@ -16,6 +16,17 @@ Options.Triggers.push({
             run: (data) => data.StopCombat(),
         },
         {
+            id: 'O5N Acid Rain',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ source: 'Phantom Train', id: '28BB', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ source: 'Phantomzug', id: '28BB', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ source: 'Train Fantôme', id: '28BB', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ source: '魔列車', id: '28BB', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ source: '魔列车', id: '28BB', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '마열차', id: '28BB', capture: false }),
+            response: Responses.aoe(),
+        },
+        {
             id: 'O5N Doom Strike',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ source: 'Phantom Train', id: '28A3' }),
@@ -49,6 +60,18 @@ Options.Triggers.push({
             response: Responses.stackMiddle(),
         },
         {
+            id: 'O5N Ghost Tether',
+            type: 'Tether',
+            netRegex: NetRegexes.tether({ id: '0001' }),
+            condition: Conditions.targetIsYou(),
+            infoText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Bait ghost into light circle',
+                },
+            },
+        },
+        {
             id: 'O5N Diabolic Light',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0001' }),
@@ -56,12 +79,12 @@ Options.Triggers.push({
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Light',
+                    en: 'Drop Marker Away',
                     de: 'Licht',
                     fr: 'Lumière',
                     ja: '魔界の光',
                     cn: '光点名',
-                    ko: '빛장판',
+                    ko: '빛장판', // FIXME
                 },
             },
         },
@@ -70,15 +93,17 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0046' }),
             condition: Conditions.targetIsYou(),
+            response: Responses.spread(),
+        },
+        {
+            id: 'O5N Throttle',
+            type: 'GainsEffect',
+            netRegex: NetRegexes.gainsEffect({ effectId: '3AA' }),
+            condition: Conditions.targetIsYou(),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Wind',
-                    de: 'Wind',
-                    fr: 'Vent',
-                    ja: '魔界の風',
-                    cn: '圆圈点名',
-                    ko: '초록징',
+                    en: 'Touch ghost',
                 },
             },
         },
