@@ -112,6 +112,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Outside Destination',
+          cn: '去传送目的地的外圈',
         },
       },
     },

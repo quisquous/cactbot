@@ -77,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait ghost into light circle',
+          cn: '诱导幽灵进光圈',
         },
       },
     },
@@ -92,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Licht', // FIXME
           fr: 'Lumière', // FIXME
           ja: '魔界の光', // FIXME
-          cn: '光点名', // FIXME
+          cn: '远离放置光点名',
           ko: '빛장판', // FIXME
         },
       },
@@ -113,6 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Touch ghost',
+          cn: '撞幽灵',
         },
       },
     },
