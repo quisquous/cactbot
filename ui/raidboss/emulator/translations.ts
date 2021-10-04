@@ -346,7 +346,7 @@ const emulatorLabels: Translation = {
     en: 'Hide Collectors',
     de: 'Verstecke "Sammel" Einträge',
     fr: 'Masquer les entrées "Collecté"',
-    ja: 'コレクターを隠す',
+    ja: '無出力トリガーを隠す',
     cn: '隐藏收集器',
   },
 } as const;
