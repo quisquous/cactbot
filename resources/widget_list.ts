@@ -347,3 +347,9 @@ export default class WidgetList extends HTMLElement {
 }
 
 window.customElements.define('widget-list', WidgetList);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'widget-list': WidgetList;
+  }
+}
