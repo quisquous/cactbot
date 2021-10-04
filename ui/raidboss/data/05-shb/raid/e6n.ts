@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -164,7 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E6N Hands of Hell',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0016' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

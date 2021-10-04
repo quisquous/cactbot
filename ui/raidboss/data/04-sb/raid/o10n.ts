@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O10N Earth Shaker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.earthshaker(),
     },
     {
@@ -162,14 +162,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       // This corresponds with the 31D2 ability cast.
       netRegex: NetRegexes.headMarker({ id: '00A0' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'O10N Dry Ice',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

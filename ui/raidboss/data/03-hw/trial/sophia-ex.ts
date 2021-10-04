@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -241,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '1988', source: '信徒其一' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1988', source: '제1신도' }),
       infoText: (data, matches, output) => {
-        if (Conditions.targetIsYou())
+        if (targetIsYou())
           return output.infusionOnYou!();
 
         return output.infusionOn!({ player: data.ShortName(matches.target) });

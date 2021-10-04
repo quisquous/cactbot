@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsNotYou, targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -26,7 +26,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bardam\'s Mettle Rush',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0039' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -175,7 +175,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bardam\'s Mettle Wingbeat You',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -192,7 +192,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bardam\'s Mettle Wingbeat Others',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      condition: Conditions.targetIsNotYou(),
+      condition: targetIsNotYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

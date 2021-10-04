@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import { watchCombatant } from '../../../../../resources/util';
@@ -140,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ id: 'B85', source: '雷撃システム' }),
       netRegexCn: NetRegexes.ability({ id: 'B85', source: '雷击系统' }),
       netRegexKo: NetRegexes.ability({ id: 'B85', source: '뇌격 시스템' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

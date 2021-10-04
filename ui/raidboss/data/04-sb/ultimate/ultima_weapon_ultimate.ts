@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UWU Garuda Mistral Song Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -207,7 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UWU Ifrit Fetters',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '179' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 45,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -230,7 +230,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B5B', source: '이프리트' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

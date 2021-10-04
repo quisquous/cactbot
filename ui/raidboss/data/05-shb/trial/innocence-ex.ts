@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -167,7 +167,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC9', source: '면죄된 정욕' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -327,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'InnoEx Winged Reprobation Tether',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -344,7 +344,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'InnoEx Winged Drop Of Light',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.starbirthActive)
           return output.circleAvoidOrbs!();

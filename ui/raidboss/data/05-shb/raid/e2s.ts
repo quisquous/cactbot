@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -107,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3E6[12]', source: 'ヴォイドウォーカー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E6[12]', source: '虚无行者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E6[12]', source: '보이드워커' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {

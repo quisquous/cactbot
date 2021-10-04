@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -30,14 +30,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E5S Surge Protection Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.surgeProtection = true,
     },
     {
       id: 'E5S Surge Protection Loss',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.surgeProtection = false,
     },
     {
@@ -280,7 +280,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E5S Stormcloud Cleanse',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00D2' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -297,7 +297,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E5S Stormcloud Drop',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

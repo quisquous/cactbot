@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -50,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4BA' }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4BA' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4BA' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -93,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8' }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 8,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -591,7 +591,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShinryuEx Tethers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 3.8,
       infoText: (data, _matches, output) => {
         if (data.phase === 3)
@@ -622,7 +622,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShinryuEx Tail Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '007E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -676,7 +676,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShinryuEx Cocoon Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
   ],

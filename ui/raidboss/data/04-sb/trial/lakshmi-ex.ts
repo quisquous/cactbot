@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -210,7 +210,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LakshmiEx Path of Light Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (data, _matches, output) => {
         if (data.chanchala)
           return output.vrillCleaveOnYou!();
@@ -241,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LakshmiEx Hand of Grace',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
           return output.vrillCrossMarker!();
@@ -272,7 +272,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LakshmiEx Hand of Beauty',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
           return output.vrillFlowerMarker!();
@@ -303,7 +303,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LakshmiEx Water III',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // Soloing can get you two of these.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),

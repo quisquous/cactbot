@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -173,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Lakshmi Hand of Grace',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -191,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Lakshmi Hand of Beauty',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
           return output.powerFlower!();

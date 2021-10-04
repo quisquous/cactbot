@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -63,14 +63,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Levitation Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.levitating = true,
     },
     {
       id: 'O2S Levitation Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.levitating = false,
     },
     {
@@ -322,7 +322,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Maniacal Probe You',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0005 ' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -337,7 +337,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Unstable Gravity',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -352,7 +352,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Unstable Gravity Delayed',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 9,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -410,7 +410,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S 6 Fulms Under Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '237' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.under = false,
     },
   ],

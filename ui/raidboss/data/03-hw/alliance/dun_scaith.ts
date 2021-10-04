@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dun Scaith Aero 2',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -172,7 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dun Scaith Scythe Drop',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -393,7 +393,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dun Scaith Prey Markers',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -567,7 +567,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dun Scaith Nox Orbs',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -733,7 +733,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dun Scaith Earth Shaker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.earthshaker(),
     },
   ],

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -300,7 +300,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOL Deluge of Death Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       run: (data, matches) => data.deluge = matches.target,
       outputStrings: {
@@ -366,7 +366,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOL Radiant Meteor',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E9' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -400,7 +400,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: '幻光の召喚獣', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '幻光召唤兽', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '환상빛의 소환수', id: '0011' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

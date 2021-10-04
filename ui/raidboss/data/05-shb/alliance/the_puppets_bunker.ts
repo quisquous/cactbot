@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Aegis Anti-Personnel Laser You',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -223,7 +223,7 @@ const triggerSet: TriggerSet<Data> = {
       // Mechanical Contusion (The Compound)
       // R012: Laser (Compound 2P)
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -235,7 +235,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '軽陸戦ユニット', id: '5213' }),
       netRegexCn: NetRegexes.startsUsing({ source: '轻型陆战装置', id: '5213' }),
       netRegexKo: NetRegexes.startsUsing({ source: '경장 육지전 유닛', id: '5213' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -353,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Superior Precision Guided Missile You',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -492,7 +492,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Heavy Unconventional Voltage',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -619,7 +619,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Hallway Targeted Laser',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -717,7 +717,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       // R012: Laser also puts out 008B headmarkers on non-tanks.
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
       run: (data, matches) => {
         data.busterTargets ??= [];
@@ -766,7 +766,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Compound 2P Four Parts Resolve',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, matches, output) => {
         const fourPartsMap: { [id: string]: string } = {
           '004F': output.jump!({ num: 1 }),

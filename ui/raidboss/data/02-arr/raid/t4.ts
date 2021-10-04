@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -19,7 +19,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D4' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -40,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

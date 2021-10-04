@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -55,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A1S Hydrothermal You',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -137,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
       netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 2,
       response: Responses.tankBuster('alarm'),
     },

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -349,7 +349,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Refulgent Chain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8CD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -367,7 +367,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Holy Light',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0002' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -558,7 +558,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Wyrmclaw',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8D2' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       preRun: (data, matches) => {
         if (data.wyrmsLament === 1) {
           const clawNumber: { [time: string]: number } = {
@@ -593,7 +593,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Wyrmfang',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8D3' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       preRun: (data, matches) => {
         if (data.wyrmsLament === 1) {
           const fangNumber: { [time: string]: number } = {

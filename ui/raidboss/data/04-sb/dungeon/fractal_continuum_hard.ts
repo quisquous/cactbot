@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -218,7 +218,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Fractal Hard Ratzon',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -243,7 +243,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Fractal Hard Dischord Resolve',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 0.5,
       infoText: (data, matches, output) => {
         const partnerId = matches.id === '004D' ? '004E' : '004D';
@@ -284,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Fractal Hard Infinite Elements',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['477', '478'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // The circles don't come up until the Ceruleum Vent cast.
       // Rather than doing collection nonsense to be used on the Ceruleum cast,
       // it's better to just delay, since it's always a consistent 8 seconds

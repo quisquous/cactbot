@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -112,7 +112,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F64' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F64' }),
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F64' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -134,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F65' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F65' }),
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F65' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

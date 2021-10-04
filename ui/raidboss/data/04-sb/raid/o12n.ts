@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -112,14 +112,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12N Optimized Meteor',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'O12N Ground Zero',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.getOut!(),
       run: (data, matches) => data.groundZero = matches.target,
       outputStrings: {
@@ -171,14 +171,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12N Optimized Fire III',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'O12N Packet Filter F',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -195,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12N Packet Filter M',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

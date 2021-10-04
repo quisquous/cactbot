@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -71,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Diamond Photon Burst',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -148,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Diamond Diamond Shrapnel',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -38,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Suzaku Primary Target',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '699' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -73,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Suzaku Rekindle',
       netRegex: NetRegexes.headMarker({ id: '3230' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {

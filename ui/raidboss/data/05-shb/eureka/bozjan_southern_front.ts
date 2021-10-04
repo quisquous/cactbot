@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import Regexes from '../../../../../resources/regexes';
@@ -233,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'Ivレギオン・ヘルダイバー', id: '51FD' }),
       netRegexCn: NetRegexes.ability({ source: '第四军团地狱潜者', id: '51FD' }),
       netRegexKo: NetRegexes.ability({ source: 'Iv군단 헬다이버', id: '51FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.helldiver = true,
     },
     {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -72,7 +72,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O5N Ghost Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0001' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -86,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O5N Diabolic Light',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -103,14 +103,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O5N Diabolic Wind',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'O5N Throttle',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3AA' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

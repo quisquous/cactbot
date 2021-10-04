@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -55,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Doma Castle Hypertuned Grynewaht Delay-Action Charge',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0063' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -63,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // There's no 0x1B line or 0x14/0x15 target for this prox marker, only the Prey debuff.
       netRegex: NetRegexes.gainsEffect({ effectId: '4E5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

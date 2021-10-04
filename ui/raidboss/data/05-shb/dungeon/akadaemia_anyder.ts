@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -31,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Anyder Aquatic Lance',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Anyder Sap Shower',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {

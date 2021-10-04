@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -180,14 +180,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Titania Uplift Markers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Peasebomb Markers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {

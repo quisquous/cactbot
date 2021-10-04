@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -94,7 +94,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0039', source: 'リクイドフレイム' }),
       netRegexCn: NetRegexes.tether({ id: '0039', source: '液态火焰' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '액체 불꽃' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -111,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Gubal Hard Sunseal',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -128,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Gubal Hard Moonseal',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

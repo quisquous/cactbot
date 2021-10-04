@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -29,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Heroes Gauntlet Spectral Gust',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -77,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Heroes Gauntlet Large Zombie Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '004F' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -203,7 +203,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Heroes Gauntlet Wild Anguish Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
   ],

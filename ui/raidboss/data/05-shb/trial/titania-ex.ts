@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -294,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitaniaEx Uplift Markers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -306,7 +306,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3D36', source: 'ピーズブロッサム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D36', source: '豌豆花' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D36', source: '콩나무' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -339,7 +339,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitaniaEx Peasebomb',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
       run: (data) => {
         data.bomb ??= {};

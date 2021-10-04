@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -222,7 +222,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0011', source: '古代人の影' }),
       netRegexCn: NetRegexes.tether({ id: '0011', source: '古代人之影' }),
       netRegexKo: NetRegexes.tether({ id: '0011', source: '고대인의 그림자' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -239,7 +239,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Ancient Water 3',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.waterDarkMarker = true,
       outputStrings: {
@@ -257,7 +257,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Ancient Darkness',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.waterDarkMarker = true,
       outputStrings: {
@@ -357,7 +357,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Burning Brand',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '850' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.brand = 'fire',
       outputStrings: {
@@ -375,7 +375,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Freezing Brand',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '851' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.brand = 'ice',
       outputStrings: {
@@ -398,7 +398,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '47C3', source: 'イゲオルムの影' }),
       netRegexCn: NetRegexes.startsUsing({ id: '47C3', source: '以格约姆之影' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47C3', source: '이게요름의 그림자' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -410,7 +410,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '47C2', source: 'ラハブレアの影' }),
       netRegexCn: NetRegexes.startsUsing({ id: '47C2', source: '拉哈布雷亚之影' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47C2', source: '라하브레아의 그림자' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -459,7 +459,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Beyond Death',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 8,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -477,7 +477,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Ancient Circle',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '83E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -495,7 +495,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Forked Lightning',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -600,7 +600,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Captivity',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
@@ -628,7 +628,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Dark Flame',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.flame = true,
       outputStrings: {
@@ -646,7 +646,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Dark Freeze',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C1' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.freeze = true,
       outputStrings: {
@@ -686,7 +686,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HadesEx Nether Blast',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.netherBlast = true,
       outputStrings: {

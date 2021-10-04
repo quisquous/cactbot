@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import { watchCombatant } from '../../../../../resources/util';
@@ -58,7 +58,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ id: '879', source: 'ラフレシア' }),
       netRegexCn: NetRegexes.ability({ id: '879', source: '大王花' }),
       netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (data, _matches, output) => {
         const partners = data.thornMap?.[data.me] ?? [];
         if (partners.length === 0)
@@ -113,14 +113,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T6 Honey On',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.honey = true,
     },
     {
       id: 'T6 Honey Off',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => delete data.honey,
     },
     {

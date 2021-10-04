@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import { watchCombatant } from '../../../../../resources/util';
@@ -145,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T7 Cursed Voice',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

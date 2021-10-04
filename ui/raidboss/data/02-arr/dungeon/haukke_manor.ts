@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '358', source: 'レディ・アマンディヌ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '358', source: '阿芒迪娜女士' }),
       netRegexKo: NetRegexes.startsUsing({ id: '358', source: '레이디 아망딘' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.getBehind('info'),
     },
     {

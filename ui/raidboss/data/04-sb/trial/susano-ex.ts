@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SusEx Knockback',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.cloud)
           return output.knockbackWithCloud!();
@@ -164,7 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SusEx Levinbolt',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.cloud)
           return output.levinboltWithCloud!();
@@ -237,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SusEx Churning',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       response: Responses.stopEverything('alert'),
     },

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -123,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3N Drenching Pulse Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -154,14 +154,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3N Splashing Waters Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0082' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Swirling Waters Donut',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0099' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

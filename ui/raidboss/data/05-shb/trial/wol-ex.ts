@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -433,7 +433,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: '幻光の召喚獣', id: '0054' }),
       netRegexCn: NetRegexes.tether({ source: '幻光召唤兽', id: '0054' }),
       netRegexKo: NetRegexes.tether({ source: '환상빛의 소환수', id: '0054' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -625,7 +625,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Perfect Decimation',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -642,7 +642,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Brimstone Earth',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0067' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

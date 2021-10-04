@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -165,14 +165,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Weeping City Brand Of The Fallen',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Weeping City Dark Eruption',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -246,7 +246,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Weeping City Meteor Impact',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -357,7 +357,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Weeping City Acceleration Bomb',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       response: Responses.stopEverything(),
     },

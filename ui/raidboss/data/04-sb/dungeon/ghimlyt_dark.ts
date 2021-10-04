@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -44,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ghimlyt Dark Wild Fire Beam',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -179,7 +179,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ghimlyt Dark Covering Fire',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
   ],

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -105,7 +105,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Emerald Primus Terminus Est',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00F5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -122,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Emerald Secundus Terminus Est X',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00FE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -139,7 +139,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Emerald Secundus Terminus Est Plus',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

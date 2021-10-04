@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsNotYou, targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShivaUn Hailstorm Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -238,7 +238,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShivaUn Avalanche Marker Me',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -256,7 +256,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShivaUn Avalanche Marker Other',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
-      condition: Conditions.targetIsNotYou(),
+      condition: targetIsNotYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -301,7 +301,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShivaUn Ice Boulder',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '537A' }),
-      condition: Conditions.targetIsNotYou(),
+      condition: targetIsNotYou(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -114,14 +114,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Swallows Compass Mountain Falls',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Swallows Compass Mirage',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -149,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Swallows Compass Six Fulms Under',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 2, // If the user stays in, they will get more reminders.
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -42,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sohm Al Myath Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -70,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sohm Al Tioman Meteor',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0007' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.meteorOnYou(),
     },
   ],

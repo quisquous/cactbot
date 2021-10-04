@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '29C3', source: 'ヴォイドスケイル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '29C3', source: '虚无鳞龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '29C3', source: '보이드비늘' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -183,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '289F', source: 'パズズ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '289F', source: '帕祖祖' }),
       netRegexKo: NetRegexes.startsUsing({ id: '289F', source: '파주주' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {

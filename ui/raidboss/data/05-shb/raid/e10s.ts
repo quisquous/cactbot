@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -370,7 +370,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E10S Shadow Servant Cleave Drop',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '97[3456]' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data, matches) => {
         data.gigaSlashCleaveDebuffId = matches.effectId;
         data.gigaSlashCleaveDebuffDuration = parseFloat(matches.duration);

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0029', source: 'ゼノス・イェー・ガルヴァス' }),
       netRegexCn: NetRegexes.tether({ id: '0029', source: '芝诺斯·耶·加尔乌斯' }),
       netRegexKo: NetRegexes.tether({ id: '0029', source: '제노스 예 갈부스' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

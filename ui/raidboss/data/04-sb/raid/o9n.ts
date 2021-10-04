@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // This corresponds with an 0060 headmarker.
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // Entropy comes out with 8 and 14 seconds during the Fire phase, for two sets of spreads.
       // During the midphase, it is only 14.  To make this less complicated, add a delay that
       // makes this work for all three cases.
@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
       // Dynamic Fluid is 8 and 14 seconds during the Water phase.  During midphase, it is 20.
       // However, in all cases, there's no reason not to pre-position the donut stack.
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O9N Knockdown',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

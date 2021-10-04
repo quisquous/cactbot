@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -222,28 +222,28 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Firescorched Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.fireDebuff = true,
     },
     {
       id: 'UCU Firescorched Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.fireDebuff = false,
     },
     {
       id: 'UCU Icebitten Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.iceDebuff = true,
     },
     {
       id: 'UCU Icebitten Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.iceDebuff = false,
     },
     {
@@ -399,7 +399,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Hatch Marker YOU',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0076' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -814,7 +814,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'サンダーウィング', id: '26C7' }),
       netRegexCn: NetRegexes.ability({ source: '雷翼', id: '26C7' }),
       netRegexKo: NetRegexes.ability({ source: '번개날개', id: '26C7' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1492,7 +1492,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Megaflare Stack Me',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1611,7 +1611,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Earthshaker Me',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.earthshaker('alarm'),
     },
     {

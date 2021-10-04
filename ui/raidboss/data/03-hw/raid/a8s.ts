@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -228,7 +228,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // Note: both high and low use '0025' headmarker
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -247,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S High Arithmeticks',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -505,7 +505,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Mirage Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -522,7 +522,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Ice Missile Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -569,7 +569,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '165A' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165A' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -591,7 +591,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '165B' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -619,7 +619,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Min HP',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 8,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -643,7 +643,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Min HP Tornado',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 27,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -667,7 +667,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Max HP',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -722,7 +722,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Penalty 1',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '409' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       // TODO: we could say who to share north orbs with?
       // TODO: we could also repeat the "share north orbs" after sw orb Explosion.
@@ -742,7 +742,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Penalty 2',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -759,7 +759,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Penalty 3',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -776,7 +776,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Penalty 3 Orb',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 28,
       // TODO: we could collect who else has penalty 3 to share the orb with?
       // TODO: we could also say who to share north orb with.
@@ -796,7 +796,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Nisi A',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40C' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // TODO: we could say east or west here after the regulators spawn?
       // TODO: we could also say who to share north orb with.
       // TODO: we could also repeat the share after the regular dies?
@@ -816,7 +816,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Verdict Nisi B',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '40D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsNotYou, targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -166,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Flare',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -361,7 +361,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Surging Waters',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '73A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -380,7 +380,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Sundering Waters',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, matches, output) => {
         const seconds = parseFloat(matches.duration);
         if (seconds <= 8)
@@ -420,7 +420,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Scouring Waters Defamation',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -437,7 +437,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Scouring Waters Avoid Knockback',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 22,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -469,7 +469,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Scouring Waters',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
-      condition: Conditions.targetIsNotYou(),
+      condition: targetIsNotYou(),
       delaySeconds: 25,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -487,7 +487,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Sweeping Waters Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

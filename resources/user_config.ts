@@ -14,8 +14,20 @@ import { UnreachableCode } from './not_reached';
 // create a variable of the same name, the eval()'d code does not know
 // about the import, and thus throws ReferenceErrors.
 // Used by downstream eval
-import _Conditions from './conditions';
-const Conditions = _Conditions;
+import {
+  caresAboutAOE,
+  caresAboutMagical,
+  caresAboutPhysical,
+  targetIsNotYou,
+  targetIsYou,
+} from './conditions';
+const Conditions = {
+  caresAboutAOE,
+  caresAboutMagical,
+  caresAboutPhysical,
+  targetIsNotYou,
+  targetIsYou,
+};
 import _ContentType from './content_type';
 const ContentType = _ContentType;
 import _NetRegexes from './netregexes';

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -297,7 +297,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'RubyEx Meteor Stream',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E0' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -516,7 +516,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: 'ネールの悲嘆', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '奈尔的悲叹', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '넬의 비탄', id: '0011' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -546,7 +546,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: 'ネールの憤怒', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '奈尔的愤怒', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '넬의 분노', id: '0011' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -579,7 +579,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'RubyEx Meteor',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, matches, output) => output.text!({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 }),
       outputStrings: {
         text: {
@@ -674,7 +674,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'RubyEx Bradamante',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

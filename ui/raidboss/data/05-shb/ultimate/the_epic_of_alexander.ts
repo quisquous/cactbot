@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -708,7 +708,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: 'リキッドレイジ', id: '0003' }),
       netRegexCn: NetRegexes.tether({ source: '活水之怒', id: '0003' }),
       netRegexKo: NetRegexes.tether({ source: '분노한 액체', id: '0003' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1071,7 +1071,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Compressed Water Initial',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1088,7 +1088,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Compressed Water Explode',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (data.seenGavel)
@@ -1110,7 +1110,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Compressed Lightning Initial',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1127,7 +1127,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Compressed Lightning Explode',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (data.seenGavel)
@@ -1244,7 +1244,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Final Judgment Nisi Verdict',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
       infoText: (_data, matches, output) => {
@@ -1388,7 +1388,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Restraining Order',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '464' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1406,7 +1406,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA House Arrest',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '463' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1424,7 +1424,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Shared Sentence',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1460,7 +1460,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Aggravated Assault',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {

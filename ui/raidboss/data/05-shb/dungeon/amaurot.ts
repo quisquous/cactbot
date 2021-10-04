@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -17,7 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Amaurot Meteor',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       preRun: (data) => data.meteor = (data.meteor ?? 0) + 1,
       infoText: (data, _matches, output) => {
         if (data.meteor === 1)
@@ -58,7 +58,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Amaurot Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -44,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rab Mateus Breathless Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (data, _matches, output) => {
         if (data.breathless === 6)
           return output.getInBubble!();
@@ -91,7 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rab Mateus Breathless Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '595' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.breathless = 0,
     },
     {
@@ -215,7 +215,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rab Rofocale Chariot',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.getIn(),
     },
     {
@@ -265,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rab Argath Command Scatter',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '007B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.maskValue)
           return output.move!();
@@ -295,7 +295,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rab Argath Command Turn',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '007C' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.maskValue)
           return output.lookAway!();

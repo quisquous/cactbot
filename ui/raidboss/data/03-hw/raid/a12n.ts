@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12N Blazing Scourge',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -72,7 +72,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12N Aggravated Assault',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       // If the user is targeted for Assault, we need to ensure the stack trigger knows.
       run: (data) => data.assault = true,
@@ -140,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: 'アレキサンダー', id: '0036' }),
       netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
       netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

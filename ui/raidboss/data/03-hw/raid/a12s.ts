@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -199,7 +199,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12S Shared Sentence',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -216,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12S Defamation',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '460' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -233,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12S Judgment Crystal',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -287,7 +287,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: 'アレキサンダー', id: '0036' }),
       netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
       netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

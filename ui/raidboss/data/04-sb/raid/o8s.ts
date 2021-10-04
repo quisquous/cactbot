@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -262,7 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '28DD', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28DD', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28DD', source: '신들의 상' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
@@ -384,7 +384,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '28E5', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E5', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E5', source: '신들의 상' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -406,7 +406,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '28E6', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E6', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E6', source: '신들의 상' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

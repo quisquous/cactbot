@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -73,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Pulse of the Land',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B9' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -102,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Force of the Land',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BA' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.stackMarker(),
     },
     {
@@ -184,7 +184,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Crumbling Down',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -439,7 +439,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Weight of the World',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BB' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.getOut(),
     },
     {
@@ -472,7 +472,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Granite Gaol',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00BF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

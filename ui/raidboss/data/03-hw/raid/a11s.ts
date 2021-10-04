@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A11S Super Hawk Blaster',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -256,7 +256,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A11S Limit Cut Number',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: (data) => data.limitCutDelay ?? 0,
       infoText: (data, _matches, output) => output.text!({ num: data.limitCutNumber }),
       outputStrings: {
@@ -274,7 +274,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A11S Limit Cut Mechanic',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (data) => (data.limitCutDelay ?? 0) - 5,
       alertText: (data, _matches, output) => {
         if (!data.limitCutNumber || !data.limitCutMap)

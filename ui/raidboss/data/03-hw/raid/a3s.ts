@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Sluice',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -70,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Digititis Tank',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0025' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -87,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Digititis Healer',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0022' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -104,7 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Digititis Damage',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0024' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

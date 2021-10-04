@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -109,7 +109,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2N Dark Fire No Waiting',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '004C' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -137,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2N Dark Fire Waiting',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -186,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2N Unholy Darkness Waiting',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B4' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -225,7 +225,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2N Shadoweye Waiting',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B7' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

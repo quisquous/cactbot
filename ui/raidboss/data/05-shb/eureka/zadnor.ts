@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -1496,7 +1496,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.gainsEffect({ source: 'Cúchulainn De La 4E Légion', effectId: ['871', '872', '873', '874'] }),
       netRegexJa: NetRegexes.gainsEffect({ source: 'Ivレギオン・キュクレイン', effectId: ['871', '872', '873', '874'] }),
       netRegexCn: NetRegexes.gainsEffect({ source: '第四军团丘库雷因', effectId: ['871', '872', '873', '874'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
         if (effectId === '871')
@@ -1703,7 +1703,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC2' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: '5DC2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '桑尼恩', id: '5DC2' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -1977,7 +1977,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Zadnor Diablo Acceleration Bomb Dodge',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       infoText: (_data, matches, output) => {
         // Durations are 7 and 12.
@@ -2003,7 +2003,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Zadnor Diablo Acceleration Bomb Stop',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // TODO: this could be better timed to be later for the dodge -> stop version and earlier
       // for the stop -> dodge.
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3.5,

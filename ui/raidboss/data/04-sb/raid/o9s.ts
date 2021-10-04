@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -162,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O9S Entropy Spread',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       preRun: (data) => {
         data.entropyCount = (data.entropyCount ?? 0) + 1;
       },
@@ -335,7 +335,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O9S Knock Down Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.phaseType === 'water')
           return output.dropOutside!();
@@ -380,14 +380,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O9S Headwind',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.wind = 'head',
     },
     {
       id: 'O9S Tailwind',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.wind = 'tail',
     },
     {
@@ -494,7 +494,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O9S Primordial Crust Cleanup',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 30,
       run: (data) => delete data.primordialCrust,
     },

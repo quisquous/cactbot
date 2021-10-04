@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -403,7 +403,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E1S Vice and Virtue Healer Mark YOU',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '840' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.paradise)
           return output.passPreyToDps!();

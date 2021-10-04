@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -1002,7 +1002,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '창조된 사자', id: '0011' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1398,7 +1398,7 @@ const triggerSet: TriggerSet<Data> = {
       // Return = 994
       // Return IV = 995
       netRegex: NetRegexes.gainsEffect({ effectId: '99[45]' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = Object.assign({

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -221,7 +221,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EmeraldEx Magitek Magnetism Flare',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (data, matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -238,7 +238,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EmeraldEx Magitek Magnetism Bait',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -449,7 +449,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EmeraldEx Secundus Terminus Est Plus',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -465,7 +465,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EmeraldEx Secundus Terminus Est Cross',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00FE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

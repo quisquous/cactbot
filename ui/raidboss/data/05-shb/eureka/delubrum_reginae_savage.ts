@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -868,7 +868,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DelubrumSav Seeker Burning Chains Move',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '301' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.breakChains(),
     },
     {
@@ -1729,7 +1729,7 @@ const triggerSet: TriggerSet<Data> = {
       // 8E2 Running Cold: -2
       // 8A4 Running Hot: +2
       netRegex: NetRegexes.gainsEffect({ effectId: ['89C', '89D', '8DC', '8E2', '8A4'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data, matches) => {
         const temperature: { [id: string]: number } = {
           '89C': 0,
@@ -1750,7 +1750,7 @@ const triggerSet: TriggerSet<Data> = {
       // 8F4 Cold Brand: +1
       // 8F8 Cold Brand: +2
       netRegex: NetRegexes.gainsEffect({ effectId: ['8E5', '8F3', '8F4', '8F8'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data, matches) => {
         const brand: { [id: string]: number } = {
           '8E5': 1,
@@ -1769,7 +1769,7 @@ const triggerSet: TriggerSet<Data> = {
       // 50F Left Face
       // 510 Right Face
       netRegex: NetRegexes.gainsEffect({ effectId: ['50D', '50E', '50F', '510'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data, matches) => data.forcedMarch = matches.effectId.toUpperCase(),
     },
     {
@@ -2609,7 +2609,7 @@ const triggerSet: TriggerSet<Data> = {
       // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
       // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
       netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       preRun: (data, matches) => {
         data.labyrinthineFate = matches.effectId.toUpperCase();
       },

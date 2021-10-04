@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -139,7 +139,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E7S Left With Thee',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -156,7 +156,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E7S Right With Thee',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -173,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E7S Forward With Thee',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -190,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E7S Back With Thee',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -373,14 +373,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E7S Astral Effect',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.color = 'light',
     },
     {
       id: 'E7S Umbral Effect',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.color = 'dark',
     },
     {

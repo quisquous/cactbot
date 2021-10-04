@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsNotYou, targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -87,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T9 Raven Blight You',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T9 Raven Blight Not You',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
-      condition: Conditions.targetIsNotYou(),
+      condition: targetIsNotYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
@@ -125,14 +125,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T9 Meteor',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '000[7A9]' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'T9 Meteor Stream',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -467,7 +467,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'サンダーウィング', id: '7FD' }),
       netRegexCn: NetRegexes.ability({ source: '雷翼', id: '7FD' }),
       netRegexKo: NetRegexes.ability({ source: '번개날개', id: '7FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -504,7 +504,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T9 Dragon Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (data, matches, output) => {
         data.naelDiveMarkerCount ??= 0;
         if (matches.target !== data.me)

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -265,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Copied Hobbes Short Missile',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C4' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -379,7 +379,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0011', source: '中型自爆' }),
       netRegexCn: NetRegexes.tether({ id: '0011', source: '中型自爆' }),
       netRegexKo: NetRegexes.tether({ id: '0011', source: '중형 자폭' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -407,7 +407,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Copied Flight Unit Ballistic Impact',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -499,7 +499,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Copied Engels Precision Guided Missile',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -563,7 +563,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Copied Engels Incendiary Bombing',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -580,7 +580,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Copied Engels Guided Missile',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -696,14 +696,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Copied 9S Ballistic Impact',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -115,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DEF', source: 'ミトリダテス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DEF', source: '米特里达梯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DEF', source: '미트리다테스' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {

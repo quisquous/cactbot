@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -35,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Cosmos Dark Well Far Winds',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -166,14 +166,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Cosmos Black Flame 1',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Black Flame 2',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -191,14 +191,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Cosmos Mortal Flame 1',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Mortal Flame 2',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 5.5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -238,7 +238,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Cosmos Fire\'s Domain',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       preRun: (data) => {
         data.firesDomain = (data.firesDomain ?? 0) + 1;
       },

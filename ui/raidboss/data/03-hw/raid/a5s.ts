@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -270,7 +270,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A5S Prey',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -304,7 +304,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A5S Glupgloop',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -346,7 +346,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A5S Anti-Coagulant Cleanse',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3EC' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 8,
       suppressSeconds: 30,
       alertText: (_data, _matches, output) => output.text!(),
@@ -373,7 +373,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'ゴブリキマイラ', id: '366' }),
       netRegexCn: NetRegexes.ability({ source: '哥布林奇美拉', id: '366' }),
       netRegexKo: NetRegexes.ability({ source: '고블키마이라', id: '366' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 100,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -103,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Seiryu Serpent Descending',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: '岩の式鬼', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '岩之式鬼', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '바위 사역귀', id: '0011' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 1,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -30,7 +30,7 @@ const textKeys = {
   Number: '--(\\s*\\d+\\s*)--',
 };
 
-type CommonReplacement = {
+export type CommonReplacement = {
   replaceSync: {
     [replaceKey: string]: { [key in Lang]?: string };
   };

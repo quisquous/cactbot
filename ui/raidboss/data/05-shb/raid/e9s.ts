@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -348,7 +348,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E9S Stygian Break Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0012' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 1,
       response: Responses.breakChains(),
     },
@@ -637,7 +637,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E9S Curse Of Darkness',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -50,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paglthan Lightning Rod Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A0E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paglthan Lightning Rod Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: 'A0E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.goMiddle(),
     },
     {
@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paglthan Mega Flare Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -125,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ id: '5B4D', source: 'ルナバハムート' }),
       netRegexCn: NetRegexes.ability({ id: '5B4D', source: '真月巴哈姆特' }),
       netRegexKo: NetRegexes.ability({ id: '5B4D', source: '루나 바하무트' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -142,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paglthan Kan Rhai Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0104' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

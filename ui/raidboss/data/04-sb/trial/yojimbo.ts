@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -15,7 +15,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Yojimbo Giga Jump',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -32,14 +32,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Yojimbo Dorito',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Yojimbo Gekko',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0090' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -56,7 +56,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Yojimbo Enchain',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0005' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.getOut(),
     },
   ],

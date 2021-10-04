@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -24,14 +24,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O7S Aether Rot Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.rot = true,
     },
     {
       id: 'O7S Aether Rot Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.rot = false,
     },
     {
@@ -115,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O7S Orb Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -171,14 +171,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O7S Searing Wind',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'O7S Abandonment',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

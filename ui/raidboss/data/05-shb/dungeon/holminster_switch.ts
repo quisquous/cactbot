@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsNotYou, targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -101,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Holminster Chain Down',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
-      condition: Conditions.targetIsNotYou(),
+      condition: targetIsNotYou(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
@@ -118,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Holminster Taphephobia',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {

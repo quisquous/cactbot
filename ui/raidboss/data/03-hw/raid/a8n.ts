@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -135,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // Note: both high and low use '0025' headmarker
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -154,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8N High Arithmeticks',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -321,7 +321,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8N Mirage Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -338,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8N Ice Missile Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

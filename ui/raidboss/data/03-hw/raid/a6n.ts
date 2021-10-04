@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -82,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6N Low Arithmeticks',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6N High Arithmeticks',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -181,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6N Ice Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -198,7 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6N Compressed Water Initial',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -215,7 +215,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6N Compressed Water Explode',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (_data, _matches, output) => {
         return output.text!();

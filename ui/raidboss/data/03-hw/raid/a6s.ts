@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -19,14 +19,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Magic Vulnerability Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '292' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.magicVulnerability = true,
     },
     {
       id: 'A6S Magic Vulnerability Loss',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '292' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.magicVulnerability = false,
     },
     {
@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FC' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FC' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FC' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -128,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FD' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FD' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -145,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Low Arithmeticks',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S High Arithmeticks',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -268,7 +268,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Ice Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -285,7 +285,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Fire Beam',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       // TODO: maybe this should say "hit tornado / avoid ice" but that's wordy.
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -303,7 +303,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Compressed Water Initial',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.haveWater = true,
       outputStrings: {
@@ -321,14 +321,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Compressed Water Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.haveWater = false,
     },
     {
       id: 'A6S Compressed Water Explode',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (!data.haveWater)
@@ -350,7 +350,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Compressed Lightning Initial',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.haveLightning = true,
       outputStrings: {
@@ -368,14 +368,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6S Compressed Lightning Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '400' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.haveLightning = false,
     },
     {
       id: 'A6S Compressed Lightning Explode',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (!data.haveLightning)

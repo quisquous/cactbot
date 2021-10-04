@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Knave Magic Artillery Beta You',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -182,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Knave Magic Artillery Alpha Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -342,7 +342,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '5C7[89]', source: ['ヘンゼル', 'グレーテル'] }),
       netRegexCn: NetRegexes.startsUsing({ id: '5C7[89]', source: ['韩塞尔', '格雷特'] }),
       netRegexKo: NetRegexes.startsUsing({ id: '5C7[89]', source: ['헨젤', '그레텔'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -507,7 +507,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm False Idol Lighter Note',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -524,7 +524,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm False Idol Darker Note You',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.tankBuster(),
     },
     {

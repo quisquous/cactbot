@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -168,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0039', source: 'エロース' }),
       netRegexCn: NetRegexes.tether({ id: '0039', source: '艾洛斯' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '에로스' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -185,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Qitana Viper Poison',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00AB' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

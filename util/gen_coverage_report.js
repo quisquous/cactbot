@@ -9,7 +9,6 @@ import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields';
 // Used for trigger eval.
 import Regexes from '../resources/regexes';
 import NetRegexes from '../resources/netregexes';
-import Conditions from '../resources/conditions';
 import {
   builtInResponseStr,
   Responses,

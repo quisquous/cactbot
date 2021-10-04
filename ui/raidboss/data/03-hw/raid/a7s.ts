@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -123,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: '爆弾', id: '001F' }),
       netRegexCn: NetRegexes.tether({ source: '炸弹', id: '001F' }),
       netRegexKo: NetRegexes.tether({ source: '폭탄', id: '001F' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -140,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A7S Jail Prey',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -164,7 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ source: 'VII号ゴブリウォーカーL型', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '7号哥布林战车L型', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: 'VII호 고블린워커 L형', id: '0011' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -278,7 +278,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A7S Searing Wind',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

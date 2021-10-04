@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -444,7 +444,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.gainsEffect({ source: '绝命战士', effectId: '993' }),
       netRegexKo: NetRegexes.gainsEffect({ source: '페이트브레이커', effectId: '993' }),
 
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       alertText: (_data, _matches, output) => output.awayFromGroup!(),
       outputStrings: {

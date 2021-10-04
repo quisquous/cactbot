@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -283,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Shinryu Normal Tethers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 3.8,
       response: Responses.breakChains(),
     },
@@ -294,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Shinryu Normal Slap Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0062' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

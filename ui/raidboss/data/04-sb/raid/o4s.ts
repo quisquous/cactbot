@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -302,56 +302,56 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo White Wound Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '564' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.whiteWound = true,
     },
     {
       id: 'O4S Neo White Wound Lost',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '564' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.whiteWound = false,
     },
     {
       id: 'O4S Neo Black Wound Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '565' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.blackWound = true,
     },
     {
       id: 'O4S Neo Black Wound Lost',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '565' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.blackWound = false,
     },
     {
       id: 'O4S Neo Beyond Death Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.beyondDeath = true,
     },
     {
       id: 'O4S Neo Beyond Death Lost',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '566' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.beyondDeath = false,
     },
     {
       id: 'O4S Neo Allagan Field Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C6' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.allaganField = true,
     },
     {
       id: 'O4S Neo Allagan Field Lost',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '1C6' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => data.allaganField = false,
     },
     {
@@ -902,7 +902,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Forked Lightning',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 1,
       response: Responses.spread(),
     },
@@ -910,7 +910,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Acceleration Bomb',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4, // 4 second warning.
       alarmText: (data, _matches, output) => {
         if (data.phase === 'omega')
@@ -983,7 +983,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Water Me',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (data, _matches, output) => {
         // Not clear where to tell the healer where to go on delta
         // due to picking a side for uptime strat, or other strats.

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsNotYou, targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -132,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC5' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -144,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC5' }),
-      condition: Conditions.targetIsNotYou(),
+      condition: targetIsNotYou(),
       suppressSeconds: 1,
       response: Responses.stackMarker('info'),
     },
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ruby Homing Laser',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ruby Meteor Stream',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00E0' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -218,7 +218,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ruby Bradamante',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

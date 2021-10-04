@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -125,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0001', source: '次元の裂け目' }),
       netRegexCn: NetRegexes.tether({ id: '0001', source: '次元裂缝' }),
       netRegexKo: NetRegexes.tether({ id: '0001', source: '차원의 틈새' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 5,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -154,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'The Vault Holy Chains',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.breakChains(),
     },
     {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -217,7 +217,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O3S Right Face',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -235,7 +235,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O3S Forward March',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -253,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O3S Left Face',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -271,7 +271,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O3S About Face',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

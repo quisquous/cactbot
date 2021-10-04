@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -285,7 +285,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12N Frigid Stone',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.spread(),
     },
     {

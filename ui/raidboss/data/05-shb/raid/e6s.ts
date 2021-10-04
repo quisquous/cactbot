@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -300,7 +300,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E6S Hands of Hell',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0016' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -328,7 +328,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E6S Hated of the Vortex Effect',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BB' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -345,7 +345,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E6S Hated of the Embers Effect',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BC' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T12 Whitefire',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T12 Bluefire',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

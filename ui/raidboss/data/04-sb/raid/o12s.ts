@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -448,7 +448,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Electric Slide Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '009[12345678]' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: (_data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -509,14 +509,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Optimized Meteor',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'O12S Optimized Sagittarius Arrow',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -533,7 +533,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Packet Filter F',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -550,7 +550,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Packet Filter M',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -692,7 +692,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Local Tethers',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '688' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -710,7 +710,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Far Tethers',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '689' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -728,7 +728,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Defamation',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '681' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -745,7 +745,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Latent Defect',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '686' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -763,7 +763,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Rot',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '682' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -883,7 +883,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O12S Hello World Tower Complete',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '687' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

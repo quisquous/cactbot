@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -382,7 +382,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Seeker Burning Chains',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00EE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -400,7 +400,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Seeker Burning Chains Move',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00EE' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       delaySeconds: 4,
       response: Responses.breakChains(),
     },
@@ -408,7 +408,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Seeker Dead Iron',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00ED' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       response: Responses.earthshaker(),
     },
     {
@@ -897,7 +897,7 @@ const triggerSet: TriggerSet<Data> = {
       // 8DC: Running Cold: -1
       // 8E2: Running Cold: -2
       netRegex: NetRegexes.gainsEffect({ effectId: ['89D', '8A4', '8DC', '8E2'] }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data, matches) => {
         const tempMap: { [id: string]: number } = {
           '89D': 1,

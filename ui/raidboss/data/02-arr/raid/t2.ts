@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -60,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T2 Pass Rot',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       preRun: (data) => data.rot = true,
       delaySeconds: 11,
       alertText: (data, _matches, output) => {
@@ -82,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T2 Lost Rot',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '14D' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       run: (data) => delete data.rot,
     },
   ],

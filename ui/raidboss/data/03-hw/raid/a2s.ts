@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
+import { targetIsYou } from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -91,7 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'Ix号ゴブリウィドー', id: '1413' }),
       netRegexCn: NetRegexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
       netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
-      condition: Conditions.targetIsYou(),
+      condition: targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
