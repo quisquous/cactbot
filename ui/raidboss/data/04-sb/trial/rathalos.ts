@@ -16,6 +16,10 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       // Frontal conal + tail swipe on left side.
+      // The front conal is 90 degrees, facing front.  The tail swipe starts from direct left
+      // and goes counter-clockwise to (?) back right.  This means that the right flank is
+      // entirely safe, but the left flank has only a 1/8 pie slice of safety.  For consistency,
+      // call this out as "right flank" as "right or front left" is hard to parse.
       id: 'Rathalos Mangle Phase 1',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: '286A', capture: false }),
@@ -58,7 +62,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rathalos Rush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: ['286D', '2878'], capture: false }),
-      response: Responses.awayFromFront('info'),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          // For ranged players, Rush is different than Flaming Recoil because they may have to move.
+          en: 'Avoid Charge',
+        },
+      },
     },
     {
       id: 'Rathalos Garula Add',
