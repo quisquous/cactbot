@@ -70,6 +70,7 @@
 04-sb/trial/susano-ex.ts
 04-sb/trial/suzaku.ts
 04-sb/trial/tsukuyomi-ex.ts
+04-sb/trial/tsukuyomi.ts
 04-sb/trial/yojimbo.ts
 04-sb/ultimate/ultima_weapon_ultimate.ts
 04-sb/ultimate/unending_coil_ultimate.ts
