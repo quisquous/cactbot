@@ -12,6 +12,7 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 // * Mangle (2853), paired with (285C)
 // * Mangle (2863), paired with (2CB7)
 // * Flaming Recoil (2859), paired with (2CB3)
+// * Flaming Recoil (285B), paired with (2CB4)
 // * Tail Swing (2855), paired with (2A3C)
 // * Fire Breath (2857), paired with (2A3E)
 // * Rush (2856), paired with (2A3D)
@@ -32,7 +33,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'RathalosEx Rush 2': '2CB5', // second phase charge attack, gives poison
     'RathalosEx Tail Smash': '2854', // first phase left/rear conal, paired with Mangle (285C)
     'RathalosEx Tail Swing': '2A3C', // first phase right side attack
-    'RathalosEx Flaming Recoil': '2CB3', // frontal conal + knockback
+    'RathalosEx Flaming Recoil 1': '2CB3', // frontal conal + knockback
+    'RathalosEx Flaming Recoil 2': '2CB4', // frontal conal + knockback
     'RathalosEx Steppe Sheep Lullaby': '2864', // centered circle
     'RathalosEx Steppe Yamaa Head Butt': '2865', // line aoe
     'RathalosEx Steppe Coeurl Wide Blaster': '2866', // very large conal
