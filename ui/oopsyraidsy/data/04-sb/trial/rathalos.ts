@@ -19,6 +19,10 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 // * Sweeping Flames (2879), paired with (2CC1)
 // * Fireball (2876), paired with (2CBA)
 
+// Note: Rathalos Extreme has two pairs of Flaming Recoil, but only one in normal has been seen.
+// There are 4 pairs total: https://xivapi.com/search?indexes=action&string=flaming+recoil&columns=ID&pretty=true
+// 2872 / 2CBF appears to be missing.  Assume that it exists, even if it hasn't been seen.
+
 export type Data = OopsyData;
 
 // Rathalos Normal
@@ -31,7 +35,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Rathalos Rush 2': '2CC0', // second phase charge attack, gives poison
     'Rathalos Tail Smash': '286B', // first phase left/rear conal, paired with Mangle (2CB9)
     'Rathalos Tail Swing': '2CBB', // first phase right side attack
-    'Rathalos Flaming Recoil': '2CBE', // frontal conal + knockback
+    'Rathalos Flaming Recoil 1': '2CBE', // frontal conal + knockback
+    'Rathalos Flaming Recoil 2': '2CBF', // frontal conal + knockback
     'Rathalos Steppe Sheep Lullaby': '287B', // centered circle
     'Rathalos Steppe Yamaa Head Butt': '287C', // line aoe
     'Rathalos Steppe Coeurl Wide Blaster': '287D', // very large conal

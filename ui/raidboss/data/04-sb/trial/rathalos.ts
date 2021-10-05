@@ -55,8 +55,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rathalos Flaming Recoil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: '2870', capture: false }),
-      response: Responses.awayFromFront('info'),
+      netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: ['2870', '2872'], capture: false }),
+      // It seems to be 180 degrees in front, so "Get Behind" rather than "Away From Front".
+      // This is less severe in normal mode than in extreme, so leave as info here.
+      response: Responses.getBehind('info'),
     },
     {
       id: 'Rathalos Rush',
