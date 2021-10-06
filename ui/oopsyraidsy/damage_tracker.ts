@@ -432,7 +432,18 @@ export class DamageTracker {
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
-          return { type: type, blame: matches.target, text: matches.ability };
+          return {
+            type: type,
+            blame: matches.target,
+            text: {
+              en: `${matches.ability} (share)`,
+              de: `${matches.ability}`, // FIXME
+              fr: `${matches.ability}`, // FIXME
+              ja: `${matches.ability}`, // FIXME
+              cn: `${matches.ability}`, // FIXME
+              ko: `${matches.ability}`, // FIXME
+            },
+          };
         },
       };
       this.ProcessTrigger(trigger);
