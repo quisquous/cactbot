@@ -1,13 +1,16 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   phase?: string;
   titanGaols?: string[];
+  titanBury?: NetMatches['AddedCombatant'][];
 }
 
 // Ultima Weapon Ultimate
@@ -291,6 +294,63 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.gainsEffect({ target: '泰坦', effectId: '5F9', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '타이탄', effectId: '5F9', capture: false }),
       sound: 'Long',
+    },
+    {
+      id: 'UWU Titan Bury Direction',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1803' }),
+      condition: (data, matches) => {
+        (data.titanBury ??= []).push(matches);
+        return data.titanBury.length === 5;
+      },
+      alertText: (data, _matches, output) => {
+        const bombs = (data.titanBury ?? []).map((matches) => {
+          return { x: parseFloat(matches.x), y: parseFloat(matches.y) };
+        });
+        if (bombs.length !== 5) {
+          console.error(`Titan Bury: wrong bombs size: ${JSON.stringify(data.titanBury)}`);
+          return;
+        }
+        // 5 bombs drop, and then a 6th later.
+        // They all drop on one half of the arena, and then 3 on one half and 2 on the other.
+        // e.g. all 5 drop on north half, 3 on west half, 2 on east half.
+        const centerX = 100;
+        const centerY = 100;
+        const numDir = [0, 0, 0, 0]; // north, east, south, west
+        for (const bomb of bombs) {
+          if (bomb.y < centerY)
+            numDir[0]++;
+          else
+            numDir[2]++;
+          if (bomb.x < centerX)
+            numDir[3]++;
+          else
+            numDir[1]++;
+        }
+
+        for (let idx = 0; idx < numDir.length; ++idx) {
+          if (numDir[idx] !== 5)
+            continue;
+          // Example: dir is 1 (east), party is west, facing west.
+          // We need to check dir 0 (north, aka "right") and dir 2 (south, aka "left").
+          const numLeft = numDir[(idx + 1) % 4] ?? -1;
+          const numRight = numDir[(idx - 1 + 4) % 4] ?? -1;
+
+          if (numRight === 2 && numLeft === 3)
+            return output.right!();
+          if (numRight === 3 && numLeft === 2)
+            return output.left!();
+
+          console.error(`Titan Bury: bad counts: ${JSON.stringify(data.titanBury)}, ${idx}, ${numLeft}, ${numRight}`);
+          return;
+        }
+
+        console.error(`Titan Bury: failed to find dir: ${JSON.stringify(data.titanBury)}`);
+      },
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+      },
     },
     {
       id: 'UWU Titan Gaols',
