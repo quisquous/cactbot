@@ -55,7 +55,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'UWU Windburn',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'EB' }),
-      suppressSeconds: 2,
       mistake: (_data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
