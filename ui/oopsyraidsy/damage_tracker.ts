@@ -437,7 +437,7 @@ export class DamageTracker {
             blame: matches.target,
             text: {
               en: `${matches.ability} (share)`,
-              de: `${matches.ability}`, // FIXME
+              de: `${matches.ability} (geteilt)`,
               fr: `${matches.ability}`, // FIXME
               ja: `${matches.ability}`, // FIXME
               cn: `${matches.ability} (重叠)`,
