@@ -193,6 +193,7 @@
 04-sb/trial/lakshmi.txt
 04-sb/trial/lakshmi-ex.ts
 04-sb/trial/lakshmi-ex.txt
+04-sb/trial/rathalos.ts
 04-sb/trial/rathalos-ex.ts
 04-sb/trial/seiryu.ts
 04-sb/trial/seiryu.txt

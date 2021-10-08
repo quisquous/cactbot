@@ -60,6 +60,7 @@
 04-sb/trial/byakko-ex.ts
 04-sb/trial/lakshmi-ex.ts
 04-sb/trial/lakshmi.ts
+04-sb/trial/rathalos.ts
 04-sb/trial/seiryu-ex.ts
 04-sb/trial/seiryu.ts
 04-sb/trial/shinryu-ex.ts
