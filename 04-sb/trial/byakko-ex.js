@@ -296,6 +296,7 @@ Options.Triggers.push({
     timelineReplace: [
         {
             'locale': 'de',
+            'missingTranslations': true,
             'replaceSync': {
                 'All creation trembles before my might!': 'Himmel und Erde, erzittert!',
                 'Byakko': 'Byakko',
@@ -330,6 +331,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
+            'missingTranslations': true,
             'replaceSync': {
                 'All creation trembles before my might!': 'Tremblez devant mon pouvoir !',
                 'Byakko': 'Byakko',
@@ -364,6 +366,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'ja',
+            'missingTranslations': true,
             'replaceSync': {
                 'All creation trembles before my might!': '震天動地の力を、見せてやろうッ！',
                 'Byakko': '白虎',
@@ -397,6 +400,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'cn',
+            'missingTranslations': true,
             'replaceSync': {
                 'All creation trembles before my might!': '世间万物皆因天惊地动而颤抖！',
                 'Byakko': '白虎',
@@ -431,6 +435,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
+            'missingTranslations': true,
             'replaceSync': {
                 'All creation trembles before my might!': '천지를 뒤흔드는 힘을 보여주지!',
                 'Byakko': '백호',
