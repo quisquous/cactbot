@@ -32,7 +32,7 @@ hideall "--sync--"
 214.4 "Shuck?" sync /:Amikiri:1F75:/
 229.5 "Digest" sync /:Amikiri:1F79:/
 
-249.4 "--add-"
+249.4 "--add--"
 249.9 "Mucal Glob" sync /:Amikiri:1F73:/ window 30,30 jump 182.2
 262.1 "Digest" #sync /:Amikiri:1F79:/
 282.1 "Shuck?" #sync /:Amikiri:1F75:/
