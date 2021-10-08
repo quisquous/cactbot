@@ -20,6 +20,7 @@ const triggerSet: TriggerSet<Data> = {
         kill: {
           en: 'Kill ${name}',
           de: 'Besiege ${name}',
+          cn: '击杀 ${name}',
         },
       },
     },
@@ -44,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get In Box',
           de: 'Geh in die Box',
+          cn: '进盒子',
         },
       },
     },
@@ -58,6 +60,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Chasing AOE on YOU',
           de: 'Verfolgende AoE auf DIR',
+          cn: '追踪AOE点名',
         },
       },
     },
@@ -167,7 +170,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Amikiri': '切网虾蛄',
         'Naishi-No-Kami': '尚侍',
@@ -178,6 +180,8 @@ const triggerSet: TriggerSet<Data> = {
         'The Harutsuge Gate': '春告门前',
       },
       'replaceText': {
+        '--add--': '--小怪--',
+        '--adds--': '--小怪--',
         'Abyssal Volcano': '海底火山',
         'Black Tide': '黑潮',
         'Coriolis Kick': '暴风踢',
