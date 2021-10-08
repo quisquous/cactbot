@@ -278,7 +278,16 @@ Options.Triggers.push({
     ],
     timelineReplace: [
         {
+            'locale': 'en',
+            'replaceText': {
+                'Bright Blade/Dark Blade': 'Bright/Dark Blade',
+                'Waning Grudge/Waxing Grudge': 'Waning/Waxing Grudge',
+                'Lead Of The Underworld/Steel Of The Underworld': 'Lead/Steel Of The Underworld',
+            },
+        },
+        {
             'locale': 'de',
+            'missingTranslations': true,
             'replaceSync': {
                 'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Meine Rache ... Ich will... meine Rache...',
                 'Moondust': 'Mondfragment',
@@ -328,6 +337,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
+            'missingTranslations': true,
             'replaceSync': {
                 'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Non, je ne peux pas... échouer...',
                 'Moondust': 'fragment de lune',
@@ -374,6 +384,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'ja',
+            'missingTranslations': true,
             'replaceSync': {
                 'No\. No\.\.\. Not yet\. Not\. Yet\.': '嗚呼、まだ、あたしは…………。',
                 'Moondust': '月の欠片',
@@ -420,6 +431,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'cn',
+            'missingTranslations': true,
             'replaceSync': {
                 'No\. No\.\.\. Not yet\. Not\. Yet\.': '我不能输.*我还没有.*',
                 'Moondust': '月之碎片',
@@ -465,6 +477,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
+            'missingTranslations': true,
             'replaceSync': {
                 'No\. No\.\.\. Not yet\. Not\. Yet\.': '아아, 나는 아직…….',
                 'Moondust': '달조각',
