@@ -281,6 +281,61 @@ Options.Triggers.push({
             sound: 'Long',
         },
         {
+            id: 'UWU Titan Bury Direction',
+            type: 'AddedCombatant',
+            netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1803' }),
+            condition: (data, matches) => {
+                let _a;
+                ((_a = data.titanBury) !== null && _a !== void 0 ? _a : (data.titanBury = [])).push(matches);
+                return data.titanBury.length === 5;
+            },
+            alertText: (data, _matches, output) => {
+                let _a; let _b; let _c;
+                const bombs = ((_a = data.titanBury) !== null && _a !== void 0 ? _a : []).map((matches) => {
+                    return { x: parseFloat(matches.x), y: parseFloat(matches.y) };
+                });
+                if (bombs.length !== 5) {
+                    console.error(`Titan Bury: wrong bombs size: ${JSON.stringify(data.titanBury)}`);
+                    return;
+                }
+                // 5 bombs drop, and then a 6th later.
+                // They all drop on one half of the arena, and then 3 on one half and 2 on the other.
+                // e.g. all 5 drop on north half, 3 on west half, 2 on east half.
+                const centerX = 100;
+                const centerY = 100;
+                const numDir = [0, 0, 0, 0]; // north, east, south, west
+                for (const bomb of bombs) {
+                    if (bomb.y < centerY)
+                        numDir[0]++;
+                    else
+                        numDir[2]++;
+                    if (bomb.x < centerX)
+                        numDir[3]++;
+                    else
+                        numDir[1]++;
+                }
+                for (let idx = 0; idx < numDir.length; ++idx) {
+                    if (numDir[idx] !== 5)
+                        continue;
+                    // Example: dir is 1 (east), party is west, facing west.
+                    // We need to check dir 0 (north, aka "right") and dir 2 (south, aka "left").
+                    const numLeft = (_b = numDir[(idx + 1) % 4]) !== null && _b !== void 0 ? _b : -1;
+                    const numRight = (_c = numDir[(idx - 1 + 4) % 4]) !== null && _c !== void 0 ? _c : -1;
+                    if (numRight === 2 && numLeft === 3)
+                        return output.right();
+                    if (numRight === 3 && numLeft === 2)
+                        return output.left();
+                    console.error(`Titan Bury: bad counts: ${JSON.stringify(data.titanBury)}, ${idx}, ${numLeft}, ${numRight}`);
+                    return;
+                }
+                console.error(`Titan Bury: failed to find dir: ${JSON.stringify(data.titanBury)}`);
+            },
+            outputStrings: {
+                left: Outputs.left,
+                right: Outputs.right,
+            },
+        },
+        {
             id: 'UWU Titan Gaols',
             type: 'Ability',
             netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
