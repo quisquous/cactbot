@@ -415,7 +415,7 @@ const triggerSet: TriggerSet<Data> = {
         'Twofold is my wrath, twice-cursed my foes!': '半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！',
       },
       'replaceText': {
-      '--Hakutei Add--': '--白帝出现--',
+        '--Hakutei Add--': '--白帝出现--',
         '--leap north--': '--跳北--',
         '--tiger targetable--': '--白帝可选中--',
         '--tiger untargetable--': '--白帝无法选中--',

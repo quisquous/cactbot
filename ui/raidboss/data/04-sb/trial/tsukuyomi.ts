@@ -266,7 +266,7 @@ const triggerSet: TriggerSet<Data> = {
         'Tsukuyomi': '月读',
       },
       'replaceText': {
-      'Adds': '小怪',
+        'Adds': '小怪',
         'Antitwilight': '月下美人',
         'Bright Blade': '月刀左斩',
         'Concentrativity': '压缩剑气',

@@ -267,7 +267,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Assessment Grounds': '性能试验场',
       },
       'replaceText': {
-      '--adds--': '--小怪--',
+        '--adds--': '--小怪--',
         'Barrier Shift': '护盾转换',
         'Gale Cut': '烈风杀',
         'Ketu & Rahu': '罗睺计都',
