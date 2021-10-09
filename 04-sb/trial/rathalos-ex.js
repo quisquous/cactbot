@@ -21,6 +21,8 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Right Flank (or out)',
+                    de: 'Rechte Flanke (oder raus gehen)',
+                    cn: '右侧 (或远离)',
                 },
             },
         },
@@ -53,6 +55,8 @@ Options.Triggers.push({
                 text: {
                     // TODO: we could be fancier and say "Run through" or something for #2.
                     en: 'Left Flank (or out)',
+                    de: 'Linke Flanke (oder raus gehen)',
+                    cn: '左侧 (或远离)',
                 },
             },
         },
@@ -77,11 +81,14 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'リオレウス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '火龙', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '리오레우스', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     // For ranged players, Rush is different than Flaming Recoil because they may have to move.
                     en: 'Avoid Charge',
+                    de: 'Weiche dem Ansturm aus',
+                    cn: '避开冲锋',
                 },
             },
         },
@@ -115,6 +122,8 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Use Foothold for QTE',
+                    de: 'Benutze Standbein für QTE',
+                    cn: '上龙背QTE',
                 },
             },
         },
