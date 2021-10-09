@@ -182,7 +182,10 @@ type RequiredFieldsAsUnion<Type> = {
 export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneIdType | number[];
+  // If the timeline exists, but needs significant improvements and a rewrite.
   timelineNeedsFixing?: boolean;
+  // If no timeline is possible for this zone, e.g. t3.
+  hasNoTimeline?: boolean;
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;
   timelineFile?: string;
