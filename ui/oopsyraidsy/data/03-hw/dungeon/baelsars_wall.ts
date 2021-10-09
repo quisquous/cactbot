@@ -8,28 +8,28 @@ export type Data = OopsyData;
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.BaelsarsWall,
   damageWarn: {
-    'Baelsar Overpower': '2D0', // Conal AoE, 3rd Cohort Laquerius trash, before boss 1
-    'Baelsar Bellowing Grunt': '150', // Targeted circle AoE, 3rd Cohort Canis Pugnax trash, before boss 1
-    'Baelsar Dark Fire III': '519', // Targeted circle AoE, 3rd Cohort Signifier trash, before boss 1
+    'Baelsar 3rd Cohort Laquerius Overpower': '2D0', // Conal AoE, before boss 1
+    'Baelsar 3rd Cohort Canis Pugnax Bellowing Grunt': '150', // Targeted circle AoE, before boss 1
+    'Baelsar 3rd Cohort Signifier Dark Fire III': '519', // Targeted circle AoE, before boss 1
 
-    'Baelsar Magitek Ray': '1CB3', // Line AoE, Magitek Predator, boss 1
+    'Baelsar Magitek Predator Magitek Ray': '1CB3', // Line AoE, boss 1
 
-    'Baelsar Shred': '1257', // Rectangle AoE, Adamantite Claw trash, before boss 2
-    'Baelsar Exhaust': '593', // Line AoE, Magitek Colossus trash, before boss 2
-    'Baelsar Grand Sword': '126A', // Conal AoE, Magitek Colossus trash, before boss 2
+    'Baelsar Adamantite Claw Shred': '1257', // Rectangle AoE, before boss 2
+    'Baelsar Magitek Colossus Exhaust': '593', // Line AoE, before boss 2
+    'Baelsar Magitek Colossus Grand Sword': '126A', // Conal AoE, before boss 2
 
-    'Baelsar Dynamic Sensory Jammer': '1CBA', // Extreme Caution failure, boss 2
-    'Baelsar Diffractive Laser': '1CBB', // Targeted circle AoE, Armored Weapon, boss 2
-    'Baelsar Assault Cannon': '1CC0', // Checkerboard line AoEs, Magitek Bit, boss 2
+    'Baelsar Armored Weapon Dynamic Sensory Jammer': '1CBA', // Extreme Caution failure, boss 2
+    'Baelsar Armored Weapon Diffractive Laser': '1CBB', // Targeted circle AoE, boss 2
+    'Baelsar Magitek Bit Assault Cannon': '1CC0', // Checkerboard line AoEs, boss 2
 
-    'Baelsar Carpet Bomb': '1CCF', // Targeted circle AoE, Magitek Gunship trash, after boss 2
-    'Baelsar Heartstopper': '362', // Rectangle AoE, Lance-Wielding Loyalist trash, after boss 2
+    'Baelsar Magitek Gunship Carpet Bomb': '1CCF', // Targeted circle AoE, after boss 2
+    'Baelsar Lance-Wielding Loyalist Heartstopper': '362', // Rectangle AoE, after boss 2
 
-    'Baelsar Sanguine Blade': '1CC5', // Arena cleave, The Griffin, boss 3
-    'Baelsar Corrosion': '1CCC', // Circle AoE, Blade of the Griffin, boss 3
+    'Baelsar The Griffin Sanguine Blade': '1CC5', // Arena cleave, boss 3
+    'Baelsar Blade Of The Griffin Corrosion': '1CCC', // Circle AoE, boss 3
   },
   gainsEffectWarn: {
-    'Baelsar Accuracy Down': '1C', // Flash Powder failure, boss 3
+    'Baelsar The Griffin Accuracy Down': '1C', // Flash Powder failure, boss 3
   },
 };
 

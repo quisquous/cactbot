@@ -1,4 +1,9 @@
+### BAELSAR'S WALL
 
+hideall "--reset--"
+hideall "--sync--"
+
+0 "--reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 #~~~~~~~~~~~~~~~~~~#
 # MAGITEK PREDATOR #
@@ -22,7 +27,8 @@
 68.7 "Magitek Missile" sync /:Magitek Predator:1CB4:/
 70.8 "Magitek Missile" sync /:Magitek Predator:1CB4:/
 
-75.9 "Magitek Ray" sync /:Magitek Predator:1CB3:/ window 10,10 jump 44.4
+73.2 "--sync--"   sync /:1CB3:Magitek Predator/ window 10,10
+75.9 "Magitek Ray" sync /:Magitek Predator:1CB3:/ jump 44.4
 89.0 "Magitek Claw"
 98.4 "Magitek Missile"
 100.6 "Magitek Missile"
@@ -72,6 +78,7 @@
 1231.6 "Launcher"
 1236.7 "Dynamic Sensory Jammer"
 1244.5 "Diffractive Laser"
+
 #~~~~~~~~~~~~~#
 # THE GRIFFIN #
 #~~~~~~~~~~~~~#
