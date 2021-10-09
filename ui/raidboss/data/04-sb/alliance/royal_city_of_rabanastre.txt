@@ -7,7 +7,7 @@ hideall "--start--"
 
 0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
 
-### Mateus, the Corrupt
+### Mateus, The Corrupt
 # -p 2633:27.6 2641:500
 # -ii 2638 2639 2634 263E 2714 273E 263F 2646 2642
 # -it "Mateus, The Corrupt"
@@ -17,44 +17,44 @@ hideall "--start--"
 22.6 "--sync--" sync /:2633:Mateus, The Corrupt/ window 30,10
 
 # Ice phase
-27.6 "Unbind" sync /:Mateus, the Corrupt:2633:/
-33.6 "--sync--" sync /:Mateus, the Corrupt:26A2:/
+27.6 "Unbind" sync /:Mateus, The Corrupt:2633:/
+33.6 "--sync--" sync /:Mateus, The Corrupt:26A2:/
 34.3 "--Aqua Sphere Adds--" sync / 03:........:Added new combatant Aqua Sphere\./
-57.5 "Flash-Freeze" sync /:Mateus, the Corrupt:2647:/
-66.7 "--sync--" sync /:Mateus, the Corrupt:2637:/
-74.6 "Flash-Freeze" sync /:Mateus, the Corrupt:2647:/
-91.8 "Flash-Freeze" sync /:Mateus, the Corrupt:2647:/
+57.5 "Flash-Freeze" sync /:Mateus, The Corrupt:2647:/
+66.7 "--sync--" sync /:Mateus, The Corrupt:2637:/
+74.6 "Flash-Freeze" sync /:Mateus, The Corrupt:2647:/
+91.8 "Flash-Freeze" sync /:Mateus, The Corrupt:2647:/
 
 # Frog phase
-114.1 "Rebind" sync /:Mateus, the Corrupt:2635:/ window 120,20
-124.5 "Dualcast" sync /:Mateus, the Corrupt:263C:/
-127.8 "--sync--" sync /:Mateus, the Corrupt:263B:/
-139.9 "Blizzard IV" sync /:Mateus, the Corrupt:263D:/
-152.1 "Flash-Freeze" sync /:Mateus, the Corrupt:2647:/
+114.1 "Rebind" sync /:Mateus, The Corrupt:2635:/ window 120,20
+124.5 "Dualcast" sync /:Mateus, The Corrupt:263C:/
+127.8 "--sync--" sync /:Mateus, The Corrupt:263B:/
+139.9 "Blizzard IV" sync /:Mateus, The Corrupt:263D:/
+152.1 "Flash-Freeze" sync /:Mateus, The Corrupt:2647:/
 165.4 "--Flume Toad Adds--" sync / 03:........:Added new combatant Flume Toad\./
 192.5 "Snowpierce 1" sync /:Icicle:2640:/
 # ??? More flume toads, hard to tell from logs
 214.6 "Snowpierce 2" sync /:Icicle:2640:/
-225.6 "Dendrite" sync /:Mateus, the Corrupt:2645:/
+225.6 "Dendrite" sync /:Mateus, The Corrupt:2645:/
 227.5 "--Blizzard Sphere Adds--"
 
 # Adds
 259.2 "--untargetable--" # ??? from video
-259.8 "--sync--" sync /:Mateus, the Corrupt:266C:/ window 260,20
+259.8 "--sync--" sync /:Mateus, The Corrupt:266C:/ window 260,20
 262.9 "--Azure Guard Adds--" sync / 03:........:Added new combatant Azure Guard\./
 333.2 "--enrage--" # ??? estimating from video
 
 # End of add phase aoe
-500.0 "Frostwave" sync /:Mateus, the Corrupt:2641:/
+500.0 "Frostwave" sync /:Mateus, The Corrupt:2641:/
 
 # loop
-524.3 "Unbind" sync /:Mateus, the Corrupt:2633:/ window 200,200 jump 27.6
-530.3 "--sync--" #sync /:Mateus, the Corrupt:26A2:/
+524.3 "Unbind" sync /:Mateus, The Corrupt:2633:/ window 200,200 jump 27.6
+530.3 "--sync--" #sync /:Mateus, The Corrupt:26A2:/
 531.0 "--Aqua Sphere Adds--" #sync / 03:........:Added new combatant Aqua Sphere\./
-554.2 "Flash-Freeze" #sync /:Mateus, the Corrupt:2647:/
-563.4 "--sync--" #sync /:Mateus, the Corrupt:2637:/
-571.3 "Flash-Freeze" #sync /:Mateus, the Corrupt:2647:/
-588.5 "Flash-Freeze" #sync /:Mateus, the Corrupt:2647:/
+554.2 "Flash-Freeze" #sync /:Mateus, The Corrupt:2647:/
+563.4 "--sync--" #sync /:Mateus, The Corrupt:2637:/
+571.3 "Flash-Freeze" #sync /:Mateus, The Corrupt:2647:/
+588.5 "Flash-Freeze" #sync /:Mateus, The Corrupt:2647:/
 
 
 ### Hashmal, Bringer of Order
