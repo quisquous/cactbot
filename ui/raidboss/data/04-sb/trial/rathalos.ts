@@ -33,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Right Flank (or out)',
           de: 'Rechte Flanke (oder raus gehen)',
+          cn: '右侧 (或远离)',
         },
       },
     },
@@ -66,6 +67,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: we could be fancier and say "Run through" or something for #2.
           en: 'Left Flank (or out)',
           de: 'Linke Flanke (oder raus gehen)',
+          cn: '左侧 (或远离)',
         },
       },
     },
@@ -97,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
           // For ranged players, Rush is different than Flaming Recoil because they may have to move.
           en: 'Avoid Charge',
           de: 'Weiche dem Ansturm aus',
+          cn: '避开冲锋',
         },
       },
     },
@@ -119,6 +122,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Use Foothold for QTE',
           de: 'Benutze Standbein für QTE',
+          cn: '上龙背QTE',
         },
       },
     },

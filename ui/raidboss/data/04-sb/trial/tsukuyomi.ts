@@ -57,10 +57,12 @@ const triggerSet: TriggerSet<Data> = {
         lineStackOnYou: {
           en: 'Line Stack on YOU',
           de: 'Linien Stack auf DIR',
+          cn: '直线分摊点名',
         },
         lineStackOn: {
           en: 'Line Stack on ${player}',
           de: 'Linien Stack auf ${player}',
+          cn: '直线分摊点${player}',
         },
       },
     },
@@ -254,7 +256,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Dancing Fan': '舞扇',
         'Moonlight': '月光',
@@ -265,12 +266,15 @@ const triggerSet: TriggerSet<Data> = {
         'Tsukuyomi': '月读',
       },
       'replaceText': {
+      'Adds': '小怪',
         'Antitwilight': '月下美人',
         'Bright Blade': '月刀左斩',
         'Concentrativity': '压缩剑气',
         'Dance Of The Dead': '黄泉之舞',
         'Dark Blade': '月刀右斩',
         'Dispersivity': '剑气波动',
+        'Empire': '帝国',
+        'Homeland': '家乡',
         'Lead Of The Underworld': '黄泉之弹',
         'Lunacy': '月下缭乱',
         'Lunar Halo': '百月光',

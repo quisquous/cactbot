@@ -322,7 +322,6 @@ const triggerSet: TriggerSet<Data> = {
         'Clutch': 'Umklammerung',
         'Dance Of The Incomplete': 'Tanz der zwei Gesichter',
         'Distant Clap': 'Donnergrollen',
-        'Twofold is my wrath, twice-cursed my foes!': 'Stürmt los, meine zwei Gesichter!',
         'Fell Swoop': 'Auf einen Streich',
         'Fire and Lightning': 'Feuer und Blitz',
         'Gale Force': 'Orkan',
@@ -410,13 +409,16 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Byakko': '白虎',
         'Hakutei': '白帝',
         'Twofold is my wrath, twice-cursed my foes!': '半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！',
       },
       'replaceText': {
+      '--Hakutei Add--': '--白帝出现--',
+        '--leap north--': '--跳北--',
+        '--tiger targetable--': '--白帝可选中--',
+        '--tiger untargetable--': '--白帝无法选中--',
         'Answer On High': '天雷',
         'Bombogenesis': '炸弹低气压',
         'Clutch': '紧握',
@@ -438,8 +440,6 @@ const triggerSet: TriggerSet<Data> = {
         'The Voice Of Thunder': '雷声',
         'Unrelenting Anguish': '无间地狱',
         'White Herald': '白帝冲',
-        'leap north': '跳北',
-        'tiger untargetable': '白帝无法选中',
       },
     },
     {

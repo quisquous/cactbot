@@ -58,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Fire cannon at boss',
           de: 'Feuere Kanonen auf den Boss',
+          cn: '用炮射BOSS',
         },
       },
     },
@@ -86,6 +87,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Fire Buff',
           de: 'Nimm Feuer Buff',
+          cn: '去火BUFF',
         },
       },
     },
@@ -103,6 +105,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Ice Buff',
           de: 'Nimm Eis Buff',
+          cn: '去冰BUFF',
         },
       },
     },
@@ -120,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Lightning Buff',
           de: 'Nimm Blitz Buff',
+          cn: '去雷BUFF',
         },
       },
     },
@@ -163,6 +167,7 @@ const triggerSet: TriggerSet<Data> = {
           // Knockback comes from the proximity marker, not the boss.
           en: 'Small comet knockback',
           de: 'Kleiner Kometenrückstoß',
+          cn: '小彗星击退',
         },
       },
     },
@@ -252,7 +257,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Inferno': '炼狱炎魔',
         'Magna Roader': '魔导机车大魔',
@@ -263,6 +267,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Assessment Grounds': '性能试验场',
       },
       'replaceText': {
+      '--adds--': '--小怪--',
         'Barrier Shift': '护盾转换',
         'Gale Cut': '烈风杀',
         'Ketu & Rahu': '罗睺计都',
@@ -273,6 +278,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rahu Blaster': '罗睺冲击波',
         'Rahu Cut': '罗睺限制器减档',
         'Stab': '突刺',
+        'Towers': '塔',
         'Wheel': '车轮',
         'Wild Speed': '猛冲',
       },

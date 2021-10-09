@@ -452,7 +452,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Dancing Fan': '舞扇',
         'Moondust': '月之碎片',
@@ -467,6 +466,8 @@ const triggerSet: TriggerSet<Data> = {
         'Specter of Zenos': '芝诺斯的幻影',
       },
       'replaceText': {
+        '\\(gun': '(枪',
+        'spear\\)': '长矛)',
         'Antitwilight': '月下美人',
         'Bright Blade': '月刀左斩',
         'Concentrativity': '压缩剑气',

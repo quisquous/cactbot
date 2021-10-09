@@ -78,6 +78,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: `Maths`,
             de: `Mathe`,
+            cn: `算数`,
           },
         };
       },
