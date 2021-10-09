@@ -23,10 +23,17 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rathalos Mangle Phase 1',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: '286A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: '286A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: '286A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: '286A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: '286A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: '286A', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Right Flank (or out)',
+          de: 'Rechte Flanke (oder raus gehen)',
+          cn: '右侧 (或远离)',
         },
       },
     },
@@ -34,6 +41,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rathalos Mangle Phase 2',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: '287A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: '287A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: '287A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: '287A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: '287A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: '287A', capture: false }),
       response: Responses.awayFromFront('info'),
     },
     {
@@ -42,6 +54,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // No starts using for this, but this ability is 1.5s warning.
       netRegex: NetRegexes.ability({ source: 'Rathalos', id: '286C', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Rathalos', id: '286C', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Rathalos', id: '286C', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リオレウス', id: '286C', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '火龙', id: '286C', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리오레우스', id: '286C', capture: false }),
       // This hits multiple people.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -49,6 +66,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           // TODO: we could be fancier and say "Run through" or something for #2.
           en: 'Left Flank (or out)',
+          de: 'Linke Flanke (oder raus gehen)',
+          cn: '左侧 (或远离)',
         },
       },
     },
@@ -56,6 +75,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rathalos Flaming Recoil',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: ['2870', '2872'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: ['2870', '2872'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: ['2870', '2872'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: ['2870', '2872'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: ['2870', '2872'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: ['2870', '2872'], capture: false }),
       // It seems to be 180 degrees in front, so "Get Behind" rather than "Away From Front".
       // This is less severe in normal mode than in extreme, so leave as info here.
       response: Responses.getBehind('info'),
@@ -64,11 +88,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rathalos Rush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: ['286D', '2878'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: ['286D', '2878'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: ['286D', '2878'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: ['286D', '2878'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: ['286D', '2878'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: ['286D', '2878'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           // For ranged players, Rush is different than Flaming Recoil because they may have to move.
           en: 'Avoid Charge',
+          de: 'Weiche dem Ansturm aus',
+          cn: '避开冲锋',
         },
       },
     },
@@ -90,6 +121,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Use Foothold for QTE',
+          de: 'Benutze Standbein für QTE',
+          cn: '上龙背QTE',
         },
       },
     },
@@ -113,9 +146,46 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // No starts using for this, but this ability is 1.5s warning.
       netRegex: NetRegexes.ability({ source: 'Rathalos', id: '2879', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Rathalos', id: '2879', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Rathalos', id: '2879', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リオレウス', id: '2879', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '火龙', id: '2879', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리오레우스', id: '2879', capture: false }),
       // This hits multiple people.
       suppressSeconds: 1,
       response: Responses.awayFromFront('info'),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Rathalos': 'Rathalos',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Rathalos': 'Rathalos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Rathalos': 'リオレウス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Rathalos': '火龙',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Rathalos': '리오레우스',
+      },
     },
   ],
 };

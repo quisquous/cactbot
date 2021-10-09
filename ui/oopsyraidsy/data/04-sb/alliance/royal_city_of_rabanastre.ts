@@ -95,6 +95,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
           name: matches.target,
           text: {
             en: 'Chariot',
+            de: 'Streitwagen',
+            cn: `战车`,
           },
         };
       },
