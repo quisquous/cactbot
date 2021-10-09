@@ -2,6 +2,8 @@ name: Post-Process Test
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'resources/**'
       - 'ui/raidboss/**'

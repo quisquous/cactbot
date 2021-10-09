@@ -2,6 +2,8 @@ name: JavaScript Lint
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '**/*.js'
       - '**/*.ts'
