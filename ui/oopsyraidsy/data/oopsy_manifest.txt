@@ -68,6 +68,7 @@
 04-sb/trial/shinryu.ts
 04-sb/trial/susano.ts
 04-sb/trial/susano-ex.ts
+04-sb/trial/suzaku-ex.ts
 04-sb/trial/suzaku.ts
 04-sb/trial/tsukuyomi-ex.ts
 04-sb/trial/tsukuyomi.ts
