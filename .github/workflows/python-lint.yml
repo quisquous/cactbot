@@ -2,6 +2,8 @@ name: Python Lint
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '**/*.py'
       - '.github/workflows/python-lint.yml'

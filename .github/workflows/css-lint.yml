@@ -2,6 +2,8 @@ name: CSS Lint
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '*.json'
       - '**/*.css'
