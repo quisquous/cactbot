@@ -77,6 +77,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           blame: matches.target,
           text: {
             en: `Maths`,
+            de: `Mathe`,
           },
         };
       },
