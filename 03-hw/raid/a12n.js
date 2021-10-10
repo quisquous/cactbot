@@ -12,7 +12,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Limit break now!',
                     de: 'Limit break jetzt!',
-                    fr: 'Limit break maintenant !',
+                    fr: 'Transcendance maintenant !',
                     ja: 'タンクLBを！',
                     cn: '坦克LB！',
                     ko: '지금 탱리밋 사용!',

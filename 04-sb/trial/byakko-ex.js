@@ -84,7 +84,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Provoke Boss',
                     de: 'Boss abspotten',
-                    fr: 'Provoquez le Boss !',
+                    fr: 'Provoquez le Boss',
                     ja: '挑発',
                     cn: '挑衅',
                     ko: '보스 도발',
@@ -107,7 +107,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Provoke Boss',
                     de: 'Boss abspotten',
-                    fr: 'Provoquez le Boss !',
+                    fr: 'Provoquez le Boss',
                     ja: '挑発',
                     cn: '挑衅',
                     ko: '보스 도발',
@@ -148,7 +148,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Tank LB NOW',
                     de: 'JETZT Tank LB',
-                    fr: 'LB Tank maintenant !',
+                    fr: 'Transcendance Tank maintenant !',
                     ja: '今タンクLB',
                     cn: '坦克LB',
                     ko: '탱리밋',

@@ -85,7 +85,7 @@ Options.Triggers.push({
                 akhRhaiSpreadAndMove: {
                     en: 'Akh Rhai: spread and move',
                     de: 'Akh Rhai: Verteilen und bewegen',
-                    fr: 'Akh Rhai: Dispersion et bougez',
+                    fr: 'Akh Rhai : Dispersion et bougez',
                     ja: 'アク・ラーイ: 散開 動け',
                     cn: '天光轮回：散开和移动',
                     ko: '아크 라이: 산개, 이동',
@@ -193,7 +193,7 @@ Options.Triggers.push({
                 stopToGetFrozen: {
                     en: 'stop to get frozen',
                     de: 'Stopp! Einfrieren lassen',
-                    fr: 'Arrêtez, laissez-vous gelé',
+                    fr: 'Arrêtez, laissez-vous geler',
                     ja: '止まれ、凍結',
                     cn: '停下，冰地面',
                     ko: '멈춰서 얼기',
@@ -367,7 +367,7 @@ Options.Triggers.push({
                 text: {
                     en: 'no more heals needed',
                     de: 'keine Heilung mehr nötig',
-                    fr: 'Pas besoin de soigner',
+                    fr: 'Plus besoin de soigner',
                     ja: 'ヒールはもう要らない',
                     cn: '不需要更多奶了',
                     ko: '힐 그만',
@@ -541,7 +541,7 @@ Options.Triggers.push({
                 text: {
                     en: 'kill left first',
                     de: 'linken Flügel zuerst',
-                    fr: 'Tuez la gauche en première',
+                    fr: 'Tuez l\'aile gauche d\'abord',
                     ja: 'レフトウィングに攻撃',
                     cn: '击杀左翼',
                     ko: '왼쪽 날개 먼저',
@@ -564,7 +564,7 @@ Options.Triggers.push({
                 text: {
                     en: 'kill right first',
                     de: 'rechten Flügel zuerst',
-                    fr: 'Tuez la droite en première',
+                    fr: 'Tuez l\'aile droite d\'abord',
                     ja: 'ライトウィングに攻撃',
                     cn: '击杀右翼',
                     ko: '오른쪽 날개 먼저',

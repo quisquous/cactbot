@@ -212,7 +212,7 @@ Options.Triggers.push({
                 getTowerTankHealerTowers: {
                     en: 'Get Tower (tank/healer towers)',
                     de: 'In den Turm',
-                    fr: 'Prenez votre tour (tours Tank/Healers)',
+                    fr: 'Prenez votre tour (tours T/H)',
                     ja: '塔 (タンクヒラが塔)',
                     cn: '踩塔（坦克/治疗踩塔）',
                     ko: '기둥 처리 (탱/힐)',

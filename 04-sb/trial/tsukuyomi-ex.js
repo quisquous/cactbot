@@ -54,7 +54,7 @@ Options.Triggers.push({
                 getOutOfFront: {
                     en: 'Get out of front',
                     de: 'Weg von vorn',
-                    fr: 'Partez du devant',
+                    fr: 'Éloignez-vous de l\'avant',
                     ja: '正面から離れる',
                     cn: '远离正面',
                     ko: '정면 피하기',
@@ -231,7 +231,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Move to Black!',
                     de: 'In\'s schwarze laufen!',
-                    fr: 'Bougez en zone noire !',
+                    fr: 'Allez en zone noire !',
                     ja: '新月に！',
                     cn: '踩黑色！',
                     ko: '검정색으로 이동!',
@@ -268,7 +268,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Move to White!',
                     de: 'In\'s weiße laufen!',
-                    fr: 'Bougez en zone blanche !',
+                    fr: 'Allez en zone blanche !',
                     ja: '満月に！',
                     cn: '踩白色！',
                     ko: '흰색으로 이동!',

@@ -28,7 +28,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Breath Wing: Be beside boss',
                     de: 'Atemschwinge: Neben Boss gehen',
-                    fr: 'Aile déferlante : Soyez à côté du boss',
+                    fr: 'Aile déferlante : Placez-vous à côté du boss',
                     ja: 'ブレスウィング: ボスに近づく',
                     cn: '站boss附近',
                     ko: '날개바람: 보스 옆으로',

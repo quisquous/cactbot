@@ -13,6 +13,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Tank Tether',
                     de: 'Tank Verbindung',
+                    fr: 'Lien tank',
                     ja: 'タンク 線を取る',
                     cn: '坦克接线远离人群',
                     ko: '탱 블래스터 징',

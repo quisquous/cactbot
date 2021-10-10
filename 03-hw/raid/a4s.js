@@ -53,7 +53,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stun ${name}',
                     de: 'Unterbreche ${name}',
-                    fr: 'Stun ${name}',
+                    fr: 'Étourdissez ${name}',
                     ja: 'スタン: ${name}',
                     cn: '眩晕${name}',
                     ko: '${name}기절 시키기',

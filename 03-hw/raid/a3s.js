@@ -119,7 +119,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Burn Higher HP Hand',
                     de: 'Fokusiere Hand mit mehr HP',
-                    fr: 'Burn sur la main au PV le plus élevée',
+                    fr: 'Focus sur la main aux PV les plus élevés',
                     ja: 'HPが高い手を討つ',
                     cn: '转火血多手',
                     ko: 'HP 더 많은 손에 집중',
@@ -164,7 +164,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get drainage tether',
                     de: 'Hole die Entwässerungs-Verbindung',
-                    fr: 'Prenez un lien drainage',
+                    fr: 'Prenez un lien de drainage',
                     ja: '線を取る',
                     cn: '接线',
                     ko: '하수로 선 가져오기',
@@ -227,7 +227,7 @@ Options.Triggers.push({
                 attract: {
                     en: 'Attract: away from ${player}',
                     de: 'Anziehung: weg von ${player}',
-                    fr: 'Attraction : Eloignez-vous de ${player}',
+                    fr: 'Attraction : Éloignez-vous de ${player}',
                     ja: '異なる極: ${player}から離れる',
                     cn: '异极：远离${player}',
                     ko: '자력: ${player}와 떨어지기',

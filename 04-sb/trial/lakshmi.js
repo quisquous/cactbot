@@ -63,7 +63,7 @@ Options.Triggers.push({
                 text: {
                     en: 'USE VRIL OR DIE',
                     de: 'BENUTZT VRIL ODER STIRB',
-                    fr: 'UTILISEZ VRIL OU MOURREZ',
+                    fr: 'UTILISEZ LE VRIL OU MOURREZ',
                     ja: 'エーテル使って！！',
                     cn: '快用元气啊！！',
                     ko: '락슈미 에테르를 쓰지 않으면 죽습니다',
@@ -190,6 +190,7 @@ Options.Triggers.push({
                 powerFlower: {
                     en: 'Expanding Flower Marker',
                     de: 'Ausdehnender Blumen-Marker',
+                    fr: 'Marqueur fleur en extension',
                     ja: '自分に左手 (拡大する)',
                     cn: '大花点名',
                     ko: '커지는 원형 장판 징',

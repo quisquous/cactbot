@@ -38,7 +38,7 @@ Options.Triggers.push({
                 stackMarkerOnYou: {
                     en: 'Stack marker on YOU',
                     de: 'Sammeln Marker auf DIR',
-                    fr: 'Package marqueur sur VOUS',
+                    fr: 'Marqueur de package sur VOUS',
                     ja: '自分に集合',
                     cn: '集合点名',
                     ko: '쉐어징 대상자',

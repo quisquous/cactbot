@@ -479,7 +479,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Heal To Full',
                     de: 'Vollheilen',
-                    fr: 'Full life',
+                    fr: 'Soignez complètement',
                     ja: '全員のHPを全回復',
                     cn: '奶满全队',
                     ko: '체력 풀피로',
@@ -534,7 +534,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Bolt on YOU',
                     de: 'Blitz auf DIR',
-                    fr: 'Eclair sur VOUS',
+                    fr: 'Éclair sur VOUS',
                     ja: '剣から離れる',
                     cn: '离开剑所指的区域',
                     ko: '번개 대상자',
@@ -759,7 +759,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Heal Like Whoa',
                     de: 'Heilen was das Zeug hält',
-                    fr: 'Mass heal',
+                    fr: 'Soignez de ouf !',
                     ja: 'ヒーラー頑張って！',
                     cn: '加大治疗',
                     ko: '계속 힐 돌리기',

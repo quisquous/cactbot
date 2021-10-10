@@ -170,7 +170,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Evade marching knights',
                     de: 'Marschierenden Rittern ausweichen',
-                    fr: 'Esquivez la marche chevaliers',
+                    fr: 'Esquivez les chevaliers',
                     ja: 'ナイトを避ける',
                     cn: '躲开人马',
                     ko: '자동기사 피하기',

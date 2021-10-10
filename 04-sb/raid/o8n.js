@@ -222,7 +222,7 @@ Options.Triggers.push({
                 text: {
                     en: 'True Ice: Get in',
                     de: 'Wahre Eis: Reingehen',
-                    fr: 'Vraie glace: Rentrez dedans',
+                    fr: 'Vraie glace : Allez à l\'intérieur',
                     ja: '真ブリザガ: 入る',
                     cn: '真冰：靠近',
                     ko: '진실 블리자가: 안으로',
@@ -244,7 +244,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Fake Ice: Get in',
                     de: 'Falsches Eis: Reingehen',
-                    fr: 'Fausse glace: Rentrez dedans',
+                    fr: 'Fausse glace: Allez à l\'intérieur',
                     ja: '偽ブリザガ: 入る',
                     cn: '假冰：靠近',
                     ko: '거짓 블리자가: 안으로',
