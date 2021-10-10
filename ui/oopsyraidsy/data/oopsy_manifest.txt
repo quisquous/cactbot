@@ -9,6 +9,7 @@
 02-arr/trial/titan-nm.ts
 03-hw/alliance/weeping_city.ts
 03-hw/dungeon/aetherochemical_research_facility.ts
+03-hw/dungeon/baelsars_wall.ts
 03-hw/dungeon/fractal_continuum.ts
 03-hw/dungeon/gubal_library_hard.ts
 03-hw/dungeon/sohm_al_hard.ts

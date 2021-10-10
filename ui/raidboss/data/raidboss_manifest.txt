@@ -47,6 +47,8 @@
 03-hw/alliance/weeping_city.txt
 03-hw/dungeon/aetherochemical_research_facility.ts
 03-hw/dungeon/aetherochemical_research_facility.txt
+03-hw/dungeon/baelsars_wall.ts
+03-hw/dungeon/baelsars_wall.txt
 03-hw/dungeon/fractal_continuum.ts
 03-hw/dungeon/fractal_continuum.txt
 03-hw/dungeon/gubal_library_hard.ts
