@@ -52,8 +52,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Baelsar Dynamic Sensory Jammer',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CB9', source: 'Armored Weapon', capture: false }),
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '46C' }),
+      condition: Conditions.targetIsYou(),
       response: Responses.stopEverything(),
     },
     {
