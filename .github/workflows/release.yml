@@ -27,7 +27,8 @@ jobs:
           key: modules-${{ hashFiles('package-lock.json') }}
 
       - name: Fetch NPM Dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
+        # TODO: fix cache@v2 to cache node_modules
+        # if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |
           npm ci --ignore-scripts
 
