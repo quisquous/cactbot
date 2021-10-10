@@ -641,19 +641,16 @@ class EurekaTracker {
     labelTrackerElem.innerHTML = this.currentTracker;
 
     for (const nm of Object.values(this.nms)) {
-      let respawnMs: number | undefined;
+      let respawnMs = 0;
       if (nm.respawnTimeMsLocal)
         respawnMs = nm.respawnTimeMsLocal;
       else if (nm.respawnTimeMsTracker)
         respawnMs = nm.respawnTimeMsTracker;
-      if (respawnMs === undefined)
-        continue;
 
       const popRespawnMs = respawnMs;
 
       // Ignore respawns in the past.
-      if (respawnMs !== undefined)
-        respawnMs = Math.max(respawnMs, nowMs);
+      respawnMs = Math.max(respawnMs, nowMs);
       let respawnIcon = '';
 
       if (nm.weather) {
