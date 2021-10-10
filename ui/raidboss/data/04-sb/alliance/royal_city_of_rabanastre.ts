@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
         breathless: {
           en: 'Breathless: ${num}',
           de: 'Atemnot: ${num}',
-          fr: 'Suffocation :${num}',
+          fr: 'Suffocation : ${num}',
           ja: '呼吸困難 :${num}',
           cn: '窒息层数:${num}',
           ko: '호흡곤란: ${num}',
@@ -187,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move Away',
           de: 'Weg da',
-          fr: 'Eloignez-vous',
+          fr: 'Éloignez-vous',
           ja: 'ハンマーから離れる',
           cn: '远离大锤落点',
           ko: '기둥으로부터 피하기',

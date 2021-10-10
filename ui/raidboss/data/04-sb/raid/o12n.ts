@@ -101,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move bosses apart',
           de: 'Bosse auseinander ziehen',
-          fr: 'Ecartez les boss',
+          fr: 'Écartez les boss',
           ja: 'ボスを引き離す',
           cn: '拉开boss',
           ko: '보스 서로 떨어뜨리기',

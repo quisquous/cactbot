@@ -41,7 +41,7 @@ const triggerSet: TriggerSet<Data> = {
         akhRhaiSpreadAndMove: {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
-          fr: 'Akh Rhai: Dispersion et bougez',
+          fr: 'Akh Rhai : Dispersion et bougez',
           ja: 'アク・ラーイ: 散開 動け',
           cn: '天光轮回：散开和移动',
           ko: '아크 라이: 산개, 이동',

@@ -181,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback Laser on YOU',
           de: 'Rückstoß-Laser auf DIR',
-          fr: 'Poussée-laser sur VOUS',
+          fr: 'Poussée laser sur VOUS',
           ja: '自分にノックバック',
           cn: '击退点名',
           ko: '날갯짓 대상자',

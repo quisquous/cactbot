@@ -29,7 +29,7 @@ const strings = {
   stack: {
     en: 'Stack',
     de: 'Stacken',
-    fr: 'Stack',
+    fr: 'Package',
     ja: 'スタック',
     cn: '集合',
     ko: '집합',
@@ -37,7 +37,7 @@ const strings = {
   getOut: {
     en: 'Get Out',
     de: 'raus da',
-    fr: 'sortir',
+    fr: 'Sortez',
     ja: '外へ',
     cn: '远离',
     ko: '밖으로',
@@ -45,7 +45,7 @@ const strings = {
   getIn: {
     en: 'Get In',
     de: 'reingehen',
-    fr: 'rentrer dedans',
+    fr: 'Allez à l\'intérieur',
     ja: '中へ',
     cn: '靠近',
     ko: '안으로',
@@ -179,7 +179,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Past: Stack and Stay',
           de: 'Vergangenheit: Sammeln und Stehenbleiben',
-          fr: 'Passé : Stack et ne bougez plus',
+          fr: 'Passé : Package et ne bougez plus',
           ja: '過去: スタックしてそのまま',
           cn: '分摊不动',
           ko: '과거: 맞고 가만히있기',
@@ -200,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Future: Stack and Through',
           de: 'Zukunft: Sammeln und Durchlaufen',
-          fr: 'Futur : Stack et traversez',
+          fr: 'Futur : Package et traversez',
           ja: '未来: 頭割り後ボスを通り抜ける',
           cn: '分摊穿boss',
           ko: '미래: 맞고 통과해가기',
@@ -286,7 +286,7 @@ const triggerSet: TriggerSet<Data> = {
         maxMeleeAvoidTanks: {
           en: 'Max Melee: Avoid Tanks',
           de: 'Max Nahkampf: Weg von den Tanks',
-          fr: 'Max Mêlée : éloignez-vous des Tanks',
+          fr: 'Max Mêlée : éloignez-vous des tanks',
           ja: '近接最大レンジ タンクから離れる',
           cn: '最远距离',
           ko: '칼끝딜: 탱커 피하기',
@@ -294,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
         wingsBeNearFar: {
           en: 'Wings: Be Near/Far',
           de: 'Schwingen: Nah/Fern',
-          fr: 'Ailes : être près/loin',
+          fr: 'Ailes : Placez-vous près/loin',
           ja: '翼: めり込む/離れる',
           cn: '双翅膀：近或远',
           ko: '양날개: 가까이/멀리',
@@ -412,7 +412,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Sleep: Go Inside',
           de: 'Schlaf: Zur Mitte',
-          fr: 'Sommeil : allez au centre',
+          fr: 'Sommeil : Allez au centre',
           ja: '睡眠: 中へ',
           cn: '去中间',
           ko: '수면: 안으로',
