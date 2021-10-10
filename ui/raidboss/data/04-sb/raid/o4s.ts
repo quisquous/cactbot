@@ -1326,12 +1326,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Exdeath': '艾克斯迪司',
         'Neo Exdeath': '新生艾克斯迪司',
       },
       'replaceText': {
+        '\\(charge\\)': '(排队)',
+        '\\(colors': '(鸳鸯锅',
+        'lasers\\)': '激光)',
         'Aero III': '暴风',
         'Almagest': '至高无上',
         'Black Hole': '黑洞',

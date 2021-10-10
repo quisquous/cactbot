@@ -1,5 +1,6 @@
 {
   "name": "cactbot",
+  "version": "0.23.6",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -25,7 +26,8 @@
     "translate-timeline": "npm run util -- translateTimeline",
     "generate": "npm run util -- generate",
     "process-triggers": "node --loader ts-node/esm util/process_triggers_folder.js",
-    "generate-log-guide": "node --loader ts-node/esm util/gen_log_guide.ts"
+    "generate-log-guide": "node --loader ts-node/esm util/gen_log_guide.ts",
+    "version": "node util/sync_version.cjs && git add -u"
   },
   "devDependencies": {
     "@actions/github": "^5.0.0",

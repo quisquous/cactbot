@@ -1,6 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
-import Util from '../../../../resources/util';
+import { watchCombatant } from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
 import { LocaleText, TriggerSet } from '../../../../types/trigger';
@@ -8,6 +8,7 @@ import { LocaleText, TriggerSet } from '../../../../types/trigger';
 const strikingDummyNames: LocaleText = {
   en: 'Striking Dummy',
   de: 'Trainingspuppe',
+  cn: '木人',
 };
 
 export interface Data extends RaidbossData {
@@ -234,6 +235,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
+      netRegexCn: NetRegexes.echo({ line: 'cactbot语言.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
       infoText: (data, _matches, output) => output.text!({ lang: data.parserLang }),
       outputStrings: {
@@ -252,6 +254,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
+      netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -273,8 +276,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
+      netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
       promise: (data) =>
-        Util.watchCombatant({
+        watchCombatant({
           names: [
             data.me,
             strikingDummyNames[data.lang] ?? strikingDummyNames['en'],
@@ -304,6 +308,7 @@ const triggerSet: TriggerSet<Data> = {
         close: {
           en: 'Dummy close!',
           de: 'Puppe beendet!',
+          cn: '靠近木人！',
         },
       },
     },

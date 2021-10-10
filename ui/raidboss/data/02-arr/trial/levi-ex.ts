@@ -1,7 +1,7 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
-import Util from '../../../../../resources/util';
+import { isCasterDpsJob, isHealerJob, isRangedDpsJob } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '875', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '875', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '875', capture: false }),
-      condition: (data) => Util.isCasterDpsJob(data.job) || Util.isHealerJob(data.job),
+      condition: (data) => isCasterDpsJob(data.job) || isHealerJob(data.job),
       suppressSeconds: 9999,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -154,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン・テール', id: '874', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '利维亚桑的尾巴', id: '874', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '리바이어선 꼬리', id: '874', capture: false }),
-      condition: (data) => Util.isRangedDpsJob(data.job),
+      condition: (data) => isRangedDpsJob(data.job),
       suppressSeconds: 9999,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

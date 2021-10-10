@@ -65,7 +65,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ABE', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ABE', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4ABE', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -734,7 +733,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B04', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B04', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B04', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],
@@ -900,6 +898,9 @@ const triggerSet: TriggerSet<Data> = {
         'Ruby Bit': '红宝石浮游炮',
         'Raven\'s Image': '奈尔的幻影',
         'Meteor': '陨石',
+        'Comet': '彗星',
+        'White Agony': '奈尔的悲叹',
+        'White Fury': '奈尔的愤怒',
       },
       'replaceText': {
         '--cutscene--': '--过场动画--',

@@ -22,7 +22,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Temple Cardinal Shift',
       regex: /Cardinal Shift/,
       beforeSeconds: 5,
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],
@@ -36,7 +35,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1FD6', source: 'クァール・シュルティ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FD6', source: '凶豹所闻', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FD6', source: '커얼 슈루티', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -48,7 +46,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1FD6', source: 'クァール・スムリティ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FD6', source: '凶豹所忆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FD6', source: '커얼 스므리티', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -148,7 +145,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1FE7', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FE7', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FE7', source: '쌍표범 이본', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

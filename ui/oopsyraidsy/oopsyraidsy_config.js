@@ -167,6 +167,10 @@ class OopsyConfigurator {
       filename: 'buff_map.ts',
       title: this.base.translate({
         en: 'Missed Buffs',
+        de: 'Verfehlte Buffs',
+        fr: 'Buffs manqués',
+        ja: '欠けバフ',
+        cn: '遗漏Buff',
       }),
       triggerSet: { triggers: generateBuffTriggers() },
     };

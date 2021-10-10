@@ -508,3 +508,9 @@ export default class TimerBox extends HTMLElement {
 }
 
 window.customElements.define('timer-box', TimerBox);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'timer-box': TimerBox;
+  }
+}

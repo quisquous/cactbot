@@ -676,7 +676,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -937,7 +936,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -3260,6 +3258,7 @@ const triggerSet: TriggerSet<Data> = {
         'Brute Justice': '残暴正义号',
         'Cruise Chaser': '巡航驱逐者',
         'Jagd Doll': '狩猎人偶',
+        'Judgment Crystal': '审判结晶',
         'Liquid Hand': '活水之手',
         'Liquid Rage': '活水之怒',
         'Living Liquid': '有生命活水',

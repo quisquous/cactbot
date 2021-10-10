@@ -2,7 +2,7 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
+import { watchCombatant } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -212,7 +212,6 @@ const triggerSet: TriggerSet<Data> = {
       // It's tough to track who this is on, especially for the first one.
       // Both tanks should care about the tankbuster because they can throw
       // mitigation on the other, so just always play this for both tanks.
-      condition: Conditions.caresAboutPhysical(),
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
@@ -456,7 +455,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
-        Util.watchCombatant({
+        watchCombatant({
           ids: [parseInt(matches.sourceId, 16)],
         }, (ret) => {
           return ret.combatants.some((c) => {
@@ -1187,7 +1186,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ネール・デウス・ダーナス', id: '26B6' }),
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔·神·达纳斯', id: '26B6' }),
       netRegexKo: NetRegexes.startsUsing({ source: '넬 데우스 다르누스', id: '26B6' }),
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap('alert'),
     },
     {

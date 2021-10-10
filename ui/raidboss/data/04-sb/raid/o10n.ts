@@ -1,4 +1,6 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -140,6 +142,78 @@ const triggerSet: TriggerSet<Data> = {
           cn: '去角落',
         },
       },
+    },
+    {
+      id: 'O10N Earth Shaker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.earthshaker(),
+    },
+    {
+      id: 'O10N Akh Morn',
+      type: 'HeadMarker',
+      // This corresponds with 316C ability cast (for initial hit).
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'O10N Thunderstorm',
+      type: 'HeadMarker',
+      // This corresponds with the 31D2 ability cast.
+      netRegex: NetRegexes.headMarker({ id: '00A0' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
+      id: 'O10N Dry Ice',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0043' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Drop Ice Outside',
+          de: 'Eis draußen ablegen',
+          cn: '把冰放在外面',
+        },
+      },
+    },
+    {
+      id: 'O10N Tail End',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '31C5', source: 'Midgardsormr' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '31C5', source: 'Midgardsormr' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '31C5', source: 'Midgardsormr' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '31C5', source: 'ミドガルズオルム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '31C5', source: '尘世幻龙' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '31C5', source: '미드가르드오름' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'O10N Rime Wreath',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '33EF', source: 'Ancient Dragon', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '33EF', source: 'Antik(?:e|er|es|en) Drache', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '33EF', source: 'Dragon Ancien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '33EF', source: 'エンシェントドラゴン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '33EF', source: '远古之龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '33EF', source: '고룡', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'O10N Akh Rhai',
+      type: 'Ability',
+      // Damage starts hitting ~2s after this ability.
+      // Assuming that it locks in on cast and not on starts casting.
+      // Technically this is only on DPS, but it's not targeted, so just tell everybody.
+      netRegex: NetRegexes.ability({ id: '3622', source: 'Midgardsormr', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '3622', source: 'Midgardsormr', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '3622', source: 'Midgardsormr', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '3622', source: 'ミドガルズオルム', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '3622', source: '尘世幻龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '3622', source: '미드가르드오름', capture: false }),
+      response: Responses.moveAway(),
     },
   ],
   timelineReplace: [

@@ -21,7 +21,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '547F', source: 'マッドマン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '547F', source: '土泥人' }),
       netRegexKo: NetRegexes.startsUsing({ id: '547F', source: '진흙인간' }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
@@ -54,7 +53,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '5491', source: 'マッドマン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5491', source: '土泥人', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5491', source: '진흙인간', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -143,7 +141,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '5913', source: 'マザーポークシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5913', source: '仙子猪之母', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5913', source: '마더 포크시', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -214,7 +211,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '5911', source: 'マザーポークシー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '5911', source: '仙子猪之母' }),
       netRegexKo: NetRegexes.startsUsing({ id: '5911', source: '마더 포크시' }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
@@ -366,7 +362,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
-        'Aeolian Cave Sprite': '风洞元精',
+        'Aeolian Cave Sprite': '洞窟风元精',
         'The Clayclot Cauldron': '发光的挖土场',
         'The Clearnote Cauldron': '凉爽的打水场',
         'Mother Porxie': '仙子猪之母',

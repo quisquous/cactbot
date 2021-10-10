@@ -49,18 +49,6 @@ namespace Cactbot {
         return 0;
       }
 
-      // Cannot "just" cast to FFXIV_ACT_Plugin.FFXIV_ACT_Plugin here, because
-      // ACT uses LoadFrom which places the assembly into its own loading
-      // context.  Use dynamic here to make this choice at runtime.
-
-      // ffxiv plugin 1.x path
-      try {
-        dynamic plugin_derived = ffxiv_plugin;
-        return (int)plugin_derived.Settings.GetParseSettings().LanguageID;
-      } catch (Exception) {
-      }
-
-      // ffxiv plugin 2.x path
       try {
         // Cannot "just" cast to FFXIV_ACT_Plugin.FFXIV_ACT_Plugin here, because
         // ACT uses LoadFrom which places the assembly into its own loading

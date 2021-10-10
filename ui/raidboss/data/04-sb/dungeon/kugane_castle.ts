@@ -15,14 +15,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Kugane Castle Issen',
       regex: /Issen/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankCleave(),
     },
     {
       id: 'Kugane Castle Wakizashi',
       regex: /Wakizashi/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
   ],
@@ -36,7 +34,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1E93', source: 'ズイコウ丸', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1E93', source: '瑞光丸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1E93', source: '즈이코우마루', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -217,7 +214,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Daigoro': '大五郎',
         'Dojun-Maru': '道顺丸',
@@ -230,6 +226,8 @@ const triggerSet: TriggerSet<Data> = {
         'Zuiko-Maru': '瑞光丸',
       },
       'replaceText': {
+        '\\(inner\\)': '(内)',
+        '\\(outer\\)': '(外)',
         'Clearout': '横扫',
         'Clockwork Medium': '机关召集',
         'Clockwork Raiton': '机关雷遁',

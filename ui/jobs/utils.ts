@@ -2,8 +2,9 @@ import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { LocaleNetRegex } from '../../resources/translations';
-import Util from '../../resources/util';
+import { isCasterDpsJob, isHealerJob } from '../../resources/util';
 import { Job } from '../../types/job';
+import { NetAnyFields } from '../../types/net_fields';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import { Bars } from './bar';
@@ -75,7 +76,7 @@ export class RegexesHolder {
 }
 
 export const doesJobNeedMPBar = (job: Job): boolean =>
-  Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
+  isCasterDpsJob(job) || isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 
 /** compute greased lightning stacks by player's level */
 const getLightningStacksByLevel = (level: number): number =>
@@ -213,4 +214,20 @@ export const makeAuraTimerIcon = (
   icon.duration = seconds;
 
   return div;
+};
+
+export const normalizeLogLine = <Fields extends NetAnyFields>(
+  line: string[],
+  fields: Fields,
+): Partial<Record<keyof Fields, string>> => {
+  return new Proxy({}, {
+    get(_target, property) {
+      if (typeof property === 'string' && property in fields) {
+        const looseFields: { [prop: string]: number } = fields;
+        const fieldKey: number | undefined = looseFields[property];
+        if (fieldKey)
+          return line[fieldKey];
+      }
+    },
+  });
 };

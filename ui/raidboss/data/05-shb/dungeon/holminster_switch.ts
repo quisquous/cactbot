@@ -20,7 +20,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DC5', source: 'フォーギヴン・ディソナンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DC5', source: '得到宽恕的失调', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DC5', source: '면죄된 불화', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -56,7 +55,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DD0', source: 'フォーギヴン・テスリーン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DD0', source: '得到宽恕的泰丝琳', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD0', source: '면죄된 테슬린', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -85,7 +83,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DD8', source: 'フィリア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DD8', source: '斐利亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD8', source: '필리아', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

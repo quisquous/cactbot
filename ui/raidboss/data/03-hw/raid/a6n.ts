@@ -15,7 +15,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A6N Mind Blast',
       regex: /Mind Blast/,
       beforeSeconds: 4,
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -356,7 +355,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
-        'Blaster(?! Mirage)': '冲击波',
+        'Blaster(?! Mirage)': '爆破者',
         'Blaster Mirage': '爆破者幻象',
         'Brawler': '争斗者',
         'Machinery Bay 67': '第67机工兵仓库',

@@ -45,7 +45,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -261,7 +260,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

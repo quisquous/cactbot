@@ -1,10 +1,11 @@
+import logDefinitions from '../../resources/netlog_defs';
 import NetRegexes from '../../resources/netregexes';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
-import Util from '../../resources/util';
+import { jobToRole } from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
 import { OopsyData } from '../../types/data';
@@ -42,6 +43,8 @@ import {
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
+const actorControlFadeInCommand = '40000010';
+
 const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
 
 type ProcessedOopsyTriggerSet = LooseOopsyTriggerSet & {
@@ -63,7 +66,6 @@ export class DamageTracker {
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
-  private defeatedRegex: CactbotBaseRegExp<'WasDefeated'>;
   private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
   private lastDamage: { [name: string]: Partial<NetMatches['Ability']> } = {};
   private triggerSuppress: { [triggerId: string]: number } = {};
@@ -106,7 +108,6 @@ export class DamageTracker {
       LocaleNetRegex.countdownStart['en'];
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang] ||
       LocaleNetRegex.countdownCancel['en'];
-    this.defeatedRegex = NetRegexes.wasDefeated();
     this.abilityFullRegex = NetRegexes.abilityFull();
 
     this.data = this.GetDataObject();
@@ -163,14 +164,14 @@ export class DamageTracker {
     }
 
     const splitLine = e.line;
-    const type = splitLine[0];
+    const type = splitLine[logDefinitions.None.fields.type];
 
     // If we're waiting on a timestamp callback, check if any have passed with this line.
     // Ignore game log lines, which don't track milliseconds.
-    if (type !== '00') {
+    if (type !== logDefinitions.GameLog.type) {
       let timestampCallback = this.timestampCallbacks[0];
       while (timestampCallback) {
-        const timeField = splitLine[1];
+        const timeField = splitLine[logDefinitions.None.fields.timestamp];
         if (!timeField)
           break;
         const thisTimestamp = new Date(timeField).getTime();
@@ -183,30 +184,42 @@ export class DamageTracker {
       }
     }
 
-    if (type === '00') {
-      if (this.countdownEngageRegex.test(line))
-        this.collector.AddEngage();
-      if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
-        this.collector.Reset();
-    } else if (type === '03') {
-      this.effectTracker.OnAddedCombatant(line, splitLine);
-    } else if (type === '21' || type === '22') {
-      this.OnAbilityEvent(line, splitLine);
-      this.effectTracker.OnAbility(line, splitLine);
-    } else if (type === '25') {
-      this.OnDefeated(line);
-    } else if (type === '26') {
-      this.effectTracker.OnGainsEffect(line, splitLine);
-    } else if (type === '30') {
-      this.effectTracker.OnLosesEffect(line, splitLine);
+    switch (type) {
+      case logDefinitions.GameLog.type:
+        if (this.countdownEngageRegex.test(line))
+          this.collector.AddEngage();
+        if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
+          this.collector.Reset();
+        break;
+      case logDefinitions.AddedCombatant.type:
+        this.effectTracker.OnAddedCombatant(line, splitLine);
+        break;
+      case logDefinitions.Ability.type:
+      case logDefinitions.NetworkAOEAbility.type:
+        this.OnAbilityEvent(line, splitLine);
+        this.effectTracker.OnAbility(line, splitLine);
+        break;
+      case logDefinitions.WasDefeated.type:
+        this.OnDefeated(splitLine);
+        this.effectTracker.OnDefeated(line, splitLine);
+        break;
+      case logDefinitions.GainsEffect.type:
+        this.effectTracker.OnGainsEffect(line, splitLine);
+        break;
+      case logDefinitions.LosesEffect.type:
+        this.effectTracker.OnLosesEffect(line, splitLine);
+        break;
+      case logDefinitions.ActorControl.type:
+        if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand)
+          this.effectTracker.OnWipe(line, splitLine);
+        break;
     }
   }
 
-  private OnDefeated(line: string): void {
-    const matches = this.defeatedRegex.exec(line);
-    if (!matches || !matches.groups)
+  private OnDefeated(splitLine: string[]): void {
+    const name = splitLine[logDefinitions.WasDefeated.fields.target];
+    if (!name)
       return;
-    const name = matches.groups.target;
 
     const last = this.lastDamage[name];
     delete this.lastDamage[name];
@@ -419,7 +432,18 @@ export class DamageTracker {
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
-          return { type: type, blame: matches.target, text: matches.ability };
+          return {
+            type: type,
+            blame: matches.target,
+            text: {
+              en: `${matches.ability} (share)`,
+              de: `${matches.ability} (geteilt)`,
+              fr: `${matches.ability}`, // FIXME
+              ja: `${matches.ability}`, // FIXME
+              cn: `${matches.ability} (重叠)`,
+              ko: `${matches.ability}`, // FIXME
+            },
+          };
         },
       };
       this.ProcessTrigger(trigger);
@@ -552,7 +576,7 @@ export class DamageTracker {
 
     this.me = e.detail.name;
     this.job = e.detail.job;
-    this.role = Util.jobToRole(this.job);
+    this.role = jobToRole(this.job);
     this.ReloadTriggers();
   }
 

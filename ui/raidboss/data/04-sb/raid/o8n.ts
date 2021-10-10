@@ -100,6 +100,24 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'O8N Timely Teleport',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '2921', source: 'Kefka', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2921', source: 'Kefka', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2921', source: 'Kefka', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2921', source: 'ケフカ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2921', source: '凯夫卡', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2921', source: '케프카', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get Outside Destination',
+          de: 'Geh aus dem Zielkreis raus',
+          cn: '去传送目的地的外圈',
+        },
+      },
+    },
+    {
       id: 'O8N Aero Assault',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2924', source: 'Kefka', capture: false }),
@@ -263,6 +281,17 @@ const triggerSet: TriggerSet<Data> = {
           ko: '진실 블리자가: 밖으로',
         },
       },
+    },
+    {
+      id: 'O8N Ultima Upsurge',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '292D', source: 'Kefka', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '292D', source: 'Kefka', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '292D', source: 'Kefka', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '292D', source: 'ケフカ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '292D', source: '凯夫卡', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '292D', source: '케프카', capture: false }),
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [

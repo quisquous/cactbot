@@ -519,3 +519,9 @@ export default class ResourceBar extends HTMLElement {
 }
 
 window.customElements.define('resource-bar', ResourceBar);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'resource-bar': ResourceBar;
+  }
+}

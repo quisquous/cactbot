@@ -112,7 +112,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: '万能のクイックシンクス', id: '16F8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F8', capture: false }),
-      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -387,11 +386,15 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': '炸弹',
-        'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 L형',
+        'Boomtype Magitek Gobwalker G-VII': '7号哥布林战车L型',
+        'Electrocution gallery': '公开处刑广场',
+        'Frostbite': '冻伤',
         'Padlock': '牢门的锁',
+        'Pyretic': '热病',
         'Quickthinx Allthoughts': '万事通 奎克辛克斯',
         'Shanoa': '夏诺雅',
         'Sturm Doll': '风暴人偶',
+        'Undying Affection': '声援',
       },
       'replaceText': {
         'Big Doll': '大人偶',
@@ -419,7 +422,7 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': '폭탄',
-        'Boomtype Magitek Gobwalker G-VII': '7号哥布林战车L型',
+        'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 L형',
         'Padlock': '자물쇠',
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',
