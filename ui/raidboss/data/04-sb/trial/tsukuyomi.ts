@@ -57,11 +57,13 @@ const triggerSet: TriggerSet<Data> = {
         lineStackOnYou: {
           en: 'Line Stack on YOU',
           de: 'Linien Stack auf DIR',
+          fr: 'Package en ligne sur VOUS',
           cn: '直线分摊点名',
         },
         lineStackOn: {
           en: 'Line Stack on ${player}',
           de: 'Linien Stack auf ${player}',
+          fr: 'Package en ligne sur ${player}',
           cn: '直线分摊点${player}',
         },
       },

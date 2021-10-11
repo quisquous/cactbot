@@ -61,6 +61,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Shadows',
           de: 'Schatten ausweichen',
+          fr: 'Évitez les ombres',
           cn: '避开阴影',
         },
       },
@@ -108,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Forward March',
           de: 'Marchiere Vorwärts',
+          fr: 'Marche avant forcée',
           cn: '强制移动: 前',
         },
       },
@@ -126,6 +128,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Backwards March',
           de: 'Marchiere Rückwärts',
+          fr: 'Marche arrière forcée',
           cn: '强制移动: 后',
         },
       },

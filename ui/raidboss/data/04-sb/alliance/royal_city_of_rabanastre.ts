@@ -115,6 +115,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Find Hashmal; Dodge Left',
           de: 'Finde Hashmallim; Weiche nach Links aus',
+          fr: 'Trouvez Hashmal, Esquivez à gauche',
           cn: '找到BOSS; 向左躲避',
         },
       },
@@ -133,6 +134,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Find Hashmal; Dodge Right',
           de: 'Finde Hashmallim; Weiche nach Rechts aus',
+          fr: 'Trouvez Hashmal, Esquivez à droite',
           cn: '找到BOSS; 向右躲避',
         },
       },

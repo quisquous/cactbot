@@ -58,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Fire cannon at boss',
           de: 'Feuere Kanonen auf den Boss',
+          fr: 'Tirez le canon sur le boss',
           cn: '用炮射BOSS',
         },
       },
@@ -87,6 +88,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Fire Buff',
           de: 'Nimm Feuer Buff',
+          fr: 'Obtenez le buff de Feu',
           cn: '去火BUFF',
         },
       },
@@ -105,6 +107,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Ice Buff',
           de: 'Nimm Eis Buff',
+          fr: 'Obtenez le buff de Glace',
           cn: '去冰BUFF',
         },
       },
@@ -123,6 +126,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Lightning Buff',
           de: 'Nimm Blitz Buff',
+          fr: 'Obtenez le buff d\'Éclair',
           cn: '去雷BUFF',
         },
       },
@@ -167,6 +171,7 @@ const triggerSet: TriggerSet<Data> = {
           // Knockback comes from the proximity marker, not the boss.
           en: 'Small comet knockback',
           de: 'Kleiner Kometenrückstoß',
+          fr: 'Poussée de la petite comète',
           cn: '小彗星击退',
         },
       },

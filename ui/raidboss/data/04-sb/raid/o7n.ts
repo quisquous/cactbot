@@ -104,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand in glowing bomb circle',
           de: 'Steh im grün-leuchtenden Kreis der Bombe',
+          fr: 'Placez-vous dans le cercle lumineux',
           cn: '站在炸弹发光圈内',
         },
       },
@@ -122,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Activate 3 person towers',
           de: 'Aktiviere 3 Spieler-Türme',
+          fr: 'Activez les tours avec 3 personnes',
           cn: '3人踩塔',
         },
       },
@@ -141,6 +143,7 @@ const triggerSet: TriggerSet<Data> = {
         kill: {
           en: 'Kill ${name} add',
           de: 'Besiege ${name} Add',
+          fr: 'Tuez l\'add ${name}',
           cn: '击杀 ${name} 小怪',
         },
       },
