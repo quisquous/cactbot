@@ -37,6 +37,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
           cn: '击退点名',
+          ko: '넉백 대상자',
         },
       },
     },

@@ -150,7 +150,7 @@ export const commonReplacement: CommonReplacement = {
       fr: '--Gelé--',
       ja: '--凍結--',
       cn: '--冻结--',
-      ko: '--동결--',
+      ko: '--빙결--',
     },
     '--in--': {
       de: '--Rein--',

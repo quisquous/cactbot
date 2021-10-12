@@ -79,6 +79,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait ghost into light circle',
           de: 'Geist in das Licht ködern',
           cn: '诱导幽灵进光圈',
+          ko: '유령 빛장판으로 유도',
         },
       },
     },
@@ -95,7 +96,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Lumière', // FIXME
           ja: '魔界の光', // FIXME
           cn: '远离放置光点名',
-          ko: '빛장판', // FIXME
+          ko: '빛장판 유도',
         },
       },
     },
@@ -117,6 +118,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Touch ghost',
           de: 'Geist berühren',
           cn: '撞幽灵',
+          ko: '유령 접촉',
         },
       },
     },

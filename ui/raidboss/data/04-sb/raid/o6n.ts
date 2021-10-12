@@ -49,6 +49,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away From Boss',
           de: 'Weg vom Boss',
           cn: '远离BOSS',
+          ko: '보스에게서 떨어지기',
         },
       },
     },
@@ -65,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Posez les AoE au loin', // FIXME
           ja: '離れてAoEを置く', // FIXME
           cn: '远离放置追踪AOE',
-          ko: '장판 멀리빼기', // FIXME
+          ko: '연속장판 멀리빼기',
         },
       },
     },

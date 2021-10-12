@@ -104,6 +104,7 @@ const kDetailKeys = {
       fr: 'netregex',
       ja: 'ネット正規表現',
       cn: '网络日志正则表达式',
+      ko: '정규표현식',
     },
     cls: 'regex-text',
     debugOnly: true,
