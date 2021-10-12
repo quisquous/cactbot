@@ -61,6 +61,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack for Donuts',
                     de: 'Für Donuts sammeln',
+                    fr: 'Packez-vous pour l\'aoe en donut',
                     cn: '集合水环',
                 },
             },
@@ -133,6 +134,7 @@ Options.Triggers.push({
                     // proximity damage.  So this is trying to communicate more of a GTFO.
                     en: 'Drop Flare Away',
                     de: 'Flare weit weg ablegen',
+                    fr: 'Déposez les Brasiers au loin',
                     cn: '核爆放在远处',
                 },
             },
@@ -164,6 +166,7 @@ Options.Triggers.push({
                 stackGroups: {
                     en: 'Split into stack groups',
                     de: 'In Sammel-Gruppen aufteilen',
+                    fr: 'Séparez les groupes et packez-vous',
                     cn: '分组分摊',
                 },
             },

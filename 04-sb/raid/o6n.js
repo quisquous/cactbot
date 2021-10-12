@@ -38,6 +38,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away From Boss',
                     de: 'Weg vom Boss',
+                    fr: 'Éloignez-vous du boss',
                     cn: '远离BOSS',
                 },
             },

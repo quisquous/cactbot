@@ -52,6 +52,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Avoid Shadows',
                     de: 'Schatten ausweichen',
+                    fr: 'Évitez les ombres',
                     cn: '避开阴影',
                 },
             },
@@ -99,6 +100,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Forward March',
                     de: 'Marchiere Vorwärts',
+                    fr: 'Marche avant forcée',
                     cn: '强制移动: 前',
                 },
             },
@@ -117,6 +119,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Backwards March',
                     de: 'Marchiere Rückwärts',
+                    fr: 'Marche arrière forcée',
                     cn: '强制移动: 后',
                 },
             },

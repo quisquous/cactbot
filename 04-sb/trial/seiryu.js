@@ -142,6 +142,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Point Knockback Tether Outside',
                     de: 'Rückstoß-Verbindung nach draußen zeigen',
+                    fr: 'Orientez les liens de poussée vers l\'extérieur',
                     cn: '将击退连线指向场外',
                 },
             },
@@ -162,6 +163,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Point Cleave Tether Outside',
                     de: 'Cleave nach draußen zeigen',
+                    fr: 'Orientez les liens de cleave vers l\'extérieur',
                     cn: '将顺劈连线指向场外',
                 },
             },

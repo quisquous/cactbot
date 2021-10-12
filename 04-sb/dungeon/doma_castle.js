@@ -25,7 +25,7 @@ Options.Triggers.push({
                 getTower: {
                     en: 'Get Tower',
                     de: 'Turm nehmen',
-                    fr: 'Prenez les tours',
+                    fr: 'Prenez la tour',
                     ja: '塔を踏む',
                     cn: '踩塔',
                     ko: '장판 하나씩 들어가기', // FIXME
@@ -58,6 +58,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Drop Charge Away',
                     de: 'Lege Markierung weit weg ab',
+                    fr: 'Déposez la charge au loin',
                     cn: '将标记放远',
                 },
             },

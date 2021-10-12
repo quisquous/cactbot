@@ -104,6 +104,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Outside Destination',
                     de: 'Geh aus dem Zielkreis raus',
+                    fr: 'Placez-vous à l\'extérieur du cercle d\'arrivée',
                     cn: '去传送目的地的外圈',
                 },
             },
