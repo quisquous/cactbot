@@ -441,7 +441,7 @@ export class DamageTracker {
               fr: `${matches.ability}`, // FIXME
               ja: `${matches.ability}`, // FIXME
               cn: `${matches.ability} (重叠)`,
-              ko: `${matches.ability}`, // FIXME
+              ko: `${matches.ability} (쉐어)`,
             },
           };
         },

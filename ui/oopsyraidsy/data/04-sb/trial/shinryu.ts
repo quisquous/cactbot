@@ -39,6 +39,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A glissé(e) !',
             ja: '滑った',
             cn: '滑落',
+            ko: '미끄러짐',
           },
         };
       },
@@ -57,6 +58,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A été poussé(e) !',
             ja: '落ちた',
             cn: '击退坠落',
+            ko: '넉백됨',
           },
         };
       },
@@ -76,6 +78,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A été pousser !',
             ja: '落ちた',
             cn: '击退坠落',
+            ko: '넉백됨',
           },
         };
       },
