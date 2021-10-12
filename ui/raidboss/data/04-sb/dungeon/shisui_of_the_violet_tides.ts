@@ -20,6 +20,7 @@ const triggerSet: TriggerSet<Data> = {
         kill: {
           en: 'Kill ${name}',
           de: 'Besiege ${name}',
+          fr: 'Tuez ${name}',
           cn: '击杀 ${name}',
         },
       },
@@ -45,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get In Box',
           de: 'Geh in die Box',
+          fr: 'Allez dans la boîte',
           cn: '进盒子',
         },
       },
@@ -60,6 +62,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Chasing AOE on YOU',
           de: 'Verfolgende AoE auf DIR',
+          fr: 'Ruée sur VOUS',
           cn: '追踪AOE点名',
         },
       },
