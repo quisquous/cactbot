@@ -38,6 +38,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rückstoß auf DIR',
           fr: 'Poussée sur VOUS',
           cn: '击退点名',
+          ko: '넉백 대상자',
         },
       },
     },

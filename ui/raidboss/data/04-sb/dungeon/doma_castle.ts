@@ -39,7 +39,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Prenez la tour',
           ja: '塔を踏む',
           cn: '踩塔',
-          ko: '장판 하나씩 들어가기', // FIXME
+          ko: '장판 들어가기',
         },
         getTowers: {
           en: 'Get Towers',
@@ -71,6 +71,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Lege Markierung weit weg ab',
           fr: 'Déposez la charge au loin',
           cn: '将标记放远',
+          ko: '징 멀리 두고 오기',
         },
       },
     },
