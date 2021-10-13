@@ -133,6 +133,7 @@ Options.Triggers.push({
                     en: 'Knockback from F; Away from M',
                     de: 'Rückstoß von F; Weg von M',
                     cn: '被女性击退; 远离男性',
+                    ko: 'F 넉백, M 광역기',
                 },
             },
         },

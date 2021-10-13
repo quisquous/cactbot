@@ -49,7 +49,7 @@ Options.Triggers.push({
                     fr: 'Prenez le lien, pointez vers l\'extérieur',
                     ja: '線を取って外に向ける',
                     cn: '接线引导',
-                    ko: '선 가로채고 멀리 떨어지기',
+                    ko: '선 가로채고 구석으로 유도하기',
                 },
             },
         },
