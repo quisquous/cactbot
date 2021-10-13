@@ -177,6 +177,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Drop Ice Outside',
           de: 'Eis draußen ablegen',
+          fr: 'Déposez la glace à l\'extérieur',
           cn: '把冰放在外面',
           ko: '필드 외각으로 유도',
         },

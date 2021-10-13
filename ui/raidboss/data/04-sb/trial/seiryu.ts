@@ -150,6 +150,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Point Knockback Tether Outside',
           de: 'Rückstoß-Verbindung nach draußen zeigen',
+          fr: 'Orientez les liens de poussée vers l\'extérieur',
           cn: '将击退连线指向场外',
           ko: '외곽으로 유도하기',
         },
@@ -171,6 +172,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Point Cleave Tether Outside',
           de: 'Cleave nach draußen zeigen',
+          fr: 'Orientez les liens de cleave vers l\'extérieur',
           cn: '将顺劈连线指向场外',
           ko: '선 구석으로 유도하기',
         },
