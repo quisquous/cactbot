@@ -99,6 +99,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             de: `${matches.ability} (mit Verwundbarkeit)`,
             ja: `${matches.ability} (被ダメージ上昇)`,
             cn: `${matches.ability} (带易伤)`,
+            ko: `${matches.ability} (받피증 상태에서 피격)`,
           },
         };
       },

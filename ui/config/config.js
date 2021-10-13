@@ -103,6 +103,7 @@ const kPrefixToCategory = {
     fr: 'Triggers personnalisés',
     ja: 'ユーザートリガー',
     cn: '自定义触发器',
+    ko: '커스텀 트리거',
   },
 };
 
