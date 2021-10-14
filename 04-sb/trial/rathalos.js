@@ -1,6 +1,8 @@
 // Rathalos Extreme
 Options.Triggers.push({
     zoneId: ZoneId.TheGreatHunt,
+    // Mechanics are random, no timeline is possible.
+    hasNoTimeline: true,
     triggers: [
         {
             // Frontal conal + tail swipe on left side.
