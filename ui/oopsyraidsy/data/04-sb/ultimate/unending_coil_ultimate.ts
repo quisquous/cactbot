@@ -51,7 +51,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Pizza Slice',
             de: 'Pizzastück',
-            fr: 'Parts de pizza',
+            fr: 'Part de pizza',
             ja: 'サーミオニックバースト',
             cn: '天崩地裂',
             ko: '장판에 맞음',

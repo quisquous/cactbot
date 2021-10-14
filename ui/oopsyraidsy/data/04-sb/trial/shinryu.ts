@@ -75,7 +75,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
-            fr: 'A été pousser !',
+            fr: 'A été poussé(e) !',
             ja: '落ちた',
             cn: '击退坠落',
             ko: '넉백됨',
