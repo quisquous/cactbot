@@ -51,7 +51,9 @@ const processRaidbossFile = (triggerFile, zoneId, triggerSet, timelineContents, 
   // TODO: consider processing the timeline and finding the max time? or some other heuristic.
   if (timelineContents && timelineContents.length > 1000)
     timelineEntry.hasFile = true;
-  if (triggerSet.timelineNeedsFixing)
+  if (triggerSet.hasNoTimeline)
+    timelineEntry.hasNoTimeline = true;
+  else if (triggerSet.timelineNeedsFixing)
     timelineEntry.timelineNeedsFixing = true;
 
   Object.assign(coverage[zoneId], {

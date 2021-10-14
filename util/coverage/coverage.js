@@ -321,7 +321,9 @@ const buildZoneGrid = (container, lang, coverage) => {
         timeline: () => {
           let emoji = undefined;
           if (zoneCoverage.timeline) {
-            if (zoneCoverage.timeline.timelineNeedsFixing)
+            if (zoneCoverage.timeline.hasNoTimeline)
+              emoji = '➖';
+            else if (zoneCoverage.timeline.timelineNeedsFixing)
               emoji = '⚠️';
             else if (zoneCoverage.timeline.hasFile)
               emoji = '✔️';
