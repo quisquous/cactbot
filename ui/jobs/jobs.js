@@ -985,8 +985,6 @@ class Bars {
         }
         if (this.regexes.countdownCancelRegex.test(log))
           this._setPullCountdown(0);
-        if (/:test:jobs:/.test(log))
-          this._test();
         if (isCraftingJob(this.job))
           this._onCraftingLog(log);
         break;
@@ -1107,58 +1105,6 @@ class Bars {
         break;
       }
     }
-  }
-
-  _test() {
-    const logs = [];
-    const t = '[10:10:10.000] ';
-    logs.push(
-      t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me +
-        ' for 30.2 Seconds.',
-    );
-    logs.push(
-      t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.me +
-        ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.',
-    );
-    logs.push(
-      t +
-        '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.',
-    );
-    logs.push(
-      t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Left Eye from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Right Eye from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:',
-    );
-    logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Devotion from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.',
-    );
-    logs.push(
-      t + '1A:10000000:' + this.me +
-        ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.',
-    );
-    const e = { detail: { logs: logs } };
-    this._onLogEvent(e);
   }
 }
 
