@@ -1,8 +1,9 @@
 import { Lang } from '../../resources/languages';
+import logDefinitions from '../../resources/netlog_defs';
+import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
-import Regexes from '../../resources/regexes';
-import { LocaleRegex } from '../../resources/translations';
+import { LocaleNetRegex } from '../../resources/translations';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import { BaseOptions } from '../../types/data';
@@ -41,12 +42,14 @@ const bossFightTriggers: readonly Boss[] = [
     id: 'test',
     zoneId: ZoneId.MiddleLaNoscea,
     startRegex: {
-      en: Regexes.gameLog({ line: 'You bow courteously to the striking dummy.*?' }),
-      de: Regexes.gameLog({ line: 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe.*?' }),
-      fr: Regexes.gameLog({ line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?' }),
-      ja: Regexes.gameLog({ line: '.*は木人にお辞儀した.*?' }),
-      cn: Regexes.gameLog({ line: '.*恭敬地对木人行礼.*?' }),
-      ko: Regexes.gameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
+      en: NetRegexes.gameLog({ line: 'You bow courteously to the striking dummy.*?' }),
+      de: NetRegexes.gameLog(
+        { line: 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe.*?' },
+      ),
+      fr: NetRegexes.gameLog({ line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?' }),
+      ja: NetRegexes.gameLog({ line: '.*は木人にお辞儀した.*?' }),
+      cn: NetRegexes.gameLog({ line: '.*恭敬地对木人行礼.*?' }),
+      ko: NetRegexes.gameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
     },
     countdownStarts: true,
     preventAutoStart: true,
@@ -68,12 +71,12 @@ const bossFightTriggers: readonly Boss[] = [
     zoneId: ZoneId.DeltascapeV40Savage,
     // 23F4 Dualcast
     startRegex: {
-      en: Regexes.ability({ source: 'Exdeath', id: '23F4' }),
-      de: Regexes.ability({ source: 'Exdeath', id: '23F4' }),
-      fr: Regexes.ability({ source: 'Exdeath', id: '23F4' }),
-      ja: Regexes.ability({ source: 'エクスデス', id: '23F4' }),
-      cn: Regexes.ability({ source: '艾克斯迪司', id: '23F4' }),
-      ko: Regexes.ability({ source: '엑스데스', id: '23F4' }),
+      en: NetRegexes.ability({ source: 'Exdeath', id: '23F4' }),
+      de: NetRegexes.ability({ source: 'Exdeath', id: '23F4' }),
+      fr: NetRegexes.ability({ source: 'Exdeath', id: '23F4' }),
+      ja: NetRegexes.ability({ source: 'エクスデス', id: '23F4' }),
+      cn: NetRegexes.ability({ source: '艾克斯迪司', id: '23F4' }),
+      ko: NetRegexes.ability({ source: '엑스데스', id: '23F4' }),
     },
     preventAutoStart: true,
   },
@@ -82,12 +85,12 @@ const bossFightTriggers: readonly Boss[] = [
     zoneId: ZoneId.DeltascapeV40Savage,
     // 2417 Almagest
     startRegex: {
-      en: Regexes.ability({ source: 'Neo Exdeath', id: '2417' }),
-      de: Regexes.ability({ source: 'Neo Exdeath', id: '2417' }),
-      fr: Regexes.ability({ source: 'Neo Exdeath', id: '2417' }),
-      ja: Regexes.ability({ source: 'ネオエクスデス', id: '2417' }),
-      cn: Regexes.ability({ source: '新生艾克斯迪司', id: '2417' }),
-      ko: Regexes.ability({ source: '네오 엑스데스', id: '2417' }),
+      en: NetRegexes.ability({ source: 'Neo Exdeath', id: '2417' }),
+      de: NetRegexes.ability({ source: 'Neo Exdeath', id: '2417' }),
+      fr: NetRegexes.ability({ source: 'Neo Exdeath', id: '2417' }),
+      ja: NetRegexes.ability({ source: 'ネオエクスデス', id: '2417' }),
+      cn: NetRegexes.ability({ source: '新生艾克斯迪司', id: '2417' }),
+      ko: NetRegexes.ability({ source: '네오 엑스데스', id: '2417' }),
     },
     preventAutoStart: true,
   },
@@ -115,12 +118,12 @@ const bossFightTriggers: readonly Boss[] = [
     id: 'o8s-kefka',
     zoneId: ZoneId.SigmascapeV40Savage,
     startRegex: {
-      en: Regexes.startsUsing({ source: 'Kefka', id: '28C2' }),
-      de: Regexes.startsUsing({ source: 'Kefka', id: '28C2' }),
-      fr: Regexes.startsUsing({ source: 'Kefka', id: '28C2' }),
-      ja: Regexes.startsUsing({ source: 'ケフカ', id: '28C2' }),
-      cn: Regexes.startsUsing({ source: '凯夫卡', id: '28C2' }),
-      ko: Regexes.startsUsing({ source: '케프카', id: '28C2' }),
+      en: NetRegexes.startsUsing({ source: 'Kefka', id: '28C2' }),
+      de: NetRegexes.startsUsing({ source: 'Kefka', id: '28C2' }),
+      fr: NetRegexes.startsUsing({ source: 'Kefka', id: '28C2' }),
+      ja: NetRegexes.startsUsing({ source: 'ケフカ', id: '28C2' }),
+      cn: NetRegexes.startsUsing({ source: '凯夫卡', id: '28C2' }),
+      ko: NetRegexes.startsUsing({ source: '케프카', id: '28C2' }),
     },
     preventAutoStart: true,
   },
@@ -128,12 +131,12 @@ const bossFightTriggers: readonly Boss[] = [
     id: 'o8s-god kefka',
     zoneId: ZoneId.SigmascapeV40Savage,
     startRegex: {
-      en: Regexes.startsUsing({ source: 'Kefka', id: '28EC' }),
-      de: Regexes.startsUsing({ source: 'Kefka', id: '28EC' }),
-      fr: Regexes.startsUsing({ source: 'Kefka', id: '28EC' }),
-      ja: Regexes.startsUsing({ source: 'ケフカ', id: '28EC' }),
-      cn: Regexes.startsUsing({ source: '凯夫卡', id: '28EC' }),
-      ko: Regexes.startsUsing({ source: '케프카', id: '28EC' }),
+      en: NetRegexes.startsUsing({ source: 'Kefka', id: '28EC' }),
+      de: NetRegexes.startsUsing({ source: 'Kefka', id: '28EC' }),
+      fr: NetRegexes.startsUsing({ source: 'Kefka', id: '28EC' }),
+      ja: NetRegexes.startsUsing({ source: 'ケフカ', id: '28EC' }),
+      cn: NetRegexes.startsUsing({ source: '凯夫卡', id: '28EC' }),
+      ko: NetRegexes.startsUsing({ source: '케프카', id: '28EC' }),
     },
     preventAutoStart: true,
   },
@@ -173,12 +176,12 @@ const bossFightTriggers: readonly Boss[] = [
     id: 'o12s-door',
     zoneId: ZoneId.AlphascapeV40Savage,
     startRegex: {
-      en: Regexes.ability({ source: 'Omega-M', id: '337D' }),
-      de: Regexes.ability({ source: 'Omega-M', id: '337D' }),
-      fr: Regexes.ability({ source: 'Oméga-M', id: '337D' }),
-      ja: Regexes.ability({ source: 'オメガM', id: '337D' }),
-      cn: Regexes.ability({ source: '欧米茄M', id: '337D' }),
-      ko: Regexes.ability({ source: '오메가 M', id: '337D' }),
+      en: NetRegexes.ability({ source: 'Omega-M', id: '337D' }),
+      de: NetRegexes.ability({ source: 'Omega-M', id: '337D' }),
+      fr: NetRegexes.ability({ source: 'Oméga-M', id: '337D' }),
+      ja: NetRegexes.ability({ source: 'オメガM', id: '337D' }),
+      cn: NetRegexes.ability({ source: '欧米茄M', id: '337D' }),
+      ko: NetRegexes.ability({ source: '오메가 M', id: '337D' }),
     },
     preventAutoStart: true,
   },
@@ -186,12 +189,12 @@ const bossFightTriggers: readonly Boss[] = [
     id: 'o12s-final',
     zoneId: ZoneId.AlphascapeV40Savage,
     startRegex: {
-      en: Regexes.ability({ source: 'Omega', id: '336C' }),
-      de: Regexes.ability({ source: 'Omega', id: '336C' }),
-      fr: Regexes.ability({ source: 'Oméga', id: '336C' }),
-      ja: Regexes.ability({ source: 'オメガ', id: '336C' }),
-      cn: Regexes.ability({ source: '欧米茄', id: '336C' }),
-      ko: Regexes.ability({ source: '오메가', id: '336C' }),
+      en: NetRegexes.ability({ source: 'Omega', id: '336C' }),
+      de: NetRegexes.ability({ source: 'Omega', id: '336C' }),
+      fr: NetRegexes.ability({ source: 'Oméga', id: '336C' }),
+      ja: NetRegexes.ability({ source: 'オメガ', id: '336C' }),
+      cn: NetRegexes.ability({ source: '欧米茄', id: '336C' }),
+      ko: NetRegexes.ability({ source: '오메가', id: '336C' }),
     },
     preventAutoStart: true,
   },
@@ -218,7 +221,7 @@ class PullCounter {
   private zoneName = '(unknown)';
   private party: Party[] = [];
   private bosses: Boss[] = [];
-  private resetRegex = Regexes.echo({ line: '.*pullcounter reset.*?' });
+  private resetRegex = NetRegexes.echo({ line: '.*pullcounter reset.*?' });
   private countdownEngageRegex: RegExp;
   private pullCounts: { [bossId: string]: number } = {};
 
@@ -228,8 +231,8 @@ class PullCounter {
   constructor(private options: PullCounterOptions, private element: HTMLElement) {
     this.party = [];
 
-    this.countdownEngageRegex = LocaleRegex.countdownEngage[this.options.ParserLanguage] ||
-      LocaleRegex.countdownEngage['en'];
+    this.countdownEngageRegex = LocaleNetRegex.countdownEngage[this.options.ParserLanguage] ||
+      LocaleNetRegex.countdownEngage['en'];
 
     void callOverlayHandler({
       call: 'cactbotLoadData',
@@ -260,27 +263,28 @@ class PullCounter {
     });
   }
 
-  OnLogEvent(e: EventResponses['onLogEvent']) {
+  OnNetLog(e: EventResponses['LogLine']): void {
+    const log = e.rawLine;
     if (this.bossStarted)
       return;
-    for (const log of e.detail.logs) {
-      if (this.resetRegex.test(log))
-        this.ResetPullCounter();
-      if (this.countdownEngageRegex.test(log)) {
-        if (this.countdownBoss)
-          this.OnFightStart(this.countdownBoss);
-        else
-          this.AutoStartBossIfNeeded();
+    for (const boss of this.bosses) {
+      if (
+        boss.startRegex && getLocaleObject(boss.startRegex, this.options.ParserLanguage).test(log)
+      ) {
+        this.OnFightStart(boss);
         return;
       }
-      for (const boss of this.bosses) {
-        if (
-          boss.startRegex && getLocaleObject(boss.startRegex, this.options.ParserLanguage).test(log)
-        ) {
-          this.OnFightStart(boss);
-          return;
-        }
-      }
+    }
+    if (e.line[0] !== logDefinitions.GameLog.type)
+      return;
+    if (this.resetRegex.test(log))
+      this.ResetPullCounter();
+    if (this.countdownEngageRegex.test(log)) {
+      if (this.countdownBoss)
+        this.OnFightStart(this.countdownBoss);
+      else
+        this.AutoStartBossIfNeeded();
+      return;
     }
   }
 
@@ -421,7 +425,7 @@ UserConfig.getUserConfigLocation('pullcounter', defaultOptions, () => {
 
   const pullcounter = new PullCounter(options, element);
 
-  addOverlayListener('onLogEvent', (e) => pullcounter.OnLogEvent(e));
+  addOverlayListener('LogLine', (e) => pullcounter.OnNetLog(e));
   addOverlayListener('ChangeZone', (e) => pullcounter.OnChangeZone(e));
   addOverlayListener('onInCombatChangedEvent', (e) => pullcounter.OnInCombatChange(e));
   addOverlayListener('onPartyWipe', () => pullcounter.OnPartyWipe());
