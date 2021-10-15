@@ -429,6 +429,9 @@ const triggerSet: TriggerSet<Data> = {
         'Lakshmi': '吉祥天女',
       },
       'replaceText': {
+        '--chanchala end--': '--反复无常结束--',
+        '\\(mid\\)': '(中)',
+        '\\(out\\)': '(外)',
         '/dance': '/跳舞',
         'Alluring Arm': '魅惑之臂',
         'Blissful Spear': '圣枪',
