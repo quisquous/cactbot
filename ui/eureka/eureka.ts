@@ -137,9 +137,9 @@ export interface EurekaOptions extends BaseOptions, EurekaConfigOptions {
 const defaultOptions: EurekaOptions = {
   ...UserConfig.getDefaultBaseOptions(),
   ...defaultEurekaConfigOptions,
-  PopSound: '../../resources/sounds/freesound/sonar.ogg',
-  BunnyPopSound: '../../resources/sounds/freesound/water_drop.ogg',
-  CriticalPopSound: '../../resources/sounds/freesound/sonar.ogg',
+  PopSound: '../../resources/sounds/freesound/sonar.webm',
+  BunnyPopSound: '../../resources/sounds/freesound/water_drop.webm',
+  CriticalPopSound: '../../resources/sounds/freesound/sonar.webm',
   timeStrings: timeStrings,
   Regex: {
     // de, fr, ja languages all share the English regexes here.

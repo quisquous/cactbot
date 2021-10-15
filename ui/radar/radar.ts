@@ -67,7 +67,7 @@ type Monster = {
 const defaultOptions: RadarOptions = {
   ...UserConfig.getDefaultBaseOptions(),
   ...defaultRadarConfigOptions,
-  PopSound: '../../resources/sounds/freesound/sonar.ogg',
+  PopSound: '../../resources/sounds/freesound/sonar.webm',
   RankOptions: {
     'S': {
       Type: 'mob',

@@ -53,11 +53,11 @@ type RaidbossNonConfigOptions = {
 const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
   PlayerNicks: {},
 
-  InfoSound: '../../resources/sounds/freesound/percussion_hit.ogg',
-  AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
-  AlarmSound: '../../resources/sounds/BigWigs/Alarm.ogg',
-  LongSound: '../../resources/sounds/BigWigs/Long.ogg',
-  PullSound: '../../resources/sounds/freesound/sonar.ogg',
+  InfoSound: '../../resources/sounds/freesound/percussion_hit.webm',
+  AlertSound: '../../resources/sounds/BigWigs/Alert.webm',
+  AlarmSound: '../../resources/sounds/BigWigs/Alarm.webm',
+  LongSound: '../../resources/sounds/BigWigs/Long.webm',
+  PullSound: '../../resources/sounds/freesound/sonar.webm',
 
   AudioAllowed: true,
 
