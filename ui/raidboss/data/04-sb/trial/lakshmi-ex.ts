@@ -435,7 +435,7 @@ const triggerSet: TriggerSet<Data> = {
         '/dance': '/跳舞',
         'Alluring Arm': '魅惑之臂',
         'Blissful Spear': '圣枪',
-        'Chanchala (?! end)': '反复无常',
+        '(?<!-)Chanchala': '反复无常',
         'Divine Denial': '完全拒绝',
         'Divine Desire': '完全引诱',
         'Divine Doubt': '完全惑乱',
