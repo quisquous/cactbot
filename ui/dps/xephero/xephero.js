@@ -169,8 +169,8 @@ UserConfig.getUserConfigLocation('xephero', defaultOptions, () => {
     const currentZone = e.zoneName;
     tracker.onChangeZone(currentZone);
   });
-  addOverlayListener('onLogEvent', (e) => {
-    tracker.onLogEvent(e.detail.logs);
+  addOverlayListener('LogLine', (e) => {
+    tracker.onNetLog(e);
   });
   addOverlayListener('onInCombatChangedEvent', (e) => {
     // Only clear phases when ACT starts a new encounter for consistency.
