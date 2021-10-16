@@ -200,7 +200,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に拍手した.*?', capture: false }),
             netRegexCn: NetRegexes.gameNameLog({ line: '.*向木人送上掌声.*?', capture: false }),
             netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
-            sound: '../../resources/sounds/freesound/power_up.ogg',
+            sound: '../../resources/sounds/freesound/power_up.webm',
             soundVolume: 0.3,
             tts: (_data, _matches, output) => output.text(),
             outputStrings: {

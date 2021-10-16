@@ -193,7 +193,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.gameLog({ line: '(?:\\y{Name}が)?レディチェックを開始しました。.*?', capture: false }),
             netRegexCn: NetRegexes.gameLog({ line: '\\y{Name}?发起了准备确认.*?', capture: false }),
             netRegexKo: NetRegexes.gameLog({ line: '\\y{Name} 님이 준비 확인을 시작했습니다\.|준비 확인을 시작합니다\..*?', capture: false }),
-            sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg',
+            sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.webm',
             soundVolume: 0.6,
         },
     ],
