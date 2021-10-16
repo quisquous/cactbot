@@ -165,7 +165,7 @@ UserConfig.registerOptions('eureka', {
         de: 'Lautstärke des Kritischen Gefecht Sounds (0-1)',
         fr: 'Volume du son d\'apparition des affrontements cruciaux (0-1)',
         ja: 'CE通知音量 (0-1)',
-        cn: 'critical engagement提示音量（0-1）',
+        cn: 'CE提示音量（0-1）',
         ko: '비상 교전(CE) 알림 소리 크기 (0-1)',
       },
       type: 'float',
