@@ -27,6 +27,7 @@ export default (
     if (
       [
         'eureka',
+        'jobs',
         'oopsyraidsyLive',
         'oopsyraidsySummary',
         'pullcounter',
