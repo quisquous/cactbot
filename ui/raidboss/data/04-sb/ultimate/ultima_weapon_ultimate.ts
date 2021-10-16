@@ -740,7 +740,7 @@ const triggerSet: TriggerSet<Data> = {
         'Bomb Boulder': '爆破岩石',
         'Chirada': '妙翅',
         'Garuda': '迦楼罗',
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '哈哈哈哈哈！',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '哈哈哈哈哈！\\s*你们这些蝼蚁只有被我的狂风吹散的下场！',
         'Ifrit': '伊弗利特',
         'Lahabrea': '拉哈布雷亚',
         'Spiny Plume': '刺羽',
