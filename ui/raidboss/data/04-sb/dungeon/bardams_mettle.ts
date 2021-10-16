@@ -17,7 +17,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bardam\'s Mettle Feathercut',
       regex: /Feathercut/,
       beforeSeconds: 4,
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
   ],

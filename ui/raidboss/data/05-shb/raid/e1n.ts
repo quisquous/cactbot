@@ -86,7 +86,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DA1', source: 'エデン・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

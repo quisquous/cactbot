@@ -19,7 +19,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LakshmiEx Path of Light',
       regex: /Path of Light/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'tank',
       response: Responses.tankCleave(),
     },
   ],
@@ -55,7 +54,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
-      condition: (data) => data.role === 'tank',
       response: Responses.tankBuster('info'),
     },
     {

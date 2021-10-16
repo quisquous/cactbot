@@ -15,7 +15,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sohm Al Hard Wild Horn',
       regex: /Wild Horn/,
       beforeSeconds: 4,
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
   ],
@@ -197,7 +196,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['ラーヴァ・スコーピオン', 'テイル・スコーピオン'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['熔岩蝎', '尖尾蝎'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['용암 전갈', '꼬리 전갈'] }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

@@ -227,7 +227,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '4161', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
-      condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.tankBusters,

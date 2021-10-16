@@ -14,7 +14,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanUn Mountain Buster',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
+
       response: Responses.tankBuster(),
     },
     {

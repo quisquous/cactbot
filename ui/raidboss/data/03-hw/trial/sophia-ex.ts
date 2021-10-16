@@ -161,7 +161,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '19C4', source: 'ソフィア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '19C4', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19C4', source: '소피아' }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBusterSwap(),
     },
     {
