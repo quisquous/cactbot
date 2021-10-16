@@ -72,7 +72,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '250F', source: 'カタストロフィー' }),
             netRegexCn: NetRegexes.startsUsing({ id: '250F', source: '灾变者' }),
             netRegexKo: NetRegexes.startsUsing({ id: '250F', source: '카타스트로피' }),
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {

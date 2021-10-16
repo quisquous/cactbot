@@ -191,7 +191,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
             netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
             netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
-            condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {

@@ -104,7 +104,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3E61', source: 'ヴォイドウォーカー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '3E61', source: '虚无行者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3E61', source: '보이드워커', capture: false }),
-            condition: (data) => data.role === 'healer',
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: Outputs.tankBusters,

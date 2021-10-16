@@ -6,7 +6,6 @@ Options.Triggers.push({
             id: 'Dohn Mheg Rake',
             regex: /Rake/,
             beforeSeconds: 5,
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             response: Responses.miniBuster(),
         },
     ],
@@ -72,7 +71,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
             netRegexCn: NetRegexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
             netRegexKo: NetRegexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
-            condition: (data, matches) => matches.target === data.me || data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {
@@ -112,7 +110,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
             netRegexCn: NetRegexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
             netRegexKo: NetRegexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
-            condition: (data, matches) => matches.target === data.me || data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {

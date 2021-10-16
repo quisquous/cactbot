@@ -6,7 +6,6 @@ Options.Triggers.push({
             id: 'E4S Earthen Anguish',
             regex: /Earthen Anguish/,
             beforeSeconds: 3,
-            condition: (data) => data.role === 'healer' || data.role === 'tank',
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: Outputs.tankBusters,
@@ -51,10 +50,9 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4116', source: 'タイタン' }),
             netRegexCn: NetRegexes.startsUsing({ id: '4116', source: '泰坦' }),
             netRegexKo: NetRegexes.startsUsing({ id: '4116', source: '타이탄' }),
-            condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
             // As this seems to usually seems to be invulned,
             // don't make a big deal out of it.
-            response: Responses.tankBuster(),
+            response: Responses.tankBuster('info'),
         },
         {
             id: 'E4S Pulse of the Land',
@@ -322,7 +320,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4124', source: 'マキシタイタン', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '4124', source: '极大泰坦', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '4124', source: '거대 타이탄', capture: false }),
-            condition: (data) => data.role === 'healer',
             response: Responses.bigAoe(),
         },
         {

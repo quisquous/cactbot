@@ -441,7 +441,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2E32', source: '鬼龍ヤズマット', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '2E32', source: '鬼龙雅兹玛特', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2E32', source: '귀룡 야즈마트', capture: false }),
-            condition: (data) => data.role === 'tank',
             response: Responses.awayFromFront(),
         },
         {

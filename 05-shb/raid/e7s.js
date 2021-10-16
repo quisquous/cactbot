@@ -40,7 +40,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0025' }),
             netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
             netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {
@@ -335,7 +334,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ source: 'ブラスヒーム', id: '4C74', capture: false }),
             netRegexCn: NetRegexes.ability({ source: '亵渎', id: '4C74', capture: false }),
             netRegexKo: NetRegexes.ability({ source: '신성 모독', id: '4C74', capture: false }),
-            condition: (data) => data.role === 'healer' || data.role === 'tank' || data.CanAddle(),
             durationSeconds: 7,
             suppressSeconds: 15,
             response: Responses.aoe(),
@@ -349,7 +347,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '(?:4C8[BC]|4E5[56])', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '(?:4C8[BC]|4E5[56])', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '(?:4C8[BC]|4E5[56])', capture: false }),
-            condition: (data) => data.role === 'healer' || data.role === 'tank' || data.CanAddle(),
             suppressSeconds: 1,
             response: Responses.aoe(),
         },

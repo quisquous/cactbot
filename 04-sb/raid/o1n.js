@@ -7,7 +7,6 @@ Options.Triggers.push({
             id: 'O1N Wyrm Tail',
             regex: /Wyrm Tail/,
             beforeSeconds: 4,
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             response: Responses.miniBuster(),
         },
     ],
@@ -100,7 +99,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '23D7', source: 'アルテ・ロイテ' }),
             netRegexCn: NetRegexes.startsUsing({ id: '23D7', source: '老者' }),
             netRegexKo: NetRegexes.startsUsing({ id: '23D7', source: '알테 로이테' }),
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {

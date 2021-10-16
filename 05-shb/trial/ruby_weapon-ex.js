@@ -57,7 +57,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B03' }),
             netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B03' }),
             netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B03' }),
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             response: Responses.tankBusterSwap(),
         },
         {

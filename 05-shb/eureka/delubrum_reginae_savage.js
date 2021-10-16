@@ -2626,8 +2626,8 @@ Options.Triggers.push({
                     }
                     return { alarmText: output.tankBusterOnYou() };
                 }
-                if (data.role === 'healer' || data.role === 'tank')
-                    return { alertText: output.tankBusterOnPlayer({ player: matches.target }) };
+                const sev = data.role === 'healer' || data.role === 'tank' ? 'alertText' : 'infoText';
+                return { [sev]: output.tankBusterOnPlayer({ player: matches.target }) };
             },
         },
         {

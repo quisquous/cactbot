@@ -11,7 +11,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
             netRegexCn: NetRegexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
             netRegexKo: NetRegexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
-            condition: (data, matches) => matches.target === data.me || data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {

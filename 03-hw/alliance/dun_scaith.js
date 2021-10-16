@@ -612,7 +612,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.gainsEffect({ target: 'ディアボロス', effectId: '1AA', capture: false }),
             netRegexCn: NetRegexes.gainsEffect({ target: '迪亚波罗斯', effectId: '1AA', capture: false }),
             netRegexKo: NetRegexes.gainsEffect({ target: '디아볼로스', effectId: '1AA', capture: false }),
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             suppressSeconds: 5,
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -635,7 +634,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: 'ディアボロス', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '迪亚波罗斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '디아볼로스', capture: false }),
-            condition: (data) => data.role === 'healer',
             suppressSeconds: 5,
             response: Responses.aoe(),
         },
@@ -704,7 +702,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: 'ディアボロス・ホロー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '虚空迪亚波罗斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '공허의 디아볼로스', capture: false }),
-            condition: (data) => data.role === 'healer',
             suppressSeconds: 5,
             response: Responses.bigAoe(),
         },

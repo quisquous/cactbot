@@ -25,7 +25,6 @@ Options.Triggers.push({
             id: 'T9 Claw',
             regex: /Bahamut's Claw x5/,
             beforeSeconds: 5,
-            condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
             response: Responses.tankBuster(),
         },
         {

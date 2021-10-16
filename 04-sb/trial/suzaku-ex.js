@@ -23,7 +23,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '32DC', source: '주작', capture: false }),
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: Outputs.tankBuster,

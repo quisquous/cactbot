@@ -208,7 +208,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '1FA2', source: 'レフトウィング' }),
             netRegexCn: NetRegexes.startsUsing({ id: '1FA2', source: '左翼' }),
             netRegexKo: NetRegexes.startsUsing({ id: '1FA2', source: '왼쪽 날개' }),
-            condition: (data) => data.role === 'healer',
             delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
             response: Responses.aoe(),
         },

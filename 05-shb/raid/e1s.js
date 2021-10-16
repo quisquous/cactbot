@@ -143,7 +143,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '3D88', source: 'エデン・プライム' }),
             netRegexCn: NetRegexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
             netRegexKo: NetRegexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
-            condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
             response: Responses.tankBusterSwap(),
         },
         {

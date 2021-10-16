@@ -320,8 +320,7 @@ Options.Triggers.push({
             infoText: (data, matches, output) => {
                 if (matches.target === data.me)
                     return;
-                if (data.role === 'healer' || data.role === 'tank')
-                    return output.embraceOn({ player: data.ShortName(matches.target) });
+                return output.embraceOn({ player: data.ShortName(matches.target) });
             },
             outputStrings: {
                 embraceOn: {

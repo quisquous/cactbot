@@ -45,7 +45,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
             netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
             netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
-            condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
             response: Responses.tankBuster(),
         },
         {

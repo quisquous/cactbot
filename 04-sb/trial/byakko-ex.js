@@ -12,7 +12,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
             netRegexCn: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
             netRegexKo: NetRegexes.startsUsing({ id: '27DA', source: '백호' }),
-            condition: (data) => data.role === 'healer',
             response: Responses.tankBuster(),
         },
         {

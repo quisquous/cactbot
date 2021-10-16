@@ -318,7 +318,6 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
-            condition: (data) => data.role === 'tank' || data.role === 'healer',
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {

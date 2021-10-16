@@ -7,7 +7,6 @@ Options.Triggers.push({
             id: 'Gubal Hard Triclip',
             regex: /Triclip/,
             beforeSeconds: 5,
-            condition: (data) => data.role === 'healer' || data.role === 'tank',
             response: Responses.tankBuster(),
         },
         {
@@ -20,7 +19,6 @@ Options.Triggers.push({
             id: 'Gubal Hard Properties of Darkness',
             regex: /Darkness \(buster\)/,
             beforeSeconds: 5,
-            condition: (data) => data.role === 'healer' || data.role === 'tank',
             response: Responses.tankBuster(),
         },
     ],
