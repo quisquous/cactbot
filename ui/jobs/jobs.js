@@ -514,7 +514,7 @@ class Bars {
   }
 
   playNotification() {
-    const audio = new Audio('../../resources/sounds/freesound/alarm.ogg');
+    const audio = new Audio('../../resources/sounds/freesound/alarm.webm');
     audio.volume = 0.3;
     void audio.play();
   }
@@ -697,7 +697,7 @@ class Bars {
       this.gpAlarmReady = true;
     } else if (this.gpAlarmReady && !this.gpPotion && this.gp >= this.options.GpAlarmPoint) {
       this.gpAlarmReady = false;
-      const audio = new Audio('../../resources/sounds/freesound/power_up.ogg');
+      const audio = new Audio('../../resources/sounds/freesound/power_up.webm');
       audio.volume = this.options.GpAlarmSoundVolume;
       void audio.play();
     }
@@ -820,7 +820,7 @@ class Bars {
     if (inCountdown !== showingCountdown) {
       this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
-        const audio = new Audio('../../resources/sounds/freesound/sonar.ogg');
+        const audio = new Audio('../../resources/sounds/freesound/sonar.webm');
         audio.volume = 0.3;
         void audio.play();
       }
