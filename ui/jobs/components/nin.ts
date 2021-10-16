@@ -1,11 +1,14 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc = null;
-let tid1;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
+  let tid1 = 0;
+
   const ninki = bars.addResourceBox({
     classList: ['nin-color-ninki'],
   });
@@ -35,11 +38,14 @@ export function setup(bars) {
   bars.onYouGainEffect(EffectId.Mudra, () => {
     if (!mudraTriggerCd)
       return;
-    const old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
-    if (old > 0)
-      ninjutsu.duration = old + 20;
-    else
-      ninjutsu.duration = 20 - 0.5;
+
+    if (typeof ninjutsu.duration === 'number') {
+      const old = ninjutsu.duration - ninjutsu.elapsed;
+      if (old > 0)
+        ninjutsu.duration = old + 20;
+      else
+        ninjutsu.duration = 20 - 0.5;
+    }
     mudraTriggerCd = false;
   });
   // On each mudra, Mudra effect will be gain once,
@@ -66,23 +72,25 @@ export function setup(bars) {
     ninjutsu.threshold = bars.gcdSkill * 2;
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['NIN']) => {
     if (jobDetail.hutonMilliseconds > 0) {
-      if (bars.speedBuffs.huton !== 1)
-        bars.speedBuffs.huton = 1;
-    } else if (bars.speedBuffs.huton === 1) {
-      bars.speedBuffs.huton = 0;
+      if (!bars.speedBuffs.huton)
+        bars.speedBuffs.huton = true;
+    } else if (bars.speedBuffs.huton) {
+      bars.speedBuffs.huton = false;
     }
-    ninki.innerText = jobDetail.ninkiAmount;
+    ninki.innerText = jobDetail.ninkiAmount.toString();
     ninki.parentNode.classList.remove('high', 'low');
     if (jobDetail.ninkiAmount < 50)
       ninki.parentNode.classList.add('low');
     else if (jobDetail.ninkiAmount >= 90)
       ninki.parentNode.classList.add('high');
-    const oldSeconds = parseFloat(hutonBox.duration) - parseFloat(hutonBox.elapsed);
-    const seconds = jobDetail.hutonMilliseconds / 1000.0;
-    if (!hutonBox.duration || seconds > oldSeconds)
-      hutonBox.duration = seconds;
+    if (typeof hutonBox.duration === 'number') {
+      const oldSeconds = hutonBox.duration - hutonBox.elapsed;
+      const seconds = jobDetail.hutonMilliseconds / 1000.0;
+      if (!hutonBox.duration || seconds > oldSeconds)
+        hutonBox.duration = seconds;
+    }
   });
   const comboTimer = bars.addTimerBar({
     id: 'nin-timers-combo',
@@ -96,7 +104,7 @@ export function setup(bars) {
       comboTimer.duration = 15;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (bars: Bars): void => {
     bunshin.duration = 0;
     mudraTriggerCd = true;
     ninjutsu.duration = 0;
@@ -107,9 +115,9 @@ export function setup(bars) {
     comboTimer.duration = 0;
     clearTimeout(tid1);
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

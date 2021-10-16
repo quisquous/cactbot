@@ -1,9 +1,11 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const container = bars.addJobBarContainer();
 
   const incs = 20;
@@ -12,8 +14,8 @@ export function setup(bars) {
     marker.classList.add('marker');
     marker.classList.add((i % 40 === 0) ? 'odd' : 'even');
     container.appendChild(marker);
-    marker.style.left = i + '%';
-    marker.style.width = incs + '%';
+    marker.style.left = `${i}%`;
+    marker.style.width = `${incs}%`;
   }
 
   const whiteManaBar = bars.addResourceBar({
@@ -61,9 +63,9 @@ export function setup(bars) {
     lucidBox.threshold = bars.gcdSpell + 1;
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
-    const white = jobDetail.whiteMana;
-    const black = jobDetail.blackMana;
+  bars.onJobDetailUpdate((jobDetail: JobDetail['RDM']) => {
+    const white = jobDetail.whiteMana.toString();
+    const black = jobDetail.blackMana.toString();
 
     whiteManaBar.value = white;
     blackManaBar.value = black;
@@ -71,7 +73,7 @@ export function setup(bars) {
     if (whiteManaBox.innerText !== white) {
       whiteManaBox.innerText = white;
       const p = whiteManaBox.parentNode;
-      if (white < 80)
+      if (jobDetail.whiteMana < 80)
         p.classList.add('dim');
       else
         p.classList.remove('dim');
@@ -79,7 +81,7 @@ export function setup(bars) {
     if (blackManaBox.innerText !== black) {
       blackManaBox.innerText = black;
       const p = blackManaBox.parentNode;
-      if (black < 80)
+      if (jobDetail.blackMana < 80)
         p.classList.add('dim');
       else
         p.classList.remove('dim');
@@ -96,14 +98,14 @@ export function setup(bars) {
   });
   bars.onYouLoseEffect(EffectId.VerfireReady, () => blackProc.duration = 0);
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     lucidBox.duration = 0;
     whiteProc.duration = 0;
     blackProc.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

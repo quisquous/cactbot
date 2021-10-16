@@ -1,9 +1,11 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const lilyBox = bars.addResourceBox({
     classList: ['whm-color-lily'],
   });
@@ -32,30 +34,30 @@ export function setup(bars) {
   const bloodlilyContainer = document.createElement('div');
   bloodlilyContainer.id = 'whm-stacks-bloodlily';
   stacksContainer.appendChild(bloodlilyContainer);
-  const bloodlilyStacks = [];
+  const bloodlilyStacks: HTMLElement[] = [];
   for (let i = 0; i < 3; ++i) {
     const d = document.createElement('div');
     bloodlilyContainer.appendChild(d);
     bloodlilyStacks.push(d);
   }
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['WHM']) => {
     const lily = jobDetail.lilyStacks;
     // bars milliseconds is countup, so use floor instead of ceil.
     const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
 
-    lilyBox.innerText = lily;
+    lilyBox.innerText = lily.toString();
     if (lily === 3)
       lilysecondBox.innerText = '';
     else
-      lilysecondBox.innerText = 30 - lilysecond;
+      lilysecondBox.innerText = (30 - lilysecond).toString();
 
     const bloodlilys = jobDetail.bloodlilyStacks;
     for (let i = 0; i < 3; ++i) {
       if (bloodlilys > i)
-        bloodlilyStacks[i].classList.add('active');
+        bloodlilyStacks[i]?.classList.add('active');
       else
-        bloodlilyStacks[i].classList.remove('active');
+        bloodlilyStacks[i]?.classList.remove('active');
     }
 
     const l = lilysecondBox.parentNode;
@@ -78,8 +80,8 @@ export function setup(bars) {
     lucidBox.duration = 60;
   });
 
-  bars.onYouGainEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = 1);
-  bars.onYouLoseEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = 0);
+  bars.onYouGainEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = true);
+  bars.onYouLoseEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = false);
 
   bars.onStatChange('WHM', () => {
     diaBox.valuescale = bars.gcdSpell;
@@ -90,14 +92,14 @@ export function setup(bars) {
     lucidBox.threshold = bars.gcdSpell + 1;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     diaBox.duration = 0;
     assizeBox.duration = 0;
     lucidBox.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

@@ -1,12 +1,15 @@
-import { kAbility } from '../constants';
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
+import { kAbility } from '../constants';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
-let resetFunc = null;
-let tid1;
-let tid2;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
+  let tid1 = 0;
+  let tid2 = 0;
+
   const comboTimer = bars.addTimerBar({
     id: 'mch-timers-combo',
     fgColor: 'combo-color',
@@ -25,23 +28,23 @@ export function setup(bars) {
   const batteryGauge = bars.addResourceBox({
     classList: ['mch-color-battery'],
   });
-  bars.onJobDetailUpdate((jobDetail) => {
-    heatGauge.innerText = jobDetail.heat;
-    batteryGauge.innerText = jobDetail.battery;
+  bars.onJobDetailUpdate((jobDetail: JobDetail['MCH']) => {
+    heatGauge.innerText = jobDetail.heat.toString();
+    batteryGauge.innerText = jobDetail.battery.toString();
     // These two seconds are shown by half adjust, not like others' ceil.
     if (jobDetail.overheatMilliseconds > 0) {
       heatGauge.parentNode.classList.add('overheat');
-      heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000);
+      heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000).toString();
     } else {
       heatGauge.parentNode.classList.remove('overheat');
-      heatGauge.innerText = jobDetail.heat;
+      heatGauge.innerText = jobDetail.heat.toString();
     }
     if (jobDetail.batteryMilliseconds > 0) {
       batteryGauge.parentNode.classList.add('robot-active');
-      batteryGauge.innerText = Math.round(jobDetail.batteryMilliseconds / 1000);
+      batteryGauge.innerText = Math.round(jobDetail.batteryMilliseconds / 1000).toString();
     } else {
       batteryGauge.parentNode.classList.remove('robot-active');
-      batteryGauge.innerText = jobDetail.battery;
+      batteryGauge.innerText = jobDetail.battery.toString();
     }
   });
 
@@ -75,7 +78,7 @@ export function setup(bars) {
   const wildFireContainer = document.createElement('div');
   wildFireContainer.id = 'mch-stacks-wildfire';
   stacksContainer.appendChild(wildFireContainer);
-  const wildFireStacks = [];
+  const wildFireStacks: HTMLElement[] = [];
   for (let i = 0; i < 6; ++i) {
     const d = document.createElement('div');
     wildFireContainer.appendChild(d);
@@ -86,18 +89,21 @@ export function setup(bars) {
   let wildFireActive = false;
   const refreshWildFireGauge = () => {
     for (let i = 0; i < 6; ++i) {
-      wildFireStacks[i].classList.remove('fix', 'active');
+      const stack = wildFireStacks[i];
+      if (!stack)
+        continue;
+      stack.classList.remove('fix', 'active');
       if (wildFireCounts > i) {
         if (wildFireActive)
-          wildFireStacks[i].classList.add('active');
+          stack.classList.add('active');
         else
-          wildFireStacks[i].classList.add('fix');
+          stack.classList.add('fix');
       }
     }
   };
   bars.onMobGainsEffectFromYou(EffectId.Wildfire, (id, e) => {
     wildFireActive = true;
-    wildFireCounts = e.count;
+    wildFireCounts = parseInt(e.count);
     refreshWildFireGauge();
     stacksContainer.classList.remove('hide');
   });
@@ -133,7 +139,7 @@ export function setup(bars) {
     wildFireBox.threshold = bars.gcdSkill + 1;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (bars: Bars): void => {
     comboTimer.duration = 0;
     drillBox.duration = 0;
     airAnchorBox.duration = 0;
@@ -147,9 +153,9 @@ export function setup(bars) {
     clearTimeout(tid1);
     clearTimeout(tid2);
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

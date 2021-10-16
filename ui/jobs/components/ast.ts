@@ -1,6 +1,8 @@
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 const cardsMap = {
   'Balance': { 'bonus': 'melee', 'seal': 'Solar' },
   'Bole': { 'bonus': 'range', 'seal': 'Solar' },
@@ -8,9 +10,9 @@ const cardsMap = {
   'Ewer': { 'bonus': 'range', 'seal': 'Lunar' },
   'Spear': { 'bonus': 'melee', 'seal': 'Celestial' },
   'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
-};
+} as const;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const combustBox = bars.addProcBox({
     id: 'ast-procs-combust',
     fgColor: 'ast-color-combust',
@@ -35,7 +37,7 @@ export function setup(bars) {
     classList: ['ast-color-seal'],
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['AST']) => {
     const card = jobDetail.heldCard;
     const seals = jobDetail.arcanums;
 
@@ -59,7 +61,7 @@ export function setup(bars) {
     // Show how many kind of seals you already have
     // Turn green when you have all 3 kinds of seal
     const sealCount = new Set(seals).size;
-    sealBox.innerText = sealCount;
+    sealBox.innerText = sealCount.toString();
     if (sealCount === 3)
       sealBox.parentNode.classList.add('ready');
     else
@@ -89,14 +91,14 @@ export function setup(bars) {
     lucidBox.threshold = bars.gcdSpell + 1;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     combustBox.duration = 0;
     drawBox.duration = 0;
     lucidBox.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

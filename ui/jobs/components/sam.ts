@@ -1,9 +1,11 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const comboTimer = bars.addTimerBar({
     id: 'sam-timers-combo',
     fgColor: 'combo-color',
@@ -19,15 +21,15 @@ export function setup(bars) {
   const senContainer = document.createElement('div');
   senContainer.id = 'sam-stacks';
   bars.addJobBarContainer().appendChild(senContainer);
-  const sen = [
+  const [setsu, getsu, ka] = [
     document.createElement('div'),
     document.createElement('div'),
     document.createElement('div'),
   ];
-  sen[0].id = 'sam-stacks-setsu';
-  sen[1].id = 'sam-stacks-getsu';
-  sen[2].id = 'sam-stacks-ka';
-  sen.forEach((e) => senContainer.appendChild(e));
+  setsu.id = 'sam-stacks-setsu';
+  getsu.id = 'sam-stacks-getsu';
+  ka.id = 'sam-stacks-ka';
+  [setsu, getsu, ka].forEach((e) => senContainer.appendChild(e));
 
   const kenkiGauge = bars.addResourceBox({
     classList: ['sam-color-kenki'],
@@ -36,9 +38,9 @@ export function setup(bars) {
     classList: ['sam-color-meditation'],
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
-    kenkiGauge.innerText = jobDetail.kenki;
-    meditationGauge.innerText = jobDetail.meditationStacks;
+  bars.onJobDetailUpdate((jobDetail: JobDetail['SAM']) => {
+    kenkiGauge.innerText = jobDetail.kenki.toString();
+    meditationGauge.innerText = jobDetail.meditationStacks.toString();
     if (jobDetail.kenki >= 70)
       kenkiGauge.parentNode.classList.add('high');
     else
@@ -49,17 +51,17 @@ export function setup(bars) {
       meditationGauge.parentNode.classList.remove('high');
 
     if (jobDetail.setsu)
-      sen[0].classList.add('active');
+      setsu.classList.add('active');
     else
-      sen[0].classList.remove('active');
+      setsu.classList.remove('active');
     if (jobDetail.getsu)
-      sen[1].classList.add('active');
+      getsu.classList.add('active');
     else
-      sen[1].classList.remove('active');
+      getsu.classList.remove('active');
     if (jobDetail.ka)
-      sen[2].classList.add('active');
+      ka.classList.add('active');
     else
-      sen[2].classList.remove('active');
+      ka.classList.remove('active');
   });
 
   const shifu = bars.addProcBox({
@@ -67,13 +69,13 @@ export function setup(bars) {
     fgColor: 'sam-color-shifu',
     notifyWhenExpired: true,
   });
-  bars.onYouGainEffect(EffectId.Shifu, (id, matches) => {
-    shifu.duration = matches.duration - 0.5; // -0.5s for log line delay
-    bars.speedBuffs.shifu = 1;
+  bars.onYouGainEffect(EffectId.Shifu, (_id, matches) => {
+    shifu.duration = parseFloat(matches.duration) - 0.5; // -0.5s for log line delay
+    bars.speedBuffs.shifu = true;
   });
   bars.onYouLoseEffect(EffectId.Shifu, () => {
     shifu.duration = 0;
-    bars.speedBuffs.shifu = 0;
+    bars.speedBuffs.shifu = false;
   });
 
   const jinpu = bars.addProcBox({
@@ -81,8 +83,8 @@ export function setup(bars) {
     fgColor: 'sam-color-jinpu',
     notifyWhenExpired: true,
   });
-  bars.onYouGainEffect(EffectId.Jinpu, (id, matches) => {
-    jinpu.duration = matches.duration - 0.5; // -0.5s for log line delay
+  bars.onYouGainEffect(EffectId.Jinpu, (_id, matches) => {
+    jinpu.duration = parseFloat(matches.duration) - 0.5; // -0.5s for log line delay
   });
   bars.onYouLoseEffect(EffectId.Jinpu, () => {
     jinpu.duration = 0;
@@ -120,16 +122,16 @@ export function setup(bars) {
     higanbana.threshold = bars.gcdSkill * 4;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     comboTimer.duration = 0;
     shifu.duration = 0;
     jinpu.duration = 0;
     tsubameGaeshi.duration = 0;
     higanbana.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

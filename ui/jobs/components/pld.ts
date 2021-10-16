@@ -1,10 +1,12 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars, ResourceBox } from '../bar';
 import { kAbility } from '../constants';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-const setAtonement = (atonementBox, stacks) => {
-  atonementBox.innerText = stacks;
+const setAtonement = (atonementBox: ResourceBox, stacks: number) => {
+  atonementBox.innerText = stacks.toString();
   const p = atonementBox.parentNode;
   if (stacks === 0)
     p.classList.remove('any');
@@ -12,7 +14,7 @@ const setAtonement = (atonementBox, stacks) => {
     p.classList.add('any');
 };
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const oathBox = bars.addResourceBox({
     classList: ['pld-color-oath'],
   });
@@ -20,16 +22,16 @@ export function setup(bars) {
     classList: ['pld-color-atonement'],
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
-    const oath = jobDetail.oath;
+  bars.onJobDetailUpdate((jobDetail: JobDetail['PLD']) => {
+    const oath = jobDetail.oath.toString();
     if (oathBox.innerText === oath)
       return;
     oathBox.innerText = oath;
     const p = oathBox.parentNode;
-    if (oath < 50) {
+    if (jobDetail.oath < 50) {
       p.classList.add('low');
       p.classList.remove('mid');
-    } else if (oath < 100) {
+    } else if (jobDetail.oath < 100) {
       p.classList.remove('low');
       p.classList.add('mid');
     } else {
@@ -70,13 +72,13 @@ export function setup(bars) {
     goreBox.threshold = bars.gcdSkill * 3 + 0.3;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     goreBox.duration = 0;
     setAtonement(atonementBox, 0);
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};
