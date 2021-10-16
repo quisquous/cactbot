@@ -293,13 +293,14 @@ Options.Triggers.push({
         {
             'locale': 'cn',
             'replaceSync': {
+                'Gowrow': '高牢怪龙',
                 'The Wound': '灵伤',
+                'The Scorpion\'s Tail': '尖尾蝎',
                 'The Lava Tube': '大熔岩窟',
                 'The Leightonward': '莱顿瓦德',
                 'Small Spore Sac': '小型孢囊',
-                'Lava Scorpion': '熔岩蝎',
-                'The Scorpion\'s Tail': '尖尾蝎',
                 '(?<!Small )Spore Sac': '孢囊',
+                'Lava Scorpion': '熔岩蝎',
             },
             'replaceText': {
                 '\\(Adds x2\\)': '(小怪x2)',

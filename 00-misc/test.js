@@ -375,6 +375,13 @@ Options.Triggers.push({
                 'You bid farewell to the striking dummy': '.*向木人告别',
                 'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
                 'test sync': 'test sync',
+                'You burst out laughing at the striking dummy': '.*看着木人高声大笑',
+                'cactbot lang': 'cactbot语言',
+                'cactbot test response': 'cactbot响应测试',
+                'cactbot test watch': 'cactbot探测测试',
+                'You clap for the striking dummy': '.*向木人送上掌声',
+                'You psych yourself up alongside the striking dummy': '.*激励木人',
+                'You poke the striking dummy': '.*用手指戳向木人',
             },
             replaceText: {
                 'Final Sting': '终极针',

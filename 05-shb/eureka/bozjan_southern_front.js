@@ -766,7 +766,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.gameLog({ line: 'Der Bestienkönig will einen Kampf auf seinem Podest.*?', capture: false }),
             netRegexFr: NetRegexes.gameLog({ line: 'Lyon attend des adversaires à sa taille sur la tribune des Souverains.*?', capture: false }),
             netRegexJa: NetRegexes.gameLog({ line: '獣王ライアンは、王者の円壇での戦いを望んでいるようだ.*?', capture: false }),
-            netRegexCn: NetRegexes.gameLog({ line: '兽王莱昂似乎很期待在王者圆坛战斗！', capture: false }),
+            netRegexCn: NetRegexes.gameLog({ line: '兽王莱昂似乎很期待在王者圆坛战斗！.*?', capture: false }),
             netRegexKo: NetRegexes.gameLog({ line: '마수왕 라이언이 왕의 단상에서 싸우려고 합니다!', capture: false }),
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -1085,7 +1085,7 @@ Options.Triggers.push({
                 'Albeleo\'s Monstrosity': '阿尔贝雷欧的巨兽',
                 'Albeleo\'s Hrodvitnir': '阿尔贝雷欧的恶狼',
                 'Electric Charge': '雷气',
-                '7 minutes have elapsed since your last activity..*?': '已经7分钟没有进行任何操作.*?',
+                '7 minutes have elapsed since your last activity..*?': '已经7分钟没有进行任何操作',
                 '4Th Legion Helldiver': '第四军团地狱潜者',
                 'Adrammelech': '阿德拉梅里克',
                 'Bladesmeet': '群刃大厅',

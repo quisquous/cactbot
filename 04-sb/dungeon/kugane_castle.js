@@ -217,8 +217,6 @@ Options.Triggers.push({
                 'Zuiko-Maru': '瑞光丸',
             },
             'replaceText': {
-                '\\(inner\\)': '(内)',
-                '\\(outer\\)': '(外)',
                 'Clearout': '横扫',
                 'Clockwork Medium': '机关召集',
                 'Clockwork Raiton': '机关雷遁',
