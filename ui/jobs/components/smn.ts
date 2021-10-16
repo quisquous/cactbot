@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -61,7 +61,7 @@ export const setup = (bars: Bars): void => {
     }
   };
   bars.onYouGainEffect(EffectId.FurtherRuin, (name, e) => {
-    furtherRuin = parseInt(e.count);
+    furtherRuin = parseInt(e.count ?? '0');
     refreshFurtherRuin();
   });
   bars.onYouLoseEffect(EffectId.FurtherRuin, () => {
@@ -73,7 +73,7 @@ export const setup = (bars: Bars): void => {
     refreshFurtherRuin();
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['SMN']) => {
+  bars.onJobDetailUpdate('SMN', (jobDetail: JobDetail['SMN']) => {
     const stack = jobDetail.aetherflowStacks;
     const summoned = jobDetail.bahamutSummoned;
     const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);

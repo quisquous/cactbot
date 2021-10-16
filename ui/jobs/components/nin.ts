@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -72,7 +72,7 @@ export const setup = (bars: Bars): void => {
     ninjutsu.threshold = bars.gcdSkill * 2;
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['NIN']) => {
+  bars.onJobDetailUpdate('NIN', (jobDetail: JobDetail['NIN']) => {
     if (jobDetail.hutonMilliseconds > 0) {
       if (!bars.speedBuffs.huton)
         bars.speedBuffs.huton = true;
@@ -98,7 +98,7 @@ export const setup = (bars: Bars): void => {
   });
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    if (bars.combo?.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;

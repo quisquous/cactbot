@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -63,7 +63,7 @@ export const setup = (bars: Bars): void => {
     lucidBox.threshold = bars.gcdSpell + 1;
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['RDM']) => {
+  bars.onJobDetailUpdate('RDM', (jobDetail: JobDetail['RDM']) => {
     const white = jobDetail.whiteMana.toString();
     const black = jobDetail.blackMana.toString();
 
@@ -89,12 +89,12 @@ export const setup = (bars: Bars): void => {
   });
 
   bars.onYouGainEffect(EffectId.VerstoneReady, (name, matches) => {
-    whiteProc.duration = parseFloat(matches.duration) - bars.gcdSpell;
+    whiteProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
   });
   bars.onYouLoseEffect(EffectId.VerstoneReady, () => whiteProc.duration = 0);
   bars.onYouGainEffect(EffectId.VerfireReady, (name, matches) => {
     blackProc.duration = 0;
-    blackProc.duration = parseFloat(matches.duration) - bars.gcdSpell;
+    blackProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
   });
   bars.onYouLoseEffect(EffectId.VerfireReady, () => blackProc.duration = 0);
 

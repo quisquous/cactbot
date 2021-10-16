@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -12,7 +12,7 @@ export const setup = (bars: Bars): void => {
   });
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    if (bars.combo?.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;
@@ -38,7 +38,7 @@ export const setup = (bars: Bars): void => {
     classList: ['sam-color-meditation'],
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['SAM']) => {
+  bars.onJobDetailUpdate('SAM', (jobDetail: JobDetail['SAM']) => {
     kenkiGauge.innerText = jobDetail.kenki.toString();
     meditationGauge.innerText = jobDetail.meditationStacks.toString();
     if (jobDetail.kenki >= 70)
@@ -70,7 +70,7 @@ export const setup = (bars: Bars): void => {
     notifyWhenExpired: true,
   });
   bars.onYouGainEffect(EffectId.Shifu, (_id, matches) => {
-    shifu.duration = parseFloat(matches.duration) - 0.5; // -0.5s for log line delay
+    shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
     bars.speedBuffs.shifu = true;
   });
   bars.onYouLoseEffect(EffectId.Shifu, () => {
@@ -84,7 +84,7 @@ export const setup = (bars: Bars): void => {
     notifyWhenExpired: true,
   });
   bars.onYouGainEffect(EffectId.Jinpu, (_id, matches) => {
-    jinpu.duration = parseFloat(matches.duration) - 0.5; // -0.5s for log line delay
+    jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   });
   bars.onYouLoseEffect(EffectId.Jinpu, () => {
     jinpu.duration = 0;

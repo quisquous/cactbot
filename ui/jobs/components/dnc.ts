@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -16,7 +16,7 @@ export const setup = (bars: Bars): void => {
   });
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    if (bars.combo?.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;
@@ -106,7 +106,7 @@ export const setup = (bars: Bars): void => {
   const espritGauge = bars.addResourceBox({
     classList: ['dnc-color-esprit'],
   });
-  bars.onJobDetailUpdate((jobDetail: JobDetail['DNC']) => {
+  bars.onJobDetailUpdate('DNC', (jobDetail: JobDetail['DNC']) => {
     espritGauge.innerText = jobDetail.esprit.toString();
     featherGauge.innerText = jobDetail.feathers.toString();
     if (jobDetail.esprit >= 80)

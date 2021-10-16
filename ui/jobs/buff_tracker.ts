@@ -660,7 +660,7 @@ export class BuffTracker {
     // }
   }
 
-  onUseAbility(id: string, matches: NetMatches['Ability']): void {
+  onUseAbility(id: string, matches: Partial<NetMatches['Ability']>): void {
     const buffs = this.cooldownAbilityMap[id];
     if (!buffs)
       return;
@@ -686,7 +686,7 @@ export class BuffTracker {
 
   onGainEffect(
     buffs: BuffInfo[] | undefined,
-    matches: NetMatches['GainsEffect'],
+    matches: Partial<NetMatches['GainsEffect']>,
   ): void {
     if (!buffs)
       return;
@@ -708,7 +708,7 @@ export class BuffTracker {
 
   onLoseEffect(
     buffs: BuffInfo[] | undefined,
-    _matches: NetMatches['LosesEffect'],
+    _matches: Partial<NetMatches['LosesEffect']>,
   ): void {
     if (!buffs)
       return;
@@ -716,19 +716,19 @@ export class BuffTracker {
       this.onLoseBigBuff(b.name);
   }
 
-  onYouGainEffect(name: string, matches: NetMatches['GainsEffect']): void {
+  onYouGainEffect(name: string, matches: Partial<NetMatches['GainsEffect']>): void {
     this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name: string, matches: NetMatches['LosesEffect']): void {
+  onYouLoseEffect(name: string, matches: Partial<NetMatches['LosesEffect']>): void {
     this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name: string, matches: NetMatches['GainsEffect']): void {
+  onMobGainsEffect(name: string, matches: Partial<NetMatches['GainsEffect']>): void {
     this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name: string, matches: NetMatches['LosesEffect']): void {
+  onMobLosesEffect(name: string, matches: Partial<NetMatches['LosesEffect']>): void {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 

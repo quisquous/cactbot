@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -39,12 +39,12 @@ export const setup = (bars: Bars): void => {
   });
 
   bars.onYouGainEffect(EffectId.Thundercloud, (_, matches) => {
-    thunderProc.duration = parseFloat(matches.duration);
+    thunderProc.duration = parseFloat(matches.duration ?? '0');
   });
   bars.onYouLoseEffect(EffectId.Thundercloud, () => thunderProc.duration = 0);
 
   bars.onYouGainEffect(EffectId.Firestarter, (_, matches) => {
-    fireProc.duration = parseFloat(matches.duration);
+    fireProc.duration = parseFloat(matches.duration ?? '0');
   });
   bars.onYouLoseEffect(EffectId.Firestarter, () => fireProc.duration = 0);
 
@@ -84,7 +84,7 @@ export const setup = (bars: Bars): void => {
     classList: ['blm-xeno-timer'],
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['BLM']) => {
+  bars.onJobDetailUpdate('BLM', (jobDetail: JobDetail['BLM']) => {
     if (bars.umbralStacks !== jobDetail.umbralStacks) {
       bars.umbralStacks = jobDetail.umbralStacks;
       bars._updateMPTicker();

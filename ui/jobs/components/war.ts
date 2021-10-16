@@ -1,6 +1,6 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
+import { Bars } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -9,7 +9,7 @@ export const setup = (bars: Bars): void => {
     classList: ['war-color-beast'],
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['WAR']) => {
+  bars.onJobDetailUpdate('WAR', (jobDetail: JobDetail['WAR']) => {
     const beast = jobDetail.beast.toString();
     if (textBox.innerText === beast)
       return;
@@ -39,14 +39,14 @@ export const setup = (bars: Bars): void => {
 
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    if (bars.combo?.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;
   });
 
-  bars.onYouGainEffect(EffectId.StormsEye, (id, e) => {
-    eyeBox.duration = parseFloat(e.duration);
+  bars.onYouGainEffect(EffectId.StormsEye, (_id, e) => {
+    eyeBox.duration = parseFloat(e.duration ?? '0');
   });
   bars.onYouLoseEffect(EffectId.StormsEye, () => {
     eyeBox.duration = 0;

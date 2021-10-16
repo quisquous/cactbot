@@ -1,6 +1,6 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
+import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -72,7 +72,7 @@ export const setup = (bars: Bars): void => {
     classList: ['brd-color-soulvoice'],
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['BRD']) => {
+  bars.onJobDetailUpdate('BRD', (jobDetail: JobDetail['BRD']) => {
     songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
     repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
     repertoireBox.innerText = '';

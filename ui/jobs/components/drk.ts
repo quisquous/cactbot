@@ -1,6 +1,6 @@
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
@@ -18,7 +18,7 @@ export const setup = (bars: Bars): void => {
     threshold: 10,
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['DRK']) => {
+  bars.onJobDetailUpdate('DRK', (jobDetail: JobDetail['DRK']) => {
     const blood = jobDetail.blood;
     if (bloodBox.innerText !== blood.toString()) {
       bloodBox.innerText = blood.toString();
@@ -47,7 +47,7 @@ export const setup = (bars: Bars): void => {
 
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    if (bars.combo?.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;

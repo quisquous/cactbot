@@ -1,4 +1,4 @@
-import { Bars } from '../bar';
+import { Bars } from '../jobs';
 
 import { reset as resetAst, setup as setupAst } from './ast';
 import { reset as resetBlm, setup as setupBlm } from './blm';

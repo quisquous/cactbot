@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars, ResourceBox } from '../bar';
 import { kAbility } from '../constants';
+import { Bars, ResourceBox } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -22,7 +22,7 @@ export const setup = (bars: Bars): void => {
     classList: ['pld-color-atonement'],
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['PLD']) => {
+  bars.onJobDetailUpdate('PLD', (jobDetail: JobDetail['PLD']) => {
     const oath = jobDetail.oath.toString();
     if (oathBox.innerText === oath)
       return;
@@ -63,7 +63,7 @@ export const setup = (bars: Bars): void => {
   // for the same effect, but with different counts.  When the last stack
   // falls off, then there's a "lose effect" line.
   bars.onYouGainEffect(EffectId.SwordOath, (name, matches) => {
-    setAtonement(atonementBox, parseInt(matches.count));
+    setAtonement(atonementBox, parseInt(matches.count ?? '0'));
   });
   bars.onYouLoseEffect(EffectId.SwordOath, () => setAtonement(atonementBox, 0));
 

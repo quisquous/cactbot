@@ -1,6 +1,6 @@
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
@@ -69,13 +69,13 @@ export const setup = (bars: Bars): void => {
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
     cartridgeComboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    if (bars.combo?.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['GNB']) => {
+  bars.onJobDetailUpdate('GNB', (jobDetail: JobDetail['GNB']) => {
     cartridgeBox.innerText = jobDetail.cartridges.toString();
     if (jobDetail.cartridges === 2)
       cartridgeBox.parentNode.classList.add('full');

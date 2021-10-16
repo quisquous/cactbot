@@ -1,6 +1,6 @@
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -71,7 +71,7 @@ export const setup = (bars: Bars): void => {
   const eyes = bars.addResourceBox({
     classList: ['drg-color-eyes'],
   });
-  bars.onJobDetailUpdate((jobDetail: JobDetail['DRG']) => {
+  bars.onJobDetailUpdate('DRG', (jobDetail: JobDetail['DRG']) => {
     blood.parentNode.classList.remove('blood', 'life');
     if (jobDetail.bloodMilliseconds > 0) {
       blood.parentNode.classList.add('blood');
