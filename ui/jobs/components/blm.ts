@@ -84,11 +84,9 @@ export const setup = (bars: Bars): void => {
     classList: ['blm-xeno-timer'],
   });
 
-  let umbralStacks = 0;
-
   bars.onJobDetailUpdate((jobDetail: JobDetail['BLM']) => {
-    if (umbralStacks !== jobDetail.umbralStacks) {
-      umbralStacks = jobDetail.umbralStacks;
+    if (bars.umbralStacks !== jobDetail.umbralStacks) {
+      bars.umbralStacks = jobDetail.umbralStacks;
       bars._updateMPTicker();
     }
     const fouls = jobDetail.foulCount;

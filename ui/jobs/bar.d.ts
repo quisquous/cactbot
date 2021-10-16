@@ -37,6 +37,7 @@ export interface Bars {
   combo: ComboTracker;
   skillSpeed: number;
   spellSpeed: number;
+  umbralStacks: number;
 
   addProcBox: (o: Selector) => TimerBox;
   addResourceBox: (o: Selector) => ResourceBox;
