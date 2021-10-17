@@ -8,6 +8,8 @@ updates:
       interval: "monthly"
     commit-message:
       prefix: "build"
+    # Prevent all updates but security updates.
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -15,3 +17,5 @@ updates:
       interval: "monthly"
     commit-message:
       prefix: "build"
+    # Prevent all updates but security updates.
+    open-pull-requests-limit: 0
