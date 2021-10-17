@@ -138,9 +138,6 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 1,
-      setterFunc: (options, value) => {
-        options['PopVolume'] = value;
-      },
     },
     {
       id: 'BunnyPopVolume',
@@ -154,9 +151,6 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 0.3,
-      setterFunc: (options, value) => {
-        options['BunnyPopVolume'] = value;
-      },
     },
     {
       id: 'CriticalPopVolume',
@@ -170,9 +164,6 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 0.3,
-      setterFunc: (options, value) => {
-        options['CriticalPopVolume'] = value;
-      },
     },
     {
       id: 'RefreshRateSeconds',
