@@ -1106,7 +1106,7 @@ Network Log Line Structure:
 24|[timestamp]|[id]|[name]|[which]|[effectId]|[damage]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
 
 ACT Log Line Structure:
-[timestamp] 18:24 Tick on [Name] for [damage] damage.
+[timestamp] 18:[which] Tick on [Name] for [damage] damage.
 ```
 
 #### Examples
@@ -1118,9 +1118,9 @@ Network Log Line Examples:
 24|2021-07-27T12:47:06.9340000-04:00|40024FC4|The Manipulator|DoT|0|B7F|709685|872320|8840|10000|0|1000|-0.01531982|-13.86256|10.59466|-4.792213E-05||ce3fd23ca493a37ab7663b8212044e78
 
 ACT Log Line Examples:
-[12:47:05.510] 18:24 Tick on Potato Chippy for 929 damage.
-[12:47:05.599] 18:24 Tick on Tini Poutini for 956 damage.
-[12:47:06.934] 18:24 Tick on The Manipulator for 2943 damage.
+[12:47:05.510] 18:HoT Tick on Potato Chippy for 929 damage.
+[12:47:05.599] 18:HoT Tick on Tini Poutini for 956 damage.
+[12:47:06.934] 18:DoT Tick on The Manipulator for 2943 damage.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
