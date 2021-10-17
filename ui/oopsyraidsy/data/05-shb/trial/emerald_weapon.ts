@@ -40,7 +40,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '553E' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Knocked off',
@@ -60,7 +60,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['5563', '5564'] }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Pushed into wall',

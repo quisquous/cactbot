@@ -143,7 +143,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text = matches.effect + ' #2';
         else
           text = matches.effect + ' #3';
-        return { name: matches.target, text: text };
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: text,
+        };
       },
     },
   ],

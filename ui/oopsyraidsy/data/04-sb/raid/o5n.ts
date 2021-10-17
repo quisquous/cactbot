@@ -33,8 +33,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '3AA' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
       deathReason: (data, matches) => {
-        if (data.hasThrottle?.[matches.target])
-          return { name: matches.target, text: matches.effect };
+        if (!data.hasThrottle?.[matches.target])
+          return;
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: matches.effect,
+        };
       },
     },
     {

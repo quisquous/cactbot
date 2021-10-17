@@ -42,7 +42,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '32DB', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Knocked off',
@@ -61,7 +61,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '32DA', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Knocked off',

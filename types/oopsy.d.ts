@@ -34,6 +34,7 @@ export type OopsyMistake = {
 };
 
 export type OopsyDeathReason = {
+  id: string;
   name: string;
   text: string | LocaleText;
 };

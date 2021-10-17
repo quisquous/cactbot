@@ -50,7 +50,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
         };

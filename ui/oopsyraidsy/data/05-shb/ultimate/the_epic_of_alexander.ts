@@ -158,6 +158,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.hasThrottle[matches.target])
           return;
         return {
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
         };
