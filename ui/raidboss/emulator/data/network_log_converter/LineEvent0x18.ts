@@ -10,7 +10,7 @@ const fields = logDefinitions.NetworkDoT.fields;
 export class LineEvent0x18 extends LineEvent implements LineEventSource {
   public readonly id: string;
   public readonly name: string;
-  public readonly type: string;
+  public readonly which: string;
   public readonly effectId: string;
   public readonly damage: number;
   public readonly hp: number;
@@ -29,7 +29,7 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
     this.id = parts[fields.id]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
 
-    this.type = parts[fields.type] ?? '';
+    this.which = parts[fields.which] ?? '';
     this.effectId = parts[fields.effectId]?.toUpperCase() ?? '';
     const damageString = parts[fields.damage] ?? '';
     this.damage = parseInt(damageString, 16);
@@ -62,7 +62,7 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
 
     const damageStringConverted = isNaN(this.damage) ? damageString : this.damage.toString();
 
-    this.convertedLine = this.prefix() + effectPart + this.type +
+    this.convertedLine = this.prefix() + effectPart + this.which +
       ' Tick on ' + EmulatorCommon.properCase(resolvedName) +
       ' for ' + damageStringConverted + ' damage.';
   }
