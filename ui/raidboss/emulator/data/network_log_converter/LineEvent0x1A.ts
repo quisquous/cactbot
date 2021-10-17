@@ -23,8 +23,8 @@ export class LineEvent0x1A extends LineEvent {
   public readonly targetId: string;
   public readonly targetName: string;
   public readonly stacks: number;
-  public readonly targetHp: number;
-  public readonly hp: number;
+  public readonly targetMaxHp: number;
+  public readonly sourceMaxHp: number;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
@@ -38,8 +38,8 @@ export class LineEvent0x1A extends LineEvent {
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
     this.targetName = parts[fields.target] ?? '';
     this.stacks = parseInt(parts[fields.count] ?? '0');
-    this.targetHp = parseInt(parts[fields.targetHp] ?? '');
-    this.hp = parseInt(parts[fields.hp] ?? '');
+    this.targetMaxHp = parseInt(parts[fields.targetMaxHp] ?? '');
+    this.sourceMaxHp = parseInt(parts[fields.sourceMaxHp] ?? '');
 
     repo.updateCombatant(this.id, {
       name: this.name,
