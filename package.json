@@ -124,7 +124,7 @@
     "@fast-csv/parse": "^4.3.6",
     "argparse": "^1.0.10",
     "dexie": "^3.0.3",
-    "dexie-export-import": "^1.0.0",
+    "dexie-export-import": "^1.0.3",
     "inquirer": "^8.1.1",
     "inquirer-fuzzy-path": "^2.3.0"
   }
