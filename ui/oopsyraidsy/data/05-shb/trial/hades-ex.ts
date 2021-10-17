@@ -118,6 +118,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.hasBeyondDeath[matches.target])
           return;
         return {
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
         };
@@ -152,6 +153,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.hasDoom[matches.target])
           return;
         return {
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
         };

@@ -120,6 +120,7 @@ mistake: (data, matches) => {
 
 ### `deathReason` format
 
+* `id` is the player id to override the death reason for.
 * `name` is the full player name to override the next death reason for.
 * `reason` is the string to use.
 
@@ -128,7 +129,8 @@ If this following trigger is used, then if a player dies without taking any othe
 ```javascript
 deathReason: (data, matches) => {
   return {
-    name: event.targetName,
+    id: matches.targetId,
+    name: matches.targetName,
     text: 'Doom Debuff',
   },
 },
