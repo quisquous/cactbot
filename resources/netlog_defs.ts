@@ -479,8 +479,8 @@ const logDefinitions = {
       targetId: 7,
       target: 8,
       count: 9,
-      targetHp: 10,
-      hp: 11,
+      targetMaxHp: 10,
+      sourceMaxHp: 11,
     },
     playerIds: {
       5: 6,
