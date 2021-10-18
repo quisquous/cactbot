@@ -128,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
         'Magitek Bit': '魔导浮游炮',
         'Magitek Predator': '魔导猎手',
         'The Airship Landing': '飞空战舰着陆场',
-        '(?<!-)The Griffin': '铁面公卿 伊尔伯德',
+        '(?<! )The Griffin': '铁面公卿 伊尔伯德',
         'The Magitek Installation': '魔导兵器仓库',
         'Via Praetoria': '天营路',
       },
