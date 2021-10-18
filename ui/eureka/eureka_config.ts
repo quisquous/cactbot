@@ -29,9 +29,14 @@ UserConfig.registerOptions('eureka', {
       type: 'float',
       default: 90,
       setterFunc: (options, value) => {
-        if (typeof value !== 'number')
+        let seconds: number;
+        if (typeof value === 'string')
+          seconds = parseFloat(value);
+        else if (typeof value === 'number')
+          seconds = value;
+        else
           return;
-        options['FlagTimeoutMs'] = value * 1000;
+        options['FlagTimeoutMs'] = seconds * 1000;
       },
     },
     {
@@ -178,9 +183,14 @@ UserConfig.registerOptions('eureka', {
       type: 'float',
       default: 1,
       setterFunc: (options, value) => {
-        if (typeof value !== 'number')
+        let seconds: number;
+        if (typeof value === 'string')
+          seconds = parseFloat(value);
+        else if (typeof value === 'number')
+          seconds = value;
+        else
           return;
-        options['RefreshRateMs'] = value * 1000;
+        options['RefreshRateMs'] = seconds * 1000;
       },
     },
   ],
