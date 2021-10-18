@@ -107,7 +107,7 @@ export const commonReplacement: CommonReplacement = {
       de: '--Klone erscheinen--',
       fr: '--Apparition des clones--',
       ja: '--幻影出現--',
-      cn: '--克隆 体 出现--',
+      cn: '--幻影出现--',
       ko: '--분신 소환--',
     },
     '--corner--': {
@@ -261,7 +261,7 @@ export const commonReplacement: CommonReplacement = {
       de: '--rotieren--',
       fr: '--rotation--',
       ja: '--回転--',
-      cn: '--龙回转--',
+      cn: '--旋转--',
       ko: '--회전--',
     },
     '--south--': {
@@ -324,7 +324,7 @@ export const commonReplacement: CommonReplacement = {
       de: '--teleportation--',
       fr: '--téléportation--',
       ja: '--テレポート--',
-      cn: '--傳送--',
+      cn: '--传送--',
       ko: '--순간 이동--',
     },
     '--untargetable--': {
