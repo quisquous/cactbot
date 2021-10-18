@@ -1,8 +1,12 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-export type Data = OopsyData;
+export interface Data extends OopsyData {
+  sphereNitro?: { [name: string]: boolean };
+  sphereCeruleum?: { [name: string]: boolean };
+}
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.CastrumMarinumExtreme,
@@ -30,6 +34,81 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'EmeraldEx Primus Terminus Est 3': '55C6', // knockback arrow
     'EmeraldEx Primus Terminus Est 4': '55C7', // knockback arrow
   },
+  soloWarn: {
+    'EmeraldEx Nitrosphere Aetheroplasm': '55AE',
+    'EmeraldEx Ceruleum Sphere Aetheroplasm': '55AF',
+  },
+  triggers: [
+    {
+      id: 'EmeraldEx Nitrosphere Physical Vulnerability Up Gain',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '82A' }),
+      run: (data, matches) => {
+        data.sphereNitro = data.sphereNitro ?? {};
+        data.sphereNitro[matches.target] = true;
+      },
+    },
+    {
+      id: 'EmeraldEx Nitrosphere Physical Vulnerability Up Lose',
+      type: 'LosesEffect',
+      netRegex: NetRegexes.losesEffect({ effectId: '82A' }),
+      run: (data, matches) => {
+        // Need to track loss here for the 4/4 strategy.
+        data.sphereNitro = data.sphereNitro ?? {};
+        data.sphereNitro[matches.target] = false;
+      },
+    },
+    {
+      id: 'EmeraldEx Ceruleum Sphere Magic Vulnerability Up Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '82B' }),
+      type: 'GainsEffect',
+      run: (data, matches) => {
+        data.sphereCeruleum = data.sphereCeruleum ?? {};
+        data.sphereCeruleum[matches.target] = true;
+      },
+    },
+    {
+      id: 'EmeraldEx Ceruleum Sphere Magic Vulnerability Up Lose',
+      type: 'LosesEffect',
+      netRegex: NetRegexes.losesEffect({ effectId: '82B' }),
+      run: (data, matches) => {
+        data.sphereCeruleum = data.sphereCeruleum ?? {};
+        data.sphereCeruleum[matches.target] = false;
+      },
+    },
+    {
+      id: 'EmeraldEx Nitrosphere Twice',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '55AE' }),
+      condition: (data, matches) => data.sphereNitro?.[matches.target],
+      mistake: (data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.target,
+          text: {
+            en: `${matches.ability} (wrong color)`,
+            fr: `${matches.ability} (mauvaise couleur)`,
+          },
+        };
+      },
+    },
+    {
+      id: 'EmeraldEx Ceruleum Sphere Twice',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '55AF' }),
+      condition: (data, matches) => data.sphereCeruleum?.[matches.target],
+      mistake: (data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.target,
+          text: {
+            en: `${matches.ability} (wrong color)`,
+            fr: `${matches.ability} (mauvaise couleur)`,
+          },
+        };
+      },
+    },
+  ],
 };
 
 export default triggerSet;
