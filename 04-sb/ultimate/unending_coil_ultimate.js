@@ -573,7 +573,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!.*?', capture: false }),
             delaySeconds: 4,
             durationSeconds: 6,
-            infoText: (_data, _matches, output) => output.text(),
+            // Make this alert so it doesn't overlap with the dive infoText occuring here.
+            alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'Away from Tank => Stack',
@@ -597,7 +598,8 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!.*?', capture: false }),
             delaySeconds: 4,
             durationSeconds: 6,
-            infoText: (_data, _matches, output) => output.text(),
+            // Make this alert so it doesn't overlap with the dive infoText occuring here.
+            alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'Spread => Away from Tank',

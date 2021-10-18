@@ -408,12 +408,12 @@ Options.Triggers.push({
         {
             id: 'EmeraldEx Emerald Crusher',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5585', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5585', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5585', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5585', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5585', capture: false }),
-            netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5585', capture: false }),
+            netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D6', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D6', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D6', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D6', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55D6', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55D6', capture: false }),
             // Don't collide with Tertius Terminus Est alert, and this is important.
             response: Responses.knockback('alarm'),
         },
