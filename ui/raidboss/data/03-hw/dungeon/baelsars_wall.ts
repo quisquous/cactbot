@@ -52,7 +52,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1CBC', source: 'Magitek Predator', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1CBC', source: '魔导猎手', capture: false }),
-
       response: Responses.aoe(),
     },
     {
