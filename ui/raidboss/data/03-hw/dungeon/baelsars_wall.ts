@@ -110,16 +110,6 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
-      'locale': 'en',
-      'replaceText': {
-        'Cross Of Chaos/Circle Of Chaos': 'Circle/Cross',
-        'Ring Of Chaos/Cross Of Chaos': 'Cross/Ring',
-        'Ring Of Chaos/Circle Of Chaos': 'Circle/Ring',
-        'Hydro Pull/Hydro Push': 'Hydro Pull/Push',
-        'Order To Detonate \\(cast\\)': 'Order To Detonate',
-      },
-    },
-    {
       'locale': 'cn',
       'replaceSync': {
         'Armored Weapon': '武装重甲',
