@@ -116,6 +116,7 @@ const triggerSet: TriggerSet<Data> = {
         'Blade Of The Griffin': '狮鹫之刃',
         'Magitek Bit': '魔导浮游炮',
         'Magitek Predator': '魔导猎手',
+        'Magitek Vanguard D-1': '魔导先锋防卫型',
         'The Airship Landing': '飞空战舰着陆场',
         '(?<! )The Griffin': '铁面公卿 伊尔伯德',
         'The Magitek Installation': '魔导兵器仓库',
