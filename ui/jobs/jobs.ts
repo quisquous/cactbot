@@ -1066,7 +1066,7 @@ export class Bars {
 
       case logDefinitions.GainsEffect.type: {
         const fields = logDefinitions.GainsEffect.fields;
-        const matches = normalizeLogLine<NetFields['GainsEffect']>(line, fields);
+        const matches = normalizeLogLine(line, fields);
         const effectId = matches.effectId?.toUpperCase();
         if (!effectId)
           break;
@@ -1128,7 +1128,7 @@ export class Bars {
       case logDefinitions.Ability.type:
       case logDefinitions.NetworkAOEAbility.type: {
         const fields = logDefinitions.Ability.fields;
-        const matches = normalizeLogLine<NetFields['Ability']>(line, fields);
+        const matches = normalizeLogLine(line, fields);
         const id = matches.id;
         if (!id)
           break;
