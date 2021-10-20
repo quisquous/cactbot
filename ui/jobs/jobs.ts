@@ -986,19 +986,23 @@ export class Bars {
       this.maxGP = e.detail.maxGP;
       updateGp = true;
     }
-    if (updateJob && this.o.leftBuffsList && this.o.rightBuffsList) {
+    if (updateJob) {
       this._updateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this._updateOpacity();
       this._updateProcBoxNotifyState();
-      // Set up the buff tracker after the job bars are created.
-      this.buffTracker = new BuffTracker(
-        this.options,
-        this.me,
-        this.o.leftBuffsList,
-        this.o.rightBuffsList,
-        this.partyTracker,
-      );
+
+      // TODO: this is always created by _updateJob, so maybe this.o needs be optional?
+      if (this.o.leftBuffsList && this.o.rightBuffsList) {
+        // Set up the buff tracker after the job bars are created.
+        this.buffTracker = new BuffTracker(
+          this.options,
+          this.me,
+          this.o.leftBuffsList,
+          this.o.rightBuffsList,
+          this.partyTracker,
+        );
+      }
     }
     if (updateHp)
       this._updateHealth();
