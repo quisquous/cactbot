@@ -33,6 +33,8 @@ export interface Data extends RaidbossData {
   seenInitialStacks?: boolean;
   eyes?: string[];
   sorrows?: { [name: string]: number };
+  smallLions?: number[];
+  smallLionMarker?: string;
 }
 
 // TODO: double apoc clockwise vs counterclockwise call would be nice
@@ -993,6 +995,16 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.knockback(),
     },
     {
+      id: 'E12S Promise Small Lion Spawn',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9819' }),
+      durationSeconds: 10,
+      run: (data, matches) => {
+        data.smallLions ??= [];
+        data.smallLions.push(parseInt(matches.id, 16));
+      },
+    },
+    {
       // We could arguably tell people where their lion is, but this is probably plenty.
       id: 'E12S Promise Small Lion Tether',
       type: 'Tether',
@@ -1005,16 +1017,73 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Lion Tether on YOU',
-          de: 'Löwen-Verbindung auf DIR',
-          fr: 'Lien lion sur VOUS',
-          ja: '自分にライオン線',
-          cn: '狮子连线点名',
-          ko: '작은 사자 대상자',
-        },
+      durationSeconds: 10,
+      promise: async (data, matches) => {
+        data.smallLionMarker = 'unknown';
+        const lionData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: data.smallLions,
+        });
+        if (lionData === null) {
+          console.error(`lion: null statueData`);
+          return;
+        }
+        if (!lionData.combatants) {
+          console.error(`lion: null combatants`);
+          return;
+        }
+        if (lionData.combatants.length !== 4) {
+          console.error(`lion: unexpected length: ${JSON.stringify(lionData)}`);
+          return;
+        }
+        for (const lion of lionData.combatants) {
+          const centerY = -75;
+          const x = lion.PosX;
+          const y = lion.PosY;
+          const hexId = `00000000${lion.ID?.toString(16) ?? ''}`.slice(-8).toUpperCase();
+          if (hexId === matches.sourceId) {
+            if (y < centerY) {
+              if (x > 0)
+                data.smallLionMarker = `NE`;
+              else
+                data.smallLionMarker = `NW`;
+            } else {
+              if (x > 0)
+                data.smallLionMarker = `SE`;
+              else
+                data.smallLionMarker = `SW`;
+            }
+          }
+        }
+      },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          northEastLion: {
+            en: `Tethered to NE Lion`,
+          },
+          northWestLion: {
+            en: 'Tethered to NW Lion',
+          },
+          southEastLion: {
+            en: 'Tethered to SE Lion',
+          },
+          southWestLion: {
+            en: 'Tethered to SW Lion',
+          },
+        };
+        switch (data.smallLionMarker) {
+          case `NE`:
+            return { alertText: output.northEastLion!() };
+          case `NW`:
+            return { alertText: output.northWestLion!() };
+          case `SE`:
+            return { alertText: output.southEastLion!() };
+          case `SW`:
+            return { alertText: output.southWestLion!() };
+          default:
+            return { alertText: `Lion Tether on YOU` };
+        }
       },
     },
     {
