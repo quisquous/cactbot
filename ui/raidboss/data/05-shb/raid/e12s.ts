@@ -1026,7 +1026,7 @@ const triggerSet: TriggerSet<Data> = {
             ko: '작은 사자 대상자',
           },
           northEastLion: {
-            en: `NE Lion Tether`,
+            en: 'NE Lion Tether',
           },
           northWestLion: {
             en: 'NW Lion Tether',
