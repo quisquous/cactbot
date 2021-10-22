@@ -33,7 +33,7 @@ export interface Data extends RaidbossData {
   seenInitialStacks?: boolean;
   eyes?: string[];
   sorrows?: { [name: string]: number };
-  smallLions?: number[];
+  smallLions?: NetMatches['AddedCombatant'][];
   smallLionMarker?: string;
 }
 
@@ -1001,11 +1001,10 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 10,
       run: (data, matches) => {
         data.smallLions ??= [];
-        data.smallLions.push(parseInt(matches.id, 16));
+        data.smallLions.push(matches);
       },
     },
     {
-      // We could arguably tell people where their lion is, but this is probably plenty.
       id: 'E12S Promise Small Lion Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Beastly Sculpture', id: '0011' }),
@@ -1015,61 +1014,48 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '창조된 사자', id: '0011' }),
       condition: Conditions.targetIsYou(),
-      // Don't collide with reach left/right call.
-      delaySeconds: 0.5,
-      durationSeconds: 10,
-      promise: async (data, matches) => {
+      preRun: (data, matches) => {
         data.smallLionMarker = 'unknown';
-        const lionData = await callOverlayHandler({
-          call: 'getCombatants',
-          ids: data.smallLions,
-        });
-        if (lionData === null) {
-          console.error(`lion: null statueData`);
+        const lion = data.smallLions?.find((l) => parseInt(l.id, 16) === parseInt(matches.sourceId, 16));
+        if (!lion) {
+          console.error('Unable to locate a valid lion.');
           return;
         }
-        if (!lionData.combatants) {
-          console.error(`lion: null combatants`);
+        if (!lion.x || !lion.y) {
+          console.error('Invalid Lion', lion);
           return;
         }
-        if (lionData.combatants.length !== 4) {
-          console.error(`lion: unexpected length: ${JSON.stringify(lionData)}`);
-          return;
-        }
-        for (const lion of lionData.combatants) {
-          const centerY = -75;
-          const x = lion.PosX;
-          const y = lion.PosY;
-          const hexId = `00000000${lion.ID?.toString(16) ?? ''}`.slice(-8).toUpperCase();
-          if (hexId === matches.sourceId) {
-            if (y < centerY) {
-              if (x > 0)
-                data.smallLionMarker = `NE`;
-              else
-                data.smallLionMarker = `NW`;
-            } else {
-              if (x > 0)
-                data.smallLionMarker = `SE`;
-              else
-                data.smallLionMarker = `SW`;
-            }
-          }
+        const centerY = -75;
+        const x = parseFloat(lion.x);
+        const y = parseFloat(lion.y);
+        if (y < centerY) {
+          if (x > 0)
+            data.smallLionMarker = `NE`;
+          else
+            data.smallLionMarker = `NW`;
+        } else {
+          if (x > 0)
+            data.smallLionMarker = `SE`;
+          else
+            data.smallLionMarker = `SW`;
         }
       },
+      // Don't collide with reach left/right call.
+      delaySeconds: 0.5,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           northEastLion: {
-            en: `Tethered to NE Lion`,
+            en: `NE Lion Tether`,
           },
           northWestLion: {
-            en: 'Tethered to NW Lion',
+            en: 'NW Lion Tether',
           },
           southEastLion: {
-            en: 'Tethered to SE Lion',
+            en: 'SE Lion Tether',
           },
           southWestLion: {
-            en: 'Tethered to SW Lion',
+            en: 'SW Lion Tether',
           },
         };
         switch (data.smallLionMarker) {
@@ -1082,7 +1068,16 @@ const triggerSet: TriggerSet<Data> = {
           case `SW`:
             return { alertText: output.southWestLion!() };
           default:
-            return { alertText: `Lion Tether on YOU` };
+            return {
+              alertText: {
+                en: 'Lion Tether on YOU',
+                de: 'Löwen-Verbindung auf DIR',
+                fr: 'Lien lion sur VOUS',
+                ja: '自分にライオン線',
+                cn: '狮子连线点名',
+                ko: '작은 사자 대상자',
+              },
+            };
         }
       },
     },
