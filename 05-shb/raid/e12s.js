@@ -915,7 +915,16 @@ Options.Triggers.push({
             response: Responses.knockback(),
         },
         {
-            // We could arguably tell people where their lion is, but this is probably plenty.
+            id: 'E12S Promise Small Lion Spawn',
+            type: 'AddedCombatant',
+            netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9819' }),
+            run: (data, matches) => {
+                let _a;
+                (_a = data.smallLions) !== null && _a !== void 0 ? _a : (data.smallLions = []);
+                data.smallLions.push(matches);
+            },
+        },
+        {
             id: 'E12S Promise Small Lion Tether',
             type: 'Tether',
             netRegex: NetRegexes.tether({ source: 'Beastly Sculpture', id: '0011' }),
@@ -927,16 +936,51 @@ Options.Triggers.push({
             condition: Conditions.targetIsYou(),
             // Don't collide with reach left/right call.
             delaySeconds: 0.5,
-            alertText: (_data, _matches, output) => output.text(),
-            outputStrings: {
-                text: {
-                    en: 'Lion Tether on YOU',
-                    de: 'Löwen-Verbindung auf DIR',
-                    fr: 'Lien lion sur VOUS',
-                    ja: '自分にライオン線',
-                    cn: '狮子连线点名',
-                    ko: '작은 사자 대상자',
-                },
+            response: (data, matches, output) => {
+                let _a;
+                // cactbot-builtin-response
+                output.responseOutputStrings = {
+                    lionTetherOnYou: {
+                        en: 'Lion Tether on YOU',
+                        de: 'Löwen-Verbindung auf DIR',
+                        fr: 'Lien lion sur VOUS',
+                        ja: '自分にライオン線',
+                        cn: '狮子连线点名',
+                        ko: '작은 사자 대상자',
+                    },
+                    northEastLion: {
+                        en: 'NE Lion Tether',
+                    },
+                    northWestLion: {
+                        en: 'NW Lion Tether',
+                    },
+                    southEastLion: {
+                        en: 'SE Lion Tether',
+                    },
+                    southWestLion: {
+                        en: 'SW Lion Tether',
+                    },
+                };
+                const lion = (_a = data.smallLions) === null || _a === void 0 ? void 0 : _a.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
+                if (!lion) {
+                    console.error('Unable to locate a valid lion.');
+                    return { alertText: output.lionTetherOnYou() };
+                }
+                if (!lion.x || !lion.y) {
+                    console.error('Invalid Lion', lion);
+                    return { alertText: output.lionTetherOnYou() };
+                }
+                const centerY = -75;
+                const x = parseFloat(lion.x);
+                const y = parseFloat(lion.y);
+                if (y < centerY) {
+                    if (x > 0)
+                        return { alertText: output.northEastLion() };
+                    return { alertText: output.northWestLion() };
+                }
+                if (x > 0)
+                    return { alertText: output.southEastLion() };
+                return { alertText: output.southWestLion() };
             },
         },
         {
