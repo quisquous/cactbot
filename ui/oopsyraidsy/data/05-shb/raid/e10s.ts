@@ -48,6 +48,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenflamme', effectId: '82C' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Flamme ombrale', effectId: '82C' }),
       netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C' }),
+      netRegexCn: NetRegexes.gainsEffect({ source: '影烈火', effectId: '82C' }),
       mistake: (_data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect} (partial stack)` };
       },
@@ -63,6 +64,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenkönig', effectId: '82C' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Roi De L\'Ombre', effectId: '82C' }),
       netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C' }),
+      netRegexCn: NetRegexes.gainsEffect({ source: '影之王', effectId: '82C' }),
       mistake: (_data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect}` };
       },

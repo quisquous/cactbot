@@ -287,6 +287,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
       run: (data, matches) => {
         data.smallLionIdToOwner ??= {};
         data.smallLionIdToOwner[matches.sourceId.toUpperCase()] = matches.target;
@@ -301,6 +302,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.abilityFull({ source: 'Abbild Eines Löwen', id: '58B9' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Création Léonine', id: '58B9' }),
       netRegexJa: NetRegexes.abilityFull({ source: '創られた獅子', id: '58B9' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '被创造的狮子', id: '58B9' }),
       mistake: (data, matches) => {
         // Folks baiting the big lion second can take the first small lion hit,
         // so it's not sufficient to check only the owner.
@@ -370,6 +372,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ source: 'Abbild eines großen Löwen', id: '4F9E' }),
       netRegexFr: NetRegexes.ability({ source: 'création léonine royale', id: '4F9E' }),
       netRegexJa: NetRegexes.ability({ source: '創られた獅子王', id: '4F9E' }),
+      netRegexCn: NetRegexes.ability({ source: '被创造的狮子王', id: '4F9E' }),
       mistake: (data, matches) => {
         const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
