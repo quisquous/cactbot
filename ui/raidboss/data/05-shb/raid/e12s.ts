@@ -34,7 +34,6 @@ export interface Data extends RaidbossData {
   eyes?: string[];
   sorrows?: { [name: string]: number };
   smallLions?: NetMatches['AddedCombatant'][];
-  smallLionMarker?: string;
 }
 
 // TODO: double apoc clockwise vs counterclockwise call would be nice
@@ -998,7 +997,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Small Lion Spawn',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9819' }),
-      durationSeconds: 10,
       run: (data, matches) => {
         data.smallLions ??= [];
         data.smallLions.push(matches);
@@ -1014,37 +1012,19 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '창조된 사자', id: '0011' }),
       condition: Conditions.targetIsYou(),
-      preRun: (data, matches) => {
-        data.smallLionMarker = 'unknown';
-        const lion = data.smallLions?.find((l) => parseInt(l.id, 16) === parseInt(matches.sourceId, 16));
-        if (!lion) {
-          console.error('Unable to locate a valid lion.');
-          return;
-        }
-        if (!lion.x || !lion.y) {
-          console.error('Invalid Lion', lion);
-          return;
-        }
-        const centerY = -75;
-        const x = parseFloat(lion.x);
-        const y = parseFloat(lion.y);
-        if (y < centerY) {
-          if (x > 0)
-            data.smallLionMarker = `NE`;
-          else
-            data.smallLionMarker = `NW`;
-        } else {
-          if (x > 0)
-            data.smallLionMarker = `SE`;
-          else
-            data.smallLionMarker = `SW`;
-        }
-      },
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
+          lionTetherOnYou: {
+            en: 'Lion Tether on YOU',
+            de: 'Löwen-Verbindung auf DIR',
+            fr: 'Lien lion sur VOUS',
+            ja: '自分にライオン線',
+            cn: '狮子连线点名',
+            ko: '작은 사자 대상자',
+          },
           northEastLion: {
             en: `NE Lion Tether`,
           },
@@ -1058,27 +1038,26 @@ const triggerSet: TriggerSet<Data> = {
             en: 'SW Lion Tether',
           },
         };
-        switch (data.smallLionMarker) {
-          case `NE`:
-            return { alertText: output.northEastLion!() };
-          case `NW`:
-            return { alertText: output.northWestLion!() };
-          case `SE`:
-            return { alertText: output.southEastLion!() };
-          case `SW`:
-            return { alertText: output.southWestLion!() };
-          default:
-            return {
-              alertText: {
-                en: 'Lion Tether on YOU',
-                de: 'Löwen-Verbindung auf DIR',
-                fr: 'Lien lion sur VOUS',
-                ja: '自分にライオン線',
-                cn: '狮子连线点名',
-                ko: '작은 사자 대상자',
-              },
-            };
+        const lion = data.smallLions?.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
+        if (!lion) {
+          console.error('Unable to locate a valid lion.');
+          return { alertText: output.lionTetherOnYou!() };
         }
+        if (!lion.x || !lion.y) {
+          console.error('Invalid Lion', lion);
+          return { alertText: output.lionTetherOnYou!() };
+        }
+        const centerY = -75;
+        const x = parseFloat(lion.x);
+        const y = parseFloat(lion.y);
+        if (y < centerY) {
+          if (x > 0)
+            return { alertText: output.northEastLion!() };
+          return { alertText: output.northWestLion!() };
+        }
+        if (x > 0)
+          return { alertText: output.southEastLion!() };
+        return { alertText: output.southWestLion!() };
       },
     },
     {
