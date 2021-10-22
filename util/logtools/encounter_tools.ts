@@ -1,25 +1,41 @@
-import NetRegexes from '../../resources/netregexes';
-import ZoneInfo from '../../resources/zone_info';
 import ContentType from '../../resources/content_type';
-
+import NetRegexes from '../../resources/netregexes';
+import { data as ZoneInfo, ZoneInfoType } from '../../resources/zone_info';
+import { LocaleText } from '../../types/trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
+
 
 // TODO: add some error checking that a zone has been found before a fight.
 // This can happen on partial logs.
 
+
 export class EncounterFinder {
+  currentZone: LocaleText | null;
+  currentFight: LocaleText | null;
+  currentSeal: boolean;
+  zoneInfo: ZoneInfoType | null;
+  zoneId: number | null;
+
+  haveWon: boolean;
+  haveSeenSeals: boolean;
+
+  regex: Record<string, NetRegexes>;
+
+  sealRegexes: Array<NetRegexes>;
+  unsealRegexes: Array<NetRegexes>;
   constructor() {
     this.currentZone = null;
     this.currentFight = null;
-    this.currentSeal = null;
+    this.currentSeal = false;
     // May be null for some zones.
     this.zoneInfo = null;
+    this.zoneId = null;
 
     this.haveWon = false;
     this.haveSeenSeals = false;
 
     this.regex = {
-      changeZone: NetRegexes.changeZone(),
+      changeZone: NetRegexes.changeZone({ id: '*' }),
       cactbotWipe: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
       win: NetRegexes.network6d({ command: '40000003' }),
       wipe: NetRegexes.network6d({ command: '40000010' }),
@@ -34,28 +50,35 @@ export class EncounterFinder {
     this.unsealRegexes = [];
 
     const sealReplace = commonReplacement.replaceSync[syncKeys.seal];
-    for (const lang in sealReplace) {
-      const line = sealReplace[lang].replace('$1', '(?<seal>.*?)') + '.*?';
+    if (!sealReplace)
+      throw new Error('missing seal regex');
+    for (const regexString of Object.values(sealReplace)) {
+      const line = `${regexString?.replace('$1', '(?<seal>.*?)')}.*?`;
       this.sealRegexes.push(NetRegexes.message({ line: line }));
     }
 
     const unsealReplace = commonReplacement.replaceSync[syncKeys.unseal];
-    for (const lang in unsealReplace) {
-      const line = '.*?' + unsealReplace[lang] + '.*?';
+    if (!unsealReplace)
+      throw new Error('missing unseal regex');
+    for (const lang of Object.values(unsealReplace)) {
+      const line = `*.?${lang}.*?`;
       this.unsealRegexes.push(NetRegexes.message({ line: line }));
     }
   }
 
-  skipZone() {
-    if (!this.zoneInfo)
+  skipZone(): boolean {
+    if (this.zoneId === null || this.zoneInfo === null)
       return false;
-    const contentType = this.zoneInfo.contentType;
-    if (!contentType)
+    const info = this.zoneInfo;
+    if ((info[this.zoneId]?.contentType) === null)
+      return false;
+    const content = info?.[this.zoneId]?.contentType;
+    if (!content)
       return false;
 
     // There are some seal messages in older raids, but not consistently.
     // Therefore, we can't require them.
-    const keepTypes = [
+    const keepTypes: Array<number> = [
       ContentType.Dungeons,
       ContentType.Eureka,
       ContentType.Raids,
@@ -64,13 +87,14 @@ export class EncounterFinder {
       ContentType.DeepDungeons,
     ];
 
-    return !keepTypes.includes(contentType);
+    return !keepTypes.includes(content);
   }
 
-  process(line) {
-    let m;
+  process(line: string): void {
+    let m: RegExpMatchArray | null;
 
     m = line.match(this.regex.changeZone);
+    // m = NetRegexes.changeZone(line);
     if (m) {
       if (this.currentZone === m.groups.name) {
         // Zoning into the same zone, possibly a d/c situation.
@@ -104,7 +128,7 @@ export class EncounterFinder {
     if (this.skipZone())
       return;
 
-    m = line.match(this.regex.cactbotWipe);
+    m = new RegExp(this.regex.cactbotWipe);
     if (m) {
       if (this.currentFight !== null) {
         this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'CactbotWipe' });
@@ -176,15 +200,24 @@ export class EncounterFinder {
   // All starts and ends of the same type are ordered and do not nest.
   // Fights and seal start/end may interleave with each other.
   // TODO: probably this should follow an "event bus" model instead of requiring derived classes.
-  onStartZone(line, name, matches) {}
+  onStartZone(line: string, matches): void {
+
+  }
   onEndZone(line, name, matches) {}
   onStartFight(line, name, matches) {}
   onEndFight(line, name, matches) {}
-  onSeal(line, name, matches) {}
+  onSeal(line: string, name: string, matches: NetRegexes): void {
+    this.currentSeal = true;
+  }
   onUnseal(line, name, matches) {}
 }
 
 export class EncounterCollector extends EncounterFinder {
+  zones: Array<LocaleText>;
+  fights: Array<LocaleText>;
+  lastZone: ZoneInfoType | null;
+  lastFight: LocaleText | null;
+  lastSeal: NetRegexes | null;
   constructor() {
     super();
     this.zones = [];
@@ -227,7 +260,7 @@ export class EncounterCollector extends EncounterFinder {
     this.lastSeal = null;
   }
 
-  onEndFight(line, name, matches) {
+  onEndFight(line, name, matches): void {
     this.lastFight.endLine = line;
     this.lastFight.endTime = this.dateFromMatches(matches);
     this.lastFight.endType = matches.endType;
@@ -242,7 +275,7 @@ export class EncounterCollector extends EncounterFinder {
       this.lastFight.sealName = this.lastSeal;
   }
 
-  onUnseal(line, name, matches) {
+  onUnseal(line: string, name, matches): void {
     this.lastSeal = null;
   }
 }

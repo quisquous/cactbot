@@ -7437,4 +7437,4 @@ const data: ZoneInfoType = {
   },
 } as const;
 
-export default data;
+export { data, ZoneInfoType };
