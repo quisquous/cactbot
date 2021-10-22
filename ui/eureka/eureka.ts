@@ -1,3 +1,5 @@
+import logDefinitions from '../../resources/netlog_defs';
+import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import Regexes from '../../resources/regexes';
@@ -14,6 +16,8 @@ import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
 import { BaseOptions } from '../../types/data';
 import { EventResponses } from '../../types/event';
+import { NetMatches } from '../../types/net_matches';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { LocaleObject, LocaleText, ZoneIdType } from '../../types/trigger';
 
 import { timeStrings } from './eureka_translations';
@@ -30,7 +34,6 @@ import './eureka.css';
 
 // TODO: get all of the elements required up front in the constructor
 // TODO: split NMInfo from some new InitializedNMInfo, which includes required element/timeElement
-// TODO: switch to using NetRegexes
 
 const numWeatherElem = 5;
 
@@ -126,10 +129,10 @@ export interface EurekaOptions extends BaseOptions, EurekaConfigOptions {
   CriticalPopSound: string;
   timeStrings: EurekaTimeStrings;
   Regex: LocaleObject<{
-    gFlagRegex: RegExp;
-    gTrackerRegex: RegExp;
-    gImportRegex: RegExp;
-    gTimeRegex: RegExp;
+    flagRegex: CactbotBaseRegExp<'GameLog'>;
+    trackerRegex: CactbotBaseRegExp<'GameLog'>;
+    importRegex: CactbotBaseRegExp<'GameLog'>;
+    timeRegex: RegExp;
   }>;
   ZoneInfo: { [zoneId: number]: EurekaZoneInfo };
 }
@@ -145,28 +148,42 @@ const defaultOptions: EurekaOptions = {
     // de, fr, ja languages all share the English regexes here.
     // If you ever need to add another language, include all of the regexes for it.
     en: {
-      'gFlagRegex': Regexes.parse(
-        /00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front|Zadnor) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/,
+      flagRegex: NetRegexes.gameLog({
+        code: '00..',
+        line:
+          '(?<before>.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front|Zadnor) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
+      }),
+      trackerRegex: NetRegexes.gameLog(
+        { line: '.*?(?:https://)?ffxiv-eureka\\.com/(?<id>[\\w-]{6}).*?' },
       ),
-      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
-      'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
-      'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
+      importRegex: NetRegexes.gameLog(
+        { code: '00..', line: '.*?NMs on cooldown: (?<nms>\\S.*\\))*?' },
+      ),
+      timeRegex: Regexes.parse(/(.*) \((\d*)m\)/),
     },
     cn: {
-      'gFlagRegex': Regexes.parse(
-        /00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/,
+      flagRegex: NetRegexes.gameLog({
+        code: '00..',
+        line:
+          '(?<before>.*)\ue0bb(?:常风之地|恒冰之地|涌火之地|丰水之地) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
+      }),
+      trackerRegex: NetRegexes.gameLog(
+        { line: '.*?(?:https://)?ffxiv-eureka\\.com/(?<id>[\\w-]{6}).*?' },
       ),
-      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
-      'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
-      'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
+      importRegex: NetRegexes.gameLog({ code: '00..', line: '.*?冷却中的NM: (?<nms>\\S.*\\))*?' }),
+      timeRegex: Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
     ko: {
-      'gFlagRegex': Regexes.parse(
-        /00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/,
+      flagRegex: NetRegexes.gameLog({
+        code: '00..',
+        line:
+          '(?<before>.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
+      }),
+      trackerRegex: NetRegexes.gameLog(
+        { line: '.*?(?:https://)?ffxiv-eureka\.com\/(?<id>[\\w-]{6}).*?' },
       ),
-      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
-      'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
-      'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
+      importRegex: NetRegexes.gameLog({ code: '00..', line: '.*?토벌한 마물: (?<nms>\\S.*\\))*?' }),
+      timeRegex: Regexes.parse(/(.*) \((\d*)분\)/),
     },
   },
   ZoneInfo: {
@@ -205,7 +222,7 @@ class EurekaTracker {
   private CEQueue: EventResponses['onCEEvent'][] = [];
 
   private playerElement?: HTMLElement;
-  private fairyRegex?: ReturnType<typeof Regexes.addedCombatantFull>;
+  private fairyRegex?: ReturnType<typeof NetRegexes.addedCombatantFull>;
   private currentTracker = '';
 
   // Convenience members from current this.zoneInfo.
@@ -213,15 +230,6 @@ class EurekaTracker {
 
   constructor(private options: EurekaOptions) {
     this.ResetZone();
-  }
-
-  TransObjectByParserLang<T>(obj: LocaleObject<{ [key: string]: T }>, key: string): T {
-    const fromObj = obj[this.options.ParserLanguage] ?? obj['en'];
-    const value = fromObj ? fromObj[key] : obj['en'][key];
-    // `key` must be valid.
-    if (value === undefined)
-      throw new UnreachableCode();
-    return value;
   }
 
   TransByParserLang<T>(obj: LocaleObject<T>): T {
@@ -386,7 +394,7 @@ class EurekaTracker {
 
     if (this.zoneInfo.fairy) {
       const fairyName = this.TransByParserLang(this.zoneInfo.fairy);
-      this.fairyRegex = Regexes.addedCombatantFull({ name: fairyName });
+      this.fairyRegex = NetRegexes.addedCombatantFull({ name: fairyName });
     }
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');
@@ -729,7 +737,7 @@ class EurekaTracker {
       trackerToNM[this.TransByParserLang(nm.trackerName).toLowerCase()] = nm;
     }
 
-    const regex = this.TransObjectByParserLang(this.options.Regex, 'gTimeRegex');
+    const regex = this.TransByParserLang(this.options.Regex).timeRegex;
     const importList = importText.split(' → ');
     for (const entry of importList) {
       const m = regex.exec(entry);
@@ -751,42 +759,41 @@ class EurekaTracker {
     this.UpdateTimes();
   }
 
-  OnLog(e: EventResponses['onLogEvent']) {
+  OnNetLog(e: EventResponses['LogLine']): void {
     if (!this.zoneInfo)
       return;
-    for (const log of e.detail.logs) {
-      const flagRegex = this.TransObjectByParserLang(this.options.Regex, 'gFlagRegex');
-      let match = flagRegex.exec(log);
-      if (match && match[2] && match[3]) {
-        this.AddFlag(
-          parseFloat(match[2]),
-          parseFloat(match[3]),
-          match[1] ?? '',
-          match[4] ?? '',
-        );
-      }
 
-      if (this.fairyRegex) {
-        if (log.includes(' 03:') || log.includes('00:0839:')) {
-          match = this.fairyRegex.exec(log);
-          if (match)
-            this.AddFairy(match.groups);
-        }
+    const log = e.rawLine;
+    const type = e.line[0];
+
+    if (type === logDefinitions.GameLog.type) {
+      const flagRegex = this.TransByParserLang(this.options.Regex).flagRegex;
+      const flag = flagRegex.exec(log)?.groups;
+      if (flag && flag.x && flag.y) {
+        this.AddFlag(
+          parseFloat(flag.x),
+          parseFloat(flag.y),
+          flag.before ?? '',
+          flag.after ?? '',
+        );
       }
 
       if (!this.zoneInfo.hasTracker)
         return;
 
-      const trackerRegex = this.TransObjectByParserLang(this.options.Regex, 'gTrackerRegex');
-      match = trackerRegex.exec(log);
-      if (match && match[1])
-        this.currentTracker = match[1];
-      const importRegex = this.TransObjectByParserLang(this.options.Regex, 'gImportRegex');
-      match = importRegex.exec(log);
-      if (match && match[2]) {
-        this.ImportFromTracker(match[2]);
-        continue;
-      }
+      const trackerRegex = this.TransByParserLang(this.options.Regex).trackerRegex;
+      const tracker = trackerRegex.exec(log)?.groups;
+      if (tracker && tracker.id)
+        this.currentTracker = tracker.id;
+
+      const importRegex = this.TransByParserLang(this.options.Regex).importRegex;
+      const imp = importRegex.exec(log)?.groups;
+      if (imp && imp.nms)
+        this.ImportFromTracker(imp.nms);
+    } else if (type === logDefinitions.AddedCombatant.type && this.fairyRegex) {
+      const fairy = this.fairyRegex.exec(log)?.groups;
+      if (fairy)
+        this.AddFairy(fairy);
     }
   }
 
@@ -936,8 +943,8 @@ class EurekaTracker {
     }, this.options.FlagTimeoutMs);
   }
 
-  AddFairy(matches: RegExpMatchArray['groups']) {
-    if (matches?.x === undefined || matches?.y === undefined || !this.zoneInfo?.fairy)
+  AddFairy(matches: NetMatches['AddedCombatant']) {
+    if (!this.zoneInfo?.fairy)
       return;
 
     const mx = this.EntityToMapX(parseFloat(matches.x));
@@ -955,8 +962,8 @@ UserConfig.getUserConfigLocation('eureka', defaultOptions, () => {
   addOverlayListener('ChangeZone', (e) => {
     tracker.OnChangeZone(e);
   });
-  addOverlayListener('onLogEvent', (e) => {
-    tracker.OnLog(e);
+  addOverlayListener('LogLine', (e) => {
+    tracker.OnNetLog(e);
   });
   addOverlayListener('onFateEvent', (e) => {
     tracker.OnFate(e);
