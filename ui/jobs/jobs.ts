@@ -5,9 +5,6 @@ import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
-import ResourceBar from '../../resources/resourcebar';
-import TimerBar from '../../resources/timerbar';
-import TimerBox from '../../resources/timerbox';
 import UserConfig from '../../resources/user_config';
 import {
   isCraftingJob,
@@ -16,7 +13,6 @@ import {
   isHealerJob,
   isTankJob,
 } from '../../resources/util';
-import WidgetList from '../../resources/widget_list';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
 import { EventResponses, JobDetail } from '../../types/event';
@@ -47,7 +43,19 @@ import {
   RegexesHolder,
 } from './utils';
 
+// TypeScript will elide these imports unless they are used directly or are a bare import.
+// TODO: maybe each of these should export a "create" function that gets used here?
+/* eslint-disable no-duplicate-imports,import/no-duplicates,import/order */
+import ResourceBar from '../../resources/resourcebar';
+import TimerBar from '../../resources/timerbar';
+import TimerBox from '../../resources/timerbox';
+import WidgetList from '../../resources/widget_list';
+import '../../resources/resourcebar';
 import '../../resources/timericon';
+import '../../resources/timerbar';
+import '../../resources/timerbox';
+import '../../resources/widget_list';
+/* eslint-enable no-duplicate-imports,import/no-duplicates,import/order */
 
 import '../../resources/defaults.css';
 import './jobs.css';
