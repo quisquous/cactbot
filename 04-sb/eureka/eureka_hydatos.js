@@ -78,7 +78,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf.*?', capture: false }),
             netRegexFr: NetRegexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscité.*?', capture: false }),
             netRegexJa: NetRegexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された.*?', capture: false }),
-            netRegexCn: NetRegexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来.*?', capture: false }),
+            netRegexCn: NetRegexes.gameLog({ line: '发动了英杰的加护的效果，重新苏醒了过来.*?', capture: false }),
             netRegexKo: NetRegexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다.*?', capture: false }),
             sound: 'Long',
         },
@@ -624,6 +624,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
             netRegexDe: NetRegexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts.*?', capture: false }),
             netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Lumière.*?', capture: false }),
+            netRegexCn: NetRegexes.gameLog({ line: '相对的美德附加了“光之腕”效果.*?', capture: false }),
             condition: (data) => data.sealed,
             run: (data) => {
                 let _a;
@@ -639,6 +640,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
             netRegexDe: NetRegexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit.*?', capture: false }),
             netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres.*?', capture: false }),
+            netRegexCn: NetRegexes.gameLog({ line: '相对的美德附加了“暗之腕”效果.*?', capture: false }),
             condition: (data) => data.sealed,
             run: (data) => {
                 let _a;
@@ -1307,7 +1309,7 @@ Options.Triggers.push({
         {
             'locale': 'cn',
             'replaceSync': {
-                '7 minutes have elapsed since your last activity..*?': '已经7分钟没有进行任何操作',
+                '7 minutes have elapsed since your last activity.': '已经7分钟没有进行任何操作',
                 'Absolute Virtue': '绝对的美德',
                 'Arsenal Centaur': '兵武半人马',
                 'Art': '亚特',
@@ -1320,16 +1322,18 @@ Options.Triggers.push({
                 'Ozmashade': '奥兹玛之影',
                 'Proto Ozma(?! Containment)': '奥兹玛原型',
                 'Raiden': '莱丁',
-                'Relative Virtue': '相对的美德',
+                'Relative Virtue(?! gains)': '相对的美德',
                 'Shadow': '奥兹玛原型之影',
                 'Streak Lightning': '强袭雷光',
-                '5 minutes have elapsed since your last activity': '已经5分钟没有进行任何操作',
-                'The memories of heroes past live on again': '发动了英杰的加护效果，重新苏醒了过来',
+                '5 minutes have elapsed since your last activity.': '已经5分钟没有进行任何操作',
+                'The memories of heroes past live on again': '发动了英杰的加护的效果，重新苏醒了过来',
                 'Munderg, turn flesh to ash': '红颈妖枪，点燃一切！',
                 'Munderg, turn blood to ice': '红颈妖枪，冻结万物！',
                 'The Lance of Virtue Containment Unit': '美德之枪封印区',
                 'The Shin-Zantetsuken Containment Unit': '真·斩铁剑封印区',
                 'The Proto Ozma Containment Unit': '奥兹玛原型封印区',
+                'Relative Virtue gains the effect of Astral Essence': '相对的美德附加了“光之腕”效果',
+                'Relative Virtue gains the effect of Umbral Essence': '相对的美德附加了“暗之腕”效果',
             },
             'replaceText': {
                 'Acallam Na Senorach': '真妖枪旋',
