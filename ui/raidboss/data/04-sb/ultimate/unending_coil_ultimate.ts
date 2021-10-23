@@ -1158,18 +1158,9 @@ const triggerSet: TriggerSet<Data> = {
         const result = findDragonMarks(data.naelDragons);
         if (!result)
           return;
-        const langMap = {
-          en: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
-          de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
-          fr: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],
-          ja: ['北', '北東', '東', '南東', '南', '南西', '西', '北西'],
-          cn: ['北', '东北', '东', '东南', '南', '西南', '西', '西北'],
-          ko: ['북', '북동', '동', '남동', '남', '남서', '서', '북서'],
-        };
-
-        const dirNames = langMap[data.displayLang] || langMap['en'];
+        const dirNames = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
         data.naelMarks = result.marks.map((i) => {
-          return dirNames[i] ?? '???';
+          return dirNames[i] ?? 'unknown';
         });
         data.wideThirdDive = result.wideThirdDive;
         data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1204,9 +1195,9 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         data.calledNaelDragons = true;
         const params = {
-          dive1: data.naelMarks?.[0],
-          dive2: data.naelMarks?.[1],
-          dive3: data.naelMarks?.[2],
+          dive1: output[data.naelMarks?.[0] ?? 'unknown']!(),
+          dive2: output[data.naelMarks?.[1] ?? 'unknown']!(),
+          dive3: output[data.naelMarks?.[2] ?? 'unknown']!(),
         };
         if (data.wideThirdDive)
           return output.marksWide!(params);
@@ -1229,6 +1220,15 @@ const triggerSet: TriggerSet<Data> = {
           cn: '标记: ${dive1}, ${dive2}, ${dive3} (大)',
           ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
         },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
       },
     },
     {
