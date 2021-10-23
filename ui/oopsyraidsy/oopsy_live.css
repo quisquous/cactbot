@@ -88,6 +88,12 @@ div {
   background-color: rgba(50, 50, 50, 0.3);
 }
 
+.mistake-row > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .mistake-icon {
   flex: 0 0 auto;
   order: 1;
