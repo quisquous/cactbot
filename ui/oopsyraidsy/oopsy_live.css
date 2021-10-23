@@ -125,9 +125,10 @@ div {
 
 .copied-msg {
   /* width/height set programatically */
+  display: flex;
+  justify-content: center;
   position: absolute;
   margin: 0 auto;
-  text-align: center;
   color: white;
   box-shadow: 0 0 5px 2px rgba(70, 115, 200, 0.3);
   background-color: rgba(50, 50, 50, 0.5);
