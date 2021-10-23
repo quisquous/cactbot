@@ -1,12 +1,15 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc = null;
-let tid1;
-let tid2;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
+  let tid1 = 0;
+  let tid2 = 0;
+
   const comboTimer = bars.addTimerBar({
     id: 'dnc-timers-combo',
     fgColor: 'combo-color',
@@ -65,7 +68,7 @@ export function setup(bars) {
     id: 'dnc-procs-flourish',
     fgColor: 'dnc-color-flourish',
   });
-  let flourishEffect = [];
+  let flourishEffect: string[] = [];
   let flourishIsActive = false;
   bars.onUseAbility(kAbility.Flourish, () => {
     flourish.duration = 20;
@@ -103,9 +106,9 @@ export function setup(bars) {
   const espritGauge = bars.addResourceBox({
     classList: ['dnc-color-esprit'],
   });
-  bars.onJobDetailUpdate((jobDetail) => {
-    espritGauge.innerText = jobDetail.esprit;
-    featherGauge.innerText = jobDetail.feathers;
+  bars.onJobDetailUpdate((jobDetail: JobDetail['DNC']) => {
+    espritGauge.innerText = jobDetail.esprit.toString();
+    featherGauge.innerText = jobDetail.feathers.toString();
     if (jobDetail.esprit >= 80)
       espritGauge.parentNode.classList.add('high');
     else
@@ -121,7 +124,7 @@ export function setup(bars) {
     flourish.threshold = bars.gcdSkill + 1;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (bars: Bars): void => {
     comboTimer.duration = 0;
     standardStep.duration = 0;
     technicalStep.duration = 0;
@@ -137,9 +140,9 @@ export function setup(bars) {
     clearTimeout(tid1);
     clearTimeout(tid2);
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

@@ -1,8 +1,10 @@
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const aetherflowStackBox = bars.addResourceBox({
     classList: ['sch-color-aetherflow'],
   });
@@ -27,27 +29,27 @@ export function setup(bars) {
     fgColor: 'sch-color-lucid',
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['SCH']) => {
     const aetherflow = jobDetail.aetherflowStacks;
     const fairygauge = jobDetail.fairyGauge;
     const milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
-    aetherflowStackBox.innerText = aetherflow;
-    fairyGaugeBox.innerText = fairygauge;
+    aetherflowStackBox.innerText = aetherflow.toString();
+    fairyGaugeBox.innerText = fairygauge.toString();
     const f = fairyGaugeBox.parentNode;
     if (jobDetail.fairyMilliseconds !== 0) {
       f.classList.add('bright');
-      fairyGaugeBox.innerText = milli;
+      fairyGaugeBox.innerText = milli.toString();
     } else {
       f.classList.remove('bright');
-      fairyGaugeBox.innerText = fairygauge;
+      fairyGaugeBox.innerText = fairygauge.toString();
     }
 
     // dynamically annouce user depends on their aetherflow stacks right now
     aetherflowBox.threshold = bars.gcdSpell * (aetherflow || 1) + 1;
 
     const p = aetherflowStackBox.parentNode;
-    const s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
-    if (parseFloat(aetherflow) * 5 >= s) {
+    const s = aetherflowBox.duration ?? 0 - aetherflowBox.elapsed;
+    if (aetherflow * 5 >= s) {
       // turn red when stacks are too much before AF ready
       p.classList.add('too-much-stacks');
     } else {
@@ -79,14 +81,14 @@ export function setup(bars) {
     lucidBox.threshold = bars.gcdSpell + 1;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     bioBox.duration = 0;
     aetherflowBox.duration = 0;
     lucidBox.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

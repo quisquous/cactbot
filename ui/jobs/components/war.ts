@@ -1,23 +1,24 @@
 import EffectId from '../../../resources/effect_id';
-import { kAbility } from '../constants';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const textBox = bars.addResourceBox({
     classList: ['war-color-beast'],
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
-    const beast = jobDetail.beast;
+  bars.onJobDetailUpdate((jobDetail: JobDetail['WAR']) => {
+    const beast = jobDetail.beast.toString();
     if (textBox.innerText === beast)
       return;
     textBox.innerText = beast;
     const p = textBox.parentNode;
-    if (beast < 50) {
+    if (jobDetail.beast < 50) {
       p.classList.add('low');
       p.classList.remove('mid');
-    } else if (beast < 100) {
+    } else if (jobDetail.beast < 100) {
       p.classList.remove('low');
       p.classList.add('mid');
     } else {
@@ -45,7 +46,7 @@ export function setup(bars) {
   });
 
   bars.onYouGainEffect(EffectId.StormsEye, (id, e) => {
-    eyeBox.duration = e.duration;
+    eyeBox.duration = parseFloat(e.duration);
   });
   bars.onYouLoseEffect(EffectId.StormsEye, () => {
     eyeBox.duration = 0;
@@ -55,13 +56,13 @@ export function setup(bars) {
     eyeBox.valuescale = bars.gcdSkill * 3 + 1;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     eyeBox.duration = 0;
     comboTimer.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

@@ -1,9 +1,11 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const thunderDot = bars.addProcBox({
     id: 'blm-dot-thunder',
     fgColor: 'blm-color-dot',
@@ -26,14 +28,14 @@ export function setup(bars) {
   // bars could have two boxes here for the rare case where you
   // have two long-lived enemies, but it's an edge case that
   // maybe only makes sense in ucob?
-  const thunderDurationMap = {
+  const thunderDurationMap: { [abilityId: string]: number } = {
     [kAbility.Thunder1]: 18,
     [kAbility.Thunder2]: 12,
     [kAbility.Thunder3]: 24,
     [kAbility.Thunder4]: 18,
   };
   bars.onUseAbility(Object.keys(thunderDurationMap), (abilityId) => {
-    thunderDot.duration = thunderDurationMap[abilityId];
+    thunderDot.duration = thunderDurationMap[abilityId] ?? 0;
   });
 
   bars.onYouGainEffect(EffectId.Thundercloud, (_, matches) => {
@@ -46,8 +48,8 @@ export function setup(bars) {
   });
   bars.onYouLoseEffect(EffectId.Firestarter, () => fireProc.duration = 0);
 
-  bars.onYouGainEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = 1);
-  bars.onYouLoseEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = 0);
+  bars.onYouGainEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = true);
+  bars.onYouLoseEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = false);
 
   // It'd be super nice to use grid here.
   // Maybe some day when cactbot uses new cef.
@@ -58,7 +60,7 @@ export function setup(bars) {
   const heartStacksContainer = document.createElement('div');
   heartStacksContainer.id = 'blm-stacks-heart';
   stacksContainer.appendChild(heartStacksContainer);
-  const heartStacks = [];
+  const heartStacks: HTMLElement[] = [];
   for (let i = 0; i < 3; ++i) {
     const d = document.createElement('div');
     heartStacksContainer.appendChild(d);
@@ -68,7 +70,7 @@ export function setup(bars) {
   const xenoStacksContainer = document.createElement('div');
   xenoStacksContainer.id = 'blm-stacks-xeno';
   stacksContainer.appendChild(xenoStacksContainer);
-  const xenoStacks = [];
+  const xenoStacks: HTMLElement[] = [];
   for (let i = 0; i < 2; ++i) {
     const d = document.createElement('div');
     xenoStacksContainer.appendChild(d);
@@ -82,7 +84,7 @@ export function setup(bars) {
     classList: ['blm-xeno-timer'],
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['BLM']) => {
     if (bars.umbralStacks !== jobDetail.umbralStacks) {
       bars.umbralStacks = jobDetail.umbralStacks;
       bars._updateMPTicker();
@@ -90,20 +92,20 @@ export function setup(bars) {
     const fouls = jobDetail.foulCount;
     for (let i = 0; i < 2; ++i) {
       if (fouls > i)
-        xenoStacks[i].classList.add('active');
+        xenoStacks[i]?.classList.add('active');
       else
-        xenoStacks[i].classList.remove('active');
+        xenoStacks[i]?.classList.remove('active');
     }
     const hearts = jobDetail.umbralHearts;
     for (let i = 0; i < 3; ++i) {
       if (hearts > i)
-        heartStacks[i].classList.add('active');
+        heartStacks[i]?.classList.add('active');
       else
-        heartStacks[i].classList.remove('active');
+        heartStacks[i]?.classList.remove('active');
     }
 
     const stacks = jobDetail.umbralStacks;
-    const seconds = Math.ceil(jobDetail.umbralMilliseconds / 1000.0);
+    const seconds = Math.ceil(jobDetail.umbralMilliseconds / 1000.0).toString();
     const p = umbralTimer.parentNode;
     if (!stacks) {
       umbralTimer.innerText = '';
@@ -125,7 +127,7 @@ export function setup(bars) {
       xp.classList.remove('active', 'pulse');
     } else {
       const nextPoly = jobDetail.nextPolyglotMilliseconds;
-      xenoTimer.innerText = Math.ceil(nextPoly / 1000.0);
+      xenoTimer.innerText = Math.ceil(nextPoly / 1000.0).toString();
       xp.classList.add('active');
 
       if (fouls === 2 && nextPoly < 5000)
@@ -135,14 +137,14 @@ export function setup(bars) {
     }
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     thunderDot.duration = 0;
     thunderProc.duration = 0;
     fireProc.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

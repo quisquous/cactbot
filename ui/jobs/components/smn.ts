@@ -1,10 +1,12 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const aetherflowStackBox = bars.addResourceBox({
     classList: ['smn-color-aetherflow'],
   });
@@ -42,7 +44,7 @@ export function setup(bars) {
   const ruin4Container = document.createElement('div');
   ruin4Container.id = 'smn-stacks-ruin4';
   stacksContainer.appendChild(ruin4Container);
-  const ruin4Stacks = [];
+  const ruin4Stacks: HTMLElement[] = [];
   for (let i = 0; i < 4; ++i) {
     const d = document.createElement('div');
     ruin4Container.appendChild(d);
@@ -53,9 +55,9 @@ export function setup(bars) {
   const refreshFurtherRuin = () => {
     for (let i = 0; i < 4; ++i) {
       if (furtherRuin > i)
-        ruin4Stacks[i].classList.add('active');
+        ruin4Stacks[i]?.classList.add('active');
       else
-        ruin4Stacks[i].classList.remove('active');
+        ruin4Stacks[i]?.classList.remove('active');
     }
   };
   bars.onYouGainEffect(EffectId.FurtherRuin, (name, e) => {
@@ -66,19 +68,19 @@ export function setup(bars) {
     furtherRuin = 0;
     refreshFurtherRuin();
   });
-  bars.changeZoneFuncs.push((e) => {
+  bars.changeZoneFuncs.push(() => {
     furtherRuin = 0;
     refreshFurtherRuin();
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['SMN']) => {
     const stack = jobDetail.aetherflowStacks;
     const summoned = jobDetail.bahamutSummoned;
     const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
 
     // turn red when you have too much stacks before EnergyDrain ready.
-    aetherflowStackBox.innerText = stack;
-    const s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
+    aetherflowStackBox.innerText = stack.toString();
+    const s = energyDrainBox.duration ?? 0 - energyDrainBox.elapsed;
     if ((stack === 2) && (s <= 8))
       aetherflowStackBox.parentNode.classList.add('too-much-stacks');
     else
@@ -91,7 +93,7 @@ export function setup(bars) {
     demiSummoningBox.parentNode.classList.remove('bahamutready', 'firebirdready');
     tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-trance');
     if (time > 0) {
-      demiSummoningBox.innerText = time;
+      demiSummoningBox.innerText = time.toString();
     } else if (jobDetail.dreadwyrmStacks === 2) {
       demiSummoningBox.parentNode.classList.add('bahamutready');
     } else if (jobDetail.phoenixReady) {
@@ -102,7 +104,7 @@ export function setup(bars) {
     // Turn red when only 7s summoning time remain, to alarm that cast the second Enkindle.
     // Also alarm that don't cast a spell that has cast time, or a WW/SF will be missed.
     // Turn red when only 2s trancing time remain, to alarm that cast deathflare.
-    if (time <= 7 && summoned === 3)
+    if (time <= 7 && summoned === 1)
       demiSummoningBox.parentNode.classList.add('last');
     else if (time > 0 && time <= 2 && summoned === 0)
       demiSummoningBox.parentNode.classList.add('last');
@@ -157,7 +159,7 @@ export function setup(bars) {
     tranceBox.threshold = bars.gcdSpell + 7;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     furtherRuin = 0;
     refreshFurtherRuin();
     miasmaBox.duration = 0;
@@ -165,9 +167,9 @@ export function setup(bars) {
     energyDrainBox.duration = 0;
     tranceBox.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

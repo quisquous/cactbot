@@ -1,9 +1,11 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const straightShotProc = bars.addProcBox({
     id: 'brd-procs-straightshotready',
     fgColor: 'brd-color-straightshotready',
@@ -70,12 +72,12 @@ export function setup(bars) {
     classList: ['brd-color-soulvoice'],
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['BRD']) => {
     songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
     repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
     repertoireBox.innerText = '';
     if (jobDetail.songName === 'Minuet') {
-      repertoireBox.innerText = jobDetail.songProcs;
+      repertoireBox.innerText = jobDetail.songProcs.toString();
       repertoireBox.parentNode.classList.add('minuet');
       songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.minuet');
       songBox.threshold = 5;
@@ -88,20 +90,23 @@ export function setup(bars) {
       songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.ballad');
       songBox.threshold = 3;
     } else if (jobDetail.songName === 'Paeon') {
-      repertoireBox.innerText = jobDetail.songProcs;
+      repertoireBox.innerText = jobDetail.songProcs.toString();
       repertoireBox.parentNode.classList.add('paeon');
       songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.paeon');
       songBox.threshold = 13;
     }
 
-    const oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
-    const seconds = jobDetail.songMilliseconds / 1000.0;
-    if (!songBox.duration || seconds > oldSeconds)
-      songBox.duration = seconds;
+    if (typeof songBox.duration === 'number') {
+      const oldSeconds = songBox.duration - songBox.elapsed;
+      const seconds = jobDetail.songMilliseconds / 1000.0;
+      if (!songBox.duration || seconds > oldSeconds)
+        songBox.duration = seconds;
+    }
 
     // Soul Voice
-    if (jobDetail.soulGauge !== soulVoiceBox.innerText) {
-      soulVoiceBox.innerText = jobDetail.soulGauge;
+    const soulGauge = jobDetail.soulGauge.toString();
+    if (soulGauge !== soulVoiceBox.innerText) {
+      soulVoiceBox.innerText = soulGauge;
       soulVoiceBox.parentNode.classList.remove('high');
       if (jobDetail.soulGauge >= 95)
         soulVoiceBox.parentNode.classList.add('high');
@@ -141,7 +146,7 @@ export function setup(bars) {
     bars.speedBuffs.paeonStacks = 0;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     straightShotProc.duration = 0;
     stormBiteBox.duration = 0;
     causticBiteBox.duration = 0;
@@ -149,9 +154,9 @@ export function setup(bars) {
     ethosStacks = 0;
     songBox.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

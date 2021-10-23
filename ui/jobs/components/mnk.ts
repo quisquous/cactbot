@@ -1,10 +1,13 @@
 import EffectId from '../../../resources/effect_id';
+import { JobDetail } from '../../../types/event';
+import { NetMatches } from '../../../types/net_matches';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const formTimer = bars.addTimerBar({
     id: 'mnk-timers-combo',
     fgColor: 'mnk-color-form',
@@ -14,12 +17,12 @@ export function setup(bars) {
     classList: ['mnk-color-chakra'],
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
-    const chakra = jobDetail.chakraStacks;
+  bars.onJobDetailUpdate((jobDetail: JobDetail['MNK']) => {
+    const chakra = jobDetail.chakraStacks.toString();
     if (textBox.innerText !== chakra) {
       textBox.innerText = chakra;
       const p = textBox.parentNode;
-      if (chakra < 5)
+      if (jobDetail.chakraStacks < 5)
         p.classList.add('dim');
       else
         p.classList.remove('dim');
@@ -78,7 +81,7 @@ export function setup(bars) {
     perfectBalanceActive = false;
   });
 
-  const changeFormFunc = (name, matches) => {
+  const changeFormFunc = (name: string, matches: NetMatches['GainsEffect']) => {
     formTimer.duration = 0;
     formTimer.duration = parseFloat(matches.duration);
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
@@ -89,7 +92,7 @@ export function setup(bars) {
     EffectId.CoeurlForm,
   ], changeFormFunc);
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     twinSnakesBox.duration = 0;
     demolishBox.duration = 0;
     dragonKickBox.duration = 0;
@@ -97,9 +100,9 @@ export function setup(bars) {
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
     perfectBalanceActive = false;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

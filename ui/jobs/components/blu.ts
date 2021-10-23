@@ -1,9 +1,10 @@
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { calcGCDFromStat } from '../utils';
 
-let resetFunc = null;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const offguardBox = bars.addProcBox({
     id: 'blu-procs-offguard',
     fgColor: 'blu-color-offguard',
@@ -45,14 +46,14 @@ export function setup(bars) {
     lucidBox.duration = 60;
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     tormentBox.duration = 0;
     offguardBox.duration = 0;
     lucidBox.duration = 0;
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

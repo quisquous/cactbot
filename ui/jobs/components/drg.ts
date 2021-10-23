@@ -1,11 +1,14 @@
+import { JobDetail } from '../../../types/event';
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc = null;
-let tid1;
-let tid2;
+let resetFunc: (bars: Bars) => void;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
+  let tid1 = 0;
+  let tid2 = 0;
+
   // Boxes
   const highJumpBox = bars.addProcBox({
     id: 'drg-procs-highjump',
@@ -68,23 +71,23 @@ export function setup(bars) {
   const eyes = bars.addResourceBox({
     classList: ['drg-color-eyes'],
   });
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['DRG']) => {
     blood.parentNode.classList.remove('blood', 'life');
     if (jobDetail.bloodMilliseconds > 0) {
       blood.parentNode.classList.add('blood');
-      blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000);
+      blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000).toString();
       if (jobDetail.bloodMilliseconds < 5000)
         blood.parentNode.classList.remove('blood');
     } else if (jobDetail.lifeMilliseconds > 0) {
       blood.parentNode.classList.add('life');
-      blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
+      blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000).toString();
     } else {
       blood.innerText = '';
     }
 
     eyes.parentNode.classList.remove('zero', 'one', 'two');
     if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
-      eyes.innerText = jobDetail.eyesAmount;
+      eyes.innerText = jobDetail.eyesAmount.toString();
       if (jobDetail.eyesAmount === 0)
         eyes.parentNode.classList.add('zero');
       else if (jobDetail.eyesAmount === 1)
@@ -96,7 +99,7 @@ export function setup(bars) {
     }
   });
 
-  resetFunc = (bars) => {
+  resetFunc = (_bars: Bars): void => {
     highJumpBox.duration = 0;
     disembowelBox.duration = 0;
     lanceChargeBox.duration = 0;
@@ -106,9 +109,9 @@ export function setup(bars) {
     clearTimeout(tid1);
     clearTimeout(tid2);
   };
-}
+};
 
-export function reset(bars) {
+export const reset = (bars: Bars): void => {
   if (resetFunc)
     resetFunc(bars);
-}
+};

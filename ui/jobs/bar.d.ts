@@ -1,7 +1,10 @@
 // TODO: remove this when ui/jobs/jobs.js is converted to typescript
+import ResourceBar from '../../resources/resourcebar';
+import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
-import { JobDetail } from '../../types/event';
+import { EventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
+import { NetMatches } from '../../types/net_matches';
 
 import ComboTracker, { ComboCallback } from './combo_tracker';
 
@@ -10,6 +13,8 @@ type Selector = {
   fgColor?: string;
   classList?: string[];
   threshold?: number;
+  notifyWhenExpired?: boolean;
+  maxvalue?: number;
 };
 
 interface ResourceBox extends HTMLDivElement {
@@ -24,18 +29,47 @@ export interface Bars {
     paeonStacks: number;
     huton: boolean;
     shifu: boolean;
-    museStacks: 1 | 2 | 3 | 4;
+    museStacks: number;
   };
   level: number;
   gcdSkill: number;
+  gcdSpell: number;
   combo: ComboTracker;
   skillSpeed: number;
+  spellSpeed: number;
+  umbralStacks: number;
 
   addProcBox: (o: Selector) => TimerBox;
   addResourceBox: (o: Selector) => ResourceBox;
-  onUseAbility: (id: string, cb: VoidFunction) => void;
+  addResourceBar: (o: Selector) => ResourceBar;
+  addJobBarContainer: () => HTMLElement;
+  addTimerBar: (o: Selector) => TimerBar;
+  onUseAbility: (
+    id: string | string[],
+    cb: (id: string, matches: NetMatches['Ability']) => void,
+  ) => void;
+  onYouGainEffect: (
+    id: string | string[],
+    cb: (id: string, matches: NetMatches['GainsEffect']) => void,
+  ) => void;
+  onYouLoseEffect: (
+    id: string | string[],
+    cb: (id: string, matches: NetMatches['LosesEffect']) => void,
+  ) => void;
+  onMobGainsEffectFromYou: (
+    id: string | string[],
+    cb: (id: string, matches: NetMatches['GainsEffect']) => void,
+  ) => void;
+  onMobLosesEffectFromYou: (
+    id: string | string[],
+    cb: (id: string, matches: NetMatches['LosesEffect']) => void,
+  ) => void;
   onStatChange: (job: Job, cb: VoidFunction) => void;
-  addTimerBar: (o: Selector) => TimerBox;
   onJobDetailUpdate: (cb: (e: JobDetail[string]) => void) => void;
+
   onCombo: (cb: ComboCallback) => void;
+  // TODO: this shouldn't have an underscore.
+  _updateMPTicker: () => void;
+  updateDotTimerFuncs: (() => void)[];
+  changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[];
 }
