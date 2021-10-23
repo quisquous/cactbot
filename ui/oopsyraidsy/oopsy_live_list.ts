@@ -111,7 +111,10 @@ export class OopsyLiveList implements MistakeObserver {
       const msg = document.createElement('div');
       msg.classList.add('copied-msg');
       msg.innerText = kCopiedMessage[this.options.DisplayLanguage] || kCopiedMessage['en'];
-      document.body.appendChild(msg);
+      msg.style.width = `${div.clientWidth}px`;
+      msg.style.height = `${div.clientHeight}px`;
+
+      div.appendChild(msg);
       window.setTimeout(() => {
         document.body.removeChild(msg);
       }, 1000);
