@@ -1,6 +1,6 @@
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -29,7 +29,7 @@ export const setup = (bars: Bars): void => {
     fgColor: 'sch-color-lucid',
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['SCH']) => {
+  bars.onJobDetailUpdate('SCH', (jobDetail: JobDetail['SCH']) => {
     const aetherflow = jobDetail.aetherflowStacks;
     const fairygauge = jobDetail.fairyGauge;
     const milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);

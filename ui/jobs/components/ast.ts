@@ -1,6 +1,6 @@
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 const cardsMap = {
@@ -37,7 +37,7 @@ export const setup = (bars: Bars): void => {
     classList: ['ast-color-seal'],
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['AST']) => {
+  bars.onJobDetailUpdate('AST', (jobDetail: JobDetail['AST']) => {
     const card = jobDetail.heldCard;
     const seals = jobDetail.arcanums;
 

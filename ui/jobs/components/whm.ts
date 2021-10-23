@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -41,7 +41,7 @@ export const setup = (bars: Bars): void => {
     bloodlilyStacks.push(d);
   }
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['WHM']) => {
+  bars.onJobDetailUpdate('WHM', (jobDetail: JobDetail['WHM']) => {
     const lily = jobDetail.lilyStacks;
     // bars milliseconds is countup, so use floor instead of ceil.
     const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);

@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -16,7 +16,7 @@ export const setup = (bars: Bars): void => {
   });
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    if (bars.combo?.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;
@@ -28,7 +28,7 @@ export const setup = (bars: Bars): void => {
   const batteryGauge = bars.addResourceBox({
     classList: ['mch-color-battery'],
   });
-  bars.onJobDetailUpdate((jobDetail: JobDetail['MCH']) => {
+  bars.onJobDetailUpdate('MCH', (jobDetail: JobDetail['MCH']) => {
     heatGauge.innerText = jobDetail.heat.toString();
     batteryGauge.innerText = jobDetail.battery.toString();
     // These two seconds are shown by half adjust, not like others' ceil.
@@ -103,7 +103,7 @@ export const setup = (bars: Bars): void => {
   };
   bars.onMobGainsEffectFromYou(EffectId.Wildfire, (id, e) => {
     wildFireActive = true;
-    wildFireCounts = parseInt(e.count);
+    wildFireCounts = parseInt(e.count ?? '0');
     refreshWildFireGauge();
     stacksContainer.classList.remove('hide');
   });

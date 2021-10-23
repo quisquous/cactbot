@@ -5,10 +5,11 @@ import { LocaleNetRegex } from '../../resources/translations';
 import { isCasterDpsJob, isHealerJob } from '../../resources/util';
 import { Job } from '../../types/job';
 import { NetAnyFields } from '../../types/net_fields';
+import { ToMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
-import { Bars } from './bar';
 import { kLevelMod, kMeleeWithMpJobs } from './constants';
+import { Bars } from './jobs';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
@@ -219,7 +220,7 @@ export const makeAuraTimerIcon = (
 export const normalizeLogLine = <Fields extends NetAnyFields>(
   line: string[],
   fields: Fields,
-): Partial<Record<keyof Fields, string>> => {
+): Partial<ToMatches<Fields>> => {
   return new Proxy({}, {
     get(_target, property) {
       if (typeof property === 'string' && property in fields) {

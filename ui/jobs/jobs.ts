@@ -1,8 +1,10 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
-
-import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
-import Regexes from '../../resources/regexes';
+import EffectId from '../../resources/effect_id';
+import foodImage from '../../resources/ffxiv/status/food.png';
+import logDefinitions from '../../resources/netlog_defs';
+import { UnreachableCode } from '../../resources/not_reached';
+import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import PartyTracker from '../../resources/party';
 import UserConfig from '../../resources/user_config';
 import {
   isCraftingJob,
@@ -11,8 +13,16 @@ import {
   isHealerJob,
   isTankJob,
 } from '../../resources/util';
-import ZoneInfo from '../../resources/zone_info';
 import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
+import { EventResponses, JobDetail } from '../../types/event';
+import { Job } from '../../types/job';
+import { NetFields } from '../../types/net_fields';
+import { ToMatches } from '../../types/net_matches';
+
+import { BuffTracker } from './buff_tracker';
+import ComboTracker, { ComboCallback } from './combo_tracker';
+import { getReset, getSetup } from './components/index';
 import {
   kMPCombatRate,
   kMPNormalRate,
@@ -22,13 +32,8 @@ import {
   kMPUI3Rate,
   kWellFedContentTypes,
 } from './constants';
-import { BuffTracker } from './buff_tracker';
-import ComboTracker from './combo_tracker';
-import PartyTracker from '../../resources/party';
-
-import foodImage from '../../resources/ffxiv/status/food.png';
-
-import defaultOptions from './jobs_options';
+import './jobs_config';
+import defaultOptions, { JobsOptions } from './jobs_options';
 import {
   calcGCDFromStat,
   computeBackgroundColorFrom,
@@ -37,18 +42,23 @@ import {
   normalizeLogLine,
   RegexesHolder,
 } from './utils';
-import { getReset, getSetup } from './components/index';
 
-import './jobs_config';
+// TypeScript will elide these imports unless they are used directly or are a bare import.
+// TODO: maybe each of these should export a "create" function that gets used here?
+/* eslint-disable no-duplicate-imports,import/no-duplicates,import/order */
+import ResourceBar from '../../resources/resourcebar';
+import TimerBar from '../../resources/timerbar';
+import TimerBox from '../../resources/timerbox';
+import WidgetList from '../../resources/widget_list';
 import '../../resources/resourcebar';
+import '../../resources/timericon';
 import '../../resources/timerbar';
 import '../../resources/timerbox';
-import '../../resources/timericon';
 import '../../resources/widget_list';
+/* eslint-enable no-duplicate-imports,import/no-duplicates,import/order */
 
 import '../../resources/defaults.css';
 import './jobs.css';
-import logDefinitions from '../../resources/netlog_defs';
 
 // text on the pull countdown.
 const kPullText = {
@@ -60,99 +70,133 @@ const kPullText = {
   ko: '풀링',
 };
 
-class Bars {
-  constructor(options) {
-    this.options = options;
-    this.init = false;
-    this.o = {};
+type JobDomObjects = {
+  pullCountdown?: TimerBar;
+  leftBuffsContainer?: HTMLElement;
+  leftBuffsList?: WidgetList;
+  rightBuffsContainer?: HTMLElement;
+  rightBuffsList?: WidgetList;
+  cpContainer?: HTMLElement;
+  cpBar?: ResourceBar;
+  gpContainer?: HTMLElement;
+  gpBar?: ResourceBar;
+  healthContainer?: HTMLElement;
+  healthBar?: ResourceBar;
+  manaContainer?: HTMLElement;
+  manaBar?: ResourceBar;
+  mpTickContainer?: HTMLElement;
+  mpTicker?: TimerBar;
+};
 
-    this.me = undefined;
-    this.level = 0;
-    this.job = 'NONE';
-    this.hp = 0;
-    this.maxHP = 0;
-    this.currentShield = 0;
-    this.mp = 0;
-    this.prevMP = 0;
-    this.maxMP = 0;
-    this.cp = 0;
-    this.maxCP = 0;
-    this.gp = 0;
-    this.maxGP = 0;
-    this.umbralStacks = 0;
-    this.inCombat = false;
-    this.combo = undefined;
-    this.comboTimer = undefined;
-    this.regexes = undefined;
-    this.partyTracker = new PartyTracker();
+type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
+type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
 
-    this.skillSpeed = 0;
-    this.spellSpeed = 0;
+// Map of job to (e: JobDetail[job]) => void.  This prevents having to spell out every job,
+// for setters and calling.  jobDetail is also `unknown` inside of _onPlayerChanged so
+// even if everything else was explicit, there'd be no way to handle this.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type JobFuncMap = { [job in Job]?: (e: any) => void };
 
-    this.distance = -1;
-    this.inCombat = false;
-    this.combo = undefined;
-    this.foodBuffExpiresTimeMs = 0;
-    this.gpAlarmReady = false;
-    this.gpPotion = false;
-    this.speedBuffs = {
-      presenceOfMind: 0,
-      shifu: 0,
-      huton: 0,
-      paeonStacks: 0,
-      museStacks: 0,
-      circleOfPower: 0,
-    };
+export interface ResourceBox extends HTMLDivElement {
+  parentNode: HTMLElement;
+}
 
-    this.dotTarget = [];
-    this.trackedDoTs = [];
-    this.comboFuncs = [];
-    this.jobFuncs = [];
-    this.changeZoneFuncs = [];
-    this.updateDotTimerFuncs = [];
-    this.gainEffectFuncMap = {};
-    this.mobGainEffectFromYouFuncMap = {};
-    this.mobLoseEffectFromYouFuncMap = {};
-    this.loseEffectFuncMap = {};
-    this.statChangeFuncMap = {};
-    this.abilityFuncMap = {};
+export class Bars {
+  private init = false;
+  private o: JobDomObjects = {};
+  private me?: string;
+  private hp = 0;
+  private maxHP = 0;
+  private currentShield = 0;
+  private mp = 0;
+  private prevMP = 0;
+  private maxMP = 0;
+  private cp = 0;
+  private maxCP = 0;
+  private gp = 0;
+  private maxGP = 0;
+  private distance = -1;
+  private foodBuffExpiresTimeMs = 0;
+  private gpAlarmReady = false;
+  private gpPotion = false;
 
-    this.contentType = 0;
-    this.isPVPZone = false;
-    this.crafting = false;
+  private inCombat = false;
+  private regexes?: RegexesHolder;
+  private partyTracker: PartyTracker = new PartyTracker();
+  private buffTracker?: BuffTracker;
 
+  private contentType?: number;
+  private isPVPZone = false;
+  private crafting = false;
+  private foodBuffTimer = 0;
+
+  private dotTarget: string[] = [];
+  private trackedDoTs: string[] = [];
+  private lastAttackedDotTarget?: string;
+  private comboFuncs: ComboCallback[] = [];
+  private jobFuncs: JobFuncMap = {};
+
+  private gainEffectFuncMap: { [effectId: string]: GainCallback } = {};
+  private loseEffectFuncMap: { [effectId: string]: LoseCallback } = {};
+  private mobGainEffectFromYouFuncMap: { [effectId: string]: GainCallback } = {};
+  private mobLoseEffectFromYouFuncMap: { [effectId: string]: LoseCallback } = {};
+  private abilityFuncMap: { [abilityId: string]: AbilityCallback } = {};
+  private statChangeFuncMap: { [job: string]: (() => void) } = {};
+
+  public level = 0;
+  public job: Job = 'NONE';
+  public skillSpeed = 0;
+  public spellSpeed = 0;
+  public speedBuffs = {
+    presenceOfMind: false,
+    shifu: false,
+    huton: false,
+    paeonStacks: 0,
+    museStacks: 0,
+    circleOfPower: false,
+  };
+  public umbralStacks = 0;
+
+  public combo?: ComboTracker;
+  public changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[] = [];
+  public updateDotTimerFuncs: (() => void)[] = [];
+
+  constructor(private options: JobsOptions) {
     // Don't add any notifications if only the buff tracker is being shown.
     if (this.options.JustBuffTracker) {
-      this.options.NotifyExpiredProcsInCombatSound = false;
-      this.options.NotifyExpiredProcsInCombat = false;
+      this.options.NotifyExpiredProcsInCombatSound = 'disabled';
+      this.options.NotifyExpiredProcsInCombat = 0;
     }
 
     this.updateProcBoxNotifyRepeat();
   }
 
-  updateProcBoxNotifyRepeat() {
+  updateProcBoxNotifyRepeat(): void {
     if (this.options.NotifyExpiredProcsInCombat >= 0) {
       const repeats = this.options.NotifyExpiredProcsInCombat === 0
         ? 'infinite'
-        : this.options.NotifyExpiredProcsInCombat;
+        : this.options.NotifyExpiredProcsInCombat.toString();
 
       document.documentElement.style.setProperty('--proc-box-notify-repeat', repeats);
     }
   }
 
-  get gcdSkill() {
+  get gcdSkill(): number {
     return calcGCDFromStat(this, this.skillSpeed);
   }
 
-  get gcdSpell() {
+  get gcdSpell(): number {
     return calcGCDFromStat(this, this.spellSpeed);
   }
 
-  _updateUIVisibility() {
+  _updateUIVisibility(): void {
     const bars = document.getElementById('bars');
     if (bars) {
       const barList = bars.children;
       for (const bar of barList) {
+        if (!(bar instanceof HTMLElement))
+          continue;
         if (bar.id === 'hp-bar' || bar.id === 'mp-bar')
           continue;
         if (this.isPVPZone)
@@ -163,9 +207,9 @@ class Bars {
     }
   }
 
-  _updateJob() {
+  _updateJob(): void {
     this.comboFuncs = [];
-    this.jobFuncs = [];
+    this.jobFuncs = {};
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
@@ -177,7 +221,7 @@ class Bars {
     this.dotTarget = [];
 
     this.gainEffectFuncMap[EffectId.WellFed] = (_id, matches) => {
-      const seconds = parseFloat(matches.duration);
+      const seconds = parseFloat(matches.duration ?? '0');
       const now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
       this._updateFoodBuff();
@@ -186,6 +230,8 @@ class Bars {
     let container = document.getElementById('jobs-container');
     if (!container) {
       const root = document.getElementById('container');
+      if (!root)
+        throw new UnreachableCode();
       container = document.createElement('div');
       container.id = 'jobs-container';
       root.appendChild(container);
@@ -367,7 +413,7 @@ class Bars {
     this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
 
-  _validateKeys() {
+  _validateKeys(): void {
     // Keys in JavaScript are converted to strings, so test string equality
     // here to verify that effects and abilities have been spelled correctly.
     for (const key in this.abilityFuncMap) {
@@ -384,31 +430,31 @@ class Bars {
     }
   }
 
-  addJobBarContainer() {
+  addJobBarContainer(): HTMLElement {
     const id = this.job.toLowerCase() + '-bar';
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
       container.id = id;
-      document.getElementById('bars').appendChild(container);
+      document.getElementById('bars')?.appendChild(container);
       container.classList.add('bar-container');
     }
     return container;
   }
 
-  addJobBoxContainer() {
+  addJobBoxContainer(): HTMLElement {
     const id = this.job.toLowerCase() + '-boxes';
     let boxes = document.getElementById(id);
     if (!boxes) {
       boxes = document.createElement('div');
       boxes.id = id;
-      document.getElementById('bars').appendChild(boxes);
+      document.getElementById('bars')?.appendChild(boxes);
       boxes.classList.add('box-container');
     }
     return boxes;
   }
 
-  addResourceBox({ classList }) {
+  addResourceBox({ classList }: { classList?: string[] }): ResourceBox {
     const boxes = this.addJobBoxContainer();
     const boxDiv = document.createElement('div');
     if (classList) {
@@ -422,7 +468,9 @@ class Bars {
     boxDiv.appendChild(textDiv);
     textDiv.classList.add('text');
 
-    return textDiv;
+    // This asserts that textDiv has a parentNode that is an HTMLElement,
+    // which we create above.
+    return textDiv as ResourceBox;
   }
 
   addProcBox({
@@ -431,14 +479,20 @@ class Bars {
     threshold,
     scale,
     notifyWhenExpired,
-  }) {
+  }: {
+    id?: string;
+    fgColor?: string;
+    threshold?: number;
+    scale?: number;
+    notifyWhenExpired?: boolean;
+  }): TimerBox {
     const elementId = this.job.toLowerCase() + '-procs';
 
-    let container = document.getElementById(id);
+    let container = id ? document.getElementById(id) : undefined;
     if (!container) {
       container = document.createElement('div');
       container.id = elementId;
-      document.getElementById('bars').appendChild(container);
+      document.getElementById('bars')?.appendChild(container);
       container.classList.add('proc-box');
     }
 
@@ -460,9 +514,9 @@ class Bars {
     if (notifyWhenExpired) {
       timerBox.classList.add('notify-when-expired');
       if (this.options.NotifyExpiredProcsInCombatSound === 'threshold')
-        timerBox.onThresholdReached(this.playNotification);
+        timerBox.onThresholdReached(() => this.playNotification());
       else if (this.options.NotifyExpiredProcsInCombatSound === 'expired')
-        timerBox.onExpired(this.playNotification);
+        timerBox.onExpired(() => this.playNotification());
     }
     return timerBox;
   }
@@ -470,7 +524,10 @@ class Bars {
   addTimerBar({
     id,
     fgColor,
-  }) {
+  }: {
+    id: string;
+    fgColor: string;
+  }): TimerBar {
     const container = this.addJobBarContainer();
 
     const timerDiv = document.createElement('div');
@@ -494,7 +551,11 @@ class Bars {
     id,
     fgColor,
     maxvalue,
-  }) {
+  }: {
+    id: string;
+    fgColor: string;
+    maxvalue: number;
+  }): ResourceBar {
     const container = this.addJobBarContainer();
 
     const barDiv = document.createElement('div');
@@ -508,75 +569,84 @@ class Bars {
     bar.fg = computeBackgroundColorFrom(bar, fgColor);
     bar.width = window.getComputedStyle(barDiv).width;
     bar.height = window.getComputedStyle(barDiv).height;
-    bar.maxvalue = maxvalue;
+    bar.maxvalue = maxvalue.toString();
 
     return bar;
   }
 
-  playNotification() {
+  playNotification(): void {
     const audio = new Audio('../../resources/sounds/freesound/alarm.webm');
     audio.volume = 0.3;
     void audio.play();
   }
 
-  onCombo(callback) {
+  onCombo(callback: ComboCallback): void {
     this.comboFuncs.push(callback);
   }
 
-  onMobGainsEffectFromYou(effectIds, callback) {
+  onMobGainsEffectFromYou(effectIds: string | string[], callback: GainCallback): void {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobGainEffectFromYouFuncMap[id] = callback);
     else
       this.mobGainEffectFromYouFuncMap[effectIds] = callback;
   }
 
-  onMobLosesEffectFromYou(effectIds, callback) {
+  onMobLosesEffectFromYou(effectIds: string | string[], callback: LoseCallback): void {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobLoseEffectFromYouFuncMap[id] = callback);
     else
       this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
   }
 
-  onYouGainEffect(effectIds, callback) {
+  onYouGainEffect(effectIds: string | string[], callback: GainCallback): void {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.gainEffectFuncMap[id] = callback);
     else
       this.gainEffectFuncMap[effectIds] = callback;
   }
 
-  onYouLoseEffect(effectIds, callback) {
+  onYouLoseEffect(effectIds: string | string[], callback: LoseCallback): void {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.loseEffectFuncMap[id] = callback);
     else
       this.loseEffectFuncMap[effectIds] = callback;
   }
 
-  onJobDetailUpdate(callback) {
-    this.jobFuncs.push(callback);
+  onJobDetailUpdate<JobKey extends keyof JobDetail>(
+    job: JobKey,
+    callback: (e: JobDetail[JobKey]) => void,
+  ): void {
+    // This prevents having separate onXXXJobDetailUpdate function which take explicit callbacks
+    // so that the lookup into jobFuncs can be statically typed.  Honestly, JobDetail is already
+    // obnoxious enough to use in TypeScript that we probably need to rethink how it is delivered.
+
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+    this.jobFuncs[job] = callback as any;
   }
 
-  onStatChange(job, callback) {
+  onStatChange(job: string, callback: () => void): void {
     this.statChangeFuncMap[job] = callback;
   }
 
-  onUseAbility(abilityIds, callback) {
+  onUseAbility(abilityIds: string | string[], callback: AbilityCallback): void {
     if (Array.isArray(abilityIds))
       abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
     else
       this.abilityFuncMap[abilityIds] = callback;
   }
 
-  _onComboChange(skill) {
+  _onComboChange(skill?: string): void {
     this.comboFuncs.forEach((func) => func(skill));
   }
 
-  _updateJobBarGCDs() {
+  _updateJobBarGCDs(): void {
     const f = this.statChangeFuncMap[this.job];
     if (f)
       f();
   }
 
-  _updateHealth() {
+  _updateHealth(): void {
     if (!this.o.healthBar)
       return;
     this.o.healthBar.value = this.hp.toString();
@@ -593,7 +663,7 @@ class Bars {
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
   }
 
-  _updateProcBoxNotifyState() {
+  _updateProcBoxNotifyState(): void {
     if (this.options.NotifyExpiredProcsInCombat >= 0) {
       const boxes = document.getElementsByClassName('proc-box');
       for (const box of boxes) {
@@ -608,7 +678,7 @@ class Bars {
     }
   }
 
-  _updateMPTicker() {
+  _updateMPTicker(): void {
     if (!this.o.mpTicker)
       return;
     const delta = this.mp - this.prevMP;
@@ -644,13 +714,13 @@ class Bars {
     this.o.mpTicker.fg = computeBackgroundColorFrom(this.o.mpTicker, colorTag);
   }
 
-  _updateMana() {
+  _updateMana(): void {
     this._updateMPTicker();
 
     if (!this.o.manaBar)
       return;
-    this.o.manaBar.value = this.mp;
-    this.o.manaBar.maxvalue = this.maxMP;
+    this.o.manaBar.value = this.mp.toString();
+    this.o.manaBar.maxvalue = this.maxMP.toString();
     let lowMP = -1;
     let mediumMP = -1;
     let far = -1;
@@ -679,18 +749,18 @@ class Bars {
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
 
-  _updateCp() {
+  _updateCp(): void {
     if (!this.o.cpBar)
       return;
-    this.o.cpBar.value = this.cp;
-    this.o.cpBar.maxvalue = this.maxCP;
+    this.o.cpBar.value = this.cp.toString();
+    this.o.cpBar.maxvalue = this.maxCP.toString();
   }
 
-  _updateGp() {
+  _updateGp(): void {
     if (!this.o.gpBar)
       return;
-    this.o.gpBar.value = this.gp;
-    this.o.gpBar.maxvalue = this.maxGP;
+    this.o.gpBar.value = this.gp.toString();
+    this.o.gpBar.maxvalue = this.maxGP.toString();
 
     // GP Alarm
     if (this.gp < this.options.GpAlarmPoint) {
@@ -703,7 +773,7 @@ class Bars {
     }
   }
 
-  _updateOpacity() {
+  _updateOpacity(): void {
     const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
@@ -716,7 +786,7 @@ class Bars {
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat.toString();
   }
 
-  _updateFoodBuff() {
+  _updateFoodBuff(): void {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.init || !this.o.leftBuffsList)
       return;
@@ -725,6 +795,8 @@ class Bars {
       if (!this.options.HideWellFedAboveSeconds)
         return false;
       if (this.inCombat)
+        return false;
+      if (this.contentType === undefined)
         return false;
       return kWellFedContentTypes.includes(this.contentType);
     };
@@ -737,7 +809,7 @@ class Bars {
     };
 
     window.clearTimeout(this.foodBuffTimer);
-    this.foodBuffTimer = undefined;
+    this.foodBuffTimer = 0;
 
     const canShow = CanShowWellFedWarning.bind(this)();
     const showAfterMs = TimeToShowWellFedWarning.bind(this)();
@@ -766,16 +838,15 @@ class Bars {
     }
   }
 
-  _onPartyWipe(e) {
-    if (this.buffTracker)
-      this.buffTracker.clear();
+  _onPartyWipe(): void {
+    this.buffTracker?.clear();
     // Reset job-specific ui
     const reset = getReset(this.job);
     if (reset)
       reset.bind(null, this)();
   }
 
-  _onInCombatChanged(e) {
+  _onInCombatChanged(e: EventResponses['onInCombatChangedEvent']): void {
     if (this.inCombat === e.detail.inGameCombat)
       return;
 
@@ -789,7 +860,7 @@ class Bars {
     this._updateProcBoxNotifyState();
   }
 
-  _onChangeZone(e) {
+  _onChangeZone(e: EventResponses['ChangeZone']): void {
     const zoneInfo = ZoneInfo[e.zoneID];
     this.contentType = zoneInfo ? zoneInfo.contentType : 0;
     this.dotTarget = [];
@@ -811,12 +882,12 @@ class Bars {
     this._updateUIVisibility();
   }
 
-  _setPullCountdown(seconds) {
+  _setPullCountdown(seconds: number): void {
     if (!this.o.pullCountdown)
       return;
 
     const inCountdown = seconds > 0;
-    const showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
+    const showingCountdown = this.o.pullCountdown.duration ?? 0 > 0;
     if (inCountdown !== showingCountdown) {
       this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
@@ -827,11 +898,17 @@ class Bars {
     }
   }
 
-  _onCraftingLog(message) {
-    // Hide CP Bar when not crafting
-    const container = document.getElementById('jobs-container');
+  _onCraftingLog(message: string): void {
+    if (!this.regexes)
+      return;
 
-    const anyRegexMatched = (line, array) => array.some((regex) => regex.test(line));
+    const container = document.getElementById('jobs-container');
+    if (!container)
+      throw new UnreachableCode();
+
+    // Hide CP Bar when not crafting
+    const anyRegexMatched = (line: string, array: RegExp[]) =>
+      array.some((regex) => regex.test(line));
 
     if (!this.crafting) {
       if (anyRegexMatched(message, this.regexes.craftingStartRegexes))
@@ -841,8 +918,8 @@ class Bars {
         this.crafting = false;
       } else {
         this.crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
-          const m = regex.exec(message);
-          return m && (!m.groups.player || m.groups.player === this.me);
+          const m = regex.exec(message)?.groups;
+          return m && (!m.player || m.player === this.me);
         });
       }
     }
@@ -853,11 +930,11 @@ class Bars {
       container.classList.add('hide');
   }
 
-  _onPartyChanged(e) {
+  _onPartyChanged(e: EventResponses['PartyChanged']): void {
     this.partyTracker.onPartyChanged(e);
   }
 
-  _onPlayerChanged(e) {
+  _onPlayerChanged(e: EventResponses['onPlayerChangedEvent']): void {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
       // setup regexes prior to the combo tracker
@@ -878,7 +955,7 @@ class Bars {
     if (e.detail.job !== this.job) {
       this.job = e.detail.job;
       // Combos are job specific.
-      this.combo.AbortCombo();
+      this.combo?.AbortCombo();
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
       this._updateMPTicker();
@@ -900,7 +977,7 @@ class Bars {
       updateHp = true;
 
       if (this.hp === 0)
-        this.combo.AbortCombo(); // Death resets combos.
+        this.combo?.AbortCombo(); // Death resets combos.
     }
     if (e.detail.currentMP !== this.mp || e.detail.maxMP !== this.maxMP) {
       this.mp = e.detail.currentMP;
@@ -922,14 +999,18 @@ class Bars {
       // On reload, we need to set the opacity after setting up the job bars.
       this._updateOpacity();
       this._updateProcBoxNotifyState();
-      // Set up the buff tracker after the job bars are created.
-      this.buffTracker = new BuffTracker(
-        this.options,
-        this.me,
-        this.o.leftBuffsList,
-        this.o.rightBuffsList,
-        this.partyTracker,
-      );
+
+      // TODO: this is always created by _updateJob, so maybe this.o needs be optional?
+      if (this.o.leftBuffsList && this.o.rightBuffsList) {
+        // Set up the buff tracker after the job bars are created.
+        this.buffTracker = new BuffTracker(
+          this.options,
+          this.me,
+          this.o.leftBuffsList,
+          this.o.rightBuffsList,
+          this.partyTracker,
+        );
+      }
     }
     if (updateHp)
       this._updateHealth();
@@ -942,14 +1023,11 @@ class Bars {
     if (updateLevel)
       this._updateFoodBuff();
 
-    if (e.detail.jobDetail) {
-      this.jobFuncs.forEach((func) => {
-        func(e.detail.jobDetail);
-      });
-    }
+    if (e.detail.jobDetail)
+      this.jobFuncs[this.job]?.(e.detail.jobDetail);
   }
 
-  _updateEnmityTargetData(e) {
+  _updateEnmityTargetData(e: EventResponses['EnmityTargetData']): void {
     const target = e.Target;
 
     let update = false;
@@ -968,7 +1046,7 @@ class Bars {
     }
   }
 
-  _onNetLog(e) {
+  _onNetLog(e: EventResponses['LogLine']): void {
     if (!this.init || !this.regexes)
       return;
     const line = e.line;
@@ -992,36 +1070,36 @@ class Bars {
 
       case logDefinitions.PlayerStats.type: {
         const fields = logDefinitions.PlayerStats.fields;
-        this.skillSpeed = parseInt(line[fields.skillSpeed]);
-        this.spellSpeed = parseInt(line[fields.spellSpeed]);
+        this.skillSpeed = parseInt(line[fields.skillSpeed] ?? '0');
+        this.spellSpeed = parseInt(line[fields.spellSpeed] ?? '0');
         this._updateJobBarGCDs();
         break;
       }
 
       case logDefinitions.GainsEffect.type: {
         const fields = logDefinitions.GainsEffect.fields;
-        const log = normalizeLogLine(line, fields);
-        const effectId = log.effectId?.toUpperCase();
+        const matches = normalizeLogLine(line, fields);
+        const effectId = matches.effectId?.toUpperCase();
         if (!effectId)
           break;
 
-        if (log.target === this.me) {
+        if (matches.target === this.me) {
           const f = this.gainEffectFuncMap[effectId];
           if (f)
-            f(effectId, log);
-          this.buffTracker.onYouGainEffect(effectId, log);
+            f(effectId, matches);
+          this.buffTracker?.onYouGainEffect(effectId, matches);
         }
         // Mobs id starts with "4"
-        if (log.targetId?.startsWith('4')) {
-          this.buffTracker.onMobGainsEffect(effectId, log);
+        if (matches.targetId?.startsWith('4')) {
+          this.buffTracker?.onMobGainsEffect(effectId, matches);
 
           // if the effect is from me.
-          if (log.source === this.me) {
+          if (matches.source === this.me) {
             if (this.trackedDoTs.includes(effectId))
-              this.dotTarget.push(log.targetId);
+              this.dotTarget.push(matches.targetId);
             const f = this.mobGainEffectFromYouFuncMap[effectId];
             if (f)
-              f(effectId, log);
+              f(effectId, matches);
           }
         }
         break;
@@ -1038,11 +1116,11 @@ class Bars {
           const f = this.loseEffectFuncMap[effectId];
           if (f)
             f(effectId, log);
-          this.buffTracker.onYouLoseEffect(effectId, log);
+          this.buffTracker?.onYouLoseEffect(effectId, log);
         }
         // Mobs id starts with "4"
         if (log.targetId?.startsWith('4')) {
-          this.buffTracker.onMobLosesEffect(effectId, log);
+          this.buffTracker?.onMobLosesEffect(effectId, log);
 
           // if the effect is from me.
           if (log.source === this.me) {
@@ -1062,20 +1140,20 @@ class Bars {
       case logDefinitions.Ability.type:
       case logDefinitions.NetworkAOEAbility.type: {
         const fields = logDefinitions.Ability.fields;
-        const log = normalizeLogLine(line, fields);
-        const id = log.id;
+        const matches = normalizeLogLine(line, fields);
+        const id = matches.id;
         if (!id)
           break;
 
-        if (log.source === this.me) {
-          this.combo.HandleAbility(id);
+        if (matches.source === this.me) {
+          this.combo?.HandleAbility(id);
           const f = this.abilityFuncMap[id];
           if (f)
-            f(id, log);
-          this.buffTracker.onUseAbility(id, log);
+            f(id, matches);
+          this.buffTracker?.onUseAbility(id, matches);
 
-          if (this.dotTarget.includes(log.targetId))
-            this.lastAttackedDotTarget = log.targetId;
+          if (matches.targetId && this.dotTarget.includes(matches.targetId))
+            this.lastAttackedDotTarget = matches.targetId;
 
           if (this.regexes.cordialRegex.test(id)) {
             this.gpPotion = true;
@@ -1084,7 +1162,7 @@ class Bars {
             }, 2000);
           }
         } else {
-          this.buffTracker.onUseAbility(id, log);
+          this.buffTracker?.onUseAbility(id, matches);
         }
         break;
       }
@@ -1118,8 +1196,8 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   addOverlayListener('EnmityTargetData', (e) => {
     bars._updateEnmityTargetData(e);
   });
-  addOverlayListener('onPartyWipe', (e) => {
-    bars._onPartyWipe(e);
+  addOverlayListener('onPartyWipe', () => {
+    bars._onPartyWipe();
   });
   addOverlayListener('onInCombatChangedEvent', (e) => {
     bars._onInCombatChanged(e);

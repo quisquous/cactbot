@@ -1,8 +1,8 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
-import { Bars } from '../bar';
 import { kAbility } from '../constants';
+import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -17,7 +17,7 @@ export const setup = (bars: Bars): void => {
     classList: ['mnk-color-chakra'],
   });
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['MNK']) => {
+  bars.onJobDetailUpdate('MNK', (jobDetail: JobDetail['MNK']) => {
     const chakra = jobDetail.chakraStacks.toString();
     if (textBox.innerText !== chakra) {
       textBox.innerText = chakra;
@@ -51,7 +51,7 @@ export const setup = (bars: Bars): void => {
 
   bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
     // -0.5 for logline delay
-    twinSnakesBox.duration = parseFloat(matches.duration) - 0.5;
+    twinSnakesBox.duration = parseFloat(matches.duration ?? '0') - 0.5;
   });
   bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
 
@@ -70,7 +70,7 @@ export const setup = (bars: Bars): void => {
   bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
     if (!perfectBalanceActive) {
       formTimer.duration = 0;
-      formTimer.duration = parseFloat(matches.duration);
+      formTimer.duration = parseFloat(matches.duration ?? '0');
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
       perfectBalanceActive = true;
     }
@@ -81,9 +81,9 @@ export const setup = (bars: Bars): void => {
     perfectBalanceActive = false;
   });
 
-  const changeFormFunc = (name: string, matches: NetMatches['GainsEffect']) => {
+  const changeFormFunc = (name: string, matches: Partial<NetMatches['GainsEffect']>) => {
     formTimer.duration = 0;
-    formTimer.duration = parseFloat(matches.duration);
+    formTimer.duration = parseFloat(matches.duration ?? '0');
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
   };
   bars.onYouGainEffect([
