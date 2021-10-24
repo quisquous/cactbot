@@ -7,7 +7,7 @@ import logDefinitions, { LogDefinitionTypes } from '../resources/netlog_defs';
 import NetRegexes from '../resources/netregexes';
 import { UnreachableCode } from '../resources/not_reached';
 import Regexes from '../resources/regexes';
-import { LocaleObject } from '../types/trigger';
+import { LocaleObject, LocaleText } from '../types/trigger';
 import LogRepository from '../ui/raidboss/emulator/data/network_log_converter/LogRepository';
 import ParseLine from '../ui/raidboss/emulator/data/network_log_converter/ParseLine';
 import { translate } from '../ui/raidboss/emulator/translations';
@@ -47,6 +47,67 @@ type LineDocType = {
 
 type LineDocs = {
   [type in LineDocTypes]: LineDocType;
+};
+
+type Titles = Record<
+  | 'structure'
+  | 'networkLogLineStructure'
+  | 'actLogLineStructure'
+  | 'regexes'
+  | 'networkLogLineRegexes'
+  | 'actLogLineRegexes'
+  | 'examples'
+  | 'networkLogLineExamples'
+  | 'actLogLineExamples',
+  LocaleText
+>;
+
+const titles: Titles = {
+  structure: {
+    en: 'Structure',
+    ja: '構造',
+    cn: '结构',
+  },
+  networkLogLineStructure: {
+    en: 'Network Log Line Structure:',
+    ja: 'ネットワークログライン構造：',
+    cn: '网络日志行结构：',
+  },
+  actLogLineStructure: {
+    en: 'ACT Log Line Structure:',
+    ja: 'ACTログライン構造：',
+    cn: 'ACT日志行结构：',
+  },
+  regexes: {
+    en: 'Regexes',
+    ja: '正規表現',
+    cn: '正则表达式',
+  },
+  networkLogLineRegexes: {
+    en: 'Network Log Line Regex:',
+    ja: 'ネットワークログライン正規表現：',
+    cn: '网络日志行正则表达式：',
+  },
+  actLogLineRegexes: {
+    en: 'ACT Log Line Regex:',
+    ja: 'ACTログライン正規表現：',
+    cn: 'ACT日志行正则表达式：',
+  },
+  examples: {
+    en: 'Examples',
+    ja: '例',
+    cn: '示例',
+  },
+  networkLogLineExamples: {
+    en: 'Network Log Line Examples:',
+    ja: 'ネットワークログライン例：',
+    cn: '网络日志行示例：',
+  },
+  actLogLineExamples: {
+    en: 'ACT Log Line Examples:',
+    ja: 'ACTログライン例：',
+    cn: 'ACT日志行示例：',
+  },
 };
 
 const lineDocs: LineDocs = {
@@ -358,7 +419,6 @@ const mappedLogLines: LocaleObject<LineDocTypes[]> = {
 };
 
 const config: markdownMagic.Configuration = {
-  outputDir: path.posix.relative(curPath, path.posix.join(curPath, 'docs')),
   transforms: {
     logLines(_content, options: LogGuideOptions): string {
       const language = options.lang;
@@ -435,28 +495,28 @@ const config: markdownMagic.Configuration = {
       const regexes = lineDoc.regexes;
 
       ret += `
-#### Structure
+#### ${translate(language, titles.structure)}
 
 \`\`\`log
-Network Log Line Structure:
+${translate(language, titles.networkLogLineStructure)}
 ${structureNetwork}
 
-ACT Log Line Structure:
+${translate(language, titles.actLogLineStructure)}
 ${structureLog}
 \`\`\`
 `;
 
       if (regexes) {
         ret += `
-#### Regexes
+#### ${translate(language, titles.regexes)}
 
 \`\`\`log
-Network Log Line Regex:
+${translate(language, titles.networkLogLineRegexes)}
 ${regexes.network}
 `;
         if (regexes.logLine) {
           ret += `
-ACT Log Line Regex:
+${translate(language, titles.actLogLineRegexes)}
 ${regexes.logLine}
 `;
         }
@@ -464,13 +524,13 @@ ${regexes.logLine}
       }
 
       ret += `
-#### Examples
+#### ${translate(language, titles.examples)}
 
 \`\`\`log
-Network Log Line Examples:
+${translate(language, titles.networkLogLineExamples)}
 ${examplesNetwork}
 
-ACT Log Line Examples:
+${translate(language, titles.actLogLineExamples)}
 ${examplesLogLine}
 \`\`\`
 `;

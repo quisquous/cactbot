@@ -1186,7 +1186,7 @@ This message is the "gains effect" message for players and mobs gaining effects 
 
 ```log
 Network Log Line Structure:
-26|[timestamp]|[effectId]|[effect]|[duration]|[sourceId]|[source]|[targetId]|[target]|[count]|[targetHp]|[hp]
+26|[timestamp]|[effectId]|[effect]|[duration]|[sourceId]|[source]|[targetId]|[target]|[count]|[targetMaxHp]|[sourceMaxHp]
 
 ACT Log Line Structure:
 [timestamp] 1A:[TARGETID]:[Target] gains the effect of [effect] from [Source] for [duration] Seconds.
@@ -1196,7 +1196,7 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:26))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?<duration>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|(?<targetHp>(?:[^|]*))\|(?<hp>(?:[^|]*))\|
+^(?<type>(?:26))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?<duration>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<sourceMaxHp>(?:[^|]*))\|
 
 ACT Log Line Regex:
 (?<timestamp>(?:^.{14})) 1A:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:.*?)) gains the effect of (?<effect>(?:.*?)) from (?<source>(?:.*?)) for (?<duration>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)) Seconds\.
