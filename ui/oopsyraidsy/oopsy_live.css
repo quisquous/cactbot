@@ -102,6 +102,7 @@ div {
 .mistake-icon {
   flex: 0 0 auto;
   order: 1;
+  justify-content: center;
 }
 
 .mistake-text {
