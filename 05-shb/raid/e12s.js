@@ -961,6 +961,8 @@ Options.Triggers.push({
                         en: 'SW Lion Tether',
                     },
                 };
+                if (!data.smallLions || data.smallLions.length === 0)
+                    return;
                 const lion = (_a = data.smallLions) === null || _a === void 0 ? void 0 : _a.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
                 if (!lion) {
                     console.error('Unable to locate a valid lion.');
