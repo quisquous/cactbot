@@ -1038,6 +1038,9 @@ const triggerSet: TriggerSet<Data> = {
             en: 'SW Lion Tether',
           },
         };
+        if (!data.smallLions || data.smallLions.length === 0)
+          return;
+
         const lion = data.smallLions?.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
         if (!lion) {
           console.error('Unable to locate a valid lion.');
