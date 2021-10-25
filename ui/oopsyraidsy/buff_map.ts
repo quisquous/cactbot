@@ -25,7 +25,7 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
     id: 'Collective Unconscious',
     type: 'mitigation',
     effectId: '351',
-    collectSeconds: 10,
+    collectSeconds: 20,
   },
   {
     id: 'Passage of Arms',
@@ -33,7 +33,7 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
     // Arms Up = 498 (others), Passage Of Arms = 497 (you).  Use both in case everybody is missed.
     effectId: ['497', '498'],
     ignoreSelf: true,
-    collectSeconds: 10,
+    collectSeconds: 15,
   },
   {
     id: 'Divine Veil',
