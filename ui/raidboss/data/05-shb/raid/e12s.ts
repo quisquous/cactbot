@@ -1027,15 +1027,19 @@ const triggerSet: TriggerSet<Data> = {
           },
           northEastLion: {
             en: 'NE Lion Tether',
+            fr: 'NE Lien lion',
           },
           northWestLion: {
             en: 'NW Lion Tether',
+            fr: 'NO Lien lion',
           },
           southEastLion: {
             en: 'SE Lion Tether',
+            fr: 'SE Lien lion',
           },
           southWestLion: {
             en: 'SW Lion Tether',
+            fr: 'SO Lien lion',
           },
         };
         if (!data.smallLions || data.smallLions.length === 0)
