@@ -1027,19 +1027,19 @@ const triggerSet: TriggerSet<Data> = {
           },
           northEastLion: {
             en: 'NE Lion Tether',
-            cn: '右上 (东北) 狮子连线',
+            cn: '右上(东北)狮子连线',
           },
           northWestLion: {
             en: 'NW Lion Tether',
-            cn: '左上 (西北) 狮子连线',
+            cn: '左上(西北)狮子连线',
           },
           southEastLion: {
             en: 'SE Lion Tether',
-            cn: '右下 (东南) 狮子连线',
+            cn: '右下(东南)狮子连线',
           },
           southWestLion: {
             en: 'SW Lion Tether',
-            cn: '左下 (西南) 狮子连线',
+            cn: '左下(西南)狮子连线',
           },
         };
         if (!data.smallLions || data.smallLions.length === 0)
