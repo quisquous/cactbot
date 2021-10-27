@@ -1028,7 +1028,7 @@ const triggerSet: TriggerSet<Data> = {
           northEastLion: {
             en: 'NE Lion Tether',
             fr: 'NE Lien lion',
-            cn: '右上(东北)狮子连线',            
+            cn: '右上(东北)狮子连线',
           },
           northWestLion: {
             en: 'NW Lion Tether',
