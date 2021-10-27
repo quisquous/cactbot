@@ -1027,18 +1027,22 @@ const triggerSet: TriggerSet<Data> = {
           },
           northEastLion: {
             en: 'NE Lion Tether',
+            fr: 'NE Lien lion',
             cn: '右上(东北)狮子连线',
           },
           northWestLion: {
             en: 'NW Lion Tether',
+            fr: 'NO Lien lion',
             cn: '左上(西北)狮子连线',
           },
           southEastLion: {
             en: 'SE Lion Tether',
+            fr: 'SE Lien lion',
             cn: '右下(东南)狮子连线',
           },
           southWestLion: {
             en: 'SW Lion Tether',
+            fr: 'SO Lien lion',
             cn: '左下(西南)狮子连线',
           },
         };
