@@ -161,9 +161,11 @@ div {
   order: 2;
 }
 
-.death-title-time {
+.death-title-close {
   align-self: flex-end;
   order: 3;
+  width: 25px;
+  height: 20px;
 }
 
 .death-details {
@@ -194,10 +196,6 @@ div {
 
 .death-row-text {
   text-align: left;
-}
-
-.death-row-time {
-  text-align: right;
 }
 
 @keyframes fadeOut {

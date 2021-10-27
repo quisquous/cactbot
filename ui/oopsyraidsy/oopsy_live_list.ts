@@ -104,10 +104,12 @@ export class DeathReportLive {
     titleText.innerHTML = report.targetName;
     titleDiv.appendChild(titleText);
 
-    const titleTime = document.createElement('div');
-    titleTime.classList.add('death-title-time');
-    titleTime.innerText = report.makeRelativeTimeString(report.deathTimestamp);
-    titleDiv.appendChild(titleTime);
+    const closeButton = document.createElement('input');
+    closeButton.type = 'button';
+    closeButton.value = 'X';
+    closeButton.classList.add('death-title-close');
+    closeButton.addEventListener('click', () => this.hide());
+    titleDiv.appendChild(closeButton);
 
     const detailsDiv = document.createElement('div');
     detailsDiv.classList.add('death-details');
