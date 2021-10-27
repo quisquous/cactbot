@@ -352,7 +352,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Superior Sharp Turn Front/Inside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: [ '4FA9', '5511', '5513' ], capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['4FA9', '5511', '5513'], capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -364,7 +364,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Superior Sharp Turn Rear/Outside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: [ '4FAA', '5512', '5514' ], capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['4FAA', '5512', '5514'], capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
