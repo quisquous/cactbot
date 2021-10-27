@@ -329,27 +329,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // TODO: we could theoretically get combatants here when sharp turn starts casting.
-      // Sharp Turn ability ids differentiate left/right.  We could use effect ids to know group.
-      // But how would you communicate where to stand? "behind and slightly/very right"?
-      id: 'Puppet Superior Sharp Turn',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4FAB', capture: false }),
-      delaySeconds: 3,
-      suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Dodge Sword Charges',
-          de: 'Schwerteransturm ausweichen',
-          fr: 'Esquivez les charges d\'épées',
-          ja: 'ソード突進を避ける',
-          cn: '躲避左右刀冲锋',
-          ko: '돌진 피하기',
-        },
-      },
-    },
-    {
       id: 'Puppet Superior Sharp Turn Front/Inside',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['4FA9', '5511', '5513'], capture: false }),
