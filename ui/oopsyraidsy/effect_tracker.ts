@@ -198,7 +198,7 @@ export class EffectTracker {
   private trackedEvents: TrackedEvent[] = [];
   private trackedEffectMap: { [targetId: string]: { [effectId: string]: TrackedEvent } } = {};
   // The minimum amount of time to keep events for.
-  private readonly eventWindowMs = 30 * 1000;
+  private readonly eventWindowMs = 20 * 1000;
   // The time delta in the future to request cleaning up events from the past, after a cleanup.
   // The larger this is, the more it exchanges memory for cpu, to keep more events rather than
   // constantly cycling `trackedEvents`.  0 = clean up immediately.
