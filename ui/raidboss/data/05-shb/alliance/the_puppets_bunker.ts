@@ -329,26 +329,26 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Puppet Superior Sharp Turn Front/Inside',
+      id: 'Puppet Superior Sharp Turn Inside',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['4FA9', '5511', '5513'], capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Move to Front/Inside',
+          en: 'Move to Inside',
         },
       },
     },
     {
-      id: 'Puppet Superior Sharp Turn Rear/Outside',
+      id: 'Puppet Superior Sharp Turn Outside',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['4FAA', '5512', '5514'], capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Move to Rear/Outside',
+          en: 'Move to Outside',
         },
       },
     },
