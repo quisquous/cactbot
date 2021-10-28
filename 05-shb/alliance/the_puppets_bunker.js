@@ -318,6 +318,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Move to Inside',
+                    cn: '去里面',
                 },
             },
         },
@@ -330,6 +331,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Move to Outside',
+                    cn: '去外面',
                 },
             },
         },
