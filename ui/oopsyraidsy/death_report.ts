@@ -160,6 +160,7 @@ export class DeathReport {
 
     const text = Translate(this.lang, {
       en: `Gain: ${effectName}`,
+      cn: `获得: ${effectName}`,
     });
     return {
       timestamp: event.timestamp,
@@ -175,6 +176,7 @@ export class DeathReport {
 
     const text = Translate(this.lang, {
       en: `Lose: ${effectName}`,
+      cn: `失去: ${effectName}`,
     });
     return {
       timestamp: event.timestamp,
@@ -267,6 +269,7 @@ export class DeathReport {
 
     const text = Translate(this.lang, {
       en: `Missed ${buffName} (${sourceName})`,
+      cn: `错过 ${buffName} (${sourceName})`,
     });
     return {
       timestamp: event.timestamp,

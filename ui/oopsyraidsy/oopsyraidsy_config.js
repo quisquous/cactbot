@@ -267,6 +267,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'TimeToShowDeathReportSeconds',
       name: {
         en: 'Seconds to show death report on death (0=none)',
+        cn: '死亡时显示死亡报告的秒数 (0=不显示)',
       },
       type: 'float',
       default: 4,
