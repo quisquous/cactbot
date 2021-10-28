@@ -27,6 +27,7 @@
 :root {
   --text-shadow-color: #217aa2;
   --damage-shadow-color: rgba(217, 255, 0, 0.2);
+  --live-list-max-width: 500px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -53,15 +54,24 @@
   display: inline-block;
 }
 
-.livelist {
+.flexcontainer {
   position: absolute;
-  top: 0;
-  right: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.livelist {
   min-width: 300px;
-  max-width: 550px;
+  max-width: var(--live-list-max-width);
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.resize-helper .livelist {
+  width: var(--live-list-max-width);
 }
 
 .livelist-shadow {
@@ -69,14 +79,14 @@
   margin: 5px;
 }
 
-.livelist-shadow.out-of-combat {
+.out-of-combat .livelist-shadow {
   box-shadow: 0 0 5px 2px rgba(200, 200, 70, 0.3);
 }
 
 div {
   font-family: "Meiryo", sans-serif;
   font-size: 12;
-  text-shadow: -1px 0 3px #217aa2, 0 1px 3px #217aa2, 1px 0 3px #217aa2, 0 -1px 3px #217aa2;
+  text-shadow: -1px 0 3px var(--text-shadow-color), 0 1px 3px var(--text-shadow-color), 1px 0 3px var(--text-shadow-color), 0 -1px 3px var(--text-shadow-color);
   font-weight: 300;
   color: #e2ebf5;
 }
@@ -97,6 +107,7 @@ div {
   height: 100%;
   display: flex;
   align-items: center;
+  user-select: none;
 }
 
 .mistake-icon {
@@ -118,6 +129,73 @@ div {
 
 .resizeHandle .hide-if-resizing {
   display: none;
+}
+
+.death-report {
+  width: 300px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.death-report > div {
+  padding: 5px;
+  background-color: rgba(20, 20, 20, 0.3);
+}
+
+.death-title {
+  display: flex;
+}
+
+.death-title div {
+  font-size: 18px;
+}
+
+.death-title-icon {
+  flex: 0 0 auto;
+  order: 1;
+}
+
+.death-title-text {
+  flex: 1 1 auto;
+  order: 2;
+}
+
+.death-title-close {
+  align-self: flex-end;
+  order: 3;
+  width: 25px;
+  height: 20px;
+}
+
+.death-details {
+  display: grid;
+  grid-template-columns: minmax(50px, max-content) minmax(10px, max-content) auto auto;
+}
+
+.death-row-amount {
+  text-align: right;
+}
+
+.death-details .damage {
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+
+  /* blue text shadow looks really weird, and I can't find a shadow combination with red
+     that doesn't make it look washed out */
+  text-shadow: none;
+}
+
+.death-details .heal {
+  color: rgb(125, 250, 125);
+}
+
+.death-row-icon.mistake-icon {
+  order: unset;
+}
+
+.death-row-text {
+  text-align: left;
 }
 
 @keyframes fadeOut {

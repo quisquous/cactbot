@@ -207,10 +207,10 @@ export class OopsySummaryList implements MistakeObserver {
     const text = Translate(this.options.DisplayLanguage, m.text);
     if (!text)
       return;
-    this.AddLine(iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, Date.now()));
+    this.AddLine(m, iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, Date.now()));
   }
 
-  AddLine(iconClass: string, text: string, time: string): void {
+  AddLine(m: OopsyMistake, iconClass: string, text: string, time: string): void {
     const currentSection = this.StartNewSectionIfNeeded();
 
     const rowDiv = document.createElement('div');
@@ -230,6 +230,56 @@ export class OopsySummaryList implements MistakeObserver {
     timeDiv.classList.add('mistake-time');
     timeDiv.innerHTML = time;
     rowDiv.appendChild(timeDiv);
+
+    if (!m.report)
+      return;
+
+    const collapserDiv = document.createElement('div');
+    collapserDiv.classList.add('mistake-collapser');
+    rowDiv.appendChild(collapserDiv);
+
+    const detailsDiv = document.createElement('div');
+    detailsDiv.classList.add('death-details');
+    currentSection.appendChild(detailsDiv);
+
+    let expanded = false;
+    rowDiv.addEventListener('click', () => {
+      expanded = !expanded;
+      if (expanded) {
+        collapserDiv.classList.add('expanded');
+        detailsDiv.classList.add('expanded');
+      } else {
+        collapserDiv.classList.remove('expanded');
+        detailsDiv.classList.remove('expanded');
+      }
+    });
+
+    for (const event of m.report.parseReportLines()) {
+      const damageElem = document.createElement('div');
+      damageElem.classList.add('death-row-amount');
+      if (event.amountClass)
+        damageElem.classList.add(event.amountClass);
+      if (event.amount !== undefined)
+        damageElem.innerText = event.amount;
+      detailsDiv.appendChild(damageElem);
+
+      const iconElem = document.createElement('div');
+      iconElem.classList.add('death-row-icon');
+      if (event.icon !== undefined)
+        iconElem.classList.add('mistake-icon', event.icon);
+      detailsDiv.appendChild(iconElem);
+
+      const textElem = document.createElement('div');
+      textElem.classList.add('death-row-text');
+      if (event.text !== undefined)
+        textElem.innerHTML = event.text;
+      detailsDiv.appendChild(textElem);
+
+      const timeElem = document.createElement('div');
+      timeElem.classList.add('death-row-time');
+      timeElem.innerText = event.timestampStr;
+      detailsDiv.appendChild(timeElem);
+    }
   }
 
   SetInCombat(_inCombat: boolean): void {

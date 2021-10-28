@@ -1,7 +1,8 @@
 import logDefinitions from '../../resources/netlog_defs';
+import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import { EventResponses } from '../../types/event';
-import { OopsyMistakeType } from '../../types/oopsy';
+import { OopsyDeathReason, OopsyMistakeType } from '../../types/oopsy';
 
 import {
   MissableAbility,
@@ -9,8 +10,10 @@ import {
   missedAbilityBuffMap,
   missedEffectBuffMap,
 } from './buff_map';
+import { ProcessedOopsyTriggerSet } from './damage_tracker';
+import { DeathReport } from './death_report';
 import { MistakeCollector } from './mistake_collector';
-import { ShortNamify } from './oopsy_common';
+import { IsPlayerId, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 // Abilities seem roughly instant.
@@ -18,9 +21,17 @@ import { OopsyOptions } from './oopsy_options';
 const defaultCollectSeconds = 0.5;
 
 const emptyId = 'E0000000';
+const timestampFieldIdx = 1;
 
 // TODO: add this to effect_id.ts?
 const raiseEffectId = '94';
+
+const getTimestamp = (splitLine: string[]): number => {
+  const timestampField = splitLine[timestampFieldIdx];
+  if (timestampField === undefined)
+    throw new UnreachableCode();
+  return new Date(timestampField).getTime();
+};
 
 type CollectedBuff = {
   timestamp: number;
@@ -28,12 +39,16 @@ type CollectedBuff = {
   sourceId: string;
   buffName: string;
   targetIds: string[];
+  splitLine: string[];
   buff: MissableAbility | MissableEffect;
-  expireCallback: () => void;
+  expireCallback: (timestamp: number) => void;
 };
 
-export type RequestTimestampCallback = (timestamp: number, callback: () => void) => void;
-type CollectedBuffCallback = (buff: CollectedBuff) => void;
+export type RequestTimestampCallback = (
+  timestamp: number,
+  callback: (timestamp: number) => void,
+) => void;
+type CollectedBuffCallback = (timestamp: number, buff: CollectedBuff) => void;
 
 // Handles tracking whether everybody received a buff or not.
 // In response to missed buffs, calls `collectedBuffCallback` when timestamps have expired.
@@ -55,7 +70,7 @@ class MissedBuffCollector {
           continue;
 
         if (timestamp > collectedBuff.timestamp)
-          collectedBuff.expireCallback();
+          collectedBuff.expireCallback(timestamp);
       }
     }
   }
@@ -73,7 +88,7 @@ class MissedBuffCollector {
     )
       return;
 
-    this.OnBuff(new Date(timestamp).getTime(), buff, buffName, sourceId, targetId);
+    this.OnBuff(new Date(timestamp).getTime(), splitLine, buff, buffName, sourceId, targetId);
   }
 
   OnEffectBuff(splitLine: string[], buff: MissableEffect): void {
@@ -87,11 +102,12 @@ class MissedBuffCollector {
     )
       return;
 
-    this.OnBuff(new Date(timestamp).getTime(), buff, buffName, sourceId, targetId);
+    this.OnBuff(new Date(timestamp).getTime(), splitLine, buff, buffName, sourceId, targetId);
   }
 
   OnBuff(
     timestamp: number,
+    splitLine: string[],
     buff: MissableAbility | MissableEffect,
     buffName: string,
     sourceId: string,
@@ -103,7 +119,7 @@ class MissedBuffCollector {
     const expiredBuff = buffList[buff.id];
     if (expiredBuff && timestamp > expiredBuff.expireTimestamp) {
       // Handle and remove this buff if it has expired.
-      expiredBuff.expireCallback();
+      expiredBuff.expireCallback(timestamp);
     }
 
     // If we're already tracking, and it hasn't expired, just append the targetId.
@@ -117,19 +133,20 @@ class MissedBuffCollector {
     const collectSeconds = buff.collectSeconds ?? defaultCollectSeconds;
     const expireTimestamp = timestamp + collectSeconds * 1000;
 
-    const expireCallback = () => {
+    const expireCallback = (timestamp: number) => {
       // Re-get the buff from the map, so that repeated calls to expireCallback will not
       // call the collectedBuffCallback multiple times.
       const expiredBuff = this.buffs[sourceId]?.[buff.id];
       if (!expiredBuff)
         return;
-      this.collectedBuffCallback(expiredBuff);
+      this.collectedBuffCallback(timestamp, expiredBuff);
       delete this.buffs[sourceId]?.[buff.id];
     };
 
     // If we get here, this buff is not being tracked yet.
     buffList[buff.id] = {
       timestamp: timestamp,
+      splitLine: splitLine,
       expireTimestamp: expireTimestamp,
       sourceId: sourceId,
       buffName: buffName,
@@ -142,17 +159,53 @@ class MissedBuffCollector {
   }
 }
 
+export type TrackedLineEventType =
+  | 'Ability'
+  | 'GainsEffect'
+  | 'LosesEffect'
+  | 'HoTDoT'
+  | 'MissedAbility'
+  | 'MissedEffect';
+
+export type TrackedLineEvent = {
+  timestamp: number;
+  type: TrackedLineEventType;
+  targetId: string;
+  mistake?: OopsyMistakeType;
+  splitLine: string[];
+};
+
+export type TrackedDeathReasonEvent = {
+  timestamp: number;
+  type: 'DeathReason';
+  targetId: string;
+  text: string;
+};
+
+export type TrackedEvent = TrackedLineEvent | TrackedDeathReasonEvent;
+
 // Tracks various state about the party (party, pets, buffs).
-// TODO: track deaths so missed buffs don't apply to dead players.
-// TODO: flesh this out to handle death reports.
 // TODO: EffectTracker isn't a great name here, sorry.
+// TODO: Maybe EffectTracker -> StateTracker and DamageTracker -> OopsyTriggerProcessor?
 export class EffectTracker {
   private missedBuffCollector;
+  private triggerSets: ProcessedOopsyTriggerSet[] = [];
   private partyIds: Set<string> = new Set();
   private deadIds: Set<string> = new Set();
   private petIdToOwnerId: { [petId: string]: string } = {};
   private abilityIdToBuff: { [abilityId: string]: MissableAbility } = {};
   private effectIdToBuff: { [effectId: string]: MissableEffect } = {};
+  private trackedEvents: TrackedEvent[] = [];
+  private trackedEffectMap: { [targetId: string]: { [effectId: string]: TrackedEvent } } = {};
+  // The minimum amount of time to keep events for.
+  private readonly eventWindowMs = 20 * 1000;
+  // The time delta in the future to request cleaning up events from the past, after a cleanup.
+  // The larger this is, the more it exchanges memory for cpu, to keep more events rather than
+  // constantly cycling `trackedEvents`.  0 = clean up immediately.
+  private readonly cleanupWindowMs = this.eventWindowMs * 2;
+  private nextPruneTimestamp?: number;
+  private baseTime?: number;
+  private myPlayerId?: string;
 
   constructor(
     private options: OopsyOptions,
@@ -162,7 +215,7 @@ export class EffectTracker {
   ) {
     this.missedBuffCollector = new MissedBuffCollector(
       requestTimestampCallback,
-      (buff) => this.OnBuffCollected(buff),
+      (timestamp, buff) => this.OnBuffCollected(timestamp, buff),
     );
 
     // Build maps of ids to buffs for ease of use.
@@ -186,20 +239,40 @@ export class EffectTracker {
     this.OnPartyChanged();
   }
 
+  SetBaseTime(splitLine: string[]): void {
+    this.baseTime = getTimestamp(splitLine);
+  }
+
+  PushTriggerSet(set: ProcessedOopsyTriggerSet): void {
+    this.triggerSets.push(set);
+  }
+
+  ClearTriggerSets(): void {
+    this.triggerSets = [];
+  }
+
   // Called to update the list of player ids we care about.
   OnPartyChanged(): void {
     // TODO: do we need to clean anything else up here if this changes?
     // Or, do we just assume party doesn't change unless at zone change, so ignore edge cases?
-    this.partyIds = new Set(this.partyTracker.partyIds);
+    const arr = [...this.partyTracker.partyIds];
+
+    // Include the player in the party for mistakes even if there is no party.
+    if (this.myPlayerId && !arr.includes(this.myPlayerId))
+      arr.push(this.myPlayerId);
+
+    this.partyIds = new Set(arr);
+  }
+
+  private Reset(): void {
+    this.petIdToOwnerId = {};
+    this.deadIds.clear();
+    this.trackedEvents = [];
+    this.baseTime = undefined;
   }
 
   OnChangeZone(_e: EventResponses['ChangeZone']): void {
-    // Clear this dictionary periodically so it doesn't have false positives.
-    // TODO: we could track combatant removal too?
-    this.petIdToOwnerId = {};
-
-    // Probably nobody is dead if you change zones.
-    this.deadIds.clear();
+    this.Reset();
   }
 
   OnAddedCombatant(line: string, splitLine: string[]): void {
@@ -212,6 +285,13 @@ export class EffectTracker {
     this.petIdToOwnerId[petId.toUpperCase()] = ownerId.toUpperCase();
   }
 
+  // TODO: player change lines occur on every zone change, but for safety we should also
+  // consider passing the id in the plugin `PlayerChangedDetail` event listener, which
+  // will get re-sent on every reload.
+  OnChangedPlayer(line: string, splitLine: string[]): void {
+    this.myPlayerId = splitLine[logDefinitions.ChangedPlayer.fields.id];
+  }
+
   IsInParty(id?: string): boolean {
     if (id === undefined)
       return false;
@@ -219,19 +299,38 @@ export class EffectTracker {
   }
 
   OnAbility(line: string, splitLine: string[]): void {
-    // Abilities can not hit anybody (e.g. Battle Voice never hitting the source)
+    // Abilities can not miss everybody (e.g. Battle Voice never hitting the source)
     // so check both target and source.
     const targetId = splitLine[logDefinitions.Ability.fields.targetId];
     const sourceId = splitLine[logDefinitions.Ability.fields.sourceId];
-    if (!this.IsInParty(targetId) && !this.IsInParty(sourceId))
+    const targetInParty = this.IsInParty(targetId);
+    const sourceInParty = this.IsInParty(sourceId);
+    if (sourceId === undefined || targetId === undefined)
       return;
 
     // Just in case, if a target is performing actions, then they are alive.
-    if (sourceId !== undefined)
+    if (sourceInParty)
       this.deadIds.delete(sourceId);
 
     const abilityId = splitLine[logDefinitions.Ability.fields.id];
     if (abilityId === undefined)
+      return;
+
+    // Only track events on players.  Ideally, it'd be nice to only include
+    // party members in tracked events, but this is used for death reports
+    // on dead non-party members.
+    // TODO: maybe oopsy should only report party failures?
+    if (IsPlayerId(targetId)) {
+      this.trackedEvents.push({
+        timestamp: getTimestamp(splitLine),
+        type: 'Ability',
+        targetId: targetId,
+        splitLine: splitLine,
+      });
+    }
+
+    // Report missed buffs on the party.
+    if (!targetInParty && !sourceInParty)
       return;
     const buff = this.abilityIdToBuff[abilityId];
     if (buff)
@@ -247,33 +346,142 @@ export class EffectTracker {
     if (effectId === undefined)
       return;
 
+    const timestamp = getTimestamp(splitLine);
+
+    // We need to request a cleanup somewhere.  Assume that somebody will gain an effect
+    // at some point.  These happen less often than abilities, so we do it here just
+    // to reduce per-log overhead.
+    if (this.nextPruneTimestamp === undefined) {
+      this.nextPruneTimestamp = timestamp + this.cleanupWindowMs;
+    } else if (timestamp > this.nextPruneTimestamp) {
+      this.PruneTrackedEvents(timestamp - this.eventWindowMs);
+      this.nextPruneTimestamp = timestamp + this.cleanupWindowMs;
+    }
+
     // Upon coming back to life, players get Transcendent / Weakness / Brink of Death.
     // However, they also get a Raise effect prior to coming back to life.
     if (effectId !== raiseEffectId)
       this.deadIds.delete(targetId);
+
+    // Keep track of active buffs in case they have a very long duration and fall outside the
+    // window of this.trackedEffects.
+    const event: TrackedEvent = {
+      timestamp: timestamp,
+      type: 'GainsEffect',
+      targetId: targetId,
+      splitLine: splitLine,
+    };
+
+    (this.trackedEffectMap[targetId] ??= {})[effectId] = event;
+    this.trackedEvents.push(event);
 
     const buff = this.effectIdToBuff[effectId.toUpperCase()];
     if (buff)
       this.missedBuffCollector.OnEffectBuff(splitLine, buff);
   }
 
-  OnLosesEffect(_line: string, _splitLine: string[]): void {
-    // TODO: use this when tracking all buffs on party members
-  }
-
-  OnDefeated(line: string, splitLine: string[]): void {
-    const targetId = splitLine[logDefinitions.WasDefeated.fields.targetId];
+  OnLosesEffect(line: string, splitLine: string[]): void {
+    const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
     if (!targetId || !this.IsInParty(targetId))
       return;
-    this.deadIds.add(targetId);
+
+    const effectId = splitLine[logDefinitions.GainsEffect.fields.effectId];
+    if (effectId === undefined)
+      return;
+
+    this.trackedEvents.push({
+      timestamp: getTimestamp(splitLine),
+      type: 'LosesEffect',
+      targetId: targetId,
+      splitLine: splitLine,
+    });
+
+    delete this.trackedEffectMap[targetId]?.[effectId];
+  }
+
+  OnDeathReason(timestamp: number, reason: OopsyDeathReason): void {
+    const targetId = reason.id;
+    if (!targetId || !IsPlayerId(targetId))
+      return;
+
+    const text = Translate(this.options.DisplayLanguage, reason.text);
+    if (!text)
+      return;
+    this.trackedEvents.push({
+      timestamp: timestamp,
+      type: 'DeathReason',
+      targetId: targetId,
+      text: text,
+    });
+  }
+
+  // Returns an event for why this person died.
+  OnDefeated(line: string, splitLine: string[]): void {
+    const targetId = splitLine[logDefinitions.WasDefeated.fields.targetId];
+    if (!targetId || !IsPlayerId(targetId))
+      return;
+
+    const targetInParty = this.IsInParty(targetId);
+    if (targetInParty)
+      this.deadIds.add(targetId);
+
+    const timestamp = getTimestamp(splitLine);
+    const firstTimestamp = timestamp - this.eventWindowMs;
+    const events = this.trackedEvents.filter((event) => {
+      return event.timestamp >= firstTimestamp && event.targetId === targetId;
+    });
+
+    // Mark simple mistakes that can be attached to single ability ids.
+    // TODO: should we just do this once when the triggersets are set?
+    const abilityMap: { [id: string]: OopsyMistakeType } = {};
+    for (const set of this.triggerSets) {
+      for (const value of Object.values(set.damageWarn ?? {}))
+        abilityMap[value] = 'warn';
+      for (const value of Object.values(set.damageFail ?? {}))
+        abilityMap[value] = 'fail';
+    }
+    for (const event of events) {
+      if (event.type !== 'Ability')
+        continue;
+      const id = event.splitLine[logDefinitions.Ability.fields.id];
+      if (!id)
+        continue;
+      event.mistake = abilityMap[id];
+    }
+
+    const targetName = splitLine[logDefinitions.WasDefeated.fields.target] ?? '???';
+    const report = new DeathReport(
+      this.options.DisplayLanguage,
+      this.baseTime,
+      timestamp,
+      targetId,
+      targetName,
+      events,
+    );
+
+    const mistake = report.generateMistake();
+    this.collector.OnMistakeObj(mistake);
+  }
+
+  OnHoTDoT(line: string, splitLine: string[]): void {
+    const targetId = splitLine[logDefinitions.NetworkDoT.fields.id];
+    if (!targetId || !this.IsInParty(targetId))
+      return;
+
+    this.trackedEvents.push({
+      timestamp: getTimestamp(splitLine),
+      type: 'HoTDoT',
+      targetId: targetId,
+      splitLine: splitLine,
+    });
   }
 
   OnWipe(_line: string, _splitLine: string[]): void {
-    this.petIdToOwnerId = {};
-    this.deadIds.clear();
+    this.Reset();
   }
 
-  private OnBuffCollected(collected: CollectedBuff): void {
+  private OnBuffCollected(timestamp: number, collected: CollectedBuff): void {
+    // TODO: maybe 'mitigation' should become a separate mistake type?
     const type: OopsyMistakeType = collected.buff.type === 'mitigation'
       ? 'heal'
       : collected.buff.type;
@@ -303,6 +511,20 @@ export class EffectTracker {
     if (missedIds.length === 0)
       return;
 
+    // Append events for each missed player for death reports.
+    // Whereas the `OnMistakeObj` call blames the source for missing a number of targets,
+    // `this.trackedEvents` informs a target in a death report that they were missed by a source.
+    if (collected.buff.type === 'heal' || collected.buff.type === 'mitigation') {
+      for (const targetId of missedIds) {
+        this.trackedEvents.push({
+          timestamp: getTimestamp(collected.splitLine),
+          type: 'abilityId' in collected.buff ? 'MissedAbility' : 'MissedEffect',
+          targetId: targetId,
+          splitLine: collected.splitLine,
+        });
+      }
+    }
+
     const missedNames = missedIds.map((id) => {
       const name = this.partyTracker.nameFromId(id);
       if (!name)
@@ -311,8 +533,6 @@ export class EffectTracker {
     });
 
     // TODO: oopsy could really use mouseover popups for details.
-    // TODO: alternatively, if we have a death report, it'd be good to
-    // explicitly call out that other people got a heal this person didn't.
     if (missedNames.length < 4) {
       const nameList = missedNames.map((name) => {
         return ShortNamify(name, this.options.PlayerNicks);
@@ -347,5 +567,13 @@ export class EffectTracker {
         ko: `${collected.buffName} ${missedNames.length}명에게 적용안됨`,
       },
     });
+  }
+
+  private PruneTrackedEvents(timestamp: number) {
+    // Remove any tracked events that occurred prior to `timestamp`.
+    const idx = this.trackedEvents.findIndex((event) => event.timestamp >= timestamp);
+    if (idx === -1)
+      return;
+    this.trackedEvents = this.trackedEvents.slice(idx);
   }
 }

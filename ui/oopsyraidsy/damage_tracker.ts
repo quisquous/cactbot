@@ -34,11 +34,9 @@ import {
   IsTriggerEnabled,
   kAttackFlags,
   kFieldFlags,
-  kFlagInstantDeath,
   kShiftFlagValues,
   playerDamageFields,
   ShortNamify,
-  Translate,
   UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
@@ -47,7 +45,7 @@ const actorControlFadeInCommand = '40000010';
 
 const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
 
-type ProcessedOopsyTriggerSet = LooseOopsyTriggerSet & {
+export type ProcessedOopsyTriggerSet = LooseOopsyTriggerSet & {
   filename?: string;
 };
 
@@ -67,12 +65,12 @@ export class DamageTracker {
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
   private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
-  private lastDamage: { [name: string]: Partial<NetMatches['Ability']> } = {};
+  private lastTimestamp = 0;
   private triggerSuppress: { [triggerId: string]: number } = {};
   private data: OopsyData;
   private timestampCallbacks: {
     timestamp: number;
-    callback: () => void;
+    callback: (timestamp: number) => void;
   }[] = [];
 
   private job: Job = 'NONE';
@@ -92,7 +90,7 @@ export class DamageTracker {
       this.partyTracker.onPartyChanged(e);
       this.effectTracker.OnPartyChanged();
     });
-    const timestampCallback = (timestamp: number, callback: () => void) =>
+    const timestampCallback = (timestamp: number, callback: (timestamp: number) => void) =>
       this.OnRequestTimestampCallback(timestamp, callback);
     this.effectTracker = new EffectTracker(
       this.options,
@@ -114,7 +112,7 @@ export class DamageTracker {
     this.Reset();
   }
 
-  OnRequestTimestampCallback(timestamp: number, callback: () => void): void {
+  OnRequestTimestampCallback(timestamp: number, callback: (timestamp: number) => void): void {
     this.timestampCallbacks.push({
       timestamp: timestamp,
       callback: callback,
@@ -144,7 +142,6 @@ export class DamageTracker {
   // TODO: seems like some reloads are causing the /poke test to get undefined
   Reset(): void {
     this.data = this.GetDataObject();
-    this.lastDamage = {};
     this.triggerSuppress = {};
 
     for (const timer of this.timers)
@@ -174,11 +171,11 @@ export class DamageTracker {
         const timeField = splitLine[logDefinitions.None.fields.timestamp];
         if (!timeField)
           break;
-        const thisTimestamp = new Date(timeField).getTime();
-        if (thisTimestamp < timestampCallback.timestamp)
+        this.lastTimestamp = new Date(timeField).getTime();
+        if (this.lastTimestamp < timestampCallback.timestamp)
           break;
 
-        timestampCallback.callback();
+        timestampCallback.callback(this.lastTimestamp);
         this.timestampCallbacks.shift();
         timestampCallback = this.timestampCallbacks[0];
       }
@@ -191,6 +188,9 @@ export class DamageTracker {
         if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
           this.collector.Reset();
         break;
+      case logDefinitions.ChangedPlayer.type:
+        this.effectTracker.OnChangedPlayer(line, splitLine);
+        break;
       case logDefinitions.AddedCombatant.type:
         this.effectTracker.OnAddedCombatant(line, splitLine);
         break;
@@ -200,7 +200,6 @@ export class DamageTracker {
         this.effectTracker.OnAbility(line, splitLine);
         break;
       case logDefinitions.WasDefeated.type:
-        this.OnDefeated(splitLine);
         this.effectTracker.OnDefeated(line, splitLine);
         break;
       case logDefinitions.GainsEffect.type:
@@ -209,6 +208,9 @@ export class DamageTracker {
       case logDefinitions.LosesEffect.type:
         this.effectTracker.OnLosesEffect(line, splitLine);
         break;
+      case logDefinitions.NetworkDoT.type:
+        this.effectTracker.OnHoTDoT(line, splitLine);
+        break;
       case logDefinitions.ActorControl.type:
         if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand)
           this.effectTracker.OnWipe(line, splitLine);
@@ -216,27 +218,11 @@ export class DamageTracker {
     }
   }
 
-  private OnDefeated(splitLine: string[]): void {
-    const name = splitLine[logDefinitions.WasDefeated.fields.target];
-    if (!name)
+  private OnAbilityEvent(line: string, splitLine: string[]): void {
+    // TODO track first puller here, collector doesn't need every damage line
+    if (this.collector.firstPuller)
       return;
 
-    const last = this.lastDamage[name];
-    delete this.lastDamage[name];
-
-    // Monsters get defeated as well, but they will never
-    // have lastDamage marked for them.  It's possible that
-    // in a very short fight, a player will never take
-    // damage and will not get killed by an ability and
-    // so won't get a death notice.
-
-    // TODO: track all players in the instance and support
-    // death notices even if there's no ability damage.
-    if (last)
-      this.collector.AddDeath(name, last);
-  }
-
-  private OnAbilityEvent(line: string, splitLine: string[]): void {
     // This is kind of obnoxious to have to regex match every ability line that's already split.
     // But, it turns it into a usable match object.
     const lineMatches = this.abilityFullRegex.exec(line);
@@ -262,23 +248,14 @@ export class DamageTracker {
     if (!kAttackFlags.includes(lowByte))
       return;
 
-    // TODO track first puller here, collector doesn't need every damage line
-    if (!this.collector.firstPuller)
-      this.collector.AddDamage(matches);
-
-    if (IsPlayerId(matches.targetId))
-      this.lastDamage[matches.target] = matches;
+    this.collector.AddDamage(matches);
+    this.effectTracker.SetBaseTime(splitLine);
   }
 
   AddImpliedDeathReason(obj?: OopsyDeathReason): void {
-    if (!obj || !obj.name)
+    if (!obj)
       return;
-    this.lastDamage[obj.name] = {
-      target: obj.name,
-      ability: Translate(this.options.DisplayLanguage, obj.text),
-      flags: kFlagInstantDeath,
-      damage: '0',
-    };
+    this.effectTracker.OnDeathReason(this.lastTimestamp, obj);
   }
 
   OnTrigger(trigger: LooseOopsyTrigger, execMatches: RegExpExecArray): void {
@@ -377,6 +354,7 @@ export class DamageTracker {
     const zoneInfo = ZoneInfo[this.zoneId];
     this.contentType = zoneInfo?.contentType ?? 0;
 
+    this.effectTracker.ClearTriggerSets();
     this.effectTracker.OnChangeZone(e);
     this.ReloadTriggers();
   }
@@ -551,6 +529,8 @@ export class DamageTracker {
 
       for (const trigger of set.triggers ?? [])
         this.ProcessTrigger(trigger);
+
+      this.effectTracker.PushTriggerSet(set);
     }
   }
 
