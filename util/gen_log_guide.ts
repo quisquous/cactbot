@@ -93,7 +93,7 @@ const titles: Titles = {
     'en-US': 'Network Log Line Structure:',
     'ja-JP': 'ネットワークログライン構造：',
     'zh-CN': '网络日志行结构：',
-    'zh-TW': '網絡日誌行結構：',
+    'zh-TW': '網路日誌行結構：',
   },
   actLogLineStructure: {
     'en-US': 'ACT Log Line Structure:',
@@ -111,7 +111,7 @@ const titles: Titles = {
     'en-US': 'Network Log Line Regex:',
     'ja-JP': 'ネットワークログライン正規表現：',
     'zh-CN': '网络日志行正则表达式：',
-    'zh-TW': '網絡日誌行正規表示式：',
+    'zh-TW': '網路日誌行正規表示式：',
   },
   actLogLineRegexes: {
     'en-US': 'ACT Log Line Regex:',
@@ -129,7 +129,7 @@ const titles: Titles = {
     'en-US': 'Network Log Line Examples:',
     'ja-JP': 'ネットワークログライン例：',
     'zh-CN': '网络日志行示例：',
-    'zh-TW': '網絡日誌行示例：',
+    'zh-TW': '網路日誌行示例：',
   },
   actLogLineExamples: {
     'en-US': 'ACT Log Line Examples:',
