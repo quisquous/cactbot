@@ -26,6 +26,63 @@ export default class ResourceBar extends HTMLElement {
   private _rightText: string;
   private _connected: boolean;
 
+  /** create a instance of ResourceBar with attributes */
+  static create(o?: {
+    value?: string;
+    maxvalue?: string;
+    lefttext?: string;
+    centertext?: string;
+    righttext?: string;
+    width?: string;
+    height?: string;
+    bg?: string;
+    fg?: string;
+    toward?: string;
+    stylefill?: 'empty' | 'full';
+    extravalue?: string;
+    extracolor?: string;
+    scale?: string;
+  }): ResourceBar {
+    // define this custom element if not defined yet
+    if (!window.customElements.get('resource-bar'))
+      window.customElements.define('resource-bar', ResourceBar);
+
+    const element = document.createElement('resource-bar');
+    if (!o)
+      return element;
+
+    if (o.value)
+      element.value = o.value;
+    if (o.maxvalue)
+      element.maxvalue = o.maxvalue;
+    if (o.lefttext)
+      element.lefttext = o.lefttext;
+    if (o.centertext)
+      element.centertext = o.centertext;
+    if (o.righttext)
+      element.righttext = o.righttext;
+    if (o.width)
+      element.width = o.width;
+    if (o.height)
+      element.height = o.height;
+    if (o.bg)
+      element.bg = o.bg;
+    if (o.fg)
+      element.fg = o.fg;
+    if (o.toward)
+      element.toward = o.toward;
+    if (o.stylefill)
+      element.stylefill = o.stylefill;
+    if (o.extravalue)
+      element.extravalue = o.extravalue;
+    if (o.extracolor)
+      element.extracolor = o.extracolor;
+    if (o.scale)
+      element.scale = o.scale;
+
+    return element;
+  }
+
   static get observedAttributes(): string[] {
     return [
       'value',

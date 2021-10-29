@@ -5,6 +5,9 @@ import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
+import ResourceBar from '../../resources/resourcebar';
+import TimerBar from '../../resources/timerbar';
+import TimerBox from '../../resources/timerbox';
 import UserConfig from '../../resources/user_config';
 import {
   isCraftingJob,
@@ -13,6 +16,7 @@ import {
   isHealerJob,
   isTankJob,
 } from '../../resources/util';
+import WidgetList from '../../resources/widget_list';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
 import { EventResponses, JobDetail } from '../../types/event';
@@ -42,20 +46,6 @@ import {
   normalizeLogLine,
   RegexesHolder,
 } from './utils';
-
-// TypeScript will elide these imports unless they are used directly or are a bare import.
-// TODO: maybe each of these should export a "create" function that gets used here?
-/* eslint-disable no-duplicate-imports,import/no-duplicates,import/order */
-import ResourceBar from '../../resources/resourcebar';
-import TimerBar from '../../resources/timerbar';
-import TimerBox from '../../resources/timerbox';
-import WidgetList from '../../resources/widget_list';
-import '../../resources/resourcebar';
-import '../../resources/timericon';
-import '../../resources/timerbar';
-import '../../resources/timerbox';
-import '../../resources/widget_list';
-/* eslint-enable no-duplicate-imports,import/no-duplicates,import/order */
 
 import '../../resources/defaults.css';
 import './jobs.css';
@@ -262,7 +252,7 @@ export class Bars {
     pullCountdownContainer.id = 'pull-bar';
     // Pull counter not affected by opacity option.
     barsLayoutContainer.appendChild(pullCountdownContainer);
-    this.o.pullCountdown = document.createElement('timer-bar');
+    this.o.pullCountdown = TimerBar.create();
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
     const opacityContainer = document.createElement('div');
@@ -286,13 +276,13 @@ export class Bars {
     this.o.rightBuffsContainer.id = 'right-side-icons';
     barsContainer.appendChild(this.o.rightBuffsContainer);
 
-    this.o.rightBuffsList = document.createElement('widget-list');
+    this.o.rightBuffsList = WidgetList.create({
+      rowcolsize: 7,
+      maxnumber: 7,
+      toward: 'right down',
+      elementwidth: (this.options.BigBuffIconWidth + 2).toString(),
+    });
     this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
-
-    this.o.rightBuffsList.rowcolsize = 7;
-    this.o.rightBuffsList.maxnumber = 7;
-    this.o.rightBuffsList.toward = 'right down';
-    this.o.rightBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
 
     if (this.options.JustBuffTracker) {
       // Just alias these two together so the rest of the code doesn't have
@@ -308,24 +298,25 @@ export class Bars {
       this.o.leftBuffsContainer.id = 'left-side-icons';
       barsContainer.appendChild(this.o.leftBuffsContainer);
 
-      this.o.leftBuffsList = document.createElement('widget-list');
+      this.o.leftBuffsList = WidgetList.create({
+        rowcolsize: 7,
+        maxnumber: 7,
+        toward: 'left down',
+        elementwidth: (this.options.BigBuffIconWidth + 2).toString(),
+      });
       this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
-
-      this.o.leftBuffsList.rowcolsize = 7;
-      this.o.leftBuffsList.maxnumber = 7;
-      this.o.leftBuffsList.toward = 'left down';
-      this.o.leftBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
     }
 
     if (isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
-      this.o.cpBar = document.createElement('resource-bar');
+      this.o.cpBar = ResourceBar.create({
+        centertext: 'maxvalue',
+      });
       this.o.cpContainer.appendChild(this.o.cpBar);
       this.o.cpBar.width = window.getComputedStyle(this.o.cpContainer).width;
       this.o.cpBar.height = window.getComputedStyle(this.o.cpContainer).height;
-      this.o.cpBar.centertext = 'maxvalue';
       this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
       container.classList.add('hide');
@@ -334,11 +325,12 @@ export class Bars {
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
-      this.o.gpBar = document.createElement('resource-bar');
+      this.o.gpBar = ResourceBar.create({
+        centertext: 'maxvalue',
+      });
       this.o.gpContainer.appendChild(this.o.gpBar);
       this.o.gpBar.width = window.getComputedStyle(this.o.gpContainer).width;
       this.o.gpBar.height = window.getComputedStyle(this.o.gpContainer).height;
-      this.o.gpBar.centertext = 'maxvalue';
       this.o.gpBar.bg = computeBackgroundColorFrom(this.o.gpBar, 'bar-border-color');
       this.o.gpBar.fg = computeBackgroundColorFrom(this.o.gpBar, 'gp-color');
       return;
@@ -357,12 +349,13 @@ export class Bars {
       this.o.healthContainer.classList.add('show-number');
     barsContainer.appendChild(this.o.healthContainer);
 
-    this.o.healthBar = document.createElement('resource-bar');
+    this.o.healthBar = ResourceBar.create({
+      lefttext: healthText,
+    });
     this.o.healthContainer.appendChild(this.o.healthBar);
     // TODO: Let the component do this dynamically.
     this.o.healthBar.width = window.getComputedStyle(this.o.healthContainer).width;
     this.o.healthBar.height = window.getComputedStyle(this.o.healthContainer).height;
-    this.o.healthBar.lefttext = healthText;
     this.o.healthBar.bg = computeBackgroundColorFrom(this.o.healthBar, 'bar-border-color');
 
     if (doesJobNeedMPBar(this.job)) {
@@ -372,12 +365,13 @@ export class Bars {
       if (showMPNumber)
         this.o.manaContainer.classList.add('show-number');
 
-      this.o.manaBar = document.createElement('resource-bar');
+      this.o.manaBar = ResourceBar.create({
+        lefttext: manaText,
+      });
       this.o.manaContainer.appendChild(this.o.manaBar);
       // TODO: Let the component do this dynamically.
       this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
-      this.o.manaBar.lefttext = manaText;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');
     }
 
@@ -386,7 +380,7 @@ export class Bars {
       this.o.mpTickContainer.id = 'mp-tick';
       barsContainer.appendChild(this.o.mpTickContainer);
 
-      this.o.mpTicker = document.createElement('timer-bar');
+      this.o.mpTicker = TimerBar.create();
       this.o.mpTickContainer.appendChild(this.o.mpTicker);
       this.o.mpTicker.width = window.getComputedStyle(this.o.mpTickContainer).width;
       this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
@@ -496,17 +490,18 @@ export class Bars {
       container.classList.add('proc-box');
     }
 
-    const timerBox = document.createElement('timer-box');
+    const timerBox = TimerBox.create({
+      stylefill: 'empty',
+      bg: 'black',
+      toward: 'bottom',
+      threshold: threshold ? threshold : 0,
+      hideafter: null,
+      roundupthreshold: false,
+      valuescale: scale ? scale : 1,
+    });
     container.appendChild(timerBox);
-    timerBox.stylefill = 'empty';
     if (fgColor)
       timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
-    timerBox.bg = 'black';
-    timerBox.toward = 'bottom';
-    timerBox.threshold = threshold ? threshold : 0;
-    timerBox.hideafter = null;
-    timerBox.roundupthreshold = false;
-    timerBox.valuescale = scale ? scale : 1;
     if (id) {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
@@ -532,7 +527,7 @@ export class Bars {
 
     const timerDiv = document.createElement('div');
     timerDiv.id = id;
-    const timer = document.createElement('timer-bar');
+    const timer = TimerBar.create();
     container.appendChild(timerDiv);
     timerDiv.appendChild(timer);
     timer.classList.add('timer-bar');
@@ -560,16 +555,17 @@ export class Bars {
 
     const barDiv = document.createElement('div');
     barDiv.id = id;
-    const bar = document.createElement('resource-bar');
+    const bar = ResourceBar.create({
+      bg: 'rgba(0, 0, 0, 0)',
+      maxvalue: maxvalue.toString(),
+    });
     container.appendChild(barDiv);
     barDiv.appendChild(bar);
     bar.classList.add('resourcebar');
 
-    bar.bg = 'rgba(0, 0, 0, 0)';
     bar.fg = computeBackgroundColorFrom(bar, fgColor);
     bar.width = window.getComputedStyle(barDiv).width;
     bar.height = window.getComputedStyle(barDiv).height;
-    bar.maxvalue = maxvalue.toString();
 
     return bar;
   }

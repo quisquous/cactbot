@@ -43,6 +43,60 @@ export default class TimerBar extends HTMLElement {
     ];
   }
 
+  static create(o?: {
+    duration?: number;
+    value?: number;
+    elapsed?: number;
+    hideafter?: number;
+    lefttext?: string;
+    centertext?: string;
+    righttext?: string;
+    width?: string;
+    height?: string;
+    bg?: string;
+    fg?: string;
+    stylefill?: 'empty' | 'fill';
+    toward?: 'left' | 'right';
+    loop?: boolean;
+  }): TimerBar {
+    if (!window.customElements.get('timer-bar'))
+      window.customElements.define('timer-bar', TimerBar);
+
+    const element = document.createElement('timer-bar');
+    if (!o)
+      return element;
+
+    if (o.duration)
+      element.duration = o.duration;
+    if (o.value)
+      element.value = o.value;
+    if (o.elapsed)
+      element.elapsed = o.elapsed;
+    if (o.hideafter)
+      element.hideafter = o.hideafter;
+    if (o.lefttext)
+      element.lefttext = o.lefttext;
+    if (o.centertext)
+      element.centertext = o.centertext;
+    if (o.righttext)
+      element.righttext = o.righttext;
+    if (o.width)
+      element.width = o.width;
+    if (o.height)
+      element.height = o.height;
+    if (o.bg)
+      element.bg = o.bg;
+    if (o.fg)
+      element.fg = o.fg;
+    if (o.stylefill)
+      element.stylefill = o.stylefill;
+    if (o.toward)
+      element.toward = o.toward;
+    if (o.loop)
+      element.loop = o.loop;
+    return element;
+  }
+
   // Background color.
   set bg(c: string | null) {
     if (c === null)

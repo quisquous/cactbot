@@ -1,6 +1,8 @@
 import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
+import TimerBar from '../../resources/timerbar';
+import TimerIcon from '../../resources/timericon';
 import { LocaleNetRegex } from '../../resources/translations';
 import { isCasterDpsJob, isHealerJob } from '../../resources/util';
 import { Job } from '../../types/job';
@@ -167,11 +169,12 @@ export const makeAuraTimerIcon = (
   const div = document.createElement('div');
   div.style.opacity = opacity.toString();
 
-  const icon = document.createElement('timer-icon');
-  icon.width = iconWidth.toString();
-  icon.height = iconHeight.toString();
-  icon.bordersize = borderSize.toString();
-  icon.textcolor = textColor;
+  const icon = TimerIcon.create({
+    width: iconWidth.toString(),
+    height: iconHeight.toString(),
+    bordersize: borderSize.toString(),
+    textcolor: textColor,
+  });
   div.appendChild(icon);
 
   const barDiv = document.createElement('div');
@@ -180,7 +183,7 @@ export const makeAuraTimerIcon = (
   div.appendChild(barDiv);
 
   if (seconds >= 0) {
-    const bar = document.createElement('timer-bar');
+    const bar = TimerBar.create();
     bar.width = iconWidth.toString();
     bar.height = barHeight.toString();
     bar.fg = barColor;

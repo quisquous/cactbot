@@ -29,6 +29,38 @@ export default class WidgetList extends HTMLElement {
     return ['toward', 'elementwidth', 'elementheight', 'rowcolsize', 'maxnumber'];
   }
 
+  static create(o?: {
+    toward?: Toward;
+    elementwidth?: string;
+    elementheight?: string;
+    rowcolsize?: number;
+    maxnumber?: number;
+    scale?: number;
+  }): WidgetList {
+    if (!window.customElements.get('widget-list'))
+      window.customElements.define('widget-list', WidgetList);
+
+    const element = document.createElement('widget-list');
+
+    if (!o)
+      return element;
+
+    if (o.toward)
+      element.toward = o.toward;
+    if (o.elementwidth)
+      element.elementwidth = o.elementwidth;
+    if (o.elementheight)
+      element.elementheight = o.elementheight;
+    if (o.rowcolsize)
+      element.rowcolsize = o.rowcolsize;
+    if (o.maxnumber)
+      element.maxnumber = o.maxnumber;
+    if (o.scale)
+      element.scale = o.scale;
+
+    return element;
+  }
+
   // All visual dimensions are scaled by this.
   set scale(s: number | null) {
     if (s === null)

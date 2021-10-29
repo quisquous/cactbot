@@ -934,7 +934,7 @@ export class TimelineUI {
 
   public OnAddTimer(fightNow: number, e: Event, channeling: boolean): void {
     const div = document.createElement('div');
-    const bar = document.createElement('timer-bar');
+    const bar = TimerBar.create();
     div.classList.add('timer-bar');
     div.appendChild(bar);
     bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
@@ -1058,7 +1058,7 @@ export class TimelineUI {
     }
 
     if (!this.debugFightTimer) {
-      this.debugFightTimer = document.createElement('timer-bar');
+      this.debugFightTimer = TimerBar.create();
       this.debugFightTimer.width = '100px';
       this.debugFightTimer.height = '17px';
       this.debugFightTimer.duration = kBig;
