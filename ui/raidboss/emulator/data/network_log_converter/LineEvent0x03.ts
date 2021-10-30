@@ -1,5 +1,5 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
-import { jobEnumToJob } from '../../../../../resources/util';
+import Util from '../../../../../resources/util';
 import { Job } from '../../../../../types/job';
 import EmulatorCommon from '../../EmulatorCommon';
 
@@ -45,7 +45,7 @@ export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEve
     this.name = parts[fields.name] ?? '';
     this.jobIdHex = parts[fields.job]?.toUpperCase() ?? '';
     this.jobId = parseInt(this.jobIdHex, 16);
-    this.job = jobEnumToJob(this.jobId);
+    this.job = Util.jobEnumToJob(this.jobId);
     this.levelString = parts[fields.level] ?? '';
     this.level = parseInt(this.levelString, 16);
     this.ownerId = parts[fields.ownerId]?.toUpperCase() ?? '';

@@ -1,7 +1,7 @@
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 
 import ContentType from '../../resources/content_type';
-import { isCombatJob } from '../../resources/util';
+import Util from '../../resources/util';
 import ZoneInfo from '../../resources/zone_info';
 
 export const defaultOptions = {
@@ -61,7 +61,7 @@ export const InitDpsModule = function(options, updateFunc, hideFunc) {
     if (job === gCurrentJob)
       return;
     gCurrentJob = job;
-    if (isCombatJob(job)) {
+    if (Util.isCombatJob(job)) {
       gIgnoreCurrentJob = false;
       return;
     }

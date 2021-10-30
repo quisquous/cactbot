@@ -1,7 +1,7 @@
 import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
 
-import { jobEnumToJob, jobToRole } from './util';
+import Util from './util';
 
 const emptyRoleToPartyNames = () => {
   return {
@@ -35,8 +35,8 @@ export default class PartyTracker {
     for (const p of e.party) {
       this.allianceIds_.push(p.id);
       this.allianceNames_.push(p.name);
-      const jobName = jobEnumToJob(p.job);
-      const role = jobToRole(jobName);
+      const jobName = Util.jobEnumToJob(p.job);
+      const role = Util.jobToRole(jobName);
       this.idToName_[p.id] = p.name;
       this.nameToRole_[p.name] = role;
       if (p.inParty) {
@@ -148,7 +148,7 @@ export default class PartyTracker {
   jobName(name: string): Job | undefined {
     const partyIndex = this.partyNames.indexOf(name);
     if (partyIndex >= 0)
-      return jobEnumToJob(this.details[partyIndex]?.job as number);
+      return Util.jobEnumToJob(this.details[partyIndex]?.job as number);
   }
 
   nameFromId(id: string): string | undefined {
