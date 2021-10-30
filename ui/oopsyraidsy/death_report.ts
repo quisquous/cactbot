@@ -160,6 +160,7 @@ export class DeathReport {
 
     const text = Translate(this.lang, {
       en: `Gain: ${effectName}`,
+      de: `Erhalten: ${effectName}`,
       ja: `獲得: ${effectName}`,
       cn: `获得: ${effectName}`,
     });
@@ -177,6 +178,7 @@ export class DeathReport {
 
     const text = Translate(this.lang, {
       en: `Lose: ${effectName}`,
+      de: `Verloren: ${effectName}`,
       ja: `失う: ${effectName}`,
       cn: `失去: ${effectName}`,
     });
@@ -271,6 +273,7 @@ export class DeathReport {
 
     const text = Translate(this.lang, {
       en: `Missed ${buffName} (${sourceName})`,
+      de: `${buffName} verfehlte (${sourceName})`,
       ja: `${buffName}をミスした (${sourceName}から)`,
       cn: `没吃到 ${buffName} (来自${sourceName})`,
     });
