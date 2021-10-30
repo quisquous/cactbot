@@ -87,6 +87,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           blame: matches.target,
           text: {
             en: `${matches.ability} (wrong color)`,
+            de: `${matches.ability} (falsche Farbe)`,
             fr: `${matches.ability} (mauvaise couleur)`,
             cn: `${matches.ability} (颜色错了)`,
           },
@@ -104,6 +105,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           blame: matches.target,
           text: {
             en: `${matches.ability} (wrong color)`,
+            de: `${matches.ability} (falsche Farbe)`,
             fr: `${matches.ability} (mauvaise couleur)`,
             cn: `${matches.ability} (颜色错了)`,
           },
