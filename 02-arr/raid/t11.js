@@ -95,7 +95,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B6F' }),
             condition: (data) => !data.beganMonitoringHp,
             preRun: (data) => data.beganMonitoringHp = true,
-            promise: (_data, matches) => watchCombatant({
+            promise: (_data, matches) => Util.watchCombatant({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 return ret.combatants.some((c) => {
