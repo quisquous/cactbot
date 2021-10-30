@@ -111,7 +111,7 @@ const shouldCancelWatch = (
   return false;
 };
 
-const watchCombatant: WatchCombatantFunc = (params, func) => {
+export const watchCombatant: WatchCombatantFunc = (params, func) => {
   return new Promise<void>((res, rej) => {
     const delay = params.delay ?? 1000;
 
@@ -156,7 +156,7 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
   });
 };
 
-const clearWatchCombatants = (): void => {
+export const clearWatchCombatants = (): void => {
   while (watchCombatantMap.length > 0) {
     const watch = watchCombatantMap.pop();
     if (watch)
@@ -164,54 +164,30 @@ const clearWatchCombatants = (): void => {
   }
 };
 
-const jobEnumToJob = (id: number): Job => {
+export const jobEnumToJob = (id: number): Job => {
   const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
   return job ?? 'NONE';
 };
-const jobToJobEnum = (job: Job): number => nameToJobEnum[job];
-const jobToRole = (job: Job): Role => {
+export const jobToJobEnum = (job: Job): number => nameToJobEnum[job];
+export const jobToRole = (job: Job): Role => {
   const role = jobToRoleMap.get(job);
   return role ?? 'none';
 };
-const getAllRoles = (): readonly Role[] => allRoles;
-const isTankJob = (job: Job): boolean => tankJobs.includes(job);
-const isHealerJob = (job: Job): boolean => healerJobs.includes(job);
-const isMeleeDpsJob = (job: Job): boolean => meleeDpsJobs.includes(job);
-const isRangedDpsJob = (job: Job): boolean => rangedDpsJobs.includes(job);
-const isCasterDpsJob = (job: Job): boolean => casterDpsJobs.includes(job);
-const isDpsJob = (job: Job): boolean => dpsJobs.includes(job);
-const isCraftingJob = (job: Job): boolean => craftingJobs.includes(job);
-const isGatheringJob = (job: Job): boolean => gatheringJobs.includes(job);
-const isCombatJob = (job: Job): boolean => {
+export const getAllRoles = (): readonly Role[] => allRoles;
+export const isTankJob = (job: Job): boolean => tankJobs.includes(job);
+export const isHealerJob = (job: Job): boolean => healerJobs.includes(job);
+export const isMeleeDpsJob = (job: Job): boolean => meleeDpsJobs.includes(job);
+export const isRangedDpsJob = (job: Job): boolean => rangedDpsJobs.includes(job);
+export const isCasterDpsJob = (job: Job): boolean => casterDpsJobs.includes(job);
+export const isDpsJob = (job: Job): boolean => dpsJobs.includes(job);
+export const isCraftingJob = (job: Job): boolean => craftingJobs.includes(job);
+export const isGatheringJob = (job: Job): boolean => gatheringJobs.includes(job);
+export const isCombatJob = (job: Job): boolean => {
   return !craftingJobs.includes(job) && !gatheringJobs.includes(job);
 };
-const canStun = (job: Job): boolean => stunJobs.includes(job);
-const canSilence = (job: Job): boolean => silenceJobs.includes(job);
-const canSleep = (job: Job): boolean => sleepJobs.includes(job);
-const canCleanse = (job: Job): boolean => cleanseJobs.includes(job);
-const canFeint = (job: Job): boolean => feintJobs.includes(job);
-const canAddle = (job: Job): boolean => addleJobs.includes(job);
-
-export default {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-  clearWatchCombatants,
-  getAllRoles,
-  isCasterDpsJob,
-  isCombatJob,
-  isCraftingJob,
-  isDpsJob,
-  isGatheringJob,
-  isHealerJob,
-  isMeleeDpsJob,
-  isRangedDpsJob,
-  isTankJob,
-  jobEnumToJob,
-  jobToJobEnum,
-  jobToRole,
-  watchCombatant,
-};
+export const canStun = (job: Job): boolean => stunJobs.includes(job);
+export const canSilence = (job: Job): boolean => silenceJobs.includes(job);
+export const canSleep = (job: Job): boolean => sleepJobs.includes(job);
+export const canCleanse = (job: Job): boolean => cleanseJobs.includes(job);
+export const canFeint = (job: Job): boolean => feintJobs.includes(job);
+export const canAddle = (job: Job): boolean => addleJobs.includes(job);

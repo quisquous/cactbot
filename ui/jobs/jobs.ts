@@ -6,7 +6,13 @@ import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
 import UserConfig from '../../resources/user_config';
-import Util from '../../resources/util';
+import {
+  isCraftingJob,
+  isDpsJob,
+  isGatheringJob,
+  isHealerJob,
+  isTankJob,
+} from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
 import { EventResponses, JobDetail } from '../../types/event';
@@ -241,15 +247,15 @@ export class Bars {
     container.appendChild(barsLayoutContainer);
 
     barsLayoutContainer.classList.add(this.job.toLowerCase());
-    if (Util.isTankJob(this.job))
+    if (isTankJob(this.job))
       barsLayoutContainer.classList.add('tank');
-    else if (Util.isHealerJob(this.job))
+    else if (isHealerJob(this.job))
       barsLayoutContainer.classList.add('healer');
-    else if (Util.isDpsJob(this.job))
+    else if (isDpsJob(this.job))
       barsLayoutContainer.classList.add('dps');
-    else if (Util.isCraftingJob(this.job))
+    else if (isCraftingJob(this.job))
       barsLayoutContainer.classList.add('crafting');
-    else if (Util.isGatheringJob(this.job))
+    else if (isGatheringJob(this.job))
       barsLayoutContainer.classList.add('gathering');
 
     const pullCountdownContainer = document.createElement('div');
@@ -311,7 +317,7 @@ export class Bars {
       this.o.leftBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
     }
 
-    if (Util.isCraftingJob(this.job)) {
+    if (isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
@@ -324,7 +330,7 @@ export class Bars {
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
       container.classList.add('hide');
       return;
-    } else if (Util.isGatheringJob(this.job)) {
+    } else if (isGatheringJob(this.job)) {
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
@@ -773,7 +779,7 @@ export class Bars {
       return;
     if (
       this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job)
+      isCraftingJob(this.job) || isGatheringJob(this.job)
     )
       opacityContainer.style.opacity = '1.0';
     else
@@ -954,7 +960,7 @@ export class Bars {
       this.umbralStacks = 0;
       this._updateMPTicker();
       updateJob = updateHp = updateMp = updateCp = updateGp = true;
-      if (!Util.isGatheringJob(this.job))
+      if (!isGatheringJob(this.job))
         this.gpAlarmReady = false;
     }
     if (e.detail.level !== this.level) {
@@ -1057,7 +1063,7 @@ export class Bars {
         }
         if (this.regexes.countdownCancelRegex.test(log))
           this._setPullCountdown(0);
-        if (Util.isCraftingJob(this.job))
+        if (isCraftingJob(this.job))
           this._onCraftingLog(log);
         break;
       }
