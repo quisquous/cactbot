@@ -12,6 +12,15 @@ export interface Data extends RaidbossData {
   seedTargets?: string[];
   seenSphere?: boolean;
   signalCount?: number;
+  deployArmaments?: number[];
+}
+
+// Enumeration of possible Deploy Armaments attacks
+enum DeployArmaments {
+  VerticalMiddle,
+  VerticalSides,
+  HorizontalMiddle,
+  HorizontalSides,
 }
 
 // TODO:
@@ -470,9 +479,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     // Deploy Armaments
     //
-    // This is really two skills, one of which does a middle line AOE from
-    // Meng-Zi or Xun-Zi, the other which does two side line AOEs with the
-    // middle being safe.
+    // This attack has two variations and can be cast from two headings. The
+    // first variation causes two line AOEs to hit with the center being
+    // safe. The second variation causes a single line AOE to be cast in the
+    // middle, with the sides safe. It can either be cast horizontally or
+    // vertically over the arena.
     //
     // There are several skill IDs involved:
     // 5C00: indicate start of a middle line attack. Always appears with one
@@ -482,52 +493,125 @@ const triggerSet: TriggerSet<Data> = {
     // 5C01: indicates a single line attack comboing with the other boss.
     //       Always appears simultaneously with the other bosses abilities
     //       and a 6078 cast.
-    //
-    // When both Meng-Zi and Xun-Zi use deploy armaments simultaneously, the
-    // identifiers are different.
-    //
     // 5C04: indicates a two side lines attack comboing with the other boss
     //       Always appears simultaneously with the other bosses abilities
     //       and 2x 6079 casts.
     //
-    // TODO: Handle the overlap when both cast simultaneously or nearly
-    // simultaneously.
+    // To handle overlap, we have one trigger which captures all of the
+    // events into an array. Then, a delayed trigger processes all of the
+    // triggers and determines what to message players.
     {
-      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Middle',
+      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01'] }),
-      durationSeconds: 5,
-      alertText: (data, matches, output) => {
-        if (matches.heading === '1.570772')
-          return output.ew!();
-        else if (matches.heading === '-4.792213E-05')
-          return output.ns!();
-
-        return output.text!();
-      },
-      outputStrings: {
-        ew: {
-          en: 'Go E/W Sides',
-        },
-        ns: {
-          en: 'Go N/S Sides',
-        },
-        text: {
-          en: 'Go Sides',
-        },
+      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
+      run: (data, matches) => {
+        data.deployArmaments ??= [];
+        if (matches.id === '5C00' || matches.id === '5C01') {
+          if (matches.heading === '1.570772')
+            data.deployArmaments.push(DeployArmaments.VerticalMiddle);
+          else if (matches.heading === '-4.792213E-05')
+            data.deployArmaments.push(DeployArmaments.HorizontalMiddle);
+        } else if (matches.id === '5C03' || matches.id === '5C04') {
+          if (matches.heading === '1.570772')
+            data.deployArmaments.push(DeployArmaments.VerticalSides);
+          else if (matches.heading === '-4.792213E-05')
+            data.deployArmaments.push(DeployArmaments.HorizontalSides);
+        }
       },
     },
     {
-      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Sides',
+      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Trigger',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5C03', '5C04'] }),
+      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'], capture: false }),
+      delaySeconds: 0.25,
       durationSeconds: 5,
-      alertText: (data, matches, output) => {
-        return output.text!();
+      suppressSeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        if (!data.deployArmaments)
+          return;
+
+        // define some expected results
+        const verticalMiddle = (1 << 1 | 1 << 4 | 1 << 7);
+        const verticalSides = (1 << 0 | 1 << 2 |
+          1 << 3 | 1 << 5 |
+          1 << 6 | 1 << 8);
+        const horizontalMiddle = (1 << 3 | 1 << 4 | 1 << 5);
+        const horizontalSides = (1 << 0 | 1 << 1 | 1 << 2 |
+          1 << 6 | 1 << 7 | 1 << 8);
+        const nsMiddle = (1 << 1 | 1 << 7);
+        const ewMiddle = (1 << 3 | 1 << 5);
+        const corners = (1 << 0 | 1 << 2 | 1 << 6 | 1 << 8);
+        const center = (1 << 4);
+
+        // Start with all spots marked as safe...
+        let safeSpots = (1 << 0 | 1 << 1 | 1 << 2 |
+          1 << 3 | 1 << 4 | 1 << 5 |
+          1 << 6 | 1 << 7 | 1 << 8);
+
+        // Then figure out which spots are unsafe due to pending AOEs...
+
+        if (data.deployArmaments.includes(DeployArmaments.VerticalMiddle)) {
+          // Clear the vertical middle column
+          safeSpots &= ~verticalMiddle;
+        }
+
+        if (data.deployArmaments.includes(DeployArmaments.VerticalSides)) {
+          // Clear the vertical side columns
+          safeSpots &= ~verticalSides;
+        }
+
+        if (data.deployArmaments.includes(DeployArmaments.HorizontalMiddle)) {
+          // Clear the horizontal middle row
+          safeSpots &= ~horizontalMiddle;
+        }
+
+        if (data.deployArmaments.includes(DeployArmaments.HorizontalSides)) {
+          // Clear the horizontal side rows
+          safeSpots &= ~horizontalSides;
+        }
+
+        // Finally, determine where to alert
+        if (
+          safeSpots === verticalMiddle ||
+          safeSpots === horizontalMiddle ||
+          safeSpots === center
+        )
+          return output.center!();
+        else if (safeSpots === verticalSides)
+          return output.ewSides!();
+        else if (safeSpots === horizontalSides)
+          return output.nsSides!();
+        else if (safeSpots === nsMiddle)
+          return output.nsMiddle!();
+        else if (safeSpots === ewMiddle)
+          return output.ewMiddle!();
+        else if (safeSpots === corners)
+          return output.corners!();
+
+        return output.oops!();
       },
+      run: (data) => delete data.deployArmaments,
       outputStrings: {
-        text: {
-          en: 'Go Middle',
+        center: {
+          en: 'Go Center',
+        },
+        ewSides: {
+          en: 'Go E/W Sides',
+        },
+        nsSides: {
+          en: 'Go N/S Sides',
+        },
+        ewMiddle: {
+          en: 'Go E/W Middle',
+        },
+        nsMiddle: {
+          en: 'Go N/S Middle',
+        },
+        corners: {
+          en: 'Go Corners',
+        },
+        oops: {
+          en: 'Avoid line AOEs',
         },
       },
     },
