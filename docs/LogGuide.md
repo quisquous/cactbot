@@ -366,7 +366,7 @@ the full set of LogTypes is not well-documented.
 
 (Pull requests welcome!)
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=GameLog&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=GameLog&lang=en-US) -->
 
 #### Structure
 
@@ -439,7 +439,7 @@ and does not consistently show up first.
 
 This message is sent when first logging in and whenever the zone is changed.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangeZone&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangeZone&lang=en-US) -->
 
 #### Structure
 
@@ -481,7 +481,7 @@ ACT Log Line Examples:
 
 This redundant message follows every [ChangeZone](#line01) message to indicate the name of the player.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangedPlayer&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ChangedPlayer&lang=en-US) -->
 
 #### Structure
 
@@ -514,7 +514,7 @@ ACT Log Line Examples:
 This message is sent when a new object is added to the scene or
 becomes close enough to the player that they can view its actions.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=AddedCombatant&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=AddedCombatant&lang=en-US) -->
 
 #### Structure
 
@@ -577,7 +577,7 @@ This message is sent when an object is removed from the scene, either because
 the player has moved too far away from it, it has died, or the player has
 changed zones.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=RemovedCombatant&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=RemovedCombatant&lang=en-US) -->
 
 #### Structure
 
@@ -698,7 +698,7 @@ Examples:
 
 This line represents the players currently in the party, and is sent whenever the party makeup changes.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=PartyList&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=PartyList&lang=en-US) -->
 
 #### Structure
 
@@ -730,7 +730,7 @@ ACT Log Line Examples:
 
 This message is sent whenever your player's stats change and upon entering a new zone/instance.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=PlayerStats&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=PlayerStats&lang=en-US) -->
 
 #### Structure
 
@@ -807,7 +807,7 @@ This precedes a [NetworkAbility](#line21),
 or [NetworkCancelAbility](#line23)
 where it uses the ability or is interrupted.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StartsUsing&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StartsUsing&lang=en-US) -->
 
 #### Structure
 
@@ -870,7 +870,7 @@ to include both possibilities.
 
 Ground AOEs that don't hit anybody are considered [NetworkAOEAbility](#line22) lines.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Ability&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Ability&lang=en-US) -->
 
 #### Structure
 
@@ -1056,7 +1056,7 @@ See: [NetworkAbility](#line21) for a discussion of the difference between `Netwo
 
 For abilities with cast bars, this is the log line that specifies that the cast was cancelled either due to movement or an interrupt and it won't go off.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkCancelAbility&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkCancelAbility&lang=en-US) -->
 
 #### Structure
 
@@ -1097,7 +1097,7 @@ Instead, if a boss has 20 dots applied to it,
 then it returns the total tick amount for all of these dots.
 Parsers are left to estimate what the individual dot amounts are.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkDoT&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkDoT&lang=en-US) -->
 
 #### Structure
 
@@ -1134,7 +1134,7 @@ Ground effect dots get listed separately.
 This message corresponds to an actor being defeated and killed.
 This usually comes along with a game log message such as `You defeat the worm's heart.`
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=WasDefeated&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=WasDefeated&lang=en-US) -->
 
 #### Structure
 
@@ -1180,13 +1180,13 @@ ACT Log Line Examples:
 
 This message is the "gains effect" message for players and mobs gaining effects whether they are good or bad.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=GainsEffect&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=GainsEffect&lang=en-US) -->
 
 #### Structure
 
 ```log
 Network Log Line Structure:
-26|[timestamp]|[effectId]|[effect]|[duration]|[sourceId]|[source]|[targetId]|[target]|[count]|[targetHp]|[hp]
+26|[timestamp]|[effectId]|[effect]|[duration]|[sourceId]|[source]|[targetId]|[target]|[count]|[targetMaxHp]|[sourceMaxHp]
 
 ACT Log Line Structure:
 [timestamp] 1A:[TARGETID]:[Target] gains the effect of [effect] from [Source] for [duration] Seconds.
@@ -1196,7 +1196,7 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:26))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?<duration>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|(?<targetHp>(?:[^|]*))\|(?<hp>(?:[^|]*))\|
+^(?<type>(?:26))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?<duration>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<sourceMaxHp>(?:[^|]*))\|
 
 ACT Log Line Regex:
 (?<timestamp>(?:^.{14})) 1A:(?<targetId>(?:[0-9A-F]{8})):(?<target>(?:.*?)) gains the effect of (?<effect>(?:.*?)) from (?<source>(?:.*?)) for (?<duration>(?:-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?)) Seconds\.
@@ -1236,7 +1236,7 @@ This matters for cases such as ucob Nael phase doom debuffs.
 
 ### Line 27 (0x1B): NetworkTargetIcon (Head Marker)
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=HeadMarker&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=HeadMarker&lang=en-US) -->
 
 #### Structure
 
@@ -1349,7 +1349,7 @@ ID | Name | Sample Locations | Consistent meaning?
 
 This message indicates a floor waymarker was added or deleted.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkRaidMarker&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkRaidMarker&lang=en-US) -->
 
 #### Structure
 
@@ -1394,7 +1394,7 @@ ACT Log Line Examples:
 
 This message indicates a target marker placed above or removed from a combatant's head by a player.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkTargetMarker&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkTargetMarker&lang=en-US) -->
 
 #### Structure
 
@@ -1446,7 +1446,7 @@ ACT Log Line Examples:
 This is the paired "end" message to the [NetworkBuff](#line26) "begin" message.
 This message corresponds to the loss of effects (either positive or negative).
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LosesEffect&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LosesEffect&lang=en-US) -->
 
 #### Structure
 
@@ -1490,7 +1490,7 @@ ACT Log Line Examples:
 
 Info about the current player's job gauge.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkGauge&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkGauge&lang=en-US) -->
 
 #### Structure
 
@@ -1576,7 +1576,7 @@ DirectorUpdate is a category of ActorControlSelf and is used to control the even
 - barrier up/down
 - fade in/out
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ActorControl&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=ActorControl&lang=en-US) -->
 
 #### Structure
 
@@ -1655,7 +1655,7 @@ This can help you know when a mob is targetable, for example.
 
 The `toggle` value is either `00` (hide nameplate) or `01` (show nameplate).
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NameToggle&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NameToggle&lang=en-US) -->
 
 #### Structure
 
@@ -1689,7 +1689,7 @@ This log line is for tethers between enemies or enemies and players.
 This does not appear to be used for player to player skill tethers like dragonsight or cover.
 (It can be used for enemy-inflicted player to player tethers such as burning chains in Shinryu N/EX.)
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Tether&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Tether&lang=en-US) -->
 
 #### Structure
 
@@ -1756,7 +1756,7 @@ but other actions taken can cause extra increments to happen independent of the 
 Each limit break bar is `0x2710` (10,000 decimal) units.
 Thus, the maximum possible recorded value would be `0x7530`.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LimitBreak&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LimitBreak&lang=en-US) -->
 
 #### Structure
 
@@ -1823,7 +1823,7 @@ For non-fairy allies, it is generated alongside [NetworkBuff](#line26),
 [NetworkBuffRemove](#line30),
 and [NetworkActionSync](#line37).
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StatusEffect&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StatusEffect&lang=en-US) -->
 
 #### Structure
 
@@ -1877,7 +1877,7 @@ It applies to allies and fairies/pets.
 
 This log line tends to fire roughly every 3 seconds in some cases.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkUpdateHP&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkUpdateHP&lang=en-US) -->
 
 #### Structure
 
@@ -1920,7 +1920,7 @@ and the information is only emitted in the network log line.
 `regionName` and `placeName` are always present,
 but `placeNameSub` is optional.
 
-<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Map&lang=en) -->
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=Map&lang=en-US) -->
 
 #### Structure
 
