@@ -950,21 +950,25 @@ Options.Triggers.push({
                     },
                     northEastLion: {
                         en: 'NE Lion Tether',
+                        de: 'NO Löwen-Verbindung',
                         fr: 'NE Lien lion',
                         cn: '右上(东北)狮子连线',
                     },
                     northWestLion: {
                         en: 'NW Lion Tether',
+                        de: 'NW Löwen-Verbindung',
                         fr: 'NO Lien lion',
                         cn: '左上(西北)狮子连线',
                     },
                     southEastLion: {
                         en: 'SE Lion Tether',
+                        de: 'SO Löwen-Verbindung',
                         fr: 'SE Lien lion',
                         cn: '右下(东南)狮子连线',
                     },
                     southWestLion: {
                         en: 'SW Lion Tether',
+                        de: 'SW Löwen-Verbindung',
                         fr: 'SO Lien lion',
                         cn: '左下(西南)狮子连线',
                     },
