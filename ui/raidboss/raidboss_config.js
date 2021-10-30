@@ -2,14 +2,7 @@ import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
 import UserConfig from '../../resources/user_config';
-import {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-} from '../../resources/util';
+import Util from '../../resources/util';
 import raidbossFileData from './data/raidboss_manifest.txt';
 import raidbossOptions from './raidboss_options';
 
@@ -674,12 +667,12 @@ class RaidbossConfigurator {
       ShortName: (x) => x,
       StopCombat: () => {},
       ParseLocaleFloat: parseFloat,
-      CanStun: () => canStun(this.job),
-      CanSilence: () => canSilence(this.job),
-      CanSleep: () => canSleep(this.job),
-      CanCleanse: () => canCleanse(this.job),
-      CanFeint: () => canFeint(this.job),
-      CanAddle: () => canAddle(this.job),
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
     };
 
     const kFakeData = [
