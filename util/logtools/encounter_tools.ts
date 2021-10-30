@@ -9,9 +9,14 @@ import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacemen
 // This can happen on partial logs.
 
 export class EncounterFinder {
-  currentZone: string | null;
+  currentZone: {
+    name: string | null;
+    startLine: string | null;
+    zoneId: number | null;
+    startTime: Date | null;
+  };
   currentFight: string | null;
-  currentSeal: boolean;
+  currentSeal: string | null;
   zoneInfo: {
     readonly exVersion: number;
     readonly contentType?: number;
@@ -21,7 +26,6 @@ export class EncounterFinder {
     readonly sizeFactor: number;
     readonly weatherRate: number;
   } | null;
-  zoneId: number | null;
 
   haveWon: boolean;
   haveSeenSeals: boolean;
@@ -38,13 +42,26 @@ export class EncounterFinder {
 
   sealRegexes: Array<CactbotBaseRegExp<'GameLog'>>;
   unsealRegexes: Array<CactbotBaseRegExp<'GameLog'>>;
+
+  initializeZone(): void {
+    this.currentZone = {
+      name: null,
+      startLine: null,
+      zoneId: null,
+      startTime: null,
+    };
+  }
   constructor() {
-    this.currentZone = null;
+    this.currentZone = {
+      name: null,
+      startLine: null,
+      zoneId: null,
+      startTime: null,
+    };
     this.currentFight = null;
-    this.currentSeal = false;
+    this.currentSeal = null;
     // May be null for some zones.
     this.zoneInfo = null;
-    this.zoneId = null;
 
     this.haveWon = false;
     this.haveSeenSeals = false;
@@ -82,7 +99,7 @@ export class EncounterFinder {
   }
 
   skipZone(): boolean {
-    if (this.zoneId === null || this.zoneInfo === null)
+    if (this?.currentZone?.zoneId === null || this.zoneInfo === null)
       return false;
     const info = this.zoneInfo;
     if ((info?.contentType) === null)
@@ -108,7 +125,7 @@ export class EncounterFinder {
   process(line: string): void {
     const cZ = this.regex.changeZone.exec(line);
     if (cZ?.groups) {
-      if (this.currentZone === cZ.groups.name) {
+      if (this?.currentZone?.name === cZ.groups.name) {
         // Zoning into the same zone, possibly a d/c situation.
         // Don't stop anything?
         return;
@@ -119,20 +136,20 @@ export class EncounterFinder {
         this.currentFight = null;
       }
       if (this.currentZone !== null) {
-        this.onEndZone(line, this.currentZone, cZ.groups);
-        this.currentZone = null;
+        this.onEndZone(line, this.currentZone.name, cZ.groups);
+        this.initializeZone();
       }
 
       this.haveWon = false;
       this.haveSeenSeals = false;
       this.zoneInfo = ZoneInfo[parseInt(cZ.groups.id, 16)] || null;
       if (this.skipZone()) {
-        this.zoneInfo = null;
+        this.initializeZone();
         return;
       }
 
-      this.currentZone = cZ.groups.name;
-      this.onStartZone(line, this.currentZone, cZ.groups);
+      this.currentZone.name = cZ.groups.name;
+      this.onStartZone(line, this.currentZone.name, cZ.groups);
       return;
     }
 
@@ -173,7 +190,7 @@ export class EncounterFinder {
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
         // TODO: maybe we should come up with a better name here?
-        this.currentFight = this.currentZone;
+        this.currentFight = this.currentZone.name;
         this.onStartFight(line, this.currentFight, a.groups);
         return;
       }
@@ -181,12 +198,12 @@ export class EncounterFinder {
 
     for (const regex of this.sealRegexes) {
       const s = regex.exec(line);
-      if (s) {
+      if (s?.groups?.name) {
         this.haveSeenSeals = true;
-        this.currentSeal = true;
+        this.currentSeal = s.groups?.name;
         this.onSeal(line, this.currentSeal, s.groups);
 
-        this.currentFight = this.currentZone;
+        this.currentFight = this.currentZone.name;
         this.onStartFight(line, this.currentFight, s.groups);
         return;
       }
@@ -196,7 +213,7 @@ export class EncounterFinder {
       const u = regex.exec(line);
       if (u) {
         this.onUnseal(line, this.currentSeal, u.groups);
-        this.currentSeal = false;
+        this.currentSeal = null;
 
         if (this.currentFight) {
           this.onEndFight(line, this.currentFight, { ...u.groups, endType: 'Unseal' });
@@ -212,16 +229,16 @@ export class EncounterFinder {
   // Fights and seal start/end may interleave with each other.
   // TODO: probably this should follow an "event bus" model instead of requiring derived classes.
   onStartZone(line: string, name: string, matches: RegExpMatchArray): void {
-    this.lastZone = {
+    this.currentZone = {
       name: name,
       startLine: line,
       zoneId: matches.id,
       startTime: this.dateFromMatches(matches),
     };
   }
-  onEndZone(line, name, matches) {}
-  onStartFight(line, name, matches) {}
-  onEndFight(line, name, matches) {}
+  onEndZone(line, name, matches): void {}
+  onStartFight(line, name, matches): void {}
+  onEndFight(line, name, matches): void {}
   onSeal(line: string, name: string, matches: NetRegexes): void {
     this.currentSeal = true;
   }
