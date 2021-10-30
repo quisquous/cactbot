@@ -1,6 +1,6 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
-import { watchCombatant } from '../../../../../resources/util';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -34,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
-        watchCombatant({
+        Util.watchCombatant({
           ids: [parseInt(matches.sourceId, 16)],
         }, (ret) => {
           const twintaniaBelowGivenHP = ret.combatants.some((c) => {
