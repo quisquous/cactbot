@@ -1,6 +1,7 @@
 const strikingDummyNames = {
     en: 'Striking Dummy',
     de: 'Trainingspuppe',
+    ja: '木人',
     cn: '木人',
 };
 Options.Triggers.push({
@@ -240,6 +241,7 @@ Options.Triggers.push({
             type: 'GameLog',
             netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
             netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
+            netRegexJa: NetRegexes.echo({ line: 'cactbotレスポンステスト.*?', capture: false }),
             netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
             response: (_data, _matches, output) => {
                 // cactbot-builtin-response
@@ -262,6 +264,7 @@ Options.Triggers.push({
             type: 'GameLog',
             netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
             netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
+            netRegexJa: NetRegexes.echo({ line: 'cactbot探知テスト.*?', capture: false }),
             netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
             promise: (data) => {
                 let _a;
@@ -297,6 +300,7 @@ Options.Triggers.push({
                 close: {
                     en: 'Dummy close!',
                     de: 'Puppe beendet!',
+                    ja: '木人に近すぎ！',
                     cn: '靠近木人！',
                 },
             },
