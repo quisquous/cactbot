@@ -5,7 +5,7 @@ import PartyTracker from '../../resources/party';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
-import Util from '../../resources/util';
+import { jobToRole } from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
 import { OopsyData } from '../../types/data';
@@ -556,7 +556,7 @@ export class DamageTracker {
 
     this.me = e.detail.name;
     this.job = e.detail.job;
-    this.role = Util.jobToRole(this.job);
+    this.role = jobToRole(this.job);
     this.ReloadTriggers();
   }
 

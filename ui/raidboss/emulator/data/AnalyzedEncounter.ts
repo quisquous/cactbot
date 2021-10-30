@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import Util from '../../../../resources/util';
+import { jobToJobEnum } from '../../../../resources/util';
 import { LooseTrigger } from '../../../../types/trigger';
 import raidbossFileData from '../../data/raidboss_manifest.txt';
 import { PopupTextGenerator, TriggerHelper } from '../../popup-text';
@@ -55,7 +55,7 @@ export default class AnalyzedEncounter extends EventBus {
             id: id,
             worldId: 0,
             name: partyMember.name,
-            job: Util.jobToJobEnum(partyMember.job ?? 'NONE'),
+            job: jobToJobEnum(partyMember.job ?? 'NONE'),
             inParty: true,
           };
         }),

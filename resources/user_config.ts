@@ -26,8 +26,52 @@ import { Responses as _Responses } from './responses';
 const Responses = _Responses;
 import _Outputs from './outputs';
 const Outputs = _Outputs;
-import _Util from './util';
-const Util = _Util;
+import {
+  canAddle,
+  canCleanse,
+  canFeint,
+  canSilence,
+  canSleep,
+  canStun,
+  clearWatchCombatants,
+  getAllRoles,
+  isCasterDpsJob,
+  isCombatJob,
+  isCraftingJob,
+  isDpsJob,
+  isGatheringJob,
+  isHealerJob,
+  isMeleeDpsJob,
+  isRangedDpsJob,
+  isTankJob,
+  jobEnumToJob,
+  jobToJobEnum,
+  jobToRole,
+  watchCombatant,
+} from './util';
+const Util = {
+  canAddle,
+  canCleanse,
+  canFeint,
+  canSilence,
+  canSleep,
+  canStun,
+  clearWatchCombatants,
+  getAllRoles,
+  isCasterDpsJob,
+  isCombatJob,
+  isCraftingJob,
+  isDpsJob,
+  isGatheringJob,
+  isHealerJob,
+  isMeleeDpsJob,
+  isRangedDpsJob,
+  isTankJob,
+  jobEnumToJob,
+  jobToJobEnum,
+  jobToRole,
+  watchCombatant,
+} as const;
 import _ZoneId from './zone_id';
 const ZoneId = _ZoneId;
 import _ZoneInfo from './zone_info';
