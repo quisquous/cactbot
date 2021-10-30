@@ -683,6 +683,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Hakkinryu': 'Hakkinryu',
         'Left Wing': 'link(?:e|er|es|en) Schwinge',
@@ -728,6 +729,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Hakkinryu': 'hakkinryu',
         'Icicle': 'stalactite',
@@ -773,6 +775,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Hakkinryu': '白金龍',
         'Left Wing': 'レフトウィング',
@@ -817,6 +820,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Hakkinryu': '白金龙',
         'Left Wing': '左翼',
@@ -862,6 +866,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Hakkinryu': '백금룡',
         'Left Wing': '왼쪽 날개',
