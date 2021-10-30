@@ -1,28 +1,43 @@
 import ContentType from '../../resources/content_type';
 import NetRegexes from '../../resources/netregexes';
 import { data as ZoneInfo, ZoneInfoType } from '../../resources/zone_info';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { LocaleText } from '../../types/trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
-
 
 // TODO: add some error checking that a zone has been found before a fight.
 // This can happen on partial logs.
 
-
 export class EncounterFinder {
-  currentZone: LocaleText | null;
-  currentFight: LocaleText | null;
+  currentZone: string | null;
+  currentFight: string | null;
   currentSeal: boolean;
-  zoneInfo: ZoneInfoType | null;
+  zoneInfo: {
+    readonly exVersion: number;
+    readonly contentType?: number;
+    readonly name: LocaleText;
+    readonly offsetX: number;
+    readonly offsetY: number;
+    readonly sizeFactor: number;
+    readonly weatherRate: number;
+  } | null;
   zoneId: number | null;
 
   haveWon: boolean;
   haveSeenSeals: boolean;
 
-  regex: Record<string, NetRegexes>;
+  regex: {
+    changeZone: CactbotBaseRegExp<'ChangeZone'>;
+    cactbotWipe: CactbotBaseRegExp<'GameLog'>;
+    win: CactbotBaseRegExp<'ActorControl'>;
+    wipe: CactbotBaseRegExp<'ActorControl'>;
+    commence: CactbotBaseRegExp<'ActorControl'>;
+    playerAttackingMob: CactbotBaseRegExp<'Ability'>;
+    mobAttackingPlayer: CactbotBaseRegExp<'Ability'>;
+  };
 
-  sealRegexes: Array<NetRegexes>;
-  unsealRegexes: Array<NetRegexes>;
+  sealRegexes: Array<CactbotBaseRegExp<'GameLog'>>;
+  unsealRegexes: Array<CactbotBaseRegExp<'GameLog'>>;
   constructor() {
     this.currentZone = null;
     this.currentFight = null;
@@ -70,9 +85,9 @@ export class EncounterFinder {
     if (this.zoneId === null || this.zoneInfo === null)
       return false;
     const info = this.zoneInfo;
-    if ((info[this.zoneId]?.contentType) === null)
+    if ((info?.contentType) === null)
       return false;
-    const content = info?.[this.zoneId]?.contentType;
+    const content = info?.contentType;
     if (!content)
       return false;
 
@@ -91,104 +106,100 @@ export class EncounterFinder {
   }
 
   process(line: string): void {
-    let m: RegExpMatchArray | null;
-
-    m = line.match(this.regex.changeZone);
-    // m = NetRegexes.changeZone(line);
-    if (m) {
-      if (this.currentZone === m.groups.name) {
+    const cZ = this.regex.changeZone.exec(line);
+    if (cZ?.groups) {
+      if (this.currentZone === cZ.groups.name) {
         // Zoning into the same zone, possibly a d/c situation.
         // Don't stop anything?
         return;
       }
 
       if (this.currentFight !== null) {
-        this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Zone' });
+        this.onEndFight(line, this.currentFight, { ...cZ.groups, endType: 'Zone' });
         this.currentFight = null;
       }
       if (this.currentZone !== null) {
-        this.onEndZone(line, this.currentZone, m.groups);
+        this.onEndZone(line, this.currentZone, cZ.groups);
         this.currentZone = null;
       }
 
       this.haveWon = false;
       this.haveSeenSeals = false;
-
-      this.zoneInfo = ZoneInfo[parseInt(m.groups.id, 16)];
+      this.zoneInfo = ZoneInfo[parseInt(cZ.groups.id, 16)] || null;
       if (this.skipZone()) {
         this.zoneInfo = null;
         return;
       }
 
-      this.currentZone = m.groups.name;
-      this.onStartZone(line, this.currentZone, m.groups);
+      this.currentZone = cZ.groups.name;
+      this.onStartZone(line, this.currentZone, cZ.groups);
       return;
     }
 
     if (this.skipZone())
       return;
 
-    m = new RegExp(this.regex.cactbotWipe);
-    if (m) {
+    const cW = this.regex.cactbotWipe.exec(line);
+    if (cW?.groups) {
       if (this.currentFight !== null) {
-        this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'CactbotWipe' });
+        this.onEndFight(line, this.currentFight, { ...cW.groups, endType: 'CactbotWipe' });
         this.currentFight = null;
       }
       return;
     }
 
-    m = line.match(this.regex.wipe);
-    if (m) {
+    const wipe = this.regex.wipe.exec(line);
+    if (wipe?.groups) {
       if (this.currentFight !== null) {
-        this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Wipe' });
+        this.onEndFight(line, this.currentFight, { ...wipe.groups, endType: 'Wipe' });
         this.currentFight = null;
       }
       return;
     }
 
-    m = line.match(this.regex.win);
-    if (m) {
+    const win = this.regex.win.exec(line);
+    if (win?.groups) {
       if (this.currentFight !== null) {
         this.haveWon = true;
-        this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Win' });
+        this.onEndFight(line, this.currentFight, { ...win.groups, endType: 'Win' });
         this.currentFight = null;
       }
       return;
     }
 
     if (this.currentFight === null && !this.haveWon && !this.haveSeenSeals) {
-      m = line.match(this.regex.playerAttackingMob);
-      if (!m)
-        m = line.match(this.regex.mobAttackingPlayer);
-      if (m) {
+      let a = this.regex.playerAttackingMob.exec(line);
+      if (!a)
+        a = this.regex.mobAttackingPlayer.exec(line);
+      if (a?.groups) {
         // TODO: maybe we should come up with a better name here?
         this.currentFight = this.currentZone;
-        this.onStartFight(line, this.currentFight, m.groups);
+        this.onStartFight(line, this.currentFight, a.groups);
         return;
       }
     }
 
     for (const regex of this.sealRegexes) {
-      m = line.match(regex);
-      if (m) {
+      const s = regex.exec(line);
+      if (s) {
         this.haveSeenSeals = true;
-        this.currentSeal = m.groups.seal;
-        this.onSeal(line, this.currentSeal, m.groups);
+        this.currentSeal = true;
+        this.onSeal(line, this.currentSeal, s.groups);
 
         this.currentFight = this.currentZone;
-        this.onStartFight(line, this.currentFight, m.groups);
+        this.onStartFight(line, this.currentFight, s.groups);
         return;
       }
     }
 
     for (const regex of this.unsealRegexes) {
-      m = line.match(regex);
-      if (m) {
-        this.onUnseal(line, this.currentSeal, m.groups);
-        this.currentSeal = null;
+      const u = regex.exec(line);
+      if (u) {
+        this.onUnseal(line, this.currentSeal, u.groups);
+        this.currentSeal = false;
 
         if (this.currentFight) {
-          this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Unseal' });
+          this.onEndFight(line, this.currentFight, { ...u.groups, endType: 'Unseal' });
           this.currentFight = null;
         }
         return;
@@ -200,8 +211,13 @@ export class EncounterFinder {
   // All starts and ends of the same type are ordered and do not nest.
   // Fights and seal start/end may interleave with each other.
   // TODO: probably this should follow an "event bus" model instead of requiring derived classes.
-  onStartZone(line: string, matches): void {
-
+  onStartZone(line: string, name: string, matches: RegExpMatchArray): void {
+    this.lastZone = {
+      name: name,
+      startLine: line,
+      zoneId: matches.id,
+      startTime: this.dateFromMatches(matches),
+    };
   }
   onEndZone(line, name, matches) {}
   onStartFight(line, name, matches) {}
@@ -210,6 +226,10 @@ export class EncounterFinder {
     this.currentSeal = true;
   }
   onUnseal(line, name, matches) {}
+
+  dateFromMatches(matches: RegExpMatchArray): Date {
+    return new Date(Date.parse(matches.timestamp));
+  }
 }
 
 export class EncounterCollector extends EncounterFinder {
@@ -226,19 +246,6 @@ export class EncounterCollector extends EncounterFinder {
     this.lastZone = null;
     this.lastFight = null;
     this.lastSeal = null;
-  }
-
-  dateFromMatches(matches) {
-    return new Date(Date.parse(matches.timestamp));
-  }
-
-  onStartZone(line, name, matches) {
-    this.lastZone = {
-      name: name,
-      startLine: line,
-      zoneId: matches.id,
-      startTime: this.dateFromMatches(matches),
-    };
   }
 
   onEndZone(line, name, matches) {
