@@ -468,6 +468,69 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       response: Responses.aoe(),
     },
+    // Deploy Armaments
+    //
+    // This is really two skills, one of which does a middle line AOE from
+    // Meng-Zi or Xun-Zi, the other which does two side line AOEs with the
+    // middle being safe.
+    //
+    // There are several skill IDs involved:
+    // 5C00: indicate start of a middle line attack. Always appears with one
+    //       5C02 cast
+    // 5C03: indicate start of a two side lines attack. Always appears with
+    //       2x 5C05 casts
+    // 5C01: indicates a single line attack comboing with the other boss.
+    //       Always appears simultaneously with the other bosses abilities
+    //       and a 6078 cast.
+    //
+    // When both Meng-Zi and Xun-Zi use deploy armaments simultaneously, the
+    // identifiers are different.
+    //
+    // 5C04: indicates a two side lines attack comboing with the other boss
+    //       Always appears simultaneously with the other bosses abilities
+    //       and 2x 6079 casts.
+    //
+    // TODO: Handle the overlap when both cast simultaneously or nearly
+    // simultaneously.
+    {
+      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Middle',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01'] }),
+      durationSeconds: 5,
+      alertText: (data, matches, output) => {
+        if (matches.heading === '1.570772')
+          return output.ew!();
+        else if (matches.heading === '-4.792213E-05')
+          return output.ns!();
+
+        return output.text!();
+      },
+      outputStrings: {
+        ew: {
+          en: 'Go E/W Sides',
+        },
+        ns: {
+          en: 'Go N/S Sides',
+        },
+        text: {
+          en: 'Go Sides',
+        },
+      },
+    },
+    {
+      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Sides',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['5C03', '5C04'] }),
+      durationSeconds: 5,
+      alertText: (data, matches, output) => {
+        return output.text!();
+      },
+      outputStrings: {
+        text: {
+          en: 'Go Middle',
+        },
+      },
+    },
     {
       id: 'Paradigm False Idol Screaming Score',
       type: 'StartsUsing',
