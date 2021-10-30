@@ -1,81 +1,19 @@
-// TODO: Fix import/order
-/* eslint-disable import/order */
-import { isLang, Lang } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleText } from '../types/trigger';
-import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
-import { UnreachableCode } from './not_reached';
 
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
-// Used by downstream eval
-import _Conditions from './conditions';
-const Conditions = _Conditions;
-import _ContentType from './content_type';
-const ContentType = _ContentType;
-import _NetRegexes from './netregexes';
-const NetRegexes = _NetRegexes;
-import _Regexes from './regexes';
-const Regexes = _Regexes;
-import { Responses as _Responses } from './responses';
-const Responses = _Responses;
-import _Outputs from './outputs';
-const Outputs = _Outputs;
-import {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-  clearWatchCombatants,
-  getAllRoles,
-  isCasterDpsJob,
-  isCombatJob,
-  isCraftingJob,
-  isDpsJob,
-  isGatheringJob,
-  isHealerJob,
-  isMeleeDpsJob,
-  isRangedDpsJob,
-  isTankJob,
-  jobEnumToJob,
-  jobToJobEnum,
-  jobToRole,
-  watchCombatant,
-} from './util';
-const Util = {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-  clearWatchCombatants,
-  getAllRoles,
-  isCasterDpsJob,
-  isCombatJob,
-  isCraftingJob,
-  isDpsJob,
-  isGatheringJob,
-  isHealerJob,
-  isMeleeDpsJob,
-  isRangedDpsJob,
-  isTankJob,
-  jobEnumToJob,
-  jobToJobEnum,
-  jobToRole,
-  watchCombatant,
-} as const;
-import _ZoneId from './zone_id';
-const ZoneId = _ZoneId;
-import _ZoneInfo from './zone_info';
-const ZoneInfo = _ZoneInfo;
+import Conditions from './conditions';
+import ContentType from './content_type';
+import { isLang, Lang } from './languages';
+import NetRegexes from './netregexes';
+import { UnreachableCode } from './not_reached';
+import Outputs from './outputs';
+import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
+import Regexes from './regexes';
+import { Responses } from './responses';
+import Util from './util';
+import ZoneId from './zone_id';
+import ZoneInfo from './zone_info';
 
 // Convince TypeScript and eslint that these are used.  TypeScript doesn't have a great way
 // to disable individual rules, so this is safer than disabling all rules.

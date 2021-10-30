@@ -2,7 +2,7 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-import { jobToJobEnum } from '../../../../../resources/util';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -424,7 +424,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         data.myClone ??= [];
         const clonesJob = parseInt(matches.job, 16);
-        if (clonesJob === jobToJobEnum(data.job))
+        if (clonesJob === Util.jobToJobEnum(data.job))
           data.myClone.push(matches.id.toUpperCase());
       },
     },
