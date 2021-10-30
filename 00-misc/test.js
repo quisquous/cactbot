@@ -268,7 +268,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
             promise: (data) => {
                 let _a;
-                return watchCombatant({
+                return Util.watchCombatant({
                     names: [
                         data.me,
                         (_a = strikingDummyNames[data.lang]) !== null && _a !== void 0 ? _a : strikingDummyNames['en'],

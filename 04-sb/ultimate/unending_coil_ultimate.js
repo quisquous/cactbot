@@ -399,7 +399,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: '26A[AE]', source: '트윈타니아' }),
             condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
             preRun: (data) => data.monitoringHP = true,
-            promise: (data, matches) => watchCombatant({
+            promise: (data, matches) => Util.watchCombatant({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 return ret.combatants.some((c) => {

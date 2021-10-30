@@ -398,7 +398,7 @@ Options.Triggers.push({
                 let _a;
                 (_a = data.myClone) !== null && _a !== void 0 ? _a : (data.myClone = []);
                 const clonesJob = parseInt(matches.job, 16);
-                if (clonesJob === jobToJobEnum(data.job))
+                if (clonesJob === Util.jobToJobEnum(data.job))
                     data.myClone.push(matches.id.toUpperCase());
             },
         },

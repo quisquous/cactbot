@@ -20,7 +20,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '트윈타니아' }),
             condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
             preRun: (data) => data.monitoringHP = true,
-            promise: (data, matches) => watchCombatant({
+            promise: (data, matches) => Util.watchCombatant({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 const twintaniaBelowGivenHP = ret.combatants.some((c) => {

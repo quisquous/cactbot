@@ -14,7 +14,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ id: '797', source: '라플레시아' }),
             condition: (data) => !data.beganMonitoringHp,
             preRun: (data) => data.beganMonitoringHp = true,
-            promise: (_data, matches) => watchCombatant({
+            promise: (_data, matches) => Util.watchCombatant({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 return ret.combatants.some((c) => {
