@@ -272,7 +272,7 @@ export class DeathReport {
     const text = Translate(this.lang, {
       en: `Missed ${buffName} (${sourceName})`,
       ja: `${buffName}をミスした (${sourceName}から)`,
-      cn: `错过 ${buffName} (${sourceName})`,
+      cn: `没吃到 ${buffName} (来自${sourceName})`,
     });
     return {
       timestamp: event.timestamp,
