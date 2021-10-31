@@ -2,7 +2,7 @@ import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import { EventResponses } from '../../types/event';
-import { OopsyDeathReason, OopsyMistakeType } from '../../types/oopsy';
+import { OopsyDeathReason, OopsyMistake, OopsyMistakeType } from '../../types/oopsy';
 
 import {
   MissableAbility,
@@ -182,7 +182,15 @@ export type TrackedDeathReasonEvent = {
   text: string;
 };
 
-export type TrackedEvent = TrackedLineEvent | TrackedDeathReasonEvent;
+export type TrackedMistakeEvent = {
+  timestamp: number;
+  type: 'Mistake';
+  targetId: string;
+  mistakeEvent: OopsyMistake;
+};
+
+export type TrackedEvent = TrackedLineEvent | TrackedDeathReasonEvent | TrackedMistakeEvent;
+export type TrackedEventType = TrackedEvent['type'];
 
 // Tracks various state about the party (party, pets, buffs).
 // TODO: EffectTracker isn't a great name here, sorry.
@@ -290,6 +298,7 @@ export class EffectTracker {
   // will get re-sent on every reload.
   OnChangedPlayer(line: string, splitLine: string[]): void {
     this.myPlayerId = splitLine[logDefinitions.ChangedPlayer.fields.id];
+    this.OnPartyChanged();
   }
 
   IsInParty(id?: string): boolean {
@@ -412,6 +421,21 @@ export class EffectTracker {
       type: 'DeathReason',
       targetId: targetId,
       text: text,
+    });
+  }
+
+  OnMistakeObj(timestamp: number, mistake: OopsyMistake): void {
+    this.collector.OnMistakeObj(mistake);
+
+    const targetId = mistake.reportId;
+    if (!targetId || !IsPlayerId(targetId))
+      return;
+
+    this.trackedEvents.push({
+      timestamp: timestamp,
+      type: 'Mistake',
+      targetId: targetId,
+      mistakeEvent: mistake,
     });
   }
 
@@ -540,9 +564,10 @@ export class EffectTracker {
 
       // As a TrackedLineEvent has been pushed for each person missed already,
       // explicitly don't add a `reportId` field on these mistakes.
-      this.collector.OnMistakeObj({
+      this.OnMistakeObj(timestamp, {
         type: type,
         blame: sourceName,
+        triggerType: 'Buff',
         text: {
           en: `${collected.buffName} missed ${nameList}`,
           de: `${collected.buffName} verfehlt ${nameList}`,
@@ -557,9 +582,10 @@ export class EffectTracker {
 
     // If there's too many people, just list the number of people missed.
     // TODO: we could also list everybody on separate lines?
-    this.collector.OnMistakeObj({
+    this.OnMistakeObj(timestamp, {
       type: type,
       blame: sourceName,
+      triggerType: 'Buff',
       text: {
         en: `${collected.buffName} missed ${missedNames.length} people`,
         de: `${collected.buffName} verfehlte ${missedNames.length} Personen`,

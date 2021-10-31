@@ -2,7 +2,12 @@ import { Lang } from '../../resources/languages';
 import logDefinitions from '../../resources/netlog_defs';
 import { OopsyMistake } from '../../types/oopsy';
 
-import { TrackedEvent, TrackedLineEvent, TrackedLineEventType } from './effect_tracker';
+import {
+  TrackedEvent,
+  TrackedEventType,
+  TrackedLineEvent,
+  TrackedMistakeEvent,
+} from './effect_tracker';
 import {
   kAttackFlags,
   kHealFlags,
@@ -48,7 +53,7 @@ const processAbilityLine = (splitLine: string[]) => {
 export type ParsedDeathReportLine = {
   timestamp: number;
   timestampStr: string;
-  type: TrackedLineEventType;
+  type: TrackedEventType;
   currentHp?: number;
   amount?: number;
   amountStr?: string;
@@ -149,6 +154,8 @@ export class DeathReport {
         parsed = this.processHoTDoT(event);
       else if (event.type === 'MissedAbility' || event.type === 'MissedEffect')
         parsed = this.processMissedBuff(event);
+      else if (event.type === 'Mistake')
+        parsed = this.processMistake(event);
 
       if (!parsed)
         continue;
@@ -334,6 +341,26 @@ export class DeathReport {
       type: event.type,
       icon: 'heal',
       text: Translate(this.lang, text),
+    };
+  }
+
+  private processMistake(event: TrackedMistakeEvent): ParsedDeathReportLine | undefined {
+    const mistake = event.mistakeEvent;
+    const triggerType = mistake.triggerType;
+
+    // Buffs are handled separately, and Damage types are annotated directly on the lines
+    // where there is damage, rather than having a separate line.
+    // TODO: consider handling solo/share events the same way rather than adding a separate line?
+    if (triggerType === undefined || triggerType === 'Buff' || triggerType === 'Damage')
+      return;
+
+    const text = Translate(this.lang, mistake.text);
+    return {
+      timestamp: event.timestamp,
+      timestampStr: this.makeRelativeTimeString(event.timestamp),
+      type: event.type,
+      icon: mistake.type,
+      text: text,
     };
   }
 }
