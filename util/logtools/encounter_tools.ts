@@ -1,6 +1,8 @@
 import ContentType from '../../resources/content_type';
 import NetRegexes from '../../resources/netregexes';
+import { UnreachableCode } from '../../resources/not_reached';
 import { default as ZoneInfo } from '../../resources/zone_info';
+import { NetMatches, NetAnyMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { LocaleText } from '../../types/trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
@@ -159,7 +161,7 @@ export class EncounterFinder {
       return;
     }
 
-    if (this.skipZone())
+    if (this.skipZone() || !this.currentZone.name)
       return;
 
     const cW = this.regex.cactbotWipe.exec(line);
@@ -220,15 +222,15 @@ export class EncounterFinder {
   // All starts and ends of the same type are ordered and do not nest.
   // Fights and seal start/end may interleave with each other.
   // TODO: probably this should follow an "event bus" model instead of requiring derived classes.
-  onStartZone(line: string, name: string, matches: RegExpMatchArray): void {
+  onStartZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
     this.currentZone = {
       name: name,
       startLine: line,
-      zoneId: matches.id,
+      zoneId: parseInt(matches.id),
       startTime: this.dateFromMatches(matches),
     };
   }
-  onStartFight(line: string, name: string, matches: RegExpMatchArray): void {
+  onStartFight(line: string, name: string, matches: NetAnyMatches): void {
     this.currentFight = {
       name: name,
       startLine: line,
@@ -236,7 +238,11 @@ export class EncounterFinder {
     };
   }
 
-  dateFromMatches(matches: RegExpMatchArray): Date {
+  dateFromMatches(matches: NetAnyMatches): Date {
+    // No current match definitions are missing a timestamp,
+    // but in the event any are added without in future, we will be ready!
+    if (!matches.timestamp)
+      throw new UnreachableCode();
     return new Date(Date.parse(matches.timestamp));
   }
 }
@@ -257,24 +263,24 @@ export class EncounterCollector extends EncounterFinder {
     this.lastSeal = null;
   }
 
-  override onStartZone(line: string, name: string, matches: RegExpMatchArray): void {
+  override onStartZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
     this.lastZone = {
       name: name,
       startLine: line,
-      zoneId: matches.id,
+      zoneId: parseInt(matches.id),
       startTime: this.dateFromMatches(matches),
     };
   }
 
-  onEndZone(line: string, matches: RegExpMatchArray): void {
+  onEndZone(line: string, matches: NetMatches['ChangeZone']): void {
     this.lastZone.endLine = line;
     this.lastZone.endTime = this.dateFromMatches(matches);
     this.zones.push(this.lastZone);
     this.lastZone = {};
   }
 
-  override onStartFight(line: string, name: string, matches: RegExpMatchArray): void {
-    const id = this.lastZone ? this.lastZone.zoneId : 0;
+  override onStartFight(line: string, name: string, matches: NetMatches['Ability' | 'GameLog']): void {
+    const id = this.lastZone.zoneId || 0;
     this.lastFight = {
       name: name,
       startLine: line,
@@ -284,7 +290,7 @@ export class EncounterCollector extends EncounterFinder {
     this.lastSeal = null;
   }
 
-  onEndFight(line: string, matches: RegExpMatchArray): void {
+  onEndFight(line: string, matches: NetAnyMatches): void {
     this.lastFight.endLine = line;
     this.lastFight.endTime = this.dateFromMatches(matches);
     this.lastFight.endType = matches.endType;
@@ -293,14 +299,14 @@ export class EncounterCollector extends EncounterFinder {
     this.lastFight = {};
   }
 
-  onSeal(line: string, name: string, matches: RegExpMatchArray): void {
+  onSeal(line: string, name: string, matches: NetMatches['GameLog']): void {
     this.onStartFight(line, name, matches);
     this.lastSeal = name;
     if (this.lastFight)
       this.lastFight.sealName = this.lastSeal;
   }
 
-  onUnseal(line: string, matches: RegExpMatchArray): void {
+  onUnseal(line: string, matches: NetMatches['GameLog']): void {
     this.onEndFight(line, matches);
     this.lastSeal = null;
   }
