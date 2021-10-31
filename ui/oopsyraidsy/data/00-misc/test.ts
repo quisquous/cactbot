@@ -80,7 +80,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         data.bootCount ??= 0;
         data.bootCount++;
         const text = `${matches.ability} (${data.bootCount}): ${data.DamageFromMatches(matches)}`;
-        return { type: 'warn', blame: data.me, text: text };
+        return { type: 'warn', blame: data.me, reportId: matches.sourceId, text: text };
       },
     },
     {
@@ -89,7 +89,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '745' }),
       condition: (data, matches) => matches.source === data.me,
       mistake: (data, matches) => {
-        return { type: 'good', blame: data.me, text: matches.effect };
+        return { type: 'good', blame: data.me, reportId: matches.sourceId, text: matches.effect };
       },
     },
     {

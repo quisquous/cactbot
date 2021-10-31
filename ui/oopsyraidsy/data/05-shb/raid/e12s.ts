@@ -91,7 +91,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -223,6 +223,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           type: 'fail',
           name: matches.target,
           blame: owner,
+          reportId: matches.targetId,
           text: text,
         };
       },
@@ -250,6 +251,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (from ${pillarOwner})`,
             de: `${matches.ability} (von ${pillarOwner})`,
@@ -342,6 +344,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             type: 'fail',
             blame: owner,
             name: matches.target,
+            reportId: matches.targetId,
             text: {
               en: `${matches.ability} (from ${ownerNick}, ${dirObj['en']})`,
               de: `${matches.ability} (von ${ownerNick}, ${dirObj['de']})`,
@@ -427,6 +430,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
+          reportId: matches.targetId,
           text: `${matches.ability} (${labels.join(', ')})`,
         };
       },
@@ -460,7 +464,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, text: matches.ability };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

@@ -94,6 +94,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (with vuln)`,
             de: `${matches.ability} (mit Verwundbarkeit)`,

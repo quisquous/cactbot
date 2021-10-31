@@ -374,7 +374,12 @@ export class DamageTracker {
         type: 'Ability',
         netRegex: NetRegexes.abilityFull({ id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
-          return { type: type, blame: matches.target, text: matches.ability };
+          return {
+            type: type,
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: matches.ability,
+          };
         },
       };
       this.ProcessTrigger(trigger);
@@ -391,7 +396,12 @@ export class DamageTracker {
         type: 'GainsEffect',
         netRegex: NetRegexes.gainsEffect({ effectId: id }),
         mistake: (_data, matches) => {
-          return { type: type, blame: matches.target, text: matches.effect };
+          return {
+            type: type,
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: matches.effect,
+          };
         },
       };
       this.ProcessTrigger(trigger);
@@ -413,6 +423,7 @@ export class DamageTracker {
           return {
             type: type,
             blame: matches.target,
+            reportId: matches.targetId,
             text: {
               en: `${matches.ability} (share)`,
               de: `${matches.ability} (geteilt)`,
@@ -441,6 +452,7 @@ export class DamageTracker {
           return {
             type: type,
             blame: matches.target,
+            reportId: matches.targetId,
             text: {
               en: `${matches.ability} (alone)`,
               de: `${matches.ability} (allein)`,

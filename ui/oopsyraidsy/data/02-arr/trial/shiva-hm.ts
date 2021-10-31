@@ -47,7 +47,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return data.seenDiamondDust;
       },
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, text: matches.effect };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
   ],

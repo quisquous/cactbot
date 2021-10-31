@@ -31,6 +31,7 @@ export type OopsyMistake = {
   name?: string;
   // TODO: docs say blame can be an array but the code does not support that.
   blame?: string;
+  id?: string;
   text: string | LocaleText;
   // TODO: change type so this only exists for type='death'.
   report?: DeathReport;
