@@ -24,7 +24,6 @@ export interface Data extends RaidbossData {
 
 // TODO:
 //   Update Knave knockback directions to instead use cardinals
-//   Hansel and Gretel Bloody Sweep
 //   Hansel and Gretel Stronger Together Tethered
 //   Hansel & Gretel Passing Lance
 //   Hansel & Gretel Breakthrough
@@ -401,6 +400,40 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '5C7[34]', source: ['韩塞尔', '格雷特'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5C7[34]', source: ['헨젤', '그레텔'], capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'Paradigm Hansel/Gretel Bloody Sweep',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      durationSeconds: 5,
+      suppressSeconds: 1,
+      alertText: (_data, matches, output) => {
+        if (matches.id === '5C54' || matches.id === '5C55') {
+          // Hansel is West and Gretel is East
+          if (parseFloat(matches.castTime) > 12) {
+            // Hansel and Gretel will switch places
+            return output.north!();
+          }
+          // Hansel and Gretel stay in same position
+          return output.south!();
+        }
+        // Gretel is West and Hansel is East
+        if (parseFloat(matches.castTime) > 12) {
+          // Hansel and Gretel will switch places
+          return output.south!();
+        }
+        // Hansel and Gretel stay in same position
+        return output.north!();
+      },
+      outputStrings: {
+        north: {
+          en: 'Go North',
+        },
+        south: {
+          en: 'Go South',
+        },
+      },
     },
     {
       id: 'Paradigm Red Girl Cruelty',
