@@ -6,21 +6,20 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// Object representing a "Deploy Armaments" attack.
+interface DeployArmaments {
+  sides: boolean;
+  vertical: boolean;
+  finishedTime: number;
+}
+
 export interface Data extends RaidbossData {
   busterTargets?: string[];
   cloneLunge?: boolean;
   seedTargets?: string[];
   seenSphere?: boolean;
   signalCount?: number;
-  deployArmaments?: number[];
-}
-
-// Enumeration of possible Deploy Armaments attacks
-enum DeployArmaments {
-  VerticalMiddle,
-  VerticalSides,
-  HorizontalMiddle,
-  HorizontalSides,
+  deployArmaments?: DeployArmaments[];
 }
 
 // TODO:
@@ -497,26 +496,26 @@ const triggerSet: TriggerSet<Data> = {
     //       Always appears simultaneously with the other bosses abilities
     //       and 2x 6079 casts.
     //
-    // To handle overlap, we have one trigger which captures all of the
-    // events into an array. Then, a delayed trigger processes all of the
-    // triggers and determines what to message players.
+    // Because these attacks overlap, we use one trigger to collect the
+    // active attacks, and a second trigger to display a message. Finally, a
+    // third trigger cleans up finished attacks after the ability is cast.
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
       run: (data, matches) => {
         data.deployArmaments ??= [];
-        if (matches.id === '5C00' || matches.id === '5C01') {
-          if (matches.heading === '1.570772')
-            data.deployArmaments.push(DeployArmaments.VerticalMiddle);
-          else if (matches.heading === '-4.792213E-05')
-            data.deployArmaments.push(DeployArmaments.HorizontalMiddle);
-        } else if (matches.id === '5C03' || matches.id === '5C04') {
-          if (matches.heading === '1.570772')
-            data.deployArmaments.push(DeployArmaments.VerticalSides);
-          else if (matches.heading === '-4.792213E-05')
-            data.deployArmaments.push(DeployArmaments.HorizontalSides);
-        }
+
+        // Convert the heading into 0=N, 1=E, 2=S, 3=W
+        const direction = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
+
+        const obj: DeployArmaments = {
+          sides: matches.id === '5C03' || matches.id === '5C04',
+          finishedTime: Date.parse(matches.timestamp) + parseFloat(matches.castTime) * 1000,
+          vertical: direction === 0 || direction === 2,
+        };
+
+        data.deployArmaments.push(obj);
       },
     },
     {
@@ -525,94 +524,90 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'], capture: false }),
       delaySeconds: 0.25,
       durationSeconds: 5,
-      suppressSeconds: 0.5,
+      suppressSeconds: 1,
       alertText: (data, _matches, output) => {
-        if (!data.deployArmaments)
+        const active = data.deployArmaments;
+
+        if (!active)
           return;
 
-        // define some expected results
-        const verticalMiddle = (1 << 1 | 1 << 4 | 1 << 7);
-        const verticalSides = (1 << 0 | 1 << 2 |
-          1 << 3 | 1 << 5 |
-          1 << 6 | 1 << 8);
-        const horizontalMiddle = (1 << 3 | 1 << 4 | 1 << 5);
-        const horizontalSides = (1 << 0 | 1 << 1 | 1 << 2 |
-          1 << 6 | 1 << 7 | 1 << 8);
-        const nsMiddle = (1 << 1 | 1 << 7);
-        const ewMiddle = (1 << 3 | 1 << 5);
-        const corners = (1 << 0 | 1 << 2 | 1 << 6 | 1 << 8);
-        const center = (1 << 4);
-
-        // Start with all spots marked as safe...
-        let safeSpots = (1 << 0 | 1 << 1 | 1 << 2 |
-          1 << 3 | 1 << 4 | 1 << 5 |
-          1 << 6 | 1 << 7 | 1 << 8);
-
-        // Then figure out which spots are unsafe due to pending AOEs...
-
-        if (data.deployArmaments.includes(DeployArmaments.VerticalMiddle)) {
-          // Clear the vertical middle column
-          safeSpots &= ~verticalMiddle;
-        }
-
-        if (data.deployArmaments.includes(DeployArmaments.VerticalSides)) {
-          // Clear the vertical side columns
-          safeSpots &= ~verticalSides;
-        }
-
-        if (data.deployArmaments.includes(DeployArmaments.HorizontalMiddle)) {
-          // Clear the horizontal middle row
-          safeSpots &= ~horizontalMiddle;
-        }
-
-        if (data.deployArmaments.includes(DeployArmaments.HorizontalSides)) {
-          // Clear the horizontal side rows
-          safeSpots &= ~horizontalSides;
-        }
-
-        // Finally, determine where to alert
         if (
-          safeSpots === verticalMiddle ||
-          safeSpots === horizontalMiddle ||
-          safeSpots === center
-        )
+          active.some((e) => e.vertical && !e.sides) &&
+          active.some((e) => !e.vertical && !e.sides)
+        ) {
+          // Two middle-line AOEs, so go to the corner
+          return output.corner!();
+        } else if (
+          active.some((e) => e.vertical && e.sides) &&
+          active.some((e) => !e.vertical && e.sides)
+        ) {
+          // Two side-line AOEs, so go to the center
           return output.center!();
-        else if (safeSpots === verticalSides)
-          return output.ewSides!();
-        else if (safeSpots === horizontalSides)
-          return output.nsSides!();
-        else if (safeSpots === nsMiddle)
-          return output.nsMiddle!();
-        else if (safeSpots === ewMiddle)
-          return output.ewMiddle!();
-        else if (safeSpots === corners)
-          return output.corners!();
-
+        } else if (
+          active.some((e) => e.vertical && !e.sides) &&
+          active.some((e) => !e.vertical && e.sides)
+        ) {
+          // vertical middle-line and horizontal side-lines
+          return output.westBoss!();
+        } else if (
+          active.some((e) => e.vertical && e.sides) &&
+          active.some((e) => !e.vertical && !e.sides)
+        ) {
+          // vertical side-lines and horizontal middle-line
+          return output.northBoss!();
+        } else if (active.some((e) => e.vertical && e.sides)) {
+          // vertical side-lines
+          return output.center!();
+        } else if (active.some((e) => e.vertical && !e.sides)) {
+          // vertical middle-line
+          return output.west!();
+        } else if (active.some((e) => !e.vertical && e.sides)) {
+          // horizontal side-lines
+          return output.center!();
+        } else if (active.some((e) => !e.vertical && !e.sides)) {
+          // horizontal middle-line
+          return output.north!();
+        }
+        // other combinations shouldn't be possible
         return output.oops!();
       },
-      run: (data) => delete data.deployArmaments,
       outputStrings: {
         center: {
-          en: 'Go Center',
+          en: 'Go to Center',
         },
-        ewSides: {
-          en: 'Go E/W Sides',
+        northBoss: {
+          en: 'Go to North Boss',
         },
-        nsSides: {
-          en: 'Go N/S Sides',
+        north: {
+          en: 'Go North',
         },
-        ewMiddle: {
-          en: 'Go E/W Middle',
+        westBoss: {
+          en: 'Go to West Boss',
         },
-        nsMiddle: {
-          en: 'Go N/S Middle',
+        west: {
+          en: 'Go West',
         },
-        corners: {
-          en: 'Go Corners',
+        corner: {
+          en: 'Go to Corner',
         },
         oops: {
           en: 'Avoid line AOEs',
         },
+      },
+    },
+    {
+      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Cleanup',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['5C00', '5C01', '5C03', '5C04'] }),
+      run: (data, matches) => {
+        if (!data.deployArmaments)
+          return;
+
+        // Get time of current cast
+        const now = Date.parse(matches.timestamp);
+
+        // Filter out any attacks that have completed
+        data.deployArmaments = data.deployArmaments.filter((e) => e.finishedTime > now);
       },
     },
     {
