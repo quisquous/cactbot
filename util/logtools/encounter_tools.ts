@@ -9,22 +9,22 @@ import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacemen
 // This can happen on partial logs.
 
 type ZoneEncInfo = {
-  name?: string | null;
-  zoneId?: number | null;
-  startLine?: string | null;
-  endLine?: string | null;
-  startTime?: Date | null;
-  endTime?: Date | null;
+  name?: string;
+  zoneId?: number;
+  startLine?: string;
+  endLine?: string;
+  startTime?: Date;
+  endTime?: Date;
 };
 
 type FightEncInfo = {
-  name?: string | null;
-  zoneId?: number | null;
-  startLine?: string | null;
-  endLine?: string | null;
-  startTime?: Date | null;
-  endTime?: Date | null;
-  endType?: string | null;
+  name?: string;
+  zoneId?: number;
+  startLine?: string;
+  endLine?: string;
+  startTime?: Date;
+  endTime?: Date;
+  endType?: string;
   sealName?: string;
 };
 
@@ -59,40 +59,14 @@ export class EncounterFinder {
   unsealRegexes: Array<CactbotBaseRegExp<'GameLog'>>;
 
   initializeZone(): void {
-    this.currentZone = {
-      name: null,
-      zoneId: null,
-      startLine: null,
-      endLine: null,
-      startTime: null,
-      endTime: null,
-    };
+    this.currentZone = {};
   }
   initializeFight(): void {
-    this.currentFight = {
-      name: null,
-      startLine: null,
-      endLine: null,
-      startTime: null,
-      endTime: null,
-    };
+    this.currentFight = {};
   }
   constructor() {
-    this.currentZone = {
-      name: null,
-      zoneId: null,
-      startLine: null,
-      endLine: null,
-      startTime: null,
-      endTime: null,
-    };
-    this.currentFight = {
-      name: null,
-      startLine: null,
-      endLine: null,
-      startTime: null,
-      endTime: null,
-    };
+    this.currentZone = {};
+    this.currentFight = {};
     this.currentSeal = null;
     // May be null for some zones.
     this.zoneInfo = null;
@@ -133,10 +107,10 @@ export class EncounterFinder {
   }
 
   skipZone(): boolean {
-    if (this?.currentZone?.zoneId === null || this.zoneInfo === null)
+    if (!this?.currentZone?.zoneId || this.zoneInfo === null)
       return false;
     const info = this.zoneInfo;
-    if ((info?.contentType) === null)
+    if (!(info?.contentType))
       return false;
     const content = info?.contentType;
     if (!content)
@@ -167,9 +141,9 @@ export class EncounterFinder {
 
       // If we changed zones, we have definitely stopped fighting.
       // Therefore we can safely initialize everything.
-      if (this.currentFight !== null)
+      if (this.currentFight.startTime)
         this.initializeFight();
-      if (this.currentZone !== null)
+      if (this.currentZone.startTime)
         this.initializeZone();
 
       this.haveWon = false;
@@ -190,33 +164,32 @@ export class EncounterFinder {
 
     const cW = this.regex.cactbotWipe.exec(line);
     if (cW?.groups) {
-      if (this.currentFight !== null)
+      if (this.currentFight.startTime)
         this.initializeFight();
       return;
     }
 
     const wipe = this.regex.wipe.exec(line);
     if (wipe?.groups) {
-      if (this.currentFight !== null)
+      if (this.currentFight.startTime)
         this.initializeFight();
       return;
     }
 
     const win = this.regex.win.exec(line);
     if (win?.groups) {
-      if (this.currentFight !== null) {
+      if (this.currentFight.startTime) {
         this.haveWon = true;
         this.initializeFight();
       }
       return;
     }
 
-    if (this.currentFight === null && !this.haveWon && !this.haveSeenSeals) {
+    if (!(this.currentFight.startTime || this.haveWon || this.haveSeenSeals)) {
       let a = this.regex.playerAttackingMob.exec(line);
       if (!a)
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
-        // TODO: maybe we should come up with a better name here?
         this.onStartFight(line, this.currentZone.name, a.groups);
         return;
       }
@@ -327,8 +300,8 @@ export class EncounterCollector extends EncounterFinder {
       this.lastFight.sealName = this.lastSeal;
   }
 
-  onUnseal(line: string, name: string, matches: RegExpMatchArray): void {
-    this.onEndFight(line, name, matches);
+  onUnseal(line: string, matches: RegExpMatchArray): void {
+    this.onEndFight(line, matches);
     this.lastSeal = null;
   }
 }
