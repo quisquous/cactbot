@@ -1,6 +1,6 @@
 import ContentType from '../../resources/content_type';
 import NetRegexes from '../../resources/netregexes';
-import { data as ZoneInfo } from '../../resources/zone_info';
+import { default as ZoneInfo } from '../../resources/zone_info';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { LocaleText } from '../../types/trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
