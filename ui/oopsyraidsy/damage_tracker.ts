@@ -149,17 +149,18 @@ export class DamageTracker {
     this.timers = [];
   }
 
+  private UpdateLastTimestamp(splitLine: string[]): number {
+    const timeField = splitLine[logDefinitions.None.fields.timestamp];
+    if (timeField)
+      this.lastTimestamp = new Date(timeField).getTime();
+    return this.lastTimestamp;
+  }
+
   OnNetLog(e: EventResponses['LogLine']): void {
     if (this.ignoreZone)
       return;
 
     const line = e.rawLine;
-    for (const trigger of this.triggers) {
-      const matches = trigger.localRegex.exec(line);
-      if (matches)
-        this.OnTrigger(trigger, matches);
-    }
-
     const splitLine = e.line;
     const type = splitLine[logDefinitions.None.fields.type];
 
@@ -168,10 +169,8 @@ export class DamageTracker {
     if (type !== logDefinitions.GameLog.type) {
       let timestampCallback = this.timestampCallbacks[0];
       while (timestampCallback) {
-        const timeField = splitLine[logDefinitions.None.fields.timestamp];
-        if (!timeField)
-          break;
-        this.lastTimestamp = new Date(timeField).getTime();
+        // Don't update timestamp on every single network log line, only when there are callbacks.
+        this.UpdateLastTimestamp(splitLine);
         if (this.lastTimestamp < timestampCallback.timestamp)
           break;
 
@@ -179,6 +178,12 @@ export class DamageTracker {
         this.timestampCallbacks.shift();
         timestampCallback = this.timestampCallbacks[0];
       }
+    }
+
+    for (const trigger of this.triggers) {
+      const matches = trigger.localRegex.exec(line);
+      if (matches)
+        this.OnTrigger(trigger, matches, this.UpdateLastTimestamp(splitLine));
     }
 
     switch (type) {
@@ -258,7 +263,7 @@ export class DamageTracker {
     this.effectTracker.OnDeathReason(this.lastTimestamp, obj);
   }
 
-  OnTrigger(trigger: LooseOopsyTrigger, execMatches: RegExpExecArray): void {
+  OnTrigger(trigger: LooseOopsyTrigger, execMatches: RegExpExecArray, timestamp: number): void {
     const triggerTime = Date.now();
 
     // TODO: turn this into a helper?? this was copied/pasted from popup-text.js
@@ -303,7 +308,10 @@ export class DamageTracker {
         return;
     }
 
-    const delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, matches) : 0;
+    const delayField = 'delaySeconds' in trigger
+      ? ValueOrFunction(trigger.delaySeconds, matches)
+      : 0;
+    const delaySeconds = !delayField || typeof delayField !== 'number' ? 0 : delayField;
 
     const suppress = 'suppressSeconds' in trigger
       ? ValueOrFunction(trigger.suppressSeconds, matches)
@@ -315,11 +323,12 @@ export class DamageTracker {
       if ('mistake' in trigger) {
         const m = ValueOrFunction(trigger.mistake, matches);
         if (typeof m === 'object') {
+          const mistakeTimestamp = timestamp + delaySeconds * 1000;
           if (Array.isArray(m)) {
-            for (let i = 0; i < m.length; ++i)
-              this.collector.OnMistakeObj(m[i]);
+            for (const mistake of m)
+              this.effectTracker.OnMistakeObj(mistakeTimestamp, mistake);
           } else if (isOopsyMistake(m)) {
-            this.collector.OnMistakeObj(m);
+            this.effectTracker.OnMistakeObj(mistakeTimestamp, m);
           }
         }
       }
@@ -334,10 +343,10 @@ export class DamageTracker {
         ValueOrFunction(trigger.run, matches);
     });
 
-    if (!delay || typeof delay !== 'number')
+    if (delaySeconds <= 0)
       f();
     else
-      this.timers.push(window.setTimeout(f, delay * 1000));
+      this.timers.push(window.setTimeout(f, delaySeconds * 1000));
   }
 
   OnPartyWipeEvent(): void {
@@ -364,7 +373,7 @@ export class DamageTracker {
     this.data.inCombat = this.inCombat;
   }
 
-  private AddSimpleTriggers(type: OopsyMistakeType, dict?: MistakeMap): void {
+  private AddDamageTriggers(type: OopsyMistakeType, dict?: MistakeMap): void {
     if (!dict)
       return;
     for (const key in dict) {
@@ -378,6 +387,7 @@ export class DamageTracker {
             type: type,
             blame: matches.target,
             reportId: matches.targetId,
+            triggerType: 'Damage',
             text: matches.ability,
           };
         },
@@ -400,6 +410,7 @@ export class DamageTracker {
             type: type,
             blame: matches.target,
             reportId: matches.targetId,
+            triggerType: 'GainsEffect',
             text: matches.effect,
           };
         },
@@ -424,6 +435,7 @@ export class DamageTracker {
             type: type,
             blame: matches.target,
             reportId: matches.targetId,
+            triggerType: 'Share',
             text: {
               en: `${matches.ability} (share)`,
               de: `${matches.ability} (geteilt)`,
@@ -453,6 +465,7 @@ export class DamageTracker {
             type: type,
             blame: matches.target,
             reportId: matches.targetId,
+            triggerType: 'Solo',
             text: {
               en: `${matches.ability} (alone)`,
               de: `${matches.ability} (allein)`,
@@ -530,8 +543,8 @@ export class DamageTracker {
           console.log('Loading user triggers for zone');
       }
 
-      this.AddSimpleTriggers('warn', set.damageWarn);
-      this.AddSimpleTriggers('fail', set.damageFail);
+      this.AddDamageTriggers('warn', set.damageWarn);
+      this.AddDamageTriggers('fail', set.damageFail);
       this.AddGainsEffectTriggers('warn', set.gainsEffectWarn);
       this.AddGainsEffectTriggers('fail', set.gainsEffectFail);
       this.AddShareTriggers('warn', set.shareWarn);
