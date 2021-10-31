@@ -34,6 +34,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
+          reportId: matches.targetId,
           text: matches.effect,
         };
       },
@@ -47,6 +48,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
+          reportId: matches.targetId,
           text: matches.effect,
         };
       },

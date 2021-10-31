@@ -86,6 +86,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (wrong color)`,
             de: `${matches.ability} (falsche Farbe)`,
@@ -104,6 +105,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (wrong color)`,
             de: `${matches.ability} (falsche Farbe)`,

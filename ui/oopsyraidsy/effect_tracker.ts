@@ -538,6 +538,8 @@ export class EffectTracker {
         return ShortNamify(name, this.options.PlayerNicks);
       }).join(', ');
 
+      // As a TrackedLineEvent has been pushed for each person missed already,
+      // explicitly don't add a `reportId` field on these mistakes.
       this.collector.OnMistakeObj({
         type: type,
         blame: sourceName,
