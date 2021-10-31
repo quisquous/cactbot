@@ -150,6 +150,8 @@ export class DamageTracker {
   }
 
   private UpdateLastTimestamp(splitLine: string[]): number {
+    if (splitLine[logDefinitions.None.fields.type] === logDefinitions.GameLog.type)
+      return this.lastTimestamp;
     const timeField = splitLine[logDefinitions.None.fields.timestamp];
     if (timeField)
       this.lastTimestamp = new Date(timeField).getTime();
@@ -178,12 +180,6 @@ export class DamageTracker {
         this.timestampCallbacks.shift();
         timestampCallback = this.timestampCallbacks[0];
       }
-    }
-
-    for (const trigger of this.triggers) {
-      const matches = trigger.localRegex.exec(line);
-      if (matches)
-        this.OnTrigger(trigger, matches, this.UpdateLastTimestamp(splitLine));
     }
 
     switch (type) {
@@ -221,6 +217,14 @@ export class DamageTracker {
           this.effectTracker.OnWipe(line, splitLine);
         break;
     }
+
+    // Process triggers after abilities, so that death reasons for abilities that do damage get
+    // listed after the damage from that ability.
+    for (const trigger of this.triggers) {
+      const matches = trigger.localRegex.exec(line);
+      if (matches)
+        this.OnTrigger(trigger, matches, this.UpdateLastTimestamp(splitLine));
+    }
   }
 
   private OnAbilityEvent(line: string, splitLine: string[]): void {
@@ -255,12 +259,6 @@ export class DamageTracker {
 
     this.collector.AddDamage(matches);
     this.effectTracker.SetBaseTime(splitLine);
-  }
-
-  AddImpliedDeathReason(obj?: OopsyDeathReason): void {
-    if (!obj)
-      return;
-    this.effectTracker.OnDeathReason(this.lastTimestamp, obj);
   }
 
   OnTrigger(trigger: LooseOopsyTrigger, execMatches: RegExpExecArray, timestamp: number): void {
@@ -336,7 +334,7 @@ export class DamageTracker {
         const ret = ValueOrFunction(trigger.deathReason, matches);
         if (ret && typeof ret === 'object' && !Array.isArray(ret)) {
           if (!isOopsyMistake(ret))
-            this.AddImpliedDeathReason(ret);
+            this.effectTracker.OnDeathReason(timestamp, ret);
         }
       }
       if ('run' in trigger)
