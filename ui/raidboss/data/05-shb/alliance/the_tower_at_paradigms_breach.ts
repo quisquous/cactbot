@@ -497,8 +497,8 @@ const triggerSet: TriggerSet<Data> = {
     //       and 2x 6079 casts.
     //
     // Because these attacks overlap, we use one trigger to collect the
-    // active attacks, and a second trigger to display a message. Finally, a
-    // third trigger cleans up finished attacks after the ability is cast.
+    // active attacks, and a second trigger to display an alert on where to
+    // go for safety.
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Collect',
       type: 'StartsUsing',
@@ -521,15 +521,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Trigger',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'], capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
       delaySeconds: 0.25,
       durationSeconds: 5,
       suppressSeconds: 1,
-      alertText: (data, _matches, output) => {
-        const active = data.deployArmaments;
-
-        if (!active)
+      alertText: (data, matches, output) => {
+        if (!data.deployArmaments)
           return;
+
+        // Get time of current cast
+        const now = Date.parse(matches.timestamp);
+
+        // filter and remove any active attacks that have finished
+        const active = data.deployArmaments.filter((e) => e.finishedTime > now);
+        data.deployArmaments = active;
 
         if (
           active.some((e) => e.vertical && !e.sides) &&
@@ -568,7 +573,7 @@ const triggerSet: TriggerSet<Data> = {
           // horizontal middle-line
           return output.north!();
         }
-        // other combinations shouldn't be possible
+        // other combinations are unexpected
         return output.oops!();
       },
       outputStrings: {
@@ -593,21 +598,6 @@ const triggerSet: TriggerSet<Data> = {
         oops: {
           en: 'Avoid line AOEs',
         },
-      },
-    },
-    {
-      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Cleanup',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['5C00', '5C01', '5C03', '5C04'] }),
-      run: (data, matches) => {
-        if (!data.deployArmaments)
-          return;
-
-        // Get time of current cast
-        const now = Date.parse(matches.timestamp);
-
-        // Filter out any attacks that have completed
-        data.deployArmaments = data.deployArmaments.filter((e) => e.finishedTime > now);
       },
     },
     {
