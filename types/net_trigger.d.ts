@@ -2,7 +2,7 @@ import { NetFields } from './net_fields';
 import { NetMatches } from './net_matches';
 
 export interface CactbotRegExpExecArray<T extends TriggerTypes> extends RegExpExecArray {
-  groups?: NetMatches[T];
+  groups?: T extends 'None' ? never : NetMatches[T];
 }
 
 export interface CactbotBaseRegExp<T extends TriggerTypes> extends RegExp {
