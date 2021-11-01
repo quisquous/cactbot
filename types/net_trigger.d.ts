@@ -1,12 +1,12 @@
 import { NetFields } from './net_fields';
 import { NetMatches } from './net_matches';
 
-export class CactbotRegExpExecArray<T extends TriggerTypes> extends RegExpExecArray {
+export type CactbotRegExpExecArray<T extends TriggerTypes> = RegExpExecArray & {
   groups?: NetMatches[T];
-}
+};
 
-export class CactbotBaseRegExp<T extends TriggerTypes> extends RegExp {
-  exec(string: string): CactbotRegExpExecArray<T> | null;
-}
+export type CactbotBaseRegExp<T extends TriggerTypes> = RegExp & {
+  exec: (string: string) => CactbotRegExpExecArray<T> | null;
+};
 
 export type TriggerTypes = keyof NetFields;

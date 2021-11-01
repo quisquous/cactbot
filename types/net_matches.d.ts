@@ -1,7 +1,7 @@
 import { NetFields } from './net_fields';
 import { TriggerTypes } from './net_trigger';
 
-export type Matches = { [s in T]?: string };
+export type Matches = { [s: string]: string };
 export type ToMatches<Fields> = Record<keyof Fields, string>;
 
 export type NetMatches = {
