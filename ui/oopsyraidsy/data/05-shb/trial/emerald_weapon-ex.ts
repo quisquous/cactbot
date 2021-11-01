@@ -25,6 +25,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'EmeraldEx Shots Fired': '55B7', // rank and file soldiers
     'EmeraldEx Secundus Terminus Est': '55CB', // dropped + and x headmarkers
     'EmeraldEx Expire': '55D1', // ground aoe on boss "get out"
+    'EmeraldEx Photon Ring': '55A9', // untelegraphed "get out"
     'EmeraldEx Aire Tam Storm': '55D0', // expanding red and black ground aoe
   },
   shareWarn: {
