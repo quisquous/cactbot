@@ -411,7 +411,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, matches, output) => {
         if (matches.id === '5C54' || matches.id === '5C55') {
           // Hansel is West and Gretel is East
-          if (parseFloat(matches.castTime) > 12) {
+          if (parseFloat(matches.castTime) > 10) {
             // Hansel and Gretel will switch places
             return output.north!();
           }
@@ -419,7 +419,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.south!();
         }
         // Gretel is West and Hansel is East
-        if (parseFloat(matches.castTime) > 12) {
+        if (parseFloat(matches.castTime) > 10) {
           // Hansel and Gretel will switch places
           return output.south!();
         }
