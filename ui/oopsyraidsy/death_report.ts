@@ -170,17 +170,18 @@ export class DeathReport {
         parsed.currentHp = currentHp;
       }
 
+      // Note: parsed.amount < 0 is damage, parsed.amount > 0 is heals.
       if (currentHp !== undefined && parsed.amount !== undefined) {
         // If this attack killed somebody (or this is overkill), set an icon unless there's
         // already a mistake icon set.  Don't do this for belated heals because it looks weird.
-        if (currentHp <= 0 || currentHp <= parsed.amount && parsed.amount > 0)
+        if (parsed.amount < 0 && currentHp + parsed.amount <= 0)
           parsed.icon ??= 'death';
+
+        // TODO: maybe use max hp here to clamp this?
+        currentHp += parsed.amount;
       }
 
       this.parsedReportLines.push(parsed);
-
-      if (currentHp !== undefined && parsed.amount !== undefined)
-        currentHp -= parsed.amount;
     }
 
     return this.parsedReportLines;
@@ -226,14 +227,18 @@ export class DeathReport {
     const splitLine = event.splitLine;
     const ability = processAbilityLine(splitLine);
 
+    let amount;
+
     let amountClass: string | undefined;
     let amountStr: string | undefined;
     if (ability.isHeal) {
       amountClass = 'heal';
       amountStr = ability.amount > 0 ? `+${ability.amount.toString()}` : ability.amount.toString();
+      amount = ability.amount;
     } else if (ability.isAttack) {
       amountClass = 'damage';
       amountStr = ability.amount > 0 ? `-${ability.amount.toString()}` : ability.amount.toString();
+      amount = -1 * ability.amount;
     }
 
     // Ignore abilities that are not damage or heals.  Any important abilities should generate an
@@ -249,7 +254,7 @@ export class DeathReport {
       timestampStr: this.makeRelativeTimeString(event.timestamp),
       type: event.type,
       currentHp: currentHp,
-      amount: ability.amount,
+      amount: amount,
       amountStr: amountStr,
       amountClass: amountClass,
       icon: event.mistake,
@@ -262,7 +267,7 @@ export class DeathReport {
     const isHeal = which === 'HoT';
 
     // Note: this amount is just raw bytes, and not the UnscrambleDamage version.
-    const amount = parseInt(event.splitLine[logDefinitions.NetworkDoT.fields.damage] ?? '', 16);
+    let amount = parseInt(event.splitLine[logDefinitions.NetworkDoT.fields.damage] ?? '', 16);
     if (amount <= 0)
       return;
 
@@ -274,6 +279,7 @@ export class DeathReport {
     } else {
       amountClass = 'damage';
       amountStr = amount > 0 ? `-${amount.toString()}` : amount.toString();
+      amount *= -1;
     }
 
     const currentHpStr = event.splitLine[logDefinitions.NetworkDoT.fields.currentHp];
