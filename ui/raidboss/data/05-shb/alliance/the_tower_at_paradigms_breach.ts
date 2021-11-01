@@ -427,12 +427,8 @@ const triggerSet: TriggerSet<Data> = {
         return output.north!();
       },
       outputStrings: {
-        north: {
-          en: 'Go North',
-        },
-        south: {
-          en: 'Go South',
-        },
+        north: Outputs.north,
+        south: Outputs.south,
       },
     },
     {
