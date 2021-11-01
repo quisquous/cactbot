@@ -36,7 +36,6 @@ export interface RaidbossData {
   CanCleanse: () => boolean;
   CanFeint: () => boolean;
   CanAddle: () => boolean;
-  StopCombat: () => void;
 }
 
 export interface OopsyData {
