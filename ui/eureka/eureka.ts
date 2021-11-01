@@ -222,7 +222,7 @@ class EurekaTracker {
   private CEQueue: EventResponses['onCEEvent'][] = [];
 
   private playerElement?: HTMLElement;
-  private fairyRegex?: ReturnType<typeof NetRegexes.addedCombatantFull>;
+  private fairyRegex?: CactbotBaseRegExp<'AddedCombatant'>;
   private currentTracker = '';
 
   // Convenience members from current this.zoneInfo.
