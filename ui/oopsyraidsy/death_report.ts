@@ -227,6 +227,10 @@ export class DeathReport {
     const splitLine = event.splitLine;
     const ability = processAbilityLine(splitLine);
 
+    // Zero damage abilities can be noisy and don't contribute much information, so skip.
+    if (ability.amount === 0)
+      return;
+
     let amount;
 
     let amountClass: string | undefined;
