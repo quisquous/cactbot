@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Regexes from '../resources/regexes';
 import NetRegexes from '../resources/netregexes';
-import { TimelineParser } from '../ui/raidboss/timeline';
+import { TimelineParser } from '../ui/raidboss/timeline_parser';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement';
 
 // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.

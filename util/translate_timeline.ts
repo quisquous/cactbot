@@ -4,7 +4,7 @@ import path from 'path';
 import { Lang } from '../resources/languages';
 import { LooseTriggerSet } from '../types/trigger';
 import Options from '../ui/raidboss/raidboss_options';
-import { Event, Sync, Timeline } from '../ui/raidboss/timeline';
+import { Event, Sync, TimelineParser } from '../ui/raidboss/timeline_parser';
 
 import { walkDirSync } from './file_utils';
 import { findMissing } from './find_missing_timeline_translations';
@@ -58,7 +58,7 @@ export default async (timelinePath: string, locale: Lang): Promise<void> => {
 
   // Use Timeline to figure out what the replacements will look like in game.
   const options = { ...Options, ParserLanguage: locale, TimelineLanguage: locale };
-  const timeline = new Timeline(timelineText, replacements, [], [], options);
+  const timeline = new TimelineParser(timelineText, replacements, [], [], options);
   const lineToText: { [lineNumber: number]: Event } = {};
   const lineToSync: { [lineNumber: number]: Sync } = {};
   for (const event of timeline.events) {

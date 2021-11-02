@@ -1,6 +1,6 @@
 import { Lang, NonEnLang } from '../resources/languages';
 import { NetAnyMatches, NetMatches } from '../types/net_matches';
-import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
+import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline_parser';
 
 import { RaidbossData } from './data';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';

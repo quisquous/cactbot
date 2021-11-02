@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
-import { TimelineParser } from '../../ui/raidboss/timeline';
+import { TimelineParser } from '../../ui/raidboss/timeline_parser';
 import {
   commonReplacement,
   partialCommonReplacementKeys,
