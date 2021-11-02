@@ -408,6 +408,15 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, matches, output) => {
+        // Hansel and Gretel each have unique abilities which indicate which
+        // side of the arena they're hitting. 5C54 and 5C55 indicate that
+        // Hansel is West and Gretel is East. Hansel is left handed, and
+        // Gretel is right handed. This allows us to identify the safe area
+        // as north or south based on ID. However, the two may swap places
+        // using Transference. If this is going to happen, the cast time of
+        // the ability will be extended from 7.7 seconds to 12.7 seconds.
+        // Use an average of 10 to decide which ability we're seeing in case
+        // values are slightly adjusted in the future.
         if (matches.id === '5C54' || matches.id === '5C55') {
           // Hansel is West and Gretel is East
           if (parseFloat(matches.castTime) > 10) {
