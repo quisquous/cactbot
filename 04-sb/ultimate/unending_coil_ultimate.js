@@ -1103,18 +1103,10 @@ Options.Triggers.push({
                 const result = findDragonMarks(data.naelDragons);
                 if (!result)
                     return;
-                const langMap = {
-                    en: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
-                    de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
-                    fr: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],
-                    ja: ['北', '北東', '東', '南東', '南', '南西', '西', '北西'],
-                    cn: ['北', '东北', '东', '东南', '南', '西南', '西', '西北'],
-                    ko: ['북', '북동', '동', '남동', '남', '남서', '서', '북서'],
-                };
-                const dirNames = langMap[data.displayLang] || langMap['en'];
+                const dirNames = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
                 data.naelMarks = result.marks.map((i) => {
                     let _a;
-                    return (_a = dirNames[i]) !== null && _a !== void 0 ? _a : '???';
+                    return (_a = dirNames[i]) !== null && _a !== void 0 ? _a : 'unknown';
                 });
                 data.wideThirdDive = result.wideThirdDive;
                 data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1147,12 +1139,12 @@ Options.Triggers.push({
             condition: (data) => data.naelMarks && !data.calledNaelDragons,
             durationSeconds: 10,
             infoText: (data, _matches, output) => {
-                let _a; let _b; let _c;
+                let _a; let _b; let _c; let _d; let _e; let _f;
                 data.calledNaelDragons = true;
                 const params = {
-                    dive1: (_a = data.naelMarks) === null || _a === void 0 ? void 0 : _a[0],
-                    dive2: (_b = data.naelMarks) === null || _b === void 0 ? void 0 : _b[1],
-                    dive3: (_c = data.naelMarks) === null || _c === void 0 ? void 0 : _c[2],
+                    dive1: output[(_b = (_a = data.naelMarks) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : 'unknown'](),
+                    dive2: output[(_d = (_c = data.naelMarks) === null || _c === void 0 ? void 0 : _c[1]) !== null && _d !== void 0 ? _d : 'unknown'](),
+                    dive3: output[(_f = (_e = data.naelMarks) === null || _e === void 0 ? void 0 : _e[2]) !== null && _f !== void 0 ? _f : 'unknown'](),
                 };
                 if (data.wideThirdDive)
                     return output.marksWide(params);
@@ -1175,6 +1167,15 @@ Options.Triggers.push({
                     cn: '标记: ${dive1}, ${dive2}, ${dive3} (大)',
                     ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
                 },
+                dirN: Outputs.dirN,
+                dirNE: Outputs.dirNE,
+                dirE: Outputs.dirE,
+                dirSE: Outputs.dirSE,
+                dirS: Outputs.dirS,
+                dirSW: Outputs.dirSW,
+                dirW: Outputs.dirW,
+                dirNW: Outputs.dirNW,
+                unknown: Outputs.unknown,
             },
         },
         {
