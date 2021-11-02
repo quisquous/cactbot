@@ -1,6 +1,5 @@
 // TODO:
 //   Update Knave knockback directions to instead use cardinals
-//   Hansel and Gretel Bloody Sweep
 //   Hansel and Gretel Stronger Together Tethered
 //   Hansel & Gretel Passing Lance
 //   Hansel & Gretel Breakthrough
@@ -374,6 +373,44 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '5C7[34]', source: ['韩塞尔', '格雷特'], capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5C7[34]', source: ['헨젤', '그레텔'], capture: false }),
             response: Responses.aoe(),
+        },
+        {
+            id: 'Paradigm Hansel/Gretel Bloody Sweep',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+            durationSeconds: 5,
+            suppressSeconds: 1,
+            alertText: (_data, matches, output) => {
+                // Hansel and Gretel each have unique abilities which indicate which
+                // side of the arena they're hitting. 5C54 and 5C55 indicate that
+                // Hansel is West and Gretel is East. Hansel is left handed, and
+                // Gretel is right handed. This allows us to identify the safe area
+                // as north or south based on ID. However, the two may swap places
+                // using Transference. If this is going to happen, the cast time of
+                // the ability will be extended from 7.7 seconds to 12.7 seconds.
+                // Use an average of 10 to decide which ability we're seeing in case
+                // values are slightly adjusted in the future.
+                if (matches.id === '5C54' || matches.id === '5C55') {
+                    // Hansel is West and Gretel is East
+                    if (parseFloat(matches.castTime) > 10) {
+                        // Hansel and Gretel will switch places
+                        return output.north();
+                    }
+                    // Hansel and Gretel stay in same position
+                    return output.south();
+                }
+                // Gretel is West and Hansel is East
+                if (parseFloat(matches.castTime) > 10) {
+                    // Hansel and Gretel will switch places
+                    return output.south();
+                }
+                // Hansel and Gretel stay in same position
+                return output.north();
+            },
+            outputStrings: {
+                north: Outputs.north,
+                south: Outputs.south,
+            },
         },
         {
             id: 'Paradigm Red Girl Cruelty',
