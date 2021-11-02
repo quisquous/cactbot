@@ -148,31 +148,17 @@ const computeBackgroundColorFrom = (element: HTMLElement, classList: string): st
 
 // This class reads the format of ACT Timeline plugin, described in
 // docs/TimelineGuide.md
-export class Timeline {
+export class TimelineParser {
   private options: RaidbossOptions;
   private perTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
-  private activeText: string;
   private replacements: TimelineReplacement[];
 
-  private ignores: { [ignoreId: string]: boolean };
+  public ignores: { [ignoreId: string]: boolean };
   public events: Event[];
-  private texts: Text[];
+  public texts: Text[];
   public syncStarts: Sync[];
-  private syncEnds: Sync[];
-  private activeSyncs: Sync[];
-  private activeEvents: Event[];
+  public syncEnds: Sync[];
   public errors: Error[];
-
-  public timebase = 0;
-
-  private nextEvent = 0;
-  private nextText = 0;
-  private nextSyncStart = 0;
-  private nextSyncEnd = 0;
-
-  private updateTimer = 0;
-
-  public ui?: TimelineUI;
 
   constructor(
     text: string,
@@ -185,9 +171,6 @@ export class Timeline {
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
 
-    const lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
-    this.activeText = lang in activeText ? activeText[lang] : activeText['en'];
-
     // A set of names which will not be notified about.
     this.ignores = {};
     // Sorted by event occurrence time.
@@ -198,80 +181,13 @@ export class Timeline {
     this.syncStarts = [];
     // Sorted by sync.end time.
     this.syncEnds = [];
-    // Not sorted.
-    this.activeSyncs = [];
-    // Sorted by event occurrence time.
-    this.activeEvents = [];
     // Sorted by line.
     this.errors = [];
-    this.LoadFile(text, triggers, styles);
-    this.Stop();
+
+    this.parse(text, triggers, styles);
   }
 
-  private GetReplacedHelper(
-    text: string,
-    replaceKey: 'replaceSync' | 'replaceText',
-    replaceLang: Lang,
-    isGlobal: boolean,
-  ): string {
-    if (!this.replacements)
-      return text;
-
-    for (const r of this.replacements) {
-      if (r.locale && r.locale !== replaceLang)
-        continue;
-      const reps = r[replaceKey];
-      if (!reps)
-        continue;
-      for (const [key, value] of Object.entries(reps))
-        text = text.replace(Regexes.parse(key), value);
-    }
-    // Common Replacements
-    const replacement = commonReplacement[replaceKey];
-    if (!replacement)
-      return text;
-    for (const [key, value] of Object.entries(replacement)) {
-      const repl = value[replaceLang];
-      if (!repl)
-        continue;
-      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
-      text = text.replace(regex, repl);
-    }
-    return text;
-  }
-
-  private GetReplacedText(text: string): string {
-    if (!this.replacements)
-      return text;
-
-    const replaceLang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
-    const isGlobal = false;
-    return this.GetReplacedHelper(text, 'replaceText', replaceLang, isGlobal);
-  }
-
-  private GetReplacedSync(sync: string): string {
-    if (!this.replacements)
-      return sync;
-
-    const replaceLang = this.options.ParserLanguage || 'en';
-    const isGlobal = true;
-    return this.GetReplacedHelper(sync, 'replaceSync', replaceLang, isGlobal);
-  }
-
-  public GetMissingTranslationsToIgnore(): RegExp[] {
-    return [
-      '--Reset--',
-      '--sync--',
-      'Start',
-      '^ ?21:',
-      '^(\\(\\?\\<timestamp\\>\\^\\.\\{14\\}\\)) (1B|21|23):',
-      '^(\\^\\.\\{14\\})? ?(1B|21|23):',
-      '^::\\y{AbilityCode}:$',
-      '^\\.\\*$',
-    ].map((x) => Regexes.parse(x));
-  }
-
-  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
+  private parse(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
@@ -530,6 +446,139 @@ export class Timeline {
     this.syncEnds.sort((a, b) => {
       return a.end - b.end;
     });
+  }
+
+  private GetReplacedHelper(
+    text: string,
+    replaceKey: 'replaceSync' | 'replaceText',
+    replaceLang: Lang,
+    isGlobal: boolean,
+  ): string {
+    if (!this.replacements)
+      return text;
+
+    for (const r of this.replacements) {
+      if (r.locale && r.locale !== replaceLang)
+        continue;
+      const reps = r[replaceKey];
+      if (!reps)
+        continue;
+      for (const [key, value] of Object.entries(reps))
+        text = text.replace(Regexes.parse(key), value);
+    }
+    // Common Replacements
+    const replacement = commonReplacement[replaceKey];
+    if (!replacement)
+      return text;
+    for (const [key, value] of Object.entries(replacement)) {
+      const repl = value[replaceLang];
+      if (!repl)
+        continue;
+      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+      text = text.replace(regex, repl);
+    }
+    return text;
+  }
+
+  private GetReplacedText(text: string): string {
+    if (!this.replacements)
+      return text;
+
+    const replaceLang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
+    const isGlobal = false;
+    return this.GetReplacedHelper(text, 'replaceText', replaceLang, isGlobal);
+  }
+
+  private GetReplacedSync(sync: string): string {
+    if (!this.replacements)
+      return sync;
+
+    const replaceLang = this.options.ParserLanguage || 'en';
+    const isGlobal = true;
+    return this.GetReplacedHelper(sync, 'replaceSync', replaceLang, isGlobal);
+  }
+
+  public GetMissingTranslationsToIgnore(): RegExp[] {
+    return [
+      '--Reset--',
+      '--sync--',
+      'Start',
+      '^ ?21:',
+      '^(\\(\\?\\<timestamp\\>\\^\\.\\{14\\}\\)) (1B|21|23):',
+      '^(\\^\\.\\{14\\})? ?(1B|21|23):',
+      '^::\\y{AbilityCode}:$',
+      '^\\.\\*$',
+    ].map((x) => Regexes.parse(x));
+  }
+}
+
+export class Timeline {
+  private options: RaidbossOptions;
+  private activeText: string;
+  private replacements: TimelineReplacement[];
+
+  private ignores: { [ignoreId: string]: boolean };
+  public events: Event[];
+  private texts: Text[];
+  public syncStarts: Sync[];
+  private syncEnds: Sync[];
+  private activeSyncs: Sync[];
+  private activeEvents: Event[];
+  public errors: Error[];
+
+  public timebase = 0;
+
+  private nextEvent = 0;
+  private nextText = 0;
+  private nextSyncStart = 0;
+  private nextSyncEnd = 0;
+
+  private updateTimer = 0;
+
+  public ui?: TimelineUI;
+
+  constructor(
+    text: string,
+    replacements: TimelineReplacement[],
+    triggers: LooseTimelineTrigger[],
+    styles: TimelineStyle[],
+    options: RaidbossOptions,
+  ) {
+    this.options = options || {};
+    this.replacements = replacements;
+
+    const lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
+    this.activeText = lang in activeText ? activeText[lang] : activeText['en'];
+
+    // A set of names which will not be notified about.
+    this.ignores = {};
+    // Sorted by event occurrence time.
+    this.events = [];
+    // Sorted by event occurrence time.
+    this.texts = [];
+    // Sorted by sync.start time.
+    this.syncStarts = [];
+    // Sorted by sync.end time.
+    this.syncEnds = [];
+    // Not sorted.
+    this.activeSyncs = [];
+    // Sorted by event occurrence time.
+    this.activeEvents = [];
+    // Sorted by line.
+    this.errors = [];
+    this.LoadFile(text, triggers, styles);
+    this.Stop();
+  }
+
+  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
+    const timeline = new TimelineParser(text, this.replacements, triggers, styles, this.options);
+
+    this.events = timeline.events;
+    this.syncStarts = timeline.syncStarts;
+    this.syncEnds = timeline.syncEnds;
+    this.texts = timeline.texts;
+    this.ignores = timeline.ignores;
+    this.errors = timeline.errors;
   }
 
   public Stop(): void {
