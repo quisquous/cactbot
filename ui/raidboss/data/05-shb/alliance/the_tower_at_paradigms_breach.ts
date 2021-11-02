@@ -405,7 +405,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Paradigm Hansel/Gretel Bloody Sweep',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       durationSeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, matches, output) => {
