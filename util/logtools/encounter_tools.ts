@@ -86,7 +86,7 @@ export class EncounterFinder {
   }
 
   skipZone(): boolean {
-    if (!this?.currentZone?.zoneId || !this.zoneInfo)
+    if (!this.currentZone.zoneId || !this.zoneInfo)
       return false;
     const info = this.zoneInfo;
     if (!(info?.contentType))
@@ -112,7 +112,7 @@ export class EncounterFinder {
   process(line: string): void {
     const cZ = this.regex.changeZone.exec(line);
     if (cZ?.groups) {
-      if (this?.currentZone?.name === cZ.groups.name) {
+      if (this.currentZone.name === cZ.groups.name) {
         // Zoning into the same zone, possibly a d/c situation.
         // Don't stop anything?
         return;
