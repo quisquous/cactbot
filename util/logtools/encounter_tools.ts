@@ -1,7 +1,7 @@
 import ContentType from '../../resources/content_type';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
-import { default as ZoneInfo } from '../../resources/zone_info';
+import ZoneInfo from '../../resources/zone_info';
 import { NetMatches, NetAnyMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
