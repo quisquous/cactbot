@@ -4,7 +4,6 @@ import { UnreachableCode } from '../../resources/not_reached';
 import { default as ZoneInfo } from '../../resources/zone_info';
 import { NetMatches, NetAnyMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
-import { LocaleText } from '../../types/trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
 
 // TODO: add some error checking that a zone has been found before a fight.
@@ -33,16 +32,8 @@ type FightEncInfo = {
 export class EncounterFinder {
   currentZone: ZoneEncInfo;
   currentFight: FightEncInfo;
-  currentSeal: string | null;
-  zoneInfo: {
-    readonly exVersion: number;
-    readonly contentType?: number;
-    readonly name: LocaleText;
-    readonly offsetX: number;
-    readonly offsetY: number;
-    readonly sizeFactor: number;
-    readonly weatherRate: number;
-  } | null;
+  currentSeal?: string;
+  zoneInfo?: typeof ZoneInfo[number];
 
   haveWon: boolean;
   haveSeenSeals: boolean;
@@ -69,9 +60,8 @@ export class EncounterFinder {
   constructor() {
     this.currentZone = {};
     this.currentFight = {};
-    this.currentSeal = null;
-    // May be null for some zones.
-    this.zoneInfo = null;
+    this.currentSeal;
+    this.zoneInfo;
 
     this.haveWon = false;
     this.haveSeenSeals = false;
@@ -109,7 +99,7 @@ export class EncounterFinder {
   }
 
   skipZone(): boolean {
-    if (!this?.currentZone?.zoneId || this.zoneInfo === null)
+    if (!this?.currentZone?.zoneId || !this.zoneInfo)
       return false;
     const info = this.zoneInfo;
     if (!(info?.contentType))
@@ -150,7 +140,7 @@ export class EncounterFinder {
 
       this.haveWon = false;
       this.haveSeenSeals = false;
-      this.zoneInfo = ZoneInfo[parseInt(cZ.groups.id, 16)] || null;
+      this.zoneInfo = ZoneInfo[parseInt(cZ.groups.id, 16)];
       if (this.skipZone()) {
         this.initializeZone();
         return;
@@ -210,7 +200,7 @@ export class EncounterFinder {
     for (const regex of this.unsealRegexes) {
       const u = regex.exec(line);
       if (u) {
-        this.currentSeal = null;
+        this.currentSeal = undefined;
         if (this.currentFight)
           this.initializeFight();
         return;
@@ -252,7 +242,7 @@ export class EncounterCollector extends EncounterFinder {
   fights: Array<FightEncInfo>;
   lastZone: ZoneEncInfo;
   lastFight: FightEncInfo;
-  lastSeal: string | null;
+  lastSeal?: string;
   constructor() {
     super();
     this.zones = [];
@@ -260,7 +250,7 @@ export class EncounterCollector extends EncounterFinder {
 
     this.lastZone = {};
     this.lastFight = {};
-    this.lastSeal = null;
+    this.lastSeal;
   }
 
   override onStartZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
@@ -287,7 +277,7 @@ export class EncounterCollector extends EncounterFinder {
       startTime: this.dateFromMatches(matches),
       zoneId: id,
     };
-    this.lastSeal = null;
+    this.lastSeal = undefined;
   }
 
   onEndFight(line: string, matches: NetAnyMatches): void {
@@ -308,6 +298,6 @@ export class EncounterCollector extends EncounterFinder {
 
   onUnseal(line: string, matches: NetMatches['GameLog']): void {
     this.onEndFight(line, matches);
-    this.lastSeal = null;
+    this.lastSeal = undefined;
   }
 }
