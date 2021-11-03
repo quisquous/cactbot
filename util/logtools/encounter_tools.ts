@@ -89,6 +89,8 @@ export class EncounterFinder {
   }
 
   skipZone(): boolean {
+    // We don't want combat from the overworld or from solo instanced duties.
+  // However, if we can't find zone info, we explicitly don't skip it.
     if (!this.currentZone.zoneId || !this.zoneInfo)
       return false;
     const content = this.zoneInfo.contentType;
@@ -136,9 +138,12 @@ export class EncounterFinder {
       return;
     }
 
+    // If no zone change is found, we next verify that we are inside a combat zone.
     if (this.skipZone() || !this.currentZone.name)
       return;
 
+    // We are in a combat zone, so we next check for victory/defeat.
+    // If either is found, end the current encounter.
     const cW = this.regex.cactbotWipe.exec(line);
     if (cW) {
       if (this.currentFight.startTime)
@@ -162,6 +167,8 @@ export class EncounterFinder {
       return;
     }
 
+    // Most dungeons and some older raid content have zone zeals that indicate encounters.
+    // If they don't, we need to start encounters by looking for combat.
     if (!(this.currentFight.startTime || this.haveWon || this.haveSeenSeals)) {
       let a = this.regex.playerAttackingMob.exec(line);
       if (!a)
@@ -172,6 +179,7 @@ export class EncounterFinder {
       }
     }
 
+    // Once we see a seal, we know that we will be falling through to here throughout the zone.
     for (const regex of this.sealRegexes) {
       const s = regex.exec(line)?.groups;
       if (s) {
