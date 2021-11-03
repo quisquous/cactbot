@@ -18,7 +18,6 @@
       "node"
     ],
     "moduleResolution": "node",
-    "skipLibCheck": true,
     "esModuleInterop": true,
     "rootDir": "./"
   }
