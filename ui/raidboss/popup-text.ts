@@ -515,7 +515,7 @@ export class PopupText {
 
   ProcessDataFiles(files: RaidbossFileData): void {
     this.triggerSets = [];
-    for (const [filename, json] of Object.entries<LooseTriggerSet>(files)) {
+    for (const [filename, json] of Object.entries(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 

@@ -291,7 +291,7 @@ export type SavedConfig = {
 
 type PlayerChangedJobDetails<T> = {
   job: T;
-  jobDetail: JobDetail[T];
+  jobDetail: T extends keyof JobDetail ? JobDetail[T] : never;
 } | {
   job: Job;
   jobDetail: null;
