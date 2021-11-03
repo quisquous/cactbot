@@ -88,10 +88,9 @@ export class EncounterFinder {
   skipZone(): boolean {
     if (!this.currentZone.zoneId || !this.zoneInfo)
       return false;
-    const info = this.zoneInfo;
-    if (!(info?.contentType))
+    if (!(this.zoneInfo.contentType))
       return false;
-    const content = info?.contentType;
+    const content = this.zoneInfo.contentType;
     if (!content)
       return false;
 
@@ -110,9 +109,9 @@ export class EncounterFinder {
   }
 
   process(line: string): void {
-    const cZ = this.regex.changeZone.exec(line);
-    if (cZ?.groups) {
-      if (this.currentZone.name === cZ.groups.name) {
+    const cZ = this.regex.changeZone.exec(line)?.groups;
+    if (cZ) {
+      if (this.currentZone.name === cZ.name) {
         // Zoning into the same zone, possibly a d/c situation.
         // Don't stop anything?
         return;
@@ -127,14 +126,14 @@ export class EncounterFinder {
 
       this.haveWon = false;
       this.haveSeenSeals = false;
-      this.zoneInfo = ZoneInfo[parseInt(cZ.groups.id, 16)];
+      this.zoneInfo = ZoneInfo[parseInt(cZ.id, 16)];
       if (this.skipZone()) {
         this.initializeZone();
         return;
       }
 
-      this.currentZone.name = cZ.groups.name;
-      this.onStartZone(line, this.currentZone.name, cZ.groups);
+      this.currentZone.name = cZ.name;
+      this.onStartZone(line, this.currentZone.name, cZ);
       return;
     }
 
@@ -142,21 +141,21 @@ export class EncounterFinder {
       return;
 
     const cW = this.regex.cactbotWipe.exec(line);
-    if (cW?.groups) {
+    if (cW) {
       if (this.currentFight.startTime)
         this.initializeFight();
       return;
     }
 
     const wipe = this.regex.wipe.exec(line);
-    if (wipe?.groups) {
+    if (wipe) {
       if (this.currentFight.startTime)
         this.initializeFight();
       return;
     }
 
     const win = this.regex.win.exec(line);
-    if (win?.groups) {
+    if (win) {
       if (this.currentFight.startTime) {
         this.haveWon = true;
         this.initializeFight();
@@ -175,11 +174,11 @@ export class EncounterFinder {
     }
 
     for (const regex of this.sealRegexes) {
-      const s = regex.exec(line);
-      if (s?.groups?.name) {
+      const s = regex.exec(line)?.groups;
+      if (s) {
         this.haveSeenSeals = true;
-        this.currentSeal = s.groups?.name;
-        this.onStartFight(line, this.currentSeal, s.groups);
+        this.currentSeal = s.name;
+        this.onStartFight(line, this.currentSeal, s);
         return;
       }
     }
