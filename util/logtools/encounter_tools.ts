@@ -90,7 +90,7 @@ export class EncounterFinder {
 
   skipZone(): boolean {
     // We don't want combat from the overworld or from solo instanced duties.
-  // However, if we can't find zone info, we explicitly don't skip it.
+    // However, if we can't find zone info, we explicitly don't skip it.
     if (!this.currentZone.zoneId || !this.zoneInfo)
       return false;
     const content = this.zoneInfo.contentType;
