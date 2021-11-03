@@ -53,6 +53,7 @@ export class EncounterFinder {
 
   initializeZone(): void {
     this.currentZone = {};
+    this.zoneInfo = undefined;
   }
   initializeFight(): void {
     this.currentFight = {};
