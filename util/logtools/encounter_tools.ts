@@ -54,6 +54,8 @@ export class EncounterFinder {
   initializeZone(): void {
     this.currentZone = {};
     this.zoneInfo = undefined;
+    this.haveWon = false;
+    this.haveSeenSeals = false;
   }
   initializeFight(): void {
     this.currentFight = {};
@@ -123,8 +125,6 @@ export class EncounterFinder {
       if (this.currentZone.startTime)
         this.initializeZone();
 
-      this.haveWon = false;
-      this.haveSeenSeals = false;
       this.zoneInfo = ZoneInfo[parseInt(cZ.id, 16)];
       if (this.skipZone()) {
         this.initializeZone();
