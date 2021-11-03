@@ -123,7 +123,11 @@ html {
 .death-details.expanded {
   margin-left: 40px;
   display: grid;
-  grid-template-columns: minmax(50px, max-content) minmax(10px, max-content) max-content max-content;
+  grid-template-columns: max-content minmax(50px, max-content) minmax(10px, max-content) max-content max-content;
+}
+
+.death-row-hp {
+  text-align: right;
 }
 
 .death-row-amount {

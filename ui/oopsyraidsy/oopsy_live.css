@@ -170,7 +170,11 @@ div {
 
 .death-details {
   display: grid;
-  grid-template-columns: minmax(50px, max-content) minmax(10px, max-content) auto auto;
+  grid-template-columns: max-content minmax(50px, max-content) minmax(10px, max-content) auto auto;
+}
+
+.death-row-hp {
+  text-align: right;
 }
 
 .death-row-amount {
@@ -196,6 +200,10 @@ div {
 
 .death-row-text {
   text-align: left;
+}
+
+.death-row-time {
+  text-align: right;
 }
 
 @keyframes fadeOut {

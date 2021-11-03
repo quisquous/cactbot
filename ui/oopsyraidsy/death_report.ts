@@ -12,7 +12,6 @@ import {
 } from './oopsy_common';
 
 // TODO: lots of things left to do with death reports
-// * include current hp on each line and then display that somewhere/somehow?
 // * probably include max hp as well?
 // * handle DeathReason (right now it is not shown, other than in the summary line)
 // * include other mistakes (simple / triggers)
@@ -23,7 +22,6 @@ import {
 //   * also need to track effects that are active prior to the set of events passed in
 //   * also need to handle effects lost (and gained?!) after death
 // * consolidate multiple damage that killed (e.g. Solemn Confiteor x4) into summary text
-// * maybe show death icon on damage we believe killed the player?
 // * maybe if a player is fully healed, trim abilities before that?
 
 const processAbilityLine = (splitLine: string[]) => {
@@ -51,7 +49,9 @@ export type ParsedDeathReportLine = {
   timestamp: number;
   timestampStr: string;
   type: TrackedLineEventType;
-  amount?: string;
+  currentHp?: number;
+  amount?: number;
+  amountStr?: string;
   amountClass?: string;
   icon?: string;
   text?: string;
@@ -138,6 +138,9 @@ export class DeathReport {
 
     this.parsedReportLines = [];
 
+    let lastCertainHp: number | undefined = undefined;
+    let currentHp: number | undefined = undefined;
+
     for (const event of this.events) {
       let parsed: ParsedDeathReportLine | undefined = undefined;
       if (event.type === 'Ability')
@@ -147,8 +150,38 @@ export class DeathReport {
       else if (event.type === 'MissedAbility' || event.type === 'MissedEffect')
         parsed = this.processMissedBuff(event);
 
-      if (parsed)
-        this.parsedReportLines.push(parsed);
+      if (!parsed)
+        continue;
+
+      // Touch up the hp so it looks more valid.  There are only hp fields on certain
+      // log lines, and more importantly it is polled from memory.  Therefore, if a
+      // player takes a bunch of attacks simultaneously, the hp will be the same on
+      // every line.  This looks incorrect, so do our best to fix this up.
+      if (currentHp === undefined || lastCertainHp === undefined) {
+        // If we haven't seen any log lines with hp yet, try to set it as an initial guess.
+        currentHp = parsed.currentHp;
+        lastCertainHp = parsed.currentHp;
+      } else if (parsed.currentHp !== lastCertainHp) {
+        // If we see a new hp value, then this is likely valid.
+        currentHp = lastCertainHp = parsed.currentHp;
+      } else {
+        // For log lines that don't have a hitpoints line, fill in our best guess.
+        // Or, we're seeing an identical hp value, so use previously adjusted amount.
+        parsed.currentHp = currentHp;
+      }
+
+      // Note: parsed.amount < 0 is damage, parsed.amount > 0 is heals.
+      if (currentHp !== undefined && parsed.amount !== undefined) {
+        // If this attack killed somebody (or this is overkill), set an icon unless there's
+        // already a mistake icon set.  Don't do this for belated heals because it looks weird.
+        if (parsed.amount < 0 && currentHp + parsed.amount <= 0)
+          parsed.icon ??= 'death';
+
+        // TODO: maybe use max hp here to clamp this?
+        currentHp += parsed.amount;
+      }
+
+      this.parsedReportLines.push(parsed);
     }
 
     return this.parsedReportLines;
@@ -194,19 +227,24 @@ export class DeathReport {
 
   private processAbility(event: TrackedLineEvent): ParsedDeathReportLine | undefined {
     const splitLine = event.splitLine;
+    const ability = processAbilityLine(splitLine);
 
-    const ability = processAbilityLine(event.splitLine);
+    // Zero damage abilities can be noisy and don't contribute much information, so skip.
     if (ability.amount === 0)
       return;
+
+    let amount;
 
     let amountClass: string | undefined;
     let amountStr: string | undefined;
     if (ability.isHeal) {
       amountClass = 'heal';
       amountStr = ability.amount > 0 ? `+${ability.amount.toString()}` : ability.amount.toString();
+      amount = ability.amount;
     } else if (ability.isAttack) {
       amountClass = 'damage';
       amountStr = ability.amount > 0 ? `-${ability.amount.toString()}` : ability.amount.toString();
+      amount = -1 * ability.amount;
     }
 
     // Ignore abilities that are not damage or heals.  Any important abilities should generate an
@@ -215,11 +253,15 @@ export class DeathReport {
       return;
 
     const abilityName = splitLine[logDefinitions.Ability.fields.ability] ?? '???';
+    const currentHpStr = splitLine[logDefinitions.Ability.fields.targetCurrentHp];
+    const currentHp = currentHpStr !== undefined ? parseInt(currentHpStr) : 0;
     return {
       timestamp: event.timestamp,
       timestampStr: this.makeRelativeTimeString(event.timestamp),
       type: event.type,
-      amount: amountStr,
+      currentHp: currentHp,
+      amount: amount,
+      amountStr: amountStr,
       amountClass: amountClass,
       icon: event.mistake,
       text: abilityName,
@@ -231,7 +273,7 @@ export class DeathReport {
     const isHeal = which === 'HoT';
 
     // Note: this amount is just raw bytes, and not the UnscrambleDamage version.
-    const amount = parseInt(event.splitLine[logDefinitions.NetworkDoT.fields.damage] ?? '', 16);
+    let amount = parseInt(event.splitLine[logDefinitions.NetworkDoT.fields.damage] ?? '', 16);
     if (amount <= 0)
       return;
 
@@ -243,7 +285,11 @@ export class DeathReport {
     } else {
       amountClass = 'damage';
       amountStr = amount > 0 ? `-${amount.toString()}` : amount.toString();
+      amount *= -1;
     }
+
+    const currentHpStr = event.splitLine[logDefinitions.NetworkDoT.fields.currentHp];
+    const currentHp = currentHpStr !== undefined ? parseInt(currentHpStr) : 0;
 
     // TODO: this line has an effect id, but we don't have an id -> string mapping for all ids.
     // We could consider looking this up in effects to try to find a name, but common ones
@@ -252,7 +298,9 @@ export class DeathReport {
       timestamp: event.timestamp,
       timestampStr: this.makeRelativeTimeString(event.timestamp),
       type: event.type,
-      amount: amountStr,
+      currentHp: currentHp,
+      amount: amount,
+      amountStr: amountStr,
       amountClass: amountClass,
       text: which,
     };

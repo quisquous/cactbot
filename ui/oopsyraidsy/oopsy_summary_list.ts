@@ -255,12 +255,18 @@ export class OopsySummaryList implements MistakeObserver {
     });
 
     for (const event of m.report.parseReportLines()) {
+      const hpElem = document.createElement('div');
+      hpElem.classList.add('death-row-hp');
+      if (event.currentHp !== undefined)
+        hpElem.innerText = event.currentHp.toString();
+      detailsDiv.appendChild(hpElem);
+
       const damageElem = document.createElement('div');
       damageElem.classList.add('death-row-amount');
       if (event.amountClass)
         damageElem.classList.add(event.amountClass);
-      if (event.amount !== undefined)
-        damageElem.innerText = event.amount;
+      if (event.amountStr !== undefined)
+        damageElem.innerText = event.amountStr;
       detailsDiv.appendChild(damageElem);
 
       const iconElem = document.createElement('div');

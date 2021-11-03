@@ -124,7 +124,8 @@ export class DeathReportLive {
       this.AppendDetails(
         detailsDiv,
         event.timestampStr,
-        event.amount,
+        event.currentHp?.toString(),
+        event.amountStr,
         event.amountClass,
         event.icon,
         event.text,
@@ -135,11 +136,18 @@ export class DeathReportLive {
   private AppendDetails(
     detailsDiv: HTMLElement,
     timestampStr: string,
+    currentHp?: string,
     amount?: string,
     amountClass?: string,
     icon?: string,
     text?: string,
   ): void {
+    const hpElem = document.createElement('div');
+    hpElem.classList.add('death-row-hp');
+    if (currentHp !== undefined)
+      hpElem.innerText = currentHp;
+    detailsDiv.appendChild(hpElem);
+
     const damageElem = document.createElement('div');
     damageElem.classList.add('death-row-amount');
     if (amountClass)
