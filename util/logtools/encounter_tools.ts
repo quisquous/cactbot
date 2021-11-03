@@ -88,7 +88,7 @@ export class EncounterFinder {
   skipZone(): boolean {
     if (!this.currentZone.zoneId || !this.zoneInfo)
       return false;
-    if (!(this.zoneInfo.contentType))
+    if (!this.zoneInfo.contentType)
       return false;
     const content = this.zoneInfo.contentType;
     if (!content)
