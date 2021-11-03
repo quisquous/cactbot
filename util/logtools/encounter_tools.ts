@@ -30,13 +30,13 @@ type FightEncInfo = {
 };
 
 export class EncounterFinder {
-  currentZone: ZoneEncInfo;
-  currentFight: FightEncInfo;
+  currentZone: ZoneEncInfo = {};
+  currentFight: FightEncInfo = {};
   currentSeal?: string;
   zoneInfo?: typeof ZoneInfo[number];
 
-  haveWon: boolean;
-  haveSeenSeals: boolean;
+  haveWon = false;
+  haveSeenSeals = false;
 
   regex: {
     changeZone: CactbotBaseRegExp<'ChangeZone'>;
@@ -48,8 +48,8 @@ export class EncounterFinder {
     mobAttackingPlayer: CactbotBaseRegExp<'Ability'>;
   };
 
-  sealRegexes: Array<CactbotBaseRegExp<'GameLog'>>;
-  unsealRegexes: Array<CactbotBaseRegExp<'GameLog'>>;
+  sealRegexes: Array<CactbotBaseRegExp<'GameLog'>> = [];
+  unsealRegexes: Array<CactbotBaseRegExp<'GameLog'>> = [];
 
   initializeZone(): void {
     this.currentZone = {};
@@ -58,16 +58,8 @@ export class EncounterFinder {
     this.currentFight = {};
   }
   constructor() {
-    this.currentZone = {};
-    this.currentFight = {};
-    this.currentSeal;
-    this.zoneInfo;
-
-    this.haveWon = false;
-    this.haveSeenSeals = false;
-
     this.regex = {
-      changeZone: NetRegexes.changeZone({ id: '*' }),
+      changeZone: NetRegexes.changeZone(),
       cactbotWipe: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
       win: NetRegexes.network6d({ command: '40000003' }),
       wipe: NetRegexes.network6d({ command: '40000010' }),
@@ -75,11 +67,6 @@ export class EncounterFinder {
       playerAttackingMob: NetRegexes.ability({ sourceId: '1.{7}', targetId: '4.{7}' }),
       mobAttackingPlayer: NetRegexes.ability({ sourceId: '4.{7}', targetId: '1.{7}' }),
     };
-
-    // TODO: consider also doing this with lang? But lang only deals with Regexes???
-    // Sorry, this is quite a bit of a hack.
-    this.sealRegexes = [];
-    this.unsealRegexes = [];
 
     const sealReplace = commonReplacement.replaceSync[syncKeys.seal];
     if (!sealReplace)
@@ -238,19 +225,13 @@ export class EncounterFinder {
 }
 
 export class EncounterCollector extends EncounterFinder {
-  zones: Array<ZoneEncInfo>;
-  fights: Array<FightEncInfo>;
-  lastZone: ZoneEncInfo;
-  lastFight: FightEncInfo;
+  zones: Array<ZoneEncInfo> = [];
+  fights: Array<FightEncInfo> = [];
+  lastZone: ZoneEncInfo = {};
+  lastFight: FightEncInfo = {};
   lastSeal?: string;
   constructor() {
     super();
-    this.zones = [];
-    this.fights = [];
-
-    this.lastZone = {};
-    this.lastFight = {};
-    this.lastSeal;
   }
 
   override onStartZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
