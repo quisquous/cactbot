@@ -250,7 +250,7 @@ export class EncounterCollector extends EncounterFinder {
   }
 
   override onStartFight(line: string, name: string, matches: NetMatches['Ability' | 'GameLog']): void {
-    const id = this.lastZone.zoneId || 0;
+    const id = this.lastZone.zoneId ?? 0;
     this.lastFight = {
       name: name,
       startLine: line,
