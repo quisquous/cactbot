@@ -8,7 +8,14 @@ import { LooseTimelineTrigger } from '../../types/trigger';
 
 import { PopupTextGenerator } from './popup-text';
 import { RaidbossOptions } from './raidboss_options';
-import { Event, Sync, TimelineParser, TimelineReplacement, TimelineStyle } from './timeline_parser';
+import {
+  Event,
+  Sync,
+  Text,
+  TimelineParser,
+  TimelineReplacement,
+  TimelineStyle,
+} from './timeline_parser';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -84,11 +91,20 @@ const computeBackgroundColorFrom = (element: HTMLElement, classList: string): st
   return color;
 };
 
-export class Timeline extends TimelineParser {
+export class Timeline {
+  private options: RaidbossOptions;
+  private replacements: TimelineReplacement[];
+
   private activeText: string;
 
   private activeSyncs: Sync[];
   private activeEvents: Event[];
+
+  public ignores: { [ignoreId: string]: boolean };
+  public events: Event[];
+  public texts: Text[];
+  public syncStarts: Sync[];
+  public syncEnds: Sync[];
 
   public timebase = 0;
 
@@ -108,7 +124,8 @@ export class Timeline extends TimelineParser {
     styles: TimelineStyle[],
     options: RaidbossOptions,
   ) {
-    super(text, replacements, triggers, styles, options);
+    this.options = options || {};
+    this.replacements = replacements;
 
     const lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
     this.activeText = lang in activeText ? activeText[lang] : activeText['en'];
@@ -117,8 +134,28 @@ export class Timeline extends TimelineParser {
     this.activeSyncs = [];
     // Sorted by event occurrence time.
     this.activeEvents = [];
+    // A set of names which will not be notified about.
+    this.ignores = {};
+    // Sorted by event occurrence time.
+    this.events = [];
+    // Sorted by event occurrence time.
+    this.texts = [];
+    // Sorted by sync.start time.
+    this.syncStarts = [];
+    // Sorted by sync.end time.
+    this.syncEnds = [];
 
+    this.LoadFile(text, triggers, styles);
     this.Stop();
+  }
+
+  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
+    const parsed = new TimelineParser(text, this.replacements, triggers, styles, this.options);
+    this.ignores = parsed.ignores;
+    this.events = parsed.events;
+    this.texts = parsed.texts;
+    this.syncStarts = parsed.syncStarts;
+    this.syncEnds = parsed.syncEnds;
   }
 
   public Stop(): void {
