@@ -300,7 +300,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Albeleo',
         ja: 'アルビレオ',
         cn: '阿尔贝雷欧',
-        ko: '사드르 렘 알비레오', // FIX-ME
+        ko: '알비레오',
       },
       rarity: 3,
     },
@@ -336,7 +336,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Menenius',
         ja: 'メネニウス',
         cn: '梅内纽斯',
-        ko: '메네니우스 사스 라나투스', // FIX-ME
+        ko: '메네니우스',
       },
       rarity: 3,
     },
@@ -354,7 +354,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Misija',
         ja: 'ミーシィヤ',
         cn: '米希亚',
-        ko: '미시야 보트야쉬', // FIX-ME
+        ko: '미시야',
       },
       rarity: 3,
     },
@@ -383,12 +383,14 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Lilja Sjasaris',
         ja: 'リリヤ・シアサリス',
         cn: '莉莉娅·希雅萨里斯',
+        ko: '리리야 샤사리스',
       },
       shortName: {
         en: 'Lilja Sjasaris', // FIX-ME
         de: 'Lilja',
         ja: 'リリヤ',
         cn: '莉莉娅',
+        ko: '리리야',
       },
       rarity: 3,
     },
@@ -399,12 +401,14 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Bwagi Ennze Panca',
         ja: 'ブワジ・エンゼ・パンチャ',
         cn: '布瓦基·恩泽·潘卡',
+        ko: '브와기 엔제 판카',
       },
       shortName: {
         en: 'Bwagi Ennze Panca', // FIX-ME
         de: 'Bwagi',
         ja: 'ブワジ',
         cn: '布瓦基',
+        ko: '브와기',
       },
       rarity: 3,
     },
@@ -415,12 +419,14 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Rostik Liubasch',
         ja: 'ロスティック・リュバシュ',
         cn: '罗斯提克·琉芭失',
+        ko: '로스틱 리우바쉬',
       },
       shortName: {
         en: 'Rostik Liubasch', // FIX-ME
         de: 'Rostik',
         ja: 'ロスティック',
         cn: '罗斯提克',
+        ko: '로스틱',
       },
       rarity: 3,
     },
@@ -431,12 +437,14 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Mikoto',
         ja: 'ミコト・ジンバ',
         cn: '神庭水琴',
+        ko: '미코토 진바',
       },
       shortName: {
         en: 'Mikoto Jinba', // FIX-ME
         de: 'Mikoto',
         ja: 'ミコト',
         cn: '水琴',
+        ko: '미코토',
       },
       rarity: 3,
     },
@@ -454,7 +462,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Misija',
         ja: 'ミーシィヤ',
         cn: '米希亚',
-        ko: '미시야 보트야쉬',
+        ko: '미시야',
       },
       rarity: 3,
     },
@@ -483,12 +491,14 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Trinität der Sucher',
         ja: 'トリニティ・シーカー',
         cn: '求道之三位一体',
+        ko: '탐구의 삼위일체',
       },
       shortName: {
         en: 'Seeker', // FIX-ME
         de: 'Sucher',
         ja: 'シーカー',
         cn: '求道之三位一体',
+        ko: '탐구의 삼위일체',
       },
       rarity: 4,
     },
@@ -499,12 +509,14 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Die Königinnenwache',
         ja: 'クイーンズ・ガード',
         cn: '女王护卫',
+        ko: '여왕의 근위병',
       },
       shortName: {
         en: 'Guard', // FIX-ME
         de: 'Königinnenwache',
         ja: 'ガード',
         cn: '女王护卫',
+        ko: '여왕의 근위병',
       },
       rarity: 4,
     },
@@ -515,12 +527,14 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Trinität der Eingeschworenen',
         ja: 'トリニティ・アヴァウド',
         cn: '誓约之三位一体',
+        ko: '맹세의 삼위일체',
       },
       shortName: {
         en: 'Trinity Avowed', // FIX-ME
         de: 'Eingeschworene',
         ja: 'アヴァウド',
         cn: '誓约之三位一体',
+        ko: '맹세의 삼위일체',
       },
       rarity: 4,
     },
