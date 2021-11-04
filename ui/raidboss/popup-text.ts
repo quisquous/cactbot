@@ -13,13 +13,12 @@ import { Matches } from '../../types/net_matches';
 import {
   LooseTrigger, OutputStrings, TimelineField, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
-  Output, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
+  Output, RaidbossFileData, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
   GeneralNetRegexTrigger, RegexTrigger,
 } from '../../types/trigger';
 
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
-import { RaidbossFileData } from './data/raidboss_manifest.txt';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
 import { TimelineReplacement, TimelineLoader } from './timeline';
 
