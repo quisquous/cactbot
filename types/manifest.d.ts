@@ -1,8 +1,5 @@
 declare module '*/raidboss_manifest.txt' {
-  export interface RaidbossFileData {
-    [filename: string]: import('./trigger').LooseTriggerSet | string;
-  }
-  const raidbossFileData: RaidbossFileData;
+  const raidbossFileData: import('./trigger').RaidbossFileData;
   export default raidbossFileData;
 }
 

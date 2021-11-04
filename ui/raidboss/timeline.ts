@@ -6,10 +6,9 @@ import TimerBar from '../../resources/timerbar';
 import { LocaleRegex } from '../../resources/translations';
 import { LogEvent } from '../../types/event';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
-import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
+import { LooseTimelineTrigger, RaidbossFileData, TriggerAutoConfig } from '../../types/trigger';
 
 import { commonReplacement } from './common_replacement';
-import type { RaidbossFileData } from './data/raidboss_manifest.txt';
 import { PopupTextGenerator } from './popup-text';
 import { RaidbossOptions } from './raidboss_options';
 
