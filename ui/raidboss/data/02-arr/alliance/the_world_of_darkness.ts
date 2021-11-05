@@ -58,19 +58,19 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: 'CC8', source: 'Angra Mainyu', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.sullenDebuff) {
-          // Stand in red half to switch to Ireful
+          // Stand behind boss in the red half to switch to Ireful
           return output.red!();
         } else if (data.irefulDebuff) {
-          // Stand in white half to switch to Sullen
+          // Stand in front of boss in the white half to switch to Sullen
           return output.white!();
         }
       },
       outputStrings: {
         red: {
-          en: 'Stand in Red Half',
+          en: 'Get Behind (Red)',
         },
         white: {
-          en: 'Stand in White Half',
+          en: 'Get in Front (White)',
         },
       },
     },
