@@ -64,7 +64,6 @@ const triggerSet: TriggerSet<Data> = {
           // Stand in white half to switch to Sullen
           return output.white!();
         }
-        return output.vision!();
       },
       outputStrings: {
         red: {
@@ -72,9 +71,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         white: {
           en: 'Stand in White Half',
-        },
-        vision: {
-          en: 'Double Vision',
         },
       },
     },
