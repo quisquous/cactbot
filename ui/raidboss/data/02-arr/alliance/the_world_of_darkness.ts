@@ -6,7 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  mainTank?: string;
   sullenDebuff?: boolean;
   irefulDebuff?: boolean;
 }
@@ -25,12 +24,6 @@ export interface Data extends RaidbossData {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheWorldOfDarkness,
   triggers: [
-    {
-      id: 'Angra Mainyu Auto',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'DB4', source: 'Angra Mainyu' }),
-      run: (data, matches) => data.mainTank = matches.target,
-    },
     {
       id: 'Angra Mainyu Gain Sullen',
       type: 'GainsEffect',
@@ -70,12 +63,7 @@ const triggerSet: TriggerSet<Data> = {
         } else if (data.irefulDebuff) {
           // Stand in front of boss in the white half to switch to Sullen
           return output.white!();
-        } else if (data.mainTank === data.me) {
-          // Main tank should stand in front
-          return output.white!();
         }
-        // Everyone else generally stand behind
-        return output.red!();
       },
       outputStrings: {
         red: {
