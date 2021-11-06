@@ -154,3 +154,25 @@ export const IsTriggerEnabled = (options: OopsyOptions, id: string): boolean => 
 
   return true;
 };
+
+export const GetSoloMistakeText = (ability: string): LocaleText => {
+  return {
+    en: `${ability} (alone)`,
+    de: `${ability} (allein)`,
+    fr: `${ability} (seul(e))`,
+    ja: `${ability} (一人)`,
+    cn: `${ability} (单吃)`,
+    ko: `${ability} (혼자 맞음)`,
+  };
+};
+
+export const GetShareMistakeText = (ability: string): LocaleText => {
+  return {
+    en: `${ability} (share)`,
+    de: `${ability} (geteilt)`,
+    fr: `${ability}`, // FIXME
+    ja: `${ability}`, // FIXME
+    cn: `${ability} (重叠)`,
+    ko: `${ability} (쉐어)`,
+  };
+};
