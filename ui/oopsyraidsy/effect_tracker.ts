@@ -293,11 +293,16 @@ export class EffectTracker {
     this.petIdToOwnerId[petId.toUpperCase()] = ownerId.toUpperCase();
   }
 
-  // TODO: player change lines occur on every zone change, but for safety we should also
-  // consider passing the id in the plugin `PlayerChangedDetail` event listener, which
-  // will get re-sent on every reload.
   OnChangedPlayer(line: string, splitLine: string[]): void {
-    this.myPlayerId = splitLine[logDefinitions.ChangedPlayer.fields.id];
+    const id = splitLine[logDefinitions.ChangedPlayer.fields.id];
+    if (id)
+      this.SetPlayerId(id);
+  }
+
+  SetPlayerId(id: string): void {
+    if (this.myPlayerId === id)
+      return;
+    this.myPlayerId = id;
     this.OnPartyChanged();
   }
 
