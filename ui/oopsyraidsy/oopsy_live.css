@@ -206,6 +206,15 @@ div {
   text-align: right;
 }
 
+/* by default the report is on the left */
+.report-side-right .flexcontainer {
+  flex-direction: row-reverse;
+}
+
+.report-side-disabled .death-report {
+  display: none;
+}
+
 @keyframes fadeOut {
   50% {
     opacity: 1;
