@@ -43,7 +43,7 @@ import {
   UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
-import { EffectTracker } from './player_state_tracker';
+import { PlayerStateTracker } from './player_state_tracker';
 
 const actorControlFadeInCommand = '40000010';
 
@@ -94,7 +94,7 @@ export class DamageTracker {
   private timers: number[] = [];
   private triggers: ProcessedOopsyTrigger[] = [];
   private partyTracker: PartyTracker;
-  private effectTracker: EffectTracker;
+  private playerStateTracker: PlayerStateTracker;
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
@@ -126,11 +126,11 @@ export class DamageTracker {
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
-      this.effectTracker.OnPartyChanged();
+      this.playerStateTracker.OnPartyChanged();
     });
     const timestampCallback = (timestamp: number, callback: (timestamp: number) => void) =>
       this.OnRequestTimestampCallback(timestamp, callback);
-    this.effectTracker = new EffectTracker(
+    this.playerStateTracker = new PlayerStateTracker(
       this.options,
       this.partyTracker,
       this.collector,
@@ -199,7 +199,7 @@ export class DamageTracker {
       const mistakeStr = Translate(this.options.DisplayLanguage, earlyPullText) ?? '';
       const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
       if (IsTriggerEnabled(this.options, earlyPullTriggerId)) {
-        this.effectTracker.OnMistakeObj(timestamp, {
+        this.playerStateTracker.OnMistakeObj(timestamp, {
           type: 'pull',
           name: this.firstPuller,
           blame: this.firstPuller,
@@ -259,32 +259,32 @@ export class DamageTracker {
         }
         break;
       case logDefinitions.ChangedPlayer.type:
-        this.effectTracker.OnChangedPlayer(line, splitLine);
+        this.playerStateTracker.OnChangedPlayer(line, splitLine);
         break;
       case logDefinitions.AddedCombatant.type:
-        this.effectTracker.OnAddedCombatant(line, splitLine);
+        this.playerStateTracker.OnAddedCombatant(line, splitLine);
         break;
       case logDefinitions.Ability.type:
       case logDefinitions.NetworkAOEAbility.type:
         this.OnAbilityEvent(line, splitLine);
-        this.effectTracker.OnAbility(line, splitLine);
+        this.playerStateTracker.OnAbility(line, splitLine);
         break;
       case logDefinitions.WasDefeated.type:
-        this.effectTracker.OnDefeated(line, splitLine);
+        this.playerStateTracker.OnDefeated(line, splitLine);
         break;
       case logDefinitions.GainsEffect.type:
-        this.effectTracker.OnGainsEffect(line, splitLine);
+        this.playerStateTracker.OnGainsEffect(line, splitLine);
         break;
       case logDefinitions.LosesEffect.type:
-        this.effectTracker.OnLosesEffect(line, splitLine);
+        this.playerStateTracker.OnLosesEffect(line, splitLine);
         break;
       case logDefinitions.NetworkDoT.type:
-        this.effectTracker.OnHoTDoT(line, splitLine);
+        this.playerStateTracker.OnHoTDoT(line, splitLine);
         break;
       case logDefinitions.ActorControl.type:
         if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand) {
           this.OnPartyWipeEvent(this.lastTimestamp);
-          this.effectTracker.OnWipe(line, splitLine);
+          this.playerStateTracker.OnWipe(line, splitLine);
         }
         break;
     }
@@ -345,7 +345,7 @@ export class DamageTracker {
         const mistakeStr = Translate(this.options.DisplayLanguage, latePullText) ?? '';
         const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
         if (IsTriggerEnabled(this.options, earlyPullTriggerId)) {
-          this.effectTracker.OnMistakeObj(this.lastTimestamp, {
+          this.playerStateTracker.OnMistakeObj(this.lastTimestamp, {
             type: 'pull',
             name: this.firstPuller,
             blame: this.firstPuller,
@@ -357,11 +357,11 @@ export class DamageTracker {
   }
 
   OnStartEncounter(timestamp: number): void {
-    this.effectTracker.OnStartEncounter(timestamp);
+    this.playerStateTracker.OnStartEncounter(timestamp);
   }
 
   OnStopEncounter(timestamp: number): void {
-    this.effectTracker.OnStopEncounter(timestamp);
+    this.playerStateTracker.OnStopEncounter(timestamp);
     this.firstPuller = undefined;
     this.engageTime = undefined;
   }
@@ -429,9 +429,9 @@ export class DamageTracker {
           const mistakeTimestamp = timestamp + delaySeconds * 1000;
           if (Array.isArray(m)) {
             for (const mistake of m)
-              this.effectTracker.OnMistakeObj(mistakeTimestamp, mistake);
+              this.playerStateTracker.OnMistakeObj(mistakeTimestamp, mistake);
           } else if (isOopsyMistake(m)) {
-            this.effectTracker.OnMistakeObj(mistakeTimestamp, m);
+            this.playerStateTracker.OnMistakeObj(mistakeTimestamp, m);
           }
         }
       }
@@ -439,7 +439,7 @@ export class DamageTracker {
         const ret = ValueOrFunction(trigger.deathReason, matches);
         if (ret && typeof ret === 'object' && !Array.isArray(ret)) {
           if (!isOopsyMistake(ret))
-            this.effectTracker.OnDeathReason(timestamp, ret);
+            this.playerStateTracker.OnDeathReason(timestamp, ret);
         }
       }
       if ('run' in trigger)
@@ -453,7 +453,7 @@ export class DamageTracker {
   }
 
   OnPartyWipeEvent(timestamp: number): void {
-    this.effectTracker.OnMistakeObj(timestamp, {
+    this.playerStateTracker.OnMistakeObj(timestamp, {
       type: 'wipe',
       text: partyWipeText,
     });
@@ -462,7 +462,7 @@ export class DamageTracker {
     this.combatState.StopCombat(timestamp);
   }
 
-  // Similar to EffectTracker handling OnPlayerChanged events plus ChangedPlayer lines,
+  // Similar to PlayerStateTracker handling OnPlayerChanged events plus ChangedPlayer lines,
   // handling this event is extra insurance for reloads in the middle of a zone when
   // there won't be ChangeZone lines to do it more naturally.
   OnChangeZone(e: EventResponses['ChangeZone']): void {
@@ -480,8 +480,8 @@ export class DamageTracker {
     this.contentType = zoneInfo?.contentType ?? 0;
 
     this.combatState.Reset();
-    this.effectTracker.ClearTriggerSets();
-    this.effectTracker.OnChangeZone(zoneName, zoneId);
+    this.playerStateTracker.ClearTriggerSets();
+    this.playerStateTracker.OnChangeZone(zoneName, zoneId);
     this.ReloadTriggers();
   }
 
@@ -665,7 +665,7 @@ export class DamageTracker {
       for (const trigger of set.triggers ?? [])
         this.ProcessTrigger(trigger);
 
-      this.effectTracker.PushTriggerSet(set);
+      this.playerStateTracker.PushTriggerSet(set);
     }
   }
 
@@ -693,7 +693,7 @@ export class DamageTracker {
     this.job = e.detail.job;
     this.role = Util.jobToRole(this.job);
     this.ReloadTriggers();
-    this.effectTracker.SetPlayerId(parseInt(e.detail.id).toString(16));
+    this.playerStateTracker.SetPlayerId(parseInt(e.detail.id).toString(16));
   }
 
   ProcessDataFiles(): void {

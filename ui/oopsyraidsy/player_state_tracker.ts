@@ -75,10 +75,10 @@ export type TrackedMistakeEvent = {
 export type TrackedEvent = TrackedLineEvent | TrackedDeathReasonEvent | TrackedMistakeEvent;
 export type TrackedEventType = TrackedEvent['type'];
 
-// Tracks various state about the party (party, pets, buffs).
-// TODO: EffectTracker isn't a great name here, sorry.
-// TODO: Maybe EffectTracker -> StateTracker and DamageTracker -> OopsyTriggerProcessor?
-export class EffectTracker {
+// * Tracks various state about the party (party, pets, buffs, deaths).
+// * Generates some internal mistakes that need extra tracking (missed buffs, deaths)
+// * Tracks events in `trackedEvents` that can be handed to DeathReports for processing.
+export class PlayerStateTracker {
   private missedBuffCollector;
   private triggerSets: ProcessedOopsyTriggerSet[] = [];
   private partyIds: Set<string> = new Set();
@@ -383,7 +383,7 @@ export class EffectTracker {
       const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type;
 
       // Combining share/solo mistake lines with ability damage lines is a bit of
-      // duplication, but unless EffectTracker generated share/solo/damage mistakes
+      // duplication, but unless PlayerStateTracker generated share/solo/damage mistakes
       // itself, there's no way to undo the mistake + ability.  So, we'll add the
       // mistake text into the TrackedEventLine for the ability and hide the mistake.
       if (id in this.mistakeDamageMap) {
