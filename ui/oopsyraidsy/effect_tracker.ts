@@ -1,7 +1,6 @@
 import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
-import { EventResponses } from '../../types/event';
 import { OopsyDeathReason, OopsyMistake, OopsyMistakeType } from '../../types/oopsy';
 
 import {
@@ -310,7 +309,7 @@ export class EffectTracker {
     this.baseTime = undefined;
   }
 
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
+  OnChangeZone(): void {
     this.Reset();
   }
 
