@@ -286,5 +286,20 @@ UserConfig.registerOptions('oopsyraidsy', {
         options['TimeToShowDeathReportMs'] = seconds * 1000;
       },
     },
+    {
+      id: 'DeathReportSide',
+      name: {
+        en: 'How to show the death report',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Left Side': 'left',
+          'Right Side': 'right',
+          '❌ Disabled': 'disabled',
+        },
+      },
+      default: 'left',
+    },
   ],
 });
