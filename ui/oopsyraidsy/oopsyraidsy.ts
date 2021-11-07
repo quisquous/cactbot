@@ -59,6 +59,10 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   } else if (liveListElement) {
     const listView = new OopsyLiveList(options, liveListElement);
     mistakeCollector.AddObserver(listView);
+    addOverlayListener(
+      'onInCombatChangedEvent',
+      (e) => listView.SetInCombat(e.detail.inGameCombat),
+    );
   } else {
     throw new UnreachableCode();
   }

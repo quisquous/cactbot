@@ -181,9 +181,6 @@ export class MistakeCollector {
         this.StartCombat();
       else
         this.StopCombat();
-
-      for (const observer of this.observers)
-        observer.SetInCombat(this.inGameCombat);
     }
 
     const inACTCombat = e.detail.inACTCombat;
