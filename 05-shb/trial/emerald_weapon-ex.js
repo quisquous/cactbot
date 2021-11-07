@@ -328,13 +328,15 @@ Options.Triggers.push({
         },
         {
             id: 'EmeraldEx Tertius Terminus Est',
-            type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ source: 'BitBlade', id: '55CD' }),
-            netRegexDe: NetRegexes.startsUsing({ source: 'Revolverklingen-Arm', id: '55CD' }),
-            netRegexFr: NetRegexes.startsUsing({ source: 'Pistolame Volante', id: '55CD' }),
-            netRegexJa: NetRegexes.startsUsing({ source: 'ガンブレードビット', id: '55CD' }),
-            netRegexCn: NetRegexes.startsUsing({ source: '枪刃浮游炮', id: '55CD' }),
-            netRegexKo: NetRegexes.startsUsing({ source: '건블레이드 비트', id: '55CD' }),
+            // StartsUsing has positions but is inconsistent when entities are newly moved.
+            // This is still ~7s of warning, and if we wanted to be fancier, knowing 4 would be enough.
+            type: 'Ability',
+            netRegex: NetRegexes.abilityFull({ source: 'BitBlade', id: '55CD' }),
+            netRegexDe: NetRegexes.abilityFull({ source: 'Revolverklingen-Arm', id: '55CD' }),
+            netRegexFr: NetRegexes.abilityFull({ source: 'Pistolame Volante', id: '55CD' }),
+            netRegexJa: NetRegexes.abilityFull({ source: 'ガンブレードビット', id: '55CD' }),
+            netRegexCn: NetRegexes.abilityFull({ source: '枪刃浮游炮', id: '55CD' }),
+            netRegexKo: NetRegexes.abilityFull({ source: '건블레이드 비트', id: '55CD' }),
             durationSeconds: 7,
             alertText: (data, matches, output) => {
                 let _a;
