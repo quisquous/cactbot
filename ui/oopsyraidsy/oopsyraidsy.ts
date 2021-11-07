@@ -75,7 +75,6 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   const damageTracker = new DamageTracker(options, mistakeCollector, oopsyFileData);
 
   addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));
-  addOverlayListener('onPartyWipe', () => damageTracker.OnPartyWipeEvent());
   addOverlayListener('onPlayerChangedEvent', (e) => damageTracker.OnPlayerChange(e));
   addOverlayListener('ChangeZone', (e) => {
     damageTracker.OnChangeZone(e);

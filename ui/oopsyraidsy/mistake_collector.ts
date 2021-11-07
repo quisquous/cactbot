@@ -24,15 +24,6 @@ const kLatePullText = {
   ko: '풀링 늦음',
 };
 
-const kPartyWipeText = {
-  en: 'Party Wipe',
-  de: 'Gruppe ausgelöscht',
-  fr: 'Party Wipe',
-  ja: 'ワイプ',
-  cn: '团灭',
-  ko: '파티 전멸',
-};
-
 // Internal trigger id for early pull
 const kEarlyPullId = 'General Early Pull';
 
@@ -151,14 +142,6 @@ export class MistakeCollector {
   }
 
   OnPartyWipeEvent(): void {
-    // TODO: record the time that StopCombat occurs and throw the party
-    // wipe then (to make post-wipe deaths more obvious), however this
-    // requires making liveList be able to insert items in a sorted
-    // manner instead of just being append only.
-    this.OnMistakeObj({
-      type: 'wipe',
-      text: kPartyWipeText,
-    });
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();
