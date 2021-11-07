@@ -100,16 +100,13 @@ export class MistakeCollector {
   }
 
   AddEngage(): void {
-    if (!this.startTime)
-      throw new Error('Must StartCombat before AddEngage');
-
     this.engageTime = Date.now();
-    if (!this.firstPuller) {
+    if (!this.firstPuller || !this.startTime) {
       this.StartCombat();
       return;
     }
     const seconds = ((Date.now() - this.startTime) / 1000);
-    if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
+    if (seconds >= this.options.MinimumTimeForPullMistake) {
       const text = `${Translate(this.options.DisplayLanguage, kEarlyPullText) ?? ''} (${
         seconds.toFixed(1)
       }s)`;
@@ -125,29 +122,29 @@ export class MistakeCollector {
   }
 
   AddDamage(matches: NetMatches['Ability']): void {
-    if (!this.firstPuller) {
-      if (IsPlayerId(matches.sourceId))
-        this.firstPuller = matches.source;
-      else if (IsPlayerId(matches.targetId))
-        this.firstPuller = matches.target;
-      else
-        this.firstPuller = '???';
+    if (this.firstPuller)
+      return;
+    if (IsPlayerId(matches.sourceId))
+      this.firstPuller = matches.source;
+    else if (IsPlayerId(matches.targetId))
+      this.firstPuller = matches.target;
+    else
+      this.firstPuller = '???';
 
-      this.StartCombat();
-      if (this.engageTime) {
-        const seconds = ((Date.now() - this.engageTime) / 1000);
-        if (seconds >= this.options.MinimumTimeForPullMistake) {
-          const text = `${Translate(this.options.DisplayLanguage, kLatePullText) ?? ''} (${
-            seconds.toFixed(1)
-          }s)`;
-          if (IsTriggerEnabled(this.options, kEarlyPullId)) {
-            this.OnMistakeObj({
-              type: 'pull',
-              name: this.firstPuller,
-              blame: this.firstPuller,
-              text: text,
-            });
-          }
+    this.StartCombat();
+    if (this.engageTime) {
+      const seconds = ((Date.now() - this.engageTime) / 1000);
+      if (seconds >= this.options.MinimumTimeForPullMistake) {
+        const text = `${Translate(this.options.DisplayLanguage, kLatePullText) ?? ''} (${
+          seconds.toFixed(1)
+        }s)`;
+        if (IsTriggerEnabled(this.options, kEarlyPullId)) {
+          this.OnMistakeObj({
+            type: 'pull',
+            name: this.firstPuller,
+            blame: this.firstPuller,
+            text: text,
+          });
         }
       }
     }
