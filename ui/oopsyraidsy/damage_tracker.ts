@@ -28,7 +28,6 @@ import { ZoneIdType } from '../../types/trigger';
 
 import { CombatState } from './combat_state';
 import { OopsyFileData } from './data/oopsy_manifest.txt';
-import { EffectTracker } from './effect_tracker';
 import { MistakeCollector } from './mistake_collector';
 import {
   GetShareMistakeText,
@@ -44,6 +43,7 @@ import {
   UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
+import { EffectTracker } from './player_state_tracker';
 
 const actorControlFadeInCommand = '40000010';
 

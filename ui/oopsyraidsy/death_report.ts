@@ -3,19 +3,19 @@ import logDefinitions from '../../resources/netlog_defs';
 import { OopsyMistake } from '../../types/oopsy';
 
 import {
-  TrackedDeathReasonEvent,
-  TrackedEvent,
-  TrackedEventType,
-  TrackedLineEvent,
-  TrackedMistakeEvent,
-} from './effect_tracker';
-import {
   kAttackFlags,
   kHealFlags,
   kShiftFlagValues,
   Translate,
   UnscrambleDamage,
 } from './oopsy_common';
+import {
+  TrackedDeathReasonEvent,
+  TrackedEvent,
+  TrackedEventType,
+  TrackedLineEvent,
+  TrackedMistakeEvent,
+} from './player_state_tracker';
 
 // TODO: lots of things left to do with death reports
 // * probably include max hp as well?
