@@ -203,6 +203,15 @@ export class OopsyLiveList implements MistakeObserver {
   }
 
   SetInCombat(inCombat: boolean): void {
+    // For usability sake:
+    //   - to avoid dungeon trash starting stopping combat and resetting the
+    //     list repeatedly, only reset when ACT starts a new encounter.
+    //   - for consistency with DPS meters, fflogs, etc, use ACT's encounter
+    //     time as the start time, not when game combat becomes true.
+    //   - to make it more readable, show/hide old mistakes out of game
+    //     combat, and consider early pulls starting game combat early.  This
+    //     allows for one long dungeon ACT encounter to have multiple early
+    //     or late pulls.
     if (this.inCombat === inCombat)
       return;
     this.inCombat = inCombat;

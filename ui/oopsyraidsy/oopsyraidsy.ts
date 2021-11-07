@@ -28,7 +28,7 @@ export const addDebugInfo = (collector: MistakeCollector, numMistakes: number): 
   const types: OopsyMistakeType[] = ['death', 'fail', 'warn', 'pull'];
 
   // TODO: this should probably start/stop combat too for the summary page?
-  collector.StartCombat();
+  collector.StartNewACTCombat();
   for (let i = 0; i < numMistakes; ++i) {
     collector.OnMistakeObj({
       type: types[Math.floor(Math.random() * types.length)] ?? 'good',
@@ -41,7 +41,7 @@ export const addDebugInfo = (collector: MistakeCollector, numMistakes: number): 
 UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   const options = { ...defaultOptions };
 
-  const mistakeCollector = new MistakeCollector(options);
+  const mistakeCollector = new MistakeCollector();
   const summaryElement = document.getElementById('summary');
   const liveListElement = document.getElementById('livelist');
 
@@ -76,12 +76,9 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
 
   addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));
   addOverlayListener('onPlayerChangedEvent', (e) => damageTracker.OnPlayerChange(e));
-  addOverlayListener('ChangeZone', (e) => {
-    damageTracker.OnChangeZone(e);
-  });
+  addOverlayListener('ChangeZone', (e) => damageTracker.OnChangeZone(e));
   addOverlayListener('onInCombatChangedEvent', (e) => {
     damageTracker.OnInCombatChangedEvent(e);
-    mistakeCollector.OnInCombatChangedEvent(e);
   });
 
   void callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
