@@ -255,7 +255,7 @@ export class DamageTracker {
           const name = splitLine[logDefinitions.ChangeZone.fields.name];
           const id = splitLine[logDefinitions.ChangeZone.fields.id];
           if (name !== undefined && id !== undefined)
-            this.SetZone(name, parseInt(id, 16));
+            this.SetZone(this.lastTimestamp, name, parseInt(id, 16));
         }
         break;
       case logDefinitions.ChangedPlayer.type:
@@ -466,10 +466,10 @@ export class DamageTracker {
   // handling this event is extra insurance for reloads in the middle of a zone when
   // there won't be ChangeZone lines to do it more naturally.
   OnChangeZone(e: EventResponses['ChangeZone']): void {
-    this.SetZone(e.zoneName, e.zoneID);
+    this.SetZone(this.lastTimestamp, e.zoneName, e.zoneID);
   }
 
-  SetZone(zoneName: string, zoneId: number): void {
+  SetZone(timestamp: number, zoneName: string, zoneId: number): void {
     if (this.zoneId === zoneId)
       return;
 
@@ -481,7 +481,7 @@ export class DamageTracker {
 
     this.combatState.Reset();
     this.playerStateTracker.ClearTriggerSets();
-    this.playerStateTracker.OnChangeZone(zoneName, zoneId);
+    this.playerStateTracker.OnChangeZone(timestamp, zoneName, zoneId);
     this.ReloadTriggers();
   }
 

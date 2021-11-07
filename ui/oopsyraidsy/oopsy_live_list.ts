@@ -2,7 +2,7 @@ import { UnreachableCode } from '../../resources/not_reached';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { DeathReport } from './death_report';
-import { MistakeObserver } from './mistake_observer';
+import { MistakeObserver, ViewEvent } from './mistake_observer';
 import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
@@ -225,7 +225,7 @@ export class OopsyLiveList implements MistakeObserver {
     }
   }
 
-  OnMistakeObj(m: OopsyMistake): void {
+  OnMistakeObj(timestamp: number, m: OopsyMistake): void {
     const report = m.report;
     if (report)
       this.deathReport?.queue(report);
@@ -237,7 +237,7 @@ export class OopsyLiveList implements MistakeObserver {
     if (!translatedText)
       return;
 
-    const time = GetFormattedTime(this.baseTime, Date.now());
+    const time = GetFormattedTime(this.baseTime, timestamp);
     const text = `${blameText}${translatedText}`;
     const maxItems = this.options.NumLiveListItemsInCombat;
 
@@ -342,9 +342,18 @@ export class OopsyLiveList implements MistakeObserver {
     this.deathReport?.hide();
   }
 
-  StartNewACTCombat(): void {
+  OnEvent(event: ViewEvent): void {
+    if (event.type === 'Mistake')
+      this.OnMistakeObj(event.timestamp, event.mistake);
+    else if (event.type === 'StartEncounter')
+      this.StartEncounter(event.timestamp);
+    else if (event.type === 'ChangeZone')
+      this.OnChangeZone();
+  }
+
+  StartEncounter(timestamp: number): void {
     this.Reset();
-    this.baseTime = Date.now();
+    this.baseTime = timestamp;
   }
 
   OnChangeZone(): void {

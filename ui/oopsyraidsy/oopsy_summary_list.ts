@@ -1,6 +1,6 @@
 import { OopsyMistake } from '../../types/oopsy';
 
-import { MistakeObserver } from './mistake_observer';
+import { MistakeObserver, ViewEvent } from './mistake_observer';
 import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
@@ -128,16 +128,9 @@ export class OopsySummaryTable implements MistakeObserver {
     }
   }
 
-  SetInCombat(_inCombat: boolean): void {
-    // noop
-  }
-
-  StartNewACTCombat(): void {
-    // noop
-  }
-
-  OnChangeZone(): void {
-    // noop
+  OnEvent(event: ViewEvent): void {
+    if (event.type === 'Mistake')
+      this.OnMistakeObj(event.mistake);
   }
 }
 
@@ -160,7 +153,7 @@ export class OopsySummaryList implements MistakeObserver {
     return `${d.getFullYear()}-${month}-${day} ${hours}:${minutes}`;
   }
 
-  private StartNewSectionIfNeeded(): HTMLElement {
+  private StartNewSectionIfNeeded(timestamp: number): HTMLElement {
     if (this.currentDiv)
       return this.currentDiv;
 
@@ -184,7 +177,7 @@ export class OopsySummaryList implements MistakeObserver {
       zoneDiv.innerText = `(${this.zoneName})`;
     headerDiv.appendChild(zoneDiv);
     const timeDiv = document.createElement('div');
-    timeDiv.innerText = this.GetTimeStr(new Date());
+    timeDiv.innerText = this.GetTimeStr(new Date(timestamp));
     headerDiv.appendChild(timeDiv);
 
     const rowContainer = document.createElement('div');
@@ -199,18 +192,18 @@ export class OopsySummaryList implements MistakeObserver {
     this.currentDiv = null;
   }
 
-  OnMistakeObj(m: OopsyMistake): void {
+  OnMistakeObj(timestamp: number, m: OopsyMistake): void {
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
     const blameText = blame ? `${ShortNamify(blame, this.options.PlayerNicks)}: ` : '';
     const text = Translate(this.options.DisplayLanguage, m.text);
     if (!text)
       return;
-    this.AddLine(m, iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, Date.now()));
+    this.AddLine(m, iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, timestamp));
   }
 
   AddLine(m: OopsyMistake, iconClass: string, text: string, time: string): void {
-    const currentSection = this.StartNewSectionIfNeeded();
+    const currentSection = this.StartNewSectionIfNeeded(this.baseTime ?? Date.now());
 
     const rowDiv = document.createElement('div');
     rowDiv.classList.add('mistake-row');
@@ -287,17 +280,22 @@ export class OopsySummaryList implements MistakeObserver {
     }
   }
 
-  SetInCombat(_inCombat: boolean): void {
-    // noop
+  OnEvent(event: ViewEvent): void {
+    if (event.type === 'Mistake')
+      this.OnMistakeObj(event.timestamp, event.mistake);
+    else if (event.type === 'StartEncounter')
+      this.StartEncounter(event.timestamp);
+    else if (event.type === 'ChangeZone')
+      this.OnChangeZone(event.zoneName);
   }
 
-  StartNewACTCombat(): void {
+  StartEncounter(timestamp: number): void {
     this.EndSection();
-    this.StartNewSectionIfNeeded();
-    this.baseTime = Date.now();
+    this.baseTime = timestamp;
+    this.StartNewSectionIfNeeded(timestamp);
   }
 
-  OnChangeZone(zoneName: string, _zoneId: number): void {
+  OnChangeZone(zoneName: string): void {
     this.zoneName = zoneName;
   }
 }

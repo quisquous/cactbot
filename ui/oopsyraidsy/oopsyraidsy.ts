@@ -28,9 +28,11 @@ export const addDebugInfo = (collector: MistakeCollector, numMistakes: number): 
   const types: OopsyMistakeType[] = ['death', 'fail', 'warn', 'pull'];
 
   // TODO: this should probably start/stop combat too for the summary page?
-  collector.StartNewACTCombat();
+  let fakeTimestamp = 0;
+  collector.StartEncounter(fakeTimestamp);
   for (let i = 0; i < numMistakes; ++i) {
-    collector.OnMistakeObj({
+    fakeTimestamp += 1000;
+    collector.OnMistakeObj(fakeTimestamp, {
       type: types[Math.floor(Math.random() * types.length)] ?? 'good',
       blame: names[Math.floor(Math.random() * names.length)],
       text: 'stuff',
