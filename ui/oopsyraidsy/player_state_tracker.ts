@@ -137,7 +137,7 @@ export class PlayerStateTracker {
 
   OnStartEncounter(timestamp: number): void {
     this.baseTime = timestamp;
-    this.collector.StartNewACTCombat();
+    this.collector.StartEncounter(timestamp);
   }
 
   OnStopEncounter(_timestamp: number): void {
@@ -189,9 +189,9 @@ export class PlayerStateTracker {
     this.baseTime = undefined;
   }
 
-  OnChangeZone(zoneName: string, zoneId: number): void {
+  OnChangeZone(timestamp: number, zoneName: string, zoneId: number): void {
     this.Reset();
-    this.collector.OnChangeZone(zoneName, zoneId);
+    this.collector.OnChangeZone(timestamp, zoneName, zoneId);
   }
 
   OnAddedCombatant(line: string, splitLine: string[]): void {
@@ -341,7 +341,7 @@ export class PlayerStateTracker {
   }
 
   OnMistakeObj(timestamp: number, mistake: OopsyMistake): void {
-    this.collector.OnMistakeObj(mistake);
+    this.collector.OnMistakeObj(timestamp, mistake);
 
     const targetId = mistake.reportId;
     if (!targetId || !IsPlayerId(targetId))
@@ -410,7 +410,7 @@ export class PlayerStateTracker {
     );
 
     const mistake = report.generateMistake();
-    this.collector.OnMistakeObj(mistake);
+    this.collector.OnMistakeObj(timestamp, mistake);
   }
 
   OnHoTDoT(line: string, splitLine: string[]): void {
