@@ -45,6 +45,15 @@ import { OopsyOptions } from './oopsy_options';
 
 const actorControlFadeInCommand = '40000010';
 
+const partyWipeText = {
+  en: 'Party Wipe',
+  de: 'Gruppe ausgelöscht',
+  fr: 'Party Wipe',
+  ja: 'ワイプ',
+  cn: '团灭',
+  ko: '파티 전멸',
+};
+
 const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
 
 export type ProcessedOopsyTriggerSet = LooseOopsyTriggerSet & {
@@ -67,6 +76,7 @@ export class DamageTracker {
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
   private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
+  private wipeCactbotEcho: CactbotBaseRegExp<'GameLog'>;
   private lastTimestamp = 0;
   private triggerSuppress: { [triggerId: string]: number } = {};
   private data: OopsyData;
@@ -109,6 +119,7 @@ export class DamageTracker {
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang] ||
       LocaleNetRegex.countdownCancel['en'];
     this.abilityFullRegex = NetRegexes.abilityFull();
+    this.wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
 
     this.data = this.GetDataObject();
     this.Reset();
@@ -151,13 +162,10 @@ export class DamageTracker {
     this.timers = [];
   }
 
-  private UpdateLastTimestamp(splitLine: string[]): number {
-    if (splitLine[logDefinitions.None.fields.type] === logDefinitions.GameLog.type)
-      return this.lastTimestamp;
+  private UpdateLastTimestamp(splitLine: string[]): void {
     const timeField = splitLine[logDefinitions.None.fields.timestamp];
     if (timeField)
       this.lastTimestamp = new Date(timeField).getTime();
-    return this.lastTimestamp;
   }
 
   OnNetLog(e: EventResponses['LogLine']): void {
@@ -171,10 +179,9 @@ export class DamageTracker {
     // If we're waiting on a timestamp callback, check if any have passed with this line.
     // Ignore game log lines, which don't track milliseconds.
     if (type !== logDefinitions.GameLog.type) {
+      this.UpdateLastTimestamp(splitLine);
       let timestampCallback = this.timestampCallbacks[0];
       while (timestampCallback) {
-        // Don't update timestamp on every single network log line, only when there are callbacks.
-        this.UpdateLastTimestamp(splitLine);
         if (this.lastTimestamp < timestampCallback.timestamp)
           break;
 
@@ -190,6 +197,8 @@ export class DamageTracker {
           this.collector.AddEngage();
         if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
           this.collector.Reset();
+        if (this.wipeCactbotEcho.test(line))
+          this.OnPartyWipeEvent(this.lastTimestamp);
         break;
       case logDefinitions.ChangedPlayer.type:
         this.effectTracker.OnChangedPlayer(line, splitLine);
@@ -215,8 +224,10 @@ export class DamageTracker {
         this.effectTracker.OnHoTDoT(line, splitLine);
         break;
       case logDefinitions.ActorControl.type:
-        if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand)
+        if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand) {
+          this.OnPartyWipeEvent(this.lastTimestamp);
           this.effectTracker.OnWipe(line, splitLine);
+        }
         break;
     }
 
@@ -225,7 +236,7 @@ export class DamageTracker {
     for (const trigger of this.triggers) {
       const matches = trigger.localRegex.exec(line);
       if (matches)
-        this.OnTrigger(trigger, matches, this.UpdateLastTimestamp(splitLine));
+        this.OnTrigger(trigger, matches, this.lastTimestamp);
     }
   }
 
@@ -349,9 +360,12 @@ export class DamageTracker {
       this.timers.push(window.setTimeout(f, delaySeconds * 1000));
   }
 
-  OnPartyWipeEvent(): void {
-    if (this.ignoreZone)
-      return;
+  OnPartyWipeEvent(timestamp: number): void {
+    this.effectTracker.OnMistakeObj(timestamp, {
+      type: 'wipe',
+      text: partyWipeText,
+    });
+
     this.Reset();
     this.collector.OnPartyWipeEvent();
   }
