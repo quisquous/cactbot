@@ -19,9 +19,6 @@ import {
 
 // TODO: lots of things left to do with death reports
 // * probably include max hp as well?
-// * include other mistakes (simple / triggers)
-//   * add log timestamps to all mistakes (not a big deal, but just a bunch of plumbing)
-//   * ignore simple damage/missed buffs as those are handled separately
 // * consolidate HoT/DoT (with expandable CSS)
 // * show mitigation effects that are active during damage (with icons?? or at least text to start?)
 //   * also need to track effects that are active prior to the set of events passed in
@@ -290,7 +287,7 @@ export class DeathReport {
       amountStr: amountStr,
       amountClass: amountClass,
       icon: event.mistake,
-      text: abilityName,
+      text: event.mistakeText ?? abilityName,
     };
   }
 
@@ -368,9 +365,14 @@ export class DeathReport {
     const triggerType = mistake.triggerType;
 
     // Buffs are handled separately, and Damage types are annotated directly on the lines
-    // where there is damage, rather than having a separate line.
-    // TODO: consider handling solo/share events the same way rather than adding a separate line?
-    if (triggerType === undefined || triggerType === 'Buff' || triggerType === 'Damage')
+    // where there is damage, rather than having a separate line.  Solo/Share mistakes
+    // are merged with their ability via `mistakeText`.
+    if (
+      triggerType === 'Buff' ||
+      triggerType === 'Damage' ||
+      triggerType === 'Solo' ||
+      triggerType === 'Share'
+    )
       return;
 
     const text = Translate(this.lang, mistake.text);

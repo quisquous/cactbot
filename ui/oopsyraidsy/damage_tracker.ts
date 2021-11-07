@@ -30,6 +30,8 @@ import { OopsyFileData } from './data/oopsy_manifest.txt';
 import { EffectTracker } from './effect_tracker';
 import { MistakeCollector } from './mistake_collector';
 import {
+  GetShareMistakeText,
+  GetSoloMistakeText,
   IsPlayerId,
   IsTriggerEnabled,
   kAttackFlags,
@@ -434,14 +436,7 @@ export class DamageTracker {
             blame: matches.target,
             reportId: matches.targetId,
             triggerType: 'Share',
-            text: {
-              en: `${matches.ability} (share)`,
-              de: `${matches.ability} (geteilt)`,
-              fr: `${matches.ability}`, // FIXME
-              ja: `${matches.ability}`, // FIXME
-              cn: `${matches.ability} (重叠)`,
-              ko: `${matches.ability} (쉐어)`,
-            },
+            text: GetShareMistakeText(matches.ability),
           };
         },
       };
@@ -464,14 +459,7 @@ export class DamageTracker {
             blame: matches.target,
             reportId: matches.targetId,
             triggerType: 'Solo',
-            text: {
-              en: `${matches.ability} (alone)`,
-              de: `${matches.ability} (allein)`,
-              fr: `${matches.ability} (seul(e))`,
-              ja: `${matches.ability} (一人)`,
-              cn: `${matches.ability} (单吃)`,
-              ko: `${matches.ability} (혼자 맞음)`,
-            },
+            text: GetSoloMistakeText(matches.ability),
           };
         },
       };
