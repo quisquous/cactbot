@@ -260,8 +260,13 @@ export class EffectTracker {
     this.OnPartyChanged();
   }
 
-  SetBaseTime(splitLine: string[]): void {
-    this.baseTime = getTimestamp(splitLine);
+  OnStartEncounter(timestamp: number): void {
+    this.baseTime = timestamp;
+    this.collector.StartNewACTCombat();
+  }
+
+  OnStopEncounter(_timestamp: number): void {
+    // TODO: forward this along to MistakeObserver
   }
 
   PushTriggerSet(set: ProcessedOopsyTriggerSet): void {
@@ -309,8 +314,9 @@ export class EffectTracker {
     this.baseTime = undefined;
   }
 
-  OnChangeZone(): void {
+  OnChangeZone(zoneName: string, zoneId: number): void {
     this.Reset();
+    this.collector.OnChangeZone(zoneName, zoneId);
   }
 
   OnAddedCombatant(line: string, splitLine: string[]): void {

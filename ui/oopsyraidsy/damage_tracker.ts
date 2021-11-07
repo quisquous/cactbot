@@ -26,6 +26,7 @@ import {
 } from '../../types/oopsy';
 import { ZoneIdType } from '../../types/trigger';
 
+import { CombatState } from './combat_state';
 import { OopsyFileData } from './data/oopsy_manifest.txt';
 import { EffectTracker } from './effect_tracker';
 import { MistakeCollector } from './mistake_collector';
@@ -39,6 +40,7 @@ import {
   kShiftFlagValues,
   playerDamageFields,
   ShortNamify,
+  Translate,
   UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
@@ -53,6 +55,27 @@ const partyWipeText = {
   cn: '团灭',
   ko: '파티 전멸',
 };
+
+const earlyPullText = {
+  en: 'early pull',
+  de: 'zu früh angegriffen',
+  fr: 'early pull',
+  ja: 'タゲ取り早い',
+  cn: '抢开',
+  ko: '풀링 빠름',
+};
+
+const latePullText = {
+  en: 'late pull',
+  de: 'zu spät angegriffen',
+  fr: 'late pull',
+  ja: 'タゲ取り遅い',
+  cn: '晚开',
+  ko: '풀링 늦음',
+};
+
+// Internal trigger id for early pull
+const earlyPullTriggerId = 'General Early Pull';
 
 const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
 
@@ -77,6 +100,9 @@ export class DamageTracker {
   private countdownCancelRegex: RegExp;
   private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
   private wipeCactbotEcho: CactbotBaseRegExp<'GameLog'>;
+  private combatState = new CombatState(this);
+  private engageTime?: number;
+  private firstPuller?: string;
   private lastTimestamp = 0;
   private triggerSuppress: { [triggerId: string]: number } = {};
   private data: OopsyData;
@@ -162,6 +188,27 @@ export class DamageTracker {
     this.timers = [];
   }
 
+  private OnEngage(timestamp: number) {
+    this.engageTime = timestamp;
+
+    if (!this.firstPuller || !this.combatState.startTime)
+      return;
+
+    const seconds = (timestamp - this.combatState.startTime) / 1000;
+    if (seconds >= this.options.MinimumTimeForPullMistake) {
+      const mistakeStr = Translate(this.options.DisplayLanguage, earlyPullText) ?? '';
+      const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
+      if (IsTriggerEnabled(this.options, earlyPullTriggerId)) {
+        this.effectTracker.OnMistakeObj(timestamp, {
+          type: 'pull',
+          name: this.firstPuller,
+          blame: this.firstPuller,
+          text: text,
+        });
+      }
+    }
+  }
+
   private UpdateLastTimestamp(splitLine: string[]): void {
     const timeField = splitLine[logDefinitions.None.fields.timestamp];
     if (timeField)
@@ -193,10 +240,13 @@ export class DamageTracker {
 
     switch (type) {
       case logDefinitions.GameLog.type:
-        if (this.countdownEngageRegex.test(line))
-          this.collector.AddEngage();
+        if (this.countdownEngageRegex.test(line)) {
+          // It would be ideal if we could use the log timestamp, but many early/late pulls are <1s,
+          // and the accuracy of game log lines is also at most 1s off from real time.
+          this.OnEngage(Date.now());
+        }
         if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
-          this.collector.Reset();
+          this.combatState.Reset();
         if (this.wipeCactbotEcho.test(line))
           this.OnPartyWipeEvent(this.lastTimestamp);
         break;
@@ -205,7 +255,7 @@ export class DamageTracker {
           const name = splitLine[logDefinitions.ChangeZone.fields.name];
           const id = splitLine[logDefinitions.ChangeZone.fields.id];
           if (name !== undefined && id !== undefined)
-            this.SetZone(name, parseInt(id));
+            this.SetZone(name, parseInt(id, 16));
         }
         break;
       case logDefinitions.ChangedPlayer.type:
@@ -249,12 +299,12 @@ export class DamageTracker {
   }
 
   private OnAbilityEvent(line: string, splitLine: string[]): void {
-    // TODO track first puller here, collector doesn't need every damage line
-    if (this.collector.firstPuller)
+    if (this.firstPuller || this.combatState.startTime)
       return;
 
     // This is kind of obnoxious to have to regex match every ability line that's already split.
     // But, it turns it into a usable match object.
+    // TODO: use log definitions here??
     const lineMatches = this.abilityFullRegex.exec(line);
     if (!lineMatches || !lineMatches.groups)
       return;
@@ -278,8 +328,42 @@ export class DamageTracker {
     if (!kAttackFlags.includes(lowByte))
       return;
 
-    this.collector.AddDamage(matches);
-    this.effectTracker.SetBaseTime(splitLine);
+    // Start combat first prior to sending a late pull mistake,
+    // as starting a new combat can reset the live list.
+    this.combatState.StartCombat(this.lastTimestamp);
+
+    if (IsPlayerId(matches.sourceId))
+      this.firstPuller = matches.source;
+    else if (IsPlayerId(matches.targetId))
+      this.firstPuller = matches.target;
+    else
+      this.firstPuller = '???';
+
+    if (this.engageTime) {
+      const seconds = ((Date.now() - this.engageTime) / 1000);
+      if (seconds >= this.options.MinimumTimeForPullMistake) {
+        const mistakeStr = Translate(this.options.DisplayLanguage, latePullText) ?? '';
+        const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
+        if (IsTriggerEnabled(this.options, earlyPullTriggerId)) {
+          this.effectTracker.OnMistakeObj(this.lastTimestamp, {
+            type: 'pull',
+            name: this.firstPuller,
+            blame: this.firstPuller,
+            text: text,
+          });
+        }
+      }
+    }
+  }
+
+  OnStartEncounter(timestamp: number): void {
+    this.effectTracker.OnStartEncounter(timestamp);
+  }
+
+  OnStopEncounter(timestamp: number): void {
+    this.effectTracker.OnStopEncounter(timestamp);
+    this.firstPuller = undefined;
+    this.engageTime = undefined;
   }
 
   OnTrigger(trigger: LooseOopsyTrigger, execMatches: RegExpExecArray, timestamp: number): void {
@@ -375,7 +459,7 @@ export class DamageTracker {
     });
 
     this.Reset();
-    this.collector.OnPartyWipeEvent();
+    this.combatState.StopCombat(timestamp);
   }
 
   // Similar to EffectTracker handling OnPlayerChanged events plus ChangedPlayer lines,
@@ -395,13 +479,20 @@ export class DamageTracker {
     const zoneInfo = ZoneInfo[this.zoneId];
     this.contentType = zoneInfo?.contentType ?? 0;
 
+    this.combatState.Reset();
     this.effectTracker.ClearTriggerSets();
-    this.effectTracker.OnChangeZone();
-    this.collector.OnChangeZone(zoneName, zoneId);
+    this.effectTracker.OnChangeZone(zoneName, zoneId);
     this.ReloadTriggers();
   }
 
   OnInCombatChangedEvent(e: EventResponses['onInCombatChangedEvent']): void {
+    if (this.inCombat !== e.detail.inGameCombat) {
+      if (e.detail.inGameCombat)
+        this.combatState.StartCombat(this.lastTimestamp);
+      else
+        this.combatState.StopCombat(this.lastTimestamp);
+    }
+
     this.inCombat = e.detail.inGameCombat;
     this.data.inCombat = this.inCombat;
   }
