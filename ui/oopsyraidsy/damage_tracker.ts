@@ -200,6 +200,14 @@ export class DamageTracker {
         if (this.wipeCactbotEcho.test(line))
           this.OnPartyWipeEvent(this.lastTimestamp);
         break;
+      case logDefinitions.ChangeZone.type:
+        {
+          const name = splitLine[logDefinitions.ChangeZone.fields.name];
+          const id = splitLine[logDefinitions.ChangeZone.fields.id];
+          if (name !== undefined && id !== undefined)
+            this.SetZone(name, parseInt(id));
+        }
+        break;
       case logDefinitions.ChangedPlayer.type:
         this.effectTracker.OnChangedPlayer(line, splitLine);
         break;
@@ -370,15 +378,26 @@ export class DamageTracker {
     this.collector.OnPartyWipeEvent();
   }
 
+  // Similar to EffectTracker handling OnPlayerChanged events plus ChangedPlayer lines,
+  // handling this event is extra insurance for reloads in the middle of a zone when
+  // there won't be ChangeZone lines to do it more naturally.
   OnChangeZone(e: EventResponses['ChangeZone']): void {
-    this.zoneName = e.zoneName;
-    this.zoneId = e.zoneID;
+    this.SetZone(e.zoneName, e.zoneID);
+  }
+
+  SetZone(zoneName: string, zoneId: number): void {
+    if (this.zoneId === zoneId)
+      return;
+
+    this.zoneName = zoneName;
+    this.zoneId = zoneId;
 
     const zoneInfo = ZoneInfo[this.zoneId];
     this.contentType = zoneInfo?.contentType ?? 0;
 
     this.effectTracker.ClearTriggerSets();
-    this.effectTracker.OnChangeZone(e);
+    this.effectTracker.OnChangeZone();
+    this.collector.OnChangeZone(zoneName, zoneId);
     this.ReloadTriggers();
   }
 

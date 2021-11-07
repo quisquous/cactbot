@@ -78,7 +78,6 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   addOverlayListener('onPlayerChangedEvent', (e) => damageTracker.OnPlayerChange(e));
   addOverlayListener('ChangeZone', (e) => {
     damageTracker.OnChangeZone(e);
-    mistakeCollector.OnChangeZone(e);
   });
   addOverlayListener('onInCombatChangedEvent', (e) => {
     damageTracker.OnInCombatChangedEvent(e);

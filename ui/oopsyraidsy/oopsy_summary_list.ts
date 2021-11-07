@@ -1,4 +1,3 @@
-import { EventResponses } from '../../types/event';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { MistakeObserver } from './mistake_observer';
@@ -137,7 +136,7 @@ export class OopsySummaryTable implements MistakeObserver {
     // noop
   }
 
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
+  OnChangeZone(): void {
     // noop
   }
 }
@@ -298,7 +297,7 @@ export class OopsySummaryList implements MistakeObserver {
     this.baseTime = Date.now();
   }
 
-  OnChangeZone(e: EventResponses['ChangeZone']): void {
-    this.zoneName = e.zoneName;
+  OnChangeZone(zoneName: string, _zoneId: number): void {
+    this.zoneName = zoneName;
   }
 }

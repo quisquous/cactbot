@@ -1,5 +1,4 @@
 import { UnreachableCode } from '../../resources/not_reached';
-import { EventResponses } from '../../types/event';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { DeathReport } from './death_report';
@@ -339,7 +338,7 @@ export class OopsyLiveList implements MistakeObserver {
     this.baseTime = Date.now();
   }
 
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
+  OnChangeZone(): void {
     this.Reset();
   }
 }

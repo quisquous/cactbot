@@ -179,9 +179,9 @@ export class MistakeCollector {
     }
   }
 
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
+  OnChangeZone(zoneName: string, zoneId: number): void {
     this.Reset();
     for (const observer of this.observers)
-      observer.OnChangeZone(_e);
+      observer.OnChangeZone(zoneName, zoneId);
   }
 }
