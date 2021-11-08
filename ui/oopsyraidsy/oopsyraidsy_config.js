@@ -290,6 +290,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'DeathReportSide',
       name: {
         en: 'How to show the death report',
+        de: 'Wie zeige ich den Todesreport an',
       },
       type: 'select',
       options: {
@@ -297,6 +298,11 @@ UserConfig.registerOptions('oopsyraidsy', {
           'Left Side': 'left',
           'Right Side': 'right',
           '❌ Disabled': 'disabled',
+        },
+        de: {
+          'Left Side': 'links',
+          'Right Side': 'rechts',
+          '❌ Disabled': 'deaktiviert',
         },
       },
       default: 'left',
