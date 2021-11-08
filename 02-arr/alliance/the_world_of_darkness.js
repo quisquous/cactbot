@@ -55,9 +55,11 @@ Options.Triggers.push({
             outputStrings: {
                 red: {
                     en: 'Get Behind (Red)',
+                    de: 'Geh nach Hinten (Rot)',
                 },
                 white: {
                     en: 'Get in Front (White)',
+                    de: 'Geh nach Vorne (Weiß)',
                 },
             },
         },
@@ -77,6 +79,7 @@ Options.Triggers.push({
             outputStrings: {
                 cleanse: {
                     en: 'Run to Cleanse Circle',
+                    de: 'Geh in die Kreise zum reinigen',
                 },
             },
         },

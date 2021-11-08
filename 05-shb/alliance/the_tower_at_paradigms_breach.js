@@ -576,30 +576,37 @@ Options.Triggers.push({
             outputStrings: {
                 center: {
                     en: 'Go to Center',
+                    de: 'Geh in die Mitte',
                     cn: '去中间',
                 },
                 northBoss: {
                     en: 'Go to North Boss',
+                    de: 'Geh zum nördlichen Boss',
                     cn: '去北(上)边BOSS脚下',
                 },
                 north: {
                     en: 'Go North',
+                    de: 'Geh nach Norden',
                     cn: '去北(上)边',
                 },
                 westBoss: {
                     en: 'Go to West Boss',
+                    de: 'Geh zum westlichen Boss',
                     cn: '去西(左)边BOSS脚下',
                 },
                 west: {
                     en: 'Go West',
+                    de: 'Geh nach Westen',
                     cn: '去西(左)边',
                 },
                 corner: {
                     en: 'Go to Corner',
+                    de: 'Geh in eine Ecke',
                     cn: '去角落',
                 },
                 oops: {
                     en: 'Avoid line AOEs',
+                    de: 'Weiche den Linien AoEs aus',
                     cn: '躲避直线AOE',
                 },
             },
