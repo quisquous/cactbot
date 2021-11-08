@@ -499,17 +499,20 @@ export class EffectTracker {
       if (!id)
         continue;
 
+      const type = event.splitLine[logDefinitions.None.fields.type];
+      const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type;
+
       // Combining share/solo mistake lines with ability damage lines is a bit of
       // duplication, but unless EffectTracker generated share/solo/damage mistakes
       // itself, there's no way to undo the mistake + ability.  So, we'll add the
       // mistake text into the TrackedEventLine for the ability and hide the mistake.
       if (id in this.mistakeDamageMap) {
         event.mistake = this.mistakeDamageMap[id];
-      } else if (id in this.mistakeShareMap) {
+      } else if (isSharedDamage && id in this.mistakeShareMap) {
         event.mistake = this.mistakeShareMap[id];
         const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
         event.mistakeText = Translate(this.options.DisplayLanguage, GetShareMistakeText(ability));
-      } else if (id in this.mistakeSoloMap) {
+      } else if (!isSharedDamage && id in this.mistakeSoloMap) {
         event.mistake = this.mistakeSoloMap[id];
         const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
         event.mistakeText = Translate(this.options.DisplayLanguage, GetSoloMistakeText(ability));
