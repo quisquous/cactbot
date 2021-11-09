@@ -1239,10 +1239,8 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
-        const dir = data.naelMarks ? data.naelMarks[data.naelDiveMarkerCount] : undefined;
-        if (!dir)
-          return output.text!({ dir: output.unknownDir!() });
-        return output.text!({ dir: dir });
+        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknownDir';
+        return output.text!({ dir: output[dir]!() });
       },
       outputStrings: {
         text: {
@@ -1252,6 +1250,14 @@ const triggerSet: TriggerSet<Data> = {
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
         unknownDir: Outputs.unknown,
       },
     },
