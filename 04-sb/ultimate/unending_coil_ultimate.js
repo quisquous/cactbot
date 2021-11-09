@@ -1184,12 +1184,11 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '0014' }),
             condition: (data) => !data.trio,
             alarmText: (data, matches, output) => {
+                let _a; let _b;
                 if (matches.target !== data.me)
                     return;
-                const dir = data.naelMarks ? data.naelMarks[data.naelDiveMarkerCount] : undefined;
-                if (!dir)
-                    return output.text({ dir: output.unknownDir() });
-                return output.text({ dir: dir });
+                const dir = (_b = (_a = data.naelMarks) === null || _a === void 0 ? void 0 : _a[data.naelDiveMarkerCount]) !== null && _b !== void 0 ? _b : 'unknownDir';
+                return output.text({ dir: output[dir]() });
             },
             outputStrings: {
                 text: {
@@ -1199,6 +1198,14 @@ Options.Triggers.push({
                     cn: '带着点名去${dir}',
                     ko: '${dir}으로 이동',
                 },
+                dirN: Outputs.dirN,
+                dirNE: Outputs.dirNE,
+                dirE: Outputs.dirE,
+                dirSE: Outputs.dirSE,
+                dirS: Outputs.dirS,
+                dirSW: Outputs.dirSW,
+                dirW: Outputs.dirW,
+                dirNW: Outputs.dirNW,
                 unknownDir: Outputs.unknown,
             },
         },
