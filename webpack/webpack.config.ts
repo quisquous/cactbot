@@ -2,6 +2,7 @@ import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { Configuration as WebpackConfiguration } from 'webpack';
@@ -156,6 +157,7 @@ export default (
     },
     plugins: [
       new CleanWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin(),
       new MiniCssExtractPlugin(),
       ...htmlPluginRules,
       new CopyPlugin({
