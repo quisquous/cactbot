@@ -4,7 +4,7 @@ import { UnreachableCode } from '../../resources/not_reached';
 import TimerBar from '../../resources/timerbar';
 import TimerIcon from '../../resources/timericon';
 import { LocaleNetRegex } from '../../resources/translations';
-import { isCasterDpsJob, isHealerJob } from '../../resources/util';
+import Util from '../../resources/util';
 import { Job } from '../../types/job';
 import { NetAnyFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
@@ -79,7 +79,7 @@ export class RegexesHolder {
 }
 
 export const doesJobNeedMPBar = (job: Job): boolean =>
-  isCasterDpsJob(job) || isHealerJob(job) || kMeleeWithMpJobs.includes(job);
+  Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 
 /** compute greased lightning stacks by player's level */
 const getLightningStacksByLevel = (level: number): number =>

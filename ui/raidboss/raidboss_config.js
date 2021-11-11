@@ -2,14 +2,7 @@ import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
 import UserConfig from '../../resources/user_config';
-import {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-} from '../../resources/util';
+import Util from '../../resources/util';
 import raidbossFileData from './data/raidboss_manifest.txt';
 import raidbossOptions from './raidboss_options';
 
@@ -288,6 +281,7 @@ const kMiscTranslations = {
   viewTriggerSource: {
     en: 'View Trigger Source',
     de: 'Zeige Trigger Quelle',
+    fr: 'Afficher la source du Trigger',
     ja: 'トリガーのコードを表示',
     cn: '显示触发器源码',
     ko: '트리거 출처 열기',
@@ -673,12 +667,12 @@ class RaidbossConfigurator {
       ShortName: (x) => x,
       StopCombat: () => {},
       ParseLocaleFloat: parseFloat,
-      CanStun: () => canStun(this.job),
-      CanSilence: () => canSilence(this.job),
-      CanSleep: () => canSleep(this.job),
-      CanCleanse: () => canCleanse(this.job),
-      CanFeint: () => canFeint(this.job),
-      CanAddle: () => canAddle(this.job),
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
     };
 
     const kFakeData = [
@@ -1468,7 +1462,7 @@ const templateOptions = {
       name: {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
         de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
-        fr: 'Alex fatal : activer cactbot pour Wormhole strat',
+        fr: 'Alex fatal : activer cactbot pour la strat Wormhole',
         ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
         cn: '亚历山大绝境战：cactbot灵泉辅助功能',
         ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
@@ -1481,7 +1475,7 @@ const templateOptions = {
       name: {
         en: 'e8s: enable cactbot Uptime Knockback strat',
         de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
-        fr: 'e8s : activer cactbot pour Uptime Knockback strat',
+        fr: 'e8s : activer cactbot pour la strat Uptime Knockback',
         ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
         cn: 'E8S: 启用cactbot的击退提示功能',
         ko: '공명 영웅 4층: cactbot 정확한 타이밍 넉백방지 공략 활성화',

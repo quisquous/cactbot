@@ -171,6 +171,7 @@ class OopsyConfigurator {
         fr: 'Buffs manqués',
         ja: '欠けバフ',
         cn: '遗漏Buff',
+        ko: '놓친 버프 알림',
       }),
       triggerSet: { triggers: generateBuffTriggers() },
     };
@@ -267,7 +268,10 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'TimeToShowDeathReportSeconds',
       name: {
         en: 'Seconds to show death report on death (0=none)',
+        de: 'Sekunden um den Todesreport beim Tot anzuzeigen (0=niemals)',
+        ja: '倒れた時にデスレポートを表示 (0=非表示)',
         cn: '死亡时显示死亡报告的秒数 (0=不显示)',
+        ko: '죽었을 때 사망 보고서를 보여주는 시간(초) (0=비활성화)',
       },
       type: 'float',
       default: 4,
@@ -281,6 +285,27 @@ UserConfig.registerOptions('oopsyraidsy', {
           return;
         options['TimeToShowDeathReportMs'] = seconds * 1000;
       },
+    },
+    {
+      id: 'DeathReportSide',
+      name: {
+        en: 'How to show the death report',
+        de: 'Wie zeige ich den Todesreport an',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Left Side': 'left',
+          'Right Side': 'right',
+          '❌ Disabled': 'disabled',
+        },
+        de: {
+          'Left Side': 'links',
+          'Right Side': 'rechts',
+          '❌ Disabled': 'deaktiviert',
+        },
+      },
+      default: 'left',
     },
   ],
 });

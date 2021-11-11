@@ -88,8 +88,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
       mistake: (data, matches) => {
         if (data.hasAstral && data.hasAstral[matches.target])
-          return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
-        return { type: 'warn', blame: matches.target, text: noBuff(matches.ability) };
+          return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: wrongBuff(matches.ability) };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: noBuff(matches.ability) };
       },
     },
     {
@@ -101,11 +101,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
       mistake: (data, matches) => {
         if (data.hasUmbral && data.hasUmbral[matches.target])
-          return { type: 'fail', blame: matches.target, text: wrongBuff(matches.ability) };
+          return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: wrongBuff(matches.ability) };
         // This case is probably impossible, as the debuff ticks after death,
         // but leaving it here in case there's some rez or disconnect timing
         // that could lead to this.
-        return { type: 'warn', blame: matches.target, text: noBuff(matches.ability) };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: noBuff(matches.ability) };
       },
     },
   ],

@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
@@ -29,34 +28,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Kugane Castle Fragility': '1EAA', // Chariot AoE, Inoshikacho, boss 3
     'Kugane Castle Dragonfire': '1EAB', // Line AoE, Dragon Head, boss 3
   },
-
   shareWarn: {
     'Kugane Castle Issen': '1E97', // Instant frontal cleave, Dojun Maru, boss 2
     'Kugane Castle Clockwork Raiton': '1E9B', // Large lightning spread circles, Dojun Maru, boss 2
   },
-  triggers: [
-    {
-      // Stack marker, Zuiko Maru, boss 1
-      id: 'Kugane Castle Helm Crack',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1E94' }),
-      condition: (_data, matches) => matches.type === '21', // Taking the stack solo is *probably* a mistake.
-      mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          text: {
-            en: `${matches.ability} (alone)`,
-            de: `${matches.ability} (allein)`,
-            fr: `${matches.ability} (seul(e))`,
-            ja: `${matches.ability} (一人)`,
-            cn: `${matches.ability} (单吃)`,
-            ko: `${matches.ability} (혼자 맞음)`,
-          },
-        };
-      },
-    },
-  ],
+  soloFail: {
+    'Kugane Castle Helm Crack': '1E94', // Stack marker, Zuiko Maru, boss 1
+  },
 };
 
 export default triggerSet;

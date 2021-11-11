@@ -170,7 +170,11 @@ div {
 
 .death-details {
   display: grid;
-  grid-template-columns: minmax(50px, max-content) minmax(10px, max-content) auto auto;
+  grid-template-columns: max-content minmax(50px, max-content) minmax(10px, max-content) auto auto;
+}
+
+.death-row-hp {
+  text-align: right;
 }
 
 .death-row-amount {
@@ -196,6 +200,19 @@ div {
 
 .death-row-text {
   text-align: left;
+}
+
+.death-row-time {
+  text-align: right;
+}
+
+/* by default the report is on the left */
+.report-side-right .flexcontainer {
+  flex-direction: row-reverse;
+}
+
+.report-side-disabled .death-report {
+  display: none;
 }
 
 @keyframes fadeOut {

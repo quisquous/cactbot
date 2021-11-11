@@ -27,6 +27,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Booped',
             de: 'Nyx berührt',

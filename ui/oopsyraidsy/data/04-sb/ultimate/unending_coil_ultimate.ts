@@ -29,6 +29,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Twister Pop',
             de: 'Wirbelsturm berührt',
@@ -48,6 +49,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Pizza Slice',
             de: 'Pizzastück',

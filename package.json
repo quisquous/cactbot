@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.23.8",
+  "version": "0.23.10",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -74,7 +74,7 @@
     "html-webpack-plugin": "^5.3.1",
     "husky": "^4.2.5",
     "json5": "^2.2.0",
-    "jszip": "^3.6.0",
+    "jszip": "^3.7.1",
     "lint-staged": "^10.0.8",
     "lodash": "^4.14.170",
     "markdown-magic": "^2.5.2",

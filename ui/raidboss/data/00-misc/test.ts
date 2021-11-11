@@ -1,6 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
-import { watchCombatant } from '../../../../resources/util';
+import Util from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
 import { LocaleText, TriggerSet } from '../../../../types/trigger';
@@ -8,6 +8,7 @@ import { LocaleText, TriggerSet } from '../../../../types/trigger';
 const strikingDummyNames: LocaleText = {
   en: 'Striking Dummy',
   de: 'Trainingspuppe',
+  ja: '木人',
   cn: '木人',
 };
 
@@ -254,6 +255,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
+      netRegexJa: NetRegexes.echo({ line: 'cactbotレスポンステスト.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
@@ -276,9 +278,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
+      netRegexJa: NetRegexes.echo({ line: 'cactbot探知テスト.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
       promise: (data) =>
-        watchCombatant({
+        Util.watchCombatant({
           names: [
             data.me,
             strikingDummyNames[data.lang] ?? strikingDummyNames['en'],
@@ -308,6 +311,7 @@ const triggerSet: TriggerSet<Data> = {
         close: {
           en: 'Dummy close!',
           de: 'Puppe beendet!',
+          ja: '木人に近すぎ！',
           cn: '靠近木人！',
         },
       },

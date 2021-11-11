@@ -4,16 +4,7 @@ import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_
 import PartyTracker from '../../resources/party';
 import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
-import {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-  clearWatchCombatants,
-  jobToRole,
-} from '../../resources/util';
+import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import { RaidbossData } from '../../types/data';
 import { EventResponses, LogEvent } from '../../types/event';
@@ -30,7 +21,8 @@ import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
 import { RaidbossFileData } from './data/raidboss_manifest.txt';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
-import { TimelineReplacement, TimelineLoader } from './timeline';
+import { TimelineLoader } from './timeline';
+import { TimelineReplacement } from './timeline_parser';
 
 const isRaidbossLooseTimelineTrigger =
   (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
@@ -777,7 +769,7 @@ export class PopupText {
   OnJobChange(e: PlayerChangedDetail): void {
     this.me = e.detail.name;
     this.job = e.detail.job;
-    this.role = jobToRole(this.job);
+    this.role = Util.jobToRole(this.job);
     this.ReloadTimelines();
   }
 
@@ -825,7 +817,7 @@ export class PopupText {
   }
 
   Reset(): void {
-    clearWatchCombatants();
+    Util.clearWatchCombatants();
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
@@ -1401,12 +1393,12 @@ export class PopupText {
       ShortName: this.ShortNamify.bind(this),
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
-      CanStun: () => canStun(this.job),
-      CanSilence: () => canSilence(this.job),
-      CanSleep: () => canSleep(this.job),
-      CanCleanse: () => canCleanse(this.job),
-      CanFeint: () => canFeint(this.job),
-      CanAddle: () => canAddle(this.job),
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
     };
   }
 }

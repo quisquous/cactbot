@@ -1,6 +1,7 @@
 00-misc/general.ts
 00-misc/test.ts
 00-misc/test.txt
+02-arr/alliance/the_world_of_darkness.ts
 02-arr/dungeon/brayfloxs_longstop.ts
 02-arr/dungeon/haukke_manor.ts
 02-arr/raid/t1.ts

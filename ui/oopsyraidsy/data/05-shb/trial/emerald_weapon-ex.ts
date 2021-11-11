@@ -25,6 +25,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'EmeraldEx Shots Fired': '55B7', // rank and file soldiers
     'EmeraldEx Secundus Terminus Est': '55CB', // dropped + and x headmarkers
     'EmeraldEx Expire': '55D1', // ground aoe on boss "get out"
+    'EmeraldEx Photon Ring': '55A9', // untelegraphed "get out"
     'EmeraldEx Aire Tam Storm': '55D0', // expanding red and black ground aoe
   },
   shareWarn: {
@@ -85,8 +86,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (wrong color)`,
+            de: `${matches.ability} (falsche Farbe)`,
             fr: `${matches.ability} (mauvaise couleur)`,
             cn: `${matches.ability} (颜色错了)`,
           },
@@ -102,8 +105,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (wrong color)`,
+            de: `${matches.ability} (falsche Farbe)`,
             fr: `${matches.ability} (mauvaise couleur)`,
             cn: `${matches.ability} (颜色错了)`,
           },
