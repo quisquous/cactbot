@@ -69,10 +69,12 @@ const triggerSet: TriggerSet<Data> = {
         red: {
           en: 'Get Behind (Red)',
           de: 'Geh nach Hinten (Rot)',
+          ko: '뒤쪽으로 (빨강)',
         },
         white: {
           en: 'Get in Front (White)',
           de: 'Geh nach Vorne (Weiß)',
+          ko: '앞쪽으로 (흰색)',
         },
       },
     },
@@ -93,6 +95,7 @@ const triggerSet: TriggerSet<Data> = {
         cleanse: {
           en: 'Run to Cleanse Circle',
           de: 'Geh in die Kreise zum reinigen',
+          ko: '흰색 원 밟아서 선고 해제하기',
         },
       },
     },
