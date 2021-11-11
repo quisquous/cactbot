@@ -87,6 +87,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             de: 'Schockierter Imp',
             ja: 'カッパを解除しなかった',
             cn: '河童状态吃了暴雷',
+            ko: '물요정 상태 해제하지 않음',
           },
         };
       },

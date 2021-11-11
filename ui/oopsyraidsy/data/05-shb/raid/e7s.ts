@@ -151,6 +151,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A été assommé(e)',
             ja: 'ノックバック',
             cn: '击退坠落',
+            ko: '넉백',
           },
         };
       },

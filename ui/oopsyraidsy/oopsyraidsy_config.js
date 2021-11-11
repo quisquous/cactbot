@@ -291,6 +291,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'How to show the death report',
         de: 'Wie zeige ich den Todesreport an',
+        ko: '사망 보고서 표시 위치',
       },
       type: 'select',
       options: {
@@ -303,6 +304,11 @@ UserConfig.registerOptions('oopsyraidsy', {
           'Left Side': 'links',
           'Right Side': 'rechts',
           '❌ Disabled': 'deaktiviert',
+        },
+        ko: {
+          'Left Side': '왼쪽',
+          'Right Side': '오른쪽',
+          '❌ Disabled': '비활성화',
         },
       },
       default: 'left',
