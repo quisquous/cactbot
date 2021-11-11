@@ -2,7 +2,7 @@ import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import { EventResponses } from '../../types/event';
-import { OopsyDeathReason, OopsyMistakeType } from '../../types/oopsy';
+import { OopsyDeathReason, OopsyMistake, OopsyMistakeType } from '../../types/oopsy';
 
 import {
   MissableAbility,
@@ -13,7 +13,13 @@ import {
 import { ProcessedOopsyTriggerSet } from './damage_tracker';
 import { DeathReport } from './death_report';
 import { MistakeCollector } from './mistake_collector';
-import { IsPlayerId, ShortNamify, Translate } from './oopsy_common';
+import {
+  GetShareMistakeText,
+  GetSoloMistakeText,
+  IsPlayerId,
+  ShortNamify,
+  Translate,
+} from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 // Abilities seem roughly instant.
@@ -171,7 +177,10 @@ export type TrackedLineEvent = {
   timestamp: number;
   type: TrackedLineEventType;
   targetId: string;
+  // Annotate this line with a mistake icon.
   mistake?: OopsyMistakeType;
+  // Override the text from the splitLine with explicit text (e.g. solo/share mistake).
+  mistakeText?: string;
   splitLine: string[];
 };
 
@@ -182,7 +191,15 @@ export type TrackedDeathReasonEvent = {
   text: string;
 };
 
-export type TrackedEvent = TrackedLineEvent | TrackedDeathReasonEvent;
+export type TrackedMistakeEvent = {
+  timestamp: number;
+  type: 'Mistake';
+  targetId: string;
+  mistakeEvent: OopsyMistake;
+};
+
+export type TrackedEvent = TrackedLineEvent | TrackedDeathReasonEvent | TrackedMistakeEvent;
+export type TrackedEventType = TrackedEvent['type'];
 
 // Tracks various state about the party (party, pets, buffs).
 // TODO: EffectTracker isn't a great name here, sorry.
@@ -206,6 +223,11 @@ export class EffectTracker {
   private nextPruneTimestamp?: number;
   private baseTime?: number;
   private myPlayerId?: string;
+
+  // Cached ability -> mistake icon types for "simple" mistakes.
+  private mistakeDamageMap: { [id: string]: OopsyMistakeType } = {};
+  private mistakeShareMap: { [id: string]: OopsyMistakeType } = {};
+  private mistakeSoloMap: { [id: string]: OopsyMistakeType } = {};
 
   constructor(
     private options: OopsyOptions,
@@ -245,10 +267,27 @@ export class EffectTracker {
 
   PushTriggerSet(set: ProcessedOopsyTriggerSet): void {
     this.triggerSets.push(set);
+    for (const set of this.triggerSets) {
+      for (const value of Object.values(set.damageWarn ?? {}))
+        this.mistakeDamageMap[value] = 'warn';
+      for (const value of Object.values(set.damageFail ?? {}))
+        this.mistakeDamageMap[value] = 'fail';
+      for (const value of Object.values(set.shareWarn ?? {}))
+        this.mistakeShareMap[value] = 'warn';
+      for (const value of Object.values(set.shareFail ?? {}))
+        this.mistakeShareMap[value] = 'fail';
+      for (const value of Object.values(set.soloWarn ?? {}))
+        this.mistakeSoloMap[value] = 'warn';
+      for (const value of Object.values(set.soloFail ?? {}))
+        this.mistakeSoloMap[value] = 'fail';
+    }
   }
 
   ClearTriggerSets(): void {
     this.triggerSets = [];
+    this.mistakeDamageMap = {};
+    this.mistakeShareMap = {};
+    this.mistakeSoloMap = {};
   }
 
   // Called to update the list of player ids we care about.
@@ -285,11 +324,17 @@ export class EffectTracker {
     this.petIdToOwnerId[petId.toUpperCase()] = ownerId.toUpperCase();
   }
 
-  // TODO: player change lines occur on every zone change, but for safety we should also
-  // consider passing the id in the plugin `PlayerChangedDetail` event listener, which
-  // will get re-sent on every reload.
   OnChangedPlayer(line: string, splitLine: string[]): void {
-    this.myPlayerId = splitLine[logDefinitions.ChangedPlayer.fields.id];
+    const id = splitLine[logDefinitions.ChangedPlayer.fields.id];
+    if (id)
+      this.SetPlayerId(id);
+  }
+
+  SetPlayerId(id: string): void {
+    if (this.myPlayerId === id)
+      return;
+    this.myPlayerId = id;
+    this.OnPartyChanged();
   }
 
   IsInParty(id?: string): boolean {
@@ -415,6 +460,21 @@ export class EffectTracker {
     });
   }
 
+  OnMistakeObj(timestamp: number, mistake: OopsyMistake): void {
+    this.collector.OnMistakeObj(mistake);
+
+    const targetId = mistake.reportId;
+    if (!targetId || !IsPlayerId(targetId))
+      return;
+
+    this.trackedEvents.push({
+      timestamp: timestamp,
+      type: 'Mistake',
+      targetId: targetId,
+      mistakeEvent: mistake,
+    });
+  }
+
   // Returns an event for why this person died.
   OnDefeated(line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.WasDefeated.fields.targetId];
@@ -432,21 +492,31 @@ export class EffectTracker {
     });
 
     // Mark simple mistakes that can be attached to single ability ids.
-    // TODO: should we just do this once when the triggersets are set?
-    const abilityMap: { [id: string]: OopsyMistakeType } = {};
-    for (const set of this.triggerSets) {
-      for (const value of Object.values(set.damageWarn ?? {}))
-        abilityMap[value] = 'warn';
-      for (const value of Object.values(set.damageFail ?? {}))
-        abilityMap[value] = 'fail';
-    }
     for (const event of events) {
       if (event.type !== 'Ability')
         continue;
       const id = event.splitLine[logDefinitions.Ability.fields.id];
       if (!id)
         continue;
-      event.mistake = abilityMap[id];
+
+      const type = event.splitLine[logDefinitions.None.fields.type];
+      const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type;
+
+      // Combining share/solo mistake lines with ability damage lines is a bit of
+      // duplication, but unless EffectTracker generated share/solo/damage mistakes
+      // itself, there's no way to undo the mistake + ability.  So, we'll add the
+      // mistake text into the TrackedEventLine for the ability and hide the mistake.
+      if (id in this.mistakeDamageMap) {
+        event.mistake = this.mistakeDamageMap[id];
+      } else if (isSharedDamage && id in this.mistakeShareMap) {
+        event.mistake = this.mistakeShareMap[id];
+        const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
+        event.mistakeText = Translate(this.options.DisplayLanguage, GetShareMistakeText(ability));
+      } else if (!isSharedDamage && id in this.mistakeSoloMap) {
+        event.mistake = this.mistakeSoloMap[id];
+        const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
+        event.mistakeText = Translate(this.options.DisplayLanguage, GetSoloMistakeText(ability));
+      }
     }
 
     const targetName = splitLine[logDefinitions.WasDefeated.fields.target] ?? '???';
@@ -538,9 +608,12 @@ export class EffectTracker {
         return ShortNamify(name, this.options.PlayerNicks);
       }).join(', ');
 
-      this.collector.OnMistakeObj({
+      // As a TrackedLineEvent has been pushed for each person missed already,
+      // explicitly don't add a `reportId` field on these mistakes.
+      this.OnMistakeObj(timestamp, {
         type: type,
         blame: sourceName,
+        triggerType: 'Buff',
         text: {
           en: `${collected.buffName} missed ${nameList}`,
           de: `${collected.buffName} verfehlt ${nameList}`,
@@ -555,9 +628,10 @@ export class EffectTracker {
 
     // If there's too many people, just list the number of people missed.
     // TODO: we could also list everybody on separate lines?
-    this.collector.OnMistakeObj({
+    this.OnMistakeObj(timestamp, {
       type: type,
       blame: sourceName,
+      triggerType: 'Buff',
       text: {
         en: `${collected.buffName} missed ${missedNames.length} people`,
         de: `${collected.buffName} verfehlte ${missedNames.length} Personen`,

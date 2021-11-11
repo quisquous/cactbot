@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
-import { Timeline } from '../../ui/raidboss/timeline';
+import { TimelineParser } from '../../ui/raidboss/timeline_parser';
 import {
   commonReplacement,
   partialCommonReplacementKeys,
@@ -121,7 +121,7 @@ const testTimelineFiles = (timelineFiles) => {
             path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
           timelineText = String(fs.readFileSync(timelineFile));
           triggerSet = (await import(importPath)).default;
-          timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);
+          timeline = new TimelineParser(timelineText, null, triggerSet.timelineTriggers);
         });
         // This test loads an individual raidboss timeline and makes sure
         // that timeline.js can parse it without errors.

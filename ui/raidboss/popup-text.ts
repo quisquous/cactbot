@@ -20,7 +20,8 @@ import {
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
-import { TimelineReplacement, TimelineLoader } from './timeline';
+import { TimelineLoader } from './timeline';
+import { TimelineReplacement } from './timeline_parser';
 
 const isRaidbossLooseTimelineTrigger =
   (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {

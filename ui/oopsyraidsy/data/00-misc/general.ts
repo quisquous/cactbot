@@ -34,6 +34,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'lost food buff',
             de: 'Nahrungsbuff verloren',
@@ -64,6 +65,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.source,
+          reportId: matches.sourceId,
           text: {
             en: 'bunny',
             de: 'Hase',

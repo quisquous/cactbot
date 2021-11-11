@@ -124,6 +124,7 @@ html {
   margin-left: 40px;
   display: grid;
   grid-template-columns: max-content minmax(50px, max-content) minmax(10px, max-content) max-content max-content;
+  column-gap: 10px;
 }
 
 .death-row-hp {
@@ -133,6 +134,10 @@ html {
 .death-row-amount {
   text-align: right;
   font-weight: bold;
+}
+
+.death-row-icon {
+  width: 18px;
 }
 
 .death-details .damage {
@@ -149,7 +154,6 @@ html {
 
 .death-row-text {
   text-align: left;
-  margin-right: 20px;
 }
 
 .death-row-time {

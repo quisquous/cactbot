@@ -24,6 +24,7 @@ class Fisher {
   constructor(options, element) {
     this.options = options;
     this.element = element;
+    this.name = undefined;
 
     this.zone = null;
     this.job = null;
@@ -46,14 +47,7 @@ class Fisher {
     this.castEnd = null;
     this.castGet = null;
 
-    this.gainEffectRegex = {
-      chum: NetRegexes.gainsEffect({ effectId: '2FB', capture: false }),
-      snag: NetRegexes.gainsEffect({ effectId: '2F9', capture: false }),
-    };
-    this.loseEffectRegex = {
-      chum: NetRegexes.losesEffect({ effectId: '2FB', capture: false }),
-      snag: NetRegexes.losesEffect({ effectId: '2F9', capture: false }),
-    };
+    this.updateNameRegexes();
 
     this.regex = {
       // Localized strings from: https://xivapi.com/LogMessage?pretty=1&columns=ID,Text_de,Text_en,Text_fr,Text_ja&ids=1110,1111,1112,1113,1115,1116,1117,1118,1119,1120,1121,1127,1129,3511,3512,3515,3516,3525
@@ -468,14 +462,14 @@ class Fisher {
     const type = e.line[0];
 
     if (type === logDefinitions.GainsEffect.type) {
-      if (this.gainEffectRegex.chum.test(log))
+      if (this.gainEffectRegex.chum?.test(log))
         this.handleChumGain();
-      else if (this.gainEffectRegex.snag.test(log))
+      else if (this.gainEffectRegex.snag?.test(log))
         this.handleSnagGain();
     } else if (type === logDefinitions.LosesEffect.type) {
-      if (this.loseEffectRegex.chum.test(log))
+      if (this.loseEffectRegex.chum?.test(log))
         this.handleChumFade();
-      else if (this.loseEffectRegex.snag.test(log))
+      else if (this.loseEffectRegex.snag?.test(log))
         this.handleSnagFade();
     }
     if (type !== logDefinitions.GameLog.type)
@@ -512,6 +506,23 @@ class Fisher {
     }
   }
 
+  updateNameRegexes() {
+    if (!this.name) {
+      this.gainEffectRegex = { chum: undefined, snag: undefined };
+      this.loseEffectRegex = { chum: undefined, snag: undefined };
+      return;
+    }
+
+    this.gainEffectRegex = {
+      chum: NetRegexes.gainsEffect({ effectId: '2FB', target: this.name, capture: false }),
+      snag: NetRegexes.gainsEffect({ effectId: '2F9', target: this.name, capture: false }),
+    };
+    this.loseEffectRegex = {
+      chum: NetRegexes.losesEffect({ effectId: '2FB', target: this.name, capture: false }),
+      snag: NetRegexes.losesEffect({ effectId: '2F9', target: this.name, capture: false }),
+    };
+  }
+
   OnNetLog(e) {
     if (this.job === 'FSH')
       this.parseLine(e);
@@ -524,6 +535,10 @@ class Fisher {
   }
 
   OnPlayerChange(e) {
+    if (this.name !== e.detail.name) {
+      this.name = e.detail.name;
+      this.updateNameRegexes();
+    }
     this.job = e.detail.job;
     if (this.job === 'FSH') {
       this.element.style.display = 'block';

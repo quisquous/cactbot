@@ -2,7 +2,13 @@ import { Lang } from '../../resources/languages';
 import logDefinitions from '../../resources/netlog_defs';
 import { OopsyMistake } from '../../types/oopsy';
 
-import { TrackedEvent, TrackedLineEvent, TrackedLineEventType } from './effect_tracker';
+import {
+  TrackedDeathReasonEvent,
+  TrackedEvent,
+  TrackedEventType,
+  TrackedLineEvent,
+  TrackedMistakeEvent,
+} from './effect_tracker';
 import {
   kAttackFlags,
   kHealFlags,
@@ -13,10 +19,6 @@ import {
 
 // TODO: lots of things left to do with death reports
 // * probably include max hp as well?
-// * handle DeathReason (right now it is not shown, other than in the summary line)
-// * include other mistakes (simple / triggers)
-//   * add log timestamps to all mistakes (not a big deal, but just a bunch of plumbing)
-//   * ignore simple damage/missed buffs as those are handled separately
 // * consolidate HoT/DoT (with expandable CSS)
 // * show mitigation effects that are active during damage (with icons?? or at least text to start?)
 //   * also need to track effects that are active prior to the set of events passed in
@@ -48,7 +50,7 @@ const processAbilityLine = (splitLine: string[]) => {
 export type ParsedDeathReportLine = {
   timestamp: number;
   timestampStr: string;
-  type: TrackedLineEventType;
+  type: TrackedEventType;
   currentHp?: number;
   amount?: number;
   amountStr?: string;
@@ -140,6 +142,7 @@ export class DeathReport {
 
     let lastCertainHp: number | undefined = undefined;
     let currentHp: number | undefined = undefined;
+    let deathReasonIdx: number | undefined = undefined;
 
     for (const event of this.events) {
       let parsed: ParsedDeathReportLine | undefined = undefined;
@@ -149,9 +152,29 @@ export class DeathReport {
         parsed = this.processHoTDoT(event);
       else if (event.type === 'MissedAbility' || event.type === 'MissedEffect')
         parsed = this.processMissedBuff(event);
+      else if (event.type === 'Mistake')
+        parsed = this.processMistake(event);
+      else if (event.type === 'DeathReason')
+        parsed = this.processDeathReason(event);
 
+      // After this point, we will always append this event,
+      // but still have some post-processing to do.
       if (!parsed)
         continue;
+
+      if (
+        event.type === 'Ability' &&
+        parsed.amount !== undefined &&
+        parsed.amount < 0 &&
+        deathReasonIdx !== undefined
+      ) {
+        // Found damage after a DeathReason, remove previous DeathReason.
+        this.parsedReportLines.splice(deathReasonIdx);
+        deathReasonIdx = undefined;
+      } else if (event.type === 'DeathReason') {
+        // Found a new DeathReason, track this index in case it needs to be removed.
+        deathReasonIdx = this.parsedReportLines.length;
+      }
 
       // Touch up the hp so it looks more valid.  There are only hp fields on certain
       // log lines, and more importantly it is polled from memory.  Therefore, if a
@@ -264,7 +287,7 @@ export class DeathReport {
       amountStr: amountStr,
       amountClass: amountClass,
       icon: event.mistake,
-      text: abilityName,
+      text: event.mistakeText ?? abilityName,
     };
   }
 
@@ -334,6 +357,41 @@ export class DeathReport {
       type: event.type,
       icon: 'heal',
       text: Translate(this.lang, text),
+    };
+  }
+
+  private processMistake(event: TrackedMistakeEvent): ParsedDeathReportLine | undefined {
+    const mistake = event.mistakeEvent;
+    const triggerType = mistake.triggerType;
+
+    // Buffs are handled separately, and Damage types are annotated directly on the lines
+    // where there is damage, rather than having a separate line.  Solo/Share mistakes
+    // are merged with their ability via `mistakeText`.
+    if (
+      triggerType === 'Buff' ||
+      triggerType === 'Damage' ||
+      triggerType === 'Solo' ||
+      triggerType === 'Share'
+    )
+      return;
+
+    const text = Translate(this.lang, mistake.text);
+    return {
+      timestamp: event.timestamp,
+      timestampStr: this.makeRelativeTimeString(event.timestamp),
+      type: event.type,
+      icon: mistake.type,
+      text: text,
+    };
+  }
+
+  private processDeathReason(event: TrackedDeathReasonEvent): ParsedDeathReportLine | undefined {
+    return {
+      timestamp: event.timestamp,
+      timestampStr: this.makeRelativeTimeString(event.timestamp),
+      type: event.type,
+      icon: 'death',
+      text: event.text,
     };
   }
 }

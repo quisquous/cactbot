@@ -181,7 +181,7 @@ export class OopsyLiveList implements MistakeObserver {
   private numItems = 0;
   private items: HTMLElement[] = [];
   private baseTime?: number;
-  private deathReport: DeathReportLive;
+  private deathReport?: DeathReportLive;
   private itemIdxToListener: { [itemIdx: number]: () => void } = {};
 
   constructor(private options: OopsyOptions, private scroller: HTMLElement) {
@@ -193,7 +193,11 @@ export class OopsyLiveList implements MistakeObserver {
     const reportDiv = document.getElementById('death-report');
     if (!reportDiv)
       throw new UnreachableCode();
-    this.deathReport = new DeathReportLive(options, reportDiv);
+
+    if (this.options.DeathReportSide !== 'disabled')
+      this.deathReport = new DeathReportLive(options, reportDiv);
+
+    document.body.classList.add(`report-side-${this.options.DeathReportSide}`);
 
     this.Reset();
     this.SetInCombat(false);
@@ -216,7 +220,7 @@ export class OopsyLiveList implements MistakeObserver {
   OnMistakeObj(m: OopsyMistake): void {
     const report = m.report;
     if (report)
-      this.deathReport.queue(report);
+      this.deathReport?.queue(report);
 
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
@@ -244,7 +248,7 @@ export class OopsyLiveList implements MistakeObserver {
       delete this.itemIdxToListener[itemIdx];
     }
     if (report) {
-      const func = () => this.deathReport.mouseOver(report, this.inCombat);
+      const func = () => this.deathReport?.mouseOver(report, this.inCombat);
       rowDiv.addEventListener('mousemove', func);
       this.itemIdxToListener[itemIdx] = func;
     }
@@ -327,7 +331,7 @@ export class OopsyLiveList implements MistakeObserver {
     this.numItems = 0;
     this.container.innerHTML = '';
     this.itemIdxToListener = {};
-    this.deathReport.hide();
+    this.deathReport?.hide();
   }
 
   StartNewACTCombat(): void {

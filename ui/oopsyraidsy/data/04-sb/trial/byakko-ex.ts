@@ -35,6 +35,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'bubble collision',
             de: 'Blasen sind zusammengestoßen',

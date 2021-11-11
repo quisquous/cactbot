@@ -26,12 +26,22 @@ export type OopsyField =
   | OopsyDeathReason
   | void;
 
+export type InternalOopsyTriggerType =
+  | 'Buff'
+  | 'Damage'
+  | 'GainsEffect'
+  | 'Share'
+  | 'Solo';
+
 export type OopsyMistake = {
   type: OopsyMistakeType;
   name?: string;
-  // TODO: docs say blame can be an array but the code does not support that.
   blame?: string;
+  reportId?: string;
   text: string | LocaleText;
+  // Internal annotation for which trigger type created this.
+  // This will get overwritten when triggers are loaded/created.
+  triggerType?: InternalOopsyTriggerType;
   // TODO: change type so this only exists for type='death'.
   report?: DeathReport;
 };

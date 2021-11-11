@@ -298,6 +298,9 @@ type PlayerChangedJobDetails<T> = {
 };
 
 type PlayerChangedBase = {
+  // Decimal player id, as a string.
+  // TODO: should the plugin emit a decimal number or a hex string instead?
+  id: string;
   name: string;
   level: number;
   currentHP: number;

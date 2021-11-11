@@ -57,6 +57,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Run Over',
             de: 'Wurde überfahren',
