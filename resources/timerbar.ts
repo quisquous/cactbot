@@ -43,6 +43,7 @@ export default class TimerBar extends HTMLElement {
     ];
   }
 
+  /** create an instance of TimerBar with attributes */
   static create(o?: {
     duration?: number;
     value?: number;

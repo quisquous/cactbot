@@ -47,6 +47,7 @@ export default class TimerBox extends HTMLElement {
     ];
   }
 
+  /** create an instance of TimerBox with attributes */
   static create(o?: {
     duration?: number;
     threshold?: number;

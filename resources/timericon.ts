@@ -38,6 +38,7 @@ export default class TimerIcon extends HTMLElement {
     ];
   }
 
+  /** create an instance of TimerIcon with attributes */
   static create(o?: {
     icon?: string;
     zoom?: number;

@@ -26,7 +26,7 @@ export default class ResourceBar extends HTMLElement {
   private _rightText: string;
   private _connected: boolean;
 
-  /** create a instance of ResourceBar with attributes */
+  /** create an instance of ResourceBar with attributes */
   static create(o?: {
     value?: string;
     maxvalue?: string;

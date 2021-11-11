@@ -29,6 +29,7 @@ export default class WidgetList extends HTMLElement {
     return ['toward', 'elementwidth', 'elementheight', 'rowcolsize', 'maxnumber'];
   }
 
+  /** create an instance of WidgetList with attributes */
   static create(o?: {
     toward?: Toward;
     elementwidth?: string;
