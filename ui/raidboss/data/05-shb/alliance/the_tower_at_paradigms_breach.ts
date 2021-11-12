@@ -618,13 +618,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go to Center',
           de: 'Geh in die Mitte',
           cn: '去中间',
-          ko: '중앙으로',
+          ko: '가운데로',
         },
         northBoss: {
           en: 'Go to North Boss',
           de: 'Geh zum nördlichen Boss',
           cn: '去北(上)边BOSS脚下',
-          ko: '북쪽 보스쪽으로',
+          ko: '북쪽 보스 근처로',
         },
         north: {
           en: 'Go North',
@@ -636,7 +636,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go to West Boss',
           de: 'Geh zum westlichen Boss',
           cn: '去西(左)边BOSS脚下',
-          ko: '서쪽 보스쪽으로',
+          ko: '서쪽 보스 근처로',
         },
         west: {
           en: 'Go West',
@@ -654,7 +654,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Avoid line AOEs',
           de: 'Weiche den Linien AoEs aus',
           cn: '躲避直线AOE',
-          ko: '직선 장판 피하기',
+          ko: '레이저 피하기',
         },
       },
     },

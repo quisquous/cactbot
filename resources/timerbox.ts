@@ -47,6 +47,51 @@ export default class TimerBox extends HTMLElement {
     ];
   }
 
+  /** create an instance of TimerBox with attributes */
+  static create(o?: {
+    duration?: number;
+    threshold?: number;
+    scale?: number;
+    valuescale?: number;
+    bg?: string;
+    fg?: string;
+    toward?: 'top' | 'bottom';
+    stylefill?: 'fill' | 'empty';
+    hideafter?: number | null;
+    bigatzero?: boolean;
+    roundupthreshold?: boolean;
+  }): TimerBox {
+    if (!window.customElements.get('timer-box'))
+      window.customElements.define('timer-box', TimerBox);
+    const element = document.createElement('timer-box');
+    if (!o)
+      return element;
+
+    if (o.duration)
+      element.duration = o.duration;
+    if (o.threshold)
+      element.threshold = o.threshold;
+    if (o.scale)
+      element.scale = o.scale;
+    if (o.valuescale)
+      element.valuescale = o.valuescale;
+    if (o.bg)
+      element.bg = o.bg;
+    if (o.fg)
+      element.fg = o.fg;
+    if (o.toward)
+      element.toward = o.toward;
+    if (o.stylefill)
+      element.stylefill = o.stylefill;
+    if (o.hideafter)
+      element.hideafter = o.hideafter;
+    if (o.bigatzero)
+      element.bigatzero = o.bigatzero;
+    if (o.roundupthreshold)
+      element.roundupthreshold = o.roundupthreshold;
+    return element;
+  }
+
   // The full duration of the current countdown. When this is changed,
   // the countdown restarts at the new value. If set to 0 then countdowns
   // are stopped.
