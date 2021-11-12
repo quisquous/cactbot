@@ -37,6 +37,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A été poussé(e) !',
             ja: '落ちた',
             cn: '击退坠落',
+            ko: '낙사',
           },
         };
       },

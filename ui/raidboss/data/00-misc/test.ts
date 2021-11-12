@@ -10,6 +10,7 @@ const strikingDummyNames: LocaleText = {
   de: 'Trainingspuppe',
   ja: '木人',
   cn: '木人',
+  ko: '나무인형',
 };
 
 export interface Data extends RaidbossData {
@@ -257,6 +258,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbotレスポンステスト.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
+      netRegexKo: NetRegexes.echo({ line: 'cactbot 응답 테스트.*?', capture: false }),
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -280,6 +282,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot探知テスト.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
+      netRegexKo: NetRegexes.echo({ line: 'cactbot 탐지 테스트.*?', capture: false }),
       promise: (data) =>
         Util.watchCombatant({
           names: [
@@ -313,6 +316,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Puppe beendet!',
           ja: '木人に近すぎ！',
           cn: '靠近木人！',
+          ko: '나무인형과 가까움!',
         },
       },
     },
