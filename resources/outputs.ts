@@ -134,7 +134,7 @@ export default {
     fr: 'Packez-vous',
     ja: '集合',
     cn: '集合',
-    ko: '쉐어뎀',
+    ko: '모이기',
   },
   stackOnYou: {
     en: 'Stack on YOU',
@@ -190,6 +190,7 @@ export default {
     de: 'Einzug',
     ja: '吸込み',
     cn: '吸引',
+    ko: '끌어당김',
   },
   knockback: {
     en: 'Knockback',
@@ -556,7 +557,7 @@ export default {
     fr: 'RÉVEILLES-TOI',
     ja: '目を覚まして！',
     cn: '醒醒！动一动！！',
-    ko: '강제 퇴장 7분 전',
+    ko: '일어나세요!',
   },
   closeTethersWithPlayer: {
     en: 'Close Tethers (${player})',

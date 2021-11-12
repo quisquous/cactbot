@@ -23,6 +23,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Restez sur une plateforme ',
           ja: '円形床の上へ',
           cn: '站台子上',
+          ko: '원형 바닥 위로',
         },
       },
     },

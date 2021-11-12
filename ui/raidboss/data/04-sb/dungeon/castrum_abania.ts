@@ -306,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Assessment Grounds': '성능 시험장',
       },
       'replaceText': {
+        '--adds--': '--쫄--',
         'Barrier Shift': '보호막 변환',
         'Gale Cut': '열풍살',
         'Ketu & Rahu': '케투와 라후',
@@ -316,6 +317,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rahu Blaster': '라후 폭파',
         'Rahu Cut': '라후 리미터 해제',
         'Stab': '찌르기',
+        'Towers': '기둥',
         'Wheel': '바퀴',
         'Wild Speed': '폭주',
       },
