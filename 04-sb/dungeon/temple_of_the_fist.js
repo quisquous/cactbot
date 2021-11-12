@@ -366,6 +366,8 @@ Options.Triggers.push({
                 'Arbuda': '아부다',
                 'Coeurl Smriti': '커얼 스므리티',
                 'Coeurl Sruti': '커얼 슈루티',
+                'Guidance': '도령전',
+                'Harmony': '음양원',
                 'Ivon Coeurlfist': '쌍표범 이본',
             },
             'replaceText': {
@@ -374,6 +376,7 @@ Options.Triggers.push({
                 'Coeurl Whisper': '쌍표범 소환',
                 'Electric Burst': '전하 폭발',
                 'Fourfold Shear': '사연속 베기',
+                'Front/Back\\?Sides\\?': '앞/뒤? 양옆?',
                 'Furious Fists': '쌍표창연격',
                 'Heat Lightning': '뜨거운 번개',
                 'Hellseal': '시련의 각인',

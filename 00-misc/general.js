@@ -56,6 +56,7 @@ Options.Triggers.push({
                     fr: 'Provocation: ${player} (manquée)',
                     ja: '挑発: ${player} (タゲなし)',
                     cn: '挑衅: ${player} (无目标)',
+                    ko: '도발: ${player} (빗나감)',
                 },
             },
         },

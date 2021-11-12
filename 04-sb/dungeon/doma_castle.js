@@ -198,6 +198,7 @@ Options.Triggers.push({
             },
             'replaceText': {
                 '2-Tonze Magitek Missile': '대형 마도 미사일',
+                'Bits Activate': '비트 활성화',
                 'Cermet Pile': '합금 말뚝',
                 'Chainsaw': '전기톱',
                 'Circle Of Death': '죽음의 원',
@@ -205,8 +206,10 @@ Options.Triggers.push({
                 'Delay-Action Charge': '시한폭탄',
                 'Garlean Fire': '갈레안 파이어',
                 'Gunsaw': '기관총',
+                'Hexadrone Bits': '헥사롤러 비트',
                 'Magitek Missiles': '마도 미사일',
                 'Magitek Ray': '마도 레이저',
+                'Rearguard Mines': '리어가드 폭뢰',
                 'Thermobaric Charge': '기화폭탄',
             },
         },
