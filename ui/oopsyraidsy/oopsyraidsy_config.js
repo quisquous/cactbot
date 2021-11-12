@@ -325,9 +325,9 @@ UserConfig.registerOptions('oopsyraidsy', {
           '❌ 禁用': 'disabled',
         },
         ko: {
-          'Left Side': '왼쪽',
-          'Right Side': '오른쪽',
-          '❌ Disabled': '비활성화',
+          '왼쪽': 'left',
+          '오른쪽': 'right',
+          '❌ 비활성화': 'disabled',
         },
       },
       default: 'left',
