@@ -4,6 +4,8 @@
 
 html {
   overflow: visible !important;
+  font-family: "Meiryo", sans-serif;
+  font-size: 16;
 }
 
 .mistake-row {
@@ -50,8 +52,6 @@ html {
 
 .summary {
   margin: 5px;
-  font-family: "Meiryo", sans-serif;
-  font-size: 16;
 }
 
 .section {
