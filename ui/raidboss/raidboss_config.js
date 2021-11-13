@@ -532,13 +532,13 @@ class RaidbossConfigurator {
           input.step = 'any';
 
           // Say "(default)" for more complicated things like functions.
-          let defaultValue = kMiscTranslations.valueDefault;
+          let defaultValue = this.base.translate(kMiscTranslations.valueDefault);
           if (trig.beforeSeconds === undefined)
             defaultValue = 0;
           else if (typeof trig.beforeSeconds === 'number')
             defaultValue = trig.beforeSeconds;
 
-          input.placeholder = this.base.translate(defaultValue);
+          input.placeholder = defaultValue;
           input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey], '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
@@ -587,7 +587,10 @@ class RaidbossConfigurator {
 
         for (const key in outputStrings) {
           const optionKey = kOptionKeys.outputStrings;
-          const template = this.base.translate(outputStrings[key]);
+          const outputString = outputStrings[key];
+          const template = typeof outputString === 'string'
+            ? outputString
+            : this.base.translate(outputString);
 
           const label = document.createElement('div');
           label.innerText = key;

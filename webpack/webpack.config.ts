@@ -26,6 +26,7 @@ export default (
     let extension = 'js';
     if (
       [
+        'config',
         'eureka',
         'jobs',
         'oopsyraidsyLive',
