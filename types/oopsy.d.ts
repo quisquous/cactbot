@@ -61,7 +61,7 @@ export type OopsyTriggerField<Data extends OopsyData, MatchType extends NetAnyMa
   [Return] extends [void] ? OopsyFunc<Data, MatchType, void>
     : OopsyFunc<Data, MatchType, Return | undefined> | Return | undefined;
 
-export type BaseOopsyTrigger<Data extends OopsyData, Type extends TriggerTypes> = {
+export type BaseOopsyTrigger<Data, Type extends TriggerTypes> = {
   id: string;
   condition?: OopsyTriggerField<Data, NetMatches[Type], boolean>;
   delaySeconds?: OopsyTriggerField<Data, NetMatches[Type], number>;
@@ -81,9 +81,7 @@ type OopsyTriggerRegex<T extends TriggerTypes> = {
   netRegexKo?: CactbotBaseRegExp<T>;
 };
 
-export type OopsyTriggerGeneric<Data extends OopsyData, T extends TriggerTypes> =
-  & BaseOopsyTrigger<Data, T>
-  & OopsyTriggerRegex<T>;
+export type OopsyTriggerGeneric<Data, T> = BaseOopsyTrigger<Data, T> & OopsyTriggerRegex<T>;
 
 export type OopsyTrigger<Data extends OopsyData> =
   | (TriggerTypes extends infer T ? T extends TriggerTypes ? OopsyTriggerGeneric<Data, T> : never

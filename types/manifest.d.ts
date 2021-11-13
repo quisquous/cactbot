@@ -1,11 +1,14 @@
 declare module '*/raidboss_manifest.txt' {
-  const raidbossFileData: import('./trigger').RaidbossFileData;
+  export interface RaidbossFileData {
+    [filename: string]: LooseTriggerSet;
+  }
+  const raidbossFileData: RaidbossFileData;
   export default raidbossFileData;
 }
 
 declare module '*/oopsy_manifest.txt' {
   export interface OopsyFileData {
-    [filename: string]: import('./oopsy').LooseOopsyTriggerSet;
+    [filename: string]: LooseOopsyTriggerSet;
   }
   const oopsyFileData: OopsyFileData;
   export default oopsyFileData;
