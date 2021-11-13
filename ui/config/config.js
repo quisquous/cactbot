@@ -202,7 +202,7 @@ export default class CactbotConfigurator {
     // Otherwise, use the operating system language as a default for the config tool.
     this.lang = configOptions.DisplayLanguage || configOptions.ShortLocale;
     this.savedConfig = savedConfig || {};
-    this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
+    this.developerOptions = this.getOption(false, 'general', 'ShowDeveloperOptions');
 
     const templates = UserConfig.optionTemplates;
     for (const group in templates) {
@@ -238,48 +238,75 @@ export default class CactbotConfigurator {
     return textObj['en'];
   }
 
-  // takes variable args, with the last value being the default value if
-  // any key is missing.
-  // e.g. (foo, bar, baz, 5) with {foo: { bar: { baz: 3 } } } will return
-  // the value 3.  Requires at least two args.
-  getOption() {
-    const num = arguments.length;
-    if (num < 2) {
-      console.error('getOption requires at least two args');
-      return;
-    }
+  // takes variable args and returns the defaultValue if any key is missing.
+  // e.g. (5, foo, bar, baz) with {foo: { bar: { baz: 3 } } } will return
+  // the value 3.
+  getOption(defaultValue, group, id, ...args) {
+    let objOrValue = this.savedConfig[group];
+    if (objOrValue === undefined)
+      return defaultValue;
 
-    const defaultValue = arguments[num - 1];
-    let objOrValue = this.savedConfig;
-    for (let i = 0; i < num - 1; ++i) {
-      objOrValue = objOrValue[arguments[i]];
-      if (typeof objOrValue === 'undefined')
+    for (const arg of [id, ...args]) {
+      if (typeof objOrValue !== 'object' || Array.isArray(objOrValue)) {
+        // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
+        // until leaf node ConfigValue.
+        console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
         return defaultValue;
+      }
+      const item = objOrValue[arg];
+      // If not found, then use default value.
+      if (typeof item === 'undefined')
+        return defaultValue;
+      objOrValue = item;
     }
 
+    // At the leaf node.
+    // Some number options pass in empty string as a default.
+    const emptyDefaultNumber = defaultValue === '' && typeof objOrValue === 'number';
+    // Also due to inconsistencies in option code, some numbers are stored as unparsed strings.
+    const isStringNumber = typeof defaultValue === 'number' && typeof objOrValue === 'string';
+    if (!emptyDefaultNumber && !isStringNumber && typeof defaultValue !== typeof objOrValue) {
+      const info = JSON.stringify([group, id, ...args].join(', '));
+      console.error(
+        `Unexpected type: ${info}, ${objOrValue.toString()}, ${typeof objOrValue}, ${typeof defaultValue}`,
+      );
+      return defaultValue;
+    }
     return objOrValue;
   }
 
-  // takes variable args, with the last value being the 'value' to set it to
-  // e.g. (foo, bar, baz, 3) will set {foo: { bar: { baz: 3 } } }.
-  // requires at least two args.
-  setOption() {
-    const num = arguments.length;
-    if (num < 2) {
-      console.error('setOption requires at least two args');
-      return;
+  // takes variable args, with the first value being the 'value' to set it to
+  // e.g. (3, foo, bar, baz) will set {foo: { bar: { baz: 3 } } }.
+  setOption(defaultValue, group, id, ...varargs) {
+    // Set keys and create default {} if it doesn't exist.
+    this.savedConfig[group] = this.savedConfig[group] ?? {};
+    let obj = this.savedConfig[group];
+
+    const args = [id, ...varargs];
+    const finalArg = args.slice(-1)[0];
+    if (!finalArg)
+      throw new UnreachableCode();
+
+    const allButFinalArg = args.slice(0, -1);
+    for (const arg of allButFinalArg) {
+      if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+        // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
+        // until leaf node ConfigValue.
+        console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
+        return;
+      }
+
+      obj = obj[arg] = obj[arg] ?? {};
     }
 
-    // Set keys and create default {} if it doesn't exist.
-    let obj = this.savedConfig;
-    for (let i = 0; i < num - 2; ++i) {
-      const arg = arguments[i];
-      obj[arg] = obj[arg] || {};
-      obj = obj[arg];
+    if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+      // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
+      // until leaf node ConfigValue.
+      console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
+      return;
     }
-    // Set the last key to have the final argument's value.
-    obj[arguments[num - 2]] = arguments[num - 1];
-    this.saveConfigData();
+    obj[finalArg] = defaultValue;
+    void this.saveConfigData();
   }
 
   buildButterBar() {
@@ -380,8 +407,8 @@ export default class CactbotConfigurator {
     const input = document.createElement('input');
     div.appendChild(input);
     input.type = 'checkbox';
-    input.checked = this.getOption(group, opt.id, opt.default);
-    input.onchange = () => this.setOption(group, opt.id, input.checked);
+    input.checked = this.getOption(opt.default, group, opt.id);
+    input.onchange = () => this.setOption(input.checked, group, opt.id);
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
@@ -417,7 +444,7 @@ export default class CactbotConfigurator {
       else
         label.innerText = this.translate(kDirectoryDefaultText);
     };
-    setLabel(this.getOption(group, opt.id, opt.default));
+    setLabel(this.getOption(opt.default, group, opt.id));
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
@@ -438,7 +465,7 @@ export default class CactbotConfigurator {
       input.disabled = false;
       const dir = result.data ? result.data : '';
       if (dir !== prevValue)
-        this.setOption(group, opt.id, dir);
+        this.setOption(dir, group, opt.id);
       setLabel(dir);
     };
   }
@@ -450,8 +477,8 @@ export default class CactbotConfigurator {
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const defaultValue = this.getOption(group, opt.id, opt.default);
-    input.onchange = () => this.setOption(group, opt.id, input.value);
+    const defaultValue = this.getOption(opt.default, group, opt.id);
+    input.onchange = () => this.setOption(input.value, group, opt.id);
 
     const innerOptions = this.translate(opt.options);
     for (const key in innerOptions) {
@@ -476,8 +503,8 @@ export default class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 'any';
-    input.value = this.getOption(group, opt.id, parseFloat(opt.default));
-    const setFunc = () => this.setOption(group, opt.id, input.value);
+    input.value = this.getOption(parseFloat(opt.default), group, opt.id);
+    const setFunc = () => this.setOption(input.value, group, opt.id);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
@@ -494,8 +521,8 @@ export default class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 1;
-    input.value = this.getOption(group, opt.id, parseInt(opt.default));
-    const setFunc = () => this.setOption(group, opt.id, input.value);
+    input.value = this.getOption(parseInt(opt.default), group, opt.id);
+    const setFunc = () => this.setOption(input.value, group, opt.id);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
