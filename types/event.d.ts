@@ -351,6 +351,12 @@ export interface PluginCombatantState {
   Heading: number;
 }
 
+type BroadcastHandler = (msg: {
+  call: 'broadcast';
+  source: string;
+  msg: unknown;
+}) => void;
+
 type SubscribeHandler = (msg: {
   call: 'subscribe';
   events: string[];
@@ -402,6 +408,7 @@ type CactbotChooseDirectoryHandler = <T>(msg: {
 }) => ({ data: T } | undefined);
 
 export type OverlayHandlerAll = {
+  'broadcast': BroadcastHandler;
   'subscribe': SubscribeHandler;
   'getCombatants': GetCombatantsHandler;
   'cactbotReloadOverlays': CactbotReloadOverlaysHandler;

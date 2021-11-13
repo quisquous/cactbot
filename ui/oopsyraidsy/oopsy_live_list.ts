@@ -351,6 +351,10 @@ export class OopsyLiveList implements MistakeObserver {
       this.OnChangeZone();
   }
 
+  OnSyncEvents(_events: ViewEvent[]): void {
+    // don't bother syncing for the live list
+  }
+
   StartEncounter(timestamp: number): void {
     this.Reset();
     this.baseTime = timestamp;

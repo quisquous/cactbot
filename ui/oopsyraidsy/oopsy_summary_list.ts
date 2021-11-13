@@ -31,6 +31,12 @@ export class OopsySummaryTable implements MistakeObserver {
     document.documentElement.style.setProperty('--table-cols', (this.types.length + 1).toString());
   }
 
+  Reset(): void {
+    this.mistakes = undefined;
+    while (this.table?.lastChild)
+      this.table.removeChild(this.table.lastChild);
+  }
+
   BuildHeaderRow(parent: HTMLElement): void {
     const dummyFirstDiv = document.createElement('div');
     dummyFirstDiv.classList.add('header', 'name');
@@ -133,6 +139,12 @@ export class OopsySummaryTable implements MistakeObserver {
     if (event.type === 'Mistake')
       this.OnMistakeObj(event.mistake);
   }
+
+  OnSyncEvents(events: ViewEvent[]): void {
+    this.Reset();
+    for (const event of events)
+      this.OnEvent(event);
+  }
 }
 
 export class OopsySummaryList implements MistakeObserver {
@@ -143,6 +155,14 @@ export class OopsySummaryList implements MistakeObserver {
 
   constructor(private options: OopsyOptions, private container: HTMLElement) {
     this.container.classList.remove('hide');
+  }
+
+  Reset(): void {
+    this.pullIdx = 0;
+    this.baseTime = undefined;
+    this.currentDiv = null;
+    while (this.container?.lastChild)
+      this.container.removeChild(this.container.lastChild);
   }
 
   private GetTimeStr(d: Date): string {
@@ -291,7 +311,18 @@ export class OopsySummaryList implements MistakeObserver {
       this.OnChangeZone(event.zoneName);
   }
 
+  OnSyncEvents(events: ViewEvent[]): void {
+    this.Reset();
+    for (const event of events)
+      this.OnEvent(event);
+  }
+
   StartEncounter(timestamp: number): void {
+    // TODO: If you reload the summary while in combat, then the OnInCombatChangedEvent
+    // for the current combat will send a new StartEncounter (creating a new section)
+    // even though the current combat is still ongoing.  We could try to handle this
+    // by explicitly having StartEncounter/StopEncounter however this requires a bit
+    // of wrangling to get right.  For now, don't reload the summary while in combat.  ;)
     this.EndSection();
     this.baseTime = timestamp;
     this.StartNewSectionIfNeeded(timestamp);
