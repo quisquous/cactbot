@@ -16,4 +16,5 @@ export type ViewEvent = {
 
 export interface MistakeObserver {
   OnEvent: (event: ViewEvent) => void;
+  OnSyncEvents: (events: ViewEvent[]) => void;
 }

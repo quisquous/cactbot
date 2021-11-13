@@ -82,6 +82,7 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   addOverlayListener('onInCombatChangedEvent', (e) => {
     damageTracker.OnInCombatChangedEvent(e);
   });
+  addOverlayListener('BroadcastMessage', (e) => mistakeCollector.OnBroadcastMessage(e));
 
   void callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 });

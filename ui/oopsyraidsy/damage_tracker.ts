@@ -486,6 +486,12 @@ export class DamageTracker {
   }
 
   OnInCombatChangedEvent(e: EventResponses['onInCombatChangedEvent']): void {
+    // Don't send StartCombat with a timestamp=0 before we've seen any
+    // log messages.  This can happen if you reload while in combat.
+    // We'll see an action event soon enough to also start combat.
+    if (!this.lastTimestamp)
+      return;
+
     if (this.inCombat !== e.detail.inGameCombat) {
       if (e.detail.inGameCombat)
         this.combatState.StartCombat(this.lastTimestamp);
