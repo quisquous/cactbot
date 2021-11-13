@@ -225,3 +225,7 @@ export type LooseTriggerSet =
     triggers?: LooseTrigger[];
     timelineTriggers?: LooseTimelineTrigger[];
   };
+
+export interface RaidbossFileData {
+  [filename: string]: LooseTriggerSet | string;
+}
