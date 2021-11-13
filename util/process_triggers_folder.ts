@@ -133,7 +133,13 @@ const processAllFiles = async (root: string, tscCmd: string) => {
 
   // Generate javascript from typescript.
   // TODO: replace this with programatic use of TypeScript API.
-  execSync(tscCmd);
+  try {
+    execSync(tscCmd);
+  } catch (e) {
+    console.error(`Failed to run ${tscCmd}`);
+    console.error(e);
+    process.exit(6);
+  }
 
   // Process files.
   await walkDirAsync(root, async (filename) => processFile(filename));
