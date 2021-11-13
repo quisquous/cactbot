@@ -13,12 +13,13 @@ import { Matches } from '../../types/net_matches';
 import {
   LooseTrigger, OutputStrings, TimelineField, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
-  Output, RaidbossFileData, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
+  Output, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
   GeneralNetRegexTrigger, RegexTrigger,
 } from '../../types/trigger';
 
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
+import { RaidbossFileData } from './data/raidboss_manifest.txt';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
 import { TimelineLoader } from './timeline';
 import { TimelineReplacement } from './timeline_parser';
@@ -515,7 +516,7 @@ export class PopupText {
 
   ProcessDataFiles(files: RaidbossFileData): void {
     this.triggerSets = [];
-    for (const [filename, json] of Object.entries(files)) {
+    for (const [filename, json] of Object.entries<LooseTriggerSet>(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
