@@ -1,5 +1,6 @@
 import { OopsyMistake } from '../../types/oopsy';
 
+import { DeathReport } from './death_report';
 import { MistakeObserver, ViewEvent } from './mistake_observer';
 import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
@@ -246,7 +247,8 @@ export class OopsySummaryList implements MistakeObserver {
       }
     });
 
-    for (const event of m.report.parseReportLines()) {
+    const report = new DeathReport(m.report);
+    for (const event of report.parseReportLines()) {
       const hpElem = document.createElement('div');
       hpElem.classList.add('death-row-hp');
       if (event.currentHp !== undefined)

@@ -226,7 +226,7 @@ export class OopsyLiveList implements MistakeObserver {
   }
 
   OnMistakeObj(timestamp: number, m: OopsyMistake): void {
-    const report = m.report;
+    const report = m.report ? new DeathReport(m.report) : undefined;
     if (report)
       this.deathReport?.queue(report);
 

@@ -1,7 +1,12 @@
 import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
-import { OopsyDeathReason, OopsyMistake, OopsyMistakeType } from '../../types/oopsy';
+import {
+  DeathReportData,
+  OopsyDeathReason,
+  OopsyMistake,
+  OopsyMistakeType,
+} from '../../types/oopsy';
 
 import {
   MissableAbility,
@@ -400,16 +405,16 @@ export class PlayerStateTracker {
     }
 
     const targetName = splitLine[logDefinitions.WasDefeated.fields.target] ?? '???';
-    const report = new DeathReport(
-      this.options.DisplayLanguage,
-      this.baseTime,
-      timestamp,
-      targetId,
-      targetName,
-      events,
-    );
+    const reportData: DeathReportData = {
+      lang: this.options.DisplayLanguage,
+      baseTimestamp: this.baseTime,
+      deathTimestamp: timestamp,
+      targetId: targetId,
+      targetName: targetName,
+      events: events,
+    };
 
-    const mistake = report.generateMistake();
+    const mistake = DeathReport.generateMistake(reportData);
     this.collector.OnMistakeObj(timestamp, mistake);
   }
 
