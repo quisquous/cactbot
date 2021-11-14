@@ -418,16 +418,16 @@ Options.Triggers.push({
             alertText: (data, matches, output) => {
                 // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
                 // If that's disabled, this will still just call out puddle counts.
-                if (matches[1] === data.puddle)
+                if (matches[1] && parseInt(matches[1]) === data.puddle)
                     return output.soakThisPuddle({ num: matches[1] });
             },
             infoText: (data, matches, output) => {
-                if (matches[1] === data.puddle)
+                if (matches[1] && parseInt(matches[1]) === data.puddle)
                     return;
                 return output.puddle({ num: matches[1] });
             },
             tts: (data, matches, output) => {
-                if (matches[1] === data.puddle)
+                if (matches[1] && parseInt(matches[1]) === data.puddle)
                     return output.soakThisPuddleTTS();
             },
             outputStrings: {
