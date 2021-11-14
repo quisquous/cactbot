@@ -1,5 +1,3 @@
-import { LooseOopsyTrigger } from '../../types/oopsy';
-
 export type MissableBuffType = 'heal' | 'damage' | 'mitigation';
 
 export type MissableEffect = {
@@ -247,12 +245,8 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   },
 ] as const;
 
-export const generateBuffTriggers = (): LooseOopsyTrigger[] => {
+export const generateBuffTriggerIds = (): string[] => {
   const buffs: MissableBuff[] = [...missedEffectBuffMap, ...missedAbilityBuffMap];
   buffs.sort((a, b) => a.id.localeCompare(b.id));
-  return buffs.map((buff) => {
-    return {
-      id: `Buff ${buff.id}`,
-    };
-  });
+  return buffs.map((buff) => `Buff ${buff.id}`);
 };

@@ -203,6 +203,7 @@ export type ConfigProcessedFile<T extends LooseOopsyTriggerSet | LooseTriggerSet
   title: string;
   triggerSet: T;
   zoneId?: number;
+  triggers: T['triggers'];
 };
 
 export type ConfigProcessedFileMap<T extends LooseOopsyTriggerSet | LooseTriggerSet> = {
@@ -210,7 +211,7 @@ export type ConfigProcessedFileMap<T extends LooseOopsyTriggerSet | LooseTrigger
 };
 
 export class CactbotConfigurator {
-  private lang: Lang;
+  public lang: Lang;
   private savedConfig: SavedConfig;
   private contents: ConfigContents;
   private developerOptions: boolean;
@@ -693,6 +694,7 @@ export class CactbotConfigurator {
         title: title,
         triggerSet: triggerSet,
         zoneId: zoneId,
+        triggers: [],
       };
     }
 
@@ -738,6 +740,7 @@ export class CactbotConfigurator {
         type: undefined,
         triggerSet: triggerSet,
         zoneId: zoneId,
+        triggers: [],
       };
     }
 
