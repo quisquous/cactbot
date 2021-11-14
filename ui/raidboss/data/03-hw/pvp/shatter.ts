@@ -17,6 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A1 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA1号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A1启动了，冰块变得脆弱了！.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '얼음탑 A1호기가 기동하여 표면이 녹기 시작합니다!.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -25,6 +26,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Grosse Glace : Centre',
           ja: '氷: 中央',
           cn: '大冰: 中央',
+          ko: '큰 얼음: 중앙',
         },
       },
     },
@@ -36,6 +38,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A2 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA2号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A2启动了，冰块变得脆弱了！.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '얼음탑 A2호기가 기동하여 표면이 녹기 시작합니다!.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -44,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Grosse Glace : Nord',
           ja: '氷: 北',
           cn: '大冰: 北方',
+          ko: '큰 얼음: 북쪽',
         },
       },
     },
@@ -55,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A3 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA3号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A3启动了，冰块变得脆弱了！.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '얼음탑 A3호기가 기동하여 표면이 녹기 시작합니다!.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -63,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Grosse Glace : Sud-Est',
           ja: '氷: 南東',
           cn: '大冰: 东南',
+          ko: '큰 얼음: 남동쪽',
         },
       },
     },
@@ -74,6 +80,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A4 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA4号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A4启动了，冰块变得脆弱了！.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '얼음탑 A4호기가 기동하여 표면이 녹기 시작합니다!.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -82,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Grosse Glace : Sud-Ouest',
           ja: '氷: 西南',
           cn: '大冰: 西南',
+          ko: '큰 얼음: 남서쪽',
         },
       },
     },
@@ -121,6 +129,15 @@ const triggerSet: TriggerSet<Data> = {
         'The icebound tomelith A2 activates and begins to emit heat': '冰封的石文A2启动了，冰块变得脆弱了！',
         'The icebound tomelith A3 activates and begins to emit heat': '冰封的石文A3启动了，冰块变得脆弱了！',
         'The icebound tomelith A4 activates and begins to emit heat': '冰封的石文A4启动了，冰块变得脆弱了！',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'The icebound tomelith A1 activates and begins to emit heat': '얼음탑 A1호기가 기동하여 표면이 녹기 시작합니다!',
+        'The icebound tomelith A2 activates and begins to emit heat': '얼음탑 A2호기가 기동하여 표면이 녹기 시작합니다!',
+        'The icebound tomelith A3 activates and begins to emit heat': '얼음탑 A3호기가 기동하여 표면이 녹기 시작합니다!',
+        'The icebound tomelith A4 activates and begins to emit heat': '얼음탑 A4호기가 기동하여 표면이 녹기 시작합니다!',
       },
     },
   ],

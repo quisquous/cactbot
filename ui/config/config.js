@@ -4,6 +4,8 @@ import UserConfig from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';
 import contentList from '../../resources/content_list';
 
+import defaultOptions from './config_options';
+
 // Load other config files
 import './general_config';
 import '../eureka/eureka_config';
@@ -628,7 +630,6 @@ export default class CactbotConfigurator {
   }
 }
 
-const defaultOptions = {};
 UserConfig.getUserConfigLocation('config', defaultOptions, () => {
   const options = { ...defaultOptions };
   const configurator = new CactbotConfigurator(

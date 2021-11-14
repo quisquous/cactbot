@@ -142,6 +142,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               fr: `${matches.ability} (nuages trop proches)`,
               ja: `${matches.ability} (雲近すぎ)`,
               cn: `${matches.ability} (雷云重叠)`,
+              ko: `${matches.ability} (구름이 너무 가까움)`,
             },
           };
         }

@@ -269,6 +269,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'Seconds to show death report on death (0=none)',
         de: 'Sekunden um den Todesreport beim Tot anzuzeigen (0=niemals)',
+        fr: 'Durée d’affichage (en secondes) du rapport de mort (0 = aucun)',
         ja: '倒れた時にデスレポートを表示 (0=非表示)',
         cn: '死亡时显示死亡报告的秒数 (0=不显示)',
         ko: '죽었을 때 사망 보고서를 보여주는 시간(초) (0=비활성화)',
@@ -291,6 +292,10 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'How to show the death report',
         de: 'Wie zeige ich den Todesreport an',
+        fr: 'Où afficher le rapport de mort',
+        ja: 'デスレポートの表示方法',
+        cn: '死亡报告的显示方式',
+        ko: '사망 보고서 표시 위치',
       },
       type: 'select',
       options: {
@@ -303,6 +308,26 @@ UserConfig.registerOptions('oopsyraidsy', {
           'Left Side': 'links',
           'Right Side': 'rechts',
           '❌ Disabled': 'deaktiviert',
+        },
+        fr: {
+          'Côté gauche': 'gauche',
+          'Côté droit': 'droite',
+          '❌ Disabled': 'désactivé',
+        },
+        ja: {
+          '左側': 'left',
+          '右側': 'right',
+          '❌ 無効': 'disabled',
+        },
+        cn: {
+          '左侧': 'left',
+          '右侧': 'right',
+          '❌ 禁用': 'disabled',
+        },
+        ko: {
+          '왼쪽': 'left',
+          '오른쪽': 'right',
+          '❌ 비활성화': 'disabled',
         },
       },
       default: 'left',
