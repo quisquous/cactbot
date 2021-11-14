@@ -202,7 +202,7 @@ export default class CactbotConfigurator {
     // Otherwise, use the operating system language as a default for the config tool.
     this.lang = configOptions.DisplayLanguage || configOptions.ShortLocale;
     this.savedConfig = savedConfig || {};
-    this.developerOptions = this.getOption(false, 'general', 'ShowDeveloperOptions');
+    this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
 
     const templates = UserConfig.optionTemplates;
     for (const group in templates) {
@@ -238,15 +238,21 @@ export default class CactbotConfigurator {
     return textObj['en'];
   }
 
-  // takes variable args and returns the defaultValue if any key is missing.
-  // e.g. (5, foo, bar, baz) with {foo: { bar: { baz: 3 } } } will return
+  // Takes a variable length `path` and returns the defaultValue if any key is missing.
+  // e.g. (foo, [bar, baz], 5) with {foo: { bar: { baz: 3 } } } will return
   // the value 3.
-  getOption(defaultValue, group, id, ...args) {
+  getOption(group, path, defaultValue) {
     let objOrValue = this.savedConfig[group];
     if (objOrValue === undefined)
       return defaultValue;
 
-    for (const arg of [id, ...args]) {
+    const args = Array.isArray(path) ? path : [path];
+    if (args.length === 0) {
+      console.error(`path must have at least one element`);
+      return defaultValue;
+    }
+
+    for (const arg of args) {
       if (typeof objOrValue !== 'object' || Array.isArray(objOrValue)) {
         // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
         // until leaf node ConfigValue.
@@ -275,14 +281,19 @@ export default class CactbotConfigurator {
     return objOrValue;
   }
 
-  // takes variable args, with the first value being the 'value' to set it to
-  // e.g. (3, foo, bar, baz) will set {foo: { bar: { baz: 3 } } }.
-  setOption(defaultValue, group, id, ...varargs) {
+  // Sets an option in the config at a variable level of nesting.
+  // e.g. (foo, [bar, baz], 3) will set {foo: { bar: { baz: 3 } } }.
+  // e.g. (foo, bar, 4) will set { foo: { bar: 4 } }.
+  setOption(group, path, defaultValue) {
     // Set keys and create default {} if it doesn't exist.
     this.savedConfig[group] = this.savedConfig[group] ?? {};
     let obj = this.savedConfig[group];
 
-    const args = [id, ...varargs];
+    const args = Array.isArray(path) ? path : [path];
+    if (args.length === 0) {
+      console.error(`path must have at least one element`);
+      return;
+    }
     const finalArg = args.slice(-1)[0];
     if (!finalArg)
       throw new UnreachableCode();
@@ -407,8 +418,8 @@ export default class CactbotConfigurator {
     const input = document.createElement('input');
     div.appendChild(input);
     input.type = 'checkbox';
-    input.checked = this.getOption(opt.default, group, opt.id);
-    input.onchange = () => this.setOption(input.checked, group, opt.id);
+    input.checked = this.getOption(group, opt.id, opt.default);
+    input.onchange = () => this.setOption(group, opt.id, input.checked);
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
@@ -444,7 +455,7 @@ export default class CactbotConfigurator {
       else
         label.innerText = this.translate(kDirectoryDefaultText);
     };
-    setLabel(this.getOption(opt.default, group, opt.id));
+    setLabel(this.getOption(group, opt.id, opt.default));
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
@@ -465,7 +476,7 @@ export default class CactbotConfigurator {
       input.disabled = false;
       const dir = result.data ? result.data : '';
       if (dir !== prevValue)
-        this.setOption(dir, group, opt.id);
+        this.setOption(group, opt.id, dir);
       setLabel(dir);
     };
   }
@@ -477,8 +488,8 @@ export default class CactbotConfigurator {
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const defaultValue = this.getOption(opt.default, group, opt.id);
-    input.onchange = () => this.setOption(input.value, group, opt.id);
+    const defaultValue = this.getOption(group, opt.id, opt.default);
+    input.onchange = () => this.setOption(group, opt.id, input.value);
 
     const innerOptions = this.translate(opt.options);
     for (const key in innerOptions) {
@@ -503,8 +514,8 @@ export default class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 'any';
-    input.value = this.getOption(parseFloat(opt.default), group, opt.id);
-    const setFunc = () => this.setOption(input.value, group, opt.id);
+    input.value = this.getOption(group, opt.id, parseFloat(opt.default));
+    const setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
@@ -521,8 +532,8 @@ export default class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 1;
-    input.value = this.getOption(parseInt(opt.default), group, opt.id);
-    const setFunc = () => this.setOption(input.value, group, opt.id);
+    input.value = this.getOption(group, opt.id, parseInt(opt.default));
+    const setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 

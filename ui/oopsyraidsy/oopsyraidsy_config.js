@@ -131,7 +131,7 @@ class OopsyConfigurator {
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const selectValue = this.base.getOption('default', this.optionKey, 'triggers', id, kField);
+    const selectValue = this.base.getOption(this.optionKey, ['triggers', id, kField], 'default');
 
     for (const key in kTriggerOptions) {
       const elem = document.createElement('option');
@@ -147,7 +147,7 @@ class OopsyConfigurator {
         let value = input.value;
         if (value.includes('default'))
           value = 'default';
-        this.base.setOption(input.value, this.optionKey, 'triggers', id, kField);
+        this.base.setOption(this.optionKey, ['triggers', id, kField], input.value);
       };
     }
 

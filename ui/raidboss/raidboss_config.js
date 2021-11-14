@@ -375,8 +375,8 @@ class RaidbossConfigurator {
     // TODO: is it worth adding the complexity to reflect this change in triggers that use it?
     // This is probably where using something like vue or react would be easier.
     // For the moment, folks can just reload, for real.
-    this.alertsLang = this.base.getOption(this.base.lang, 'raidboss', 'AlertsLanguage');
-    this.timelineLang = this.base.getOption(this.base.lang, 'raidboss', 'TimelineLanguage');
+    this.alertsLang = this.base.getOption('raidboss', 'AlertsLanguage', this.base.lang);
+    this.timelineLang = this.base.getOption('raidboss', 'TimelineLanguage', this.base.lang);
   }
 
   buildUI(container, raidbossFiles, userOptions) {
@@ -539,10 +539,10 @@ class RaidbossConfigurator {
             defaultValue = trig.beforeSeconds;
 
           input.placeholder = this.base.translate(defaultValue);
-          input.value = this.base.getOption('', 'raidboss', 'triggers', trig.id, optionKey);
+          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey], '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
-            this.base.setOption(val, 'raidboss', 'triggers', trig.id, optionKey);
+            this.base.setOption('raidboss', ['triggers', trig.id, optionKey], val);
           };
           input.onchange = setFunc;
           input.oninput = setFunc;
@@ -571,10 +571,10 @@ class RaidbossConfigurator {
             input.placeholder = `${trig.durationSeconds}`;
           else
             input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
-          input.value = this.base.getOption('', 'raidboss', 'triggers', trig.id, optionKey);
+          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey], '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
-            this.base.setOption(val, 'raidboss', 'triggers', trig.id, optionKey);
+            this.base.setOption('raidboss', ['triggers', trig.id, optionKey], val);
           };
           input.onchange = setFunc;
           input.oninput = setFunc;
@@ -601,9 +601,9 @@ class RaidbossConfigurator {
           div.appendChild(input);
           input.type = 'text';
           input.placeholder = template;
-          input.value = this.base.getOption('', 'raidboss', 'triggers', trig.id, optionKey, key);
+          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey], key, '');
           const setFunc = () =>
-            this.base.setOption(input.value, 'raidboss', 'triggers', trig.id, optionKey, key);
+            this.base.setOption('raidboss', ['triggers', trig.id, optionKey, key], input.value);
           input.onchange = setFunc;
           input.oninput = setFunc;
 
@@ -885,7 +885,11 @@ class RaidbossConfigurator {
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const selectValue = this.base.getOption('default', 'raidboss', 'triggers', trig.id, optionKey);
+    const selectValue = this.base.getOption(
+      'raidboss',
+      ['triggers', trig.id, optionKey],
+      'default',
+    );
 
     for (const key in kTriggerOptions) {
       // Hide debug only options unless they are selected.
@@ -906,7 +910,7 @@ class RaidbossConfigurator {
         let value = input.value;
         if (value.includes('default'))
           value = 'default';
-        this.base.setOption(input.value, 'raidboss', 'triggers', trig.id, optionKey);
+        this.base.setOption('raidboss', ['triggers', trig.id, optionKey], input.value);
       };
     }
 
