@@ -42,7 +42,7 @@ console.assert(
 );
 
 // TODO: move all of these to config.js?
-type UserFileCallback = (
+export type UserFileCallback = (
   jsFile: string,
   localFiles: { [filename: string]: string },
   options: BaseOptions,

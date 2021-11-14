@@ -165,7 +165,7 @@ export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None
 
 // Because timeline functions run during loading, they only support the base RaidbossData.
 export type TimelineFunc = (data: RaidbossData) => TimelineField;
-export type TimelineField = string | (string | TimelineFunc)[] | TimelineFunc | undefined;
+export type TimelineField = string | TimelineFunc | undefined | TimelineField[];
 
 export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, keyof RaidbossData>;
 
@@ -223,8 +223,6 @@ export type LooseTriggerSet =
       | RegExp
       | { [lang in Lang]?: RegExp };
     triggers?: LooseTrigger[];
-    // Annotated by userFileHandler.
-    filename?: string;
     timelineTriggers?: LooseTimelineTrigger[];
   };
 
