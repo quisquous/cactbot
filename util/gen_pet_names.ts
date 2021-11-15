@@ -23,7 +23,9 @@ const fetchXivapi = async () => {
   return json.Results;
 };
 
-const normalize = (content: XivapiResult['Results']): Record<'en' | 'de' | 'fr' | 'ja', string[]> => {
+const normalize = (
+  content: XivapiResult['Results'],
+): Record<'en' | 'de' | 'fr' | 'ja', string[]> => {
   const result: Record<'en' | 'de' | 'fr' | 'ja', string[]> = {
     en: [],
     de: [],
