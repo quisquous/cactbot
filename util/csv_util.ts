@@ -184,5 +184,3 @@ export const getRawCsv = async (table: string, locale: Lang): Promise<string> =>
 
   return await (await fetch(url)).text();
 };
-
-cleanName('_rsv_1379_-1_1_C0_0Status');
