@@ -19,6 +19,7 @@ import {
   MistakeMap,
   OopsyDeathReason,
   OopsyField,
+  OopsyFileData,
   OopsyMistake,
   OopsyMistakeType,
   OopsyTrigger,
@@ -27,7 +28,6 @@ import {
 import { ZoneIdType } from '../../types/trigger';
 
 import { CombatState } from './combat_state';
-import { OopsyFileData } from './data/oopsy_manifest.txt';
 import { MistakeCollector } from './mistake_collector';
 import {
   GetShareMistakeText,
