@@ -1,13 +1,11 @@
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
-import { LooseOopsyTriggerSet } from '../../types/oopsy';
+import { LooseOopsyTriggerSet, OopsyFileData } from '../../types/oopsy';
 import { CactbotConfigurator, ConfigProcessedFile, ConfigProcessedFileMap } from '../config/config';
 
 import { generateBuffTriggerIds } from './buff_map';
 import oopsyFileData from './data/oopsy_manifest.txt';
 import { OopsyOptions } from './oopsy_options';
-
-type OopsyFileData = { [filename: string]: LooseOopsyTriggerSet };
 
 const oopsyHelpers: (keyof LooseOopsyTriggerSet)[] = [
   'damageWarn',

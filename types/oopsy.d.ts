@@ -130,3 +130,7 @@ export type LooseOopsyTriggerSet = Exclude<Partial<OopsyTriggerSet<OopsyData>>, 
   filename?: string;
   triggers?: LooseOopsyTrigger[];
 };
+
+export interface OopsyFileData {
+  [filename: string]: LooseOopsyTriggerSet;
+}
