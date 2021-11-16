@@ -4,7 +4,7 @@ import TimerBar from '../../resources/timerbar';
 import { LocaleRegex } from '../../resources/translations';
 import { LogEvent } from '../../types/event';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
-import { LooseTimelineTrigger } from '../../types/trigger';
+import { LooseTimelineTrigger, RaidbossFileData } from '../../types/trigger';
 
 import { PopupTextGenerator } from './popup-text';
 import { RaidbossOptions } from './raidboss_options';
@@ -712,14 +712,14 @@ export class TimelineController {
   constructor(
     protected options: RaidbossOptions,
     protected ui: TimelineUI,
-    raidbossDataFiles: { [filename: string]: string },
+    raidbossDataFiles: RaidbossFileData,
   ) {
     this.options = options;
     this.ui = ui;
 
     this.timelines = {};
     for (const [filename, file] of Object.entries(raidbossDataFiles)) {
-      if (!filename.endsWith('.txt'))
+      if (!filename.endsWith('.txt') || typeof file !== 'string')
         continue;
       this.timelines[filename] = file;
     }
