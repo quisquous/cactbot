@@ -204,6 +204,17 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'E8N Diamond Frost',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DE1', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DE1', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DE1', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
       id: 'E8N Frigid Water',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
