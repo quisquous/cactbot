@@ -21,6 +21,7 @@ type ZoneEncInfo = {
 type FightEncInfo = {
   name?: string;
   zoneId?: number;
+  zoneName?: string;
   startLine?: string;
   endLine?: string;
   startTime?: Date;
@@ -83,7 +84,7 @@ export class EncounterFinder {
     if (!unsealReplace)
       throw new Error('missing unseal regex');
     for (const lang of Object.values(unsealReplace)) {
-      const line = `*.?${lang}.*?`;
+      const line = `.*?${lang}.*?`;
       this.unsealRegexes.push(NetRegexes.message({ line: line }));
     }
   }
@@ -91,7 +92,7 @@ export class EncounterFinder {
   skipZone(): boolean {
     // We don't want combat from the overworld or from solo instanced duties.
     // However, if we can't find zone info, we explicitly don't skip it.
-    if (!this.currentZone.zoneId || !this.zoneInfo)
+    if (!this.zoneInfo)
       return false;
     const content = this.zoneInfo.contentType;
     if (!content)
@@ -123,17 +124,16 @@ export class EncounterFinder {
       // If we changed zones, we have definitely stopped fighting.
       // Therefore we can safely initialize everything.
       if (this.currentFight.startTime)
-        this.initializeFight();
-      if (this.currentZone.startTime)
-        this.initializeZone();
+        this.onEndFight(line, cZ, 'Zone Change');
+      if (this.currentZone.name)
+        this.onEndZone(line, this.currentZone.name, cZ);
 
       this.zoneInfo = ZoneInfo[parseInt(cZ.id, 16)];
+      this.currentZone.name = cZ.name;
       if (this.skipZone()) {
         this.initializeZone();
         return;
       }
-
-      this.currentZone.name = cZ.name;
       this.onStartZone(line, this.currentZone.name, cZ);
       return;
     }
@@ -144,27 +144,44 @@ export class EncounterFinder {
 
     // We are in a combat zone, so we next check for victory/defeat.
     // If either is found, end the current encounter.
-    const cW = this.regex.cactbotWipe.exec(line);
+    // However, *if* seals are present, we want to use them to end the current encounter,
+    // rather than using combat status.
+    const cW = this.regex.cactbotWipe.exec(line)?.groups;
     if (cW) {
-      if (this.currentFight.startTime)
-        this.initializeFight();
+      if (this.currentFight.startTime && !this.haveSeenSeals)
+      this.onEndFight(line, cW, 'Wipe');
       return;
     }
 
-    const wipe = this.regex.wipe.exec(line);
+    const wipe = this.regex.wipe.exec(line)?.groups;
     if (wipe) {
-      if (this.currentFight.startTime)
-        this.initializeFight();
+      if (this.currentFight.startTime && !this.haveSeenSeals)
+      this.onEndFight(line, wipe, 'Wipe');
       return;
     }
 
-    const win = this.regex.win.exec(line);
+    const win = this.regex.win.exec(line)?.groups;
     if (win) {
-      if (this.currentFight.startTime) {
+      if (this.currentFight.startTime && !this.haveSeenSeals) {
         this.haveWon = true;
-        this.initializeFight();
+        this.onEndFight(line, win, 'Win');
       }
       return;
+    }
+
+    // Once we see a seal, we know that we will be falling through to here throughout the zone.
+    for (const regex of this.sealRegexes) {
+      const s = regex.exec(line)?.groups;
+      if (s) {
+        const seal = s.seal ?? 'UNKNOWN';
+        this.onSeal(line, seal, s);
+      }
+    }
+
+    for (const regex of this.unsealRegexes) {
+      const u = regex.exec(line)?.groups;
+      if (u)
+        this.onUnseal(line, u);
     }
 
     // Most dungeons and some older raid content have zone zeals that indicate encounters.
@@ -172,30 +189,10 @@ export class EncounterFinder {
     if (!(this.currentFight.startTime || this.haveWon || this.haveSeenSeals)) {
       let a = this.regex.playerAttackingMob.exec(line);
       if (!a)
+      // TODO: This regex catches faerie healing and could potentially give false positives!
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
         this.onStartFight(line, this.currentZone.name, a.groups);
-        return;
-      }
-    }
-
-    // Once we see a seal, we know that we will be falling through to here throughout the zone.
-    for (const regex of this.sealRegexes) {
-      const s = regex.exec(line)?.groups;
-      if (s) {
-        this.haveSeenSeals = true;
-        this.currentSeal = s.name;
-        this.onStartFight(line, this.currentSeal, s);
-        return;
-      }
-    }
-
-    for (const regex of this.unsealRegexes) {
-      const u = regex.exec(line);
-      if (u) {
-        this.currentSeal = undefined;
-        if (this.currentFight)
-          this.initializeFight();
         return;
       }
     }
@@ -213,12 +210,32 @@ export class EncounterFinder {
       startTime: this.dateFromMatches(matches),
     };
   }
-  onStartFight(line: string, name: string, matches: NetAnyMatches): void {
+  onStartFight(line: string, name: string, matches: NetMatches['Ability' | 'GameLog']): void {
     this.currentFight = {
       name: name,
+      zoneName: this.currentZone.name, // Sometimes the same as the fight name, but that's fine.
       startLine: line,
       startTime: this.dateFromMatches(matches),
     };
+  }
+
+  onEndZone(_line: string, _name: string, _matches: NetMatches['ChangeZone']): void {
+    this.initializeZone();
+  }
+
+  onEndFight(_line: string, _matches: NetAnyMatches, _endType: string): void {
+    this.initializeFight();
+  }
+
+  onSeal(line: string, name: string, matches: NetMatches['GameLog']): void {
+    this.onStartFight(line, name, matches);
+    this.currentSeal = name;
+    this.haveSeenSeals = true;
+  }
+
+  onUnseal(line: string, matches: NetMatches['GameLog']): void {
+    this.onEndFight(line, matches, 'Unseal');
+    this.currentSeal = undefined;
   }
 
   dateFromMatches(matches: NetAnyMatches): Date {
@@ -233,58 +250,45 @@ export class EncounterFinder {
 export class EncounterCollector extends EncounterFinder {
   zones: Array<ZoneEncInfo> = [];
   fights: Array<FightEncInfo> = [];
-  lastZone: ZoneEncInfo = {};
-  lastFight: FightEncInfo = {};
   lastSeal?: string;
   constructor() {
     super();
   }
 
-  override onStartZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
-    this.lastZone = {
-      name: name,
-      startLine: line,
-      zoneId: parseInt(matches.id),
-      startTime: this.dateFromMatches(matches),
-    };
-  }
-
-  onEndZone(line: string, matches: NetMatches['ChangeZone']): void {
-    this.lastZone.endLine = line;
-    this.lastZone.endTime = this.dateFromMatches(matches);
-    this.zones.push(this.lastZone);
-    this.lastZone = {};
+  override onEndZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
+    this.currentZone.endLine = line;
+    this.currentZone.endTime = this.dateFromMatches(matches);
+    this.zones.push(this.currentZone);
+    this.initializeZone();
   }
 
   override onStartFight(line: string, name: string, matches: NetMatches['Ability' | 'GameLog']): void {
-    const id = this.lastZone.zoneId ?? 0;
-    this.lastFight = {
+    this.currentFight = {
       name: name,
+      zoneName: this.currentZone.name,
       startLine: line,
       startTime: this.dateFromMatches(matches),
-      zoneId: id,
+      zoneId: this.currentZone.zoneId,
     };
-    this.lastSeal = undefined;
   }
 
-  onEndFight(line: string, matches: NetAnyMatches): void {
-    this.lastFight.endLine = line;
-    this.lastFight.endTime = this.dateFromMatches(matches);
-    this.lastFight.endType = matches.endType;
-
-    this.fights.push(this.lastFight);
-    this.lastFight = {};
+  override onEndFight(line: string, matches: NetAnyMatches, endType: string): void {
+    this.currentFight.endLine = line;
+    this.currentFight.endTime = this.dateFromMatches(matches);
+    this.currentFight.endType = endType;
+    this.fights.push(this.currentFight);
+    this.initializeFight();
   }
 
-  onSeal(line: string, name: string, matches: NetMatches['GameLog']): void {
+  override onSeal(line: string, name: string, matches: NetMatches['GameLog']): void {
     this.onStartFight(line, name, matches);
+    this.haveSeenSeals = true;
     this.lastSeal = name;
-    if (this.lastFight)
-      this.lastFight.sealName = this.lastSeal;
+    this.currentFight.sealName = this.lastSeal;
   }
 
-  onUnseal(line: string, matches: NetMatches['GameLog']): void {
-    this.onEndFight(line, matches);
+  override onUnseal(line: string, matches: NetMatches['GameLog']): void {
+    this.onEndFight(line, matches, 'Unseal');
     this.lastSeal = undefined;
   }
 }
