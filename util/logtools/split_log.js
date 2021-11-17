@@ -190,7 +190,7 @@ const printCollectedFights = (collector) => {
   for (const fight of collector.fights) {
     // Add a zone name row when there's seal messages for clarity.
     if (!seenSeal && fight.sealName) {
-      outputRows.push(['', '', '', '', '~' + fight.name + '~', '']);
+      outputRows.push(['', '', '', '', '~' + fight.zoneName + '~', '']);
       seenSeal = true;
     } else if (seenSeal && !fight.sealName) {
       seenSeal = false;
