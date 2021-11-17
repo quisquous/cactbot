@@ -601,7 +601,7 @@ class RaidbossConfigurator {
           div.appendChild(input);
           input.type = 'text';
           input.placeholder = template;
-          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey], key, '');
+          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey, key], '');
           const setFunc = () =>
             this.base.setOption('raidboss', ['triggers', trig.id, optionKey, key], input.value);
           input.onchange = setFunc;
