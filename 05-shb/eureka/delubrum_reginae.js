@@ -2021,7 +2021,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Seeker Avatar': '탐구의 분열체',
                 'Aetherial Bolt': '마탄',

@@ -3289,6 +3289,7 @@ Options.Triggers.push({
                 'Brute Justice': '포악한 심판자',
                 'Cruise Chaser': '순항추격기',
                 'Jagd Doll': '인형 수렵병',
+                'Judgment Crystal': '심판의 결정체',
                 'Liquid Hand': '액체 손',
                 'Liquid Rage': '분노한 액체',
                 'Living Liquid': '살아있는 액체',

@@ -390,7 +390,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Annia Quo Soranus': '안니아 쿠오 소라누스',
                 'Ceruleum Tank': '청린수 탱크',

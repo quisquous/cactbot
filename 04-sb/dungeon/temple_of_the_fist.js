@@ -361,7 +361,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Arbuda': '아부다',
                 'Coeurl Smriti': '커얼 스므리티',
@@ -369,8 +368,10 @@ Options.Triggers.push({
                 'Guidance': '도령전',
                 'Harmony': '음양원',
                 'Ivon Coeurlfist': '쌍표범 이본',
+                'Tourmaline Pond': '물이끼 연못',
             },
             'replaceText': {
+                '--Smriti Appears--': '--스므리티 등장--',
                 'Basic Instinct': '투쟁 본능',
                 'Cardinal Shift': '사중 대회전',
                 'Coeurl Whisper': '쌍표범 소환',

@@ -129,13 +129,13 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Coronal Wind': '관상기류',
                 'Sephirot': '세피로트',
                 'Storm Of Words': '신언의 폭풍',
             },
             'replaceText': {
+                'Adds Spawn': '쫄 등장',
                 'Ascension': '승천',
                 'Chesed': '헤세드',
                 'Da\'at': '다아트',

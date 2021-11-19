@@ -749,7 +749,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Aqua Sphere': '물 구체',
                 'Archaeodemon': '원시 악마',
@@ -776,6 +775,8 @@ Options.Triggers.push({
             'replaceText': {
                 '--invulnerable--': '--무적--',
                 '--lock out--': '--지역 분리--',
+                '--Shade Adds--': '--쫄 등장--',
+                '--Shard Adds--': '--결정 등장--',
                 'Aqua Sphere Adds': '물 구체 생성',
                 'Archaeodemon Adds': '원시 악마 생성',
                 'Azure Guard Adds': '푸른 파수꾼 생성',

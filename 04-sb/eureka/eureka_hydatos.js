@@ -68,7 +68,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
             netRegexJa: NetRegexes.gameLog({ line: '操作がない状態になってから7分が経過しました。.*?', capture: false }),
             netRegexCn: NetRegexes.gameLog({ line: '已经7分钟没有进行任何操作.*?', capture: false }),
-            netRegexKo: NetRegexes.gameLog({ line: '7분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
+            netRegexKo: NetRegexes.gameLog({ line: '7분 동안 아무 조작을 하지 않았습니다.*?', capture: false }),
             response: Responses.wakeUp(),
         },
         {
@@ -295,6 +295,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.dialog({ line: '[^:]*:Oui... Munderg, sens le feu embraser nos âmes.*?', capture: false }),
             netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、燃え上がれ！.*?', capture: false }),
             netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切！.*?', capture: false }),
+            netRegexKo: NetRegexes.dialog({ line: '[^:]*:하얀 요창 \'문데르크\'여, 불타올라라!.*?', capture: false }),
             condition: (data) => data.side === 'east',
             alertText: (_data, _matches, output) => output.getToIce(),
             infoText: (_data, _matches, output) => output.switchMagia(),
@@ -325,6 +326,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.dialog({ line: '[^:]*:C\'est bien, Munderg... Glace le sang de mes ennemis.*?', capture: false }),
             netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、震え凍れよ！.*?', capture: false }),
             netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物！.*?', capture: false }),
+            netRegexKo: NetRegexes.dialog({ line: '[^:]*:하얀 요창 \'문데르크\'여, 얼어붙어라!.*?', capture: false }),
             condition: (data) => data.side === 'east',
             alertText: (_data, _matches, output) => output.getToFire(),
             infoText: (_data, _matches, output) => output.switchMagia(),
@@ -1404,7 +1406,7 @@ Options.Triggers.push({
         {
             'locale': 'ko',
             'replaceSync': {
-                '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다..*?',
+                '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다',
                 'Absolute Virtue': '절대미덕',
                 'Arsenal Centaur': '무기고 켄타우로스',
                 'Art': '아르트',
@@ -1420,6 +1422,8 @@ Options.Triggers.push({
                 'Relative Virtue': '상대미덕',
                 'Shadow': '프로토 오즈마의 그림자',
                 'Streak Lightning': '연쇄 번개',
+                'Munderg, turn flesh to ash': '하얀 요창 \'문데르크\'여, 불타올라라!',
+                'Munderg, turn blood to ice': '하얀 요창 \'문데르크\'여, 얼어붙어라!',
                 'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
                 'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
                 'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',

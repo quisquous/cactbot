@@ -184,7 +184,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Hexadrone Bit': '헥사롤러 비트',
                 'Hypertuned Grynewaht': '강화된 그륀바트',

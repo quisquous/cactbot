@@ -1229,6 +1229,12 @@ Options.Triggers.push({
                 'Warehouse A': '창고 A',
                 'Warehouse B': '창고 B',
                 'Warehouse C': '창고 C',
+                'The wall-mounted right arm begins to move': '벽면의 오른팔이 움직이기 시작합니다……!',
+                'The wall-mounted flamethrowers activate\.': '벽면의 화염 방사기가 가동되었습니다……!',
+                'The wall-mounted left arm begins to move': '벽면의 왼팔이 움직이기 시작합니다……!',
+                'You hear frenzied movement from machines beneath': '바닥 아래의 기계생명체가 수상한 움직임을 보입니다……!',
+                'The conveyer belts whirr to life!': '바닥의 컨베이어가 움직이기 시작합니다……!',
+                'Flammable oil is leaking from the floor': '바닥 밑에 가연성 액체가 차오릅니다……!',
             },
             'replaceText': {
                 'Front(?!al)': '앞',

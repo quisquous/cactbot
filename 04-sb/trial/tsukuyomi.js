@@ -289,7 +289,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Dancing Fan': '춤추는 부채',
                 'Moonlight': '월광',
@@ -300,6 +299,8 @@ Options.Triggers.push({
                 'Tsukuyomi': '츠쿠요미',
             },
             'replaceText': {
+                '--Patriarch/Matriarch Adds--': '--양아버지/양어머니 등장--',
+                '--Empire/Homeland Adds--': '--제국 병사/도마인 등장--',
                 'Antitwilight': '월하미인',
                 'Bright Blade': '하현달 베기',
                 'Concentrativity': '압축 검기',

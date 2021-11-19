@@ -790,7 +790,7 @@ Options.Triggers.push({
         {
             'locale': 'ko',
             'replaceSync': {
-                'Bomb Boulder': '화강암 감옥',
+                'Bomb Boulder': '바위폭탄',
                 'Chirada': '치라다',
                 'Garuda': '가루다',
                 'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '시작하자, 버러지들아',

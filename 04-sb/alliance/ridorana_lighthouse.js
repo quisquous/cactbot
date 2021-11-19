@@ -823,12 +823,11 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Archaeodemon': '원시 악마',
                 'Belias, The Gigas': '마인 벨리아스',
                 'Construct 7': '노동 7호',
-                'Dark Rain': '암운의 빗물',
+                'Dark Rain': '암흑의 빗물',
                 'Echoes from Time\'s Garden': '아득한 시간의 정원',
                 'Famfrit, The Darkening Cloud': '암흑의 구름 팜프리트',
                 '(?<! )Gigas': '마인병',

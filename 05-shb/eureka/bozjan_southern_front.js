@@ -151,7 +151,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
             netRegexJa: NetRegexes.gameLog({ line: '操作がない状態になってから7分が経過しました。.*?', capture: false }),
             netRegexCn: NetRegexes.gameLog({ line: '已经7分钟没有进行任何操作.*?', capture: false }),
-            netRegexKo: NetRegexes.gameLog({ line: '7분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
+            netRegexKo: NetRegexes.gameLog({ line: '7분 동안 아무 조작을 하지 않았습니다.*?', capture: false }),
             response: Responses.wakeUp(),
         },
         {
@@ -767,7 +767,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.gameLog({ line: 'Lyon attend des adversaires à sa taille sur la tribune des Souverains.*?', capture: false }),
             netRegexJa: NetRegexes.gameLog({ line: '獣王ライアンは、王者の円壇での戦いを望んでいるようだ.*?', capture: false }),
             netRegexCn: NetRegexes.gameLog({ line: '兽王莱昂似乎很期待在王者圆坛战斗！.*?', capture: false }),
-            netRegexKo: NetRegexes.gameLog({ line: '마수왕 라이언이 왕의 단상에서 싸우려고 합니다!', capture: false }),
+            netRegexKo: NetRegexes.gameLog({ line: '마수왕 라이언이 왕의 단상에서 싸우려고 합니다!.*?', capture: false }),
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -1172,7 +1172,7 @@ Options.Triggers.push({
                 'Albeleo\'s Monstrosity': '알비레오의 야수',
                 'Albeleo\'s Hrodvitnir': '알비레오의 흐로드비트니르',
                 'Electric Charge': '번개기운',
-                '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다..*?',
+                '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다',
                 '4Th Legion Helldiver': 'IV군단 헬다이버',
                 'Adrammelech': '아드람멜렉',
                 'Bladesmeet': '검들의 대광장',

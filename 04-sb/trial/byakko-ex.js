@@ -432,12 +432,16 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Byakko': '백호',
                 'Hakutei': '하얀 제왕',
+                'Twofold is my wrath, twice-cursed my foes!': '달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!',
             },
             'replaceText': {
+                '--Hakutei Add--': '--하얀 제왕 등장--',
+                '--leap north--': '--보스 북쪽으로 이동--',
+                '--tiger targetable--': '--호랑이 타겟가능--',
+                '--tiger untargetable--': '--호랑이 타겟불가--',
                 'Answer On High': '하늘의 번개',
                 'Bombogenesis': '폭탄 저기압',
                 'Clutch': '장악',
@@ -459,8 +463,6 @@ Options.Triggers.push({
                 'The Voice Of Thunder': '뇌성',
                 'Unrelenting Anguish': '무간지옥',
                 'White Herald': '제왕의 충격',
-                'leap north': '보스 북쪽으로 이동',
-                'tiger untargetable': '호랑이 타겟 불가',
             },
         },
     ],

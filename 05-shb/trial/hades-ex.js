@@ -1112,6 +1112,7 @@ Options.Triggers.push({
         {
             'locale': 'ko',
             'replaceSync': {
+                'Aetherial Gaol': '에테르 감옥',
                 'Arcane Font': '입체 마법진',
                 'Arcane Globe': '구체 마법진',
                 'Ascian Prime\'s Shade': '아씨엔 프라임의 그림자',

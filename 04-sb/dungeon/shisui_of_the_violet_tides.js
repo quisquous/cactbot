@@ -196,7 +196,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Amikiri': '아미키리',
                 'Naishi-No-Kami': '시스이 상궁',
@@ -207,6 +206,8 @@ Options.Triggers.push({
                 'The Harutsuge Gate': '하루츠게 문',
             },
             'replaceText': {
+                '--add--': '--쫄--',
+                '--adds--': '--쫄--',
                 'Abyssal Volcano': '해저 화산',
                 'Black Tide': '검은 파도',
                 'Coriolis Kick': '태풍차기',

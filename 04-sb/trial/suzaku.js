@@ -38,6 +38,7 @@ Options.Triggers.push({
                     de: 'Verbindung auf DIR',
                     fr: 'Lien sur VOUS',
                     cn: '连线点名',
+                    ko: '화염조 대상자',
                 },
             },
         },

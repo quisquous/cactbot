@@ -367,6 +367,7 @@ Options.Triggers.push({
                         de: '${dir} (${suffix})',
                         ja: '${dir} (${suffix})',
                         cn: '${dir} (${suffix})',
+                        ko: '${dir} (${suffix})',
                     },
                     out: Outputs.out,
                     in: Outputs.in,
@@ -928,6 +929,9 @@ Options.Triggers.push({
                 'Ruby Bit': '루비 비트',
                 'Raven\'s Image': '넬의 환영',
                 'Meteor': '메테오',
+                'Comet': '혜성',
+                'White Agony': '넬의 비탄',
+                'White Fury': '넬의 분노',
             },
             'replaceText': {
                 '--cutscene--': '--컷신--',

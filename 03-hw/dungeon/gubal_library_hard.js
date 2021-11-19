@@ -448,7 +448,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Behemoth Ward': '고서의 베히모스',
                 'Demon of the Tome': '고서의 악마',

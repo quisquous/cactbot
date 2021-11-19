@@ -410,6 +410,13 @@ Options.Triggers.push({
                 'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
                 'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
                 'test sync': '테스트 싱크',
+                'You burst out laughing at the striking dummy': '.*나무인형을 보고 폭소를 터뜨립니다',
+                'cactbot lang': 'cactbot 언어',
+                'cactbot test response': 'cactbot 응답 테스트',
+                'cactbot test watch': 'cactbot 탐지 테스트',
+                'You clap for the striking dummy': '.*나무인형에게 박수를 보냅니다',
+                'You psych yourself up alongside the striking dummy': '.*나무인형에게 힘을 불어넣습니다',
+                'You poke the striking dummy': '.*나무인형을 쿡쿡 찌릅니다',
             },
             replaceText: {
                 'Final Sting': '마지막 벌침',

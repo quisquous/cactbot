@@ -222,7 +222,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Bomb Boulder': '바위폭탄',
                 'Granite Gaoler': '화강암 감옥',
@@ -238,6 +237,9 @@ Options.Triggers.push({
                 'Burst': '대폭발',
                 'Bury': '충격',
                 'Earthen Fury': '대지의 분노',
+                'Gaoler Adds': '화강암 감옥 등장',
+                'Gaoler Landslide': '화강암 감옥 산사태',
+                'Gaoler Tumult': '화강암 감옥 격진',
                 'Geocrush': '대지 붕괴',
                 '(?<! )Landslide': '산사태',
                 'Mountain Buster': '산 쪼개기',

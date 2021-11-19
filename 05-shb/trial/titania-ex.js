@@ -592,10 +592,10 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Spirit Of Dew': '물의 정령',
                 'Spirit of Flame': '불의 정령',
+                'Spirit of Wood': '나무의 정령',
                 'Titania': '티타니아',
                 'Puck': '요정의 권속',
                 'Peaseblossom': '콩나무',
