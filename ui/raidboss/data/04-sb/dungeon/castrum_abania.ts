@@ -295,7 +295,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Inferno': '인페르노',
         'Magna Roader': '마도 마그나로더',

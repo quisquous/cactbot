@@ -676,7 +676,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'bitblade': '건블레이드 비트',
         'Black Wolf\'s Image': '가이우스의 환영',

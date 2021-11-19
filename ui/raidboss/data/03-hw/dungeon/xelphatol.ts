@@ -261,7 +261,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Abalathian Hornbill': '아발라시아 뿔부리',
         'Dotoli Ciloc': '선풍의 도톨리 실록',
@@ -271,6 +270,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Tlachtli': '타팍솔리 투기장',
         'The Vortex': '접신 제단',
         'Tozol Huatotl': '청풍의 토졸 후아토틀',
+        'Floating Turret': '기구 포탑',
       },
       'replaceText': {
         'Aerial Blast': '대기 폭발',

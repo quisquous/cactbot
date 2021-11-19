@@ -372,7 +372,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Ame-No-Murakumo(?! )': '아메노무라쿠모',
         'Susano': '스사노오',
-        'Thunderhead': '번개 머리',
+        'Thunderhead': '번개구름',
         'Ama-No-Iwato': '신의 바위',
       },
       'replaceText': {

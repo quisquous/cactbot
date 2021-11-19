@@ -250,7 +250,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Daigoro': '다이고로',
         'Dojun-Maru': '도우준마루',
