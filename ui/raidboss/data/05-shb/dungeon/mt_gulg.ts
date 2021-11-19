@@ -402,9 +402,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
-        'Forgiven Revelry': '得到宽恕的放纵',
-        'Forgiven Ambition': '得到宽恕的奢望',
-        'Forgiven Prejudice': '得到宽恕的偏见',
+        'Forgiven Revelry': '면죄된 환락',
+        'Forgiven Ambition': '면죄된 야망',
+        'Forgiven Prejudice': '면죄된 편견',
         'Forgiven Obscenity': '면죄된 외설',
         'Forgiven Cruelty': '면죄된 잔혹',
         'Forgiven Whimsy': '면죄된 변덕',
