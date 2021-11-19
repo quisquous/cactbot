@@ -1227,7 +1227,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '성기사 아그리아스',
         'Aspersory': '성운의 물병',

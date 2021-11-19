@@ -386,7 +386,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Kingsloam': '진흙왕의 알현실',
         'Lakhamu': '라하무',
