@@ -291,7 +291,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Armored Weapon': '무장 병기',
         'Blade Of The Griffin': '그리핀의 검',
@@ -304,6 +303,7 @@ const triggerSet: TriggerSet<Data> = {
         'Via Praetoria': '근위대의 길',
       },
       'replaceText': {
+        '--teleport': '--순간 이동',
         'Assault Cannon': '맹공포',
         'Beak Of The Griffin': '그리핀의 부리',
         'Big Boot': '걷어차기',
