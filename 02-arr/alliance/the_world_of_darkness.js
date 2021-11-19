@@ -74,8 +74,8 @@ Options.Triggers.push({
         },
         {
             id: 'Angra Mainyu Gain Doom',
-            type: 'LosesEffect',
-            netRegex: NetRegexes.losesEffect({ effectId: 'd2' }),
+            type: 'GainsEffect',
+            netRegex: NetRegexes.gainsEffect({ effectId: 'd2' }),
             condition: Conditions.targetIsYou(),
             alarmText: (_data, _matches, output) => output.cleanse(),
             outputStrings: {
