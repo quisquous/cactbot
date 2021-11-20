@@ -15,43 +15,53 @@ class TimelineParse {
   parser = new argparse.ArgumentParser({
     addHelp: true,
   });
+  // At least one non-file argument must be selected from this group.
+  fileGroup = this.parser.addArgumentGroup({
+    title: 'File Args',
+    description: 'A file and/or a timeline must be selected before performing operations',
+  });
+  // Exactly one argument should be selected from this group.
+  requiredGroup = this.parser.addMutuallyExclusiveGroup({ required: true });
   args: argsObject;
   constructor() {
-    this.parser.addArgument(['-f', '--file'], {
+    this.fileGroup.addArgument(['-f', '--file'], {
       required: true,
       help: 'Network log file to analyze',
+    });
+    this.fileGroup.addArgument(['-t', '--timeline'], {
+      help: 'The filename of the timeline to test against, e.g. ultima_weapon_ultimate',
     });
     this.parser.addArgument(['--force'], {
       nargs: 0,
       help: 'Overwrite files when exporting',
     });
-    this.parser.addArgument(['-lf', '--search-fights'], {
+    this.requiredGroup.addArgument(['-lf', '--search-fights'], {
       nargs: '?',
       constant: -1,
       type: 'int',
-      help: 'Fight in log to use, e.g. \'1\'. ' +
+      help: 'Fight in log to export, e.g. \'1\'. ' +
         'If no number is specified, returns a list of fights.',
     });
-    this.parser.addArgument(['-lz', '--search-zones'], {
+    this.requiredGroup.addArgument(['-lz', '--search-zones'], {
       nargs: '?',
       constant: -1,
       type: 'int',
-      help: 'Zone in log to use, e.g. \'1\'. ' +
+      help: 'Zone in log to export, e.g. \'1\'. ' +
         'If no number is specified, returns a list of zones.',
     });
-    this.parser.addArgument(['-fr', '--fight-regex'], {
+    this.requiredGroup.addArgument(['-fr', '--fight-regex'], {
       nargs: '?',
       constant: '*',
       type: 'string',
       help: 'Export all fights that match this regex',
     });
-    this.parser.addArgument(['-zr', '--zone-regex'], {
+    this.requiredGroup.addArgument(['-zr', '--zone-regex'], {
       nargs: '?',
       constant: '*',
       type: 'string',
       help: 'Export all zones that match this regex',
     });
-    this.parser.addArgument(['-a', '--adjust'], {
+    this.requiredGroup.addArgument(['-a', '--adjust'], {
       nargs: '?',
       constant: 0,
       type: 'float',
@@ -61,13 +71,15 @@ class TimelineParse {
   }
 
   validate(args: argsObject): argsObject {
-    let numExclusiveArgs = 0;
-    for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']) {
+    // We can't enforce 1+ arguments in a non-exclusive group,
+    // so we have to do it manually here.
+    let numFileArgs = 0;
+    for (const opt of ['file', 'timeline']) {
       if (args[opt] !== null)
-        numExclusiveArgs++;
+        numFileArgs++;
     }
-    if (numExclusiveArgs > 1) {
-      console.error('Error: Must specify exactly zero or one of -lf, -lz, -fr\n');
+    if (numFileArgs === 0) {
+      console.error('Error: Must specify at least one of -f or -t');
       process.exit(-1);
     }
     return args;
