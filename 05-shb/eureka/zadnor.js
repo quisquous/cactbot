@@ -1557,7 +1557,7 @@ Options.Triggers.push({
                 },
                 right: {
                     en: 'March Right (avoid puddles)',
-                    de: 'Marchiere Rehts (weiche den Flächen aus)',
+                    de: 'Marchiere Rechts (weiche den Flächen aus)',
                     cn: '强制移动: 右, 避开圈圈',
                     ko: '정신장악: 오른쪽, 장판 피하기',
                 },
