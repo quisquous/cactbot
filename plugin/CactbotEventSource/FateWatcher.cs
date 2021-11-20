@@ -164,8 +164,8 @@ namespace Cactbot {
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
 
-      var FFXIV = ActGlobals.oFormActMain.ActPlugins.FirstOrDefault(x => x.lblPluginTitle.Text == "FFXIV_ACT_Plugin.dll");
-      if (FFXIV != null && FFXIV.pluginObj != null) {
+      var FFXIV = GetPluginData();
+      if (FFXIV != null) {
         try {
           subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
         } catch (Exception ex) {
@@ -180,6 +180,14 @@ namespace Cactbot {
       headerOffset = GetOffset(actorControl143.packetType, "MessageHeader");
       messageHeader = actorControl143.packetType.GetField("MessageHeader").FieldType;
       messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
+    }
+
+    private ActPluginData GetPluginData() {
+      return ActGlobals.oFormActMain.ActPlugins.FirstOrDefault(plugin => {
+        if (!plugin.cbEnabled.Checked || plugin.pluginObj == null)
+          return false;
+        return plugin.lblPluginTitle.Text == "FFXIV_ACT_Plugin.dll";
+      });
     }
 
     public void Start() {
