@@ -25,7 +25,6 @@ class TimelineParse {
   args: argsObject;
   constructor() {
     this.fileGroup.addArgument(['-f', '--file'], {
-      required: true,
       help: 'Network log file to analyze',
     });
     this.fileGroup.addArgument(['-t', '--timeline'], {
