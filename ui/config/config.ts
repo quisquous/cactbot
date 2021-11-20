@@ -1,10 +1,15 @@
+import contentList from '../../resources/content_list';
+import { Lang } from '../../resources/languages';
+import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import Regexes from '../../resources/regexes';
-import UserConfig from '../../resources/user_config';
+import UserConfig, { ConfigEntry, ConfigValue, OptionsTemplate } from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';
-import contentList from '../../resources/content_list';
+import { SavedConfig, SavedConfigEntry } from '../../types/event';
+import { LooseOopsyTriggerSet } from '../../types/oopsy';
+import { LocaleObject, LooseTriggerSet } from '../../types/trigger';
 
-import defaultOptions from './config_options';
+import defaultOptions, { ConfigOptions } from './config_options';
 
 // Load other config files
 import './general_config';
@@ -171,7 +176,7 @@ const kDirectoryToCategory = {
 
 // TODO: maybe we should also sort all the filenames properly too?
 // TODO: use ZoneId to get this
-const fileNameToTitle = (filename) => {
+const fileNameToTitle = (filename: string) => {
   // Strip directory and extension.
   const file = filename.replace(/^.*\//, '').replace(/\.[jt]s/g, '');
   // Remove non-name characters (probably).
@@ -186,8 +191,31 @@ const fileNameToTitle = (filename) => {
   return capitalized;
 };
 
-export default class CactbotConfigurator {
-  constructor(configOptions, savedConfig) {
+export type ConfigContents = { [group: string]: OptionsTemplate[] };
+
+export type ConfigProcessedFile<T extends LooseOopsyTriggerSet | LooseTriggerSet> = {
+  filename: string;
+  fileKey: string;
+  prefixKey: string;
+  prefix: string;
+  section: string;
+  type?: string;
+  title: string;
+  triggerSet: T;
+  zoneId?: number;
+};
+
+export type ConfigProcessedFileMap<T extends LooseOopsyTriggerSet | LooseTriggerSet> = {
+  [filename: string]: ConfigProcessedFile<T>;
+};
+
+export class CactbotConfigurator {
+  private lang: Lang;
+  private savedConfig: SavedConfig;
+  private contents: ConfigContents;
+  private developerOptions: boolean;
+
+  constructor(private configOptions: ConfigOptions, savedConfig: SavedConfig) {
     // Predefined, only for ordering purposes.
     this.contents = {
       // top level
@@ -197,26 +225,25 @@ export default class CactbotConfigurator {
       'raidboss': [],
       'jobs': [],
     };
-    this.configOptions = configOptions;
     // If the user has set a display language, use that.
     // Otherwise, use the operating system language as a default for the config tool.
-    this.lang = configOptions.DisplayLanguage || configOptions.ShortLocale;
-    this.savedConfig = savedConfig || {};
-    this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
+    this.lang = this.configOptions.DisplayLanguage ?? this.configOptions.ShortLocale;
+    this.savedConfig = savedConfig ?? {};
+    this.developerOptions = this.getBooleanOption('general', 'ShowDeveloperOptions', false);
 
     const templates = UserConfig.optionTemplates;
-    for (const group in templates) {
-      this.contents[group] = this.contents[group] || [];
-      this.contents[group].push(templates[group]);
-    }
+    for (const [group, template] of Object.entries(templates))
+      (this.contents[group] ??= []).push(template);
 
     this.buildButterBar();
 
     const container = document.getElementById('container');
+    if (!container)
+      throw new UnreachableCode();
     this.buildUI(container, this.contents);
   }
 
-  async saveConfigData() {
+  async saveConfigData(): Promise<void> {
     // TODO: rate limit this?
     await callOverlayHandler({
       call: 'cactbotSaveData',
@@ -224,24 +251,62 @@ export default class CactbotConfigurator {
       data: this.savedConfig,
     });
 
-    document.getElementById('butter-margin').classList.remove('hidden');
+    document.getElementById('butter-margin')?.classList.remove('hidden');
   }
 
   // Helper translate function.  Takes in an object with language keys
   // and returns a single entry based on available translations.
-  translate(textObj) {
+  translate<T>(textObj: LocaleObject<T>): T {
     if (textObj === null || typeof textObj !== 'object' || !textObj['en'])
-      return textObj;
+      throw new Error(`Invalid config: ${JSON.stringify(textObj)}`);
     const t = textObj[this.lang];
     if (t)
       return t;
     return textObj['en'];
   }
 
+  getBooleanOption(group: string, path: string | string[], defaultValue: boolean): boolean {
+    const value = this.getOption(group, path, defaultValue);
+    if (typeof value === 'boolean') {
+      return value;
+    } else if (typeof value === 'string') {
+      if (value === 'true' || value === 'false')
+        return value === 'true';
+    }
+
+    const args = Array.isArray(path) ? path : [path];
+    const info = JSON.stringify([group, ...args].join(', '));
+    console.error(`Invalid boolean string: ${info}, ${value}`);
+    return defaultValue;
+  }
+
+  getStringOption(group: string, path: string | string[], defaultValue: ConfigValue): string {
+    const value = this.getOption(group, path, defaultValue);
+    return value.toString();
+  }
+
+  getNumberOption(group: string, path: string | string[], defaultValue: number): number {
+    const value = this.getOption(group, path, defaultValue);
+    if (value === '') {
+      return defaultValue;
+    } else if (typeof value === 'number') {
+      return value;
+    } else if (typeof value === 'string') {
+      const num = parseFloat(value);
+      if (!isNaN(+value) && !isNaN(num))
+        return num;
+    }
+
+    const args = Array.isArray(path) ? path : [path];
+    const info = JSON.stringify([group, ...args].join(', '));
+    console.error(`Invalid number string: ${info}, ${value.toString()}`);
+    return defaultValue;
+  }
+
   // Takes a variable length `path` and returns the defaultValue if any key is missing.
   // e.g. (foo, [bar, baz], 5) with {foo: { bar: { baz: 3 } } } will return
   // the value 3.
-  getOption(group, path, defaultValue) {
+  getOption(group: string, path: string | string[], defaultValue: ConfigValue): ConfigValue {
     let objOrValue = this.savedConfig[group];
     if (objOrValue === undefined)
       return defaultValue;
@@ -256,10 +321,11 @@ export default class CactbotConfigurator {
       if (typeof objOrValue !== 'object' || Array.isArray(objOrValue)) {
         // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
         // until leaf node ConfigValue.
-        console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
+        const info = JSON.stringify([group, ...args].join(', '));
+        console.error(`Unexpected entry: ${info}}`);
         return defaultValue;
       }
-      const item = objOrValue[arg];
+      const item: SavedConfigEntry | undefined = objOrValue[arg];
       // If not found, then use default value.
       if (typeof item === 'undefined')
         return defaultValue;
@@ -271,8 +337,11 @@ export default class CactbotConfigurator {
     const emptyDefaultNumber = defaultValue === '' && typeof objOrValue === 'number';
     // Also due to inconsistencies in option code, some numbers are stored as unparsed strings.
     const isStringNumber = typeof defaultValue === 'number' && typeof objOrValue === 'string';
-    if (!emptyDefaultNumber && !isStringNumber && typeof defaultValue !== typeof objOrValue) {
-      const info = JSON.stringify([group, id, ...args].join(', '));
+    if (
+      !emptyDefaultNumber && !isStringNumber && typeof defaultValue !== typeof objOrValue ||
+      typeof objOrValue === 'object'
+    ) {
+      const info = JSON.stringify([group, ...args].join(', '));
       console.error(
         `Unexpected type: ${info}, ${objOrValue.toString()}, ${typeof objOrValue}, ${typeof defaultValue}`,
       );
@@ -284,10 +353,9 @@ export default class CactbotConfigurator {
   // Sets an option in the config at a variable level of nesting.
   // e.g. (foo, [bar, baz], 3) will set {foo: { bar: { baz: 3 } } }.
   // e.g. (foo, bar, 4) will set { foo: { bar: 4 } }.
-  setOption(group, path, defaultValue) {
+  setOption(group: string, path: string | string[], defaultValue: ConfigValue): void {
     // Set keys and create default {} if it doesn't exist.
-    this.savedConfig[group] = this.savedConfig[group] ?? {};
-    let obj = this.savedConfig[group];
+    let obj = this.savedConfig[group] ??= {};
 
     const args = Array.isArray(path) ? path : [path];
     if (args.length === 0) {
@@ -303,75 +371,90 @@ export default class CactbotConfigurator {
       if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
         // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
         // until leaf node ConfigValue.
-        console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
+        console.error(`Unexpected entry: ${JSON.stringify([group, ...args].join(', '))}`);
         return;
       }
 
-      obj = obj[arg] = obj[arg] ?? {};
+      obj = obj[arg] ??= {};
     }
 
     if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
       // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
       // until leaf node ConfigValue.
-      console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
+      console.error(`Unexpected entry: ${JSON.stringify([group, ...args].join(', '))}`);
       return;
     }
+    // Any type of ConfigValue is fine here and we'll validate on loading.
     obj[finalArg] = defaultValue;
     void this.saveConfigData();
   }
 
-  buildButterBar() {
+  buildButterBar(): void {
     const container = document.getElementById('butter-bar');
+    if (!container)
+      throw new UnreachableCode();
 
     const textDiv = document.createElement('div');
+    if (!textDiv)
+      throw new UnreachableCode();
     textDiv.classList.add('reload-text');
     textDiv.innerText = this.translate(kReloadText);
     container.appendChild(textDiv);
 
     const buttonInput = document.createElement('input');
+    if (!buttonInput)
+      throw new UnreachableCode();
     buttonInput.classList.add('reload-button');
     buttonInput.type = 'button';
     buttonInput.onclick = () => {
-      callOverlayHandler({ call: 'cactbotReloadOverlays' });
+      void callOverlayHandler({ call: 'cactbotReloadOverlays' });
     };
     buttonInput.value = this.translate(kReloadButtonText);
     container.appendChild(buttonInput);
   }
 
   // Top level UI builder, builds everything.
-  buildUI(container, contents) {
+  buildUI(container: HTMLElement, contents: ConfigContents): void {
     for (const group in contents) {
       const content = contents[group];
-      if (content.length === 0)
+      if (!content || content.length === 0)
         continue;
 
       // For each overlay options template, build a section for it.
       // Then iterate through all of its options and build ui for those options.
       // Give each options template a chance to build special ui.
       const groupDiv = this.buildOverlayGroup(container, group);
-      for (let i = 0; i < content.length; ++i) {
-        const options = content[i].options || [];
-        for (let j = 0; j < options.length; ++j) {
-          const opt = options[j];
+      for (const template of content) {
+        const options = template.options ?? [];
+        for (const opt of options) {
           if (!this.developerOptions && opt.debugOnly)
             continue;
-          const buildFunc = {
-            checkbox: this.buildCheckbox,
-            html: this.buildHtml,
-            select: this.buildSelect,
-            float: this.buildFloat,
-            integer: this.buildInteger,
-            directory: this.buildDirectory,
-          }[opt.type];
-          if (!buildFunc) {
-            console.error('unknown type: ' + JSON.stringify(opt));
-            continue;
+          switch (opt.type) {
+            case 'checkbox':
+              this.buildCheckbox(groupDiv, opt, group);
+              break;
+            case 'html':
+              this.buildHtml(groupDiv, opt, group);
+              break;
+            case 'select':
+              this.buildSelect(groupDiv, opt, group);
+              break;
+            case 'float':
+              this.buildFloat(groupDiv, opt, group);
+              break;
+            case 'integer':
+              this.buildInteger(groupDiv, opt, group);
+              break;
+            case 'directory':
+              this.buildDirectory(groupDiv, opt, group);
+              break;
+            default:
+              console.error('unknown type: ' + JSON.stringify(opt));
+              break;
           }
-
-          buildFunc.bind(this)(groupDiv, opt, group);
         }
 
-        const builder = content[i].buildExtraUI;
+        const builder = template.buildExtraUI;
         if (builder)
           builder(this, groupDiv);
       }
@@ -379,7 +462,7 @@ export default class CactbotConfigurator {
   }
 
   // Overlay builder for each overlay type (e.g. raidboss, jobs).
-  buildOverlayGroup(container, group) {
+  buildOverlayGroup(container: HTMLElement, group: string): HTMLElement {
     const collapser = document.createElement('div');
     collapser.classList.add('overlay-container');
     container.appendChild(collapser);
@@ -397,44 +480,53 @@ export default class CactbotConfigurator {
     groupDiv.classList.add('overlay-options');
     collapser.appendChild(groupDiv);
 
-    a.onclick = (e) => {
-      a.parentNode.classList.toggle('collapsed');
+    a.onclick = () => {
+      const parent = a.parentNode;
+      if (parent instanceof HTMLElement)
+        parent.classList.toggle('collapsed');
     };
 
     return groupDiv;
   }
 
-  buildNameDiv(opt) {
+  buildNameDiv(opt: ConfigEntry): HTMLElement {
     const div = document.createElement('div');
     div.innerHTML = this.translate(opt.name);
     div.classList.add('option-name');
     return div;
   }
 
-  buildCheckbox(parent, opt, group) {
+  buildCheckbox(parent: HTMLElement, opt: ConfigEntry, group: string): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
     const input = document.createElement('input');
+    if (!input)
+      throw new UnreachableCode();
     div.appendChild(input);
     input.type = 'checkbox';
-    input.checked = this.getOption(group, opt.id, opt.default);
+
+    const defaultValue = typeof opt.default === 'boolean' ? opt.default : false;
+    if (typeof opt.default !== 'boolean')
+      console.error(`Invalid non-boolean default: ${group} ${opt.id}`);
+    input.checked = this.getBooleanOption(group, opt.id, defaultValue);
     input.onchange = () => this.setOption(group, opt.id, input.checked);
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
   }
 
-  buildHtml(parent, opt, group) {
+  buildHtml(parent: HTMLElement, opt: ConfigEntry, _group: string): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
-    div.innerHTML = this.translate(opt.html);
+    if (opt.html)
+      div.innerHTML = this.translate(opt.html);
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
   }
 
-  buildDirectory(parent, opt, group) {
+  buildDirectory(parent: HTMLElement, opt: ConfigEntry, group: string): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
     div.classList.add('input-dir-container');
@@ -449,13 +541,13 @@ export default class CactbotConfigurator {
     label.classList.add('input-dir-label');
     div.appendChild(label);
 
-    const setLabel = (str) => {
+    const setLabel = (str: string) => {
       if (str)
         label.innerText = str;
       else
         label.innerText = this.translate(kDirectoryDefaultText);
     };
-    setLabel(this.getOption(group, opt.id, opt.default));
+    setLabel(this.getStringOption(group, opt.id, opt.default));
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
@@ -474,14 +566,18 @@ export default class CactbotConfigurator {
       });
 
       input.disabled = false;
-      const dir = result.data ? result.data : '';
-      if (dir !== prevValue)
-        this.setOption(group, opt.id, dir);
-      setLabel(dir);
+      if (result !== undefined) {
+        const dir = result.data ?? '';
+        if (dir !== prevValue)
+          this.setOption(group, opt.id, dir);
+        setLabel(dir);
+      } else {
+        console.error('cactbotChooseDirectory returned undefined');
+      }
     };
   }
 
-  buildSelect(parent, opt, group) {
+  buildSelect(parent: HTMLElement, opt: ConfigEntry, group: string): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -491,14 +587,16 @@ export default class CactbotConfigurator {
     const defaultValue = this.getOption(group, opt.id, opt.default);
     input.onchange = () => this.setOption(group, opt.id, input.value);
 
-    const innerOptions = this.translate(opt.options);
-    for (const key in innerOptions) {
-      const elem = document.createElement('option');
-      elem.value = innerOptions[key];
-      elem.innerHTML = key;
-      if (innerOptions[key] === defaultValue)
-        elem.selected = true;
-      input.appendChild(elem);
+    if (opt.options) {
+      const innerOptions = this.translate(opt.options);
+      for (const [key, value] of Object.entries(innerOptions)) {
+        const elem = document.createElement('option');
+        elem.value = value;
+        elem.innerHTML = key;
+        if (innerOptions[key] === defaultValue)
+          elem.selected = true;
+        input.appendChild(elem);
+      }
     }
 
     parent.appendChild(this.buildNameDiv(opt));
@@ -506,7 +604,7 @@ export default class CactbotConfigurator {
   }
 
   // FIXME: this could use some data validation if a user inputs non-floats.
-  buildFloat(parent, opt, group) {
+  buildFloat(parent: HTMLElement, opt: ConfigEntry, group: string): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -514,7 +612,11 @@ export default class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 'any';
-    input.value = this.getOption(group, opt.id, parseFloat(opt.default));
+    input.value = this.getNumberOption(
+      group,
+      opt.id,
+      parseFloat(opt.default.toString()),
+    ).toString();
     const setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
@@ -524,15 +626,15 @@ export default class CactbotConfigurator {
   }
 
   // FIXME: this could use some data validation if a user inputs non-integers.
-  buildInteger(parent, opt, group) {
+  buildInteger(parent: HTMLElement, opt: ConfigEntry, group: string): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
     const input = document.createElement('input');
     div.appendChild(input);
     input.type = 'text';
-    input.step = 1;
-    input.value = this.getOption(group, opt.id, parseInt(opt.default));
+    input.step = '1';
+    input.value = this.getNumberOption(group, opt.id, parseInt(opt.default.toString())).toString();
     const setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
@@ -541,34 +643,38 @@ export default class CactbotConfigurator {
     parent.appendChild(div);
   }
 
-  processFiles(files, userTriggerSets) {
-    const map = {};
-    for (const filename in files) {
+  processFiles<T extends LooseTriggerSet | LooseOopsyTriggerSet>(
+    files: { [filename: string]: T },
+    userTriggerSets?: T[],
+  ): ConfigProcessedFileMap<T> {
+    const map: ConfigProcessedFileMap<T> = {};
+    for (const [filename, triggerSet] of Object.entries(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
       let prefixKey = '00-misc';
-      for (const str in kPrefixToCategory) {
-        if (!filename.startsWith(str))
+      let prefix = kPrefixToCategory['00-misc'];
+      for (const [key, value] of Object.entries(kPrefixToCategory)) {
+        if (!filename.startsWith(key))
           continue;
-        prefixKey = str;
+        prefixKey = key;
+        prefix = value;
         break;
       }
 
-      let typeKey = 'general';
-      for (const str in kDirectoryToCategory) {
-        if (!filename.includes('/' + str + '/'))
+      let category = undefined;
+      for (const [key, value] of Object.entries(kDirectoryToCategory)) {
+        if (!filename.includes(`/${key}/`))
           continue;
-        typeKey = str;
+        category = value;
         break;
       }
 
-      const triggerSet = files[filename];
       let title = fileNameToTitle(filename);
-      let zoneId = undefined;
+      let zoneId: number | undefined = undefined;
 
       // Make assumptions about trigger structure here to try to get the zoneId out.
-      if (triggerSet && 'zoneId' in triggerSet) {
+      if (triggerSet && typeof triggerSet.zoneId === 'number') {
         zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];
@@ -581,35 +687,41 @@ export default class CactbotConfigurator {
         filename: filename,
         fileKey: fileKey,
         prefixKey: prefixKey,
-        prefix: this.translate(kPrefixToCategory[prefixKey]),
-        section: this.translate(kPrefixToCategory[prefixKey]),
-        type: this.translate(kDirectoryToCategory[typeKey]),
+        prefix: this.translate(prefix),
+        section: this.translate(prefix),
+        type: category ? this.translate(category) : undefined,
         title: title,
         triggerSet: triggerSet,
         zoneId: zoneId,
       };
     }
 
-    const userMap = {};
+    const userMap: ConfigProcessedFileMap<T> = {};
     let userFileIdx = 0;
     for (const triggerSet of userTriggerSets || []) {
       if (!triggerSet)
         continue;
+      // TODO: pass in userTriggerSets as a filename -> triggerSet map as well
+      // so we don't need to read this added value.
+      if (!triggerSet.filename)
+        throw new Error('UserHandler must add filename');
       const fileKey = `user/${triggerSet.filename}/${userFileIdx++}`;
 
       // cactbot triggers all use zoneId, but user triggers in the wild
       // may also use zoneRegex or also have errors and not have either.
       let title = '???';
-      let zoneId = 'undefined';
-      if ('zoneId' in triggerSet) {
+      let zoneId: number | undefined = undefined;
+      if (typeof triggerSet.zoneId === 'number') {
         zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];
         if (zoneInfo)
           title = this.translate(zoneInfo.name);
-      } else if ('zoneRegex' in triggerSet) {
+      } else if (triggerSet.zoneRegex) {
         // zoneRegex can be a localized object.
-        let zoneRegex = this.translate(triggerSet.zoneRegex);
+        let zoneRegex = triggerSet.zoneRegex instanceof RegExp
+          ? triggerSet.zoneRegex
+          : triggerSet.zoneRegex[this.lang];
         if (typeof zoneRegex === 'string')
           zoneRegex = Regexes.parse(zoneRegex);
         if (zoneRegex instanceof RegExp)
@@ -623,7 +735,7 @@ export default class CactbotConfigurator {
         prefix: this.translate(kPrefixToCategory['user']),
         section: triggerSet.filename,
         title: title,
-        type: null,
+        type: undefined,
         triggerSet: triggerSet,
         zoneId: zoneId,
       };
@@ -633,13 +745,16 @@ export default class CactbotConfigurator {
       // Sort first by expansion.
       const entryA = map[keyA];
       const entryB = map[keyB];
+      // All keys here are valid entries in map.
+      if (entryA === undefined || entryB === undefined)
+        throw new UnreachableCode();
       const prefixCompare = entryA.prefixKey.localeCompare(entryB.prefixKey);
       if (prefixCompare !== 0)
         return prefixCompare;
 
       // Then sort by contentList.
-      const indexA = contentList.indexOf(entryA.zoneId);
-      const indexB = contentList.indexOf(entryB.zoneId);
+      const indexA = entryA.zoneId !== undefined ? contentList.indexOf(entryA.zoneId) : -1;
+      const indexB = entryB.zoneId !== undefined ? contentList.indexOf(entryB.zoneId) : -1;
 
       if (indexA === -1 && indexB === -1) {
         // If we don't know, sort by strings.
@@ -656,13 +771,17 @@ export default class CactbotConfigurator {
     });
 
     // Rebuild map with keys in the right order.
-    const sortedMap = {};
-    for (const key of sortedEntries)
-      sortedMap[key] = map[key];
+    const sortedMap: ConfigProcessedFileMap<T> = {};
+    for (const key of sortedEntries) {
+      const value = map[key];
+      if (value === undefined)
+        throw new UnreachableCode();
+      sortedMap[key] = value;
+    }
 
     // Tack on user triggers at the end in the order they were eval'd.
-    for (const key in userMap)
-      sortedMap[key] = userMap[key];
+    for (const [key, triggerSet] of Object.entries(userMap))
+      sortedMap[key] = triggerSet;
 
     return sortedMap;
   }
@@ -670,7 +789,7 @@ export default class CactbotConfigurator {
 
 UserConfig.getUserConfigLocation('config', defaultOptions, () => {
   const options = { ...defaultOptions };
-  const configurator = new CactbotConfigurator(
+  new CactbotConfigurator(
     options,
     UserConfig.savedConfig,
   );

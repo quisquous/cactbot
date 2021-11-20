@@ -403,9 +403,9 @@ type CactbotLoadDataHandler = (msg: {
   overlay: string;
 }) => ({ data: SavedConfig } | undefined);
 
-type CactbotChooseDirectoryHandler = <T>(msg: {
+type CactbotChooseDirectoryHandler = (msg: {
   call: 'cactbotChooseDirectory';
-}) => ({ data: T } | undefined);
+}) => ({ data: string } | undefined);
 
 export type OverlayHandlerAll = {
   'broadcast': BroadcastHandler;

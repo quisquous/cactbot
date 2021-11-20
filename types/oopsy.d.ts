@@ -126,5 +126,7 @@ export type LooseOopsyTrigger = Partial<
 
 export type LooseOopsyTriggerSet = Exclude<Partial<OopsyTriggerSet<OopsyData>>, 'triggers'> & {
   zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
+  // Annotated by userFileHandler.
+  filename?: string;
   triggers?: LooseOopsyTrigger[];
 };

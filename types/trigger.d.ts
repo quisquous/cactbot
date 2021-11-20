@@ -223,6 +223,8 @@ export type LooseTriggerSet =
       | RegExp
       | { [lang in Lang]?: RegExp };
     triggers?: LooseTrigger[];
+    // Annotated by userFileHandler.
+    filename?: string;
     timelineTriggers?: LooseTimelineTrigger[];
   };
 
