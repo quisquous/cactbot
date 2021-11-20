@@ -1,10 +1,13 @@
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
+import { LooseOopsyTriggerSet, OopsyFileData } from '../../types/oopsy';
+import { CactbotConfigurator, ConfigProcessedFile, ConfigProcessedFileMap } from '../config/config';
 
-import { generateBuffTriggers } from './buff_map';
+import { generateBuffTriggerIds } from './buff_map';
 import oopsyFileData from './data/oopsy_manifest.txt';
+import { OopsyOptions } from './oopsy_options';
 
-const oopsyHelpers = [
+const oopsyHelpers: (keyof LooseOopsyTriggerSet)[] = [
   'damageWarn',
   'damageFail',
   'shareWarn',
@@ -39,25 +42,26 @@ const kTriggerOptions = {
 };
 
 class OopsyConfigurator {
-  constructor(cactbotConfigurator) {
+  private base: CactbotConfigurator;
+  private readonly optionKey = 'oopsyraidsy';
+
+  constructor(cactbotConfigurator: CactbotConfigurator) {
     this.base = cactbotConfigurator;
-    this.lang = this.base.lang;
-    this.optionKey = 'oopsyraidsy';
   }
 
-  buildUI(container, files) {
+  buildUI(container: HTMLElement, files: OopsyFileData) {
     const fileMap = this.processOopsyFiles(files);
 
-    const expansionDivs = {};
+    const expansionDivs: { [expansion: string]: HTMLElement } = {};
 
-    for (const key in fileMap) {
-      const info = fileMap[key];
+    for (const info of Object.values(fileMap)) {
       const expansion = info.prefix;
 
-      if (info.triggers.length === 0)
+      if (!info.triggers || info.triggers.length === 0)
         continue;
 
-      if (!expansionDivs[expansion]) {
+      let expansionDiv = expansionDivs[expansion];
+      if (!expansionDiv) {
         const expansionContainer = document.createElement('div');
         expansionContainer.classList.add('trigger-expansion-container', 'collapsed');
         container.appendChild(expansionContainer);
@@ -70,12 +74,12 @@ class OopsyConfigurator {
         expansionHeader.innerText = expansion;
         expansionContainer.appendChild(expansionHeader);
 
-        expansionDivs[expansion] = expansionContainer;
+        expansionDiv = expansionDivs[expansion] = expansionContainer;
       }
 
       const triggerContainer = document.createElement('div');
       triggerContainer.classList.add('trigger-file-container', 'collapsed');
-      expansionDivs[expansion].appendChild(triggerContainer);
+      expansionDiv.appendChild(triggerContainer);
 
       const headerDiv = document.createElement('div');
       headerDiv.classList.add('trigger-file-header');
@@ -84,12 +88,12 @@ class OopsyConfigurator {
       };
 
       const parts = [info.title, info.type, expansion];
-      for (let i = 0; i < parts.length; ++i) {
-        if (!parts[i])
+      for (const part of parts) {
+        if (!part)
           continue;
         const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');
-        partDiv.innerText = parts[i];
+        partDiv.innerText = part;
         headerDiv.appendChild(partDiv);
       }
 
@@ -99,10 +103,11 @@ class OopsyConfigurator {
       triggerOptions.classList.add('trigger-file-options');
       triggerContainer.appendChild(triggerOptions);
 
-      for (const trigger of info.triggers) {
+      for (const trigger of info.triggers ?? []) {
         // Build the trigger label.
         const triggerDiv = document.createElement('div');
-        triggerDiv.innerHTML = trigger.id;
+        if (trigger.id)
+          triggerDiv.innerHTML = trigger.id;
         triggerDiv.classList.add('trigger');
         triggerOptions.appendChild(triggerDiv);
 
@@ -116,12 +121,12 @@ class OopsyConfigurator {
     }
   }
 
-  buildTriggerOptions(id, labelDiv) {
+  buildTriggerOptions(id: string, labelDiv: HTMLElement): HTMLElement {
     const kField = 'Output';
     const div = document.createElement('div');
     div.classList.add('trigger-options');
 
-    const updateLabel = (input) => {
+    const updateLabel = (input: HTMLOptionElement | HTMLSelectElement) => {
       if (input.value === 'hidden' || input.value === 'disabled')
         labelDiv.classList.add('disabled');
       else
@@ -133,9 +138,9 @@ class OopsyConfigurator {
 
     const selectValue = this.base.getOption(this.optionKey, ['triggers', id, kField], 'default');
 
-    for (const key in kTriggerOptions) {
+    for (const [key, value] of Object.entries(kTriggerOptions)) {
       const elem = document.createElement('option');
-      elem.innerHTML = this.base.translate(kTriggerOptions[key].label);
+      elem.innerHTML = this.base.translate(value.label);
       elem.value = key;
       elem.selected = key === selectValue;
       input.appendChild(elem);
@@ -154,14 +159,14 @@ class OopsyConfigurator {
     return div;
   }
 
-  processOopsyFiles(files) {
+  processOopsyFiles(files: OopsyFileData): ConfigProcessedFileMap<LooseOopsyTriggerSet> {
     const map = this.base.processFiles(files);
 
     // Hackily insert "missed buffs" into the list of triggers.
     const generalEntry = map['00-misc-general'];
     if (!generalEntry)
       throw new UnreachableCode();
-    const fakeBuffs = {
+    const fakeBuffs: ConfigProcessedFile<LooseOopsyTriggerSet> = {
       ...generalEntry,
       fileKey: '00-misc-buffs',
       filename: 'buff_map.ts',
@@ -173,18 +178,25 @@ class OopsyConfigurator {
         cn: '遗漏Buff',
         ko: '놓친 버프 알림',
       }),
-      triggerSet: { triggers: generateBuffTriggers() },
+      triggerSet: {
+        triggers: generateBuffTriggerIds().map((id) => {
+          return { id: id };
+        }),
+      },
     };
     map[fakeBuffs.fileKey] = fakeBuffs;
 
-    for (const [key, item] of Object.entries(map)) {
+    for (const item of Object.values(map)) {
       item.triggers = [];
       const triggerSet = item.triggerSet;
       for (const prop of oopsyHelpers) {
-        if (!triggerSet[prop])
+        if (triggerSet[prop])
           continue;
-        for (const id in triggerSet[prop])
-          item.triggers.push({ id: id });
+        const obj = triggerSet[prop];
+        if (typeof obj === 'object') {
+          for (const id in obj)
+            item.triggers.push({ id: id });
+        }
       }
 
       if (!triggerSet.triggers)
@@ -208,18 +220,27 @@ UserConfig.registerOptions('oopsyraidsy', {
     const builder = new OopsyConfigurator(base);
     builder.buildUI(container, oopsyFileData);
   },
-  processExtraOptions: (options, savedConfig) => {
-    options['PerTriggerAutoConfig'] = options['PerTriggerAutoConfig'] || {};
-    const triggers = savedConfig.triggers;
-    if (!triggers)
+  processExtraOptions: (baseOptions, savedConfig) => {
+    // TODO: Rewrite user_config to be templated on option type so that this function knows
+    // what type of options it is using.  Without this, perTriggerAutoConfig is unknown.
+    const options = baseOptions as OopsyOptions;
+
+    const perTriggerAutoConfig = options['PerTriggerAutoConfig'] ??= {};
+    if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
+      return;
+    const triggers = savedConfig['triggers'];
+
+    if (!triggers || typeof triggers !== 'object' || Array.isArray(triggers))
       return;
 
-    for (const id in triggers) {
-      const output = triggers[id]['Output'];
+    for (const [id, entry] of Object.entries(triggers)) {
+      if (typeof entry !== 'object' || Array.isArray(entry))
+        continue;
+      const output = entry['Output'];
       if (!output)
         continue;
 
-      options['PerTriggerAutoConfig'][id] = {
+      perTriggerAutoConfig[id] = {
         enabled: output !== 'disabled',
       };
     }

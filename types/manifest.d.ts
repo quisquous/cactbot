@@ -4,9 +4,6 @@ declare module '*/raidboss_manifest.txt' {
 }
 
 declare module '*/oopsy_manifest.txt' {
-  export interface OopsyFileData {
-    [filename: string]: import('./oopsy').LooseOopsyTriggerSet;
-  }
-  const oopsyFileData: OopsyFileData;
+  const oopsyFileData: import('./oopsy').OopsyFileData;
   export default oopsyFileData;
 }
