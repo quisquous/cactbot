@@ -11,7 +11,7 @@ type TimelineArgs = {
   'adjust'?: number;
 };
 
-class TimelineParse {
+class LogUtilArgParse {
   parser = new argparse.ArgumentParser({
     addHelp: true,
   });
@@ -84,4 +84,4 @@ class TimelineParse {
   }
 }
 
-export { TimelineArgs, TimelineParse };
+export { LogUtilArgParse, TimelineArgs };
