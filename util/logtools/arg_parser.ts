@@ -50,12 +50,12 @@ class TimelineParse {
         'If no number is specified, returns a list of zones.',
     });
     this.requiredGroup.addArgument(['-fr', '--fight-regex'], {
-      nargs: '?',
+      nargs: '1',
       type: 'string',
       help: 'Export all fights that match this regex',
     });
     this.requiredGroup.addArgument(['-zr', '--zone-regex'], {
-      nargs: '?',
+      nargs: '1',
       type: 'string',
       help: 'Export all zones that match this regex',
     });
