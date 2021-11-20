@@ -131,7 +131,7 @@ class OopsyConfigurator {
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const selectValue = this.base.getOption(this.optionKey, 'triggers', id, kField, 'default');
+    const selectValue = this.base.getOption(this.optionKey, ['triggers', id, kField], 'default');
 
     for (const key in kTriggerOptions) {
       const elem = document.createElement('option');
@@ -147,7 +147,7 @@ class OopsyConfigurator {
         let value = input.value;
         if (value.includes('default'))
           value = 'default';
-        this.base.setOption(this.optionKey, 'triggers', id, kField, input.value);
+        this.base.setOption(this.optionKey, ['triggers', id, kField], input.value);
       };
     }
 
@@ -237,6 +237,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       },
       type: 'checkbox',
       debugOnly: true,
+      default: false,
     },
     {
       id: 'NumLiveListItemsInCombat',

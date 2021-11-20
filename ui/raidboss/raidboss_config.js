@@ -539,10 +539,10 @@ class RaidbossConfigurator {
             defaultValue = trig.beforeSeconds;
 
           input.placeholder = this.base.translate(defaultValue);
-          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
+          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey], '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
-            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
+            this.base.setOption('raidboss', ['triggers', trig.id, optionKey], val);
           };
           input.onchange = setFunc;
           input.oninput = setFunc;
@@ -571,10 +571,10 @@ class RaidbossConfigurator {
             input.placeholder = `${trig.durationSeconds}`;
           else
             input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
-          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
+          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey], '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
-            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
+            this.base.setOption('raidboss', ['triggers', trig.id, optionKey], val);
           };
           input.onchange = setFunc;
           input.oninput = setFunc;
@@ -601,9 +601,9 @@ class RaidbossConfigurator {
           div.appendChild(input);
           input.type = 'text';
           input.placeholder = template;
-          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, key, '');
+          input.value = this.base.getOption('raidboss', ['triggers', trig.id, optionKey, key], '');
           const setFunc = () =>
-            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, key, input.value);
+            this.base.setOption('raidboss', ['triggers', trig.id, optionKey, key], input.value);
           input.onchange = setFunc;
           input.oninput = setFunc;
 
@@ -885,7 +885,11 @@ class RaidbossConfigurator {
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const selectValue = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, 'default');
+    const selectValue = this.base.getOption(
+      'raidboss',
+      ['triggers', trig.id, optionKey],
+      'default',
+    );
 
     for (const key in kTriggerOptions) {
       // Hide debug only options unless they are selected.
@@ -906,7 +910,7 @@ class RaidbossConfigurator {
         let value = input.value;
         if (value.includes('default'))
           value = 'default';
-        this.base.setOption('raidboss', 'triggers', trig.id, optionKey, input.value);
+        this.base.setOption('raidboss', ['triggers', trig.id, optionKey], input.value);
       };
     }
 
@@ -1034,6 +1038,7 @@ const templateOptions = {
       },
       type: 'checkbox',
       debugOnly: true,
+      default: false,
     },
     {
       id: 'DefaultAlertOutput',

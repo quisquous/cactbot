@@ -238,48 +238,86 @@ export default class CactbotConfigurator {
     return textObj['en'];
   }
 
-  // takes variable args, with the last value being the default value if
-  // any key is missing.
-  // e.g. (foo, bar, baz, 5) with {foo: { bar: { baz: 3 } } } will return
-  // the value 3.  Requires at least two args.
-  getOption() {
-    const num = arguments.length;
-    if (num < 2) {
-      console.error('getOption requires at least two args');
-      return;
+  // Takes a variable length `path` and returns the defaultValue if any key is missing.
+  // e.g. (foo, [bar, baz], 5) with {foo: { bar: { baz: 3 } } } will return
+  // the value 3.
+  getOption(group, path, defaultValue) {
+    let objOrValue = this.savedConfig[group];
+    if (objOrValue === undefined)
+      return defaultValue;
+
+    const args = Array.isArray(path) ? path : [path];
+    if (args.length === 0) {
+      console.error(`path must have at least one element`);
+      return defaultValue;
     }
 
-    const defaultValue = arguments[num - 1];
-    let objOrValue = this.savedConfig;
-    for (let i = 0; i < num - 1; ++i) {
-      objOrValue = objOrValue[arguments[i]];
-      if (typeof objOrValue === 'undefined')
+    for (const arg of args) {
+      if (typeof objOrValue !== 'object' || Array.isArray(objOrValue)) {
+        // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
+        // until leaf node ConfigValue.
+        console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
         return defaultValue;
+      }
+      const item = objOrValue[arg];
+      // If not found, then use default value.
+      if (typeof item === 'undefined')
+        return defaultValue;
+      objOrValue = item;
     }
 
+    // At the leaf node.
+    // Some number options pass in empty string as a default.
+    const emptyDefaultNumber = defaultValue === '' && typeof objOrValue === 'number';
+    // Also due to inconsistencies in option code, some numbers are stored as unparsed strings.
+    const isStringNumber = typeof defaultValue === 'number' && typeof objOrValue === 'string';
+    if (!emptyDefaultNumber && !isStringNumber && typeof defaultValue !== typeof objOrValue) {
+      const info = JSON.stringify([group, id, ...args].join(', '));
+      console.error(
+        `Unexpected type: ${info}, ${objOrValue.toString()}, ${typeof objOrValue}, ${typeof defaultValue}`,
+      );
+      return defaultValue;
+    }
     return objOrValue;
   }
 
-  // takes variable args, with the last value being the 'value' to set it to
-  // e.g. (foo, bar, baz, 3) will set {foo: { bar: { baz: 3 } } }.
-  // requires at least two args.
-  setOption() {
-    const num = arguments.length;
-    if (num < 2) {
-      console.error('setOption requires at least two args');
+  // Sets an option in the config at a variable level of nesting.
+  // e.g. (foo, [bar, baz], 3) will set {foo: { bar: { baz: 3 } } }.
+  // e.g. (foo, bar, 4) will set { foo: { bar: 4 } }.
+  setOption(group, path, defaultValue) {
+    // Set keys and create default {} if it doesn't exist.
+    this.savedConfig[group] = this.savedConfig[group] ?? {};
+    let obj = this.savedConfig[group];
+
+    const args = Array.isArray(path) ? path : [path];
+    if (args.length === 0) {
+      console.error(`path must have at least one element`);
       return;
     }
+    const finalArg = args.slice(-1)[0];
+    if (!finalArg)
+      throw new UnreachableCode();
 
-    // Set keys and create default {} if it doesn't exist.
-    let obj = this.savedConfig;
-    for (let i = 0; i < num - 2; ++i) {
-      const arg = arguments[i];
-      obj[arg] = obj[arg] || {};
-      obj = obj[arg];
+    const allButFinalArg = args.slice(0, -1);
+    for (const arg of allButFinalArg) {
+      if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+        // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
+        // until leaf node ConfigValue.
+        console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
+        return;
+      }
+
+      obj = obj[arg] = obj[arg] ?? {};
     }
-    // Set the last key to have the final argument's value.
-    obj[arguments[num - 2]] = arguments[num - 1];
-    this.saveConfigData();
+
+    if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+      // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
+      // until leaf node ConfigValue.
+      console.error(`Unexpected entry: ${JSON.stringify([group, id, ...args].join(', '))}`);
+      return;
+    }
+    obj[finalArg] = defaultValue;
+    void this.saveConfigData();
   }
 
   buildButterBar() {
