@@ -5,7 +5,7 @@ import Splitter from './splitter';
 import { EncounterCollector } from './encounter_tools';
 import ZoneId from '../../resources/zone_id';
 import argparse from 'argparse';
-import TimelineParse from './arg_parser';
+import { TimelineParse } from './arg_parser';
 
 // TODO: add options for not splitting / not anonymizing.
 const timelineParse = new TimelineParse();
@@ -58,7 +58,7 @@ const generateFileName = (fightOrZone) => {
 
   let zoneName;
   if (fightOrZone.zoneName || fightOrZone.name) {
-    zoneName = fightOrZone.zoneName || fightOrZone.name;
+    zoneName = fightOrZone.zoneName ?? fightOrZone.name;
   } else {
     const idToZoneName = {};
     for (const zoneName in ZoneId)
@@ -272,11 +272,11 @@ const writeFile = (outputFile, startLine, endLine) => {
   }
 
   // This utility prints 1-indexed fights and zones, so adjust - 1.
-  if (!(args['search_fights'] === -1 || args['search_fights'] === null)) {
+  if (args['search_fights']) {
     const fight = collector.fights[args['search_fights'] - 1];
     await writeFile(generateFileName(fight), fight.startLine, fight.endLine);
     process.exit(exitCode);
-  } else if (!(args['search_zones'] === -1 || args['search_zones'] === null)) {
+  } else if (args['search_zones']) {
     const zone = collector.zones[args['search_zones'] - 1];
     await writeFile(generateFileName(zone), zone.startLine, zone.endLine);
     process.exit(exitCode);

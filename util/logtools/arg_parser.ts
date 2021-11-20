@@ -1,6 +1,6 @@
 import argparse from 'argparse';
 
-type argsObject = {
+type TimelineArgs = {
   [index: string]: string | number | boolean | undefined;
   'file'?: string;
   'force'?: boolean;
@@ -22,7 +22,8 @@ class TimelineParse {
   });
   // Exactly one argument should be selected from this group.
   requiredGroup = this.parser.addMutuallyExclusiveGroup({ required: true });
-  args: argsObject;
+  args: TimelineArgs;
+
   constructor() {
     this.fileGroup.addArgument(['-f', '--file'], {
       help: 'Network log file to analyze',
@@ -50,13 +51,11 @@ class TimelineParse {
     });
     this.requiredGroup.addArgument(['-fr', '--fight-regex'], {
       nargs: '?',
-      constant: '*',
       type: 'string',
       help: 'Export all fights that match this regex',
     });
     this.requiredGroup.addArgument(['-zr', '--zone-regex'], {
       nargs: '?',
-      constant: '*',
       type: 'string',
       help: 'Export all zones that match this regex',
     });
@@ -66,10 +65,10 @@ class TimelineParse {
       type: 'float',
       help: 'Adjust all entries in a timeline file by this amount',
     });
-    this.args = this.validate(this.parser.parseArgs() as argsObject);
+    this.args = this.validate(this.parser.parseArgs() as TimelineArgs);
   }
 
-  validate(args: argsObject): argsObject {
+  validate(args: TimelineArgs): TimelineArgs {
     // We can't enforce 1+ arguments in a non-exclusive group,
     // so we have to do it manually here.
     let numFileArgs = 0;
@@ -85,4 +84,4 @@ class TimelineParse {
   }
 }
 
-export default TimelineParse;
+export { TimelineArgs, TimelineParse };
