@@ -57,7 +57,7 @@ class OopsyConfigurator {
     for (const info of Object.values(fileMap)) {
       const expansion = info.prefix;
 
-      if (!info.triggers || info.triggers.length === 0)
+      if (!info.triggers || Object.keys(info.triggers).length === 0)
         continue;
 
       let expansionDiv = expansionDivs[expansion];
@@ -103,11 +103,10 @@ class OopsyConfigurator {
       triggerOptions.classList.add('trigger-file-options');
       triggerContainer.appendChild(triggerOptions);
 
-      for (const trigger of info.triggers ?? []) {
+      for (const id of Object.keys(info.triggers ?? {})) {
         // Build the trigger label.
         const triggerDiv = document.createElement('div');
-        if (trigger.id)
-          triggerDiv.innerHTML = trigger.id;
+        triggerDiv.innerHTML = id;
         triggerDiv.classList.add('trigger');
         triggerOptions.appendChild(triggerDiv);
 
@@ -116,7 +115,7 @@ class OopsyConfigurator {
         triggerDetails.classList.add('trigger-details');
         triggerOptions.appendChild(triggerDetails);
 
-        triggerDetails.appendChild(this.buildTriggerOptions(trigger.id, triggerDiv));
+        triggerDetails.appendChild(this.buildTriggerOptions(id, triggerDiv));
       }
     }
   }
@@ -187,7 +186,7 @@ class OopsyConfigurator {
     map[fakeBuffs.fileKey] = fakeBuffs;
 
     for (const item of Object.values(map)) {
-      item.triggers = [];
+      item.triggers = {};
       const triggerSet = item.triggerSet;
       for (const prop of oopsyHelpers) {
         if (triggerSet[prop])
@@ -195,7 +194,7 @@ class OopsyConfigurator {
         const obj = triggerSet[prop];
         if (typeof obj === 'object') {
           for (const id in obj)
-            item.triggers.push({ id: id });
+            item.triggers[id] = { id: id };
         }
       }
 
@@ -208,7 +207,7 @@ class OopsyConfigurator {
         // Skip triggers that just set data, but include triggers that are just ids.
         if (trigger.run && !trigger.mistake)
           continue;
-        item.triggers.push(trigger);
+        item.triggers[trigger.id] = trigger;
       }
     }
     return map;

@@ -6,8 +6,13 @@ import Regexes from '../../resources/regexes';
 import UserConfig, { ConfigEntry, ConfigValue, OptionsTemplate } from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';
 import { SavedConfig, SavedConfigEntry } from '../../types/event';
-import { LooseOopsyTriggerSet } from '../../types/oopsy';
-import { LocaleObject, LooseTriggerSet } from '../../types/trigger';
+import { LooseOopsyTrigger, LooseOopsyTriggerSet } from '../../types/oopsy';
+import {
+  LocaleObject,
+  LooseTimelineTrigger,
+  LooseTrigger,
+  LooseTriggerSet,
+} from '../../types/trigger';
 
 import defaultOptions, { ConfigOptions } from './config_options';
 
@@ -191,9 +196,33 @@ const fileNameToTitle = (filename: string) => {
   return capitalized;
 };
 
+// Annotations by userFileHandler (processRaidbossFiles) on triggers.
+// raidboss_config also combines normal and timeline triggers when building the config ui.
+export type ConfigLooseTrigger = LooseTrigger & LooseTimelineTrigger & {
+  isMissingId?: boolean;
+  overriddenByFile?: string;
+  isTimelineTrigger?: boolean;
+  timelineRegex?: RegExp;
+  triggerRegex?: RegExp;
+  triggerNetRegex?: RegExp;
+  configOutput?: { [field: string]: string };
+};
+
+export type ConfigLooseTriggerSet = LooseTriggerSet & {
+  filename?: string;
+  isUserTriggerSet?: boolean;
+};
+
+export type ConfigLooseOopsyTrigger = LooseOopsyTrigger;
+
+export type ConfigLooseOopsyTriggerSet = LooseOopsyTriggerSet & {
+  filename?: string;
+  isUserTriggerSet?: boolean;
+};
+
 export type ConfigContents = { [group: string]: OptionsTemplate[] };
 
-export type ConfigProcessedFile<T extends LooseOopsyTriggerSet | LooseTriggerSet> = {
+export type ConfigProcessedFile<T extends ConfigLooseOopsyTriggerSet | ConfigLooseTriggerSet> = {
   filename: string;
   fileKey: string;
   prefixKey: string;
@@ -203,10 +232,13 @@ export type ConfigProcessedFile<T extends LooseOopsyTriggerSet | LooseTriggerSet
   title: string;
   triggerSet: T;
   zoneId?: number;
-  triggers: T['triggers'];
+  triggers?: {
+    [id: string]: T extends ConfigLooseOopsyTriggerSet ? ConfigLooseOopsyTrigger
+      : ConfigLooseTrigger;
+  };
 };
 
-export type ConfigProcessedFileMap<T extends LooseOopsyTriggerSet | LooseTriggerSet> = {
+export type ConfigProcessedFileMap<T extends ConfigLooseOopsyTriggerSet | ConfigLooseTriggerSet> = {
   [filename: string]: ConfigProcessedFile<T>;
 };
 
@@ -214,9 +246,9 @@ export class CactbotConfigurator {
   public lang: Lang;
   private savedConfig: SavedConfig;
   private contents: ConfigContents;
-  private developerOptions: boolean;
+  public developerOptions: boolean;
 
-  constructor(private configOptions: ConfigOptions, savedConfig: SavedConfig) {
+  constructor(public configOptions: ConfigOptions, savedConfig: SavedConfig) {
     // Predefined, only for ordering purposes.
     this.contents = {
       // top level
@@ -644,7 +676,7 @@ export class CactbotConfigurator {
     parent.appendChild(div);
   }
 
-  processFiles<T extends LooseTriggerSet | LooseOopsyTriggerSet>(
+  processFiles<T extends ConfigLooseTriggerSet | ConfigLooseOopsyTriggerSet>(
     files: { [filename: string]: T },
     userTriggerSets?: T[],
   ): ConfigProcessedFileMap<T> {
@@ -694,7 +726,6 @@ export class CactbotConfigurator {
         title: title,
         triggerSet: triggerSet,
         zoneId: zoneId,
-        triggers: [],
       };
     }
 
@@ -740,7 +771,6 @@ export class CactbotConfigurator {
         type: undefined,
         triggerSet: triggerSet,
         zoneId: zoneId,
-        triggers: [],
       };
     }
 
