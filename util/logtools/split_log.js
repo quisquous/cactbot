@@ -5,10 +5,10 @@ import Splitter from './splitter';
 import { EncounterCollector } from './encounter_tools';
 import ZoneId from '../../resources/zone_id';
 import argparse from 'argparse';
-import { TimelineParse } from './arg_parser';
+import { LogUtilArgParse } from './arg_parser';
 
 // TODO: add options for not splitting / not anonymizing.
-const timelineParse = new TimelineParse();
+const timelineParse = new LogUtilArgParse();
 
 const args = timelineParse.args;
 
