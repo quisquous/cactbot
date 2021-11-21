@@ -3,12 +3,10 @@ import EffectId from '../../resources/effect_id';
 import foodImage from '../../resources/ffxiv/status/food.png';
 import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
 import ResourceBar from '../../resources/resourcebar';
 import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
-import UserConfig from '../../resources/user_config';
 import Util from '../../resources/util';
 import WidgetList from '../../resources/widget_list';
 import ZoneId from '../../resources/zone_id';
@@ -31,7 +29,7 @@ import {
   kWellFedContentTypes,
 } from './constants';
 import './jobs_config';
-import defaultOptions, { JobsOptions } from './jobs_options';
+import { JobsOptions } from './jobs_options';
 import {
   calcGCDFromStat,
   computeBackgroundColorFrom,
@@ -1175,30 +1173,3 @@ export class Bars {
     }
   }
 }
-
-UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
-  const options = { ...defaultOptions };
-  const bars = new Bars(options);
-
-  addOverlayListener('onPlayerChangedEvent', (e) => {
-    bars._onPlayerChanged(e);
-  });
-  addOverlayListener('EnmityTargetData', (e) => {
-    bars._updateEnmityTargetData(e);
-  });
-  addOverlayListener('onPartyWipe', () => {
-    bars._onPartyWipe();
-  });
-  addOverlayListener('onInCombatChangedEvent', (e) => {
-    bars._onInCombatChanged(e);
-  });
-  addOverlayListener('ChangeZone', (e) => {
-    bars._onChangeZone(e);
-  });
-  addOverlayListener('LogLine', (e) => {
-    bars._onNetLog(e);
-  });
-  addOverlayListener('PartyChanged', (e) => {
-    bars._onPartyChanged(e);
-  });
-});
