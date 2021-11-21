@@ -77,6 +77,7 @@ export default (
     devServer: {
       contentBase: path.join(__dirname, '../dist'),
       writeToDisk: true,
+      disableHostCheck: true,
     },
     resolve: {
       extensions: ['.ts', '.js'],
