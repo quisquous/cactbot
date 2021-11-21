@@ -99,6 +99,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'Chariot',
             de: 'Streitwagen',
             fr: 'Chariot',
+            ja: '戦車',
             cn: `战车`,
             ko: '근접광역기',
           },
