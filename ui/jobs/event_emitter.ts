@@ -7,7 +7,7 @@ import { NetMatches } from '../../types/net_matches';
 import { normalizeLogLine } from './utils';
 
 export interface EventMap {
-  'action': (actionId: string, info: NetMatches['Ability']) => void;
+  'action': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
@@ -23,7 +23,9 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     return super.once(event, listener);
   }
 
-  override emit<Key extends keyof EventMap>(event: Key, ...args: unknown[]): boolean {
+  override emit<Key extends keyof EventMap>(
+    event: Key, ...args: Parameters<EventMap[Key]>
+  ): boolean {
     return super.emit(event, ...args);
   }
 
@@ -37,7 +39,11 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       switch (type) {
         case logDefinitions.Ability.type:
         case logDefinitions.NetworkAOEAbility.type:
-          this.emit('action', normalizeLogLine(ev.line, logDefinitions.Ability.fields));
+          this.emit(
+            'action',
+            ev.line[logDefinitions.Ability.fields.id] ?? '',
+            normalizeLogLine(ev.line, logDefinitions.Ability.fields)
+          );
           break;
 
         default:
