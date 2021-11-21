@@ -32,7 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'Booped',
             de: 'Nyx berührt',
             fr: 'Malus de dégâts',
-            ja: matches.ability, // FIXME
+            ja: '雑魚に当たる',
             cn: '吃头了',
             ko: '닉스',
           },
