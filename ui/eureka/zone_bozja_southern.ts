@@ -570,8 +570,8 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortLabel: {
         en: 'Sneak',
         de: 'Gemetzel',
-        ja: '術士大隊との会敵',
         fr: 'Yeux',
+        ja: '術士大隊との会敵',
         cn: '遭遇术师大队',
       },
       x: 20.3,
@@ -591,8 +591,8 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortLabel: {
         en: 'Robots',
         de: 'Schrott',
-        ja: '無人魔導兵器との会敵',
         fr: 'Araignées',
+        ja: '無人魔導兵器との会敵',
         cn: '遭遇无人魔导兵器',
       },
       x: 24.8,
