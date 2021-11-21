@@ -2,17 +2,24 @@ import EventEmitter from 'eventemitter3';
 
 import logDefinitions from '../../resources/netlog_defs';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import { EventResponses as OverlayEventResponses } from '../../types/event';
 import { NetMatches } from '../../types/net_matches';
 
+import { Player } from './player';
 import { normalizeLogLine } from './utils';
 
 export interface EventMap {
-  'action': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
+  'action/you': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
+  'action/party': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
+  'action/other': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
+  protected player: Player;
   constructor() {
     super();
+
+    this.player = new Player();
   }
 
   override on<Key extends keyof EventMap>(event: Key, listener: EventMap[Key]): this {
@@ -34,21 +41,39 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
   }
 
   registerOverlayListeners(): void {
+    addOverlayListener('onPlayerChangedEvent', (ev) => {
+      this.processPlayerChangedEvent(ev);
+    });
+
     addOverlayListener('LogLine', (ev) => {
-      const type = ev.line[logDefinitions.None.fields.type];
-      switch (type) {
-        case logDefinitions.Ability.type:
-        case logDefinitions.NetworkAOEAbility.type:
+      this.processLogLine(ev);
+    });
+  }
+
+  private processLogLine(ev: OverlayEventResponses['LogLine']): void {
+    const type = ev.line[logDefinitions.None.fields.type];
+
+    switch (type) {
+      case logDefinitions.Ability.type:
+      case logDefinitions.NetworkAOEAbility.type: {
+        const source = ev.line[logDefinitions.Ability.fields.source];
+        if (source === this.player.id) {
           this.emit(
-            'action',
+            'action/you',
             ev.line[logDefinitions.Ability.fields.id] ?? '',
             normalizeLogLine(ev.line, logDefinitions.Ability.fields)
           );
-          break;
-
-        default:
-          break;
+        }
+        break;
       }
-    });
+
+      default:
+        break;
+    }
+  }
+
+  private processPlayerChangedEvent(ev: OverlayEventResponses['onPlayerChangedEvent']): void {
+    this.player.id = ev.detail.id;
+    this.player.name = ev.detail.name;
   }
 }
