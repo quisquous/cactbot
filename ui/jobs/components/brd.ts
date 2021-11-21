@@ -1,6 +1,6 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../jobs';
+import { Bars } from '../bars';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;

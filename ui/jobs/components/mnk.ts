@@ -1,8 +1,8 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { NetMatches } from '../../../types/net_matches';
+import { Bars } from '../bars';
 import { kAbility } from '../constants';
-import { Bars } from '../jobs';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;

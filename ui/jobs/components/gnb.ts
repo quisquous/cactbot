@@ -1,6 +1,6 @@
 import { JobDetail } from '../../../types/event';
+import { Bars } from '../bars';
 import { kAbility } from '../constants';
-import { Bars } from '../jobs';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;

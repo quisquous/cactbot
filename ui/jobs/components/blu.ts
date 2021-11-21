@@ -1,5 +1,5 @@
+import { Bars } from '../bars';
 import { kAbility } from '../constants';
-import { Bars } from '../jobs';
 import { calcGCDFromStat } from '../utils';
 
 let resetFunc: (bars: Bars) => void;

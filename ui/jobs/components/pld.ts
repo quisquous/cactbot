@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
+import { Bars, ResourceBox } from '../bars';
 import { kAbility } from '../constants';
-import { Bars, ResourceBox } from '../jobs';
 
 let resetFunc: (bars: Bars) => void;
 

@@ -10,8 +10,8 @@ import { NetAnyFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
+import { Bars } from './bars';
 import { kLevelMod, kMeleeWithMpJobs } from './constants';
-import { Bars } from './jobs';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
