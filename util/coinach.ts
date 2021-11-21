@@ -154,6 +154,23 @@ export class CoinachWriter {
     return '.';
   }
 
+  sortObjByKeys(_obj: unknown): unknown {
+    const obj = _obj as Record<string, unknown>;
+    const out = Object
+      .keys((obj))
+      .sort()
+      .reduce((acc: Record<string, unknown>, key) => {
+        const nested = obj[key] as Record<string, unknown>;
+        if (nested && typeof nested === 'object' && !Array.isArray(nested))
+          acc[key] = this.sortObjByKeys(nested);
+        else
+          acc[key] = nested;
+
+        return acc;
+      }, {});
+    return out;
+  }
+
   async write(
     filename: string,
     scriptname: string,
@@ -162,7 +179,7 @@ export class CoinachWriter {
   ): Promise<void> {
     const fullPath = path.join(this.cactbotPath, filename);
 
-    let str = JSON.stringify(d, Object.keys(d).sort(), 2);
+    let str = JSON.stringify(this.sortObjByKeys(d), null, 2);
 
     // # make keys integers, remove leading zeroes.
     str = str.replace(/\'0*([0-9]+)\': {/, '$1: {');
@@ -206,7 +223,7 @@ export default ${str}`;
   ): Promise<void> {
     const fullPath = path.join(this.cactbotPath, filename);
 
-    let str = JSON.stringify(data, Object.keys(data).sort(), 2);
+    let str = JSON.stringify(this.sortObjByKeys(data), null, 2);
 
     // # make keys integers, remove leading zeroes.
     str = str.replace(/\'0*([0-9]+)\': {/, '$1: {');
