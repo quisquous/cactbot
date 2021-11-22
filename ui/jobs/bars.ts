@@ -839,9 +839,9 @@ export class Bars {
 
     if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
-    else if (lowMP >= 0 && this.mp <= lowMP)
+    else if (lowMP >= 0 && data.mp <= lowMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
-    else if (mediumMP >= 0 && this.mp <= mediumMP)
+    else if (mediumMP >= 0 && data.mp <= mediumMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.medium');
     else
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
