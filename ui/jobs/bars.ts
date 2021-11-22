@@ -87,7 +87,7 @@ export interface ResourceBox extends HTMLDivElement {
 export class Bars {
   private init = false;
   private o: JobDomObjects = {};
-  private me?: string;
+  // private me?: string;
   // private hp = 0;
   // private maxHP = 0;
   // private currentShield = 0;
@@ -200,8 +200,6 @@ export class Bars {
     // update RegexesHolder when the player name changes
     this.ee.on('player', ({ name }) => {
       this.regexes = new RegexesHolder(this.options.ParserLanguage, name);
-      // FIXME: remove this after migrate to this.player.name
-      this.me = name;
       // mark it initialized
       this.init = true;
     });
@@ -1008,7 +1006,7 @@ export class Bars {
       } else {
         this.crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
           const m = regex.exec(message)?.groups;
-          return m && (!m.player || m.player === this.me);
+          return m && (!m.player || m.player === this.player.name);
         });
       }
     }
@@ -1060,7 +1058,7 @@ export class Bars {
         if (!effectId)
           break;
 
-        if (matches.target === this.me) {
+        if (matches.target === this.player.name) {
           const f = this.gainEffectFuncMap[effectId];
           if (f)
             f(effectId, matches);
@@ -1071,7 +1069,7 @@ export class Bars {
           this.buffTracker?.onMobGainsEffect(effectId, matches);
 
           // if the effect is from me.
-          if (matches.source === this.me) {
+          if (matches.source === this.player.name) {
             if (this.trackedDoTs.includes(effectId))
               this.dotTarget.push(matches.targetId);
             const f = this.mobGainEffectFromYouFuncMap[effectId];
@@ -1089,7 +1087,7 @@ export class Bars {
         if (!effectId)
           break;
 
-        if (log.target === this.me) {
+        if (log.target === this.player.name) {
           const f = this.loseEffectFuncMap[effectId];
           if (f)
             f(effectId, log);
@@ -1100,7 +1098,7 @@ export class Bars {
           this.buffTracker?.onMobLosesEffect(effectId, log);
 
           // if the effect is from me.
-          if (log.source === this.me) {
+          if (log.source === this.player.name) {
             if (this.trackedDoTs.includes(effectId)) {
               const index = this.dotTarget.indexOf(log.targetId);
               if (index > -1)
@@ -1122,7 +1120,7 @@ export class Bars {
         if (!id)
           break;
 
-        if (matches.source === this.me) {
+        if (matches.source === this.player.name) {
           this.combo?.HandleAbility(id);
           const f = this.abilityFuncMap[id];
           if (f)
