@@ -111,7 +111,7 @@ export class Bars {
   private readonly player: Player;
 
   private contentType?: number;
-  private isPVPZone = false;
+  // private isPVPZone = false;
   private crafting = false;
   private foodBuffTimer = 0;
 
@@ -225,21 +225,10 @@ export class Bars {
     return calcGCDFromStat(this, this.spellSpeed);
   }
 
-  _updateUIVisibility(): void {
+  _updateUIVisibility(hide?: boolean): void {
     const bars = document.getElementById('bars');
-    if (bars) {
-      const barList = bars.children;
-      for (const bar of barList) {
-        if (!(bar instanceof HTMLElement))
-          continue;
-        if (bar.id === 'hp-bar' || bar.id === 'mp-bar')
-          continue;
-        if (this.isPVPZone)
-          bar.style.display = 'none';
-        else
-          bar.style.display = '';
-      }
-    }
+    if (bars)
+      bars.classList.toggle('pvp', hide);
   }
 
   _updateJob(job: Job): void {
@@ -261,6 +250,9 @@ export class Bars {
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
       this._updateFoodBuff();
     };
+
+    // if player is in pvp zone, inherit the class
+    const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
 
     let container = document.getElementById('jobs-container');
     if (!container) {
@@ -313,6 +305,8 @@ export class Bars {
     // Holds health/mana.
     const barsContainer = document.createElement('div');
     barsContainer.id = 'bars';
+    if (inPvPZone)
+      barsContainer.classList.add('pvp');
     opacityContainer.appendChild(barsContainer);
 
     this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
@@ -503,9 +497,6 @@ export class Bars {
     // Many jobs use the gcd to calculate thresholds and value scaling.
     // Run this initially to set those values.
     this._updateJobBarGCDs();
-
-    // Hide UI except HP and MP bar if in pvp area.
-    this._updateUIVisibility();
 
     // set up DoT effect ids for tracking target
     this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
@@ -973,10 +964,8 @@ export class Bars {
     for (const func of this.changeZoneFuncs)
       func(e);
 
-    this.isPVPZone = isPvPZone(e.zoneID);
-
     // Hide UI except HP and MP bar if change to pvp area.
-    this._updateUIVisibility();
+    this._updateUIVisibility(isPvPZone(e.zoneID));
   }
 
   _setPullCountdown(seconds: number): void {

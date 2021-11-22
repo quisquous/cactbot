@@ -8,6 +8,11 @@
   left: 100px; /* Space for some left buffs */
 }
 
+/** hide bars except hp-bar and mp-bar */
+#bars.pvp > div:not(#hp-bar):not(#mp-bar) {
+  display: none;
+}
+
 #jobs-container.hide {
   display: none;
 }
