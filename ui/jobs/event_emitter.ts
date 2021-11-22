@@ -1,8 +1,9 @@
 import EventEmitter from 'eventemitter3';
+import { isEqual } from 'lodash';
 
 import logDefinitions from '../../resources/netlog_defs';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
-import { EventResponses as OverlayEventResponses } from '../../types/event';
+import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetMatches } from '../../types/net_matches';
 
@@ -18,6 +19,7 @@ export interface EventMap {
   'player/job': (job: Job) => void;
   'player/level': (level: number) => void;
   'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
+  'player/job-detail': <J extends Job>(jobDetail: (J extends keyof JobDetail ? JobDetail[J] : never)) => void;
   'player': (player: Player) => void;
   // battle events
   'battle/in-combat': (info: { game: boolean; act: boolean }) => void;
@@ -185,6 +187,13 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.emit('player/pos', data.pos, data.rotation);
       this.player.pos = data.pos;
       this.player.rotation = data.rotation;
+    }
+
+    // update job details if there are
+    if (data.jobDetail && !isEqual(this.player.jobDetail, data.jobDetail)) {
+      // FIXME: no idea to make it type safe without assertions
+      this.emit('player/job-detail', data.jobDetail as JobDetail[keyof JobDetail]);
+      this.player.jobDetail = data.jobDetail as JobDetail[keyof JobDetail];
     }
 
     this.emit('player', this.player);
