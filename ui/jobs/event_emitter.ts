@@ -3,6 +3,7 @@ import EventEmitter from 'eventemitter3';
 import logDefinitions from '../../resources/netlog_defs';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import { EventResponses as OverlayEventResponses } from '../../types/event';
+import { Job } from '../../types/job';
 import { NetMatches } from '../../types/net_matches';
 
 import { Player } from './player';
@@ -14,7 +15,10 @@ export interface EventMap {
   'player/mp': (info: { mp: number; maxMp: number; prevMp: number }) => void;
   'player/cp': (info: { cp: number; maxCp: number; prevCp: number }) => void;
   'player/gp': (info: { gp: number; maxGp: number; prevGp: number }) => void;
+  'player/job': (job: Job) => void;
   'player': (player: Player) => void;
+  // battle events
+  'battle/in-combat': (info: { game: boolean; act: boolean }) => void;
   // triggered when casts actions
   'action/you': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
   'action/party': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
@@ -55,6 +59,13 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.processPlayerChangedEvent(ev);
     });
 
+    addOverlayListener('onInCombatChangedEvent', (ev) => {
+      this.emit('battle/in-combat', {
+        game: ev.detail.inGameCombat,
+        act: ev.detail.inACTCombat,
+      });
+    });
+
     addOverlayListener('LogLine', (ev) => {
       this.processLogLine(ev);
     });
@@ -87,9 +98,15 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     this.player.name = data.name;
 
     // always update stuffs when player changed their jobs
+    const prevJob = this.player.job;
+    if (prevJob !== data.job) {
+      this.emit('player/job', data.job);
+      this.player.job = data.job;
+    }
+
     // update hp
     if (
-      this.player.job !== data.job ||
+      prevJob !== data.job ||
       this.player.hp !== data.currentHP ||
       this.player.maxHp !== data.maxHP ||
       this.player.shield !== data.currentShield
@@ -108,7 +125,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update mp
     if (
-      this.player.job !== data.job ||
+      prevJob !== data.job ||
       this.player.mp !== data.currentMP ||
       this.player.maxMp !== data.maxMP
     ) {
@@ -123,7 +140,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update cp
     if (
-      this.player.job !== data.job ||
+      prevJob !== data.job ||
       this.player.cp !== data.currentCP ||
       this.player.maxCp !== data.maxCP
     ) {
@@ -138,7 +155,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update gp
     if (
-      this.player.job !== data.job ||
+      prevJob !== data.job ||
       this.player.gp !== data.currentGP ||
       this.player.maxGp !== data.maxGP
     ) {
