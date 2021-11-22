@@ -1,4 +1,3 @@
-import ContentType from '../../resources/content_type';
 import EffectId from '../../resources/effect_id';
 import foodImage from '../../resources/ffxiv/status/food.png';
 import logDefinitions from '../../resources/netlog_defs';
@@ -9,8 +8,6 @@ import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
 import Util from '../../resources/util';
 import WidgetList from '../../resources/widget_list';
-import ZoneId from '../../resources/zone_id';
-import ZoneInfo from '../../resources/zone_info';
 import { EventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
@@ -36,6 +33,7 @@ import {
   calcGCDFromStat,
   computeBackgroundColorFrom,
   doesJobNeedMPBar,
+  isPvPZone,
   makeAuraTimerIcon,
   normalizeLogLine,
   RegexesHolder,
@@ -966,8 +964,6 @@ export class Bars {
   }
 
   _onChangeZone(e: EventResponses['ChangeZone']): void {
-    const zoneInfo = ZoneInfo[e.zoneID];
-    this.contentType = zoneInfo ? zoneInfo.contentType : 0;
     this.dotTarget = [];
 
     this._updateFoodBuff();
@@ -977,11 +973,7 @@ export class Bars {
     for (const func of this.changeZoneFuncs)
       func(e);
 
-    this.isPVPZone = false;
-    if (zoneInfo) {
-      if (zoneInfo.contentType === ContentType.Pvp || e.zoneID === ZoneId.WolvesDenPier)
-        this.isPVPZone = true;
-    }
+    this.isPVPZone = isPvPZone(e.zoneID);
 
     // Hide UI except HP and MP bar if change to pvp area.
     this._updateUIVisibility();

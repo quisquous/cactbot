@@ -1,3 +1,4 @@
+import ContentType from '../../resources/content_type';
 import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
@@ -5,6 +6,8 @@ import TimerBar from '../../resources/timerbar';
 import TimerIcon from '../../resources/timericon';
 import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
+import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
 import { Job } from '../../types/job';
 import { NetAnyFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
@@ -240,4 +243,13 @@ export const normalizeLogLine = <Fields extends NetAnyFields>(
       }
     },
   });
+};
+
+export const isPvPZone = (zoneId: number): boolean => {
+  const zoneInfo = ZoneInfo[zoneId];
+  if (!zoneInfo)
+    return false;
+  if (zoneInfo.contentType === ContentType.Pvp || zoneId === ZoneId.WolvesDenPier)
+    return true;
+  return false;
 };
