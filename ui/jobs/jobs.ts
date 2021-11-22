@@ -8,9 +8,6 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
   const bars = new Bars(options);
 
-  addOverlayListener('onPartyWipe', () => {
-    bars._onPartyWipe();
-  });
   addOverlayListener('onInCombatChangedEvent', (e) => {
     bars._onInCombatChanged(e);
   });

@@ -204,6 +204,10 @@ export class Bars {
       this.init = true;
     });
 
+    this.ee.on('battle/wipe', () => {
+      this._onPartyWipe();
+    });
+
     this.updateProcBoxNotifyRepeat();
   }
 
