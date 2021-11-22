@@ -91,14 +91,14 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     switch (type) {
       case logDefinitions.Ability.type:
       case logDefinitions.NetworkAOEAbility.type: {
-        const source = ev.line[logDefinitions.Ability.fields.source];
-        if (source === this.player.id) {
-          this.emit(
-            'action/you',
-            ev.line[logDefinitions.Ability.fields.id] ?? '',
-            normalizeLogLine(ev.line, logDefinitions.Ability.fields)
-          );
-        }
+        const matches = normalizeLogLine(ev.line, logDefinitions.Ability.fields);
+        const sourceId = matches.sourceId;
+        const id = matches.id;
+        if (!id)
+          break;
+
+        if (sourceId === this.player.id)
+          this.emit('action/you', id, matches);
         break;
       }
 
