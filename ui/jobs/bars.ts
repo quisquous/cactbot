@@ -176,7 +176,9 @@ export class Bars {
         this.gpAlarmReady = false;
 
       this._updateJob(job);
-      this._updateProcBoxNotifyState();
+      // As you cannot change jobs in combat, we can assume that
+      // it is always false here.
+      this._updateProcBoxNotifyState(false);
 
       // TODO: this is always created by _updateJob, so maybe this.o needs be optional?
       if (this.o.leftBuffsList && this.o.rightBuffsList) {
@@ -202,6 +204,10 @@ export class Bars {
       this.me = name;
       // mark it initialized
       this.init = true;
+    });
+
+    this.ee.on('battle/in-combat', ({ game }) => {
+      this._updateProcBoxNotifyState(game);
     });
 
     this.ee.on('battle/wipe', () => {
@@ -762,11 +768,11 @@ export class Bars {
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
   }
 
-  _updateProcBoxNotifyState(): void {
+  _updateProcBoxNotifyState(inCombat: boolean): void {
     if (this.options.NotifyExpiredProcsInCombat >= 0) {
       const boxes = document.getElementsByClassName('proc-box');
       for (const box of boxes) {
-        if (this.inCombat) {
+        if (inCombat) {
           box.classList.add('in-combat');
           for (const child of box.children)
             child.classList.remove('expired');
@@ -786,12 +792,6 @@ export class Bars {
       return;
     const delta = data.mp - data.prevMp;
 
-    // Hide out of combat if requested
-    if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
-      this.o.mpTicker.duration = 0;
-      this.o.mpTicker.stylefill = 'empty';
-      return;
-    }
     this.o.mpTicker.stylefill = 'fill';
 
     const baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
@@ -955,7 +955,6 @@ export class Bars {
     this.inCombat = e.detail.inGameCombat;
 
     this._updateFoodBuff();
-    this._updateProcBoxNotifyState();
   }
 
   _onChangeZone(e: EventResponses['ChangeZone']): void {
