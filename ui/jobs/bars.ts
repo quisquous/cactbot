@@ -156,8 +156,8 @@ export class Bars {
     this.combo = ComboTracker.setup(this._onComboChange.bind(this));
     this.player = this.ee.player;
 
-    this.ee.on('player/level', (level) => {
-      if (level)
+    this.ee.on('player/level', (level, prevLevel) => {
+      if (level - prevLevel)
         this._updateFoodBuff();
     });
 

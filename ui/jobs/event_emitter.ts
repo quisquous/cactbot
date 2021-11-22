@@ -17,7 +17,7 @@ export interface EventMap {
   'player/cp': (info: { cp: number; maxCp: number; prevCp: number }) => void;
   'player/gp': (info: { gp: number; maxGp: number; prevGp: number }) => void;
   'player/job': (job: Job) => void;
-  'player/level': (level: number) => void;
+  'player/level': (level: number, prevLevel: number) => void;
   'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
   'player/job-detail': <J extends Job>(job: J, jobDetail: PlayerChangedJobDetails<J>['jobDetail']) => void;
   'player': (player: Player) => void;
@@ -120,7 +120,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update level
     if (this.player.level !== data.level) {
-      this.emit('player/level', data.level);
+      this.emit('player/level', data.level, this.player.level);
       this.player.level = data.level;
     }
 
