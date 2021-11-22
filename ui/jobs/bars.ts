@@ -90,16 +90,16 @@ export class Bars {
   private init = false;
   private o: JobDomObjects = {};
   private me?: string;
-  private hp = 0;
-  private maxHP = 0;
-  private currentShield = 0;
+  // private hp = 0;
+  // private maxHP = 0;
+  // private currentShield = 0;
   private mp = 0;
   private prevMP = 0;
   private maxMP = 0;
-  private cp = 0;
-  private maxCP = 0;
-  private gp = 0;
-  private maxGP = 0;
+  // private cp = 0;
+  // private maxCP = 0;
+  // private gp = 0;
+  // private maxGP = 0;
   private distance = -1;
   private foodBuffExpiresTimeMs = 0;
   private gpAlarmReady = false;
@@ -144,7 +144,7 @@ export class Bars {
   };
   public umbralStacks = 0;
 
-  public combo?: ComboTracker;
+  public combo: ComboTracker;
   public changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[] = [];
   public updateDotTimerFuncs: (() => void)[] = [];
 
@@ -155,7 +155,56 @@ export class Bars {
       this.options.NotifyExpiredProcsInCombat = 0;
     }
 
+    this.combo = ComboTracker.setup(this._onComboChange.bind(this));
     this.player = this.ee.player;
+
+    this.ee.on('player/level', (level) => {
+      if (level)
+        this._updateFoodBuff();
+    });
+
+    this.ee.on('player/hp', ({ hp }) => {
+      if (hp === 0)
+        this.combo.AbortCombo();
+    });
+
+    this.ee.on('player/job', (job) => {
+      // Combos are job specific.
+      this.combo.AbortCombo();
+      // FIXME: remove this
+      // Update MP ticker as umbral stacks has changed.
+      this.umbralStacks = 0;
+      if (!Util.isGatheringJob(this.job))
+        this.gpAlarmReady = false;
+
+      this._updateJob(job);
+      this._updateProcBoxNotifyState();
+
+      // TODO: this is always created by _updateJob, so maybe this.o needs be optional?
+      if (this.o.leftBuffsList && this.o.rightBuffsList) {
+        // Set up the buff tracker after the job bars are created.
+        this.buffTracker = new BuffTracker(
+          this.options,
+          this.player.name,
+          this.o.leftBuffsList,
+          this.o.rightBuffsList,
+          this.partyTracker,
+        );
+      }
+    });
+
+    this.ee.on('player/job-detail', (job, jobDetail) => {
+      this.jobFuncs[job]?.(jobDetail);
+    });
+
+    // update RegexesHolder when the player name changes
+    this.ee.on('player', ({ name }) => {
+      this.regexes = new RegexesHolder(this.options.ParserLanguage, name);
+      // FIXME: remove this after migrate to this.player.name
+      this.me = name;
+      // mark it initialized
+      this.init = true;
+    });
 
     this.updateProcBoxNotifyRepeat();
   }
@@ -256,6 +305,12 @@ export class Bars {
     const opacityContainer = document.createElement('div');
     opacityContainer.id = 'opacity-container';
     barsLayoutContainer.appendChild(opacityContainer);
+    // set opacity to transparent if LowerOpacityOutOfCombat is enabled
+    this._updateOpacity(this.options.LowerOpacityOutOfCombat);
+    // update opacity when in combat
+    this.ee.on('battle/in-combat', (ev) => {
+      this._updateOpacity(!ev.game || this.options.LowerOpacityOutOfCombat);
+    });
 
     // Holds health/mana.
     const barsContainer = document.createElement('div');
@@ -269,6 +324,11 @@ export class Bars {
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
     this.o.pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
+    // reset pull bar when in combat (game)
+    this.ee.on('battle/in-combat', (ev) => {
+      if (ev.game)
+        this._setPullCountdown(0);
+    });
 
     this.o.rightBuffsContainer = document.createElement('div');
     this.o.rightBuffsContainer.id = 'right-side-icons';
@@ -306,6 +366,9 @@ export class Bars {
     }
 
     if (Util.isCraftingJob(job)) {
+      // set opacityContainer to be non-transparent when player is a crafter
+      this._updateOpacity(true);
+
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
@@ -324,6 +387,9 @@ export class Bars {
       container.classList.add('hide');
       return;
     } else if (Util.isGatheringJob(job)) {
+      // set opacityContainer to be non-transparent when player is a gatherer
+      this._updateOpacity(true);
+
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
@@ -342,9 +408,9 @@ export class Bars {
       return;
     }
 
-    const showHPNumber = this.options.ShowHPNumber.includes(this.job);
-    const showMPNumber = this.options.ShowMPNumber.includes(this.job);
-    const showMPTicker = this.options.ShowMPTicker.includes(this.job);
+    const showHPNumber = this.options.ShowHPNumber.includes(job);
+    const showMPNumber = this.options.ShowMPNumber.includes(job);
+    const showMPTicker = this.options.ShowMPTicker.includes(job);
 
     const healthText = showHPNumber ? 'value' : '';
     const manaText = showMPNumber ? 'value' : '';
@@ -405,6 +471,13 @@ export class Bars {
       // update mp ticker
       this.ee.on('player/mp', (data) => {
         this._updateMPTicker(data);
+      });
+      this.ee.on('battle/in-combat', (ev) => {
+        // Hide out of combat if requested
+        if (this.o.mpTicker && !this.options.ShowMPTickerOutOfCombat && !ev.game) {
+          this.o.mpTicker.duration = 0;
+          this.o.mpTicker.stylefill = 'empty';
+        }
       });
     }
 
@@ -804,17 +877,13 @@ export class Bars {
     }
   }
 
-  _updateOpacity(): void {
+  _updateOpacity(transparent: boolean): void {
     const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
-    if (
-      this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job)
-    )
-      opacityContainer.style.opacity = '1.0';
-    else
-      opacityContainer.style.opacity = this.options.OpacityOutOfCombat.toString();
+    opacityContainer.style.opacity = transparent
+      ? this.options.OpacityOutOfCombat.toString()
+      : '1.0';
   }
 
   _updateFoodBuff(): void {
@@ -882,12 +951,8 @@ export class Bars {
       return;
 
     this.inCombat = e.detail.inGameCombat;
-    if (this.inCombat)
-      this._setPullCountdown(0);
 
-    this._updateOpacity();
     this._updateFoodBuff();
-    this._updateMPTicker({ mp: this.mp, maxMp: this.maxMP, prevMp: this.prevMP });
     this._updateProcBoxNotifyState();
   }
 
@@ -963,99 +1028,6 @@ export class Bars {
 
   _onPartyChanged(e: EventResponses['PartyChanged']): void {
     this.partyTracker.onPartyChanged(e);
-  }
-
-  _onPlayerChanged(e: EventResponses['onPlayerChangedEvent']): void {
-    if (this.me !== e.detail.name) {
-      this.me = e.detail.name;
-      // setup regexes prior to the combo tracker
-      this.regexes = new RegexesHolder(this.options.ParserLanguage, this.me);
-    }
-
-    if (!this.init) {
-      this.combo = ComboTracker.setup(this._onComboChange.bind(this));
-      this.init = true;
-    }
-
-    let updateJob = false;
-    // let updateHp = false;
-    // let updateMp = false;
-    // let updateCp = false;
-    // let updateGp = false;
-    let updateLevel = false;
-    if (e.detail.job !== this.job) {
-      this.job = e.detail.job;
-      // Combos are job specific.
-      this.combo?.AbortCombo();
-      // Update MP ticker as umbral stacks has changed.
-      this.umbralStacks = 0;
-      this._updateMPTicker({ mp: this.mp, maxMp: this.maxMP, prevMp: this.prevMP });
-      updateJob /*  = updateHp = updateMp = updateCp = updateGp */ = true;
-      if (!Util.isGatheringJob(this.job))
-        this.gpAlarmReady = false;
-    }
-    if (e.detail.level !== this.level) {
-      this.level = e.detail.level;
-      updateLevel = true;
-    }
-    if (
-      e.detail.currentHP !== this.hp || e.detail.maxHP !== this.maxHP ||
-      e.detail.currentShield !== this.currentShield
-    ) {
-      this.hp = e.detail.currentHP;
-      this.maxHP = e.detail.maxHP;
-      this.currentShield = e.detail.currentShield;
-      // updateHp = true;
-
-      if (this.hp === 0)
-        this.combo?.AbortCombo(); // Death resets combos.
-    }
-    if (e.detail.currentMP !== this.mp || e.detail.maxMP !== this.maxMP) {
-      this.mp = e.detail.currentMP;
-      this.maxMP = e.detail.maxMP;
-      // updateMp = true;
-    }
-    if (e.detail.currentCP !== this.cp || e.detail.maxCP !== this.maxCP) {
-      this.cp = e.detail.currentCP;
-      this.maxCP = e.detail.maxCP;
-      // updateCp = true;
-    }
-    if (e.detail.currentGP !== this.gp || e.detail.maxGP !== this.maxGP) {
-      this.gp = e.detail.currentGP;
-      this.maxGP = e.detail.maxGP;
-      // updateGp = true;
-    }
-    if (updateJob) {
-      this._updateJob(this.job);
-      // On reload, we need to set the opacity after setting up the job bars.
-      this._updateOpacity();
-      this._updateProcBoxNotifyState();
-
-      // TODO: this is always created by _updateJob, so maybe this.o needs be optional?
-      if (this.o.leftBuffsList && this.o.rightBuffsList) {
-        // Set up the buff tracker after the job bars are created.
-        this.buffTracker = new BuffTracker(
-          this.options,
-          this.me,
-          this.o.leftBuffsList,
-          this.o.rightBuffsList,
-          this.partyTracker,
-        );
-      }
-    }
-    // if (updateHp)
-    //   this._updateHealth();
-    // if (updateMp)
-    //   this._updateMana();
-    // if (updateCp)
-    //   this._updateCp();
-    // if (updateGp)
-    //   this._updateGp();
-    if (updateLevel)
-      this._updateFoodBuff();
-
-    if (e.detail.jobDetail)
-      this.jobFuncs[this.job]?.(e.detail.jobDetail);
   }
 
   _updateEnmityTargetData(e: EventResponses['EnmityTargetData']): void {

@@ -85,6 +85,7 @@ export const setup = (bars: Bars): void => {
   });
 
   bars.onJobDetailUpdate('BLM', (jobDetail: JobDetail['BLM']) => {
+    // FIXME: make it able to use after refactoring
     // if (bars.umbralStacks !== jobDetail.umbralStacks) {
     //   bars.umbralStacks = jobDetail.umbralStacks;
     //   bars._updateMPTicker();

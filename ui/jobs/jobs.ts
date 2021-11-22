@@ -8,9 +8,6 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
   const bars = new Bars(options);
 
-  addOverlayListener('onPlayerChangedEvent', (e) => {
-    bars._onPlayerChanged(e);
-  });
   addOverlayListener('EnmityTargetData', (e) => {
     bars._updateEnmityTargetData(e);
   });
