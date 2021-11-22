@@ -191,7 +191,7 @@ export class Bars {
     }
   }
 
-  _updateJob(): void {
+  _updateJob(job: Job): void {
     this.comboFuncs = [];
     this.jobFuncs = {};
     this.changeZoneFuncs = [];
@@ -230,16 +230,16 @@ export class Bars {
     barsLayoutContainer.id = 'jobs';
     container.appendChild(barsLayoutContainer);
 
-    barsLayoutContainer.classList.add(this.job.toLowerCase());
-    if (Util.isTankJob(this.job))
+    barsLayoutContainer.classList.add(job.toLowerCase());
+    if (Util.isTankJob(job))
       barsLayoutContainer.classList.add('tank');
-    else if (Util.isHealerJob(this.job))
+    else if (Util.isHealerJob(job))
       barsLayoutContainer.classList.add('healer');
-    else if (Util.isDpsJob(this.job))
+    else if (Util.isDpsJob(job))
       barsLayoutContainer.classList.add('dps');
-    else if (Util.isCraftingJob(this.job))
+    else if (Util.isCraftingJob(job))
       barsLayoutContainer.classList.add('crafting');
-    else if (Util.isGatheringJob(this.job))
+    else if (Util.isGatheringJob(job))
       barsLayoutContainer.classList.add('gathering');
 
     const pullCountdownContainer = document.createElement('div');
@@ -301,7 +301,7 @@ export class Bars {
       this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
     }
 
-    if (Util.isCraftingJob(this.job)) {
+    if (Util.isCraftingJob(job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
@@ -319,7 +319,7 @@ export class Bars {
       });
       container.classList.add('hide');
       return;
-    } else if (Util.isGatheringJob(this.job)) {
+    } else if (Util.isGatheringJob(job)) {
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
@@ -364,7 +364,7 @@ export class Bars {
       this._updateHealth(data);
     });
 
-    if (doesJobNeedMPBar(this.job)) {
+    if (doesJobNeedMPBar(job)) {
       this.o.manaContainer = document.createElement('div');
       this.o.manaContainer.id = 'mp-bar';
       barsContainer.appendChild(this.o.manaContainer);
@@ -404,7 +404,7 @@ export class Bars {
       });
     }
 
-    const setup = getSetup(this.job);
+    const setup = getSetup(job);
     if (setup)
       setup.bind(null, this)();
 
@@ -1022,7 +1022,7 @@ export class Bars {
       // updateGp = true;
     }
     if (updateJob) {
-      this._updateJob();
+      this._updateJob(this.job);
       // On reload, we need to set the opacity after setting up the job bars.
       this._updateOpacity();
       this._updateProcBoxNotifyState();
