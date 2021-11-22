@@ -87,18 +87,6 @@ export interface ResourceBox extends HTMLDivElement {
 export class Bars {
   private init = false;
   private o: JobDomObjects = {};
-  // private me?: string;
-  // private hp = 0;
-  // private maxHP = 0;
-  // private currentShield = 0;
-  // private mp = 0;
-  // private prevMP = 0;
-  // private maxMP = 0;
-  // private cp = 0;
-  // private maxCP = 0;
-  // private gp = 0;
-  // private maxGP = 0;
-  // private distance = -1;
   private foodBuffExpiresTimeMs = 0;
   private gpAlarmReady = false;
   private gpPotion = false;
