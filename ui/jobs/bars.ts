@@ -31,6 +31,7 @@ import {
 import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
 import { JobsOptions } from './jobs_options';
+import { Player } from './player';
 import {
   calcGCDFromStat,
   computeBackgroundColorFrom,
@@ -109,6 +110,7 @@ export class Bars {
   private partyTracker: PartyTracker = new PartyTracker();
   private buffTracker?: BuffTracker;
   private ee: JobsEventEmitter = new JobsEventEmitter();
+  private readonly player: Player;
 
   private contentType?: number;
   private isPVPZone = false;
@@ -152,6 +154,8 @@ export class Bars {
       this.options.NotifyExpiredProcsInCombatSound = 'disabled';
       this.options.NotifyExpiredProcsInCombat = 0;
     }
+
+    this.player = this.ee.player;
 
     this.updateProcBoxNotifyRepeat();
   }
@@ -746,7 +750,7 @@ export class Bars {
     let mediumMP = -1;
     let far = -1;
 
-    if (this.job === 'RDM' || this.job === 'BLM' || this.job === 'SMN' || this.job === 'ACN')
+    if (Util.isCasterDpsJob(this.player.job))
       far = this.options.FarThresholdOffence;
 
     if (this.job === 'DRK') {

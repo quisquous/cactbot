@@ -22,7 +22,8 @@ export interface EventMap {
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
-  protected player: Player;
+  public player: Player;
+
   constructor() {
     super();
 
@@ -85,6 +86,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     this.player.id = data.id;
     this.player.name = data.name;
 
+    // always update stuffs when player changed their jobs
     // update hp
     if (
       this.player.job !== data.job ||
@@ -148,6 +150,8 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.gp = data.currentGP;
       this.player.maxGp = data.maxGP;
     }
+
+    this.player.job = data.job;
 
     this.emit('player', this.player);
   }
