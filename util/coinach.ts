@@ -23,7 +23,6 @@ const defaultFfxivPaths = [
 if (process.env['CACTBOT_DEFAULT_FFXIV_PATH'])
   defaultFfxivPaths.push(process.env['CACTBOT_DEFAULT_FFXIV_PATH']);
 
-
 const isObject = (obj: unknown): obj is { [key: string]: unknown } =>
   obj !== null && typeof obj === 'object' && !Array.isArray(obj);
 
