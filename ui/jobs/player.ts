@@ -4,9 +4,18 @@ import { NetMatches } from '../../types/net_matches';
 
 import { calcGCDFromStat } from './utils';
 
-export type Stats = Omit<{
-  [K in keyof NetMatches['PlayerStats'] as string extends K ? never : number extends K ? never : 'type' extends K ? never : K]: number;
-}, 'type' | 'timestamp' | 'job'>;
+export type Stats = Omit<
+  {
+    [
+      K in keyof NetMatches['PlayerStats'] as string extends K
+        ? never
+        : number extends K
+        ? never
+        : K
+    ]: number;
+  },
+  'type' | 'timestamp' | 'job'
+>;
 
 export type SpeedBuffs = {
   presenceOfMind: boolean;
