@@ -93,14 +93,14 @@ export class Bars {
   // private hp = 0;
   // private maxHP = 0;
   // private currentShield = 0;
-  private mp = 0;
-  private prevMP = 0;
-  private maxMP = 0;
+  // private mp = 0;
+  // private prevMP = 0;
+  // private maxMP = 0;
   // private cp = 0;
   // private maxCP = 0;
   // private gp = 0;
   // private maxGP = 0;
-  private distance = -1;
+  // private distance = -1;
   private foodBuffExpiresTimeMs = 0;
   private gpAlarmReady = false;
   private gpPotion = false;
@@ -452,6 +452,21 @@ export class Bars {
       // update mp
       this.ee.on('player/mp', (data) => {
         this._updateMana(data);
+      });
+      // change color when target is far away
+      this.ee.on('battle/target', (target) => {
+        if (!this.o.manaBar)
+          return;
+        if (target && Util.isCasterDpsJob(job)) {
+          if (
+            this.options.FarThresholdOffence >= 0 &&
+            target.effectiveDistance > this.options.FarThresholdOffence
+          ) {
+            this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
+            return;
+          }
+        }
+        this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
       });
     }
 
@@ -821,10 +836,6 @@ export class Bars {
     this.o.manaBar.maxvalue = data.maxMp.toString();
     let lowMP = -1;
     let mediumMP = -1;
-    let far = -1;
-
-    if (Util.isCasterDpsJob(this.player.job))
-      far = this.options.FarThresholdOffence;
 
     if (this.job === 'DRK') {
       lowMP = this.options.DrkLowMPThreshold;
@@ -837,9 +848,7 @@ export class Bars {
       mediumMP = this.options.BlmMediumMPThreshold;
     }
 
-    if (far >= 0 && this.distance > far)
-      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
-    else if (lowMP >= 0 && data.mp <= lowMP)
+    if (lowMP >= 0 && data.mp <= lowMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
     else if (mediumMP >= 0 && data.mp <= mediumMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.medium');
@@ -1028,25 +1037,6 @@ export class Bars {
 
   _onPartyChanged(e: EventResponses['PartyChanged']): void {
     this.partyTracker.onPartyChanged(e);
-  }
-
-  _updateEnmityTargetData(e: EventResponses['EnmityTargetData']): void {
-    const target = e.Target;
-
-    let update = false;
-    if (!target || !target.Name) {
-      if (this.distance !== -1) {
-        this.distance = -1;
-        update = true;
-      }
-    } else if (target.EffectiveDistance !== this.distance) {
-      this.distance = target.EffectiveDistance;
-      update = true;
-    }
-    if (update) {
-      // this._updateHealth();
-      this._updateMana({ mp: this.mp, maxMp: this.maxMP, prevMp: this.prevMP });
-    }
   }
 
   _onNetLog(e: EventResponses['LogLine']): void {

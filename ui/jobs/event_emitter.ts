@@ -23,6 +23,7 @@ export interface EventMap {
   'player': (player: Player) => void;
   // battle events
   'battle/in-combat': (info: { game: boolean; act: boolean }) => void;
+  'battle/target': (target?: { name: string; distance: number; effectiveDistance: number }) => void;
   // triggered when casts actions
   'action/you': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
   'action/party': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
@@ -61,6 +62,10 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
   private registerOverlayListeners(): void {
     addOverlayListener('onPlayerChangedEvent', (ev) => {
       this.processPlayerChangedEvent(ev);
+    });
+
+    addOverlayListener('EnmityTargetData', (ev) => {
+      this.processEnmityTargetData(ev);
     });
 
     addOverlayListener('onInCombatChangedEvent', (ev) => {
@@ -197,5 +202,17 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     }
 
     this.emit('player', this.player);
+  }
+
+  processEnmityTargetData({ Target: target }: OverlayEventResponses['EnmityTargetData']): void {
+    if (target) {
+      this.emit('battle/target', {
+        name: target.Name,
+        distance: target.Distance,
+        effectiveDistance: target.EffectiveDistance,
+      });
+    } else {
+      this.emit('battle/target');
+    }
   }
 }

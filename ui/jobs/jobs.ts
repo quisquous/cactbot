@@ -8,9 +8,6 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
   const bars = new Bars(options);
 
-  addOverlayListener('EnmityTargetData', (e) => {
-    bars._updateEnmityTargetData(e);
-  });
   addOverlayListener('onPartyWipe', () => {
     bars._onPartyWipe();
   });
