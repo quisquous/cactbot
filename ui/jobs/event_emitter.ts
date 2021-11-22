@@ -8,7 +8,7 @@ import { EventResponses as OverlayEventResponses, JobDetail, PlayerChangedJobDet
 import { Job } from '../../types/job';
 import { NetMatches } from '../../types/net_matches';
 
-import { Player } from './player';
+import { Player, Stats } from './player';
 import { normalizeLogLine } from './utils';
 
 export interface EventMap {
@@ -21,6 +21,7 @@ export interface EventMap {
   'player/level': (level: number, prevLevel: number) => void;
   'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
   'player/job-detail': <J extends Job>(job: J, jobDetail: PlayerChangedJobDetails<J>['jobDetail']) => void;
+  'player/stat': (stat: Stats) => void;
   'player': (player: Player) => void;
   // zone changing
   'zone/change': (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
@@ -96,6 +97,35 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     const type = ev.line[logDefinitions.None.fields.type];
 
     switch (type) {
+      case logDefinitions.PlayerStats.type: {
+        const matches = normalizeLogLine(ev.line, logDefinitions.PlayerStats.fields);
+        // const stat = Object
+        //   .keys(matches)
+        //   // drop type and timestamp and job
+        //   .filter((key) => !['type', 'timestamp', 'job'].includes(key))
+        //   .reduce<Stats>((acc, key) => {
+        //     acc[key] = Number(matches[key] ?? 0);
+        //     return acc;
+        //   }, {} as Stats);
+        this.emit('player/stat', {
+          attackMagicPotency: parseInt(matches.attackMagicPotency ?? '0', 10),
+          attackPower: parseInt(matches.attackPower ?? '0', 10),
+          criticalHit: parseInt(matches.criticalHit ?? '0', 10),
+          determination: parseInt(matches.determination ?? '0', 10),
+          dexterity: parseInt(matches.dexterity ?? '0', 10),
+          directHit: parseInt(matches.directHit ?? '0', 10),
+          healMagicPotency: parseInt(matches.healMagicPotency ?? '0', 10),
+          intelligence: parseInt(matches.intelligence ?? '0', 10),
+          mind: parseInt(matches.mind ?? '0', 10),
+          piety: parseInt(matches.piety ?? '0', 10),
+          skillSpeed: parseInt(matches.skillSpeed ?? '0', 10),
+          spellSpeed: parseInt(matches.spellSpeed ?? '0', 10),
+          strength: parseInt(matches.strength ?? '0', 10),
+          tenacity: parseInt(matches.tenacity ?? '0', 10),
+          vitality: parseInt(matches.vitality ?? '0', 10),
+        });
+        break;
+      }
       case logDefinitions.Ability.type:
       case logDefinitions.NetworkAOEAbility.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.Ability.fields);
