@@ -10,10 +10,11 @@ import { normalizeLogLine } from './utils';
 
 export interface EventMap {
   // triggered when data of current player is updated
-  'player/hp': (info: { hp: number; maxHp: number; prevHp?: number; shield: number; prevShield?: number }) => void;
-  'player/mp': (info: { mp: number; maxMp: number; prevMp?: number }) => void;
-  'player/cp': (info: { cp: number; maxCp: number; prevCp?: number }) => void;
-  'player/gp': (info: { gp: number; maxGp: number; prevGp?: number }) => void;
+  'player/hp': (info: { hp: number; maxHp: number; prevHp: number; shield: number; prevShield: number }) => void;
+  'player/mp': (info: { mp: number; maxMp: number; prevMp: number }) => void;
+  'player/cp': (info: { cp: number; maxCp: number; prevCp: number }) => void;
+  'player/gp': (info: { gp: number; maxGp: number; prevGp: number }) => void;
+  'player': (player: Player) => void;
   // triggered when casts actions
   'action/you': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
   'action/party': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
@@ -86,6 +87,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update hp
     if (
+      this.player.job !== data.job ||
       this.player.hp !== data.currentHP ||
       this.player.maxHp !== data.maxHP ||
       this.player.shield !== data.currentShield
@@ -104,6 +106,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update mp
     if (
+      this.player.job !== data.job ||
       this.player.mp !== data.currentMP ||
       this.player.maxMp !== data.maxMP
     ) {
@@ -118,6 +121,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update cp
     if (
+      this.player.job !== data.job ||
       this.player.cp !== data.currentCP ||
       this.player.maxCp !== data.maxCP
     ) {
@@ -132,6 +136,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update gp
     if (
+      this.player.job !== data.job ||
       this.player.gp !== data.currentGP ||
       this.player.maxGp !== data.maxGP
     ) {
@@ -143,5 +148,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.gp = data.currentGP;
       this.player.maxGp = data.maxGP;
     }
+
+    this.emit('player', this.player);
   }
 }

@@ -313,6 +313,10 @@ export class Bars {
       this.o.cpBar.height = window.getComputedStyle(this.o.cpContainer).height;
       this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
+      // update cp
+      this.ee.on('player/cp', (data) => {
+        this._updateCp(data);
+      });
       container.classList.add('hide');
       return;
     } else if (Util.isGatheringJob(this.job)) {
@@ -327,6 +331,10 @@ export class Bars {
       this.o.gpBar.height = window.getComputedStyle(this.o.gpContainer).height;
       this.o.gpBar.bg = computeBackgroundColorFrom(this.o.gpBar, 'bar-border-color');
       this.o.gpBar.fg = computeBackgroundColorFrom(this.o.gpBar, 'gp-color');
+      // update gp
+      this.ee.on('player/gp', (data) => {
+        this._updateGp(data);
+      });
       return;
     }
 
@@ -371,6 +379,10 @@ export class Bars {
       this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');
+      // update mp
+      this.ee.on('player/mp', (data) => {
+        this._updateMana(data);
+      });
     }
 
     if (showMPTicker) {
@@ -386,6 +398,10 @@ export class Bars {
       this.o.mpTicker.stylefill = 'fill';
       this.o.mpTicker.toward = 'right';
       this.o.mpTicker.loop = true;
+      // update mp ticker
+      this.ee.on('player/mp', (data) => {
+        this._updateMPTicker(data);
+      });
     }
 
     const setup = getSetup(this.job);
@@ -640,22 +656,22 @@ export class Bars {
       f();
   }
 
-  _updateHealth(o: {
+  _updateHealth(data: {
     hp: number;
     maxHp: number;
     shield: number;
   }): void {
     if (!this.o.healthBar)
       return;
-    this.o.healthBar.value = o.hp.toString();
-    this.o.healthBar.maxvalue = o.maxHp.toString();
-    this.o.healthBar.extravalue = o.shield.toString();
+    this.o.healthBar.value = data.hp.toString();
+    this.o.healthBar.maxvalue = data.maxHp.toString();
+    this.o.healthBar.extravalue = data.shield.toString();
 
-    const percent = (o.hp + o.shield) / o.maxHp;
+    const percent = (data.hp + data.shield) / data.maxHp;
 
-    if (o.maxHp > 0 && percent < this.options.LowHealthThresholdPercent)
+    if (data.maxHp > 0 && percent < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
-    else if (o.maxHp > 0 && percent < this.options.MidHealthThresholdPercent)
+    else if (data.maxHp > 0 && percent < this.options.MidHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.mid');
     else
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
@@ -676,11 +692,14 @@ export class Bars {
     }
   }
 
-  _updateMPTicker(): void {
+  _updateMPTicker(data: {
+    mp: number;
+    maxMp: number;
+    prevMp: number;
+  }): void {
     if (!this.o.mpTicker)
       return;
-    const delta = this.mp - this.prevMP;
-    this.prevMP = this.mp;
+    const delta = data.mp - data.prevMp;
 
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
@@ -699,7 +718,7 @@ export class Bars {
     if (this.umbralStacks === -3)
       umbralTick = kMPUI3Rate;
 
-    const mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
+    const mpTick = Math.floor(data.maxMp * baseTick) + Math.floor(data.maxMp * umbralTick);
     if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
       this.o.mpTicker.duration = kMPTickInterval;
 
@@ -712,13 +731,17 @@ export class Bars {
     this.o.mpTicker.fg = computeBackgroundColorFrom(this.o.mpTicker, colorTag);
   }
 
-  _updateMana(): void {
-    this._updateMPTicker();
+  _updateMana(data: {
+    mp: number;
+    maxMp: number;
+    prevMp: number;
+  }): void {
+    this._updateMPTicker(data);
 
     if (!this.o.manaBar)
       return;
-    this.o.manaBar.value = this.mp.toString();
-    this.o.manaBar.maxvalue = this.maxMP.toString();
+    this.o.manaBar.value = data.mp.toString();
+    this.o.manaBar.maxvalue = data.maxMp.toString();
     let lowMP = -1;
     let mediumMP = -1;
     let far = -1;
@@ -747,23 +770,29 @@ export class Bars {
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
 
-  _updateCp(): void {
+  _updateCp(data: {
+    cp: number;
+    maxCp: number;
+  }): void {
     if (!this.o.cpBar)
       return;
-    this.o.cpBar.value = this.cp.toString();
-    this.o.cpBar.maxvalue = this.maxCP.toString();
+    this.o.cpBar.value = data.cp.toString();
+    this.o.cpBar.maxvalue = data.maxCp.toString();
   }
 
-  _updateGp(): void {
+  _updateGp(data: {
+    gp: number;
+    maxGp: number;
+  }): void {
     if (!this.o.gpBar)
       return;
-    this.o.gpBar.value = this.gp.toString();
-    this.o.gpBar.maxvalue = this.maxGP.toString();
+    this.o.gpBar.value = data.gp.toString();
+    this.o.gpBar.maxvalue = data.maxGp.toString();
 
     // GP Alarm
-    if (this.gp < this.options.GpAlarmPoint) {
+    if (data.gp < this.options.GpAlarmPoint) {
       this.gpAlarmReady = true;
-    } else if (this.gpAlarmReady && !this.gpPotion && this.gp >= this.options.GpAlarmPoint) {
+    } else if (this.gpAlarmReady && !this.gpPotion && data.gp >= this.options.GpAlarmPoint) {
       this.gpAlarmReady = false;
       const audio = new Audio('../../resources/sounds/freesound/power_up.webm');
       audio.volume = this.options.GpAlarmSoundVolume;
@@ -854,7 +883,7 @@ export class Bars {
 
     this._updateOpacity();
     this._updateFoodBuff();
-    this._updateMPTicker();
+    this._updateMPTicker({ mp: this.mp, maxMp: this.maxMP, prevMp: this.prevMP });
     this._updateProcBoxNotifyState();
   }
 
@@ -945,10 +974,10 @@ export class Bars {
     }
 
     let updateJob = false;
-    let updateHp = false;
-    let updateMp = false;
-    let updateCp = false;
-    let updateGp = false;
+    // let updateHp = false;
+    // let updateMp = false;
+    // let updateCp = false;
+    // let updateGp = false;
     let updateLevel = false;
     if (e.detail.job !== this.job) {
       this.job = e.detail.job;
@@ -956,8 +985,8 @@ export class Bars {
       this.combo?.AbortCombo();
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
-      this._updateMPTicker();
-      updateJob = updateHp = updateMp = updateCp = updateGp = true;
+      this._updateMPTicker({ mp: this.mp, maxMp: this.maxMP, prevMp: this.prevMP });
+      updateJob /*  = updateHp = updateMp = updateCp = updateGp */ = true;
       if (!Util.isGatheringJob(this.job))
         this.gpAlarmReady = false;
     }
@@ -972,7 +1001,7 @@ export class Bars {
       this.hp = e.detail.currentHP;
       this.maxHP = e.detail.maxHP;
       this.currentShield = e.detail.currentShield;
-      updateHp = true;
+      // updateHp = true;
 
       if (this.hp === 0)
         this.combo?.AbortCombo(); // Death resets combos.
@@ -980,17 +1009,17 @@ export class Bars {
     if (e.detail.currentMP !== this.mp || e.detail.maxMP !== this.maxMP) {
       this.mp = e.detail.currentMP;
       this.maxMP = e.detail.maxMP;
-      updateMp = true;
+      // updateMp = true;
     }
     if (e.detail.currentCP !== this.cp || e.detail.maxCP !== this.maxCP) {
       this.cp = e.detail.currentCP;
       this.maxCP = e.detail.maxCP;
-      updateCp = true;
+      // updateCp = true;
     }
     if (e.detail.currentGP !== this.gp || e.detail.maxGP !== this.maxGP) {
       this.gp = e.detail.currentGP;
       this.maxGP = e.detail.maxGP;
-      updateGp = true;
+      // updateGp = true;
     }
     if (updateJob) {
       this._updateJob();
@@ -1012,12 +1041,12 @@ export class Bars {
     }
     // if (updateHp)
     //   this._updateHealth();
-    if (updateMp)
-      this._updateMana();
-    if (updateCp)
-      this._updateCp();
-    if (updateGp)
-      this._updateGp();
+    // if (updateMp)
+    //   this._updateMana();
+    // if (updateCp)
+    //   this._updateCp();
+    // if (updateGp)
+    //   this._updateGp();
     if (updateLevel)
       this._updateFoodBuff();
 
@@ -1040,7 +1069,7 @@ export class Bars {
     }
     if (update) {
       // this._updateHealth();
-      this._updateMana();
+      this._updateMana({ mp: this.mp, maxMp: this.maxMP, prevMp: this.prevMP });
     }
   }
 

@@ -85,10 +85,10 @@ export const setup = (bars: Bars): void => {
   });
 
   bars.onJobDetailUpdate('BLM', (jobDetail: JobDetail['BLM']) => {
-    if (bars.umbralStacks !== jobDetail.umbralStacks) {
-      bars.umbralStacks = jobDetail.umbralStacks;
-      bars._updateMPTicker();
-    }
+    // if (bars.umbralStacks !== jobDetail.umbralStacks) {
+    //   bars.umbralStacks = jobDetail.umbralStacks;
+    //   bars._updateMPTicker();
+    // }
     const fouls = jobDetail.foulCount;
     for (let i = 0; i < 2; ++i) {
       if (fouls > i)
