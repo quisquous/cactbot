@@ -8,6 +8,8 @@ import {
   OverlayHandlerTypes,
 } from '../types/event';
 
+type BaseResponse = { rseq?: number; '$error'?: boolean };
+
 declare global {
   interface Window {
     __OverlayCallback: EventMap[EventType];
@@ -61,7 +63,11 @@ let queue: (
   | [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
 )[] | null = [];
 let rseqCounter = 0;
-const responsePromises: Record<number, (value: unknown) => void> = {};
+type PromiseFuncs = {
+  resolve: (value: unknown) => void;
+  reject: (value: unknown) => void;
+};
+const responsePromises: { [rseqIdx: number]: PromiseFuncs } = {};
 
 const subscribers: Subscriber<VoidFunc<unknown>> = {};
 
@@ -140,15 +146,23 @@ const callOverlayHandlerInternal: IOverlayHandler = (
 
   if (ws) {
     msg.rseq = rseqCounter++;
-    p = new Promise((resolve) => {
-      responsePromises[msg.rseq] = resolve;
+    p = new Promise((resolve, reject) => {
+      responsePromises[msg.rseq] = { resolve: resolve, reject: reject };
     });
 
     sendMessage(msg);
   } else {
-    p = new Promise((resolve) => {
+    p = new Promise((resolve, reject) => {
       sendMessage(msg, (data) => {
-        resolve(data === null ? null : JSON.parse(data));
+        if (!data) {
+          resolve(data);
+          return;
+        }
+        const parsed = JSON.parse(data) as BaseResponse;
+        if (parsed['$error'])
+          reject(parsed);
+        else
+          resolve(parsed);
       });
     });
   }
@@ -227,10 +241,14 @@ export const init = (): void => {
               console.error('Invalid message data received: ', _msg);
               return;
             }
-            const msg = JSON.parse(_msg.data) as EventParameter & { rseq?: number };
+            const msg = JSON.parse(_msg.data) as EventParameter & BaseResponse;
 
-            if (msg.rseq !== undefined && responsePromises[msg.rseq]) {
-              responsePromises[msg.rseq]?.(msg);
+            const promiseFuncs = msg?.rseq !== undefined ? responsePromises[msg.rseq] : undefined;
+            if (msg.rseq !== undefined && promiseFuncs) {
+              if (msg['$error'])
+                promiseFuncs.reject(msg);
+              else
+                promiseFuncs.resolve(msg);
               delete responsePromises[msg.rseq];
             } else {
               processEvent(msg);

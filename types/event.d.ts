@@ -369,6 +369,11 @@ type GetCombatantsHandler = (msg: {
   props?: string[];
 }) => { combatants: PluginCombatantState[] };
 
+type OpenWebsiteWithWSHandler = (msg: {
+  call: 'openWebsiteWithWS';
+  url: string;
+}) => void;
+
 type CactbotReloadOverlaysHandler = (msg: {
   call: 'cactbotReloadOverlays';
 }) => void;
@@ -411,6 +416,7 @@ export type OverlayHandlerAll = {
   'broadcast': BroadcastHandler;
   'subscribe': SubscribeHandler;
   'getCombatants': GetCombatantsHandler;
+  'openWebsiteWithWS': OpenWebsiteWithWSHandler;
   'cactbotReloadOverlays': CactbotReloadOverlaysHandler;
   'cactbotLoadUser': CactbotLoadUserHandler;
   'cactbotRequestPlayerUpdate': CactbotRequestPlayerUpdateHandler;
