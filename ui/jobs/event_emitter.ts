@@ -16,6 +16,8 @@ export interface EventMap {
   'player/cp': (info: { cp: number; maxCp: number; prevCp: number }) => void;
   'player/gp': (info: { gp: number; maxGp: number; prevGp: number }) => void;
   'player/job': (job: Job) => void;
+  'player/level': (level: number) => void;
+  'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
   'player': (player: Player) => void;
   // battle events
   'battle/in-combat': (info: { game: boolean; act: boolean }) => void;
@@ -104,6 +106,12 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.job = data.job;
     }
 
+    // update level
+    if (this.player.level !== data.level) {
+      this.emit('player/level', data.level);
+      this.player.level = data.level;
+    }
+
     // update hp
     if (
       prevJob !== data.job ||
@@ -168,7 +176,16 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.maxGp = data.maxGP;
     }
 
-    this.player.job = data.job;
+    if (
+      this.player.pos.x !== data.pos.x ||
+      this.player.pos.y !== data.pos.y ||
+      this.player.pos.z !== data.pos.z ||
+      this.player.rotation !== data.rotation
+    ) {
+      this.emit('player/pos', data.pos, data.rotation);
+      this.player.pos = data.pos;
+      this.player.rotation = data.rotation;
+    }
 
     this.emit('player', this.player);
   }
