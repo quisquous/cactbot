@@ -24,14 +24,14 @@ export class Player {
   level: number;
   job: Job;
   hp: number;
-  maxHP: number;
+  maxHp: number;
   shield: number;
   mp: number;
-  maxMP: number;
+  maxMp: number;
   cp: number;
-  maxCP: number;
+  maxCp: number;
   gp: number;
-  maxGP: number;
+  maxGp: number;
   pos: {
     x: number;
     y: number;
@@ -49,14 +49,14 @@ export class Player {
     this.level = 0;
     this.job = 'NONE';
     this.hp = 0;
-    this.maxHP = 0;
+    this.maxHp = 0;
     this.shield = 0;
     this.mp = 0;
-    this.maxMP = 0;
+    this.maxMp = 0;
     this.cp = 0;
-    this.maxCP = 0;
+    this.maxCp = 0;
     this.gp = 0;
-    this.maxGP = 0;
+    this.maxGp = 0;
 
     this.pos = {
       x: 0,

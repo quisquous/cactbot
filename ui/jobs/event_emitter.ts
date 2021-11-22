@@ -9,6 +9,9 @@ import { Player } from './player';
 import { normalizeLogLine } from './utils';
 
 export interface EventMap {
+  // triggered when data of current player is updated
+  'player/hp': (info: { hp: number; maxHp: number; prevHp?: number; shield: number; prevShield?: number }) => void;
+  // triggered when casts actions
   'action/you': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
   'action/party': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
   'action/other': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
@@ -20,6 +23,8 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     super();
 
     this.player = new Player();
+    // register overlay plugin listeners
+    this.registerOverlayListeners();
   }
 
   override on<Key extends keyof EventMap>(event: Key, listener: EventMap[Key]): this {
@@ -40,7 +45,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     return super.off(event, listener);
   }
 
-  registerOverlayListeners(): void {
+  private registerOverlayListeners(): void {
     addOverlayListener('onPlayerChangedEvent', (ev) => {
       this.processPlayerChangedEvent(ev);
     });
@@ -72,8 +77,26 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     }
   }
 
-  private processPlayerChangedEvent(ev: OverlayEventResponses['onPlayerChangedEvent']): void {
-    this.player.id = ev.detail.id;
-    this.player.name = ev.detail.name;
+  private processPlayerChangedEvent({ detail: data }: OverlayEventResponses['onPlayerChangedEvent']): void {
+    this.player.id = data.id;
+    this.player.name = data.name;
+
+    // update hp
+    if (
+      this.player.hp !== data.currentHP ||
+      this.player.maxHp !== data.maxHP ||
+      this.player.shield !== data.currentShield
+    ) {
+      this.emit('player/hp', {
+        hp: data.currentHP,
+        maxHp: data.maxHP,
+        prevHp: this.player.hp,
+        shield: data.currentShield,
+        prevShield: this.player.shield,
+      });
+      this.player.hp = data.currentHP;
+      this.player.maxHp = data.maxHP;
+      this.player.shield = data.currentShield;
+    }
   }
 }

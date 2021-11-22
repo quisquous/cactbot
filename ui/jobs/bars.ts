@@ -28,6 +28,7 @@ import {
   kMPUI3Rate,
   kWellFedContentTypes,
 } from './constants';
+import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
 import { JobsOptions } from './jobs_options';
 import {
@@ -107,6 +108,7 @@ export class Bars {
   private regexes?: RegexesHolder;
   private partyTracker: PartyTracker = new PartyTracker();
   private buffTracker?: BuffTracker;
+  private ee: JobsEventEmitter = new JobsEventEmitter();
 
   private contentType?: number;
   private isPVPZone = false;
@@ -349,6 +351,10 @@ export class Bars {
     this.o.healthBar.width = window.getComputedStyle(this.o.healthContainer).width;
     this.o.healthBar.height = window.getComputedStyle(this.o.healthContainer).height;
     this.o.healthBar.bg = computeBackgroundColorFrom(this.o.healthBar, 'bar-border-color');
+    // update hp
+    this.ee.on('player/hp', (data) => {
+      this._updateHealth(data);
+    });
 
     if (doesJobNeedMPBar(this.job)) {
       this.o.manaContainer = document.createElement('div');
@@ -634,18 +640,22 @@ export class Bars {
       f();
   }
 
-  _updateHealth(): void {
+  _updateHealth(o: {
+    hp: number;
+    maxHp: number;
+    shield: number;
+  }): void {
     if (!this.o.healthBar)
       return;
-    this.o.healthBar.value = this.hp.toString();
-    this.o.healthBar.maxvalue = this.maxHP.toString();
-    this.o.healthBar.extravalue = this.currentShield.toString();
+    this.o.healthBar.value = o.hp.toString();
+    this.o.healthBar.maxvalue = o.maxHp.toString();
+    this.o.healthBar.extravalue = o.shield.toString();
 
-    const percent = (this.hp + this.currentShield) / this.maxHP;
+    const percent = (o.hp + o.shield) / o.maxHp;
 
-    if (this.maxHP > 0 && percent < this.options.LowHealthThresholdPercent)
+    if (o.maxHp > 0 && percent < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
-    else if (this.maxHP > 0 && percent < this.options.MidHealthThresholdPercent)
+    else if (o.maxHp > 0 && percent < this.options.MidHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.mid');
     else
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
@@ -1000,8 +1010,8 @@ export class Bars {
         );
       }
     }
-    if (updateHp)
-      this._updateHealth();
+    // if (updateHp)
+    //   this._updateHealth();
     if (updateMp)
       this._updateMana();
     if (updateCp)
@@ -1029,7 +1039,7 @@ export class Bars {
       update = true;
     }
     if (update) {
-      this._updateHealth();
+      // this._updateHealth();
       this._updateMana();
     }
   }
