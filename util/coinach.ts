@@ -23,6 +23,10 @@ const defaultFfxivPaths = [
 if (process.env['CACTBOT_DEFAULT_FFXIV_PATH'])
   defaultFfxivPaths.push(process.env['CACTBOT_DEFAULT_FFXIV_PATH']);
 
+
+const isObject = (obj: unknown): obj is { [key: string]: unknown } =>
+  obj !== null && typeof obj === 'object' && !Array.isArray(obj);
+
 class CoinachError extends Error {
   constructor(message?: string, cmd?: string, output?: string) {
     const errorMessage = `message: ${message ?? ''}
@@ -154,14 +158,16 @@ export class CoinachWriter {
     return '.';
   }
 
-  sortObjByKeys(_obj: unknown): unknown {
-    const obj = _obj as Record<string, unknown>;
+  sortObjByKeys(obj: unknown): unknown {
+    if (!isObject(obj) || Array.isArray(obj))
+      return obj;
+
     const out = Object
       .keys((obj))
       .sort()
-      .reduce((acc: Record<string, unknown>, key) => {
-        const nested = obj[key] as Record<string, unknown>;
-        if (nested && typeof nested === 'object' && !Array.isArray(nested))
+      .reduce((acc: typeof obj, key) => {
+        const nested = obj[key];
+        if (isObject(nested))
           acc[key] = this.sortObjByKeys(nested);
         else
           acc[key] = nested;
