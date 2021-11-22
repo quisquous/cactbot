@@ -11,6 +11,9 @@ import { normalizeLogLine } from './utils';
 export interface EventMap {
   // triggered when data of current player is updated
   'player/hp': (info: { hp: number; maxHp: number; prevHp?: number; shield: number; prevShield?: number }) => void;
+  'player/mp': (info: { mp: number; maxMp: number; prevMp?: number }) => void;
+  'player/cp': (info: { cp: number; maxCp: number; prevCp?: number }) => void;
+  'player/gp': (info: { gp: number; maxGp: number; prevGp?: number }) => void;
   // triggered when casts actions
   'action/you': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
   'action/party': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
@@ -97,6 +100,48 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.hp = data.currentHP;
       this.player.maxHp = data.maxHP;
       this.player.shield = data.currentShield;
+    }
+
+    // update mp
+    if (
+      this.player.mp !== data.currentMP ||
+      this.player.maxMp !== data.maxMP
+    ) {
+      this.emit('player/mp', {
+        mp: data.currentMP,
+        maxMp: data.maxMP,
+        prevMp: this.player.mp,
+      });
+      this.player.mp = data.currentMP;
+      this.player.maxMp = data.maxMP;
+    }
+
+    // update cp
+    if (
+      this.player.cp !== data.currentCP ||
+      this.player.maxCp !== data.maxCP
+    ) {
+      this.emit('player/cp', {
+        cp: data.currentCP,
+        maxCp: data.maxCP,
+        prevCp: this.player.cp,
+      });
+      this.player.cp = data.currentCP;
+      this.player.maxCp = data.maxCP;
+    }
+
+    // update gp
+    if (
+      this.player.gp !== data.currentGP ||
+      this.player.maxGp !== data.maxGP
+    ) {
+      this.emit('player/gp', {
+        gp: data.currentGP,
+        maxGp: data.maxGP,
+        prevGp: this.player.gp,
+      });
+      this.player.gp = data.currentGP;
+      this.player.maxGp = data.maxGP;
     }
   }
 }
