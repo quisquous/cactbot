@@ -3,6 +3,7 @@ import { isEqual } from 'lodash';
 
 import logDefinitions from '../../resources/netlog_defs';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import ZoneInfo from '../../resources/zone_info';
 import { EventResponses as OverlayEventResponses, JobDetail, PlayerChangedJobDetails } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetMatches } from '../../types/net_matches';
@@ -21,6 +22,8 @@ export interface EventMap {
   'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
   'player/job-detail': <J extends Job>(job: J, jobDetail: PlayerChangedJobDetails<J>['jobDetail']) => void;
   'player': (player: Player) => void;
+  // zone changing
+  'zone/change': (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
   // battle events
   'battle/in-combat': (info: { game: boolean; act: boolean }) => void;
   'battle/wipe': () => void;
@@ -78,6 +81,10 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
         game: ev.detail.inGameCombat,
         act: ev.detail.inACTCombat,
       });
+    });
+
+    addOverlayListener('ChangeZone', (ev) => {
+      this.emit('zone/change', ev.zoneID, ev.zoneName, ZoneInfo[ev.zoneID]);
     });
 
     addOverlayListener('LogLine', (ev) => {

@@ -2,7 +2,7 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
-import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
+import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -56,7 +56,7 @@ export const setup = (bars: Bars): void => {
     kAbility.Drill,
     kAbility.Bioblaster,
   ], () => {
-    drillBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 20000);
+    drillBox.duration = bars.player.getActionCooldown(20000, 'skill');
   });
 
   const airAnchorBox = bars.addProcBox({
@@ -67,7 +67,7 @@ export const setup = (bars: Bars): void => {
     kAbility.AirAnchor,
     kAbility.HotShot,
   ], () => {
-    airAnchorBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 40000);
+    airAnchorBox.duration = bars.player.getActionCooldown(40000, 'skill');
   });
 
   // Wild Fire Gauge

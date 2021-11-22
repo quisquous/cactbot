@@ -96,7 +96,7 @@ export class Bars {
   private partyTracker: PartyTracker = new PartyTracker();
   private buffTracker?: BuffTracker;
   private ee: JobsEventEmitter = new JobsEventEmitter();
-  private readonly player: Player;
+  public readonly player: Player;
 
   private contentType?: number;
   // private isPVPZone = false;
@@ -117,7 +117,6 @@ export class Bars {
   private statChangeFuncMap: { [job: string]: (() => void) } = {};
 
   public level = 0;
-  public job: Job = 'NONE';
   public skillSpeed = 0;
   public spellSpeed = 0;
   public speedBuffs = {
@@ -160,7 +159,7 @@ export class Bars {
       // FIXME: remove this
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
-      if (!Util.isGatheringJob(this.job))
+      if (!Util.isGatheringJob(this.player.job))
         this.gpAlarmReady = false;
 
       this._updateJob(job);
@@ -214,11 +213,11 @@ export class Bars {
   }
 
   get gcdSkill(): number {
-    return calcGCDFromStat(this, this.skillSpeed);
+    return calcGCDFromStat(this.player, this.skillSpeed);
   }
 
   get gcdSpell(): number {
-    return calcGCDFromStat(this, this.spellSpeed);
+    return calcGCDFromStat(this.player, this.spellSpeed);
   }
 
   _updateUIVisibility(hide?: boolean): void {
@@ -516,7 +515,7 @@ export class Bars {
   }
 
   addJobBarContainer(): HTMLElement {
-    const id = this.job.toLowerCase() + '-bar';
+    const id = this.player.job.toLowerCase() + '-bar';
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
@@ -528,7 +527,7 @@ export class Bars {
   }
 
   addJobBoxContainer(): HTMLElement {
-    const id = this.job.toLowerCase() + '-boxes';
+    const id = this.player.job.toLowerCase() + '-boxes';
     let boxes = document.getElementById(id);
     if (!boxes) {
       boxes = document.createElement('div');
@@ -571,7 +570,7 @@ export class Bars {
     scale?: number;
     notifyWhenExpired?: boolean;
   }): TimerBox {
-    const elementId = this.job.toLowerCase() + '-procs';
+    const elementId = this.player.job.toLowerCase() + '-procs';
 
     let container = id ? document.getElementById(id) : undefined;
     if (!container) {
@@ -728,7 +727,7 @@ export class Bars {
   }
 
   _updateJobBarGCDs(): void {
-    const f = this.statChangeFuncMap[this.job];
+    const f = this.statChangeFuncMap[this.player.job];
     if (f)
       f();
   }
@@ -816,13 +815,13 @@ export class Bars {
     let lowMP = -1;
     let mediumMP = -1;
 
-    if (this.job === 'DRK') {
+    if (this.player.job === 'DRK') {
       lowMP = this.options.DrkLowMPThreshold;
       mediumMP = this.options.DrkMediumMPThreshold;
-    } else if (this.job === 'PLD') {
+    } else if (this.player.job === 'PLD') {
       lowMP = this.options.PldLowMPThreshold;
       mediumMP = this.options.PldMediumMPThreshold;
-    } else if (this.job === 'BLM') {
+    } else if (this.player.job === 'BLM') {
       lowMP = this.options.BlmLowMPThreshold;
       mediumMP = this.options.BlmMediumMPThreshold;
     }
@@ -929,7 +928,7 @@ export class Bars {
   _onPartyWipe(): void {
     this.buffTracker?.clear();
     // Reset job-specific ui
-    const reset = getReset(this.job);
+    const reset = getReset(this.player.job);
     if (reset)
       reset.bind(null, this)();
   }
@@ -1026,7 +1025,7 @@ export class Bars {
         }
         if (this.regexes.countdownCancelRegex.test(log))
           this._setPullCountdown(0);
-        if (Util.isCraftingJob(this.job))
+        if (Util.isCraftingJob(this.player.job))
           this._onCraftingLog(log);
         break;
       }

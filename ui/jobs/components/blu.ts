@@ -1,6 +1,5 @@
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
-import { calcGCDFromStat } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -27,10 +26,10 @@ export const setup = (bars: Bars): void => {
   });
 
   bars.onUseAbility(kAbility.OffGuard, () => {
-    offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
+    offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
   });
   bars.onUseAbility(kAbility.PeculiarLight, () => {
-    offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
+    offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
   });
   bars.onUseAbility(kAbility.SongOfTorment, () => {
     tormentBox.duration = 30;

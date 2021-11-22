@@ -1,7 +1,7 @@
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
-import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
+import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
 let tid1: number;
@@ -55,7 +55,7 @@ export const setup = (bars: Bars): void => {
     fgColor: 'gnb-color-gnashingfang',
   });
   bars.onUseAbility(kAbility.GnashingFang, () => {
-    gnashingFangBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 30000);
+    gnashingFangBox.duration = bars.player.getActionCooldown(30000, 'skill');
     cartridgeComboTimer.duration = 0;
     cartridgeComboTimer.duration = 15;
   });
