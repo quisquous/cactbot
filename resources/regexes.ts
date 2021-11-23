@@ -176,7 +176,14 @@ const tetherParams = [
   'id',
   'capture',
 ] as const;
-const wasDefeatedParams = ['timestamp', 'target', 'source', 'capture'] as const;
+const wasDefeatedParams = [
+  'timestamp',
+  'targetId',
+  'target',
+  'sourceId',
+  'source',
+  'capture',
+] as const;
 const hasHPParams = ['timestamp', 'name', 'hp', 'capture'] as const;
 const gameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
 const echoParams = gameLogParams;
@@ -536,7 +543,7 @@ export default class Regexes {
 
   /**
    * 'target' was defeated by 'source'
-   * fields: target, source, capture
+   * fields: targetId, target, sourceId, source, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
    */
   static wasDefeated(f?: Params<WasDefeatedParams>): Regex<WasDefeatedParams> {
@@ -545,10 +552,11 @@ export default class Regexes {
     Regexes.validateParams(f, 'wasDefeated', wasDefeatedParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 19:' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
-      ' was defeated by ' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + '\\.';
+      ' Death 19:' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
