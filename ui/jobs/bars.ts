@@ -89,7 +89,7 @@ export class Bars {
   private regexes?: RegexesHolder;
   private partyTracker: PartyTracker = new PartyTracker();
   private buffTracker?: BuffTracker;
-  private ee: JobsEventEmitter = new JobsEventEmitter();
+  private ee: JobsEventEmitter;
   public readonly player: Player;
 
   private contentType?: number;
@@ -117,12 +117,14 @@ export class Bars {
   public changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[] = [];
   public updateDotTimerFuncs: (() => void)[] = [];
 
-  constructor(private options: JobsOptions) {
+  constructor(private options: JobsOptions, emitter: JobsEventEmitter) {
     // Don't add any notifications if only the buff tracker is being shown.
     if (this.options.JustBuffTracker) {
       this.options.NotifyExpiredProcsInCombatSound = 'disabled';
       this.options.NotifyExpiredProcsInCombat = 0;
     }
+
+    this.ee = emitter;
     this.player = this.ee.player;
 
     this.ee.on('player/level', (level, prevLevel) => {

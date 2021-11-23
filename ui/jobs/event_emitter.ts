@@ -68,9 +68,6 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     });
     // Combos are job specific.
     this.on('player/job', () => this.combo.AbortCombo());
-
-    // register overlay plugin listeners
-    this.registerOverlayListeners();
   }
 
   override on<Key extends keyof EventMap>(event: Key, listener: EventMap[Key]): this {
@@ -91,7 +88,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     return super.off(event, listener);
   }
 
-  private registerOverlayListeners(): void {
+  registerOverlayListeners(): void {
     addOverlayListener('onPlayerChangedEvent', (ev) => {
       this.processPlayerChangedEvent(ev);
     });
@@ -324,3 +321,5 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     }
   }
 }
+
+export const jobsEventEmitter = new JobsEventEmitter();
