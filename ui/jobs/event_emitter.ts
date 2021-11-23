@@ -42,6 +42,7 @@ export interface EventMap {
   'effect/lose': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
   'effect/gain/you': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
   'effect/lose/you': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+  // triggered when dot or hot tick
   'tick/dot': (damage: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
   'tick/hot': (heal: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
 }
@@ -319,6 +320,101 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     } else {
       this.emit('battle/target');
     }
+  }
+}
+
+
+/**
+ * Track DoTs that was applied to mobs.
+ *
+ * Emit events when DoT ticks on your main target.
+ *
+ * The mechanism of this tracker is to find out the target that player
+ * has applied DoT to and attacked with some actions.
+ * (Which we call it the "last attacked DoTed target", is the boss in most cases.)
+ * For a Bard, if there are a boss and some adds, the Bard would likely
+ * keep the DoT on the boss while attacking the adds without any DoT.
+ *
+ * @example
+ *
+ * const tracker = new DoTTracker(jobsEventEmitter);
+ * tracker.onTick([EffectId.Stormbite, EffectId.CausticBite], (targetId) => {
+ *   // do something like update repertoire timer.
+ * });
+ */
+ export class DotTracker extends EventEmitter {
+  ee: JobsEventEmitter;
+  trackedDoTs: string[];
+
+  targets: string[];
+  lastAttackedTarget?: string;
+
+  constructor(jobsEventEmitter: JobsEventEmitter) {
+    super();
+
+    this.ee = jobsEventEmitter;
+    this.trackedDoTs = [];
+
+    this.targets = [];
+
+    this.registerListeners();
+  }
+
+  private registerListeners(): void {
+    this.ee.on('effect/gain', (id, { sourceId, targetId }) => {
+      if (
+        targetId?.startsWith('4') &&
+        parseInt(sourceId ?? '0') === this.ee.player.id &&
+        this.trackedDoTs.includes(id)
+      )
+        this.targets.push(targetId);
+    });
+
+    this.ee.on('effect/lose', (id, { sourceId, targetId }) => {
+      if (
+        targetId?.startsWith('4') &&
+        parseInt(sourceId ?? '0') === this.ee.player.id &&
+        this.trackedDoTs.includes(id)
+      )
+        this.targets.splice(this.targets.indexOf(targetId), 1);
+    });
+
+    this.ee.on('action/you', (id, { targetId }) => {
+      if (targetId?.startsWith('4') && this.trackedDoTs.includes(id))
+        this.lastAttackedTarget = targetId;
+    });
+
+    this.ee.on('tick/dot', (_damage, { id, effectId }) => {
+      if (
+        id &&
+        this.lastAttackedTarget === id &&
+        this.targets.includes(id) &&
+        // if effectId is not 0, that means this DoT tick is produced
+        // by a "damage field" skill (e.g. Ninja's "Doton" or Dark Knight's "Salted Earth")
+        // which is not a literal DoT.
+        effectId === '0'
+      )
+        this.emit('tick', id);
+    });
+
+    // reset on job change or zone change or out of combat
+    this.ee.on('player/job', () => this.reset());
+    this.ee.on('zone/change', () => this.reset());
+    this.ee.on('battle/in-combat', ({ game }) => {
+      if (game === false)
+        this.reset();
+    });
+  }
+
+  onTick(trackedDoTs: string[], cb: (targetId?: string) => void): void {
+    this.trackedDoTs = trackedDoTs;
+    this.removeAllListeners();
+    this.on('tick', cb);
+  }
+
+  reset(): void {
+    this.targets = [];
+    this.lastAttackedTarget = undefined;
   }
 }
 
