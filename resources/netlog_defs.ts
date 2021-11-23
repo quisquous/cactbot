@@ -297,6 +297,7 @@ const logDefinitions = {
       skillSpeed: 15,
       spellSpeed: 16,
       tenacity: 18,
+      localContentId: 19,
     },
     canAnonymize: true,
     lastInclude: true,

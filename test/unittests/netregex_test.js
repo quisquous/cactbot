@@ -298,8 +298,8 @@ describe('netregex tests', () => {
   });
   it('statchange', () => {
     const lines = [
-      '12|2020-03-18T20:40:30.0380000-07:00|19|3888|324|4292|207|343|340|3888|1600|3158|206|341|1868|902|380|0|853|45c4bb87c4e26bb1f1e85c0df980fca6',
-      '12|2020-02-25T01:43:47.6620000-08:00|27|321|360|4720|5108|284|340|321|2832|3556|5108|284|1158|380|1990|0|380|9da93db71ca9bf64c28c912d112e7907',
+      '12|2020-03-18T20:40:30.0380000-07:00|19|3888|324|4292|207|343|340|3888|1600|3158|206|341|1868|902|380|0|853|400023BCF31276|45c4bb87c4e26bb1f1e85c0df980fca6',
+      '12|2020-02-25T01:43:47.6620000-08:00|27|321|360|4720|5108|284|340|321|2832|3556|5108|284|1158|380|1990|0|380|400023BCF31276|9da93db71ca9bf64c28c912d112e7907',
     ];
     regexCaptureTest(NetRegexes.statChange, lines);
 
@@ -321,6 +321,7 @@ describe('netregex tests', () => {
     assert.equal(matches.skillSpeed, '902');
     assert.equal(matches.spellSpeed, '380');
     assert.equal(matches.tenacity, '853');
+    assert.equal(matches.localContentId, '400023BCF31276');
   });
   it('changeZone', () => {
     const lines = [
