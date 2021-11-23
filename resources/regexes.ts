@@ -15,7 +15,22 @@ export type Regex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
 
 type ValidStringOrArray = string | string[];
 
-const startsUsingParams = ['timestamp', 'source', 'id', 'ability', 'target', 'capture'] as const;
+const startsUsingParams = [
+  'timestamp',
+  'sourceId',
+  'source',
+  'id',
+  'ability',
+  'targetId',
+  'target',
+  'castTime',
+  'x',
+  'y',
+  'z',
+  'heading',
+  'capture',
+] as const;
+
 const abilityParams = [
   'timestamp',
   'source',
@@ -200,7 +215,7 @@ type Network6dParams = typeof network6dParams[number];
 
 export default class Regexes {
   /**
-   * fields: source, id, ability, target, capture
+   * fields: sourceId, source, id, ability, targetId, target, castTime, x, y, z, heading
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
    */
   static startsUsing(f?: Params<StartsUsingParams>): Regex<StartsUsingParams> {
@@ -208,19 +223,19 @@ export default class Regexes {
       f = {};
     Regexes.validateParams(f, 'startsUsing', startsUsingParams);
     const capture = Regexes.trueIfUndefined(f.capture);
-    let str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 14:' +
-      Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
-
-    if (f.source || f.id || f.target || capture)
-      str += Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ' starts using ';
-
-    if (f.ability || f.target || capture)
-      str += Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ' on ';
-
-    if (f.target || capture)
-      str += Regexes.maybeCapture(capture, 'target', f.target, '.*?') + '\\.';
-
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' StartsCasting 14:' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
+      Regexes.maybeCapture(capture, 'ability', f.ability, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'castTime', f.castTime, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + '$';
     return Regexes.parse(str);
   }
 
