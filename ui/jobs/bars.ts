@@ -89,7 +89,7 @@ export class Bars {
   private regexes?: RegexesHolder;
   private partyTracker: PartyTracker = new PartyTracker();
   private buffTracker?: BuffTracker;
-  private ee: JobsEventEmitter;
+  public ee: JobsEventEmitter;
   public readonly player: Player;
 
   private contentType?: number;

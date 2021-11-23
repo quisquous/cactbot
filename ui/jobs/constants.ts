@@ -10,6 +10,13 @@ export const kMPUI2Rate = 0.45;
 export const kMPUI3Rate = 0.60;
 export const kMPTickInterval = 3.0;
 
+/**
+ * DoT ticks on every "Eorzea minute",
+ * and it is known that 1 "Eorzea day" equals to 70 "Earth minutes",
+ * so 1 "Eorzea minute" is equal to `70 * 60 / (1 * 24 * 60)` = `2.9166667`
+ */
+export const kDoTTickInterval = 70 * 60 / (1 * 24 * 60);
+
 export const kWellFedContentTypes: number[] = [
   ContentType.Dungeons,
   ContentType.Trials,

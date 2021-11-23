@@ -1,6 +1,8 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
+import { kDoTTickInterval } from '../constants';
+import { DotTracker } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
@@ -65,7 +67,15 @@ export const setup = (bars: Bars): void => {
   repertoireTimer.stylefill = 'fill';
   // Only with-DoT-target you last attacked will trigger bars timer.
   // So it work not well in multiple targets fight.
-  bars.updateDotTimerFuncs.push(() => repertoireTimer.duration = 2.91666);
+  const repertoireTracker = new DotTracker(bars.ee);
+  repertoireTracker.onTick([
+    EffectId.Stormbite,
+    EffectId.Windbite,
+    EffectId.CausticBite,
+    EffectId.VenomousBite,
+  ], () => {
+    repertoireTimer.duration = kDoTTickInterval;
+  });
   const soulVoiceBox = bars.addResourceBox({
     classList: ['brd-color-soulvoice'],
   });
