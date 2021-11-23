@@ -155,7 +155,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       }
       case logDefinitions.GainsEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.GainsEffect.fields);
-        const effectId = matches.effectId;
+        const effectId = matches.effectId?.toUpperCase();
         if (!effectId)
           break;
 
@@ -166,7 +166,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       }
       case logDefinitions.LosesEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.LosesEffect.fields);
-        const effectId = matches.effectId;
+        const effectId = matches.effectId?.toUpperCase();
         if (!effectId)
           break;
 
@@ -364,7 +364,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     this.ee.on('effect/gain', (id, { sourceId, targetId }) => {
       if (
         targetId?.startsWith('4') &&
-        parseInt(sourceId ?? '0') === this.ee.player.id &&
+        parseInt(sourceId ?? '0', 16) === this.ee.player.id &&
         this.trackedDoTs.includes(id)
       )
         this.targets.push(targetId);
@@ -373,14 +373,14 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     this.ee.on('effect/lose', (id, { sourceId, targetId }) => {
       if (
         targetId?.startsWith('4') &&
-        parseInt(sourceId ?? '0') === this.ee.player.id &&
+        parseInt(sourceId ?? '0', 16) === this.ee.player.id &&
         this.trackedDoTs.includes(id)
       )
         this.targets.splice(this.targets.indexOf(targetId), 1);
     });
 
-    this.ee.on('action/you', (id, { targetId }) => {
-      if (targetId?.startsWith('4') && this.trackedDoTs.includes(id))
+    this.ee.on('action/you', (_id, { targetId }) => {
+      if (targetId?.startsWith('4'))
         this.lastAttackedTarget = targetId;
     });
 
