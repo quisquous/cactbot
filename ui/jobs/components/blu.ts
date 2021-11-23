@@ -19,10 +19,10 @@ export const setup = (bars: Bars): void => {
     fgColor: 'blu-color-lucid',
   });
 
-  bars.onStatChange('BLU', () => {
-    offguardBox.threshold = bars.gcdSpell * 2;
-    tormentBox.threshold = bars.gcdSpell * 3;
-    lucidBox.threshold = bars.gcdSpell + 1;
+  bars.onStatChange('BLU', ({ gcdSpell }) => {
+    offguardBox.threshold = gcdSpell * 2;
+    tormentBox.threshold = gcdSpell * 3;
+    lucidBox.threshold = gcdSpell + 1;
   });
 
   bars.onUseAbility(kAbility.OffGuard, () => {

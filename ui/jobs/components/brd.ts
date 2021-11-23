@@ -43,12 +43,12 @@ export const setup = (bars: Bars): void => {
   ], () => {
     causticBiteBox.duration = 30 - 0.5;
   });
-  bars.onStatChange('BRD', () => {
-    stormBiteBox.valuescale = bars.gcdSkill;
-    stormBiteBox.threshold = bars.gcdSkill * 2;
-    causticBiteBox.valuescale = bars.gcdSkill;
-    causticBiteBox.threshold = bars.gcdSkill * 2;
-    songBox.valuescale = bars.gcdSkill;
+  bars.onStatChange('BRD', ({ gcdSkill }) => {
+    stormBiteBox.valuescale = gcdSkill;
+    stormBiteBox.threshold = gcdSkill * 2;
+    causticBiteBox.valuescale = gcdSkill;
+    causticBiteBox.threshold = gcdSkill * 2;
+    songBox.valuescale = gcdSkill;
   });
 
   // Song

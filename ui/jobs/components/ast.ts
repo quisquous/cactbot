@@ -82,13 +82,13 @@ export const setup = (bars: Bars): void => {
     lucidBox.duration = 60;
   });
 
-  bars.onStatChange('AST', () => {
-    combustBox.valuescale = bars.gcdSpell;
-    combustBox.threshold = bars.gcdSpell + 1;
-    drawBox.valuescale = bars.gcdSpell;
-    drawBox.threshold = bars.gcdSpell + 1;
-    lucidBox.valuescale = bars.gcdSpell;
-    lucidBox.threshold = bars.gcdSpell + 1;
+  bars.onStatChange('AST', ({ gcdSpell }) => {
+    combustBox.valuescale = gcdSpell;
+    combustBox.threshold = gcdSpell + 1;
+    drawBox.valuescale = gcdSpell;
+    drawBox.threshold = gcdSpell + 1;
+    lucidBox.valuescale = gcdSpell;
+    lucidBox.threshold = gcdSpell + 1;
   });
 
   resetFunc = (_bars: Bars): void => {

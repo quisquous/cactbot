@@ -114,7 +114,9 @@ export class Bars {
   private mobGainEffectFromYouFuncMap: { [effectId: string]: GainCallback } = {};
   private mobLoseEffectFromYouFuncMap: { [effectId: string]: LoseCallback } = {};
   private abilityFuncMap: { [abilityId: string]: AbilityCallback } = {};
-  private statChangeFuncMap: { [job: string]: (() => void) } = {};
+  private statChangeFuncMap: {
+    [job: string]: ((gcd: { gcdSkill: number; gcdSpell: number }) => void);
+  } = {};
 
   public level = 0;
   public skillSpeed = 0;
@@ -711,7 +713,7 @@ export class Bars {
     this.jobFuncs[job] = callback as any;
   }
 
-  onStatChange(job: string, callback: () => void): void {
+  onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {
     this.statChangeFuncMap[job] = callback;
   }
 
@@ -729,7 +731,7 @@ export class Bars {
   _updateJobBarGCDs(): void {
     const f = this.statChangeFuncMap[this.player.job];
     if (f)
-      f();
+      f(this.player);
   }
 
   _updateHealth(data: {

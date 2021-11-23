@@ -111,15 +111,15 @@ export const setup = (bars: Bars): void => {
     higanbana.duration = 60 - 0.5; // -0.5s for log line delay
   });
 
-  bars.onStatChange('SAM', () => {
-    shifu.valuescale = bars.gcdSkill;
-    shifu.threshold = bars.gcdSkill * 6;
-    jinpu.valuescale = bars.gcdSkill;
-    jinpu.threshold = bars.gcdSkill * 6;
-    tsubameGaeshi.valuescale = bars.gcdSkill;
-    tsubameGaeshi.threshold = bars.gcdSkill * 4;
-    higanbana.valuescale = bars.gcdSkill;
-    higanbana.threshold = bars.gcdSkill * 4;
+  bars.onStatChange('SAM', ({ gcdSkill }) => {
+    shifu.valuescale = gcdSkill;
+    shifu.threshold = gcdSkill * 6;
+    jinpu.valuescale = gcdSkill;
+    jinpu.threshold = gcdSkill * 6;
+    tsubameGaeshi.valuescale = gcdSkill;
+    tsubameGaeshi.threshold = gcdSkill * 4;
+    higanbana.valuescale = gcdSkill;
+    higanbana.threshold = gcdSkill * 4;
   });
 
   resetFunc = (_bars: Bars): void => {

@@ -130,13 +130,13 @@ export const setup = (bars: Bars): void => {
     }, 15000);
   });
 
-  bars.onStatChange('MCH', () => {
-    drillBox.valuescale = bars.gcdSkill;
-    drillBox.threshold = bars.gcdSkill * 3 + 1;
-    airAnchorBox.valuescale = bars.gcdSkill;
-    airAnchorBox.threshold = bars.gcdSkill * 3 + 1;
-    wildFireBox.valuescale = bars.gcdSkill;
-    wildFireBox.threshold = bars.gcdSkill + 1;
+  bars.onStatChange('MCH', ({ gcdSkill }) => {
+    drillBox.valuescale = gcdSkill;
+    drillBox.threshold = gcdSkill * 3 + 1;
+    airAnchorBox.valuescale = gcdSkill;
+    airAnchorBox.threshold = gcdSkill * 3 + 1;
+    wildFireBox.valuescale = gcdSkill;
+    wildFireBox.threshold = gcdSkill + 1;
   });
 
   resetFunc = (bars: Bars): void => {

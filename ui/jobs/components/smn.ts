@@ -148,15 +148,15 @@ export const setup = (bars: Bars): void => {
     tranceBox.duration = 60;
   });
 
-  bars.onStatChange('SMN', () => {
-    miasmaBox.valuescale = bars.gcdSpell;
-    miasmaBox.threshold = bars.gcdSpell + 1;
-    bioSmnBox.valuescale = bars.gcdSpell;
-    bioSmnBox.threshold = bars.gcdSpell + 1;
-    energyDrainBox.valuescale = bars.gcdSpell;
-    energyDrainBox.threshold = bars.gcdSpell + 1;
-    tranceBox.valuescale = bars.gcdSpell;
-    tranceBox.threshold = bars.gcdSpell + 7;
+  bars.onStatChange('SMN', ({ gcdSpell }) => {
+    miasmaBox.valuescale = gcdSpell;
+    miasmaBox.threshold = gcdSpell + 1;
+    bioSmnBox.valuescale = gcdSpell;
+    bioSmnBox.threshold = gcdSpell + 1;
+    energyDrainBox.valuescale = gcdSpell;
+    energyDrainBox.threshold = gcdSpell + 1;
+    tranceBox.valuescale = gcdSpell;
+    tranceBox.threshold = gcdSpell + 7;
   });
 
   resetFunc = (_bars: Bars): void => {

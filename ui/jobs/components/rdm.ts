@@ -58,9 +58,9 @@ export const setup = (bars: Bars): void => {
   bars.onUseAbility(kAbility.LucidDreaming, () => {
     lucidBox.duration = 60;
   });
-  bars.onStatChange('RDM', () => {
-    lucidBox.valuescale = bars.gcdSpell;
-    lucidBox.threshold = bars.gcdSpell + 1;
+  bars.onStatChange('RDM', ({ gcdSpell }) => {
+    lucidBox.valuescale = gcdSpell;
+    lucidBox.threshold = gcdSpell + 1;
   });
 
   bars.onJobDetailUpdate('RDM', (jobDetail: JobDetail['RDM']) => {

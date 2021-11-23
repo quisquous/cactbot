@@ -52,8 +52,8 @@ export const setup = (bars: Bars): void => {
     eyeBox.duration = 0;
   });
 
-  bars.onStatChange('WAR', () => {
-    eyeBox.valuescale = bars.gcdSkill * 3 + 1;
+  bars.onStatChange('WAR', ({ gcdSkill }) => {
+    eyeBox.valuescale = gcdSkill * 3 + 1;
   });
 
   resetFunc = (_bars: Bars): void => {

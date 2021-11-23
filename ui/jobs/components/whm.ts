@@ -83,13 +83,13 @@ export const setup = (bars: Bars): void => {
   bars.onYouGainEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = true);
   bars.onYouLoseEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = false);
 
-  bars.onStatChange('WHM', () => {
-    diaBox.valuescale = bars.gcdSpell;
-    diaBox.threshold = bars.gcdSpell + 1;
-    assizeBox.valuescale = bars.gcdSpell;
-    assizeBox.threshold = bars.gcdSpell + 1;
-    lucidBox.valuescale = bars.gcdSpell;
-    lucidBox.threshold = bars.gcdSpell + 1;
+  bars.onStatChange('WHM', ({ gcdSpell }) => {
+    diaBox.valuescale = gcdSpell;
+    diaBox.threshold = gcdSpell + 1;
+    assizeBox.valuescale = gcdSpell;
+    assizeBox.threshold = gcdSpell + 1;
+    lucidBox.valuescale = gcdSpell;
+    lucidBox.threshold = gcdSpell + 1;
   });
 
   resetFunc = (_bars: Bars): void => {

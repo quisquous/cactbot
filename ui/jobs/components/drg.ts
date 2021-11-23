@@ -57,11 +57,11 @@ export const setup = (bars: Bars): void => {
       dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
     }, 20000);
   });
-  bars.onStatChange('DRG', () => {
-    disembowelBox.valuescale = bars.gcdSkill;
-    disembowelBox.threshold = bars.gcdSkill * 5;
-    highJumpBox.valuescale = bars.gcdSkill;
-    highJumpBox.threshold = bars.gcdSkill + 1;
+  bars.onStatChange('DRG', ({ gcdSkill }) => {
+    disembowelBox.valuescale = gcdSkill;
+    disembowelBox.threshold = gcdSkill * 5;
+    highJumpBox.valuescale = gcdSkill;
+    highJumpBox.threshold = gcdSkill + 1;
   });
 
   // Gauge

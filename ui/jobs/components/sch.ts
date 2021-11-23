@@ -73,12 +73,12 @@ export const setup = (bars: Bars): void => {
     lucidBox.duration = 60;
   });
 
-  bars.onStatChange('SCH', () => {
-    bioBox.valuescale = bars.gcdSpell;
-    bioBox.threshold = bars.gcdSpell + 1;
-    aetherflowBox.valuescale = bars.gcdSpell;
-    lucidBox.valuescale = bars.gcdSpell;
-    lucidBox.threshold = bars.gcdSpell + 1;
+  bars.onStatChange('SCH', ({ gcdSpell }) => {
+    bioBox.valuescale = gcdSpell;
+    bioBox.threshold = gcdSpell + 1;
+    aetherflowBox.valuescale = gcdSpell;
+    lucidBox.valuescale = gcdSpell;
+    lucidBox.threshold = gcdSpell + 1;
   });
 
   resetFunc = (_bars: Bars): void => {

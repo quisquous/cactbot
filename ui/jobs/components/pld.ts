@@ -67,9 +67,9 @@ export const setup = (bars: Bars): void => {
   });
   bars.onYouLoseEffect(EffectId.SwordOath, () => setAtonement(atonementBox, 0));
 
-  bars.onStatChange('PLD', () => {
-    goreBox.valuescale = bars.gcdSkill;
-    goreBox.threshold = bars.gcdSkill * 3 + 0.3;
+  bars.onStatChange('PLD', ({ gcdSkill }) => {
+    goreBox.valuescale = gcdSkill;
+    goreBox.threshold = gcdSkill * 3 + 0.3;
   });
 
   resetFunc = (_bars: Bars): void => {

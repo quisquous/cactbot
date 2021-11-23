@@ -34,12 +34,12 @@ export const setup = (bars: Bars): void => {
     bloodfestBox.duration = 90;
   });
 
-  bars.onStatChange('GNB', () => {
-    gnashingFangBox.valuescale = bars.gcdSkill;
-    gnashingFangBox.threshold = bars.gcdSkill * 3;
-    noMercyBox.valuescale = bars.gcdSkill;
-    bloodfestBox.valuescale = bars.gcdSkill;
-    bloodfestBox.threshold = bars.gcdSkill * 2 + 1;
+  bars.onStatChange('GNB', ({ gcdSkill }) => {
+    gnashingFangBox.valuescale = gcdSkill;
+    gnashingFangBox.threshold = gcdSkill * 3;
+    noMercyBox.valuescale = gcdSkill;
+    bloodfestBox.valuescale = gcdSkill;
+    bloodfestBox.threshold = gcdSkill * 2 + 1;
   });
   // Combos
   const gnashingFangBox = bars.addProcBox({
