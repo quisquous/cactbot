@@ -265,16 +265,9 @@ export class Bars {
     container.appendChild(barsLayoutContainer);
 
     barsLayoutContainer.classList.add(job.toLowerCase());
-    if (Util.isTankJob(job))
-      barsLayoutContainer.classList.add('tank');
-    else if (Util.isHealerJob(job))
-      barsLayoutContainer.classList.add('healer');
-    else if (Util.isDpsJob(job))
-      barsLayoutContainer.classList.add('dps');
-    else if (Util.isCraftingJob(job))
-      barsLayoutContainer.classList.add('crafting');
-    else if (Util.isGatheringJob(job))
-      barsLayoutContainer.classList.add('gathering');
+    const role = Util.jobToRole(job);
+    if (role !== 'none')
+      barsLayoutContainer.classList.add(role.toLowerCase());
 
     const pullCountdownContainer = document.createElement('div');
     pullCountdownContainer.id = 'pull-bar';
