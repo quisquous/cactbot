@@ -1,5 +1,4 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
-import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
@@ -49,36 +48,7 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
       spawn: this.timestamp,
       despawn: this.timestamp,
     });
-
-    let effectName = '';
-    const resolvedName = repo.resolveName(this.id, this.name);
-
-    if (this.effectId in LineEvent0x18.showEffectNamesFor)
-      effectName = LineEvent0x18.showEffectNamesFor[this.effectId] ?? '';
-
-    let effectPart = '';
-    if (effectName)
-      effectPart = effectName + ' ';
-
-    const damageStringConverted = isNaN(this.damage) ? damageString : this.damage.toString();
-
-    this.convertedLine = this.prefix() + effectPart + this.which +
-      ' Tick on ' + EmulatorCommon.properCase(resolvedName) +
-      ' for ' + damageStringConverted + ' damage.';
   }
-
-  static showEffectNamesFor: { [effectId: string]: string } = {
-    '4C4': 'Excognition',
-    '35D': 'Wildfire',
-    '1F5': 'Doton',
-    '2ED': 'Salted Earth',
-    '4B5': 'Flamethrower',
-    '2E3': 'Asylum',
-    '777': 'Asylum',
-    '798': 'Sacred Soil',
-    '4C7': 'Fey Union',
-    '742': 'Nascent Glint',
-  };
 }
 
 export class LineEvent24 extends LineEvent0x18 {}
