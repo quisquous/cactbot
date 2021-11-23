@@ -153,14 +153,15 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     // always update stuffs when player changed their jobs
     const prevJob = this.player.job;
     if (prevJob !== data.job) {
-      this.emit('player/job', data.job);
       this.player.job = data.job;
+      this.emit('player/job', data.job);
     }
 
     // update level
     if (this.player.level !== data.level) {
-      this.emit('player/level', data.level, this.player.level);
+      const prevLevel = this.player.level;
       this.player.level = data.level;
+      this.emit('player/level', data.level, prevLevel);
     }
 
     // update hp
@@ -170,16 +171,18 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.maxHp !== data.maxHP ||
       this.player.shield !== data.currentShield
     ) {
-      this.emit('player/hp', {
-        hp: data.currentHP,
-        maxHp: data.maxHP,
-        prevHp: this.player.hp,
-        shield: data.currentShield,
-        prevShield: this.player.shield,
-      });
+      const prevHp = this.player.hp;
+      const prevShield = this.player.shield;
       this.player.hp = data.currentHP;
       this.player.maxHp = data.maxHP;
       this.player.shield = data.currentShield;
+      this.emit('player/hp', {
+        hp: data.currentHP,
+        maxHp: data.maxHP,
+        prevHp: prevHp,
+        shield: data.currentShield,
+        prevShield: prevShield,
+      });
     }
 
     // update mp
@@ -188,13 +191,14 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.mp !== data.currentMP ||
       this.player.maxMp !== data.maxMP
     ) {
+      const prevMp = this.player.mp;
+      this.player.mp = data.currentMP;
+      this.player.maxMp = data.maxMP;
       this.emit('player/mp', {
         mp: data.currentMP,
         maxMp: data.maxMP,
-        prevMp: this.player.mp,
+        prevMp: prevMp,
       });
-      this.player.mp = data.currentMP;
-      this.player.maxMp = data.maxMP;
     }
 
     // update cp
@@ -203,13 +207,14 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.cp !== data.currentCP ||
       this.player.maxCp !== data.maxCP
     ) {
+      const prevCp = this.player.cp;
+      this.player.cp = data.currentCP;
+      this.player.maxCp = data.maxCP;
       this.emit('player/cp', {
         cp: data.currentCP,
         maxCp: data.maxCP,
-        prevCp: this.player.cp,
+        prevCp: prevCp,
       });
-      this.player.cp = data.currentCP;
-      this.player.maxCp = data.maxCP;
     }
 
     // update gp
@@ -218,13 +223,14 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.gp !== data.currentGP ||
       this.player.maxGp !== data.maxGP
     ) {
+      const prevGp = this.player.gp;
+      this.player.gp = data.currentGP;
+      this.player.maxGp = data.maxGP;
       this.emit('player/gp', {
         gp: data.currentGP,
         maxGp: data.maxGP,
-        prevGp: this.player.gp,
+        prevGp: prevGp,
       });
-      this.player.gp = data.currentGP;
-      this.player.maxGp = data.maxGP;
     }
 
     if (
@@ -233,16 +239,16 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
       this.player.pos.z !== data.pos.z ||
       this.player.rotation !== data.rotation
     ) {
-      this.emit('player/pos', data.pos, data.rotation);
       this.player.pos = data.pos;
       this.player.rotation = data.rotation;
+      this.emit('player/pos', data.pos, data.rotation);
     }
 
     // update job details if there are
     if (data.jobDetail && !isEqual(this.player.jobDetail, data.jobDetail)) {
       // FIXME: no idea to make it type safe without assertions
-      this.emit('player/job-detail', data.job, data.jobDetail);
       this.player.jobDetail = data.jobDetail as JobDetail[keyof JobDetail];
+      this.emit('player/job-detail', data.job, data.jobDetail);
     }
 
     this.emit('player', this.player);
