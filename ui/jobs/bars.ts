@@ -613,7 +613,11 @@ export class Bars {
 
   onMobGainsEffectFromYou(callback: GainCallback): void {
     const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
-      if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
+      if (
+        // check if target is a mob, whose id starts with "4"
+        matches.targetId?.startsWith('4') &&
+        parseInt(matches.sourceId ?? '0', 16) === this.player.id
+      )
         callback(id, matches);
     };
     this.ee.on('effect/gain', wrapper);
@@ -622,7 +626,11 @@ export class Bars {
 
   onMobLosesEffectFromYou(callback: LoseCallback): void {
     const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
-      if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
+      if (
+        // check if target is a mob, whose id starts with "4"
+        matches.targetId?.startsWith('4') &&
+        parseInt(matches.sourceId ?? '0', 16) === this.player.id
+      )
         callback(id, matches);
     };
     this.ee.on('effect/lose', wrapper);
