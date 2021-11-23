@@ -43,17 +43,23 @@ export const setup = (bars: Bars): void => {
     }
   });
 
-  bars.onYouGainEffect(EffectId.Thundercloud, (_, matches) => {
-    thunderProc.duration = parseFloat(matches.duration ?? '0');
+  bars.onYouGainEffect((id, matches) => {
+    switch (id) {
+      case EffectId.Thundercloud:
+        thunderProc.duration = parseFloat(matches.duration ?? '0');
+        break;
+      case EffectId.Firestarter:
+        fireProc.duration = parseFloat(matches.duration ?? '0');
+        break;
+      case EffectId.CircleOfPower:
+        bars.speedBuffs.circleOfPower = true;
+        break;
+    }
   });
   bars.onYouLoseEffect(EffectId.Thundercloud, () => thunderProc.duration = 0);
 
-  bars.onYouGainEffect(EffectId.Firestarter, (_, matches) => {
-    fireProc.duration = parseFloat(matches.duration ?? '0');
-  });
   bars.onYouLoseEffect(EffectId.Firestarter, () => fireProc.duration = 0);
 
-  bars.onYouGainEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = true);
   bars.onYouLoseEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = false);
 
   // It'd be super nice to use grid here.

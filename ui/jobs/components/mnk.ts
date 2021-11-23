@@ -1,6 +1,5 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
-import { NetMatches } from '../../../types/net_matches';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
@@ -49,10 +48,6 @@ export const setup = (bars: Bars): void => {
     threshold: 5,
   });
 
-  bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
-    // -0.5 for logline delay
-    twinSnakesBox.duration = parseFloat(matches.duration ?? '0') - 0.5;
-  });
   bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
 
   bars.onUseAbility((id) => {
@@ -63,36 +58,42 @@ export const setup = (bars: Bars): void => {
     }
   });
 
-  bars.onYouGainEffect(EffectId.LeadenFist, () => {
-    dragonKickBox.duration = 30;
-  });
   bars.onYouLoseEffect(EffectId.LeadenFist, () => dragonKickBox.duration = 0);
 
   let perfectBalanceActive = false;
-  bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
-    if (!perfectBalanceActive) {
-      formTimer.duration = 0;
-      formTimer.duration = parseFloat(matches.duration ?? '0');
-      formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
-      perfectBalanceActive = true;
-    }
-  });
+
   bars.onYouLoseEffect(EffectId.PerfectBalance, () => {
     formTimer.duration = 0;
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
     perfectBalanceActive = false;
   });
 
-  const changeFormFunc = (name: string, matches: Partial<NetMatches['GainsEffect']>) => {
-    formTimer.duration = 0;
-    formTimer.duration = parseFloat(matches.duration ?? '0');
-    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
-  };
-  bars.onYouGainEffect([
-    EffectId.OpoOpoForm,
-    EffectId.RaptorForm,
-    EffectId.CoeurlForm,
-  ], changeFormFunc);
+  bars.onYouGainEffect((id, matches) => {
+    switch (id) {
+      case EffectId.TwinSnakes:
+        // -0.5 for logline delay
+        twinSnakesBox.duration = parseFloat(matches.duration ?? '0') - 0.5;
+        break;
+      case EffectId.LeadenFist:
+        dragonKickBox.duration = 30;
+        break;
+      case EffectId.PerfectBalance:
+        if (!perfectBalanceActive) {
+          formTimer.duration = 0;
+          formTimer.duration = parseFloat(matches.duration ?? '0');
+          formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
+          perfectBalanceActive = true;
+        }
+        break;
+      case EffectId.OpoOpoForm:
+      case EffectId.RaptorForm:
+      case EffectId.CoeurlForm:
+        formTimer.duration = 0;
+        formTimer.duration = parseFloat(matches.duration ?? '0');
+        formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+        break;
+    }
+  });
 
   resetFunc = (_bars: Bars): void => {
     twinSnakesBox.duration = 0;

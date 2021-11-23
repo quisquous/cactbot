@@ -45,8 +45,9 @@ export const setup = (bars: Bars): void => {
       comboTimer.duration = 15;
   });
 
-  bars.onYouGainEffect(EffectId.StormsEye, (_id, e) => {
-    eyeBox.duration = parseFloat(e.duration ?? '0');
+  bars.onYouGainEffect((id, matches) => {
+    if (id === EffectId.StormsEye)
+      eyeBox.duration = parseFloat(matches.duration ?? '0');
   });
   bars.onYouLoseEffect(EffectId.StormsEye, () => {
     eyeBox.duration = 0;

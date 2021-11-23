@@ -12,9 +12,6 @@ export const setup = (bars: Bars): void => {
     threshold: 1000,
   });
   straightShotProc.bigatzero = false;
-  bars.onYouGainEffect(EffectId.StraightShotReady, () => {
-    straightShotProc.duration = 10;
-  });
   bars.onYouLoseEffect(EffectId.StraightShotReady, () => straightShotProc.duration = 0);
   // DoT
   const causticBiteBox = bars.addProcBox({
@@ -118,25 +115,32 @@ export const setup = (bars: Bars): void => {
   });
   let ethosStacks = 0;
 
-  // Bard is complicated
-  // Paeon -> Minuet/Ballad -> muse -> muse ends
-  // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
-  // Paeon -> runs out -> ethos -> ethos runs out
-  // Track Paeon Stacks through to next song GCD buff
-  bars.onYouGainEffect(EffectId.ArmysMuse, () => {
-    // We just entered Minuet/Ballad, add muse effect
-    // If we let paeon run out, get the temp stacks from ethos
-    bars.speedBuffs.museStacks = ethosStacks ? ethosStacks : bars.speedBuffs.paeonStacks;
-    bars.speedBuffs.paeonStacks = 0;
+  bars.onYouGainEffect((id) => {
+    switch (id) {
+      case EffectId.StraightShotReady:
+        straightShotProc.duration = 10;
+        break;
+      // Bard is complicated
+      // Paeon -> Minuet/Ballad -> muse -> muse ends
+      // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
+      // Paeon -> runs out -> ethos -> ethos runs out
+      // Track Paeon Stacks through to next song GCD buff
+      case EffectId.ArmysMuse:
+        // We just entered Minuet/Ballad, add muse effect
+        // If we let paeon run out, get the temp stacks from ethos
+        bars.speedBuffs.museStacks = ethosStacks ? ethosStacks : bars.speedBuffs.paeonStacks;
+        bars.speedBuffs.paeonStacks = 0;
+        break;
+      case EffectId.ArmysEthos:
+        // Not under muse or paeon, so store the stacks
+        ethosStacks = bars.speedBuffs.paeonStacks;
+        bars.speedBuffs.paeonStacks = 0;
+        break;
+    }
   });
   bars.onYouLoseEffect(EffectId.ArmysMuse, () => {
     // Muse effect ends
     bars.speedBuffs.museStacks = 0;
-    bars.speedBuffs.paeonStacks = 0;
-  });
-  bars.onYouGainEffect(EffectId.ArmysEthos, () => {
-    // Not under muse or paeon, so store the stacks
-    ethosStacks = bars.speedBuffs.paeonStacks;
     bars.speedBuffs.paeonStacks = 0;
   });
   bars.onYouLoseEffect(EffectId.ArmysEthos, () => {

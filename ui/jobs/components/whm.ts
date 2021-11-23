@@ -85,7 +85,10 @@ export const setup = (bars: Bars): void => {
     }
   });
 
-  bars.onYouGainEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = true);
+  bars.onYouGainEffect((id) => {
+    if (id === EffectId.PresenceOfMind)
+      bars.speedBuffs.presenceOfMind = true;
+  });
   bars.onYouLoseEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = false);
 
   bars.onStatChange('WHM', ({ gcdSpell }) => {

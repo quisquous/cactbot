@@ -69,10 +69,6 @@ export const setup = (bars: Bars): void => {
     fgColor: 'sam-color-shifu',
     notifyWhenExpired: true,
   });
-  bars.onYouGainEffect(EffectId.Shifu, (_id, matches) => {
-    shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
-    bars.speedBuffs.shifu = true;
-  });
   bars.onYouLoseEffect(EffectId.Shifu, () => {
     shifu.duration = 0;
     bars.speedBuffs.shifu = false;
@@ -83,8 +79,13 @@ export const setup = (bars: Bars): void => {
     fgColor: 'sam-color-jinpu',
     notifyWhenExpired: true,
   });
-  bars.onYouGainEffect(EffectId.Jinpu, (_id, matches) => {
-    jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
+  bars.onYouGainEffect((id, matches) => {
+    if (id === EffectId.Shifu) {
+      shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
+      bars.speedBuffs.shifu = true;
+    }
+    if (id === EffectId.Jinpu)
+      jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   });
   bars.onYouLoseEffect(EffectId.Jinpu, () => {
     jinpu.duration = 0;

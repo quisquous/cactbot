@@ -62,8 +62,9 @@ export const setup = (bars: Bars): void => {
   // As atonement counts down, the player gets successive "gains effects"
   // for the same effect, but with different counts.  When the last stack
   // falls off, then there's a "lose effect" line.
-  bars.onYouGainEffect(EffectId.SwordOath, (name, matches) => {
-    setAtonement(atonementBox, parseInt(matches.count ?? '0'));
+  bars.onYouGainEffect((id, matches) => {
+    if (id === EffectId.SwordOath)
+      setAtonement(atonementBox, parseInt(matches.count ?? '0'));
   });
   bars.onYouLoseEffect(EffectId.SwordOath, () => setAtonement(atonementBox, 0));
 

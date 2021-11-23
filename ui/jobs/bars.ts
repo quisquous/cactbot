@@ -646,11 +646,12 @@ export class Bars {
       this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
   }
 
-  onYouGainEffect(effectIds: string | string[], callback: GainCallback): void {
-    if (Array.isArray(effectIds))
-      effectIds.forEach((id) => this.gainEffectFuncMap[id] = callback);
-    else
-      this.gainEffectFuncMap[effectIds] = callback;
+  onYouGainEffect(callback: GainCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
+      callback(id, matches);
+    };
+    this.ee.on('effect/gain/you', wrapper);
+    this.ee.once('player/job', () => this.ee.off('effect/gain/you', wrapper));
   }
 
   onYouLoseEffect(effectIds: string | string[], callback: LoseCallback): void {

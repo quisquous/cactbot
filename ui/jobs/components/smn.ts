@@ -60,9 +60,11 @@ export const setup = (bars: Bars): void => {
         ruin4Stacks[i]?.classList.remove('active');
     }
   };
-  bars.onYouGainEffect(EffectId.FurtherRuin, (name, e) => {
-    furtherRuin = parseInt(e.count ?? '0');
-    refreshFurtherRuin();
+  bars.onYouGainEffect((id, matches) => {
+    if (id === EffectId.FurtherRuin) {
+      furtherRuin = parseInt(matches.count ?? '0');
+      refreshFurtherRuin();
+    }
   });
   bars.onYouLoseEffect(EffectId.FurtherRuin, () => {
     furtherRuin = 0;

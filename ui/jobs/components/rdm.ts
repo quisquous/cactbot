@@ -89,14 +89,15 @@ export const setup = (bars: Bars): void => {
     }
   });
 
-  bars.onYouGainEffect(EffectId.VerstoneReady, (name, matches) => {
-    whiteProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
+  bars.onYouGainEffect((id, matches) => {
+    if (id === EffectId.VerstoneReady)
+      whiteProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
+    if (id === EffectId.VerfireReady) {
+      blackProc.duration = 0;
+      blackProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
+    }
   });
   bars.onYouLoseEffect(EffectId.VerstoneReady, () => whiteProc.duration = 0);
-  bars.onYouGainEffect(EffectId.VerfireReady, (name, matches) => {
-    blackProc.duration = 0;
-    blackProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
-  });
   bars.onYouLoseEffect(EffectId.VerfireReady, () => blackProc.duration = 0);
 
   resetFunc = (_bars: Bars): void => {

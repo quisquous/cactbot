@@ -32,23 +32,30 @@ export const setup = (bars: Bars): void => {
 
   let mudraTriggerCd = true;
   // Ninjutsu's cooldown begins to countdown at the first mudra.
-  bars.onYouGainEffect(EffectId.Mudra, () => {
-    if (!mudraTriggerCd)
-      return;
+  bars.onYouGainEffect((id) => {
+    switch (id) {
+      case EffectId.Mudra: {
+        if (!mudraTriggerCd)
+          return;
 
-    if (typeof ninjutsu.duration === 'number') {
-      const old = ninjutsu.duration - ninjutsu.elapsed;
-      if (old > 0)
-        ninjutsu.duration = old + 20;
-      else
-        ninjutsu.duration = 20 - 0.5;
+        if (typeof ninjutsu.duration === 'number') {
+          const old = ninjutsu.duration - ninjutsu.elapsed;
+          if (old > 0)
+            ninjutsu.duration = old + 20;
+          else
+            ninjutsu.duration = 20 - 0.5;
+        }
+        mudraTriggerCd = false;
+        break;
+      }
+      case EffectId.Kassatsu:
+        mudraTriggerCd = false;
+        break;
     }
-    mudraTriggerCd = false;
   });
   // On each mudra, Mudra effect will be gain once,
   // use mudraTriggerCd to tell that whether bars mudra trigger cooldown.
   bars.onYouLoseEffect(EffectId.Mudra, () => mudraTriggerCd = true);
-  bars.onYouGainEffect(EffectId.Kassatsu, () => mudraTriggerCd = false);
   bars.onYouLoseEffect(EffectId.Kassatsu, () => mudraTriggerCd = true);
   bars.onUseAbility((id) => {
     switch (id) {
