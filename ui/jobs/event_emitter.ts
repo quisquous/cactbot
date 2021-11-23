@@ -4,7 +4,7 @@ import { isEqual } from 'lodash';
 import logDefinitions from '../../resources/netlog_defs';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import ZoneInfo from '../../resources/zone_info';
-import { EventResponses as OverlayEventResponses, JobDetail, PlayerChangedJobDetails } from '../../types/event';
+import { EventResponses as OverlayEventResponses, PlayerChangedJobDetails } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
@@ -167,7 +167,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
   }
 
   private processPlayerChangedEvent({ detail: data }: OverlayEventResponses['onPlayerChangedEvent']): void {
-    this.player.id = data.id as unknown as number; // TODO: fix type
+    this.player.id = data.id;
     this.player.name = data.name;
 
     // always update stuffs when player changed their jobs
@@ -266,8 +266,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
     // update job details if there are
     if (data.jobDetail && !isEqual(this.player.jobDetail, data.jobDetail)) {
-      // FIXME: no idea to make it type safe without assertions
-      this.player.jobDetail = data.jobDetail as JobDetail[keyof JobDetail];
+      this.player.jobDetail = data.jobDetail;
       this.emit('player/job-detail', data.job, data.jobDetail);
     }
 
