@@ -55,10 +55,12 @@ export const setup = (bars: Bars): void => {
   });
   bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
 
-  bars.onUseAbility(kAbility.Demolish, () => {
-    // it start counting down when you cast demolish
-    // but DOT appears on target about 1 second later
-    demolishBox.duration = 18 + 1;
+  bars.onUseAbility((id) => {
+    if (id === kAbility.Demolish) {
+      // it start counting down when you cast demolish
+      // but DOT appears on target about 1 second later
+      demolishBox.duration = 18 + 1;
+    }
   });
 
   bars.onYouGainEffect(EffectId.LeadenFist, () => {

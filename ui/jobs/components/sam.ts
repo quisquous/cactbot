@@ -94,12 +94,14 @@ export const setup = (bars: Bars): void => {
     id: 'sam-procs-tsubamegaeshi',
     fgColor: 'sam-color-tsubamegaeshi',
   });
-  bars.onUseAbility([
-    kAbility.KaeshiHiganbana,
-    kAbility.KaeshiGoken,
-    kAbility.KaeshiSetsugekka,
-  ], () => {
-    tsubameGaeshi.duration = 60;
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.KaeshiHiganbana:
+      case kAbility.KaeshiGoken:
+      case kAbility.KaeshiSetsugekka:
+        tsubameGaeshi.duration = 60;
+        break;
+    }
   });
 
   const higanbana = bars.addProcBox({

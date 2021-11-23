@@ -52,22 +52,10 @@ export const setup = (bars: Bars): void => {
     id: 'mch-procs-drill',
     fgColor: 'mch-color-drill',
   });
-  bars.onUseAbility([
-    kAbility.Drill,
-    kAbility.Bioblaster,
-  ], () => {
-    drillBox.duration = bars.player.getActionCooldown(20000, 'skill');
-  });
 
   const airAnchorBox = bars.addProcBox({
     id: 'mch-procs-airanchor',
     fgColor: 'mch-color-airanchor',
-  });
-  bars.onUseAbility([
-    kAbility.AirAnchor,
-    kAbility.HotShot,
-  ], () => {
-    airAnchorBox.duration = bars.player.getActionCooldown(40000, 'skill');
   });
 
   // Wild Fire Gauge
@@ -115,19 +103,33 @@ export const setup = (bars: Bars): void => {
     id: 'mch-procs-wildfire',
     fgColor: 'mch-color-wildfire',
   });
-  bars.onUseAbility(kAbility.WildFire, () => {
-    wildFireBox.duration = 10 + 0.9; // animation delay
-    wildFireBox.threshold = 1000;
-    wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
-    tid1 = window.setTimeout(() => {
-      wildFireBox.duration = 110 - 0.9;
-      wildFireBox.threshold = bars.gcdSkill + 1;
-      wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
-    }, 10000);
-    tid2 = window.setTimeout(() => {
-      stacksContainer.classList.add('hide');
-      wildFireCounts = 0;
-    }, 15000);
+
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.Drill:
+      case kAbility.Bioblaster:
+        drillBox.duration = bars.player.getActionCooldown(20000, 'skill');
+        break;
+      case kAbility.AirAnchor:
+      case kAbility.HotShot:
+        airAnchorBox.duration = bars.player.getActionCooldown(40000, 'skill');
+        break;
+      case kAbility.WildFire: {
+        wildFireBox.duration = 10 + 0.9; // animation delay
+        wildFireBox.threshold = 1000;
+        wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
+        tid1 = window.setTimeout(() => {
+          wildFireBox.duration = 110 - 0.9;
+          wildFireBox.threshold = bars.gcdSkill + 1;
+          wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
+        }, 10000);
+        tid2 = window.setTimeout(() => {
+          stacksContainer.classList.add('hide');
+          wildFireCounts = 0;
+        }, 15000);
+        break;
+      }
+    }
   });
 
   bars.onStatChange('MCH', ({ gcdSkill }) => {

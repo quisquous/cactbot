@@ -715,11 +715,15 @@ export class Bars {
     this.ee.once('player/job', () => this.ee.off('player/stat', wrapper));
   }
 
-  onUseAbility(abilityIds: string | string[], callback: AbilityCallback): void {
-    if (Array.isArray(abilityIds))
-      abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
-    else
-      this.abilityFuncMap[abilityIds] = callback;
+  onUseAbility(callback: AbilityCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => {
+      callback(id, matches);
+    };
+    this.ee.on('action/you', wrapper);
+    // if (Array.isArray(abilityIds))
+    //   abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
+    // else
+    //   this.abilityFuncMap[abilityIds] = callback;
   }
 
   _onComboChange(skill?: string): void {
@@ -1095,9 +1099,9 @@ export class Bars {
 
         if (matches.source === this.player.name) {
           this.combo?.HandleAbility(id);
-          const f = this.abilityFuncMap[id];
-          if (f)
-            f(id, matches);
+          // const f = this.abilityFuncMap[id];
+          // if (f)
+          //   f(id, matches);
           this.buffTracker?.onUseAbility(id, matches);
 
           if (matches.targetId && this.dotTarget.includes(matches.targetId))

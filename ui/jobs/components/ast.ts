@@ -68,18 +68,22 @@ export const setup = (bars: Bars): void => {
       sealBox.parentNode.classList.remove('ready');
   });
 
-  bars.onUseAbility([kAbility.Combust2, kAbility.Combust3], () => {
-    combustBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.Combust, () => {
-    combustBox.duration = 18;
-  });
-
-  bars.onUseAbility(kAbility.Draw, () => {
-    drawBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.Combust2:
+      case kAbility.Combust3:
+        combustBox.duration = 30;
+        break;
+      case kAbility.Combust:
+        combustBox.duration = 18;
+        break;
+      case kAbility.Draw:
+        drawBox.duration = 30;
+        break;
+      case kAbility.LucidDreaming:
+        lucidBox.duration = 60;
+        break;
+    }
   });
 
   bars.onStatChange('AST', ({ gcdSpell }) => {

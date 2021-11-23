@@ -57,20 +57,21 @@ export const setup = (bars: Bars): void => {
     }
   });
 
-  bars.onUseAbility([
-    kAbility.Bio,
-    kAbility.Bio2,
-    kAbility.Biolysis,
-  ], () => {
-    bioBox.duration = 30;
-  });
-
-  bars.onUseAbility(kAbility.Aetherflow, () => {
-    aetherflowBox.duration = 60;
-    aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.Bio:
+      case kAbility.Bio2:
+      case kAbility.Biolysis:
+        bioBox.duration = 30;
+        break;
+      case kAbility.Aetherflow:
+        aetherflowBox.duration = 60;
+        aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+        break;
+      case kAbility.LucidDreaming:
+        lucidBox.duration = 60;
+        break;
+    }
   });
 
   bars.onStatChange('SCH', ({ gcdSpell }) => {

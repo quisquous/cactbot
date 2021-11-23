@@ -25,24 +25,28 @@ export const setup = (bars: Bars): void => {
     lucidBox.threshold = gcdSpell + 1;
   });
 
-  bars.onUseAbility(kAbility.OffGuard, () => {
-    offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
-  });
-  bars.onUseAbility(kAbility.PeculiarLight, () => {
-    offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
-  });
-  bars.onUseAbility(kAbility.SongOfTorment, () => {
-    tormentBox.duration = 30;
-  });
-  // +0.5&0.8 for animation delay
-  bars.onUseAbility(kAbility.AetherialSpark, () => {
-    tormentBox.duration = 15 + 0.5;
-  });
-  bars.onUseAbility(kAbility.Nightbloom, () => {
-    tormentBox.duration = 60 + 0.8;
-  });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.OffGuard:
+        offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
+        break;
+      case kAbility.PeculiarLight:
+        offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
+        break;
+      case kAbility.SongOfTorment:
+        tormentBox.duration = 30;
+        break;
+      case kAbility.AetherialSpark:
+        // +0.5&0.8 for animation delay
+        tormentBox.duration = 15 + 0.5;
+        break;
+      case kAbility.Nightbloom:
+        tormentBox.duration = 60 + 0.8;
+        break;
+      case kAbility.LucidDreaming:
+        lucidBox.duration = 60;
+        break;
+    }
   });
 
   resetFunc = (_bars: Bars): void => {

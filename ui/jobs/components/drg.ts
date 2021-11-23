@@ -15,13 +15,6 @@ export const setup = (bars: Bars): void => {
     fgColor: 'drg-color-highjump',
   });
 
-  bars.onUseAbility([
-    kAbility.HighJump,
-    kAbility.Jump,
-  ], () => {
-    highJumpBox.duration = 30;
-  });
-
   const disembowelBox = bars.addProcBox({
     id: 'drg-procs-disembowel',
     fgColor: 'drg-color-disembowel',
@@ -36,27 +29,46 @@ export const setup = (bars: Bars): void => {
     fgColor: 'drg-color-lancecharge',
     threshold: 20,
   });
-  bars.onUseAbility(kAbility.LanceCharge, () => {
-    lanceChargeBox.duration = 20;
-    lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
-    tid1 = window.setTimeout(() => {
-      lanceChargeBox.duration = 70;
-      lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
-    }, 20000);
-  });
+
   const dragonSightBox = bars.addProcBox({
     id: 'drg-procs-dragonsight',
     fgColor: 'drg-color-dragonsight',
     threshold: 20,
   });
-  bars.onUseAbility(kAbility.DragonSight, () => {
-    dragonSightBox.duration = 20;
-    dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
-    tid2 = window.setTimeout(() => {
-      dragonSightBox.duration = 100;
-      dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
-    }, 20000);
+
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.HighJump:
+      case kAbility.Jump:
+        highJumpBox.duration = 30;
+        break;
+      case kAbility.LanceCharge: {
+        lanceChargeBox.duration = 20;
+        lanceChargeBox.fg = computeBackgroundColorFrom(
+          lanceChargeBox,
+          'drg-color-lancecharge.active',
+        );
+        tid1 = window.setTimeout(() => {
+          lanceChargeBox.duration = 70;
+          lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
+        }, 20000);
+        break;
+      }
+      case kAbility.DragonSight: {
+        dragonSightBox.duration = 20;
+        dragonSightBox.fg = computeBackgroundColorFrom(
+          dragonSightBox,
+          'drg-color-dragonsight.active',
+        );
+        tid2 = window.setTimeout(() => {
+          dragonSightBox.duration = 100;
+          dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
+        }, 20000);
+        break;
+      }
+    }
   });
+
   bars.onStatChange('DRG', ({ gcdSkill }) => {
     disembowelBox.valuescale = gcdSkill;
     disembowelBox.threshold = gcdSkill * 5;

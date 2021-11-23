@@ -25,9 +25,6 @@ export const setup = (bars: Bars): void => {
     id: 'nin-procs-bunshin',
     fgColor: 'nin-color-bunshin',
   });
-  bars.onUseAbility(kAbility.Bunshin, () => {
-    bunshin.duration = 90;
-  });
   const ninjutsu = bars.addProcBox({
     id: 'nin-procs-ninjutsu',
     fgColor: 'nin-color-ninjutsu',
@@ -53,16 +50,26 @@ export const setup = (bars: Bars): void => {
   bars.onYouLoseEffect(EffectId.Mudra, () => mudraTriggerCd = true);
   bars.onYouGainEffect(EffectId.Kassatsu, () => mudraTriggerCd = false);
   bars.onYouLoseEffect(EffectId.Kassatsu, () => mudraTriggerCd = true);
-  bars.onUseAbility(kAbility.Hide, () => ninjutsu.duration = 0);
-  bars.onUseAbility(kAbility.TrickAttack, () => {
-    trickAttack.duration = 15;
-    trickAttack.threshold = 1000;
-    trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
-    tid1 = window.setTimeout(() => {
-      trickAttack.duration = 45;
-      trickAttack.threshold = bars.gcdSkill * 4;
-      trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
-    }, 15000);
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.Bunshin:
+        bunshin.duration = 90;
+        break;
+      case kAbility.Hide:
+        ninjutsu.duration = 0;
+        break;
+      case kAbility.TrickAttack: {
+        trickAttack.duration = 15;
+        trickAttack.threshold = 1000;
+        trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
+        tid1 = window.setTimeout(() => {
+          trickAttack.duration = 45;
+          trickAttack.threshold = bars.gcdSkill * 4;
+          trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
+        }, 15000);
+        break;
+      }
+    }
   });
   bars.onStatChange('NIN', ({ gcdSkill }) => {
     trickAttack.valuescale = gcdSkill;

@@ -112,40 +112,36 @@ export const setup = (bars: Bars): void => {
       demiSummoningBox.parentNode.classList.remove('last');
   });
 
-  bars.onUseAbility([
-    kAbility.Miasma,
-    kAbility.Miasma3,
-  ], () => {
-    miasmaBox.duration = 30;
-  });
-  bars.onUseAbility([
-    kAbility.BioSmn,
-    kAbility.BioSmn2,
-    kAbility.Bio3,
-  ], () => {
-    bioSmnBox.duration = 30;
-  });
-  // Tridisaster refresh miasma and bio both, so repeat below.
-  // TODO: remake onXxx like node's EventEmitter
-  bars.onUseAbility(kAbility.Tridisaster, () => {
-    miasmaBox.duration = 30;
-    bioSmnBox.duration = 30;
-  });
-  bars.onUseAbility([
-    kAbility.EnergyDrain,
-    kAbility.EnergySiphon,
-  ], () => {
-    energyDrainBox.duration = 30;
-    aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  });
-  // Trance cooldown is 55s,
-  // but wait till 60s will be better on matching raidbuffs.
-  // Threshold will be used to tell real cooldown.
-  bars.onUseAbility([
-    kAbility.DreadwyrmTrance,
-    kAbility.FirebirdTrance,
-  ], () => {
-    tranceBox.duration = 60;
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.Miasma:
+      case kAbility.Miasma3:
+        miasmaBox.duration = 30;
+        break;
+      case kAbility.BioSmn:
+      case kAbility.BioSmn2:
+      case kAbility.Bio3:
+        bioSmnBox.duration = 30;
+        break;
+      case kAbility.Tridisaster:
+        // Tridisaster refresh miasma and bio both, so repeat below.
+        // TODO: remake onXxx like node's EventEmitter
+        miasmaBox.duration = 30;
+        bioSmnBox.duration = 30;
+        break;
+      case kAbility.EnergyDrain:
+      case kAbility.EnergySiphon:
+        energyDrainBox.duration = 30;
+        aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+        break;
+      case kAbility.DreadwyrmTrance:
+      case kAbility.FirebirdTrance:
+        // Trance cooldown is 55s,
+        // but wait till 60s will be better on matching raidbuffs.
+        // Threshold will be used to tell real cooldown.
+        tranceBox.duration = 60;
+        break;
+    }
   });
 
   bars.onStatChange('SMN', ({ gcdSpell }) => {

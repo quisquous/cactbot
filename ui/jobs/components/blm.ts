@@ -28,14 +28,19 @@ export const setup = (bars: Bars): void => {
   // bars could have two boxes here for the rare case where you
   // have two long-lived enemies, but it's an edge case that
   // maybe only makes sense in ucob?
-  const thunderDurationMap: { [abilityId: string]: number } = {
-    [kAbility.Thunder1]: 18,
-    [kAbility.Thunder2]: 12,
-    [kAbility.Thunder3]: 24,
-    [kAbility.Thunder4]: 18,
-  };
-  bars.onUseAbility(Object.keys(thunderDurationMap), (abilityId) => {
-    thunderDot.duration = thunderDurationMap[abilityId] ?? 0;
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.Thunder1:
+      case kAbility.Thunder4:
+        thunderDot.duration = 18;
+        break;
+      case kAbility.Thunder2:
+        thunderDot.duration = 12;
+        break;
+      case kAbility.Thunder3:
+        thunderDot.duration = 24;
+        break;
+    }
   });
 
   bars.onYouGainEffect(EffectId.Thundercloud, (_, matches) => {

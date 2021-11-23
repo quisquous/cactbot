@@ -6,7 +6,8 @@ import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import ZoneInfo from '../../resources/zone_info';
 import { EventResponses as OverlayEventResponses, JobDetail, PlayerChangedJobDetails } from '../../types/event';
 import { Job } from '../../types/job';
-import { NetMatches } from '../../types/net_matches';
+import { NetFields } from '../../types/net_fields';
+import { ToMatches } from '../../types/net_matches';
 
 import { Player, Stats } from './player';
 import { normalizeLogLine } from './utils';
@@ -30,9 +31,9 @@ export interface EventMap {
   'battle/wipe': () => void;
   'battle/target': (target?: { name: string; distance: number; effectiveDistance: number }) => void;
   // triggered when casts actions
-  'action/you': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
-  'action/party': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
-  'action/other': (actionId: string, info: Partial<NetMatches['Ability']>) => void;
+  'action/you': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
+  'action/party': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
+  'action/other': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {

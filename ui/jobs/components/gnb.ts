@@ -15,23 +15,10 @@ export const setup = (bars: Bars): void => {
     id: 'gnb-procs-nomercy',
     fgColor: 'gnb-color-nomercy',
   });
-  bars.onUseAbility(kAbility.NoMercy, () => {
-    noMercyBox.duration = 20;
-    noMercyBox.threshold = 1000;
-    noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
-    tid1 = window.setTimeout(() => {
-      noMercyBox.duration = 40;
-      noMercyBox.threshold = bars.gcdSkill + 1;
-      noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
-    }, 20000);
-  });
 
   const bloodfestBox = bars.addProcBox({
     id: 'gnb-procs-bloodfest',
     fgColor: 'gnb-color-bloodfest',
-  });
-  bars.onUseAbility(kAbility.Bloodfest, () => {
-    bloodfestBox.duration = 90;
   });
 
   bars.onStatChange('GNB', ({ gcdSkill }) => {
@@ -54,17 +41,36 @@ export const setup = (bars: Bars): void => {
     id: 'gnb-timers-cartridgecombo',
     fgColor: 'gnb-color-gnashingfang',
   });
-  bars.onUseAbility(kAbility.GnashingFang, () => {
-    gnashingFangBox.duration = bars.player.getActionCooldown(30000, 'skill');
-    cartridgeComboTimer.duration = 0;
-    cartridgeComboTimer.duration = 15;
-  });
-  bars.onUseAbility(kAbility.SavageClaw, () => {
-    cartridgeComboTimer.duration = 0;
-    cartridgeComboTimer.duration = 15;
-  });
-  bars.onUseAbility(kAbility.WickedTalon, () => {
-    cartridgeComboTimer.duration = 0;
+
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.NoMercy: {
+        noMercyBox.duration = 20;
+        noMercyBox.threshold = 1000;
+        noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
+        tid1 = window.setTimeout(() => {
+          noMercyBox.duration = 40;
+          noMercyBox.threshold = bars.gcdSkill + 1;
+          noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
+        }, 20000);
+        break;
+      }
+      case kAbility.Bloodfest:
+        bloodfestBox.duration = 90;
+        break;
+      case kAbility.GnashingFang:
+        gnashingFangBox.duration = bars.player.getActionCooldown(30000, 'skill');
+        cartridgeComboTimer.duration = 0;
+        cartridgeComboTimer.duration = 15;
+        break;
+      case kAbility.SavageClaw:
+        cartridgeComboTimer.duration = 0;
+        cartridgeComboTimer.duration = 15;
+        break;
+      case kAbility.WickedTalon:
+        cartridgeComboTimer.duration = 0;
+        break;
+    }
   });
   bars.onCombo((skill) => {
     comboTimer.duration = 0;

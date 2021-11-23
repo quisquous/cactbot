@@ -67,17 +67,22 @@ export const setup = (bars: Bars): void => {
       l.classList.remove('full');
   });
 
-  bars.onUseAbility([kAbility.Aero, kAbility.Aero2], () => {
-    diaBox.duration = 18 + 1;
-  });
-  bars.onUseAbility(kAbility.Dia, () => {
-    diaBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.Assize, () => {
-    assizeBox.duration = 45;
-  });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
+  bars.onUseAbility((id) => {
+    switch (id) {
+      case kAbility.Aero:
+      case kAbility.Aero2:
+        diaBox.duration = 18 + 1;
+        break;
+      case kAbility.Dia:
+        diaBox.duration = 30;
+        break;
+      case kAbility.Assize:
+        assizeBox.duration = 45;
+        break;
+      case kAbility.LucidDreaming:
+        lucidBox.duration = 60;
+        break;
+    }
   });
 
   bars.onYouGainEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = true);

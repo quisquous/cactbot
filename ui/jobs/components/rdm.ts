@@ -55,8 +55,9 @@ export const setup = (bars: Bars): void => {
     id: 'rdm-procs-lucid',
     fgColor: 'rdm-color-lucid',
   });
-  bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 60;
+  bars.onUseAbility((id) => {
+    if (id === kAbility.LucidDreaming)
+      lucidBox.duration = 60;
   });
   bars.onStatChange('RDM', ({ gcdSpell }) => {
     lucidBox.valuescale = gcdSpell;
