@@ -5,10 +5,6 @@ import { CactbotBaseRegExp } from '../types/net_trigger';
 import logDefinitions, { LogDefinitionTypes } from './netlog_defs';
 import Regexes from './regexes';
 
-// Differences from Regexes:
-// * may have more fields
-// * AddedCombatant npc id is broken up into npcNameId and npcBaseId
-
 const separator = '\\|';
 const matchDefault = '[^|]*';
 
