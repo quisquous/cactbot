@@ -8,6 +8,46 @@ const fields = {
   timestamp: 1,
 } as const;
 
+const unknownLogMessagePrefix = 'Unknown';
+
+const logMessagePrefix: { [decEvent: number]: string } = {
+  0x00: 'ChatLog',
+  0x01: 'Territory',
+  0x02: 'ChangePrimaryPlayer',
+  0x03: 'AddCombatant',
+  0x04: 'RemoveCombatant',
+  0x0b: 'PartyList',
+  0x0c: 'PlayerStats',
+  0x14: 'StartsCasting',
+  0x15: 'ActionEffect',
+  0x16: 'AOEActionEffect',
+  0x17: 'CancelAction',
+  0x18: 'DoTHoT',
+  0x19: 'Death',
+  0x1a: 'StatusAdd',
+  0x1b: 'TargetIcon',
+  0x1c: 'WaymarkMarker',
+  0x1d: 'SignMarker',
+  0x1e: 'StatusRemove',
+  0x1f: 'Gauge',
+  0x20: 'World',
+  0x21: 'Director',
+  0x22: 'NameToggle',
+  0x23: 'Tether',
+  0x24: 'LimitBreak',
+  0x25: 'EffectResult',
+  0x26: 'StatusList',
+  0x27: 'UpdateHp',
+  0x28: 'ChangeMap',
+  0x29: 'SystemLogMessage',
+  0xf9: 'Settings',
+  0xfa: 'Process',
+  0xfb: 'Debug',
+  0xfc: 'PacketDump',
+  0xfd: 'Version',
+  0xfe: 'Error',
+};
+
 /**
  * Generic class to track an FFXIV log line
  */
@@ -35,7 +75,8 @@ export default class LineEvent {
 
   prefix(): string {
     const timeString = EmulatorCommon.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
-    return '[' + timeString + '] ' + this.hexEvent + ':';
+    const logMessageName = logMessagePrefix[this.decEvent] ?? unknownLogMessagePrefix;
+    return `[${timeString}] ${logMessageName} ${this.hexEvent}:`;
   }
 
   static isDamageHallowed(damage: string): boolean {
