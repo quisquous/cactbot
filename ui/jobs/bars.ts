@@ -175,6 +175,9 @@ export class Bars {
       this._onPartyWipe();
     });
 
+    this.ee.on('action/you', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
+    this.ee.on('action/other', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
+
     this.updateProcBoxNotifyRepeat();
   }
 
@@ -1062,8 +1065,6 @@ export class Bars {
           break;
 
         if (matches.source === this.player.name) {
-          this.buffTracker?.onUseAbility(id, matches);
-
           if (matches.targetId && this.dotTarget.includes(matches.targetId))
             this.lastAttackedDotTarget = matches.targetId;
 
@@ -1073,8 +1074,6 @@ export class Bars {
               this.gpPotion = false;
             }, 2000);
           }
-        } else {
-          this.buffTracker?.onUseAbility(id, matches);
         }
         break;
       }
