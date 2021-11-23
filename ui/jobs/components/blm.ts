@@ -56,11 +56,19 @@ export const setup = (bars: Bars): void => {
         break;
     }
   });
-  bars.onYouLoseEffect(EffectId.Thundercloud, () => thunderProc.duration = 0);
-
-  bars.onYouLoseEffect(EffectId.Firestarter, () => fireProc.duration = 0);
-
-  bars.onYouLoseEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = false);
+  bars.onYouLoseEffect((id) => {
+    switch (id) {
+      case EffectId.Thundercloud:
+        thunderProc.duration = 0;
+        break;
+      case EffectId.Firestarter:
+        fireProc.duration = 0;
+        break;
+      case EffectId.CircleOfPower:
+        bars.speedBuffs.circleOfPower = false;
+        break;
+    }
+  });
 
   // It'd be super nice to use grid here.
   // Maybe some day when cactbot uses new cef.

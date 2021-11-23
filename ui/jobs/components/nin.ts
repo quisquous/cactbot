@@ -55,8 +55,12 @@ export const setup = (bars: Bars): void => {
   });
   // On each mudra, Mudra effect will be gain once,
   // use mudraTriggerCd to tell that whether bars mudra trigger cooldown.
-  bars.onYouLoseEffect(EffectId.Mudra, () => mudraTriggerCd = true);
-  bars.onYouLoseEffect(EffectId.Kassatsu, () => mudraTriggerCd = true);
+  bars.onYouLoseEffect((id) => {
+    if (id === EffectId.Mudra)
+      mudraTriggerCd = true;
+    if (id === EffectId.Kassatsu)
+      mudraTriggerCd = true;
+  });
   bars.onUseAbility((id) => {
     switch (id) {
       case kAbility.Bunshin:

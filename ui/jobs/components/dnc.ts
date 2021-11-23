@@ -42,20 +42,23 @@ export const setup = (bars: Bars): void => {
   });
   let flourishEffect: string[] = [];
   let flourishIsActive = false;
-  bars.onYouLoseEffect([
-    EffectId.FlourishingCascade,
-    EffectId.FlourishingFountain,
-    EffectId.FlourishingShower,
-    EffectId.FlourishingWindmill,
-    EffectId.FlourishingFanDance,
-  ], (effect) => {
-    if (!(flourishEffect.includes(effect)))
-      flourishEffect.push(effect);
-    if (flourishEffect.length === 5 && flourishIsActive) {
-      flourish.duration = 60 - flourish.elapsed;
-      flourishIsActive = false;
-      flourish.threshold = bars.gcdSkill + 1;
-      flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+  bars.onYouLoseEffect((effect) => {
+    switch (effect) {
+      case EffectId.FlourishingCascade:
+      case EffectId.FlourishingFountain:
+      case EffectId.FlourishingShower:
+      case EffectId.FlourishingWindmill:
+      case EffectId.FlourishingFanDance: {
+        if (!(flourishEffect.includes(effect)))
+          flourishEffect.push(effect);
+        if (flourishEffect.length === 5 && flourishIsActive) {
+          flourish.duration = 60 - flourish.elapsed;
+          flourishIsActive = false;
+          flourish.threshold = bars.gcdSkill + 1;
+          flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+        }
+        break;
+      }
     }
   });
 

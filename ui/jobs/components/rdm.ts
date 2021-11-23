@@ -97,8 +97,12 @@ export const setup = (bars: Bars): void => {
       blackProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
     }
   });
-  bars.onYouLoseEffect(EffectId.VerstoneReady, () => whiteProc.duration = 0);
-  bars.onYouLoseEffect(EffectId.VerfireReady, () => blackProc.duration = 0);
+  bars.onYouLoseEffect((id) => {
+    if (id === EffectId.VerstoneReady)
+      whiteProc.duration = 0;
+    if (id === EffectId.VerfireReady)
+      blackProc.duration = 0;
+  });
 
   resetFunc = (_bars: Bars): void => {
     lucidBox.duration = 0;

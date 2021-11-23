@@ -89,7 +89,10 @@ export const setup = (bars: Bars): void => {
     if (id === EffectId.PresenceOfMind)
       bars.speedBuffs.presenceOfMind = true;
   });
-  bars.onYouLoseEffect(EffectId.PresenceOfMind, () => bars.speedBuffs.presenceOfMind = false);
+  bars.onYouLoseEffect((id) => {
+    if (id === EffectId.PresenceOfMind)
+      bars.speedBuffs.presenceOfMind = false;
+  });
 
   bars.onStatChange('WHM', ({ gcdSpell }) => {
     diaBox.valuescale = gcdSpell;

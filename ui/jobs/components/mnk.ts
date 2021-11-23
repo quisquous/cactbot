@@ -48,8 +48,6 @@ export const setup = (bars: Bars): void => {
     threshold: 5,
   });
 
-  bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
-
   bars.onUseAbility((id) => {
     if (id === kAbility.Demolish) {
       // it start counting down when you cast demolish
@@ -58,14 +56,22 @@ export const setup = (bars: Bars): void => {
     }
   });
 
-  bars.onYouLoseEffect(EffectId.LeadenFist, () => dragonKickBox.duration = 0);
-
   let perfectBalanceActive = false;
 
-  bars.onYouLoseEffect(EffectId.PerfectBalance, () => {
-    formTimer.duration = 0;
-    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
-    perfectBalanceActive = false;
+  bars.onYouLoseEffect((id) => {
+    switch (id) {
+      case EffectId.TwinSnakes:
+        twinSnakesBox.duration = 0;
+        break;
+      case EffectId.LeadenFist:
+        dragonKickBox.duration = 0;
+        break;
+      case EffectId.PerfectBalance:
+        formTimer.duration = 0;
+        formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+        perfectBalanceActive = false;
+        break;
+    }
   });
 
   bars.onYouGainEffect((id, matches) => {

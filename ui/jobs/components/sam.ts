@@ -69,10 +69,6 @@ export const setup = (bars: Bars): void => {
     fgColor: 'sam-color-shifu',
     notifyWhenExpired: true,
   });
-  bars.onYouLoseEffect(EffectId.Shifu, () => {
-    shifu.duration = 0;
-    bars.speedBuffs.shifu = false;
-  });
 
   const jinpu = bars.addProcBox({
     id: 'sam-procs-jinpu',
@@ -87,8 +83,13 @@ export const setup = (bars: Bars): void => {
     if (id === EffectId.Jinpu)
       jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   });
-  bars.onYouLoseEffect(EffectId.Jinpu, () => {
-    jinpu.duration = 0;
+  bars.onYouLoseEffect((id) => {
+    if (id === EffectId.Shifu) {
+      shifu.duration = 0;
+      bars.speedBuffs.shifu = false;
+    }
+    if (id === EffectId.Jinpu)
+      jinpu.duration = 0;
   });
 
   const tsubameGaeshi = bars.addProcBox({

@@ -49,8 +49,9 @@ export const setup = (bars: Bars): void => {
     if (id === EffectId.StormsEye)
       eyeBox.duration = parseFloat(matches.duration ?? '0');
   });
-  bars.onYouLoseEffect(EffectId.StormsEye, () => {
-    eyeBox.duration = 0;
+  bars.onYouLoseEffect((id) => {
+    if (id === EffectId.StormsEye)
+      eyeBox.duration = 0;
   });
 
   bars.onStatChange('WAR', ({ gcdSkill }) => {

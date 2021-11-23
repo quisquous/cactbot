@@ -66,7 +66,10 @@ export const setup = (bars: Bars): void => {
     if (id === EffectId.SwordOath)
       setAtonement(atonementBox, parseInt(matches.count ?? '0'));
   });
-  bars.onYouLoseEffect(EffectId.SwordOath, () => setAtonement(atonementBox, 0));
+  bars.onYouLoseEffect((id) => {
+    if (id === EffectId.SwordOath)
+      setAtonement(atonementBox, 0);
+  });
 
   bars.onStatChange('PLD', ({ gcdSkill }) => {
     goreBox.valuescale = gcdSkill;

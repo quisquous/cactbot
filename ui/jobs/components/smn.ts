@@ -66,9 +66,11 @@ export const setup = (bars: Bars): void => {
       refreshFurtherRuin();
     }
   });
-  bars.onYouLoseEffect(EffectId.FurtherRuin, () => {
-    furtherRuin = 0;
-    refreshFurtherRuin();
+  bars.onYouLoseEffect((id) => {
+    if (id === EffectId.FurtherRuin) {
+      furtherRuin = 0;
+      refreshFurtherRuin();
+    }
   });
   bars.changeZoneFuncs.push(() => {
     furtherRuin = 0;

@@ -12,7 +12,7 @@ export const setup = (bars: Bars): void => {
     threshold: 1000,
   });
   straightShotProc.bigatzero = false;
-  bars.onYouLoseEffect(EffectId.StraightShotReady, () => straightShotProc.duration = 0);
+
   // DoT
   const causticBiteBox = bars.addProcBox({
     id: 'brd-procs-causticbite',
@@ -138,16 +138,23 @@ export const setup = (bars: Bars): void => {
         break;
     }
   });
-  bars.onYouLoseEffect(EffectId.ArmysMuse, () => {
-    // Muse effect ends
-    bars.speedBuffs.museStacks = 0;
-    bars.speedBuffs.paeonStacks = 0;
-  });
-  bars.onYouLoseEffect(EffectId.ArmysEthos, () => {
-    // Didn't use a song and ethos ran out
-    ethosStacks = 0;
-    bars.speedBuffs.museStacks = 0;
-    bars.speedBuffs.paeonStacks = 0;
+  bars.onYouLoseEffect((id) => {
+    switch (id) {
+      case EffectId.StraightShotReady:
+        straightShotProc.duration = 0;
+        break;
+      case EffectId.ArmysMuse:
+        // Muse effect ends
+        bars.speedBuffs.museStacks = 0;
+        bars.speedBuffs.paeonStacks = 0;
+        break;
+      case EffectId.ArmysEthos:
+        // Didn't use a song and ethos ran out
+        ethosStacks = 0;
+        bars.speedBuffs.museStacks = 0;
+        bars.speedBuffs.paeonStacks = 0;
+        break;
+    }
   });
 
   resetFunc = (_bars: Bars): void => {

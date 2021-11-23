@@ -654,11 +654,12 @@ export class Bars {
     this.ee.once('player/job', () => this.ee.off('effect/gain/you', wrapper));
   }
 
-  onYouLoseEffect(effectIds: string | string[], callback: LoseCallback): void {
-    if (Array.isArray(effectIds))
-      effectIds.forEach((id) => this.loseEffectFuncMap[id] = callback);
-    else
-      this.loseEffectFuncMap[effectIds] = callback;
+  onYouLoseEffect(callback: LoseCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
+      callback(id, matches);
+    };
+    this.ee.on('effect/lose/you', wrapper);
+    this.ee.once('player/job', () => this.ee.off('effect/lose/you', wrapper));
   }
 
   onJobDetailUpdate<JobKey extends keyof JobDetail>(
