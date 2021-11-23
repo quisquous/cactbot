@@ -23,7 +23,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     name.innerText = e.detail.name;
   const playerId = document.getElementById('playerId');
   if (playerId)
-    playerId.innerText = parseInt(e.detail.id).toString(16);
+    playerId.innerText = e.detail.id.toString(16);
   const hp = document.getElementById('hp');
   if (hp)
     hp.innerText = `${e.detail.currentHP}/${e.detail.maxHP} (${e.detail.currentShield})`;
