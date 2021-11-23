@@ -74,12 +74,6 @@ type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffe
 type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
 type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
 
-// Map of job to (e: JobDetail[job]) => void.  This prevents having to spell out every job,
-// for setters and calling.  jobDetail is also `unknown` inside of _onPlayerChanged so
-// even if everything else was explicit, there'd be no way to handle this.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type JobFuncMap = { [job in Job]?: (e: any) => void };
-
 export interface ResourceBox extends HTMLDivElement {
   parentNode: HTMLElement;
 }
@@ -106,7 +100,6 @@ export class Bars {
   private dotTarget: string[] = [];
   private trackedDoTs: string[] = [];
   private lastAttackedDotTarget?: string;
-  private jobFuncs: JobFuncMap = {};
 
   private gainEffectFuncMap: { [effectId: string]: GainCallback } = {};
   private loseEffectFuncMap: { [effectId: string]: LoseCallback } = {};
@@ -167,10 +160,6 @@ export class Bars {
       }
     });
 
-    this.ee.on('player/job-detail', (job, jobDetail) => {
-      this.jobFuncs[job]?.(jobDetail);
-    });
-
     // update RegexesHolder when the player name changes
     this.ee.on('player', ({ name }) => {
       this.regexes = new RegexesHolder(this.options.ParserLanguage, name);
@@ -214,7 +203,6 @@ export class Bars {
   }
 
   _updateJob(job: Job): void {
-    this.jobFuncs = {};
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
@@ -673,13 +661,20 @@ export class Bars {
     job: JobKey,
     callback: (e: JobDetail[JobKey]) => void,
   ): void {
-    // This prevents having separate onXXXJobDetailUpdate function which take explicit callbacks
-    // so that the lookup into jobFuncs can be statically typed.  Honestly, JobDetail is already
-    // obnoxious enough to use in TypeScript that we probably need to rethink how it is delivered.
-
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
-    this.jobFuncs[job] = callback as any;
+    const wrapper = <JobKey extends Job>(
+      _job: JobKey,
+      jobDetail: JobKey extends keyof JobDetail ? JobDetail[JobKey] : never,
+    ): void => {
+      // This prevents having separate onXXXJobDetailUpdate function which take explicit callbacks
+      // so that the lookup into jobFuncs can be statically typed.  Honestly, JobDetail is already
+      // obnoxious enough to use in TypeScript that we probably need to rethink how it is delivered.
+      (callback as (detail: unknown) => void)(jobDetail);
+    };
+    this.ee.on('player/job-detail', wrapper);
+    this.ee.once('player/job', (newJob) => {
+      if (job !== newJob)
+        this.ee.off('player/job-detail', wrapper);
+    });
   }
 
   onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {

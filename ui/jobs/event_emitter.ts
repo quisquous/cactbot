@@ -4,7 +4,7 @@ import { isEqual } from 'lodash';
 import logDefinitions from '../../resources/netlog_defs';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import ZoneInfo from '../../resources/zone_info';
-import { EventResponses as OverlayEventResponses, PlayerChangedJobDetails } from '../../types/event';
+import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
@@ -22,7 +22,7 @@ export interface EventMap {
   'player/job': (job: Job) => void;
   'player/level': (level: number, prevLevel: number) => void;
   'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
-  'player/job-detail': <J extends Job>(job: J, jobDetail: PlayerChangedJobDetails<J>['jobDetail']) => void;
+  'player/job-detail': <JobKey extends Job>(job: JobKey, jobDetail: JobKey extends keyof JobDetail ? JobDetail[JobKey] : never) => void;
   'player/stat': (stat: Stats, gcd: { gcdSkill: number; gcdSpell: number }) => void;
   'player': (player: Player) => void;
   // zone changing
