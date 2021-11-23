@@ -101,7 +101,6 @@ export class Bars {
   private trackedDoTs: string[] = [];
   private lastAttackedDotTarget?: string;
 
-  private gainEffectFuncMap: { [effectId: string]: GainCallback } = {};
   private loseEffectFuncMap: { [effectId: string]: LoseCallback } = {};
   private mobGainEffectFromYouFuncMap: { [effectId: string]: GainCallback } = {};
   private mobLoseEffectFromYouFuncMap: { [effectId: string]: LoseCallback } = {};
@@ -207,19 +206,25 @@ export class Bars {
 
   _updateJob(job: Job): void {
     this.changeZoneFuncs = [];
-    this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
     this.mobLoseEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
 
-    this.gainEffectFuncMap[EffectId.WellFed] = (_id, matches) => {
-      const seconds = parseFloat(matches.duration ?? '0');
-      const now = Date.now(); // This is in ms.
-      this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-      this._updateFoodBuff();
+    const foodUpdateWrapper = (
+      id: string,
+      matches: Partial<ToMatches<NetFields['GainsEffect']>>,
+    ) => {
+      if (id === EffectId.WellFed) {
+        const seconds = parseFloat(matches.duration ?? '0');
+        const now = Date.now(); // This is in ms.
+        this.foodBuffExpiresTimeMs = now + (seconds * 1000);
+        this._updateFoodBuff();
+      }
     };
+    this.ee.on('effect/gain/you', foodUpdateWrapper);
+    this.ee.once('player/job', () => this.ee.off('effect/gain/you', foodUpdateWrapper));
 
     // if player is in pvp zone, inherit the class
     const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
@@ -464,10 +469,6 @@ export class Bars {
   _validateKeys(): void {
     // Keys in JavaScript are converted to strings, so test string equality
     // here to verify that effects and abilities have been spelled correctly.
-    for (const key in this.gainEffectFuncMap) {
-      if (key === 'undefined')
-        console.error('undefined key in gainEffectFuncMap');
-    }
     for (const key in this.loseEffectFuncMap) {
       if (key === 'undefined')
         console.error('undefined key in loseEffectFuncMap');
@@ -1004,12 +1005,9 @@ export class Bars {
         if (!effectId)
           break;
 
-        if (matches.target === this.player.name) {
-          const f = this.gainEffectFuncMap[effectId];
-          if (f)
-            f(effectId, matches);
+        if (matches.target === this.player.name)
           this.buffTracker?.onYouGainEffect(effectId, matches);
-        }
+
         // Mobs id starts with "4"
         if (matches.targetId?.startsWith('4')) {
           this.buffTracker?.onMobGainsEffect(effectId, matches);
@@ -1033,12 +1031,9 @@ export class Bars {
         if (!effectId)
           break;
 
-        if (log.target === this.player.name) {
-          const f = this.loseEffectFuncMap[effectId];
-          if (f)
-            f(effectId, log);
+        if (log.target === this.player.name)
           this.buffTracker?.onYouLoseEffect(effectId, log);
-        }
+
         // Mobs id starts with "4"
         if (log.targetId?.startsWith('4')) {
           this.buffTracker?.onMobLosesEffect(effectId, log);
