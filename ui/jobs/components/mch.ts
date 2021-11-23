@@ -89,15 +89,19 @@ export const setup = (bars: Bars): void => {
       }
     }
   };
-  bars.onMobGainsEffectFromYou(EffectId.Wildfire, (id, e) => {
-    wildFireActive = true;
-    wildFireCounts = parseInt(e.count ?? '0');
-    refreshWildFireGauge();
-    stacksContainer.classList.remove('hide');
+  bars.onMobGainsEffectFromYou((id, matches) => {
+    if (id === EffectId.Wildfire) {
+      wildFireActive = true;
+      wildFireCounts = parseInt(matches.count ?? '0');
+      refreshWildFireGauge();
+      stacksContainer.classList.remove('hide');
+    }
   });
-  bars.onMobLosesEffectFromYou(EffectId.Wildfire, () => {
-    wildFireActive = false;
-    refreshWildFireGauge();
+  bars.onMobLosesEffectFromYou((id) => {
+    if (id === EffectId.Wildfire) {
+      wildFireActive = false;
+      refreshWildFireGauge();
+    }
   });
   const wildFireBox = bars.addProcBox({
     id: 'mch-procs-wildfire',

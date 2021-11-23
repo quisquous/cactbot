@@ -28,17 +28,18 @@ export const setup = (bars: Bars): void => {
   // so it doesn't need to be handled separately.
   // Log line of getting DoT comes a little late after DoT appear on target,
   // so -0.5s
-  bars.onMobGainsEffectFromYou([
-    EffectId.Stormbite,
-    EffectId.Windbite,
-  ], () => {
-    stormBiteBox.duration = 30 - 0.5;
-  });
-  bars.onMobGainsEffectFromYou([
-    EffectId.CausticBite,
-    EffectId.VenomousBite,
-  ], () => {
-    causticBiteBox.duration = 30 - 0.5;
+  bars.onMobGainsEffectFromYou((id) => {
+    switch (id) {
+      case EffectId.Stormbite:
+      case EffectId.Windbite:
+        stormBiteBox.duration = 30 - 0.5;
+        break;
+
+      case EffectId.CausticBite:
+      case EffectId.VenomousBite:
+        causticBiteBox.duration = 30 - 0.5;
+        break;
+    }
   });
   bars.onStatChange('BRD', ({ gcdSkill }) => {
     stormBiteBox.valuescale = gcdSkill;

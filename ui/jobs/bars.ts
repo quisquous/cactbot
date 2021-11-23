@@ -101,9 +101,6 @@ export class Bars {
   private trackedDoTs: string[] = [];
   private lastAttackedDotTarget?: string;
 
-  private mobGainEffectFromYouFuncMap: { [effectId: string]: GainCallback } = {};
-  private mobLoseEffectFromYouFuncMap: { [effectId: string]: LoseCallback } = {};
-
   public level = 0;
   public skillSpeed = 0;
   public spellSpeed = 0;
@@ -205,8 +202,6 @@ export class Bars {
 
   _updateJob(job: Job): void {
     this.changeZoneFuncs = [];
-    this.mobGainEffectFromYouFuncMap = {};
-    this.mobLoseEffectFromYouFuncMap = {};
     this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
 
@@ -453,8 +448,9 @@ export class Bars {
     if (setup)
       setup.bind(null, this)();
 
+    // FIXME: should make this possible with event emitter.
     // set up DoT effect ids for tracking target
-    this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
+    // this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
 
   addJobBarContainer(): HTMLElement {
@@ -615,18 +611,22 @@ export class Bars {
     });
   }
 
-  onMobGainsEffectFromYou(effectIds: string | string[], callback: GainCallback): void {
-    if (Array.isArray(effectIds))
-      effectIds.forEach((id) => this.mobGainEffectFromYouFuncMap[id] = callback);
-    else
-      this.mobGainEffectFromYouFuncMap[effectIds] = callback;
+  onMobGainsEffectFromYou(callback: GainCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
+      if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
+        callback(id, matches);
+    };
+    this.ee.on('effect/gain', wrapper);
+    this.ee.on('player/job', () => this.ee.off('effect/gain', wrapper));
   }
 
-  onMobLosesEffectFromYou(effectIds: string | string[], callback: LoseCallback): void {
-    if (Array.isArray(effectIds))
-      effectIds.forEach((id) => this.mobLoseEffectFromYouFuncMap[id] = callback);
-    else
-      this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
+  onMobLosesEffectFromYou(callback: LoseCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
+      if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
+        callback(id, matches);
+    };
+    this.ee.on('effect/lose', wrapper);
+    this.ee.on('player/job', () => this.ee.off('effect/lose', wrapper));
   }
 
   onYouGainEffect(callback: GainCallback): void {
@@ -998,9 +998,6 @@ export class Bars {
           if (matches.source === this.player.name) {
             if (this.trackedDoTs.includes(effectId))
               this.dotTarget.push(matches.targetId);
-            const f = this.mobGainEffectFromYouFuncMap[effectId];
-            if (f)
-              f(effectId, matches);
           }
         }
         break;
@@ -1027,9 +1024,6 @@ export class Bars {
               if (index > -1)
                 this.dotTarget.splice(index, 1);
             }
-            const f = this.mobLoseEffectFromYouFuncMap[effectId];
-            if (f)
-              f(effectId, log);
           }
         }
         break;

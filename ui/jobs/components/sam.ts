@@ -111,8 +111,9 @@ export const setup = (bars: Bars): void => {
     fgColor: 'sam-color-higanbana',
     notifyWhenExpired: true,
   });
-  bars.onMobGainsEffectFromYou(EffectId.Higanbana, () => {
-    higanbana.duration = 60 - 0.5; // -0.5s for log line delay
+  bars.onMobGainsEffectFromYou((id) => {
+    if (id === EffectId.Higanbana)
+      higanbana.duration = 60 - 0.5; // -0.5s for log line delay
   });
 
   bars.onStatChange('SAM', ({ gcdSkill }) => {
