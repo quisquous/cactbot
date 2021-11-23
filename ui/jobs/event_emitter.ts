@@ -21,7 +21,7 @@ export interface EventMap {
   'player/level': (level: number, prevLevel: number) => void;
   'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
   'player/job-detail': <J extends Job>(job: J, jobDetail: PlayerChangedJobDetails<J>['jobDetail']) => void;
-  'player/stat': (stat: Stats) => void;
+  'player/stat': (stat: Stats, gcd: { gcdSkill: number; gcdSpell: number }) => void;
   'player': (player: Player) => void;
   // zone changing
   'zone/change': (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
@@ -107,7 +107,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
         //     acc[key] = Number(matches[key] ?? 0);
         //     return acc;
         //   }, {} as Stats);
-        this.emit('player/stat', {
+        const stat = {
           attackMagicPotency: parseInt(matches.attackMagicPotency ?? '0', 10),
           attackPower: parseInt(matches.attackPower ?? '0', 10),
           criticalHit: parseInt(matches.criticalHit ?? '0', 10),
@@ -123,7 +123,9 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
           strength: parseInt(matches.strength ?? '0', 10),
           tenacity: parseInt(matches.tenacity ?? '0', 10),
           vitality: parseInt(matches.vitality ?? '0', 10),
-        });
+        };
+        this.player.stats = stat;
+        this.emit('player/stat', stat, this.player);
         break;
       }
       case logDefinitions.Ability.type:

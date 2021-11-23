@@ -493,7 +493,7 @@ export class Bars {
 
     // Many jobs use the gcd to calculate thresholds and value scaling.
     // Run this initially to set those values.
-    this._updateJobBarGCDs();
+    // this._updateJobBarGCDs();
 
     // set up DoT effect ids for tracking target
     this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
@@ -714,7 +714,8 @@ export class Bars {
   }
 
   onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {
-    this.statChangeFuncMap[job] = callback;
+    // this.statChangeFuncMap[job] = callback;
+    this.ee.on('player/stat', (_stat, gcd) => callback(gcd));
   }
 
   onUseAbility(abilityIds: string | string[], callback: AbilityCallback): void {
@@ -1032,13 +1033,13 @@ export class Bars {
         break;
       }
 
-      case logDefinitions.PlayerStats.type: {
-        const fields = logDefinitions.PlayerStats.fields;
-        this.skillSpeed = parseInt(line[fields.skillSpeed] ?? '0');
-        this.spellSpeed = parseInt(line[fields.spellSpeed] ?? '0');
-        this._updateJobBarGCDs();
-        break;
-      }
+      // case logDefinitions.PlayerStats.type: {
+      //   const fields = logDefinitions.PlayerStats.fields;
+      //   this.skillSpeed = parseInt(line[fields.skillSpeed] ?? '0');
+      //   this.spellSpeed = parseInt(line[fields.spellSpeed] ?? '0');
+      //   this._updateJobBarGCDs();
+      //   break;
+      // }
 
       case logDefinitions.GainsEffect.type: {
         const fields = logDefinitions.GainsEffect.fields;
