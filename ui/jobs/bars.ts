@@ -113,7 +113,6 @@ export class Bars {
   private loseEffectFuncMap: { [effectId: string]: LoseCallback } = {};
   private mobGainEffectFromYouFuncMap: { [effectId: string]: GainCallback } = {};
   private mobLoseEffectFromYouFuncMap: { [effectId: string]: LoseCallback } = {};
-  private abilityFuncMap: { [abilityId: string]: AbilityCallback } = {};
 
   public level = 0;
   public skillSpeed = 0;
@@ -233,7 +232,6 @@ export class Bars {
     this.mobGainEffectFromYouFuncMap = {};
     this.mobLoseEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
-    this.abilityFuncMap = {};
     this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
 
@@ -494,10 +492,6 @@ export class Bars {
   _validateKeys(): void {
     // Keys in JavaScript are converted to strings, so test string equality
     // here to verify that effects and abilities have been spelled correctly.
-    for (const key in this.abilityFuncMap) {
-      if (key === 'undefined')
-        console.error('undefined key in abilityFuncMap');
-    }
     for (const key in this.gainEffectFuncMap) {
       if (key === 'undefined')
         console.error('undefined key in gainEffectFuncMap');
@@ -720,10 +714,6 @@ export class Bars {
       callback(id, matches);
     };
     this.ee.on('action/you', wrapper);
-    // if (Array.isArray(abilityIds))
-    //   abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
-    // else
-    //   this.abilityFuncMap[abilityIds] = callback;
   }
 
   _onComboChange(skill?: string): void {
@@ -1099,9 +1089,6 @@ export class Bars {
 
         if (matches.source === this.player.name) {
           this.combo?.HandleAbility(id);
-          // const f = this.abilityFuncMap[id];
-          // if (f)
-          //   f(id, matches);
           this.buffTracker?.onUseAbility(id, matches);
 
           if (matches.targetId && this.dotTarget.includes(matches.targetId))
