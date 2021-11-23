@@ -81,6 +81,8 @@ const abilityFullParams = [
   'y',
   'z',
   'heading',
+  'sequence',
+  'targetIndex',
   'capture',
 ] as const;
 const headMarkerParams = ['timestamp', 'targetId', 'target', 'id', 'capture'] as const;
@@ -250,7 +252,8 @@ export default class Regexes {
     Regexes.validateParams(f, 'ability', abilityParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     let str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1[56]:' + Regexes.maybeCapture(capture, 'sourceId', '\\y{ObjectId}') + ':' +
+      ' (?:ActionEffect 15|AOEActionEffect 16):' +
+      Regexes.maybeCapture(capture, 'sourceId', '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':';
 
     if (f.id || f.ability || f.target || f.targetId || capture)
@@ -279,7 +282,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'abilityFull', abilityFullParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1[56]:' +
+      ' (?:ActionEffect 15|AOEActionEffect 16):' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
@@ -326,7 +329,8 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + ':' +
-      '.*?$'; // Unknown last field
+      Regexes.maybeCapture(capture, 'sequence', f.sequence, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetIndex', f.targetIndex, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
