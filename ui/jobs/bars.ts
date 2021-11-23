@@ -101,7 +101,6 @@ export class Bars {
   private trackedDoTs: string[] = [];
   private lastAttackedDotTarget?: string;
 
-  private loseEffectFuncMap: { [effectId: string]: LoseCallback } = {};
   private mobGainEffectFromYouFuncMap: { [effectId: string]: GainCallback } = {};
   private mobLoseEffectFromYouFuncMap: { [effectId: string]: LoseCallback } = {};
 
@@ -208,7 +207,6 @@ export class Bars {
     this.changeZoneFuncs = [];
     this.mobGainEffectFromYouFuncMap = {};
     this.mobLoseEffectFromYouFuncMap = {};
-    this.loseEffectFuncMap = {};
     this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
 
@@ -460,19 +458,8 @@ export class Bars {
     if (setup)
       setup.bind(null, this)();
 
-    this._validateKeys();
-
     // set up DoT effect ids for tracking target
     this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
-  }
-
-  _validateKeys(): void {
-    // Keys in JavaScript are converted to strings, so test string equality
-    // here to verify that effects and abilities have been spelled correctly.
-    for (const key in this.loseEffectFuncMap) {
-      if (key === 'undefined')
-        console.error('undefined key in loseEffectFuncMap');
-    }
   }
 
   addJobBarContainer(): HTMLElement {
