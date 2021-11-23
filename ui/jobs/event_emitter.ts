@@ -42,6 +42,8 @@ export interface EventMap {
   'effect/lose': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
   'effect/gain/you': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
   'effect/lose/you': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+  'tick/dot': (damage: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
+  'tick/hot': (heal: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
@@ -185,6 +187,16 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
 
         if (sourceId && parseInt(sourceId, 16) === this.player.id)
           this.emit('action/you', id, matches);
+        break;
+      }
+
+      case logDefinitions.NetworkDoT.type: {
+        const matches = normalizeLogLine(ev.line, logDefinitions.NetworkDoT.fields);
+        const damage = parseInt(matches.damage ?? '0', 16); // damage is in hex
+        if (matches.which === 'DoT')
+          this.emit('tick/dot', damage, matches);
+        else if (matches.which === 'HoT')
+          this.emit('tick/hot', damage, matches);
         break;
       }
 
