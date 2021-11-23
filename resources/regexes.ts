@@ -91,16 +91,7 @@ const addedCombatantFullParams = [
   'heading',
   'capture',
 ] as const;
-const removingCombatantParams = [
-  'timestamp',
-  'id',
-  'name',
-  'hp',
-  'x',
-  'y',
-  'z',
-  'capture',
-] as const;
+const removingCombatantParams = addedCombatantFullParams;
 const gainsEffectParams = [
   'timestamp',
   'targetId',
@@ -389,7 +380,8 @@ export default class Regexes {
   }
 
   /**
-   * fields: id, name, hp, capture
+   * fields: id, name, hp, job, level, ownerId, worldId, world, npcNameId, npcBaseId,
+   *         currentHp, hp, CurrentMp, mp, x, y, z, heading, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
    */
   static removingCombatant(f?: Params<RemovingCombatantParams>): Regex<RemovingCombatantParams> {
@@ -398,16 +390,25 @@ export default class Regexes {
     Regexes.validateParams(f, 'removingCombatant', removingCombatantParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 04:' + Regexes.maybeCapture(capture, 'id', '\\y{ObjectId}') +
-      ':Removing combatant ' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
-      '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
-      Regexes.optional(
-        '.*?Pos: \\(' +
-          Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
-          Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
-          Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)',
-      );
+      ' RemoveCombatant 04:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
+      ':' + Regexes.maybeCapture(capture, 'name', f.name, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'job', f.job, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'level', f.level, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'ownerId', f.ownerId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'worldId', f.worldId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'world', f.world, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'npcNameId', f.npcNameId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'npcBaseId', f.npcBaseId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'currentHp', f.currentHp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'hp', f.hp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'currentMp', f.currentMp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'mp', f.mp, '[^:]*?') +
+      // currentTp / tp, maybe damageShield in the future.
+      ':[^:]*?:[^:]*?' +
+      ':' + Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + '$';
     return Regexes.parse(str);
   }
 
