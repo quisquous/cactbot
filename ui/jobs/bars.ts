@@ -28,7 +28,7 @@ import {
 import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
 import { JobsOptions } from './jobs_options';
-import { Player } from './player';
+import { Player, Stats } from './player';
 import {
   calcGCDFromStat,
   computeBackgroundColorFrom,
@@ -706,7 +706,13 @@ export class Bars {
   }
 
   onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {
-    this.ee.on('player/stat', (_stat, gcd) => callback(gcd));
+    const wrapper = (_stat: Stats, gcd: Parameters<typeof callback>[0]) => {
+      if (this.player.job === job)
+        callback(gcd);
+    };
+    this.ee.on('player/stat', wrapper);
+    // unregister when player change their job
+    this.ee.once('player/job', () => this.ee.off('player/stat', wrapper));
   }
 
   onUseAbility(abilityIds: string | string[], callback: AbilityCallback): void {
