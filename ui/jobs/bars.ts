@@ -210,19 +210,14 @@ export class Bars {
     this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
 
-    const foodUpdateWrapper = (
-      id: string,
-      matches: Partial<ToMatches<NetFields['GainsEffect']>>,
-    ) => {
+    this.onYouGainEffect((id, matches) => {
       if (id === EffectId.WellFed) {
         const seconds = parseFloat(matches.duration ?? '0');
         const now = Date.now(); // This is in ms.
         this.foodBuffExpiresTimeMs = now + (seconds * 1000);
         this._updateFoodBuff();
       }
-    };
-    this.ee.on('effect/gain/you', foodUpdateWrapper);
-    this.ee.once('player/job', () => this.ee.off('effect/gain/you', foodUpdateWrapper));
+    });
 
     // if player is in pvp zone, inherit the class
     const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
