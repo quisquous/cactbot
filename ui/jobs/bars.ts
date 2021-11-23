@@ -97,10 +97,6 @@ export class Bars {
   private crafting = false;
   private foodBuffTimer = 0;
 
-  private dotTarget: string[] = [];
-  private trackedDoTs: string[] = [];
-  private lastAttackedDotTarget?: string;
-
   public level = 0;
   public skillSpeed = 0;
   public spellSpeed = 0;
@@ -115,7 +111,6 @@ export class Bars {
   public umbralStacks = 0;
 
   public changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[] = [];
-  public updateDotTimerFuncs: (() => void)[] = [];
 
   constructor(private options: JobsOptions, emitter: JobsEventEmitter) {
     // Don't add any notifications if only the buff tracker is being shown.
@@ -204,8 +199,6 @@ export class Bars {
 
   _updateJob(job: Job): void {
     this.changeZoneFuncs = [];
-    this.lastAttackedDotTarget = undefined;
-    this.dotTarget = [];
 
     this.onYouGainEffect((id, matches) => {
       if (id === EffectId.WellFed) {
@@ -903,8 +896,6 @@ export class Bars {
   }
 
   _onChangeZone(e: EventResponses['ChangeZone']): void {
-    this.dotTarget = [];
-
     this._updateFoodBuff();
     if (this.buffTracker)
       this.buffTracker.clear();
@@ -1001,15 +992,8 @@ export class Bars {
           this.buffTracker?.onYouGainEffect(effectId, matches);
 
         // Mobs id starts with "4"
-        if (matches.targetId?.startsWith('4')) {
+        if (matches.targetId?.startsWith('4'))
           this.buffTracker?.onMobGainsEffect(effectId, matches);
-
-          // if the effect is from me.
-          if (matches.source === this.player.name) {
-            if (this.trackedDoTs.includes(effectId))
-              this.dotTarget.push(matches.targetId);
-          }
-        }
         break;
       }
 
@@ -1024,18 +1008,8 @@ export class Bars {
           this.buffTracker?.onYouLoseEffect(effectId, log);
 
         // Mobs id starts with "4"
-        if (log.targetId?.startsWith('4')) {
+        if (log.targetId?.startsWith('4'))
           this.buffTracker?.onMobLosesEffect(effectId, log);
-
-          // if the effect is from me.
-          if (log.source === this.player.name) {
-            if (this.trackedDoTs.includes(effectId)) {
-              const index = this.dotTarget.indexOf(log.targetId);
-              if (index > -1)
-                this.dotTarget.splice(index, 1);
-            }
-          }
-        }
         break;
       }
 
@@ -1048,31 +1022,12 @@ export class Bars {
           break;
 
         if (matches.source === this.player.name) {
-          if (matches.targetId && this.dotTarget.includes(matches.targetId))
-            this.lastAttackedDotTarget = matches.targetId;
-
           if (this.regexes.cordialRegex.test(id)) {
             this.gpPotion = true;
             window.setTimeout(() => {
               this.gpPotion = false;
             }, 2000);
           }
-        }
-        break;
-      }
-
-      case logDefinitions.NetworkDoT.type: {
-        // line[fields.id] is dotted target id.
-        // lastAttackedTarget, lastDotTarget may not be maintarget,
-        // but lastAttackedDotTarget must be your main target.
-        const fields = logDefinitions.NetworkDoT.fields;
-        if (
-          line[fields.id] === this.lastAttackedDotTarget &&
-          line[fields.which] === 'DoT' &&
-          line[fields.effectId] === '0'
-        ) {
-          // 0 if not field setting DoT
-          this.updateDotTimerFuncs.forEach((f) => f());
         }
         break;
       }
