@@ -103,9 +103,9 @@ export const setup = (bars: Bars): void => {
     id: 'nin-timers-combo',
     fgColor: 'combo-color',
   });
-  bars.onCombo((skill) => {
+  bars.onCombo((skill, combo) => {
     comboTimer.duration = 0;
-    if (bars.combo?.isFinalSkill)
+    if (combo.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;

@@ -28,7 +28,7 @@ export type SpeedBuffs = {
 
 /** Player data */
 export class Player {
-  id: string;
+  id: number;
   name: string;
   level: number;
   job: Job;
@@ -53,7 +53,7 @@ export class Player {
 
   constructor() {
     // basic info
-    this.id = '';
+    this.id = 0;
     this.name = '';
     this.level = 0;
     this.job = 'NONE';

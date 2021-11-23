@@ -9,6 +9,7 @@ import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
 
+import ComboTracker from './combo_tracker';
 import { Player, Stats } from './player';
 import { normalizeLogLine } from './utils';
 
@@ -34,15 +35,33 @@ export interface EventMap {
   'action/you': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
   'action/party': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
   'action/other': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
+  // triggered when combo state changes
+  'action/combo': (actionId: string | undefined, combo: ComboTracker) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
+  public combo: ComboTracker;
   public player: Player;
 
   constructor() {
     super();
 
     this.player = new Player();
+
+    // setup combo tracker
+    this.combo = ComboTracker.setup((id) => {
+      this.emit('action/combo', id, this.combo);
+    });
+    this.on('action/you', (actionId) => {
+      this.combo.HandleAbility(actionId);
+    });
+    this.on('player/hp', ({ hp }) => {
+      if (hp === 0)
+        this.combo.AbortCombo();
+    });
+    // Combos are job specific.
+    this.on('player/job', () => this.combo.AbortCombo());
+
     // register overlay plugin listeners
     this.registerOverlayListeners();
   }
@@ -137,7 +156,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
         if (!id)
           break;
 
-        if (sourceId === this.player.id)
+        if (sourceId && parseInt(sourceId, 16) === this.player.id)
           this.emit('action/you', id, matches);
         break;
       }
@@ -148,7 +167,7 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
   }
 
   private processPlayerChangedEvent({ detail: data }: OverlayEventResponses['onPlayerChangedEvent']): void {
-    this.player.id = data.id;
+    this.player.id = data.id as unknown as number; // TODO: fix type
     this.player.name = data.name;
 
     // always update stuffs when player changed their jobs

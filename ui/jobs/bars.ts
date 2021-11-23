@@ -14,7 +14,7 @@ import { NetFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
 
 import { BuffTracker } from './buff_tracker';
-import ComboTracker, { ComboCallback } from './combo_tracker';
+import ComboTracker from './combo_tracker';
 import { getReset, getSetup } from './components/index';
 import {
   kMPCombatRate,
@@ -106,7 +106,6 @@ export class Bars {
   private dotTarget: string[] = [];
   private trackedDoTs: string[] = [];
   private lastAttackedDotTarget?: string;
-  private comboFuncs: ComboCallback[] = [];
   private jobFuncs: JobFuncMap = {};
 
   private gainEffectFuncMap: { [effectId: string]: GainCallback } = {};
@@ -127,7 +126,6 @@ export class Bars {
   };
   public umbralStacks = 0;
 
-  public combo: ComboTracker;
   public changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[] = [];
   public updateDotTimerFuncs: (() => void)[] = [];
 
@@ -137,8 +135,6 @@ export class Bars {
       this.options.NotifyExpiredProcsInCombatSound = 'disabled';
       this.options.NotifyExpiredProcsInCombat = 0;
     }
-
-    this.combo = ComboTracker.setup(this._onComboChange.bind(this));
     this.player = this.ee.player;
 
     this.ee.on('player/level', (level, prevLevel) => {
@@ -146,14 +142,7 @@ export class Bars {
         this._updateFoodBuff();
     });
 
-    this.ee.on('player/hp', ({ hp }) => {
-      if (hp === 0)
-        this.combo.AbortCombo();
-    });
-
     this.ee.on('player/job', (job) => {
-      // Combos are job specific.
-      this.combo.AbortCombo();
       // FIXME: remove this
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
@@ -225,7 +214,6 @@ export class Bars {
   }
 
   _updateJob(job: Job): void {
-    this.comboFuncs = [];
     this.jobFuncs = {};
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
@@ -647,8 +635,10 @@ export class Bars {
     void audio.play();
   }
 
-  onCombo(callback: ComboCallback): void {
-    this.comboFuncs.push(callback);
+  onCombo(callback: (id: string | undefined, combo: ComboTracker) => void): void {
+    this.ee.on('action/combo', (id, combo) => {
+      callback(id, combo);
+    });
   }
 
   onMobGainsEffectFromYou(effectIds: string | string[], callback: GainCallback): void {
@@ -707,10 +697,6 @@ export class Bars {
       callback(id, matches);
     };
     this.ee.on('action/you', wrapper);
-  }
-
-  _onComboChange(skill?: string): void {
-    this.comboFuncs.forEach((func) => func(skill));
   }
 
   _updateHealth(data: {
@@ -1081,7 +1067,6 @@ export class Bars {
           break;
 
         if (matches.source === this.player.name) {
-          this.combo?.HandleAbility(id);
           this.buffTracker?.onUseAbility(id, matches);
 
           if (matches.targetId && this.dotTarget.includes(matches.targetId))

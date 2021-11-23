@@ -72,10 +72,10 @@ export const setup = (bars: Bars): void => {
         break;
     }
   });
-  bars.onCombo((skill) => {
+  bars.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     cartridgeComboTimer.duration = 0;
-    if (bars.combo?.isFinalSkill)
+    if (combo.isFinalSkill)
       return;
     if (skill)
       comboTimer.duration = 15;
