@@ -37,6 +37,11 @@ export interface EventMap {
   'action/other': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
   // triggered when combo state changes
   'action/combo': (actionId: string | undefined, combo: ComboTracker) => void;
+  // triggered when effect gains or loses
+  'effect/gain': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
+  'effect/lose': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+  'effect/gain/you': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
+  'effect/lose/you': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
@@ -146,6 +151,28 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
         };
         this.player.stats = stat;
         this.emit('player/stat', stat, this.player);
+        break;
+      }
+      case logDefinitions.GainsEffect.type: {
+        const matches = normalizeLogLine(ev.line, logDefinitions.GainsEffect.fields);
+        const effectId = matches.effectId;
+        if (!effectId)
+          break;
+
+        if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
+          this.emit('effect/gain/you', effectId, matches);
+        this.emit('effect/gain', effectId, matches);
+        break;
+      }
+      case logDefinitions.LosesEffect.type: {
+        const matches = normalizeLogLine(ev.line, logDefinitions.LosesEffect.fields);
+        const effectId = matches.effectId;
+        if (!effectId)
+          break;
+
+        if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
+          this.emit('effect/lose/you', effectId, matches);
+        this.emit('effect/lose', effectId, matches);
         break;
       }
       case logDefinitions.Ability.type:
