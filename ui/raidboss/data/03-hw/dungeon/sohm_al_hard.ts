@@ -331,6 +331,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
+        'Gowrow': '가우로우',
         'The Wound': '영봉의 상처',
         'The Lava Tube': '대용암굴',
         'The Leightonward': '레이튼워드',

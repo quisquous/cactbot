@@ -1,8 +1,12 @@
 import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
-import { EventResponses } from '../../types/event';
-import { OopsyDeathReason, OopsyMistake, OopsyMistakeType } from '../../types/oopsy';
+import {
+  DeathReportData,
+  OopsyDeathReason,
+  OopsyMistake,
+  OopsyMistakeType,
+} from '../../types/oopsy';
 
 import {
   MissableAbility,
@@ -12,6 +16,11 @@ import {
 } from './buff_map';
 import { ProcessedOopsyTriggerSet } from './damage_tracker';
 import { DeathReport } from './death_report';
+import {
+  CollectedBuff,
+  MissedBuffCollector,
+  RequestTimestampCallback,
+} from './missed_buff_collector';
 import { MistakeCollector } from './mistake_collector';
 import {
   GetShareMistakeText,
@@ -21,10 +30,6 @@ import {
   Translate,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
-
-// Abilities seem roughly instant.
-// Observation: up to ~1.2 seconds for an effect to roll through the party.
-const defaultCollectSeconds = 0.5;
 
 const emptyId = 'E0000000';
 const timestampFieldIdx = 1;
@@ -38,132 +43,6 @@ const getTimestamp = (splitLine: string[]): number => {
     throw new UnreachableCode();
   return new Date(timestampField).getTime();
 };
-
-type CollectedBuff = {
-  timestamp: number;
-  expireTimestamp: number;
-  sourceId: string;
-  buffName: string;
-  targetIds: string[];
-  splitLine: string[];
-  buff: MissableAbility | MissableEffect;
-  expireCallback: (timestamp: number) => void;
-};
-
-export type RequestTimestampCallback = (
-  timestamp: number,
-  callback: (timestamp: number) => void,
-) => void;
-type CollectedBuffCallback = (timestamp: number, buff: CollectedBuff) => void;
-
-// Handles tracking whether everybody received a buff or not.
-// In response to missed buffs, calls `collectedBuffCallback` when timestamps have expired.
-class MissedBuffCollector {
-  private buffs: { [sourceId: string]: { [buffId: string]: CollectedBuff } } = {};
-
-  constructor(
-    private requestTimestampCallback: RequestTimestampCallback,
-    private collectedBuffCallback: CollectedBuffCallback,
-  ) {
-  }
-
-  // TODO: call something like this on zone change, etc?
-  ExpireBuffsIfNeeded(timestamp: number) {
-    for (const buffList of Object.values(this.buffs)) {
-      for (const buffId of Object.keys(buffList)) {
-        const collectedBuff = buffList[buffId];
-        if (!collectedBuff)
-          continue;
-
-        if (timestamp > collectedBuff.timestamp)
-          collectedBuff.expireCallback(timestamp);
-      }
-    }
-  }
-
-  // Caller has vetted that we care about the target, so we don't need to do that here.
-  // Most (all) buffs only hit the party, and so no need to vet that the source is in the party.
-  OnAbilityBuff(splitLine: string[], buff: MissableAbility): void {
-    const sourceId = splitLine[logDefinitions.Ability.fields.sourceId];
-    const targetId = splitLine[logDefinitions.Ability.fields.targetId];
-    const buffName = splitLine[logDefinitions.Ability.fields.ability];
-    const timestamp = splitLine[logDefinitions.Ability.fields.timestamp];
-    if (
-      sourceId === undefined || targetId === undefined || buffName === undefined ||
-      timestamp === undefined
-    )
-      return;
-
-    this.OnBuff(new Date(timestamp).getTime(), splitLine, buff, buffName, sourceId, targetId);
-  }
-
-  OnEffectBuff(splitLine: string[], buff: MissableEffect): void {
-    const sourceId = splitLine[logDefinitions.GainsEffect.fields.sourceId];
-    const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
-    const buffName = splitLine[logDefinitions.GainsEffect.fields.effect];
-    const timestamp = splitLine[logDefinitions.GainsEffect.fields.timestamp];
-    if (
-      sourceId === undefined || targetId === undefined || buffName === undefined ||
-      timestamp === undefined
-    )
-      return;
-
-    this.OnBuff(new Date(timestamp).getTime(), splitLine, buff, buffName, sourceId, targetId);
-  }
-
-  OnBuff(
-    timestamp: number,
-    splitLine: string[],
-    buff: MissableAbility | MissableEffect,
-    buffName: string,
-    sourceId: string,
-    targetId: string,
-  ): void {
-    const buffList = this.buffs[sourceId] ??= {};
-
-    // Expire this buff if needed.
-    const expiredBuff = buffList[buff.id];
-    if (expiredBuff && timestamp > expiredBuff.expireTimestamp) {
-      // Handle and remove this buff if it has expired.
-      expiredBuff.expireCallback(timestamp);
-    }
-
-    // If we're already tracking, and it hasn't expired, just append the targetId.
-    const collectedBuff = buffList[buff.id];
-    if (collectedBuff) {
-      collectedBuff.targetIds.push(targetId);
-      return;
-    }
-
-    // Otherwise, we're tracking a new buff.
-    const collectSeconds = buff.collectSeconds ?? defaultCollectSeconds;
-    const expireTimestamp = timestamp + collectSeconds * 1000;
-
-    const expireCallback = (timestamp: number) => {
-      // Re-get the buff from the map, so that repeated calls to expireCallback will not
-      // call the collectedBuffCallback multiple times.
-      const expiredBuff = this.buffs[sourceId]?.[buff.id];
-      if (!expiredBuff)
-        return;
-      this.collectedBuffCallback(timestamp, expiredBuff);
-      delete this.buffs[sourceId]?.[buff.id];
-    };
-
-    // If we get here, this buff is not being tracked yet.
-    buffList[buff.id] = {
-      timestamp: timestamp,
-      splitLine: splitLine,
-      expireTimestamp: expireTimestamp,
-      sourceId: sourceId,
-      buffName: buffName,
-      targetIds: [targetId],
-      buff: buff,
-      expireCallback: expireCallback,
-    };
-
-    this.requestTimestampCallback(expireTimestamp, expireCallback);
-  }
-}
 
 export type TrackedLineEventType =
   | 'Ability'
@@ -201,10 +80,10 @@ export type TrackedMistakeEvent = {
 export type TrackedEvent = TrackedLineEvent | TrackedDeathReasonEvent | TrackedMistakeEvent;
 export type TrackedEventType = TrackedEvent['type'];
 
-// Tracks various state about the party (party, pets, buffs).
-// TODO: EffectTracker isn't a great name here, sorry.
-// TODO: Maybe EffectTracker -> StateTracker and DamageTracker -> OopsyTriggerProcessor?
-export class EffectTracker {
+// * Tracks various state about the party (party, pets, buffs, deaths).
+// * Generates some internal mistakes that need extra tracking (missed buffs, deaths)
+// * Tracks events in `trackedEvents` that can be handed to DeathReports for processing.
+export class PlayerStateTracker {
   private missedBuffCollector;
   private triggerSets: ProcessedOopsyTriggerSet[] = [];
   private partyIds: Set<string> = new Set();
@@ -261,8 +140,13 @@ export class EffectTracker {
     this.OnPartyChanged();
   }
 
-  SetBaseTime(splitLine: string[]): void {
-    this.baseTime = getTimestamp(splitLine);
+  OnStartEncounter(timestamp: number): void {
+    this.baseTime = timestamp;
+    this.collector.StartEncounter(timestamp);
+  }
+
+  OnStopEncounter(_timestamp: number): void {
+    // TODO: forward this along to MistakeObserver
   }
 
   PushTriggerSet(set: ProcessedOopsyTriggerSet): void {
@@ -310,8 +194,9 @@ export class EffectTracker {
     this.baseTime = undefined;
   }
 
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
+  OnChangeZone(timestamp: number, zoneName: string, zoneId: number): void {
     this.Reset();
+    this.collector.OnChangeZone(timestamp, zoneName, zoneId);
   }
 
   OnAddedCombatant(line: string, splitLine: string[]): void {
@@ -461,7 +346,7 @@ export class EffectTracker {
   }
 
   OnMistakeObj(timestamp: number, mistake: OopsyMistake): void {
-    this.collector.OnMistakeObj(mistake);
+    this.collector.OnMistakeObj(timestamp, mistake);
 
     const targetId = mistake.reportId;
     if (!targetId || !IsPlayerId(targetId))
@@ -503,7 +388,7 @@ export class EffectTracker {
       const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type;
 
       // Combining share/solo mistake lines with ability damage lines is a bit of
-      // duplication, but unless EffectTracker generated share/solo/damage mistakes
+      // duplication, but unless PlayerStateTracker generated share/solo/damage mistakes
       // itself, there's no way to undo the mistake + ability.  So, we'll add the
       // mistake text into the TrackedEventLine for the ability and hide the mistake.
       if (id in this.mistakeDamageMap) {
@@ -520,17 +405,17 @@ export class EffectTracker {
     }
 
     const targetName = splitLine[logDefinitions.WasDefeated.fields.target] ?? '???';
-    const report = new DeathReport(
-      this.options.DisplayLanguage,
-      this.baseTime,
-      timestamp,
-      targetId,
-      targetName,
-      events,
-    );
+    const reportData: DeathReportData = {
+      lang: this.options.DisplayLanguage,
+      baseTimestamp: this.baseTime,
+      deathTimestamp: timestamp,
+      targetId: targetId,
+      targetName: targetName,
+      events: events,
+    };
 
-    const mistake = report.generateMistake();
-    this.collector.OnMistakeObj(mistake);
+    const mistake = DeathReport.generateMistake(reportData);
+    this.collector.OnMistakeObj(timestamp, mistake);
   }
 
   OnHoTDoT(line: string, splitLine: string[]): void {

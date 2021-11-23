@@ -1,9 +1,8 @@
 import { UnreachableCode } from '../../resources/not_reached';
-import { EventResponses } from '../../types/event';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { DeathReport } from './death_report';
-import { MistakeObserver } from './mistake_observer';
+import { MistakeObserver, ViewEvent } from './mistake_observer';
 import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
@@ -204,6 +203,15 @@ export class OopsyLiveList implements MistakeObserver {
   }
 
   SetInCombat(inCombat: boolean): void {
+    // For usability sake:
+    //   - to avoid dungeon trash starting stopping combat and resetting the
+    //     list repeatedly, only reset when ACT starts a new encounter.
+    //   - for consistency with DPS meters, fflogs, etc, use ACT's encounter
+    //     time as the start time, not when game combat becomes true.
+    //   - to make it more readable, show/hide old mistakes out of game
+    //     combat, and consider early pulls starting game combat early.  This
+    //     allows for one long dungeon ACT encounter to have multiple early
+    //     or late pulls.
     if (this.inCombat === inCombat)
       return;
     this.inCombat = inCombat;
@@ -217,8 +225,8 @@ export class OopsyLiveList implements MistakeObserver {
     }
   }
 
-  OnMistakeObj(m: OopsyMistake): void {
-    const report = m.report;
+  OnMistakeObj(timestamp: number, m: OopsyMistake): void {
+    const report = m.report ? new DeathReport(m.report) : undefined;
     if (report)
       this.deathReport?.queue(report);
 
@@ -229,7 +237,7 @@ export class OopsyLiveList implements MistakeObserver {
     if (!translatedText)
       return;
 
-    const time = GetFormattedTime(this.baseTime, Date.now());
+    const time = GetFormattedTime(this.baseTime, timestamp);
     const text = `${blameText}${translatedText}`;
     const maxItems = this.options.NumLiveListItemsInCombat;
 
@@ -334,12 +342,25 @@ export class OopsyLiveList implements MistakeObserver {
     this.deathReport?.hide();
   }
 
-  StartNewACTCombat(): void {
-    this.Reset();
-    this.baseTime = Date.now();
+  OnEvent(event: ViewEvent): void {
+    if (event.type === 'Mistake')
+      this.OnMistakeObj(event.timestamp, event.mistake);
+    else if (event.type === 'StartEncounter')
+      this.StartEncounter(event.timestamp);
+    else if (event.type === 'ChangeZone')
+      this.OnChangeZone();
   }
 
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
+  OnSyncEvents(_events: ViewEvent[]): void {
+    // don't bother syncing for the live list
+  }
+
+  StartEncounter(timestamp: number): void {
+    this.Reset();
+    this.baseTime = timestamp;
+  }
+
+  OnChangeZone(): void {
     this.Reset();
   }
 }

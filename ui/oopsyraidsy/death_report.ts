@@ -1,14 +1,7 @@
 import { Lang } from '../../resources/languages';
 import logDefinitions from '../../resources/netlog_defs';
-import { OopsyMistake } from '../../types/oopsy';
+import { DeathReportData, OopsyMistake } from '../../types/oopsy';
 
-import {
-  TrackedDeathReasonEvent,
-  TrackedEvent,
-  TrackedEventType,
-  TrackedLineEvent,
-  TrackedMistakeEvent,
-} from './effect_tracker';
 import {
   kAttackFlags,
   kHealFlags,
@@ -16,6 +9,13 @@ import {
   Translate,
   UnscrambleDamage,
 } from './oopsy_common';
+import {
+  TrackedDeathReasonEvent,
+  TrackedEvent,
+  TrackedEventType,
+  TrackedLineEvent,
+  TrackedMistakeEvent,
+} from './player_state_tracker';
 
 // TODO: lots of things left to do with death reports
 // * probably include max hp as well?
@@ -64,31 +64,36 @@ export type ParsedDeathReportLine = {
 // This class's job is to sort through those raw lines and generate a subset of parsed
 // lines that various views might want to display in some fashion.
 export class DeathReport {
+  private lang: Lang;
+  private baseTimestamp: number | undefined;
+  public deathTimestamp: number;
+  public targetId: string;
+  public targetName: string;
+  private events: TrackedEvent[];
   private parsedReportLines?: ParsedDeathReportLine[];
 
-  constructor(
-    private lang: Lang,
-    private baseTimestamp: number | undefined,
-    public deathTimestamp: number,
-    public targetId: string,
-    public targetName: string,
-    private events: TrackedEvent[],
-  ) {
+  constructor(data: DeathReportData) {
+    this.lang = data.lang;
+    this.baseTimestamp = data.baseTimestamp;
+    this.deathTimestamp = data.deathTimestamp;
+    this.targetId = data.targetId;
+    this.targetName = data.targetName;
+    this.events = data.events;
   }
 
   // Generates an OopsyMistake that represents this DeathReport.
-  public generateMistake(): OopsyMistake {
+  public static generateMistake(data: DeathReportData): OopsyMistake {
     // Walk backward through events until we find the last damage or a death reason.
-    for (let i = this.events.length - 1; i >= 0; i--) {
-      const event = this.events[i];
+    for (let i = data.events.length - 1; i >= 0; i--) {
+      const event = data.events[i];
       if (!event)
         break;
       if (event.type === 'DeathReason') {
         return {
           type: 'death',
-          name: this.targetName,
+          name: data.targetName,
           text: event.text,
-          report: this,
+          report: data,
         };
       }
 
@@ -102,9 +107,9 @@ export class DeathReport {
           const text = `${abilityName} (${ability.amount}/${currentHp})`;
           return {
             type: 'death',
-            name: this.targetName,
+            name: data.targetName,
             text: text,
-            report: this,
+            report: data,
           };
         }
       }
@@ -112,9 +117,9 @@ export class DeathReport {
 
     return {
       type: 'death',
-      name: this.targetName,
+      name: data.targetName,
       text: '???',
-      report: this,
+      report: data,
     };
   }
 

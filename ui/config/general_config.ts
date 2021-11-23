@@ -1,3 +1,4 @@
+import { isLang } from '../../resources/languages';
 import UserConfig from '../../resources/user_config';
 
 UserConfig.registerOptions('general', {
@@ -98,9 +99,12 @@ UserConfig.registerOptions('general', {
       default: 'default',
       debug: true,
       setterFunc: (options, value) => {
+        if (typeof value !== 'string')
+          return;
         if (value === 'default')
           return;
-        options['DisplayLanguage'] = value;
+        if (isLang(value))
+          options['DisplayLanguage'] = value;
       },
     },
   ],

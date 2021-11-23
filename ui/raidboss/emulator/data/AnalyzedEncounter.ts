@@ -80,7 +80,7 @@ export default class AnalyzedEncounter extends EventBus {
     const state = combatant.getState(timestamp);
     popupText?.OnPlayerChange({
       detail: {
-        id: combatant.id,
+        id: parseInt(combatant.id),
         name: combatant.name,
         job: job,
         level: combatant.level ?? 0,

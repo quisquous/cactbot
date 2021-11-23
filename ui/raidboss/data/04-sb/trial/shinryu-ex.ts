@@ -890,8 +890,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
+        'Hakkinryu': '백금룡',
         'Left Wing': '왼쪽 날개',
         'Right Wing': '오른쪽 날개',
         'Shinryu': '신룡',
@@ -924,7 +924,7 @@ const triggerSet: TriggerSet<Data> = {
         'Meteor Impact': '운석 낙하',
         'Phase': '페이즈',
         'Protostar': '원시별',
-        'Reiyu Adds': '영룡 쫄',
+        'Reiryu Adds': '영룡 등장',
         'Second Wing': '두번째 날개',
         'Summon Icicle': '고드름 소환',
         'TAP BUTTON OR ELSE': '긴 급 조 작',

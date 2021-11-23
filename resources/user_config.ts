@@ -1,9 +1,10 @@
 // TODO: Fix import/order
 /* eslint-disable import/order */
+import { CactbotConfigurator } from '../ui/config/config';
 import { isLang, Lang } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
-import { LocaleText } from '../types/trigger';
+import { LocaleObject, LocaleText } from '../types/trigger';
 import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
 import { UnreachableCode } from './not_reached';
 
@@ -40,43 +41,37 @@ console.assert(
     Responses && Outputs && Util && ZoneId && ZoneInfo,
 );
 
-// TODO: this type is in config.js.
-type CactbotConfigurator = unknown;
-
 // TODO: move all of these to config.js?
-type UserFileCallback = (
+export type UserFileCallback = (
   jsFile: string,
   localFiles: { [filename: string]: string },
   options: BaseOptions,
   basePath: string,
 ) => void;
-type ConfigValue = string | number | boolean;
-type ConfigEntry = {
+export type ConfigValue = string | number | boolean;
+export type ConfigEntry = {
   id: string;
   name: LocaleText;
   type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory' | 'html';
+  html?: LocaleText;
   default: ConfigValue;
   debug?: boolean;
   debugOnly?: boolean;
   // For select.
-  options?: {
-    [lang in Lang]?: {
-      [selectText: string]: string;
-    };
-  };
+  options?: LocaleObject<{ [selectText: string]: string }>;
   setterFunc?: (options: BaseOptions, value: SavedConfigEntry) => void;
 };
 
-type OptionsTemplate = {
+export type OptionsTemplate = {
   buildExtraUI?: (base: CactbotConfigurator, container: HTMLElement) => void;
   processExtraOptions?: (options: BaseOptions, savedConfig: SavedConfigEntry) => void;
   options: ConfigEntry[];
 };
 
 class UserConfig {
-  private optionTemplates: { [overlayName: string]: OptionsTemplate } = {};
-  private savedConfig: SavedConfig = {};
-  private userFileCallbacks: { [overlayName: string]: UserFileCallback } = {};
+  public optionTemplates: { [overlayName: string]: OptionsTemplate } = {};
+  public userFileCallbacks: { [overlayName: string]: UserFileCallback } = {};
+  public savedConfig: SavedConfig = {};
 
   getDefaultBaseOptions(): BaseOptions {
     return {

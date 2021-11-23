@@ -23,6 +23,9 @@ const defaultFfxivPaths = [
 if (process.env['CACTBOT_DEFAULT_FFXIV_PATH'])
   defaultFfxivPaths.push(process.env['CACTBOT_DEFAULT_FFXIV_PATH']);
 
+const isObject = (obj: unknown): obj is { [key: string]: unknown } =>
+  obj !== null && typeof obj === 'object' && !Array.isArray(obj);
+
 class CoinachError extends Error {
   constructor(message?: string, cmd?: string, output?: string) {
     const errorMessage = `message: ${message ?? ''}
@@ -154,6 +157,25 @@ export class CoinachWriter {
     return '.';
   }
 
+  sortObjByKeys(obj: unknown): unknown {
+    if (!isObject(obj) || Array.isArray(obj))
+      return obj;
+
+    const out = Object
+      .keys((obj))
+      .sort()
+      .reduce((acc: typeof obj, key) => {
+        const nested = obj[key];
+        if (isObject(nested))
+          acc[key] = this.sortObjByKeys(nested);
+        else
+          acc[key] = nested;
+
+        return acc;
+      }, {});
+    return out;
+  }
+
   async write(
     filename: string,
     scriptname: string,
@@ -162,7 +184,7 @@ export class CoinachWriter {
   ): Promise<void> {
     const fullPath = path.join(this.cactbotPath, filename);
 
-    let str = JSON.stringify(d, Object.keys(d).sort(), 2);
+    let str = JSON.stringify(this.sortObjByKeys(d), null, 2);
 
     // # make keys integers, remove leading zeroes.
     str = str.replace(/\'0*([0-9]+)\': {/, '$1: {');
@@ -206,7 +228,7 @@ export default ${str}`;
   ): Promise<void> {
     const fullPath = path.join(this.cactbotPath, filename);
 
-    let str = JSON.stringify(data, Object.keys(data).sort(), 2);
+    let str = JSON.stringify(this.sortObjByKeys(data), null, 2);
 
     // # make keys integers, remove leading zeroes.
     str = str.replace(/\'0*([0-9]+)\': {/, '$1: {');

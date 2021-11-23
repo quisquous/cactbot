@@ -501,7 +501,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Dancing Fan': '춤추는 부채',
         'Moondust': '달조각',

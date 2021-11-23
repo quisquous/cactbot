@@ -188,6 +188,7 @@ export default {
     // Opposite of a knockback.
     en: 'Draw In',
     de: 'Einzug',
+    fr: 'Attraction',
     ja: '吸込み',
     cn: '吸引',
     ko: '끌어당김',
@@ -294,7 +295,7 @@ export default {
   out: {
     en: 'Out',
     de: 'Raus',
-    fr: 'Exterieur',
+    fr: 'Extérieur',
     ja: '外へ',
     cn: '远离',
     ko: '밖으로',
@@ -554,7 +555,7 @@ export default {
   wakeUp: {
     en: 'WAKE UP',
     de: 'AUFWACHEN',
-    fr: 'RÉVEILLES-TOI',
+    fr: 'RÉVEILLE-TOI',
     ja: '目を覚まして！',
     cn: '醒醒！动一动！！',
     ko: '일어나세요!',
@@ -618,7 +619,7 @@ export default {
   northwest: {
     en: 'Northwest',
     de: 'Nordwesten',
-    fr: 'nord-ouest',
+    fr: 'Nord-Ouest',
     ja: '北西',
     cn: '左上(西北)',
     ko: '북서',
@@ -626,7 +627,7 @@ export default {
   northeast: {
     en: 'Northeast',
     de: 'Nordosten',
-    fr: 'nord-est',
+    fr: 'Nord-Est',
     ja: '北東',
     cn: '右上(东北)',
     ko: '북동',
@@ -634,7 +635,7 @@ export default {
   southwest: {
     en: 'Southwest',
     de: 'Südwesten',
-    fr: 'sud-ouest',
+    fr: 'Sud-Ouest',
     ja: '南西',
     cn: '左下(西南)',
     ko: '남서',
@@ -642,7 +643,7 @@ export default {
   southeast: {
     en: 'Southeast',
     de: 'Südosten',
-    fr: 'sud-est',
+    fr: 'Sud-Est',
     ja: '南東',
     cn: '右下(东南)',
     ko: '남동',

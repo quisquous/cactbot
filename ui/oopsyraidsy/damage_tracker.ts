@@ -19,6 +19,7 @@ import {
   MistakeMap,
   OopsyDeathReason,
   OopsyField,
+  OopsyFileData,
   OopsyMistake,
   OopsyMistakeType,
   OopsyTrigger,
@@ -26,8 +27,7 @@ import {
 } from '../../types/oopsy';
 import { ZoneIdType } from '../../types/trigger';
 
-import { OopsyFileData } from './data/oopsy_manifest.txt';
-import { EffectTracker } from './effect_tracker';
+import { CombatState } from './combat_state';
 import { MistakeCollector } from './mistake_collector';
 import {
   GetShareMistakeText,
@@ -39,11 +39,43 @@ import {
   kShiftFlagValues,
   playerDamageFields,
   ShortNamify,
+  Translate,
   UnscrambleDamage,
 } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
+import { PlayerStateTracker } from './player_state_tracker';
 
 const actorControlFadeInCommand = '40000010';
+
+const partyWipeText = {
+  en: 'Party Wipe',
+  de: 'Gruppe ausgelöscht',
+  fr: 'Party Wipe',
+  ja: 'ワイプ',
+  cn: '团灭',
+  ko: '파티 전멸',
+};
+
+const earlyPullText = {
+  en: 'early pull',
+  de: 'zu früh angegriffen',
+  fr: 'early pull',
+  ja: 'タゲ取り早い',
+  cn: '抢开',
+  ko: '풀링 빠름',
+};
+
+const latePullText = {
+  en: 'late pull',
+  de: 'zu spät angegriffen',
+  fr: 'late pull',
+  ja: 'タゲ取り遅い',
+  cn: '晚开',
+  ko: '풀링 늦음',
+};
+
+// Internal trigger id for early pull
+const earlyPullTriggerId = 'General Early Pull';
 
 const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
 
@@ -62,11 +94,15 @@ export class DamageTracker {
   private timers: number[] = [];
   private triggers: ProcessedOopsyTrigger[] = [];
   private partyTracker: PartyTracker;
-  private effectTracker: EffectTracker;
+  private playerStateTracker: PlayerStateTracker;
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
   private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
+  private wipeCactbotEcho: CactbotBaseRegExp<'GameLog'>;
+  private combatState = new CombatState(this);
+  private engageTime?: number;
+  private firstPuller?: string;
   private lastTimestamp = 0;
   private triggerSuppress: { [triggerId: string]: number } = {};
   private data: OopsyData;
@@ -90,11 +126,11 @@ export class DamageTracker {
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
-      this.effectTracker.OnPartyChanged();
+      this.playerStateTracker.OnPartyChanged();
     });
     const timestampCallback = (timestamp: number, callback: (timestamp: number) => void) =>
       this.OnRequestTimestampCallback(timestamp, callback);
-    this.effectTracker = new EffectTracker(
+    this.playerStateTracker = new PlayerStateTracker(
       this.options,
       this.partyTracker,
       this.collector,
@@ -109,6 +145,7 @@ export class DamageTracker {
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang] ||
       LocaleNetRegex.countdownCancel['en'];
     this.abilityFullRegex = NetRegexes.abilityFull();
+    this.wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
 
     this.data = this.GetDataObject();
     this.Reset();
@@ -151,13 +188,31 @@ export class DamageTracker {
     this.timers = [];
   }
 
-  private UpdateLastTimestamp(splitLine: string[]): number {
-    if (splitLine[logDefinitions.None.fields.type] === logDefinitions.GameLog.type)
-      return this.lastTimestamp;
+  private OnEngage(timestamp: number) {
+    this.engageTime = timestamp;
+
+    if (!this.firstPuller || !this.combatState.startTime)
+      return;
+
+    const seconds = (timestamp - this.combatState.startTime) / 1000;
+    if (seconds >= this.options.MinimumTimeForPullMistake) {
+      const mistakeStr = Translate(this.options.DisplayLanguage, earlyPullText) ?? '';
+      const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
+      if (IsTriggerEnabled(this.options, earlyPullTriggerId)) {
+        this.playerStateTracker.OnMistakeObj(timestamp, {
+          type: 'pull',
+          name: this.firstPuller,
+          blame: this.firstPuller,
+          text: text,
+        });
+      }
+    }
+  }
+
+  private UpdateLastTimestamp(splitLine: string[]): void {
     const timeField = splitLine[logDefinitions.None.fields.timestamp];
     if (timeField)
       this.lastTimestamp = new Date(timeField).getTime();
-    return this.lastTimestamp;
   }
 
   OnNetLog(e: EventResponses['LogLine']): void {
@@ -171,10 +226,9 @@ export class DamageTracker {
     // If we're waiting on a timestamp callback, check if any have passed with this line.
     // Ignore game log lines, which don't track milliseconds.
     if (type !== logDefinitions.GameLog.type) {
+      this.UpdateLastTimestamp(splitLine);
       let timestampCallback = this.timestampCallbacks[0];
       while (timestampCallback) {
-        // Don't update timestamp on every single network log line, only when there are callbacks.
-        this.UpdateLastTimestamp(splitLine);
         if (this.lastTimestamp < timestampCallback.timestamp)
           break;
 
@@ -186,37 +240,52 @@ export class DamageTracker {
 
     switch (type) {
       case logDefinitions.GameLog.type:
-        if (this.countdownEngageRegex.test(line))
-          this.collector.AddEngage();
+        if (this.countdownEngageRegex.test(line)) {
+          // It would be ideal if we could use the log timestamp, but many early/late pulls are <1s,
+          // and the accuracy of game log lines is also at most 1s off from real time.
+          this.OnEngage(Date.now());
+        }
         if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
-          this.collector.Reset();
+          this.combatState.Reset();
+        if (this.wipeCactbotEcho.test(line))
+          this.OnPartyWipeEvent(this.lastTimestamp);
+        break;
+      case logDefinitions.ChangeZone.type:
+        {
+          const name = splitLine[logDefinitions.ChangeZone.fields.name];
+          const id = splitLine[logDefinitions.ChangeZone.fields.id];
+          if (name !== undefined && id !== undefined)
+            this.SetZone(this.lastTimestamp, name, parseInt(id, 16));
+        }
         break;
       case logDefinitions.ChangedPlayer.type:
-        this.effectTracker.OnChangedPlayer(line, splitLine);
+        this.playerStateTracker.OnChangedPlayer(line, splitLine);
         break;
       case logDefinitions.AddedCombatant.type:
-        this.effectTracker.OnAddedCombatant(line, splitLine);
+        this.playerStateTracker.OnAddedCombatant(line, splitLine);
         break;
       case logDefinitions.Ability.type:
       case logDefinitions.NetworkAOEAbility.type:
         this.OnAbilityEvent(line, splitLine);
-        this.effectTracker.OnAbility(line, splitLine);
+        this.playerStateTracker.OnAbility(line, splitLine);
         break;
       case logDefinitions.WasDefeated.type:
-        this.effectTracker.OnDefeated(line, splitLine);
+        this.playerStateTracker.OnDefeated(line, splitLine);
         break;
       case logDefinitions.GainsEffect.type:
-        this.effectTracker.OnGainsEffect(line, splitLine);
+        this.playerStateTracker.OnGainsEffect(line, splitLine);
         break;
       case logDefinitions.LosesEffect.type:
-        this.effectTracker.OnLosesEffect(line, splitLine);
+        this.playerStateTracker.OnLosesEffect(line, splitLine);
         break;
       case logDefinitions.NetworkDoT.type:
-        this.effectTracker.OnHoTDoT(line, splitLine);
+        this.playerStateTracker.OnHoTDoT(line, splitLine);
         break;
       case logDefinitions.ActorControl.type:
-        if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand)
-          this.effectTracker.OnWipe(line, splitLine);
+        if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand) {
+          this.OnPartyWipeEvent(this.lastTimestamp);
+          this.playerStateTracker.OnWipe(line, splitLine);
+        }
         break;
     }
 
@@ -225,17 +294,17 @@ export class DamageTracker {
     for (const trigger of this.triggers) {
       const matches = trigger.localRegex.exec(line);
       if (matches)
-        this.OnTrigger(trigger, matches, this.UpdateLastTimestamp(splitLine));
+        this.OnTrigger(trigger, matches, this.lastTimestamp);
     }
   }
 
   private OnAbilityEvent(line: string, splitLine: string[]): void {
-    // TODO track first puller here, collector doesn't need every damage line
-    if (this.collector.firstPuller)
+    if (this.firstPuller || this.combatState.startTime)
       return;
 
     // This is kind of obnoxious to have to regex match every ability line that's already split.
     // But, it turns it into a usable match object.
+    // TODO: use log definitions here??
     const lineMatches = this.abilityFullRegex.exec(line);
     if (!lineMatches || !lineMatches.groups)
       return;
@@ -259,8 +328,42 @@ export class DamageTracker {
     if (!kAttackFlags.includes(lowByte))
       return;
 
-    this.collector.AddDamage(matches);
-    this.effectTracker.SetBaseTime(splitLine);
+    // Start combat first prior to sending a late pull mistake,
+    // as starting a new combat can reset the live list.
+    this.combatState.StartCombat(this.lastTimestamp);
+
+    if (IsPlayerId(matches.sourceId))
+      this.firstPuller = matches.source;
+    else if (IsPlayerId(matches.targetId))
+      this.firstPuller = matches.target;
+    else
+      this.firstPuller = '???';
+
+    if (this.engageTime) {
+      const seconds = ((Date.now() - this.engageTime) / 1000);
+      if (seconds >= this.options.MinimumTimeForPullMistake) {
+        const mistakeStr = Translate(this.options.DisplayLanguage, latePullText) ?? '';
+        const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
+        if (IsTriggerEnabled(this.options, earlyPullTriggerId)) {
+          this.playerStateTracker.OnMistakeObj(this.lastTimestamp, {
+            type: 'pull',
+            name: this.firstPuller,
+            blame: this.firstPuller,
+            text: text,
+          });
+        }
+      }
+    }
+  }
+
+  OnStartEncounter(timestamp: number): void {
+    this.playerStateTracker.OnStartEncounter(timestamp);
+  }
+
+  OnStopEncounter(timestamp: number): void {
+    this.playerStateTracker.OnStopEncounter(timestamp);
+    this.firstPuller = undefined;
+    this.engageTime = undefined;
   }
 
   OnTrigger(trigger: LooseOopsyTrigger, execMatches: RegExpExecArray, timestamp: number): void {
@@ -326,9 +429,9 @@ export class DamageTracker {
           const mistakeTimestamp = timestamp + delaySeconds * 1000;
           if (Array.isArray(m)) {
             for (const mistake of m)
-              this.effectTracker.OnMistakeObj(mistakeTimestamp, mistake);
+              this.playerStateTracker.OnMistakeObj(mistakeTimestamp, mistake);
           } else if (isOopsyMistake(m)) {
-            this.effectTracker.OnMistakeObj(mistakeTimestamp, m);
+            this.playerStateTracker.OnMistakeObj(mistakeTimestamp, m);
           }
         }
       }
@@ -336,7 +439,7 @@ export class DamageTracker {
         const ret = ValueOrFunction(trigger.deathReason, matches);
         if (ret && typeof ret === 'object' && !Array.isArray(ret)) {
           if (!isOopsyMistake(ret))
-            this.effectTracker.OnDeathReason(timestamp, ret);
+            this.playerStateTracker.OnDeathReason(timestamp, ret);
         }
       }
       if ('run' in trigger)
@@ -349,26 +452,53 @@ export class DamageTracker {
       this.timers.push(window.setTimeout(f, delaySeconds * 1000));
   }
 
-  OnPartyWipeEvent(): void {
-    if (this.ignoreZone)
-      return;
+  OnPartyWipeEvent(timestamp: number): void {
+    this.playerStateTracker.OnMistakeObj(timestamp, {
+      type: 'wipe',
+      text: partyWipeText,
+    });
+
     this.Reset();
-    this.collector.OnPartyWipeEvent();
+    this.combatState.StopCombat(timestamp);
   }
 
+  // Similar to PlayerStateTracker handling OnPlayerChanged events plus ChangedPlayer lines,
+  // handling this event is extra insurance for reloads in the middle of a zone when
+  // there won't be ChangeZone lines to do it more naturally.
   OnChangeZone(e: EventResponses['ChangeZone']): void {
-    this.zoneName = e.zoneName;
-    this.zoneId = e.zoneID;
+    this.SetZone(this.lastTimestamp, e.zoneName, e.zoneID);
+  }
+
+  SetZone(timestamp: number, zoneName: string, zoneId: number): void {
+    if (this.zoneId === zoneId)
+      return;
+
+    this.zoneName = zoneName;
+    this.zoneId = zoneId;
 
     const zoneInfo = ZoneInfo[this.zoneId];
     this.contentType = zoneInfo?.contentType ?? 0;
 
-    this.effectTracker.ClearTriggerSets();
-    this.effectTracker.OnChangeZone(e);
+    this.combatState.Reset();
+    this.playerStateTracker.ClearTriggerSets();
+    this.playerStateTracker.OnChangeZone(timestamp, zoneName, zoneId);
     this.ReloadTriggers();
   }
 
   OnInCombatChangedEvent(e: EventResponses['onInCombatChangedEvent']): void {
+    // Don't send StartCombat with a timestamp=0 before we've seen any
+    // log messages.  This can happen if you reload while in combat.
+    // We'll see an action event soon enough to also start combat.
+    if (!this.lastTimestamp)
+      return;
+
+    if (this.inCombat !== e.detail.inGameCombat) {
+      if (e.detail.inGameCombat)
+        this.combatState.StartCombat(this.lastTimestamp);
+      else
+        this.combatState.StopCombat(this.lastTimestamp);
+    }
+
     this.inCombat = e.detail.inGameCombat;
     this.data.inCombat = this.inCombat;
   }
@@ -541,7 +671,7 @@ export class DamageTracker {
       for (const trigger of set.triggers ?? [])
         this.ProcessTrigger(trigger);
 
-      this.effectTracker.PushTriggerSet(set);
+      this.playerStateTracker.PushTriggerSet(set);
     }
   }
 
@@ -569,7 +699,7 @@ export class DamageTracker {
     this.job = e.detail.job;
     this.role = Util.jobToRole(this.job);
     this.ReloadTriggers();
-    this.effectTracker.SetPlayerId(parseInt(e.detail.id).toString(16));
+    this.playerStateTracker.SetPlayerId(e.detail.id.toString(16));
   }
 
   ProcessDataFiles(): void {
