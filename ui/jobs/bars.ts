@@ -114,9 +114,6 @@ export class Bars {
   private mobGainEffectFromYouFuncMap: { [effectId: string]: GainCallback } = {};
   private mobLoseEffectFromYouFuncMap: { [effectId: string]: LoseCallback } = {};
   private abilityFuncMap: { [abilityId: string]: AbilityCallback } = {};
-  private statChangeFuncMap: {
-    [job: string]: ((gcd: { gcdSkill: number; gcdSpell: number }) => void);
-  } = {};
 
   public level = 0;
   public skillSpeed = 0;
@@ -236,7 +233,6 @@ export class Bars {
     this.mobGainEffectFromYouFuncMap = {};
     this.mobLoseEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
-    this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
     this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
@@ -491,10 +487,6 @@ export class Bars {
 
     this._validateKeys();
 
-    // Many jobs use the gcd to calculate thresholds and value scaling.
-    // Run this initially to set those values.
-    // this._updateJobBarGCDs();
-
     // set up DoT effect ids for tracking target
     this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
@@ -714,7 +706,6 @@ export class Bars {
   }
 
   onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {
-    // this.statChangeFuncMap[job] = callback;
     this.ee.on('player/stat', (_stat, gcd) => callback(gcd));
   }
 
@@ -727,12 +718,6 @@ export class Bars {
 
   _onComboChange(skill?: string): void {
     this.comboFuncs.forEach((func) => func(skill));
-  }
-
-  _updateJobBarGCDs(): void {
-    const f = this.statChangeFuncMap[this.player.job];
-    if (f)
-      f(this.player);
   }
 
   _updateHealth(data: {
@@ -1032,14 +1017,6 @@ export class Bars {
           this._onCraftingLog(log);
         break;
       }
-
-      // case logDefinitions.PlayerStats.type: {
-      //   const fields = logDefinitions.PlayerStats.fields;
-      //   this.skillSpeed = parseInt(line[fields.skillSpeed] ?? '0');
-      //   this.spellSpeed = parseInt(line[fields.spellSpeed] ?? '0');
-      //   this._updateJobBarGCDs();
-      //   break;
-      // }
 
       case logDefinitions.GainsEffect.type: {
         const fields = logDefinitions.GainsEffect.fields;
