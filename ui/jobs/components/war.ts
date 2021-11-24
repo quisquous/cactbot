@@ -38,7 +38,7 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'combo-color',
   });
 
-  bars.onCombo((skill, combo) => {
+  player.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     if (combo.isFinalSkill)
       return;
@@ -46,16 +46,16 @@ export const setup = (bars: Bars, player: Player): void => {
       comboTimer.duration = 15;
   });
 
-  bars.onYouGainEffect((id, matches) => {
+  player.onYouGainEffect((id, matches) => {
     if (id === EffectId.StormsEye)
       eyeBox.duration = parseFloat(matches.duration ?? '0');
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     if (id === EffectId.StormsEye)
       eyeBox.duration = 0;
   });
 
-  bars.onStatChange('WAR', ({ gcdSkill }) => {
+  player.onStatChange('WAR', ({ gcdSkill }) => {
     eyeBox.valuescale = gcdSkill * 3 + 1;
   });
 

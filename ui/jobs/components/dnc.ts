@@ -15,7 +15,7 @@ export const setup = (bars: Bars, player: Player): void => {
     id: 'dnc-timers-combo',
     fgColor: 'combo-color',
   });
-  bars.onCombo((skill, combo) => {
+  player.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     if (combo.isFinalSkill)
       return;
@@ -43,7 +43,7 @@ export const setup = (bars: Bars, player: Player): void => {
   });
   let flourishEffect: string[] = [];
   let flourishIsActive = false;
-  bars.onYouLoseEffect((effect) => {
+  player.onYouLoseEffect((effect) => {
     switch (effect) {
       case EffectId.FlourishingCascade:
       case EffectId.FlourishingFountain:
@@ -63,7 +63,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.StandardStep:
         standardStep.duration = 30;
@@ -126,7 +126,7 @@ export const setup = (bars: Bars, player: Player): void => {
       espritGauge.parentNode.classList.remove('high');
   });
 
-  bars.onStatChange('DNC', () => {
+  player.onStatChange('DNC', () => {
     standardStep.valuescale = player.gcdSkill;
     standardStep.threshold = player.gcdSkill + 1;
     technicalStep.valuescale = player.gcdSkill;

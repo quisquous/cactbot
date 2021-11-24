@@ -10,11 +10,8 @@ import WidgetList from '../../resources/widget_list';
 import ZoneInfo from '../../resources/zone_info';
 import { EventResponses } from '../../types/event';
 import { Job } from '../../types/job';
-import { NetFields } from '../../types/net_fields';
-import { ToMatches } from '../../types/net_matches';
 
 import { BuffTracker } from './buff_tracker';
-import ComboTracker from './combo_tracker';
 import { getReset, getSetup } from './components/index';
 import {
   kMPCombatRate,
@@ -28,7 +25,7 @@ import {
 import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
 import { JobsOptions } from './jobs_options';
-import { Player, Stats } from './player';
+import { Player } from './player';
 import {
   computeBackgroundColorFrom,
   doesJobNeedMPBar,
@@ -68,9 +65,6 @@ type JobDomObjects = {
   mpTicker?: TimerBar;
 };
 
-type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
-type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
-type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
 type ZoneChangeCallback = (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
 
 export interface ResourceBox extends HTMLDivElement {
@@ -129,7 +123,7 @@ export class Bars {
       this._updateJob(job);
 
       // add food buff trigger
-      this.onYouGainEffect((id, matches) => {
+      this.player.onYouGainEffect((id, matches) => {
         if (id === EffectId.WellFed) {
           const seconds = parseFloat(matches.duration ?? '0');
           const now = Date.now(); // This is in ms.
@@ -619,74 +613,6 @@ export class Bars {
     const audio = new Audio('../../resources/sounds/freesound/alarm.webm');
     audio.volume = 0.3;
     void audio.play();
-  }
-
-  onCombo(callback: (id: string | undefined, combo: ComboTracker) => void): void {
-    const wrapper = (id: string | undefined, combo: ComboTracker) => {
-      callback(id, combo);
-    };
-    this.player.on('action/combo', wrapper);
-    this.player.once('job', () => this.player.off('action/combo', wrapper));
-  }
-
-  onMobGainsEffectFromYou(callback: GainCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
-      if (
-        // check if target is a mob, whose id starts with "4"
-        matches.targetId?.startsWith('4') &&
-        parseInt(matches.sourceId ?? '0', 16) === this.player.id
-      )
-        callback(id, matches);
-    };
-    this.player.on('effect/gain', wrapper);
-    this.player.once('job', () => this.player.off('effect/gain', wrapper));
-  }
-
-  onMobLosesEffectFromYou(callback: LoseCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
-      if (
-        // check if target is a mob, whose id starts with "4"
-        matches.targetId?.startsWith('4') &&
-        parseInt(matches.sourceId ?? '0', 16) === this.player.id
-      )
-        callback(id, matches);
-    };
-    this.player.on('effect/lose', wrapper);
-    this.player.once('job', () => this.player.off('effect/lose', wrapper));
-  }
-
-  onYouGainEffect(callback: GainCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
-      callback(id, matches);
-    };
-    this.player.on('effect/gain/you', wrapper);
-    this.player.once('job', () => this.player.off('effect/gain/you', wrapper));
-  }
-
-  onYouLoseEffect(callback: LoseCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
-      callback(id, matches);
-    };
-    this.player.on('effect/lose/you', wrapper);
-    this.player.once('job', () => this.player.off('effect/lose/you', wrapper));
-  }
-
-  onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {
-    const wrapper = (_stat: Stats, gcd: Parameters<typeof callback>[0]) => {
-      if (this.player.job === job)
-        callback(gcd);
-    };
-    this.player.on('stat', wrapper);
-    // unregister when player change their job
-    this.player.once('job', () => this.player.off('stat', wrapper));
-  }
-
-  onUseAbility(callback: AbilityCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => {
-      callback(id, matches);
-    };
-    this.player.on('action/you', wrapper);
-    this.player.once('job', () => this.player.off('action/you', wrapper));
   }
 
   onZoneChange(callback: ZoneChangeCallback): void {

@@ -15,7 +15,7 @@ export const setup = (bars: Bars, player: Player): void => {
     id: 'mch-timers-combo',
     fgColor: 'combo-color',
   });
-  bars.onCombo((skill, combo) => {
+  player.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     if (combo.isFinalSkill)
       return;
@@ -90,7 +90,7 @@ export const setup = (bars: Bars, player: Player): void => {
       }
     }
   };
-  bars.onMobGainsEffectFromYou((id, matches) => {
+  player.onMobGainsEffectFromYou((id, matches) => {
     if (id === EffectId.Wildfire) {
       wildFireActive = true;
       wildFireCounts = parseInt(matches.count ?? '0');
@@ -98,7 +98,7 @@ export const setup = (bars: Bars, player: Player): void => {
       stacksContainer.classList.remove('hide');
     }
   });
-  bars.onMobLosesEffectFromYou((id) => {
+  player.onMobLosesEffectFromYou((id) => {
     if (id === EffectId.Wildfire) {
       wildFireActive = false;
       refreshWildFireGauge();
@@ -109,15 +109,15 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'mch-color-wildfire',
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.Drill:
       case kAbility.Bioblaster:
-        drillBox.duration = bars.player.getActionCooldown(20000, 'skill');
+        drillBox.duration = player.getActionCooldown(20000, 'skill');
         break;
       case kAbility.AirAnchor:
       case kAbility.HotShot:
-        airAnchorBox.duration = bars.player.getActionCooldown(40000, 'skill');
+        airAnchorBox.duration = player.getActionCooldown(40000, 'skill');
         break;
       case kAbility.WildFire: {
         wildFireBox.duration = 10 + 0.9; // animation delay
@@ -137,7 +137,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onStatChange('MCH', ({ gcdSkill }) => {
+  player.onStatChange('MCH', ({ gcdSkill }) => {
     drillBox.valuescale = gcdSkill;
     drillBox.threshold = gcdSkill * 3 + 1;
     airAnchorBox.valuescale = gcdSkill;

@@ -68,7 +68,7 @@ export const setup = (bars: Bars, player: Player): void => {
       l.classList.remove('full');
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.Aero:
       case kAbility.Aero2:
@@ -86,16 +86,16 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onYouGainEffect((id) => {
+  player.onYouGainEffect((id) => {
     if (id === EffectId.PresenceOfMind)
       player.speedBuffs.presenceOfMind = true;
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     if (id === EffectId.PresenceOfMind)
       player.speedBuffs.presenceOfMind = false;
   });
 
-  bars.onStatChange('WHM', ({ gcdSpell }) => {
+  player.onStatChange('WHM', ({ gcdSpell }) => {
     diaBox.valuescale = gcdSpell;
     diaBox.threshold = gcdSpell + 1;
     assizeBox.valuescale = gcdSpell;

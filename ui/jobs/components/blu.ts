@@ -1,9 +1,10 @@
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const offguardBox = bars.addProcBox({
     id: 'blu-procs-offguard',
     fgColor: 'blu-color-offguard',
@@ -19,13 +20,13 @@ export const setup = (bars: Bars): void => {
     fgColor: 'blu-color-lucid',
   });
 
-  bars.onStatChange('BLU', ({ gcdSpell }) => {
+  player.onStatChange('BLU', ({ gcdSpell }) => {
     offguardBox.threshold = gcdSpell * 2;
     tormentBox.threshold = gcdSpell * 3;
     lucidBox.threshold = gcdSpell + 1;
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.OffGuard:
         offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');

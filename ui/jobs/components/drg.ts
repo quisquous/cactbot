@@ -21,7 +21,7 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'drg-color-disembowel',
     notifyWhenExpired: true,
   });
-  bars.onCombo((skill) => {
+  player.onCombo((skill) => {
     if (skill === kAbility.Disembowel)
       disembowelBox.duration = 30 + 1;
   });
@@ -37,7 +37,7 @@ export const setup = (bars: Bars, player: Player): void => {
     threshold: 20,
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.HighJump:
       case kAbility.Jump:
@@ -70,7 +70,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onStatChange('DRG', ({ gcdSkill }) => {
+  player.onStatChange('DRG', ({ gcdSkill }) => {
     disembowelBox.valuescale = gcdSkill;
     disembowelBox.threshold = gcdSkill * 5;
     highJumpBox.valuescale = gcdSkill;

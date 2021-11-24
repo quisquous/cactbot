@@ -33,6 +33,10 @@ export type SpeedBuffs = {
   circleOfPower: boolean;
 };
 
+export type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
+export type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+export type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
+
 export interface EventMap {
   // triggered when data of current player is updated
   'hp': (
@@ -171,6 +175,74 @@ export class Player extends PlayerBase {
     // setup event emitter
     this.jobsEmitter.on('player', (ev) => this.processPlayerChangedEvent(ev));
     this.jobsEmitter.on('log', (line) => this.processLogLines(line));
+  }
+
+  onCombo(callback: (id: string | undefined, combo: ComboTracker) => void): void {
+    const wrapper = (id: string | undefined, combo: ComboTracker) => {
+      callback(id, combo);
+    };
+    this.on('action/combo', wrapper);
+    this.once('job', () => this.off('action/combo', wrapper));
+  }
+
+  onMobGainsEffectFromYou(callback: GainCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
+      if (
+        // check if target is a mob, whose id starts with "4"
+        matches.targetId?.startsWith('4') &&
+        parseInt(matches.sourceId ?? '0', 16) === this.id
+      )
+        callback(id, matches);
+    };
+    this.on('effect/gain', wrapper);
+    this.once('job', () => this.off('effect/gain', wrapper));
+  }
+
+  onMobLosesEffectFromYou(callback: LoseCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
+      if (
+        // check if target is a mob, whose id starts with "4"
+        matches.targetId?.startsWith('4') &&
+        parseInt(matches.sourceId ?? '0', 16) === this.id
+      )
+        callback(id, matches);
+    };
+    this.on('effect/lose', wrapper);
+    this.once('job', () => this.off('effect/lose', wrapper));
+  }
+
+  onYouGainEffect(callback: GainCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
+      callback(id, matches);
+    };
+    this.on('effect/gain/you', wrapper);
+    this.once('job', () => this.off('effect/gain/you', wrapper));
+  }
+
+  onYouLoseEffect(callback: LoseCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
+      callback(id, matches);
+    };
+    this.on('effect/lose/you', wrapper);
+    this.once('job', () => this.off('effect/lose/you', wrapper));
+  }
+
+  onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {
+    const wrapper = (_stat: Stats, gcd: Parameters<typeof callback>[0]) => {
+      if (this.job === job)
+        callback(gcd);
+    };
+    this.on('stat', wrapper);
+    // unregister when player change their job
+    this.once('job', () => this.off('stat', wrapper));
+  }
+
+  onUseAbility(callback: AbilityCallback): void {
+    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => {
+      callback(id, matches);
+    };
+    this.on('action/you', wrapper);
+    this.once('job', () => this.off('action/you', wrapper));
   }
 
   onJobDetailUpdate<JobKey extends keyof JobDetail>(

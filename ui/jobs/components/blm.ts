@@ -29,7 +29,7 @@ export const setup = (bars: Bars, player: Player): void => {
   // bars could have two boxes here for the rare case where you
   // have two long-lived enemies, but it's an edge case that
   // maybe only makes sense in ucob?
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.Thunder1:
       case kAbility.Thunder4:
@@ -44,7 +44,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onYouGainEffect((id, matches) => {
+  player.onYouGainEffect((id, matches) => {
     switch (id) {
       case EffectId.Thundercloud:
         thunderProc.duration = parseFloat(matches.duration ?? '0');
@@ -57,7 +57,7 @@ export const setup = (bars: Bars, player: Player): void => {
         break;
     }
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     switch (id) {
       case EffectId.Thundercloud:
         thunderProc.duration = 0;

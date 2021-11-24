@@ -46,7 +46,7 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'combo-color',
   });
 
-  bars.onCombo((skill, combo) => {
+  player.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     if (combo.isFinalSkill)
       return;
@@ -69,7 +69,7 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'drk-color-livingshadow',
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.BloodWeapon: {
         bloodWeapon.duration = 10;

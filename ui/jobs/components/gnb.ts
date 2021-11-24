@@ -22,7 +22,7 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'gnb-color-bloodfest',
   });
 
-  bars.onStatChange('GNB', ({ gcdSkill }) => {
+  player.onStatChange('GNB', ({ gcdSkill }) => {
     gnashingFangBox.valuescale = gcdSkill;
     gnashingFangBox.threshold = gcdSkill * 3;
     noMercyBox.valuescale = gcdSkill;
@@ -43,7 +43,7 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'gnb-color-gnashingfang',
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.NoMercy: {
         noMercyBox.duration = 20;
@@ -73,7 +73,7 @@ export const setup = (bars: Bars, player: Player): void => {
         break;
     }
   });
-  bars.onCombo((skill, combo) => {
+  player.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     cartridgeComboTimer.duration = 0;
     if (combo.isFinalSkill)

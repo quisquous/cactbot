@@ -69,7 +69,7 @@ export const setup = (bars: Bars, player: Player): void => {
       sealBox.parentNode.classList.remove('ready');
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.Combust2:
       case kAbility.Combust3:
@@ -87,7 +87,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onStatChange('AST', ({ gcdSpell }) => {
+  player.onStatChange('AST', ({ gcdSpell }) => {
     combustBox.valuescale = gcdSpell;
     combustBox.threshold = gcdSpell + 1;
     drawBox.valuescale = gcdSpell;

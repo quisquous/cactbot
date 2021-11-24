@@ -56,11 +56,11 @@ export const setup = (bars: Bars, player: Player): void => {
     id: 'rdm-procs-lucid',
     fgColor: 'rdm-color-lucid',
   });
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     if (id === kAbility.LucidDreaming)
       lucidBox.duration = 60;
   });
-  bars.onStatChange('RDM', ({ gcdSpell }) => {
+  player.onStatChange('RDM', ({ gcdSpell }) => {
     lucidBox.valuescale = gcdSpell;
     lucidBox.threshold = gcdSpell + 1;
   });
@@ -90,7 +90,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onYouGainEffect((id, matches) => {
+  player.onYouGainEffect((id, matches) => {
     if (id === EffectId.VerstoneReady)
       whiteProc.duration = parseFloat(matches.duration ?? '0') - player.gcdSpell;
     if (id === EffectId.VerfireReady) {
@@ -98,7 +98,7 @@ export const setup = (bars: Bars, player: Player): void => {
       blackProc.duration = parseFloat(matches.duration ?? '0') - player.gcdSpell;
     }
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     if (id === EffectId.VerstoneReady)
       whiteProc.duration = 0;
     if (id === EffectId.VerfireReady)

@@ -49,7 +49,7 @@ export const setup = (bars: Bars, player: Player): void => {
     threshold: 5,
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     if (id === kAbility.Demolish) {
       // it start counting down when you cast demolish
       // but DOT appears on target about 1 second later
@@ -59,7 +59,7 @@ export const setup = (bars: Bars, player: Player): void => {
 
   let perfectBalanceActive = false;
 
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     switch (id) {
       case EffectId.TwinSnakes:
         twinSnakesBox.duration = 0;
@@ -75,7 +75,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onYouGainEffect((id, matches) => {
+  player.onYouGainEffect((id, matches) => {
     switch (id) {
       case EffectId.TwinSnakes:
         // -0.5 for logline delay

@@ -31,7 +31,7 @@ export const setup = (bars: Bars, player: Player): void => {
   // so it doesn't need to be handled separately.
   // Log line of getting DoT comes a little late after DoT appear on target,
   // so -0.5s
-  bars.onMobGainsEffectFromYou((id) => {
+  player.onMobGainsEffectFromYou((id) => {
     switch (id) {
       case EffectId.Stormbite:
       case EffectId.Windbite:
@@ -44,7 +44,7 @@ export const setup = (bars: Bars, player: Player): void => {
         break;
     }
   });
-  bars.onStatChange('BRD', ({ gcdSkill }) => {
+  player.onStatChange('BRD', ({ gcdSkill }) => {
     stormBiteBox.valuescale = gcdSkill;
     stormBiteBox.threshold = gcdSkill * 2;
     causticBiteBox.valuescale = gcdSkill;
@@ -127,7 +127,7 @@ export const setup = (bars: Bars, player: Player): void => {
   });
   let ethosStacks = 0;
 
-  bars.onYouGainEffect((id) => {
+  player.onYouGainEffect((id) => {
     switch (id) {
       case EffectId.StraightShotReady:
         straightShotProc.duration = 10;
@@ -150,7 +150,7 @@ export const setup = (bars: Bars, player: Player): void => {
         break;
     }
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     switch (id) {
       case EffectId.StraightShotReady:
         straightShotProc.duration = 0;

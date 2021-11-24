@@ -58,7 +58,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.Bio:
       case kAbility.Bio2:
@@ -75,7 +75,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onStatChange('SCH', ({ gcdSpell }) => {
+  player.onStatChange('SCH', ({ gcdSpell }) => {
     bioBox.valuescale = gcdSpell;
     bioBox.threshold = gcdSpell + 1;
     aetherflowBox.valuescale = gcdSpell;

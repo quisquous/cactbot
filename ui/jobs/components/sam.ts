@@ -11,7 +11,7 @@ export const setup = (bars: Bars, player: Player): void => {
     id: 'sam-timers-combo',
     fgColor: 'combo-color',
   });
-  bars.onCombo((skill, combo) => {
+  player.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     if (combo.isFinalSkill)
       return;
@@ -76,7 +76,7 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'sam-color-jinpu',
     notifyWhenExpired: true,
   });
-  bars.onYouGainEffect((id, matches) => {
+  player.onYouGainEffect((id, matches) => {
     if (id === EffectId.Shifu) {
       shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
       player.speedBuffs.shifu = true;
@@ -84,7 +84,7 @@ export const setup = (bars: Bars, player: Player): void => {
     if (id === EffectId.Jinpu)
       jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     if (id === EffectId.Shifu) {
       shifu.duration = 0;
       player.speedBuffs.shifu = false;
@@ -97,7 +97,7 @@ export const setup = (bars: Bars, player: Player): void => {
     id: 'sam-procs-tsubamegaeshi',
     fgColor: 'sam-color-tsubamegaeshi',
   });
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.KaeshiHiganbana:
       case kAbility.KaeshiGoken:
@@ -112,12 +112,12 @@ export const setup = (bars: Bars, player: Player): void => {
     fgColor: 'sam-color-higanbana',
     notifyWhenExpired: true,
   });
-  bars.onMobGainsEffectFromYou((id) => {
+  player.onMobGainsEffectFromYou((id) => {
     if (id === EffectId.Higanbana)
       higanbana.duration = 60 - 0.5; // -0.5s for log line delay
   });
 
-  bars.onStatChange('SAM', ({ gcdSkill }) => {
+  player.onStatChange('SAM', ({ gcdSkill }) => {
     shifu.valuescale = gcdSkill;
     shifu.threshold = gcdSkill * 6;
     jinpu.valuescale = gcdSkill;

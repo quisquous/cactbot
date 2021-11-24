@@ -46,7 +46,7 @@ export const setup = (bars: Bars, player: Player): void => {
     notifyWhenExpired: true,
   });
 
-  bars.onCombo((skill) => {
+  player.onCombo((skill) => {
     if (skill === kAbility.GoringBlade) {
       // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
       // have the box show 21, it looks like you're awfully late with
@@ -63,16 +63,16 @@ export const setup = (bars: Bars, player: Player): void => {
   // As atonement counts down, the player gets successive "gains effects"
   // for the same effect, but with different counts.  When the last stack
   // falls off, then there's a "lose effect" line.
-  bars.onYouGainEffect((id, matches) => {
+  player.onYouGainEffect((id, matches) => {
     if (id === EffectId.SwordOath)
       setAtonement(atonementBox, parseInt(matches.count ?? '0'));
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     if (id === EffectId.SwordOath)
       setAtonement(atonementBox, 0);
   });
 
-  bars.onStatChange('PLD', ({ gcdSkill }) => {
+  player.onStatChange('PLD', ({ gcdSkill }) => {
     goreBox.valuescale = gcdSkill;
     goreBox.threshold = gcdSkill * 3 + 0.3;
   });

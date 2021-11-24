@@ -33,7 +33,7 @@ export const setup = (bars: Bars, player: Player): void => {
 
   let mudraTriggerCd = true;
   // Ninjutsu's cooldown begins to countdown at the first mudra.
-  bars.onYouGainEffect((id) => {
+  player.onYouGainEffect((id) => {
     switch (id) {
       case EffectId.Mudra: {
         if (!mudraTriggerCd)
@@ -56,13 +56,13 @@ export const setup = (bars: Bars, player: Player): void => {
   });
   // On each mudra, Mudra effect will be gain once,
   // use mudraTriggerCd to tell that whether bars mudra trigger cooldown.
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     if (id === EffectId.Mudra)
       mudraTriggerCd = true;
     if (id === EffectId.Kassatsu)
       mudraTriggerCd = true;
   });
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.Bunshin:
         bunshin.duration = 90;
@@ -83,7 +83,7 @@ export const setup = (bars: Bars, player: Player): void => {
       }
     }
   });
-  bars.onStatChange('NIN', ({ gcdSkill }) => {
+  player.onStatChange('NIN', ({ gcdSkill }) => {
     trickAttack.valuescale = gcdSkill;
     bunshin.valuescale = gcdSkill;
     bunshin.threshold = gcdSkill * 8;
@@ -115,7 +115,7 @@ export const setup = (bars: Bars, player: Player): void => {
     id: 'nin-timers-combo',
     fgColor: 'combo-color',
   });
-  bars.onCombo((skill, combo) => {
+  player.onCombo((skill, combo) => {
     comboTimer.duration = 0;
     if (combo.isFinalSkill)
       return;

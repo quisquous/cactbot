@@ -61,13 +61,13 @@ export const setup = (bars: Bars, player: Player): void => {
         ruin4Stacks[i]?.classList.remove('active');
     }
   };
-  bars.onYouGainEffect((id, matches) => {
+  player.onYouGainEffect((id, matches) => {
     if (id === EffectId.FurtherRuin) {
       furtherRuin = parseInt(matches.count ?? '0');
       refreshFurtherRuin();
     }
   });
-  bars.onYouLoseEffect((id) => {
+  player.onYouLoseEffect((id) => {
     if (id === EffectId.FurtherRuin) {
       furtherRuin = 0;
       refreshFurtherRuin();
@@ -117,7 +117,7 @@ export const setup = (bars: Bars, player: Player): void => {
       demiSummoningBox.parentNode.classList.remove('last');
   });
 
-  bars.onUseAbility((id) => {
+  player.onUseAbility((id) => {
     switch (id) {
       case kAbility.Miasma:
       case kAbility.Miasma3:
@@ -149,7 +149,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
   });
 
-  bars.onStatChange('SMN', ({ gcdSpell }) => {
+  player.onStatChange('SMN', ({ gcdSpell }) => {
     miasmaBox.valuescale = gcdSpell;
     miasmaBox.threshold = gcdSpell + 1;
     bioSmnBox.valuescale = gcdSpell;
