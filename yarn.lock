@@ -3557,7 +3557,7 @@ __metadata:
     inquirer: ^8.1.1
     inquirer-fuzzy-path: ^2.3.0
     json5: ^2.2.0
-    jszip: ^3.6.0
+    jszip: ^3.7.1
     lint-staged: ^10.0.8
     lodash: ^4.14.170
     markdown-magic: ^2.5.2
@@ -7870,7 +7870,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"jszip@npm:^3.6.0":
+"jszip@npm:^3.7.1":
   version: 3.7.1
   resolution: "jszip@npm:3.7.1"
   dependencies:
