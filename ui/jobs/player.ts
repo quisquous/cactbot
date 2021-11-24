@@ -4,8 +4,11 @@ import { isEqual } from 'lodash';
 import logDefinitions from '../../resources/netlog_defs';
 import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
-import { NetMatches } from '../../types/net_matches';
+import { NetFields } from '../../types/net_fields';
+import { NetMatches, ToMatches } from '../../types/net_matches';
 
+import ComboTracker from './combo_tracker';
+import { JobsEventEmitter } from './event_emitter';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
@@ -47,6 +50,18 @@ export interface EventMap {
   ) => void;
   'stat': (stat: Stats, gcd: { gcdSkill: number; gcdSpell: number }) => void;
   'player': (player: Player) => void;
+
+  // triggered when casts actions
+  'action/you': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
+  'action/party': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
+  'action/other': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
+  // triggered when combo state changes
+  'action/combo': (actionId: string | undefined, combo: ComboTracker) => void;
+  // triggered when effect gains or loses
+  'effect/gain': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
+  'effect/lose': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+  'effect/gain/you': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
+  'effect/lose/you': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
 }
 
 /** Player data */
@@ -130,10 +145,32 @@ export class PlayerBase {
 }
 export class Player extends PlayerBase {
   ee: EventEmitter;
+  jobsEmitter: JobsEventEmitter;
+  // TODO: should make combo tracker as event emitter too?
+  combo: ComboTracker;
 
-  constructor() {
+  constructor(jobsEmitter: JobsEventEmitter) {
     super();
     this.ee = new EventEmitter();
+    this.jobsEmitter = jobsEmitter;
+
+    // setup combo tracker
+    this.combo = ComboTracker.setup((id) => {
+      this.emit('action/combo', id, this.combo);
+    });
+    this.on('action/you', (actionId) => {
+      this.combo.HandleAbility(actionId);
+    });
+    this.on('hp', ({ hp }) => {
+      if (hp === 0)
+        this.combo.AbortCombo();
+    });
+    // Combos are job specific.
+    this.on('job', () => this.combo.AbortCombo());
+
+    // setup event emitter
+    this.jobsEmitter.on('player', (ev) => this.processPlayerChangedEvent(ev));
+    this.jobsEmitter.on('log', (line) => this.processLogLines(line));
   }
 
   onJobDetailUpdate<JobKey extends keyof JobDetail>(
@@ -156,7 +193,7 @@ export class Player extends PlayerBase {
     });
   }
 
-  onPlayerChangedEvent(
+  private processPlayerChangedEvent(
     { detail: data }: OverlayEventResponses['onPlayerChangedEvent'],
   ): void {
     this.id = data.id;
@@ -265,7 +302,7 @@ export class Player extends PlayerBase {
     this.emit('player', this);
   }
 
-  onPlayerStats(line: string[]): void {
+  private processPlayerStatsLogLine(line: string[]): void {
     const matches = normalizeLogLine(line, logDefinitions.PlayerStats.fields);
     // const stat = Object
     //   .keys(matches)
@@ -294,6 +331,50 @@ export class Player extends PlayerBase {
     };
     this.stats = stat;
     this.emit('stat', stat, this);
+  }
+
+  private processLogLines(line: string[]): void {
+    const type = line[logDefinitions.None.fields.type];
+    switch (type) {
+      case logDefinitions.PlayerStats.type: {
+        this.processPlayerStatsLogLine(line);
+        break;
+      }
+      case logDefinitions.GainsEffect.type: {
+        const matches = normalizeLogLine(line, logDefinitions.GainsEffect.fields);
+        const effectId = matches.effectId?.toUpperCase();
+        if (!effectId)
+          break;
+
+        if (parseInt(matches.sourceId ?? '0', 16) === this.id)
+          this.emit('effect/gain/you', effectId, matches);
+        this.emit('effect/gain', effectId, matches);
+        break;
+      }
+      case logDefinitions.LosesEffect.type: {
+        const matches = normalizeLogLine(line, logDefinitions.LosesEffect.fields);
+        const effectId = matches.effectId?.toUpperCase();
+        if (!effectId)
+          break;
+
+        if (parseInt(matches.sourceId ?? '0', 16) === this.id)
+          this.emit('effect/lose/you', effectId, matches);
+        this.emit('effect/lose', effectId, matches);
+        break;
+      }
+      case logDefinitions.Ability.type:
+      case logDefinitions.NetworkAOEAbility.type: {
+        const matches = normalizeLogLine(line, logDefinitions.Ability.fields);
+        const sourceId = matches.sourceId;
+        const id = matches.id;
+        if (!id)
+          break;
+
+        if (sourceId && parseInt(sourceId, 16) === this.id)
+          this.emit('action/you', id, matches);
+        break;
+      }
+    }
   }
 
   on<Key extends keyof EventMap>(event: Key, listener: EventMap[Key], context?: unknown): this {

@@ -7,11 +7,11 @@ import { EventResponses as OverlayEventResponses, Party } from '../../types/even
 import { NetFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
 
-import ComboTracker from './combo_tracker';
 import { Player } from './player';
 import { normalizeLogLine } from './utils';
 
 export interface EventMap {
+  'player': (data: OverlayEventResponses['onPlayerChangedEvent']) => void;
   // party changed
   'party': (party: Party[]) => void;
   // zone changing
@@ -20,17 +20,9 @@ export interface EventMap {
   'battle/in-combat': (info: { game: boolean; act: boolean }) => void;
   'battle/wipe': () => void;
   'battle/target': (target?: { name: string; distance: number; effectiveDistance: number }) => void;
-  // triggered when casts actions
-  'action/you': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
-  'action/party': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
-  'action/other': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
-  // triggered when combo state changes
-  'action/combo': (actionId: string | undefined, combo: ComboTracker) => void;
   // triggered when effect gains or loses
   'effect/gain': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
   'effect/lose': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
-  'effect/gain/you': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
-  'effect/lose/you': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
   // triggered when dot or hot tick
   'tick/dot': (damage: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
   'tick/hot': (heal: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
@@ -44,34 +36,13 @@ export interface EventMap {
 }
 
 export class JobsEventEmitter extends EventEmitter<EventMap> {
-  public combo: ComboTracker;
-  public player: Player;
-
-  constructor(o: {
-    player: Player;
-  }) {
+  constructor() {
     super();
-
-    this.player = o.player;
-
-    // setup combo tracker
-    this.combo = ComboTracker.setup((id) => {
-      this.emit('action/combo', id, this.combo);
-    });
-    this.on('action/you', (actionId) => {
-      this.combo.HandleAbility(actionId);
-    });
-    this.player.on('hp', ({ hp }) => {
-      if (hp === 0)
-        this.combo.AbortCombo();
-    });
-    // Combos are job specific.
-    this.player.on('job', () => this.combo.AbortCombo());
   }
 
   registerOverlayListeners(): void {
     addOverlayListener('onPlayerChangedEvent', (ev) => {
-      this.player.onPlayerChangedEvent(ev);
+      this.emit('player', ev);
     });
 
     addOverlayListener('EnmityTargetData', (ev) => {
@@ -116,45 +87,18 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
           ev.rawLine,
         );
         break;
-      case logDefinitions.PlayerStats.type: {
-        this.player.onPlayerStats(ev.line);
-        break;
-      }
       case logDefinitions.GainsEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.GainsEffect.fields);
-        const effectId = matches.effectId?.toUpperCase();
-        if (!effectId)
-          break;
-
-        if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
-          this.emit('effect/gain/you', effectId, matches);
-        this.emit('effect/gain', effectId, matches);
+        if (matches.effectId)
+          this.emit('effect/gain', matches.effectId, matches);
         break;
       }
       case logDefinitions.LosesEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.LosesEffect.fields);
-        const effectId = matches.effectId?.toUpperCase();
-        if (!effectId)
-          break;
-
-        if (parseInt(matches.sourceId ?? '0', 16) === this.player.id)
-          this.emit('effect/lose/you', effectId, matches);
-        this.emit('effect/lose', effectId, matches);
+        if (matches.effectId)
+          this.emit('effect/lose', matches.effectId, matches);
         break;
       }
-      case logDefinitions.Ability.type:
-      case logDefinitions.NetworkAOEAbility.type: {
-        const matches = normalizeLogLine(ev.line, logDefinitions.Ability.fields);
-        const sourceId = matches.sourceId;
-        const id = matches.id;
-        if (!id)
-          break;
-
-        if (sourceId && parseInt(sourceId, 16) === this.player.id)
-          this.emit('action/you', id, matches);
-        break;
-      }
-
       case logDefinitions.NetworkDoT.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.NetworkDoT.fields);
         const damage = parseInt(matches.damage ?? '0', 16); // damage is in hex
@@ -225,25 +169,25 @@ export class DotTracker extends EventEmitter<{ tick: (targetId?: string) => void
   }
 
   private registerListeners(): void {
-    this.ee.on('effect/gain', (id, { sourceId, targetId }) => {
+    this.player.on('effect/gain', (id, { sourceId, targetId }) => {
       if (
         targetId?.startsWith('4') &&
-        parseInt(sourceId ?? '0', 16) === this.ee.player.id &&
+        parseInt(sourceId ?? '0', 16) === this.player.id &&
         this.trackedDoTs.includes(id)
       )
         this.targets.push(targetId);
     });
 
-    this.ee.on('effect/lose', (id, { sourceId, targetId }) => {
+    this.player.on('effect/lose', (id, { sourceId, targetId }) => {
       if (
         targetId?.startsWith('4') &&
-        parseInt(sourceId ?? '0', 16) === this.ee.player.id &&
+        parseInt(sourceId ?? '0', 16) === this.player.id &&
         this.trackedDoTs.includes(id)
       )
         this.targets.splice(this.targets.indexOf(targetId), 1);
     });
 
-    this.ee.on('action/you', (_id, { targetId }) => {
+    this.player.on('action/you', (_id, { targetId }) => {
       if (targetId?.startsWith('4'))
         this.lastAttackedTarget = targetId;
     });

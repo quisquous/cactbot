@@ -169,7 +169,7 @@ export class Bars {
       this._onPartyWipe();
     });
 
-    this.ee.on('action/you', (id, matches) => {
+    this.player.on('action/you', (id, matches) => {
       if (this.regexes?.cordialRegex.test(id)) {
         this.gpPotion = true;
         window.setTimeout(() => {
@@ -178,15 +178,21 @@ export class Bars {
       }
       this.buffTracker?.onUseAbility(id, matches);
     });
-    this.ee.on('action/other', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
-    this.ee.on('effect/gain/you', (id, matches) => this.buffTracker?.onYouGainEffect(id, matches));
-    this.ee.on('effect/gain', (id, matches) => {
+    this.player.on('action/other', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
+    this.player.on(
+      'effect/gain/you',
+      (id, matches) => this.buffTracker?.onYouGainEffect(id, matches),
+    );
+    this.player.on('effect/gain', (id, matches) => {
       // mob id starts with '4'
       if (matches.targetId?.startsWith('4'))
         this.buffTracker?.onMobGainsEffect(id, matches);
     });
-    this.ee.on('effect/lose/you', (id, matches) => this.buffTracker?.onYouLoseEffect(id, matches));
-    this.ee.on('effect/lose', (id, matches) => {
+    this.player.on(
+      'effect/lose/you',
+      (id, matches) => this.buffTracker?.onYouLoseEffect(id, matches),
+    );
+    this.player.on('effect/lose', (id, matches) => {
       // mob id starts with '4'
       if (matches.targetId?.startsWith('4'))
         this.buffTracker?.onMobLosesEffect(id, matches);
@@ -619,8 +625,8 @@ export class Bars {
     const wrapper = (id: string | undefined, combo: ComboTracker) => {
       callback(id, combo);
     };
-    this.ee.on('action/combo', wrapper);
-    this.player.once('job', () => this.ee.off('action/combo', wrapper));
+    this.player.on('action/combo', wrapper);
+    this.player.once('job', () => this.player.off('action/combo', wrapper));
   }
 
   onMobGainsEffectFromYou(callback: GainCallback): void {
@@ -632,8 +638,8 @@ export class Bars {
       )
         callback(id, matches);
     };
-    this.ee.on('effect/gain', wrapper);
-    this.player.once('job', () => this.ee.off('effect/gain', wrapper));
+    this.player.on('effect/gain', wrapper);
+    this.player.once('job', () => this.player.off('effect/gain', wrapper));
   }
 
   onMobLosesEffectFromYou(callback: LoseCallback): void {
@@ -645,24 +651,24 @@ export class Bars {
       )
         callback(id, matches);
     };
-    this.ee.on('effect/lose', wrapper);
-    this.player.once('job', () => this.ee.off('effect/lose', wrapper));
+    this.player.on('effect/lose', wrapper);
+    this.player.once('job', () => this.player.off('effect/lose', wrapper));
   }
 
   onYouGainEffect(callback: GainCallback): void {
     const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
       callback(id, matches);
     };
-    this.ee.on('effect/gain/you', wrapper);
-    this.player.once('job', () => this.ee.off('effect/gain/you', wrapper));
+    this.player.on('effect/gain/you', wrapper);
+    this.player.once('job', () => this.player.off('effect/gain/you', wrapper));
   }
 
   onYouLoseEffect(callback: LoseCallback): void {
     const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
       callback(id, matches);
     };
-    this.ee.on('effect/lose/you', wrapper);
-    this.player.once('job', () => this.ee.off('effect/lose/you', wrapper));
+    this.player.on('effect/lose/you', wrapper);
+    this.player.once('job', () => this.player.off('effect/lose/you', wrapper));
   }
 
   onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {
@@ -679,8 +685,8 @@ export class Bars {
     const wrapper = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => {
       callback(id, matches);
     };
-    this.ee.on('action/you', wrapper);
-    this.player.once('job', () => this.ee.off('action/you', wrapper));
+    this.player.on('action/you', wrapper);
+    this.player.once('job', () => this.player.off('action/you', wrapper));
   }
 
   onZoneChange(callback: ZoneChangeCallback): void {
