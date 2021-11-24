@@ -7,6 +7,7 @@ import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
 import Util from '../../resources/util';
 import WidgetList from '../../resources/widget_list';
+import ZoneInfo from '../../resources/zone_info';
 import { EventResponses } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
@@ -70,6 +71,7 @@ type JobDomObjects = {
 type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
 type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
 type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
+type ZoneChangeCallback = (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
 
 export interface ResourceBox extends HTMLDivElement {
   parentNode: HTMLElement;
@@ -95,8 +97,6 @@ export class Bars {
   private foodBuffTimer = 0;
 
   public umbralStacks = 0;
-
-  public changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[] = [];
 
   constructor(private options: JobsOptions, emitter: JobsEventEmitter) {
     // Don't add any notifications if only the buff tracker is being shown.
@@ -676,6 +676,14 @@ export class Bars {
       callback(id, matches);
     };
     this.ee.on('action/you', wrapper);
+  }
+
+  onZoneChange(callback: ZoneChangeCallback): void {
+    const wrapper: ZoneChangeCallback = (id, name, info) => {
+      callback(id, name, info);
+    };
+    this.ee.on('zone/change', wrapper);
+    this.player.once('job', () => this.ee.off('zone/change', wrapper));
   }
 
   _updateHealth(data: {
