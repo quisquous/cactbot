@@ -84,8 +84,6 @@ export class Bars {
   public readonly player: Player;
 
   private contentType?: number;
-  // private isPVPZone = false;
-  private crafting = false;
   private foodBuffTimer = 0;
 
   public umbralStacks = 0;
@@ -861,23 +859,20 @@ export class Bars {
     const anyRegexMatched = (line: string, array: RegExp[]) =>
       array.some((regex) => regex.test(line));
 
-    if (!this.crafting) {
-      if (anyRegexMatched(message, this.regexes.craftingStartRegexes))
-        this.crafting = true;
+    let crafting = false;
+
+    if (anyRegexMatched(message, this.regexes.craftingStartRegexes))
+      crafting = true;
+    if (anyRegexMatched(message, this.regexes.craftingStopRegexes)) {
+      crafting = false;
     } else {
-      if (anyRegexMatched(message, this.regexes.craftingStopRegexes)) {
-        this.crafting = false;
-      } else {
-        this.crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
-          const m = regex.exec(message)?.groups;
-          return m && (!m.player || m.player === this.player.name);
-        });
-      }
+      crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
+        const m = regex.exec(message)?.groups;
+        return m && (!m.player || m.player === this.player.name);
+      });
     }
 
-    if (this.crafting)
-      container.classList.remove('hide');
-    else
-      container.classList.add('hide');
+    // if crafting, hide it; otherwise, show it
+    container.classList.toggle('hide', crafting);
   }
 }
