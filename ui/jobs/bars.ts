@@ -120,12 +120,12 @@ export class Bars {
     this.ee = emitter;
     this.player = this.ee.player;
 
-    this.ee.on('player/level', (level, prevLevel) => {
+    this.player.on('level', (level, prevLevel) => {
       if (level - prevLevel)
         this._updateFoodBuff();
     });
 
-    this.ee.on('player/job', (job) => {
+    this.player.on('job', (job) => {
       // FIXME: remove this
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
@@ -151,7 +151,7 @@ export class Bars {
     });
 
     // update RegexesHolder when the player name changes
-    this.ee.on('player', ({ name }) => {
+    this.player.on('player', ({ name }) => {
       this.regexes = new RegexesHolder(this.options.ParserLanguage, name);
       // mark it initialized
       this.init = true;
@@ -354,7 +354,7 @@ export class Bars {
       this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
       // update cp
-      this.ee.on('player/cp', (data) => {
+      this.player.on('cp', (data) => {
         this._updateCp(data);
       });
       container.classList.add('hide');
@@ -375,7 +375,7 @@ export class Bars {
       this.o.gpBar.bg = computeBackgroundColorFrom(this.o.gpBar, 'bar-border-color');
       this.o.gpBar.fg = computeBackgroundColorFrom(this.o.gpBar, 'gp-color');
       // update gp
-      this.ee.on('player/gp', (data) => {
+      this.player.on('gp', (data) => {
         this._updateGp(data);
       });
       return;
@@ -403,7 +403,7 @@ export class Bars {
     this.o.healthBar.height = window.getComputedStyle(this.o.healthContainer).height;
     this.o.healthBar.bg = computeBackgroundColorFrom(this.o.healthBar, 'bar-border-color');
     // update hp
-    this.ee.on('player/hp', (data) => {
+    this.player.on('hp', (data) => {
       this._updateHealth(data);
     });
 
@@ -423,7 +423,7 @@ export class Bars {
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');
       // update mp
-      this.ee.on('player/mp', (data) => {
+      this.player.on('mp', (data) => {
         this._updateMana(data);
       });
       // change color when target is far away
@@ -457,7 +457,7 @@ export class Bars {
       this.o.mpTicker.toward = 'right';
       this.o.mpTicker.loop = true;
       // update mp ticker
-      this.ee.on('player/mp', (data) => {
+      this.player.on('mp', (data) => {
         this._updateMPTicker(data);
       });
       this.ee.on('battle/in-combat', (ev) => {
@@ -646,7 +646,7 @@ export class Bars {
         callback(id, matches);
     };
     this.ee.on('effect/gain', wrapper);
-    this.ee.on('player/job', () => this.ee.off('effect/gain', wrapper));
+    this.player.on('job', () => this.ee.off('effect/gain', wrapper));
   }
 
   onMobLosesEffectFromYou(callback: LoseCallback): void {
@@ -659,7 +659,7 @@ export class Bars {
         callback(id, matches);
     };
     this.ee.on('effect/lose', wrapper);
-    this.ee.on('player/job', () => this.ee.off('effect/lose', wrapper));
+    this.player.on('job', () => this.ee.off('effect/lose', wrapper));
   }
 
   onYouGainEffect(callback: GainCallback): void {
@@ -667,7 +667,7 @@ export class Bars {
       callback(id, matches);
     };
     this.ee.on('effect/gain/you', wrapper);
-    this.ee.once('player/job', () => this.ee.off('effect/gain/you', wrapper));
+    this.player.once('job', () => this.ee.off('effect/gain/you', wrapper));
   }
 
   onYouLoseEffect(callback: LoseCallback): void {
@@ -675,7 +675,7 @@ export class Bars {
       callback(id, matches);
     };
     this.ee.on('effect/lose/you', wrapper);
-    this.ee.once('player/job', () => this.ee.off('effect/lose/you', wrapper));
+    this.player.once('job', () => this.ee.off('effect/lose/you', wrapper));
   }
 
   onJobDetailUpdate<JobKey extends keyof JobDetail>(
@@ -691,10 +691,10 @@ export class Bars {
       // obnoxious enough to use in TypeScript that we probably need to rethink how it is delivered.
       (callback as (detail: unknown) => void)(jobDetail);
     };
-    this.ee.on('player/job-detail', wrapper);
-    this.ee.once('player/job', (newJob) => {
+    this.player.on('job-detail', wrapper);
+    this.player.once('job', (newJob) => {
       if (job !== newJob)
-        this.ee.off('player/job-detail', wrapper);
+        this.player.off('job-detail', wrapper);
     });
   }
 
@@ -703,9 +703,9 @@ export class Bars {
       if (this.player.job === job)
         callback(gcd);
     };
-    this.ee.on('player/stat', wrapper);
+    this.player.on('stat', wrapper);
     // unregister when player change their job
-    this.ee.once('player/job', () => this.ee.off('player/stat', wrapper));
+    this.player.once('job', () => this.player.off('stat', wrapper));
   }
 
   onUseAbility(callback: AbilityCallback): void {

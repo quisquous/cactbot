@@ -76,7 +76,6 @@
     "json5": "^2.2.0",
     "jszip": "^3.7.1",
     "lint-staged": "^10.0.8",
-    "lodash": "^4.14.170",
     "markdown-magic": "^2.5.2",
     "markdownlint-cli": "^0.20.0",
     "mini-css-extract-plugin": "^1.6.0",
@@ -127,6 +126,7 @@
     "dexie-export-import": "^1.0.0",
     "eventemitter3": "^4.0.7",
     "inquirer": "^8.1.1",
-    "inquirer-fuzzy-path": "^2.3.0"
+    "inquirer-fuzzy-path": "^2.3.0",
+    "lodash": "^4.14.170"
   }
 }
