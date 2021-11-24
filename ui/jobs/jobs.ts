@@ -2,14 +2,19 @@ import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
 
 import { Bars } from './bars';
-import { jobsEventEmitter } from './event_emitter';
+import { JobsEventEmitter } from './event_emitter';
 import defaultOptions from './jobs_options';
+import { Player } from './player';
 
 UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
+
+  const player = new Player();
+  const emitter = new JobsEventEmitter({ player });
+  const bars = new Bars(options, { emitter, player });
+
   // register overlay plugin's events
-  jobsEventEmitter.registerOverlayListeners();
-  const bars = new Bars(options, jobsEventEmitter);
+  emitter.registerOverlayListeners();
 
   addOverlayListener('onInCombatChangedEvent', (e) => {
     bars._onInCombatChanged(e);

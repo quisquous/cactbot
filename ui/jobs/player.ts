@@ -6,7 +6,6 @@ import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/
 import { Job } from '../../types/job';
 import { NetMatches } from '../../types/net_matches';
 
-import { JobsEventEmitter } from './event_emitter';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
@@ -52,8 +51,6 @@ export interface EventMap {
 
 /** Player data */
 export class Player extends EventEmitter<EventMap> {
-  ee: JobsEventEmitter;
-
   id: number;
   name: string;
   level: number;
@@ -77,10 +74,8 @@ export class Player extends EventEmitter<EventMap> {
   speedBuffs: SpeedBuffs;
   jobDetail?: JobDetail[keyof JobDetail];
 
-  constructor(ee: JobsEventEmitter) {
+  constructor() {
     super();
-
-    this.ee = ee;
 
     // basic info
     this.id = 0;

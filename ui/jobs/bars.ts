@@ -98,15 +98,18 @@ export class Bars {
 
   public umbralStacks = 0;
 
-  constructor(private options: JobsOptions, emitter: JobsEventEmitter) {
+  constructor(private options: JobsOptions, o: {
+    emitter: JobsEventEmitter;
+    player: Player;
+  }) {
     // Don't add any notifications if only the buff tracker is being shown.
     if (this.options.JustBuffTracker) {
       this.options.NotifyExpiredProcsInCombatSound = 'disabled';
       this.options.NotifyExpiredProcsInCombat = 0;
     }
 
-    this.ee = emitter;
-    this.player = this.ee.player;
+    this.ee = o.emitter;
+    this.player = o.player;
 
     // bind party changed event
     this.ee.on('party', (party) => this.partyTracker.onPartyChanged({ party }));

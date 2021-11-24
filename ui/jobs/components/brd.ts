@@ -68,7 +68,7 @@ export const setup = (bars: Bars, player: Player): void => {
   repertoireTimer.stylefill = 'fill';
   // Only with-DoT-target you last attacked will trigger bars timer.
   // So it work not well in multiple targets fight.
-  const repertoireTracker = new DotTracker(bars.ee);
+  const repertoireTracker = new DotTracker({ emitter: bars.ee, player: player });
   repertoireTracker.onTick([
     EffectId.Stormbite,
     EffectId.Windbite,

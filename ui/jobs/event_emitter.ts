@@ -47,10 +47,12 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
   public combo: ComboTracker;
   public player: Player;
 
-  constructor() {
+  constructor(o: {
+    player: Player;
+  }) {
     super();
 
-    this.player = new Player(this);
+    this.player = o.player;
 
     // setup combo tracker
     this.combo = ComboTracker.setup((id) => {
@@ -194,7 +196,7 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
  *
  * @example
  *
- * const tracker = new DoTTracker(jobsEventEmitter);
+ * const tracker = new DoTTracker({ emitter: emitter, player: player});
  * tracker.onTick([EffectId.Stormbite, EffectId.CausticBite], (targetId) => {
  *   // do something like update repertoire timer.
  * });
@@ -207,11 +209,14 @@ export class DotTracker extends EventEmitter<{ tick: (targetId?: string) => void
   targets: string[];
   lastAttackedTarget?: string;
 
-  constructor(jobsEventEmitter: JobsEventEmitter) {
+  constructor(o: {
+    emitter: JobsEventEmitter;
+    player: Player;
+  }) {
     super();
 
-    this.ee = jobsEventEmitter;
-    this.player = jobsEventEmitter.player;
+    this.ee = o.emitter;
+    this.player = o.player;
     this.trackedDoTs = [];
 
     this.targets = [];
@@ -276,5 +281,3 @@ export class DotTracker extends EventEmitter<{ tick: (targetId?: string) => void
     this.lastAttackedTarget = undefined;
   }
 }
-
-export const jobsEventEmitter = new JobsEventEmitter();
