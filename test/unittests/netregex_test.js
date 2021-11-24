@@ -172,8 +172,6 @@ describe('netregex tests', () => {
     assert.equal(matches.data0, '1');
     assert.equal(matches.data1, '2');
     assert.equal(matches.data2, '3');
-    assert.equal(matches.data3, '0A016D');
-    assert.equal(matches.data4, '41F00000');
   });
   it('losesEffect', () => {
     const lines = [
