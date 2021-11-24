@@ -50,7 +50,7 @@ export interface EventMap {
 }
 
 /** Player data */
-export class Player extends EventEmitter<EventMap> {
+export class PlayerBase {
   id: number;
   name: string;
   level: number;
@@ -75,8 +75,6 @@ export class Player extends EventEmitter<EventMap> {
   jobDetail?: JobDetail[keyof JobDetail];
 
   constructor() {
-    super();
-
     // basic info
     this.id = 0;
     this.name = '';
@@ -128,6 +126,14 @@ export class Player extends EventEmitter<EventMap> {
       throw new Error(`Invalid type: ${type as string}`);
 
     return calcGCDFromStat(this, speed, originalCd);
+  }
+}
+export class Player extends PlayerBase {
+  ee: EventEmitter;
+
+  constructor() {
+    super();
+    this.ee = new EventEmitter();
   }
 
   onJobDetailUpdate<JobKey extends keyof JobDetail>(
@@ -288,5 +294,24 @@ export class Player extends EventEmitter<EventMap> {
     };
     this.stats = stat;
     this.emit('stat', stat, this);
+  }
+
+  on<Key extends keyof EventMap>(event: Key, listener: EventMap[Key], context?: unknown): this {
+    this.ee.on(event, listener, context);
+    return this;
+  }
+
+  once<Key extends keyof EventMap>(event: Key, listener: EventMap[Key], context?: unknown): this {
+    this.ee.once(event, listener, context);
+    return this;
+  }
+
+  off<Key extends keyof EventMap>(event: Key, listener: EventMap[Key], context?: unknown): this {
+    this.ee.off(event, listener, context);
+    return this;
+  }
+
+  emit<Key extends keyof EventMap>(event: Key, ...args: Parameters<EventMap[Key]>): boolean {
+    return this.ee.emit(event, ...args);
   }
 }
