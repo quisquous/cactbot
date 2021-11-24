@@ -31,7 +31,7 @@ export class RegexesHolder {
   MobLosesEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
   MobGainsEffectFromYouRegex: CactbotBaseRegExp<'GainsEffect'>;
   MobLosesEffectFromYouRegex: CactbotBaseRegExp<'LosesEffect'>;
-  cordialRegex: CactbotBaseRegExp<'Ability'>;
+  cordialRegex: RegExp;
   countdownStartRegex: RegExp;
   countdownCancelRegex: RegExp;
   craftingStartRegexes: RegExp[];
@@ -56,10 +56,7 @@ export class RegexesHolder {
       source: playerName,
     });
     // use of GP Potion
-    this.cordialRegex = NetRegexes.ability({
-      source: playerName,
-      id: '20(017FD|F5A3D|F844F|0420F|0317D)',
-    });
+    this.cordialRegex = /20(017FD|F5A3D|F844F|0420F|0317D)/;
 
     const getCurrentRegex = getLocaleRegex.bind(this, lang);
     this.countdownStartRegex = getCurrentRegex(LocaleNetRegex.countdownStart);

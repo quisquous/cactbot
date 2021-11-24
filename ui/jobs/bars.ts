@@ -35,7 +35,6 @@ import {
   doesJobNeedMPBar,
   isPvPZone,
   makeAuraTimerIcon,
-  normalizeLogLine,
   RegexesHolder,
 } from './utils';
 
@@ -167,7 +166,15 @@ export class Bars {
       this._onPartyWipe();
     });
 
-    this.ee.on('action/you', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
+    this.ee.on('action/you', (id, matches) => {
+      if (this.regexes?.cordialRegex.test(id)) {
+        this.gpPotion = true;
+        window.setTimeout(() => {
+          this.gpPotion = false;
+        }, 2000);
+      }
+      this.buffTracker?.onUseAbility(id, matches);
+    });
     this.ee.on('action/other', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
     this.ee.on('effect/gain/you', (id, matches) => this.buffTracker?.onYouGainEffect(id, matches));
     this.ee.on('effect/gain', (id, matches) => {
@@ -990,25 +997,6 @@ export class Bars {
           this._setPullCountdown(0);
         if (Util.isCraftingJob(this.player.job))
           this._onCraftingLog(log);
-        break;
-      }
-
-      case logDefinitions.Ability.type:
-      case logDefinitions.NetworkAOEAbility.type: {
-        const fields = logDefinitions.Ability.fields;
-        const matches = normalizeLogLine(line, fields);
-        const id = matches.id;
-        if (!id)
-          break;
-
-        if (matches.source === this.player.name) {
-          if (this.regexes.cordialRegex.test(id)) {
-            this.gpPotion = true;
-            window.setTimeout(() => {
-              this.gpPotion = false;
-            }, 2000);
-          }
-        }
         break;
       }
     }
