@@ -5,8 +5,18 @@ const path = require('path');
 // RULES_DIR must be absolute so that eslint can be used programmatically
 // and still find the eslint/ plugin directory correctly.
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
-const dprintConfig = require('./dprint.json').typescript;
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
+
+// lineWidth specified depending on file location.
+const dprintConfig = {
+  'bracePosition': 'maintain',
+  'indentWidth': 2,
+  'newLineKind': 'crlf',
+  'nextControlFlowPosition': 'maintain',
+  'operatorPosition': 'maintain',
+  'quoteStyle': 'alwaysSingle',
+  'useBraces': 'maintain',
+};
 
 const settings = {
   'env': {
