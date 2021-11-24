@@ -11,6 +11,7 @@
 tsconfig*.json         linguist-language=jsonc
 
 # Set yarn file as binary so that github would not show diff when updating it
+.yarn/cache/**/*.zip   binary
 .yarn/sdks/**          binary
 .yarn/releases/**      binary
 .yarn/plugins/**       binary
