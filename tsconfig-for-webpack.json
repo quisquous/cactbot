@@ -1,5 +1,21 @@
 {
+  "ts-node": {
+    // This can be omitted when using ts-patch
+    "compiler": "ttypescript",
+    "transpileOnly": true,
+    "moduleTypes": {
+      "webpack/*": "cjs",
+      // Globs are also supported with the same behavior as tsconfig "include"
+      "webpack/**/*": "cjs"
+    }
+  },
   "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
+        "after": true
+      }
+    ],
     "module": "ES2020",
     "target": "ES2020",
     "moduleResolution": "node",

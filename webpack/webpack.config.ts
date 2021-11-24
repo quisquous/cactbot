@@ -1,5 +1,4 @@
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
@@ -8,9 +7,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -146,7 +142,7 @@ export default (
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
-              loader: './webpack/loaders/manifest-loader.cjs',
+              loader: './webpack/loaders/manifest-loader.ts',
             },
           ],
         },
@@ -157,7 +153,7 @@ export default (
               loader: 'raw-loader',
             },
             {
-              loader: './webpack/loaders/timeline-loader.cjs',
+              loader: './webpack/loaders/timeline-loader.ts',
             },
           ],
         },

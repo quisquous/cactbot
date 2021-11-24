@@ -2,8 +2,8 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { mergeWithRules } from 'webpack-merge';
 
-import * as constants from './constants.js';
-import generateConfig from './webpack.config.js';
+import * as constants from './constants';
+import generateConfig from './webpack.config';
 
 const baseConfig = generateConfig(constants);
 
