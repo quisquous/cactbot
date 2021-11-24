@@ -43,6 +43,12 @@
   display: none;
 }
 
+/** force non-transparent when you are crafter/gatherer */
+#jobs.crafter > #opacity-container,
+#jobs.gatherer > #opacity-container {
+  opacity: 1 !important;
+}
+
 #mp-bar,
 #gnb-bar,
 #mnk-bar,

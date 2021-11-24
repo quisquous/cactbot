@@ -330,9 +330,6 @@ export class Bars {
     }
 
     if (Util.isCraftingJob(job)) {
-      // set opacityContainer to be non-transparent when player is a crafter
-      this._updateOpacity(true);
-
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
@@ -351,9 +348,6 @@ export class Bars {
       container.classList.add('hide');
       return;
     } else if (Util.isGatheringJob(job)) {
-      // set opacityContainer to be non-transparent when player is a gatherer
-      this._updateOpacity(true);
-
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
