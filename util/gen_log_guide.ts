@@ -37,12 +37,6 @@ type LocaleText = LocaleObject<string>;
 // Exclude these types since they're not relevant or covered elsewhere
 type ExcludedLineDocs =
   | 'None'
-  | 'AddBuff'
-  | 'RemoveBuff'
-  | 'FlyingText'
-  | 'OutgoingAbility'
-  | 'IncomingAbility'
-  | 'CombatantHP'
   | 'NetworkAOEAbility'
   | 'NetworkWorld'
   | 'NetworkEffectResult'
@@ -51,8 +45,7 @@ type ExcludedLineDocs =
   | 'Debug'
   | 'PacketDump'
   | 'Version'
-  | 'Error'
-  | 'Timer';
+  | 'Error';
 
 type LineDocTypes = Exclude<LogDefinitionTypes, ExcludedLineDocs>;
 
