@@ -2,10 +2,11 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const thunderDot = bars.addProcBox({
     id: 'blm-dot-thunder',
     fgColor: 'blm-color-dot',
@@ -103,7 +104,7 @@ export const setup = (bars: Bars): void => {
     classList: ['blm-xeno-timer'],
   });
 
-  bars.onJobDetailUpdate('BLM', (jobDetail: JobDetail['BLM']) => {
+  player.onJobDetailUpdate('BLM', (jobDetail: JobDetail['BLM']) => {
     // FIXME: make it able to use after refactoring
     // if (bars.umbralStacks !== jobDetail.umbralStacks) {
     //   bars.umbralStacks = jobDetail.umbralStacks;

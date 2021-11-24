@@ -1,4 +1,5 @@
 import { Bars } from '../bars';
+import { Player } from '../player';
 
 import { reset as resetAst, setup as setupAst } from './ast';
 import { reset as resetBlm, setup as setupBlm } from './blm';
@@ -19,7 +20,7 @@ import { reset as resetSmn, setup as setupSmn } from './smn';
 import { reset as resetWar, setup as setupWar } from './war';
 import { reset as resetWhm, setup as setupWhm } from './whm';
 
-export const getSetup = (job: string): undefined | ((bars: Bars) => void) => {
+export const getSetup = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
     'PLD': setupPld,
     'WAR': setupWar,

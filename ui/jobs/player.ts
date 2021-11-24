@@ -135,6 +135,26 @@ export class Player extends EventEmitter<EventMap> {
     return calcGCDFromStat(this, speed, originalCd);
   }
 
+  onJobDetailUpdate<JobKey extends keyof JobDetail>(
+    job: JobKey,
+    callback: (e: JobDetail[JobKey]) => void,
+  ): void {
+    const wrapper = <JobKey extends Job>(
+      _job: JobKey,
+      jobDetail: JobKey extends keyof JobDetail ? JobDetail[JobKey] : never,
+    ): void => {
+      // This prevents having separate onXXXJobDetailUpdate function which take explicit callbacks
+      // so that the lookup into jobFuncs can be statically typed.  Honestly, JobDetail is already
+      // obnoxious enough to use in TypeScript that we probably need to rethink how it is delivered.
+      (callback as (detail: unknown) => void)(jobDetail);
+    };
+    this.on('job-detail', wrapper);
+    this.once('job', (newJob) => {
+      if (job !== newJob)
+        this.off('job-detail', wrapper);
+    });
+  }
+
   onPlayerChangedEvent(
     { detail: data }: OverlayEventResponses['onPlayerChangedEvent'],
   ): void {

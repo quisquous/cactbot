@@ -2,10 +2,11 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const container = bars.addJobBarContainer();
 
   const incs = 20;
@@ -64,7 +65,7 @@ export const setup = (bars: Bars): void => {
     lucidBox.threshold = gcdSpell + 1;
   });
 
-  bars.onJobDetailUpdate('RDM', (jobDetail: JobDetail['RDM']) => {
+  player.onJobDetailUpdate('RDM', (jobDetail: JobDetail['RDM']) => {
     const white = jobDetail.whiteMana.toString();
     const black = jobDetail.blackMana.toString();
 

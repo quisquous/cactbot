@@ -7,7 +7,7 @@ import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
 import Util from '../../resources/util';
 import WidgetList from '../../resources/widget_list';
-import { EventResponses, JobDetail } from '../../types/event';
+import { EventResponses } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
@@ -471,7 +471,7 @@ export class Bars {
 
     const setup = getSetup(job);
     if (setup)
-      setup.bind(null, this)();
+      setup.bind(null, this, this.player)();
 
     // FIXME: should make this possible with event emitter.
     // set up DoT effect ids for tracking target
@@ -676,26 +676,6 @@ export class Bars {
     };
     this.ee.on('effect/lose/you', wrapper);
     this.player.once('job', () => this.ee.off('effect/lose/you', wrapper));
-  }
-
-  onJobDetailUpdate<JobKey extends keyof JobDetail>(
-    job: JobKey,
-    callback: (e: JobDetail[JobKey]) => void,
-  ): void {
-    const wrapper = <JobKey extends Job>(
-      _job: JobKey,
-      jobDetail: JobKey extends keyof JobDetail ? JobDetail[JobKey] : never,
-    ): void => {
-      // This prevents having separate onXXXJobDetailUpdate function which take explicit callbacks
-      // so that the lookup into jobFuncs can be statically typed.  Honestly, JobDetail is already
-      // obnoxious enough to use in TypeScript that we probably need to rethink how it is delivered.
-      (callback as (detail: unknown) => void)(jobDetail);
-    };
-    this.player.on('job-detail', wrapper);
-    this.player.once('job', (newJob) => {
-      if (job !== newJob)
-        this.player.off('job-detail', wrapper);
-    });
   }
 
   onStatChange(job: string, callback: (gcd: { gcdSkill: number; gcdSpell: number }) => void): void {

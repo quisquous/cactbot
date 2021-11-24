@@ -1,15 +1,16 @@
 import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const textBox = bars.addResourceBox({
     classList: ['war-color-beast'],
   });
 
-  bars.onJobDetailUpdate('WAR', (jobDetail: JobDetail['WAR']) => {
+  player.onJobDetailUpdate('WAR', (jobDetail: JobDetail['WAR']) => {
     const beast = jobDetail.beast.toString();
     if (textBox.innerText === beast)
       return;

@@ -2,11 +2,12 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   let tid1 = 0;
 
   const ninki = bars.addResourceBox({
@@ -90,7 +91,7 @@ export const setup = (bars: Bars): void => {
     ninjutsu.threshold = gcdSkill * 2;
   });
 
-  bars.onJobDetailUpdate('NIN', (jobDetail: JobDetail['NIN']) => {
+  player.onJobDetailUpdate('NIN', (jobDetail: JobDetail['NIN']) => {
     if (jobDetail.hutonMilliseconds > 0) {
       if (!bars.speedBuffs.huton)
         bars.speedBuffs.huton = true;

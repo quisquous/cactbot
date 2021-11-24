@@ -2,11 +2,12 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   let tid1 = 0;
   let tid2 = 0;
 
@@ -116,7 +117,7 @@ export const setup = (bars: Bars): void => {
   const espritGauge = bars.addResourceBox({
     classList: ['dnc-color-esprit'],
   });
-  bars.onJobDetailUpdate('DNC', (jobDetail: JobDetail['DNC']) => {
+  player.onJobDetailUpdate('DNC', (jobDetail: JobDetail['DNC']) => {
     espritGauge.innerText = jobDetail.esprit.toString();
     featherGauge.innerText = jobDetail.feathers.toString();
     if (jobDetail.esprit >= 80)

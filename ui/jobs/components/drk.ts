@@ -1,6 +1,7 @@
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
@@ -8,7 +9,7 @@ let tid1: number;
 let tid2: number;
 let tid3: number;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const bloodBox = bars.addResourceBox({
     classList: ['drk-color-blood'],
   });
@@ -18,7 +19,7 @@ export const setup = (bars: Bars): void => {
     threshold: 10,
   });
 
-  bars.onJobDetailUpdate('DRK', (jobDetail: JobDetail['DRK']) => {
+  player.onJobDetailUpdate('DRK', (jobDetail: JobDetail['DRK']) => {
     const blood = jobDetail.blood;
     if (bloodBox.innerText !== blood.toString()) {
       bloodBox.innerText = blood.toString();

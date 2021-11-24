@@ -2,11 +2,12 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   let tid1 = 0;
   let tid2 = 0;
 
@@ -28,7 +29,7 @@ export const setup = (bars: Bars): void => {
   const batteryGauge = bars.addResourceBox({
     classList: ['mch-color-battery'],
   });
-  bars.onJobDetailUpdate('MCH', (jobDetail: JobDetail['MCH']) => {
+  player.onJobDetailUpdate('MCH', (jobDetail: JobDetail['MCH']) => {
     heatGauge.innerText = jobDetail.heat.toString();
     batteryGauge.innerText = jobDetail.battery.toString();
     // These two seconds are shown by half adjust, not like others' ceil.

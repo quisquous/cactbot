@@ -1,6 +1,7 @@
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 const cardsMap = {
@@ -12,7 +13,7 @@ const cardsMap = {
   'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
 } as const;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const combustBox = bars.addProcBox({
     id: 'ast-procs-combust',
     fgColor: 'ast-color-combust',
@@ -37,7 +38,7 @@ export const setup = (bars: Bars): void => {
     classList: ['ast-color-seal'],
   });
 
-  bars.onJobDetailUpdate('AST', (jobDetail: JobDetail['AST']) => {
+  player.onJobDetailUpdate('AST', (jobDetail: JobDetail['AST']) => {
     const card = jobDetail.heldCard;
     const seals = jobDetail.arcanums;
 

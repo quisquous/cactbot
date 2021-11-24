@@ -2,11 +2,12 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const formTimer = bars.addTimerBar({
     id: 'mnk-timers-combo',
     fgColor: 'mnk-color-form',
@@ -16,7 +17,7 @@ export const setup = (bars: Bars): void => {
     classList: ['mnk-color-chakra'],
   });
 
-  bars.onJobDetailUpdate('MNK', (jobDetail: JobDetail['MNK']) => {
+  player.onJobDetailUpdate('MNK', (jobDetail: JobDetail['MNK']) => {
     const chakra = jobDetail.chakraStacks.toString();
     if (textBox.innerText !== chakra) {
       textBox.innerText = chakra;

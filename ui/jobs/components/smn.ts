@@ -2,11 +2,12 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const aetherflowStackBox = bars.addResourceBox({
     classList: ['smn-color-aetherflow'],
   });
@@ -77,7 +78,7 @@ export const setup = (bars: Bars): void => {
     refreshFurtherRuin();
   });
 
-  bars.onJobDetailUpdate('SMN', (jobDetail: JobDetail['SMN']) => {
+  player.onJobDetailUpdate('SMN', (jobDetail: JobDetail['SMN']) => {
     const stack = jobDetail.aetherflowStacks;
     const summoned = jobDetail.bahamutSummoned;
     const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);

@@ -1,12 +1,13 @@
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
 let tid1: number;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const cartridgeBox = bars.addResourceBox({
     classList: ['gnb-color-cartridge'],
   });
@@ -81,7 +82,7 @@ export const setup = (bars: Bars): void => {
       comboTimer.duration = 15;
   });
 
-  bars.onJobDetailUpdate('GNB', (jobDetail: JobDetail['GNB']) => {
+  player.onJobDetailUpdate('GNB', (jobDetail: JobDetail['GNB']) => {
     cartridgeBox.innerText = jobDetail.cartridges.toString();
     if (jobDetail.cartridges === 2)
       cartridgeBox.parentNode.classList.add('full');

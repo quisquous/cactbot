@@ -2,10 +2,11 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const lilyBox = bars.addResourceBox({
     classList: ['whm-color-lily'],
   });
@@ -41,7 +42,7 @@ export const setup = (bars: Bars): void => {
     bloodlilyStacks.push(d);
   }
 
-  bars.onJobDetailUpdate('WHM', (jobDetail: JobDetail['WHM']) => {
+  player.onJobDetailUpdate('WHM', (jobDetail: JobDetail['WHM']) => {
     const lily = jobDetail.lilyStacks;
     // bars milliseconds is countup, so use floor instead of ceil.
     const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);

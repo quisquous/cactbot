@@ -2,6 +2,7 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars, ResourceBox } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
@@ -14,7 +15,7 @@ const setAtonement = (atonementBox: ResourceBox, stacks: number) => {
     p.classList.add('any');
 };
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const oathBox = bars.addResourceBox({
     classList: ['pld-color-oath'],
   });
@@ -22,7 +23,7 @@ export const setup = (bars: Bars): void => {
     classList: ['pld-color-atonement'],
   });
 
-  bars.onJobDetailUpdate('PLD', (jobDetail: JobDetail['PLD']) => {
+  player.onJobDetailUpdate('PLD', (jobDetail: JobDetail['PLD']) => {
     const oath = jobDetail.oath.toString();
     if (oathBox.innerText === oath)
       return;

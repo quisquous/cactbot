@@ -1,10 +1,11 @@
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const aetherflowStackBox = bars.addResourceBox({
     classList: ['sch-color-aetherflow'],
   });
@@ -29,7 +30,7 @@ export const setup = (bars: Bars): void => {
     fgColor: 'sch-color-lucid',
   });
 
-  bars.onJobDetailUpdate('SCH', (jobDetail: JobDetail['SCH']) => {
+  player.onJobDetailUpdate('SCH', (jobDetail: JobDetail['SCH']) => {
     const aetherflow = jobDetail.aetherflowStacks;
     const fairygauge = jobDetail.fairyGauge;
     const milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);

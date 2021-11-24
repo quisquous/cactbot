@@ -2,10 +2,11 @@ import EffectId from '../../../resources/effect_id';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kAbility } from '../constants';
+import { Player } from '../player';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const comboTimer = bars.addTimerBar({
     id: 'sam-timers-combo',
     fgColor: 'combo-color',
@@ -38,7 +39,7 @@ export const setup = (bars: Bars): void => {
     classList: ['sam-color-meditation'],
   });
 
-  bars.onJobDetailUpdate('SAM', (jobDetail: JobDetail['SAM']) => {
+  player.onJobDetailUpdate('SAM', (jobDetail: JobDetail['SAM']) => {
     kenkiGauge.innerText = jobDetail.kenki.toString();
     meditationGauge.innerText = jobDetail.meditationStacks.toString();
     if (jobDetail.kenki >= 70)

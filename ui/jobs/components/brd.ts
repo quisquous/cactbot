@@ -3,11 +3,12 @@ import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { kDoTTickInterval } from '../constants';
 import { DotTracker } from '../event_emitter';
+import { Player } from '../player';
 import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc: (bars: Bars) => void;
 
-export const setup = (bars: Bars): void => {
+export const setup = (bars: Bars, player: Player): void => {
   const straightShotProc = bars.addProcBox({
     id: 'brd-procs-straightshotready',
     fgColor: 'brd-color-straightshotready',
@@ -80,7 +81,7 @@ export const setup = (bars: Bars): void => {
     classList: ['brd-color-soulvoice'],
   });
 
-  bars.onJobDetailUpdate('BRD', (jobDetail: JobDetail['BRD']) => {
+  player.onJobDetailUpdate('BRD', (jobDetail: JobDetail['BRD']) => {
     songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
     repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
     repertoireBox.innerText = '';
