@@ -15,14 +15,19 @@ import { normalizeLogLine } from './utils';
 
 export interface EventMap {
   // triggered when data of current player is updated
-  'player/hp': (info: { hp: number; maxHp: number; prevHp: number; shield: number; prevShield: number }) => void;
+  'player/hp': (
+    info: { hp: number; maxHp: number; prevHp: number; shield: number; prevShield: number },
+  ) => void;
   'player/mp': (info: { mp: number; maxMp: number; prevMp: number }) => void;
   'player/cp': (info: { cp: number; maxCp: number; prevCp: number }) => void;
   'player/gp': (info: { gp: number; maxGp: number; prevGp: number }) => void;
   'player/job': (job: Job) => void;
   'player/level': (level: number, prevLevel: number) => void;
   'player/pos': (pos: { x: number; y: number; z: number }, rotation: number) => void;
-  'player/job-detail': <JobKey extends Job>(job: JobKey, jobDetail: JobKey extends keyof JobDetail ? JobDetail[JobKey] : never) => void;
+  'player/job-detail': <JobKey extends Job>(
+    job: JobKey,
+    jobDetail: JobKey extends keyof JobDetail ? JobDetail[JobKey] : never,
+  ) => void;
   'player/stat': (stat: Stats, gcd: { gcdSkill: number; gcdSpell: number }) => void;
   'player': (player: Player) => void;
   // zone changing
@@ -47,7 +52,11 @@ export interface EventMap {
   'tick/hot': (heal: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
   // triggered when any log line is printed
   'log': (line: string[], rawLine: string) => void;
-  'log/game': (log: Partial<ToMatches<NetFields['GameLog']>>, line: string[], rawLine: string) => void;
+  'log/game': (
+    log: Partial<ToMatches<NetFields['GameLog']>>,
+    line: string[],
+    rawLine: string,
+  ) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<EventMap> {
@@ -110,7 +119,12 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
 
     switch (type) {
       case logDefinitions.GameLog.type:
-        this.emit('log/game', normalizeLogLine(ev.line, logDefinitions.GameLog.fields), ev.line, ev.rawLine);
+        this.emit(
+          'log/game',
+          normalizeLogLine(ev.line, logDefinitions.GameLog.fields),
+          ev.line,
+          ev.rawLine,
+        );
         break;
       case logDefinitions.PlayerStats.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.PlayerStats.fields);
@@ -193,7 +207,9 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
     }
   }
 
-  private processPlayerChangedEvent({ detail: data }: OverlayEventResponses['onPlayerChangedEvent']): void {
+  private processPlayerChangedEvent(
+    { detail: data }: OverlayEventResponses['onPlayerChangedEvent'],
+  ): void {
     this.player.id = data.id;
     this.player.name = data.name;
 
@@ -313,7 +329,6 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
   }
 }
 
-
 /**
  * Track DoTs that was applied to mobs.
  *
@@ -332,7 +347,7 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
  *   // do something like update repertoire timer.
  * });
  */
- export class DotTracker extends EventEmitter {
+export class DotTracker extends EventEmitter {
   ee: JobsEventEmitter;
   trackedDoTs: string[];
 
