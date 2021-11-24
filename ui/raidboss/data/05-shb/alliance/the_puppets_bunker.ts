@@ -338,6 +338,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move to Inside',
           de: 'Nach Innen bewegen',
+          fr: 'Allez à l\'intérieur',
           cn: '去里面',
           ko: '안으로',
         },
@@ -353,6 +354,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move to Outside',
           de: 'Nach Außen bewegen',
+          fr: 'Allez à l\'extérieur',
           cn: '去外面',
           ko: '밖으로',
         },
