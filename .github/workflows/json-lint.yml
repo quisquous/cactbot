@@ -31,10 +31,6 @@ jobs:
           path: ./node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
 
-      - name: Add Custom Problem Matcher
-        run: |
-          echo "::add-matcher::.github/matchers/${{ github.job }}.json"
-
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
