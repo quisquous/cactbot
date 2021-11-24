@@ -151,6 +151,9 @@ export class Bars {
         this.inCombat = game;
         this._updateFoodBuff();
       }
+
+      // make bars transparent when out of combat if requested
+      this._updateOpacity(!game || this.options.LowerOpacityOutOfCombat);
     });
 
     this.ee.on('battle/wipe', () => {
@@ -249,12 +252,13 @@ export class Bars {
     barsLayoutContainer.id = 'jobs';
     container.appendChild(barsLayoutContainer);
 
+    // add job name and role name in classList, e.g. 'warrior' and 'tank'
     barsLayoutContainer.classList.add(job.toLowerCase());
     const role = Util.jobToRole(job);
     if (role !== 'none')
       barsLayoutContainer.classList.add(role.toLowerCase());
 
-    // add pull bar
+    // add pull bar first, which would not affected by the opacity settings
     this.o.pullCountdown = this.addPullCountdownBar();
 
     const opacityContainer = document.createElement('div');
@@ -262,10 +266,6 @@ export class Bars {
     barsLayoutContainer.appendChild(opacityContainer);
     // set opacity to transparent if LowerOpacityOutOfCombat is enabled
     this._updateOpacity(this.options.LowerOpacityOutOfCombat);
-    // update opacity when in combat
-    this.ee.on('battle/in-combat', (ev) => {
-      this._updateOpacity(!ev.game || this.options.LowerOpacityOutOfCombat);
-    });
 
     // Holds health/mana.
     const barsContainer = document.createElement('div');
@@ -306,7 +306,7 @@ export class Bars {
 
     if (Util.isCraftingJob(job)) {
       this.o.cpBar = this.addCPBar();
-      // hide cp bar by default
+      // hide bars by default when you are a crafter
       // it would show when you start crafting
       container.classList.add('hide');
       return;
@@ -574,7 +574,7 @@ export class Bars {
     healthBar.bg = computeBackgroundColorFrom(healthBar, 'bar-border-color');
     // update hp
     this.player.on('hp', (data) => {
-      this._updateHealth(data);
+      this._updateHealth(this.o.healthBar, data);
     });
 
     return healthBar;
@@ -686,25 +686,28 @@ export class Bars {
     void audio.play();
   }
 
-  _updateHealth(data: {
-    hp: number;
-    maxHp: number;
-    shield: number;
-  }): void {
-    if (!this.o.healthBar)
+  _updateHealth(
+    healthBar: ResourceBar | undefined,
+    data: {
+      hp: number;
+      maxHp: number;
+      shield: number;
+    },
+  ): void {
+    if (!healthBar)
       return;
-    this.o.healthBar.value = data.hp.toString();
-    this.o.healthBar.maxvalue = data.maxHp.toString();
-    this.o.healthBar.extravalue = data.shield.toString();
+    healthBar.value = data.hp.toString();
+    healthBar.maxvalue = data.maxHp.toString();
+    healthBar.extravalue = data.shield.toString();
 
     const percent = (data.hp + data.shield) / data.maxHp;
 
     if (data.maxHp > 0 && percent < this.options.LowHealthThresholdPercent)
-      this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
+      healthBar.fg = computeBackgroundColorFrom(healthBar, 'hp-color.low');
     else if (data.maxHp > 0 && percent < this.options.MidHealthThresholdPercent)
-      this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.mid');
+      healthBar.fg = computeBackgroundColorFrom(healthBar, 'hp-color.mid');
     else
-      this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
+      healthBar.fg = computeBackgroundColorFrom(healthBar, 'hp-color');
   }
 
   _updateProcBoxNotifyState(inCombat: boolean): void {
