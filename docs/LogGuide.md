@@ -47,11 +47,6 @@ This guide was last updated for:
     - [Structure](#structure-4)
     - [Regexes](#regexes-3)
     - [Examples](#examples-4)
-  - [Line 05 (0x05): AddBuff](#line-05-0x05-addbuff)
-  - [Line 06 (0x06): RemoveBuff](#line-06-0x06-removebuff)
-  - [Line 07 (0x07): FlyingText](#line-07-0x07-flyingtext)
-  - [Line 08 (0x08): OutgoingAbility](#line-08-0x08-outgoingability)
-  - [Line 09 (0x09): IncomingAbility](#line-09-0x09-incomingability)
   - [Line 11 (0x0B): PartyList](#line-11-0x0b-partylist)
     - [Structure](#structure-5)
     - [Examples](#examples-5)
@@ -59,8 +54,6 @@ This guide was last updated for:
     - [Structure](#structure-6)
     - [Regexes](#regexes-4)
     - [Examples](#examples-6)
-  - [Line 13 (0x0D): CombatantHP](#line-13-0x0d-combatanthp)
-    - [CombatantHP is an ACT-only line](#combatanthp-is-an-act-only-line)
   - [Line 20 (0x14): NetworkStartsCasting](#line-20-0x14-networkstartscasting)
     - [Structure](#structure-7)
     - [Regexes](#regexes-5)
@@ -139,7 +132,6 @@ This guide was last updated for:
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
   - [Line 254 (0xFE): Error](#line-254-0xfe-error)
-  - [Line 255 (0xFF): Timer](#line-255-0xff-timer)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -613,85 +605,6 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<a name="line05"></a>
-
-### Line 05 (0x05): AddBuff
-
-This is the memory-parsing equivalent of [NetworkBuff](#line26).
-Do not write triggers against this as this is only emitted when parsing from memory.
-
-Structure:
-`05:[Target Name] gains the effect of [Status] from [Source Name]`
-
-Examples:
-
-```log
-05:Striking Dummy gains the effect of Reprisal from Tini Poutini.
-05:Potato Chippy gains the effect of Passage Of Arms from Potato Chippy.
-```
-
-<a name="line06"></a>
-
-### Line 06 (0x06): RemoveBuff
-
-This is the memory-parsing equivalent of [NetworkBuffRemove](#line30).
-Do not write triggers against this as this is only emitted when parsing from memory.
-
-Structure:
-`06:[Target Name] loses the effect of [Status] from [Source Name]`
-
-Examples:
-
-```log
-06:Striking Dummy loses the effect of Reprisal from Tini Poutini.
-06:Striking Dummy loses the effect of Circle Of Scorn from Potato Chippy.
-```
-
-<a name="line07"></a>
-
-### Line 07 (0x07): FlyingText
-
-This is the memory-parsing equivalent of [NetworkDoT](#line24).
-Do not write triggers against this as this is only emitted when parsing from memory.
-
-Structure:
-`07:[Type Name] tick on [Source Name] for [Value] damage.`
-
-Examples:
-
-```log
-07:DoT tick on Striking Dummy for 509 damage.
-```
-
-<a name="line08"></a>
-
-### Line 08 (0x08): OutgoingAbility
-
-This is the memory-parsing equivalent of [NetworkStartsCasting](#line20).
-Do not write triggers against this as this is only emitted when parsing from memory.
-
-Structure:
-`08:[Source Name] starts using [Ability Name] on [Target Name].`
-
-Examples:
-
-```log
-08:Potato Chippy starts using Circle Of Scorn on Striking Dummy.
-```
-
-<a name="line09"></a>
-
-### Line 09 (0x09): IncomingAbility
-
-This is the memory-parsing equivalent of [NetworkAbility](#line21) and [NetworkAOEAbility](#line22).
-Do not write triggers against this as this is only emitted when parsing from memory.
-
-Examples:
-
-```log
-0A:10532971:Potato Chippy:17:Circle Of Scorn:40001299:Striking Dummy:710003:6850000:ef010f:f80000:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0
-```
-
 <a name="line11"></a>
 
 ### Line 11 (0x0B): PartyList
@@ -767,34 +680,6 @@ ACT Log Line Examples:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-<a name="line13"></a>
-
-### Line 13 (0x0D): CombatantHP
-
-If you have the **Include HP for Triggers** setting turned on
-in the **FFXIV Settings** tab of ACT, then it will emit log lines
-for every percentage change of every entity.
-
-![include hp screenshot](images/logguide_includehp.png)
-
-Structure:
-`0D:[Target Name] HP at [HP-Value]%.`
-
-Examples:
-
-```log
-0D:Striking Dummy HP at 96%.
-0D:Tini Poutini HP at 98%.
-```
-
-#### CombatantHP is an ACT-only line
-
-CombatantHP lines are only sent over the ACT log line format
-and are not included as a network log line.
-As such,
-triggers which depend on an enemy's HP reaching a certain threshold
-should instead use the `Util.watchCombatant` promise helper.
 
 <a name="line20"></a>
 
@@ -1990,9 +1875,3 @@ ACT log lines are blank for this type.
 ### Line 254 (0xFE): Error
 
 These are lines emitted directly by the ffxiv plugin when something goes wrong.
-
-<a name="line255"></a>
-
-### Line 255 (0xFF): Timer
-
-Theoretically used when memory-parsing is used, but I haven't seen them.
