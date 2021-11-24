@@ -10,10 +10,15 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length", "100"],
+  "python.formatting.blackArgs": [
+    "--line-length",
+    "100"
+  ],
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": false,
-  "python.linting.pylintArgs": ["--errors-only"],
+  "python.linting.pylintArgs": [
+    "--errors-only"
+  ],
   "python.linting.pylintEnabled": true,
   "search.exclude": {
     "**/node_modules": true,
@@ -21,6 +26,12 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": null
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dprint.dprint"
   },
   "[python]": {
     "editor.tabSize": 4,

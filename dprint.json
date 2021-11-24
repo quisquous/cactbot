@@ -1,0 +1,28 @@
+{
+  "incremental": true,
+  "typescript": {
+    "bracePosition": "maintain",
+    "indentWidth": 2,
+    "newLineKind": "crlf",
+    "nextControlFlowPosition": "maintain",
+    "operatorPosition": "maintain",
+    "quoteStyle": "alwaysSingle",
+    "useBraces": "maintain",
+  },
+  "json": {},
+  "markdown": {},
+  "toml": {},
+  "includes": [
+    "**/*.{ts,tsx,js,jsx,cjs,mjs,json,md,toml}"
+  ],
+  "excludes": [
+    "**/node_modules",
+    "**/*-lock.json"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.59.2.wasm",
+    "https://plugins.dprint.dev/json-0.13.2.wasm",
+    "https://plugins.dprint.dev/markdown-0.11.3.wasm",
+    "https://plugins.dprint.dev/toml-0.5.3.wasm"
+  ]
+}

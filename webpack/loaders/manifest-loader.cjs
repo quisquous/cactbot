@@ -1,9 +1,9 @@
-import fs from 'fs';
+'use strict';
+const fs = require('fs');
 
-import webpack from 'webpack';
-
-export default function(this: webpack.LoaderContext<never>, _content: string): string {
+module.exports = function(_content) {
   this.cacheable(true);
+
   const contents = fs.readFileSync(this.resourcePath).toString();
   const lines = contents.trim().split(/\s*[\r\n]+\s*/);
 
@@ -23,4 +23,4 @@ export default function(this: webpack.LoaderContext<never>, _content: string): s
   outputStr += '};';
 
   return `${importStr}\n${outputStr}`;
-}
+};

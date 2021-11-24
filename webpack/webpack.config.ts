@@ -1,4 +1,5 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
@@ -7,6 +8,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -75,9 +79,11 @@ export default (
       assetModuleFilename: '[file][query]',
     },
     devServer: {
-      contentBase: path.join(__dirname, '../dist'),
-      writeToDisk: true,
-      disableHostCheck: true,
+      static: path.join(__dirname, '../dist'),
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      allowedHosts: 'all',
     },
     resolve: {
       extensions: ['.ts', '.js'],
@@ -140,7 +146,7 @@ export default (
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
-              loader: './webpack/loaders/manifest-loader.ts',
+              loader: './webpack/loaders/manifest-loader.cjs',
             },
           ],
         },
@@ -151,7 +157,7 @@ export default (
               loader: 'raw-loader',
             },
             {
-              loader: './webpack/loaders/timeline-loader.ts',
+              loader: './webpack/loaders/timeline-loader.cjs',
             },
           ],
         },
