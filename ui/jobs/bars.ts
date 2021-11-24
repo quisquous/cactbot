@@ -6,7 +6,7 @@ import ResourceBar from '../../resources/resourcebar';
 import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
 import Util from '../../resources/util';
-import WidgetList from '../../resources/widget_list';
+import WidgetList, { Toward } from '../../resources/widget_list';
 import { Job } from '../../types/job';
 
 import { BuffTracker } from './buff_tracker';
@@ -270,39 +270,34 @@ export class Bars {
       barsContainer.classList.add('pvp');
     opacityContainer.appendChild(barsContainer);
 
-    const rightBuffsContainer = document.createElement('div');
-    rightBuffsContainer.id = 'right-side-icons';
-    barsContainer.appendChild(rightBuffsContainer);
-
-    this.o.rightBuffsList = WidgetList.create({
-      rowcolsize: 7,
-      maxnumber: 7,
-      toward: 'right down',
-      elementwidth: (this.options.BigBuffIconWidth + 2).toString(),
-    });
-    rightBuffsContainer.appendChild(this.o.rightBuffsList);
-
     if (this.options.JustBuffTracker) {
       // Just alias these two together so the rest of the code doesn't have
       // to care that they're the same thing.
-      this.o.leftBuffsList = this.o.rightBuffsList;
-      this.o.rightBuffsList.rowcolsize = 20;
-      this.o.rightBuffsList.maxnumber = 20;
+      this.o.leftBuffsList = this.o.rightBuffsList = this.addBuffsList({
+        id: 'right-side-icons',
+        rowcolsize: 20,
+        maxnumber: 20,
+        toward: 'right down',
+      });
       // Hoist the buffs up to hide everything else.
-      barsLayoutContainer.appendChild(rightBuffsContainer);
+      const buffsContainer = this.o.rightBuffsList.parentElement;
+      if (!buffsContainer)
+        throw new UnreachableCode();
+      barsLayoutContainer.appendChild(buffsContainer);
       barsLayoutContainer.classList.add('justbuffs');
     } else {
-      const leftBuffsContainer = document.createElement('div');
-      leftBuffsContainer.id = 'left-side-icons';
-      barsContainer.appendChild(leftBuffsContainer);
-
-      this.o.leftBuffsList = WidgetList.create({
+      this.o.rightBuffsList = this.addBuffsList({
+        id: 'right-side-icons',
+        rowcolsize: 7,
+        maxnumber: 7,
+        toward: 'right down',
+      });
+      this.o.leftBuffsList = this.addBuffsList({
+        id: 'left-side-icons',
         rowcolsize: 7,
         maxnumber: 7,
         toward: 'left down',
-        elementwidth: (this.options.BigBuffIconWidth + 2).toString(),
       });
-      leftBuffsContainer.appendChild(this.o.leftBuffsList);
     }
 
     if (Util.isCraftingJob(job)) {
@@ -490,10 +485,14 @@ export class Bars {
     barsLayoutContainer.appendChild(pullCountdownContainer);
     const pullCountdown = TimerBar.create({
       righttext: 'remain',
-      hideafter: 0,
+      // FIXME: create function check parameters with `if (param)` so when
+      // we using 0 here, it will just ignore it.
+      // should be fixed in the future.
+      // hideafter: 0,
       fg: 'rgb(255, 120, 120)',
       lefttext: kPullText[this.options.DisplayLanguage] || kPullText['en'],
     });
+    pullCountdown.hideafter = 0;
     pullCountdownContainer.appendChild(pullCountdown);
     pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
@@ -658,6 +657,31 @@ export class Bars {
     });
 
     return mpTicker;
+  }
+
+  addBuffsList(o: {
+    id: string;
+    rowcolsize: number;
+    maxnumber: number;
+    toward: Toward;
+  }): WidgetList {
+    const barsContainer = document.getElementById('bars');
+    if (!barsContainer)
+      throw new UnreachableCode();
+
+    const rightBuffsContainer = document.createElement('div');
+    rightBuffsContainer.id = o.id;
+    barsContainer.appendChild(rightBuffsContainer);
+
+    const buffsList = WidgetList.create({
+      rowcolsize: o.rowcolsize,
+      maxnumber: o.maxnumber,
+      toward: o.toward,
+      elementwidth: (this.options.BigBuffIconWidth + 2).toString(),
+    });
+    rightBuffsContainer.appendChild(buffsList);
+
+    return buffsList;
   }
 
   playNotification(): void {
