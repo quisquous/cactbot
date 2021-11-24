@@ -1,4 +1,3 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
 
 import { Bars } from './bars';
@@ -11,15 +10,8 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
 
   const emitter = new JobsEventEmitter();
   const player = new Player(emitter);
-  const bars = new Bars(options, { emitter, player });
+  new Bars(options, { emitter, player });
 
   // register overlay plugin's events
   emitter.registerOverlayListeners();
-
-  addOverlayListener('onInCombatChangedEvent', (e) => {
-    bars._onInCombatChanged(e);
-  });
-  addOverlayListener('ChangeZone', (e) => {
-    bars._onChangeZone(e);
-  });
 });

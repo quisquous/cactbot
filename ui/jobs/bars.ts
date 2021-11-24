@@ -157,6 +157,10 @@ export class Bars {
 
     this.ee.on('battle/in-combat', ({ game }) => {
       this._updateProcBoxNotifyState(game);
+      if (this.inCombat !== game) {
+        this.inCombat = game;
+        this._updateFoodBuff();
+      }
     });
 
     this.ee.on('battle/wipe', () => {
@@ -190,6 +194,15 @@ export class Bars {
       // mob id starts with '4'
       if (matches.targetId?.startsWith('4'))
         this.buffTracker?.onMobLosesEffect(id, matches);
+    });
+
+    this.ee.on('zone/change', (id) => {
+      this._updateFoodBuff();
+      if (this.buffTracker)
+        this.buffTracker.clear();
+
+      // Hide UI except HP and MP bar if change to pvp area.
+      this._updateUIVisibility(isPvPZone(id));
     });
 
     this.ee.on('log/game', (_log, _line, rawLine) => {
@@ -822,24 +835,6 @@ export class Bars {
     const reset = getReset(this.player.job);
     if (reset)
       reset.bind(null, this, this.player)();
-  }
-
-  _onInCombatChanged(e: EventResponses['onInCombatChangedEvent']): void {
-    if (this.inCombat === e.detail.inGameCombat)
-      return;
-
-    this.inCombat = e.detail.inGameCombat;
-
-    this._updateFoodBuff();
-  }
-
-  _onChangeZone(e: EventResponses['ChangeZone']): void {
-    this._updateFoodBuff();
-    if (this.buffTracker)
-      this.buffTracker.clear();
-
-    // Hide UI except HP and MP bar if change to pvp area.
-    this._updateUIVisibility(isPvPZone(e.zoneID));
   }
 
   _setPullCountdown(seconds: number): void {
