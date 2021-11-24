@@ -117,6 +117,7 @@
     "*.{js,cjs,mjs}": "eslint --max-warnings=0",
     "*.ts": "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",
     "*.md": "markdownlint",
+    "*.json": "dprint fmt",
     "*.py": "python -m pylint --errors-only",
     "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.js"
   },
