@@ -229,7 +229,7 @@ export class Bars {
   _updateUIVisibility(hide?: boolean): void {
     const bars = document.getElementById('bars');
     if (bars)
-      bars.classList.toggle('pvp', hide);
+      bars.classList.toggle('pvp', hide ?? false);
   }
 
   _updateJob(job: Job): void {
