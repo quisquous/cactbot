@@ -23,12 +23,14 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    matrix:
+      node_version: [14, 16]
     steps:
       - uses: actions/checkout@v1
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '${ matrix.node_version }'
 
       - name: Cache Dependencies
         id: cache
