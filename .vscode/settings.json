@@ -19,6 +19,9 @@
     "**/node_modules": true,
     "dist/**": true
   },
+  "[yaml]": {
+    "editor.defaultFormatter": null
+  },
   "[python]": {
     "editor.tabSize": 4,
     "editor.formatOnSave": true,
