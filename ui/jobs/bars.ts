@@ -124,6 +124,16 @@ export class Bars {
         this.gpAlarmReady = false;
 
       this._updateJob(job);
+
+      // add food buff trigger
+      this.onYouGainEffect((id, matches) => {
+        if (id === EffectId.WellFed) {
+          const seconds = parseFloat(matches.duration ?? '0');
+          const now = Date.now(); // This is in ms.
+          this.foodBuffExpiresTimeMs = now + (seconds * 1000);
+          this._updateFoodBuff();
+        }
+      });
       // As you cannot change jobs in combat, we can assume that
       // it is always false here.
       this._updateProcBoxNotifyState(false);
@@ -211,17 +221,6 @@ export class Bars {
   }
 
   _updateJob(job: Job): void {
-    this.changeZoneFuncs = [];
-
-    this.onYouGainEffect((id, matches) => {
-      if (id === EffectId.WellFed) {
-        const seconds = parseFloat(matches.duration ?? '0');
-        const now = Date.now(); // This is in ms.
-        this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-        this._updateFoodBuff();
-      }
-    });
-
     // if player is in pvp zone, inherit the class
     const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
 
@@ -614,9 +613,11 @@ export class Bars {
   }
 
   onCombo(callback: (id: string | undefined, combo: ComboTracker) => void): void {
-    this.ee.on('action/combo', (id, combo) => {
+    const wrapper = (id: string | undefined, combo: ComboTracker) => {
       callback(id, combo);
-    });
+    };
+    this.ee.on('action/combo', wrapper);
+    this.player.once('job', () => this.ee.off('action/combo', wrapper));
   }
 
   onMobGainsEffectFromYou(callback: GainCallback): void {
@@ -629,7 +630,7 @@ export class Bars {
         callback(id, matches);
     };
     this.ee.on('effect/gain', wrapper);
-    this.player.on('job', () => this.ee.off('effect/gain', wrapper));
+    this.player.once('job', () => this.ee.off('effect/gain', wrapper));
   }
 
   onMobLosesEffectFromYou(callback: LoseCallback): void {
@@ -642,7 +643,7 @@ export class Bars {
         callback(id, matches);
     };
     this.ee.on('effect/lose', wrapper);
-    this.player.on('job', () => this.ee.off('effect/lose', wrapper));
+    this.player.once('job', () => this.ee.off('effect/lose', wrapper));
   }
 
   onYouGainEffect(callback: GainCallback): void {
@@ -676,6 +677,7 @@ export class Bars {
       callback(id, matches);
     };
     this.ee.on('action/you', wrapper);
+    this.player.once('job', () => this.ee.off('action/you', wrapper));
   }
 
   onZoneChange(callback: ZoneChangeCallback): void {
@@ -900,9 +902,6 @@ export class Bars {
     this._updateFoodBuff();
     if (this.buffTracker)
       this.buffTracker.clear();
-
-    for (const func of this.changeZoneFuncs)
-      func(e);
 
     // Hide UI except HP and MP bar if change to pvp area.
     this._updateUIVisibility(isPvPZone(e.zoneID));
