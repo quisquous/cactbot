@@ -7,7 +7,6 @@ import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
 import Util from '../../resources/util';
 import WidgetList from '../../resources/widget_list';
-import ZoneInfo from '../../resources/zone_info';
 import { Job } from '../../types/job';
 
 import { BuffTracker } from './buff_tracker';
@@ -63,8 +62,6 @@ type JobDomObjects = {
   mpTickContainer?: HTMLElement;
   mpTicker?: TimerBar;
 };
-
-type ZoneChangeCallback = (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
 
 export interface ResourceBox extends HTMLDivElement {
   parentNode: HTMLElement;
@@ -622,14 +619,6 @@ export class Bars {
     const audio = new Audio('../../resources/sounds/freesound/alarm.webm');
     audio.volume = 0.3;
     void audio.play();
-  }
-
-  onZoneChange(callback: ZoneChangeCallback): void {
-    const wrapper: ZoneChangeCallback = (id, name, info) => {
-      callback(id, name, info);
-    };
-    this.ee.on('zone/change', wrapper);
-    this.player.once('job', () => this.ee.off('zone/change', wrapper));
   }
 
   _updateHealth(data: {

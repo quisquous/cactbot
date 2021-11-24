@@ -73,7 +73,7 @@ export const setup = (bars: Bars, player: Player): void => {
       refreshFurtherRuin();
     }
   });
-  bars.onZoneChange(() => {
+  player.onZoneChange(() => {
     furtherRuin = 0;
     refreshFurtherRuin();
   });

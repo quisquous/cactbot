@@ -2,6 +2,7 @@ import EventEmitter from 'eventemitter3';
 import { isEqual } from 'lodash';
 
 import logDefinitions from '../../resources/netlog_defs';
+import ZoneInfo from '../../resources/zone_info';
 import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
@@ -36,6 +37,7 @@ export type SpeedBuffs = {
 export type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
 export type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
 export type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
+export type ZoneChangeCallback = (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
 
 export interface EventMap {
   // triggered when data of current player is updated
@@ -243,6 +245,14 @@ export class Player extends PlayerBase {
     };
     this.on('action/you', wrapper);
     this.once('job', () => this.off('action/you', wrapper));
+  }
+
+  onZoneChange(callback: ZoneChangeCallback): void {
+    const wrapper: ZoneChangeCallback = (id, name, info) => {
+      callback(id, name, info);
+    };
+    this.ee.on('zone/change', wrapper);
+    this.once('job', () => this.ee.off('zone/change', wrapper));
   }
 
   onJobDetailUpdate<JobKey extends keyof JobDetail>(
