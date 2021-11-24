@@ -108,6 +108,9 @@ export class Bars {
     this.ee = emitter;
     this.player = this.ee.player;
 
+    // bind party changed event
+    this.ee.on('party', (party) => this.partyTracker.onPartyChanged({ party }));
+
     this.player.on('level', (level, prevLevel) => {
       if (level - prevLevel)
         this._updateFoodBuff();
@@ -943,9 +946,5 @@ export class Bars {
       container.classList.remove('hide');
     else
       container.classList.add('hide');
-  }
-
-  _onPartyChanged(e: EventResponses['PartyChanged']): void {
-    this.partyTracker.onPartyChanged(e);
   }
 }

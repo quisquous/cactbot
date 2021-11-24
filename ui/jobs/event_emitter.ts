@@ -3,7 +3,7 @@ import EventEmitter from 'eventemitter3';
 import logDefinitions from '../../resources/netlog_defs';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 import ZoneInfo from '../../resources/zone_info';
-import { EventResponses as OverlayEventResponses } from '../../types/event';
+import { EventResponses as OverlayEventResponses, Party } from '../../types/event';
 import { NetFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
 
@@ -12,6 +12,8 @@ import { Player } from './player';
 import { normalizeLogLine } from './utils';
 
 export interface EventMap {
+  // party changed
+  'party': (party: Party[]) => void;
   // zone changing
   'zone/change': (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
   // battle events
@@ -91,6 +93,10 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
 
     addOverlayListener('LogLine', (ev) => {
       this.processLogLine(ev);
+    });
+
+    addOverlayListener('PartyChanged', (e) => {
+      this.emit('party', e.party ?? []);
     });
   }
 

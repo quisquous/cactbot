@@ -17,7 +17,4 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   addOverlayListener('ChangeZone', (e) => {
     bars._onChangeZone(e);
   });
-  addOverlayListener('PartyChanged', (e) => {
-    bars._onPartyChanged(e);
-  });
 });
