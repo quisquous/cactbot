@@ -78,7 +78,7 @@ export class Bars {
 
   private inCombat = false;
   private regexes?: RegexesHolder;
-  private partyTracker: PartyTracker = new PartyTracker();
+  private partyTracker: PartyTracker;
   private buffTracker?: BuffTracker;
   public ee: JobsEventEmitter;
   public readonly player: Player;
@@ -91,6 +91,7 @@ export class Bars {
   constructor(private options: JobsOptions, o: {
     emitter: JobsEventEmitter;
     player: Player;
+    partyTracker: PartyTracker;
   }) {
     // Don't add any notifications if only the buff tracker is being shown.
     if (this.options.JustBuffTracker) {
@@ -100,6 +101,7 @@ export class Bars {
 
     this.ee = o.emitter;
     this.player = o.player;
+    this.partyTracker = o.partyTracker;
 
     // bind party changed event
     this.ee.on('party', (party) => this.partyTracker.onPartyChanged({ party }));

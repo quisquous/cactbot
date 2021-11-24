@@ -1,3 +1,4 @@
+import PartyTracker from '../../resources/party';
 import UserConfig from '../../resources/user_config';
 
 import { Bars } from './bars';
@@ -10,7 +11,8 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
 
   const emitter = new JobsEventEmitter();
   const player = new Player(emitter);
-  new Bars(options, { emitter, player });
+  const partyTracker = new PartyTracker();
+  new Bars(options, { emitter, player, partyTracker });
 
   // register overlay plugin's events
   emitter.registerOverlayListeners();
