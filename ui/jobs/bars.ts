@@ -8,7 +8,6 @@ import TimerBox from '../../resources/timerbox';
 import Util from '../../resources/util';
 import WidgetList from '../../resources/widget_list';
 import ZoneInfo from '../../resources/zone_info';
-import { EventResponses } from '../../types/event';
 import { Job } from '../../types/job';
 
 import { BuffTracker } from './buff_tracker';
@@ -72,7 +71,6 @@ export interface ResourceBox extends HTMLDivElement {
 }
 
 export class Bars {
-  private init = false;
   private o: JobDomObjects = {};
   private foodBuffExpiresTimeMs = 0;
   private gpAlarmReady = false;
@@ -151,8 +149,6 @@ export class Bars {
     // update RegexesHolder when the player name changes
     this.player.on('player', ({ name }) => {
       this.regexes = new RegexesHolder(this.options.ParserLanguage, name);
-      // mark it initialized
-      this.init = true;
     });
 
     this.ee.on('battle/in-combat', ({ game }) => {
@@ -779,7 +775,7 @@ export class Bars {
 
   _updateFoodBuff(): void {
     // Non-combat jobs don't set up the left buffs list.
-    if (!this.init || !this.o.leftBuffsList)
+    if (!this.o.leftBuffsList)
       return;
 
     const CanShowWellFedWarning = () => {
