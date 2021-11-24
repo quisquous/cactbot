@@ -134,7 +134,7 @@ Options.Triggers.push({
                     de: 'Kreis auf DIR',
                     fr: 'Cercle sur vous',
                     ja: 'サークルついた',
-                    cn: '圈圈点你',
+                    cn: '圈圈点名',
                     ko: '원형징 대상자',
                 },
             },
