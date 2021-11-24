@@ -50,7 +50,7 @@ export interface EventMap {
   'log/game': (log: Partial<ToMatches<NetFields['GameLog']>>, line: string[], rawLine: string) => void;
 }
 
-export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
+export class JobsEventEmitter extends EventEmitter<EventMap> {
   public combo: ComboTracker;
   public player: Player;
 
@@ -72,24 +72,6 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
     });
     // Combos are job specific.
     this.on('player/job', () => this.combo.AbortCombo());
-  }
-
-  override on<Key extends keyof EventMap>(event: Key, listener: EventMap[Key]): this {
-    return super.on(event, listener);
-  }
-
-  override once<Key extends keyof EventMap>(event: Key, listener: EventMap[Key]): this {
-    return super.once(event, listener);
-  }
-
-  override emit<Key extends keyof EventMap>(
-    event: Key, ...args: Parameters<EventMap[Key]>
-  ): boolean {
-    return super.emit(event, ...args);
-  }
-
-  override off<Key extends keyof EventMap>(event: Key, listener: EventMap[Key]): this {
-    return super.off(event, listener);
   }
 
   registerOverlayListeners(): void {
