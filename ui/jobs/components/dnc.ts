@@ -55,7 +55,7 @@ export const setup = (bars: Bars, player: Player): void => {
         if (flourishEffect.length === 5 && flourishIsActive) {
           flourish.duration = 60 - flourish.elapsed;
           flourishIsActive = false;
-          flourish.threshold = bars.gcdSkill + 1;
+          flourish.threshold = player.gcdSkill + 1;
           flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
         }
         break;
@@ -89,7 +89,7 @@ export const setup = (bars: Bars, player: Player): void => {
         tid1 = window.setTimeout(() => {
           technicalIsActive = false;
           technicalStep.duration = 100 - elapsed;
-          technicalStep.threshold = bars.gcdSkill + 1;
+          technicalStep.threshold = player.gcdSkill + 1;
           technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
         }, technicalStep.duration * 1000);
         break;
@@ -103,7 +103,7 @@ export const setup = (bars: Bars, player: Player): void => {
         tid2 = window.setTimeout(() => {
           flourish.duration = 40;
           flourishIsActive = false;
-          flourish.threshold = bars.gcdSkill + 1;
+          flourish.threshold = player.gcdSkill + 1;
           flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
         }, flourish.duration * 1000);
         break;
@@ -127,12 +127,12 @@ export const setup = (bars: Bars, player: Player): void => {
   });
 
   bars.onStatChange('DNC', () => {
-    standardStep.valuescale = bars.gcdSkill;
-    standardStep.threshold = bars.gcdSkill + 1;
-    technicalStep.valuescale = bars.gcdSkill;
-    technicalStep.threshold = bars.gcdSkill + 1;
-    flourish.valuescale = bars.gcdSkill;
-    flourish.threshold = bars.gcdSkill + 1;
+    standardStep.valuescale = player.gcdSkill;
+    standardStep.threshold = player.gcdSkill + 1;
+    technicalStep.valuescale = player.gcdSkill;
+    technicalStep.threshold = player.gcdSkill + 1;
+    flourish.valuescale = player.gcdSkill;
+    flourish.threshold = player.gcdSkill + 1;
   });
 
   resetFunc = (bars: Bars): void => {
@@ -141,12 +141,12 @@ export const setup = (bars: Bars, player: Player): void => {
     technicalStep.duration = 0;
     technicalIsActive = false;
     elapsed = 0;
-    technicalStep.threshold = bars.gcdSkill + 1;
+    technicalStep.threshold = player.gcdSkill + 1;
     technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
     flourish.duration = 0;
     flourishEffect = [];
     flourishIsActive = false;
-    flourish.threshold = bars.gcdSkill + 1;
+    flourish.threshold = player.gcdSkill + 1;
     flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
     clearTimeout(tid1);
     clearTimeout(tid2);

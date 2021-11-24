@@ -76,7 +76,7 @@ export const setup = (bars: Bars, player: Player): void => {
         trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
         tid1 = window.setTimeout(() => {
           trickAttack.duration = 45;
-          trickAttack.threshold = bars.gcdSkill * 4;
+          trickAttack.threshold = player.gcdSkill * 4;
           trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
         }, 15000);
         break;
@@ -128,7 +128,7 @@ export const setup = (bars: Bars, player: Player): void => {
     mudraTriggerCd = true;
     ninjutsu.duration = 0;
     trickAttack.duration = 0;
-    trickAttack.threshold = bars.gcdSkill * 4;
+    trickAttack.threshold = player.gcdSkill * 4;
     trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
     hutonBox.duration = 0;
     comboTimer.duration = 0;

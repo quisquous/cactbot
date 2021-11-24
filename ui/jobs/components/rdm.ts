@@ -92,10 +92,10 @@ export const setup = (bars: Bars, player: Player): void => {
 
   bars.onYouGainEffect((id, matches) => {
     if (id === EffectId.VerstoneReady)
-      whiteProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
+      whiteProc.duration = parseFloat(matches.duration ?? '0') - player.gcdSpell;
     if (id === EffectId.VerfireReady) {
       blackProc.duration = 0;
-      blackProc.duration = parseFloat(matches.duration ?? '0') - bars.gcdSpell;
+      blackProc.duration = parseFloat(matches.duration ?? '0') - player.gcdSpell;
     }
   });
   bars.onYouLoseEffect((id) => {

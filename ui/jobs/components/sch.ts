@@ -46,7 +46,7 @@ export const setup = (bars: Bars, player: Player): void => {
     }
 
     // dynamically annouce user depends on their aetherflow stacks right now
-    aetherflowBox.threshold = bars.gcdSpell * (aetherflow || 1) + 1;
+    aetherflowBox.threshold = player.gcdSpell * (aetherflow || 1) + 1;
 
     const p = aetherflowStackBox.parentNode;
     const s = aetherflowBox.duration ?? 0 - aetherflowBox.elapsed;

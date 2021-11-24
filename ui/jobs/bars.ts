@@ -29,7 +29,6 @@ import './jobs_config';
 import { JobsOptions } from './jobs_options';
 import { Player, Stats } from './player';
 import {
-  calcGCDFromStat,
   computeBackgroundColorFrom,
   doesJobNeedMPBar,
   isPvPZone,
@@ -211,14 +210,6 @@ export class Bars {
 
       document.documentElement.style.setProperty('--proc-box-notify-repeat', repeats);
     }
-  }
-
-  get gcdSkill(): number {
-    return calcGCDFromStat(this.player, this.skillSpeed);
-  }
-
-  get gcdSpell(): number {
-    return calcGCDFromStat(this.player, this.spellSpeed);
   }
 
   _updateUIVisibility(hide?: boolean): void {
@@ -893,7 +884,7 @@ export class Bars {
     // Reset job-specific ui
     const reset = getReset(this.player.job);
     if (reset)
-      reset.bind(null, this)();
+      reset.bind(null, this, this.player)();
   }
 
   _onInCombatChanged(e: EventResponses['onInCombatChangedEvent']): void {

@@ -43,7 +43,7 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
   }[job.toUpperCase()];
 };
 
-export const getReset = (job: string): undefined | ((bars: Bars) => void) => {
+export const getReset = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
     'PLD': resetPld,
     'WAR': resetWar,

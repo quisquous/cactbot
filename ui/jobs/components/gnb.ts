@@ -51,7 +51,7 @@ export const setup = (bars: Bars, player: Player): void => {
         noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
         tid1 = window.setTimeout(() => {
           noMercyBox.duration = 40;
-          noMercyBox.threshold = bars.gcdSkill + 1;
+          noMercyBox.threshold = player.gcdSkill + 1;
           noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
         }, 20000);
         break;
@@ -92,7 +92,7 @@ export const setup = (bars: Bars, player: Player): void => {
 
   resetFunc = (bars) => {
     noMercyBox.duration = 0;
-    noMercyBox.threshold = bars.gcdSkill + 1;
+    noMercyBox.threshold = player.gcdSkill + 1;
     noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
     bloodfestBox.duration = 0;
     gnashingFangBox.duration = 0;

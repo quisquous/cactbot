@@ -125,7 +125,7 @@ export const setup = (bars: Bars, player: Player): void => {
         wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
         tid1 = window.setTimeout(() => {
           wildFireBox.duration = 110 - 0.9;
-          wildFireBox.threshold = bars.gcdSkill + 1;
+          wildFireBox.threshold = player.gcdSkill + 1;
           wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
         }, 10000);
         tid2 = window.setTimeout(() => {
@@ -154,7 +154,7 @@ export const setup = (bars: Bars, player: Player): void => {
     wildFireActive = false;
     refreshWildFireGauge();
     wildFireBox.duration = 0;
-    wildFireBox.threshold = bars.gcdSkill + 1;
+    wildFireBox.threshold = player.gcdSkill + 1;
     wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
     stacksContainer.classList.add('hide');
     clearTimeout(tid1);
