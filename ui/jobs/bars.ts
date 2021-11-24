@@ -322,10 +322,6 @@ export class Bars {
     const setup = getSetup(job);
     if (setup)
       setup.bind(null, this, this.player)();
-
-    // FIXME: should make this possible with event emitter.
-    // set up DoT effect ids for tracking target
-    // this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
 
   addJobBarContainer(): HTMLElement {
