@@ -53,7 +53,7 @@ export const setup = (bars: Bars, player: Player): void => {
         fireProc.duration = parseFloat(matches.duration ?? '0');
         break;
       case EffectId.CircleOfPower:
-        bars.speedBuffs.circleOfPower = true;
+        player.speedBuffs.circleOfPower = true;
         break;
     }
   });
@@ -66,7 +66,7 @@ export const setup = (bars: Bars, player: Player): void => {
         fireProc.duration = 0;
         break;
       case EffectId.CircleOfPower:
-        bars.speedBuffs.circleOfPower = false;
+        player.speedBuffs.circleOfPower = false;
         break;
     }
   });

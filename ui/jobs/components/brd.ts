@@ -122,8 +122,8 @@ export const setup = (bars: Bars, player: Player): void => {
     }
 
     // GCD calculate
-    if (jobDetail.songName === 'Paeon' && bars.speedBuffs.paeonStacks !== jobDetail.songProcs)
-      bars.speedBuffs.paeonStacks = jobDetail.songProcs;
+    if (jobDetail.songName === 'Paeon' && player.speedBuffs.paeonStacks !== jobDetail.songProcs)
+      player.speedBuffs.paeonStacks = jobDetail.songProcs;
   });
   let ethosStacks = 0;
 
@@ -140,13 +140,13 @@ export const setup = (bars: Bars, player: Player): void => {
       case EffectId.ArmysMuse:
         // We just entered Minuet/Ballad, add muse effect
         // If we let paeon run out, get the temp stacks from ethos
-        bars.speedBuffs.museStacks = ethosStacks ? ethosStacks : bars.speedBuffs.paeonStacks;
-        bars.speedBuffs.paeonStacks = 0;
+        player.speedBuffs.museStacks = ethosStacks ? ethosStacks : player.speedBuffs.paeonStacks;
+        player.speedBuffs.paeonStacks = 0;
         break;
       case EffectId.ArmysEthos:
         // Not under muse or paeon, so store the stacks
-        ethosStacks = bars.speedBuffs.paeonStacks;
-        bars.speedBuffs.paeonStacks = 0;
+        ethosStacks = player.speedBuffs.paeonStacks;
+        player.speedBuffs.paeonStacks = 0;
         break;
     }
   });
@@ -157,14 +157,14 @@ export const setup = (bars: Bars, player: Player): void => {
         break;
       case EffectId.ArmysMuse:
         // Muse effect ends
-        bars.speedBuffs.museStacks = 0;
-        bars.speedBuffs.paeonStacks = 0;
+        player.speedBuffs.museStacks = 0;
+        player.speedBuffs.paeonStacks = 0;
         break;
       case EffectId.ArmysEthos:
         // Didn't use a song and ethos ran out
         ethosStacks = 0;
-        bars.speedBuffs.museStacks = 0;
-        bars.speedBuffs.paeonStacks = 0;
+        player.speedBuffs.museStacks = 0;
+        player.speedBuffs.paeonStacks = 0;
         break;
     }
   });

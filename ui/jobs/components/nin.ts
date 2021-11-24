@@ -93,10 +93,10 @@ export const setup = (bars: Bars, player: Player): void => {
 
   player.onJobDetailUpdate('NIN', (jobDetail: JobDetail['NIN']) => {
     if (jobDetail.hutonMilliseconds > 0) {
-      if (!bars.speedBuffs.huton)
-        bars.speedBuffs.huton = true;
-    } else if (bars.speedBuffs.huton) {
-      bars.speedBuffs.huton = false;
+      if (!player.speedBuffs.huton)
+        player.speedBuffs.huton = true;
+    } else if (player.speedBuffs.huton) {
+      player.speedBuffs.huton = false;
     }
     ninki.innerText = jobDetail.ninkiAmount.toString();
     ninki.parentNode.classList.remove('high', 'low');

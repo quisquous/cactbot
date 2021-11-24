@@ -94,17 +94,6 @@ export class Bars {
   private crafting = false;
   private foodBuffTimer = 0;
 
-  public level = 0;
-  public skillSpeed = 0;
-  public spellSpeed = 0;
-  public speedBuffs = {
-    presenceOfMind: false,
-    shifu: false,
-    huton: false,
-    paeonStacks: 0,
-    museStacks: 0,
-    circleOfPower: false,
-  };
   public umbralStacks = 0;
 
   public changeZoneFuncs: ((e: EventResponses['ChangeZone']) => void)[] = [];

@@ -88,11 +88,11 @@ export const setup = (bars: Bars, player: Player): void => {
 
   bars.onYouGainEffect((id) => {
     if (id === EffectId.PresenceOfMind)
-      bars.speedBuffs.presenceOfMind = true;
+      player.speedBuffs.presenceOfMind = true;
   });
   bars.onYouLoseEffect((id) => {
     if (id === EffectId.PresenceOfMind)
-      bars.speedBuffs.presenceOfMind = false;
+      player.speedBuffs.presenceOfMind = false;
   });
 
   bars.onStatChange('WHM', ({ gcdSpell }) => {

@@ -79,7 +79,7 @@ export const setup = (bars: Bars, player: Player): void => {
   bars.onYouGainEffect((id, matches) => {
     if (id === EffectId.Shifu) {
       shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
-      bars.speedBuffs.shifu = true;
+      player.speedBuffs.shifu = true;
     }
     if (id === EffectId.Jinpu)
       jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
@@ -87,7 +87,7 @@ export const setup = (bars: Bars, player: Player): void => {
   bars.onYouLoseEffect((id) => {
     if (id === EffectId.Shifu) {
       shifu.duration = 0;
-      bars.speedBuffs.shifu = false;
+      player.speedBuffs.shifu = false;
     }
     if (id === EffectId.Jinpu)
       jinpu.duration = 0;
