@@ -69,9 +69,9 @@ describe('regex tests', () => {
   });
   it('headMarker', () => {
     const lines = [
-      '[21:51:06.027] 1B:107C73B8:Aloo Gobi:0000:5DC3:00C0:0000:0000:0000:',
-      '[20:23:38.707] 1B:10595B8B:Baked Potato:0000:0000:0017:0000:0000:0000:',
-      '[12:14:44.048] 1B:102D9908:Au Gratin:0000:0000:0005:0000:0000:0000:',
+      '[21:51:06.027] TargetIcon 1B:107C73B8:Aloo Gobi:0000:5DC3:00C0:0000:0000:0000:',
+      '[20:23:38.707] TargetIcon 1B:10595B8B:Baked Potato:0000:0000:0017:0000:0000:0000:',
+      '[12:14:44.048] TargetIcon 1B:102D9908:Au Gratin:0000:0000:0005:0000:0000:0000:',
     ];
     regexCaptureTest(Regexes.headMarker, lines);
 
