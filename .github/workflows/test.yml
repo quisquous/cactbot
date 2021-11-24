@@ -23,8 +23,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    matrix:
-      node_version: [14, 16]
+    strategy:
+      matrix:
+        node_version: [14, 16]
     steps:
       - uses: actions/checkout@v1
 
