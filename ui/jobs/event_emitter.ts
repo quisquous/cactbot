@@ -45,6 +45,9 @@ export interface EventMap {
   // triggered when dot or hot tick
   'tick/dot': (damage: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
   'tick/hot': (heal: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
+  // triggered when any log line is printed
+  'log': (line: string[], rawLine: string) => void;
+  'log/game': (log: Partial<ToMatches<NetFields['GameLog']>>, line: string[], rawLine: string) => void;
 }
 
 export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
@@ -121,7 +124,12 @@ export class JobsEventEmitter extends EventEmitter<keyof EventMap> {
   private processLogLine(ev: OverlayEventResponses['LogLine']): void {
     const type = ev.line[logDefinitions.None.fields.type];
 
+    this.emit('log', ev.line, ev.rawLine);
+
     switch (type) {
+      case logDefinitions.GameLog.type:
+        this.emit('log/game', normalizeLogLine(ev.line, logDefinitions.GameLog.fields), ev.line, ev.rawLine);
+        break;
       case logDefinitions.PlayerStats.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.PlayerStats.fields);
         // const stat = Object

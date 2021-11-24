@@ -1,6 +1,5 @@
 import EffectId from '../../resources/effect_id';
 import foodImage from '../../resources/ffxiv/status/food.png';
-import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import ResourceBar from '../../resources/resourcebar';
@@ -187,6 +186,18 @@ export class Bars {
       // mob id starts with '4'
       if (matches.targetId?.startsWith('4'))
         this.buffTracker?.onMobLosesEffect(id, matches);
+    });
+
+    this.ee.on('log/game', (_log, _line, rawLine) => {
+      const m = this.regexes?.countdownStartRegex.exec(rawLine);
+      if (m && m.groups?.time) {
+        const seconds = parseFloat(m.groups.time);
+        this._setPullCountdown(seconds);
+      }
+      if (this.regexes?.countdownCancelRegex.test(rawLine))
+        this._setPullCountdown(0);
+      if (Util.isCraftingJob(this.player.job))
+        this._onCraftingLog(rawLine);
     });
 
     this.updateProcBoxNotifyRepeat();
@@ -976,29 +987,5 @@ export class Bars {
 
   _onPartyChanged(e: EventResponses['PartyChanged']): void {
     this.partyTracker.onPartyChanged(e);
-  }
-
-  _onNetLog(e: EventResponses['LogLine']): void {
-    if (!this.init || !this.regexes)
-      return;
-    const line = e.line;
-    const log = e.rawLine;
-
-    const type = line[logDefinitions.None.fields.type];
-
-    switch (type) {
-      case logDefinitions.GameLog.type: {
-        const m = this.regexes.countdownStartRegex.exec(log);
-        if (m && m.groups?.time) {
-          const seconds = parseFloat(m.groups.time);
-          this._setPullCountdown(seconds);
-        }
-        if (this.regexes.countdownCancelRegex.test(log))
-          this._setPullCountdown(0);
-        if (Util.isCraftingJob(this.player.job))
-          this._onCraftingLog(log);
-        break;
-      }
-    }
   }
 }
