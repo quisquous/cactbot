@@ -239,8 +239,8 @@ export class Bars {
       container.id = 'jobs-container';
       root.appendChild(container);
     }
-    while (container.childNodes[0])
-      container.removeChild(container.childNodes[0]);
+    while (container.firstChild)
+      container.removeChild(container.firstChild);
 
     this.o = {};
     container.classList.remove('hide');
