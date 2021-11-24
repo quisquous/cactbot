@@ -129,7 +129,7 @@ const processAllFiles = async (root: string, tscCmd: string) => {
   process.chdir(path.dirname(process.argv[1] ?? ''));
 
   // Clean up previous directory so tsc doesn't ignore them.
-  fs.rmSync(root, { recursive: true });
+  fs.rmSync(root, { recursive: true, force: true });
 
   // Generate javascript from typescript.
   // TODO: replace this with programatic use of TypeScript API.
