@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Run to Cleanse Circle',
           de: 'Geh in die Kreise zum reinigen',
           fr: 'Allez dans un cercle de purge',
-          cn: '快踩净化圈圈',
+          cn: '快踩净化圈',
           ko: '흰색 원 밟아서 선고 해제하기',
         },
       },
