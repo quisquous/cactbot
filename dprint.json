@@ -9,7 +9,9 @@
     "quoteStyle": "alwaysSingle",
     "useBraces": "maintain"
   },
-  "json": {},
+  "json": {
+    "newLineKind": "crlf"
+  },
   "includes": [
     "**/*.{ts,tsx,js,jsx,cjs,mjs,json}"
   ],
