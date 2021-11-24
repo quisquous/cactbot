@@ -15,7 +15,7 @@ on:
       - '.github/workflows/json-lint.yml'
 
 jobs:
-  markdownlint:
+  json-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -40,6 +40,6 @@ jobs:
         run: |
           npm ci --ignore-scripts
 
-      - name: npm run markdownlint
+      - name: npm run dprint for json files
         run: |
           npx --no-install dprint check '**/*.json'
