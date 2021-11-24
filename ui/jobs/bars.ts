@@ -169,6 +169,18 @@ export class Bars {
 
     this.ee.on('action/you', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
     this.ee.on('action/other', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
+    this.ee.on('effect/gain/you', (id, matches) => this.buffTracker?.onYouGainEffect(id, matches));
+    this.ee.on('effect/gain', (id, matches) => {
+      // mob id starts with '4'
+      if (matches.targetId?.startsWith('4'))
+        this.buffTracker?.onMobGainsEffect(id, matches);
+    });
+    this.ee.on('effect/lose/you', (id, matches) => this.buffTracker?.onYouLoseEffect(id, matches));
+    this.ee.on('effect/lose', (id, matches) => {
+      // mob id starts with '4'
+      if (matches.targetId?.startsWith('4'))
+        this.buffTracker?.onMobLosesEffect(id, matches);
+    });
 
     this.updateProcBoxNotifyRepeat();
   }
@@ -978,38 +990,6 @@ export class Bars {
           this._setPullCountdown(0);
         if (Util.isCraftingJob(this.player.job))
           this._onCraftingLog(log);
-        break;
-      }
-
-      case logDefinitions.GainsEffect.type: {
-        const fields = logDefinitions.GainsEffect.fields;
-        const matches = normalizeLogLine(line, fields);
-        const effectId = matches.effectId?.toUpperCase();
-        if (!effectId)
-          break;
-
-        if (matches.target === this.player.name)
-          this.buffTracker?.onYouGainEffect(effectId, matches);
-
-        // Mobs id starts with "4"
-        if (matches.targetId?.startsWith('4'))
-          this.buffTracker?.onMobGainsEffect(effectId, matches);
-        break;
-      }
-
-      case logDefinitions.LosesEffect.type: {
-        const fields = logDefinitions.LosesEffect.fields;
-        const log = normalizeLogLine(line, fields);
-        const effectId = log.effectId?.toUpperCase();
-        if (!effectId)
-          break;
-
-        if (log.target === this.player.name)
-          this.buffTracker?.onYouLoseEffect(effectId, log);
-
-        // Mobs id starts with "4"
-        if (log.targetId?.startsWith('4'))
-          this.buffTracker?.onMobLosesEffect(effectId, log);
         break;
       }
 
