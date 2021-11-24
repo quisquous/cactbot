@@ -40,6 +40,6 @@ jobs:
         run: |
           npm ci --ignore-scripts
 
-      - name: npm run dprint for json files
+      - name: Run dprint for json files
         run: |
           npx --no-install dprint check '**/*.json'
