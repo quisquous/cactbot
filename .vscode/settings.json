@@ -24,6 +24,12 @@
     "**/node_modules": true,
     "dist/**": true
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
   "[yaml]": {
     "editor.defaultFormatter": null
   },
