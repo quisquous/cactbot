@@ -47,19 +47,12 @@ const kPullText = {
 
 type JobDomObjects = {
   pullCountdown?: TimerBar;
-  leftBuffsContainer?: HTMLElement;
   leftBuffsList?: WidgetList;
-  rightBuffsContainer?: HTMLElement;
   rightBuffsList?: WidgetList;
-  cpContainer?: HTMLElement;
   cpBar?: ResourceBar;
-  gpContainer?: HTMLElement;
   gpBar?: ResourceBar;
-  healthContainer?: HTMLElement;
   healthBar?: ResourceBar;
-  manaContainer?: HTMLElement;
   manaBar?: ResourceBar;
-  mpTickContainer?: HTMLElement;
   mpTicker?: TimerBar;
 };
 
@@ -257,12 +250,8 @@ export class Bars {
     if (role !== 'none')
       barsLayoutContainer.classList.add(role.toLowerCase());
 
-    const pullCountdownContainer = document.createElement('div');
-    pullCountdownContainer.id = 'pull-bar';
-    // Pull counter not affected by opacity option.
-    barsLayoutContainer.appendChild(pullCountdownContainer);
-    this.o.pullCountdown = TimerBar.create();
-    pullCountdownContainer.appendChild(this.o.pullCountdown);
+    // add pull bar
+    this.o.pullCountdown = this.addPullCountdownBar();
 
     const opacityContainer = document.createElement('div');
     opacityContainer.id = 'opacity-container';
@@ -281,22 +270,9 @@ export class Bars {
       barsContainer.classList.add('pvp');
     opacityContainer.appendChild(barsContainer);
 
-    this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
-    this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
-    this.o.pullCountdown.lefttext = kPullText[this.options.DisplayLanguage] || kPullText['en'];
-    this.o.pullCountdown.righttext = 'remain';
-    this.o.pullCountdown.hideafter = 0;
-    this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
-    this.o.pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
-    // reset pull bar when in combat (game)
-    this.ee.on('battle/in-combat', (ev) => {
-      if (ev.game)
-        this._setPullCountdown(0);
-    });
-
-    this.o.rightBuffsContainer = document.createElement('div');
-    this.o.rightBuffsContainer.id = 'right-side-icons';
-    barsContainer.appendChild(this.o.rightBuffsContainer);
+    const rightBuffsContainer = document.createElement('div');
+    rightBuffsContainer.id = 'right-side-icons';
+    barsContainer.appendChild(rightBuffsContainer);
 
     this.o.rightBuffsList = WidgetList.create({
       rowcolsize: 7,
@@ -304,7 +280,7 @@ export class Bars {
       toward: 'right down',
       elementwidth: (this.options.BigBuffIconWidth + 2).toString(),
     });
-    this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
+    rightBuffsContainer.appendChild(this.o.rightBuffsList);
 
     if (this.options.JustBuffTracker) {
       // Just alias these two together so the rest of the code doesn't have
@@ -313,12 +289,12 @@ export class Bars {
       this.o.rightBuffsList.rowcolsize = 20;
       this.o.rightBuffsList.maxnumber = 20;
       // Hoist the buffs up to hide everything else.
-      barsLayoutContainer.appendChild(this.o.rightBuffsContainer);
+      barsLayoutContainer.appendChild(rightBuffsContainer);
       barsLayoutContainer.classList.add('justbuffs');
     } else {
-      this.o.leftBuffsContainer = document.createElement('div');
-      this.o.leftBuffsContainer.id = 'left-side-icons';
-      barsContainer.appendChild(this.o.leftBuffsContainer);
+      const leftBuffsContainer = document.createElement('div');
+      leftBuffsContainer.id = 'left-side-icons';
+      barsContainer.appendChild(leftBuffsContainer);
 
       this.o.leftBuffsList = WidgetList.create({
         rowcolsize: 7,
@@ -326,133 +302,27 @@ export class Bars {
         toward: 'left down',
         elementwidth: (this.options.BigBuffIconWidth + 2).toString(),
       });
-      this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
+      leftBuffsContainer.appendChild(this.o.leftBuffsList);
     }
 
     if (Util.isCraftingJob(job)) {
-      this.o.cpContainer = document.createElement('div');
-      this.o.cpContainer.id = 'cp-bar';
-      barsContainer.appendChild(this.o.cpContainer);
-      this.o.cpBar = ResourceBar.create({
-        centertext: 'maxvalue',
-      });
-      this.o.cpContainer.appendChild(this.o.cpBar);
-      this.o.cpBar.width = window.getComputedStyle(this.o.cpContainer).width;
-      this.o.cpBar.height = window.getComputedStyle(this.o.cpContainer).height;
-      this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
-      this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
-      // update cp
-      this.player.on('cp', (data) => {
-        this._updateCp(data);
-      });
+      this.o.cpBar = this.addCPBar();
+      // hide cp bar by default
+      // it would show when you start crafting
       container.classList.add('hide');
       return;
     } else if (Util.isGatheringJob(job)) {
-      this.o.gpContainer = document.createElement('div');
-      this.o.gpContainer.id = 'gp-bar';
-      barsContainer.appendChild(this.o.gpContainer);
-      this.o.gpBar = ResourceBar.create({
-        centertext: 'maxvalue',
-      });
-      this.o.gpContainer.appendChild(this.o.gpBar);
-      this.o.gpBar.width = window.getComputedStyle(this.o.gpContainer).width;
-      this.o.gpBar.height = window.getComputedStyle(this.o.gpContainer).height;
-      this.o.gpBar.bg = computeBackgroundColorFrom(this.o.gpBar, 'bar-border-color');
-      this.o.gpBar.fg = computeBackgroundColorFrom(this.o.gpBar, 'gp-color');
-      // update gp
-      this.player.on('gp', (data) => {
-        this._updateGp(data);
-      });
+      this.o.gpBar = this.addGPBar();
       return;
     }
 
-    const showHPNumber = this.options.ShowHPNumber.includes(job);
-    const showMPNumber = this.options.ShowMPNumber.includes(job);
-    const showMPTicker = this.options.ShowMPTicker.includes(job);
+    this.o.healthBar = this.addHPBar(this.options.ShowHPNumber.includes(job));
 
-    const healthText = showHPNumber ? 'value' : '';
-    const manaText = showMPNumber ? 'value' : '';
+    if (doesJobNeedMPBar(job))
+      this.o.manaBar = this.addMPBar(this.options.ShowMPNumber.includes(job));
 
-    this.o.healthContainer = document.createElement('div');
-    this.o.healthContainer.id = 'hp-bar';
-    if (showHPNumber)
-      this.o.healthContainer.classList.add('show-number');
-    barsContainer.appendChild(this.o.healthContainer);
-
-    this.o.healthBar = ResourceBar.create({
-      lefttext: healthText,
-    });
-    this.o.healthContainer.appendChild(this.o.healthBar);
-    // TODO: Let the component do this dynamically.
-    this.o.healthBar.width = window.getComputedStyle(this.o.healthContainer).width;
-    this.o.healthBar.height = window.getComputedStyle(this.o.healthContainer).height;
-    this.o.healthBar.bg = computeBackgroundColorFrom(this.o.healthBar, 'bar-border-color');
-    // update hp
-    this.player.on('hp', (data) => {
-      this._updateHealth(data);
-    });
-
-    if (doesJobNeedMPBar(job)) {
-      this.o.manaContainer = document.createElement('div');
-      this.o.manaContainer.id = 'mp-bar';
-      barsContainer.appendChild(this.o.manaContainer);
-      if (showMPNumber)
-        this.o.manaContainer.classList.add('show-number');
-
-      this.o.manaBar = ResourceBar.create({
-        lefttext: manaText,
-      });
-      this.o.manaContainer.appendChild(this.o.manaBar);
-      // TODO: Let the component do this dynamically.
-      this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
-      this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
-      this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');
-      // update mp
-      this.player.on('mp', (data) => {
-        this._updateMana(data);
-      });
-      // change color when target is far away
-      this.ee.on('battle/target', (target) => {
-        if (!this.o.manaBar)
-          return;
-        if (target && Util.isCasterDpsJob(job)) {
-          if (
-            this.options.FarThresholdOffence >= 0 &&
-            target.effectiveDistance > this.options.FarThresholdOffence
-          ) {
-            this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
-            return;
-          }
-        }
-        this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
-      });
-    }
-
-    if (showMPTicker) {
-      this.o.mpTickContainer = document.createElement('div');
-      this.o.mpTickContainer.id = 'mp-tick';
-      barsContainer.appendChild(this.o.mpTickContainer);
-
-      this.o.mpTicker = TimerBar.create();
-      this.o.mpTickContainer.appendChild(this.o.mpTicker);
-      this.o.mpTicker.width = window.getComputedStyle(this.o.mpTickContainer).width;
-      this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
-      this.o.mpTicker.bg = computeBackgroundColorFrom(this.o.mpTicker, 'bar-border-color');
-      this.o.mpTicker.stylefill = 'fill';
-      this.o.mpTicker.toward = 'right';
-      this.o.mpTicker.loop = true;
-      // update mp ticker
-      this.player.on('mp', (data) => {
-        this._updateMPTicker(data);
-      });
-      this.ee.on('battle/in-combat', (ev) => {
-        // Hide out of combat if requested
-        if (this.o.mpTicker && !this.options.ShowMPTickerOutOfCombat && !ev.game) {
-          this.o.mpTicker.duration = 0;
-          this.o.mpTicker.stylefill = 'empty';
-        }
-      });
-    }
+    if (this.options.ShowMPTicker.includes(job))
+      this.o.mpTicker = this.addMPTicker();
 
     const setup = getSetup(job);
     if (setup)
@@ -607,6 +477,187 @@ export class Bars {
     bar.height = window.getComputedStyle(barDiv).height;
 
     return bar;
+  }
+
+  addPullCountdownBar(): TimerBar {
+    const barsLayoutContainer = document.getElementById('jobs');
+    if (!barsLayoutContainer)
+      throw new UnreachableCode();
+
+    const pullCountdownContainer = document.createElement('div');
+    pullCountdownContainer.id = 'pull-bar';
+    // Pull counter not affected by opacity option.
+    barsLayoutContainer.appendChild(pullCountdownContainer);
+    const pullCountdown = TimerBar.create({
+      righttext: 'remain',
+      hideafter: 0,
+      fg: 'rgb(255, 120, 120)',
+      lefttext: kPullText[this.options.DisplayLanguage] || kPullText['en'],
+    });
+    pullCountdownContainer.appendChild(pullCountdown);
+    pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
+    pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
+    pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
+
+    // reset pull bar when in combat (game)
+    this.ee.on('battle/in-combat', (ev) => {
+      if (ev.game)
+        this._setPullCountdown(0);
+    });
+
+    return pullCountdown;
+  }
+
+  addCPBar(): ResourceBar {
+    const barsContainer = document.getElementById('bars');
+    if (!barsContainer)
+      throw new UnreachableCode();
+
+    const cpContainer = document.createElement('div');
+    cpContainer.id = 'cp-bar';
+    barsContainer.appendChild(cpContainer);
+    const cpBar = ResourceBar.create({
+      centertext: 'maxvalue',
+    });
+    cpContainer.appendChild(cpBar);
+    cpBar.width = window.getComputedStyle(cpContainer).width;
+    cpBar.height = window.getComputedStyle(cpContainer).height;
+    cpBar.bg = computeBackgroundColorFrom(cpBar, 'bar-border-color');
+    cpBar.fg = computeBackgroundColorFrom(cpBar, 'cp-color');
+    // update cp
+    this.player.on('cp', (data) => {
+      this._updateCp(data);
+    });
+
+    return cpBar;
+  }
+
+  addGPBar(): ResourceBar {
+    const barsContainer = document.getElementById('bars');
+    if (!barsContainer)
+      throw new UnreachableCode();
+
+    const gpContainer = document.createElement('div');
+    gpContainer.id = 'gp-bar';
+    barsContainer.appendChild(gpContainer);
+    const gpBar = ResourceBar.create({
+      centertext: 'maxvalue',
+    });
+    gpContainer.appendChild(gpBar);
+    gpBar.width = window.getComputedStyle(gpContainer).width;
+    gpBar.height = window.getComputedStyle(gpContainer).height;
+    gpBar.bg = computeBackgroundColorFrom(gpBar, 'bar-border-color');
+    gpBar.fg = computeBackgroundColorFrom(gpBar, 'gp-color');
+    // update gp
+    this.player.on('gp', (data) => {
+      this._updateGp(data);
+    });
+
+    return gpBar;
+  }
+
+  addHPBar(showHPNumber?: boolean): ResourceBar {
+    const barsContainer = document.getElementById('bars');
+    if (!barsContainer)
+      throw new UnreachableCode();
+
+    const healthText = showHPNumber ? 'value' : '';
+
+    const healthContainer = document.createElement('div');
+    healthContainer.id = 'hp-bar';
+    if (showHPNumber)
+      healthContainer.classList.add('show-number');
+    barsContainer.appendChild(healthContainer);
+
+    const healthBar = ResourceBar.create({
+      lefttext: healthText,
+    });
+    healthContainer.appendChild(healthBar);
+    // TODO: Let the component do this dynamically.
+    healthBar.width = window.getComputedStyle(healthContainer).width;
+    healthBar.height = window.getComputedStyle(healthContainer).height;
+    healthBar.bg = computeBackgroundColorFrom(healthBar, 'bar-border-color');
+    // update hp
+    this.player.on('hp', (data) => {
+      this._updateHealth(data);
+    });
+
+    return healthBar;
+  }
+
+  addMPBar(showMPNumber?: boolean): ResourceBar {
+    const barsContainer = document.getElementById('bars');
+    if (!barsContainer)
+      throw new UnreachableCode();
+
+    const manaText = showMPNumber ? 'value' : '';
+    const manaContainer = document.createElement('div');
+    manaContainer.id = 'mp-bar';
+    barsContainer.appendChild(manaContainer);
+    if (showMPNumber)
+      manaContainer.classList.add('show-number');
+
+    const manaBar = ResourceBar.create({
+      lefttext: manaText,
+    });
+    manaContainer.appendChild(manaBar);
+    // TODO: Let the component do this dynamically.
+    manaBar.width = window.getComputedStyle(manaContainer).width;
+    manaBar.height = window.getComputedStyle(manaContainer).height;
+    manaBar.bg = computeBackgroundColorFrom(manaBar, 'bar-border-color');
+    // update mp
+    this.player.on('mp', (data) => {
+      this._updateMana(data);
+    });
+    // change color when target is far away
+    this.ee.on('battle/target', (target) => {
+      if (!this.o.manaBar)
+        return;
+      if (target && Util.isCasterDpsJob(this.player.job)) {
+        if (
+          this.options.FarThresholdOffence >= 0 &&
+          target.effectiveDistance > this.options.FarThresholdOffence
+        ) {
+          this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
+          return;
+        }
+      }
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
+    });
+
+    return manaBar;
+  }
+
+  addMPTicker(): TimerBar {
+    const barsContainer = document.getElementById('bars');
+    if (!barsContainer)
+      throw new UnreachableCode();
+
+    const mpTickContainer = document.createElement('div');
+    mpTickContainer.id = 'mp-tick';
+    barsContainer.appendChild(mpTickContainer);
+
+    const mpTicker = TimerBar.create();
+    mpTickContainer.appendChild(mpTicker);
+    mpTicker.width = window.getComputedStyle(mpTickContainer).width;
+    mpTicker.height = window.getComputedStyle(mpTickContainer).height;
+    mpTicker.bg = computeBackgroundColorFrom(mpTicker, 'bar-border-color');
+    mpTicker.stylefill = 'fill';
+    mpTicker.toward = 'right';
+    mpTicker.loop = true;
+    // update mp ticker
+    this.player.on('mp', (data) => {
+      this._updateMPTicker(data);
+    });
+    this.ee.on('battle/in-combat', (ev) => {
+      // Hide out of combat if requested
+      if (this.o.mpTicker && !this.options.ShowMPTickerOutOfCombat && !ev.game) {
+        this.o.mpTicker.duration = 0;
+        this.o.mpTicker.stylefill = 'empty';
+      }
+    });
+
+    return mpTicker;
   }
 
   playNotification(): void {
