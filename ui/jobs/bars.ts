@@ -108,7 +108,11 @@ export class Bars {
       if (!Util.isGatheringJob(this.player.job))
         this.gpAlarmReady = false;
 
-      this._updateJob(job);
+      this._setupJobContainers(job);
+
+      const setup = getSetup(job);
+      if (setup)
+        setup.bind(null, this, this.player)();
 
       // add food buff trigger
       this.player.onYouGainEffect((id, matches) => {
@@ -222,7 +226,7 @@ export class Bars {
       bars.classList.toggle('pvp', hide ?? false);
   }
 
-  _updateJob(job: Job): void {
+  _setupJobContainers(job: Job): void {
     // if player is in pvp zone, inherit the class
     const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
 
@@ -318,10 +322,6 @@ export class Bars {
 
     if (this.options.ShowMPTicker.includes(job))
       this.o.mpTicker = this.addMPTicker();
-
-    const setup = getSetup(job);
-    if (setup)
-      setup.bind(null, this, this.player)();
   }
 
   addJobBarContainer(): HTMLElement {
