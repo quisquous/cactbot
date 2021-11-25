@@ -1837,6 +1837,30 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<a name="line41"></a>
+
+### Line 41 (0x29): SystemLogMessage
+
+This log line is sent when there are system log messages:
+
+```log
+[10:38:40.066] SystemLogMessage 29:00:901:619A9200:00:3C
+[10:38:39.000] ChatLog 00:0839::Objective accomplished. If applicable, please make sure to submit items within the time limit.
+
+[10:50:13.565] SystemLogMessage 29:8004001E:7DD:FF5FDA02:E1B:00
+[10:50:13.000] ChatLog 00:0839::The Theater of One is sealed off!
+
+[10:55:06.000] ChatLog 00:0839::The teleportation crystal glimmers.
+[10:55:06.707] SystemLogMessage 29:8004001E:B3A:00:00:E0000000
+```
+
+TODO: write a better explanation here and understand these parameters.
+It'd be nice to figure out what these mean so we could replace
+zone closing and npc dialog with these lines.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=SystemLogMessage&lang=en-US) -->
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 <a name="line251"></a>
 
 ### Line 251 (0xFB): Debug

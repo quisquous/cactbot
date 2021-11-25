@@ -689,6 +689,20 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
+  SystemLogMessage: {
+    type: '41',
+    name: 'SystemLogMessage',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      // unknown: 2,
+      id: 3,
+      param0: 4,
+      param1: 5,
+      param2: 6,
+    },
+    canAnonymize: true,
+  },
   ParserInfo: {
     type: '249',
     name: 'ParserInfo',

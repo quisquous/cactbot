@@ -369,4 +369,13 @@ export default class NetRegexes {
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
     return parseHelper(params, 'map', defaultParams('Map'));
   }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#29-systemlogmessage
+   */
+  static systemLogMessage(
+    params?: NetParams['SystemLogMessage'],
+  ): CactbotBaseRegExp<'SystemLogMessage'> {
+    return parseHelper(params, 'systemLogMessage', defaultParams('SystemLogMessage'));
+  }
 }
