@@ -2,7 +2,7 @@ import PartyTracker from '../../resources/party';
 import UserConfig from '../../resources/user_config';
 
 import { Bars } from './bars';
-import { ComponentFactory } from './components';
+import { ComponentManager } from './components';
 import { JobsEventEmitter } from './event_emitter';
 import defaultOptions from './jobs_options';
 import { Player } from './player';
@@ -17,5 +17,5 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const player = new Player(emitter);
   const partyTracker = new PartyTracker();
   const bars = new Bars(options, { emitter, player });
-  new ComponentFactory({ bars, emitter, options, partyTracker, player });
+  new ComponentManager({ bars, emitter, options, partyTracker, player });
 });

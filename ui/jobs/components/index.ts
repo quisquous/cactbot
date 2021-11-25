@@ -78,7 +78,7 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   NONE: BaseComponent,
 };
 
-export class ComponentFactory {
+export class ComponentManager {
   bars: Bars;
   buffTracker?: BuffTracker;
   ee: JobsEventEmitter;
