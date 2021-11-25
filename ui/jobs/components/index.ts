@@ -74,6 +74,54 @@ export const getReset = (job: string): undefined | ((bars: Bars, player: Player)
   }[job.toUpperCase()];
 };
 
+const ComponentMap: Record<Job, typeof BaseComponent> = {
+  // tank
+  GLA: BaseComponent,
+  PLD: BaseComponent,
+  MRD: BaseComponent,
+  WAR: BaseComponent,
+  DRK: BaseComponent,
+  GNB: BaseComponent,
+  // healer
+  CNJ: BaseComponent,
+  WHM: BaseComponent,
+  SCH: BaseComponent,
+  AST: BaseComponent,
+  // melee dps
+  PGL: BaseComponent,
+  MNK: BaseComponent,
+  LNC: BaseComponent,
+  DRG: BaseComponent,
+  ROG: BaseComponent,
+  NIN: BaseComponent,
+  SAM: BaseComponent,
+  // ranged dps
+  ARC: BaseComponent,
+  BRD: BaseComponent,
+  MCH: BaseComponent,
+  DNC: BaseComponent,
+  // magic dps
+  ACN: BaseComponent,
+  SMN: BaseComponent,
+  THM: BLMComponent,
+  BLM: BLMComponent,
+  RDM: BaseComponent,
+  BLU: BaseComponent,
+  // crafter & gatherer
+  CRP: BaseComponent,
+  BSM: BaseComponent,
+  ARM: BaseComponent,
+  GSM: BaseComponent,
+  LTW: BaseComponent,
+  WVR: BaseComponent,
+  ALC: BaseComponent,
+  CUL: BaseComponent,
+  MIN: BaseComponent,
+  BTN: BaseComponent,
+  FSH: BaseComponent,
+  NONE: BaseComponent,
+};
+
 export class ComponentFactory {
   bars: Bars;
   buffTracker?: BuffTracker;
@@ -120,13 +168,11 @@ export class ComponentFactory {
       partyTracker: this.partyTracker,
       player: this.player,
     };
-    switch (job) {
-      case 'BLM':
-        return new BLMComponent(o);
+    const Component = ComponentMap[job];
+    if (!Component)
+      return new BaseComponent(o);
 
-      default:
-        return new BaseComponent(o);
-    }
+    return new Component(o);
   }
 
   setupListeners(): void {
