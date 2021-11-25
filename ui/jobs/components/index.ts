@@ -27,12 +27,11 @@ import { RDMComponent } from './rdm';
 import { reset as resetSam, setup as setupSam } from './sam';
 import { reset as resetSch, setup as setupSch } from './sch';
 import { reset as resetSmn, setup as setupSmn } from './smn';
-import { reset as resetWar, setup as setupWar } from './war';
+import { WARComponent } from './war';
 import { reset as resetWhm, setup as setupWhm } from './whm';
 
 export const getSetup = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
-    'WAR': setupWar,
     'WHM': setupWhm,
     'SCH': setupSch,
     'SAM': setupSam,
@@ -42,7 +41,6 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
 
 export const getReset = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
-    'WAR': resetWar,
     'WHM': resetWhm,
     'SCH': resetSch,
     'SAM': resetSam,
@@ -54,8 +52,8 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   // tank
   GLA: PLDComponent,
   PLD: PLDComponent,
-  MRD: BaseComponent,
-  WAR: BaseComponent,
+  MRD: WARComponent,
+  WAR: WARComponent,
   DRK: DRKComponent,
   GNB: GNBComponent,
   // healer
