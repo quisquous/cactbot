@@ -14,5 +14,5 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const player = new Player(emitter);
   const partyTracker = new PartyTracker();
   const bars = new Bars(options, { emitter, player });
-  new BaseComponent({ bars, emitter, options, partyTracker, player }).setup();
+  new BaseComponent({ bars, emitter, options, partyTracker, player });
 });

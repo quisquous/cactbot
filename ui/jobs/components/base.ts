@@ -54,9 +54,11 @@ export class BaseComponent {
     this.gpPotion = false;
 
     this.umbralStacks = 0;
+
+    this.setupListeners();
   }
 
-  setup(): void {
+  setupListeners(): void {
     this.ee.registerOverlayListeners();
 
     // bind party changed event
