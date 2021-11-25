@@ -7,6 +7,9 @@ import { JobsEventEmitter } from './event_emitter';
 import defaultOptions from './jobs_options';
 import { Player } from './player';
 
+import '../../resources/defaults.css';
+import './jobs.css';
+
 UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
 

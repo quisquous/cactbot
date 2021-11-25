@@ -22,9 +22,6 @@ import { JobsOptions } from './jobs_options';
 import { Player } from './player';
 import { computeBackgroundColorFrom, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
-import '../../resources/defaults.css';
-import './jobs.css';
-
 // text on the pull countdown.
 const kPullText = {
   en: 'Pull',
