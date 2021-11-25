@@ -34,6 +34,7 @@ export type SpeedBuffs = {
   circleOfPower: boolean;
 };
 
+export type ComboCallback = (id: string | undefined, combo: ComboTracker) => void;
 export type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
 export type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
 export type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
@@ -179,8 +180,8 @@ export class Player extends PlayerBase {
     this.jobsEmitter.on('log', (line) => this.processLogLines(line));
   }
 
-  onCombo(callback: (id: string | undefined, combo: ComboTracker) => void): void {
-    const wrapper = (id: string | undefined, combo: ComboTracker) => {
+  onCombo(callback: ComboCallback): void {
+    const wrapper: ComboCallback = (id, combo) => {
       callback(id, combo);
     };
     this.on('action/combo', wrapper);

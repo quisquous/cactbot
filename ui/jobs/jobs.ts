@@ -2,7 +2,7 @@ import PartyTracker from '../../resources/party';
 import UserConfig from '../../resources/user_config';
 
 import { Bars } from './bars';
-import { ComponentFactory } from './components/base';
+import { ComponentFactory } from './components';
 import { JobsEventEmitter } from './event_emitter';
 import defaultOptions from './jobs_options';
 import { Player } from './player';

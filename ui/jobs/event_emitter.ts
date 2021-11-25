@@ -10,6 +10,10 @@ import { ToMatches } from '../../types/net_matches';
 import { Player } from './player';
 import { normalizeLogLine } from './utils';
 
+export type PartialFieldMatches<Field extends keyof NetFields> = Partial<
+  ToMatches<NetFields[Field]>
+>;
+
 export interface EventMap {
   'player': (data: OverlayEventResponses['onPlayerChangedEvent']) => void;
   // party changed
