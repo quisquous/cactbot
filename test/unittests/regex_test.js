@@ -214,6 +214,20 @@ describe('regex tests', () => {
     assert.equal(matches.targetId, '106AF611');
     assert.equal(matches.target, 'Tini Poutini');
   });
+  it('nameToggle', () => {
+    const lines = [
+      '[17:08:58.834] NameToggle 22:40003C60:Elemental Converter:40003C60:Elemental Converter:01',
+      '[17:09:05.371] NameToggle 22:40003CC6:Leviathan:40003CC6:Leviathan:00',
+      '[17:29:34.771] NameToggle 22:106AF611:Tini Poutini:106AF611:Tini Poutini:00',
+    ];
+
+    regexCaptureTest(Regexes.nameToggle, lines);
+
+    const matches = lines[0].match(Regexes.nameToggle()).groups;
+    assert.equal(matches.id, '40003C60');
+    assert.equal(matches.name, 'Elemental Converter');
+    assert.equal(matches.toggle, '01');
+  });
   it('tether', () => {
     const lines = [
       '[21:49:14.345] 23:4000804B:Shadow of the Ancients:106CAF53:Dum Aloo:3CDF:0000:0011:106CAF53:000F:7F10:',

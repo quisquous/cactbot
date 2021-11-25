@@ -165,6 +165,15 @@ const statChangeParams = [
   'localContentId',
   'capture',
 ] as const;
+const nameToggleParams = [
+  'timestamp',
+  'id',
+  'name',
+  'targetId',
+  'targetName',
+  'toggle',
+  'capture',
+] as const;
 const tetherParams = [
   'timestamp',
   'source',
@@ -210,6 +219,7 @@ type GainsEffectParams = typeof gainsEffectParams[number];
 type StatusEffectExplicitParams = typeof statusEffectExplicitParams[number];
 type LosesEffectParams = typeof losesEffectParams[number];
 type StatChangeParams = typeof statChangeParams[number];
+type NameToggleParams = typeof nameToggleParams[number];
 type TetherParams = typeof tetherParams[number];
 type WasDefeatedParams = typeof wasDefeatedParams[number];
 type HasHPParams = typeof hasHPParams[number];
@@ -523,6 +533,25 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'count', f.count, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'sourceMaxHp', f.sourceMaxHp, '[^:]*?') + '$';
+    return Regexes.parse(str);
+  }
+
+  /**
+   * fields: id, name, targetId, targetName, toggle
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
+   */
+  static nameToggle(f?: Params<NameToggleParams>): Regex<NameToggleParams> {
+    if (typeof f === 'undefined')
+      f = {};
+    Regexes.validateParams(f, 'nameToggle', nameToggleParams);
+    const capture = Regexes.trueIfUndefined(f.capture);
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' NameToggle 22:' +
+      Regexes.maybeCapture(capture, 'id', f.id) + ':' +
+      Regexes.maybeCapture(capture, 'name', f.name) + ':' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId) + ':' +
+      Regexes.maybeCapture(capture, 'targetName', f.targetName) + ':' +
+      Regexes.maybeCapture(capture, 'toggle', f.toggle) + '$';
     return Regexes.parse(str);
   }
 

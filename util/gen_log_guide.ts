@@ -363,11 +363,10 @@ const lineDocs: LineDocs = {
     },
   },
   NameToggle: {
-    // @TODO: There's a NetRegexes but no Regexes for this one?
-    /* regexes: {
+    regexes: {
       network: NetRegexes.nameToggle({ capture: true }).source,
-      logLine: Regexes.nameToggle({ capture: true }).source,
-    }, */
+      logLine: NetRegexes.nameToggle({ capture: true }).source,
+    },
     examples: {
       'en-US': [
         '34|2021-04-26T14:19:48.0400000-04:00|4001C51C|Dragon\'s Head|4001C51C|Dragon\'s Head|00|a7248aab1da528bf94faf2f4b1728fc3',
