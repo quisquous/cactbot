@@ -13,7 +13,7 @@ import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
 import { ASTComponent } from './ast';
 import { BaseComponent, ComponentInterface, ShouldShows } from './base';
 import { BLMComponent } from './blm';
-import { reset as resetBlu, setup as setupBlu } from './blu';
+import { BLUComponent } from './blu';
 import { reset as resetBrd, setup as setupBrd } from './brd';
 import { reset as resetDnc, setup as setupDnc } from './dnc';
 import { reset as resetDrg, setup as setupDrg } from './drg';
@@ -47,7 +47,6 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
     'DNC': setupDnc,
     'SMN': setupSmn,
     'RDM': setupRdm,
-    'BLU': setupBlu,
   }[job.toUpperCase()];
 };
 
@@ -68,7 +67,6 @@ export const getReset = (job: string): undefined | ((bars: Bars, player: Player)
     'DNC': resetDnc,
     'SMN': resetSmn,
     'RDM': resetRdm,
-    'BLU': resetBlu,
   }[job.toUpperCase()];
 };
 
@@ -104,7 +102,7 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   THM: BLMComponent,
   BLM: BLMComponent,
   RDM: BaseComponent,
-  BLU: BaseComponent,
+  BLU: BLUComponent,
   // crafter & gatherer
   CRP: BaseComponent,
   BSM: BaseComponent,

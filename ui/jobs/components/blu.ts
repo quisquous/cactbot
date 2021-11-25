@@ -1,63 +1,64 @@
-import { Bars } from '../bars';
+import TimerBox from '../../../resources/timerbox';
 import { kAbility } from '../constants';
-import { Player } from '../player';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars, player: Player): void => {
-  const offguardBox = bars.addProcBox({
-    id: 'blu-procs-offguard',
-    fgColor: 'blu-color-offguard',
-  });
+export class BLUComponent extends BaseComponent {
+  offguardBox: TimerBox;
+tormentBox: TimerBox;
+lucidBox: TimerBox;
+  constructor(o: ComponentInterface) {
+    super(o);
 
-  const tormentBox = bars.addProcBox({
-    id: 'blu-procs-torment',
-    fgColor: 'blu-color-torment',
-  });
+    this.offguardBox = this.bars.addProcBox({
+      id: 'blu-procs-offguard',
+      fgColor: 'blu-color-offguard',
+    });
 
-  const lucidBox = bars.addProcBox({
-    id: 'blu-procs-lucid',
-    fgColor: 'blu-color-lucid',
-  });
+    this.tormentBox = this.bars.addProcBox({
+      id: 'blu-procs-torment',
+      fgColor: 'blu-color-torment',
+    });
 
-  player.onStatChange('BLU', ({ gcdSpell }) => {
-    offguardBox.threshold = gcdSpell * 2;
-    tormentBox.threshold = gcdSpell * 3;
-    lucidBox.threshold = gcdSpell + 1;
-  });
+    this.lucidBox = this.bars.addProcBox({
+      id: 'blu-procs-lucid',
+      fgColor: 'blu-color-lucid',
+    });
+  }
 
-  player.onUseAbility((id) => {
+  override onUseAbility(id: string): void {
     switch (id) {
       case kAbility.OffGuard:
-        offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
+        this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
         break;
       case kAbility.PeculiarLight:
-        offguardBox.duration = bars.player.getActionCooldown(60000, 'spell');
+        this.offguardBox.duration = this.player.getActionCooldown(60000, 'spell');
         break;
       case kAbility.SongOfTorment:
-        tormentBox.duration = 30;
+        this.tormentBox.duration = 30;
         break;
       case kAbility.AetherialSpark:
         // +0.5&0.8 for animation delay
-        tormentBox.duration = 15 + 0.5;
+        this.tormentBox.duration = 15 + 0.5;
         break;
       case kAbility.Nightbloom:
-        tormentBox.duration = 60 + 0.8;
+        this.tormentBox.duration = 60 + 0.8;
         break;
       case kAbility.LucidDreaming:
-        lucidBox.duration = 60;
+        this.lucidBox.duration = 60;
         break;
     }
-  });
+  }
 
-  resetFunc = (_bars: Bars): void => {
-    tormentBox.duration = 0;
-    offguardBox.duration = 0;
-    lucidBox.duration = 0;
-  };
-};
+  override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
+    this.offguardBox.threshold = gcdSpell * 2;
+    this.tormentBox.threshold = gcdSpell * 3;
+    this.lucidBox.threshold = gcdSpell + 1;
+  }
 
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};
+  override reset(): void {
+    this.tormentBox.duration = 0;
+    this.offguardBox.duration = 0;
+    this.lucidBox.duration = 0;
+  }
+}
