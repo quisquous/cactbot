@@ -936,10 +936,6 @@ export class Bars {
     if (!this.regexes)
       return;
 
-    const container = document.getElementById('jobs-container');
-    if (!container)
-      throw new UnreachableCode();
-
     // Hide CP Bar when not crafting
     const anyRegexMatched = (line: string, array: RegExp[]) =>
       array.some((regex) => regex.test(line));
@@ -958,6 +954,13 @@ export class Bars {
     }
 
     // if crafting, hide it; otherwise, show it
-    container.classList.toggle('hide', crafting);
+    this._setJobsContainerVisibility(crafting);
+  }
+
+  _setJobsContainerVisibility(hide?: boolean): void {
+    const container = document.getElementById('jobs-container');
+    if (!container)
+      throw new UnreachableCode();
+    container.classList.toggle('hide', hide);
   }
 }
