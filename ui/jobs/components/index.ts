@@ -22,8 +22,8 @@ import { GNBComponent } from './gnb';
 import { MCHComponent } from './mch';
 import { MNKComponent } from './mnk';
 import { NINComponent } from './nin';
-import { reset as resetPld, setup as setupPld } from './pld';
-import { reset as resetRdm, setup as setupRdm } from './rdm';
+import { PLDComponent } from './pld';
+import { RDMComponent } from './rdm';
 import { reset as resetSam, setup as setupSam } from './sam';
 import { reset as resetSch, setup as setupSch } from './sch';
 import { reset as resetSmn, setup as setupSmn } from './smn';
@@ -32,32 +32,28 @@ import { reset as resetWhm, setup as setupWhm } from './whm';
 
 export const getSetup = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
-    'PLD': setupPld,
     'WAR': setupWar,
     'WHM': setupWhm,
     'SCH': setupSch,
     'SAM': setupSam,
     'SMN': setupSmn,
-    'RDM': setupRdm,
   }[job.toUpperCase()];
 };
 
 export const getReset = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
-    'PLD': resetPld,
     'WAR': resetWar,
     'WHM': resetWhm,
     'SCH': resetSch,
     'SAM': resetSam,
     'SMN': resetSmn,
-    'RDM': resetRdm,
   }[job.toUpperCase()];
 };
 
 const ComponentMap: Record<Job, typeof BaseComponent> = {
   // tank
-  GLA: BaseComponent,
-  PLD: BaseComponent,
+  GLA: PLDComponent,
+  PLD: PLDComponent,
   MRD: BaseComponent,
   WAR: BaseComponent,
   DRK: DRKComponent,
@@ -85,7 +81,7 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   SMN: BaseComponent,
   THM: BLMComponent,
   BLM: BLMComponent,
-  RDM: BaseComponent,
+  RDM: RDMComponent,
   BLU: BLUComponent,
   // crafter & gatherer
   CRP: BaseComponent,

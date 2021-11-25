@@ -1,13 +1,25 @@
 import EffectId from '../../../resources/effect_id';
+import ResourceBar from '../../../resources/resourcebar';
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bars';
+import { ResourceBox } from '../bars';
 import { kAbility } from '../constants';
-import { Player } from '../player';
+import { PartialFieldMatches } from '../event_emitter';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars, player: Player): void => {
-  const container = bars.addJobBarContainer();
+export class RDMComponent extends BaseComponent {
+  whiteManaBar: ResourceBar;
+  blackManaBar: ResourceBar;
+  whiteManaBox: ResourceBox;
+  blackManaBox: ResourceBox;
+  whiteProc: TimerBox;
+  blackProc: TimerBox;
+  lucidBox: TimerBox;
+
+  constructor(o: ComponentInterface) {
+    super(o);
+  const container = this.bars.addJobBarContainer();
 
   const incs = 20;
   for (let i = 0; i < 100; i += incs) {
@@ -19,100 +31,98 @@ export const setup = (bars: Bars, player: Player): void => {
     marker.style.width = `${incs}%`;
   }
 
-  const whiteManaBar = bars.addResourceBar({
+  this.whiteManaBar = this.bars.addResourceBar({
     id: 'rdm-white-bar',
     fgColor: 'rdm-color-white-mana',
     maxvalue: 100,
   });
 
-  const blackManaBar = bars.addResourceBar({
+  this.blackManaBar = this.bars.addResourceBar({
     id: 'rdm-black-bar',
     fgColor: 'rdm-color-black-mana',
     maxvalue: 100,
   });
 
-  const whiteManaBox = bars.addResourceBox({
+  this.whiteManaBox = this.bars.addResourceBox({
     classList: ['rdm-color-white-mana'],
   });
 
-  const blackManaBox = bars.addResourceBox({
+  this.blackManaBox = this.bars.addResourceBox({
     classList: ['rdm-color-black-mana'],
   });
 
-  const whiteProc = bars.addProcBox({
+  this.whiteProc = this.bars.addProcBox({
     id: 'rdm-procs-white',
     fgColor: 'rdm-color-white-mana',
     threshold: 1000,
   });
-  whiteProc.bigatzero = false;
-  const blackProc = bars.addProcBox({
+  this.whiteProc.bigatzero = false;
+  this.blackProc = this.bars.addProcBox({
     id: 'rdm-procs-black',
     fgColor: 'rdm-color-black-mana',
     threshold: 1000,
   });
-  blackProc.bigatzero = false;
+  this.blackProc.bigatzero = false;
 
-  const lucidBox = bars.addProcBox({
+  this.lucidBox = this.bars.addProcBox({
     id: 'rdm-procs-lucid',
     fgColor: 'rdm-color-lucid',
   });
-  player.onUseAbility((id) => {
-    if (id === kAbility.LucidDreaming)
-      lucidBox.duration = 60;
-  });
-  player.onStatChange('RDM', ({ gcdSpell }) => {
-    lucidBox.valuescale = gcdSpell;
-    lucidBox.threshold = gcdSpell + 1;
-  });
+}
 
-  player.onJobDetailUpdate('RDM', (jobDetail: JobDetail['RDM']) => {
+  override onUseAbility(id: string): void {
+    if (id === kAbility.LucidDreaming)
+      this.lucidBox.duration = 60;
+  }
+  override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
+    this.lucidBox.valuescale = gcdSpell;
+    this.lucidBox.threshold = gcdSpell + 1;
+  }
+
+  override onJobDetailUpdate(jobDetail: JobDetail['RDM']): void {
     const white = jobDetail.whiteMana.toString();
     const black = jobDetail.blackMana.toString();
 
-    whiteManaBar.value = white;
-    blackManaBar.value = black;
+    this.whiteManaBar.value = white;
+    this.blackManaBar.value = black;
 
-    if (whiteManaBox.innerText !== white) {
-      whiteManaBox.innerText = white;
-      const p = whiteManaBox.parentNode;
+    if (this.whiteManaBox.innerText !== white) {
+      this.whiteManaBox.innerText = white;
+      const p = this.whiteManaBox.parentNode;
       if (jobDetail.whiteMana < 80)
         p.classList.add('dim');
       else
         p.classList.remove('dim');
     }
-    if (blackManaBox.innerText !== black) {
-      blackManaBox.innerText = black;
-      const p = blackManaBox.parentNode;
+    if (this.blackManaBox.innerText !== black) {
+      this.blackManaBox.innerText = black;
+      const p = this.blackManaBox.parentNode;
       if (jobDetail.blackMana < 80)
         p.classList.add('dim');
       else
         p.classList.remove('dim');
     }
-  });
+  }
 
-  player.onYouGainEffect((id, matches) => {
+  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.VerstoneReady)
-      whiteProc.duration = parseFloat(matches.duration ?? '0') - player.gcdSpell;
+      this.whiteProc.duration = parseFloat(matches.duration ?? '0') - this.player.gcdSpell;
     if (id === EffectId.VerfireReady) {
-      blackProc.duration = 0;
-      blackProc.duration = parseFloat(matches.duration ?? '0') - player.gcdSpell;
+      this.blackProc.duration = 0;
+      this.blackProc.duration = parseFloat(matches.duration ?? '0') - this.player.gcdSpell;
     }
-  });
-  player.onYouLoseEffect((id) => {
+  }
+  override onYouLoseEffect(id: string) :void {
     if (id === EffectId.VerstoneReady)
-      whiteProc.duration = 0;
+      this.whiteProc.duration = 0;
     if (id === EffectId.VerfireReady)
-      blackProc.duration = 0;
-  });
+      this.blackProc.duration = 0;
+  }
 
-  resetFunc = (_bars: Bars): void => {
-    lucidBox.duration = 0;
-    whiteProc.duration = 0;
-    blackProc.duration = 0;
-  };
-};
+  override reset(): void {
+    this.lucidBox.duration = 0;
+    this.whiteProc.duration = 0;
+    this.blackProc.duration = 0;
+  }
+}
 
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};
