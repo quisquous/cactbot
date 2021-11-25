@@ -106,7 +106,7 @@ export class ComponentFactory {
     });
 
     this.player.on('job', (job) => {
-      // FIXME: remove this
+      // FIXME: move this to BLM component
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
       if (!Util.isGatheringJob(this.player.job))
