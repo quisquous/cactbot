@@ -2,10 +2,11 @@
 
 const path = require('path');
 
+const dprintConfig = require('./dprint.json').typescript;
+
 // RULES_DIR must be absolute so that eslint can be used programmatically
 // and still find the eslint/ plugin directory correctly.
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
-const dprintConfig = require('./dprint.json').typescript;
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
 
 const settings = {
