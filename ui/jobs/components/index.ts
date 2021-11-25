@@ -12,7 +12,7 @@ import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
 
 import { reset as resetAst, setup as setupAst } from './ast';
 import { BaseComponent, ComponentInterface, ShouldShows } from './base';
-import { BLMComponent, reset as resetBlm, setup as setupBlm } from './blm';
+import { BLMComponent } from './blm';
 import { reset as resetBlu, setup as setupBlu } from './blu';
 import { reset as resetBrd, setup as setupBrd } from './brd';
 import { reset as resetDnc, setup as setupDnc } from './dnc';
@@ -46,7 +46,6 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
     'BRD': setupBrd,
     'MCH': setupMch,
     'DNC': setupDnc,
-    'BLM': setupBlm,
     'SMN': setupSmn,
     'RDM': setupRdm,
     'BLU': setupBlu,
@@ -69,7 +68,6 @@ export const getReset = (job: string): undefined | ((bars: Bars, player: Player)
     'BRD': resetBrd,
     'MCH': resetMch,
     'DNC': resetDnc,
-    'BLM': resetBlm,
     'SMN': resetSmn,
     'RDM': resetRdm,
     'BLU': resetBlu,
