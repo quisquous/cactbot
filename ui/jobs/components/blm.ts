@@ -183,6 +183,8 @@ export class BLMComponent extends BaseComponent {
     this.thunderDot.duration = 0;
     this.thunderProc.duration = 0;
     this.fireProc.duration = 0;
+
+    this.umbralStacks = 0;
   }
 }
 

@@ -96,8 +96,6 @@ export class ComponentFactory {
   gpAlarmReady: boolean;
   gpPotion: boolean;
 
-  umbralStacks: number;
-
   constructor(o: ComponentInterface) {
     this.bars = o.bars;
     this.ee = o.emitter;
@@ -112,8 +110,6 @@ export class ComponentFactory {
     this.foodBuffTimer = 0;
     this.gpAlarmReady = false;
     this.gpPotion = false;
-
-    this.umbralStacks = 0;
 
     this.setupListeners();
   }
@@ -154,10 +150,14 @@ export class ComponentFactory {
 
     // update mp ticker
     this.player.on('mp', (data) => {
+      let umbralStacks = 0;
+      if (this.component instanceof BLMComponent)
+        umbralStacks = this.component.umbralStacks;
+
       this.bars._updateMPTicker({
         ...data,
         inCombat: this.component?.inCombat ?? false,
-        umbralStacks: this.umbralStacks,
+        umbralStacks: umbralStacks,
       });
     });
     this.player.on('gp', ({ gp }) => {
@@ -169,9 +169,6 @@ export class ComponentFactory {
     });
 
     this.player.on('job', (job) => {
-      // FIXME: move this to BLM component
-      // Update MP ticker as umbral stacks has changed.
-      this.umbralStacks = 0;
       if (!Util.isGatheringJob(this.player.job))
         this.gpAlarmReady = false;
 
