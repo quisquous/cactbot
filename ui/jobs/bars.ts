@@ -1,7 +1,5 @@
-import EffectId from '../../resources/effect_id';
 import foodImage from '../../resources/ffxiv/status/food.png';
 import { UnreachableCode } from '../../resources/not_reached';
-import PartyTracker from '../../resources/party';
 import ResourceBar from '../../resources/resourcebar';
 import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
@@ -9,8 +7,6 @@ import Util from '../../resources/util';
 import WidgetList, { Toward } from '../../resources/widget_list';
 import { Job } from '../../types/job';
 
-import { BuffTracker } from './buff_tracker';
-import { getReset, getSetup } from './components/index';
 import {
   kMPCombatRate,
   kMPNormalRate,
@@ -24,13 +20,7 @@ import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
 import { JobsOptions } from './jobs_options';
 import { Player } from './player';
-import {
-  computeBackgroundColorFrom,
-  doesJobNeedMPBar,
-  isPvPZone,
-  makeAuraTimerIcon,
-  RegexesHolder,
-} from './utils';
+import { computeBackgroundColorFrom, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
 import '../../resources/defaults.css';
 import './jobs.css';
@@ -61,27 +51,14 @@ export interface ResourceBox extends HTMLDivElement {
 }
 
 export class Bars {
-  private o: JobDomObjects = {};
-  private foodBuffExpiresTimeMs = 0;
-  private gpAlarmReady = false;
-  private gpPotion = false;
+  public o: JobDomObjects = {};
 
-  private inCombat = false;
-  private regexes?: RegexesHolder;
-  private partyTracker: PartyTracker;
-  private buffTracker?: BuffTracker;
   public ee: JobsEventEmitter;
   public readonly player: Player;
-
-  private contentType?: number;
-  private foodBuffTimer = 0;
-
-  public umbralStacks = 0;
 
   constructor(private options: JobsOptions, o: {
     emitter: JobsEventEmitter;
     player: Player;
-    partyTracker: PartyTracker;
   }) {
     // Don't add any notifications if only the buff tracker is being shown.
     if (this.options.JustBuffTracker) {
@@ -91,145 +68,6 @@ export class Bars {
 
     this.ee = o.emitter;
     this.player = o.player;
-    this.partyTracker = o.partyTracker;
-
-    // bind party changed event
-    this.ee.on('party', (party) => this.partyTracker.onPartyChanged({ party }));
-
-    this.player.on('level', (level, prevLevel) => {
-      if (level - prevLevel) {
-        this._updateFoodBuff({
-          inCombat: this.inCombat,
-          foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-          foodBuffTimer: this.foodBuffTimer,
-          contentType: this.contentType,
-        });
-      }
-    });
-
-    this.player.on('job', (job) => {
-      // FIXME: remove this
-      // Update MP ticker as umbral stacks has changed.
-      this.umbralStacks = 0;
-      if (!Util.isGatheringJob(this.player.job))
-        this.gpAlarmReady = false;
-
-      this._setupJobContainers(job);
-
-      const setup = getSetup(job);
-      if (setup)
-        setup.bind(null, this, this.player)();
-
-      // add food buff trigger
-      this.player.onYouGainEffect((id, matches) => {
-        if (id === EffectId.WellFed) {
-          const seconds = parseFloat(matches.duration ?? '0');
-          const now = Date.now(); // This is in ms.
-          this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-          this._updateFoodBuff({
-            inCombat: this.inCombat,
-            foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-            foodBuffTimer: this.foodBuffTimer,
-            contentType: this.contentType,
-          });
-        }
-      });
-      // As you cannot change jobs in combat, we can assume that
-      // it is always false here.
-      this._updateProcBoxNotifyState(false);
-
-      // TODO: this is always created by _updateJob, so maybe this.o needs be optional?
-      if (this.o.leftBuffsList && this.o.rightBuffsList) {
-        // Set up the buff tracker after the job bars are created.
-        this.buffTracker = new BuffTracker(
-          this.options,
-          this.player.name,
-          this.o.leftBuffsList,
-          this.o.rightBuffsList,
-          this.partyTracker,
-        );
-      }
-    });
-
-    // update RegexesHolder when the player name changes
-    this.player.on('player', ({ name }) => {
-      this.regexes = new RegexesHolder(this.options.ParserLanguage, name);
-    });
-
-    this.ee.on('battle/in-combat', ({ game }) => {
-      this._updateProcBoxNotifyState(game);
-      if (this.inCombat !== game) {
-        this.inCombat = game;
-        this._updateFoodBuff({
-          inCombat: this.inCombat,
-          foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-          foodBuffTimer: this.foodBuffTimer,
-          contentType: this.contentType,
-        });
-      }
-
-      // make bars transparent when out of combat if requested
-      this._updateOpacity(!game || this.options.LowerOpacityOutOfCombat);
-    });
-
-    this.ee.on('battle/wipe', () => {
-      this._onPartyWipe();
-    });
-
-    this.player.on('action/you', (id, matches) => {
-      if (this.regexes?.cordialRegex.test(id)) {
-        this.gpPotion = true;
-        window.setTimeout(() => {
-          this.gpPotion = false;
-        }, 2000);
-      }
-      this.buffTracker?.onUseAbility(id, matches);
-    });
-    this.player.on('action/other', (id, matches) => this.buffTracker?.onUseAbility(id, matches));
-    this.player.on(
-      'effect/gain/you',
-      (id, matches) => this.buffTracker?.onYouGainEffect(id, matches),
-    );
-    this.player.on('effect/gain', (id, matches) => {
-      // mob id starts with '4'
-      if (matches.targetId?.startsWith('4'))
-        this.buffTracker?.onMobGainsEffect(id, matches);
-    });
-    this.player.on(
-      'effect/lose/you',
-      (id, matches) => this.buffTracker?.onYouLoseEffect(id, matches),
-    );
-    this.player.on('effect/lose', (id, matches) => {
-      // mob id starts with '4'
-      if (matches.targetId?.startsWith('4'))
-        this.buffTracker?.onMobLosesEffect(id, matches);
-    });
-
-    this.ee.on('zone/change', (id) => {
-      this._updateFoodBuff({
-        inCombat: this.inCombat,
-        foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-        foodBuffTimer: this.foodBuffTimer,
-        contentType: this.contentType,
-      });
-      if (this.buffTracker)
-        this.buffTracker.clear();
-
-      // Hide UI except HP and MP bar if change to pvp area.
-      this._updateUIVisibility(isPvPZone(id));
-    });
-
-    this.ee.on('log/game', (_log, _line, rawLine) => {
-      const m = this.regexes?.countdownStartRegex.exec(rawLine);
-      if (m && m.groups?.time) {
-        const seconds = parseFloat(m.groups.time);
-        this._setPullCountdown(seconds);
-      }
-      if (this.regexes?.countdownCancelRegex.test(rawLine))
-        this._setPullCountdown(0);
-      if (Util.isCraftingJob(this.player.job))
-        this._onCraftingLog(rawLine);
-    });
 
     this.updateProcBoxNotifyRepeat();
   }
@@ -661,15 +499,11 @@ export class Bars {
     mpTicker.stylefill = 'fill';
     mpTicker.toward = 'right';
     mpTicker.loop = true;
-    // update mp ticker
-    this.player.on('mp', (data) => {
-      this._updateMPTicker(data);
-    });
     this.ee.on('battle/in-combat', (ev) => {
       // Hide out of combat if requested
-      if (this.o.mpTicker && !this.options.ShowMPTickerOutOfCombat && !ev.game) {
-        this.o.mpTicker.duration = 0;
-        this.o.mpTicker.stylefill = 'empty';
+      if (mpTicker && !this.options.ShowMPTickerOutOfCombat && !ev.game) {
+        mpTicker.duration = 0;
+        mpTicker.stylefill = 'empty';
       }
     });
 
@@ -749,32 +583,37 @@ export class Bars {
   _updateMPTicker(data: {
     mp: number;
     maxMp: number;
-    prevMp: number;
+    prevMp?: number;
+    umbralStacks?: number;
+    inCombat: boolean;
   }): void {
     if (!this.o.mpTicker)
       return;
-    const delta = data.mp - data.prevMp;
+
+    const prevMp = data.prevMp ?? parseInt(this.o.manaBar?.value ?? '0');
+    const delta = data.mp - prevMp;
 
     this.o.mpTicker.stylefill = 'fill';
 
-    const baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
+    const baseTick = data.inCombat ? kMPCombatRate : kMPNormalRate;
     let umbralTick = 0;
-    if (this.umbralStacks === -1)
+    data.umbralStacks ??= 0;
+    if (data.umbralStacks === -1)
       umbralTick = kMPUI1Rate;
-    if (this.umbralStacks === -2)
+    if (data.umbralStacks === -2)
       umbralTick = kMPUI2Rate;
-    if (this.umbralStacks === -3)
+    if (data.umbralStacks === -3)
       umbralTick = kMPUI3Rate;
 
     const mpTick = Math.floor(data.maxMp * baseTick) + Math.floor(data.maxMp * umbralTick);
-    if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
+    if (delta === mpTick && data.umbralStacks <= 0) // MP ticks disabled in AF
       this.o.mpTicker.duration = kMPTickInterval;
 
     // Update color based on the astral fire/ice state
     let colorTag = 'mp-tick-color';
-    if (this.umbralStacks < 0)
+    if (data.umbralStacks < 0)
       colorTag = 'mp-tick-color.ice';
-    if (this.umbralStacks > 0)
+    if (data.umbralStacks > 0)
       colorTag = 'mp-tick-color.fire';
     this.o.mpTicker.fg = computeBackgroundColorFrom(this.o.mpTicker, colorTag);
   }
@@ -784,8 +623,6 @@ export class Bars {
     maxMp: number;
     prevMp: number;
   }): void {
-    this._updateMPTicker(data);
-
     if (!this.o.manaBar)
       return;
     this.o.manaBar.value = data.mp.toString();
@@ -830,16 +667,19 @@ export class Bars {
       return;
     this.o.gpBar.value = data.gp.toString();
     this.o.gpBar.maxvalue = data.maxGp.toString();
+  }
 
+  _shouldPlayGpAlarm(data: { gp: number; gpAlarmReady: boolean; gpPotion: boolean }): boolean {
     // GP Alarm
     if (data.gp < this.options.GpAlarmPoint) {
-      this.gpAlarmReady = true;
-    } else if (this.gpAlarmReady && !this.gpPotion && data.gp >= this.options.GpAlarmPoint) {
-      this.gpAlarmReady = false;
+      return true;
+    } else if (data.gpAlarmReady && !data.gpPotion && data.gp >= this.options.GpAlarmPoint) {
       const audio = new Audio('../../resources/sounds/freesound/power_up.webm');
       audio.volume = this.options.GpAlarmSoundVolume;
       void audio.play();
+      return false;
     }
+    return true;
   }
 
   _updateOpacity(transparent: boolean): void {
@@ -908,14 +748,6 @@ export class Bars {
     }
   }
 
-  _onPartyWipe(): void {
-    this.buffTracker?.clear();
-    // Reset job-specific ui
-    const reset = getReset(this.player.job);
-    if (reset)
-      reset.bind(null, this, this.player)();
-  }
-
   _setPullCountdown(seconds: number): void {
     if (!this.o.pullCountdown)
       return;
@@ -932,32 +764,7 @@ export class Bars {
     }
   }
 
-  _onCraftingLog(message: string): void {
-    if (!this.regexes)
-      return;
-
-    // Hide CP Bar when not crafting
-    const anyRegexMatched = (line: string, array: RegExp[]) =>
-      array.some((regex) => regex.test(line));
-
-    let crafting = false;
-
-    if (anyRegexMatched(message, this.regexes.craftingStartRegexes))
-      crafting = true;
-    if (anyRegexMatched(message, this.regexes.craftingStopRegexes)) {
-      crafting = false;
-    } else {
-      crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
-        const m = regex.exec(message)?.groups;
-        return m && (!m.player || m.player === this.player.name);
-      });
-    }
-
-    // if crafting, hide it; otherwise, show it
-    this._setJobsContainerVisibility(crafting);
-  }
-
-  _setJobsContainerVisibility(hide?: boolean): void {
+  setJobsContainerVisibility(hide?: boolean): void {
     const container = document.getElementById('jobs-container');
     if (!container)
       throw new UnreachableCode();
