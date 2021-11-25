@@ -21,7 +21,7 @@ export type ShouldShows = {
   mpTicker?: boolean;
 };
 
-export class BaseComponent {
+export class ComponentFactory {
   bars: Bars;
   buffTracker?: BuffTracker;
   ee: JobsEventEmitter;
