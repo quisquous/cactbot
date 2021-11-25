@@ -1,117 +1,122 @@
 import EffectId from '../../../resources/effect_id';
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bars';
+import { ResourceBox } from '../bars';
 import { kAbility } from '../constants';
-import { Player } from '../player';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars, player: Player): void => {
-  const lilyBox = bars.addResourceBox({
+export class WHMComponent extends BaseComponent {
+  lilyBox: ResourceBox;
+  lilysecondBox: ResourceBox;
+  diaBox: TimerBox;
+  assizeBox: TimerBox;
+  lucidBox: TimerBox;
+    bloodlilyStacks: HTMLElement[] = [];
+
+  constructor(o: ComponentInterface) {
+    super(o);
+  this.lilyBox = this.bars.addResourceBox({
     classList: ['whm-color-lily'],
   });
-  const lilysecondBox = bars.addResourceBox({
+  this.lilysecondBox = this.bars.addResourceBox({
     classList: ['whm-color-lilysecond'],
   });
 
-  const diaBox = bars.addProcBox({
+  this.diaBox = this.bars.addProcBox({
     id: 'whm-procs-dia',
     fgColor: 'whm-color-dia',
     notifyWhenExpired: true,
   });
-  const assizeBox = bars.addProcBox({
+  this.assizeBox = this.bars.addProcBox({
     id: 'whm-procs-assize',
     fgColor: 'whm-color-assize',
   });
-  const lucidBox = bars.addProcBox({
+  this.lucidBox = this.bars.addProcBox({
     id: 'whm-procs-lucid',
     fgColor: 'whm-color-lucid',
   });
 
-  // BloodLily Gauge
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'whm-stacks';
-  bars.addJobBarContainer().appendChild(stacksContainer);
-  const bloodlilyContainer = document.createElement('div');
-  bloodlilyContainer.id = 'whm-stacks-bloodlily';
-  stacksContainer.appendChild(bloodlilyContainer);
-  const bloodlilyStacks: HTMLElement[] = [];
-  for (let i = 0; i < 3; ++i) {
-    const d = document.createElement('div');
-    bloodlilyContainer.appendChild(d);
-    bloodlilyStacks.push(d);
-  }
+    // BloodLily Gauge
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'whm-stacks';
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
+    const bloodlilyContainer = document.createElement('div');
+    bloodlilyContainer.id = 'whm-stacks-bloodlily';
+    stacksContainer.appendChild(bloodlilyContainer);
 
-  player.onJobDetailUpdate('WHM', (jobDetail: JobDetail['WHM']) => {
+    for (let i = 0; i < 3; ++i) {
+      const d = document.createElement('div');
+      bloodlilyContainer.appendChild(d);
+      this.bloodlilyStacks.push(d);
+    }
+}
+
+  override onJobDetailUpdate(jobDetail: JobDetail['WHM']): void {
     const lily = jobDetail.lilyStacks;
     // bars milliseconds is countup, so use floor instead of ceil.
     const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
 
-    lilyBox.innerText = lily.toString();
+    this.lilyBox.innerText = lily.toString();
     if (lily === 3)
-      lilysecondBox.innerText = '';
+      this.lilysecondBox.innerText = '';
     else
-      lilysecondBox.innerText = (30 - lilysecond).toString();
+      this.lilysecondBox.innerText = (30 - lilysecond).toString();
 
     const bloodlilys = jobDetail.bloodlilyStacks;
     for (let i = 0; i < 3; ++i) {
       if (bloodlilys > i)
-        bloodlilyStacks[i]?.classList.add('active');
+        this.bloodlilyStacks[i]?.classList.add('active');
       else
-        bloodlilyStacks[i]?.classList.remove('active');
+        this.bloodlilyStacks[i]?.classList.remove('active');
     }
 
-    const l = lilysecondBox.parentNode;
+    const l = this.lilysecondBox.parentNode;
     if ((lily === 2 && 30 - lilysecond <= 5) || lily === 3)
       l.classList.add('full');
     else
       l.classList.remove('full');
-  });
+  }
 
-  player.onUseAbility((id) => {
+  override onUseAbility(id: string): void {
     switch (id) {
       case kAbility.Aero:
       case kAbility.Aero2:
-        diaBox.duration = 18 + 1;
+        this.diaBox.duration = 18 + 1;
         break;
       case kAbility.Dia:
-        diaBox.duration = 30;
+        this.diaBox.duration = 30;
         break;
       case kAbility.Assize:
-        assizeBox.duration = 45;
+        this.assizeBox.duration = 45;
         break;
       case kAbility.LucidDreaming:
-        lucidBox.duration = 60;
+        this.lucidBox.duration = 60;
         break;
     }
-  });
+  }
 
-  player.onYouGainEffect((id) => {
+  override onYouGainEffect(id: string): void {
     if (id === EffectId.PresenceOfMind)
-      player.speedBuffs.presenceOfMind = true;
-  });
-  player.onYouLoseEffect((id) => {
+      this.player.speedBuffs.presenceOfMind = true;
+  }
+  override onYouLoseEffect(id: string): void {
     if (id === EffectId.PresenceOfMind)
-      player.speedBuffs.presenceOfMind = false;
-  });
+      this.player.speedBuffs.presenceOfMind = false;
+  }
 
-  player.onStatChange('WHM', ({ gcdSpell }) => {
-    diaBox.valuescale = gcdSpell;
-    diaBox.threshold = gcdSpell + 1;
-    assizeBox.valuescale = gcdSpell;
-    assizeBox.threshold = gcdSpell + 1;
-    lucidBox.valuescale = gcdSpell;
-    lucidBox.threshold = gcdSpell + 1;
-  });
+  override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
+    this.diaBox.valuescale = gcdSpell;
+    this.diaBox.threshold = gcdSpell + 1;
+    this.assizeBox.valuescale = gcdSpell;
+    this.assizeBox.threshold = gcdSpell + 1;
+    this.lucidBox.valuescale = gcdSpell;
+    this.lucidBox.threshold = gcdSpell + 1;
+  }
 
-  resetFunc = (_bars: Bars): void => {
-    diaBox.duration = 0;
-    assizeBox.duration = 0;
-    lucidBox.duration = 0;
-  };
-};
-
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};
+  override reset(): void {
+    this.diaBox.duration = 0;
+    this.assizeBox.duration = 0;
+    this.lucidBox.duration = 0;
+  }
+}

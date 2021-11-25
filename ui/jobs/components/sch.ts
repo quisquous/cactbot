@@ -1,96 +1,100 @@
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bars';
+import { ResourceBox } from '../bars';
 import { kAbility } from '../constants';
-import { Player } from '../player';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars, player: Player): void => {
-  const aetherflowStackBox = bars.addResourceBox({
+export class SCHComponent extends BaseComponent {
+  aetherflowStackBox: ResourceBox;
+  fairyGaugeBox: ResourceBox;
+  bioBox: TimerBox;
+  aetherflowBox: TimerBox;
+  lucidBox: TimerBox;
+
+  constructor(o: ComponentInterface) {
+    super(o);
+  this.aetherflowStackBox = this.bars.addResourceBox({
     classList: ['sch-color-aetherflow'],
   });
 
-  const fairyGaugeBox = bars.addResourceBox({
+  this.fairyGaugeBox = this.bars.addResourceBox({
     classList: ['sch-color-fairygauge'],
   });
 
-  const bioBox = bars.addProcBox({
+  this.bioBox = this.bars.addProcBox({
     id: 'sch-procs-bio',
     fgColor: 'sch-color-bio',
     notifyWhenExpired: true,
   });
 
-  const aetherflowBox = bars.addProcBox({
+  this.aetherflowBox = this.bars.addProcBox({
     id: 'sch-procs-aetherflow',
     fgColor: 'sch-color-aetherflow',
   });
 
-  const lucidBox = bars.addProcBox({
+  this.lucidBox = this.bars.addProcBox({
     id: 'sch-procs-luciddreaming',
     fgColor: 'sch-color-lucid',
   });
+}
 
-  player.onJobDetailUpdate('SCH', (jobDetail: JobDetail['SCH']) => {
+  override onJobDetailUpdate(jobDetail: JobDetail['SCH']): void {
     const aetherflow = jobDetail.aetherflowStacks;
     const fairygauge = jobDetail.fairyGauge;
     const milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
-    aetherflowStackBox.innerText = aetherflow.toString();
-    fairyGaugeBox.innerText = fairygauge.toString();
-    const f = fairyGaugeBox.parentNode;
+    this.aetherflowStackBox.innerText = aetherflow.toString();
+    this.fairyGaugeBox.innerText = fairygauge.toString();
+    const f = this.fairyGaugeBox.parentNode;
     if (jobDetail.fairyMilliseconds !== 0) {
       f.classList.add('bright');
-      fairyGaugeBox.innerText = milli.toString();
+      this.fairyGaugeBox.innerText = milli.toString();
     } else {
       f.classList.remove('bright');
-      fairyGaugeBox.innerText = fairygauge.toString();
+      this.fairyGaugeBox.innerText = fairygauge.toString();
     }
 
     // dynamically annouce user depends on their aetherflow stacks right now
-    aetherflowBox.threshold = player.gcdSpell * (aetherflow || 1) + 1;
+    this.aetherflowBox.threshold = this.player.gcdSpell * (aetherflow || 1) + 1;
 
-    const p = aetherflowStackBox.parentNode;
-    const s = aetherflowBox.duration ?? 0 - aetherflowBox.elapsed;
+    const p = this.aetherflowStackBox.parentNode;
+    const s = this.aetherflowBox.duration ?? 0 - this.aetherflowBox.elapsed;
     if (aetherflow * 5 >= s) {
       // turn red when stacks are too much before AF ready
       p.classList.add('too-much-stacks');
     } else {
       p.classList.remove('too-much-stacks');
     }
-  });
+  }
 
-  player.onUseAbility((id) => {
+  override onUseAbility(id: string): void {
     switch (id) {
       case kAbility.Bio:
       case kAbility.Bio2:
       case kAbility.Biolysis:
-        bioBox.duration = 30;
+        this.bioBox.duration = 30;
         break;
       case kAbility.Aetherflow:
-        aetherflowBox.duration = 60;
-        aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+        this.aetherflowBox.duration = 60;
+        this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
         break;
       case kAbility.LucidDreaming:
-        lucidBox.duration = 60;
+        this.lucidBox.duration = 60;
         break;
     }
-  });
+  }
 
-  player.onStatChange('SCH', ({ gcdSpell }) => {
-    bioBox.valuescale = gcdSpell;
-    bioBox.threshold = gcdSpell + 1;
-    aetherflowBox.valuescale = gcdSpell;
-    lucidBox.valuescale = gcdSpell;
-    lucidBox.threshold = gcdSpell + 1;
-  });
+  override onStatChange({ gcdSpell }:{ gcdSpell: number }): void {
+    this.bioBox.valuescale = gcdSpell;
+    this.bioBox.threshold = gcdSpell + 1;
+    this.aetherflowBox.valuescale = gcdSpell;
+    this.lucidBox.valuescale = gcdSpell;
+    this.lucidBox.threshold = gcdSpell + 1;
+  }
 
-  resetFunc = (_bars: Bars): void => {
-    bioBox.duration = 0;
-    aetherflowBox.duration = 0;
-    lucidBox.duration = 0;
-  };
-};
-
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};
+  override reset(): void {
+    this.bioBox.duration = 0;
+    this.aetherflowBox.duration = 0;
+    this.lucidBox.duration = 0;
+  }
+}

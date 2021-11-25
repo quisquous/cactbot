@@ -25,15 +25,13 @@ import { NINComponent } from './nin';
 import { PLDComponent } from './pld';
 import { RDMComponent } from './rdm';
 import { reset as resetSam, setup as setupSam } from './sam';
-import { reset as resetSch, setup as setupSch } from './sch';
+import { SCHComponent } from './sch';
 import { reset as resetSmn, setup as setupSmn } from './smn';
 import { WARComponent } from './war';
-import { reset as resetWhm, setup as setupWhm } from './whm';
+import { WHMComponent } from './whm';
 
 export const getSetup = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
-    'WHM': setupWhm,
-    'SCH': setupSch,
     'SAM': setupSam,
     'SMN': setupSmn,
   }[job.toUpperCase()];
@@ -41,8 +39,6 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
 
 export const getReset = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
   return {
-    'WHM': resetWhm,
-    'SCH': resetSch,
     'SAM': resetSam,
     'SMN': resetSmn,
   }[job.toUpperCase()];
@@ -57,9 +53,9 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   DRK: DRKComponent,
   GNB: GNBComponent,
   // healer
-  CNJ: BaseComponent,
-  WHM: BaseComponent,
-  SCH: BaseComponent,
+  CNJ: WHMComponent,
+  WHM: WHMComponent,
+  SCH: SCHComponent,
   AST: ASTComponent,
   // melee dps
   PGL: MNKComponent,
