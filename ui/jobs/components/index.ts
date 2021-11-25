@@ -19,8 +19,8 @@ import { DNCComponent } from './dnc';
 import { DRGComponent } from './drg';
 import { DRKComponent } from './drk';
 import { GNBComponent } from './gnb';
-import { reset as resetMch, setup as setupMch } from './mch';
-import { reset as resetMnk, setup as setupMnk } from './mnk';
+import { MCHComponent } from './mch';
+import { MNKComponent } from './mnk';
 import { reset as resetNin, setup as setupNin } from './nin';
 import { reset as resetPld, setup as setupPld } from './pld';
 import { reset as resetRdm, setup as setupRdm } from './rdm';
@@ -36,10 +36,8 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
     'WAR': setupWar,
     'WHM': setupWhm,
     'SCH': setupSch,
-    'MNK': setupMnk,
     'NIN': setupNin,
     'SAM': setupSam,
-    'MCH': setupMch,
     'SMN': setupSmn,
     'RDM': setupRdm,
   }[job.toUpperCase()];
@@ -51,10 +49,8 @@ export const getReset = (job: string): undefined | ((bars: Bars, player: Player)
     'WAR': resetWar,
     'WHM': resetWhm,
     'SCH': resetSch,
-    'MNK': resetMnk,
     'NIN': resetNin,
     'SAM': resetSam,
-    'MCH': resetMch,
     'SMN': resetSmn,
     'RDM': resetRdm,
   }[job.toUpperCase()];
@@ -74,17 +70,17 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   SCH: BaseComponent,
   AST: ASTComponent,
   // melee dps
-  PGL: BaseComponent,
-  MNK: BaseComponent,
+  PGL: MNKComponent,
+  MNK: MNKComponent,
   LNC: BaseComponent,
   DRG: DRGComponent,
   ROG: BaseComponent,
   NIN: BaseComponent,
   SAM: BaseComponent,
   // ranged dps
-  ARC: BaseComponent,
+  ARC: BRDComponent,
   BRD: BRDComponent,
-  MCH: BaseComponent,
+  MCH: MCHComponent,
   DNC: DNCComponent,
   // magic dps
   ACN: BaseComponent,
