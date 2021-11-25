@@ -48,6 +48,9 @@ export class BaseComponent implements ComponentInterface {
   }
 
   private _bindListeners(): void {
+    this.emitter.on('battle/in-combat', ({ game }) => {
+      this.inCombat = game;
+    });
     this.player.onYouGainEffect(this.onYouGainEffect.bind(this));
     this.player.onYouLoseEffect(this.onYouLoseEffect.bind(this));
     this.player.onMobGainsEffectFromYou(this.onMobGainsEffectFromYou.bind(this));

@@ -184,7 +184,7 @@ export class ComponentFactory {
       // const setup = getSetup(job);
       // if (setup)
       //   setup.bind(null, this.bars, this.player)();
-      this.getJobComponents(job);
+      this.component = this.getJobComponents(job);
 
       // add food buff trigger
       this.player.onYouGainEffect((id, matches) => {
@@ -225,7 +225,6 @@ export class ComponentFactory {
     this.ee.on('battle/in-combat', ({ game }) => {
       this.bars._updateProcBoxNotifyState(game);
       if (this.component && this.component.inCombat !== game) {
-        this.component.inCombat = game;
         this.bars._updateFoodBuff({
           inCombat: this.component.inCombat,
           foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
