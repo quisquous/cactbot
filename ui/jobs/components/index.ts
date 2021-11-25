@@ -10,7 +10,7 @@ import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
 
-import { reset as resetAst, setup as setupAst } from './ast';
+import { ASTComponent } from './ast';
 import { BaseComponent, ComponentInterface, ShouldShows } from './base';
 import { BLMComponent } from './blm';
 import { reset as resetBlu, setup as setupBlu } from './blu';
@@ -38,7 +38,6 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
     'GNB': setupGnb,
     'WHM': setupWhm,
     'SCH': setupSch,
-    'AST': setupAst,
     'MNK': setupMnk,
     'DRG': setupDrg,
     'NIN': setupNin,
@@ -60,7 +59,6 @@ export const getReset = (job: string): undefined | ((bars: Bars, player: Player)
     'GNB': resetGnb,
     'WHM': resetWhm,
     'SCH': resetSch,
-    'AST': resetAst,
     'MNK': resetMnk,
     'DRG': resetDrg,
     'NIN': resetNin,
@@ -86,7 +84,7 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   CNJ: BaseComponent,
   WHM: BaseComponent,
   SCH: BaseComponent,
-  AST: BaseComponent,
+  AST: ASTComponent,
   // melee dps
   PGL: BaseComponent,
   MNK: BaseComponent,
