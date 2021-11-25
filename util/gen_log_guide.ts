@@ -415,6 +415,7 @@ const lineDocs: LineDocs = {
   Map: {
     regexes: {
       network: NetRegexes.map({ capture: true }).source,
+      logLine: Regexes.map({ capture: true }).source,
     },
     examples: {
       'en-US': [
