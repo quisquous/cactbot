@@ -234,7 +234,7 @@ export class ComponentManager {
       }
 
       // make bars transparent when out of combat if requested
-      this.bars._updateOpacity(!game || this.options.LowerOpacityOutOfCombat);
+      this.bars._updateOpacity(!game && this.options.LowerOpacityOutOfCombat);
     });
 
     this.ee.on('battle/wipe', () => {
