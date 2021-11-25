@@ -21,6 +21,14 @@ export type ShouldShows = {
   mpTicker?: boolean;
 };
 
+export interface ComponentInterface {
+  bars: Bars;
+  emitter: JobsEventEmitter;
+  options: JobsOptions;
+  partyTracker: PartyTracker;
+  player: Player;
+}
+
 export class ComponentFactory {
   bars: Bars;
   buffTracker?: BuffTracker;
@@ -43,13 +51,7 @@ export class ComponentFactory {
 
   umbralStacks: number;
 
-  constructor(o: {
-    bars: Bars;
-    emitter: JobsEventEmitter;
-    options: JobsOptions;
-    partyTracker: PartyTracker;
-    player: Player;
-  }) {
+  constructor(o: ComponentInterface) {
     this.bars = o.bars;
     this.ee = o.emitter;
     this.options = o.options;
