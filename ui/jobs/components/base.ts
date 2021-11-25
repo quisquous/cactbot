@@ -84,7 +84,7 @@ export class BaseComponent {
       });
     });
     this.player.on('gp', ({ gp }) => {
-      this.bars._shouldPlayGpAlarm({
+      this.gpAlarmReady = this.bars._shouldPlayGpAlarm({
         gp: gp,
         gpAlarmReady: this.gpAlarmReady,
         gpPotion: this.gpPotion,
