@@ -7,9 +7,19 @@ import { BuffTracker } from '../buff_tracker';
 import { JobsEventEmitter } from '../event_emitter';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
-import { isPvPZone, RegexesHolder } from '../utils';
+import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
 
 import { getReset, getSetup } from './index';
+
+export type ShouldShows = {
+  buffList?: boolean;
+  pullBar?: boolean;
+  hpBar?: boolean;
+  mpBar?: boolean;
+  cpBar?: boolean;
+  gpBar?: boolean;
+  mpTicker?: boolean;
+};
 
 export class BaseComponent {
   bars: Bars;
@@ -21,6 +31,7 @@ export class BaseComponent {
   regexes?: RegexesHolder;
 
   // misc variables
+  shouldShows: ShouldShows;
   inCombat: boolean;
   zoneId: number;
   // food buffs
@@ -45,6 +56,7 @@ export class BaseComponent {
     this.partyTracker = o.partyTracker;
     this.player = o.player;
 
+    this.shouldShows = {};
     this.inCombat = false;
     this.zoneId = -1;
 
@@ -98,7 +110,16 @@ export class BaseComponent {
       if (!Util.isGatheringJob(this.player.job))
         this.gpAlarmReady = false;
 
-      this.bars._setupJobContainers(job);
+      this.bars._setupJobContainers(job, {
+        buffList: this.shouldShows.buffList ?? true,
+        pullBar: this.shouldShows.pullBar ?? true,
+        hpBar: this.shouldShows.hpBar ?? (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
+        mpBar: this.shouldShows.mpBar ??
+          (!Util.isCraftingJob(job) && !Util.isGatheringJob(job) && doesJobNeedMPBar(job)),
+        cpBar: this.shouldShows.cpBar ?? Util.isCraftingJob(job),
+        gpBar: this.shouldShows.gpBar ?? Util.isGatheringJob(job),
+        mpTicker: this.shouldShows.mpTicker ?? this.options.ShowMPTicker.includes(job),
+      });
 
       const setup = getSetup(job);
       if (setup)

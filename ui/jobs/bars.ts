@@ -7,6 +7,7 @@ import Util from '../../resources/util';
 import WidgetList, { Toward } from '../../resources/widget_list';
 import { Job } from '../../types/job';
 
+import { ShouldShows } from './components/base';
 import {
   kMPCombatRate,
   kMPNormalRate,
@@ -20,7 +21,7 @@ import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
 import { JobsOptions } from './jobs_options';
 import { Player } from './player';
-import { computeBackgroundColorFrom, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
+import { computeBackgroundColorFrom, makeAuraTimerIcon } from './utils';
 
 // text on the pull countdown.
 const kPullText = {
@@ -85,7 +86,17 @@ export class Bars {
       bars.classList.toggle('pvp', hide ?? false);
   }
 
-  _setupJobContainers(job: Job): void {
+  _setupJobContainers(job: Job, shows: ShouldShows): void {
+    const shouldShows = {
+      buffList: true,
+      pullBar: true,
+      hpBar: true,
+      mpBar: true,
+      cpBar: false,
+      gpBar: false,
+      mpTicker: false,
+      ...shows,
+    };
     // if player is in pvp zone, inherit the class
     const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
 
@@ -114,8 +125,10 @@ export class Bars {
     if (role !== 'none')
       barsLayoutContainer.classList.add(role.toLowerCase());
 
-    // add pull bar first, which would not affected by the opacity settings
-    this.o.pullCountdown = this.addPullCountdownBar();
+    if (shouldShows.pullBar) {
+      // add pull bar first, which would not affected by the opacity settings
+      this.o.pullCountdown = this.addPullCountdownBar();
+    }
 
     const opacityContainer = document.createElement('div');
     opacityContainer.id = 'opacity-container';
@@ -130,53 +143,54 @@ export class Bars {
       barsContainer.classList.add('pvp');
     opacityContainer.appendChild(barsContainer);
 
-    if (this.options.JustBuffTracker) {
-      // Just alias these two together so the rest of the code doesn't have
-      // to care that they're the same thing.
-      this.o.leftBuffsList = this.o.rightBuffsList = this.addBuffsList({
-        id: 'right-side-icons',
-        rowcolsize: 20,
-        maxnumber: 20,
-        toward: 'right down',
-      });
-      // Hoist the buffs up to hide everything else.
-      const buffsContainer = this.o.rightBuffsList.parentElement;
-      if (!buffsContainer)
-        throw new UnreachableCode();
-      barsLayoutContainer.appendChild(buffsContainer);
-      barsLayoutContainer.classList.add('justbuffs');
-    } else {
-      this.o.rightBuffsList = this.addBuffsList({
-        id: 'right-side-icons',
-        rowcolsize: 7,
-        maxnumber: 7,
-        toward: 'right down',
-      });
-      this.o.leftBuffsList = this.addBuffsList({
-        id: 'left-side-icons',
-        rowcolsize: 7,
-        maxnumber: 7,
-        toward: 'left down',
-      });
+    if (shouldShows.buffList) {
+      if (this.options.JustBuffTracker) {
+        // Just alias these two together so the rest of the code doesn't have
+        // to care that they're the same thing.
+        this.o.leftBuffsList = this.o.rightBuffsList = this.addBuffsList({
+          id: 'right-side-icons',
+          rowcolsize: 20,
+          maxnumber: 20,
+          toward: 'right down',
+        });
+        // Hoist the buffs up to hide everything else.
+        const buffsContainer = this.o.rightBuffsList.parentElement;
+        if (!buffsContainer)
+          throw new UnreachableCode();
+        barsLayoutContainer.appendChild(buffsContainer);
+        barsLayoutContainer.classList.add('justbuffs');
+      } else {
+        this.o.rightBuffsList = this.addBuffsList({
+          id: 'right-side-icons',
+          rowcolsize: 7,
+          maxnumber: 7,
+          toward: 'right down',
+        });
+        this.o.leftBuffsList = this.addBuffsList({
+          id: 'left-side-icons',
+          rowcolsize: 7,
+          maxnumber: 7,
+          toward: 'left down',
+        });
+      }
     }
 
-    if (Util.isCraftingJob(job)) {
+    if (shouldShows.cpBar) {
       this.o.cpBar = this.addCPBar();
       // hide bars by default when you are a crafter
       // it would show when you start crafting
       container.classList.add('hide');
-      return;
-    } else if (Util.isGatheringJob(job)) {
+    } else if (shouldShows.gpBar) {
       this.o.gpBar = this.addGPBar();
-      return;
     }
 
-    this.o.healthBar = this.addHPBar(this.options.ShowHPNumber.includes(job));
+    if (shouldShows.hpBar)
+      this.o.healthBar = this.addHPBar(this.options.ShowHPNumber.includes(job));
 
-    if (doesJobNeedMPBar(job))
+    if (shouldShows.mpBar)
       this.o.manaBar = this.addMPBar(this.options.ShowMPNumber.includes(job));
 
-    if (this.options.ShowMPTicker.includes(job))
+    if (shouldShows.mpTicker)
       this.o.mpTicker = this.addMPTicker();
   }
 
