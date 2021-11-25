@@ -26,21 +26,9 @@ import { PLDComponent } from './pld';
 import { RDMComponent } from './rdm';
 import { SAMComponent } from './sam';
 import { SCHComponent } from './sch';
-import { reset as resetSmn, setup as setupSmn } from './smn';
+import { SMNComponent } from './smn';
 import { WARComponent } from './war';
 import { WHMComponent } from './whm';
-
-export const getSetup = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
-  return {
-    'SMN': setupSmn,
-  }[job.toUpperCase()];
-};
-
-export const getReset = (job: string): undefined | ((bars: Bars, player: Player) => void) => {
-  return {
-    'SMN': resetSmn,
-  }[job.toUpperCase()];
-};
 
 const ComponentMap: Record<Job, typeof BaseComponent> = {
   // tank
@@ -69,8 +57,8 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   MCH: MCHComponent,
   DNC: DNCComponent,
   // magic dps
-  ACN: BaseComponent,
-  SMN: BaseComponent,
+  ACN: SMNComponent,
+  SMN: SMNComponent,
   THM: BLMComponent,
   BLM: BLMComponent,
   RDM: RDMComponent,
@@ -195,9 +183,7 @@ export class ComponentFactory {
         mpTicker: this.shouldShows.mpTicker ?? this.options.ShowMPTicker.includes(job),
       });
 
-      // const setup = getSetup(job);
-      // if (setup)
-      //   setup.bind(null, this.bars, this.player)();
+      // initialize components
       this.component = this.getJobComponents(job);
 
       // add food buff trigger
@@ -319,9 +305,6 @@ export class ComponentFactory {
   private _onPartyWipe(): void {
     this.buffTracker?.clear();
     // Reset job-specific ui
-    // const reset = getReset(this.player.job);
-    // if (reset)
-    //   reset.bind(null, this.bars, this.player)();
     this.component?.reset();
   }
 
