@@ -56,7 +56,7 @@ Options.Triggers.push({
                 red: {
                     en: 'Get Behind (Red)',
                     de: 'Geh nach Hinten (Rot)',
-                    fr: 'Allez derrière (Rouge)',
+                    fr: 'Passez derrière (Rouge)',
                     cn: '去背后 (红色)',
                     ko: '뒤쪽으로 (빨강)',
                 },
@@ -86,7 +86,7 @@ Options.Triggers.push({
                 cleanse: {
                     en: 'Run to Cleanse Circle',
                     de: 'Geh in die Kreise zum reinigen',
-                    fr: 'Allez dans un cercle de purge',
+                    fr: 'Allez dans un cercle de purification',
                     cn: '快踩净化圈',
                     ko: '흰색 원 밟아서 선고 해제하기',
                 },
