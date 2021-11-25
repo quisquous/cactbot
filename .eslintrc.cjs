@@ -41,6 +41,7 @@ const settings = {
     'publish/',
     'resources/lib/',
     '.pnp.cjs',
+    '.pnp.loader.mjs',
     '.yarn/',
   ],
   'parserOptions': {

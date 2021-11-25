@@ -11,7 +11,7 @@
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.prod.ts",
     "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
-    "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack-dev-server --config webpack/webpack.dev.ts",
+    "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack serve --config webpack/webpack.dev.ts",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "tsc --noEmit",
     "lint": "eslint --max-warnings=0 ./",
@@ -54,6 +54,7 @@
     "@types/webpack-dev-server": "^3.11.4",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
+    "@yarnpkg/pnpify": "^3.1.1-rc.5",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "babel-loader": "^8.2.2",
     "chai": "^4.2.0",
@@ -133,5 +134,10 @@
     "inquirer": "^8.1.1",
     "inquirer-fuzzy-path": "^2.3.0"
   },
-  "packageManager": "yarn@3.1.0"
+  "packageManager": "yarn@3.1.0",
+  "dependenciesMeta": {
+    "mocha@8.4.0": {
+      "unplugged": true
+    }
+  }
 }
