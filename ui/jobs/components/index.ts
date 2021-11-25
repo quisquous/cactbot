@@ -18,7 +18,7 @@ import { BRDComponent } from './brd';
 import { DNCComponent } from './dnc';
 import { DRGComponent } from './drg';
 import { DRKComponent } from './drk';
-import { reset as resetGnb, setup as setupGnb } from './gnb';
+import { GNBComponent } from './gnb';
 import { reset as resetMch, setup as setupMch } from './mch';
 import { reset as resetMnk, setup as setupMnk } from './mnk';
 import { reset as resetNin, setup as setupNin } from './nin';
@@ -34,7 +34,6 @@ export const getSetup = (job: string): undefined | ((bars: Bars, player: Player)
   return {
     'PLD': setupPld,
     'WAR': setupWar,
-    'GNB': setupGnb,
     'WHM': setupWhm,
     'SCH': setupSch,
     'MNK': setupMnk,
@@ -50,7 +49,6 @@ export const getReset = (job: string): undefined | ((bars: Bars, player: Player)
   return {
     'PLD': resetPld,
     'WAR': resetWar,
-    'GNB': resetGnb,
     'WHM': resetWhm,
     'SCH': resetSch,
     'MNK': resetMnk,
@@ -69,7 +67,7 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   MRD: BaseComponent,
   WAR: BaseComponent,
   DRK: DRKComponent,
-  GNB: BaseComponent,
+  GNB: GNBComponent,
   // healer
   CNJ: BaseComponent,
   WHM: BaseComponent,
