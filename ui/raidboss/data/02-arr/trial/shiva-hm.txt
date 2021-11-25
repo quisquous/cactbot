@@ -29,7 +29,7 @@
 hideall "--sync--"
 hideall "--Reset--"
 
-0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 # Phase 1: Literally Just Autos (100% -> 95%)
 0.0 "--sync--" sync /:Engage!/ window 0,1
@@ -68,7 +68,7 @@ hideall "--Reset--"
 800.0 "Melt" sync / 1[56]:Shiva:994:/ window 800,0
 # If you push *really* fast and skip a weapon phase, you'll miss the melt jump.
 # So, fix that up with a combatant sync here.
-806.2 "--adds targetable--" sync / 03:........:Ice Soldier\.:/  window 807,2.5
+806.2 "--adds targetable--" sync / 03:........:Ice Soldier:/  window 807,2.5
 809.9 "Dreams Of Ice" sync / 1[56]:Shiva:99D:/
 
 # Note: Yes, really.  These times are different.
