@@ -97,8 +97,14 @@ export class Bars {
     this.ee.on('party', (party) => this.partyTracker.onPartyChanged({ party }));
 
     this.player.on('level', (level, prevLevel) => {
-      if (level - prevLevel)
-        this._updateFoodBuff();
+      if (level - prevLevel) {
+        this._updateFoodBuff({
+          inCombat: this.inCombat,
+          foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
+          foodBuffTimer: this.foodBuffTimer,
+          contentType: this.contentType,
+        });
+      }
     });
 
     this.player.on('job', (job) => {
@@ -120,7 +126,12 @@ export class Bars {
           const seconds = parseFloat(matches.duration ?? '0');
           const now = Date.now(); // This is in ms.
           this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-          this._updateFoodBuff();
+          this._updateFoodBuff({
+            inCombat: this.inCombat,
+            foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
+            foodBuffTimer: this.foodBuffTimer,
+            contentType: this.contentType,
+          });
         }
       });
       // As you cannot change jobs in combat, we can assume that
@@ -149,7 +160,12 @@ export class Bars {
       this._updateProcBoxNotifyState(game);
       if (this.inCombat !== game) {
         this.inCombat = game;
-        this._updateFoodBuff();
+        this._updateFoodBuff({
+          inCombat: this.inCombat,
+          foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
+          foodBuffTimer: this.foodBuffTimer,
+          contentType: this.contentType,
+        });
       }
 
       // make bars transparent when out of combat if requested
@@ -190,7 +206,12 @@ export class Bars {
     });
 
     this.ee.on('zone/change', (id) => {
-      this._updateFoodBuff();
+      this._updateFoodBuff({
+        inCombat: this.inCombat,
+        foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
+        foodBuffTimer: this.foodBuffTimer,
+        contentType: this.contentType,
+      });
       if (this.buffTracker)
         this.buffTracker.clear();
 
@@ -830,7 +851,12 @@ export class Bars {
       : '1.0';
   }
 
-  _updateFoodBuff(): void {
+  _updateFoodBuff(o: {
+    inCombat: boolean;
+    contentType?: number;
+    foodBuffExpiresTimeMs: number;
+    foodBuffTimer: number;
+  }): number | undefined {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.o.leftBuffsList)
       return;
@@ -838,30 +864,30 @@ export class Bars {
     const CanShowWellFedWarning = () => {
       if (!this.options.HideWellFedAboveSeconds)
         return false;
-      if (this.inCombat)
+      if (o.inCombat)
         return false;
-      if (this.contentType === undefined)
+      if (o.contentType === undefined)
         return false;
-      return kWellFedContentTypes.includes(this.contentType);
+      return kWellFedContentTypes.includes(o.contentType);
     };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
     const TimeToShowWellFedWarning = () => {
       const nowMs = Date.now();
-      const showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
+      const showAtMs = o.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
       return showAtMs - nowMs;
     };
 
-    window.clearTimeout(this.foodBuffTimer);
-    this.foodBuffTimer = 0;
+    window.clearTimeout(o.foodBuffTimer);
+    o.foodBuffTimer = 0;
 
-    const canShow = CanShowWellFedWarning.bind(this)();
-    const showAfterMs = TimeToShowWellFedWarning.bind(this)();
+    const canShow = CanShowWellFedWarning();
+    const showAfterMs = TimeToShowWellFedWarning();
 
     if (!canShow || showAfterMs > 0) {
       this.o.leftBuffsList.removeElement('foodbuff');
       if (canShow)
-        this.foodBuffTimer = window.setTimeout(this._updateFoodBuff.bind(this), showAfterMs);
+        return window.setTimeout(this._updateFoodBuff.bind(this), showAfterMs);
     } else {
       const div = makeAuraTimerIcon(
         'foodbuff',
