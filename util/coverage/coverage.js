@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Allow for `coverage.html?lang=de` style constructions.
   const params = new URLSearchParams(window.location.search);
   const lang = params.get('lang') ? params.get('lang') : 'en';
-  document.body.classList.add(`lang-${lang}`);
+  document.documentElement.lang = lang === 'cn' ? 'zh-CN' : lang;
 
   const title = document.getElementById('title');
   title.innerText = translate(miscStrings.title, lang);

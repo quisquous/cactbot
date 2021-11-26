@@ -264,7 +264,9 @@ class UserConfig {
       else
         options.DisplayLanguage = options.ParserLanguage || 'en';
 
-      document.body.classList.add(`lang-${options.DisplayLanguage}`);
+      document.documentElement.lang = options.DisplayLanguage === 'cn'
+        ? 'zh-CN'
+        : options.DisplayLanguage;
       this.addUnlockText(options.DisplayLanguage);
 
       // Handle processOptions after default language selection above,
