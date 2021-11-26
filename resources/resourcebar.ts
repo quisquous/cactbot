@@ -51,33 +51,33 @@ export default class ResourceBar extends HTMLElement {
     if (!o)
       return element;
 
-    if (o.value)
+    if (typeof o.value !== 'undefined' && o.value !== null)
       element.value = o.value;
-    if (o.maxvalue)
+    if (typeof o.maxvalue !== 'undefined' && o.maxvalue !== null)
       element.maxvalue = o.maxvalue;
-    if (o.lefttext)
+    if (typeof o.lefttext !== 'undefined' && o.lefttext !== null)
       element.lefttext = o.lefttext;
-    if (o.centertext)
+    if (typeof o.centertext !== 'undefined' && o.centertext !== null)
       element.centertext = o.centertext;
-    if (o.righttext)
+    if (typeof o.righttext !== 'undefined' && o.righttext !== null)
       element.righttext = o.righttext;
-    if (o.width)
+    if (typeof o.width !== 'undefined' && o.width !== null)
       element.width = o.width;
-    if (o.height)
+    if (typeof o.height !== 'undefined' && o.height !== null)
       element.height = o.height;
-    if (o.bg)
+    if (typeof o.bg !== 'undefined' && o.bg !== null)
       element.bg = o.bg;
-    if (o.fg)
+    if (typeof o.fg !== 'undefined' && o.fg !== null)
       element.fg = o.fg;
-    if (o.toward)
+    if (typeof o.toward !== 'undefined' && o.toward !== null)
       element.toward = o.toward;
-    if (o.stylefill)
+    if (typeof o.stylefill !== 'undefined' && o.stylefill !== null)
       element.stylefill = o.stylefill;
-    if (o.extravalue)
+    if (typeof o.extravalue !== 'undefined' && o.extravalue !== null)
       element.extravalue = o.extravalue;
-    if (o.extracolor)
+    if (typeof o.extracolor !== 'undefined' && o.extracolor !== null)
       element.extracolor = o.extracolor;
-    if (o.scale)
+    if (typeof o.scale !== 'undefined' && o.scale !== null)
       element.scale = o.scale;
 
     return element;

@@ -67,27 +67,27 @@ export default class TimerBox extends HTMLElement {
     if (!o)
       return element;
 
-    if (o.duration)
+    if (typeof o.duration !== 'undefined' && o.duration !== null)
       element.duration = o.duration;
-    if (o.threshold)
+    if (typeof o.threshold !== 'undefined' && o.threshold !== null)
       element.threshold = o.threshold;
-    if (o.scale)
+    if (typeof o.scale !== 'undefined' && o.scale !== null)
       element.scale = o.scale;
-    if (o.valuescale)
+    if (typeof o.valuescale !== 'undefined' && o.valuescale !== null)
       element.valuescale = o.valuescale;
-    if (o.bg)
+    if (typeof o.bg !== 'undefined' && o.bg !== null)
       element.bg = o.bg;
-    if (o.fg)
+    if (typeof o.fg !== 'undefined' && o.fg !== null)
       element.fg = o.fg;
-    if (o.toward)
+    if (typeof o.toward !== 'undefined' && o.toward !== null)
       element.toward = o.toward;
-    if (o.stylefill)
+    if (typeof o.stylefill !== 'undefined' && o.stylefill !== null)
       element.stylefill = o.stylefill;
-    if (o.hideafter)
+    if (typeof o.hideafter !== 'undefined' && o.hideafter !== null)
       element.hideafter = o.hideafter;
-    if (o.bigatzero)
+    if (typeof o.bigatzero !== 'undefined' && o.bigatzero !== null)
       element.bigatzero = o.bigatzero;
-    if (o.roundupthreshold)
+    if (typeof o.roundupthreshold !== 'undefined' && o.roundupthreshold !== null)
       element.roundupthreshold = o.roundupthreshold;
     return element;
   }

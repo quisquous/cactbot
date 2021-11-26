@@ -57,23 +57,23 @@ export default class TimerIcon extends HTMLElement {
     if (!o)
       return element;
 
-    if (o.icon)
+    if (typeof o.icon !== 'undefined' && o.icon !== null)
       element.icon = o.icon;
-    if (o.zoom)
+    if (typeof o.zoom !== 'undefined' && o.zoom !== null)
       element.zoom = o.zoom;
-    if (o.duration)
+    if (typeof o.duration !== 'undefined' && o.duration !== null)
       element.duration = o.duration;
-    if (o.width)
+    if (typeof o.width !== 'undefined' && o.width !== null)
       element.width = o.width;
-    if (o.height)
+    if (typeof o.height !== 'undefined' && o.height !== null)
       element.height = o.height;
-    if (o.bordercolor)
+    if (typeof o.bordercolor !== 'undefined' && o.bordercolor !== null)
       element.bordercolor = o.bordercolor;
-    if (o.bordersize)
+    if (typeof o.bordersize !== 'undefined' && o.bordersize !== null)
       element.bordersize = o.bordersize;
-    if (o.text)
+    if (typeof o.text !== 'undefined' && o.text !== null)
       element.text = o.text;
-    if (o.textcolor)
+    if (typeof o.textcolor !== 'undefined' && o.textcolor !== null)
       element.textcolor = o.textcolor;
 
     return element;
