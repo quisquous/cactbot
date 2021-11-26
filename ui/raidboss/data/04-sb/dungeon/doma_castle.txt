@@ -47,7 +47,7 @@ hideall "--sync--"
 
 ### Magitek Hexadrone
 # -ii 20A4 20A6 20A7 2447
-1000 "Start" sync /00:0839::The Training Grounds will be sealed off/ window 1000,0
+1000 "Start" sync / 00:0839::The Training Grounds will be sealed off/ window 1000,0
 1010.6 "Circle Of Death" sync / 1[56]:Magitek Hexadrone:20A2:/
 1018.9 "2-Tonze Magitek Missile" sync / 1[56]:Magitek Hexadrone:20A3:/
 1024.1 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
@@ -87,7 +87,7 @@ hideall "--sync--"
 
 ### Hypertuned Grynewaht
 # -ii 20A9 20AB 20AC 20AE 20A7 2447
-2000 "Start" sync /00:0839::The Hall Of The Scarlet Swallow will be sealed off/ window 2000,0
+2000 "Start" sync / 00:0839::The Hall Of The Scarlet Swallow will be sealed off/ window 2000,0
 2009.4 "Chainsaw" duration 5.5 sync / 1[56]:Hypertuned Grynewaht:20A8:/
 2022.7 "Delay-Action Charge" sync / 1[56]:Hypertuned Grynewaht:20AD:/
 2023.1 "Gunsaw" duration 5.0  sync / 1[56]:Hypertuned Grynewaht:20AA:/

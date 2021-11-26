@@ -108,7 +108,7 @@ hideall "--sync--"
 # Raiden #
 ##########
 # -ii 39B9 3994 3996 3995 3997 3872 3871 3873 -p 387A:3013 386D:3091
-3000.0 "--sync--" sync /00:0839::The Shin-Zantetsuken Containment Unit will be sealed off/ window 3000,0
+3000.0 "--sync--" sync / 00:0839::The Shin-Zantetsuken Containment Unit will be sealed off/ window 3000,0
 3013.0 "Spirits of the Fallen" sync / 1[56]:Raiden:387A:/ # drift -0.041
 3023.0 "Shingan" sync / 1[56]:Raiden:387B:/ # drift 0.05
 3034.1 "Thundercall" sync / 1[56]:Raiden:387F:/
@@ -168,7 +168,7 @@ hideall "--sync--"
 # Absolute Virtue #
 ###################
 # -p 3799:4016 -ii 38C4 378F 3791 3792 3954 378C
-4000.0 "--sync--" sync /00:0839::The Lance of Virtue Containment Unit will be sealed off/ window 4000,0
+4000.0 "--sync--" sync / 00:0839::The Lance of Virtue Containment Unit will be sealed off/ window 4000,0
 4016.0 "Meteor" sync / 1[56]:Absolute Virtue:3799:/
 4022.0 "Eidos" sync / 1[56]:Absolute Virtue:378[67]:/
 4033.6 "Hostile Aspect" sync / 1[56]:Absolute Virtue:378B:/
@@ -243,7 +243,7 @@ hideall "--sync--"
 # Proto Ozma #
 ##############
 # -ii 37AB 37B8 37A2 37AC 396E 397B 397C -p 37B2:5021.5
-5000.0 "--sync--" sync /00:0839::The Proto Ozma Containment Unit will be sealed off/ window 5000,0
+5000.0 "--sync--" sync / 00:0839::The Proto Ozma Containment Unit will be sealed off/ window 5000,0
 
 ### Initial Star Form (no meteor)
 5021.5 "Star Form" sync / 1[56]:Proto Ozma:37B2:/
