@@ -8,7 +8,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~#
 
 # -ii 10E1
-0.0 "--sync--"  sync/ 00:0839::Analysis and Proving will be sealed off/
+0.0 "--sync--" sync / 00:0839::Analysis and Proving will be sealed off/
 2.9 "--sync--" sync / 1[56]:Regula van Hydrus:366/
 6.3 "Bastardbluss" sync / 1[56]:Regula van Hydrus:10DA:/ window 6.3,5
 
@@ -116,7 +116,7 @@ hideall "--sync--"
 # It's not included at phase starts because each start is accompanied
 # by a unique version of the skill as well.
 
-1000.0 "--sync--"  sync/ 00:0839::Evaluation and Authentication will be sealed off/ window 1000,5
+1000.0 "--sync--" sync / 00:0839::Evaluation and Authentication will be sealed off/ window 1000,5
 
 # Cobra is immediate
 1001.4 "--sync--" sync / 1[56]:Harmachis:366:/ window 2,2
@@ -417,7 +417,7 @@ hideall "--sync--"
 3092.6 "Height Of Chaos"
 
 # Intermission 1 at HP < 80%
-3100.0 "--sync--"  sync/ 03:........:Firesphere:/  window 100,5
+3100.0 "--sync--" sync / 03:........:Firesphere:/  window 100,5
 
 3110.0 "Ancient Circle Appears"
 3115.1 "Ancient Circle" sync / 1[56]:Ascian Prime:1102:/
@@ -444,7 +444,7 @@ hideall "--sync--"
 3260.0 "Shadow Flare"
 
 # Intermission 2 at HP < 40%
-3300.0 "--sync--"  sync/ 03:........:Firesphere:/  window 200,5
+3300.0 "--sync--" sync / 03:........:Firesphere:/  window 200,5
 
 3304.6 "Ancient Circle Appears"
 3309.7 "Ancient Circle" sync / 1[56]:Ascian Prime:1102:/

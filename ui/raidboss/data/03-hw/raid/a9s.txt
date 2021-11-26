@@ -10,7 +10,7 @@ hideall "--sync--"
 
 ### Faust Z
 # -p 1A2B:1006.5
-1000.0	"--sync--"	 sync/ 00:0839::The Cranial Plate will be sealed off/ window 10000
+1000.0	"--sync--"	sync / 00:0839::The Cranial Plate will be sealed off/ window 10000
 1006.5 "Kaltstrahl" sync / 1[56]:Faust Z:1A2B:/ window 1007,2.5
 1013.6 "Kaltstrahl" sync / 1[56]:Faust Z:1A2B:/
 1020.7 "Kaltstrahl" sync / 1[56]:Faust Z:1A2B:/
@@ -49,13 +49,13 @@ hideall "--sync--"
 # Lava doesn't show up in the log either.
 
 # Phase 1
-2000.0	"--sync--"	 sync/ 00:0839::Life Support will be sealed off/ window 10000
+2000.0	"--sync--"	sync / 00:0839::Life Support will be sealed off/ window 10000
 2010.0 "Stockpile" sync / 1[56]:Refurbisher 0:1A38:/ window 2010,5
 2012.1 "Right Arm Reassembly" sync / 1[56]:Refurbisher 0:1A2E:/
 2014.3 "Power Generator x2 (NE)"
 2014.3 "Lava (NE)" duration 42
 2023.4 "Scrap" sync / 1[56]:Refurbisher 0:1A39:/
-2034.4 "--rocks fall--" # sync/ 03:........:Scrap:/ 
+2034.4 "--rocks fall--" #sync / 03:........:Scrap:/ 
 2039.6 "Scrap Burst" sync / 1[56]:Refurbisher 0:1A3A:/
 2048.8 "Scrap" sync / 1[56]:Refurbisher 0:1A39:/
 2055.9 "Scrap" sync / 1[56]:Refurbisher 0:1A39:/
@@ -83,7 +83,7 @@ hideall "--sync--"
 2173.9 "Lava (SW)" duration 15
 2180.2 "Acid Rain" #sync / 1[56]:Refurbisher 0:1C0A:/
 2189.3 "Lava (SE)" duration 15
-2195.1 "--rocks fall--" # sync/ 03:........:Scrap:/ 
+2195.1 "--rocks fall--" #sync / 03:........:Scrap:/ 
 2200.3 "Scrap Burst" sync / 1[56]:Refurbisher 0:1A3A:/
 
 # Phase 4
@@ -91,7 +91,7 @@ hideall "--sync--"
 2226.5 "Power Generator x1 (SW)"
 2226.5 "Alarum x1 (SW)"
 2226.5 "Lava (SW)" duration 42
-2238.7 "--rocks fall--" # sync/ 03:........:Scrap:/ 
+2238.7 "--rocks fall--" #sync / 03:........:Scrap:/ 
 2243.9 "Scrap Burst" sync / 1[56]:Refurbisher 0:1A3A:/
 2253.1 "Scrap" sync / 1[56]:Refurbisher 0:1A39:/
 2260.2 "Scrap" sync / 1[56]:Refurbisher 0:1A39:/
@@ -124,7 +124,7 @@ hideall "--sync--"
 2376.4 "Scrap Bomb" sync / 1[56]:Refurbisher 0:1A3E:/
 2384.6 "Scrap" sync / 1[56]:Refurbisher 0:1A39:/
 2403.3 "Explosion (NW/SE)" sync / 1[56]:Bomb:1A35:/
-2398.5 "--rocks fall--" # sync/ 03:........:Scrap:/ 
+2398.5 "--rocks fall--" #sync / 03:........:Scrap:/ 
 2403.7 "Scrap Burst" sync / 1[56]:Refurbisher 0:1A3A:/
 
 # Phase 7
@@ -186,7 +186,7 @@ hideall "--sync--"
 2654.4 "Scrap Bomb" sync / 1[56]:Refurbisher 0:1A3E:/
 
 # 11 minute less soft enrage, in case you weren't killed by previous enrage.
-2659.2 "--sync--"  sync/ 14:Refurbisher 0:1A3B:/ window 50,10000
+2659.2 "--sync--" sync / 14:Refurbisher 0:1A3B:/ window 50,10000
 2659.5 "Scrap Storm Enrage" sync / 1[56]:Refurbisher 0:1A3B:/
 2659.5 "Scrap Storm Enrage" #sync / 1[56]:Refurbisher 0:1A3B:/
 2667.7 "Scrap Storm Enrage" #sync / 1[56]:Refurbisher 0:1A3B:/

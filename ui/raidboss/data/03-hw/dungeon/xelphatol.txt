@@ -12,7 +12,7 @@ hideall "--sync--"
 # -ii 19CB 19CC
 # -ic "Ixali Stitcher" "Airstone"
 
-0 "Start"  sync/ 00:0839::The Cage will be sealed off/ window 0,1
+0 "Start" sync / 00:0839::The Cage will be sealed off/ window 0,1
 7.0 "Short Burst" sync / 1[56]:Nuzal Hueloc:19C6:/ window 7,5
 15.1 "Wind Blast" sync / 1[56]:Nuzal Hueloc:19C7:/
 19.2 "Short Burst" sync / 1[56]:Nuzal Hueloc:19C6:/
@@ -40,7 +40,7 @@ hideall "--sync--"
 169.7 "Short Burst"
 
 # syncing to a 14/20 line to give the user a little extra warning.
-200.0 "--sync--"  sync/ 14:Nuzal Hueloc:19C9:/ window 100,5
+200.0 "--sync--" sync / 14:Nuzal Hueloc:19C9:/ window 100,5
 202.7 "Lift" sync / 1[56]:Nuzal Hueloc:19C9:/
 203.2 "--untargetable--"
 206.9 "Air Raid" sync / 1[56]:Nuzal Hueloc:19CA:/
@@ -71,7 +71,7 @@ hideall "--sync--"
 
 # -ii 19D2
 
-1000.0 "Start"  sync/ 00:0839::The Tlachtli will be sealed off/ window 1000,5
+1000.0 "Start" sync / 00:0839::The Tlachtli will be sealed off/ window 1000,5
 1012.4 "On Low" sync / 1[56]:Dotoli Ciloc:19CE:/
 1024.5 "On High" sync / 1[56]:Dotoli Ciloc:19CF:/ window 24.5,10
 
@@ -96,7 +96,7 @@ hideall "--sync--"
 
 # -ii 19D8
 
-2000.0 "Start"  sync/ 00:0839::The Vortex will be sealed off/ window 2000,5
+2000.0 "Start" sync / 00:0839::The Vortex will be sealed off/ window 2000,5
 2007.1 "Ixali Aero (buster)" sync / 1[56]:Tozol Huatotl:19D3:/ window 7.1,5
 2014.2 "Ixali Aero III (aoe)" sync / 1[56]:Tozol Huatotl:19D5:/
 2023.7 "Bill" sync / 1[56]:Abalathian Hornbill:19DA:/

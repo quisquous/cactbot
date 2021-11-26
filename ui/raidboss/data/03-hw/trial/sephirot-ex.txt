@@ -92,7 +92,7 @@ hideall "--sync--"
 1143.8 "Life Force" sync / 1[56]:Sephirot:157A:/
 1143.8 "Spirit" sync / 1[56]:Sephirot:157B:/
 1149.4 "Malkuth" sync / 1[56]:Sephirot:1582:/
-1150.5 "Adds Spawn"  sync/ 03:........:Storm Of Words:/ 
+1150.5 "Adds Spawn" sync / 03:........:Storm Of Words:/ 
 1158.7 "Chesed Gevurah" sync / 1[56]:Sephirot:157[89]:/
 1159.3 "Spirit" sync / 1[56]:Sephirot:157B:/
 1159.3 "Life Force" sync / 1[56]:Sephirot:157A:/
@@ -137,7 +137,7 @@ hideall "--sync--"
 1341.1 "Life Force" sync / 1[56]:Sephirot:157A:/
 1341.1 "Spirit" sync / 1[56]:Sephirot:157B:/
 1346.7 "Malkuth" sync / 1[56]:Sephirot:1582:/
-1347.8 "Adds Spawn"  sync/ 03:........:Storm Of Words:/ 
+1347.8 "Adds Spawn" sync / 03:........:Storm Of Words:/ 
 1356.0 "Chesed Gevurah" sync / 1[56]:Sephirot:157[89]:/
 1356.6 "Spirit" sync / 1[56]:Sephirot:157B:/
 1356.6 "Life Force" sync / 1[56]:Sephirot:157A:/

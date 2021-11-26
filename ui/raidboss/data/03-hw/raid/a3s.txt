@@ -16,7 +16,7 @@ hideall "--sync--"
 
 ### Phase 1: Jiggly
 0.0 "--sync--" sync /:Engage!/ window 0,1
-0.0 "--sync--"  sync/ 00:0839::Condensate Demineralizer .9 will be sealed off/ window 10000,10000
+0.0 "--sync--" sync / 00:0839::Condensate Demineralizer .9 will be sealed off/ window 10000,10000
 7.0 "Fluid Swing" sync / 1[56]:Living Liquid:EF3:/
 17.2 "Protean Wave" sync / 1[56]:Living Liquid:EF5:/
 18.8 "Protean Wave" sync / 1[56]:Living Liquid:EF6:/
@@ -186,5 +186,5 @@ hideall "--sync--"
 748.0 "Ferrofluid" sync / 1[56]:Living Liquid:F01:/
 749.2 "Magnetism/Repel" sync / 1[56]:Living Liquid:F1[35]:/
 
-751.2 "--sync--"  sync/ 14:Living Liquid:EFF:/ window 1000,1000
+751.2 "--sync--" sync / 14:Living Liquid:EFF:/ window 1000,1000
 761.2 "Cascade Enrage" sync / 1[56]:Living Liquid:EFF:/
