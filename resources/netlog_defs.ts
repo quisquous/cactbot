@@ -1,3 +1,5 @@
+import { NetFieldsReverse } from '../types/net_fields';
+
 export type LogDefinition = {
   type: string;
   name: string;
@@ -817,5 +819,18 @@ console.assert(assertLogDefinitions);
 
 export type LogDefinitions = typeof logDefinitions;
 export type LogDefinitionTypes = keyof LogDefinitions;
+
+export type ParseHelperField<
+  Type extends LogDefinitionTypes,
+  Fields extends NetFieldsReverse[Type],
+  Field extends keyof Fields,
+> = {
+  field: Fields[Field] extends string ? Fields[Field] : never;
+  value?: string;
+};
+
+export type ParseHelperFields<T extends LogDefinitionTypes> = {
+  [field in keyof NetFieldsReverse[T]]: ParseHelperField<T, NetFieldsReverse[T], field>;
+};
 
 export default logDefinitions;

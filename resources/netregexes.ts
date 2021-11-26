@@ -1,8 +1,7 @@
-import { NetFieldsReverse } from '../types/net_fields';
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
 
-import logDefinitions, { LogDefinitionTypes } from './netlog_defs';
+import logDefinitions, { LogDefinitionTypes, ParseHelperFields } from './netlog_defs';
 import Regexes from './regexes';
 
 const separator = '\\|';
@@ -22,19 +21,6 @@ const keysThatRequireTranslation = [
   'target',
   'line',
 ];
-
-type ParseHelperField<
-  Type extends LogDefinitionTypes,
-  Fields extends NetFieldsReverse[Type],
-  Field extends keyof Fields,
-> = {
-  field: Fields[Field] extends string ? Fields[Field] : never;
-  value?: string;
-};
-
-type ParseHelperFields<T extends LogDefinitionTypes> = {
-  [field in keyof NetFieldsReverse[T]]: ParseHelperField<T, NetFieldsReverse[T], field>;
-};
 
 const defaultParams = <
   T extends keyof typeof logDefinitions,
