@@ -25,7 +25,7 @@ hideall "--sync--"
 
 ### Twintania P2: 75% -> 45%
 47.5 "Liquid Hell x5" duration 4.5 sync / 1[56]:Twintania:26AD:/ window 50,0
-53.0 "--sync--" sync/ 14:Twintania:26AE:/ window 53,10
+53.0 "--sync--" sync / 14:Twintania:26AE:/ window 53,10
 56.0 "Generate" sync / 1[56]:Twintania:26AE:/
 59.1 "Liquid Hell x5" duration 4.5 #sync / 1[56]:Twintania:26AD:/
 70.6 "Death Sentence" sync / 1[56]:Twintania:26A9:/
@@ -38,7 +38,7 @@ hideall "--sync--"
 
 ### Twintania P3: 45% -> 0%
 106.4 "Liquid Hell x5" duration 4.5 #sync / 1[56]:Twintania:26AD:/
-111.9 "--sync--" sync/ 14:Twintania:26AE:/ window 30,10
+111.9 "--sync--" sync / 14:Twintania:26AE:/ window 30,10
 114.9 "Generate x2" sync / 1[56]:Twintania:26AE:/
 118.0 "Targeted Fire x5" duration 4.5 #sync / 1[56]:Twintania:26AD:/
 124.6 "Fireball" sync / 1[56]:Twintania:26AC:/ window 70,10

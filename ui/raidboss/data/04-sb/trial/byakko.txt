@@ -14,7 +14,7 @@ hideall "Clutch"
 
 ### Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1
-7.4 "--sync--" sync/ 14:Byakko:2A2F:/ window 10,10
+7.4 "--sync--" sync / 14:Byakko:2A2F:/ window 10,10
 11.4 "Storm Pulse" sync / 1[56]:Byakko:2A2F:/
 17.6 "Heavenly Strike" sync / 1[56]:Byakko:2A2D:/
 28.7 "State Of Shock" sync / 1[56]:Byakko:27E0:/

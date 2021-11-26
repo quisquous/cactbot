@@ -170,5 +170,5 @@ hideall "--sync--"
 2226.3 "Aether Bend/Death Spin"
 
 
-3000.0 "--sync--" sync/ 14:The Ultima Beast:27B3:/ window 1000,5
+3000.0 "--sync--" sync / 14:The Ultima Beast:27B3:/ window 1000,5
 3039.7 "Demi Ultima (Enrage)" sync / 1[56]:The Ultima Beast:27B3:/

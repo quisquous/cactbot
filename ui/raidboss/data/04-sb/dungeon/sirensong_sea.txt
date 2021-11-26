@@ -44,10 +44,10 @@ hideall "--sync--"
 1042.8 "Enter Night" sync / 1[56]:The Governor:1F60:/ window 10,10
 # Enter Night can take 12-17 seconds.  There is added delay when the mechanic
 # is failed due to Shadowstrike (1F5D) attacks.
-1055.9 "--sync--" sync/ 14:The Governor:1F5C:/ window 10,10
+1055.9 "--sync--" sync / 14:The Governor:1F5C:/ window 10,10
 1059.9 "Bloodburst" sync / 1[56]:The Governor:1F5C:/
 # There is potential delay before Shadow Split due to the boss moving to the middle.
-1065.0 "--sync--" sync/ 14:The Governor:1F61:/ window 10,10
+1065.0 "--sync--" sync / 14:The Governor:1F61:/ window 10,10
 1068.0 "Shadow Split" sync / 1[56]:The Governor:1F61:/
 1076.2 "Shadowflow" sync / 1[56]:The Governor:1F5E:/
 1076.7 "--sync--" sync / 1[56]:The Governor:1F5F:/
@@ -55,9 +55,9 @@ hideall "--sync--"
 1093.4 "Bloodburst" sync / 1[56]:The Governor:1F5C:/
 
 1102.6 "Enter Night" sync / 1[56]:The Governor:1F60:/ window 30,30 jump 1042.8
-1115.7 "--sync--" #sync/ 14:The Governor:1F5C:/ window 10,10
+1115.7 "--sync--" #sync / 14:The Governor:1F5C:/ window 10,10
 1119.7 "Bloodburst" #sync / 1[56]:The Governor:1F5C:/
-1124.8 "--sync--" #sync/ 14:The Governor:1F61:/ window 10,10
+1124.8 "--sync--" #sync / 14:The Governor:1F61:/ window 10,10
 1127.8 "Shadow Split" #sync / 1[56]:The Governor:1F61:/
 1136.0 "Shadowflow" #sync / 1[56]:The Governor:1F5E:/
 1136.5 "--sync--" #sync / 1[56]:The Governor:1F5F:/

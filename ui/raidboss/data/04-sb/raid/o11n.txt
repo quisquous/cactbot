@@ -58,7 +58,7 @@ hideall "--sync--"
 
 ## Delta Attack
 1000.0 "--sync--" sync /Engaging Delta Attack protocol/ window 1500,100
-1007.0 "--sync--" sync/ 14:Omega:327B:/ window 1500,100
+1007.0 "--sync--" sync / 14:Omega:327B:/ window 1500,100
 1037.0 "Delta Attack" sync / 1[56]:Omega:327B:/ window 1500,100
 1048.4 "--targetable--"
 

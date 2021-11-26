@@ -10,7 +10,7 @@ hideall "--sync--"
 31 "Atomic Ray" sync / 1[56]:Guardian:278D:/
 40 "Prey" sync / 1[56]:Guardian:278A:/
 49 "Load ??" sync / 1[56]:Guardian:275C:/
-50 "--sync--" sync/ 1A:.{0,4}:Dadaluma Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 1050
+50 "--sync--" sync / 1A:.{0,4}:Dadaluma Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 1050
 52 "Shockwave?"
 
 # This is Version A of the encounter, with Bibliotaph first
@@ -94,8 +94,8 @@ hideall "--sync--"
 
 # Divergence point
 509 "Load/Skip ???" sync / 1[56]:Guardian:(275C|2773):/
-510 "--sync--" sync/ 1A:.{0,4}:Bibliotaph Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 2510       # Bibliotaph buff, jump to A1
-510 "--sync--" sync/ 1A:.{0,4}:Dadaluma Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 3510         # Dadaluma buff, jump to A2
+510 "--sync--" sync / 1A:.{0,4}:Bibliotaph Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 2510       # Bibliotaph buff, jump to A1
+510 "--sync--" sync / 1A:.{0,4}:Dadaluma Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 3510         # Dadaluma buff, jump to A2
 512 "Shockwave?"
 519 "Demon Simulation?"
 
@@ -125,7 +125,7 @@ hideall "--sync--"
 2629 "Prey" sync / 1[56]:Guardian:278A:/
 2635 "Magitek Ray" sync / 1[56]:Guardian:2788:/
 2643 "Diffractive Plasma" sync / 1[56]:Guardian:278B:/
-2648 "--sync--" sync/ 14:Guardian/ jump 648          # Load:(275C|2773):/ jump 648          # Load
+2648 "--sync--" sync / 14:Guardian/ jump 648          # Load:(275C|2773):/ jump 648          # Load
 
 # Should be unreachable, only here for visual continuity before/after jump
 2653 "Load Air Force"
@@ -158,7 +158,7 @@ hideall "--sync--"
 3624 "Prey" sync / 1[56]:Guardian:278A:/
 3633 "Magitek Ray" sync / 1[56]:Guardian:2788:/
 3642 "Diffractive Plasma" sync / 1[56]:Guardian:278B:/
-3648 "--sync--" sync/ 14:Guardian/ jump 648          # Load:(275C|2773):/ jump 648          # Load
+3648 "--sync--" sync / 14:Guardian/ jump 648          # Load:(275C|2773):/ jump 648          # Load
 
 # Should be unreachable, only here for visual continuity before/after jump
 3653 "Load Air Force"
@@ -184,7 +184,7 @@ hideall "--sync--"
 693 "Plane Laser" duration 2
 699 "Diffractive Plasma" sync / 1[56]:Guardian:278B:/
 
-700 "--sync--" sync/ 14:Guardian:2791:/ window 100,100
+700 "--sync--" sync / 14:Guardian:2791:/ window 100,100
 715 "Enrage" sync / 1[56]:Guardian:2791:/ jump 0
 
 ######################################
@@ -276,8 +276,8 @@ hideall "--sync--"
 
 # Divergence point
 1481 "Load/Skip ??" sync / 1[56]:Guardian:(275C|2773):/
-1482 "--sync--" sync/ 1A:.{0,4}:Bibliotaph Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 4482       # Bibliotaph buff, jump to B1
-1482 "--sync--" sync/ 1A:.{0,4}:Dadaluma Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 5482         # Dadaluma buff, jump to B2
+1482 "--sync--" sync / 1A:.{0,4}:Bibliotaph Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 4482       # Bibliotaph buff, jump to B1
+1482 "--sync--" sync / 1A:.{0,4}:Dadaluma Simulation:[^:]+:.{8}:[^:]+:.{8}:Guardian:/ jump 5482         # Dadaluma buff, jump to B2
 1484 "Shockwave?"
 1491 "Demon Simulation?"
 
@@ -307,7 +307,7 @@ hideall "--sync--"
 4601 "Prey" sync / 1[56]:Guardian:278A:/
 4607 "Magitek Ray" sync / 1[56]:Guardian:2788:/
 4615 "Diffractive Plasma" sync / 1[56]:Guardian:278B:/
-4620 "--sync--" sync/ 14:Guardian/ jump 1620         # Load:(275C|2773):/ jump 1620         # Load
+4620 "--sync--" sync / 14:Guardian/ jump 1620         # Load:(275C|2773):/ jump 1620         # Load
 
 # Should be unreachable, only here for visual continuity before/after jump
 4625 "Load Ultros"
@@ -342,7 +342,7 @@ hideall "--sync--"
 5596 "Prey" sync / 1[56]:Guardian:278A:/
 5605 "Magitek Ray" sync / 1[56]:Guardian:2788:/
 5614 "Diffractive Plasma" sync / 1[56]:Guardian:278B:/
-5620 "--sync--" sync/ 14:Guardian/ jump 1620         # Load:(275C|2773):/ jump 1620         # Load
+5620 "--sync--" sync / 14:Guardian/ jump 1620         # Load:(275C|2773):/ jump 1620         # Load
 
 # Should be unreachable, only here for visual continuity before/after jump
 5625 "Load Ultros"
@@ -377,5 +377,5 @@ hideall "--sync--"
 1706 "Diffractive Plasma" sync / 1[56]:Guardian:278B:/
 
 # Enrage
-1711 "--sync--" sync/ 14:Guardian:2791:/ window 100,100
+1711 "--sync--" sync / 14:Guardian:2791:/ window 100,100
 1726 "Enrage" sync / 1[56]:Guardian:2791:/ jump 0

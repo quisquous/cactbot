@@ -201,7 +201,7 @@ hideall "--sync--"
 615.8 "Time Immemorial"
 
 # Enrage
-700.0 "--sync--" sync/ 14:Midgardsormr:3247:/ window 700,3000
+700.0 "--sync--" sync / 14:Midgardsormr:3247:/ window 700,3000
 704.9 "Enrage Hit 1"
 707.2 "Enrage Hit 2"
 708.5 "Enrage Hit 3"

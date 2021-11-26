@@ -10,7 +10,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 0.0 "--sync--" sync /:Engage!/ window 0,1
-8 "--sync--" sync/ 14:Wroth Ghost:28AE:/ window 8,3
+8 "--sync--" sync / 14:Wroth Ghost:28AE:/ window 8,3
 13 "Encumber" sync / 1[56]:Wroth Ghost:28AE:/ 
 27 "Head On" sync / 1[56]:Phantom Train:28AF:/
 38 "Ghost Beams" sync / 1[56]:Phantom Train:28AA:/

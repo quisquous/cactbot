@@ -10,7 +10,7 @@ hideall "--Reset--"
 
 ### Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1
-10.2 "--sync--" sync/ 14:Tsukuyomi:2BE3:/ window 20,20
+10.2 "--sync--" sync / 14:Tsukuyomi:2BE3:/ window 20,20
 14.2 "Torment Unto Death" sync / 1[56]:Tsukuyomi:2BE3:/
 24.3 "Zashiki-Asobi" sync / 1[56]:Tsukuyomi:2BEC:/
 30.4 "Nightfall" sync / 1[56]:Tsukuyomi:2BE5:/
@@ -46,7 +46,7 @@ hideall "--Reset--"
 
 
 ### Phase 3: Selenomancy
-500.0 "--sync--" sync/ 14:Tsukuyomi:2CB0:/ window 500,0
+500.0 "--sync--" sync / 14:Tsukuyomi:2CB0:/ window 500,0
 504.0 "Nightbloom" sync / 1[56]:Tsukuyomi:2CB0:/
 509.9 "--targetable--"
 524.4 "Selenomancy" sync / 1[56]:Tsukuyomi:2BF1:/

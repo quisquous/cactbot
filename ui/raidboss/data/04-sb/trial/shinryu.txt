@@ -24,16 +24,16 @@ hideall "--sync--"
 # Intermission.
 # The given times for Meteor Impact are the latest they can occur.
 119.0 "--sync--" sync / 1[56]:Shinryu:1F8A:/ window 120,5
-125.4 "--sync--" sync/ 14:Cocoon:1F96:/ window 10,5
+125.4 "--sync--" sync / 14:Cocoon:1F96:/ window 10,5
 129.1 "Meteor Impact" sync / 1[56]:Cocoon:1F96:/
 130.6 "--adds spawn--" sync / 1[56]:Cocoon:2142:/
-146.2 "--sync--" sync/ 14:Cocoon:1F96:/ window 15,5
+146.2 "--sync--" sync / 14:Cocoon:1F96:/ window 15,5
 150.9 "Meteor Impact" sync / 1[56]:Cocoon:1F96:/
 152.5 "--adds spawn--" sync / 1[56]:Cocoon:2142:/
-176.1 "--sync--" sync/ 14:Cocoon:1F96:/ window 25,5
+176.1 "--sync--" sync / 14:Cocoon:1F96:/ window 25,5
 180.8 "Meteor Impact" sync / 1[56]:Cocoon:1F96:/
 182.4 "--adds spawn--" sync / 1[56]:Cocoon:2142:/
-219.7 "--sync--" sync/ 14:Shinryu:1F95:/ window 220,5
+219.7 "--sync--" sync / 14:Shinryu:1F95:/ window 220,5
 225.2 "Protostar" sync / 1[56]:Shinryu:1F95:/
 234.3 "Dark Matter" sync / 1[56]:Shinryu:1F98:/
 240.5 "--sync--" sync / 1[56]:Shinryu:2128:/

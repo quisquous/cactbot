@@ -65,7 +65,7 @@ hideall "Alluring Arm"
 441.5 "--targetable--"
 
 ### Chanchala #2
-441.7 "--sync--" sync/ 14:Lakshmi:2148:/ window 50,10
+441.7 "--sync--" sync / 14:Lakshmi:2148:/ window 50,10
 444.7 "Chanchala #2" sync / 1[56]:Lakshmi:2148:/
 458.5 "Divine Doubt" sync / 1[56]:Lakshmi:214A:/
 473.9 "The Path Of Light" sync / 1[56]:Lakshmi:215B:/
@@ -105,5 +105,5 @@ hideall "Alluring Arm"
 
 ### Chanchala #4
 732.8 "Chanchala #4" sync / 1[56]:Lakshmi:2148:/
-735.0 "--sync--" sync/ 14:Lakshmi:2560:/ window 1000,1000
+735.0 "--sync--" sync / 14:Lakshmi:2560:/ window 1000,1000
 750.0 "Divine Denial Enrage" sync / 1[56]:Lakshmi:2560:/

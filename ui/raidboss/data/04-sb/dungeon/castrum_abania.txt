@@ -49,7 +49,7 @@ hideall "--sync--"
 
 # Post Wild Speed loop -> back into Wild Speed loop
 100.0 "--targetable--"
-105.8 "--sync--" sync/ 14:Magna Roader:1F16:/ window 70,10
+105.8 "--sync--" sync / 14:Magna Roader:1F16:/ window 70,10
 108.8 "Magitek Fire III" sync / 1[56]:Magna Roader:1F16:/
 112.9 "Wheel" sync / 1[56]:Magna Roader:1F14:/
 120.4 "Magitek Fire II" sync / 1[56]:Magna Roader:1F15:/

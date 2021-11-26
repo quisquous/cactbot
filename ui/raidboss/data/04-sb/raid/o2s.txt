@@ -136,5 +136,5 @@ hideall "--Reset--"
 623.5 "Tremblor" #sync / 1[56]:Catastrophe:2373:/
 632.0 "Earthquake" sync / 1[56]:Catastrophe:2374:/
 
-633.3 "--sync--" sync/ 14:Catastrophe:25A2:/
+633.3 "--sync--" sync / 14:Catastrophe:25A2:/
 643.3 "Gravitational Wave Enrage" sync / 1[56]:Catastrophe:25A2:/

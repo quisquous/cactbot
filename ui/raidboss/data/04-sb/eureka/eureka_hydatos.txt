@@ -112,11 +112,11 @@ hideall "--sync--"
 3013.0 "Spirits of the Fallen" sync / 1[56]:Raiden:387A:/ # drift -0.041
 3023.0 "Shingan" sync / 1[56]:Raiden:387B:/ # drift 0.05
 3034.1 "Thundercall" sync / 1[56]:Raiden:387F:/
-3044.2 "--sync--" sync/ 14:Raiden:3868:/ window 10,10
+3044.2 "--sync--" sync / 14:Raiden:3868:/ window 10,10
 3048.7 "Ame-no-Sakahoko" sync / 1[56]:Raiden:3868:/
 3051.7 "--sync--" sync / 1[56]:Raiden:3869:/
 3058.3 "Whirling Zantetsuken" sync / 1[56]:Raiden:386A:/
-3065.4 "--sync--" sync/ 14:Raiden:3868:/ window 10,10
+3065.4 "--sync--" sync / 14:Raiden:3868:/ window 10,10
 3069.9 "Ame-no-Sakahoko" sync / 1[56]:Raiden:3868:/
 3072.9 "--sync--" sync / 1[56]:Raiden:3869:/
 3079.5 "Whirling Zantetsuken" sync / 1[56]:Raiden:386A:/
@@ -129,7 +129,7 @@ hideall "--sync--"
 3109.8 "Spirits of the Fallen" sync / 1[56]:Raiden:387A:/
 3118.9 "Lancing Bolt" sync / 1[56]:Raiden:3876:/
 3124.4 "Streak Lightning" #sync / 1[56]:Streak Lightning:3877:/
-3134.9 "Ultimate Zantetsuken" sync/ 14:Raiden:3878:/ duration 20
+3134.9 "Ultimate Zantetsuken" sync / 14:Raiden:3878:/ duration 20
 
 3154.9 "--sync--" sync / 17:........:Raiden:3878:/ window 40,0
 3164.9 "Spirits of the Fallen" sync / 1[56]:Raiden:387A:/ window 40,5
@@ -151,7 +151,7 @@ hideall "--sync--"
 3308.5 "--sync--" sync / 1[56]:Ball Lightning:386D:/ window 100,10
 3310.7 "Streak Lightning" sync / 1[56]:Streak Lightning:3877:/ # drift 0.043
 3316.0 "Lateral Zantetsuken" sync / 1[56]:Raiden:386[BC]:/
-3321.7 "Ultimate Zantetsuken" sync/ 14:Raiden:3878:/ duration 20
+3321.7 "Ultimate Zantetsuken" sync / 14:Raiden:3878:/ duration 20
 
 3341.7 "--sync--" sync / 17:........:Raiden:3878:/ window 40,0
 3347.7 "Spirits of the Fallen" sync / 1[56]:Raiden:387A:/ window 40,5
@@ -408,5 +408,5 @@ hideall "--sync--"
 
 
 ### Star Form Enrage
-6200.0 "--sync--"  sync/ 14:Proto Ozma:396D:/ window 300,0
+6200.0 "--sync--"  sync / 14:Proto Ozma:396D:/ window 300,0
 6210.0 "Shooting Star Enrage" sync / 1[56]:Proto Ozma:396D:/

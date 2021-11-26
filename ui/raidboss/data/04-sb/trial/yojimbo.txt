@@ -80,7 +80,7 @@ hideall "--sync--"
 229.1 "Bitter End" #sync / 1[56]:Embodiment:382E:/
 # ???
 
-296.0 "--sync--" sync/ 14:Gilgamesh:383D:/ window 100,0
+296.0 "--sync--" sync / 14:Gilgamesh:383D:/ window 100,0
 300.0 "Ame-no-Murakumo" sync / 1[56]:Gilgamesh:383D:/ window 300,300
 316.4 "Giga Jump" sync / 1[56]:Yojimbo:383E:/ # drift -0.048
 316.4 "--targetable--"

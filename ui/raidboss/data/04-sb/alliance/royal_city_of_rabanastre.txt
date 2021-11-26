@@ -14,7 +14,7 @@ hideall "--start--"
 
 0.0 "--start--" sync / 00:0839::The Crumbling Bridge will be sealed off/ window 0,1
 # TODO: does this only start when the adds are dead?
-22.6 "--sync--" sync/ 14:Mateus, The Corrupt:2633:/ window 30,10
+22.6 "--sync--" sync / 14:Mateus, The Corrupt:2633:/ window 30,10
 
 # Ice phase
 27.6 "Unbind" sync / 1[56]:Mateus, The Corrupt:2633:/
@@ -63,7 +63,7 @@ hideall "--start--"
 # -it "Hashmal, Bringer of Order"
 
 1000.0 "--start--" sync / 00:0839::The Palace Square will be sealed off/ window 10000,0
-1011.0 "--sync--" sync/ 14:Hashmal, Bringer of Order:25D8:/ window 20,20
+1011.0 "--sync--" sync / 14:Hashmal, Bringer of Order:25D8:/ window 20,20
 1015.0 "Quake IV" sync / 1[56]:Hashmal, Bringer of Order:25D8:/
 1020.4 "Jagged Edge 1" #sync / 1[56]:Hashmal, Bringer of Order:25CD:/
 1022.5 "Jagged Edge 2" #sync / 1[56]:Hashmal, Bringer of Order:25CD:/
@@ -82,7 +82,7 @@ hideall "--start--"
 1082.6 "Rock Cutter" sync / 1[56]:Hashmal, Bringer of Order:25D7:/
 
 # This can push early.
-1087.0 "--sync--" sync/ 14:Hashmal, Bringer of Order:25BC:/ window 100,20
+1087.0 "--sync--" sync / 14:Hashmal, Bringer of Order:25BC:/ window 100,20
 1090.0 "Command Tower" sync / 1[56]:Hashmal, Bringer of Order:25BC:/
 1101.3 "Earth Shaker" sync / 1[56]:Command Tower:25C8:/
 1106.2 "Earth Shaker" sync / 1[56]:Command Tower:25C8:/
@@ -98,7 +98,7 @@ hideall "--start--"
 1149.8 "Falling Rock" sync / 1[56]:Hashmal, Bringer of Order:25D3:/
 # ??? more earth shaker, more jagged edge (seen on video, but no logs)
 
-1300.0 "--sync--" sync/ 14:Hashmal, Bringer of Order:25C5:/ window 300,0
+1300.0 "--sync--" sync / 14:Hashmal, Bringer of Order:25C5:/ window 300,0
 1305.0 "Landwaster" sync / 1[56]:Hashmal, Bringer of Order:25C5:/
 
 1314.4 "Control Tower x2" sync / 1[56]:Hashmal, Bringer of Order:25C1:/
@@ -138,12 +138,12 @@ hideall "--start--"
 1447.8 "Submission Tower" sync / 1[56]:Hashmal, Bringer of Order:266D:/
 1451.0 "Sanction" sync / 1[56]:Hashmal, Bringer of Order:2703:/
 1454.1 "--Sand Sphere Adds--"
-# 1459.1 "--sync--" sync/ 14:Sand Sphere:25C9:/ # To Dust starts casting, probably the phase over when 20s cast complete
+# 1459.1 "--sync--" sync / 14:Sand Sphere:25C9:/ # To Dust starts casting, probably the phase over when 20s cast complete
 1460.9 "Towerfall" sync / 1[56]:Submission Tower:25CA:/
 1469.7 "Falling Boulder" sync / 1[56]:Hashmal, Bringer of Order:25D2:/
 
 # Starts roughly after Sand Sphere adds are dead, guessing at this natural time if To Dust goes off
-1480.6 "--sync--" sync/ 14:Hashmal, Bringer of Order:(25CE|25D0):/ window 40,40
+1480.6 "--sync--" sync / 14:Hashmal, Bringer of Order:(25CE|25D0):/ window 40,40
 1486.6 "Extreme Edge" sync / 1[56]:Hashmal, Bringer of Order:(25CE|25D0):/
 1489.1 "Falling Rock" sync / 1[56]:Hashmal, Bringer of Order:25D3:/
 1499.3 "Quake IV" sync / 1[56]:Hashmal, Bringer of Order:25D8:/
@@ -174,7 +174,7 @@ hideall "--start--"
 # -it "Rofocale"
 
 2000.0 "--start--" sync / 00:0839::The Lesalia Garden Ruins will be sealed off/ window 10000,0
-2012.8 "--sync--" sync/ 14:Rofocale:2680:/ window 20,20
+2012.8 "--sync--" sync / 14:Rofocale:2680:/ window 20,20
 2015.8 "Crush Helm" sync / 1[56]:Rofocale:2680:/ duration 3.4
 2035.5 "Chariot" sync / 1[56]:Rofocale:2674:/
 2040.8 "Cry Of Victory" sync / 1[56]:Rofocale:2675:/
@@ -197,7 +197,7 @@ hideall "--start--"
 
 # TODO: could trigger instead off of Rofocale losing Sprint which happens ~here
 2400.0 "--sync--" sync / 00:0044:[^:]*:The heavens tremble in my wake/ window 500,0
-2417.6 "--sync--" sync/ 14:Rofocale:268A:/ window 500,10
+2417.6 "--sync--" sync / 14:Rofocale:268A:/ window 500,10
 2421.1 "Heavenly Subjugation"
 2433.5 "Embrace" sync / 1[56]:Rofocale:2685:/
 2450.8 "Chariot" sync / 1[56]:Rofocale:2674:/
@@ -215,7 +215,7 @@ hideall "--start--"
 # => variable time turning off the lights
 
 # Seen 2734 only once in the loop fflogs link below.
-2700.0 "--sync--" sync/ 14:Rofocale:(2734|2726):/ window 160,0
+2700.0 "--sync--" sync / 14:Rofocale:(2734|2726):/ window 160,0
 2706.0 "Maverick" sync / 1[56]:Rofocale:(2734|2726):/
 2716.9 "Crush Helm" sync / 1[56]:Rofocale:2680:/
 2726.3 "Embrace" sync / 1[56]:Rofocale:2685:/
@@ -229,7 +229,7 @@ hideall "--start--"
 2779.1 "Dark Geas" sync / 1[56]:Rofocale:2688:/
 # => variable time turning off the lights
 
-2900.0 "--sync--" sync/ 14:Rofocale:(2734|2726):/ window 160,0
+2900.0 "--sync--" sync / 14:Rofocale:(2734|2726):/ window 160,0
 2906.0 "Maverick" sync / 1[56]:Rofocale:(2734|2726):/
 2917.3 "Crush Weapon x4" sync / 1[56]:Rofocale:2683:/
 2924.2 "Trample" sync / 1[56]:Rofocale:2676:/
@@ -289,7 +289,7 @@ hideall "--start--"
 
 ## Phase 1
 4000.0 "--start--" sync / 00:0839::The Lesalia Temple Ruins will be sealed off/ window 10000,0
-4006.7 "--sync--" sync/ 14:Argath Thadalfus:262D:/ window 20,20
+4006.7 "--sync--" sync / 14:Argath Thadalfus:262D:/ window 20,20
 4009.7 "Crippling Blow" sync / 1[56]:Argath Thadalfus:262D:/
 4017.9 "Crush Weapon x3" sync / 1[56]:Argath Thadalfus:2628:/
 4023.9 "Soulfix" sync / 1[56]:Argath Thadalfus:262A:/
@@ -299,7 +299,7 @@ hideall "--start--"
 4058.1 "Crippling Blow" sync / 1[56]:Argath Thadalfus:262D:/
 
 # Note: adding a larger sync in case there's a push here just to be safe.
-4064.3 "--sync--" sync/ 14:Argath Thadalfus:2622:/ window 100,10
+4064.3 "--sync--" sync / 14:Argath Thadalfus:2622:/ window 100,10
 4067.3 "Trepidation" sync / 1[56]:Argath Thadalfus:2622:/
 4075.8 "Unrelenting" sync / 1[56]:Argath Thadalfus:262B:/
 4077.3 "Rail Of The Rat 1" sync / 1[56]:Argath Thadalfus:2624:/
@@ -311,7 +311,7 @@ hideall "--start--"
 
 # Can early push (before Trepidation) to Judgment Blade.
 # TODO: is this an HP push? or is this a bug? I see this in <5% of logs atmost.
-4099.0 "--sync--" sync/ 14:Argath Thadalfus:2629:/ window 100,10
+4099.0 "--sync--" sync / 14:Argath Thadalfus:2629:/ window 100,10
 4102.0 "Judgment Blade" sync / 1[56]:Argath Thadalfus:2629:/
 4108.3 "Crippling Blow" sync / 1[56]:Argath Thadalfus:262D:/
 4110.4 "--sync--" sync / 1[56]:Argath Thadalfus:2625:/
@@ -320,20 +320,20 @@ hideall "--start--"
 4129.2 "Royal Blood" #sync / 1[56]:Argath Thadalfus:261E:/
 
 ## Phase 2: Shades and Shards (percentage push to this, 72%?)
-4500.0 "--sync--" sync/ 14:Argath Thadalfus:261E:/ window 500,0
+4500.0 "--sync--" sync / 14:Argath Thadalfus:261E:/ window 500,0
 4505.0 "Royal Blood" sync / 1[56]:Argath Thadalfus:261E:/
 4505.3 "--Shade Adds--"
 4515.2 "Crippling Blow" sync / 1[56]:Argath Thadalfus:262D:/
 4525.4 "Unrelenting" sync / 1[56]:Argath Thadalfus:262B:/
 # => variable amount of time until all shades are dead or explode
 
-4600.0 "--sync--" sync/ 14:Argath Thadalfus:261F:/ window 600,0
+4600.0 "--sync--" sync / 14:Argath Thadalfus:261F:/ window 600,0
 4605.0 "Empty Soul" sync / 1[56]:Argath Thadalfus:261F:/
 4605.9 "--Shard Adds--"
 4607.1 "--sync--" sync / 1[56]:Argath Thadalfus:270B:/
 # => variable amount of time until all shards are dead or you wipe
 
-4700.0 "--sync--" sync/ 14:Argath Thadalfus:2620:/ window 700,0
+4700.0 "--sync--" sync / 14:Argath Thadalfus:2620:/ window 700,0
 4702.5 "Dark Ultima" sync / 1[56]:Argath Thadalfus:2620:/
 4715.4 "Mask Of Lies" sync / 1[56]:Argath Thadalfus:2619:/
 4723.4 "The Word" sync / 1[56]:Argath Thadalfus:24A0:/

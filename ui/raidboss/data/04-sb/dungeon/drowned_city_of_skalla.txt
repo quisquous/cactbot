@@ -49,7 +49,7 @@ hideall "--sync--"
 1000.0 "Start" sync / 00:0839::A Door Unopened will be sealed off/ window 1000,5
 1009.2 "Mystic Light" sync / 1[56]:The Old One:2657:/
 1015.0 "Mystic Flame" sync / 1[56]:The Old One:2658:/
-1018.1 "Order To Detonate (cast)" sync/ 14:The Old One:265B:/ window 18.1,5 duration 19.7
+1018.1 "Order To Detonate (cast)" sync / 14:The Old One:265B:/ window 18.1,5 duration 19.7
 1037.8 "Order To Detonate?" # sync / 1[56]:The Old One:265B:/
 1040.6 "Self-Detonate?" # sync / 1[56]:Subservient:265C:/
 1047.7 "Mystic Flame" sync / 1[56]:The Old One:2658:/ window 20,20
@@ -61,12 +61,12 @@ hideall "--sync--"
 1128.7 "Mystic Flame"
 1139.8 "Mystic Light"
 
-1200.0 "--sync--" sync/ 14:The Old One:265A:/ window 200,10
+1200.0 "--sync--" sync / 14:The Old One:265A:/ window 200,10
 1202.7 "Shifting Light" sync / 1[56]:The Old One:265A:/
-1205.8 "Order To Detonate (cast)" sync/ 14:The Old One:265B:/ duration 19.7
+1205.8 "Order To Detonate (cast)" sync / 14:The Old One:265B:/ duration 19.7
 # 1225.5 "Order To Detonate?" sync / 1[56]:The Old One:265B:/
 1228.3 "Self-Detonate?" # sync / 1[56]:Subservient:265C:/
-1232.6 "--sync--" sync/ 14:The Old One:2657:/ window 32.6,5
+1232.6 "--sync--" sync / 14:The Old One:2657:/ window 32.6,5
 1236.3 "Mystic Light" sync / 1[56]:The Old One:2657:/
 1244.1 "Mystic Flame" sync / 1[56]:The Old One:2658:/
 1252.2 "Mystic Light" sync / 1[56]:The Old One:2657:/
@@ -77,12 +77,12 @@ hideall "--sync--"
 1309.5 "Mystic Flame"
 1317.6 "Mystic Light"
 
-1400.0 "--sync--" sync/ 14:The Old One:265A:/ window 190,5
+1400.0 "--sync--" sync / 14:The Old One:265A:/ window 190,5
 1402.7 "Shifting Light" sync / 1[56]:The Old One:265A:/
-1405.8 "Order To Detonate (cast)" sync/ 14:The Old One:265B:/ duration 19.7
+1405.8 "Order To Detonate (cast)" sync / 14:The Old One:265B:/ duration 19.7
 # 1425.5 "Order To Detonate?" sync / 1[56]:The Old One:265B:/
 1428.3 "Self-Detonate?" # sync / 1[56]:Subservient:265C:/
-1432.6 "--sync--" sync/ 14:The Old One:2657:/ window 32.6,5
+1432.6 "--sync--" sync / 14:The Old One:2657:/ window 32.6,5
 1436.3 "Mystic Light" sync / 1[56]:The Old One:2657:/
 1444.1 "Mystic Flame" sync / 1[56]:The Old One:2658:/
 1452.2 "Mystic Light" sync / 1[56]:The Old One:2657:/

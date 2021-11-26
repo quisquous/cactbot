@@ -17,7 +17,7 @@ hideall "--sync--"
 
 # First Graven
 71 "Graven Image" sync / 1[56]:Kefka:28D7:/
-73 "--untargetable--" sync/ 14:Kefka:2B34:/
+73 "--untargetable--" sync / 14:Kefka:2B34:/
 75 "Inexorable Will" sync / 1[56]:Graven Image:28DA:/
 76 "Wave Cannon" sync / 1[56]:Graven Image:28DC:/
 79 "Inexorable Will" sync / 1[56]:Graven Image:28DA:/
@@ -42,7 +42,7 @@ hideall "--sync--"
 
 # Third Graven
 178 "Graven Image" sync / 1[56]:Kefka:28D7:/
-181 "--untargetable--" sync/ 14:Kefka:2B34:/
+181 "--untargetable--" sync / 14:Kefka:2B34:/
 183 "Gravitas" sync / 1[56]:Graven Image:28E0:/
 186 "Vitrophyre" sync / 1[56]:Graven Image:28E2:/
 190 "Half Arena" sync / 1[56]:Graven Image:28D(E|F):/
@@ -66,7 +66,7 @@ hideall "--sync--"
 
 # Fifth Graven
 288 "Graven Image" sync / 1[56]:Kefka:28D7:/ # drift 0.259
-290 "--untargetable--" sync/ 14:Kefka:2B34:/
+290 "--untargetable--" sync / 14:Kefka:2B34:/
 293 "Inexorable Will" sync / 1[56]:Graven Image:28DA:/
 293 "Statue Gaze" #sync / 1[56]:Graven Image:28E(3|4):/
 308 "Statue Gaze" sync / 1[56]:Graven Image:28E(3|4):/ # drift -0.387
@@ -98,7 +98,7 @@ hideall "--sync--"
 
 1000 "Start"
 1001 "--sync--" sync / 1[56]:Kefka:28EC:/ window 1001,0
-1006 "--sync--" sync/ 14:Kefka:28FA:/ window 10,0
+1006 "--sync--" sync / 14:Kefka:28FA:/ window 10,0
 1010 "Heartless Angel" sync / 1[56]:Kefka:28FA:/
 1016 "Ultima" sync / 1[56]:Kefka:2911:/
 1023 "Hyperdrive" sync / 1[56]:Kefka:2912:/
@@ -108,7 +108,7 @@ hideall "--sync--"
 1041 "Ultima" sync / 1[56]:Kefka:2911:/
 
 # Forsaken 1
-1048 "--sync--" sync/ 14:Kefka:28E9:/ window 120,60
+1048 "--sync--" sync / 14:Kefka:28E9:/ window 120,60
 1053 "Forsaken #1" sync / 1[56]:Kefka:28E9:/
 1064 "Heartless Archangel" sync / 1[56]:Kefka:28FB:/
 1067 "Soak" sync / 1[56]:Light Of Consecration:28EA:/
@@ -129,7 +129,7 @@ hideall "--sync--"
 1189 "Ultima" sync / 1[56]:Kefka:2911:/
 
 # Forsaken 2
-1201 "--sync--" sync/ 14:Kefka:28E9:/ window 120,60
+1201 "--sync--" sync / 14:Kefka:28E9:/ window 120,60
 1206 "Forsaken #2" sync / 1[56]:Kefka:28E9:/
 1214 "Starstrafe" sync / 1[56]:Kefka:2902:/
 1221 "Past/Future End" sync / 1[56]:Kefka:28F(5|8):/
@@ -151,7 +151,7 @@ hideall "--sync--"
 1328 "Ultima" sync / 1[56]:Kefka:2911:/
 
 # Forsaken 3
-1340 "--sync--" sync/ 14:Kefka:28E9:/ window 120,60
+1340 "--sync--" sync / 14:Kefka:28E9:/ window 120,60
 1345 "Forsaken #3" sync / 1[56]:Kefka:28E9:/
 1358 "Ultima" sync / 1[56]:Kefka:2911:/
 1359 "Knockback Tethers" sync / 1[56]:Graven Image:28DD:/
@@ -180,7 +180,7 @@ hideall "--sync--"
 1512 "Ultima" sync / 1[56]:Kefka:2911:/
 
 # Forsaken 4 (repeats #3)
-1525 "--sync--" sync/ 14:Kefka:28E9:/ window 120,60
+1525 "--sync--" sync / 14:Kefka:28E9:/ window 120,60
 1530 "Forsaken #4" sync / 1[56]:Kefka:28E9:/
 1543 "Ultima" sync / 1[56]:Kefka:2911:/
 1544 "Knockback Tethers" sync / 1[56]:Graven Image:28DD:/
@@ -201,5 +201,5 @@ hideall "--sync--"
 1610 "Ultima" sync / 1[56]:Kefka:283D:/
 1618 "Ultima" sync / 1[56]:Kefka:283D:/
 1626 "Ultima" sync / 1[56]:Kefka:283D:/
-1630 "--sync--" sync/ 14:Kefka:2A52:/
+1630 "--sync--" sync / 14:Kefka:2A52:/
 1640 "Enrage" sync / 1[56]:Kefka:2A52:/ jump 0

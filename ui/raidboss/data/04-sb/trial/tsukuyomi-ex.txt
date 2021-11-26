@@ -94,7 +94,7 @@ hideall "--Reset--"
 1246.3 "Lead Of The Underworld/Steel Of The Underworld" sync / 1[56]:Tsukuyomi:2BBE:/
 
 # Torment Unto Death can be delayed by ~2s if it's Steel
-1257.5 "--sync--" sync/ 14:Tsukuyomi:2BBB:/ window 10,10
+1257.5 "--sync--" sync / 14:Tsukuyomi:2BBB:/ window 10,10
 1262.5 "Torment Unto Death" sync / 1[56]:Tsukuyomi:2BBB:/
 1273.8 "Supreme Selenomancy" sync / 1[56]:Tsukuyomi:2EB0:/
 1282.8 "Lunar Halo" sync / 1[56]:Moonlight:2BD6:/

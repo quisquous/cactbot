@@ -12,7 +12,7 @@ hideall "Answer On High"
 
 ### Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1
-6.9 "--sync--" sync/ 14:Byakko:27DC:/ window 20,20
+6.9 "--sync--" sync / 14:Byakko:27DC:/ window 20,20
 10.9 "Storm Pulse" sync / 1[56]:Byakko:27DC:/
 17.1 "Heavenly Strike" sync / 1[56]:Byakko:27DA:/
 27.3 "State of Shock 1" sync / 1[56]:Byakko:27E0:/

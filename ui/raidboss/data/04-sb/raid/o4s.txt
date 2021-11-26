@@ -79,7 +79,7 @@ hideall "--sync--"
 # -p 242C:1116 242D:1339.5 2426:1652.1
 
 # Neo Exdeath
-1002.0 "--sync--" sync/ 14:Neo Exdeath:2417:/ window 1002,5
+1002.0 "--sync--" sync / 14:Neo Exdeath:2417:/ window 1002,5
 1007.7 "Almagest" sync / 1[56]:Neo Exdeath:2417:/ window 1008,5
 1016.7 "Aero III" sync / 1[56]:Neo Exdeath:2419:/
 1026.7 "Delta Attack" sync / 1[56]:Neo Exdeath:241E:/

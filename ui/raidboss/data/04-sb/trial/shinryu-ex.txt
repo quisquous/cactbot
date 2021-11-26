@@ -15,7 +15,7 @@ hideall "--sync--"
 ### PHASE 1: Elemental carousel
 ###
 0.0 "--sync--" sync /:Engage!/ window 0,1
-11.3 "--sync--" sync/ 14:Shinryu:25FD:/ window 20,20
+11.3 "--sync--" sync / 14:Shinryu:25FD:/ window 20,20
 21.3 "Earthen Fury" sync / 1[56]:Shinryu:25DE:/
 36.4 "--Tethers--" # Burning Chains (301) effect
 44.5 "Tidal Wave" sync / 1[56]:Shinryu:25F9:/
@@ -78,7 +78,7 @@ hideall "--sync--"
 
 ### PHASE 2: Adds, explosions, dramatic tail climbing
 ###
-500.0 "--Phase 2--" sync/ 14:Shinryu:25E7:/ window 500,500
+500.0 "--Phase 2--" sync / 14:Shinryu:25E7:/ window 500,500
 503.0 "Dark Matter" sync / 1[56]:Shinryu:25E7:/
 513.0 "TAP BUTTON OR ELSE" duration 5
 540.7 "Touchdown" sync / 1[56]:Shinryu:2613:/
@@ -93,14 +93,14 @@ hideall "--sync--"
 
 ### PHASE 3: Anticlimax
 ###
-800.0 "--Phase 3--" sync/ 14:Shinryu:25E4:/ window 500,500
+800.0 "--Phase 3--" sync / 14:Shinryu:25E4:/ window 500,500
 806.0 "Protostar" sync / 1[56]:Shinryu:25E4:/
 813.1 "Tail Spit" sync / 1[56]:Shinryu:2615:/
 837.4 "Shatter" sync / 1[56]:Shinryu:2617:/ window 50,50
 843.4 "--targetable--"
 
 # Loop 1
-855.5 "--sync--" sync/ 14:Shinryu:264B:/ window 20,20
+855.5 "--sync--" sync / 14:Shinryu:264B:/ window 20,20
 859.5 "Tera Slash" sync / 1[56]:Shinryu:264B:/
 868.2 "Atomic Ray" sync / 1[56]:Shinryu:264C:/
 885.9 "Ice Storm" sync / 1[56]:Left Wing:2722:/
@@ -120,7 +120,7 @@ hideall "--sync--"
 
 ### PHASE 4: Race to the finish!
 ###
-1046.0 "--sync--" sync/ 14:Shinryu:264E:/ window 300,300
+1046.0 "--sync--" sync / 14:Shinryu:264E:/ window 300,300
 1085.0 "First Wing" # 35 second cast, starts 4 seconds later, 2718/2719
 1090.0 "Second Wing" # 35 second cast, starts 9 seconds later, 2719/2718
 1116.0 "Tidal Wave" sync / 1[56]:Shinryu:264E:/ # 70 second cast

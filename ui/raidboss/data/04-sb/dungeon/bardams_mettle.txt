@@ -99,7 +99,7 @@ hideall "Reconstruct"
 
 # Unfortunately, because there are two Corpsecleaner Eagles,
 # we can't just sync to a 04 log line.
-2189.7 "--targetable--" sync /22:........:Yol:........:Yol:01/ window 120,5
+2189.7 "--targetable--" sync / 22:........:Yol:........:Yol:01/ window 120,5
 2196.8 "Feathercut" sync / 1[56]:Yol:1F09:/ window 125,5
 2204.0 "Wind Unbound" sync / 1[56]:Yol:1F0A:/
 2212.7 "Pinion" sync / 1[56]:Yol Feather:1F11:/
@@ -114,7 +114,7 @@ hideall "Reconstruct"
 2247.7 "Feathercut" sync / 1[56]:Yol:1F09:/
 2249.4 "Pinion" sync / 1[56]:Yol Feather:1F11:/
 
-2253.8 "--untargetable--" sync /22:........:Yol:........:Yol:00/ window 60,5
+2253.8 "--untargetable--" sync / 22:........:Yol:........:Yol:00/ window 60,5
 2260.3 "Flutterfall" sync / 1[56]:Yol:1F10:/ window 60,5
 2267.5 "Wingbeat" sync / 1[56]:Yol:1F0F:/
 2276.9 "Flutterfall" sync / 1[56]:Yol:1F0C:/
@@ -134,7 +134,7 @@ hideall "Reconstruct"
 2352.5 "Pinion"
 
 
-2361.7 "--targetable--" sync /22:........:Yol:........:Yol:01/ window 110,5
+2361.7 "--targetable--" sync / 22:........:Yol:........:Yol:01/ window 110,5
 2368.8 "Feathercut" sync / 1[56]:Yol:1F09:/ window 110,5
 2376.0 "Wind Unbound" sync / 1[56]:Yol:1F0A:/
 2384.7 "Pinion" sync / 1[56]:Yol Feather:1F11:/
@@ -161,7 +161,7 @@ hideall "Reconstruct"
 2478.7 "Eye Of The Fierce" sync / 1[56]:Yol:1F0D:/
 2483.9 "Feathercut" sync / 1[56]:Yol:1F09:/
 2485.7 "Pinion" sync / 1[56]:Yol Feather:1F11:/
-2490.0 "--untargetable--" sync /22:........:Yol:........:Yol:00/ jump 2253.8 window 130,5
+2490.0 "--untargetable--" sync / 22:........:Yol:........:Yol:00/ jump 2253.8 window 130,5
 
 2496.5 "Flutterfall"
 2503.7 "Wingbeat"

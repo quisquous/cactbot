@@ -152,7 +152,7 @@ hideall "--sync--"
 2230 "Area Lockdown"
 
 # After adds
-2244 "--sync--" sync/ 14:Construct 7:2C59:/ window 5000,766
+2244 "--sync--" sync / 14:Construct 7:2C59:/ window 5000,766
 2254 "Annihilation Mode" sync / 1[56]:Construct 7:2C59:/ window 5000,756
 2264 "Destroy" sync / 1[56]:Construct 7:2C71:/
 2274 "Ignite" sync / 1[56]:Construct 7:2C67:/
@@ -259,7 +259,7 @@ hideall "--sync--"
 3634 "Dust Storm"
 
 # 9.99% push
-3694 "--sync--" sync/ 14:Yiazmat:2C32:/ window 5000,306
+3694 "--sync--" sync / 14:Yiazmat:2C32:/ window 5000,306
 3700 "Growing Threat" sync / 1[56]:Yiazmat:2C32:/ window 5000,300
 3707 "Rake (combo)" duration 14
 3727 "White Breath" sync / 1[56]:Yiazmat:2C31:/
