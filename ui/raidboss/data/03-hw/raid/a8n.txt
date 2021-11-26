@@ -50,7 +50,7 @@ hideall "Brute Force"
 # so we just do one full rotation and hope for the best.
 # If it would have looped past here, there are bigger problems!
 200.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 200,0
-203.8 "--sync--"  sync/ 03:........:Brawler:/  window 150,30
+203.8 "--sync--" sync / 03:........:Brawler:/  window 150,30
 206.2 "--targetable--"
 214.3 "Magicked Mark" sync / 1[56]:Brawler:173B:/
 214.3 "Brute Force" sync / 1[56]:Vortexer:1744:/
@@ -89,7 +89,7 @@ hideall "Brute Force"
 
 # CUTE ROBOTS 2
 # One full rotation plus a tail again, for the same reasons. Don't be slow!
-500.0 "--sync--"  sync/ 03:........:Blaster:/  window 300,30
+500.0 "--sync--" sync / 03:........:Blaster:/  window 300,30
 502.1 "--targetable--"
 510.3 "Magicked Mark" sync / 1[56]:Swindler:173F:/
 510.3 "Brute Force" sync / 1[56]:Blaster:1738:/
@@ -121,7 +121,7 @@ hideall "Brute Force"
 618.7 "Mind Blast"
 
 # GO, GO, MEGAZORD MODE (BRUTE JUSTICE)
-800.0 "--sync--"  sync/ 03:........:Brute Justice:/  window 300,30
+800.0 "--sync--" sync / 03:........:Brute Justice:/  window 300,30
 810.3 "--sync--" sync / 1[56]:Brute Justice:1758:/ window 610.3,30
 813.0 "--targetable--"
 826.9 "Double Rocket Punch" sync / 1[56]:Brute Justice:174E:/ window 26,30

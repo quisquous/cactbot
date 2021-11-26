@@ -65,7 +65,7 @@ hideall "Brute Force"
 
 ### Phase 2: Robots
 300.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 300,0
-303.0 "--sync--"  sync/ 03:........:Blaster:/  window 303,30
+303.0 "--sync--" sync / 03:........:Blaster:/  window 303,30
 304.0 "Blaster (north)"
 304.0 "Brawler (middle)"
 306.2 "--targetable--"
@@ -114,7 +114,7 @@ hideall "Brute Force"
 
 # All of the robots have their own rotation <50%
 # Messing up thunder seems the most punishing, so here's Vortexer.
-600.0 "--sync--"  sync/ 14:Vortexer:1657:/ window 600,0
+600.0 "--sync--" sync / 14:Vortexer:1657:/ window 600,0
 603.0 "Super Cyclone" sync / 1[56]:Vortexer:1657:/
 608.1 "Elemental Jammer" sync / 1[56]:Vortexer:167E:/
 615.4 "Ballistic Missile" sync / 1[56]:Vortexer:1650:/
@@ -223,7 +223,7 @@ hideall "Brute Force"
 
 
 ### Phase 7: Gavel
-1252.1 "--targetable--"  sync/ 14:Brute Justice:166E:/ window 1255,100
+1252.1 "--targetable--" sync / 14:Brute Justice:166E:/ window 1255,100
 1257.1 "Justice" sync / 1[56]:Brute Justice:166E:/
 1264.2 "Verdict" sync / 1[56]:Brute Justice:166F:/
 1296.3 "Gavel" sync / 1[56]:Brute Justice:1670:/

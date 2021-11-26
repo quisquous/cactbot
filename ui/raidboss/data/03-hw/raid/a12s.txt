@@ -34,12 +34,12 @@ hideall "--sync--"
 70.4 "Arrhidaeus's Lanner x8"
 
 105.5 "The General's Wing x4"
-113.7 "--sync--"  sync/ 14:The General's Wing:19F7:/ window 114,3
+113.7 "--sync--" sync / 14:The General's Wing:19F7:/ window 114,3
 116.7 "Almost Holy" sync / 1[56]:The General's Wing:19F7:/
 124.9 "Almost Holy" sync / 1[56]:The General's Wing:19F7:/
 133.2 "Almost Holy" sync / 1[56]:The General's Wing:19F7:/
 
-139.2 "The General's Might (W)"  sync/ 03:........:The General's Might:/  window 150,5
+139.2 "The General's Might (W)" sync / 03:........:The General's Might:/  window 150,5
 139.2 "The General's Time (E)"
 141.6 "Almost Holy?" sync / 1[56]:The General's Wing:19F7:/
 150.4 "Smash" sync / 1[56]:The General's Might:19F3:/ window 151,3

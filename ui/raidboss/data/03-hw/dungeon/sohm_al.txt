@@ -9,7 +9,7 @@ hideall "--Reset--"
 ### Raskovnik
 # -p ED1:6.2
 
-0 "Start"  sync/ 00:0839::Greenlinn will be sealed off/ window 0,1
+0 "Start" sync / 00:0839::Greenlinn will be sealed off/ window 0,1
 6.2 "Bloody Caress" sync / 1[56]:Raskovnik:ED1:/ window 6.2,0
 12.3 "--sync--" sync / 1[56]:Raskovnik:ED2:/
 17.9 "Acid Rain" sync / 1[56]:Raskovnik:ED7:/
@@ -24,7 +24,7 @@ hideall "--Reset--"
 # Looks like there are two loop groups of skills used repeatly?
 
 # Group 1
-100.0 "--sync--"  sync/ 14:Raskovnik:1395:/ window 100,0
+100.0 "--sync--" sync / 14:Raskovnik:1395:/ window 100,0
 103.0 "Sweet Scent" sync / 1[56]:Raskovnik:1395:/ window 103,0
 114.6 "Floral Trap" sync / 1[56]:Raskovnik:1391:/
 119.6 "Flower Devour" sync / 1[56]:Raskovnik:1392:/
@@ -42,7 +42,7 @@ hideall "--Reset--"
 # Inside Loop
 
 # Loop
-200.0 "--sync--"  sync/ 14:Raskovnik:1395:/ window 97,0 jump 100.0
+200.0 "--sync--" sync / 14:Raskovnik:1395:/ window 97,0 jump 100.0
 203.0 "Sweet Scent" sync / 1[56]:Raskovnik:1395:/ window 97,0 jump 103.0
 214.8 "Floral Trap" # sync / 1[56]:Raskovnik:1391:/
 219.8 "Flower Devour" # sync / 1[56]:Raskovnik:1392:/
@@ -50,7 +50,7 @@ hideall "--Reset--"
 226.7 "--sync--" # sync / 1[56]:Raskovnik:1394:/
 
 # Group 2
-300.0 "--sync--"  sync/ 14:Raskovnik:ED6:/ window 300,0
+300.0 "--sync--" sync / 14:Raskovnik:ED6:/ window 300,0
 303.0 "Leafstorm" sync / 1[56]:Raskovnik:ED6:/
 308.2 "Bloody Caress" sync / 1[56]:Raskovnik:ED1:/
 314.3 "--sync--" sync / 1[56]:Raskovnik:ED2:/
@@ -66,14 +66,14 @@ hideall "--Reset--"
 373.4 "Bloody Caress" # sync / 1[56]:Raskovnik:ED1:/
 
 # jump back to group 1
-500.0 "--sync--"  sync/ 14:Raskovnik:1395:/ window 500,0 jump 100.0
+500.0 "--sync--" sync / 14:Raskovnik:1395:/ window 500,0 jump 100.0
 
 
 ### Myath
 # -p 1382:1006.1
 # -ic "Chyme Of The Mountain"
 
-1000.0 "Start"  sync/ 00:0839::The Wound will be sealed off/ window 1000,1
+1000.0 "Start" sync / 00:0839::The Wound will be sealed off/ window 1000,1
 
 1006.1 "Third Leg Forward" sync / 1[56]:Myath:1382:/
 1011.2 "Overbite" sync / 1[56]:Myath:EDB:/
@@ -116,7 +116,7 @@ hideall "--Reset--"
 # -p EE3:2006
 # -ic "Comet"
 
-2000.0 "Start"  sync/ 00:0839::Hess Afah will be sealed off/ window 2000,1
+2000.0 "Start" sync / 00:0839::Hess Afah will be sealed off/ window 2000,1
 
 2006.0 "Abyssic Buster" sync / 1[56]:Tioman:EE3:/
 2013.2 "Chaos Blast" sync / 1[56]:Tioman:EE5:/

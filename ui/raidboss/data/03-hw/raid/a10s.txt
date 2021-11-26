@@ -11,7 +11,7 @@ hideall "--sync--"
 
 ### Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1
-0.0 "--sync--"  sync/ 00:0839::The Excruciationator will be sealed off/ window 10000,10000
+0.0 "--sync--" sync / 00:0839::The Excruciationator will be sealed off/ window 10000,10000
 6.5 "Goblin Rush" sync / 1[56]:Lamebrix Strikebocks:1A16:/ window 7,2.5
 9.6 "Gobsway Rumblerocks" sync / 1[56]:Lamebrix Strikebocks:1AA0:/
 14.7 "Gobsway Rumblerocks" sync / 1[56]:Lamebrix Strikebocks:1AA0:/

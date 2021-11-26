@@ -51,7 +51,7 @@
 ### Leg 2
 500.0 "--sync--" sync / 22:........:The Manipulator:........:The Manipulator:01/ window 500,0
 512.1 "--untargetable--"
-516.2 "--sync--"  sync/ 14:The Manipulator:13E7:/ window 517,5
+516.2 "--sync--" sync / 14:The Manipulator:13E7:/ window 517,5
 522.2 "Mortal Revolution" sync / 1[56]:The Manipulator:13E7:/
 524.2 "--targetable--"
 532.3 "Emergency Quarantine" sync / 1[56]:The Manipulator:F62:/
@@ -92,7 +92,7 @@
 ### Leg 3
 1000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
 1012.1 "--untargetable--"
-1016.2 "--sync--"  sync/ 14:The Manipulator:13E7:/ window 490,5
+1016.2 "--sync--" sync / 14:The Manipulator:13E7:/ window 490,5
 1022.2 "Mortal Revolution" sync / 1[56]:The Manipulator:13E7:/
 1024.2 "--targetable--"
 1027.4 "Hydrothermal Missile" sync / 1[56]:The Manipulator:F5B:/ window 10,10
@@ -147,7 +147,7 @@
 ### Leg 4
 1500.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
 1512.1 "--untargetable--"
-1516.2 "--sync--"  sync/ 14:The Manipulator:13E7:/ window 490,5
+1516.2 "--sync--" sync / 14:The Manipulator:13E7:/ window 490,5
 1522.2 "Mortal Revolution" sync / 1[56]:The Manipulator:13E7:/
 1524.2 "--targetable--"
 1528.4 "Judgment Nisi" sync / 1[56]:The Manipulator:F64:/
@@ -182,7 +182,7 @@
 ### Final Phase
 2000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
 2012.1 "--untargetable--"
-2016.2 "--sync--"  sync/ 14:The Manipulator:13E7:/ window 490,5
+2016.2 "--sync--" sync / 14:The Manipulator:13E7:/ window 490,5
 2022.2 "Mortal Revolution" sync / 1[56]:The Manipulator:13E7:/
 2024.2 "--targetable--"
 
@@ -225,5 +225,5 @@
 
 ### Enrage
 # Note: Manipulator won't enrage until all legs have been killed.
-2500.0 "--sync--"  sync/ 14:The Manipulator:13E7:/ window 480,480
+2500.0 "--sync--" sync / 14:The Manipulator:13E7:/ window 480,480
 2506.0 "Mortal Revolution Enrage" sync / 1[56]:The Manipulator:13E7:/

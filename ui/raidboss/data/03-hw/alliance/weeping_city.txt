@@ -12,7 +12,7 @@ hideall "--sync--"
 # -ii 368 1835 1836
 # -ic "Webmaiden" "Spitting Spider" "Skittering Spider" "Earth Aether"
 
-0 "--sync--"  sync/ 00:0839::The Queen's Room will be sealed off/
+0 "--sync--" sync / 00:0839::The Queen's Room will be sealed off/
 9.8 "Dark Spike" sync / 1[56]:Arachne Eve:1823:/
 21.6 "Silken Spray" sync / 1[56]:Arachne Eve:1824:/
 30.4 "Arachne Web x3" duration 5 # sync / 1[56]:Arachne Eve:185E:/
@@ -38,7 +38,7 @@ hideall "--sync--"
 # Back on the ground for a relatively short bridge block
 # We sync to a 14/20 startsUsing log line instead of a 15/21 ability line.
 # This lets us jump out of the intermission slightly earlier.
-197.3 "Dark Spike"  sync/ 14:Arachne Eve:1823:/ window 100,5
+197.3 "Dark Spike" sync / 14:Arachne Eve:1823:/ window 100,5
 206.3 "--sync--" sync / 1[56]:Arachne Eve:1847:/
 210.5 "Sticky Wicket x3" # sync / 1[56]:Arachne Eve:183F:/
 212.1 "--untargetable--"
@@ -134,7 +134,7 @@ hideall "--sync--"
 
 # -ii 366 17D5 17C1 17D6
 
-1000.0 "--sync--"  sync/ 00:0839::The Shrine Of The Goetic will be sealed off/ window 1000,5
+1000.0 "--sync--" sync / 00:0839::The Shrine Of The Goetic will be sealed off/ window 1000,5
 1014.2 "Necropurge" sync / 1[56]:Shriveled Talon:17D7:/
 1024.4 "Megiddo Flame" sync / 1[56]:Forgall:17C0:/
 1032.4 "Necropurge" sync / 1[56]:Forgall:17BE:/
@@ -194,7 +194,7 @@ hideall "--sync--"
 #                                                                         V                       |
 # Cube opening block ----> Intermission --> Sphere bridge block --> (Cube|Sphere) rotation blocks |
 
-2000.0 "--sync--"  sync/ 00:0839::The Gloriole will be sealed off/ window 2000,5
+2000.0 "--sync--" sync / 00:0839::The Gloriole will be sealed off/ window 2000,5
 2015.0 "Meteor Headmarkers"
 2024.0 "Meteor Impact" sync / 1[56]:Singularity Fragment:1935:/
 
@@ -211,7 +211,7 @@ hideall "--sync--"
 2157.1 "Execration" sync / 1[56]:Ozma:1828:/
 2178.4 "Acceleration Bomb" sync / 1[56]:Ozma:182F:/
 2195.7 "Transfiguration (Sphere)" sync / 1[56]:Ozma:1827:/
-2199.1 "--sync--"  sync/ 14:Ozma:1800:/ window 48.8,5
+2199.1 "--sync--" sync / 14:Ozma:1800:/ window 48.8,5
 2203.8 "Black Hole" sync / 1[56]:Ozma:1800:/ window 53,5 jump 2400.0
 
 # Cube-first path
@@ -220,7 +220,7 @@ hideall "--sync--"
 2257.0 "Flare Star" sync / 1[56]:Ozma:1805:/
 2288.0 "Holy" sync / 1[56]:Ozma:182E:/
 2300.0 "Transfiguration (Sphere)" sync / 1[56]:Ozma:1804:/
-2303.3 "--sync--"  sync/ 14:Ozma:1800:/ window 53.3,5
+2303.3 "--sync--" sync / 14:Ozma:1800:/ window 53.3,5
 2308.0 "Black Hole" sync / 1[56]:Ozma:1800:/ window 58,5 jump 2400.0
 
 # Intermission
@@ -324,7 +324,7 @@ hideall "--sync--"
 
 # 1811 and 180D are releasing hair after Haircut and Split End cleaves
 
-4000.0 "--sync--"  sync/ 00:0839::The Tomb Of The Nullstone will be sealed off/ window 4000,5
+4000.0 "--sync--" sync / 00:0839::The Tomb Of The Nullstone will be sealed off/ window 4000,5
 4004.1 "Bloodied Nail x4" # sync / 1[56]:Calofisteri:181F:/
 4018.8 "Coif Change" sync / 1[56]:Calofisteri:180[AE]:/ window 18.8,5
 4027.8 "Haircut" sync / 1[56]:Calofisteri:180[BF]:/

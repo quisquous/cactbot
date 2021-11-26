@@ -10,7 +10,7 @@ hideall "Relaxant"
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 ### Hummel and Friends
-1000.0 "--sync--"  sync/ 00:0839::The Clevering will be sealed off/ window 1000,0
+1000.0 "--sync--" sync / 00:0839::The Clevering will be sealed off/ window 1000,0
 1001.8 "--sync--" sync / 1[56]:Faust:367:/ window 1002,0.5
 1009.8 "Kaltstrahl x1" sync / 1[56]:Faust:16CC:/
 1018.9 "Kaltstrahl x2" duration 2.1 sync / 1[56]:Faust:16CC:/ window 5,0.5
@@ -22,7 +22,7 @@ hideall "Relaxant"
 #1045.5 "Kaltstrahl" sync / 1[56]:Faust:16CC:/
 #1047.6 "Kaltstrahl" sync / 1[56]:Faust:16CC:/
 
-1051.6 "--sync--"  sync/ 14:Hummelfaust:16D2:/ window 52,10
+1051.6 "--sync--" sync / 14:Hummelfaust:16D2:/ window 52,10
 1056.6 "Panzer Vor" sync / 1[56]:Hummelfaust:16D2:/
 
 # Note: if previous Fausts haven't been destroyed,
@@ -51,7 +51,7 @@ hideall "Relaxant"
 # FIXME: maybe more abilities if Fausts are pushed quickly?
 
 # Time-based enrage.
-1150.7 "--sync--"  sync/ 14:Hummelfaust:16D1:/ window 151,20
+1150.7 "--sync--" sync / 14:Hummelfaust:16D1:/ window 151,20
 1154.7 "Panzerschreck Enrage" sync / 1[56]:Hummelfaust:16D1:/
 
 
@@ -173,5 +173,5 @@ hideall "Relaxant"
 ### Enrage (time-based)
 # We could sync down here on an 16A4 ability, which is the damage,
 # but that point you're dead.
-2700.0 "--sync--"  sync/ 14:Ratfinx Twinkledinks:159C:/ window 200,200
+2700.0 "--sync--" sync / 14:Ratfinx Twinkledinks:159C:/ window 200,200
 2703.0 "Shock Therapy Enrage" sync / 1[56]:Ratfinx Twinkledinks:159C:/
