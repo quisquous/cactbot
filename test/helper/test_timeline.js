@@ -309,7 +309,7 @@ const testTimelineFiles = (timelineFiles) => {
             // we should come back here and make the doubled colon non-optional.
             if (regex.includes('is no longer sealed')) {
               assert(
-                /00:0839::?\.\*is no longer sealed/.exec(regex),
+                /00:0839::?.*is no longer sealed/.exec(regex),
                 `${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839::.*is no longer sealed'`,
               );
             } else if (regex.includes('will be sealed')) {
