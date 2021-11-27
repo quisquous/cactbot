@@ -286,7 +286,7 @@ def main(args):
     output = []
     if entries[0]["line_type"] and entries[0]["line_type"] == "zone_seal":
         output.append(
-            '0.0 "--sync--" sync / 00:0839:{} will be sealed off/ window 0,1'.format(
+            '0.0 "--sync--" sync / 00:0839::{} will be sealed off/ window 0,1'.format(
                 entries[0]["zone_message"].title()
             )
         )
