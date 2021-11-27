@@ -104,6 +104,7 @@ const defaultEurekaConfigOptions = {
   FlagTimeoutMs: 90,
   CompleteNamesSTQ: false,
   EnrichedSTQ: false,
+  TrackerOnlyImportMissing: false,
   PopNoiseForNM: true,
   PopNoiseForBunny: true,
   PopNoiseForSkirmish: false,
@@ -750,10 +751,12 @@ class EurekaTracker {
       if (name === undefined || time === undefined)
         throw new UnreachableCode();
       const nm = trackerToNM[name.toLowerCase()];
-      if (nm)
-        nm.respawnTimeMsTracker = (parseFloat(time) * 60 * 1000) + (+new Date());
-      else
+      if (nm) {
+        if (!this.options.TrackerOnlyImportMissing || !nm.respawnTimeMsLocal)
+          nm.respawnTimeMsTracker = (parseFloat(time) * 60 * 1000) + (+new Date());
+      } else {
         console.error(`Invalid NM Import: ${name}`);
+      }
     }
 
     this.UpdateTimes();

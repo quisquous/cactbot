@@ -67,6 +67,14 @@ UserConfig.registerOptions('eureka', {
       default: false,
     },
     {
+      id: 'TrackerOnlyImportMissing',
+      name: {
+        en: 'Only import times for missing NMs from external tracker',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'PopNoiseForNM',
       name: {
         en: 'Play pop sound for NMs',
