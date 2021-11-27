@@ -286,13 +286,13 @@ def main(args):
     output = []
     if entries[0]["line_type"] and entries[0]["line_type"] == "zone_seal":
         output.append(
-            '0 "Start" sync /00:0839:{} will be sealed off/ window 0,1'.format(
+            '0.0 "--sync--" sync / 00:0839:{} will be sealed off/ window 0,1'.format(
                 entries[0]["zone_message"].title()
             )
         )
         entries.pop(0)
     else:
-        output.append('0 "Start" sync /Engage!/ window 0,1')
+        output.append('0.0 "--sync--" sync /Engage!/ window 0,1')
 
     for entry in entries:
 
@@ -371,7 +371,7 @@ def main(args):
         if entry["line_type"] == "34":
             output_entry = '{position:.1f} "{targetable}"'.format(**entry)
         else:
-            output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
+            output_entry = '{position:.1f} "{ability_name}" sync / 1[56]:{combatant}:{ability_id}:/'.format(
                 **entry
             )
 

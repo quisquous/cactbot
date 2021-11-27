@@ -39,9 +39,13 @@ def load_timeline(timeline):
             if not sync_match:
                 continue
 
-            entry["regex"] = sync_match.group(1).replace(":", "\|")
             entry["branch"] = 0
 
+            ability_match = e_tools.is_tl_line_cast(sync_match.group(1))
+            if ability_match:
+                entry["regex"] = "2[12]\|[^\|]*\|........\|{}\|{}\|".format(
+                    ability_match.group("source"), ability_match.group("id")
+                )
             # Special casing on syncs
             entry["special_type"] = False
 
@@ -49,28 +53,55 @@ def load_timeline(timeline):
             if begincast_match:
                 entry["special_type"] = "begincast"
                 entry["special_line"] = "20"
-                entry["cast_id"] = begincast_match.group(1)
-                entry["caster_name"] = begincast_match.group(2)
+                entry["cast_id"] = begincast_match.group("id")
+                entry["caster_name"] = begincast_match.group("source")
+                entry["regex"] = "20\|[^\|]*\|........\|{}\|{}\|".format(
+                    begincast_match.group("source"), begincast_match.group("id")
+                )
 
             buff_match = e_tools.is_tl_line_buff(sync_match.group(1))
             if buff_match:
                 entry["special_type"] = "applydebuff"
                 entry["special_line"] = "26"
-                entry["buff_target"] = buff_match.group(1)
-                entry["buff_name"] = buff_match.group(2)
+                entry["buff_target"] = buff_match.group("target")
+                entry["buff_name"] = buff_match.group("effect")
+                entry[
+                    "regex"
+                ] = "26\|[^\|]*\|{}\|{}\|[^\|]*\|........\|[^\|]*\|.........\|{}\|".format(
+                    buff_match.group("effectId"),
+                    buff_match.group("effect"),
+                    buff_match.group("target"),
+                )
 
             log_match = e_tools.is_tl_line_log(sync_match.group(1))
             if log_match:
                 entry["special_type"] = "battlelog"
                 entry["special_line"] = "00"
-                entry["logid"] = log_match.group(1)
-                entry["line"] = log_match.group(2)
+                entry["logid"] = log_match.group("id")
+                entry["line"] = log_match.group("message")
+                entry["regex"] = "00\|[^\|]*\|{}\|{}\|{}".format(
+                    log_match.group("id"), log_match.group("entity"), log_match.group("message")
+                )
 
             add_match = e_tools.is_tl_line_adds(sync_match.group(1))
             if add_match:
                 entry["special_type"] = "addlog"
                 entry["special_line"] = "03"
-                entry["name"] = add_match.group(1)
+                entry["name"] = add_match.group("entity")
+                entry["regex"] = "03\|[^\|]*\|........\|{}".format(add_match.group("entity"))
+
+            headmarker_match = e_tools.is_tl_line_headmarker(sync_match.group(1))
+            if headmarker_match:
+                entry["special_type"] = "headmarker"
+                entry["special_line"] = "27"
+                entry["headmarker_target"] = headmarker_match.group("target")
+                entry["regex"] = "27\|[^\|]*\|........\|{}\|....\|....\|{}".format(
+                    headmarker_match.group("target"), headmarker_match.group("id")
+                )
+
+            # If we're here and we're missing a regex type, just hope for the best
+            if "regex" not in entry:
+                entry["regex"] = sync_match.group(1).replace(":", "\|")
 
             # Get the start and end of the sync window
             window_match = re.search(r"window ([\d\.]+),?([\d\.]+)?", match.group("options"))
@@ -87,7 +118,6 @@ def load_timeline(timeline):
 
             entry["start"] = max(0, entry["time"] - pre_window)
             entry["end"] = entry["time"] + post_window
-
             # Get the jump time, if any
             jump_match = re.search(r"jump ([\d\.]+)", match.group("options"))
 
@@ -188,6 +218,8 @@ def get_type(event):
             return "battlelog"
         elif event.startswith("03"):
             return "addlog"
+        elif event.startswith("27"):
+            return "headmarker"
         else:
             return "none"
 

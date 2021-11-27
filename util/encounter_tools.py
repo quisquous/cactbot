@@ -256,23 +256,34 @@ def is_tl_line_syncmatch(line):
 
 
 def is_tl_line_begincast(poss_match):
-    return re.search(r"^:([0-9A-F\[\]\(\)\|]+):([^:]+)", poss_match)
+    return re.search(r"\s14:(?P<source>[^:]+):(?P<id>[0-9A-F\(\)\|]+)", poss_match)
 
 
 def is_tl_line_buff(poss_match):
-    return re.search(r"1A:.......:(.+) gains the effect of (.+)( from)?", poss_match)
+    return re.search(
+        r"\s1A:(?P<effectId>(?:\.\{0,4\}|.{0,4})):(?P<effect>(?:[^:]*?|\[\^:\]\*?)):\[\^:\](?:\+|\*):\.\{8\}:(?P<source>(?:[^:]*?)):\.\{8\}:(?P<target>(?:[^:]*))",
+        poss_match,
+    )
 
 
 def is_tl_line_cast(poss_match):
-    return re.search(r"^:([^:]+):([0-9A-F\(\)\|]+)", poss_match)
+    return re.search(r"\s1(?:[56]|\[56\]):(?P<source>[^:]+):(?P<id>[0-9A-F\(\)\|]+)", poss_match)
 
 
 def is_tl_line_log(poss_match):
-    return re.search(r"^\s*00:([0-9]*):(.*$)", poss_match)
+    return re.search(
+        r"\s00:(?P<id>[0-9]*):(?P<entity>[^:]*):(?P<message>[^\/]*)\s?\/\s", poss_match
+    )
 
 
 def is_tl_line_adds(poss_match):
-    return re.search(r"Added new combatant (.*$)", poss_match)
+    return re.search(r"\s*03:........:(?P<entity>[^:]*):", poss_match)
+
+
+def is_tl_line_headmarker(poss_match):
+    return re.search(
+        r"\s*22:........:(?P<target>[^:]*):....:....:(?P<id>[0-9A-F\(\)\|]+)", poss_match
+    )
 
 
 def colorize(input_text, color_code):
