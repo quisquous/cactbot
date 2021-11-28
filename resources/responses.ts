@@ -22,6 +22,7 @@ import { RaidbossData as Data } from '../types/data';
 import { Matches } from '../types/net_matches';
 import {
   LocaleText,
+  LooseTrigger,
   Output,
   ResponseFunc,
   ResponseOutput,
@@ -43,7 +44,7 @@ type SevText = 'infoText' | 'alertText' | 'alarmText';
 export const builtInResponseStr = 'cactbot-builtin-response';
 
 // All valid trigger fields.
-export const triggerFunctions = [
+export const triggerFunctions: (keyof LooseTrigger)[] = [
   'alarmText',
   'alertText',
   'condition',
@@ -65,7 +66,7 @@ export const triggerFunctions = [
 ];
 
 // Trigger fields that can produce text output.
-export const triggerTextOutputFunctions = [
+export const triggerTextOutputFunctions: (keyof LooseTrigger)[] = [
   'alarmText',
   'alertText',
   'infoText',
@@ -74,7 +75,7 @@ export const triggerTextOutputFunctions = [
 ];
 
 // If a trigger has any of these, then it has a visible/audio effect.
-export const triggerOutputFunctions = [
+export const triggerOutputFunctions: (keyof LooseTrigger)[] = [
   ...triggerTextOutputFunctions,
   'sound',
 ];
