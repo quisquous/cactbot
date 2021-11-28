@@ -24,6 +24,7 @@ export interface Data extends RaidbossData {
 
 // TODO:
 //   Update Knave knockback directions to instead use cardinals
+//   Hansel and Gretel Bloody Sweep
 //   Hansel and Gretel Stronger Together Tethered
 //   Hansel & Gretel Passing Lance
 //   Hansel & Gretel Breakthrough
@@ -402,44 +403,6 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
-      id: 'Paradigm Hansel/Gretel Bloody Sweep',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
-      durationSeconds: 5,
-      suppressSeconds: 1,
-      alertText: (_data, matches, output) => {
-        // Hansel and Gretel each have unique abilities which indicate which
-        // side of the arena they're hitting. 5C54 and 5C55 indicate that
-        // Hansel is West and Gretel is East. Hansel is left handed, and
-        // Gretel is right handed. This allows us to identify the safe area
-        // as north or south based on ID. However, the two may swap places
-        // using Transference. If this is going to happen, the cast time of
-        // the ability will be extended from 7.7 seconds to 12.7 seconds.
-        // Use an average of 10 to decide which ability we're seeing in case
-        // values are slightly adjusted in the future.
-        if (matches.id === '5C54' || matches.id === '5C55') {
-          // Hansel is West and Gretel is East
-          if (parseFloat(matches.castTime) > 10) {
-            // Hansel and Gretel will switch places
-            return output.north!();
-          }
-          // Hansel and Gretel stay in same position
-          return output.south!();
-        }
-        // Gretel is West and Hansel is East
-        if (parseFloat(matches.castTime) > 10) {
-          // Hansel and Gretel will switch places
-          return output.south!();
-        }
-        // Hansel and Gretel stay in same position
-        return output.north!();
-      },
-      outputStrings: {
-        north: Outputs.north,
-        south: Outputs.south,
-      },
-    },
-    {
       id: 'Paradigm Red Girl Cruelty',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '601[23]', source: 'Red Girl', capture: false }),
@@ -617,42 +580,49 @@ const triggerSet: TriggerSet<Data> = {
         center: {
           en: 'Go to Center',
           de: 'Geh in die Mitte',
+          fr: 'Allez au milieu',
           cn: '去中间',
           ko: '가운데로',
         },
         northBoss: {
           en: 'Go to North Boss',
           de: 'Geh zum nördlichen Boss',
+          fr: 'Allez au Nord (boss)',
           cn: '去北(上)边BOSS脚下',
           ko: '북쪽 보스 근처로',
         },
         north: {
           en: 'Go North',
           de: 'Geh nach Norden',
+          fr: 'Allez au Nord',
           cn: '去北(上)边',
           ko: '북쪽으로',
         },
         westBoss: {
           en: 'Go to West Boss',
           de: 'Geh zum westlichen Boss',
+          fr: 'Allez à l\'Ouest (boss)',
           cn: '去西(左)边BOSS脚下',
           ko: '서쪽 보스 근처로',
         },
         west: {
           en: 'Go West',
           de: 'Geh nach Westen',
+          fr: 'Allez à l\'Ouest',
           cn: '去西(左)边',
           ko: '서쪽으로',
         },
         corner: {
           en: 'Go to Corner',
           de: 'Geh in eine Ecke',
+          fr: 'Allez dans un coin',
           cn: '去角落',
           ko: '구석으로',
         },
         oops: {
           en: 'Avoid line AOEs',
           de: 'Weiche den Linien AoEs aus',
+          fr: 'Évitez l\'AOE en ligne',
           cn: '躲避直线AOE',
           ko: '레이저 피하기',
         },
@@ -783,7 +753,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge Building Below',
           de: 'Gebäude unter einem ausweichen',
-          fr: 'Esquivez le bâtiment venant du dessous',
+          fr: 'Esquivez le bâtiment arrivant d\'en dessous',
           ja: '下の建物に当たらないように',
           cn: '躲避下方建筑',
           ko: '컨테이너 박스 피하기',

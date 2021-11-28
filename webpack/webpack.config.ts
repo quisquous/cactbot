@@ -27,6 +27,7 @@ export default (
     if (
       [
         'config',
+        'coverage',
         'eureka',
         'jobs',
         'oopsyraidsyLive',
