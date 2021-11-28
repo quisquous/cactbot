@@ -104,7 +104,6 @@ const ruleModule = {
       },
       [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
         const props = getAllKeys(node.parent.parent.properties);
-
         if (props.find((prop) => prop === 'outputStrings')) {
           stack.inTriggerFunc = true;
           stack.outputParam = node.params[2] && node.params[2].name;
