@@ -143,14 +143,7 @@ const statusEffectExplicitParams = [
   'data4',
   'capture',
 ] as const;
-const losesEffectParams = [
-  'timestamp',
-  'targetId',
-  'target',
-  'effect',
-  'source',
-  'capture',
-] as const;
+const losesEffectParams = gainsEffectParams;
 const statChangeParams = [
   'timestamp',
   'job',
@@ -509,7 +502,8 @@ export default class Regexes {
   }
 
   /**
-   * fields: targetId, target, effect, source, capture
+  // fields: effectId, effect, duration, sourceId, source, targetId, target,
+  //         count, targetMaxHp, sourceMaxHp, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
    */
   static losesEffect(f?: Params<LosesEffectParams>): Regex<LosesEffectParams> {
@@ -518,13 +512,17 @@ export default class Regexes {
     Regexes.validateParams(f, 'losesEffect', losesEffectParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1E:' +
+      ' StatusRemove 1E:' +
+      Regexes.maybeCapture(capture, 'effectId', f.effectId, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'effect', f.effect, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'duration', f.duration, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
-      ' loses the effect of ' +
-      Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
-      ' from ' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + '\\.';
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'count', f.count, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'sourceMaxHp', f.sourceMaxHp, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 

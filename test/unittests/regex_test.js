@@ -184,22 +184,35 @@ describe('regex tests', () => {
   });
   it('losesEffect', () => {
     const lines = [
-      '[21:58:30.880] 1E:10686259:Hash Brown loses the effect of Light In The Dark from .',
-      '[21:48:06.010] 1E:1076C23F:Tater Tot loses the effect of Enhanced Wheeling Thrust from Tater Tot.',
-      '[21:48:12.191] 1E:40007FD4:Hades loses the effect of Biolysis from Potato Croquette.',
+      '[10:08:00.885] StatusRemove 1E:323:Enhanced Wheeling Thrust:0.00:106AF611:Tini Poutini:106AF611:Tini Poutini:00:110101:110101',
+      '[10:21:51.820] StatusRemove 1E:8D1:Lightsteeped:0.00:E0000000::106AF612:Potato Chippy:01:101418:',
+      '[10:23:40.261] StatusRemove 1E:49E:Meditative Brotherhood:0.00:106AF612:Potato Chippy:106AF611:Tini Poutini:00:110191:113284',
+      '[10:11:47.617] StatusRemove 1E:8D7:Shock Spikes:0.00:4002666E:Electric Aether:4002666E:Electric Aether:64:81400:81400',
     ];
+
     regexCaptureTest(Regexes.losesEffect, lines);
 
     let matches = lines[0].match(Regexes.losesEffect()).groups;
-    assert.equal(matches.targetId, '10686259');
-    assert.equal(matches.target, 'Hash Brown');
-    assert.equal(matches.effect, 'Light In The Dark');
-    assert.equal(matches.source, '');
+    assert.equal(matches.effectId, '323');
+    assert.equal(matches.effect, 'Enhanced Wheeling Thrust');
+    assert.equal(matches.sourceId, '106AF611');
+    assert.equal(matches.source, 'Tini Poutini');
+    assert.equal(matches.targetId, '106AF611');
+    assert.equal(matches.target, 'Tini Poutini');
+    assert.equal(matches.count, '00');
 
     matches = lines[1].match(Regexes.losesEffect()).groups;
-    assert.equal(matches.targetId, '1076C23F');
-    // Test valid source.
-    assert.equal(matches.source, 'Tater Tot');
+    assert.equal(matches.effectId, '8D1');
+    assert.equal(matches.effect, 'Lightsteeped');
+    assert.equal(matches.count, '01');
+
+    matches = lines[2].match(Regexes.losesEffect()).groups;
+    assert.equal(matches.effectId, '49E');
+    assert.equal(matches.effect, 'Meditative Brotherhood');
+    assert.equal(matches.sourceId, '106AF612');
+    assert.equal(matches.source, 'Potato Chippy');
+    assert.equal(matches.targetId, '106AF611');
+    assert.equal(matches.target, 'Tini Poutini');
   });
   it('tether', () => {
     const lines = [
