@@ -46,7 +46,7 @@ const resetTrio = (data: Data, trio: string) => {
 };
 
 // Begin copy and paste from dragon_test.js.
-const modDistance = (mark: number, dragon: number) => {
+export const modDistance = (mark: number, dragon: number) => {
   const oneWay = (dragon - mark + 8) % 8;
   const otherWay = (mark - dragon + 8) % 8;
   const distance = Math.min(oneWay, otherWay);
@@ -54,7 +54,7 @@ const modDistance = (mark: number, dragon: number) => {
   return distance;
 };
 
-const badSpots = (mark: number, dragon: number) => {
+export const badSpots = (mark: number, dragon: number) => {
   // All spots between mark and dragon are bad.  If distance == 1,
   // then the dragon hits the spot behind the mark too.  e.g. N
   // mark, NE dragon will also hit NW.
@@ -78,7 +78,7 @@ const badSpots = (mark: number, dragon: number) => {
   return bad;
 };
 
-const findDragonMarks = (array: number[]): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
+export const findDragonMarks = (array: number[]): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
   const marks = [-1, -1, -1];
   let isWideThirdDive = false;
 
