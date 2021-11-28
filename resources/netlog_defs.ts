@@ -698,8 +698,7 @@ const logDefinitions = {
       data0: 15,
       data1: 16,
       data2: 17,
-      data3: 18,
-      data4: 19,
+      // Variable number of triplets here, but at least one.
     },
     playerIds: {
       2: 3,
