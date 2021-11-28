@@ -209,15 +209,18 @@ describe('regex tests', () => {
   });
   it('wasDefeated', () => {
     const lines = [
-      '[19:39:36.673] 19:Tini Poutini was defeated by Ovni.',
-      '[19:39:36.673] 19:The Scourge Of Meracydia was defeated by Unknown.',
-      '[19:39:36.673] 19:Potato Chippy was defeated by Tater Tot.',
+      '[09:42:40.835] Death 19:400002AB:Ovni:106AF612:Potato Chippy',
+      '[09:45:03.459] Death 19:400002D9:Ice Cage:E0000000:',
+      '[20:40:15.684] Death 19:106AF611:Tini Poutini:400069FE:The Manipulator',
     ];
+
     regexCaptureTest(Regexes.wasDefeated, lines);
 
     const matches = lines[0].match(Regexes.wasDefeated()).groups;
-    assert.equal(matches.target, 'Tini Poutini');
-    assert.equal(matches.source, 'Ovni');
+    assert.equal(matches.targetId, '400002AB');
+    assert.equal(matches.target, 'Ovni');
+    assert.equal(matches.sourceId, '106AF612');
+    assert.equal(matches.source, 'Potato Chippy');
   });
   it('hasHP', () => {
     const lines = [
