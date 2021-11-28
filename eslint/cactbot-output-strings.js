@@ -2,7 +2,7 @@ const t = require('@babel/types');
 const textProps = ['alarmText', 'alertText', 'infoText', 'tts'];
 
 /**
- * @type {import("eslint").Rule.RuleModule}
+ * @type {import('eslint').Rule.RuleModule}
  */
 const ruleModule = {
   meta: {
@@ -43,7 +43,7 @@ const ruleModule = {
         return propKeys;
 
       props.forEach((prop) => {
-        if (t.isProperty(prop)) {
+        if (prop.type === 'Property') {
           if (t.isIdentifier(prop.key))
             propKeys.push(prop.key.name);
           else if (t.isLiteral(prop.key))
@@ -67,8 +67,8 @@ const ruleModule = {
         return;
       const outputTemplateKey = {};
       for (
-        const outputString of node.properties.filter((s) =>
-          !t.isSpreadElement(s) && !t.isMemberExpression(s.value)
+        const outputString of node.properties.filter(
+          (s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value),
         )
       ) {
         // For each outputString...
@@ -104,6 +104,7 @@ const ruleModule = {
       },
       [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
         const props = getAllKeys(node.parent.parent.properties);
+
         if (props.find((prop) => prop === 'outputStrings')) {
           stack.inTriggerFunc = true;
           stack.outputParam = node.params[2] && node.params[2].name;
