@@ -379,4 +379,19 @@ describe('regex tests', () => {
     assert.equal(matches.placeName, 'The Copied Factory');
     assert.equal(matches.placeNameSub, 'Upper Stratum');
   });
+  it('systemLogMessage', () => {
+    const lines = [
+      '[10:38:40.066] SystemLogMessage 29:00:901:619A9200:00:3C',
+      '[10:50:13.565] SystemLogMessage 29:8004001E:7DD:FF5FDA02:E1B:00',
+      '[10:55:06.707] SystemLogMessage 29:8004001E:B3A:00:00:E0000000',
+    ];
+
+    regexCaptureTest(Regexes.systemLogMessage, lines);
+
+    const matches = lines[0].match(Regexes.systemLogMessage()).groups;
+    assert.equal(matches.id, '901');
+    assert.equal(matches.param0, '619A9200');
+    assert.equal(matches.param1, '00');
+    assert.equal(matches.param2, '3C');
+  });
 });

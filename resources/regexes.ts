@@ -214,6 +214,14 @@ const mapParams = [
   'placeNameSub',
   'capture',
 ] as const;
+const systemLogMessageParams = [
+  'timestamp',
+  'id',
+  'param0',
+  'param1',
+  'param2',
+  'capture',
+] as const;
 
 type StartsUsingParams = typeof startsUsingParams[number];
 type AbilityParams = typeof abilityParams[number];
@@ -236,6 +244,7 @@ type GameLogParams = typeof gameLogParams[number];
 type ChangeZoneParams = typeof changeZoneParams[number];
 type Network6dParams = typeof network6dParams[number];
 type MapParams = typeof mapParams[number];
+type SystemLogMessageParams = typeof systemLogMessageParams[number];
 
 export default class Regexes {
   /**
@@ -616,6 +625,24 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'regionName', f.regionName, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'placeName', f.placeName, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'placeNameSub', f.placeNameSub, '[^:]*?') + '$';
+    return Regexes.parse(str);
+  }
+
+  /*
+   * fields: id, field0, field1, field2, capture
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#29-systemlogmessage
+   */
+  static systemLogMessage(f?: Params<SystemLogMessageParams>): Regex<SystemLogMessageParams> {
+    if (typeof f === 'undefined')
+      f = {};
+    Regexes.validateParams(f, 'systemLogMessage', systemLogMessageParams);
+    const capture = Regexes.trueIfUndefined(f.capture);
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' SystemLogMessage 29:[^:]*?:' +
+      Regexes.maybeCapture(capture, 'id', f.id, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'param0', f.param0, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'param1', f.param1, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'param2', f.param2, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 

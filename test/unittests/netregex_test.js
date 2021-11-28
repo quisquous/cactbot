@@ -382,4 +382,20 @@ describe('netregex tests', () => {
     assert.equal(matches.placeName, 'The Copied Factory');
     assert.equal(matches.placeNameSub, 'Upper Stratum');
   });
+  it('systemLogMessage', () => {
+    const lines = [
+      '41|2021-11-21T10:38:40.0660000-08:00|00|901|619A9200|00|3C|c6fcd8a8b198a5da28b9cfe6a3f544f4',
+      '41|2021-11-21T10:50:13.5650000-08:00|8004001E|7DD|FF5FDA02|E1B|00|4eeb89399fce54820eb19e06b4d6d95a',
+      '41|2021-11-21T10:55:06.7070000-08:00|8004001E|B3A|00|00|E0000000|1f600f85ec8d36d2b04d233e19f93d39',
+    ];
+
+    regexCaptureTest(NetRegexes.systemLogMessage, lines);
+
+    const matches = lines[0].match(NetRegexes.systemLogMessage()).groups;
+    assert.equal(matches.type, '41');
+    assert.equal(matches.id, '901');
+    assert.equal(matches.param0, '619A9200');
+    assert.equal(matches.param1, '00');
+    assert.equal(matches.param2, '3C');
+  });
 });

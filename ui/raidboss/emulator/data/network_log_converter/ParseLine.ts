@@ -24,6 +24,7 @@ import { LineEvent37 } from './LineEvent0x25';
 import { LineEvent38 } from './LineEvent0x26';
 import { LineEvent39 } from './LineEvent0x27';
 import { LineEvent40 } from './LineEvent0x28';
+import { LineEvent41 } from './LineEvent0x29';
 import LogRepository from './LogRepository';
 
 export default class ParseLine {
@@ -113,6 +114,9 @@ export default class ParseLine {
         break;
       case 'LineEvent40':
         ret = new LineEvent40(repo, line, parts);
+        break;
+      case 'LineEvent41':
+        ret = new LineEvent41(repo, line, parts);
         break;
       default:
         ret = new LineEvent(repo, line, parts);
