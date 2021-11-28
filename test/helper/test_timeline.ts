@@ -1,31 +1,38 @@
 import fs from 'fs';
 import path from 'path';
+
 import chai from 'chai';
-import { TimelineParser } from '../../ui/raidboss/timeline_parser';
+
+import Regexes from '../../resources/regexes';
+import { LooseTriggerSet } from '../../types/trigger';
 import {
+  CommonReplacement,
   commonReplacement,
   partialCommonReplacementKeys,
 } from '../../ui/raidboss/common_replacement';
-import Regexes from '../../resources/regexes';
+import { TimelineParser, TimelineReplacement } from '../../ui/raidboss/timeline_parser';
 
 const { assert } = chai;
 
-const raidbossDataPath = './ui/raidboss/data/';
-
-const parseTimelineFileFromTriggerFile = (filepath) => {
+const parseTimelineFileFromTriggerFile = (filepath: string) => {
   const fileContents = fs.readFileSync(filepath, 'utf8');
-  const match = fileContents.match(/ {2}timelineFile: '(?<timelineFile>.*)',/);
-  if (!match)
+  const match = / {2}timelineFile: '(?<timelineFile>.*)',/.exec(fileContents);
+  if (!match?.groups?.timelineFile)
     throw new Error(`Error: Trigger file ${filepath} has no timelineFile attribute defined`);
   return match.groups.timelineFile;
 };
 
-const testFiles = [];
+type TestFile = {
+  timelineFile: string;
+  triggersFile: string;
+};
 
-const setup = (timelineFiles) => {
+const testFiles: TestFile[] = [];
+
+const setup = (timelineFiles: string[]) => {
   timelineFiles.forEach((timelineFile) => {
     // For each timeline file, ensure that its corresponding trigger file is pointing to it.
-    const filename = timelineFile.split('/').slice(-1)[0];
+    const filename = timelineFile.split('/').slice(-1)[0] ?? '';
     const triggerFilenameJS = timelineFile.replace('.txt', '.js');
     const triggerFilenameTS = timelineFile.replace('.txt', '.ts');
 
@@ -51,15 +58,28 @@ const setup = (timelineFiles) => {
   });
 };
 
-function getTestCases(triggersFile, timeline, trans, skipPartialCommon) {
-  const syncMap = new Map();
-  for (const key in trans.replaceSync)
-    syncMap.set(Regexes.parse(key), trans.replaceSync[key]);
-  const textMap = new Map();
-  for (const key in trans.replaceText)
-    textMap.set(Regexes.parse(key), trans.replaceText[key]);
+type ReplaceMap = Map<RegExp, string>;
 
-  const testCases = [
+type TestCase = {
+  type: keyof CommonReplacement;
+  items: Set<string>;
+  replace: ReplaceMap;
+};
+
+const getTestCases = (
+  triggersFile: string,
+  timeline: TimelineParser,
+  trans: TimelineReplacement,
+  skipPartialCommon?: boolean,
+) => {
+  const syncMap: ReplaceMap = new Map();
+  for (const [key, replaceSync] of Object.entries(trans.replaceSync ?? {}))
+    syncMap.set(Regexes.parse(key), replaceSync);
+  const textMap: ReplaceMap = new Map();
+  for (const [key, replaceText] of Object.entries(trans.replaceText ?? {}))
+    textMap.set(Regexes.parse(key), replaceText);
+
+  const testCases: TestCase[] = [
     {
       type: 'replaceSync',
       items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
@@ -75,11 +95,12 @@ function getTestCases(triggersFile, timeline, trans, skipPartialCommon) {
   // Add all common replacements, so they can be checked for collisions as well.
   for (const testCase of testCases) {
     const common = commonReplacement[testCase.type];
-    for (const key in common) {
+    for (const [key, localeText] of Object.entries(common)) {
       if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
         continue;
       const regexKey = Regexes.parse(key);
-      if (!common[key][trans.locale]) {
+      const transText = localeText[trans.locale];
+      if (!transText) {
         // To avoid throwing a "missing translation" error for
         // every single common translation, automatically add noops.
         testCase.replace.set(regexKey, key);
@@ -90,18 +111,22 @@ function getTestCases(triggersFile, timeline, trans, skipPartialCommon) {
           `${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`,
         );
       }
-      testCase.replace.set(regexKey, common[key][trans.locale]);
+      testCase.replace.set(regexKey, transText);
     }
   }
 
   return testCases;
-}
+};
 
-function getTestCasesWithoutPartialCommon(triggersFile, timeline, trans) {
+const getTestCasesWithoutPartialCommon = (
+  triggersFile: string,
+  timeline: TimelineParser,
+  trans: TimelineReplacement,
+) => {
   return getTestCases(triggersFile, timeline, trans, true);
-}
+};
 
-const testTimelineFiles = (timelineFiles) => {
+const testTimelineFiles = (timelineFiles: string[]): void => {
   describe('timeline test', () => {
     setup(timelineFiles);
 
@@ -112,16 +137,19 @@ const testTimelineFiles = (timelineFiles) => {
         const timelineFile = testFile.timelineFile;
         const triggersFile = testFile.triggersFile;
         let timelineText;
-        let triggerSet;
-        let timeline;
+        let triggerSet: LooseTriggerSet;
+        let timeline: TimelineParser;
 
         before(async () => {
           // Normalize path
           const importPath = '../../' +
             path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
           timelineText = String(fs.readFileSync(timelineFile));
-          triggerSet = (await import(importPath)).default;
-          timeline = new TimelineParser(timelineText, null, triggerSet.timelineTriggers);
+
+          // Dynamic imports don't have a type, so add type assertion.
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          triggerSet = (await import(importPath)).default as LooseTriggerSet;
+          timeline = new TimelineParser(timelineText, [], triggerSet.timelineTriggers ?? []);
         });
         // This test loads an individual raidboss timeline and makes sure
         // that timeline.js can parse it without errors.
@@ -153,7 +181,8 @@ const testTimelineFiles = (timelineFiles) => {
                 // For every translation for that timeline...
 
                 // Do a first pass to find which regexes, if any will apply to orig.
-                const translateMatches = [];
+                type TranslateMatch = [RegExp, string, string];
+                const translateMatches: TranslateMatch[] = [];
                 for (const [regex, replaceText] of testCase.replace) {
                   const replaced = orig.replace(regex, replaceText);
                   if (orig === replaced)
@@ -188,7 +217,7 @@ const testTimelineFiles = (timelineFiles) => {
                     assert.equal(
                       otherFirst,
                       otherSecond,
-                      `${triggersFile}:locale ${locale}: pre-translation collision on ${testCase.type} '${orig}' for '${regex}' and '${otherRegex}'`,
+                      `${triggersFile}:locale ${locale}: pre-translation collision on ${testCase.type} '${orig}' for '${regex.source}' and '${otherRegex.source}'`,
                     );
                   }
 
@@ -213,9 +242,7 @@ const testTimelineFiles = (timelineFiles) => {
                     assert.equal(
                       otherFirst,
                       otherSecond,
-                      `${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex}' => '${
-                        testCase.replace[regex]
-                      }', then '${otherRegex}'`,
+                      `${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex.source}' => '${replaced}', then '${otherRegex.source}'`,
                     );
                   }
                 }
@@ -244,7 +271,7 @@ const testTimelineFiles = (timelineFiles) => {
             const testCases = getTestCasesWithoutPartialCommon(triggersFile, timeline, trans);
 
             const ignore = timeline.GetMissingTranslationsToIgnore();
-            const isIgnored = (x) => {
+            const isIgnored = (x: string) => {
               for (const ig of ignore) {
                 if (ig.test(x))
                   return true;
@@ -292,8 +319,8 @@ const testTimelineFiles = (timelineFiles) => {
               for (const regex of testCase.replace.keys()) {
                 for (const bad of badRegex) {
                   assert.isNull(
-                    regex.source.match(bad),
-                    `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`,
+                    bad.exec(regex.source),
+                    `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex.source}'`,
                   );
                 }
               }
@@ -310,7 +337,7 @@ const testTimelineFiles = (timelineFiles) => {
               );
             } else if (regex.includes('will be sealed')) {
               assert(
-                regex.match('00:0839:.*will be sealed'),
+                /00:0839:.*will be sealed/.exec(regex),
                 `${timelineFile}:${sync.lineNumber} 'will be sealed' sync must be preceded by '00:0839:'`,
               );
             }
