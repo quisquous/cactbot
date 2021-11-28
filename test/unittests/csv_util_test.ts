@@ -1,14 +1,13 @@
-import CsvUtil, { cleanName } from '../../util/csv_util';
 import chai from 'chai';
+
+import { cleanName } from '../../util/csv_util';
 
 const { assert } = chai;
 
 describe('util/csv_util tests', () => {
   it('cleanName', () => {
-    [
+    const arr: [string, string, string][] = [
       ['', '', 'should return empty string'],
-      [undefined, undefined, 'should return undefined'],
-      [null, null, 'should return null'],
       ['Sastasha', 'Sastasha', 'should return the same'],
       ['The Tam-Tara Deepcroft', 'TheTamTaraDeepcroft', 'should remove space and dash'],
       ['Brayflox\'s Longstop', 'BrayfloxsLongstop', 'should remove quotes'],
@@ -27,6 +26,9 @@ describe('util/csv_util tests', () => {
         'ThePalaceOfTheDeadFloors1_10',
         'should add underline between numbers',
       ],
-    ].forEach(([actual, expected, message]) => assert.equal(cleanName(actual), expected, message));
+    ];
+    arr.forEach(([actual, expected, message]) => {
+      assert.equal(cleanName(actual), expected, message);
+    });
   });
 });
