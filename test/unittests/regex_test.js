@@ -208,9 +208,9 @@ describe('regex tests', () => {
   });
   it('gameLog', () => {
     const echoLines = [
-      '[12:18:38.000] 00:0038:cactbot wipe',
-      '[03:12:18.000] 00:0038:end',
-      '[03:12:18.000] 00:0038:hello world',
+      '[12:18:38.000] ChatLog 00:0038::cactbot wipe',
+      '[03:12:18.000] ChatLog 00:0038::end',
+      '[03:12:18.000] ChatLog 00:0038::hello world',
     ];
     regexCaptureTest(Regexes.echo, echoLines);
 
@@ -218,9 +218,9 @@ describe('regex tests', () => {
     assert.equal(matches.line, 'cactbot wipe');
 
     const dialogLines = [
-      '[18:44:08.000] 00:0044:Rhitahtyn sas Arvina:My shields are impregnable! Join the countless challengers who have dashed themselves against them!',
-      '[21:47:25.000] 00:0044:Hades:You are no match for my mastery of the arcane!',
-      '[13:52:19.000] 00:0044:Byakko:There is no turning back!',
+      '[18:44:08.000] ChatLog 00:0044:Rhitahtyn sas Arvina:My shields are impregnable! Join the countless challengers who have dashed themselves against them!',
+      '[21:47:25.000] ChatLog 00:0044:Hades:You are no match for my mastery of the arcane!',
+      '[13:52:19.000] ChatLog 00:0044:Byakko:There is no turning back!',
     ];
     regexCaptureTest(Regexes.dialog, dialogLines);
 
@@ -228,10 +228,11 @@ describe('regex tests', () => {
     assert.equal(matches.line, 'There is no turning back!');
 
     matches = dialogLines[2].match(Regexes.gameLog()).groups;
-    assert.equal(matches.line, 'Byakko:There is no turning back!');
+    assert.equal(matches.line, 'There is no turning back!');
+    assert.equal(matches.name, 'Byakko');
 
     const namedLines = [
-      '[17:56:54.000] 00:001d:Potato Chippy:You clap for the striking dummy.',
+      '[17:56:54.000] ChatLog 00:001d:Potato Chippy:You clap for the striking dummy.',
     ];
     regexCaptureTest(Regexes.gameNameLog, namedLines);
     regexCaptureTest(Regexes.gameNameLog, dialogLines);
@@ -242,9 +243,9 @@ describe('regex tests', () => {
     assert.equal(matches.line, 'There is no turning back!');
 
     const messageLines = [
-      '[23:12:47.000] 00:0839:An avatar of Absolute Virtue has manifested somewhere in Hydatos!',
-      '[19:39:13.000] 00:0839:The Hand of Erebos manifests!',
-      '[12:10:44.000] 00:0839:The Pools of Folly will be sealed off in 15 seconds!',
+      '[23:12:47.000] ChatLog 00:0839::An avatar of Absolute Virtue has manifested somewhere in Hydatos!',
+      '[19:39:13.000] ChatLog 00:0839::The Hand of Erebos manifests!',
+      '[12:10:44.000] ChatLog 00:0839::The Pools of Folly will be sealed off in 15 seconds!',
     ];
     regexCaptureTest(Regexes.message, messageLines);
 
@@ -286,12 +287,13 @@ describe('regex tests', () => {
   });
   it('changeZone', () => {
     const lines = [
-      '[20:29:29.752] 01:Changed Zone to The Lavender Beds.',
-      '[12:50:15.438] 01:Changed Zone to The Unending Coil Of Bahamut (Ultimate).',
+      '[20:29:29.752] Territory 01:123:The Lavender Beds',
+      '[12:50:15.438] Territory 01:456:The Unending Coil Of Bahamut (Ultimate)',
     ];
     regexCaptureTest(Regexes.changeZone, lines);
 
     const matches = lines[0].match(Regexes.changeZone()).groups;
+    assert.equal(matches.id, '123');
     assert.equal(matches.name, 'The Lavender Beds');
   });
   it('network6D', () => {

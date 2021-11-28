@@ -161,12 +161,11 @@ const tetherParams = [
 ] as const;
 const wasDefeatedParams = ['timestamp', 'target', 'source', 'capture'] as const;
 const hasHPParams = ['timestamp', 'name', 'hp', 'capture'] as const;
-const echoParams = ['timestamp', 'code', 'line', 'capture'] as const;
-const dialogParams = ['timestamp', 'code', 'line', 'name', 'capture'] as const;
-const messageParams = ['timestamp', 'code', 'line', 'capture'] as const;
-const gameLogParams = ['timestamp', 'code', 'line', 'capture'] as const;
-const gameNameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
-const changeZoneParams = ['timestamp', 'name', 'capture'] as const;
+const gameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
+const echoParams = gameLogParams;
+const dialogParams = gameLogParams;
+const messageParams = gameLogParams;
+const changeZoneParams = ['timestamp', 'id', 'name', 'capture'] as const;
 const network6dParams = [
   'timestamp',
   'instance',
@@ -196,7 +195,6 @@ type EchoParams = typeof echoParams[number];
 type DialogParams = typeof dialogParams[number];
 type MessageParams = typeof messageParams[number];
 type GameLogParams = typeof gameLogParams[number];
-type GameNameLogParams = typeof gameNameLogParams[number];
 type ChangeZoneParams = typeof changeZoneParams[number];
 type Network6dParams = typeof network6dParams[number];
 
@@ -548,7 +546,7 @@ export default class Regexes {
   }
 
   /**
-   * fields: code, line, name, capture
+   * fields: code, name, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
   static dialog(f?: Params<DialogParams>): Regex<DialogParams> {
@@ -557,7 +555,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'dialog', dialogParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 00:' +
+      ' ChatLog 00:' +
       Regexes.maybeCapture(capture, 'code', '0044') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
@@ -580,7 +578,7 @@ export default class Regexes {
   }
 
   /**
-   * fields: code, line, capture
+   * fields: code, name, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
   static gameLog(f?: Params<GameLogParams>): Regex<GameLogParams> {
@@ -589,29 +587,16 @@ export default class Regexes {
     Regexes.validateParams(f, 'gameLog', gameLogParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 00:' +
-      Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
-      Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
-    return Regexes.parse(str);
-  }
-
-  /**
-   * fields: code, name, line, capture
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
-   * Some game log lines have names in them, but not all.  All network log lines for these
-   * have empty fields, but these get dropped by the ACT FFXV plugin.
-   */
-  static gameNameLog(f?: Params<GameNameLogParams>): Regex<GameNameLogParams> {
-    if (typeof f === 'undefined')
-      f = {};
-    Regexes.validateParams(f, 'gameNameLog', gameNameLogParams);
-    const capture = Regexes.trueIfUndefined(f.capture);
-    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 00:' +
+      ' ChatLog 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '[^:]*') + ':' +
       Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
     return Regexes.parse(str);
+  }
+
+  // For backwards compatibility
+  static gameNameLog(f?: Params<GameLogParams>): Regex<GameLogParams> {
+    return Regexes.gameLog(f);
   }
 
   /**
@@ -648,7 +633,7 @@ export default class Regexes {
   }
 
   /**
-   * fields: name, capture
+   * fields: id, name, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
    */
   static changeZone(f?: Params<ChangeZoneParams>): Regex<ChangeZoneParams> {
@@ -657,8 +642,9 @@ export default class Regexes {
     Regexes.validateParams(f, 'changeZone', changeZoneParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 01:Changed Zone to ' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
+      ' Territory 01:' +
+      Regexes.maybeCapture(capture, 'id', f.id, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '$';
     return Regexes.parse(str);
   }
 

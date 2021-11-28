@@ -8,7 +8,6 @@ import Regexes from './regexes';
 // Differences from Regexes:
 // * may have more fields
 // * AddedCombatant npc id is broken up into npcNameId and npcBaseId
-// * gameLog always splits name into its own field (but previously wouldn't)
 
 const separator = '\\|';
 const matchDefault = '[^|]*';
