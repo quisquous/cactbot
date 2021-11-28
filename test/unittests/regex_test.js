@@ -364,4 +364,19 @@ describe('regex tests', () => {
     assert.equal(matches.data2, '02');
     assert.equal(matches.data3, '03');
   });
+  it('map', () => {
+    const lines = [
+      '[19:43:08.627] ChangeMap 28:578:Norvrandt:The Copied Factory:Upper Stratum',
+      '[19:46:49.383] ChangeMap 28:575:Norvrandt:Excavation Tunnels:',
+      '[19:49:19.818] ChangeMap 28:192:La Noscea:Mist:Mist Subdivision',
+    ];
+
+    regexCaptureTest(Regexes.map, lines);
+
+    const matches = lines[0].match(Regexes.map()).groups;
+    assert.equal(matches.id, '578');
+    assert.equal(matches.regionName, 'Norvrandt');
+    assert.equal(matches.placeName, 'The Copied Factory');
+    assert.equal(matches.placeNameSub, 'Upper Stratum');
+  });
 });

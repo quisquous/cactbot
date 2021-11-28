@@ -363,6 +363,9 @@ export default class NetRegexes {
     return parseHelper(params, 'nameToggle', defaultParams('NameToggle'));
   }
 
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#28-map
+   */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
     return parseHelper(params, 'map', defaultParams('Map'));
   }

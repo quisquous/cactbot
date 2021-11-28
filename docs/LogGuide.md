@@ -1799,9 +1799,6 @@ It will be sent when changing zones,
 but is also sent when changing subzones where the map changes
 (e.g. crossing a zone line while in a dungeon).
 
-The ACT log line is blank for this type,
-and the information is only emitted in the network log line.
-
 `regionName` and `placeName` are always present,
 but `placeNameSub` is optional.
 
