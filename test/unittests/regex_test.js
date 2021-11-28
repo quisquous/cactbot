@@ -277,9 +277,9 @@ describe('regex tests', () => {
   });
   it('statchange', () => {
     const lines = [
-      '[20:29:29.752] 0C:Player Stats: 23:311:4093:4245:295:280:340:4094:2496:2675:295:282:2334:578:380:0:382',
-      '[12:50:15.438] 0C:Player Stats: 17:311:348:1010:347:315:340:311:380:380:347:315:340:380:380:0:380',
-      '[01:11:57.108] 0C:Player Stats: 23:305:844:793:290:275:340:844:780:755:290:275:340:380:380:0:380',
+      '[20:29:29.752] PlayerStats 0C:23:311:4093:4245:295:280:340:4094:2496:2675:295:282:2334:578:380:0:382:400023BCF31276',
+      '[12:50:15.438] PlayerStats 0C:17:311:348:1010:347:315:340:311:380:380:347:315:340:380:380:0:380:400023BCF31276',
+      '[01:11:57.108] PlayerStats 0C:23:305:844:793:290:275:340:844:780:755:290:275:340:380:380:0:380:400023BCF31276',
     ];
     regexCaptureTest(Regexes.statChange, lines);
 
@@ -300,6 +300,7 @@ describe('regex tests', () => {
     assert.equal(matches.skillSpeed, '578');
     assert.equal(matches.spellSpeed, '380');
     assert.equal(matches.tenacity, '382');
+    assert.equal(matches.localContentId, '400023BCF31276');
   });
   it('changeZone', () => {
     const lines = [

@@ -147,6 +147,7 @@ const statChangeParams = [
   'skillSpeed',
   'spellSpeed',
   'tenacity',
+  'localContentId',
   'capture',
 ] as const;
 const tetherParams = [
@@ -621,7 +622,7 @@ export default class Regexes {
   /**
    * fields: job, strength, dexterity, vitality, intelligence, mind, piety, attackPower,
    *         directHit, criticalHit, attackMagicPotency, healMagicPotency, determination,
-   *         skillSpeed, spellSpeed, tenacity, capture
+   *         skillSpeed, spellSpeed, tenacity, localContentId, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
    */
   static statChange(f?: Params<StatChangeParams>): Regex<StatChangeParams> {
@@ -630,7 +631,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'statChange', statChangeParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 0C:Player Stats: ' +
+      ' PlayerStats 0C:' +
       Regexes.maybeCapture(capture, 'job', f.job, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'strength', f.strength, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'dexterity', f.dexterity, '\\d+') + ':' +
@@ -646,8 +647,9 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'determination', f.determination, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'skillSpeed', f.skillSpeed, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'spellSpeed', f.spellSpeed, '\\d+') +
-      ':0:' +
-      Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+');
+      ':[^:]*:' +
+      Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'localContentId', f.localContentId, '.*?') + '$';
     return Regexes.parse(str);
   }
 
