@@ -38,8 +38,9 @@ type TargetedResponseFunc = ResponseFunc<Data, TargetedMatches>;
 type TargetedFunc = TriggerFunc<Data, TargetedMatches, TriggerOutput<Data, TargetedMatches>>;
 type StaticResponseFunc = ResponseFunc<Data, Matches>;
 
-type Severity = 'info' | 'alert' | 'alarm';
-type SevText = 'infoText' | 'alertText' | 'alarmText';
+export const severityList = ['info', 'alert', 'alarm'] as const;
+export type Severity = typeof severityList[number];
+export type SevText = 'infoText' | 'alertText' | 'alarmText';
 
 export const builtInResponseStr = 'cactbot-builtin-response';
 
