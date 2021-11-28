@@ -711,7 +711,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'network6d', network6dParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 21:' +
+      ' Director 21:' +
       Regexes.maybeCapture(capture, 'instance', f.instance, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'command', f.command, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'data0', f.data0, '.*?') + ':' +
