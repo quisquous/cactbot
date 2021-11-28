@@ -1,15 +1,18 @@
 import fs from 'fs';
 import path from 'path';
+
 import chai from 'chai';
+
 import { walkDirSync } from '../../util/file_utils';
+
 const { assert } = chai;
 
-const testManifestFile = (file) => {
-  let manifestLines;
-  const dirList = [];
+const testManifestFile = (file: string) => {
+  let manifestLines: string[];
+  const dirList: string[] = [];
 
-  before(async () => {
-    const contents = fs.readFileSync(file) + '';
+  before((): void => {
+    const contents = fs.readFileSync(file).toString();
     // Split into lines, skipping any blank lines and trimming whitespace.
     manifestLines = contents.split('\n').filter((x) => !/^\s*$/.test(x)).map((x) => x.trim());
 
@@ -27,7 +30,7 @@ const testManifestFile = (file) => {
     /(?:^|\/)readme\.\w*$/i,
   ];
 
-  const shouldIgnoreFile = (file) => {
+  const shouldIgnoreFile = (file: string) => {
     for (const regex of ignorePathRegexes) {
       if (regex.test(file))
         return true;
@@ -58,7 +61,7 @@ const testManifestFile = (file) => {
   });
 };
 
-const testManifestFiles = (manifestFiles) => {
+const testManifestFiles = (manifestFiles: string[]): void => {
   describe('manifest test', () => {
     for (const file of manifestFiles)
       describe(`${file}`, () => testManifestFile(file));
