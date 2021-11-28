@@ -67,8 +67,8 @@ const ruleModule = {
         return;
       const outputTemplateKey = {};
       for (
-        const outputString of node.properties.filter(
-          (s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value),
+        const outputString of node.properties.filter((s) =>
+          !t.isSpreadElement(s) && !t.isMemberExpression(s.value)
         )
       ) {
         // For each outputString...
