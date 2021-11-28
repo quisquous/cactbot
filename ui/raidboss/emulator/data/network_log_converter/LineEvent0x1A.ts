@@ -1,5 +1,4 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
-import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
@@ -10,10 +9,6 @@ const fields = logDefinitions.GainsEffect.fields;
 // Deliberately don't flag this as LineEventSource or LineEventTarget
 // because 0x1A line values aren't accurate
 export class LineEvent0x1A extends LineEvent {
-  public readonly resolvedName: string;
-  public readonly resolvedTargetName: string;
-  public readonly fallbackResolvedTargetName: string;
-
   public readonly effectId: number;
   public readonly effect: string;
   public readonly durationFloat: number;
@@ -54,40 +49,7 @@ export class LineEvent0x1A extends LineEvent {
       despawn: this.timestamp,
       job: undefined,
     });
-
-    this.resolvedName = repo.resolveName(this.id, this.name);
-    this.resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
-
-    this.fallbackResolvedTargetName = repo.resolveName(
-      this.id,
-      this.name,
-      this.targetId,
-      this.targetName,
-    );
-
-    let stackCountText = '';
-    if (
-      this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.effectId)
-    )
-      stackCountText = ' (' + this.stacks.toString() + ')';
-
-    this.convertedLine = this.prefix() + this.targetId +
-      ':' + EmulatorCommon.properCase(this.targetName) +
-      ' gains the effect of ' + this.effect +
-      ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
-      ' for ' + this.durationString + ' Seconds.' + stackCountText;
   }
-
-  static showStackCountFor: readonly number[] = [
-    304, // Aetherflow
-    406, // Vulnerability Down
-    350, // Vulnerability Down
-    714, // Vulnerability Up
-    505, // Damage Up
-    1239, // Embolden
-    1297, // Embolden
-  ] as const;
 }
 
 export class LineEvent26 extends LineEvent0x1A {}

@@ -136,18 +136,27 @@ describe('regex tests', () => {
   });
   it('gainsEffect', () => {
     const lines = [
-      '[21:46:43.348] 1A:10595A8C:Papas Fritas gains the effect of Battle Litany from Potato Casserole for 20.00 Seconds.',
-      '[21:51:06.027] 1A:10686259:Patatas Bravas gains the effect of Doom from  for 10.00 Seconds.',
-      '[21:58:02.948] 1A:106CBE53:Potato Latke gains the effect of Aetherflow from Potato Latke for 9999.00 Seconds. (2)',
+      '[10:07:55.660] StatusAdd 1A:312:Battle Litany:20.00:10679611:Papas Fritas:105D3F8B:Potato Casserole:00:103650:110101',
+      '[10:00:03.137] StatusAdd 1A:8D1:Lightsteeped:39.95:E0000000::105C4F8B:Tini Poutini:01:103650:',
+      '[13:00:25.166] StatusAdd 1A:130:Aetherflow:9999.00:10697A5F:Potato Chippy:10697A5F:Potato Chippy:02:101484:101484',
     ];
+
     regexCaptureTest(Regexes.gainsEffect, lines);
 
-    const matches = lines[0].match(Regexes.gainsEffect()).groups;
-    assert.equal(matches.targetId, '10595A8C');
-    assert.equal(matches.target, 'Papas Fritas');
+    let matches = lines[0].match(Regexes.gainsEffect()).groups;
+    assert.equal(matches.effectId, '312');
     assert.equal(matches.effect, 'Battle Litany');
-    assert.equal(matches.source, 'Potato Casserole');
     assert.equal(matches.duration, '20.00');
+    assert.equal(matches.sourceId, '10679611');
+    assert.equal(matches.source, 'Papas Fritas');
+    assert.equal(matches.targetId, '105D3F8B');
+    assert.equal(matches.target, 'Potato Casserole');
+    assert.equal(matches.count, '00');
+
+    matches = lines[1].match(Regexes.gainsEffect()).groups;
+    assert.equal(matches.effectId, '8D1');
+    assert.equal(matches.effect, 'Lightsteeped');
+    assert.equal(matches.count, '01');
   });
   it('statusEffectExplicit', () => {
     const lines = [

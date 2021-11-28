@@ -111,11 +111,16 @@ const addedCombatantFullParams = [
 const removingCombatantParams = addedCombatantFullParams;
 const gainsEffectParams = [
   'timestamp',
+  'effectId',
+  'effect',
+  'duration',
+  'sourceId',
+  'source',
   'targetId',
   'target',
-  'effect',
-  'source',
-  'duration',
+  'count',
+  'targetMaxHp',
+  'sourceMaxHp',
   'capture',
 ] as const;
 const statusEffectExplicitParams = [
@@ -439,7 +444,8 @@ export default class Regexes {
     return Regexes.parse(str);
   }
 
-  // fields: targetId, target, effect, source, duration, capture
+  // fields: effectId, effect, duration, sourceId, source, targetId, target,
+  //         count, targetMaxHp, sourceMaxHp, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
   static gainsEffect(f?: Params<GainsEffectParams>): Regex<GainsEffectParams> {
     if (typeof f === 'undefined')
@@ -447,16 +453,17 @@ export default class Regexes {
     Regexes.validateParams(f, 'gainsEffect', gainsEffectParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1A:' +
+      ' StatusAdd 1A:' +
+      Regexes.maybeCapture(capture, 'effectId', f.effectId, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'effect', f.effect, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'duration', f.duration, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
-      ' gains the effect of ' +
-      Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
-      ' from ' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') +
-      ' for ' +
-      Regexes.maybeCapture(capture, 'duration', f.duration, '\\y{Float}') +
-      ' Seconds\\.';
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'count', f.count, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'sourceMaxHp', f.sourceMaxHp, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
