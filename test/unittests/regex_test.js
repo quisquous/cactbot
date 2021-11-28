@@ -7,17 +7,24 @@ const { assert } = chai;
 describe('regex tests', () => {
   it('startsUsing', () => {
     const lines = [
-      '[14:13:23.660] 14:5B2:Twintania starts using Death Sentence on Potato Chippy.',
-      '[12:25:03.586] 14:6CE:Phlegethon starts using Megiddo Flame on Unknown.',
-      '[12:50:05.414] 14:04:T\'ini Poutini starts using Mount on T\'ini Poutini.',
+      '[09:39:40.523] StartsCasting 14:106E0DB3:Potato Chippy:1D3F:Midare Setsugekka:40000284:Green Dragon:1.53:-389.807:224.858:238.695:-3.132169',
+      '[20:40:06.911] StartsCasting 14:400069FE:The Manipulator:F5C:Mortal Revolution:400069FE:The Manipulator:5.70:120.789:-90.37:0:1.872',
+      '[09:35:50.622] StartsCasting 14:103D4280:Tini Poutini:8B:Holy:103D4280:Tini Poutini:2.28:-80:92.3:0.01:-2.7113',
     ];
-    regexCaptureTest(Regexes.startsUsing, lines);
 
+    regexCaptureTest(Regexes.startsUsing, lines);
     const matches = lines[0].match(Regexes.startsUsing()).groups;
-    assert.equal(matches.id, '5B2');
-    assert.equal(matches.source, 'Twintania');
-    assert.equal(matches.ability, 'Death Sentence');
-    assert.equal(matches.target, 'Potato Chippy');
+    assert.equal(matches.sourceId, '106E0DB3');
+    assert.equal(matches.source, 'Potato Chippy');
+    assert.equal(matches.id, '1D3F');
+    assert.equal(matches.ability, 'Midare Setsugekka');
+    assert.equal(matches.targetId, '40000284');
+    assert.equal(matches.target, 'Green Dragon');
+    assert.equal(matches.castTime, '1.53');
+    assert.equal(matches.x, '-389.807');
+    assert.equal(matches.y, '224.858');
+    assert.equal(matches.z, '238.695');
+    assert.equal(matches.heading, '-3.132169');
   });
   it('ability', () => {
     const lines = [
