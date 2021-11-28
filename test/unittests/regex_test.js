@@ -103,6 +103,28 @@ describe('regex tests', () => {
     assert.equal(matches.npcNameId, '9321');
     assert.equal(matches.npcBaseId, '11632');
   });
+  it('removingCombatant', () => {
+    const lines = [
+      '[10:23:57.257] RemoveCombatant 04:401926AE:Sun Leech:00:3B:0000:00::3611:4021:0:15299:0:10000:::-402.98:348.53:136.83:2.27',
+      '[22:41:50.890] RemoveCombatant 04:10FFFFFF:Potato Chippy:1F:4E:0000:28:Jenova:0:0:70547:70547:10000:10000:::-717.19:-838.59:20.00:-2.84',
+    ];
+
+    regexCaptureTest(Regexes.removingCombatant, lines);
+
+    const matches = lines[0].match(Regexes.removingCombatant()).groups;
+    assert.equal(matches.id, '401926AE');
+    assert.equal(matches.name, 'Sun Leech');
+    assert.equal(matches.job, '00');
+    assert.equal(matches.level, '3B');
+    assert.equal(matches.world, '');
+    assert.equal(matches.npcNameId, '3611');
+    assert.equal(matches.npcBaseId, '4021');
+    assert.equal(matches.hp, '15299');
+    assert.equal(matches.x, '-402.98');
+    assert.equal(matches.y, '348.53');
+    assert.equal(matches.z, '136.83');
+    assert.equal(matches.heading, '2.27');
+  });
   it('gainsEffect', () => {
     const lines = [
       '[21:46:43.348] 1A:10595A8C:Papas Fritas gains the effect of Battle Litany from Potato Casserole for 20.00 Seconds.',
