@@ -191,7 +191,6 @@ const wasDefeatedParams = [
   'source',
   'capture',
 ] as const;
-const hasHPParams = ['timestamp', 'name', 'hp', 'capture'] as const;
 const gameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
 const echoParams = gameLogParams;
 const dialogParams = gameLogParams;
@@ -222,7 +221,6 @@ type StatChangeParams = typeof statChangeParams[number];
 type NameToggleParams = typeof nameToggleParams[number];
 type TetherParams = typeof tetherParams[number];
 type WasDefeatedParams = typeof wasDefeatedParams[number];
-type HasHPParams = typeof hasHPParams[number];
 type EchoParams = typeof echoParams[number];
 type DialogParams = typeof dialogParams[number];
 type MessageParams = typeof messageParams[number];
@@ -591,23 +589,6 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + '$';
-    return Regexes.parse(str);
-  }
-
-  /**
-   * fields: name, hp, capture
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0d-combatanthp
-   */
-  static hasHP(f?: Params<HasHPParams>): Regex<HasHPParams> {
-    if (typeof f === 'undefined')
-      f = {};
-    Regexes.validateParams(f, 'hasHP', hasHPParams);
-    const capture = Regexes.trueIfUndefined(f.capture);
-    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 0D:' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
-      ' HP at ' +
-      Regexes.maybeCapture(capture, 'hp', f.hp, '\\d+') + '%';
     return Regexes.parse(str);
   }
 

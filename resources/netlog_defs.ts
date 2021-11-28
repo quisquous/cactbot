@@ -143,51 +143,6 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  AddBuff: {
-    type: '05',
-    name: 'AddBuff',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  RemoveBuff: {
-    type: '06',
-    name: 'RemoveBuff',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  FlyingText: {
-    type: '07',
-    name: 'FlyingText',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  OutgoingAbility: {
-    type: '08',
-    name: 'OutgoingAbility',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  IncomingAbility: {
-    type: '09',
-    name: 'IncomingAbility',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
   PartyList: {
     type: '11',
     name: 'PartyList',
@@ -301,15 +256,6 @@ const logDefinitions = {
     },
     canAnonymize: true,
     lastInclude: true,
-  },
-  CombatantHP: {
-    type: '13',
-    name: 'CombatantHP',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
   },
   StartsUsing: {
     type: '20',
@@ -800,15 +746,6 @@ const logDefinitions = {
       timestamp: 1,
     },
     canAnonymize: false,
-  },
-  Timer: {
-    type: '255',
-    name: 'Timer',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
   },
   None: {
     type: '[0-9]+',
