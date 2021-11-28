@@ -230,9 +230,9 @@ describe('regex tests', () => {
   });
   it('tether', () => {
     const lines = [
-      '[21:49:14.345] 23:4000804B:Shadow of the Ancients:106CAF53:Dum Aloo:3CDF:0000:0011:106CAF53:000F:7F10:',
-      '[19:39:36.673] 23:40005B1A:Voidwalker:40005C4E:The Hand of Erebos:D1A8:0000:005C:40005C4E:000F:7F1E:',
-      '[12:17:54.515] 23:1032A977:French Fry:4000229C:Magic Pot:03AC:0000:0003:4000229C:000F:7FF1:',
+      '[21:49:14.345] Tether 23:4000804B:Shadow of the Ancients:106CAF53:Dum Aloo:3CDF:0000:0011:106CAF53:000F:7F10:',
+      '[19:39:36.673] Tether 23:40005B1A:Voidwalker:40005C4E:The Hand of Erebos:D1A8:0000:005C:40005C4E:000F:7F1E:',
+      '[12:17:54.515] Tether 23:1032A977:French Fry:4000229C:Magic Pot:03AC:0000:0003:4000229C:000F:7FF1:',
     ];
     regexCaptureTest(Regexes.tether, lines);
 
