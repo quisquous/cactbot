@@ -73,41 +73,35 @@ describe('regex tests', () => {
   });
   it('addedCombatant', () => {
     const lines = [
-      '[12:11:18.753] 03:4000226B:Added new combatant Valar.  Job: N/A Level: 50 Max HP: 10195 Max MP: 2800 Pos: (-461.2344,269.7031,41.6) (82100000002399).',
-      '[12:19:45.493] 03:103410A1:Added new combatant Pot Pie(Goblin).  Job: Brd Level: 50 Max HP: 6701 Max MP: 10000 Pos: (-109.8864,-43.24811,38.21077).',
-      '[19:20:54.327] 03:4000637B:Added new combatant Automaton Queen.  Job: N/A Level: 80 Max HP: 98170 Max MP: 10000 Pos: (94.95013,106.0116,-2.384186E-07) (82300000010490).',
+      '[10:23:45.841] AddCombatant 03:1059C805:Potato Chippy:1B:50:0:49:Balmung:0:0:91234:98567:10000:0:0:0:-103.6335:13.72225:18.00033:2.118315',
+      '[10:23:45.841] AddCombatant 03:400264F6:Earthen Aether:0:50:0:0::9321:11632:148000:148000:10000:0:0:0:90.73911:97.41268:7.152557E-07:-4.792213E-05',
+      '[10:23:45.841] AddCombatant 03:4000D2DC:Eos:0:50:10696f5f:0::1398:1008:96534:96534:10000:0:0:0:101.266:114.659:0:-4.792213E-05',
     ];
     regexCaptureTest(Regexes.addedCombatant, lines);
     regexCaptureTest(Regexes.addedCombatantFull, lines);
 
     let matches = lines[0].match(Regexes.addedCombatant()).groups;
-    assert.equal(matches.name, 'Valar');
+    assert.equal(matches.name, 'Potato Chippy');
 
     matches = lines[0].match(Regexes.addedCombatantFull()).groups;
-    assert.equal(matches.id, '4000226B');
-    assert.equal(matches.name, 'Valar');
-    assert.equal(matches.hp, '10195');
-    assert.equal(matches.x, '-461.2344');
-    assert.equal(matches.y, '269.7031');
-    assert.equal(matches.z, '41.6');
-    assert.equal(matches.npcId, '82100000002399');
+    assert.equal(matches.id, '1059C805');
+    assert.equal(matches.name, 'Potato Chippy');
+    assert.equal(matches.job, '1B');
+    assert.equal(matches.level, '50');
+    assert.equal(matches.world, 'Balmung');
+    assert.equal(matches.npcNameId, '0');
+    assert.equal(matches.npcBaseId, '0');
+    assert.equal(matches.hp, '98567');
+    assert.equal(matches.x, '-103.6335');
+    assert.equal(matches.y, '13.72225');
+    assert.equal(matches.z, '18.00033');
+    assert.equal(matches.heading, '2.118315');
 
     matches = lines[1].match(Regexes.addedCombatantFull()).groups;
-    assert.equal(matches.id, '103410A1');
-    // Optional.
-    assert.isUndefined(matches.npcId);
-  });
-  it('removingCombatant', () => {
-    const lines = [
-      '[19:21:04.737] 04:40006379:Removing combatant Demi-Phoenix.  Max HP: 561184. Pos: (86.62549,117.9675,0).',
-      '[19:22:02.069] 04:40006274:Removing combatant Eden.  Max HP: 21495808. Pos: (100,100,0).',
-      '[21:58:30.439] 04:40007FDF:Removing combatant Haurchefant Greystone.  Max HP: 68. Pos: (102.85,102.85,7.152558E-07).',
-    ];
-    regexCaptureTest(Regexes.removingCombatant, lines);
-
-    const matches = lines[0].match(Regexes.removingCombatant()).groups;
-    assert.equal(matches.name, 'Demi-Phoenix');
-    assert.equal(matches.hp, '561184');
+    assert.equal(matches.id, '400264F6');
+    assert.equal(matches.name, 'Earthen Aether');
+    assert.equal(matches.npcNameId, '9321');
+    assert.equal(matches.npcBaseId, '11632');
   });
   it('gainsEffect', () => {
     const lines = [
