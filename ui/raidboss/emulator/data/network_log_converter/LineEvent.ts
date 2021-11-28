@@ -1,3 +1,4 @@
+import logDefinitions, { LogDefinitionMap } from '../../../../../resources/netlog_defs';
 import { Job } from '../../../../../types/job';
 import EmulatorCommon, { getTimezoneOffsetMillis } from '../../EmulatorCommon';
 
@@ -10,43 +11,10 @@ const fields = {
 
 const unknownLogMessagePrefix = 'Unknown';
 
-const logMessagePrefix: { [decEvent: number]: string } = {
-  0x00: 'ChatLog',
-  0x01: 'Territory',
-  0x02: 'ChangePrimaryPlayer',
-  0x03: 'AddCombatant',
-  0x04: 'RemoveCombatant',
-  0x0b: 'PartyList',
-  0x0c: 'PlayerStats',
-  0x14: 'StartsCasting',
-  0x15: 'ActionEffect',
-  0x16: 'AOEActionEffect',
-  0x17: 'CancelAction',
-  0x18: 'DoTHoT',
-  0x19: 'Death',
-  0x1a: 'StatusAdd',
-  0x1b: 'TargetIcon',
-  0x1c: 'WaymarkMarker',
-  0x1d: 'SignMarker',
-  0x1e: 'StatusRemove',
-  0x1f: 'Gauge',
-  0x20: 'World',
-  0x21: 'Director',
-  0x22: 'NameToggle',
-  0x23: 'Tether',
-  0x24: 'LimitBreak',
-  0x25: 'EffectResult',
-  0x26: 'StatusList',
-  0x27: 'UpdateHp',
-  0x28: 'ChangeMap',
-  0x29: 'SystemLogMessage',
-  0xf9: 'Settings',
-  0xfa: 'Process',
-  0xfb: 'Debug',
-  0xfc: 'PacketDump',
-  0xfd: 'Version',
-  0xfe: 'Error',
-};
+const logMessagePrefix: { [type: string]: string } = {};
+const logDefsGeneric: LogDefinitionMap = logDefinitions;
+for (const def of Object.values(logDefsGeneric))
+  logMessagePrefix[def.type] = def.messageType;
 
 /**
  * Generic class to track an FFXIV log line
@@ -56,6 +24,7 @@ export default class LineEvent {
   public convertedLine: string;
   public invalid = false;
   public index = 0;
+  public readonly decEventStr: string;
   public readonly decEvent: number;
   public readonly hexEvent: string;
   public readonly timestamp: number;
@@ -65,7 +34,8 @@ export default class LineEvent {
   constructor(repo: LogRepository, public networkLine: string, parts: string[]) {
     const timestampString = parts[fields.timestamp] ?? '0';
     this.tzOffsetMillis = getTimezoneOffsetMillis(timestampString);
-    this.decEvent = parseInt(parts[fields.event] ?? '0');
+    this.decEventStr = parts[fields.event] ?? '00';
+    this.decEvent = parseInt(this.decEventStr);
     this.hexEvent = EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
     this.timestamp = new Date(timestampString).getTime();
     this.checksum = parts.slice(-1)[0] ?? '';
@@ -75,7 +45,7 @@ export default class LineEvent {
 
   prefix(): string {
     const timeString = EmulatorCommon.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
-    const logMessageName = logMessagePrefix[this.decEvent] ?? unknownLogMessagePrefix;
+    const logMessageName = logMessagePrefix[this.decEventStr] ?? unknownLogMessagePrefix;
     return `[${timeString}] ${logMessageName} ${this.hexEvent}:`;
   }
 
