@@ -563,11 +563,11 @@ export default class Regexes {
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
       ' NameToggle 22:' +
-      Regexes.maybeCapture(capture, 'id', f.id) + ':' +
-      Regexes.maybeCapture(capture, 'name', f.name) + ':' +
-      Regexes.maybeCapture(capture, 'targetId', f.targetId) + ':' +
-      Regexes.maybeCapture(capture, 'targetName', f.targetName) + ':' +
-      Regexes.maybeCapture(capture, 'toggle', f.toggle) + '$';
+      Regexes.maybeCapture(capture, 'id', f.id, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'name', f.name, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetName', f.targetName, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'toggle', f.toggle, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
