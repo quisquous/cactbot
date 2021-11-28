@@ -1,3 +1,5 @@
+import { TestMochaGlobal } from '../test_raidboss_data';
+
 import testManifestFiles from './test_manifest';
 import testTimelineFiles from './test_timeline';
 import testTriggerFiles from './test_trigger';
@@ -10,11 +12,7 @@ import testTriggerFiles from './test_trigger';
 // and runs them, this file will not be run.  Instead, test_raidboss_data.js
 // will call these test functions below itself.
 
-const annotatedGlobal: typeof global & {
-  triggerFiles?: string[];
-  manifestFiles?: string[];
-  timelineFiles?: string[];
-} = global;
+const annotatedGlobal: TestMochaGlobal = global;
 
 testTriggerFiles(annotatedGlobal.triggerFiles ?? []);
 testManifestFiles(annotatedGlobal.manifestFiles ?? []);
