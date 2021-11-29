@@ -9,17 +9,17 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.prod.ts",
-    "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
-    "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack serve --config webpack/webpack.dev.ts",
+    "build": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.prod.ts",
+    "build-gh-pages": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
+    "start": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack serve --config webpack/webpack.dev.ts",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
-    "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
-    "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
-    "lintfix": "node_modules/.bin/eslint --max-warnings=0 --fix ./",
-    "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
-    "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
-    "test": "node_modules/.bin/mocha",
-    "lint-staged": "node_modules/.bin/lint-staged",
+    "tsc-no-emit": "tsc --noEmit",
+    "lint": "eslint --max-warnings=0 ./",
+    "lintfix": "eslint --max-warnings=0 --fix ./",
+    "stylelint": "stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
+    "markdownlint": "markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
+    "test": "mocha",
+    "lint-staged": "lint-staged",
     "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
     "util": "node --loader ts-node/esm util/index.ts",
     "find-translations": "npm run util -- findTranslations",
@@ -35,7 +35,7 @@
     "@babel/core": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
-    "@babel/types": "7.12.*",
+    "@babel/types": "^7.16.0",
     "@types/argparse": "^1.0.38",
     "@types/chai": "^4.2.22",
     "@types/copy-webpack-plugin": "^8.0.0",
@@ -93,7 +93,7 @@
     "stylelint-config-standard": "^19.0.0",
     "tar-fs": "^2.1.1",
     "ts-loader": "^8.0.17",
-    "ts-node": "^9.1.1",
+    "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.9.0",
     "ttypescript": "^1.5.12",
     "typescript": "^4.3.5",
@@ -103,7 +103,7 @@
     "webpack-merge": "^5.8.0"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=16.12.0"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
