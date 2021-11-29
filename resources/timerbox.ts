@@ -67,27 +67,27 @@ export default class TimerBox extends HTMLElement {
     if (!o)
       return element;
 
-    if (o.duration)
+    if (typeof o.duration === 'number')
       element.duration = o.duration;
-    if (o.threshold)
+    if (typeof o.threshold === 'number')
       element.threshold = o.threshold;
-    if (o.scale)
+    if (typeof o.scale === 'number')
       element.scale = o.scale;
-    if (o.valuescale)
+    if (typeof o.valuescale === 'number')
       element.valuescale = o.valuescale;
-    if (o.bg)
+    if (typeof o.bg === 'string')
       element.bg = o.bg;
-    if (o.fg)
+    if (typeof o.fg === 'string')
       element.fg = o.fg;
-    if (o.toward)
+    if (typeof o.toward === 'string')
       element.toward = o.toward;
-    if (o.stylefill)
+    if (typeof o.stylefill === 'string')
       element.stylefill = o.stylefill;
-    if (o.hideafter)
+    if (typeof o.hideafter === 'number')
       element.hideafter = o.hideafter;
-    if (o.bigatzero)
+    if (typeof o.bigatzero === 'boolean')
       element.bigatzero = o.bigatzero;
-    if (o.roundupthreshold)
+    if (typeof o.roundupthreshold === 'boolean')
       element.roundupthreshold = o.roundupthreshold;
     return element;
   }
