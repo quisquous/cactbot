@@ -3,7 +3,6 @@
   "ts-node": {
     // This can be omitted when using ts-patch
     "compiler": "ttypescript",
-    "transpileOnly": true,
     "moduleTypes": {
       "webpack/*": "cjs",
       // Globs are also supported with the same behavior as tsconfig "include"
