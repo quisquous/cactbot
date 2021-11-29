@@ -1,10 +1,20 @@
 import contentList from '../../resources/content_list';
-import { coverage, coverageTotals } from './coverage_report';
-import ZoneInfo from '../../resources/zone_info';
 import ContentType from '../../resources/content_type';
+import { isLang, Lang, langToLocale } from '../../resources/languages';
+import { UnreachableCode } from '../../resources/not_reached';
+import ZoneInfo from '../../resources/zone_info';
+import { LocaleText } from '../../types/trigger';
+
+import { Coverage, CoverageEntry, CoverageTotalEntry, CoverageTotals } from './coverage.d';
+import { coverage, coverageTotals } from './coverage_report';
 
 import './coverage.css';
-import { langToLocale } from '../../resources/languages';
+
+const emptyTotal: CoverageTotalEntry = {
+  raidboss: 0,
+  oopsy: 0,
+  total: 0,
+};
 
 // TODO: these tables are pretty wide, add some sort of alternating highlight?
 // TODO: make it possible to click on a zone row and highlight/link to it.
@@ -44,9 +54,9 @@ const exVersionToName = {
     cn: '暗影之逆焰 (5.x)',
     ko: '칠흑의 반역자 (5.x)',
   },
-};
+} as const;
 
-const exVersionToShortName = {
+const exVersionToShortName: { [exVersion: string]: LocaleText } = {
   '0': {
     en: 'ARR',
     de: 'ARR',
@@ -81,7 +91,7 @@ const exVersionToShortName = {
   },
 };
 
-const contentTypeToLabel = {
+const contentTypeToLabel: { [contentType: number]: LocaleText } = {
   [ContentType.Raids]: {
     en: 'Raid',
     de: 'Raid',
@@ -122,7 +132,7 @@ const contentTypeToLabel = {
     cn: '行会令',
     ko: '길드작전',
   },
-};
+} as const;
 
 const contentTypeLabelOrder = [
   ContentType.UltimateRaids,
@@ -130,7 +140,7 @@ const contentTypeLabelOrder = [
   ContentType.Trials,
   ContentType.Dungeons,
   ContentType.Guildhests,
-];
+] as const;
 
 // This is also the order of the table columns.
 const zoneGridHeaders = {
@@ -183,7 +193,7 @@ const zoneGridHeaders = {
     ko: 'Oopsy',
   },
   // TODO: missing translation items
-};
+} as const;
 
 const miscStrings = {
   // Title at the top of the page.
@@ -230,11 +240,11 @@ const miscStrings = {
     cn: '错误：请先运行 npm run coverage-report 以生成数据。',
     ko: '에러: 데이터를 생성하려면 node npm run coverage-report를 실행하세요.',
   },
-};
+} as const;
 
-const translate = (obj, lang) => obj[lang] || obj['en'];
+const translate = (obj: LocaleText, lang: Lang) => obj[lang] ?? obj['en'];
 
-const addDiv = (container, cls, text) => {
+const addDiv = (container: HTMLElement, cls: string, text?: string) => {
   const div = document.createElement('div');
   div.classList.add(cls);
   if (text)
@@ -242,27 +252,28 @@ const addDiv = (container, cls, text) => {
   container.appendChild(div);
 };
 
-const buildExpansionGrid = (container, lang, totals) => {
+const buildExpansionGrid = (container: HTMLElement, lang: Lang, totals: CoverageTotals) => {
   // Labels.
   addDiv(container, 'label');
   addDiv(container, 'label', translate(miscStrings.overall, lang));
   for (const contentType of contentTypeLabelOrder) {
-    const text = translate(contentTypeToLabel[contentType], lang);
+    const label = contentTypeToLabel[contentType];
+    const text = label !== undefined ? translate(label, lang) : undefined;
     addDiv(container, 'label', text);
   }
   addDiv(container, 'label', translate(miscStrings.oopsy, lang));
 
   // By expansion.
-  for (const exVersion in exVersionToName) {
-    const expansionName = translate(exVersionToName[exVersion], lang);
+  for (const [exVersion, name] of Object.entries(exVersionToName)) {
+    const expansionName = translate(name, lang);
     addDiv(container, 'header', expansionName);
 
     const versionInfo = totals.byExpansion[exVersion];
-    const overall = versionInfo.overall;
+    const overall = versionInfo?.overall ?? emptyTotal;
     addDiv(container, 'data', `${overall.raidboss} / ${overall.total}`);
 
     for (const contentType of contentTypeLabelOrder) {
-      const accum = versionInfo.byContentType[contentType];
+      const accum: CoverageTotalEntry = versionInfo?.byContentType[contentType] ?? emptyTotal;
       const text = accum.total ? `${accum.raidboss} / ${accum.total}` : undefined;
       addDiv(container, 'data', text);
     }
@@ -274,40 +285,48 @@ const buildExpansionGrid = (container, lang, totals) => {
   addDiv(container, 'label');
   addDiv(container, 'data', `${totals.overall.raidboss} / ${totals.overall.total}`);
   for (const contentType of contentTypeLabelOrder) {
-    const accum = totals.byContentType[contentType];
+    const accum = totals.byContentType[contentType] ?? emptyTotal;
     const text = accum.total ? `${accum.raidboss} / ${accum.total}` : undefined;
     addDiv(container, 'data', text);
   }
   addDiv(container, 'data', `${totals.overall.oopsy} / ${totals.overall.total}`);
 };
 
-const buildZoneGrid = (container, lang, coverage) => {
-  for (const key in zoneGridHeaders)
-    addDiv(container, 'label', translate(zoneGridHeaders[key], lang));
+const buildZoneGrid = (container: HTMLElement, lang: Lang, coverage: Coverage) => {
+  for (const header of Object.values(zoneGridHeaders))
+    addDiv(container, 'label', translate(header, lang));
 
   // By expansion, then content list.
   for (const exVersion in exVersionToName) {
     for (const zoneId of contentList) {
+      if (zoneId === null)
+        continue;
       const zone = ZoneInfo[zoneId];
       if (!zone)
         continue;
       if (zone.exVersion.toString() !== exVersion)
         continue;
 
-      const zoneCoverage = coverage[zoneId] ? coverage[zoneId] : {
-        oopsy: {},
-        triggers: {},
+      const zoneCoverage: CoverageEntry = coverage[zoneId] ?? {
+        oopsy: { num: 0 },
+        triggers: { num: 0 },
         timeline: {},
       };
 
       // Build in order of zone grid headers, so the headers can be rearranged
       // and the data will follow.
-      const headerFuncs = {
+      const headerFuncs: Record<keyof typeof zoneGridHeaders, () => void> = {
         expansion: () => {
-          addDiv(container, 'text', translate(exVersionToShortName[zone.exVersion], lang));
+          const shortName = exVersionToShortName[zone.exVersion.toString()];
+          const text = shortName !== undefined ? translate(shortName, lang) : undefined;
+          addDiv(container, 'text', text);
         },
         type: () => {
-          addDiv(container, 'text', translate(contentTypeToLabel[zone.contentType], lang));
+          const label = zone.contentType !== undefined
+            ? contentTypeToLabel[zone.contentType]
+            : undefined;
+          const text = label !== undefined ? translate(label, lang) : undefined;
+          addDiv(container, 'text', text);
         },
         name: () => {
           let name = translate(zone.name, lang);
@@ -338,13 +357,13 @@ const buildZoneGrid = (container, lang, coverage) => {
         },
       };
 
-      for (const key in zoneGridHeaders)
-        headerFuncs[key]();
+      for (const func of Object.values(headerFuncs))
+        func();
     }
   }
 };
 
-const buildLanguageSelect = (container, lang) => {
+const buildLanguageSelect = (container: HTMLElement, lang: Lang) => {
   const langMap = {
     en: 'English',
     de: 'Deutsch',
@@ -353,12 +372,12 @@ const buildLanguageSelect = (container, lang) => {
     cn: '中文',
     ko: '한국어',
   };
-  for (const key in langMap) {
+  for (const [key, langStr] of Object.entries(langMap)) {
     let html = '';
     if (lang === key)
-      html = `[${langMap[key]}]`;
+      html = `[${langStr}]`;
     else
-      html = `[<a href="?lang=${key}">${langMap[key]}</a>]`;
+      html = `[<a href="?lang=${key}">${langStr}</a>]`;
 
     const div = document.createElement('div');
     div.innerHTML = html;
@@ -369,27 +388,43 @@ const buildLanguageSelect = (container, lang) => {
 document.addEventListener('DOMContentLoaded', () => {
   // Allow for `coverage.html?lang=de` style constructions.
   const params = new URLSearchParams(window.location.search);
-  const lang = params.get('lang') ? params.get('lang') : 'en';
+  const langStr = params.get('lang') ?? 'en';
+  // TODO: remove this later?
+  document.body.classList.add(`lang-${langStr}`);
+  const lang = langStr !== null && isLang(langStr) ? langStr : 'en';
+
   document.documentElement.lang = langToLocale(lang);
 
   const title = document.getElementById('title');
+  if (!title)
+    throw new UnreachableCode();
   title.innerText = translate(miscStrings.title, lang);
 
   const languageSelect = document.getElementById('language-select');
+  if (!languageSelect)
+    throw new UnreachableCode();
   buildLanguageSelect(languageSelect, lang);
 
   const description = document.getElementById('description-text');
+  if (!description)
+    throw new UnreachableCode();
   description.innerHTML = translate(miscStrings.description, lang);
 
-  if (Object.keys(coverageTotals).length === 0) {
+  if (coverageTotals.overall.total === 0) {
     const warning = document.getElementById('warning');
+    if (!warning)
+      throw new UnreachableCode();
     warning.innerText = translate(miscStrings.runGenerator, lang);
     return;
   }
 
   const expansionGrid = document.getElementById('expansion-grid');
+  if (!expansionGrid)
+    throw new UnreachableCode();
   buildExpansionGrid(expansionGrid, lang, coverageTotals);
 
   const zoneGrid = document.getElementById('zone-grid');
+  if (!zoneGrid)
+    throw new UnreachableCode();
   buildZoneGrid(zoneGrid, lang, coverage);
 });
