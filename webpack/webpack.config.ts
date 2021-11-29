@@ -82,6 +82,11 @@ export default (
         writeToDisk: true,
       },
       allowedHosts: 'all',
+      client: {
+        webSocketURL: {
+          hostname: 'localhost',
+        },
+      },
     },
     resolve: {
       extensions: ['.ts', '.js'],
