@@ -76,9 +76,18 @@ export default (
       assetModuleFilename: '[file][query]',
     },
     devServer: {
-      contentBase: path.join(__dirname, '../dist'),
-      writeToDisk: true,
-      disableHostCheck: true,
+      static: {
+        directory: path.join(__dirname, '../dist'),
+      },
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      allowedHosts: 'all',
+      client: {
+        webSocketURL: {
+          hostname: 'localhost',
+        },
+      },
     },
     resolve: {
       extensions: ['.ts', '.js'],
