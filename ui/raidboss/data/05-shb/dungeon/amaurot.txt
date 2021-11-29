@@ -45,8 +45,8 @@ hideall "--sync--"
 523.0 "Shrill Shriek" sync / 1[56]:Terminus Bellwether:3CCF:/
 525.0 "--untargetable--"
 525.0 "Adds (N)"
-561.3 "Adds (SW)" sync/ 03:........:Terminus Roiler:/  window 60,60
-610.9 "Adds (S)" sync/ 03:........:Terminus Pursuer:/  window 100,100
+561.3 "Adds (SW)" sync / 03:........:Terminus Roiler:/  window 60,60
+610.9 "Adds (S)" sync / 03:........:Terminus Pursuer:/  window 100,100
 800.0 "--sync--" sync / 14:Terminus Bellwether:3CD0:/ window 300,00
 840.0 "Burst" sync / 1[56]:Terminus Bellwether:3CD0:/ window 40,40
 

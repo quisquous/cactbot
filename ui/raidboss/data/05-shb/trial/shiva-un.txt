@@ -130,7 +130,7 @@ hideall "--Reset--"
 801.0 "--sync--" #sync / 1[56]:Shiva:53AE:/
 # If you push *really* fast and skip a 3a/3b weapon phase, you'll miss the melt jump.
 # So, fix that up with a combatant sync here.
-806.6 "--adds targetable--" sync/ 03:........:Ice Soldier:/  window 807,10
+806.6 "--adds targetable--" sync / 03:........:Ice Soldier:/  window 807,10
 807.6 "Dreams Of Ice" sync / 1[56]:Shiva:536A:/
 813.2 "Frost Blade" sync / 1[56]:Shiva:5366:/
 818.5 "Icebrand" sync / 1[56]:Shiva:5373:/
