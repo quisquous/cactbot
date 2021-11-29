@@ -4,6 +4,7 @@ import ZoneInfo from '../../resources/zone_info';
 import ContentType from '../../resources/content_type';
 
 import './coverage.css';
+import { langToLocale } from '../../resources/languages';
 
 // TODO: these tables are pretty wide, add some sort of alternating highlight?
 // TODO: make it possible to click on a zone row and highlight/link to it.
@@ -369,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Allow for `coverage.html?lang=de` style constructions.
   const params = new URLSearchParams(window.location.search);
   const lang = params.get('lang') ? params.get('lang') : 'en';
-  document.documentElement.lang = lang === 'cn' ? 'zh-CN' : lang;
+  document.documentElement.lang = langToLocale(lang);
 
   const title = document.getElementById('title');
   title.innerText = translate(miscStrings.title, lang);

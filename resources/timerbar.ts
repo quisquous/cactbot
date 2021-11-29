@@ -399,11 +399,11 @@ export default class TimerBar extends HTMLElement {
           display: none;
         }
         /* Korean better visibility CSS */
-        :host-context(.lang-ko) .text-container {
+        :lang(ko) .text-container {
           top: calc(50% - 1.5ex);
           height: calc(100% + 0.3ex);
         }
-        :host-context(.lang-ko) .timerbar-righttext {
+        :lang(ko) .timerbar-righttext {
           top: 0.3ex;
         }
       </style>

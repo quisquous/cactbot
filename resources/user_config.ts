@@ -1,7 +1,7 @@
 // TODO: Fix import/order
 /* eslint-disable import/order */
 import { CactbotConfigurator } from '../ui/config/config';
-import { isLang, Lang } from './languages';
+import { isLang, Lang, langToLocale } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleObject, LocaleText } from '../types/trigger';
@@ -264,9 +264,9 @@ class UserConfig {
       else
         options.DisplayLanguage = options.ParserLanguage || 'en';
 
-      document.documentElement.lang = options.DisplayLanguage === 'cn'
-        ? 'zh-CN'
-        : options.DisplayLanguage;
+      // TODO: remove this later?
+      document.documentElement.classList.add(`lang-${options.DisplayLanguage}`);
+      document.documentElement.lang = langToLocale(options.DisplayLanguage);
       this.addUnlockText(options.DisplayLanguage);
 
       // Handle processOptions after default language selection above,
