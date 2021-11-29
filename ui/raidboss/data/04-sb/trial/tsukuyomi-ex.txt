@@ -53,8 +53,8 @@ hideall "--Reset--"
 # Add phase
 781.0 "Nightbloom" sync / 1[56]:Tsukuyomi:2BC7:/ window 800,0
 781.8 "--untargetable--"
-792.3 "Homeland adds (E->W)" sync/ 03:........:Specter Of The Patriarch:/  window 40,20
-852.3 "Empire adds (SW->NW)" sync/ 03:........:Specter Of Asahi:/  window 160,20
+792.3 "Homeland adds (E->W)" sync / 03:........:Specter Of The Patriarch:/  window 40,20
+852.3 "Empire adds (SW->NW)" sync / 03:........:Specter Of Asahi:/  window 160,20
 886.3 "Enrage"
 
 1000.0 "Concentrativity" sync / 1[56]:Specter of Zenos:2BC8:/ window 1000,0

@@ -9,14 +9,14 @@ hideall "--sync--"
 7.4 "Cermet Pile" sync / 1[56]:Magitek Rearguard:209D:/
 15.0 "Garlean Fire" sync / 1[56]:Magitek Rearguard:209E:/
 30.6 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
-35.6 "Rearguard Mines" #sync/ 03:........:Rearguard Mine:/ 
+35.6 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/ 
 37.8 "Cermet Pile" sync / 1[56]:Magitek Rearguard:209D:/
 40.8 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
 43.4 "Garlean Fire" sync / 1[56]:Magitek Rearguard:209E:/
 48.9 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
 53.9 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
 60.9 "Cermet Pile" sync / 1[56]:Magitek Rearguard:209D:/
-68.5 "Rearguard Mines" #sync/ 03:........:Rearguard Mine:/ 
+68.5 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/ 
 
 70.7 "Cermet Pile" sync / 1[56]:Magitek Rearguard:209D:/
 73.7 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
@@ -26,14 +26,14 @@ hideall "--sync--"
 88.9 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
 91.6 "Garlean Fire" sync / 1[56]:Magitek Rearguard:209E:/
 97.2 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
-98.7 "Rearguard Mines" #sync/ 03:........:Rearguard Mine:/ 
+98.7 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/ 
 101.3 "Cermet Pile" sync / 1[56]:Magitek Rearguard:209D:/
 104.3 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
 107.0 "Garlean Fire" sync / 1[56]:Magitek Rearguard:209E:/
 112.5 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
 115.6 "Cermet Pile" sync / 1[56]:Magitek Rearguard:209D:/
 118.6 "Magitek Ray" sync / 1[56]:Rearguard Bit:20A1:/
-131.3 "Rearguard Mines" #sync/ 03:........:Rearguard Mine:/ 
+131.3 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/ 
 
 133.2 "Cermet Pile" sync / 1[56]:Magitek Rearguard:209D:/ jump 70.7
 136.2 "Magitek Ray"
@@ -50,31 +50,31 @@ hideall "--sync--"
 1000 "Start" sync / 00:0839::The Training Grounds will be sealed off/ window 1000,0
 1010.6 "Circle Of Death" sync / 1[56]:Magitek Hexadrone:20A2:/
 1018.9 "2-Tonze Magitek Missile" sync / 1[56]:Magitek Hexadrone:20A3:/
-1024.1 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+1024.1 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 1029.6 "Bits Activate"
 1039.6 "Circle Of Death" sync / 1[56]:Magitek Hexadrone:20A2:/
-1045.7 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+1045.7 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 1051.2 "Bits Activate"
 1049.8 "Circle Of Death" sync / 1[56]:Magitek Hexadrone:20A2:/
 1064.5 "Magitek Missiles" sync / 1[56]:Magitek Hexadrone:20A5:/
-1068.9 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+1068.9 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 1074.4 "Bits Activate"
 1077.3 "2-Tonze Magitek Missile" sync / 1[56]:Magitek Hexadrone:20A3:/
 
 1083.9 "Circle Of Death" sync / 1[56]:Magitek Hexadrone:20A2:/
-1090.0 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+1090.0 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 1095.5 "Bits Activate"
 1098.6 "Magitek Missiles" sync / 1[56]:Magitek Hexadrone:20A5:/
 1106.4 "2-Tonze Magitek Missile" sync / 1[56]:Magitek Hexadrone:20A3:/
-1117.9 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+1117.9 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 1123.4 "Bits Activate"
 1119.6 "Magitek Missiles" sync / 1[56]:Magitek Hexadrone:20A5:/
 1132.3 "Circle Of Death" sync / 1[56]:Magitek Hexadrone:20A2:/
-1138.7 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+1138.7 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 1144.2 "Bits Activate"
 1146.7 "2-Tonze Magitek Missile" sync / 1[56]:Magitek Hexadrone:20A3:/
 1156.8 "Magitek Missiles" sync / 1[56]:Magitek Hexadrone:20A5:/
-1166.2 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+1166.2 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 1171.7 "Bits Activate"
 1174.7 "2-Tonze Magitek Missile" sync / 1[56]:Magitek Hexadrone:20A3:/
 
@@ -100,7 +100,7 @@ hideall "--sync--"
 2079.9 "Gunsaw" duration 5.0  sync / 1[56]:Hypertuned Grynewaht:20AA:/
 2093.2 "Delay-Action Charge" sync / 1[56]:Hypertuned Grynewaht:20AD:/
 2093.2 "Clean Cut" #sync / 1[56]:Magitek Chakram:20B1:/
-2097.6 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+2097.6 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 2103.1 "Bits Activate"
 2108.2 "Chainsaw" duration 5.5 sync / 1[56]:Hypertuned Grynewaht:20A8:/
 2115.9 "Thermobaric Charge" sync / 1[56]:Hypertuned Grynewaht:20AF:/
@@ -113,7 +113,7 @@ hideall "--sync--"
 2162.9 "Delay-Action Charge" sync / 1[56]:Hypertuned Grynewaht:20AD:/
 2162.9 "Clean Cut" #sync / 1[56]:Magitek Chakram:20B1:/
 2167.4 "--sync--" sync / 1[56]:Hypertuned Grynewaht:20B0:/
-2168.5 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+2168.5 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 2174.0 "Bits Activate"
 2180.0 "Chainsaw" duration 5.5 sync / 1[56]:Hypertuned Grynewaht:20A8:/
 2187.7 "Thermobaric Charge" sync / 1[56]:Hypertuned Grynewaht:20AF:/
@@ -123,7 +123,7 @@ hideall "--sync--"
 2202.4 "Gunsaw" duration 5.0 sync / 1[56]:Hypertuned Grynewaht:20AA:/
 2215.7 "Delay-Action Charge" sync / 1[56]:Hypertuned Grynewaht:20AD:/
 2215.7 "Clean Cut" #sync / 1[56]:Magitek Chakram:20B1:/
-2218.2 "Hexadrone Bits" sync/ 03:........:Hexadrone Bit:/ 
+2218.2 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/ 
 2223.7 "Bits Activate"
 2228.7 "Chainsaw" duration 5.5 sync / 1[56]:Hypertuned Grynewaht:20A8:/
 2236.4 "Thermobaric Charge" sync / 1[56]:Hypertuned Grynewaht:20AF:/

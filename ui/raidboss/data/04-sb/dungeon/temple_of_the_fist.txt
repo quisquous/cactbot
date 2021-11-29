@@ -12,7 +12,7 @@ hideall "--sync--"
 17.8 "Radial Blaster" sync / 1[56]:Coeurl Sruti:1FD3:/
 22.0 "Pounce" sync / 1[56]:Coeurl Sruti:1FD1:/
 
-38.5 "--Smriti Appears--" sync/ 03:........:Coeurl Smriti:/  window 10,10
+38.5 "--Smriti Appears--" sync / 03:........:Coeurl Smriti:/  window 10,10
 46.5 "Wide Blaster" sync / 1[56]:Coeurl Smriti:1FD4:/ window 15,15
 46.5 "Radial Blaster" sync / 1[56]:Coeurl Sruti:1FD3:/
 52.6 "Pounce x2" sync / 1[56]:Coeurl Smriti:1FD1:/

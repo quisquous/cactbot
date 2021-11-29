@@ -37,8 +37,8 @@ hideall "--sync--"
 
 # chimney + train cars
 300 "--sync--" sync / 1[56]:Phantom Train:28B3:/ window 500,500
-305 "(T/H) Ghosts" sync/ 03:........:Agony:/ 
-309 "(DPS) Ghosts" sync/ 03:........:Malice:/ 
+305 "(T/H) Ghosts" sync / 03:........:Agony:/ 
+309 "(DPS) Ghosts" sync / 03:........:Malice:/ 
 
 
 491 "--sync--" sync / 1[56]:Phantom Train:28A8:/ window 500,500

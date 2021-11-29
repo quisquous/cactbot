@@ -149,7 +149,7 @@ hideall "--sync--"
 2209.6 "Foul Nail" #sync / 1[56]:Shisui Yohi:1F87:/
 
 # Phase 3: 75% -> 60%, introduction to adds
-2300.0 "--adds--" sync/ 03:........:Naishi-No-Kami:/  window 300,0
+2300.0 "--adds--" sync / 03:........:Naishi-No-Kami:/  window 300,0
 2303.4 "Foul Nail" sync / 1[56]:Shisui Yohi:1F87:/
 2313.5 "Mad Stare" sync / 1[56]:Shisui Yohi:1F82:/
 

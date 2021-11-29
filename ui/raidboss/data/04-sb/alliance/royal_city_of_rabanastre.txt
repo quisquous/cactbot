@@ -19,7 +19,7 @@ hideall "--start--"
 # Ice phase
 27.6 "Unbind" sync / 1[56]:Mateus, The Corrupt:2633:/
 33.6 "--sync--" sync / 1[56]:Mateus, The Corrupt:26A2:/
-34.3 "--Aqua Sphere Adds--" sync/ 03:........:Aqua Sphere:/ 
+34.3 "--Aqua Sphere Adds--" sync / 03:........:Aqua Sphere:/ 
 57.5 "Flash-Freeze" sync / 1[56]:Mateus, The Corrupt:2647:/
 66.7 "--sync--" sync / 1[56]:Mateus, The Corrupt:2637:/
 74.6 "Flash-Freeze" sync / 1[56]:Mateus, The Corrupt:2647:/
@@ -31,7 +31,7 @@ hideall "--start--"
 127.8 "--sync--" sync / 1[56]:Mateus, The Corrupt:263B:/
 139.9 "Blizzard IV" sync / 1[56]:Mateus, The Corrupt:263D:/
 152.1 "Flash-Freeze" sync / 1[56]:Mateus, The Corrupt:2647:/
-165.4 "--Flume Toad Adds--" sync/ 03:........:Flume Toad:/ 
+165.4 "--Flume Toad Adds--" sync / 03:........:Flume Toad:/ 
 192.5 "Snowpierce 1" sync / 1[56]:Icicle:2640:/
 # ??? More flume toads, hard to tell from logs
 214.6 "Snowpierce 2" sync / 1[56]:Icicle:2640:/
@@ -41,7 +41,7 @@ hideall "--start--"
 # Adds
 259.2 "--untargetable--" # ??? from video
 259.8 "--sync--" sync / 1[56]:Mateus, The Corrupt:266C:/ window 260,20
-262.9 "--Azure Guard Adds--" sync/ 03:........:Azure Guard:/ 
+262.9 "--Azure Guard Adds--" sync / 03:........:Azure Guard:/ 
 333.2 "--enrage--" # ??? estimating from video
 
 # End of add phase aoe
@@ -50,7 +50,7 @@ hideall "--start--"
 # loop
 524.3 "Unbind" sync / 1[56]:Mateus, The Corrupt:2633:/ window 200,200 jump 27.6
 530.3 "--sync--" #sync / 1[56]:Mateus, The Corrupt:26A2:/
-531.0 "--Aqua Sphere Adds--" #sync/ 03:........:Aqua Sphere:/ 
+531.0 "--Aqua Sphere Adds--" #sync / 03:........:Aqua Sphere:/ 
 554.2 "Flash-Freeze" #sync / 1[56]:Mateus, The Corrupt:2647:/
 563.4 "--sync--" #sync / 1[56]:Mateus, The Corrupt:2637:/
 571.3 "Flash-Freeze" #sync / 1[56]:Mateus, The Corrupt:2647:/
@@ -192,7 +192,7 @@ hideall "--start--"
 2189.4 "Crush Helm" sync / 1[56]:Rofocale:2680:/ duration 3.4
 
 2199.3 "--invulnerable--" # ??? from video, no debuff in logs, can push to this by hp%
-2201.3 "Archaeodemon Adds" sync/ 03:........:Archaeodemon:/  window 300,300
+2201.3 "Archaeodemon Adds" sync / 03:........:Archaeodemon:/  window 300,300
 2208.3 "--lock out--" # ??? from video
 
 # TODO: could trigger instead off of Rofocale losing Sprint which happens ~here

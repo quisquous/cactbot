@@ -29,8 +29,8 @@ hideall "--Reset--"
 
 
 ### Phase 2: Adds
-127.8 "--Patriarch/Matriarch Adds--" sync/ 03:........:Specter Of The Matriarch:/  window 30,10
-174.5 "--Empire/Homeland Adds--" sync/ 03:........:Specter Of The Empire:/  window 80,10
+127.8 "--Patriarch/Matriarch Adds--" sync / 03:........:Specter Of The Matriarch:/  window 30,10
+174.5 "--Empire/Homeland Adds--" sync / 03:........:Specter Of The Empire:/  window 80,10
 # TODO: Specter of Asahi shows up alone after all other adds are dead, so can't have a timeline entry.
 
 400.0 "Concentrativity" sync / 1[56]:Specter of Zenos:2BEF:/ window 400,0
