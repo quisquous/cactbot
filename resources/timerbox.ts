@@ -67,27 +67,27 @@ export default class TimerBox extends HTMLElement {
     if (!o)
       return element;
 
-    if (typeof o.duration !== 'undefined' && o.duration !== null)
+    if (typeof o.duration === 'number')
       element.duration = o.duration;
-    if (typeof o.threshold !== 'undefined' && o.threshold !== null)
+    if (typeof o.threshold === 'number')
       element.threshold = o.threshold;
-    if (typeof o.scale !== 'undefined' && o.scale !== null)
+    if (typeof o.scale === 'number')
       element.scale = o.scale;
-    if (typeof o.valuescale !== 'undefined' && o.valuescale !== null)
+    if (typeof o.valuescale === 'number')
       element.valuescale = o.valuescale;
-    if (typeof o.bg !== 'undefined' && o.bg !== null)
+    if (typeof o.bg === 'string')
       element.bg = o.bg;
-    if (typeof o.fg !== 'undefined' && o.fg !== null)
+    if (typeof o.fg === 'string')
       element.fg = o.fg;
-    if (typeof o.toward !== 'undefined' && o.toward !== null)
+    if (typeof o.toward === 'string')
       element.toward = o.toward;
-    if (typeof o.stylefill !== 'undefined' && o.stylefill !== null)
+    if (typeof o.stylefill === 'string')
       element.stylefill = o.stylefill;
-    if (typeof o.hideafter !== 'undefined' && o.hideafter !== null)
+    if (typeof o.hideafter === 'number')
       element.hideafter = o.hideafter;
-    if (typeof o.bigatzero !== 'undefined' && o.bigatzero !== null)
+    if (typeof o.bigatzero === 'boolean')
       element.bigatzero = o.bigatzero;
-    if (typeof o.roundupthreshold !== 'undefined' && o.roundupthreshold !== null)
+    if (typeof o.roundupthreshold === 'boolean')
       element.roundupthreshold = o.roundupthreshold;
     return element;
   }

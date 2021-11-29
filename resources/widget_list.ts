@@ -46,17 +46,17 @@ export default class WidgetList extends HTMLElement {
     if (!o)
       return element;
 
-    if (typeof o.toward !== 'undefined' && o.toward !== null)
+    if (typeof o.toward === 'string')
       element.toward = o.toward;
-    if (typeof o.elementwidth !== 'undefined' && o.elementwidth !== null)
+    if (typeof o.elementwidth === 'string')
       element.elementwidth = o.elementwidth;
-    if (typeof o.elementheight !== 'undefined' && o.elementheight !== null)
+    if (typeof o.elementheight === 'string')
       element.elementheight = o.elementheight;
-    if (typeof o.rowcolsize !== 'undefined' && o.rowcolsize !== null)
+    if (typeof o.rowcolsize === 'number')
       element.rowcolsize = o.rowcolsize;
-    if (typeof o.maxnumber !== 'undefined' && o.maxnumber !== null)
+    if (typeof o.maxnumber === 'number')
       element.maxnumber = o.maxnumber;
-    if (typeof o.scale !== 'undefined' && o.scale !== null)
+    if (typeof o.scale === 'number')
       element.scale = o.scale;
 
     return element;

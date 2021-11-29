@@ -67,33 +67,33 @@ export default class TimerBar extends HTMLElement {
     if (!o)
       return element;
 
-    if (typeof o.duration !== 'undefined' && o.duration !== null)
+    if (typeof o.duration === 'number')
       element.duration = o.duration;
-    if (typeof o.value !== 'undefined' && o.value !== null)
+    if (typeof o.value === 'number')
       element.value = o.value;
-    if (typeof o.elapsed !== 'undefined' && o.elapsed !== null)
+    if (typeof o.elapsed === 'number')
       element.elapsed = o.elapsed;
-    if (typeof o.hideafter !== 'undefined' && o.hideafter !== null)
+    if (typeof o.hideafter === 'number')
       element.hideafter = o.hideafter;
-    if (typeof o.lefttext !== 'undefined' && o.lefttext !== null)
+    if (typeof o.lefttext === 'string')
       element.lefttext = o.lefttext;
-    if (typeof o.centertext !== 'undefined' && o.centertext !== null)
+    if (typeof o.centertext === 'string')
       element.centertext = o.centertext;
-    if (typeof o.righttext !== 'undefined' && o.righttext !== null)
+    if (typeof o.righttext === 'string')
       element.righttext = o.righttext;
-    if (typeof o.width !== 'undefined' && o.width !== null)
+    if (typeof o.width === 'string')
       element.width = o.width;
-    if (typeof o.height !== 'undefined' && o.height !== null)
+    if (typeof o.height === 'string')
       element.height = o.height;
-    if (typeof o.bg !== 'undefined' && o.bg !== null)
+    if (typeof o.bg === 'string')
       element.bg = o.bg;
-    if (typeof o.fg !== 'undefined' && o.fg !== null)
+    if (typeof o.fg === 'string')
       element.fg = o.fg;
-    if (typeof o.stylefill !== 'undefined' && o.stylefill !== null)
+    if (typeof o.stylefill === 'string')
       element.stylefill = o.stylefill;
-    if (typeof o.toward !== 'undefined' && o.toward !== null)
+    if (typeof o.toward === 'string')
       element.toward = o.toward;
-    if (typeof o.loop !== 'undefined' && o.loop !== null)
+    if (typeof o.loop === 'boolean')
       element.loop = o.loop;
     return element;
   }

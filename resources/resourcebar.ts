@@ -51,33 +51,33 @@ export default class ResourceBar extends HTMLElement {
     if (!o)
       return element;
 
-    if (typeof o.value !== 'undefined' && o.value !== null)
+    if (typeof o.value === 'string')
       element.value = o.value;
-    if (typeof o.maxvalue !== 'undefined' && o.maxvalue !== null)
+    if (typeof o.maxvalue === 'string')
       element.maxvalue = o.maxvalue;
-    if (typeof o.lefttext !== 'undefined' && o.lefttext !== null)
+    if (typeof o.lefttext === 'string')
       element.lefttext = o.lefttext;
-    if (typeof o.centertext !== 'undefined' && o.centertext !== null)
+    if (typeof o.centertext === 'string')
       element.centertext = o.centertext;
-    if (typeof o.righttext !== 'undefined' && o.righttext !== null)
+    if (typeof o.righttext === 'string')
       element.righttext = o.righttext;
-    if (typeof o.width !== 'undefined' && o.width !== null)
+    if (typeof o.width === 'string')
       element.width = o.width;
-    if (typeof o.height !== 'undefined' && o.height !== null)
+    if (typeof o.height === 'string')
       element.height = o.height;
-    if (typeof o.bg !== 'undefined' && o.bg !== null)
+    if (typeof o.bg === 'string')
       element.bg = o.bg;
-    if (typeof o.fg !== 'undefined' && o.fg !== null)
+    if (typeof o.fg === 'string')
       element.fg = o.fg;
-    if (typeof o.toward !== 'undefined' && o.toward !== null)
+    if (typeof o.toward === 'string')
       element.toward = o.toward;
-    if (typeof o.stylefill !== 'undefined' && o.stylefill !== null)
+    if (typeof o.stylefill === 'string')
       element.stylefill = o.stylefill;
-    if (typeof o.extravalue !== 'undefined' && o.extravalue !== null)
+    if (typeof o.extravalue === 'string')
       element.extravalue = o.extravalue;
-    if (typeof o.extracolor !== 'undefined' && o.extracolor !== null)
+    if (typeof o.extracolor === 'string')
       element.extracolor = o.extracolor;
-    if (typeof o.scale !== 'undefined' && o.scale !== null)
+    if (typeof o.scale === 'string')
       element.scale = o.scale;
 
     return element;
