@@ -2,7 +2,6 @@ import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { Configuration as WebpackConfiguration } from 'webpack';
@@ -27,6 +26,7 @@ export default (
     if (
       [
         'config',
+        'coverage',
         'eureka',
         'jobs',
         'oopsyraidsyLive',
@@ -75,9 +75,18 @@ export default (
       assetModuleFilename: '[file][query]',
     },
     devServer: {
-      contentBase: path.join(__dirname, '../dist'),
-      writeToDisk: true,
-      disableHostCheck: true,
+      static: {
+        directory: path.join(__dirname, '../dist'),
+      },
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      allowedHosts: 'all',
+      client: {
+        webSocketURL: {
+          hostname: 'localhost',
+        },
+      },
     },
     resolve: {
       extensions: ['.ts', '.js'],
@@ -159,7 +168,6 @@ export default (
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new ForkTsCheckerWebpackPlugin(),
       new MiniCssExtractPlugin(),
       ...htmlPluginRules,
       new CopyPlugin({

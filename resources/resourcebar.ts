@@ -51,33 +51,33 @@ export default class ResourceBar extends HTMLElement {
     if (!o)
       return element;
 
-    if (o.value)
+    if (typeof o.value === 'string')
       element.value = o.value;
-    if (o.maxvalue)
+    if (typeof o.maxvalue === 'string')
       element.maxvalue = o.maxvalue;
-    if (o.lefttext)
+    if (typeof o.lefttext === 'string')
       element.lefttext = o.lefttext;
-    if (o.centertext)
+    if (typeof o.centertext === 'string')
       element.centertext = o.centertext;
-    if (o.righttext)
+    if (typeof o.righttext === 'string')
       element.righttext = o.righttext;
-    if (o.width)
+    if (typeof o.width === 'string')
       element.width = o.width;
-    if (o.height)
+    if (typeof o.height === 'string')
       element.height = o.height;
-    if (o.bg)
+    if (typeof o.bg === 'string')
       element.bg = o.bg;
-    if (o.fg)
+    if (typeof o.fg === 'string')
       element.fg = o.fg;
-    if (o.toward)
+    if (typeof o.toward === 'string')
       element.toward = o.toward;
-    if (o.stylefill)
+    if (typeof o.stylefill === 'string')
       element.stylefill = o.stylefill;
-    if (o.extravalue)
+    if (typeof o.extravalue === 'string')
       element.extravalue = o.extravalue;
-    if (o.extracolor)
+    if (typeof o.extracolor === 'string')
       element.extracolor = o.extracolor;
-    if (o.scale)
+    if (typeof o.scale === 'string')
       element.scale = o.scale;
 
     return element;
