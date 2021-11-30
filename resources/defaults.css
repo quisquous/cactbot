@@ -21,8 +21,7 @@ body {
   will-change: content;
 }
 
-:lang(ja) .text,
-.lang-ja .text {
+:lang(ja) .text {
   font-family:
     "BIZ UDPゴシック",
     "BIZ UDPGothic",
@@ -34,8 +33,7 @@ body {
     sans-serif;
 }
 
-:lang(zh-CN) .text,
-.lang-cn .text {
+:lang(zh-CN) .text {
   font-family:
     "黑体",
     "SimHei",
