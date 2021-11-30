@@ -10,7 +10,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus' }),
             netRegexJa: NetRegexes.startsUsing({ id: '3DBC', source: '量産型カーリア' }),
             netRegexCn: NetRegexes.startsUsing({ id: '3DBC', source: '量产型卡利亚' }),
-            netRegexKo: NetRegexes.startsUsing({ id: '3DBC', source: '양산형 칼리아' }),
+            netRegexKo: NetRegexes.startsUsing({ id: '3DBC', source: '양산형 칼리야' }),
             condition: (data) => data.CanStun() || data.CanSilence(),
             response: Responses.stun(),
         },
