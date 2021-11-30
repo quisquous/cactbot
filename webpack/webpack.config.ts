@@ -78,7 +78,7 @@ export default (
   ];
 
   if (!isCI)
-    plugins.push(new ForkTsCheckerWebpackPlugin());
+    plugins.unshift(new ForkTsCheckerWebpackPlugin());
 
   return {
     entry: entries,
