@@ -69,7 +69,7 @@ hideall "--sync--"
 473.6 "Enrage"
 
 ### Phase 4 55 -> 0%
-600.0 "--sync--" sync / 14:Earthen Fury:28C:/ window 600,0 
+600.0 "--sync--" sync / 14:Earthen Fury:28C:/ window 600,0
 601.1 "Earthen Fury" sync / 1[56]:Titan:28C:/
 
 614.1 "Landslide" sync / 1[56]:Titan:28A:/
@@ -88,12 +88,12 @@ hideall "--sync--"
 684.2 "Weight Of The Land" sync / 1[56]:Titan:284:/ window 26,24
 690.3 "Tumult x2" duration 2.5 #sync / 1[56]:Titan:282:/
 696.5 "Rock Throw" sync / 1[56]:Titan:285:/
-703.6 "Landslide" sync /Titan:285:/
+703.6 "Landslide" sync / 1[56]:Titan:28A:/
 709.7 "Rock Buster" sync / 1[56]:Titan:281:/
 713.7 "Weight Of The Land" sync / 1[56]:Titan:284:/
 719.8 "Tumult x2" duration 2.5 #sync / 1[56]:Titan:282:/ window 28,23
 727.0 "Rock Throw" sync / 1[56]:Titan:285:/ window 29,28 jump 667.0
- 
+
 734.1 "Landslide"
 740.2 "Rock Buster"
 744.2 "Weight Of The Land"

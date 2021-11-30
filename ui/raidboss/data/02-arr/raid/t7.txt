@@ -7,7 +7,6 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 
 ### Phase 1 (100%)
-0.0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
 0.0 "--sync--" sync / 00:0839::Bioweapon Storage will be sealed off/ window 10,10
 6.4 "Tail Slap" sync / 1[56]:Melusine:7A8:/ window 7,0
@@ -52,11 +51,11 @@ hideall "--sync--"
 196.6 "Circle Of Flames x2" #sync / 1[56]:Melusine:7AA:/
 
 ### Phase 2 (80%): shriek, 3 adds 30 seconds apart
-300.0 "--sync--" sync /:Melusine HP at 79%/ window 300,0
+# Note: This used to be synced from a HP% log line that is no longer present.
 306.6 "Tail Slap" sync / 1[56]:Melusine:7A8:/ window 10,10
-345.6 "Cursed Voice" sync / 1[56]:Melusine:7AC:/
+345.6 "Cursed Voice" sync / 1[56]:Melusine:7AC:/ window 155,10
 314.6 "Circle Of Flames x2" #sync / 1[56]:Melusine:7AA:/
-319.0 "Cursed Shriek" sync / 1[56]:Melusine:7AF:/ window 300,30 duration 11
+319.0 "Cursed Shriek" sync / 1[56]:Melusine:7AF:/ window 319,30 duration 11
 322.6 "Tail Slap" sync / 1[56]:Melusine:7A8:/
 328.2 "Circle Blade" sync / 1[56]:Melusine:7AB:/
 330.0 "Deathdancer Add (NE)"
@@ -112,7 +111,7 @@ hideall "--sync--"
 
 
 ### Phase 3 (59%): 4 archer adds, exploding floor
-800.0 "--sync--" sync /:Melusine HP at 59%/ window 800,0
+# Note: This used to be synced from a HP% log line that is no longer present.
 812.0 "Cursed Voice" sync / 1[56]:Melusine:7AC:/ window 12,10
 814.0 "Circle Of Flames x2" #sync / 1[56]:Melusine:7AA:/
 
