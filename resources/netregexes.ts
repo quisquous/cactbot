@@ -5,11 +5,6 @@ import { CactbotBaseRegExp } from '../types/net_trigger';
 import logDefinitions, { LogDefinitionTypes } from './netlog_defs';
 import Regexes from './regexes';
 
-// Differences from Regexes:
-// * may have more fields
-// * AddedCombatant npc id is broken up into npcNameId and npcBaseId
-// * gameLog always splits name into its own field (but previously wouldn't)
-
 const separator = '\\|';
 const matchDefault = '[^|]*';
 
@@ -368,7 +363,19 @@ export default class NetRegexes {
     return parseHelper(params, 'nameToggle', defaultParams('NameToggle'));
   }
 
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#28-map
+   */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
     return parseHelper(params, 'map', defaultParams('Map'));
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#29-systemlogmessage
+   */
+  static systemLogMessage(
+    params?: NetParams['SystemLogMessage'],
+  ): CactbotBaseRegExp<'SystemLogMessage'> {
+    return parseHelper(params, 'systemLogMessage', defaultParams('SystemLogMessage'));
   }
 }

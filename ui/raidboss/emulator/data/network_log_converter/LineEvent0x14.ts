@@ -1,5 +1,4 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
-import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent, { LineEventAbility, LineEventSource, LineEventTarget } from './LineEvent';
 import LogRepository from './LogRepository';
@@ -58,13 +57,6 @@ export class LineEvent0x14 extends LineEvent implements LESource, LETarget, LEAb
       spawn: this.timestamp,
       despawn: this.timestamp,
     });
-
-    const target = this.targetName.length === 0 ? 'Unknown' : this.targetName;
-
-    this.convertedLine = this.prefix() + this.abilityIdHex +
-      ':' + EmulatorCommon.properCase(this.name) +
-      ' starts using ' + this.abilityName +
-      ' on ' + EmulatorCommon.properCase(target) + '.';
   }
 }
 

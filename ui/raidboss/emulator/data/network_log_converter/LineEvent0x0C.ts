@@ -23,6 +23,7 @@ export class LineEvent0x0C extends LineEvent {
   public readonly skillSpeed: string;
   public readonly spellSpeed: string;
   public readonly tenacity: string;
+  public readonly localContentId: string;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
@@ -43,9 +44,7 @@ export class LineEvent0x0C extends LineEvent {
     this.skillSpeed = parts[fields.skillSpeed] ?? '';
     this.spellSpeed = parts[fields.spellSpeed] ?? '';
     this.tenacity = parts[fields.tenacity] ?? '';
-
-    this.convertedLine = this.prefix() +
-      'Player Stats: ' + parts.slice(2, -1).join(':').replace(/\|/g, ':');
+    this.localContentId = parts[fields.localContentId] ?? '';
   }
 }
 
