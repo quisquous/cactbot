@@ -25,15 +25,15 @@
   display: none;
 }
 
-#timeline-container.lang-fr {
+#timeline-container:lang(fr) {
   width: 300px;
 }
 
-#timeline-container.lang-de {
+#timeline-container:lang(de) {
   width: 300px;
 }
 
-#timeline-container.lang-ko {
+#timeline-container:lang(ko) {
   font-size: 15px;
   width: 250px;
   height: 140px;
@@ -151,7 +151,7 @@
   transition: all var(--transition-time);
 }
 
-.lang-ko .timer-bar {
+:lang(ko) .timer-bar {
   height: 23px;
 }
 
