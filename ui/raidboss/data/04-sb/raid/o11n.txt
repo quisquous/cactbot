@@ -53,11 +53,11 @@ hideall "--sync--"
 570.6 "Executable 2" sync / 1[56]:Level Checker:35A8:/
 574.6 "Reset" sync / 1[56]:Level Checker:35AA:/
 578.6 "Reformat" sync / 1[56]:Level Checker:35A9:/
-587.6 "--sync--" sync /:327A:Level Checker:/
+587.6 "--sync--" sync / 14:Level Checker:327A:/
 611.6 "Force Quit" sync / 1[56]:Level Checker:327A:/
 
 ## Delta Attack
-1000.0 "--sync--" sync /Engaging Delta Attack protocol/ window 1500,100
+1000.0 "--sync--" sync / 00:0044:Omega:Program failure detected/ window 1500,100
 1007.0 "--sync--" sync / 14:Omega:327B:/ window 1500,100
 1037.0 "Delta Attack" sync / 1[56]:Omega:327B:/ window 1500,100
 1048.4 "--targetable--"

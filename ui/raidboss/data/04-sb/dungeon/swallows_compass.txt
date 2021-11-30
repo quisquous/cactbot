@@ -136,7 +136,7 @@ hideall "--sync--"
 
 # This is a safe sync. The usage immediately after the intermission is 2BB2 from Dasheng.
 #
-2590.3 "--sync--" sync /2BB3:Shadow Of The Sage/ window 2590.3,10
+2590.3 "--sync--" sync / 14:Shadow Of The Sage:2BB3:/ window 2590.3,10
 2600.0 "Splitting Hairs" sync / 1[56]:Shadow Of The Sage:2BB3:/ window 2600,5
 2608.0 "Equal Of Heaven" sync / 1[56]:Qitian Dasheng:2BB4:/
 2610.0 "Five-Fingered Punishment?" sync / 1[56]:Shadow Of The Sage:2BB0:/ jump 2451.1
