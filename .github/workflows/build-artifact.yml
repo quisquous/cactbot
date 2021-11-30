@@ -82,8 +82,8 @@ jobs:
 
 
     - name: Build JavaScript UI Module Bundles
-      run: |
-        npm run build
+      run: npm run build
+      timeout-minutes: 10
 
     - name: Generate artifact
       shell: bash
