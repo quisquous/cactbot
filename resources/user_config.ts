@@ -264,7 +264,7 @@ class UserConfig {
       else
         options.DisplayLanguage = options.ParserLanguage || 'en';
 
-      // TODO: remove this later?
+      // TODO: left for now as backwards compatibility with user css.  Remove this later??
       document.documentElement.classList.add(`lang-${options.DisplayLanguage}`);
       document.documentElement.lang = langToLocale(options.DisplayLanguage);
       this.addUnlockText(options.DisplayLanguage);

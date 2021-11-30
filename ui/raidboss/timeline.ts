@@ -486,7 +486,7 @@ export class TimelineUI {
     if (!this.root)
       throw new Error('can\'t find timeline-container');
 
-    // TODO: remove this later?
+    // TODO: left for now as backwards compatibility with user css.  Remove this later??
     this.root.classList.add(`lang-${this.lang}`);
     this.root.lang = langToLocale(this.lang);
     if (this.options.Skin)
