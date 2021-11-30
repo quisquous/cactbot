@@ -228,6 +228,12 @@ export class PlayerStateTracker {
     return this.partyIds.has(this.petIdToOwnerId[id] ?? id);
   }
 
+  IsPlayerInParty(id?: string): boolean {
+    if (id === undefined)
+      return false;
+    return this.partyIds.has(id);
+  }
+
   OnAbility(line: string, splitLine: string[]): void {
     // Abilities can not miss everybody (e.g. Battle Voice never hitting the source)
     // so check both target and source.
@@ -269,7 +275,9 @@ export class PlayerStateTracker {
 
   OnGainsEffect(line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
-    if (!targetId || !this.IsInParty(targetId))
+    // Do not consider pets gaining effects here.
+    // Summoner pets (e.g. Demi-Phoenix) gain party buffs (e.g. Embolden), with no sourceId/source.
+    if (!targetId || !this.IsPlayerInParty(targetId))
       return;
 
     const effectId = splitLine[logDefinitions.GainsEffect.fields.effectId];
@@ -312,7 +320,7 @@ export class PlayerStateTracker {
 
   OnLosesEffect(line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
-    if (!targetId || !this.IsInParty(targetId))
+    if (!targetId || !this.IsPlayerInParty(targetId))
       return;
 
     const effectId = splitLine[logDefinitions.GainsEffect.fields.effectId];
