@@ -214,13 +214,13 @@ hideall "--sync--"
 # Enrage (when one dies)
 2700.0 "--sync--" sync / 14:Gretel:5C73:/ window 700,0
 2700.0 "--sync--" sync / 14:Hansel:5C74:/ window 700,0
-2708.0 "Lamentation" sync /(:Gretel:5C73:|:Hansel:5C74:)/ window 100,100
+2708.0 "Lamentation" sync / 1[56]:(Gretel:5C73|Hansel:5C74):/ window 100,100
 2713.8 "Seed Of Magic Beta" sync / 1[56]:(Gretel|Hansel):5C75:/
-2718.1 "Lamentation" #sync /(:Gretel:5C73:|:Hansel:5C74:)/
+2718.1 "Lamentation" #sync / 1[56]:(Gretel:5C73|Hansel:5C74):/
 2723.9 "Seed Of Magic Beta" #sync / 1[56]:(Gretel|Hansel):5C75:/
-2728.2 "Lamentation" #sync /(:Gretel:5C73:|:Hansel:5C74:)/
+2728.2 "Lamentation" #sync / 1[56]:(Gretel:5C73|Hansel:5C74):/
 2734.0 "Seed Of Magic Beta" #sync / 1[56]:(Gretel|Hansel):5C75:/
-2738.3 "Lamentation" #sync /(:Gretel:5C73:|:Hansel:5C74:)/
+2738.3 "Lamentation" #sync / 1[56]:(Gretel:5C73|Hansel:5C74):/
 
 
 ### Assorted Trash
