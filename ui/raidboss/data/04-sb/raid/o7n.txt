@@ -12,7 +12,7 @@ hideall "--sync--"
 39 "Load" sync / 1[56]:Guardian:275C:/
 
 # Ultros
-200 "--sync--" sync /Guardian gains the effect of Ultros/ window 2000,2000
+200 "--sync--" sync / 1A:5D1:Ultros  Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
 203 "Ink" sync / 1[56]:Guardian:275D:/
 209 "Diffractive Plasma" sync / 1[56]:Guardian:276E:/
 219 "Tentacle Simulation" sync / 1[56]:Guardian:275E:/
@@ -29,7 +29,7 @@ hideall "--sync--"
 284 "Load" sync / 1[56]:Guardian:275C:/
 
 # Dadaluma
-400 "--sync--" sync /Guardian gains the effect of Dadaluma/ window 2000,2000
+400 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
 404 "Shockwave" sync / 1[56]:Guardian:2766:/
 415 "--sync--" sync / 1[56]:Guardian:276B:/ jump 1215 # rare version
 424 "Chakra Burst" sync / 1[56]:Guardian:276A:/
@@ -40,7 +40,7 @@ hideall "--sync--"
 460 "Load" sync / 1[56]:Guardian:275C:/
 
 # Air Force
-600 "--sync--" sync /Guardian gains the effect of Air Force/ window 2000,2000
+600 "--sync--" sync / 1A:5D2:Air Force Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
 604 "Diffractive Laser" sync / 1[56]:Guardian:2761:/
 613 "Missile Simulation" sync / 1[56]:Guardian:2764:/
 614 "--sync--" sync / 1[56]:Guardian:276F:/ jump 1014 # rare version
@@ -54,7 +54,7 @@ hideall "--sync--"
 688 "Load" sync / 1[56]:Guardian:275C:/
 
 # Bibliotaph
-800 "--sync--" sync /Guardian gains the effect of Bibliotaph/ window 2000,2000
+800 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
 817 "Demon Simulation" sync / 1[56]:Guardian:2752:/
 824 "Run Program" sync / 1[56]:Guardian:276F:/
 838 "Burst/Darkness" sync / 1[56]:Bibliotaph:29(BF|C0):/

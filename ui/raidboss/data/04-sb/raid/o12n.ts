@@ -211,6 +211,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Warnung. Erhöhte Wahrscheinlichkeit einer Niederlage',
         'Omega(?!-)': 'Omega',
@@ -287,6 +288,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……敗北の危険性が上昇……',
         'Omega(?!-)': 'オメガ',
@@ -325,6 +327,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
@@ -363,6 +366,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': '오메가',
         'Omega-M': '오메가 M',

@@ -44,7 +44,7 @@ hideall "--sync--"
 1211.6 "--sync--" sync / 1[56]:Chaos:3215:/
 1218.3 "Stray Flames" sync / 1[56]:Chaos:316B:/
 1224.2 "Stray Spray" sync / 1[56]:Chaos:316C:/
-1500.0 "--sync--" sync /YOU DARE!/ window 500,10
+1500.0 "--sync--" sync / 00:0044:Chaos:The crystal\.\.\.destroyed\!\?/ window 500,10
 1503.0 "Soul of Chaos" sync / 1[56]:Chaos:316A:/ window 500,10
 1513.1 "--targetable--"
 # fake window into Water->Earth loop
@@ -78,7 +78,7 @@ hideall "--sync--"
 2212.8 "--sync--" sync / 1[56]:Chaos:3215:/
 2219.5 "Stray Flames" sync / 1[56]:Chaos:316B:/
 2225.4 "Stray Spray" sync / 1[56]:Chaos:316C:/
-2500.0 "--sync--" sync /YOU DARE!/ window 500,10
+2500.0 "--sync--" sync / 00:0044:Chaos:The crystal\.\.\.destroyed\!\?/ window 500,10
 2503.0 "Soul of Chaos" sync / 1[56]:Chaos:316A:/ window 500,10
 # fake window into Fire->Air loop
 2529.5 "Chaotic Dispersion" sync / 1[56]:Chaos:314F:/ window 50,50 jump 3212.6

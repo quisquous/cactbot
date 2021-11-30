@@ -21,10 +21,10 @@ hideall "--sync--"
 17.2 "Protean Wave" sync / 1[56]:Living Liquid:EF5:/
 18.8 "Protean Wave" sync / 1[56]:Living Liquid:EF6:/
 21.9 "Fluid Swing" sync / 1[56]:Living Liquid:EF3:/
-25.0 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+25.0 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 32.3 "Fluid Swing" sync / 1[56]:Living Liquid:EF3:/
 44.4 "Sluice" sync / 1[56]:Living Liquid:EFA:/
-49.6 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+49.6 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 54.9 "Fluid Swing" sync / 1[56]:Living Liquid:EF3:/
 56.8 "--untargetable--"
 58.9 "--sync--" sync / 1[56]:Hydrate Core:F28:/
@@ -87,13 +87,13 @@ hideall "--sync--"
 294.6 "Cascade 1" sync / 1[56]:Living Liquid:EFE:/ window 300,10
 304.8 "Ferrofluid" sync / 1[56]:Living Liquid:F01:/
 306.0 "Magnetism/Repel" sync / 1[56]:Living Liquid:F1[35]:/
-310.0 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+310.0 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 315.3 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 325.4 "Sluice" sync / 1[56]:Living Liquid:EFA:/
 328.6 "Protean Wave" sync / 1[56]:Living Liquid:EF5:/
 330.3 "Protean Wave" sync / 1[56]:Living Liquid:EF6:/
 334.4 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
-340.5 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+340.5 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 345.8 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 355.9 "Sluice" sync / 1[56]:Living Liquid:EFA:/
 361.0 "Digititis" sync / 1[56]:Living Liquid:F00:/
@@ -103,10 +103,10 @@ hideall "--sync--"
 380.1 "Throttle" #sync / 1[56]:Living Liquid:F02:/
 384.0 "Fluid Claw" sync / 1[56]:Liquid Limb:F0D:/
 385.0 "--targetable--"
-385.3 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+385.3 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 390.6 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 398.7 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
-402.8 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+402.8 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 418.1 "Digititis" sync / 1[56]:Living Liquid:F00:/
 422.3 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 426.4 "Splash x6" #sync /:Living Liquid::EF4:/ duration 5.5
@@ -136,13 +136,13 @@ hideall "--sync--"
 516.1 "Cascade 4" sync / 1[56]:Living Liquid:EFE:/ window 40,40
 526.3 "Ferrofluid" sync / 1[56]:Living Liquid:F01:/
 527.5 "Magnetism/Repel" sync / 1[56]:Living Liquid:F1[35]:/
-531.5 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+531.5 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 537.0 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 547.1 "Sluice" sync / 1[56]:Living Liquid:EFA:/
 550.4 "Protean Wave" sync / 1[56]:Living Liquid:EF5:/
 552.1 "Protean Wave" sync / 1[56]:Living Liquid:EF6:/
 556.2 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
-562.3 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+562.3 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 567.6 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 577.7 "Sluice" sync / 1[56]:Living Liquid:EFA:/
 582.8 "Digititis" sync / 1[56]:Living Liquid:F00:/
@@ -152,10 +152,10 @@ hideall "--sync--"
 602.0 "Throttle" #sync / 1[56]:Living Liquid:F02:/
 605.9 "Fluid Claw" sync / 1[56]:Liquid Limb:F0D:/
 606.9 "--targetable--"
-607.1 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+607.1 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 612.4 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 620.5 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
-624.6 "Splash x3" #sync /:Living Liquid::EF4:/ duration 2.2
+624.6 "Splash x3" #sync / 1[56]:Living Liquid:EF4:/ duration 2.2
 639.9 "Digititis" sync / 1[56]:Living Liquid:F00:/
 644.0 "Fluid Swing" sync / 1[56]:Living Liquid:EFC:/
 648.1 "Splash x6" #sync /:Living Liquid::EF4:/ duration 5.5

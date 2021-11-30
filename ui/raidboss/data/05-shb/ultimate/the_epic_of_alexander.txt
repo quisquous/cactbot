@@ -49,7 +49,7 @@ hideall "--sync--"
 142.1 "Cascade Enrage" sync / 1[56]:Living Liquid:49B3:/
 
 ### Transition 1: Cruise Chaser
-196.0 "--sync--" sync / 04:........:Removing combatant Liquid Hand\./ window 50,0
+196.0 "--sync--" sync / 04:........:Liquid Hand:/ window 50,0
 200.0 "Hawk Blaster 1" sync / 1[56]:Cruise Chaser:4830:/ window 200,0
 202.2 "Hawk Blaster 2"
 204.4 "Hawk Blaster 3"

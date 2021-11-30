@@ -53,7 +53,7 @@ hideall "--sync--"
 
 
 ### Phase 2: Passage of Arms
-500.0 "--sync--" sync /Progress to party combat/ window 500,0
+500.0 "--sync--" sync / 00:0044:Omega-M:\<blip\> Limits of single combatant/ window 500,0
 514.0 "Ground Zero" sync / 1[56]:Omega-M:3313:/ # drift 0.045001
 514.0 "Electric Slide" sync / 1[56]:Omega:3314:/
 522.0 "Efficient Bladework" sync / 1[56]:Omega-M:32F3:/ # drift -0.045
@@ -183,8 +183,9 @@ hideall "--sync--"
 
 
 ### Phase 4: Laser Show Forever
-1800.0 "Enrage" sync /Calculations indicate increased probability of defeat/ window 1800,0
-1806.0 "Laser Shower Enrage" sync /(:Omega-M:3311:|:Omega:3312:)/ window 20,20
+1800.0 "Enrage" sync / 00:0044:[^:]*:\<blip\> Warning\. Calculations indicate/ window 1800,0
+
+1806.0 "Laser Shower Enrage" sync / 1[56]:(Omega-M:3311|Omega:3312):/ window 20,20
 1812.0 "Laser Shower Enrage"
 1818.0 "Laser Shower Enrage"
 1824.0 "Laser Shower Enrage"
