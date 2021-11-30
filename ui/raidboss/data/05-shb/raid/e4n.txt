@@ -173,7 +173,7 @@ hideall "Earthen Wheels"
 
 
 ### Phase 3B Redux
-2461.2 "Earthen Fury" sync / 1[56]:Titan:40F8/
+2461.2 "Earthen Fury" sync / 1[56]:Titan:40F8:/
 2476.2 "Stonecrusher" sync / 1[56]:Titan:40F9:/ window 30,30
 2482.8 "Bomb Boulders" sync / 1[56]:Titan:40EC:/
 2483.8 "Bury" #sync / 1[56]:Bomb Boulder:4141:/

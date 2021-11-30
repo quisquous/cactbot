@@ -20,7 +20,7 @@ hideall "--sync--"
 69.9 "Tail End" sync / 1[56]:Midgardsormr:31AA:/
 
 78.2 "Spin" sync / 1[56]:Midgardsormr:31AC:/ # drift 0.039
-89.4 "Flip/Spin" sync / 1[56]:Midgardsormr:31(AE|B0)/
+89.4 "Flip/Spin" sync / 1[56]:Midgardsormr:31(AE|B0):/
 92.9 "In/Out" sync / 1[56]:(Midgardsormr)?:31B(2|4):/ # Sometimes missing actor name
 92.9 "Earth Shaker" sync / 1[56]:Midgardsormr:31B6:/ # Missing actor name on all but one
 
