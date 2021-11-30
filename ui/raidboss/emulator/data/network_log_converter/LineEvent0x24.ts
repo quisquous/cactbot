@@ -17,8 +17,6 @@ export class LineEvent0x24 extends LineEvent {
     this.valueHex = parts[fields.valueHex] ?? '';
     this.valueDec = parseInt(this.valueHex, 16);
     this.bars = parts[fields.bars] ?? '';
-
-    this.convertedLine = this.prefix() + 'Limit Break: ' + this.valueHex;
   }
 }
 

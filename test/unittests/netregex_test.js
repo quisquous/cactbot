@@ -31,9 +31,9 @@ describe('netregex tests', () => {
   });
   it('ability', () => {
     const lines = [
-      '21|2020-02-25T01:47:57.4860000-08:00|105D4D8B|Potato Chippy|4095|Glare|4000DA74|Shiva|750003|50960000|1B|40958000|0|0|0|0|0|0|0|0|0|0|0|0|28583118|72360160|10000|0|0|1000|98.83264|99.83972|0|2.967196|101344|103650|5788|0|0|1000|99.19885|104.4785|0|-3.057414|0001073F|5b77b8e553b0ee5797caa1ab87b5a910',
-      '22|2020-02-25T01:48:08.2910000-08:00|1067CDB0|Tiny Poutini|3F40|Double Standard Finish|1067CDB0|Tiny Poutini|50E|71D0000|E|7370000|0|0|0|0|0|0|0|0|0|0|0|0|111584|111584|6400|0|0|1000|99.59558|93.36987|0|0.005704641|111584|111584|6400|0|0|1000|99.59558|93.36987|0|0.005704641|000107FF|008aa08c35da1e426c6a06b366f40eb6',
-      '21|2020-02-25T01:48:16.8170000-08:00|4000DA82|Shiva|4D9A|Akh Rhai|E0000000||0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|||||||||||44|44|0|0|0|1000|100.6942|95.20997|0|0.01299095|00010877|1ea68a0cb73843c7bb51808eeb8e80f8',
+      '21|2020-02-25T01:47:57.4860000-08:00|105D4D8B|Potato Chippy|4095|Glare|4000DA74|Shiva|750003|50960000|1B|40958000|0|0|0|0|0|0|0|0|0|0|0|0|28583118|72360160|10000|0|0|1000|98.83264|99.83972|0|2.967196|101344|103650|5788|0|0|1000|99.19885|104.4785|0|-3.057414|0001073F|0|5b77b8e553b0ee5797caa1ab87b5a910',
+      '22|2020-02-25T01:48:08.2910000-08:00|1067CDB0|Tiny Poutini|3F40|Double Standard Finish|1067CDB0|Tiny Poutini|50E|71D0000|E|7370000|0|0|0|0|0|0|0|0|0|0|0|0|111584|111584|6400|0|0|1000|99.59558|93.36987|0|0.005704641|111584|111584|6400|0|0|1000|99.59558|93.36987|0|0.005704641|000107FF|1|008aa08c35da1e426c6a06b366f40eb6',
+      '21|2020-02-25T01:48:16.8170000-08:00|4000DA82|Shiva|4D9A|Akh Rhai|E0000000||0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|||||||||||44|44|0|0|0|1000|100.6942|95.20997|0|0.01299095|00010877||1ea68a0cb73843c7bb51808eeb8e80f8',
     ];
 
     regexCaptureTest(NetRegexes.ability, lines);
@@ -172,8 +172,6 @@ describe('netregex tests', () => {
     assert.equal(matches.data0, '1');
     assert.equal(matches.data1, '2');
     assert.equal(matches.data2, '3');
-    assert.equal(matches.data3, '0A016D');
-    assert.equal(matches.data4, '41F00000');
   });
   it('losesEffect', () => {
     const lines = [
@@ -298,8 +296,8 @@ describe('netregex tests', () => {
   });
   it('statchange', () => {
     const lines = [
-      '12|2020-03-18T20:40:30.0380000-07:00|19|3888|324|4292|207|343|340|3888|1600|3158|206|341|1868|902|380|0|853|45c4bb87c4e26bb1f1e85c0df980fca6',
-      '12|2020-02-25T01:43:47.6620000-08:00|27|321|360|4720|5108|284|340|321|2832|3556|5108|284|1158|380|1990|0|380|9da93db71ca9bf64c28c912d112e7907',
+      '12|2020-03-18T20:40:30.0380000-07:00|19|3888|324|4292|207|343|340|3888|1600|3158|206|341|1868|902|380|0|853|400023BCF31276|45c4bb87c4e26bb1f1e85c0df980fca6',
+      '12|2020-02-25T01:43:47.6620000-08:00|27|321|360|4720|5108|284|340|321|2832|3556|5108|284|1158|380|1990|0|380|400023BCF31276|9da93db71ca9bf64c28c912d112e7907',
     ];
     regexCaptureTest(NetRegexes.statChange, lines);
 
@@ -321,6 +319,7 @@ describe('netregex tests', () => {
     assert.equal(matches.skillSpeed, '902');
     assert.equal(matches.spellSpeed, '380');
     assert.equal(matches.tenacity, '853');
+    assert.equal(matches.localContentId, '400023BCF31276');
   });
   it('changeZone', () => {
     const lines = [
@@ -382,5 +381,21 @@ describe('netregex tests', () => {
     assert.equal(matches.regionName, 'Norvrandt');
     assert.equal(matches.placeName, 'The Copied Factory');
     assert.equal(matches.placeNameSub, 'Upper Stratum');
+  });
+  it('systemLogMessage', () => {
+    const lines = [
+      '41|2021-11-21T10:38:40.0660000-08:00|00|901|619A9200|00|3C|c6fcd8a8b198a5da28b9cfe6a3f544f4',
+      '41|2021-11-21T10:50:13.5650000-08:00|8004001E|7DD|FF5FDA02|E1B|00|4eeb89399fce54820eb19e06b4d6d95a',
+      '41|2021-11-21T10:55:06.7070000-08:00|8004001E|B3A|00|00|E0000000|1f600f85ec8d36d2b04d233e19f93d39',
+    ];
+
+    regexCaptureTest(NetRegexes.systemLogMessage, lines);
+
+    const matches = lines[0].match(NetRegexes.systemLogMessage()).groups;
+    assert.equal(matches.type, '41');
+    assert.equal(matches.id, '901');
+    assert.equal(matches.param0, '619A9200');
+    assert.equal(matches.param1, '00');
+    assert.equal(matches.param2, '3C');
   });
 });

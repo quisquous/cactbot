@@ -143,51 +143,6 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  AddBuff: {
-    type: '05',
-    name: 'AddBuff',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  RemoveBuff: {
-    type: '06',
-    name: 'RemoveBuff',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  FlyingText: {
-    type: '07',
-    name: 'FlyingText',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  OutgoingAbility: {
-    type: '08',
-    name: 'OutgoingAbility',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  IncomingAbility: {
-    type: '09',
-    name: 'IncomingAbility',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
   PartyList: {
     type: '11',
     name: 'PartyList',
@@ -297,18 +252,10 @@ const logDefinitions = {
       skillSpeed: 15,
       spellSpeed: 16,
       tenacity: 18,
+      localContentId: 19,
     },
     canAnonymize: true,
     lastInclude: true,
-  },
-  CombatantHP: {
-    type: '13',
-    name: 'CombatantHP',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
   },
   StartsUsing: {
     type: '20',
@@ -369,6 +316,8 @@ const logDefinitions = {
       y: 41,
       z: 42,
       heading: 43,
+      sequence: 44,
+      targetIndex: 45,
     },
     playerIds: {
       2: 3,
@@ -695,8 +644,7 @@ const logDefinitions = {
       data0: 15,
       data1: 16,
       data2: 17,
-      data3: 18,
-      data4: 19,
+      // Variable number of triplets here, but at least one.
     },
     playerIds: {
       2: 3,
@@ -738,6 +686,20 @@ const logDefinitions = {
       regionName: 3,
       placeName: 4,
       placeNameSub: 5,
+    },
+    canAnonymize: true,
+  },
+  SystemLogMessage: {
+    type: '41',
+    name: 'SystemLogMessage',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      // unknown: 2,
+      id: 3,
+      param0: 4,
+      param1: 5,
+      param2: 6,
     },
     canAnonymize: true,
   },
@@ -798,15 +760,6 @@ const logDefinitions = {
       timestamp: 1,
     },
     canAnonymize: false,
-  },
-  Timer: {
-    type: '255',
-    name: 'Timer',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
   },
   None: {
     type: '[0-9]+',

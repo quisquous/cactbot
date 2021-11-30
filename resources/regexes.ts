@@ -15,7 +15,22 @@ export type Regex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
 
 type ValidStringOrArray = string | string[];
 
-const startsUsingParams = ['timestamp', 'source', 'id', 'ability', 'target', 'capture'] as const;
+const startsUsingParams = [
+  'timestamp',
+  'sourceId',
+  'source',
+  'id',
+  'ability',
+  'targetId',
+  'target',
+  'castTime',
+  'x',
+  'y',
+  'z',
+  'heading',
+  'capture',
+] as const;
+
 const abilityParams = [
   'timestamp',
   'source',
@@ -66,6 +81,8 @@ const abilityFullParams = [
   'y',
   'z',
   'heading',
+  'sequence',
+  'targetIndex',
   'capture',
 ] as const;
 const headMarkerParams = ['timestamp', 'targetId', 'target', 'id', 'capture'] as const;
@@ -76,30 +93,34 @@ const addedCombatantFullParams = [
   'name',
   'job',
   'level',
+  'ownerId',
+  'worldId',
+  'world',
+  'npcNameId',
+  'npcBaseId',
+  'currentHp',
   'hp',
+  'currentMp',
+  'mp',
   'x',
   'y',
   'z',
-  'npcId',
+  'heading',
   'capture',
 ] as const;
-const removingCombatantParams = [
-  'timestamp',
-  'id',
-  'name',
-  'hp',
-  'x',
-  'y',
-  'z',
-  'capture',
-] as const;
+const removingCombatantParams = addedCombatantFullParams;
 const gainsEffectParams = [
   'timestamp',
+  'effectId',
+  'effect',
+  'duration',
+  'sourceId',
+  'source',
   'targetId',
   'target',
-  'effect',
-  'source',
-  'duration',
+  'count',
+  'targetMaxHp',
+  'sourceMaxHp',
   'capture',
 ] as const;
 const statusEffectExplicitParams = [
@@ -122,14 +143,7 @@ const statusEffectExplicitParams = [
   'data4',
   'capture',
 ] as const;
-const losesEffectParams = [
-  'timestamp',
-  'targetId',
-  'target',
-  'effect',
-  'source',
-  'capture',
-] as const;
+const losesEffectParams = gainsEffectParams;
 const statChangeParams = [
   'timestamp',
   'job',
@@ -148,6 +162,16 @@ const statChangeParams = [
   'skillSpeed',
   'spellSpeed',
   'tenacity',
+  'localContentId',
+  'capture',
+] as const;
+const nameToggleParams = [
+  'timestamp',
+  'id',
+  'name',
+  'targetId',
+  'targetName',
+  'toggle',
   'capture',
 ] as const;
 const tetherParams = [
@@ -159,14 +183,19 @@ const tetherParams = [
   'id',
   'capture',
 ] as const;
-const wasDefeatedParams = ['timestamp', 'target', 'source', 'capture'] as const;
-const hasHPParams = ['timestamp', 'name', 'hp', 'capture'] as const;
-const echoParams = ['timestamp', 'code', 'line', 'capture'] as const;
-const dialogParams = ['timestamp', 'code', 'line', 'name', 'capture'] as const;
-const messageParams = ['timestamp', 'code', 'line', 'capture'] as const;
-const gameLogParams = ['timestamp', 'code', 'line', 'capture'] as const;
-const gameNameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
-const changeZoneParams = ['timestamp', 'name', 'capture'] as const;
+const wasDefeatedParams = [
+  'timestamp',
+  'targetId',
+  'target',
+  'sourceId',
+  'source',
+  'capture',
+] as const;
+const gameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
+const echoParams = gameLogParams;
+const dialogParams = gameLogParams;
+const messageParams = gameLogParams;
+const changeZoneParams = ['timestamp', 'id', 'name', 'capture'] as const;
 const network6dParams = [
   'timestamp',
   'instance',
@@ -175,6 +204,22 @@ const network6dParams = [
   'data1',
   'data2',
   'data3',
+  'capture',
+] as const;
+const mapParams = [
+  'timestamp',
+  'id',
+  'regionName',
+  'placeName',
+  'placeNameSub',
+  'capture',
+] as const;
+const systemLogMessageParams = [
+  'timestamp',
+  'id',
+  'param0',
+  'param1',
+  'param2',
   'capture',
 ] as const;
 
@@ -189,20 +234,21 @@ type GainsEffectParams = typeof gainsEffectParams[number];
 type StatusEffectExplicitParams = typeof statusEffectExplicitParams[number];
 type LosesEffectParams = typeof losesEffectParams[number];
 type StatChangeParams = typeof statChangeParams[number];
+type NameToggleParams = typeof nameToggleParams[number];
 type TetherParams = typeof tetherParams[number];
 type WasDefeatedParams = typeof wasDefeatedParams[number];
-type HasHPParams = typeof hasHPParams[number];
 type EchoParams = typeof echoParams[number];
 type DialogParams = typeof dialogParams[number];
 type MessageParams = typeof messageParams[number];
 type GameLogParams = typeof gameLogParams[number];
-type GameNameLogParams = typeof gameNameLogParams[number];
 type ChangeZoneParams = typeof changeZoneParams[number];
 type Network6dParams = typeof network6dParams[number];
+type MapParams = typeof mapParams[number];
+type SystemLogMessageParams = typeof systemLogMessageParams[number];
 
 export default class Regexes {
   /**
-   * fields: source, id, ability, target, capture
+   * fields: sourceId, source, id, ability, targetId, target, castTime, x, y, z, heading
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
    */
   static startsUsing(f?: Params<StartsUsingParams>): Regex<StartsUsingParams> {
@@ -210,19 +256,19 @@ export default class Regexes {
       f = {};
     Regexes.validateParams(f, 'startsUsing', startsUsingParams);
     const capture = Regexes.trueIfUndefined(f.capture);
-    let str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 14:' +
-      Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
-
-    if (f.source || f.id || f.target || capture)
-      str += Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ' starts using ';
-
-    if (f.ability || f.target || capture)
-      str += Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ' on ';
-
-    if (f.target || capture)
-      str += Regexes.maybeCapture(capture, 'target', f.target, '.*?') + '\\.';
-
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' StartsCasting 14:' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
+      Regexes.maybeCapture(capture, 'ability', f.ability, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'castTime', f.castTime, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + '$';
     return Regexes.parse(str);
   }
 
@@ -237,7 +283,8 @@ export default class Regexes {
     Regexes.validateParams(f, 'ability', abilityParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     let str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1[56]:' + Regexes.maybeCapture(capture, 'sourceId', '\\y{ObjectId}') + ':' +
+      ' (?:ActionEffect 15|AOEActionEffect 16):' +
+      Regexes.maybeCapture(capture, 'sourceId', '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':';
 
     if (f.id || f.ability || f.target || f.targetId || capture)
@@ -266,7 +313,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'abilityFull', abilityFullParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1[56]:' +
+      ' (?:ActionEffect 15|AOEActionEffect 16):' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
@@ -313,7 +360,8 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + ':' +
-      '.*?$'; // Unknown last field
+      Regexes.maybeCapture(capture, 'sequence', f.sequence, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetIndex', f.targetIndex, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
@@ -327,7 +375,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'headMarker', headMarkerParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1B:' +
+      ' TargetIcon 1B:' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
@@ -342,13 +390,14 @@ export default class Regexes {
     Regexes.validateParams(f, 'addedCombatant', addedCombatantParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 03:\\y{ObjectId}:Added new combatant ' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
+      ' AddCombatant 03:\\y{ObjectId}:' +
+      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':';
     return Regexes.parse(str);
   }
 
   /**
-   * fields: id, name, hp, x, y, z, npcId, capture
+   * fields: id, name, hp, job, level, ownerId, worldId, world, npcNameId, npcBaseId,
+   *         currentHp, hp, CurrentMp, mp, x, y, z, heading, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
    */
   static addedCombatantFull(
@@ -359,21 +408,31 @@ export default class Regexes {
     Regexes.validateParams(f, 'addedCombatantFull', addedCombatantFullParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
-      ':Added new combatant ' + Regexes.maybeCapture(capture, 'name', f.name, '[^:]*?') +
-      '\\. {2}Job: ' + Regexes.maybeCapture(capture, 'job', f.job, '[^:]*?') +
-      ' Level: ' + Regexes.maybeCapture(capture, 'level', f.level, '[^:]*?') +
-      ' Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
-      '.*?Pos: \\(' +
-      Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
-      Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
-      Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)' +
-      '(?: \\(' + Regexes.maybeCapture(capture, 'npcId', f.npcId, '.*?') + '\\))?\\.';
+      ' AddCombatant 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
+      ':' + Regexes.maybeCapture(capture, 'name', f.name, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'job', f.job, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'level', f.level, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'ownerId', f.ownerId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'worldId', f.worldId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'world', f.world, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'npcNameId', f.npcNameId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'npcBaseId', f.npcBaseId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'currentHp', f.currentHp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'hp', f.hp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'currentMp', f.currentMp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'mp', f.mp, '[^:]*?') +
+      // currentTp / tp, maybe damageShield in the future.
+      ':[^:]*?:[^:]*?' +
+      ':' + Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + '$';
     return Regexes.parse(str);
   }
 
   /**
-   * fields: id, name, hp, capture
+   * fields: id, name, hp, job, level, ownerId, worldId, world, npcNameId, npcBaseId,
+   *         currentHp, hp, CurrentMp, mp, x, y, z, heading, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
    */
   static removingCombatant(f?: Params<RemovingCombatantParams>): Regex<RemovingCombatantParams> {
@@ -382,20 +441,30 @@ export default class Regexes {
     Regexes.validateParams(f, 'removingCombatant', removingCombatantParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 04:' + Regexes.maybeCapture(capture, 'id', '\\y{ObjectId}') +
-      ':Removing combatant ' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
-      '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
-      Regexes.optional(
-        '.*?Pos: \\(' +
-          Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
-          Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
-          Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)',
-      );
+      ' RemoveCombatant 04:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
+      ':' + Regexes.maybeCapture(capture, 'name', f.name, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'job', f.job, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'level', f.level, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'ownerId', f.ownerId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'worldId', f.worldId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'world', f.world, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'npcNameId', f.npcNameId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'npcBaseId', f.npcBaseId, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'currentHp', f.currentHp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'hp', f.hp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'currentMp', f.currentMp, '[^:]*?') +
+      ':' + Regexes.maybeCapture(capture, 'mp', f.mp, '[^:]*?') +
+      // currentTp / tp, maybe damageShield in the future.
+      ':[^:]*?:[^:]*?' +
+      ':' + Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') +
+      ':' + Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + '$';
     return Regexes.parse(str);
   }
 
-  // fields: targetId, target, effect, source, duration, capture
+  // fields: effectId, effect, duration, sourceId, source, targetId, target,
+  //         count, targetMaxHp, sourceMaxHp, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
   static gainsEffect(f?: Params<GainsEffectParams>): Regex<GainsEffectParams> {
     if (typeof f === 'undefined')
@@ -403,16 +472,17 @@ export default class Regexes {
     Regexes.validateParams(f, 'gainsEffect', gainsEffectParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1A:' +
+      ' StatusAdd 1A:' +
+      Regexes.maybeCapture(capture, 'effectId', f.effectId, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'effect', f.effect, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'duration', f.duration, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
-      ' gains the effect of ' +
-      Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
-      ' from ' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') +
-      ' for ' +
-      Regexes.maybeCapture(capture, 'duration', f.duration, '\\y{Float}') +
-      ' Seconds\\.';
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'count', f.count, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'sourceMaxHp', f.sourceMaxHp, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
@@ -433,7 +503,7 @@ export default class Regexes {
     const kField = '.*?:';
 
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 26:' +
+      ' StatusList 26:' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
       '[0-9A-F]{0,6}' + Regexes.maybeCapture(capture, 'job', f.job, '[0-9A-F]{0,2}') + ':' +
@@ -458,7 +528,8 @@ export default class Regexes {
   }
 
   /**
-   * fields: targetId, target, effect, source, capture
+  // fields: effectId, effect, duration, sourceId, source, targetId, target,
+  //         count, targetMaxHp, sourceMaxHp, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
    */
   static losesEffect(f?: Params<LosesEffectParams>): Regex<LosesEffectParams> {
@@ -467,13 +538,36 @@ export default class Regexes {
     Regexes.validateParams(f, 'losesEffect', losesEffectParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 1E:' +
+      ' StatusRemove 1E:' +
+      Regexes.maybeCapture(capture, 'effectId', f.effectId, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'effect', f.effect, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'duration', f.duration, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
-      ' loses the effect of ' +
-      Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
-      ' from ' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + '\\.';
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'count', f.count, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'sourceMaxHp', f.sourceMaxHp, '[^:]*?') + '$';
+    return Regexes.parse(str);
+  }
+
+  /**
+   * fields: id, name, targetId, targetName, toggle
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
+   */
+  static nameToggle(f?: Params<NameToggleParams>): Regex<NameToggleParams> {
+    if (typeof f === 'undefined')
+      f = {};
+    Regexes.validateParams(f, 'nameToggle', nameToggleParams);
+    const capture = Regexes.trueIfUndefined(f.capture);
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' NameToggle 22:' +
+      Regexes.maybeCapture(capture, 'id', f.id, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'name', f.name, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetName', f.targetName, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'toggle', f.toggle, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
@@ -487,7 +581,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'tether', tetherParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 23:' +
+      ' Tether 23:' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
@@ -499,7 +593,7 @@ export default class Regexes {
 
   /**
    * 'target' was defeated by 'source'
-   * fields: target, source, capture
+   * fields: targetId, target, sourceId, source, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
    */
   static wasDefeated(f?: Params<WasDefeatedParams>): Regex<WasDefeatedParams> {
@@ -508,27 +602,47 @@ export default class Regexes {
     Regexes.validateParams(f, 'wasDefeated', wasDefeatedParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 19:' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
-      ' was defeated by ' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + '\\.';
+      ' Death 19:' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
   /**
-   * fields: name, hp, capture
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0d-combatanthp
+   * fields: id, regionName, placeName, placeNameSub, capture
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#29-systemlogmessage
    */
-  static hasHP(f?: Params<HasHPParams>): Regex<HasHPParams> {
+  static map(f?: Params<MapParams>): Regex<MapParams> {
     if (typeof f === 'undefined')
       f = {};
-    Regexes.validateParams(f, 'hasHP', hasHPParams);
+    Regexes.validateParams(f, 'map', mapParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 0D:' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
-      ' HP at ' +
-      Regexes.maybeCapture(capture, 'hp', f.hp, '\\d+') + '%';
+      ' ChangeMap 28:' +
+      Regexes.maybeCapture(capture, 'id', f.id, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'regionName', f.regionName, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'placeName', f.placeName, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'placeNameSub', f.placeNameSub, '[^:]*?') + '$';
+    return Regexes.parse(str);
+  }
+
+  /*
+   * fields: id, field0, field1, field2, capture
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#29-systemlogmessage
+   */
+  static systemLogMessage(f?: Params<SystemLogMessageParams>): Regex<SystemLogMessageParams> {
+    if (typeof f === 'undefined')
+      f = {};
+    Regexes.validateParams(f, 'systemLogMessage', systemLogMessageParams);
+    const capture = Regexes.trueIfUndefined(f.capture);
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' SystemLogMessage 29:[^:]*?:' +
+      Regexes.maybeCapture(capture, 'id', f.id, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'param0', f.param0, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'param1', f.param1, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'param2', f.param2, '[^:]*?') + '$';
     return Regexes.parse(str);
   }
 
@@ -548,7 +662,7 @@ export default class Regexes {
   }
 
   /**
-   * fields: code, line, name, capture
+   * fields: code, name, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
   static dialog(f?: Params<DialogParams>): Regex<DialogParams> {
@@ -557,7 +671,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'dialog', dialogParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 00:' +
+      ' ChatLog 00:' +
       Regexes.maybeCapture(capture, 'code', '0044') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
@@ -580,7 +694,7 @@ export default class Regexes {
   }
 
   /**
-   * fields: code, line, capture
+   * fields: code, name, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
   static gameLog(f?: Params<GameLogParams>): Regex<GameLogParams> {
@@ -589,35 +703,22 @@ export default class Regexes {
     Regexes.validateParams(f, 'gameLog', gameLogParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 00:' +
-      Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
-      Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
-    return Regexes.parse(str);
-  }
-
-  /**
-   * fields: code, name, line, capture
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
-   * Some game log lines have names in them, but not all.  All network log lines for these
-   * have empty fields, but these get dropped by the ACT FFXV plugin.
-   */
-  static gameNameLog(f?: Params<GameNameLogParams>): Regex<GameNameLogParams> {
-    if (typeof f === 'undefined')
-      f = {};
-    Regexes.validateParams(f, 'gameNameLog', gameNameLogParams);
-    const capture = Regexes.trueIfUndefined(f.capture);
-    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 00:' +
+      ' ChatLog 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '[^:]*') + ':' +
       Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
     return Regexes.parse(str);
   }
 
+  // For backwards compatibility
+  static gameNameLog(f?: Params<GameLogParams>): Regex<GameLogParams> {
+    return Regexes.gameLog(f);
+  }
+
   /**
    * fields: job, strength, dexterity, vitality, intelligence, mind, piety, attackPower,
    *         directHit, criticalHit, attackMagicPotency, healMagicPotency, determination,
-   *         skillSpeed, spellSpeed, tenacity, capture
+   *         skillSpeed, spellSpeed, tenacity, localContentId, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
    */
   static statChange(f?: Params<StatChangeParams>): Regex<StatChangeParams> {
@@ -626,7 +727,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'statChange', statChangeParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 0C:Player Stats: ' +
+      ' PlayerStats 0C:' +
       Regexes.maybeCapture(capture, 'job', f.job, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'strength', f.strength, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'dexterity', f.dexterity, '\\d+') + ':' +
@@ -642,13 +743,14 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'determination', f.determination, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'skillSpeed', f.skillSpeed, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'spellSpeed', f.spellSpeed, '\\d+') +
-      ':0:' +
-      Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+');
+      ':[^:]*:' +
+      Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'localContentId', f.localContentId, '.*?') + '$';
     return Regexes.parse(str);
   }
 
   /**
-   * fields: name, capture
+   * fields: id, name, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
    */
   static changeZone(f?: Params<ChangeZoneParams>): Regex<ChangeZoneParams> {
@@ -657,8 +759,9 @@ export default class Regexes {
     Regexes.validateParams(f, 'changeZone', changeZoneParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 01:Changed Zone to ' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
+      ' Territory 01:' +
+      Regexes.maybeCapture(capture, 'id', f.id, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '$';
     return Regexes.parse(str);
   }
 
@@ -672,7 +775,7 @@ export default class Regexes {
     Regexes.validateParams(f, 'network6d', network6dParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
-      ' 21:' +
+      ' Director 21:' +
       Regexes.maybeCapture(capture, 'instance', f.instance, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'command', f.command, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'data0', f.data0, '.*?') + ':' +
