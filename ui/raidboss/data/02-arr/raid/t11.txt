@@ -160,7 +160,7 @@ hideall "--sync--"
 
 
 ### Phase 5 (enrage)
-1200.0 "--sync--" sync / 1[56]:Kaliya:B7A/ window 1200,1200
+1200.0 "--sync--" sync / 1[56]:Kaliya:B7A:/ window 1200,1200
 1208.0 "Nerve Cloud Enrage"
 1220.2 "Nerve Cloud Enrage"
 1232.4 "Nerve Cloud Enrage"

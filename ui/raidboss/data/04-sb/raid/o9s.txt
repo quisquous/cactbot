@@ -11,7 +11,7 @@ hideall "--sync--"
 2.5 "--sync--" sync / 1[56]:Chaos:316F:/ window 3,0 # First autoattack
 
 ## Branch between Fire/Water paths
-10.7 "--sync--" sync / 14:317(2|3):Chaos/ window 12,12 jump 2010.1 # Long/lat means water path
+10.7 "--sync--" sync / 14:Chaos:317(2|3):/ window 12,12 jump 2010.1 # Long/lat means water path
 10.7 "--sync--" sync / 14:Chaos:3171:/ window 12,12 jump 1010.7 # Edict means fire path
 
 # Fake water path

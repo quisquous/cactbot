@@ -156,7 +156,7 @@ hideall "--sync--"
 
 857.5 "--sync--" sync / 1[56]:Nael deus Darnus:83B:/
 860.2 "Heavensfall" sync / 1[56]:Ragnarok:7E4:/ window 40,40
-863.9 "Super Nova x2" duration 2.3 #sync / 1[56]:Nael deus Darnus:7E0:
+863.9 "Super Nova x2" duration 2.3 #sync / 1[56]:Nael deus Darnus:7E0:/
 876.7 "Bahamut's Claw x2" #sync / 1[56]:Nael deus Darnus:871:/
 883.9 "Binding Coil" sync / 1[56]:Nael deus Darnus:7E2:/
 899.3 "Bahamut's Claw x2" #sync / 1[56]:Nael deus Darnus:871:/
