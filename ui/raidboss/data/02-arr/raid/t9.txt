@@ -15,7 +15,7 @@ hideall "--sync--"
 16.6 "Ravensclaw" sync / 1[56]:Nael deus Darnus:7D5:/
 
 21.8 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
-30.8 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+30.8 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 30.9 "Ravensbeak" sync / 1[56]:Nael deus Darnus:7D6:/ duration 13
 36.2 "Raven Dive" sync / 1[56]:Nael deus Darnus:7DD:/
 40.8 "Iron Chariot" sync / 1[56]:Nael deus Darnus:7D8:/
@@ -26,7 +26,7 @@ hideall "--sync--"
 
 58.6 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 63.4 "Ravensclaw" sync / 1[56]:Nael deus Darnus:7D5:/
-67.6 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+67.6 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 69.4 "Lunar Dynamo" sync / 1[56]:Nael deus Darnus:7DA:/
 71.8 "Meteor Stream" sync / 1[56]:Nael Geminus:7DE:/
 74.9 "Dalamud Dive" sync / 1[56]:Nael deus Darnus:7DC:/
@@ -35,7 +35,7 @@ hideall "--sync--"
 
 95.0 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 96.6 "--sync--" sync / 1[56]:Nael deus Darnus:7D7:/
-104.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+104.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 107.2 "Meteor Stream" #sync / 1[56]:Nael Geminus:7DE:/
 112.3 "Meteor Stream" #sync / 1[56]:Nael Geminus:7DE:/
 115.4 "Dalamud Dive" sync / 1[56]:Nael deus Darnus:7DC:/
@@ -45,7 +45,7 @@ hideall "--sync--"
 135.5 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 140.0 "Ravensclaw" sync / 1[56]:Nael deus Darnus:7D5:/
 143.2 "--sync--" sync / 1[56]:Nael deus Darnus:7D7:/
-144.6 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+144.6 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 146.1 "Raven Dive" sync / 1[56]:Nael deus Darnus:7DD:/
 150.7 "Iron Chariot" sync / 1[56]:Nael deus Darnus:7D8:/
 152.6 "Thermionic Beam" sync / 1[56]:Nael deus Darnus:7DF:/
@@ -54,7 +54,7 @@ hideall "--sync--"
 
 168.6 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 177.4 "Ravensbeak" sync / 1[56]:Nael deus Darnus:7D6:/ duration 13
-177.7 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+177.7 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 183.9 "Lunar Dynamo" sync / 1[56]:Nael deus Darnus:7DA:/
 186.2 "Meteor Stream" sync / 1[56]:Nael Geminus:7DE:/
 189.3 "Dalamud Dive" sync / 1[56]:Nael deus Darnus:7DC:/
@@ -63,7 +63,7 @@ hideall "--sync--"
 
 203.9 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 208.0 "Ravensclaw" sync / 1[56]:Nael deus Darnus:7D5:/
-213.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+213.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 217.5 "Meteor Stream" #sync / 1[56]:Nael Geminus:7DE:/
 222.6 "Meteor Stream" #sync / 1[56]:Nael Geminus:7DE:/
 225.8 "Dalamud Dive" sync / 1[56]:Nael deus Darnus:7DC:/
@@ -71,7 +71,7 @@ hideall "--sync--"
 239.6 "Ravensclaw" sync / 1[56]:Nael deus Darnus:7D5:/
 
 245.8 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
-254.8 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+254.8 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 255.5 "Raven Dive" sync / 1[56]:Nael deus Darnus:7DD:/
 260.1 "Iron Chariot" sync / 1[56]:Nael deus Darnus:7D8:/
 262.1 "Thermionic Beam" sync / 1[56]:Nael deus Darnus:7DF:/
@@ -81,7 +81,7 @@ hideall "--sync--"
 
 283.0 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 286.8 "Ravensclaw" sync / 1[56]:Nael deus Darnus:7D5:/
-292.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+292.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 294.3 "Lunar Dynamo" sync / 1[56]:Nael deus Darnus:7DA:/
 296.7 "Meteor Stream" sync / 1[56]:Nael Geminus:7DE:/
 299.9 "Dalamud Dive" sync / 1[56]:Nael deus Darnus:7DC:/
@@ -89,7 +89,7 @@ hideall "--sync--"
 
 314.3 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 322.8 "Ravensbeak" sync / 1[56]:Nael deus Darnus:7D6:/
-323.3 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+323.3 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 332.0 "Meteor Stream" sync / 1[56]:Nael Geminus:7DE:/
 335.9 "--sync--" sync / 1[56]:Nael deus Darnus:7D7:/
 337.0 "Meteor Stream" sync / 1[56]:Nael Geminus:7DE:/
@@ -98,7 +98,7 @@ hideall "--sync--"
 
 355.0 "Stardust" sync / 1[56]:Nael deus Darnus:877:/ duration 9
 358.5 "Ravensclaw" sync / 1[56]:Nael deus Darnus:7D5:/
-364.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris|):7E9:/
+364.0 "--sync--" sync / 1[56]:(Astral Debris|Umbral Debris):7E9:/
 366.0 "Raven Dive" sync / 1[56]:Nael deus Darnus:7DD:/
 370.5 "Iron Chariot" sync / 1[56]:Nael deus Darnus:7D8:/
 372.7 "Thermionic Beam" sync / 1[56]:Nael deus Darnus:7DF:/
@@ -109,16 +109,16 @@ hideall "--sync--"
 
 ### Phase 2: Golem Adds
 500.0 "--untargetable--"
-503.3 "Golem Meteors" sync /1B:........:[^:]*:....:....:0007:/ duration 11 window 505,0
-514.3 "--sync--" sync / 1[56]:(Dalamud Fragment|):7EB:/
-582.3 "Meteor 1/6" duration 7 sync /1B:........:[^:]*:....:....:000[9A]:/ window 83,0
+503.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 505,0
+514.3 "--sync--" sync / 1[56]:Dalamud Fragment:7EB:/
+582.3 "Meteor 1/6" duration 7 sync / 1B:........:[^:]*:....:....:000[9A]:/ window 83,0
 584.3 "Meteor 2/6" duration 7
 586.3 "Meteor 3/6" duration 7
 588.3 "Meteor 4/6" duration 7
 590.5 "Meteor 5/6" duration 7
 592.5 "Meteor 6/6" duration 7
-598.3 "Golem Meteors" sync /1B:........:[^:]*:....:....:0007:/ duration 11 window 80,80
-609.3 "--sync--" sync / 1[56]:(Dalamud Fragment|):7EB:/
+598.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 80,80
+609.3 "--sync--" sync / 1[56]:Dalamud Fragment:7EB:/
 683.5 "Megaflare" sync / 1[56]:Nael deus Darnus:7E7:/ window 700,700
 
 

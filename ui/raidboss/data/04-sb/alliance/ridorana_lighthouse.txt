@@ -4,10 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0 "--Reset--" sync /:Removing combatant Famfrit, The Darkening Cloud\.  Max HP: \d{8}\./ window 10000 jump 0
-0 "--Reset--" sync /:Removing combatant Belias, The Gigas\.  Max HP: \d{8}\./ window 10000 jump 0
-0 "--Reset--" sync /:Removing combatant Construct 7\.  Max HP: \d{8}./ window 10000 jump 0
-0 "--Reset--" sync /:Removing combatant Yiazmat\.  Max HP: \d{8}./ window 10000 jump 0
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 
 ###########
 # Famfrit #
@@ -157,7 +154,7 @@ hideall "--sync--"
 2264 "Destroy" sync / 1[56]:Construct 7:2C71:/
 2274 "Ignite" sync / 1[56]:Construct 7:2C67:/
 2277 "Accelerate" sync / 1[56]:Construct 7:2C65:/ window 150,150
-2291 "Pulverize (close)" sync / 1[56]:Construct 7:2C61:/ 
+2291 "Pulverize (close)" sync / 1[56]:Construct 7:2C61:/
 2296 "Pulverize (far)" duration 4
 2297 "Compress" sync / 1[56]:Construct 7:2C5D:/
 2310 "Incinerate" sync / 1[56]:Construct 7:2D5C:/

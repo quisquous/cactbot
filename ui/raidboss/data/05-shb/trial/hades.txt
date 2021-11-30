@@ -94,7 +94,7 @@ hideall "Double"
 903.0 "--sync--" sync / 1[56]:Hades:417F:/
 905.0 "Gaol Add"
 906.5 "--sync--" sync / 14:Hades:416C:/
-936.5 "Chorus Of The Lost" sync /:416C:Hades:/
+936.2 "Chorus Of The Lost" sync / 1[56]:416C:Hades:/
 # FIXME: I've never seen this go off, so unclear how far 416D is from 416C.
 # Chorus of the lost does seem likely to be 30 seconds.
 939.0 "--sync--" sync / 1[56]:Hades:416D:/ window 100,0
@@ -119,7 +119,7 @@ hideall "Double"
 1066.0 "Doom"
 1067.0 "Gaol Add"
 1068.5 "--sync--" sync / 14:Hades:416C:/
-1098.5 "Chorus Of The Lost" sync /:416C:Hades:/
+1098.2 "Chorus Of The Lost" sync / 1[56]:Hades:416C:/
 1101.0 "--sync--" sync / 1[56]:Hades:416D:/ window 100,0
 
 1114.0 "Wail Of The Lost" sync / 1[56]:Hades:416[56]:/ window 50,5 jump 985
