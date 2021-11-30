@@ -11,7 +11,8 @@ hideall "--sync--"
 # Opening block
 0.0 "--sync--" sync /:Engage!/ window 0,1
 1.4 "--sync--" sync / 1[56]:[^:]*:Shiva:4DD3:/ window 1.4,2
-15.1 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/ window 15,5
+10.1 "--sync--" sync / 1[56]:[^:]*:Shiva:4DD7:/ window 15,5
+15.1 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/
 27.2 "Redress" sync / 1[56]:[^:]*:Shiva:4F4F:/
 32.4 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/
 40.4 "Axe Kick/Scythe Kick" sync / 1[56]:[^:]*:Shiva:4DE[23]:/
