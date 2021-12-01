@@ -43,7 +43,7 @@ export const addDebugInfo = (collector: MistakeCollector, numMistakes: number): 
 UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   const options = { ...defaultOptions };
 
-  const mistakeCollector = new MistakeCollector();
+  const mistakeCollector = new MistakeCollector(options);
   const summaryElement = document.getElementById('summary');
   const liveListElement = document.getElementById('livelist');
 

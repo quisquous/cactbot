@@ -3,6 +3,7 @@ import { EventResponses } from '../../types/event';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { MistakeObserver, ViewEvent } from './mistake_observer';
+import { OopsyOptions } from './oopsy_options';
 
 const broadcastSource = 'oopsyraidsy';
 const msgSyncRequestType = 'SyncRequest';
@@ -17,12 +18,18 @@ export class MistakeCollector implements MistakeObserver {
   private creationTime = Date.now();
   private latestSyncTimestamp?: number;
 
-  constructor() {
+  constructor(private options: OopsyOptions) {
     this.AddObserver(this);
     this.RequestSync();
   }
 
+  private DebugPrint(str: string): void {
+    if (this.options.Debug)
+      console.error(str);
+  }
+
   private RequestSync(): void {
+    console.log(`RequestSync: ${this.creationTime}`);
     void callOverlayHandler({
       call: 'broadcast',
       source: broadcastSource,
@@ -35,6 +42,7 @@ export class MistakeCollector implements MistakeObserver {
   }
 
   private SendSyncResponse(): void {
+    this.DebugPrint(`SendSyncResponse: ${this.creationTime}`);
     void callOverlayHandler({
       call: 'broadcast',
       source: broadcastSource,
@@ -48,6 +56,7 @@ export class MistakeCollector implements MistakeObserver {
   }
 
   private ReceiveSyncResponse(timestamp: number, data: string): void {
+    this.DebugPrint(`ReceiveSyncResponse: ${timestamp} (prev: ${this.latestSyncTimestamp ?? ''})`);
     this.latestSyncTimestamp = timestamp;
 
     try {
@@ -87,15 +96,21 @@ export class MistakeCollector implements MistakeObserver {
 
     if (obj.type === msgSyncRequestType) {
       // If this collector was created after this timestamp request, ignore it.
-      if (typeof obj.timestamp !== 'number' || obj.timestamp < this.creationTime)
+      if (typeof obj.timestamp !== 'number' || obj.timestamp < this.creationTime) {
+        this.DebugPrint(
+          `OnBroadcastMessage: ignoring: (past creation): ${obj.timestamp as string}`,
+        );
         return;
+      }
       this.SendSyncResponse();
     } else if (obj.type === msgSyncResponseType) {
       if (typeof obj.timestamp !== 'number')
         return;
       // If we have data from further in the past, don't overwrite with partial future data.
-      if (this.latestSyncTimestamp && this.latestSyncTimestamp <= obj.timestamp)
+      if (this.latestSyncTimestamp && this.latestSyncTimestamp <= obj.timestamp) {
+        this.DebugPrint(`OnBroadcastMessage: ignoring (past data): ${obj.timestamp}`);
         return;
+      }
       const data = obj.data;
       if (typeof data === 'string')
         this.ReceiveSyncResponse(obj.timestamp, data);
