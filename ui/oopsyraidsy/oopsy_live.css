@@ -145,6 +145,7 @@ div {
 
 .death-title {
   display: flex;
+  margin-bottom: 5px;
 }
 
 .death-title div {
