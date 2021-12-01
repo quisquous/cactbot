@@ -1,5 +1,6 @@
-import UserConfig from '../../resources/user_config';
 import chai from 'chai';
+
+import UserConfig from '../../resources/user_config';
 
 const { assert } = chai;
 

@@ -4,8 +4,9 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import isCI from 'is-ci';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackConfiguration, WebpackPluginInstance } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {
@@ -27,6 +28,7 @@ export default (
     if (
       [
         'config',
+        'coverage',
         'eureka',
         'jobs',
         'oopsyraidsyLive',
@@ -50,6 +52,33 @@ export default (
       ...config,
     });
   });
+
+  const plugins: WebpackPluginInstance[] = [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    ...htmlPluginRules,
+    new CopyPlugin({
+      patterns: [
+        {
+          // copy sounds and images
+          from: 'resources/@(ffxiv|sounds)/**/*',
+        },
+        {
+          // copy more html in raidboss module
+          from: 'ui/raidboss/raidboss_*.html',
+        },
+        {
+          // copy all the skins folder under modules,
+          // only raidboss for now though.
+          from: 'ui/*/skins/**/*',
+          noErrorOnMissing: true,
+        },
+      ],
+    }),
+  ];
+
+  if (!isCI)
+    plugins.unshift(new ForkTsCheckerWebpackPlugin());
 
   return {
     entry: entries,
@@ -75,9 +104,18 @@ export default (
       assetModuleFilename: '[file][query]',
     },
     devServer: {
-      contentBase: path.join(__dirname, '../dist'),
-      writeToDisk: true,
-      disableHostCheck: true,
+      static: {
+        directory: path.join(__dirname, '../dist'),
+      },
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      allowedHosts: 'all',
+      client: {
+        webSocketURL: {
+          hostname: 'localhost',
+        },
+      },
     },
     resolve: {
       extensions: ['.ts', '.js'],
@@ -157,30 +195,7 @@ export default (
         },
       ],
     },
-    plugins: [
-      new CleanWebpackPlugin(),
-      new ForkTsCheckerWebpackPlugin(),
-      new MiniCssExtractPlugin(),
-      ...htmlPluginRules,
-      new CopyPlugin({
-        patterns: [
-          {
-            // copy sounds and images
-            from: 'resources/@(ffxiv|sounds)/**/*',
-          },
-          {
-            // copy more html in raidboss module
-            from: 'ui/raidboss/raidboss_*.html',
-          },
-          {
-            // copy all the skins folder under modules,
-            // only raidboss for now though.
-            from: 'ui/*/skins/**/*',
-            noErrorOnMissing: true,
-          },
-        ],
-      }),
-    ],
+    plugins: plugins,
     stats: {
       children: true,
       errorDetails: true,

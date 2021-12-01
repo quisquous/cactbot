@@ -4,7 +4,7 @@ import Regexes from '../../resources/regexes';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
 import { commonReplacement } from './common_replacement';
-import { RaidbossOptions } from './raidboss_options';
+import defaultOptions, { RaidbossOptions } from './raidboss_options';
 
 export type TimelineReplacement = {
   locale: Lang;
@@ -84,10 +84,10 @@ export class TimelineParser {
     text: string,
     replacements: TimelineReplacement[],
     triggers: LooseTimelineTrigger[],
-    styles: TimelineStyle[],
-    options: RaidbossOptions,
+    styles?: TimelineStyle[],
+    options?: RaidbossOptions,
   ) {
-    this.options = options || {};
+    this.options = options ?? defaultOptions;
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
 
@@ -104,7 +104,7 @@ export class TimelineParser {
     // Sorted by line.
     this.errors = [];
 
-    this.parse(text, triggers, styles);
+    this.parse(text, triggers, styles ?? []);
   }
 
   private parse(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
