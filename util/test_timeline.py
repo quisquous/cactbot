@@ -67,7 +67,7 @@ def load_timeline(timeline):
                 entry["buff_name"] = buff_match.group("effect")
                 entry[
                     "regex"
-                ] = "26\|[^\|]*\|{}\|{}\|[^\|]*\|........\|[^\|]*\|.........\|{}\|".format(
+                ] = "26\|[^\|]*\|{}\|{}\|[^\|]*\|........\|[^\|]*\|........\|{}\|".format(
                     buff_match.group("effectId"),
                     buff_match.group("effect"),
                     buff_match.group("target"),
@@ -244,9 +244,7 @@ def test_match(event, entry):
     if isinstance(event, str) and entry["special_type"]:
         # Begincast case
         if entry["special_type"] == "begincast" and event.startswith(entry["special_line"]):
-            begincast_match = re.search(
-                "\|{}\|{}\|".format(entry["caster_name"], entry["cast_id"]), event
-            )
+            begincast_match = re.search(entry["regex"], event)
             if begincast_match:
                 return True
             else:
@@ -256,9 +254,7 @@ def test_match(event, entry):
         elif entry["special_type"] == "applydebuff" and event.startswith(entry["special_line"]):
             # Matching this format generically:
             # |Dadaluma Simulation|0.00|E0000000||4000AE96|Guardian
-            buff_match = re.search(
-                "\|{}\|([^\|]*\|){{4}}{}".format(entry["buff_name"], entry["buff_target"]), event
-            )
+            buff_match = re.search(entry["regex"], event)
             if buff_match:
                 return True
             else:
@@ -268,11 +264,7 @@ def test_match(event, entry):
         elif entry["special_type"] == "battlelog" and event.startswith(entry["special_line"]):
             # Matching this format generically:
             # 00|2019-01-12T18:08:14.0000000-05:00|0839||The Realm of the Machinists will be sealed off in 15 seconds!|
-            log_match = re.search(
-                "^00\|[^\|]*\|{}\|[^\|]*\|{}".format(entry["logid"], entry["line"]),
-                event,
-                re.IGNORECASE,
-            )
+            log_match = re.search(entry["regex"], event, re.IGNORECASE,)
             if log_match:
                 return True
             else:
@@ -282,8 +274,16 @@ def test_match(event, entry):
         elif entry["special_type"] == "addlog" and event.startswith(entry["special_line"]):
             # Matching this format generically:
             # 03|2019-01-12T18:07:46.6390000-05:00|40002269|Mustadio|0|46|dfa2|2ee0|0|0||dc029b852788abdd6056147620d2193c
-            add_match = re.search("^03\|[^\|]*\|[^\|]*\|{}\|".format(entry["name"]), event)
+            add_match = re.search(entry["regex"], event)
             if add_match:
+                return True
+            else:
+                return False
+
+        # Head marker case
+        elif entry["special_type"] == "headmarker" and event.startswith(entry["special_line"]):
+            marker_match = re.search(entry["regex"], event,)
+            if marker_match:
                 return True
             else:
                 return False

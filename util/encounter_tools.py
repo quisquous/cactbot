@@ -256,7 +256,9 @@ def is_tl_line_syncmatch(line):
 
 
 def is_tl_line_begincast(poss_match):
-    return re.search(r"\s14:(?P<source>[^:]+):(?P<id>[0-9A-F\(\)\|]+)", poss_match)
+    return re.search(
+        r"\s14:(?:\[\^:\]\*|[^:]*):(?P<source>[^:]+):(?P<id>[0-9A-F\(\)\|]+)", poss_match
+    )
 
 
 def is_tl_line_buff(poss_match):
@@ -267,12 +269,14 @@ def is_tl_line_buff(poss_match):
 
 
 def is_tl_line_cast(poss_match):
-    return re.search(r"\s1(?:[56]|\[56\]):(?P<source>[^:]+):(?P<id>[0-9A-F\(\)\|]+)", poss_match)
+    return re.search(
+        r"\s1(?:[56]|\[56\]):(?:\[\^:\]\*|[^:]*):(?P<source>[^:]+):(?P<id>[^:]+)", poss_match,
+    )
 
 
 def is_tl_line_log(poss_match):
     return re.search(
-        r"\s00:(?P<id>[0-9]*):(?P<entity>[^:]*):(?P<message>[^\/]*)\s?\/\s", poss_match
+        r"\s00:(?P<id>(?:\[\^:\]\*)|[^:]*):(?P<entity>[^:]*):(?P<message>[^\/]*)\s?", poss_match
     )
 
 
@@ -282,7 +286,7 @@ def is_tl_line_adds(poss_match):
 
 def is_tl_line_headmarker(poss_match):
     return re.search(
-        r"\s*22:........:(?P<target>[^:]*):....:....:(?P<id>[0-9A-F\(\)\|]+)", poss_match
+        r"\s*1B:........:(?P<target>[^:]*):....:....:(?P<id>[0-9A-F\(\)\|]+)", poss_match
     )
 
 
