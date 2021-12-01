@@ -1,4 +1,5 @@
 import { UnreachableCode } from '../../resources/not_reached';
+import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { DeathReport } from './death_report';
@@ -13,6 +14,10 @@ const kCopiedMessage = {
   ja: 'コピーした！',
   cn: '已复制！',
   ko: '복사 완료!',
+};
+
+const errorMessageEnableACTWS = {
+  en: 'Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay -> Start',
 };
 
 export class DeathReportLive {
@@ -176,6 +181,7 @@ export class DeathReportLive {
 
 export class OopsyLiveList implements MistakeObserver {
   private container: Element;
+  private iconContainer: HTMLElement;
   private inCombat = false;
   private numItems = 0;
   private items: HTMLElement[] = [];
@@ -197,6 +203,37 @@ export class OopsyLiveList implements MistakeObserver {
       this.deathReport = new DeathReportLive(options, reportDiv);
 
     document.body.classList.add(`report-side-${this.options.DeathReportSide}`);
+
+    const iconContainer = document.getElementById('icon-container');
+    if (!iconContainer)
+      throw new UnreachableCode();
+    this.iconContainer = iconContainer;
+
+    const closeDiv = document.getElementById('icon-close');
+    if (!closeDiv)
+      throw new UnreachableCode();
+    closeDiv.addEventListener('click', () => {
+      this.Reset();
+    });
+
+    const summaryDiv = document.getElementById('icon-summary');
+    if (!summaryDiv)
+      throw new UnreachableCode();
+    summaryDiv.addEventListener('click', () => {
+      const regex = /\w*.html$/;
+      if (!regex.exec(window.location.href)) {
+        console.error(`Unable to parse location for summary: ${window.location.href}`);
+        return;
+      }
+      const url = window.location.href.replace(regex, 'oopsy_summary.html');
+      callOverlayHandler({ call: 'openWebsiteWithWS', url: url }).catch(() => {
+        console.error(`Failed to open summary`);
+        this.OnMistakeObj(Date.now(), {
+          type: 'fail',
+          text: errorMessageEnableACTWS,
+        });
+      });
+    });
 
     this.Reset();
     this.SetInCombat(false);
@@ -284,6 +321,7 @@ export class OopsyLiveList implements MistakeObserver {
 
     // Show and scroll to bottom.
     this.container.classList.remove('hide');
+    this.iconContainer.classList.remove('hide');
     this.scroller.scrollTop = this.scroller.scrollHeight;
   }
 
@@ -335,6 +373,7 @@ export class OopsyLiveList implements MistakeObserver {
 
   Reset(): void {
     this.container.classList.add('hide');
+    this.iconContainer.classList.add('hide');
     this.items = [];
     this.numItems = 0;
     this.container.innerHTML = '';

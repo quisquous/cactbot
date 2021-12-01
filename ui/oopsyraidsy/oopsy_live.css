@@ -238,3 +238,46 @@ div {
   animation: 1s fadeOut;
   animation-fill-mode: forwards;
 }
+
+.icons {
+  display: none;
+  margin-top: 5px;
+}
+
+.out-of-combat .icons {
+  display: flex;
+  flex-direction: column;
+}
+
+.icons.hide {
+  display: none;
+}
+
+.icon-close {
+  color: rgb(230, 230, 230);
+}
+
+.icon-close::before {
+  content: '\f00d';
+}
+
+.icon-summary {
+  color: rgb(230, 230, 230);
+}
+
+.icon-summary::before {
+  content: '\f35d';
+}
+
+.icon-entry {
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-entry:hover {
+  color: rgb(247, 255, 129);
+}
