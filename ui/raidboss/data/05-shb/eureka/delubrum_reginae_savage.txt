@@ -309,7 +309,7 @@ hideall "--sync--"
 # override it.  Dahu will only end when Dahu is killed, which can only be seen if you
 # are in the Dahu fight.
 6000.0 "--sync--" sync / 00:0839::The Hall of Supplication will be sealed off/ window 6000,0
-6000.0 "--Reset--" sync / 19:Dahu was defeated by/ window 0,2000 jump 0
+6000.0 "--Reset--" sync / 19:[^:]*:Dahu:/ window 0,2000 jump 0
 6008.4 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/ window 10,2.5
 6014.5 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/
 6022.7 "Hot Charge 1" sync / 1[56]:[^:]*:Dahu:5773:/
@@ -1253,7 +1253,7 @@ hideall "--sync--"
 # Both of these casts are renamed as --sync-- to clean up the timeline.
 
 # Phase 1
-18008.3 "--sync--" sync /:57D7:Stygimoloch Lord:/ window 15,15
+18008.3 "--sync--" sync / 14:[^:]*:Stygimoloch Lord:57D7:/ window 15,15
 18015.3 "Foe Splitter" sync / 1[56]:[^:]*:Stygimoloch Lord:57D7:/
 18023.4 "Vicious Swipe" sync / 1[56]:[^:]*:Stygimoloch Lord:5552:/
 18028.5 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57CF:/
@@ -1481,7 +1481,7 @@ hideall "--sync--"
 20515.5 "Above Board" sync / 1[56]:[^:]*:Queen's Warrior:5A0B:/
 20515.5 "--sync--" sync / 1[56]:[^:]*:Queen's Warrior:5B8E:/
 20516.5 "--stunned--" # 3 or 7 second stun
-20518.5 "Lots Cast" sync /(:Aetherial Burst:5B89:|:Aetherial Bolt:5A0D:)/
+20518.5 "Lots Cast" sync / 1[56]:[^:]*:(Aetherial Burst:5B89|Aetherial Bolt:5A0D):/
 20521.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5B88:/
 20522.7 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5BB6:/
 20523.5 "--unstunned--"

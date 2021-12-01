@@ -4,7 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000,100000 jump 0
+0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
 0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 
 # TODO: fill in CEs

@@ -64,7 +64,7 @@ hideall "--sync--"
 1054.3 "Hand/Tornado?"
 
 # Hand Form
-1100.0 "--sync--" sync /00:....:The liquid flame gains the effect of Chiromorph/ window 100,250
+1100.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Chiromorph/ window 100,250
 1108.4 "Seal Of Night And Day" sync / 1[56]:[^:]*:Liquid Flame:1949:/ window 10,10
 1112.5 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1948:/
 1116.4 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1948:/
@@ -75,7 +75,7 @@ hideall "--sync--"
 1149.1 "Form Shift"
 
 # Tornado Form
-1200.0 "--sync--" sync /00:....:The liquid flame gains the effect of Anemomorph/ window 200,0
+1200.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Anemomorph/ window 200,0
 1204.5 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/ window 10,10
 1215.4 "Magnetism/Repel?" sync / 1[56]:[^:]*:Liquid Flame:194[CD]:/
 1226.9 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
@@ -83,7 +83,7 @@ hideall "--sync--"
 1246.1 "Form Shift"
 
 # Human Form
-1300.0 "--sync--" sync /00:....:The liquid flame gains the effect of Anthropomorph/ window 300,10
+1300.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Anthropomorph/ window 300,10
 1307.5 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1944:/ window 10,20
 1314.7 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
 1326.0 "Sea Of Flames x3"

@@ -6,7 +6,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-0 "--Reset--" sync /04:........:Removing combatant Proto Ozma\.  Max HP: \d{8}\./ window 10000 jump 0
+0.0 "--Reset--" sync / 04:........:Proto Ozma:/ window 100000 jump 0
 
 
 #####################
@@ -16,7 +16,7 @@ hideall "--sync--"
 
 # Note: This checks that Art's auto hits a target close enough for you to see.
 # You can see Owain's auto abilities, but the target is listed as empty.
-1002.5 "--sync--" sync / 15:........:Art:3956:[^:]*:........:[^:]/ window 1500,0
+1002.5 "--sync--" sync / 1[56]:[^:]*:Art:3956:[^:]*:[^:]*:[^:]+:/ window 1500,0
 1014.5 "Thricecull" sync / 1[56]:[^:]*:Art:3934:/
 1023.1 "Legendcarver" sync / 1[56]:[^:]*:Art:3928:/
 1030.7 "Legendspinner" sync / 1[56]:[^:]*:Art:3929:/
@@ -59,7 +59,7 @@ hideall "--sync--"
 # EAST BRANCH / OWAIN #
 #######################
 # -ic Orlasrach Art -ii 3957 3941 3939 393C 393D 3938 -p 3945:2016.0
-2002.5 "--sync--" sync / 15:........:Owain:3957:[^:]*:........:[^:]/ window 2500,0
+2002.5 "--sync--" sync / 1[56]:[^:]*:Owain:3957:[^:]*:[^:]*:[^:]+:/ window 2500,0
 2016.0 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
 2028.1 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/ #3:29
 2037.7 "Mythcall" sync / 1[56]:[^:]*:Owain:3936:/ #3:39
@@ -131,7 +131,7 @@ hideall "--sync--"
 3124.4 "Streak Lightning" #sync / 1[56]:[^:]*:Streak Lightning:3877:/
 3134.9 "Ultimate Zantetsuken" sync / 14:[^:]*:Raiden:3878:/ duration 20
 
-3154.9 "--sync--" sync / 17:........:Raiden:3878:/ window 40,0
+3154.9 "--sync--" sync / 17:[^:]:Raiden:3878:/ window 40,0
 3164.9 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/ window 40,5
 3171.2 "Booming Lament" sync / 1[56]:[^:]*:Raiden:387D:/
 3177.3 "Cloud to Ground" sync / 1[56]:[^:]*:Raiden:3870:/
@@ -153,7 +153,7 @@ hideall "--sync--"
 3316.0 "Lateral Zantetsuken" sync / 1[56]:[^:]*:Raiden:386[BC]:/
 3321.7 "Ultimate Zantetsuken" sync / 14:[^:]*:Raiden:3878:/ duration 20
 
-3341.7 "--sync--" sync / 17:........:Raiden:3878:/ window 40,0
+3341.7 "--sync--" sync / 17:[^:]:Raiden:3878:/ window 40,0
 3347.7 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/ window 40,5
 3353.8 "Shingan" sync / 1[56]:[^:]*:Raiden:387B:/
 3365.4 "Ame-no-Sakahoko" sync / 1[56]:[^:]*:Raiden:3868:/
