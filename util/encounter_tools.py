@@ -286,7 +286,7 @@ def is_tl_line_adds(poss_match):
 
 def is_tl_line_headmarker(poss_match):
     return re.search(
-        r"\s*1B:........:(?P<target>[^:]*):....:....:(?P<id>[0-9A-F\(\)\|]+)", poss_match
+        r"\s1B:........:(?P<target>[^:]*):....:....:(?P<id>[0-9A-F\(\)\|]+)", poss_match
     )
 
 
