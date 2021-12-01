@@ -16,7 +16,7 @@ hideall "--sync--"
 
 # Note: This checks that Art's auto hits a target close enough for you to see.
 # You can see Owain's auto abilities, but the target is listed as empty.
-1002.5 "--sync--" sync / 1[56]:[^:]:Art:3956:/ window 1500,0
+1002.5 "--sync--" sync / 1[56]:[^:]*:Art:3956:[^:]*:[^:]*:/ window 1500,0
 1014.5 "Thricecull" sync / 1[56]:[^:]*:Art:3934:/
 1023.1 "Legendcarver" sync / 1[56]:[^:]*:Art:3928:/
 1030.7 "Legendspinner" sync / 1[56]:[^:]*:Art:3929:/
