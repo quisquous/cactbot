@@ -263,7 +263,7 @@ def is_tl_line_begincast(poss_match):
 
 def is_tl_line_buff(poss_match):
     return re.search(
-        r"\s1A:(?P<effectId>(?:\.\{0,4\}|.{0,4})):(?P<effect>(?:[^:]*?|\[\^:\]\*?)):\[\^:\](?:\+|\*):\.\{8\}:(?P<source>(?:[^:]*?)):\.\{8\}:(?P<target>(?:[^:]*))",
+        r"\s1A:(?P<effectId>(?:[^:]*?|\[\^:\]\*?)):(?P<effect>(?:[^:]*?|\[\^:\]\*?)):(?P<duration>(?:\[\^:\]\*|[^:]*)):(?P<sourceId>(?:\[\^:\]\*|[^:]*)):(?P<source>(?:\[\^:\]\*|[^:]*)):(?P<targetId>(?:\[\^:\]\*|[^:]*)):(?P<target>(?:\[\^:\]\*|[^:]*)):?",
         poss_match,
     )
 

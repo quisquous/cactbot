@@ -65,9 +65,7 @@ def load_timeline(timeline):
                 entry["special_line"] = "26"
                 entry["buff_target"] = buff_match.group("target")
                 entry["buff_name"] = buff_match.group("effect")
-                entry[
-                    "regex"
-                ] = "26\|[^\|]*\|{}\|{}\|[^\|]*\|........\|[^\|]*\|........\|{}\|".format(
+                entry["regex"] = "26\|[^\|]*\|{}\|{}\|[^\|]*\|[^\|]*\|[^\|]*\|[^\|]*\|{}\|".format(
                     buff_match.group("effectId"),
                     buff_match.group("effect"),
                     buff_match.group("target"),
@@ -254,7 +252,7 @@ def test_match(event, entry):
         elif entry["special_type"] == "applydebuff" and event.startswith(entry["special_line"]):
             # Matching this format generically:
             # |Dadaluma Simulation|0.00|E0000000||4000AE96|Guardian
-            buff_match = re.search(entry["regex"], event)
+            buff_match = re.search(entry["regex"], event, re.IGNORECASE)
             if buff_match:
                 return True
             else:
