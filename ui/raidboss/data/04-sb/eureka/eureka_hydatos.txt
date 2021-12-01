@@ -16,7 +16,7 @@ hideall "--sync--"
 
 # Note: This checks that Art's auto hits a target close enough for you to see.
 # You can see Owain's auto abilities, but the target is listed as empty.
-1002.5 "--sync--" sync / 1[56]:[^:]*:Art:3956:[^:]*:[^:]*:/ window 1500,0
+1002.5 "--sync--" sync / 1[56]:[^:]*:Art:3956:[^:]*:[^:]*:[^:]+:/ window 1500,0
 1014.5 "Thricecull" sync / 1[56]:[^:]*:Art:3934:/
 1023.1 "Legendcarver" sync / 1[56]:[^:]*:Art:3928:/
 1030.7 "Legendspinner" sync / 1[56]:[^:]*:Art:3929:/
@@ -59,7 +59,7 @@ hideall "--sync--"
 # EAST BRANCH / OWAIN #
 #######################
 # -ic Orlasrach Art -ii 3957 3941 3939 393C 393D 3938 -p 3945:2016.0
-2002.5 "--sync--" sync / 1[56]:[^:]:Owain:3957:/ window 2500,0
+2002.5 "--sync--" sync / 1[56]:[^:]*:Owain:3957:[^:]*:[^:]*:[^:]+:/ window 2500,0
 2016.0 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
 2028.1 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/ #3:29
 2037.7 "Mythcall" sync / 1[56]:[^:]*:Owain:3936:/ #3:39
