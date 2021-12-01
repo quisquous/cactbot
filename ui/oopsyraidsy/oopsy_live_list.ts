@@ -108,10 +108,8 @@ export class DeathReportLive {
     titleText.innerHTML = report.targetName;
     titleDiv.appendChild(titleText);
 
-    const closeButton = document.createElement('input');
-    closeButton.type = 'button';
-    closeButton.value = 'X';
-    closeButton.classList.add('death-title-close');
+    const closeButton = document.createElement('div');
+    closeButton.classList.add('death-title-close', 'mistake-icon', 'icon-entry', 'icon-close');
     closeButton.addEventListener('click', () => {
       // Clicking the close button also cancels the queue.  Otherwise, you
       // close one and then another appears seconds later, which seems incorrect.
