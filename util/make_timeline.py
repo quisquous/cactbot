@@ -371,7 +371,7 @@ def main(args):
         if entry["line_type"] == "34":
             output_entry = '{position:.1f} "{targetable}"'.format(**entry)
         else:
-            output_entry = '{position:.1f} "{ability_name}" sync / 1[56]:{combatant}:{ability_id}:/'.format(
+            output_entry = '{position:.1f} "{ability_name}" sync / 1[56]:[^:]*:{combatant}:{ability_id}:/'.format(
                 **entry
             )
 
