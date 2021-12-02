@@ -215,7 +215,7 @@ def parse_file(args):
                 entry["ability_name"] = line_fields[5]
 
             # Unknown abilities should be hidden sync lines by default.
-            if line_fields[5].startswith("Unknown_"):
+            if line_fields[5].startswith(("Unknown_", "unknown_")):
                 entry["ability_name"] = "--sync--"
             else:
                 entry["targetable"] = (
@@ -300,7 +300,7 @@ def main(args):
         if entry["line_type"] in ["21", "22"]:
             # First up, check if it's an ignored entry
             # Ignore autos, probably need a better rule than this
-            if entry["ability_name"] == "Attack":
+            if entry["ability_name"].lower() == "Attack".lower():
                 continue
 
         # Ignore abilities by NPC allies
