@@ -62,43 +62,35 @@ export class BaseComponent implements ComponentInterface {
     this.player.onCombo(this.onCombo.bind(this));
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onCombo(id: string | undefined, combo: ComboTracker): void {
+  onCombo(_id: string | undefined, _combo: ComboTracker): void {
     /** noop */
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onYouGainEffect(id: string, effect: PartialFieldMatches<'GainsEffect'>): void {
+  onYouGainEffect(_id: string, _effect: PartialFieldMatches<'GainsEffect'>): void {
     /** noop */
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onYouLoseEffect(id: string, effect: PartialFieldMatches<'LosesEffect'>): void {
+  onYouLoseEffect(_id: string, _effect: PartialFieldMatches<'LosesEffect'>): void {
     /** noop */
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onMobGainsEffectFromYou(id: string, effect: PartialFieldMatches<'GainsEffect'>): void {
+  onMobGainsEffectFromYou(_id: string, _effect: PartialFieldMatches<'GainsEffect'>): void {
     /** noop */
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onMobLosesEffectFromYou(id: string, effect: PartialFieldMatches<'LosesEffect'>): void {
+  onMobLosesEffectFromYou(_id: string, _effect: PartialFieldMatches<'LosesEffect'>): void {
     /** noop */
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onUseAbility(id: string, ability: PartialFieldMatches<'Ability'>): void {
+  onUseAbility(_id: string, _ability: PartialFieldMatches<'Ability'>): void {
     /** noop */
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onStatChange(gcd: { gcdSkill: number; gcdSpell: number }): void {
+  onStatChange(_gcd: { gcdSkill: number; gcdSpell: number }): void {
     /** noop */
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onJobDetailUpdate(jobDetail: JobDetail[keyof JobDetail]): void {
+  onJobDetailUpdate(_jobDetail: JobDetail[keyof JobDetail]): void {
     /** noop */
   }
 
