@@ -6,7 +6,7 @@ import { JobsEventEmitter, PartialFieldMatches } from '../event_emitter';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 
-export type ShouldShows = {
+export type ShouldShow = {
   buffList?: boolean;
   pullBar?: boolean;
   hpBar?: boolean;

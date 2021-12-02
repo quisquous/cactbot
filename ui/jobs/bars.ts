@@ -7,7 +7,7 @@ import Util from '../../resources/util';
 import WidgetList, { Toward } from '../../resources/widget_list';
 import { Job } from '../../types/job';
 
-import { ShouldShows } from './components/base';
+import { ShouldShow } from './components/base';
 import {
   kMPCombatRate,
   kMPNormalRate,
@@ -86,8 +86,8 @@ export class Bars {
       bars.classList.toggle('pvp', hide ?? false);
   }
 
-  _setupJobContainers(job: Job, shows: ShouldShows): void {
-    const shouldShows = {
+  _setupJobContainers(job: Job, show: ShouldShow): void {
+    const shouldShow = {
       buffList: true,
       pullBar: true,
       hpBar: true,
@@ -95,7 +95,7 @@ export class Bars {
       cpBar: false,
       gpBar: false,
       mpTicker: false,
-      ...shows,
+      ...show,
     };
     // if player is in pvp zone, inherit the class
     const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
@@ -125,7 +125,7 @@ export class Bars {
     if (role !== 'none')
       barsLayoutContainer.classList.add(role.toLowerCase());
 
-    if (shouldShows.pullBar) {
+    if (shouldShow.pullBar) {
       // add pull bar first, which would not affected by the opacity settings
       this.o.pullCountdown = this.addPullCountdownBar();
     }
@@ -143,7 +143,7 @@ export class Bars {
       barsContainer.classList.add('pvp');
     opacityContainer.appendChild(barsContainer);
 
-    if (shouldShows.buffList) {
+    if (shouldShow.buffList) {
       if (this.options.JustBuffTracker) {
         // Just alias these two together so the rest of the code doesn't have
         // to care that they're the same thing.
@@ -175,22 +175,22 @@ export class Bars {
       }
     }
 
-    if (shouldShows.cpBar) {
+    if (shouldShow.cpBar) {
       this.o.cpBar = this.addCPBar();
       // hide bars by default when you are a crafter
       // it would show when you start crafting
       container.classList.add('hide');
-    } else if (shouldShows.gpBar) {
+    } else if (shouldShow.gpBar) {
       this.o.gpBar = this.addGPBar();
     }
 
-    if (shouldShows.hpBar)
+    if (shouldShow.hpBar)
       this.o.healthBar = this.addHPBar(this.options.ShowHPNumber.includes(job));
 
-    if (shouldShows.mpBar)
+    if (shouldShow.mpBar)
       this.o.manaBar = this.addMPBar(this.options.ShowMPNumber.includes(job));
 
-    if (shouldShows.mpTicker)
+    if (shouldShow.mpTicker)
       this.o.mpTicker = this.addMPTicker();
   }
 

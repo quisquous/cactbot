@@ -10,7 +10,7 @@ import { Player } from '../player';
 import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
 
 import { ASTComponent } from './ast';
-import { BaseComponent, ComponentInterface, ShouldShows } from './base';
+import { BaseComponent, ComponentInterface, ShouldShow } from './base';
 import { BLMComponent } from './blm';
 import { BLUComponent } from './blu';
 import { BRDComponent } from './brd';
@@ -88,7 +88,7 @@ export class ComponentManager {
   component?: BaseComponent;
 
   // misc variables
-  shouldShows: ShouldShows;
+  shouldShow: ShouldShow;
   contentType?: number;
   // food buffs
   foodBuffExpiresTimeMs: number;
@@ -104,7 +104,7 @@ export class ComponentManager {
     this.partyTracker = o.partyTracker;
     this.player = o.player;
 
-    this.shouldShows = {};
+    this.shouldShow = {};
     this.contentType = undefined;
 
     this.foodBuffExpiresTimeMs = 0;
@@ -172,14 +172,14 @@ export class ComponentManager {
         this.gpAlarmReady = false;
 
       this.bars._setupJobContainers(job, {
-        buffList: this.shouldShows.buffList ?? true,
-        pullBar: this.shouldShows.pullBar ?? true,
-        hpBar: this.shouldShows.hpBar ?? (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
-        mpBar: this.shouldShows.mpBar ??
+        buffList: this.shouldShow.buffList ?? true,
+        pullBar: this.shouldShow.pullBar ?? true,
+        hpBar: this.shouldShow.hpBar ?? (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
+        mpBar: this.shouldShow.mpBar ??
           (!Util.isCraftingJob(job) && !Util.isGatheringJob(job) && doesJobNeedMPBar(job)),
-        cpBar: this.shouldShows.cpBar ?? Util.isCraftingJob(job),
-        gpBar: this.shouldShows.gpBar ?? Util.isGatheringJob(job),
-        mpTicker: this.shouldShows.mpTicker ?? this.options.ShowMPTicker.includes(job),
+        cpBar: this.shouldShow.cpBar ?? Util.isCraftingJob(job),
+        gpBar: this.shouldShow.gpBar ?? Util.isGatheringJob(job),
+        mpTicker: this.shouldShow.mpTicker ?? this.options.ShowMPTicker.includes(job),
       });
 
       // initialize components
