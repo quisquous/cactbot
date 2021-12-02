@@ -37,6 +37,8 @@ export type Job =
   | 'RDM'
   | 'BLU'
   | 'GNB'
-  | 'DNC';
+  | 'DNC'
+  | 'SGE'
+  | 'RPR';
 
 export type Role = 'tank' | 'healer' | 'dps' | 'crafter' | 'gatherer' | 'none';
