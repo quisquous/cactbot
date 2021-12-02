@@ -1,7 +1,6 @@
 import EffectId from '../../../resources/effect_id';
 import PartyTracker from '../../../resources/party';
 import Util from '../../../resources/util';
-import ZoneInfo from '../../../resources/zone_info';
 import { Job } from '../../../types/job';
 import { Bars } from '../bars';
 import { BuffTracker } from '../buff_tracker';
@@ -90,7 +89,7 @@ export class ComponentManager {
 
   // misc variables
   shouldShows: ShouldShows;
-  zoneId: number;
+  contentType?: number;
   // food buffs
   foodBuffExpiresTimeMs: number;
   foodBuffTimer: number;
@@ -106,7 +105,7 @@ export class ComponentManager {
     this.player = o.player;
 
     this.shouldShows = {};
-    this.zoneId = -1;
+    this.contentType = undefined;
 
     this.foodBuffExpiresTimeMs = 0;
     this.foodBuffTimer = 0;
@@ -143,7 +142,7 @@ export class ComponentManager {
           inCombat: this.component?.inCombat ?? false,
           foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
           foodBuffTimer: this.foodBuffTimer,
-          contentType: ZoneInfo[this.zoneId]?.contentType,
+          contentType: this.contentType,
         });
       }
     });
@@ -196,7 +195,7 @@ export class ComponentManager {
             inCombat: this.component?.inCombat ?? false,
             foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
             foodBuffTimer: this.foodBuffTimer,
-            contentType: ZoneInfo[this.zoneId]?.contentType,
+            contentType: this.contentType,
           });
         }
       });
@@ -229,7 +228,7 @@ export class ComponentManager {
           inCombat: this.component.inCombat,
           foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
           foodBuffTimer: this.foodBuffTimer,
-          contentType: ZoneInfo[this.zoneId]?.contentType,
+          contentType: this.contentType,
         });
       }
 
@@ -275,12 +274,14 @@ export class ComponentManager {
         this.buffTracker?.onMobLosesEffect(id, matches);
     });
 
-    this.ee.on('zone/change', (id) => {
+    this.ee.on('zone/change', (id, _name, info) => {
+      this.contentType = info?.contentType;
+
       this.bars._updateFoodBuff({
         inCombat: this.component?.inCombat ?? false,
         foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
         foodBuffTimer: this.foodBuffTimer,
-        contentType: ZoneInfo[this.zoneId]?.contentType,
+        contentType: this.contentType,
       });
 
       this.buffTracker?.clear();
