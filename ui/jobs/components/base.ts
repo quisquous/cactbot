@@ -1,10 +1,8 @@
 import PartyTracker from '../../../resources/party';
 import { JobDetail } from '../../../types/event';
-import { NetFields } from '../../../types/net_fields';
-import { ToMatches } from '../../../types/net_matches';
 import { Bars } from '../bars';
 import ComboTracker from '../combo_tracker';
-import { JobsEventEmitter } from '../event_emitter';
+import { JobsEventEmitter, PartialFieldMatches } from '../event_emitter';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 
@@ -70,27 +68,27 @@ export class BaseComponent implements ComponentInterface {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onYouGainEffect(id: string, effect: Partial<ToMatches<NetFields['GainsEffect']>>): void {
+  onYouGainEffect(id: string, effect: PartialFieldMatches<'GainsEffect'>): void {
     /** noop */
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onYouLoseEffect(id: string, effect: Partial<ToMatches<NetFields['LosesEffect']>>): void {
+  onYouLoseEffect(id: string, effect: PartialFieldMatches<'LosesEffect'>): void {
     /** noop */
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onMobGainsEffectFromYou(id: string, effect: Partial<ToMatches<NetFields['GainsEffect']>>): void {
+  onMobGainsEffectFromYou(id: string, effect: PartialFieldMatches<'GainsEffect'>): void {
     /** noop */
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onMobLosesEffectFromYou(id: string, effect: Partial<ToMatches<NetFields['LosesEffect']>>): void {
+  onMobLosesEffectFromYou(id: string, effect: PartialFieldMatches<'LosesEffect'>): void {
     /** noop */
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onUseAbility(id: string, ability: Partial<ToMatches<NetFields['Ability']>>): void {
+  onUseAbility(id: string, ability: PartialFieldMatches<'Ability'>): void {
     /** noop */
   }
 

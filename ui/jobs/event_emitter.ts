@@ -25,15 +25,15 @@ export interface EventMap {
   'battle/wipe': () => void;
   'battle/target': (target?: { name: string; distance: number; effectiveDistance: number }) => void;
   // triggered when effect gains or loses
-  'effect/gain': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
-  'effect/lose': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+  'effect/gain': (effectId: string, info: PartialFieldMatches<'GainsEffect'>) => void;
+  'effect/lose': (effectId: string, info: PartialFieldMatches<'LosesEffect'>) => void;
   // triggered when dot or hot tick
-  'tick/dot': (damage: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
-  'tick/hot': (heal: number, info: Partial<ToMatches<NetFields['NetworkDoT']>>) => void;
+  'tick/dot': (damage: number, info: PartialFieldMatches<'NetworkDoT'>) => void;
+  'tick/hot': (heal: number, info: PartialFieldMatches<'NetworkDoT'>) => void;
   // triggered when any log line is printed
   'log': (line: string[], rawLine: string) => void;
   'log/game': (
-    log: Partial<ToMatches<NetFields['GameLog']>>,
+    log: PartialFieldMatches<'GameLog'>,
     line: string[],
     rawLine: string,
   ) => void;

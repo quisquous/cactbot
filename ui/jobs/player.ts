@@ -6,10 +6,9 @@ import ZoneInfo from '../../resources/zone_info';
 import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
-import { ToMatches } from '../../types/net_matches';
 
 import ComboTracker from './combo_tracker';
-import { JobsEventEmitter } from './event_emitter';
+import { JobsEventEmitter, PartialFieldMatches } from './event_emitter';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
@@ -27,9 +26,9 @@ export type SpeedBuffs = {
 };
 
 export type ComboCallback = (id: string | undefined, combo: ComboTracker) => void;
-export type GainCallback = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
-export type LoseCallback = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
-export type AbilityCallback = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => void;
+export type GainCallback = (id: string, matches: PartialFieldMatches<'GainsEffect'>) => void;
+export type LoseCallback = (id: string, matches: PartialFieldMatches<'LosesEffect'>) => void;
+export type AbilityCallback = (id: string, matches: PartialFieldMatches<'Ability'>) => void;
 export type ZoneChangeCallback = (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
 
 export interface EventMap {
@@ -51,16 +50,16 @@ export interface EventMap {
   'player': (player: Player) => void;
 
   // triggered when casts actions
-  'action/you': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
-  'action/party': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
-  'action/other': (actionId: string, info: Partial<ToMatches<NetFields['Ability']>>) => void;
+  'action/you': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
+  'action/party': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
+  'action/other': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
   // triggered when combo state changes
   'action/combo': (actionId: string | undefined, combo: ComboTracker) => void;
   // triggered when effect gains or loses
-  'effect/gain': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
-  'effect/lose': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
-  'effect/gain/you': (effectId: string, info: Partial<ToMatches<NetFields['GainsEffect']>>) => void;
-  'effect/lose/you': (effectId: string, info: Partial<ToMatches<NetFields['LosesEffect']>>) => void;
+  'effect/gain': (effectId: string, info: PartialFieldMatches<'GainsEffect'>) => void;
+  'effect/lose': (effectId: string, info: PartialFieldMatches<'LosesEffect'>) => void;
+  'effect/gain/you': (effectId: string, info: PartialFieldMatches<'GainsEffect'>) => void;
+  'effect/lose/you': (effectId: string, info: PartialFieldMatches<'LosesEffect'>) => void;
 }
 
 /** Player data */
@@ -181,7 +180,7 @@ export class Player extends PlayerBase {
   }
 
   onMobGainsEffectFromYou(callback: GainCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
+    const wrapper = (id: string, matches: PartialFieldMatches<'GainsEffect'>) => {
       if (
         // check if target is a mob, whose id starts with "4"
         matches.targetId?.startsWith('4') &&
@@ -194,7 +193,7 @@ export class Player extends PlayerBase {
   }
 
   onMobLosesEffectFromYou(callback: LoseCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
+    const wrapper = (id: string, matches: PartialFieldMatches<'LosesEffect'>) => {
       if (
         // check if target is a mob, whose id starts with "4"
         matches.targetId?.startsWith('4') &&
@@ -207,7 +206,7 @@ export class Player extends PlayerBase {
   }
 
   onYouGainEffect(callback: GainCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['GainsEffect']>>) => {
+    const wrapper = (id: string, matches: PartialFieldMatches<'GainsEffect'>) => {
       callback(id, matches);
     };
     this.on('effect/gain/you', wrapper);
@@ -215,7 +214,7 @@ export class Player extends PlayerBase {
   }
 
   onYouLoseEffect(callback: LoseCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['LosesEffect']>>) => {
+    const wrapper = (id: string, matches: PartialFieldMatches<'LosesEffect'>) => {
       callback(id, matches);
     };
     this.on('effect/lose/you', wrapper);
@@ -233,7 +232,7 @@ export class Player extends PlayerBase {
   }
 
   onUseAbility(callback: AbilityCallback): void {
-    const wrapper = (id: string, matches: Partial<ToMatches<NetFields['Ability']>>) => {
+    const wrapper = (id: string, matches: PartialFieldMatches<'Ability'>) => {
       callback(id, matches);
     };
     this.on('action/you', wrapper);
