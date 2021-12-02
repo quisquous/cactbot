@@ -15,9 +15,9 @@
         "hash": ["sha256", "006a8372dbb4e0f9761a1f29a926c81db0f41df0ededf378912961e23e9d24b3"],
     },
     "OverlayPlugin": {
-        "url": "https://github.com/ngld/OverlayPlugin/releases/download/v0.13.2/OverlayPlugin-0.13.2.zip",
+        "url": "https://github.com/ngld/OverlayPlugin/releases/download/v0.17.0/OverlayPlugin-0.17.0.zip",
         "dest": "plugin/ThirdParty/OverlayPlugin",
         "strip": 1,
-        "hash": ["sha256", "2447517c11c54ea4fc5f92ca74ce5ff2ff6b2527d6137e37780e9d5114cfd540"],
+        "hash": ["sha256", "a4a733139c5239b3a863faa87032008a49e222ff9fd473a2aa83cf37194f66ad"],
     },
 }
