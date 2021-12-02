@@ -7,10 +7,14 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+const centerX = 100;
+const centerY = 100;
+
 export interface Data extends RaidbossData {
   phase?: string;
   titanGaols?: string[];
   titanBury?: NetMatches['AddedCombatant'][];
+  ifritNails?: NetMatches['AddedCombatant'][];
 }
 
 // Ultima Weapon Ultimate
@@ -236,6 +240,68 @@ const triggerSet: TriggerSet<Data> = {
       sound: 'Long',
     },
     {
+      id: 'UWU Ifrit Dashes',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Infernal Nail' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Infernalischa? Fessel' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Pal Infernal' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: '炎獄の楔' }),
+      netRegexCn: NetRegexes.addedCombatantFull({ name: '火狱之楔' }),
+      netRegexKo: NetRegexes.addedCombatantFull({ name: '염옥의 말뚝' }),
+      condition: (data, matches) => {
+        (data.ifritNails ??= []).push(matches);
+        return data.ifritNails.length === 4;
+      },
+      alertText: (data, _matches, output) => {
+        const dirNames = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
+        const error = (msg: string) => void console.error(`Ifrit Dashes: ${msg}: ${JSON.stringify(data.ifritNails)}`);
+
+        if (data.ifritNails?.length !== 4)
+          return error('wrong nails size');
+
+        const nails = data.ifritNails
+          .map((matches) => {
+            const x = parseFloat(matches.x) - centerX;
+            const y = parseFloat(matches.y) - centerY;
+            return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+          })
+          .sort((a, b) => a - b);
+
+        const sectors = nails.map((start, i, a) => {
+          const end = a[(i + 1) % a.length]!;
+          const size = (end - start + 8) % 8;
+          return { size, start, end };
+        });
+
+        const narrowSector = sectors.find((s) => s.size === 1);
+        if (!narrowSector)
+          return error('failed to find sector');
+
+        /**   s   e   <- narrow sector
+         *  e      s  <- wide sector    */
+        const dir = dirNames[narrowSector.end]!;
+        return output.text!({ dir: output[dir]!() });
+      },
+      outputStrings: {
+        text: {
+          en: 'Dash safe zone: ${dir}',
+          // de: 'Sichere Zone: ${dir}',
+          // fr: 'Zone sûre : ${dir}',
+          ja: '突進 安置: ${dir}',
+          // cn: '安全点在：${dir}',
+          ko: '돌진 안전지대: ${dir}',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
+      },
+    },
+    {
       id: 'UWU Titan Bury Direction',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1803' }),
@@ -254,8 +320,6 @@ const triggerSet: TriggerSet<Data> = {
         // 5 bombs drop, and then a 6th later.
         // They all drop on one half of the arena, and then 3 on one half and 2 on the other.
         // e.g. all 5 drop on north half, 3 on west half, 2 on east half.
-        const centerX = 100;
-        const centerY = 100;
         const numDir = [0, 0, 0, 0]; // north, east, south, west
         for (const bomb of bombs) {
           if (bomb.y < centerY)
@@ -648,6 +712,7 @@ const triggerSet: TriggerSet<Data> = {
         'Mistral Shriek': 'Cri du mistral',
         'Mistral Song': 'Chant du mistral',
         'Mountain Buster': 'Casse-montagnes',
+        'Nail Adds': 'Nail Adds',
         'Radiant Plume': 'Panache radiant',
         'Rock Buster': 'Casse-roc',
         'Rock Throw': 'Jeté de rocs',
