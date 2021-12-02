@@ -8,7 +8,6 @@ import boleImage from '../../resources/ffxiv/status/bole.png';
 import brotherhoodImage from '../../resources/ffxiv/status/brotherhood.png';
 import chainStratagemImage from '../../resources/ffxiv/status/chain-stratagem.png';
 import devilmentImage from '../../resources/ffxiv/status/devilment.png';
-import devotionImage from '../../resources/ffxiv/status/devotion.png';
 import divinationImage from '../../resources/ffxiv/status/divination.png';
 import dragonSightImage from '../../resources/ffxiv/status/dragon-sight.png';
 import emboldenImage from '../../resources/ffxiv/status/embolden.png';
@@ -364,13 +363,13 @@ export class BuffTracker {
         gainEffect: [EffectId.BattleLitany],
         loseEffect: [EffectId.BattleLitany],
         useEffectDuration: true,
-        durationSeconds: 20,
+        durationSeconds: 15,
         partyOnly: true,
         icon: battleLitanyImage,
         // Cyan.
         borderColor: '#099',
         sortKey: 2,
-        cooldown: 180,
+        cooldown: 120,
       },
       embolden: {
         // On each embolden stack changes,
@@ -507,13 +506,13 @@ export class BuffTracker {
         gainEffect: [EffectId.BattleVoice],
         loseEffect: [EffectId.BattleVoice],
         useEffectDuration: true,
-        durationSeconds: 20,
+        durationSeconds: 15,
         partyOnly: true,
         icon: battleVoiceImage,
         // Red.
         borderColor: '#D6371E',
         sortKey: 7,
-        cooldown: 180,
+        cooldown: 120,
       },
       chain: {
         cooldownAbility: [kAbility.ChainStratagem],
@@ -558,24 +557,7 @@ export class BuffTracker {
         // Dark Orange.
         borderColor: '#994200',
         sortKey: 11,
-        cooldown: 90,
-      },
-      devotion: {
-        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
-        // By the way, pet can delay using devotion after been ordered
-        // and if you order it to continue moving, it can greatly delay up to 30s,
-        // so it may not be accurate.
-        cooldownAbility: [kAbility.Devotion],
-        gainEffect: [EffectId.Devotion],
-        loseEffect: [EffectId.Devotion],
-        useEffectDuration: true,
-        durationSeconds: 15,
-        partyOnly: true,
-        icon: devotionImage,
-        // Yellow.
-        borderColor: '#ffbf00',
-        sortKey: 12,
-        cooldown: 180,
+        cooldown: 120,
       },
       divination: {
         cooldownAbility: [kAbility.Divination],
