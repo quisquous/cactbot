@@ -472,21 +472,6 @@ export class Bars {
     this.player.on('mp', (data) => {
       this._updateMana(data);
     });
-    // change color when target is far away
-    this.ee.on('battle/target', (target) => {
-      if (!this.o.manaBar)
-        return;
-      if (target && Util.isCasterDpsJob(this.player.job)) {
-        if (
-          this.options.FarThresholdOffence >= 0 &&
-          target.effectiveDistance > this.options.FarThresholdOffence
-        ) {
-          this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
-          return;
-        }
-      }
-      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
-    });
 
     return manaBar;
   }
@@ -636,6 +621,20 @@ export class Bars {
       return;
     this.o.manaBar.value = data.mp.toString();
     this.o.manaBar.maxvalue = data.maxMp.toString();
+  }
+
+  updateMpBarColor(data: {
+    mp: number;
+    far?: boolean;
+  }): void {
+    if (!this.o.manaBar)
+      return;
+
+    if (data.far) {
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
+      return;
+    }
+
     let lowMP = -1;
     let mediumMP = -1;
 

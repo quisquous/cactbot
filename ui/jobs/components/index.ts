@@ -96,6 +96,8 @@ export class ComponentManager {
   // gp potions
   gpAlarmReady: boolean;
   gpPotion: boolean;
+  // true if player is too far away from their target
+  far?: boolean;
 
   constructor(o: ComponentInterface) {
     this.bars = o.bars;
@@ -111,6 +113,8 @@ export class ComponentManager {
     this.foodBuffTimer = 0;
     this.gpAlarmReady = false;
     this.gpPotion = false;
+
+    this.far = undefined;
 
     this.setupListeners();
   }
@@ -147,17 +151,29 @@ export class ComponentManager {
       }
     });
 
-    // update mp ticker
+    // change color when target is far away
+    this.ee.on('battle/target', (target) => {
+      if (target && Util.isCasterDpsJob(this.player.job)) {
+        this.far = this.options.FarThresholdOffence >= 0 &&
+          target.effectiveDistance > this.options.FarThresholdOffence;
+        this.bars.updateMpBarColor({ mp: this.player.mp, far: this.far });
+      }
+    });
+
     this.player.on('mp', (data) => {
       let umbralStacks = 0;
       if (this.component instanceof BLMComponent)
         umbralStacks = this.component.umbralStacks;
 
+      // update mp ticker
       this.bars._updateMPTicker({
         ...data,
         inCombat: this.component?.inCombat ?? false,
         umbralStacks: umbralStacks,
       });
+
+      // update mp bar color
+      this.bars.updateMpBarColor({ mp: data.mp, far: this.far });
     });
     this.player.on('gp', ({ gp }) => {
       this.gpAlarmReady = this.bars._shouldPlayGpAlarm({
