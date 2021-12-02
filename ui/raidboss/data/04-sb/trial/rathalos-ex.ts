@@ -34,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Right Flank (or out)',
           de: 'Rechte Flanke (oder raus gehen)',
+          fr: 'Flanc droit (ou extérieur)',
           cn: '右侧 (或远离)',
           ko: '오른쪽 (혹은 멀리 가기)',
         },
@@ -69,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: we could be fancier and say "Run through" or something for #2.
           en: 'Left Flank (or out)',
           de: 'Linke Flanke (oder raus gehen)',
+          fr: 'Suivez le flanc gauche (ou extérieur)',
           cn: '左侧 (或远离)',
           ko: '왼쪽 (혹은 멀리가기)',
         },
@@ -102,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
           // For ranged players, Rush is different than Flaming Recoil because they may have to move.
           en: 'Avoid Charge',
           de: 'Weiche dem Ansturm aus',
+          fr: 'Évitez la charge',
           cn: '避开冲锋',
           ko: '돌진 피하기',
         },
@@ -138,6 +141,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Use Foothold for QTE',
           de: 'Benutze Standbein für QTE',
+          fr: 'Utilisez le point d\'appui',
           cn: '上龙背QTE',
           ko: '등에 올라타기',
         },

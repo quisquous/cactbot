@@ -202,10 +202,9 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         'Antitwilight': 'Belle-de-nuit',
-        'Bright Blade': 'Lame blafarde',
+        'Bright Blade/Dark Blade': 'Lame blafarde/ténébreuse',
         'Concentrativity': 'Kenki concentré',
         'Dance Of The Dead': 'Danse des morts',
-        'Dark Blade': 'Lame ténébreuse',
         'Dispersivity': 'Onde Kenki',
         'Lead Of The Underworld': 'Tir de l\'au-delà',
         'Lunacy': 'Efflorescence au clair de lune',
