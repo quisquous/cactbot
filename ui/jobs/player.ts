@@ -6,7 +6,7 @@ import ZoneInfo from '../../resources/zone_info';
 import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
-import { NetMatches, ToMatches } from '../../types/net_matches';
+import { ToMatches } from '../../types/net_matches';
 
 import ComboTracker from './combo_tracker';
 import { JobsEventEmitter } from './event_emitter';
