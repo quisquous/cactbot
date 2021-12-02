@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
+      - 'package.json'
       - 'util/publish.sh'
       - 'util/DEPS.json5'
       - 'util/fetch_deps.ts'
@@ -18,6 +19,7 @@ on:
     paths:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
+      - 'package.json'
       - 'util/publish.sh'
       - 'util/DEPS.json5'
       - 'util/fetch_deps.ts'
@@ -79,8 +81,8 @@ jobs:
         shell: cmd
 
       - name: Build JavaScript UI Module Bundles
-        run: |
-          npm run build
+        run: npm run build
+        timeout-minutes: 10
 
       - name: Generate artifact
         shell: bash

@@ -1,4 +1,4 @@
-import { Lang } from '../../resources/languages';
+import { Lang, langToLocale } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import TimerBar from '../../resources/timerbar';
 import { LocaleRegex } from '../../resources/translations';
@@ -486,7 +486,9 @@ export class TimelineUI {
     if (!this.root)
       throw new Error('can\'t find timeline-container');
 
+    // TODO: left for now as backwards compatibility with user css.  Remove this later??
     this.root.classList.add(`lang-${this.lang}`);
+    this.root.lang = langToLocale(this.lang);
     if (this.options.Skin)
       this.root.classList.add(`skin-${this.options.Skin}`);
 

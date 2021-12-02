@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.23.11",
+  "version": "0.23.12",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -9,7 +9,7 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.prod.ts",
+    "build": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --progress --config webpack/webpack.prod.ts",
     "build-gh-pages": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
     "start": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack serve --config webpack/webpack.dev.ts",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
@@ -42,6 +42,7 @@
     "@types/css-minimizer-webpack-plugin": "^3.0.1",
     "@types/inquirer": "^7.3.2",
     "@types/inquirer-fuzzy-path": "^2.3.0",
+    "@types/is-ci": "^3.0.0",
     "@types/lodash": "^4.14.170",
     "@types/markdown-magic": "^1.0.1",
     "@types/mini-css-extract-plugin": "^1.4.3",
@@ -75,6 +76,7 @@
     "fork-ts-checker-webpack-plugin": "^6.4.2",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^4.2.5",
+    "is-ci": "^3.0.1",
     "json5": "^2.2.0",
     "jszip": "^3.7.1",
     "lint-staged": "^10.0.8",

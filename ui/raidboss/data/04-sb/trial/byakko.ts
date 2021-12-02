@@ -93,7 +93,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Aratama Force': 'aramitama',
         'Byakko': 'Byakko',

@@ -132,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
         'Tenzen': 'Tenzen',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Ashes To Ashes': 'Cendres du phénix',
         'Burn': 'Combustion',
         'Cremate': 'Crématorium',
