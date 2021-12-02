@@ -5,7 +5,7 @@ type Sorter = () => number;
 
 type LeftRight = 'left' | 'right';
 type UpDown = 'up' | 'down';
-type Toward = `${LeftRight} ${UpDown}` | `${UpDown} ${LeftRight}`;
+export type Toward = `${LeftRight} ${UpDown}` | `${UpDown} ${LeftRight}`;
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
 

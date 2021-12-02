@@ -1,137 +1,156 @@
 import EffectId from '../../../resources/effect_id';
+import TimerBar from '../../../resources/timerbar';
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
+import { ResourceBox } from '../bars';
+import ComboTracker from '../combo_tracker';
 import { kAbility } from '../constants';
-import { Bars } from '../jobs';
+import { PartialFieldMatches } from '../event_emitter';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars): void => {
-  const comboTimer = bars.addTimerBar({
+export class SAMComponent extends BaseComponent {
+  comboTimer: TimerBar;
+  setsu: HTMLDivElement;
+  getsu: HTMLDivElement;
+  ka: HTMLDivElement;
+  kenkiGauge: ResourceBox;
+  meditationGauge: ResourceBox;
+  shifu: TimerBox;
+  jinpu: TimerBox;
+  tsubameGaeshi: TimerBox;
+  higanbana: TimerBox;
+
+  constructor(o: ComponentInterface) {
+    super(o);
+  this.comboTimer = this.bars.addTimerBar({
     id: 'sam-timers-combo',
     fgColor: 'combo-color',
-  });
-  bars.onCombo((skill) => {
-    comboTimer.duration = 0;
-    if (bars.combo?.isFinalSkill)
-      return;
-    if (skill)
-      comboTimer.duration = 15;
   });
 
   const senContainer = document.createElement('div');
   senContainer.id = 'sam-stacks';
-  bars.addJobBarContainer().appendChild(senContainer);
-  const [setsu, getsu, ka] = [
-    document.createElement('div'),
-    document.createElement('div'),
-    document.createElement('div'),
-  ];
-  setsu.id = 'sam-stacks-setsu';
-  getsu.id = 'sam-stacks-getsu';
-  ka.id = 'sam-stacks-ka';
-  [setsu, getsu, ka].forEach((e) => senContainer.appendChild(e));
+  this.bars.addJobBarContainer().appendChild(senContainer);
 
-  const kenkiGauge = bars.addResourceBox({
+  this.setsu = document.createElement('div');
+  this.getsu = document.createElement('div');
+  this.ka = document.createElement('div');
+
+  this.setsu.id = 'sam-stacks-setsu';
+  this.getsu.id = 'sam-stacks-getsu';
+  this.ka.id = 'sam-stacks-ka';
+  [this.setsu, this.getsu, this.ka].forEach((e) => senContainer.appendChild(e));
+
+  this.kenkiGauge = this.bars.addResourceBox({
     classList: ['sam-color-kenki'],
   });
-  const meditationGauge = bars.addResourceBox({
+  this.meditationGauge = this.bars.addResourceBox({
     classList: ['sam-color-meditation'],
   });
-
-  bars.onJobDetailUpdate('SAM', (jobDetail: JobDetail['SAM']) => {
-    kenkiGauge.innerText = jobDetail.kenki.toString();
-    meditationGauge.innerText = jobDetail.meditationStacks.toString();
-    if (jobDetail.kenki >= 70)
-      kenkiGauge.parentNode.classList.add('high');
-    else
-      kenkiGauge.parentNode.classList.remove('high');
-    if (jobDetail.meditationStacks >= 2)
-      meditationGauge.parentNode.classList.add('high');
-    else
-      meditationGauge.parentNode.classList.remove('high');
-
-    if (jobDetail.setsu)
-      setsu.classList.add('active');
-    else
-      setsu.classList.remove('active');
-    if (jobDetail.getsu)
-      getsu.classList.add('active');
-    else
-      getsu.classList.remove('active');
-    if (jobDetail.ka)
-      ka.classList.add('active');
-    else
-      ka.classList.remove('active');
-  });
-
-  const shifu = bars.addProcBox({
+  this.shifu = this.bars.addProcBox({
     id: 'sam-procs-shifu',
     fgColor: 'sam-color-shifu',
     notifyWhenExpired: true,
   });
-  bars.onYouGainEffect(EffectId.Shifu, (_id, matches) => {
-    shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
-    bars.speedBuffs.shifu = true;
-  });
-  bars.onYouLoseEffect(EffectId.Shifu, () => {
-    shifu.duration = 0;
-    bars.speedBuffs.shifu = false;
-  });
 
-  const jinpu = bars.addProcBox({
+  this.jinpu = this.bars.addProcBox({
     id: 'sam-procs-jinpu',
     fgColor: 'sam-color-jinpu',
     notifyWhenExpired: true,
   });
-  bars.onYouGainEffect(EffectId.Jinpu, (_id, matches) => {
-    jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
-  });
-  bars.onYouLoseEffect(EffectId.Jinpu, () => {
-    jinpu.duration = 0;
-  });
-
-  const tsubameGaeshi = bars.addProcBox({
+  this.tsubameGaeshi = this.bars.addProcBox({
     id: 'sam-procs-tsubamegaeshi',
     fgColor: 'sam-color-tsubamegaeshi',
   });
-  bars.onUseAbility([
-    kAbility.KaeshiHiganbana,
-    kAbility.KaeshiGoken,
-    kAbility.KaeshiSetsugekka,
-  ], () => {
-    tsubameGaeshi.duration = 60;
-  });
-
-  const higanbana = bars.addProcBox({
+  this.higanbana = this.bars.addProcBox({
     id: 'sam-procs-higanbana',
     fgColor: 'sam-color-higanbana',
     notifyWhenExpired: true,
   });
-  bars.onMobGainsEffectFromYou(EffectId.Higanbana, () => {
-    higanbana.duration = 60 - 0.5; // -0.5s for log line delay
-  });
+}
 
-  bars.onStatChange('SAM', () => {
-    shifu.valuescale = bars.gcdSkill;
-    shifu.threshold = bars.gcdSkill * 6;
-    jinpu.valuescale = bars.gcdSkill;
-    jinpu.threshold = bars.gcdSkill * 6;
-    tsubameGaeshi.valuescale = bars.gcdSkill;
-    tsubameGaeshi.threshold = bars.gcdSkill * 4;
-    higanbana.valuescale = bars.gcdSkill;
-    higanbana.threshold = bars.gcdSkill * 4;
-  });
+  override onCombo(skill: string, combo: ComboTracker): void {
+    this.comboTimer.duration = 0;
+    if (combo.isFinalSkill)
+      return;
+    if (skill)
+      this.comboTimer.duration = 15;
+  }
+  override onJobDetailUpdate(jobDetail: JobDetail['SAM']): void {
+    this.kenkiGauge.innerText = jobDetail.kenki.toString();
+    this.meditationGauge.innerText = jobDetail.meditationStacks.toString();
+    if (jobDetail.kenki >= 70)
+      this.kenkiGauge.parentNode.classList.add('high');
+    else
+      this.kenkiGauge.parentNode.classList.remove('high');
+    if (jobDetail.meditationStacks >= 2)
+      this.meditationGauge.parentNode.classList.add('high');
+    else
+      this.meditationGauge.parentNode.classList.remove('high');
 
-  resetFunc = (_bars: Bars): void => {
-    comboTimer.duration = 0;
-    shifu.duration = 0;
-    jinpu.duration = 0;
-    tsubameGaeshi.duration = 0;
-    higanbana.duration = 0;
-  };
-};
+    if (jobDetail.setsu)
+      this.setsu.classList.add('active');
+    else
+      this.setsu.classList.remove('active');
+    if (jobDetail.getsu)
+      this.getsu.classList.add('active');
+    else
+      this.getsu.classList.remove('active');
+    if (jobDetail.ka)
+      this.ka.classList.add('active');
+    else
+      this.ka.classList.remove('active');
+  }
 
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};
+  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>):void {
+    if (id === EffectId.Shifu) {
+      this.shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
+      this.player.speedBuffs.shifu = true;
+    }
+    if (id === EffectId.Jinpu)
+      this.jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
+  }
+  override onYouLoseEffect(id: string):void {
+    if (id === EffectId.Shifu) {
+      this.shifu.duration = 0;
+      this.player.speedBuffs.shifu = false;
+    }
+    if (id === EffectId.Jinpu)
+      this.jinpu.duration = 0;
+  }
+
+  override onUseAbility(id: string) :void {
+    switch (id) {
+      case kAbility.KaeshiHiganbana:
+      case kAbility.KaeshiGoken:
+      case kAbility.KaeshiSetsugekka:
+        this.tsubameGaeshi.duration = 60;
+        break;
+    }
+  }
+
+  override onMobGainsEffectFromYou(id:string) :void {
+    if (id === EffectId.Higanbana)
+      this.higanbana.duration = 60 - 0.5; // -0.5s for log line delay
+  }
+
+  override onStatChange({ gcdSkill }:{ gcdSkill: number }): void {
+    this.shifu.valuescale = gcdSkill;
+    this.shifu.threshold = gcdSkill * 6;
+    this.jinpu.valuescale = gcdSkill;
+    this.jinpu.threshold = gcdSkill * 6;
+    this.tsubameGaeshi.valuescale = gcdSkill;
+    this.tsubameGaeshi.threshold = gcdSkill * 4;
+    this.higanbana.valuescale = gcdSkill;
+    this.higanbana.threshold = gcdSkill * 4;
+  }
+
+  override reset(): void {
+    this.comboTimer.duration = 0;
+    this.shifu.duration = 0;
+    this.jinpu.duration = 0;
+    this.tsubameGaeshi.duration = 0;
+    this.higanbana.duration = 0;
+  }
+}
+

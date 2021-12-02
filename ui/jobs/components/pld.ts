@@ -1,33 +1,39 @@
 import EffectId from '../../../resources/effect_id';
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
+import { ResourceBox } from '../bars';
 import { kAbility } from '../constants';
-import { Bars, ResourceBox } from '../jobs';
+import { PartialFieldMatches } from '../event_emitter';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-const setAtonement = (atonementBox: ResourceBox, stacks: number) => {
-  atonementBox.innerText = stacks.toString();
-  const p = atonementBox.parentNode;
-  if (stacks === 0)
-    p.classList.remove('any');
-  else
-    p.classList.add('any');
-};
+export class PLDComponent extends BaseComponent {
+  oathBox: ResourceBox;
+  atonementBox: ResourceBox;
+  goreBox: TimerBox;
 
-export const setup = (bars: Bars): void => {
-  const oathBox = bars.addResourceBox({
+  constructor(o: ComponentInterface) {
+    super(o);
+  this.oathBox = this.bars.addResourceBox({
     classList: ['pld-color-oath'],
   });
-  const atonementBox = bars.addResourceBox({
+  this.atonementBox = this.bars.addResourceBox({
     classList: ['pld-color-atonement'],
   });
 
-  bars.onJobDetailUpdate('PLD', (jobDetail: JobDetail['PLD']) => {
+  this.goreBox = this.bars.addProcBox({
+    fgColor: 'pld-color-gore',
+    notifyWhenExpired: true,
+  });
+
+  this.setAtonement(this.atonementBox, 0);
+}
+  override onJobDetailUpdate(jobDetail: JobDetail['PLD']):void {
     const oath = jobDetail.oath.toString();
-    if (oathBox.innerText === oath)
+    if (this.oathBox.innerText === oath)
       return;
-    oathBox.innerText = oath;
-    const p = oathBox.parentNode;
+    this.oathBox.innerText = oath;
+    const p = this.oathBox.parentNode;
     if (jobDetail.oath < 50) {
       p.classList.add('low');
       p.classList.remove('mid');
@@ -38,14 +44,18 @@ export const setup = (bars: Bars): void => {
       p.classList.remove('low');
       p.classList.remove('mid');
     }
-  });
+  }
 
-  const goreBox = bars.addProcBox({
-    fgColor: 'pld-color-gore',
-    notifyWhenExpired: true,
-  });
+setAtonement(atonementBox: ResourceBox, stacks: number): void {
+  atonementBox.innerText = stacks.toString();
+  const p = atonementBox.parentNode;
+  if (stacks === 0)
+    p.classList.remove('any');
+  else
+    p.classList.add('any');
+}
 
-  bars.onCombo((skill) => {
+  override onCombo(skill: string): void {
     if (skill === kAbility.GoringBlade) {
       // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
       // have the box show 21, it looks like you're awfully late with
@@ -53,32 +63,31 @@ export const setup = (bars: Bars): void => {
       // poor paladins who don't have enough skill speed so that the UI
       // is easier to read for repeating goring, royal, royal, goring
       // and not having the box run out early.
-      goreBox.duration = 22;
+      this.goreBox.duration = 22;
     }
-  });
+  }
 
-  setAtonement(atonementBox, 0);
 
   // As atonement counts down, the player gets successive "gains effects"
   // for the same effect, but with different counts.  When the last stack
   // falls off, then there's a "lose effect" line.
-  bars.onYouGainEffect(EffectId.SwordOath, (name, matches) => {
-    setAtonement(atonementBox, parseInt(matches.count ?? '0'));
-  });
-  bars.onYouLoseEffect(EffectId.SwordOath, () => setAtonement(atonementBox, 0));
+  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
+    if (id === EffectId.SwordOath)
+      this.setAtonement(this.atonementBox, parseInt(matches.count ?? '0'));
+  }
+  override onYouLoseEffect(id: string): void {
+    if (id === EffectId.SwordOath)
+      this.setAtonement(this.atonementBox, 0);
+  }
 
-  bars.onStatChange('PLD', () => {
-    goreBox.valuescale = bars.gcdSkill;
-    goreBox.threshold = bars.gcdSkill * 3 + 0.3;
-  });
+  override onStatChange({ gcdSkill } : { gcdSkill: number }): void {
+    this.goreBox.valuescale = gcdSkill;
+    this.goreBox.threshold = gcdSkill * 3 + 0.3;
+  }
 
-  resetFunc = (_bars: Bars): void => {
-    goreBox.duration = 0;
-    setAtonement(atonementBox, 0);
-  };
-};
+  override reset(): void {
+    this.goreBox.duration = 0;
+    this.setAtonement(this.atonementBox, 0);
+  }
+}
 
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};

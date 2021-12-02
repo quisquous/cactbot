@@ -1,38 +1,52 @@
 import EffectId from '../../../resources/effect_id';
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
+import { ResourceBox } from '../bars';
 import { kAbility } from '../constants';
-import { Bars } from '../jobs';
+import { PartialFieldMatches } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars): void => {
-  const aetherflowStackBox = bars.addResourceBox({
+export class SMNComponent extends BaseComponent {
+  aetherflowStackBox: ResourceBox;
+  demiSummoningBox: ResourceBox;
+  miasmaBox: TimerBox;
+  bioSmnBox: TimerBox;
+  energyDrainBox: TimerBox;
+  tranceBox: TimerBox;
+
+  furtherRuin = 0;
+  ruin4Stacks: HTMLElement[] = [];
+
+  constructor(o: ComponentInterface) {
+    super(o);
+  this.aetherflowStackBox = this.bars.addResourceBox({
     classList: ['smn-color-aetherflow'],
   });
 
-  const demiSummoningBox = bars.addResourceBox({
+  this.demiSummoningBox = this.bars.addResourceBox({
     classList: ['smn-color-demisummon'],
   });
 
-  const miasmaBox = bars.addProcBox({
+  this.miasmaBox = this.bars.addProcBox({
     id: 'smn-procs-miasma',
     fgColor: 'smn-color-miasma',
     notifyWhenExpired: true,
   });
 
-  const bioSmnBox = bars.addProcBox({
+  this.bioSmnBox = this.bars.addProcBox({
     id: 'smn-procs-biosmn',
     fgColor: 'smn-color-biosmn',
     notifyWhenExpired: true,
   });
 
-  const energyDrainBox = bars.addProcBox({
+  this.energyDrainBox = this.bars.addProcBox({
     id: 'smn-procs-energydrain',
     fgColor: 'smn-color-energydrain',
   });
 
-  const tranceBox = bars.addProcBox({
+  this.tranceBox = this.bars.addProcBox({
     id: 'smn-procs-trance',
     fgColor: 'smn-color-trance',
   });
@@ -40,136 +54,130 @@ export const setup = (bars: Bars): void => {
   // FurtherRuin Stack Gauge
   const stacksContainer = document.createElement('div');
   stacksContainer.id = 'smn-stacks';
-  bars.addJobBarContainer().appendChild(stacksContainer);
+  this.bars.addJobBarContainer().appendChild(stacksContainer);
   const ruin4Container = document.createElement('div');
   ruin4Container.id = 'smn-stacks-ruin4';
   stacksContainer.appendChild(ruin4Container);
-  const ruin4Stacks: HTMLElement[] = [];
   for (let i = 0; i < 4; ++i) {
     const d = document.createElement('div');
     ruin4Container.appendChild(d);
-    ruin4Stacks.push(d);
+    this.ruin4Stacks.push(d);
+  }
+}
+  refreshFurtherRuin(): void {
+    for (let i = 0; i < 4; ++i) {
+      if (this.furtherRuin > i)
+        this.ruin4Stacks[i]?.classList.add('active');
+      else
+        this.ruin4Stacks[i]?.classList.remove('active');
+    }
   }
 
-  let furtherRuin = 0;
-  const refreshFurtherRuin = () => {
-    for (let i = 0; i < 4; ++i) {
-      if (furtherRuin > i)
-        ruin4Stacks[i]?.classList.add('active');
-      else
-        ruin4Stacks[i]?.classList.remove('active');
+  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
+    if (id === EffectId.FurtherRuin) {
+      this.furtherRuin = parseInt(matches.count ?? '0');
+      this.refreshFurtherRuin();
     }
-  };
-  bars.onYouGainEffect(EffectId.FurtherRuin, (name, e) => {
-    furtherRuin = parseInt(e.count ?? '0');
-    refreshFurtherRuin();
-  });
-  bars.onYouLoseEffect(EffectId.FurtherRuin, () => {
-    furtherRuin = 0;
-    refreshFurtherRuin();
-  });
-  bars.changeZoneFuncs.push(() => {
-    furtherRuin = 0;
-    refreshFurtherRuin();
-  });
+  }
+  override onYouLoseEffect(id: string): void {
+    if (id === EffectId.FurtherRuin) {
+      this.furtherRuin = 0;
+      this.refreshFurtherRuin();
+    }
+  }
+  onZoneChange(): void {
+    this.furtherRuin = 0;
+    this.refreshFurtherRuin();
+  }
 
-  bars.onJobDetailUpdate('SMN', (jobDetail: JobDetail['SMN']) => {
+  override onJobDetailUpdate(jobDetail: JobDetail['SMN']): void {
     const stack = jobDetail.aetherflowStacks;
     const summoned = jobDetail.bahamutSummoned;
     const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
 
     // turn red when you have too much stacks before EnergyDrain ready.
-    aetherflowStackBox.innerText = stack.toString();
-    const s = energyDrainBox.duration ?? 0 - energyDrainBox.elapsed;
+    this.aetherflowStackBox.innerText = stack.toString();
+    const s = this.energyDrainBox.duration ?? 0 - this.energyDrainBox.elapsed;
     if ((stack === 2) && (s <= 8))
-      aetherflowStackBox.parentNode.classList.add('too-much-stacks');
+      this.aetherflowStackBox.parentNode.classList.add('too-much-stacks');
     else
-      aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+      this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
 
     // Show time remain when summoning/trancing.
     // Turn blue when buhamut ready, and turn orange when firebird ready.
     // Also change tranceBox color.
-    demiSummoningBox.innerText = '';
-    demiSummoningBox.parentNode.classList.remove('bahamutready', 'firebirdready');
-    tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-trance');
+    this.demiSummoningBox.innerText = '';
+    this.demiSummoningBox.parentNode.classList.remove('bahamutready', 'firebirdready');
+    this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-trance');
     if (time > 0) {
-      demiSummoningBox.innerText = time.toString();
+      this.demiSummoningBox.innerText = time.toString();
     } else if (jobDetail.dreadwyrmStacks === 2) {
-      demiSummoningBox.parentNode.classList.add('bahamutready');
+      this.demiSummoningBox.parentNode.classList.add('bahamutready');
     } else if (jobDetail.phoenixReady) {
-      demiSummoningBox.parentNode.classList.add('firebirdready');
-      tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-demisummon.firebirdready');
+      this.demiSummoningBox.parentNode.classList.add('firebirdready');
+      this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-demisummon.firebirdready');
     }
 
     // Turn red when only 7s summoning time remain, to alarm that cast the second Enkindle.
     // Also alarm that don't cast a spell that has cast time, or a WW/SF will be missed.
     // Turn red when only 2s trancing time remain, to alarm that cast deathflare.
     if (time <= 7 && summoned === 1)
-      demiSummoningBox.parentNode.classList.add('last');
+      this.demiSummoningBox.parentNode.classList.add('last');
     else if (time > 0 && time <= 2 && summoned === 0)
-      demiSummoningBox.parentNode.classList.add('last');
+      this.demiSummoningBox.parentNode.classList.add('last');
     else
-      demiSummoningBox.parentNode.classList.remove('last');
-  });
+      this.demiSummoningBox.parentNode.classList.remove('last');
+  }
 
-  bars.onUseAbility([
-    kAbility.Miasma,
-    kAbility.Miasma3,
-  ], () => {
-    miasmaBox.duration = 30;
-  });
-  bars.onUseAbility([
-    kAbility.BioSmn,
-    kAbility.BioSmn2,
-    kAbility.Bio3,
-  ], () => {
-    bioSmnBox.duration = 30;
-  });
-  // Tridisaster refresh miasma and bio both, so repeat below.
-  // TODO: remake onXxx like node's EventEmitter
-  bars.onUseAbility(kAbility.Tridisaster, () => {
-    miasmaBox.duration = 30;
-    bioSmnBox.duration = 30;
-  });
-  bars.onUseAbility([
-    kAbility.EnergyDrain,
-    kAbility.EnergySiphon,
-  ], () => {
-    energyDrainBox.duration = 30;
-    aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  });
-  // Trance cooldown is 55s,
-  // but wait till 60s will be better on matching raidbuffs.
-  // Threshold will be used to tell real cooldown.
-  bars.onUseAbility([
-    kAbility.DreadwyrmTrance,
-    kAbility.FirebirdTrance,
-  ], () => {
-    tranceBox.duration = 60;
-  });
+  override onUseAbility(id: string): void {
+    switch (id) {
+      case kAbility.Miasma:
+      case kAbility.Miasma3:
+        this.miasmaBox.duration = 30;
+        break;
+      case kAbility.BioSmn:
+      case kAbility.BioSmn2:
+      case kAbility.Bio3:
+        this.bioSmnBox.duration = 30;
+        break;
+      case kAbility.Tridisaster:
+        // Tridisaster refresh miasma and bio both, so repeat below.
+        // TODO: remake onXxx like node's EventEmitter
+        this.miasmaBox.duration = 30;
+        this.bioSmnBox.duration = 30;
+        break;
+      case kAbility.EnergyDrain:
+      case kAbility.EnergySiphon:
+        this.energyDrainBox.duration = 30;
+        this.aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+        break;
+      case kAbility.DreadwyrmTrance:
+      case kAbility.FirebirdTrance:
+        // Trance cooldown is 55s,
+        // but wait till 60s will be better on matching raidbuffs.
+        // Threshold will be used to tell real cooldown.
+        this.tranceBox.duration = 60;
+        break;
+    }
+  }
 
-  bars.onStatChange('SMN', () => {
-    miasmaBox.valuescale = bars.gcdSpell;
-    miasmaBox.threshold = bars.gcdSpell + 1;
-    bioSmnBox.valuescale = bars.gcdSpell;
-    bioSmnBox.threshold = bars.gcdSpell + 1;
-    energyDrainBox.valuescale = bars.gcdSpell;
-    energyDrainBox.threshold = bars.gcdSpell + 1;
-    tranceBox.valuescale = bars.gcdSpell;
-    tranceBox.threshold = bars.gcdSpell + 7;
-  });
+  override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
+    this.miasmaBox.valuescale = gcdSpell;
+    this.miasmaBox.threshold = gcdSpell + 1;
+    this.bioSmnBox.valuescale = gcdSpell;
+    this.bioSmnBox.threshold = gcdSpell + 1;
+    this.energyDrainBox.valuescale = gcdSpell;
+    this.energyDrainBox.threshold = gcdSpell + 1;
+    this.tranceBox.valuescale = gcdSpell;
+    this.tranceBox.threshold = gcdSpell + 7;
+  }
 
-  resetFunc = (_bars: Bars): void => {
-    furtherRuin = 0;
-    refreshFurtherRuin();
-    miasmaBox.duration = 0;
-    bioSmnBox.duration = 0;
-    energyDrainBox.duration = 0;
-    tranceBox.duration = 0;
-  };
-};
-
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};
+  override reset(): void {
+    this.furtherRuin = 0;
+    this.refreshFurtherRuin();
+    this.miasmaBox.duration = 0;
+    this.bioSmnBox.duration = 0;
+    this.energyDrainBox.duration = 0;
+    this.tranceBox.duration = 0;
+  }
+}

@@ -1,3 +1,4 @@
+import ContentType from '../../resources/content_type';
 import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
@@ -5,13 +6,15 @@ import TimerBar from '../../resources/timerbar';
 import TimerIcon from '../../resources/timericon';
 import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
+import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
 import { Job } from '../../types/job';
 import { NetAnyFields } from '../../types/net_fields';
 import { ToMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import { kLevelMod, kMeleeWithMpJobs } from './constants';
-import { Bars } from './jobs';
+import { SpeedBuffs } from './player';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
@@ -28,7 +31,7 @@ export class RegexesHolder {
   MobLosesEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
   MobGainsEffectFromYouRegex: CactbotBaseRegExp<'GainsEffect'>;
   MobLosesEffectFromYouRegex: CactbotBaseRegExp<'LosesEffect'>;
-  cordialRegex: CactbotBaseRegExp<'Ability'>;
+  cordialRegex: RegExp;
   countdownStartRegex: RegExp;
   countdownCancelRegex: RegExp;
   craftingStartRegexes: RegExp[];
@@ -53,10 +56,7 @@ export class RegexesHolder {
       source: playerName,
     });
     // use of GP Potion
-    this.cordialRegex = NetRegexes.ability({
-      source: playerName,
-      id: '20(017FD|F5A3D|F844F|0420F|0317D)',
-    });
+    this.cordialRegex = /20(017FD|F5A3D|F844F|0420F|0317D)/;
 
     const getCurrentRegex = getLocaleRegex.bind(this, lang);
     this.countdownStartRegex = getCurrentRegex(LocaleNetRegex.countdownStart);
@@ -85,34 +85,40 @@ export const doesJobNeedMPBar = (job: Job): boolean =>
 const getLightningStacksByLevel = (level: number): number =>
   level < 20 ? 1 : level < 40 ? 2 : level < 76 ? 3 : 4;
 
+type PlayerLike = {
+  job: Job;
+  level: number;
+  speedBuffs: SpeedBuffs;
+};
+
 // Source: http://theoryjerks.akhmorning.com/guide/speed/
-export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): number => {
+export const calcGCDFromStat = (player: PlayerLike, stat: number, actionDelay = 2500): number => {
   // If stats haven't been updated, use a reasonable default value.
   if (stat === 0)
     return actionDelay / 1000;
 
   let type1Buffs = 0;
   let type2Buffs = 0;
-  if (bars.job === 'BLM') {
-    type1Buffs += bars.speedBuffs.circleOfPower ? 15 : 0;
-  } else if (bars.job === 'WHM') {
-    type1Buffs += bars.speedBuffs.presenceOfMind ? 20 : 0;
-  } else if (bars.job === 'SAM') {
-    if (bars.speedBuffs.shifu) {
-      if (bars.level > 77)
+  if (player.job === 'BLM') {
+    type1Buffs += player.speedBuffs.circleOfPower ? 15 : 0;
+  } else if (player.job === 'WHM') {
+    type1Buffs += player.speedBuffs.presenceOfMind ? 20 : 0;
+  } else if (player.job === 'SAM') {
+    if (player.speedBuffs.shifu) {
+      if (player.level > 77)
         type1Buffs += 13;
       else
         type1Buffs += 10;
     }
   }
 
-  if (bars.job === 'NIN') {
-    type2Buffs += bars.speedBuffs.huton ? 15 : 0;
-  } else if (bars.job === 'MNK') {
-    type2Buffs += 5 * getLightningStacksByLevel(bars.level);
-  } else if (bars.job === 'BRD') {
-    type2Buffs += 4 * bars.speedBuffs.paeonStacks;
-    switch (bars.speedBuffs.museStacks) {
+  if (player.job === 'NIN') {
+    type2Buffs += player.speedBuffs.huton ? 15 : 0;
+  } else if (player.job === 'MNK') {
+    type2Buffs += 5 * getLightningStacksByLevel(player.level);
+  } else if (player.job === 'BRD') {
+    type2Buffs += 4 * player.speedBuffs.paeonStacks;
+    switch (player.speedBuffs.museStacks) {
       case 1:
         type2Buffs += 1;
         break;
@@ -130,7 +136,7 @@ export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): n
   // TODO: this probably isn't useful to track
   const astralUmbralMod = 100;
 
-  const mod = kLevelMod[bars.level];
+  const mod = kLevelMod[player.level];
   if (!mod)
     throw new UnreachableCode();
   const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - mod[0]) / mod[1])) * actionDelay / 1000;
@@ -234,4 +240,13 @@ export const normalizeLogLine = <Fields extends NetAnyFields>(
       }
     },
   });
+};
+
+export const isPvPZone = (zoneId: number): boolean => {
+  const zoneInfo = ZoneInfo[zoneId];
+  if (!zoneInfo)
+    return false;
+  if (zoneInfo.contentType === ContentType.Pvp || zoneId === ZoneId.WolvesDenPier)
+    return true;
+  return false;
 };

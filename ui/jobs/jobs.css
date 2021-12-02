@@ -38,6 +38,12 @@
   display: none;
 }
 
+/** force non-transparent when you are crafter/gatherer */
+#jobs.crafter > #opacity-container,
+#jobs.gatherer > #opacity-container {
+  opacity: 1 !important;
+}
+
 #mp-bar,
 #gnb-bar,
 #mnk-bar,
@@ -1136,4 +1142,9 @@
   50% {
     opacity: 0;
   }
+}
+
+/** hide bars except hp-bar and mp-bar */
+#bars.pvp > div:not(#hp-bar):not(#mp-bar) {
+  display: none;
 }

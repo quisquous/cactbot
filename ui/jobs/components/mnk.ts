@@ -1,108 +1,124 @@
 import EffectId from '../../../resources/effect_id';
+import TimerBar from '../../../resources/timerbar';
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
-import { NetMatches } from '../../../types/net_matches';
+import { ResourceBox } from '../bars';
 import { kAbility } from '../constants';
-import { Bars } from '../jobs';
+import { PartialFieldMatches } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc: (bars: Bars) => void;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars): void => {
-  const formTimer = bars.addTimerBar({
+export class MNKComponent extends BaseComponent {
+  formTimer: TimerBar
+  textBox: ResourceBox
+  dragonKickBox: TimerBox
+  twinSnakesBox: TimerBox
+  demolishBox: TimerBox
+  perfectBalanceActive = false;
+
+  constructor(o: ComponentInterface) {
+    super(o);
+
+  this.formTimer = this.bars.addTimerBar({
     id: 'mnk-timers-combo',
     fgColor: 'mnk-color-form',
   });
 
-  const textBox = bars.addResourceBox({
+  this.textBox = this.bars.addResourceBox({
     classList: ['mnk-color-chakra'],
   });
-
-  bars.onJobDetailUpdate('MNK', (jobDetail: JobDetail['MNK']) => {
-    const chakra = jobDetail.chakraStacks.toString();
-    if (textBox.innerText !== chakra) {
-      textBox.innerText = chakra;
-      const p = textBox.parentNode;
-      if (jobDetail.chakraStacks < 5)
-        p.classList.add('dim');
-      else
-        p.classList.remove('dim');
-    }
-  });
-
-  const dragonKickBox = bars.addProcBox({
+    this. dragonKickBox = this.bars.addProcBox({
     id: 'mnk-procs-dragonkick',
     fgColor: 'mnk-color-dragonkick',
     threshold: 6,
   });
 
-  const twinSnakesBox = bars.addProcBox({
+  this. twinSnakesBox = this.bars.addProcBox({
     id: 'mnk-procs-twinsnakes',
     fgColor: 'mnk-color-twinsnakes',
     threshold: 6,
   });
 
-  const demolishBox = bars.addProcBox({
+  this. demolishBox = this.bars.addProcBox({
     id: 'mnk-procs-demolish',
     fgColor: 'mnk-color-demolish',
     // Slightly shorter time, to make the box not pop right as
     // you hit snap punch at t=6 (which is probably fine).
     threshold: 5,
   });
+}
 
-  bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
-    // -0.5 for logline delay
-    twinSnakesBox.duration = parseFloat(matches.duration ?? '0') - 0.5;
-  });
-  bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
-
-  bars.onUseAbility(kAbility.Demolish, () => {
-    // it start counting down when you cast demolish
-    // but DOT appears on target about 1 second later
-    demolishBox.duration = 18 + 1;
-  });
-
-  bars.onYouGainEffect(EffectId.LeadenFist, () => {
-    dragonKickBox.duration = 30;
-  });
-  bars.onYouLoseEffect(EffectId.LeadenFist, () => dragonKickBox.duration = 0);
-
-  let perfectBalanceActive = false;
-  bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
-    if (!perfectBalanceActive) {
-      formTimer.duration = 0;
-      formTimer.duration = parseFloat(matches.duration ?? '0');
-      formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
-      perfectBalanceActive = true;
+  override onJobDetailUpdate(jobDetail: JobDetail['MNK']): void {
+    const chakra = jobDetail.chakraStacks.toString();
+    if (this.textBox.innerText !== chakra) {
+      this.textBox.innerText = chakra;
+      const p = this.textBox.parentNode;
+      if (jobDetail.chakraStacks < 5)
+        p.classList.add('dim');
+      else
+        p.classList.remove('dim');
     }
-  });
-  bars.onYouLoseEffect(EffectId.PerfectBalance, () => {
-    formTimer.duration = 0;
-    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
-    perfectBalanceActive = false;
-  });
+  }
 
-  const changeFormFunc = (name: string, matches: Partial<NetMatches['GainsEffect']>) => {
-    formTimer.duration = 0;
-    formTimer.duration = parseFloat(matches.duration ?? '0');
-    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
-  };
-  bars.onYouGainEffect([
-    EffectId.OpoOpoForm,
-    EffectId.RaptorForm,
-    EffectId.CoeurlForm,
-  ], changeFormFunc);
 
-  resetFunc = (_bars: Bars): void => {
-    twinSnakesBox.duration = 0;
-    demolishBox.duration = 0;
-    dragonKickBox.duration = 0;
-    formTimer.duration = 0;
-    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
-    perfectBalanceActive = false;
-  };
-};
+  override onUseAbility(id: string): void {
+    if (id === kAbility.Demolish) {
+      // it start counting down when you cast demolish
+      // but DOT appears on target about 1 second later
+      this.demolishBox.duration = 18 + 1;
+    }
+  }
 
-export const reset = (bars: Bars): void => {
-  if (resetFunc)
-    resetFunc(bars);
-};
+  override onYouLoseEffect(id: string): void {
+    switch (id) {
+      case EffectId.TwinSnakes:
+        this.twinSnakesBox.duration = 0;
+        break;
+      case EffectId.LeadenFist:
+        this.dragonKickBox.duration = 0;
+        break;
+      case EffectId.PerfectBalance:
+        this.formTimer.duration = 0;
+        this.formTimer.fg = computeBackgroundColorFrom(this.formTimer, 'mnk-color-form');
+        this.perfectBalanceActive = false;
+        break;
+    }
+  }
+
+  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
+    switch (id) {
+      case EffectId.TwinSnakes:
+        // -0.5 for logline delay
+        this.twinSnakesBox.duration = parseFloat(matches.duration ?? '0') - 0.5;
+        break;
+      case EffectId.LeadenFist:
+        this.dragonKickBox.duration = 30;
+        break;
+      case EffectId.PerfectBalance:
+        if (!this.perfectBalanceActive) {
+          this.formTimer.duration = 0;
+          this.formTimer.duration = parseFloat(matches.duration ?? '0');
+          this.formTimer.fg = computeBackgroundColorFrom(this.formTimer, 'mnk-color-pb');
+          this.perfectBalanceActive = true;
+        }
+        break;
+      case EffectId.OpoOpoForm:
+      case EffectId.RaptorForm:
+      case EffectId.CoeurlForm:
+        this.formTimer.duration = 0;
+        this.formTimer.duration = parseFloat(matches.duration ?? '0');
+        this.formTimer.fg = computeBackgroundColorFrom(this.formTimer, 'mnk-color-form');
+        break;
+    }
+  }
+
+  override reset(): void {
+    this.twinSnakesBox.duration = 0;
+    this.demolishBox.duration = 0;
+    this.dragonKickBox.duration = 0;
+    this.formTimer.duration = 0;
+    this.formTimer.fg = computeBackgroundColorFrom(this.formTimer, 'mnk-color-form');
+    this.perfectBalanceActive = false;
+  }
+}
