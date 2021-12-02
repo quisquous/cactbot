@@ -49,6 +49,7 @@ export interface ResourceBox extends HTMLDivElement {
 }
 
 export class Bars {
+  private jobsContainer: HTMLElement;
   public o: JobDomObjects = {};
 
   public ee: JobsEventEmitter;
@@ -66,6 +67,12 @@ export class Bars {
 
     this.ee = o.emitter;
     this.player = o.player;
+
+    const container = document.getElementById('jobs-container');
+    if (!container)
+      throw new UnreachableCode();
+
+    this.jobsContainer = container;
 
     this.updateProcBoxNotifyRepeat();
   }
@@ -100,24 +107,15 @@ export class Bars {
     // if player is in pvp zone, inherit the class
     const inPvPZone = document.getElementById('bars')?.classList.contains('pvp') ?? false;
 
-    let container = document.getElementById('jobs-container');
-    if (!container) {
-      const root = document.getElementById('container');
-      if (!root)
-        throw new UnreachableCode();
-      container = document.createElement('div');
-      container.id = 'jobs-container';
-      root.appendChild(container);
-    }
-    while (container.firstChild)
-      container.removeChild(container.firstChild);
+    while (this.jobsContainer.firstChild)
+      this.jobsContainer.removeChild(this.jobsContainer.firstChild);
 
     this.o = {};
-    container.classList.remove('hide');
+    this.jobsContainer.classList.remove('hide');
 
     const barsLayoutContainer = document.createElement('div');
     barsLayoutContainer.id = 'jobs';
-    container.appendChild(barsLayoutContainer);
+    this.jobsContainer.appendChild(barsLayoutContainer);
 
     // add job name and role name in classList, e.g. 'warrior' and 'tank'
     barsLayoutContainer.classList.add(job.toLowerCase());
@@ -179,7 +177,7 @@ export class Bars {
       this.o.cpBar = this.addCPBar();
       // hide bars by default when you are a crafter
       // it would show when you start crafting
-      container.classList.add('hide');
+      this.jobsContainer.classList.add('hide');
     } else if (shouldShow.gpBar) {
       this.o.gpBar = this.addGPBar();
     }
@@ -776,9 +774,6 @@ export class Bars {
   }
 
   setJobsContainerVisibility(hide?: boolean): void {
-    const container = document.getElementById('jobs-container');
-    if (!container)
-      throw new UnreachableCode();
-    container.classList.toggle('hide', hide);
+    this.jobsContainer.classList.toggle('hide', hide);
   }
 }
