@@ -84,7 +84,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Aratama Force': 'aramitama',
                 'Byakko': 'Byakko',
