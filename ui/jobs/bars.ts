@@ -773,7 +773,7 @@ export class Bars {
     }
   }
 
-  setJobsContainerVisibility(hide?: boolean): void {
-    this.jobsContainer.classList.toggle('hide', hide);
+  setJobsContainerVisibility(show?: boolean): void {
+    this.jobsContainer.classList.toggle('hide', !show);
   }
 }

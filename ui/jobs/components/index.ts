@@ -330,9 +330,8 @@ export class ComponentManager {
       });
     }
 
-    // if the current player is crafting, the `crafting` variable
-    // is `ture`, we need to show the bar,
-    // so we need to get its opposite to show it.
-    this.bars.setJobsContainerVisibility(!crafting);
+    // if the current player is crafting, show the bars;
+    // otherwise, hide them
+    this.bars.setJobsContainerVisibility(crafting);
   }
 }
