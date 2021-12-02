@@ -382,14 +382,7 @@ export class Player extends PlayerBase {
 
   private processPlayerStatsLogLine(line: string[]): void {
     const matches = normalizeLogLine(line, logDefinitions.PlayerStats.fields);
-    // const stat = Object
-    //   .keys(matches)
-    //   // drop type and timestamp and job
-    //   .filter((key) => !['type', 'timestamp', 'job'].includes(key))
-    //   .reduce<Stats>((acc, key) => {
-    //     acc[key] = Number(matches[key] ?? 0);
-    //     return acc;
-    //   }, {} as Stats);
+
     const stat = {
       attackMagicPotency: parseInt(matches.attackMagicPotency ?? '0', 10),
       attackPower: parseInt(matches.attackPower ?? '0', 10),
