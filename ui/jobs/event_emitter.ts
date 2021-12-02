@@ -176,7 +176,7 @@ export class DotTracker extends EventEmitter<{ tick: (targetId?: string) => void
     this.player.on('effect/gain', (id, { sourceId, targetId }) => {
       if (
         targetId?.startsWith('4') &&
-        parseInt(sourceId ?? '0', 16) === this.player.id &&
+        sourceId?.toUpperCase() === this.player.idHex &&
         this.trackedDoTs.includes(id)
       )
         this.targets.push(targetId);
@@ -185,7 +185,7 @@ export class DotTracker extends EventEmitter<{ tick: (targetId?: string) => void
     this.player.on('effect/lose', (id, { sourceId, targetId }) => {
       if (
         targetId?.startsWith('4') &&
-        parseInt(sourceId ?? '0', 16) === this.player.id &&
+        sourceId?.toUpperCase() === this.player.idHex &&
         this.trackedDoTs.includes(id)
       )
         this.targets.splice(this.targets.indexOf(targetId), 1);

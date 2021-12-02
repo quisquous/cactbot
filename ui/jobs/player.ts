@@ -65,6 +65,8 @@ export interface EventMap {
 /** Player data */
 export class PlayerBase {
   id: number;
+  /** player id in hex, upper case */
+  idHex: string;
   name: string;
   level: number;
   job: Job;
@@ -90,6 +92,7 @@ export class PlayerBase {
   constructor() {
     // basic info
     this.id = 0;
+    this.idHex = '';
     this.name = '';
     this.level = 0;
     this.job = 'NONE';
@@ -184,7 +187,7 @@ export class Player extends PlayerBase {
       if (
         // check if target is a mob, whose id starts with "4"
         matches.targetId?.startsWith('4') &&
-        parseInt(matches.sourceId ?? '0', 16) === this.id
+        matches.sourceId?.toUpperCase() === this.idHex
       )
         callback(id, matches);
     };
@@ -197,7 +200,7 @@ export class Player extends PlayerBase {
       if (
         // check if target is a mob, whose id starts with "4"
         matches.targetId?.startsWith('4') &&
-        parseInt(matches.sourceId ?? '0', 16) === this.id
+        matches.sourceId?.toUpperCase() === this.idHex
       )
         callback(id, matches);
     };
@@ -271,6 +274,7 @@ export class Player extends PlayerBase {
     { detail: data }: OverlayEventResponses['onPlayerChangedEvent'],
   ): void {
     this.id = data.id;
+    this.idHex = data.id.toString(16).toUpperCase();
     this.name = data.name;
 
     // always update stuffs when player changed their jobs
@@ -420,7 +424,7 @@ export class Player extends PlayerBase {
         if (!effectId)
           break;
 
-        if (parseInt(matches.sourceId ?? '0', 16) === this.id)
+        if (matches.sourceId?.toUpperCase() === this.idHex)
           this.emit('effect/gain/you', effectId, matches);
         this.emit('effect/gain', effectId, matches);
         break;
@@ -431,7 +435,7 @@ export class Player extends PlayerBase {
         if (!effectId)
           break;
 
-        if (parseInt(matches.sourceId ?? '0', 16) === this.id)
+        if (matches.sourceId?.toUpperCase() === this.idHex)
           this.emit('effect/lose/you', effectId, matches);
         this.emit('effect/lose', effectId, matches);
         break;
@@ -439,12 +443,12 @@ export class Player extends PlayerBase {
       case logDefinitions.Ability.type:
       case logDefinitions.NetworkAOEAbility.type: {
         const matches = normalizeLogLine(line, logDefinitions.Ability.fields);
-        const sourceId = matches.sourceId;
+        const sourceId = matches.sourceId?.toUpperCase();
         const id = matches.id;
         if (!id)
           break;
 
-        if (sourceId && parseInt(sourceId, 16) === this.id)
+        if (sourceId && sourceId === this.idHex)
           this.emit('action/you', id, matches);
         break;
       }
