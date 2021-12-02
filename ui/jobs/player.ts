@@ -13,15 +13,7 @@ import { JobsEventEmitter } from './event_emitter';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
-  {
-    [
-      K in keyof NetMatches['PlayerStats'] as string extends K
-        ? never
-        : number extends K
-        ? never
-        : K
-    ]: number;
-  },
+  Record<keyof NetFields['PlayerStats'], number>,
   'type' | 'timestamp' | 'job'
 >;
 
