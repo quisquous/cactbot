@@ -320,21 +320,17 @@ export class ComponentManager {
     const anyRegexMatched = (line: string, array: RegExp[]) =>
       array.some((regex) => regex.test(line));
 
-    let crafting = false;
-
-    if (anyRegexMatched(message, this.regexes.craftingStartRegexes))
-      crafting = true;
-    if (anyRegexMatched(message, this.regexes.craftingStopRegexes)) {
-      crafting = false;
-    } else {
-      crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
-        const m = regex.exec(message)?.groups;
-        return m && (!m.player || m.player === this.player.name);
-      });
-    }
-
     // if the current player is crafting, show the bars;
     // otherwise, hide them
-    this.bars.setJobsContainerVisibility(crafting);
+    if (anyRegexMatched(message, this.regexes.craftingStartRegexes))
+      this.bars.setJobsContainerVisibility(true);
+    if (
+      anyRegexMatched(message, this.regexes.craftingStopRegexes) ||
+      this.regexes.craftingFinishRegexes.some((regex) => {
+        const m = regex.exec(message)?.groups;
+        return m && (!m.player || m.player === this.player.name);
+      })
+    )
+      this.bars.setJobsContainerVisibility(false);
   }
 }
