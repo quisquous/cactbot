@@ -182,6 +182,9 @@ export class ComponentManager {
         mpTicker: this.shouldShow.mpTicker ?? this.options.ShowMPTicker.includes(job),
       });
 
+      // hide container html element if the player is a crafter
+      this.bars.setJobsContainerVisibility(!Util.isCraftingJob(job));
+
       // initialize components
       this.component = this.getJobComponents(job);
 
