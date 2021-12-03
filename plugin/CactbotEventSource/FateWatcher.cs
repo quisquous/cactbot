@@ -90,14 +90,25 @@ namespace Cactbot {
       0x104
     );
 
-    private struct ActorControl143{
+    private struct ActorControl143 {
       public ActorControl143(Type messagetype_, Assembly assembly_) {
-        packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
-        size = Marshal.SizeOf(packetType);
-        categoryOffset = GetOffset(packetType, "category");
-        param1Offset = GetOffset(packetType, "param1");
-        param2Offset = GetOffset(packetType, "param2");
-        opCode = GetOpcode(messagetype_, "ActorControl143");
+        packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControlSelf");
+        if (packetType != null) {
+          // FFXIV_ACT_Plugin version >= 2.6.2.0
+          size = Marshal.SizeOf(packetType);
+          categoryOffset = GetOffset(packetType, "category");
+          param1Offset = GetOffset(packetType, "param1");
+          param2Offset = GetOffset(packetType, "param2");
+          opCode = GetOpcode(messagetype_, "ActorControlSelf");
+        } else {
+          // FFXIV_ACT_Plugin version < 2.6.2.0
+          packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
+          size = Marshal.SizeOf(packetType);
+          categoryOffset = GetOffset(packetType, "category");
+          param1Offset = GetOffset(packetType, "param1");
+          param2Offset = GetOffset(packetType, "param2");
+          opCode = GetOpcode(messagetype_, "ActorControl143");
+        }
       }
       public Type packetType;
       public int size;
