@@ -100,6 +100,7 @@ const exVersionToShortName: { [exVersion: string]: LocaleText } = {
     de: 'EW',
     fr: 'EW',
     ja: '暁月',
+    cn: '6.X',
   },
 };
 
