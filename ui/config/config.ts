@@ -9,6 +9,7 @@ import { SavedConfig, SavedConfigEntry } from '../../types/event';
 import { LooseOopsyTrigger, LooseOopsyTriggerSet } from '../../types/oopsy';
 import {
   LocaleObject,
+  LocaleText,
   LooseTimelineTrigger,
   LooseTrigger,
   LooseTriggerSet,
@@ -108,6 +109,9 @@ const kPrefixToCategory = {
     ja: '漆黒のヴィランズ (5.x)',
     cn: '暗影之逆焰 (5.x)',
     ko: '칠흑의 반역자 (5.x)',
+  },
+  '06-ew': {
+    en: 'Endwalker (EW 6.x)',
   },
   'user': {
     en: 'User Triggers',
@@ -686,7 +690,7 @@ export class CactbotConfigurator {
         continue;
 
       let prefixKey = '00-misc';
-      let prefix = kPrefixToCategory['00-misc'];
+      let prefix: LocaleText = kPrefixToCategory['00-misc'];
       for (const [key, value] of Object.entries(kPrefixToCategory)) {
         if (!filename.startsWith(key))
           continue;
