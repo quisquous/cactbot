@@ -7,7 +7,7 @@ using CactbotEventSource.loc;
 
 namespace Cactbot {
   public class FFXIVProcessIntl : FFXIVProcess {
-    // Last updated for FFXIV 5.4
+    // Last updated for FFXIV 6.0
 
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {
@@ -71,10 +71,10 @@ namespace Cactbot {
       [FieldOffset(0x16)]
       public short max_cp;
 
-      [FieldOffset(0x1E)]
+      [FieldOffset(0x1C)]
       public EntityJob job;
 
-      [FieldOffset(0x1F)]
+      [FieldOffset(0x1D)]
       public byte level;
     }
     public FFXIVProcessIntl(ILogger logger) : base(logger) { }
