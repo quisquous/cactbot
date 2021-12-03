@@ -56,6 +56,9 @@ const exVersionToName = {
   },
   '4': {
     en: 'Endwalker (EW 6.x)',
+    de: 'Endwalker (EW 6.x)',
+    fr: 'Endwalker (EW 6.x)',
+    ja: '暁月のフィナーレ (6.x)',
   },
 } as const;
 
@@ -94,6 +97,9 @@ const exVersionToShortName: { [exVersion: string]: LocaleText } = {
   },
   '4': {
     en: 'EW',
+    de: 'EW',
+    fr: 'EW',
+    ja: '暁月',
   },
 };
 
