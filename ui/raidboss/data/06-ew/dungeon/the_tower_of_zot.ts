@@ -13,7 +13,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ToZ Isitva Siddhi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62A9', source: '(?:Sanduruva|Cinduruva)', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: '62A9', source: ['Sanduruva', 'Cinduruva'], capture: true }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
