@@ -9,11 +9,17 @@ export type Data = RaidbossData;
 const triggerSet: TriggerSet<Data> = {
   zoneId: 0x3B8, // @TODO: change to zoneid entry when available
   triggers: [
-    // Tankbuster shared by 2nd and 3rd bosses
     {
-      id: 'ToZ Isitva Siddhi',
+      id: 'ToZ Cinduruva Isitva Siddhi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62A9', source: ['Sanduruva', 'Cinduruva'], capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: '62A9', source: 'Cinduruva', capture: true }),
+      condition: Conditions.caresAboutPhysical(),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'ToZ Sanduruva Isitva Siddhi',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '62C0', source: 'Sanduruva', capture: true }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
