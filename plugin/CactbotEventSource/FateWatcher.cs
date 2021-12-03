@@ -129,6 +129,7 @@ namespace Cactbot {
     private static SemaphoreSlim ceSemaphore;
     private Dictionary<string, AC143OPCodes> ac143opcodes = null;
     private Dictionary<string, CEDirectorOPCodes> cedirectoropcodes = null;
+    private bool initialized = false;
 
     private Type MessageType = null;
     private Type messageHeader = null;
@@ -173,13 +174,19 @@ namespace Cactbot {
         }
       }
 
-      var mach = Assembly.Load("Machina.FFXIV");
-      MessageType = mach.GetType("Machina.FFXIV.Headers.Server_MessageType");
+      try {
+        var mach = Assembly.Load("Machina.FFXIV");
+        MessageType = mach.GetType("Machina.FFXIV.Headers.Server_MessageType");
 
-      actorControl143 = new ActorControl143(MessageType, mach);
-      headerOffset = GetOffset(actorControl143.packetType, "MessageHeader");
-      messageHeader = actorControl143.packetType.GetField("MessageHeader").FieldType;
-      messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
+        actorControl143 = new ActorControl143(MessageType, mach);
+        headerOffset = GetOffset(actorControl143.packetType, "MessageHeader");
+        messageHeader = actorControl143.packetType.GetField("MessageHeader").FieldType;
+        messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
+        initialized = true;
+      } catch (Exception ex) {
+        client_.LogError("Error in FateWatcher initialization.");
+        client_.LogError(ex.ToString());
+      }
     }
 
     private ActPluginData GetPluginData() {
@@ -191,13 +198,13 @@ namespace Cactbot {
     }
 
     public void Start() {
-      if (subscription != null) {
+      if (subscription != null && initialized) {
         subscription.NetworkReceived += new NetworkReceivedDelegate(MessageReceived);
       }
     }
 
     public void Stop() {
-      if (subscription != null)
+      if (subscription != null && initialized)
         subscription.NetworkReceived -= new NetworkReceivedDelegate(MessageReceived);
     }
 
