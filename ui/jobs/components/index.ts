@@ -23,8 +23,10 @@ import { MNKComponent } from './mnk';
 import { NINComponent } from './nin';
 import { PLDComponent } from './pld';
 import { RDMComponent } from './rdm';
+import { RPRComponent } from './rpr';
 import { SAMComponent } from './sam';
 import { SCHComponent } from './sch';
+import { SGEComponent } from './sge';
 import { SMNComponent } from './smn';
 import { WARComponent } from './war';
 import { WHMComponent } from './whm';
@@ -42,6 +44,7 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   WHM: WHMComponent,
   SCH: SCHComponent,
   AST: ASTComponent,
+  SGE: SGEComponent,
   // melee dps
   PGL: MNKComponent,
   MNK: MNKComponent,
@@ -50,6 +53,7 @@ const ComponentMap: Record<Job, typeof BaseComponent> = {
   ROG: NINComponent,
   NIN: NINComponent,
   SAM: SAMComponent,
+  RPR: RPRComponent,
   // ranged dps
   ARC: BRDComponent,
   BRD: BRDComponent,

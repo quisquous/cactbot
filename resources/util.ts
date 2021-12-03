@@ -44,14 +44,16 @@ const nameToJobEnum: Record<Job, number> = {
   BLU: 36,
   GNB: 37,
   DNC: 38,
+  RPR: 39,
+  SGE: 40,
 };
 
 const allJobs = Object.keys(nameToJobEnum) as Job[];
 const allRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer', 'none'] as Role[];
 
 const tankJobs: Job[] = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
-const healerJobs: Job[] = ['CNJ', 'WHM', 'SCH', 'AST'];
-const meleeDpsJobs: Job[] = ['PGL', 'MNK', 'LNC', 'DRG', 'ROG', 'NIN', 'SAM'];
+const healerJobs: Job[] = ['CNJ', 'WHM', 'SCH', 'AST', 'SGE'];
+const meleeDpsJobs: Job[] = ['PGL', 'MNK', 'LNC', 'DRG', 'ROG', 'NIN', 'SAM', 'RPR'];
 const rangedDpsJobs: Job[] = ['ARC', 'BRD', 'DNC', 'MCH'];
 const casterDpsJobs: Job[] = ['BLU', 'RDM', 'BLM', 'SMN', 'ACN', 'THM'];
 const dpsJobs: Job[] = [...meleeDpsJobs, ...rangedDpsJobs, ...casterDpsJobs];
