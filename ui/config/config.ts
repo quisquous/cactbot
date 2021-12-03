@@ -112,6 +112,9 @@ const kPrefixToCategory = {
   },
   '06-ew': {
     en: 'Endwalker (EW 6.x)',
+    de: 'Endwalker (EW 6.x)',
+    fr: 'Endwalker (EW 6.x)',
+    ja: '暁月のフィナーレ (6.x)',
   },
   'user': {
     en: 'User Triggers',
