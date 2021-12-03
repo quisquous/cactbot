@@ -44,8 +44,8 @@ const nameToJobEnum: Record<Job, number> = {
   BLU: 36,
   GNB: 37,
   DNC: 38,
-  SGE: 39,
-  RPR: 40,
+  RPR: 39,
+  SGE: 40,
 };
 
 const allJobs = Object.keys(nameToJobEnum) as Job[];
