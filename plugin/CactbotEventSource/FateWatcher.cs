@@ -13,6 +13,7 @@ namespace Cactbot {
     private CactbotEventSource client_;
     private string region_;
     private IDataSubscription subscription;
+    bool ready;
 
     // Fate start
     // param1: fateID
@@ -160,6 +161,8 @@ namespace Cactbot {
       else
         region_ = "intl";
 
+      ready = false;
+
       fateSemaphore = new SemaphoreSlim(0, 1);
       ceSemaphore = new SemaphoreSlim(0, 1);
       acselfopcodes = new Dictionary<string, ACSelfOPCodes>();
@@ -174,23 +177,28 @@ namespace Cactbot {
 
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
-
-      var FFXIV = GetPluginData();
-      if (FFXIV != null) {
-        try {
-          subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
-        } catch (Exception ex) {
-          client_.LogError(ex.ToString());
+      try {
+        var FFXIV = GetPluginData();
+        if (FFXIV != null) {
+          try {
+            subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
+          } catch (Exception ex) {
+            client_.LogError(ex.ToString());
+          }
         }
+
+        var mach = Assembly.Load("Machina.FFXIV");
+        MessageType = mach.GetType("Machina.FFXIV.Headers.Server_MessageType");
+
+        actorControlself = new ActorControlSelf(MessageType, mach);
+        headerOffset = GetOffset(actorControlself.packetType, "MessageHeader");
+        messageHeader = actorControlself.packetType.GetField("MessageHeader").FieldType;
+        messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
+        ready = true;
+      } catch (Exception e) {
+        client_.LogError("Error loading OPCodes, FATE info will be unavailable.");
+        client_.LogError("{0}\r\n{1}", e.Message, e.StackTrace);
       }
-
-      var mach = Assembly.Load("Machina.FFXIV");
-      MessageType = mach.GetType("Machina.FFXIV.Headers.Server_MessageType");
-
-      actorControlself = new ActorControlSelf(MessageType, mach);
-      headerOffset = GetOffset(actorControlself.packetType, "MessageHeader");
-      messageHeader = actorControlself.packetType.GetField("MessageHeader").FieldType;
-      messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
     }
 
     private ActPluginData GetPluginData() {
@@ -202,13 +210,13 @@ namespace Cactbot {
     }
 
     public void Start() {
-      if (subscription != null) {
+      if (subscription != null && ready) {
         subscription.NetworkReceived += new NetworkReceivedDelegate(MessageReceived);
       }
     }
 
     public void Stop() {
-      if (subscription != null)
+      if (subscription != null && ready)
         subscription.NetworkReceived -= new NetworkReceivedDelegate(MessageReceived);
     }
 
