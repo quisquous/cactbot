@@ -13,7 +13,7 @@ import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
   Record<keyof NetFields['PlayerStats'], number>,
-  'type' | 'timestamp' | 'job'
+  'type' | 'timestamp' | 'job' | 'localContentId'
 >;
 
 export type SpeedBuffs = {
