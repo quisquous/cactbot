@@ -47,7 +47,7 @@ export interface JobDetail {
     addersgallMilliseconds: number;
     addersgall: 0 | 1 | 2 | 3;
     addersting: 0 | 1 | 2 | 3;
-    eukrasia: boolean;
+    eukrasia: 0 | 1;
   };
   'MNK': {
     chakraStacks: number;

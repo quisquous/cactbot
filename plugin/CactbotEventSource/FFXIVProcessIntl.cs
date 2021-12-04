@@ -713,13 +713,7 @@ namespace Cactbot {
       public byte addersting;
 
       [FieldOffset(0x04)]
-      private byte eukrasia_bits;
-
-      public bool eukrasia {
-        get {
-          return (eukrasia_bits & 0x1) != 0;
-        }
-      }
+      public byte eukrasia;
     }
   }
 }
