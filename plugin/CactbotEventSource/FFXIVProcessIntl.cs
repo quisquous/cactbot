@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -299,6 +299,8 @@ namespace Cactbot {
                 return JObject.FromObject(*(AstrologianJobMemory*)&p[0]);
             case EntityJob.SAM:
                 return JObject.FromObject(*(SamuraiJobMemory*)&p[0]);
+            case EntityJob.SGE:
+                return JObject.FromObject(*(SageJobMemory*)&p[0]);
           }
           return null;
         }
@@ -697,6 +699,21 @@ namespace Cactbot {
           return (sen_bits & 0x4) != 0;
         }
       }
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct SageJobMemory {
+      [FieldOffset(0x00)]
+      public ushort addersgallMilliseconds; // the addersgall gauge elapsed in milliseconds, from 0 to 19999.
+
+      [FieldOffset(0x02)]
+      public byte addersgall;
+
+      [FieldOffset(0x03)]
+      public byte addersting;
+
+      [FieldOffset(0x04)]
+      public byte eukrasia;
     }
   }
 }
