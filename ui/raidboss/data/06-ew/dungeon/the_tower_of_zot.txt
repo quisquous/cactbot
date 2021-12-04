@@ -156,7 +156,7 @@ hideall "--sync--"
 2112.8 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:62C3:/
 2113.9 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:62C4:/
 2118.0 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:62C7:/
-2118.9 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/window 30,2.5
+2118.9 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/ window 30,2.5
 2121.3 "Samsara" sync / 1[56]:[^:]*:Cinduruva:62B9:/ window 30,30
 2122.1 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:62C8:/
 2122.7 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/
