@@ -704,7 +704,7 @@ namespace Cactbot {
     [StructLayout(LayoutKind.Explicit)]
     public struct SageJobMemory {
       [FieldOffset(0x00)]
-      public ushort addersgallGauge; // the addersgall gauge, from 0 to 19999.
+      public ushort addersgallMilliseconds; // the addersgall gauge elapsed in milliseconds, from 0 to 19999.
 
       [FieldOffset(0x02)]
       public byte addersgall;

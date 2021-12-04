@@ -44,7 +44,7 @@ export interface JobDetail {
     arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
   'SGE': {
-    addersgallGauge: number;
+    addersgallMilliseconds: number;
     addersgall: 0 | 1 | 2 | 3;
     addersting: 0 | 1 | 2 | 3;
     eukrasia: boolean;

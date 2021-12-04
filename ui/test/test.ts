@@ -98,7 +98,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
         `${detail.jobDetail.kenki} | ${detail.jobDetail.meditationStacks}(${detail.jobDetail.setsu.toString()},${detail.jobDetail.getsu.toString()},${detail.jobDetail.ka.toString()})`;
     } else if (detail.job === 'SGE' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.addersgall} (${detail.jobDetail.addersgallGauge}) | ${detail.jobDetail.addersting} | ${detail.jobDetail.eukrasia.toString()}`;
+        `${detail.jobDetail.addersgall} (${detail.jobDetail.addersgallMilliseconds}) | ${detail.jobDetail.addersting} | ${detail.jobDetail.eukrasia.toString()}`;
     } else {
       jobInfo.innerText = '';
     }
