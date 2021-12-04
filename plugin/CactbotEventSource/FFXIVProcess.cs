@@ -105,6 +105,8 @@ namespace Cactbot {
       BLU = 36,
       GNB = 37,
       DNC = 38,
+      RPR = 39,
+      SGE = 40,
     };
 
     static internal bool IsGatherer(EntityJob job) {

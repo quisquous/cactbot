@@ -299,6 +299,8 @@ namespace Cactbot {
                 return JObject.FromObject(*(AstrologianJobMemory*)&p[0]);
             case EntityJob.SAM:
                 return JObject.FromObject(*(SamuraiJobMemory*)&p[0]);
+            case EntityJob.SGE:
+                return JObject.FromObject(*(SageJobMemory*)&p[0]);
           }
           return null;
         }
@@ -695,6 +697,34 @@ namespace Cactbot {
       public bool ka {
         get {
           return (sen_bits & 0x4) != 0;
+        }
+      }
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct SageJobMemory {
+      [FieldOffset(0x00)]
+      public ushort addersgallGauge_bits; // the addersgall gauge, from 0 to 19999.
+
+      [FieldOffset(0x02)]
+      public byte addersgall;
+
+      [FieldOffset(0x03)]
+      public byte addersting;
+
+      [FieldOffset(0x04)]
+      private byte eukrasia_bits;
+
+      public int addersgallGauge {
+        get {
+          // translate the bits to a value from 0 to 100.
+          return (int)((float)addersgallGauge_bits / 20000 * 100);
+        }
+      }
+
+      public bool eukrasia {
+        get {
+          return (eukrasia_bits & 0x1) != 0;
         }
       }
     }
