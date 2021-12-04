@@ -18,7 +18,7 @@ export type Stats = Omit<
 
 export type SpeedBuffs = {
   presenceOfMind: boolean;
-  shifu: boolean;
+  fuka: boolean;
   huton: boolean;
   paeonStacks: number;
   museStacks: number;
@@ -115,7 +115,7 @@ export class PlayerBase {
 
     this.speedBuffs = {
       presenceOfMind: true,
-      shifu: true,
+      fuka: true,
       huton: true,
       paeonStacks: 0,
       museStacks: 0,
