@@ -66,14 +66,13 @@ export class DNCComponent extends BaseComponent {
 
   override onYouLoseEffect(effect: string): void {
     switch (effect) {
-      case EffectId.FlourishingCascade:
-      case EffectId.FlourishingFountain:
-      case EffectId.FlourishingShower:
-      case EffectId.FlourishingWindmill:
-      case EffectId.FlourishingFanDance: {
+      case EffectId.FlourishingSymmetry:
+      case EffectId.FlourishingFlow:
+      case EffectId.ThreefoldFanDance:
+      case EffectId.FourfoldFanDance: {
         if (!(this.flourishEffect.includes(effect)))
           this.flourishEffect.push(effect);
-        if (this.flourishEffect.length === 5 && this.flourishIsActive) {
+        if (this.flourishEffect.length === 4 && this.flourishIsActive) {
           this.flourish.duration = 60 - this.flourish.elapsed;
           this.flourishIsActive = false;
           this.flourish.threshold = this.player.gcdSkill + 1;
@@ -116,7 +115,7 @@ export class DNCComponent extends BaseComponent {
         break;
       }
       case kAbility.Flourish: {
-        this.flourish.duration = 20;
+        this.flourish.duration = 30;
         this.flourishEffect = [];
         this.flourishIsActive = true;
         this.flourish.threshold = 1000;
