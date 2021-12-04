@@ -1,5 +1,6 @@
 Options.Triggers.push({
     zoneId: ZoneId.TheTowerOfZot,
+    timelineFile: 'the_tower_of_zot.txt',
     triggers: [
         {
             id: 'ToZ Cinduruva Isitva Siddhi',
