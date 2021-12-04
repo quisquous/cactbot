@@ -21,13 +21,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '62C0', source: 'Sanduruva', capture: true }),
       response: Responses.tankBuster(),
     },
-    // Trash mob tankbuster
-    {
-      id: 'ToZ Wheel',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5E52', source: 'Zot Roader', capture: true }),
-      response: Responses.tankBuster(),
-    },
   ],
 };
 
