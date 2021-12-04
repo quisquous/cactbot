@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -704,7 +704,7 @@ namespace Cactbot {
     [StructLayout(LayoutKind.Explicit)]
     public struct SageJobMemory {
       [FieldOffset(0x00)]
-      public ushort addersgallGauge_bits; // the addersgall gauge, from 0 to 19999.
+      public ushort addersgallGauge; // the addersgall gauge, from 0 to 19999.
 
       [FieldOffset(0x02)]
       public byte addersgall;
@@ -714,13 +714,6 @@ namespace Cactbot {
 
       [FieldOffset(0x04)]
       private byte eukrasia_bits;
-
-      public int addersgallGauge {
-        get {
-          // translate the bits to a value from 0 to 100.
-          return (int)((float)addersgallGauge_bits / 20000 * 100);
-        }
-      }
 
       public bool eukrasia {
         get {
