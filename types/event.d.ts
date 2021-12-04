@@ -43,6 +43,12 @@ export interface JobDetail {
     heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
     arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
+  'SGE': {
+    addersgallMilliseconds: number;
+    addersgall: 0 | 1 | 2 | 3;
+    addersting: 0 | 1 | 2 | 3;
+    eukrasia: 0 | 1;
+  };
   'MNK': {
     chakraStacks: number;
   };

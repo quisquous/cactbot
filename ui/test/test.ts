@@ -96,6 +96,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     } else if (detail.job === 'SAM' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.kenki} | ${detail.jobDetail.meditationStacks}(${detail.jobDetail.setsu.toString()},${detail.jobDetail.getsu.toString()},${detail.jobDetail.ka.toString()})`;
+    } else if (detail.job === 'SGE' && detail.jobDetail) {
+      jobInfo.innerText =
+        `${detail.jobDetail.addersgall} (${detail.jobDetail.addersgallMilliseconds}) | ${detail.jobDetail.addersting} | ${detail.jobDetail.eukrasia.toString()}`;
     } else {
       jobInfo.innerText = '';
     }
