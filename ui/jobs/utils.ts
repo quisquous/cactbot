@@ -104,7 +104,7 @@ export const calcGCDFromStat = (player: PlayerLike, stat: number, actionDelay = 
   } else if (player.job === 'WHM') {
     type1Buffs += player.speedBuffs.presenceOfMind ? 20 : 0;
   } else if (player.job === 'SAM') {
-    if (player.speedBuffs.shifu) {
+    if (player.speedBuffs.fuka) {
       if (player.level > 77)
         type1Buffs += 13;
       else
