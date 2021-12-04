@@ -124,6 +124,8 @@ export const kAbility = {
   AspectedHelios: 'E11',
   Draw: 'E06',
   Divination: '40A8',
+  // SGE
+  Rhizomata: '5EF5',
   // MNK
   DragonKick: '4A',
   TwinSnakes: '3D',

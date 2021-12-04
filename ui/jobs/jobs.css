@@ -294,6 +294,7 @@
   display: none;
 }
 
+#sge-stacks,
 #blm-stacks {
   display: flex;
   margin-top: 1px;
@@ -315,6 +316,8 @@
   height: 100%;
 }
 
+#sge-stacks-addersgall,
+#sge-stacks-addersting,
 #blm-stacks-heart,
 #blm-stacks-xeno {
   width: 50%;
@@ -333,6 +336,8 @@
 }
 
 #whm-stacks-bloodlily > div,
+#sge-stacks-addersgall > div,
+#sge-stacks-addersting > div,
 #blm-stacks-heart > div {
   background-color: rgba(174, 227, 235, 0.2);
   margin-right: 2px;
@@ -371,6 +376,14 @@
 
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
+}
+
+#sge-stacks-addersgall > div.active {
+  background-color: rgb(120, 170, 250);
+}
+
+#sge-stacks-addersting > div.active {
+  background-color: rgb(195, 85, 155);
 }
 
 #sam-stacks-setsu.active {
@@ -463,6 +476,7 @@
 #whm-procs-assize,
 #sch-procs-aetherflow,
 #ast-procs-draw,
+#sge-proc-rhizomata,
 #mnk-procs-twinsnakes,
 #mch-procs-airanchor,
 #dnc-procs-technicalstep,
@@ -479,6 +493,7 @@
 #whm-procs-lucid,
 #sch-procs-luciddreaming,
 #ast-procs-luciddreaming,
+#sge-proc-lucid,
 #mnk-procs-demolish,
 #mch-procs-wildfire,
 #dnc-procs-flourish,
@@ -743,6 +758,23 @@
 }
 
 .ast-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
+/* SGE */
+.sge-color-adder {
+  background-color: rgb(120, 170, 250);
+}
+
+.sge-color-dosis {
+  background-color: rgb(195, 85, 155);
+}
+
+.sge-color-rhizomata {
+  background-color: rgb(40, 95, 150);
+}
+
+.sge-color-lucid {
   background-color: rgb(227, 148, 210);
 }
 
