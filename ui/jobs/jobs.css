@@ -439,7 +439,7 @@
 #drk-procs-bloodweapon,
 #drg-procs-highjump,
 #nin-procs-trickattack,
-#sam-procs-jinpu,
+#sam-procs-fugetsu,
 #brd-procs-stormbite,
 #smn-procs-biosmn {
   position: relative;
@@ -910,11 +910,11 @@
   background-color: rgb(255, 255, 160);
 }
 
-.sam-color-shifu {
+.sam-color-fuka {
   background-color: rgb(200, 180, 90);
 }
 
-.sam-color-jinpu {
+.sam-color-fugetsu {
   background-color: rgb(60, 160, 160);
 }
 

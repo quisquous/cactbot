@@ -13,6 +13,7 @@ namespace Cactbot {
     private CactbotEventSource client_;
     private string region_;
     private IDataSubscription subscription;
+    bool ready;
 
     // Fate start
     // param1: fateID
@@ -24,13 +25,13 @@ namespace Cactbot {
     // Fate update
     // param1: fateID
     // param2: progress (0-100)
-    private struct AC143OPCodes {
-      public AC143OPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
+    private struct ACSelfOPCodes {
+      public ACSelfOPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
       public int add;
       public int remove;
       public int update;
     };
-    private static readonly AC143OPCodes ac143_v5_2 = new AC143OPCodes(
+    private static readonly ACSelfOPCodes acself_v5_2 = new ACSelfOPCodes(
       0x935,
       0x936,
       0x93E
@@ -58,6 +59,8 @@ namespace Cactbot {
     // v5.57            0x3ce
     // v5.58            0x10D
     // v5.58h           0x104
+    //
+    // v6.0             0xBB
     //
     // CN
     // v5.35            0x144
@@ -87,17 +90,28 @@ namespace Cactbot {
 
     private static readonly CEDirectorOPCodes cedirector_intl = new CEDirectorOPCodes(
       0x30,
-      0x104
+      0xBB
     );
 
-    private struct ActorControl143{
-      public ActorControl143(Type messagetype_, Assembly assembly_) {
-        packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
-        size = Marshal.SizeOf(packetType);
-        categoryOffset = GetOffset(packetType, "category");
-        param1Offset = GetOffset(packetType, "param1");
-        param2Offset = GetOffset(packetType, "param2");
-        opCode = GetOpcode(messagetype_, "ActorControl143");
+    private struct ActorControlSelf {
+      public ActorControlSelf(Type messagetype_, Assembly assembly_) {
+        packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControlSelf");
+        if (packetType != null) {
+          // FFXIV_ACT_Plugin version >= 2.6.2.0
+          size = Marshal.SizeOf(packetType);
+          categoryOffset = GetOffset(packetType, "category");
+          param1Offset = GetOffset(packetType, "param1");
+          param2Offset = GetOffset(packetType, "param2");
+          opCode = GetOpcode(messagetype_, "ActorControlSelf");
+        } else {
+          // FFXIV_ACT_Plugin version < 2.6.2.0
+          packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
+          size = Marshal.SizeOf(packetType);
+          categoryOffset = GetOffset(packetType, "category");
+          param1Offset = GetOffset(packetType, "param1");
+          param2Offset = GetOffset(packetType, "param2");
+          opCode = GetOpcode(messagetype_, "ActorControl143");
+        }
       }
       public Type packetType;
       public int size;
@@ -127,7 +141,7 @@ namespace Cactbot {
 
     private static SemaphoreSlim fateSemaphore;
     private static SemaphoreSlim ceSemaphore;
-    private Dictionary<string, AC143OPCodes> ac143opcodes = null;
+    private Dictionary<string, ACSelfOPCodes> acselfopcodes = null;
     private Dictionary<string, CEDirectorOPCodes> cedirectoropcodes = null;
     private bool initialized = false;
 
@@ -135,7 +149,7 @@ namespace Cactbot {
     private Type messageHeader = null;
     public int headerOffset = 0;
     public int messageTypeOffset = 0;
-    private ActorControl143 actorControl143;
+    private ActorControlSelf actorControlself;
 
     // fates<fateID, progress>
     private static Dictionary<int, int> fates;
@@ -150,12 +164,14 @@ namespace Cactbot {
       else
         region_ = "intl";
 
+      ready = false;
+
       fateSemaphore = new SemaphoreSlim(0, 1);
       ceSemaphore = new SemaphoreSlim(0, 1);
-      ac143opcodes = new Dictionary<string, AC143OPCodes>();
-      ac143opcodes.Add("ko", ac143_v5_2);
-      ac143opcodes.Add("cn", ac143_v5_2);
-      ac143opcodes.Add("intl", ac143_v5_2);
+      acselfopcodes = new Dictionary<string, ACSelfOPCodes>();
+      acselfopcodes.Add("ko", acself_v5_2);
+      acselfopcodes.Add("cn", acself_v5_2);
+      acselfopcodes.Add("intl", acself_v5_2);
 
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
       cedirectoropcodes.Add("ko", cedirector_ko);
@@ -164,28 +180,27 @@ namespace Cactbot {
 
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
-
-      var FFXIV = GetPluginData();
-      if (FFXIV != null) {
-        try {
-          subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
-        } catch (Exception ex) {
-          client_.LogError(ex.ToString());
-        }
-      }
-
       try {
+        var FFXIV = GetPluginData();
+        if (FFXIV != null) {
+          try {
+            subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
+          } catch (Exception ex) {
+            client_.LogError(ex.ToString());
+          }
+        }
+
         var mach = Assembly.Load("Machina.FFXIV");
         MessageType = mach.GetType("Machina.FFXIV.Headers.Server_MessageType");
 
-        actorControl143 = new ActorControl143(MessageType, mach);
-        headerOffset = GetOffset(actorControl143.packetType, "MessageHeader");
-        messageHeader = actorControl143.packetType.GetField("MessageHeader").FieldType;
+        actorControlself = new ActorControlSelf(MessageType, mach);
+        headerOffset = GetOffset(actorControlself.packetType, "MessageHeader");
+        messageHeader = actorControlself.packetType.GetField("MessageHeader").FieldType;
         messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
-        initialized = true;
-      } catch (Exception ex) {
-        client_.LogError("Error in FateWatcher initialization.");
-        client_.LogError(ex.ToString());
+        ready = true;
+      } catch (Exception e) {
+        client_.LogError("Error loading OPCodes, FATE info will be unavailable.");
+        client_.LogError("{0}\r\n{1}", e.Message, e.StackTrace);
       }
     }
 
@@ -198,13 +213,13 @@ namespace Cactbot {
     }
 
     public void Start() {
-      if (subscription != null && initialized) {
+      if (subscription != null && ready) {
         subscription.NetworkReceived += new NetworkReceivedDelegate(MessageReceived);
       }
     }
 
     public void Stop() {
-      if (subscription != null && initialized)
+      if (subscription != null && ready)
         subscription.NetworkReceived -= new NetworkReceivedDelegate(MessageReceived);
     }
 
@@ -253,11 +268,11 @@ namespace Cactbot {
     }
 
     private unsafe void MessageReceived(string id, long epoch, byte[] message) {
-      if (message.Length < actorControl143.size && message.Length < cedirectoropcodes[region_].size)
+      if (message.Length < actorControlself.size && message.Length < cedirectoropcodes[region_].size)
         return;
 
       fixed (byte* buffer = message) {
-        if (*(ushort*)&buffer[messageTypeOffset] == actorControl143.opCode) {
+        if (*(ushort*)&buffer[messageTypeOffset] == actorControlself.opCode) {
           ProcessActorControl143(buffer, message);
           return;
         }
@@ -271,17 +286,17 @@ namespace Cactbot {
     }
 
     public unsafe void ProcessActorControl143(byte* buffer, byte[] message) {
-      int a = *(ushort*)&buffer[actorControl143.categoryOffset];
+      int a = *(ushort*)&buffer[actorControlself.categoryOffset];
 
       fateSemaphore.WaitAsync();
       try {
-        if (a == ac143opcodes[region_].add) {
-          AddFate(*(int*)&buffer[actorControl143.param1Offset]);
-        } else if (a == ac143opcodes[region_].remove) {
-          RemoveFate(*(int*)&buffer[actorControl143.param1Offset]);
-        } else if (a == ac143opcodes[region_].update) {
-          int param1 = *(int*)&buffer[actorControl143.param1Offset];
-          int param2 = *(int*)&buffer[actorControl143.param2Offset];
+        if (a == acselfopcodes[region_].add) {
+          AddFate(*(int*)&buffer[actorControlself.param1Offset]);
+        } else if (a == acselfopcodes[region_].remove) {
+          RemoveFate(*(int*)&buffer[actorControlself.param1Offset]);
+        } else if (a == acselfopcodes[region_].update) {
+          int param1 = *(int*)&buffer[actorControlself.param1Offset];
+          int param2 = *(int*)&buffer[actorControlself.param2Offset];
           if (!fates.ContainsKey(param1)) {
             AddFate(param1);
           }

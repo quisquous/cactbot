@@ -16,8 +16,8 @@ export class SAMComponent extends BaseComponent {
   ka: HTMLDivElement;
   kenkiGauge: ResourceBox;
   meditationGauge: ResourceBox;
-  shifu: TimerBox;
-  jinpu: TimerBox;
+  fuka: TimerBox;
+  fugetsu: TimerBox;
   tsubameGaeshi: TimerBox;
   higanbana: TimerBox;
 
@@ -47,15 +47,15 @@ export class SAMComponent extends BaseComponent {
   this.meditationGauge = this.bars.addResourceBox({
     classList: ['sam-color-meditation'],
   });
-  this.shifu = this.bars.addProcBox({
-    id: 'sam-procs-shifu',
-    fgColor: 'sam-color-shifu',
+  this.fuka = this.bars.addProcBox({
+    id: 'sam-procs-fuka',
+    fgColor: 'sam-color-fuka',
     notifyWhenExpired: true,
   });
 
-  this.jinpu = this.bars.addProcBox({
-    id: 'sam-procs-jinpu',
-    fgColor: 'sam-color-jinpu',
+  this.fugetsu = this.bars.addProcBox({
+    id: 'sam-procs-fugetsu',
+    fgColor: 'sam-color-fugetsu',
     notifyWhenExpired: true,
   });
   this.tsubameGaeshi = this.bars.addProcBox({
@@ -103,20 +103,20 @@ export class SAMComponent extends BaseComponent {
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>):void {
-    if (id === EffectId.Shifu) {
-      this.shifu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
-      this.player.speedBuffs.shifu = true;
+    if (id === EffectId.Fugetsu) {
+      this.fuka.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
+      this.player.speedBuffs.fuka = true;
     }
-    if (id === EffectId.Jinpu)
-      this.jinpu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
+    if (id === EffectId.Fuka)
+      this.fugetsu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   }
   override onYouLoseEffect(id: string):void {
-    if (id === EffectId.Shifu) {
-      this.shifu.duration = 0;
-      this.player.speedBuffs.shifu = false;
+    if (id === EffectId.Fugetsu) {
+      this.fuka.duration = 0;
+      this.player.speedBuffs.fuka = false;
     }
-    if (id === EffectId.Jinpu)
-      this.jinpu.duration = 0;
+    if (id === EffectId.Fuka)
+      this.fugetsu.duration = 0;
   }
 
   override onUseAbility(id: string) :void {
@@ -135,10 +135,10 @@ export class SAMComponent extends BaseComponent {
   }
 
   override onStatChange({ gcdSkill }:{ gcdSkill: number }): void {
-    this.shifu.valuescale = gcdSkill;
-    this.shifu.threshold = gcdSkill * 6;
-    this.jinpu.valuescale = gcdSkill;
-    this.jinpu.threshold = gcdSkill * 6;
+    this.fuka.valuescale = gcdSkill;
+    this.fuka.threshold = gcdSkill * 6;
+    this.fugetsu.valuescale = gcdSkill;
+    this.fugetsu.threshold = gcdSkill * 6;
     this.tsubameGaeshi.valuescale = gcdSkill;
     this.tsubameGaeshi.threshold = gcdSkill * 4;
     this.higanbana.valuescale = gcdSkill;
@@ -147,8 +147,8 @@ export class SAMComponent extends BaseComponent {
 
   override reset(): void {
     this.comboTimer.duration = 0;
-    this.shifu.duration = 0;
-    this.jinpu.duration = 0;
+    this.fuka.duration = 0;
+    this.fugetsu.duration = 0;
     this.tsubameGaeshi.duration = 0;
     this.higanbana.duration = 0;
   }
