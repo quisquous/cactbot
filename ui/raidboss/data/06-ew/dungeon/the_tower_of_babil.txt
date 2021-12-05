@@ -114,20 +114,20 @@ hideall "--sync--"
 # Need more data in case there are mechanics past Charnel Claw 2.
 # Might repeat Obliviating Claw?
 2101.5 "--targetable--"
-2109.8 "Obliviating Claw #1" sync / 1[56]:[^:]*:Anima:630B:/
-2116.6 "Obliviating Claw #2" sync / 1[56]:[^:]*:Iron Nail:630C:/
-2121.6 "Obliviating Claw #3" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2109.8 "--sync--" sync / 1[56]:[^:]*:Anima:630B:/
+2116.6 "Obliviating Claw #1" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2121.6 "Obliviating Claw #2" sync / 1[56]:[^:]*:Iron Nail:630C:/
 2127.6 "Charnel Claw #1" sync / 1[56]:[^:]*:Iron Nail:630D:/
 2132.6 "Charnel Claw #2" sync / 1[56]:[^:]*:Iron Nail:630D:/
 2135.1 "--sync--" sync / 1[56]:[^:]*:Anima:6A5C:/
 2143.6 "Obliviating Claw" sync / 1[56]:[^:]*:Anima:630A:/
 2149.1 "Coffin Scratch x5" sync / 1[56]:[^:]*:Anima:630E:/ duration 5
 2155.7 "--sync--" sync / 1[56]:[^:]*:Anima:6A5C:/
-2164.2 "Obliviating Claw #1" sync / 1[56]:[^:]*:Anima:630B:/
-2171.0 "Obliviating Claw #2" sync / 1[56]:[^:]*:Iron Nail:630C:/
-2176.0 "Obliviating Claw #3" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2164.2 "--sync--" sync / 1[56]:[^:]*:Anima:630B:/
+2171.0 "Obliviating Claw #1" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2176.0 "Obliviating Claw #2" sync / 1[56]:[^:]*:Iron Nail:630C:/
 2182.0 "Charnel Claw #1" sync / 1[56]:[^:]*:Iron Nail:630D:/
-2187.0 "Charnel Claw #2?" sync / 1[56]:[^:]*:Iron Nail:630D:/ # can be skipped? HP%?
+2187.0 "Charnel Claw #2" sync / 1[56]:[^:]*:Iron Nail:630D:/ # can be skipped if DPS is high enough
 2189.5 "--sync--" sync / 1[56]:[^:]*:Anima:6A5C:/ window 20,20
 2192.9 "--untargetable--"
 2199.1 "Oblivion" sync / 1[56]:[^:]*:Anima:630F:/ duration 5
