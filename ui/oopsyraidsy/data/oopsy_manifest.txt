@@ -137,3 +137,4 @@
 05-shb/trial/wol.ts
 05-shb/trial/wol-ex.ts
 05-shb/ultimate/the_epic_of_alexander.ts
+06-ew/trial/zodiark.ts
