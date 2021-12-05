@@ -1,0 +1,148 @@
+# The Tower Of Babil
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+#~~~~~~~~~~#
+# BARNABAS #
+#~~~~~~~~~~#
+
+# -ii 6076 61DE
+
+0.0 "--sync--" sync / 00:0839::Magitek Servicing will be sealed off/ window 0,1
+8.9 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:6247:/window 8.9,5
+27.3 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:62EA:/
+
+40.5 "Dynamic Scrapline" sync / 1[56]:[^:]*:Barnabas:62F0:/ window 40.5,10
+41.6 "--sync--" sync / 1[56]:[^:]*:Barnabas:61DD:/
+43.0 "Electromagnetic Release" sync / 1[56]:[^:]*:Barnabas:62F1:/
+55.2 "Shocking Force" sync / 1[56]:[^:]*:Barnabas:62EC:/
+72.2 "Dynamic Pound" sync / 1[56]:[^:]*:Barnabas:(6245|62EE):/ window 72.2,10
+73.3 "--sync--" sync / 1[56]:[^:]*:Barnabas:6075:/
+74.7 "Electromagnetic Release" sync / 1[56]:[^:]*:Barnabas:62EF:/
+85.3 "Thundercall" sync / 1[56]:[^:]*:Barnabas:62ED:/ window 85.3,10
+91.8 "Rolling Scrapline" sync / 1[56]:[^:]*:Barnabas:62EB:/
+92.1 "Shock" sync / 1[56]:[^:]*:Thunderball:62F2:/ window 92.1,10
+102.3 "Shocking Force" sync / 1[56]:[^:]*:Barnabas:62EC:/
+110.9 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:62EA:/
+116.9 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:62EA:/
+122.9 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:62EA:/
+
+138.8 "Dynamic Scrapline" sync / 1[56]:[^:]*:Barnabas:62F0:/ window 30,30 jump 40.5
+141.3 "Electromagnetic Release"
+153.5 "Shocking Force"
+170.5 "Dynamic Pound"
+173.0 "Electromagnetic Release"
+183.6 "Thundercall"
+
+#~~~~~~~~~~~#
+# DR. LUGAE #
+#~~~~~~~~~~~#
+
+1000.0 "--sync--" sync / 00:0839::Martial Conditioning will be sealed off/ window 1000,5
+1009.7 "Thermal Suppression" sync / 1[56]:[^:]*:Lugae:62FA:/ window 1009.7,10
+1018.2 "Magitek Missile" sync / 1[56]:[^:]*:Lugae:62F6:/
+1022.5 "Surface Missile" sync / 1[56]:[^:]*:Lugae:62F7:/
+1028.8 "Magitek Ray" sync / 1[56]:[^:]*:Lugae:62FC:/
+
+1039.8 "Magitek Chakram?" sync / 1[56]:[^:]*:Lugae:62F3:/ window 1039.8,10 jump 1200
+1040.3 "Downpour?" sync / 1[56]:[^:]*:Lugae:62F5:/ window 1040.5,10 jump 1266.9
+1047.8 "Magitek Missile?"
+1048.3 "Magitek Chakram?"
+1050.8 "Mighty Blow?"
+1052.1 "Surface Missile?"
+1053.3 "Magitek Missile?"
+1057.6 "Surface Missile?"
+1058.8 "Magitek Missile?"
+1059.3 "Mighty Blow?"
+
+
+1200.0 "Magitek Chakram" sync / 1[56]:[^:]*:Lugae:62F3:/
+1208.5 "Magitek Chakram" sync / 1[56]:[^:]*:Lugae:62F3:/
+1211.0 "Mighty Blow" sync / 1[56]:[^:]*:Magitek Chakram:62F4:/
+1219.5 "Mighty Blow" sync / 1[56]:[^:]*:Magitek Chakram:62F4:/
+
+1227.0 "Thermal Suppression" sync / 1[56]:[^:]*:Lugae:62FA:/
+1232.6 "Magitek Ray" sync / 1[56]:[^:]*:Lugae:62FC:/
+1244.1 "Magitek Explosive" sync / 1[56]:[^:]*:Lugae:62F8:/
+1255.1 "Explosion" sync / 1[56]:[^:]*:Magitek Explosive:62F9:/
+
+1266.9 "Downpour" sync / 1[56]:[^:]*:Lugae:62F5:/ window 66.9,10
+1274.4 "Magitek Missile" sync / 1[56]:[^:]*:Lugae:62F6:/
+1278.7 "Surface Missile" sync / 1[56]:[^:]*:Lugae:62F7:/
+1279.9 "Magitek Missile" sync / 1[56]:[^:]*:Lugae:62F6:/
+1284.2 "Surface Missile" sync / 1[56]:[^:]*:Lugae:62F7:/
+1285.4 "Magitek Missile" sync / 1[56]:[^:]*:Lugae:62F6:/
+1289.7 "Surface Missile" sync / 1[56]:[^:]*:Lugae:62F7:/
+1294.9 "Thermal Suppression" sync / 1[56]:[^:]*:Lugae:62FA:/ window 30,30
+1300.4 "Magitek Ray" sync / 1[56]:[^:]*:Lugae:62FC:/
+1312.0 "Magitek Explosive" sync / 1[56]:[^:]*:Lugae:62F8:/
+1323.0 "Explosion" sync / 1[56]:[^:]*:Magitek Explosive:62F9:/
+
+1335.3 "Magitek Chakram" sync / 1[56]:[^:]*:Lugae:62F3:/ jump 1200.0
+1343.8 "Magitek Chakram"
+1346.3 "Mighty Blow"
+1354.9 "Mighty Blow"
+1362.4 "Thermal Suppression"
+1368.0 "Magitek Ray"
+
+#~~~~~~~#
+# ANIMA #
+#~~~~~~~#
+
+# -ii 52BE 5E68 6305
+
+2000.0 "--sync--" sync / 00:0839::Iron Womb will be sealed off/ window 2000,1
+2009.8 "Lunar Nail" sync / 1[56]:[^:]*:Anima:62FE:/ 2009.8,10
+2020.7 "Phantom Pain" sync / 1[56]:[^:]*:Anima:62FF:/
+2029.8 "Mega Graviton" sync / 1[56]:[^:]*:Anima:6300:/
+2037.8 "Pater Patriae" sync / 1[56]:[^:]*:Anima:6306:/
+2043.7 "Aetherial Pull" sync / 1[56]:[^:]*:Mega-graviton:6301:/ window 2043.7,10
+2045.8 "Graviton Spark" sync / 1[56]:[^:]*:Mega-graviton:6302:/
+2058.4 "Boundless Pain" sync / 1[56]:[^:]*:Anima:6303:/
+2058.5 "--sync--" sync / 1[56]:[^:]*:Anima:6675:/
+2059.6 "Boundless Pain" sync / 1[56]:[^:]*:Anima:6304:/ duration 11
+2082.5 "Imperatum" sync / 1[56]:[^:]*:Anima:6309:/ window 2082.5,10
+2085.0 "--sync--" sync / 1[56]:[^:]*:Anima:5D79:/
+2109.8 "Obliviating Claw #1" sync / 1[56]:[^:]*:Anima:630B:/
+2116.6 "Obliviating Claw #2" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2121.6 "Obliviating Claw #3" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2127.6 "Charnel Claw #1" sync / 1[56]:[^:]*:Iron Nail:630D:/
+2132.6 "Charnel Claw #2" sync / 1[56]:[^:]*:Iron Nail:630D:/
+2135.1 "--sync--" sync / 1[56]:[^:]*:Anima:6A5C:/
+2143.6 "Obliviating Claw" sync / 1[56]:[^:]*:Anima:630A:/
+2149.1 "Coffin Scratch x5" sync / 1[56]:[^:]*:Anima:630E:/ duration 5
+2155.7 "--sync--" sync / 1[56]:[^:]*:Anima:6A5C:/
+2164.2 "Obliviating Claw #1" sync / 1[56]:[^:]*:Anima:630B:/
+2171.0 "Obliviating Claw #2" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2176.0 "Obliviating Claw #" sync / 1[56]:[^:]*:Iron Nail:630C:/
+2182.0 "Charnel Claw #1" sync / 1[56]:[^:]*:Iron Nail:630D:/
+2187.0 "Charnel Claw #2?" sync / 1[56]:[^:]*:Iron Nail:630D:/ # can be skipped?
+2189.5 "--sync--" sync / 1[56]:[^:]*:Anima:6A5C:/ window 20,20
+2199.1 "Oblivion" sync / 1[56]:[^:]*:Anima:630F:/ duration 5
+2205.8 "--sync--" sync / 1[56]:[^:]*:Anima:5D40:/ window 2205.8,30
+
+2229.4 "--sync--" sync / 1[56]:[^:]*:Anima:6303:/ # Boundless Pain
+2229.5 "--sync--" sync / 1[56]:[^:]*:Anima:6675:/
+2230.6 "Boundless Pain" sync / 1[56]:[^:]*:Anima:6304:/ duration 12
+2249.8 "Pater Patriae" sync / 1[56]:[^:]*:Anima:6306:/
+2258.3 "Lunar Nail" sync / 1[56]:[^:]*:Anima:62FE:/
+2269.2 "Phantom Pain" sync / 1[56]:[^:]*:Anima:62FF:/ window 30,30
+2289.2 "Erupting Pain" sync / 1[56]:[^:]*:Anima:6308:/
+2289.6 "--sync--" sync / 1[56]:[^:]*:Anima:6307:/ # Erupting Pain
+2302.1 "Mega Graviton" sync / 1[56]:[^:]*:Anima:6300:/ window 30,30
+2310.1 "Pater Patriae" sync / 1[56]:[^:]*:Anima:6306:/
+2316.0 "Aetherial Pull" sync / 1[56]:[^:]*:Mega-graviton:6301:/
+2327.6 "--sync--" sync / 1[56]:[^:]*:Anima:6307:/ # Erupting Pain
+2327.6 "Erupting Pain" sync / 1[56]:[^:]*:Anima:6308:/
+
+2349.4 "Boundless Pain" sync / 1[56]:[^:]*:Anima:6304:/ duration 12
+2368.6 "Pater Patriae" sync / 1[56]:[^:]*:Anima:6306:/ window 15,15 jump 2249.8
+2377.1 "Lunar Nail"
+2388.0 "Phantom Pain"
+2408.0 "Erupting Pain"
+2420.9 "Mega Graviton"
+2428.9 "Pater Patriae"
