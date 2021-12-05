@@ -214,6 +214,7 @@ export const kAbility = {
   Thunder3: '99',
   Thunder4: '1CFC',
   // SMN
+  // 5.x
   Miasma: 'A8',
   Miasma3: '1D01',
   BioSmn: 'A4',

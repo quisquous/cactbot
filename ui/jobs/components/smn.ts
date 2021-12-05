@@ -1,4 +1,3 @@
-import EffectId from '../../../resources/effect_id';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
@@ -9,6 +8,12 @@ import { computeBackgroundColorFrom } from '../utils';
 import { BaseComponent, ComponentInterface } from './base';
 
 export class SMNComponent extends BaseComponent {
+  constructor(o: ComponentInterface) {
+    super(o);
+  }
+}
+
+export class SMN5xComponent extends BaseComponent {
   aetherflowStackBox: ResourceBox;
   demiSummoningBox: ResourceBox;
   miasmaBox: TimerBox;
@@ -74,13 +79,13 @@ export class SMNComponent extends BaseComponent {
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
-    if (id === EffectId.FurtherRuin) {
+    if (id === '4BC') { // Further Ruin changed id in 6.0, EffectId.FurtherRuin is the 6.0 version.
       this.furtherRuin = parseInt(matches.count ?? '0');
       this.refreshFurtherRuin();
     }
   }
   override onYouLoseEffect(id: string): void {
-    if (id === EffectId.FurtherRuin) {
+    if (id === '4BC') { // Further Ruin changed id in 6.0, EffectId.FurtherRuin is the 6.0 version.
       this.furtherRuin = 0;
       this.refreshFurtherRuin();
     }
@@ -91,6 +96,10 @@ export class SMNComponent extends BaseComponent {
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['SMN']): void {
+    // assert this is running on a 5.x server (i.e. CN/KR)
+    if (!('bahamutStance' in jobDetail))
+      return;
+
     const stack = jobDetail.aetherflowStacks;
     const summoned = jobDetail.bahamutSummoned;
     const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);

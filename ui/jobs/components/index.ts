@@ -27,7 +27,7 @@ import { RPRComponent } from './rpr';
 import { SAMComponent } from './sam';
 import { SCHComponent } from './sch';
 import { SGEComponent } from './sge';
-import { SMNComponent } from './smn';
+import { SMN5xComponent, SMNComponent } from './smn';
 import { WARComponent } from './war';
 import { WHMComponent } from './whm';
 
@@ -131,6 +131,13 @@ export class ComponentManager {
       partyTracker: this.partyTracker,
       player: this.player,
     };
+
+    // For CN/KR that is still in 5.x
+    if (['cn', 'ko'].includes(this.options.ParserLanguage)) {
+      if (job === 'SMN')
+        return new SMN5xComponent(o);
+    }
+
     const Component = ComponentMap[job];
     if (!Component)
       return new BaseComponent(o);
