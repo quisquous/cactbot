@@ -555,7 +555,7 @@ namespace Cactbot {
           if ((stance & 0x40) != 0)
             arcanums.Add("Topaz"); // Earth/Titan
           if ((stance & 0x80) != 0)
-            arcanums.Add("Emerald"); // Wind/Garude
+            arcanums.Add("Emerald"); // Wind/Garuda
 
           return arcanums.ToArray();
         }
@@ -568,7 +568,7 @@ namespace Cactbot {
           else if ((stance & 0xF) == 0x8)
             return "Titan";
           else if ((stance & 0xF) == 0xC)
-            return "Garude";
+            return "Garuda";
           else
             return null;
         }
