@@ -13,7 +13,7 @@ hideall "--sync--"
 # -ii 6076 61DE
 
 0.0 "--sync--" sync / 00:0839::Magitek Servicing will be sealed off/ window 0,1
-8.9 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:6247:/window 8.9,5
+8.9 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:6247:/ window 8.9,5
 27.3 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:62EA:/
 
 40.5 "Dynamic Scrapline" sync / 1[56]:[^:]*:Barnabas:62F0:/ window 40.5,10
