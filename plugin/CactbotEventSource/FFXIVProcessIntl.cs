@@ -582,6 +582,12 @@ namespace Cactbot {
             return "Phoenix";
         }
       }
+
+      public int aetherflowStacks {
+        get {
+          return stance & 0x3;
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]
