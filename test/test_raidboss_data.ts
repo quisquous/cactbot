@@ -21,7 +21,7 @@ export type TestMochaGlobal = typeof global & {
 // (2) Called directly via node with optional filenames being passed via argv...
 //     In this case, this is for something like lint-staged.  This file will
 //     pass all of the filenames it finds into globals and add
-//     test_data_runner.js as a test, which will take those globals and call
+//     test_data_runner.ts as a test, which will take those globals and call
 //     all of the same testXFiles functions.
 //
 // This weird dance allows for both partial testing of data files for lint-staged
@@ -77,7 +77,7 @@ if (insideMocha) {
   annotatedGlobal.manifestFiles = manifestFiles;
   annotatedGlobal.timelineFiles = timelineFiles;
   annotatedGlobal.triggerFiles = triggerFiles;
-  mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_data_runner.js')));
+  mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_data_runner.ts')));
 
   mocha.loadFilesAsync()
     .then(() => mocha.run((failures) => process.exitCode = failures ? 1 : 0))

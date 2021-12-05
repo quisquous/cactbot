@@ -120,7 +120,7 @@
     "*.ts": "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",
     "*.md": "markdownlint",
     "*.py": "python -m pylint --errors-only",
-    "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.js"
+    "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.ts"
   },
   "dependencies": {
     "@fast-csv/parse": "^4.3.6",
