@@ -1,0 +1,119 @@
+# Zodiark Normal
+# -p 6C27:11.1
+# -it "Zodiark"
+# -ii 6B62 664F 6650 6CD4 63A8 67D9 67DC 67CE 67D3
+
+hideall "--Reset--"
+hideall "--sync--"
+# Useful for syncing, but just noisy.
+hideall "Exoterikos"
+hideall "Paradeigma"
+hideall "Triple Esoteric Ray"
+
+# Note: Trimorphos Exoterikos is a 13 second cast that goes off midway through
+# all of the Esoteric X abilities, so put the name on the start cast instead.
+
+# Note: Opheos Eidolon sometimes comes from Zodiark/Behemoth and not Python,
+# maybe a race condition in FFXIV ACT Plugin?
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+7.1 "--sync--" sync / 14:[^:]*:Zodiark:6C27:/ window 10,10
+11.1 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C27:/
+20.2 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:6C36:/
+27.5 "Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67CC:/
+31.5 "Ania" sync / 1[56]:[^:]*:Zodiark:67D5:/
+41.6 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:6C36:/
+48.9 "Esoteric Dyad" sync / 1[56]:[^:]*:Arcane Sigil:67CB:/
+58.3 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67C8:/
+71.0 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
+76.1 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67C8:/
+88.3 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/
+94.9 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67D0:/ duration 4.6
+103.1 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DB:/ duration 5.5
+115.7 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67C8:/
+122.8 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:6C36:/
+129.1 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+129.4 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
+
+# Cutscene
+144.6 "--sync--" sync / 14:[^:]*:Zodiark:6734:/ window 150,10
+149.6 "Complete Control" sync / 1[56]:[^:]*:Zodiark:6734:/
+150.2 "--untargetable--"
+150.3 "--sync--" sync / 1[56]:[^:]*:Zodiark:67DD:/
+174.3 "--targetable--"
+
+179.4 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+194.5 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:6EC9:/
+205.3 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
+215.0 "Adikia" sync / 1[56]:[^:]*:Zodiark:67D8:/
+226.2 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67CF:/ duration 4.6
+235.3 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
+235.4 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
+238.4 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
+247.4 "Algedon" sync / 1[56]:[^:]*:Zodiark:67D[12]:/
+253.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+268.7 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:6630:/
+# Note: this mob is sometimes Zodiark and sometimes Python.
+274.6 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/ window 10,10
+
+# Star tethers
+280.9 "--sync--" sync / 14:[^:]*:Zodiark:67C3:/ window 300,10
+285.9 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
+285.9 "--untargetable--"
+298.0 "--targetable--"
+303.0 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67CD:/
+307.0 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67CD:/
+311.0 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67CD:/
+
+318.1 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
+333.2 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C5F:/
+338.3 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+353.4 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:(662F|6630):/
+359.8 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
+368.6 "Styx" sync / 1[56]:[^:]*:Zodiark:67DA:/
+378.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+386.8 "Adikia" sync / 1[56]:[^:]*:Zodiark:67D8:/
+388.0 "Esoteric Dyad" sync / 1[56]:[^:]*:Arcane Sigil:67CB:/
+
+391.0 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/
+401.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+405.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+409.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+416.2 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+431.4 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:(662F|6630):/
+437.2 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/
+446.5 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
+456.6 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+465.7 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
+465.8 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
+465.9 "Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67CC:/
+468.8 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
+472.8 "Ania" sync / 1[56]:[^:]*:Zodiark:67D4:/
+
+479.0 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/
+489.8 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+493.8 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+497.1 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67CF:/ duration 4.6
+497.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+505.3 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
+517.5 "Algedon" sync / 1[56]:[^:]*:Zodiark:67D[12]:/
+530.7 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+545.9 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:(662F|6630):/
+551.7 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/
+561.0 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
+571.2 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+580.3 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
+580.4 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
+580.4 "Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67CC:/
+583.4 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
+587.4 "Ania" sync / 1[56]:[^:]*:Zodiark:67D4:/
+
+593.5 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/ window 50,50 jump 479
+604.3 "Esoteric Dyad/Esoteric Sect" #sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+608.3 "Esoteric Dyad/Esoteric Sect" #sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+611.6 "Phlegethon x3" #sync / 1[56]:[^:]*:Zodiark:67CF:/ duration 4.6
+612.2 "Esoteric Dyad/Esoteric Sect" #sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
+619.8 "Styx x5" #sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
+632.0 "Algedon" #sync / 1[56]:[^:]*:Zodiark:67D[12]:/
