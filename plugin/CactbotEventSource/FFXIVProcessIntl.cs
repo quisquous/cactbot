@@ -537,31 +537,57 @@ namespace Cactbot {
     [StructLayout(LayoutKind.Explicit)]
     public struct SummonerJobMemory {
       [FieldOffset(0x00)]
-      public ushort stanceMilliseconds; // Dreadwyrm or Bahamut/Phoenix time left in ms.
+      public ushort tranceMilliseconds;
 
       [FieldOffset(0x02)]
-      public byte bahamutStance; // 5 if Bahamut/Phoenix summoned, else 0.
+      public ushort attunementMilliseconds;
 
-      [FieldOffset(0x03)]
-      public byte bahamutSummoned; // 1 if Bahamut/Phoenix summoned, else 0.
+      [FieldOffset(0x06)]
+      public byte attunement;
 
       [NonSerialized]
-      [FieldOffset(0x04)]
-      private byte stacks; // Bits 1-2: Aetherflow. Bits 3-4: Dreadwyrm. Bit 5: Phoenix ready.
+      [FieldOffset(0x07)]
+      private byte stance;
+
+      public string[] usableArcanum {
+        get {
+          var arcanums = new List<string>();
+          if ((stance & 0x20) != 0)
+            arcanums.Add("Ruby"); // Fire/Ifrit
+          if ((stance & 0x40) != 0)
+            arcanums.Add("Topaz"); // Earth/Titan
+          if ((stance & 0x80) != 0)
+            arcanums.Add("Emerald"); // Wind/Garuda
+
+          return arcanums.ToArray();
+        }
+      }
+
+      public string activePrimal {
+        get {
+          if ((stance & 0xF) == 0x4)
+            return "Ifrit";
+          else if ((stance & 0xF) == 0x8)
+            return "Titan";
+          else if ((stance & 0xF) == 0xC)
+            return "Garuda";
+          else
+            return null;
+        }
+      }
+
+      public String nextSummoned {
+        get {
+          if ((stance & 0xEF) != 0)
+            return "Bahamut";
+          else
+            return "Phoenix";
+        }
+      }
 
       public int aetherflowStacks {
         get {
-          return (stacks >> 0) & 0x3; // Bottom 2 bits.
-        }
-      }
-      public int dreadwyrmStacks {
-        get {
-          return (stacks >> 2) & 0x3; // Bottom 2 bits.
-        }
-      }
-      public bool phoenixReady {
-        get {
-          return ((stacks >> 4) & 0x3) == 1; // Bottom 2 bits.
+          return stance & 0x3;
         }
       }
     };
