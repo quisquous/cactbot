@@ -1,7 +1,7 @@
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
-import { kAbility } from '../constants';
+import { kAbility, patch5xEffectId } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
 
@@ -79,13 +79,13 @@ export class SMN5xComponent extends BaseComponent {
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
-    if (id === '4BC') { // Further Ruin changed id in 6.0, EffectId.FurtherRuin is the 6.0 version.
+    if (id === patch5xEffectId.FurtherRuin5x) {
       this.furtherRuin = parseInt(matches.count ?? '0');
       this.refreshFurtherRuin();
     }
   }
   override onYouLoseEffect(id: string): void {
-    if (id === '4BC') { // Further Ruin changed id in 6.0, EffectId.FurtherRuin is the 6.0 version.
+    if (id === patch5xEffectId.FurtherRuin5x) {
       this.furtherRuin = 0;
       this.refreshFurtherRuin();
     }

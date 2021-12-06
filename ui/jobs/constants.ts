@@ -24,6 +24,13 @@ export const kWellFedContentTypes: number[] = [
   ContentType.UltimateRaids,
 ];
 
+// this object holds effect id that is different from the patch 6.x
+// or removed in patch 6.x. In order to support CN/KR that is still
+// in patch 5.x, we move them here.
+export const patch5xEffectId = {
+  FurtherRuin5x: '4BC',
+};
+
 export const kAbility = {
   // LB
   ShieldWall: 'C5', // T LB1
