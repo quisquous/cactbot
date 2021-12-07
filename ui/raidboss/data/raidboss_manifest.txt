@@ -352,6 +352,8 @@
 05-shb/trial/wol-ex.txt
 05-shb/ultimate/the_epic_of_alexander.ts
 05-shb/ultimate/the_epic_of_alexander.txt
+06-ew/dungeon/ktisis_hyperboreia.ts
+06-ew/dungeon/ktisis_hyperboreia.txt
 06-ew/dungeon/the_tower_of_zot.ts
 06-ew/dungeon/the_tower_of_zot.txt
 06-ew/dungeon/the_tower_of_babil.ts
