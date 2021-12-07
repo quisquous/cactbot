@@ -9,14 +9,13 @@ hideall "--sync--"
 # LYSSA #
 #~~~~~~~#
 
-# -ii 1961 6E90 -it Lyssa
+# -ii 1961 6258 6E90 -it Lyssa
 
 0.0 "--sync--" sync / 00:0839::The Frozen Sphere will be sealed off/ window 0,1
 10.7 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/ window 10.7,10
 21.2 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
 23.2 "--untargetable--"
-34.3 "Punishing Slice #1" sync / 1[56]:[^:]*:Lyssa:6258:/ window 34.3,30
-35.2 "Punishing Slice #2" sync / 1[56]:[^:]*:Lyssa:6259:/
+35.2 "Punishing Slice #2" sync / 1[56]:[^:]*:Lyssa:6259:/ window 35.2,30
 36.3 "--targetable--"
 46.0 "Icicall" sync / 1[56]:[^:]*:Lyssa:625A:/
 50.9 "Ice Pillar" sync / 1[56]:[^:]*:Ice Pillar:625B:/
@@ -26,8 +25,7 @@ hideall "--sync--"
 70.6 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/
 81.0 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
 83.1 "--untargetable--"
-97.1 "Punishing Slice #1" sync / 1[56]:[^:]*:Lyssa:6258:/
-98.0 "Punishing Slice #2" sync / 1[56]:[^:]*:Lyssa:6259:/
+98.0 "Punishing Slice" sync / 1[56]:[^:]*:Lyssa:6259:/
 99.1 "--targetable--"
 109.2 "Frigid Stomp" sync / 1[56]:[^:]*:Lyssa:625D:/ window 30,30
 118.6 "Icicall" sync / 1[56]:[^:]*:Lyssa:625A:/
@@ -39,8 +37,7 @@ hideall "--sync--"
 146.1 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/
 156.7 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
 158.7 "--untargetable--"
-172.8 "Punishing Slice #1" sync / 1[56]:[^:]*:Lyssa:6258:/
-173.7 "Punishing Slice #2" sync / 1[56]:[^:]*:Lyssa:6259:/
+173.7 "Punishing Slice" sync / 1[56]:[^:]*:Lyssa:6259:/
 174.8 "--targetable--"
 184.9 "Frigid Stomp" sync / 1[56]:[^:]*:Lyssa:625D:/ window 30,30
 194.7 "Icicall" sync / 1[56]:[^:]*:Lyssa:625A:/
@@ -51,8 +48,7 @@ hideall "--sync--"
 222.2 "Skull Dasher"
 232.8 "Frostbite and Seek"
 234.8 "--untargetable--"
-248.9 "Punishing Slice #1"
-249.8 "Punishing Slice #2"
+249.8 "Punishing Slice"
 
 #~~~~~~~~~~~~#
 # LADON LORD #
@@ -86,32 +82,14 @@ hideall "--sync--"
 1099.1 "Intimidation" sync / 1[56]:[^:]*:Ladon Lord:648D:/
 1105.3 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:648C:/
 1110.4 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ window 30,30
-1115.4 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6490:/
-1120.5 "Pyric Sphere?" sync / 1[56]:[^:]*:Pyric Sphere:6491:/ # Doesn't always happen?
-1122.9 "Pyric Blast" sync / 1[56]:[^:]*:Ladon Lord:648E:/
+1115.4 "Pyric Sphere #1" sync / 1[56]:[^:]*:Pyric Sphere:6490:/
+1120.5 "Pyric Sphere #2" sync / 1[56]:[^:]*:Pyric Sphere:6491:/
+1122.9 "Pyric Blast" sync / 1[56]:[^:]*:Ladon Lord:648E:/ window 10,10
 1126.2 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
 1135.0 "Pyric Breath #1" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|648A|648B):/
 1137.1 "Pyric Breath #2" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|648A|648B):/
 1146.3 "Scratch" sync / 1[56]:[^:]*:Ladon Lord:648F:/
 1151.4 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:648C:/ window 30,30
-
-1158.8 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ window 15,15
-1161.8 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6490:/
-1164.2 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
-1166.9 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6491:/
-1173.3 "Pyric Breath #1" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|648A|648B):/
-1175.4 "Pyric Breath #2" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|648A|648B):/
-1183.5 "Intimidation" sync / 1[56]:[^:]*:Ladon Lord:648D:/
-1189.7 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:648C:/
-1194.8 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ window 30,30
-1199.8 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6490:/
-1204.9 "Pyric Sphere?" sync / 1[56]:[^:]*:Pyric Sphere:6491:/ # Doesn't always happen?
-1207.3 "Pyric Blast" sync / 1[56]:[^:]*:Ladon Lord:648E:/
-1210.6 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
-1219.4 "Pyric Breath #1" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|648A|648B):/
-1221.5 "Pyric Breath #2" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|648A|648B):/
-1230.7 "Scratch" sync / 1[56]:[^:]*:Ladon Lord:648F:/
-1235.8 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:648C:/ window 30,30
 
 1158.8 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ jump 1074.4
 1161.8 "Pyric Sphere"
