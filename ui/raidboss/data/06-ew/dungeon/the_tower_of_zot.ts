@@ -75,7 +75,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Berserker Sphere': 'sphère berserk',
         'Cinduruva': 'Maria',
@@ -86,7 +85,11 @@ const triggerSet: TriggerSet<Data> = {
         'Wisdom\'S Ward': 'Chambre de la sagesse',
       },
       'replaceText': {
+        'Cinduruva': 'Maria',
+        'Delayed Element III': 'Méga Élément retardé',
+        'Delayed Thunder III': 'Méga Foudre retardé',
         'Delta Attack': 'Attaque Delta',
+        'Delta Blizzard/Fire/Thunder III': 'Méga Glace/Feu/Foudre delta',
         'Dhrupad': 'Dhrupad',
         'Explosive Force': 'Détonation',
         'Isitva Siddhi': 'Isitva Siddhi',
@@ -96,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
         'Manusya Blizzard(?! )': 'Glace manusya',
         'Manusya Blizzard III': 'Méga Glace manusya',
         'Manusya Confuse': 'Confusion manusya',
+        'Manusya Element III': 'Méga Élément manusya',
         'Manusya Faith': 'Foi manusya',
         'Manusya Fire(?! )': 'Feu manusya',
         'Manusya Fire III': 'Méga Feu manusya',
@@ -106,7 +110,9 @@ const triggerSet: TriggerSet<Data> = {
         'Prakamya Siddhi': 'Prakamya Siddhi',
         'Prapti Siddhi': 'Prapti Siddhi',
         'Samsara': 'Samsara',
+        'Sanduruva': 'Samanta',
         'Sphere Shatter': 'Rupture',
+        'Transmute Element III': 'Manipulation magique : Méga Élément',
         'Transmute Thunder III': 'Manipulation magique : Méga Foudre',
       },
     },
