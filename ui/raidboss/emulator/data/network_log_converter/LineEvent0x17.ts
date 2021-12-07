@@ -18,7 +18,7 @@ export class LineEvent0x17 extends LineEvent implements LineEventSource, LineEve
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.id = parts[fields.sourceId]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
     this.abilityId = parseInt(parts[fields.id]?.toUpperCase() ?? '');
     this.abilityName = parts[fields.name] ?? '';
