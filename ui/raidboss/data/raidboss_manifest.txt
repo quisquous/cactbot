@@ -356,5 +356,7 @@
 06-ew/dungeon/the_tower_of_zot.txt
 06-ew/dungeon/the_tower_of_babil.ts
 06-ew/dungeon/the_tower_of_babil.txt
+06-ew/dungeon/vanaspati.ts
+06-ew/dungeon/vanaspati.txt
 06-ew/trial/zodiark.ts
 06-ew/trial/zodiark.txt
