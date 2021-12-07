@@ -15,7 +15,7 @@ hideall "--sync--"
 10.7 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/ window 10.7,10
 21.2 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
 23.2 "--untargetable--"
-35.2 "Punishing Slice #2" sync / 1[56]:[^:]*:Lyssa:6259:/ window 35.2,30
+35.2 "Punishing Slice" sync / 1[56]:[^:]*:Lyssa:6259:/ window 35.2,30
 36.3 "--targetable--"
 46.0 "Icicall" sync / 1[56]:[^:]*:Lyssa:625A:/
 50.9 "Ice Pillar" sync / 1[56]:[^:]*:Ice Pillar:625B:/
