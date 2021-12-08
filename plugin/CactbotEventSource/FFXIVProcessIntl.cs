@@ -395,24 +395,24 @@ namespace Cactbot {
 
       public String songName {
         get {
+          if (songFlags.HasFlag(SongFlags.Minuet))
+            return "Minuet";
           if (songFlags.HasFlag(SongFlags.Ballad))
             return "Ballad";
           if (songFlags.HasFlag(SongFlags.Paeon))
             return "Paeon";
-          if (songFlags.HasFlag(SongFlags.Minuet))
-            return "Minuet";
           return "None";
         }
       }
 
       public String lastPlayed {
         get {
+          if (songFlags.HasFlag(SongFlags.MinuetLastPlayed))
+            return "Minuet";
           if (songFlags.HasFlag(SongFlags.BalladLastPlayed))
             return "Ballad";
           if (songFlags.HasFlag(SongFlags.PaeonLastPlayed))
             return "Paeon";
-          if (songFlags.HasFlag(SongFlags.MinuetLastPlayed))
-            return "Minuet";
           return "None";
         }
       }
