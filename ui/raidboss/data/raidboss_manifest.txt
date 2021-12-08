@@ -362,3 +362,5 @@
 06-ew/dungeon/vanaspati.txt
 06-ew/trial/zodiark.ts
 06-ew/trial/zodiark.txt
+06-ew/trial/zodiark-ex.ts
+06-ew/trial/zodiark-ex.txt
