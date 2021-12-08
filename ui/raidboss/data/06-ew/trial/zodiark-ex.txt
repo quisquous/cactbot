@@ -89,7 +89,7 @@ hideall "Infernal Torrent"
 481.6 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
 481.6 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
 
-486.9 "Styx x7" sync / 1[56]:[^:]*:Zodiark:67F3:/ durastion 8
+486.9 "Styx x7" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 8
 506.0 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 508.3 "Trimorphos Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C2:/
 510.1 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
