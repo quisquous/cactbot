@@ -110,7 +110,7 @@ This guide was last updated for:
     - [Structure](#structure-19)
     - [Regexes](#regexes-12)
     - [Examples](#examples-19)
-  - [Line 35 (0x22): NetworkTether](#line-35-0x22-networktether)
+  - [Line 35 (0x23): NetworkTether](#line-35-0x23-networktether)
     - [Structure](#structure-20)
     - [Regexes](#regexes-13)
     - [Examples](#examples-20)
@@ -667,7 +667,7 @@ Network Log Line Regex:
 ^(?<type>(?:12))\|(?<timestamp>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<strength>(?:[^|]*))\|(?<dexterity>(?:[^|]*))\|(?<vitality>(?:[^|]*))\|(?<intelligence>(?:[^|]*))\|(?<mind>(?:[^|]*))\|(?<piety>(?:[^|]*))\|(?<attackPower>(?:[^|]*))\|(?<directHit>(?:[^|]*))\|(?<criticalHit>(?:[^|]*))\|(?<attackMagicPotency>(?:[^|]*))\|(?<healMagicPotency>(?:[^|]*))\|(?<determination>(?:[^|]*))\|(?<skillSpeed>(?:[^|]*))\|(?<spellSpeed>(?:[^|]*))\|(?:[^|]*\|)(?<tenacity>(?:[^|]*))\|(?<localContentId>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) PlayerStats (?<type>0c):(?<job>(?:[^:]*)):(?<strength>(?:[^:]*)):(?<dexterity>(?:[^:]*)):(?<vitality>(?:[^:]*)):(?<intelligence>(?:[^:]*)):(?<mind>(?:[^:]*)):(?<piety>(?:[^:]*)):(?<attackPower>(?:[^:]*)):(?<directHit>(?:[^:]*)):(?<criticalHit>(?:[^:]*)):(?<attackMagicPotency>(?:[^:]*)):(?<healMagicPotency>(?:[^:]*)):(?<determination>(?:[^:]*)):(?<skillSpeed>(?:[^:]*)):(?<spellSpeed>(?:[^:]*)):[^:]*:(?<tenacity>(?:[^:]*)):(?<localContentId>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) PlayerStats (?<type>0C):(?<job>(?:[^:]*)):(?<strength>(?:[^:]*)):(?<dexterity>(?:[^:]*)):(?<vitality>(?:[^:]*)):(?<intelligence>(?:[^:]*)):(?<mind>(?:[^:]*)):(?<piety>(?:[^:]*)):(?<attackPower>(?:[^:]*)):(?<directHit>(?:[^:]*)):(?<criticalHit>(?:[^:]*)):(?<attackMagicPotency>(?:[^:]*)):(?<healMagicPotency>(?:[^:]*)):(?<determination>(?:[^:]*)):(?<skillSpeed>(?:[^:]*)):(?<spellSpeed>(?:[^:]*)):[^:]*:(?<tenacity>(?:[^:]*)):(?<localContentId>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples
@@ -1089,7 +1089,7 @@ Network Log Line Regex:
 ^(?<type>(?:26))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?<duration>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<sourceMaxHp>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) StatusAdd (?<type>1a):(?<effectId>(?:[^:]*)):(?<effect>(?:(?:[^:]|: )*?)):(?<duration>(?:[^:]*)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<count>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<sourceMaxHp>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) StatusAdd (?<type>1A):(?<effectId>(?:[^:]*)):(?<effect>(?:(?:[^:]|: )*?)):(?<duration>(?:[^:]*)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<count>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<sourceMaxHp>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples
@@ -1145,7 +1145,7 @@ Network Log Line Regex:
 ^(?<type>(?:27))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?:[^|]*\|){2}(?<id>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) TargetIcon (?<type>1b):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*))(?::[^:]*){2}:(?<id>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) TargetIcon (?<type>1B):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*))(?::[^:]*){2}:(?<id>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples
@@ -1355,7 +1355,7 @@ Network Log Line Regex:
 ^(?<type>(?:30))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?:[^|]*\|)(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) StatusRemove (?<type>1e):(?<effectId>(?:[^:]*)):(?<effect>(?:(?:[^:]|: )*?)):[^:]*:(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<count>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) StatusRemove (?<type>1E):(?<effectId>(?:[^:]*)):(?<effect>(?:(?:[^:]|: )*?)):[^:]*:(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<count>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples
@@ -1583,7 +1583,7 @@ ACT Log Line Examples:
 
 <a name="line35"></a>
 
-### Line 35 (0x22): NetworkTether
+### Line 35 (0x23): NetworkTether
 
 This log line is for tethers between enemies or enemies and players.
 This does not appear to be used for player to player skill tethers like dragonsight or cover.
@@ -1605,10 +1605,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:33))\|(?<timestamp>(?:[^|]*))\|(?<instance>(?:[^|]*))\|(?<command>(?:[^|]*))\|(?<data0>(?:[^|]*))\|(?<data1>(?:[^|]*))\|(?<data2>(?:[^|]*))\|(?<data3>(?:[^|]*))\|
+^(?<type>(?:35))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?:[^|]*\|){2}(?<id>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) Director (?<type>21):(?<instance>(?:[^:]*)):(?<command>(?:[^:]*)):(?<data0>(?:[^:]*)):(?<data1>(?:[^:]*)):(?<data2>(?:[^:]*)):(?<data3>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) Tether (?<type>23):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*))(?::[^:]*){2}:(?<id>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples
