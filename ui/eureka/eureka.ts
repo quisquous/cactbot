@@ -533,9 +533,10 @@ class EurekaTracker {
   OnFateKill(fate: NMInfo) {
     this.DebugPrint(`OnFateKill: ${this.TransByDispLang(fate.label)}`);
 
-    if (fate.fateID === 1424 || fate.fateID === 1422)
+    if (fate.fateID === 1424 || fate.fateID === 1422) {
       if (fate.progressElement && fate.progressElement.innerText === '100%')
         this.lastBAFateTimeMs = +Date.now();
+    }
 
     if (fate.startTimerOnKill)
       fate.respawnTimeMsLocal = this.RespawnTime(fate);
@@ -681,7 +682,7 @@ class EurekaTracker {
       // blue portals despawn & red portals spawn
       // <4 minutes>
       // red portals despawn
-      if (this.lastBAFateTimeMs) {
+      if (this.options.showBAPortalTimer && this.lastBAFateTimeMs) {
         const lastBAFateTimePlus10Ms = this.lastBAFateTimeMs + (10 * 1000 * 60);
         const lastBAFateTimePlus6Ms = this.lastBAFateTimeMs + (6 * 1000 * 60);
         const lastBAFateTimePlus3Ms = this.lastBAFateTimeMs + (3 * 1000 * 60);
