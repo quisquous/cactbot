@@ -315,6 +315,9 @@ namespace Cactbot {
 
       [FieldOffset(0x01)]
       public byte blackMana;
+
+      [FieldOffset(0x02)]
+      public byte manaStacks;
     };
 
     [Serializable]
@@ -363,32 +366,66 @@ namespace Cactbot {
     [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct BardJobMemory {
-      private enum Song : byte {
+      [Flag]
+      private enum SongFlags : byte {
         None = 0,
-        Ballad = 5, // Mage's Ballad.
-        Paeon = 10, // Army's Paeon.
-        Minuet = 15, // The Wanderer's Minuet.
+        Ballad = 1, // Mage's Ballad.
+        Paeon = 1 << 1, // Army's Paeon.
+        Minuet = 1 | 1 << 1, // The Wanderer's Minuet.
+        BalladLastPlayed =  1 << 2,
+        PaeonLastPlayed = 1 << 3,
+        MinuetLastPlayed = 1 << 2 | 1 << 3,
+        BalladCoda = 1 << 4,
+        PaeonCoda = 1 << 5,
+        MinuetCoda = 1 << 6,
       }
 
       [FieldOffset(0x00)]
       public ushort songMilliseconds;
 
-      [FieldOffset(0x02)]
+      [FieldOffset(0x04)]
       public byte songProcs;
 
-      [FieldOffset(0x03)]
+      [FieldOffset(0x05)]
       public byte soulGauge;
 
       [NonSerialized]
-      [FieldOffset(0x04)]
-      private Song song_type;
+      [FieldOffset(0x06)]
+      private SongFlags songFlags;
 
       public String songName {
         get {
-          return !Enum.IsDefined(typeof(Song), song_type) ? "None" : song_type.ToString();
+          if (songFlags.HasFlag(SongFlags.Ballad))
+            return "Ballad";
+          if (songFlags.HasFlag(SongFlags.Paeon))
+            return "Paeon";
+          if (songFlags.HasFlag(SongFlags.Minuet))
+            return "Minuet";
+          return "None";
         }
       }
 
+      public String lastPlayed {
+        get {
+          if (songFlags.HasFlag(SongFlags.BalladLastPlayed))
+            return "Ballad";
+          if (songFlags.HasFlag(SongFlags.PaeonLastPlayed))
+            return "Paeon";
+          if (songFlags.HasFlag(SongFlags.MinuetLastPlayed))
+            return "Minuet";
+          return "None";
+        }
+      }
+
+      public String coda {
+        get {
+          return new[] {
+            this.songFlags.HasFlag(SongFlags.BalladCoda) ? "Ballad" : "None",
+            this.songFlags.HasFlag(SongFlags.PaeonCoda) ? "Paeon" : "None",
+            this.songFlags.HasFlag(SongFlags.MinuetCoda) ? "Minuet" : "None",
+          }
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]

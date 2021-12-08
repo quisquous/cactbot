@@ -47,7 +47,8 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
   if (jobInfo) {
     const detail = e.detail;
     if (detail.job === 'RDM' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.whiteMana} | ${detail.jobDetail.blackMana}`;
+      jobInfo.innerText =
+        `${detail.jobDetail.whiteMana} | ${detail.jobDetail.blackMana} | ${detail.jobDetail.manaStacks}`;
     } else if (detail.job === 'WAR' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.beast.toString();
     } else if (detail.job === 'DRK' && detail.jobDetail) {
@@ -59,7 +60,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText = detail.jobDetail.oath.toString();
     } else if (detail.job === 'BRD' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.songName} | ${detail.jobDetail.songProcs} | ${detail.jobDetail.soulGauge} | ${detail.jobDetail.songMilliseconds}`;
+        `${detail.jobDetail.songName} | ${detail.jobDetail.lastPlayed} | ${detail.jobDetail.songProcs} | ${detail.jobDetail.soulGauge} | ${detail.jobDetail.songMilliseconds} | [${
+          detail.jobDetail.coda.join(', ')
+        }]`;
     } else if (detail.job === 'DNC' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.feathers} | ${detail.jobDetail.esprit} | [${
         detail.jobDetail.steps.join(', ')
