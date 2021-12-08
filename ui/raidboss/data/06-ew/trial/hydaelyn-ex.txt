@@ -57,7 +57,7 @@ hideall "--sync--"
 329.6 "Crystalline Water/Stone III" sync / 1[56]:[^:]*:Hydaelyn:65A[23]:/
 
 # Adds
-336.2 "--transition--" sync / 1[56]:[^:]*:Hydaelyn:65BC:/ window 300, 10
+336.2 "--transition--" sync / 1[56]:[^:]*:Hydaelyn:65BC:/ window 300,10
 344.3 "Pure Crystal" sync / 1[56]:[^:]*:Hydaelyn:65BD:/
 
 1433.6 "Exodus" sync / 1[56]:[^:]*:Hydaelyn:65BB:/ window 1100, 10
