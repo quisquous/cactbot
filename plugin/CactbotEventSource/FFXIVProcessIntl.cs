@@ -423,7 +423,7 @@ namespace Cactbot {
             this.songFlags.HasFlag(SongFlags.BalladCoda) ? "Ballad" : "None",
             this.songFlags.HasFlag(SongFlags.PaeonCoda) ? "Paeon" : "None",
             this.songFlags.HasFlag(SongFlags.MinuetCoda) ? "Minuet" : "None",
-          }
+          };
         }
       }
     };
