@@ -288,7 +288,9 @@
 }
 
 .aspect-ratio-zadnor #label-container {
-  top: 90%;
+  top: 20%;
+  left: unset !important;
+  right: 0;
 }
 
 .aspect-ratio-hydatos #portal-timer-container {
