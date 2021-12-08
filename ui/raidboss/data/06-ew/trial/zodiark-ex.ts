@@ -11,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'zodiark-ex.txt',
   triggers: [
     {
-      id: 'Zodiark Ania',
+      id: 'ZodiarkEx Ania',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
       netRegexDe: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
