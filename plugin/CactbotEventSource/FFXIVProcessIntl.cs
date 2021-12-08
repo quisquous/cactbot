@@ -366,7 +366,7 @@ namespace Cactbot {
     [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct BardJobMemory {
-      [Flag]
+      [Flags]
       private enum SongFlags : byte {
         None = 0,
         Ballad = 1, // Mage's Ballad.
@@ -417,7 +417,7 @@ namespace Cactbot {
         }
       }
 
-      public String coda {
+      public String[] coda {
         get {
           return new[] {
             this.songFlags.HasFlag(SongFlags.BalladCoda) ? "Ballad" : "None",
