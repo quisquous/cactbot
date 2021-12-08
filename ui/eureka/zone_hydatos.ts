@@ -275,7 +275,9 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       x: 26.8,
       y: 29.0,
       fateID: 1424,
-      respawnMinutes: 20,
+      respawnMinutes: 30,
+      respawnMinutesFailed: 20,
+      startTimerOnKill: true,
     },
     tristitia: {
       label: {
