@@ -64,7 +64,7 @@ hideall "--sync--"
 563.5 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:6644:/
 576.7 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
 
-# Add spawns
+# Phase 2, add spawns
 1000.0 "Planetes" sync / 1[56]:[^:]*:The Endsinger:6B58:/ window 1000,0
 1000.0 "--untargetable--"
 1014.3 "--targetable--"
@@ -74,34 +74,27 @@ hideall "--sync--"
 1045.2 "Crash" sync / 1[56]:[^:]*:Kakodaimon:6657:/
 1050.2 "Crash" sync / 1[56]:[^:]*:Kakodaimon:6657:/
 1056.6 "Meteor Outburst" sync / 1[56]:[^:]*:Kakodaimon:665C:/
-1067.8 "Katastrophe" sync / 1[56]:[^:]*:Kakodaimon:665B:/ window 0,30
-1078.9 "Katastrophe" sync / 1[56]:[^:]*:Kakodaimon:665B:/
-1090.0 "Katastrophe" sync / 1[56]:[^:]*:Kakodaimon:665B:/
-1200.4 "Ultimate Fate" sync / 1[56]:[^:]*:The Endsinger:6B59:/ window 200,200
-1207.1 "--targetable--"
+# Loop Katastrophe raidwide until enrage
+1067.8 "Katastrophe" sync / 1[56]:[^:]*:Kakodaimon:665B:/
+1078.9 "Katastrophe" sync / 1[56]:[^:]*:Kakodaimon:665B:/ jump 1067.8
+1090.0 "Katastrophe"
+1101.1 "Katastrophe"
+1112.2 "Katastrophe"
+1123.3 "Katastrophe"
+1200.0 "--sync--" sync / 00:0039::10 seconds until oblivion is sealed/ window 200,0
+1212.2 "Ultimate Fate" sync / 1[56]:[^:]*:The Endsinger:6B59:/ window 10,10
+1218.9 "--targetable--"
 
-# Phase 3
+# Phase 3, loops until soft enrage
 2000.0 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6B5B:/ window 1000,0
 2036.0 "--untargetable--"
 2074.0 "--targetable--"
 2086.1 "Telos" sync / 1[56]:[^:]*:The Endsinger:665E:/
-2099.3 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:665F:/ window 0,30
-2099.9 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:665F:/
-2103.6 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2105.1 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2106.5 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2107.9 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2114.6 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6661:/
-2120.1 "Dead Star" sync / 1[56]:[^:]*:The Endsinger:5E4E:/
-2122.1 "Dead Star" sync / 1[56]:[^:]*:The Endsinger:5E4E:/
-2124.1 "Dead Star" sync / 1[56]:[^:]*:The Endsinger:5E4E:/
-2124.5 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:665F:/
-2125.1 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:665F:/
-2128.8 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2130.3 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2131.7 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2133.1 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6660:/
-2139.8 "Telomania (small)" sync / 1[56]:[^:]*:The Endsinger:6661:/
-2145.3 "Dead Star" sync / 1[56]:[^:]*:The Endsinger:5E4E:/
-2147.3 "Dead Star" sync / 1[56]:[^:]*:The Endsinger:5E4E:/
-2149.3 "Dead Star" sync / 1[56]:[^:]*:The Endsinger:5E4E:/
+2099.3 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/ window 0,30
+2103.6 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:6660:/
+2114.6 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:6661:/
+2120.1 "Dead Star x3" duration 6 #sync / 1[56]:[^:]*:The Endsinger:5E4E:/
+2124.5 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/ window 0,30 jump 2099.3
+2128.8 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:6660:/
+2139.8 "Telomania (big)" #sync / 1[56]:[^:]*:The Endsinger:6661:/
+2145.3 "Dead Star x3" duration 6 #sync / 1[56]:[^:]*:The Endsinger:5E4E:/

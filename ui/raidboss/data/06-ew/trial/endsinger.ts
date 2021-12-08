@@ -112,8 +112,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Endsinger Death\'s Embrace Feathers',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6649', source: 'The Endsinger', capture: false }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6649', source: 'The Endsinger', capture: false }),
       delaySeconds: 5.7,
       response: Responses.moveAway(),
     },
@@ -134,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Endsinger Hubris',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6652', source: 'The Endsinger', capture: true }),
-      response: Responses.tankBuster(),
+      response: Responses.tankCleave(),
     },
     {
       id: 'Endsinger Epigonoi',
@@ -224,6 +224,26 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '664E', source: 'The Endsinger', capture: true }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
+    },
+    {
+      id: 'Endsinger Ultimate Fate',
+      type: 'GameLog',
+      netRegex: NetRegexes.gameLog({ code: '0039', line: '4 seconds until oblivion is sealed\\.\\.\\.' }),
+      suppressSeconds: 65,
+      alarmText: (data, _matches, output) => {
+        if (data.role === 'tank')
+          return output.text!();
+      },
+      outputStrings: {
+        text: {
+          en: 'Tank LB NOW',
+          de: 'JETZT Tank LB',
+          fr: 'Transcendance Tank maintenant !',
+          ja: '今タンクLB',
+          cn: '坦克LB',
+          ko: '탱리밋',
+        },
+      },
     },
   ],
 };
