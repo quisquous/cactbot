@@ -17,8 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.stackMarkerOn(),
     },
   ],
-  timelineReplace: [
-  ],
+  timelineReplace: [ ],
 };
 
 export default triggerSet;
