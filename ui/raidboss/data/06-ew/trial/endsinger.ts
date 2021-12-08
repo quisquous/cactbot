@@ -1,7 +1,7 @@
-import NetRegexes from '../../../../../resources/netregexes';
-import { Responses } from '../../../../../resources/responses';
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -13,7 +13,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // Final phase triggers
 
 export interface Data extends RaidbossData {
-  storedStar?: { x:number, y:number };
+  storedStar?: { x: number; y: number };
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -31,18 +31,15 @@ const triggerSet: TriggerSet<Data> = {
         data.storedStar = { x, y };
 
         if (x < 100) {
-          if (y < 100) {
+          if (y < 100)
             return output.se?.();
-          } else {
-            return output.ne?.();
-          }
-        } else {
-          if (y < 100) {
-            return output.sw?.();
-          } else {
-            return output.nw?.();
-          }
+
+          return output.ne?.();
         }
+        if (y < 100)
+          return output.sw?.();
+
+        return output.nw?.();
       },
       outputStrings: {
         ne: Outputs.northeast,
@@ -72,18 +69,15 @@ const triggerSet: TriggerSet<Data> = {
           return undefined;
 
         if (x < 100) {
-          if (y < 100) {
+          if (y < 100)
             return output.se?.();
-          } else {
-            return output.ne?.();
-          }
-        } else {
-          if (y < 100) {
-            return output.sw?.();
-          } else {
-            return output.nw?.();
-          }
+
+          return output.ne?.();
         }
+        if (y < 100)
+          return output.sw?.();
+
+        return output.nw?.();
       },
       outputStrings: {
         ne: Outputs.northeast,
@@ -139,7 +133,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Hubris',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6652', source: 'The Endsinger', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '6652', source: 'The Endsinger', capture: true }),
       response: Responses.tankBuster(),
     },
     {
@@ -193,25 +187,22 @@ const triggerSet: TriggerSet<Data> = {
               dir1: output.northeast!(),
               dir2: output.southwest!(),
             });
-          } else {
-            return output.direction!({
-              dir1: output.northwest!(),
-              dir2: output.southeast!(),
-            });
           }
-        } else {
-          if (y < 100) {
-            return output.direction!({
-              dir1: output.northwest!(),
-              dir2: output.southeast!(),
-            });
-          } else {
-            return output.direction!({
-              dir1: output.northeast!(),
-              dir2: output.southwest!(),
-            });
-          }
+          return output.direction!({
+            dir1: output.northwest!(),
+            dir2: output.southeast!(),
+          });
         }
+        if (y < 100) {
+          return output.direction!({
+            dir1: output.northwest!(),
+            dir2: output.southeast!(),
+          });
+        }
+        return output.direction!({
+          dir1: output.northeast!(),
+          dir2: output.southwest!(),
+        });
       },
       outputStrings: {
         north: Outputs.north,
@@ -233,8 +224,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '664E', source: 'The Endsinger', capture: true }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
-    }
-  ]
+    },
+  ],
 };
 
 export default triggerSet;
