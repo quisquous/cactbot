@@ -96,7 +96,7 @@ hideall "--sync--"
 1590.7 "--middle?--" #sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
 1594.6 "Crystallize?" #sync / 1[56]:[^:]*:Hydaelyn:659C:/
 1597.2 "Parhelion?" sync / 1[56]:[^:]*:Hydaelyn:(65B0|65AC):/
-1597.8 "--top-middle?-- #sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1597.8 "--top-middle?--" #sync / 1[56]:[^:]*:Hydaelyn:65A9:/
 1605.4 "Parhelic Circle?" #sync / 1[56]:[^:]*:Hydaelyn:65AC:/
 
 # Parhelion first
