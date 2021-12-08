@@ -34,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go To Silent Mouth',
           de: 'Geh zum geschlossenen Mund',
+          fr: 'Allez vers une bouche silencieuse',
         },
       },
     },
@@ -114,6 +115,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get In Bubble',
           de: 'Geh in die Blase',
+          fr: 'Allez dans une bulle',
         },
       },
     },
@@ -157,6 +159,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go To Opposite Color',
           de: 'Geh zur andere Farbe',
+          fr: 'Allez à la couleur opposée',
         },
       },
     },
@@ -179,8 +182,8 @@ const triggerSet: TriggerSet<Data> = {
         'Trnakiya': 'Bucht im Meer der Bäume',
       },
       'replaceText': {
-        '(Knockback)': '(Rückstoß)',
-        '(Spread)': '(Verteilen)',
+        '\\(Knockback\\)': '(Rückstoß)',
+        '\\(Spread\\)': '(Verteilen)',
         '--meteor': '--Meteor',
         'Aether Siphon': 'Elementarer Sog',
         'Aether Spray': 'Elementarer Auswurf',
@@ -207,7 +210,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Devatagara': 'Temple de Devata',
         'Insight': 'Résidence du doyen',
@@ -217,6 +219,9 @@ const triggerSet: TriggerSet<Data> = {
         'Trnakiya': 'Clairière de Vanaspati',
       },
       'replaceText': {
+        '\\(Knockback\\)': '(Poussée)',
+        '\\(Spread\\)': '(Dispersion)',
+        '--meteor': '--météore',
         'Aether Siphon': 'Absorption élémentaire',
         'Aether Spray': 'Déjection élémentaire',
         'Aetherial Disruption': 'Désolation terrestre',
@@ -236,8 +241,7 @@ const triggerSet: TriggerSet<Data> = {
         'Unholy Water': 'Torture aqueuse',
         'Vitriol': 'Silence d\'or',
         'Wallow': 'Sanglot',
-        'What Is Left': 'Main gauche purulente',
-        'What Is Right': 'Main droite purulente',
+        'What Is Left/What Is Right': 'Main gauche/droite purulente',
       },
     },
     {
