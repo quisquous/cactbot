@@ -29,7 +29,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       y: 21.5,
       fateID: 1425,
       bunny: true,
-      respawnMinutes: 8,
+      respawnMinutes: 10.5,
     },
     khalamari: {
       label: {
