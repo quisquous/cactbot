@@ -13,8 +13,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelenEx Shining Saber',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '68C8', source: 'Hydaelyn' }),
-      response: Responses.stackMarkerOn(),
+      netRegex: NetRegexes.startsUsing({ id: '68C8', source: 'Hydaelyn', capture: false  }),
+      response: Responses.getTogether(),
     },
   ],
 };
