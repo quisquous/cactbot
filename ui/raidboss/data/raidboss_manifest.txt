@@ -366,3 +366,5 @@
 06-ew/trial/zodiark.txt
 06-ew/trial/zodiark-ex.ts
 06-ew/trial/zodiark-ex.txt
+06-ew/trial/endsinger.ts
+06-ew/trial/endsinger.txt
