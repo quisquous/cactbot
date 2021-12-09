@@ -15,7 +15,7 @@ hideall "Infernal Torrent"
 10.8 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C60:/
 21.0 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
 33.0 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
-37.1 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 5.5
+37.1 "Styx x6" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 5.5
 50.4 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
 60.5 "Exoterikos 1" sync / 1[56]:[^:]*:Zodiark:67C1:/
 69.6 "Esoterikos 2" sync / 1[56]:[^:]*:Zodiark:67C0:/
