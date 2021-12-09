@@ -677,17 +677,10 @@ export class Bars {
     this.o.gpBar.maxvalue = data.maxGp.toString();
   }
 
-  _shouldPlayGpAlarm(data: { gp: number; gpAlarmReady: boolean; gpPotion: boolean }): boolean {
-    // GP Alarm
-    if (data.gp < this.options.GpAlarmPoint) {
-      return true;
-    } else if (data.gpAlarmReady && !data.gpPotion && data.gp >= this.options.GpAlarmPoint) {
-      const audio = new Audio('../../resources/sounds/freesound/power_up.webm');
-      audio.volume = this.options.GpAlarmSoundVolume;
-      void audio.play();
-      return false;
-    }
-    return true;
+  _playGpAlarm(): void {
+    const audio = new Audio('../../resources/sounds/freesound/power_up.webm');
+    audio.volume = this.options.GpAlarmSoundVolume;
+    void audio.play();
   }
 
   _updateOpacity(transparent: boolean): void {

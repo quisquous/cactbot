@@ -187,16 +187,22 @@ export class ComponentManager {
       this.bars.updateMpBarColor({ mp: data.mp, far: this.far });
     });
     this.player.on('gp', ({ gp }) => {
-      this.gpAlarmReady = this.bars._shouldPlayGpAlarm({
-        gp: gp,
-        gpAlarmReady: this.gpAlarmReady,
-        gpPotion: this.gpPotion,
-      });
+      if (!Util.isGatheringJob(this.player.job))
+        return;
+      if (gp < this.options.GpAlarmPoint) {
+        this.gpAlarmReady = true;
+      } else if (this.gpAlarmReady && !this.gpPotion && gp >= this.options.GpAlarmPoint) {
+        this.gpAlarmReady = false;
+        this.bars._playGpAlarm();
+      } else {
+        // We're above the gp point and it has either played or been suppressed by a potion.
+        // Wait until we dip below the alarm point before beeping again.
+        this.gpAlarmReady = false;
+      }
     });
 
     this.player.on('job', (job) => {
-      if (!Util.isGatheringJob(this.player.job))
-        this.gpAlarmReady = false;
+      this.gpAlarmReady = false;
 
       this.bars._setupJobContainers(job, {
         buffList: this.shouldShow.buffList ?? true,
