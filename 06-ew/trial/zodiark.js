@@ -25,6 +25,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go NE (knockback)',
                     de: 'Geh nach NO (Rückstoß)',
+                    fr: 'Allez au NE (poussée)',
                 },
             },
         },
@@ -40,6 +41,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go NW (knockback)',
                     de: 'Geh nach NW (Rückstoß)',
+                    fr: 'Allez au NO (poussée)',
                 },
             },
         },
@@ -96,9 +98,10 @@ Options.Triggers.push({
                 'Astral Eclipse': 'Éclipse astrale',
                 'Astral Flow': 'Flux astral',
                 'Complete Control': 'Contrôle total',
-                'Esoteric Dyad': 'Dyade ésotérique',
+                'Esoteric Dyad(?!/)': 'Dyade ésotérique',
+                'Esoteric Dyad/Esoteric Sect': 'Dyade/Cabale ésotérique',
                 '(?<!Triple )Esoteric Ray': 'Rayon ésotérique',
-                'Esoteric Sect': 'Cabale ésotérique',
+                '(?<!/)Esoteric Sect': 'Cabale ésotérique',
                 '(?<!Trimorphos )Exoterikos': 'Exoterikos',
                 'Explosion': 'Explosion',
                 'Kokytos': 'Kokytos',
