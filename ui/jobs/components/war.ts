@@ -55,11 +55,6 @@ export class WARComponent extends BaseComponent {
     if (skill)
       this.comboTimer.duration = 15;
   }
-  // for some undocumented reason, neither storm's eye or mythril tempest combo function exactly as the tooltip says.
-  // when initially applied, mythril tempest sets the duration to 30.5 seconds rounded down. Storm's Eye sets the duration to 30+1.8 or something.
-  // the initial duration of eye isn't exactly 32 seconds but it's really close, the buff only reads 30 seconds tho the duration is longer
-  // increasing the buff timer via an aditional eye/tempest adds 30 seconds as you'd expect. final duration is always +1.8ish or +0.5 seconds depending on which skill was used
-  // overcapping the buff will always set the duration to 60.5 seconds, no matter which skill is used
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.SurgingTempest)
       this.eyeBox.duration = parseFloat(matches.duration ?? '0');
