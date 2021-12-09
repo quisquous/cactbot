@@ -56,8 +56,20 @@ export class WARComponent extends BaseComponent {
       this.comboTimer.duration = 15;
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
-    if (id === EffectId.SurgingTempest)
-      this.eyeBox.duration = parseFloat(matches.duration ?? '0');
+    if (id !== EffectId.SurgingTempest)
+      return;
+    const duration = parseFloat(matches.duration ?? '0');
+    // TODO: the buff duration for Storm's Eye appears to be somewhat of a lie.
+    // The initial application seems to have some variability 1.1-1.3ish?
+    // And Storm's Eye and Mythril Tempest when extending also do this.
+    // This needs more investigation and some fixing unfortunately,
+    // as this will drift a lot over the course of a fight.
+    // We may also need to track which skill caused this effect.
+    // See: https://github.com/quisquous/cactbot/issues/3778
+    //
+    // Here's a hack to at least get the initial application to be better.
+    const bonus = this.eyeBox.duration === 0 ? 1.1 : 0;
+    this.eyeBox.duration = duration + bonus;
   }
   override onYouLoseEffect(id: string): void {
     if (id === EffectId.SurgingTempest)
