@@ -222,7 +222,7 @@ const contentList: (ZoneIdType)[] = [
 
   // High-end Trials (Endwalker)
   ZoneId.TheMinstrelsBalladZodiarksFall,
-  ZoneId.TheMinstrelsBalladUltimasBane,
+  ZoneId.TheMinstrelsBalladHydaelynsCall,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
