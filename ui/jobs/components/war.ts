@@ -55,13 +55,12 @@ export class WARComponent extends BaseComponent {
     if (skill)
       this.comboTimer.duration = 15;
   }
-
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
-    if (id === EffectId.StormsEye)
+    if (id === EffectId.SurgingTempest)
       this.eyeBox.duration = parseFloat(matches.duration ?? '0');
   }
   override onYouLoseEffect(id: string): void {
-    if (id === EffectId.StormsEye)
+    if (id === EffectId.SurgingTempest)
       this.eyeBox.duration = 0;
   }
 
