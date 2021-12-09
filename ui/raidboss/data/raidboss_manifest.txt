@@ -360,5 +360,9 @@
 06-ew/dungeon/the_tower_of_babil.txt
 06-ew/dungeon/vanaspati.ts
 06-ew/dungeon/vanaspati.txt
+06-ew/trial/hydaelyn-ex.ts
+06-ew/trial/hydaelyn-ex.txt
 06-ew/trial/zodiark.ts
 06-ew/trial/zodiark.txt
+06-ew/trial/zodiark-ex.ts
+06-ew/trial/zodiark-ex.txt
