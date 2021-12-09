@@ -30,11 +30,11 @@ Options.Triggers.push({
         {
             id: 'Vanaspati Terminus Snatcher Last Gasp',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '6235', source: 'Terminus Snatcher', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6235', source: 'Terminus-Häscher', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '6235', source: 'Pillard De L\'Apocalypse', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6235', source: 'ターミナス・スナッチャー', capture: false }),
-            response: Responses.aoe(),
+            netRegex: NetRegexes.startsUsing({ id: '6235', source: 'Terminus Snatcher' }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6235', source: 'Terminus-Häscher' }),
+            netRegexFr: NetRegexes.startsUsing({ id: '6235', source: 'Pillard De L\'Apocalypse' }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6235', source: 'ターミナス・スナッチャー' }),
+            response: Responses.tankBuster(),
         },
         {
             id: 'Vanaspati Terminus Snatcher What Is Right',
