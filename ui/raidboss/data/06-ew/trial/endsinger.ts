@@ -1,12 +1,12 @@
 import Conditions from '../../../../../resources/conditions';
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { Output, OutputStrings, TriggerSet } from '../../../../../types/trigger';
 import { PluginCombatantState } from '../../../../../types/event';
+import { Output, OutputStrings, TriggerSet } from '../../../../../types/trigger';
 
 // @TODO:
 // Interstellar - Test the timing more. Seems OK but the delaySeconds timing might be too tight depending on latency?
@@ -17,7 +17,7 @@ export interface Data extends RaidbossData {
   storedStars: { [name: string]: PluginCombatantState };
   phase: 1 | 2;
   storedBoss?: PluginCombatantState;
-};
+}
 
 const orbOutputStrings: OutputStrings = {
   ne: Outputs.northeast,
@@ -256,7 +256,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Nemesis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '664E', source: 'The Endsinger', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '664E', source: 'The Endsinger', capture: true }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
