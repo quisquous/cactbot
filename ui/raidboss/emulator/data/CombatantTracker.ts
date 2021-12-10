@@ -178,6 +178,9 @@ export default class CombatantTracker {
     if (line.maxMp !== undefined)
       state.maxMp = line.maxMp;
 
+    if (line.decEvent === 4)
+      state.targetable = false;
+
     return state;
   }
 
