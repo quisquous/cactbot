@@ -4,7 +4,8 @@
 # -oc 'The Endsinger' 'Kakodaimon'
 # -ii 6281 6C61 6660 6661 6C6A 664B 6653 6643 67FA 6642 6648 67FB 6655
 
-# Not sure if/where P1 loops
+# Not sure if/where P1 loops. Might be a two-part loop,
+# death => hubris is one pattern, and death => elenchos is the other?
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -13,7 +14,8 @@ hideall "--sync--"
 
 # P1
 0.0 "--sync--" sync /Engage!/ window 0,1
-13.7 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/ window 15,15
+8.7 "--sync--" sync / 14:[^:]*:The Endsinger:662C:/ window 15,15
+13.7 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
 36.9 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
 56.1 "Galaxias" sync / 1[56]:[^:]*:The Endsinger:6C69:/
 69.3 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:6644:/
@@ -90,11 +92,11 @@ hideall "--sync--"
 2036.0 "--untargetable--"
 2074.0 "--targetable--"
 2086.1 "Telos" sync / 1[56]:[^:]*:The Endsinger:665E:/
-2099.3 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/ window 0,30
+2099.3 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/
 2103.6 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:6660:/
 2114.6 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:6661:/
 2120.1 "Dead Star x3" duration 6 #sync / 1[56]:[^:]*:The Endsinger:5E4E:/
-2124.5 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/ window 0,30 jump 2099.3
+2124.5 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/ window 10,30 jump 2099.3
 2128.8 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:6660:/
 2139.8 "Telomania (big)" #sync / 1[56]:[^:]*:The Endsinger:6661:/
 2145.3 "Dead Star x3" duration 6 #sync / 1[56]:[^:]*:The Endsinger:5E4E:/
