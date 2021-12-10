@@ -74,7 +74,7 @@ export class MCHComponent extends BaseComponent {
     if (combo.isFinalSkill)
       return;
     if (skill)
-      this.comboTimer.duration = 15;
+      this.comboTimer.duration = this.comboDuration;
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['MCH']): void {

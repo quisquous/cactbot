@@ -17,5 +17,6 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const player = new Player(emitter);
   const partyTracker = new PartyTracker();
   const bars = new Bars(options, { emitter, player });
-  new ComponentManager({ bars, emitter, options, partyTracker, player });
+  const is5x = ['cn', 'ko'].includes(options.ParserLanguage);
+  new ComponentManager({ bars, emitter, options, partyTracker, player, is5x });
 });
