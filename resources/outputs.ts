@@ -102,6 +102,25 @@ export default {
     cn: '顺劈点名',
     ko: '나에게 광역 탱버',
   },
+  sharedTankbuster: {
+    en: 'Shared Tank Buster',
+  },
+  sharedTankbusterOnYou: {
+    en: 'Shared Tank Buster on YOU',
+    de: 'geteilter Tankbuster auf DIR',
+    fr: 'Tank buster à partager sur VOUS',
+    ja: '自分にタンクシェア',
+    cn: '分摊死刑点名',
+    ko: '쉐어 탱버 대상자',
+  },
+  sharedTankbusterOnPlayer: {
+    en: 'Shared Tank Buster on ${player}',
+    de: 'geteilter Tankbuster on ${player}',
+    fr: 'Tank buster à partager sur ${player}',
+    ja: '${player} にタンクシェア',
+    cn: '分摊死刑点 ${player}',
+    ko: '"${player}" 쉐어 탱버',
+  },
   tankSwap: {
     en: 'Tank Swap!',
     de: 'Tankwechsel!',

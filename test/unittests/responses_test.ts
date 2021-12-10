@@ -77,6 +77,7 @@ describe('response tests', () => {
   it('responses with a double explicit severities are valid', () => {
     // TODO: we could figure out which has multiple parameters programmatically.
     const doubleFuncs: (keyof typeof Responses)[] = [
+      'sharedTankBuster',
       'tankBuster',
       'tankBusterSwap',
       'knockbackOn',

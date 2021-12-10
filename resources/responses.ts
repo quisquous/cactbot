@@ -271,6 +271,52 @@ export const Responses = {
         },
       };
     },
+  sharedTankBuster: (targetSev?: Severity, otherSev?: Severity) => {
+    const outputStrings = {
+      sharedTankbusterOnYou: Outputs.sharedTankbusterOnYou,
+      sharedTankbusterOnTarget: Outputs.sharedTankbusterOnPlayer,
+      sharedTankbuster: Outputs.sharedTankbuster,
+      avoidCleave: Outputs.avoidTankCleave,
+    };
+    const targetFunc = (data: Data, matches: TargetedMatches, output: Output) => {
+      const target = getTarget(matches);
+      if (!target) {
+        if (data.role !== 'tank' && data.role !== 'healer')
+          return;
+        return output.sharedTankbuster?.();
+      }
+
+      if (target === data.me)
+        return output.sharedTankbusterOnYou?.();
+      if (data.role === 'tank' || data.role === 'healer')
+        return output.sharedTankbusterOnTarget?.({ player: target });
+    };
+
+    const otherFunc = (data: Data, matches: TargetedMatches, output: Output) => {
+      const target = getTarget(matches);
+      if (!target) {
+        if (data.role === 'tank' || data.role === 'healer')
+          return;
+        return output.avoidCleave?.();
+      }
+      if (target === data.me || data.role === 'tank' || data.role === 'healer')
+        return;
+
+      return output.avoidCleave?.();
+    };
+
+    const combined = combineFuncs(
+      defaultAlertText(targetSev),
+      targetFunc,
+      defaultInfoText(otherSev),
+      otherFunc,
+    );
+    return (_data: unknown, _matches: unknown, output: Output): TargetedResponseOutput => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = outputStrings;
+      return combined;
+    };
+  },
   miniBuster: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.miniBuster),
   aoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.aoe),
   bigAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bigAoe),
