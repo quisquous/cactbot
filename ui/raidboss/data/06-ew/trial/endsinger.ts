@@ -10,7 +10,6 @@ import { PluginCombatantState } from '../../../../../types/event';
 
 // @TODO:
 // Interstellar - Test the timing more. Seems OK but the delaySeconds timing might be too tight depending on latency?
-// Fatalism orb repeat -
 // Add phase triggers
 // Final phase triggers
 
