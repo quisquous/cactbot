@@ -365,6 +365,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Zur Kante zurückstoßen lassen',
           fr: 'Faites-vous pousser au bord',
           cn: '击退到场边',
+          ko: '가장자리로 넉백되기',
         },
       },
     },

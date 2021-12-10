@@ -215,7 +215,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '알테 로이테',
         'Ball Of Fire': '화염 구체',
