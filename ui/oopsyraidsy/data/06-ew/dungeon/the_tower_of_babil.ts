@@ -30,7 +30,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Babil Zot Sky Armor Garlean Fire': '5E4A', // Circle AoE, after boss 2
     'Babil Armored Weapon Diffractive Laser': '5E53', // Circle AoE, after boss 2
     'Babil Magitek Crane Crane Game': '6C35', // Large environmental circle AoE, after boss 2
-    'Babil Hexadrone 2-Tonze Magitek Missile': '6DEDC', // Circle AoE, after boss 2
+    'Babil Hexadrone 2-Tonze Magitek Missile': '6DEC', // Circle AoE, after boss 2
     'Babil Roader Rush': '6DED', // Rectangle AoE, after boss 2
     'Babil Hypertuned Specimen Right-arm Blaster': '6DF0', // Rectangle AoE, after boss 2
 
