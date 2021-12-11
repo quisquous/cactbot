@@ -78,7 +78,7 @@ export class DRKComponent extends BaseComponent {
     if (combo.isFinalSkill)
       return;
     if (skill)
-      this.comboTimer.duration = 15;
+      this.comboTimer.duration = this.comboDuration;
   }
 
   override onUseAbility(id: string): void {
