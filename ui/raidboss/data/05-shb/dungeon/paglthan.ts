@@ -59,7 +59,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez sur un paratonnerre',
           ja: '避雷針に円範囲を転嫁',
           cn: '蹭一下无AoE的塔',
-          ko: '지팡이 AOE 넘기기',
+          ko: '장판 기둥에 넘기기',
         },
       },
     },

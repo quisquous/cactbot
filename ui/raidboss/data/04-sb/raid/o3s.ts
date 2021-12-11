@@ -34,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Drachen-Cleave',
           fr: 'Cleave du dragon',
           cn: '巨龙吐息',
+          ko: '용 브레스',
         },
       },
     },
@@ -335,6 +336,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Töte ${name}',
           fr: 'Tuez ${name}',
           cn: '击杀 ${name}',
+          ko: '${name} 잡기',
         },
       },
     },
@@ -350,6 +352,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Töte Riese + Ninjas',
           fr: 'Tuez le Géant + Ninjas',
           cn: '击杀 巨人 + 忍者',
+          ko: '철거인 + 닌자 잡기',
         },
       },
     },
@@ -380,13 +383,14 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Livres (Un par carré)',
           ja: '女王の舞い: 本', // FIXME
           cn: '中间两排分格站位',
-          ko: '여왕의 춤: 책', // FIXME
+          ko: '책 (칸마다 한명)',
         },
         magicHammer: {
           en: 'Books + Magic Hammer',
           de: 'Bücher + Zauberhammer',
           fr: 'Livres + Marteau magique',
           cn: '书 + 魔法锤',
+          ko: '책 + 마법망치',
         },
       },
     },
@@ -407,7 +411,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Positions',
           ja: '女王の舞い: 散開', // FIXME
           cn: '八方站位',
-          ko: '여왕의 춤: 산개', // FIXME
+          ko: '산개',
         },
       },
     },
@@ -428,7 +432,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Placez-vous sur un carré bleu',
           ja: '女王の舞い: 床', // FIXME
           cn: '站在蓝地板',
-          ko: '여왕의 춤: 대지', // FIXME
+          ko: '파란 바닥 위로',
         },
       },
     },
@@ -449,7 +453,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Liens',
           ja: '女王の舞い: 茨', // FIXME
           cn: '先集中后扯线',
-          ko: '여왕의 춤: 가시', // FIXME
+          ko: '가시줄 끊기',
         },
       },
     },
@@ -525,24 +529,28 @@ const triggerSet: TriggerSet<Data> = {
           de: 'NW Außen',
           fr: 'NO Extérieur',
           cn: '西北 外',
+          ko: '북서쪽 바깥',
         },
         nwInside: {
           en: 'NW Inside',
           de: 'NW Innen',
           fr: 'NO Intérieur',
           cn: '西北 内',
+          ko: '북서쪽 안',
         },
         seInside: {
           en: 'SE Inside',
           de: 'SO Innen',
           fr: 'SE Intérieur',
           cn: '东南 内',
+          ko: '남동쪽 바깥',
         },
         seOutside: {
           en: 'SE Outside',
           de: 'SO Außen',
           fr: 'SE Intérieur',
           cn: '东南 外',
+          ko: '남동쪽 안',
         },
       },
     },
@@ -765,7 +773,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '할리카르나소스',
         'Apanda': '아판다',
