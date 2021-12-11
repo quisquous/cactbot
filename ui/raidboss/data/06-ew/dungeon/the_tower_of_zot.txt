@@ -9,7 +9,7 @@ hideall "--sync--"
 # MINDURUVA #
 #~~~~~~~~~~~#
 
-# -ic "Estinien" -ii 366 6291 6292
+# -ii 366 6291 6292
 
 ## Fixed-ish opening block
 0.0 "--sync--" sync / 00:0839::Ingenuity's Ingress will be sealed off/ window 0,1
@@ -20,11 +20,11 @@ hideall "--sync--"
 27.8 "Manusya Thunder III x7" sync / 1[56]:[^:]*:Minduruva:6293:/
 32.9 "Manusya Bio III" sync / 1[56]:[^:]*:Minduruva:6298:/
 34.1 "--sync--" sync / 1[56]:[^:]*:Minduruva:6299:/
-38.0 "Transmute Thunder III" sync / 1[56]:[^:]*:Minduruva:631C:/
+38.0 "Transmute Element III" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
 38.9 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
 42.3 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:6463:/
-47.7 "Manusya Blizzard III" sync / 1[56]:[^:]*:Minduruva:6292:/
-51.8 "Delayed Thunder III" #sync / 1[56]:[^:]*:Minduruva:6297:/
+47.7 "Manusya Element III" #sync / 1[56]:[^:]*:Minduruva:629[5678]:/
+51.8 "Delayed Element III" #sync / 1[56]:[^:]*:Minduruva:629[5678]:/
 61.9 "Manusya Bio" sync / 1[56]:[^:]*:Minduruva:62A0:/
 69.0 "Dhrupad" sync / 1[56]:[^:]*:Minduruva:629C:/ window 30,30
 
@@ -82,51 +82,51 @@ hideall "--sync--"
 # SANDURUVA #
 #~~~~~~~~~~~#
 
-# -ic "Estinien" -ii 367
+# -ii 367
 
 # Opening block
-0.0 "--sync--" sync / 00:0839::Prosperity'S Promise will be sealed off/ window 1000,5
-9.3 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A9:/ window 1009.3,5
-15.7 "Prapti Siddhi #1" sync / 1[56]:[^:]*:Sanduruva:62A8:/
-19.6 "Prapti Siddhi #2" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-23.4 "Prapti Siddhi #3" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-27.4 "Prapti Siddhi #4" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-32.3 "Manusya Berserk" sync / 1[56]:[^:]*:Sanduruva:62A1:/ window 15,15
-41.5 "Explosive Force" sync / 1[56]:[^:]*:Sanduruva:62A2:/
-43.5 "Sphere Shatter" sync / 1[56]:[^:]*:Berserker Sphere:62A4:/
-50.6 "Prakamya Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A3:/
+1000.0 "--sync--" sync / 00:0839::Prosperity's Promise will be sealed off/ window 1000,5
+1009.3 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A9:/ window 1009.3,5
+1015.7 "Prapti Siddhi #1" sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1019.6 "Prapti Siddhi #2" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1023.4 "Prapti Siddhi #3" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1027.4 "Prapti Siddhi #4" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1032.3 "Manusya Berserk" sync / 1[56]:[^:]*:Sanduruva:62A1:/ window 15,15
+1041.5 "Explosive Force" sync / 1[56]:[^:]*:Sanduruva:62A2:/
+1043.5 "Sphere Shatter" sync / 1[56]:[^:]*:Berserker Sphere:62A4:/
+1050.6 "Prakamya Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A3:/
 
 # Rotation block
-55.8 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ window 1055.8,10
-59.9 "Manusya Stop" sync / 1[56]:[^:]*:Sanduruva:62A7:/
-67.1 "Prapti Siddhi #1" sync / 1[56]:[^:]*:Sanduruva:62A8:/
-70.9 "Prapti Siddhi #2" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-74.8 "Prapti Siddhi #3" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-78.7 "Prapti Siddhi #4" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-87.7 "Manusya Confuse" sync / 1[56]:[^:]*:Sanduruva:62A5:/
-102.8 "Explosive Force" sync / 1[56]:[^:]*:Sanduruva:62A2:/
-104.9 "Sphere Shatter" sync / 1[56]:[^:]*:Berserker Sphere:62A4:/
-112.0 "Prakamya Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A3:/
-120.2 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A9:/ window 30,30
+1055.8 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ window 1055.8,10
+1059.9 "Manusya Stop" sync / 1[56]:[^:]*:Sanduruva:62A7:/
+1067.1 "Prapti Siddhi #1" sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1070.9 "Prapti Siddhi #2" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1074.8 "Prapti Siddhi #3" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1078.7 "Prapti Siddhi #4" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
+1087.7 "Manusya Confuse" sync / 1[56]:[^:]*:Sanduruva:62A5:/
+1102.8 "Explosive Force" sync / 1[56]:[^:]*:Sanduruva:62A2:/
+1104.9 "Sphere Shatter" sync / 1[56]:[^:]*:Berserker Sphere:62A4:/
+1112.0 "Prakamya Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A3:/
+1120.2 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A9:/ window 30,30
 
-127.3 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ jump 1055.8
-131.4 "Manusya Stop"
-138.6 "Prapti Siddhi #1"
-142.4 "Prapti Siddhi #2"
-146.3 "Prapti Siddhi #3"
-150.2 "Prapti Siddhi #4"
-159.2 "Manusya Confuse"
+1127.3 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ jump 1055.8
+1131.4 "Manusya Stop"
+1138.6 "Prapti Siddhi #1"
+1142.4 "Prapti Siddhi #2"
+1146.3 "Prapti Siddhi #3"
+1150.2 "Prapti Siddhi #4"
+1159.2 "Manusya Confuse"
 
 #~~~~~~~~~~~~~~~#
 # MAGUS SISTERS #
 #~~~~~~~~~~~~~~~#
 
-# -ic "Estinien" -ii 367 62BA
+# -ii 367 62BA
 
 # Because we have no idea which sister will die first,
 # we sync aggressively all over the rotation block.
 
-2000.0 "--sync--" sync / 00:0839::Wisdom'S Ward will be sealed off/ window 2000,5
+2000.0 "--sync--" sync / 00:0839::Wisdom's Ward will be sealed off/ window 2000,5
 2002.5 "--sync--" sync / 1[56]:[^:]*:Cinduruva:62BA:/ window 2002.5,2
 2009.8 "Samsara" sync / 1[56]:[^:]*:Cinduruva:62B9:/
 2025.6 "Manusya Faith" sync / 1[56]:[^:]*:Sanduruva:62AA:/
@@ -145,7 +145,7 @@ hideall "--sync--"
 2068.5 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/
 2071.9 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:62C9:/
 
-2075.1 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ window 2075.1,30
+2075.1 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ window 100,30
 2080.3 "Manusya Faith" sync / 1[56]:[^:]*:Sanduruva:62AA:/ window 30,30
 2080.4 "Manusya Reflect" sync / 1[56]:[^:]*:Cinduruva:62AB:/ window 30,30
 2081.2 "Delta Attack" sync / 1[56]:[^:]*:Minduruva:62A[CDE]:/
