@@ -211,13 +211,13 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Warnung. Erhöhte Wahrscheinlichkeit einer Niederlage',
         'Omega(?!-)': 'Omega',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
         'Progress to party combat': 'Initiiere Gruppenkampf',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '<biep> Warnung. Erhöhte Wahrscheinlichkeit',
       },
       'replaceText': {
         'Beyond Strength': 'Schildkombo G',
