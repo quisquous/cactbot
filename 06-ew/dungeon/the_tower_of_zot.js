@@ -49,6 +49,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Under Orb ${num}',
                     de: 'Unter den ${num}. Orb',
+                    fr: 'En dessous l\'orbe ${num}',
                 },
             },
         },
@@ -65,6 +66,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Behind Orb ${num}',
                     de: 'Hinter den ${num}. Orb',
+                    fr: 'Allez derrière l\'orbe ${num}',
                 },
             },
         },
@@ -101,6 +103,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go behind empty spot',
                     de: 'Hinter den leeren Spot gehen',
+                    fr: 'Allez derrière un espace vide',
                 },
             },
         },
@@ -116,6 +119,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go behind still clone',
                     de: 'Geh hinter den ruhigen Klon',
+                    fr: 'Allez derrière le vrai clone',
                 },
             },
         },
