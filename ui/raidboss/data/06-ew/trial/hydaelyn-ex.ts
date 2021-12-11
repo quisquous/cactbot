@@ -26,7 +26,7 @@ const storedMechanicsOutputStrings = {
   stack: {
     en: 'Party Stack',
     de: 'Mit der Party sammeln',
-    ko: '쉐어',
+    ko: '파티 전체 쉐어',
   },
 };
 
