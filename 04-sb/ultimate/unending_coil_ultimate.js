@@ -2041,7 +2041,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Bahamut Prime': '바하무트 프라임',
                 'Fang of Light': '빛의 송곳니',
@@ -2053,6 +2052,20 @@ Options.Triggers.push({
                 'Tail of Darkness': '어둠의 꼬리',
                 'Thunderwing': '번개날개',
                 'Twintania': '트윈타니아',
+                'From on high I descend, the hallowed moon to call': '흉조가 내려와 달을 올려다보리라!',
+                'From on high I descend, the iron path to walk': '흉조가 내려와 강철의 패도를 걸으리라!',
+                'Take fire, O hallowed moon': '붉게 타오른 달의 축복을!',
+                'Blazing path, lead me to iron rule': '붉게 타오른 길을 강철의 패도로 만들겠노라!',
+                'O hallowed moon, take fire and scorch my foes': '달이여! 붉게 타올라 신의 적을 태워버려라!',
+                'O hallowed moon, shine you the iron path': '달이여! 강철의 패도를 비춰라!',
+                'Fleeting light! \'Neath the red moon, scorch you the earth': '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!',
+                'Fleeting light! Amid a rain of stars, exalt you the red moon': '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!',
+                'From on high I descend, the moon and stars to bring': '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!',
+                'From hallowed moon I descend, a rain of stars to bring': '달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!',
+                'From hallowed moon I bare iron, in my descent to wield': '달로부터 강철의 패도를 거쳐 흉조가 내려오리라!',
+                'From hallowed moon I descend, upon burning earth to tread': '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!',
+                'Unbending iron, take fire and descend': '강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!',
+                'Unbending iron, descend with fiery edge': '강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!',
             },
             'replaceText': {
                 '--push--': '--최소 RDPS컷--',

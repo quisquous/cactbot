@@ -605,7 +605,7 @@ Options.Triggers.push({
             'locale': 'ko',
             'replaceSync': {
                 'Eden Prime': '에덴 프라임',
-                'Guardian of Paradise': '에덴 정원사',
+                'Guardian of Paradise': '에덴의 수호자',
             },
             'replaceText': {
                 'Cross': '십자',

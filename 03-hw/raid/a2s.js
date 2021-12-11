@@ -276,6 +276,7 @@ Options.Triggers.push({
         {
             'locale': 'ko',
             'replaceSync': {
+                '(?<!Giant )Bomb(?!e)': '폭탄',
                 'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 B형',
                 'Giant Bomb': '대형 폭탄',
                 'Gordian Hardhelm': '고르디우스 강화투구',

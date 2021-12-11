@@ -589,6 +589,7 @@ Options.Triggers.push({
                 'Smartbomb': '초고성능 폭탄',
                 'The Clevering': '고블린 과학 연구실',
                 'Gobbledygawker': '고블주시자',
+                'Glassy-Eyed Cobra': '약에 찌든 코브라',
                 'Glassy-Eyed Minotaur': '약에 찌든 미노타우로스',
             },
             'replaceText': {

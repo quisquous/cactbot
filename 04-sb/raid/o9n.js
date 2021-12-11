@@ -296,7 +296,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Chaos': '카오스',
                 'YOU DARE!': '네 이노오오옴',

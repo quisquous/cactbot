@@ -211,13 +211,14 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 'Phantom Train': '마열차',
                 'Wroth Ghost': '격노하는 유령',
             },
             'replaceText': {
                 'Acid Rain': '산성비',
+                'Add Wave': '쫄 등장',
+                'Crossing Whistle': '행진 유령',
                 'Diabolic Chimney': '마계의 연기',
                 'Diabolic Headlamp': '마계의 전조등',
                 'Diabolic Light': '마계의 빛',
@@ -226,6 +227,9 @@ Options.Triggers.push({
                 'Encumber': '진로 방해',
                 'Head On': '추돌',
                 'Saintly Beam': '성스러운 광선',
+                'Ghost Beams': '유령 빛 장판',
+                'Ghosts': '유령',
+                'Tether Whistle': '선 연결 유령',
             },
         },
     ],

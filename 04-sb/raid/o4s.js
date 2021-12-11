@@ -1329,7 +1329,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
                 '(?<! )Exdeath': '엑스데스',
                 'Neo Exdeath': '네오 엑스데스',

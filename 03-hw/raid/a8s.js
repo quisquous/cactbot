@@ -1211,7 +1211,7 @@ Options.Triggers.push({
                 'Blaster(?! Mirage)': '폭파자',
                 'Brawler': '폭격자',
                 'Brute Justice': '포악한 심판자',
-                'Hidden Mine': '지뢰 폭발',
+                'Hidden Mine': '은폐 지뢰',
                 'Onslaughter': '맹습자',
                 'Steam Chakram': '증기 차크람',
                 'Steam Regulator B': '증기 감독 β',

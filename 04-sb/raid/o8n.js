@@ -383,18 +383,21 @@ Options.Triggers.push({
         },
         {
             'locale': 'ko',
-            'missingTranslations': true,
             'replaceSync': {
+                'Destroy! Destroy! Destroy! I will destroy it all!': '이것저것 모~두, 파괴, 파괴, 파괴!',
                 'Graven Image': '신들의 상',
                 'Kefka': '케프카',
             },
             'replaceText': {
                 'Aero Assault': '갈기갈기 에어로가',
+                'Aero/Ruin': '에어로가/루인가',
                 'Blizzard Blitz': '빙글빙글 블리자가',
                 'Flagrant Fire': '이글이글 파이가',
                 'Graven Image': '신들의 상',
+                'Half Arena': '절반 장판',
                 'Hyperdrive': '하이퍼드라이브',
                 'Shockwave': '충격파',
+                'Statue Gaze': '동상 작동',
                 'Thrumming Thunder': '찌릿찌릿 선더가',
                 'Timely Teleport': '껑충껑충 텔레포',
                 'Ultima Upsurge': '두근두근 알테마',

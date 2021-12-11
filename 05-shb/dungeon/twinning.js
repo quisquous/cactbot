@@ -365,7 +365,7 @@ Options.Triggers.push({
             'replaceSync': {
                 'vitalized reptoid': '활성된 파충류',
                 'The Tycoon': '타이쿤',
-                'surplus Kaliya': '양산형 칼리아',
+                'surplus Kaliya': '양산형 칼리야',
                 'alpha zaghnal': '알파 자그날',
                 'Servomechanical Minotaur': '자동제어 미노타우로스',
                 'Mithridates': '미트리다테스',

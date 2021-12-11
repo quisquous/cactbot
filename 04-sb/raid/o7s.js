@@ -261,6 +261,7 @@ Options.Triggers.push({
                     fr: 'Biblio ?/Poussée ?',
                     ja: 'ビブリオタフ?/ノックバック?',
                     cn: '图书？/击退？',
+                    ko: '비블리오?/넉백?',
                 },
                 biblio: {
                     en: 'Biblio: Positions',
@@ -268,6 +269,7 @@ Options.Triggers.push({
                     fr: 'Biblio : Positions',
                     ja: 'ビブリオタフ: 定めた位置へ',
                     cn: '图书：站位',
+                    ko: '비블리오: 지정 위치로',
                 },
                 dada: {
                     en: 'Dada: Knockback',
@@ -275,6 +277,7 @@ Options.Triggers.push({
                     fr: 'Dada : Poussée',
                     ja: 'ダダルマー: ノックバック',
                     cn: '达达：击退',
+                    ko: '다다루마: 넉백',
                 },
                 ships: {
                     en: 'Ships: Out of Melee',
@@ -282,6 +285,7 @@ Options.Triggers.push({
                     fr: 'Vaisseaux : Ne restez pas au CàC',
                     ja: 'エアフォース: 離れる',
                     cn: '飞机：远离近战范围',
+                    ko: '에어포스: 근접 범위 밖으로',
                 },
                 ultros: {
                     en: 'Ultros: Ink Spread',
@@ -289,6 +293,7 @@ Options.Triggers.push({
                     fr: 'Ultros : Encre',
                     ja: 'オルトロス: インク 散開',
                     cn: '章鱼：墨汁快散开',
+                    ko: '오르트로스: 먹물 산개',
                 },
                 virus: {
                     en: 'VIRUS',
@@ -296,6 +301,7 @@ Options.Triggers.push({
                     fr: 'VIRUS',
                     ja: 'ウイルス',
                     cn: '病毒',
+                    ko: '바이러스',
                 },
             },
         },
@@ -331,6 +337,7 @@ Options.Triggers.push({
                     fr: 'Add Biblio',
                     ja: '雑魚: ビブリオタフ',
                     cn: '图书出现',
+                    ko: '비블리오 등장',
                 },
                 dada: {
                     en: 'Dada Add',
@@ -338,6 +345,7 @@ Options.Triggers.push({
                     fr: 'Add Dada',
                     ja: '雑魚: ダダルマー',
                     cn: '达达出现',
+                    ko: '다다루마 등장',
                 },
                 ships: {
                     en: 'Ship Add',
@@ -345,6 +353,7 @@ Options.Triggers.push({
                     fr: 'Add Vaisseau',
                     ja: '雑魚: エアフォース',
                     cn: '飞机出现',
+                    ko: '에어포스 등장',
                 },
                 ultros: {
                     en: 'Ultros Add',
@@ -352,6 +361,7 @@ Options.Triggers.push({
                     fr: 'Add Ultros',
                     ja: '雑魚: オルトロス',
                     cn: '章鱼出现',
+                    ko: '오르트로스 등장',
                 },
             },
         },
