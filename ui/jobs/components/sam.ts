@@ -74,7 +74,7 @@ export class SAMComponent extends BaseComponent {
     if (combo.isFinalSkill)
       return;
     if (skill)
-      this.comboTimer.duration = 15;
+      this.comboTimer.duration = this.comboDuration;
   }
   override onJobDetailUpdate(jobDetail: JobDetail['SAM']): void {
     this.kenkiGauge.innerText = jobDetail.kenki.toString();

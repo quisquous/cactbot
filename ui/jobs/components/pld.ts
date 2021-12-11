@@ -14,20 +14,21 @@ export class PLDComponent extends BaseComponent {
 
   constructor(o: ComponentInterface) {
     super(o);
-  this.oathBox = this.bars.addResourceBox({
-    classList: ['pld-color-oath'],
-  });
-  this.atonementBox = this.bars.addResourceBox({
-    classList: ['pld-color-atonement'],
-  });
+    this.oathBox = this.bars.addResourceBox({
+      classList: ['pld-color-oath'],
+    });
+    this.atonementBox = this.bars.addResourceBox({
+      classList: ['pld-color-atonement'],
+    });
 
-  this.goreBox = this.bars.addProcBox({
-    fgColor: 'pld-color-gore',
-    notifyWhenExpired: true,
-  });
+    this.goreBox = this.bars.addProcBox({
+      fgColor: 'pld-color-gore',
+      notifyWhenExpired: true,
+    });
 
-  this.setAtonement(this.atonementBox, 0);
-}
+    this.setAtonement(this.atonementBox, 0);
+  }
+
   override onJobDetailUpdate(jobDetail: JobDetail['PLD']):void {
     const oath = jobDetail.oath.toString();
     if (this.oathBox.innerText === oath)
@@ -46,27 +47,24 @@ export class PLDComponent extends BaseComponent {
     }
   }
 
-setAtonement(atonementBox: ResourceBox, stacks: number): void {
-  atonementBox.innerText = stacks.toString();
-  const p = atonementBox.parentNode;
-  if (stacks === 0)
-    p.classList.remove('any');
-  else
-    p.classList.add('any');
-}
-
-  override onCombo(skill: string): void {
-    if (skill === kAbility.GoringBlade) {
-      // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
-      // have the box show 21, it looks like you're awfully late with
-      // your goring blade and just feels really bad.  So, lie to the
-      // poor paladins who don't have enough skill speed so that the UI
-      // is easier to read for repeating goring, royal, royal, goring
-      // and not having the box run out early.
-      this.goreBox.duration = 22;
-    }
+  setAtonement(atonementBox: ResourceBox, stacks: number): void {
+    atonementBox.innerText = stacks.toString();
+    const p = atonementBox.parentNode;
+    if (stacks === 0)
+      p.classList.remove('any');
+    else
+      p.classList.add('any');
   }
 
+  override onCombo(skill: string): void {
+    if (skill === kAbility.GoringBlade)
+      this.goreBox.duration = 21;
+  }
+
+  override onUseAbility(skill: string): void {
+    if (skill === kAbility.BladeOfValor)
+      this.goreBox.duration = 21;
+  }
 
   // As atonement counts down, the player gets successive "gains effects"
   // for the same effect, but with different counts.  When the last stack
@@ -75,6 +73,7 @@ setAtonement(atonementBox: ResourceBox, stacks: number): void {
     if (id === EffectId.SwordOath)
       this.setAtonement(this.atonementBox, parseInt(matches.count ?? '0'));
   }
+
   override onYouLoseEffect(id: string): void {
     if (id === EffectId.SwordOath)
       this.setAtonement(this.atonementBox, 0);
