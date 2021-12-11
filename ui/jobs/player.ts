@@ -282,6 +282,13 @@ export class Player extends PlayerBase {
     if (prevJob !== data.job) {
       this.job = data.job;
       this.emit('job', data.job);
+
+      // Because the `PlayerStat` log line is always emitted before
+      // the `onPlayerChangedEvent` event, and we have job components
+      // that relies on the stat data when initializing, so we need to
+      // manually emit the stat data here.
+      if (this.stats)
+        this.emit('stat', this.stats, { gcdSkill: this.gcdSkill, gcdSpell: this.gcdSpell });
     }
 
     // update level
