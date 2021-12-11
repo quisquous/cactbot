@@ -152,8 +152,8 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: Math the positions of the corner nails and give an exact call.
       // Locations are (-19.50, -160), (-19.50, -199), (19.50, -160), (19.50, -199)
       id: 'Tower Of Babil Lunar Nail Warning',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6sFE', source: 'Anima', capture: false }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
