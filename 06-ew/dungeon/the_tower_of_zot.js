@@ -12,6 +12,9 @@ Options.Triggers.push({
             type: 'StartsUsing',
             // 62CA in the final phase.
             netRegex: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Minduruva' }),
+            netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Rug' }),
+            netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Anabella' }),
+            netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'ラグ' }),
             response: Responses.tankBuster(),
         },
         {
@@ -22,6 +25,9 @@ Options.Triggers.push({
             // 631C = Transmute Thunder III
             // 631D = Transmute Bio III
             netRegex: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Minduruva', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Rug', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ', capture: false }),
             // FIXME: if this is `run` then data.orbCount has an off-by-one (one less) count in the emulator.
             // `run` must happen synchronously before other triggers if the trigger is not asynchronous.
             // It's possible this is a general raidboss bug as well, but it is untested.
@@ -31,6 +37,9 @@ Options.Triggers.push({
             id: 'Zot Minduruva Transmute Fire III',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '629A', source: 'Minduruva', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '629A', source: 'Rug', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '629A', source: 'Anabella', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '629A', source: 'ラグ', capture: false }),
             durationSeconds: 13,
             // These are info so that any Under/Behind from Fire III / Bio III above take precedence.
             // But, sometimes the run from Bio III -> Transmute Fire III is tight so warn ahead of
@@ -39,6 +48,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Under Orb ${num}',
+                    de: 'Unter den ${num}. Orb',
                 },
             },
         },
@@ -46,11 +56,15 @@ Options.Triggers.push({
             id: 'Zot Minduruva Transmute Bio III',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '631D', source: 'Minduruva', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '631D', source: 'Rug', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '631D', source: 'Anabella', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '631D', source: 'ラグ', capture: false }),
             durationSeconds: 13,
             infoText: (data, _matches, output) => output.text({ num: data.orbCount }),
             outputStrings: {
                 text: {
                     en: 'Behind Orb ${num}',
+                    de: 'Hinter den ${num}. Orb',
                 },
             },
         },
@@ -58,6 +72,9 @@ Options.Triggers.push({
             id: 'Zot Minduruva Dhrupad Reset',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '629C', source: 'Minduruva', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '629C', source: 'Rug', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '629C', source: 'Anabella', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '629C', source: 'ラグ', capture: false }),
             // There's a Dhrupad cast after every transmute sequence.
             run: (data) => data.orbCount = 0,
         },
@@ -83,6 +100,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Go behind empty spot',
+                    de: 'Hinter den leeren Spot gehen',
                 },
             },
         },
@@ -97,6 +115,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Go behind still clone',
+                    de: 'Geh hinter den ruhigen Klon',
                 },
             },
         },
