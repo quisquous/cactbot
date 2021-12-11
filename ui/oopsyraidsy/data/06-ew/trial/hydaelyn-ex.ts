@@ -3,6 +3,7 @@ import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
 // TODO: taking two 65AA Infralateral Arc (party share)
+// TODO: 65A7 Ray of Light (standing in the moving lightwave) is super noisy
 
 export type Data = OopsyData;
 
@@ -20,9 +21,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'HydaelynEx Heros\'s Glory': '65A8', // get behind
     'HydaelynEx Parhelion Beacon 1': '65B2', // initial chakrams
     'HydaelynEx Parhelion Beacon 2': '65B3', // second chakrams
-  },
-  damageFail: {
-    'HydaelynEx Ray of Light': '65A7', // light wave moving add
   },
   shareWarn: {
     'HydaelynEx Crystalize Blizzard III': '65A4', // spread
