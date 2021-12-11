@@ -59,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Under Orb ${num}',
           de: 'Unter den ${num}. Orb',
+          fr: 'En dessous l\'orbe ${num}',
         },
       },
     },
@@ -75,6 +76,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind Orb ${num}',
           de: 'Hinter den ${num}. Orb',
+          fr: 'Allez derrière l\'orbe ${num}',
         },
       },
     },
@@ -111,6 +113,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go behind empty spot',
           de: 'Hinter den leeren Spot gehen',
+          fr: 'Allez derrière un espace vide',
         },
       },
     },
@@ -126,6 +129,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go behind still clone',
           de: 'Geh hinter den ruhigen Klon',
+          fr: 'Allez derrière le vrai clone',
         },
       },
     },
