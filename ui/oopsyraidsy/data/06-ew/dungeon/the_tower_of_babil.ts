@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
@@ -51,6 +52,23 @@ const triggerSet: OopsyTriggerSet<Data> = {
   soloWarn: {
     'Babil Barnabas Shocking Force': '62EC', // Stack marker, boss 1
   },
+  triggers: [
+    {
+      // Reaching 8 stacks of Breathless is a death
+      id: 'Babil Lugae Breathless',
+      type: 'LosesEffect',
+      netRegex: NetRegexes.losesEffect({ effectId: 'A70', count: '7' }),
+      deathReason: (_data, matches) => {
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: {
+            en: 'Suffocated',
+          },
+        };
+      },
+    },
+  ],
 };
 
 export default triggerSet;
