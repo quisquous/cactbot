@@ -333,6 +333,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
+        'Doomed Stars': 'Endzeitplanet',
         'Kakodaimon': 'Kakodæmon',
         'The Endsinger': 'Endsängerin',
         'oblivion': 'Chaosdimension',
@@ -368,6 +369,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        'Doomed Stars': 'Planète À L\'Agonie',
         'Kakodaimon': 'cacodæmon',
         'The Endsinger': 'chantre de l\'anéantissement',
         'oblivion': 'Ruée chaotique',
@@ -400,6 +402,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        'Doomed Stars': '終の星',
         'Kakodaimon': 'カコダイモーン',
         'The Endsinger': '終焉を謳うもの',
         'oblivion': 'カオティック・ディメンション',
