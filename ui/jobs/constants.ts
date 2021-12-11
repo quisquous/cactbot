@@ -469,4 +469,17 @@ export const kLevelMod = [
   [376, 3034],
   [378, 3164],
   [380, 3300],
+  // FIXME: The following are the assumed values added to avoid errors.
+  // 9999 will make unknown gcd about 2.5
+  // Fix this when parameter is determined.
+  [382, 9999],
+  [384, 9999],
+  [386, 9999],
+  [388, 9999],
+  [390, 9999],
+  [392, 9999],
+  [394, 9999],
+  [396, 9999],
+  [398, 9999],
+  [400, 9999],
 ] as const;
