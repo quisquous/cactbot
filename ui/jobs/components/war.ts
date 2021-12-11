@@ -53,7 +53,7 @@ export class WARComponent extends BaseComponent {
     if (combo.isFinalSkill)
       return;
     if (skill)
-      this.comboTimer.duration = 15;
+      this.comboTimer.duration = this.comboDuration;
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id !== EffectId.SurgingTempest)

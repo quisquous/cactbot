@@ -73,11 +73,11 @@ export class GNBComponent extends BaseComponent {
       case kAbility.GnashingFang:
         this.gnashingFangBox.duration = this.bars.player.getActionCooldown(30000, 'skill');
         this.cartridgeComboTimer.duration = 0;
-        this.cartridgeComboTimer.duration = 15;
+        this.cartridgeComboTimer.duration = this.comboDuration;
         break;
       case kAbility.SavageClaw:
         this.cartridgeComboTimer.duration = 0;
-        this.cartridgeComboTimer.duration = 15;
+        this.cartridgeComboTimer.duration = this.comboDuration;
         break;
       case kAbility.WickedTalon:
         this.cartridgeComboTimer.duration = 0;
@@ -90,7 +90,7 @@ export class GNBComponent extends BaseComponent {
     if (combo.isFinalSkill)
       return;
     if (skill)
-      this.comboTimer.duration = 15;
+      this.comboTimer.duration = this.comboDuration;
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['GNB']): void {

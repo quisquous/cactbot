@@ -103,7 +103,7 @@ export class ComponentManager {
   // true if player is too far away from their target
   far?: boolean;
 
-  constructor(o: ComponentInterface) {
+  constructor(private o: ComponentInterface) {
     this.bars = o.bars;
     this.ee = o.emitter;
     this.options = o.options;
@@ -124,25 +124,17 @@ export class ComponentManager {
   }
 
   getJobComponents(job: Job): BaseComponent {
-    const o = {
-      bars: this.bars,
-      emitter: this.ee,
-      options: this.options,
-      partyTracker: this.partyTracker,
-      player: this.player,
-    };
-
     // For CN/KR that is still in 5.x
-    if (['cn', 'ko'].includes(this.options.ParserLanguage)) {
+    if (this.o.is5x) {
       if (job === 'SMN')
-        return new SMN5xComponent(o);
+        return new SMN5xComponent(this.o);
     }
 
     const Component = ComponentMap[job];
     if (!Component)
-      return new BaseComponent(o);
+      return new BaseComponent(this.o);
 
-    return new Component(o);
+    return new Component(this.o);
   }
 
   setupListeners(): void {

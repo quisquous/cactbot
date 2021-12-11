@@ -61,7 +61,7 @@ export class DNCComponent extends BaseComponent {
     if (combo.isFinalSkill)
       return;
     if (skill)
-      this.comboTimer.duration = 15;
+      this.comboTimer.duration = this.comboDuration;
   }
 
   override onYouLoseEffect(effect: string): void {
