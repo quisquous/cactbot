@@ -25,29 +25,27 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
-      id: 'Zot Minduruva Fire III',
+      id: 'Zot Minduruva Transmute Counter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6295', source: 'Minduruva', capture: false }),
-      response: Responses.getUnder('alert'),
-    },
-    {
-      id: 'Zot Minduruva Bio III',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6298', source: 'Minduruva', capture: false }),
-      response: Responses.getBehind(),
+      // 629A = Transmute Fire III
+      // 631B = Transmute Blizzard III
+      // 631C = Transmute Thunder III
+      // 631D = Transmute Bio III
+      netRegex: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Minduruva', capture: false }),
+      // FIXME: if this is `run` then data.orbCount has an off-by-one (one less) count in the emulator.
+      // `run` must happen synchronously before other triggers if the trigger is not asynchronous.
+      // It's possible this is a general raidboss bug as well, but it is untested.
+      preRun: (data) => data.orbCount++,
     },
     {
       id: 'Zot Minduruva Transmute Fire III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6294', source: 'Minduruva', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '629A', source: 'Minduruva', capture: false }),
       durationSeconds: 13,
       // These are info so that any Under/Behind from Fire III / Bio III above take precedence.
       // But, sometimes the run from Bio III -> Transmute Fire III is tight so warn ahead of
       // time which orb the player needs to run to.
-      infoText: (data, _matches, output) => {
-        data.orbCount += 1;
-        return output.text!({ num: data.orbCount });
-      },
+      infoText: (data, _matches, output) => output.text!({ num: data.orbCount }),
       outputStrings: {
         text: {
           en: 'Under Orb ${num}',
@@ -57,12 +55,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zot Minduruva Transmute Bio III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6294', source: 'Minduruva', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '631D', source: 'Minduruva', capture: false }),
       durationSeconds: 13,
-      infoText: (data, _matches, output) => {
-        data.orbCount += 1;
-        return output.text!({ num: data.orbCount });
-      },
+      infoText: (data, _matches, output) => output.text!({ num: data.orbCount }),
       outputStrings: {
         text: {
           en: 'Behind Orb ${num}',
@@ -79,16 +74,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zot Sanduruva Isitva Siddhi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62C0', source: 'Sanduruva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '62C0', source: 'Dug' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '62C0', source: 'Samanta' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '62C0', source: 'ドグ' }),
+      // 62A9 is 2nd boss, 62C0 is 3rd boss.
+      netRegex: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Sanduruva' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Dug' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Samanta' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'ドグ' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zot Sanduruva Manusya Berserk',
       type: 'Ability',
-      // 62BC in the final phase.
+      // 62A1 is 2nd boss, 62BC in the 3rd boss.
       netRegex: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Sanduruva', capture: false }),
       netRegexDe: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Dug', capture: false }),
       netRegexFr: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Samanta', capture: false }),
