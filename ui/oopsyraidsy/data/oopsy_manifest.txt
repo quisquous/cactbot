@@ -141,3 +141,4 @@
 06-ew/dungeon/vanaspati.ts
 06-ew/trial/hydaelyn-ex.ts
 06-ew/trial/zodiark.ts
+06-ew/dungeon/the_tower_of_babil.ts
