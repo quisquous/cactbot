@@ -161,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go To Opposite Color',
           de: 'Geh zur andere Farbe',
-          fr: 'Allez à la couleur opposée',
+          fr: 'Allez sur la couleur opposée',
           ko: '화면과 색이 다른 바닥으로',
         },
       },
