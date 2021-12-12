@@ -35,6 +35,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback (one row)',
           de: 'Rückstoß (eine Reihe)',
+          fr: 'Poussée (une ligne)',
         },
       },
     },
@@ -115,14 +116,17 @@ const triggerSet: TriggerSet<Data> = {
         smiley: {
           en: 'Get hit by blue smiley',
           de: 'Von der blauen Grinsen treffen lassen',
+          fr: 'Faites-vous toucher par un sourir bleu',
         },
         frowny: {
           en: 'Get hit by red frowny',
           de: 'Von dem roten Grimigen treffen lassen',
+          fr: 'Faites-vous toucher par un visage en colère rouge',
         },
         either: {
           en: 'Get hit by either color',
           de: 'Von irgendeiner Farbe treffen lassen',
+          fr: 'Faites-vous toucher par une couleur',
         },
       },
     },
@@ -269,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
         'Heart on Fire IV': 'Giga Feu crépitant',
         'Iron Kiss': 'Charge explosive',
         'Leap Forward': 'Assaut plongeant avant',
-        'Left Disassembler': 'Atomiseur gauche',
+        'Left Disassembler/Right Disassembler': 'Atomiseur gauche/droit',
         'Leveling Missile': 'Missile de nivellement',
         'Lines of Fire': 'Extériorisation',
         'Mixed Feelings': 'Humeur instable',
@@ -277,7 +281,6 @@ const triggerSet: TriggerSet<Data> = {
         'Omnidimensional Onslaught': 'Assaut omnidirectionnel en deux temps',
         'Piercing Missile': 'Missiles foreurs',
         'Print Workers': 'Manufacture d\'ouvrier',
-        'Right Disassembler': 'Atomiseur droit',
         'Steel Beam': 'Assaut tailladant avant',
         'Temper\'s Flare': 'Brasier crépitant',
         'Temper, Temper': 'Flammes crépitantes',
