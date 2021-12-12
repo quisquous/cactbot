@@ -135,6 +135,7 @@ Options.Triggers.push({
                 avoidLasers: {
                     en: 'Avoid Head Lasers',
                     de: 'Weiche den Kopflaser aus',
+                    ko: '머리가 쏘는 레이저 피하기',
                 },
             },
         },
@@ -169,10 +170,12 @@ Options.Triggers.push({
                 cardinal: {
                     en: 'Cardinal edge',
                     de: 'Kardinaler Rand',
+                    ko: '동서남북 끝으로',
                 },
                 intercardinal: {
                     en: 'Intercardinal edge',
                     de: 'Interkardinaler Rand',
+                    ko: '대각선 끝으로',
                 },
             },
         },
@@ -251,6 +254,7 @@ Options.Triggers.push({
                 direction: {
                     en: '${dir1} / ${dir2}',
                     de: '${dir1} / ${dir2}',
+                    ko: '${dir1} / ${dir2}',
                 },
             },
         },

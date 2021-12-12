@@ -46,9 +46,11 @@ Options.Triggers.push({
             outputStrings: {
                 close: {
                     en: 'Close to boss',
+                    ko: '보스 가까이 붙기',
                 },
                 far: {
                     en: 'Away from boss',
+                    ko: '보스에게서 멀어지기',
                 },
             },
         },
@@ -78,9 +80,11 @@ Options.Triggers.push({
             outputStrings: {
                 close: {
                     en: 'Go center next to Scrapline',
+                    ko: '장판 중앙부분 옆으로',
                 },
                 far: {
                     en: 'Go sides away from Scrapline',
+                    ko: '장판과 멀리 떨어지기',
                 },
             },
         },
@@ -105,6 +109,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Purple pad to shrink',
+                    ko: '보라색 바닥 밟고 작아지기',
                 },
             },
         },
@@ -116,6 +121,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Green pad for frog',
+                    ko: '초록색 바닥 밟고 개구리 되기',
                 },
             },
         },
@@ -133,6 +139,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Avoid bomb lines',
+                    ko: '폭탄의 직선범위 피하기',
                 },
             },
         },
@@ -146,6 +153,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Go to safe quadrant',
+                    ko: '안전한 사분면으로',
                 },
             },
         },
@@ -165,6 +173,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Away from your tether add',
+                    ko: '선이 연결된 곳과 멀리 떨어지기',
                 },
             },
         },
@@ -176,6 +185,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Get to a corner!',
+                    ko: '구석으로!',
                 },
             },
         },
@@ -188,6 +198,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: '5x chasing puddles on you!',
+                    ko: '따라오는 5연속 장판 피하기!',
                 },
             },
         },

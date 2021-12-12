@@ -3,10 +3,12 @@ const storedMechanicsOutputStrings = {
     groups: {
         en: 'Healer Groups',
         de: 'Heiler-Gruppen',
+        ko: '힐러 그룹 쉐어',
     },
     stack: {
         en: 'Party Stack',
         de: 'Mit der Party sammeln',
+        ko: '파티 전체 쉐어',
     },
 };
 const crystallizeOutputStrings = {
@@ -21,6 +23,7 @@ const comboOutputStrings = {
     combo: {
         en: '${first} => ${second}',
         de: '${first} => ${second}',
+        ko: '${first} => ${second}',
     },
 };
 Options.Triggers.push({
@@ -44,6 +47,7 @@ Options.Triggers.push({
                 intercards: {
                     en: 'Intercards',
                     de: 'Interkardinal',
+                    ko: '대각선 쪽으로',
                 },
             },
         },
@@ -286,7 +290,7 @@ Options.Triggers.push({
                     fr: 'Positions par rôle',
                     ja: 'ロール特定位置へ',
                     cn: '去指定位置',
-                    ko: '1단리밋 산개위치로',
+                    ko: '직업별 산개위치로',
                 },
             },
         },
@@ -321,6 +325,7 @@ Options.Triggers.push({
                 avoid: {
                     en: 'Avoid Line Ends',
                     de: 'Weiche den Enden der Linien aus',
+                    ko: '선의 끝부분 피하기',
                 },
             },
         },
@@ -338,6 +343,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack 5x',
                     de: '5x Sammeln',
+                    ko: '쉐어 5번',
                 },
             },
         },
