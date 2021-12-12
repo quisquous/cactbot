@@ -1,4 +1,4 @@
-import { kAbility, kComboBreakers } from './constants';
+import { kAbility, kComboBreakers, kComboBreakers5x } from './constants';
 
 type StartMap = {
   [s: string]: {
@@ -82,8 +82,9 @@ export default class ComboTracker {
     this.StateTransition(id);
   }
 
-  static setup(callback: ComboCallback): ComboTracker {
-    const comboTracker = new ComboTracker(kComboBreakers, callback);
+  static setup(is5x: boolean, callback: ComboCallback): ComboTracker {
+    const breakers = is5x ? kComboBreakers5x : kComboBreakers;
+    const comboTracker = new ComboTracker(breakers, callback);
     // PLD
     comboTracker.AddCombo([
       kAbility.FastBlade,
