@@ -64,6 +64,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           name: matches.target,
           text: {
             en: 'Suffocated',
+            de: 'Erstickt',
           },
         };
       },
