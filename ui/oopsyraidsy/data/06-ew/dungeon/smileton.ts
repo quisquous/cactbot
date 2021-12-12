@@ -53,6 +53,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: `${matches.effect} x${matches.count}`,
+            de: `${matches.effect} x${matches.count}`,
           },
         };
       },
