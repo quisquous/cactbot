@@ -19,6 +19,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Ground And Pound',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'バルナバ', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -37,12 +40,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Dynamic Scrapline Barnabas Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
+      netRegexDe: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
+      netRegexFr: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
+      netRegexJa: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'バルナバ' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '0122',
     },
     {
       id: 'Tower Of Babil Dynamic Scrapline',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'バルナバ', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -58,10 +67,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         close: {
           en: 'Close to boss',
+          de: 'Nahe am Boss',
           ko: '보스 가까이 붙기',
         },
         far: {
           en: 'Away from boss',
+          de: 'Weg am Boss',
           ko: '보스에게서 멀어지기',
         },
       },
@@ -71,12 +82,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Dynamic Pound Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '6245',
     },
     {
       id: 'Tower Of Babil Dynamic Pound',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -92,10 +109,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         close: {
           en: 'Go center next to Scrapline',
+          de: 'Geh zur mitte, nahe der Rollschlinge',
           ko: '장판 중앙부분 옆으로',
         },
         far: {
           en: 'Go sides away from Scrapline',
+          de: 'Geh seidlich der Rollschlinge',
           ko: '장판과 멀리 떨어지기',
         },
       },
@@ -104,6 +123,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Rolling Scrapline',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '62EB', source: 'バルナバ', capture: false }),
       response: Responses.outOfMelee(),
     },
     {
@@ -116,11 +138,15 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Magitek Chakram',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '62F3', source: 'ルゲイエ', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
           en: 'Purple pad to shrink',
+          de: 'Lilane Fläche zum schrumpfen',
           ko: '보라색 바닥 밟고 작아지기',
         },
       },
@@ -129,10 +155,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Downpour',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '62F5', source: 'ルゲイエ', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
           en: 'Green pad for frog',
+          de: 'Grüne Fläsche für Frosch',
           ko: '초록색 바닥 밟고 개구리 되기',
         },
       },
@@ -141,16 +171,23 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Thermal Suppression',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '62FA', source: 'ルゲイエ', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Tower Of Babil Magitek Explosive',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '62F8', source: 'ルゲイエ', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
           en: 'Avoid bomb lines',
+          de: 'Weiche den Bombenlinien aus',
           ko: '폭탄의 직선범위 피하기',
         },
       },
@@ -161,10 +198,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Lunar Nail Warning',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '62FE', source: 'アニマ', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
           en: 'Go to safe quadrant',
+          de: 'Geh in das sichere Feld',
           ko: '안전한 사분면으로',
         },
       },
@@ -173,6 +214,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Mega Graviton',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6300', source: 'アニマ', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -180,11 +224,15 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Aetherial Pull',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6301', source: 'Mega-graviton' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6301', source: 'Mega-Graviton' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6301', source: 'Méga Graviton' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6301', source: 'メガグラビトン' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
           en: 'Away from your tether add',
+          de: 'Weg von dem mit dir verbundenem Add',
           ko: '선이 연결된 곳과 멀리 떨어지기',
         },
       },
@@ -193,10 +241,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Boundless Pain',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '6303', source: 'アニマ', capture: false }),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
           en: 'Get to a corner!',
+          de: 'Geh in eine Ecke!',
           ko: '구석으로!',
         },
       },
@@ -210,6 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '5x chasing puddles on you!',
+          de: '5x verfolgende Flächen auf dir!',
           ko: '따라오는 5연속 장판 피하기!',
         },
       },
