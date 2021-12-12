@@ -193,13 +193,5 @@ UserConfig.registerOptions('eureka', {
         options['RefreshRateMs'] = seconds * 1000;
       },
     },
-    {
-      id: 'showBAPortalTimer',
-      name: {
-        en: 'Show Timer for BA red/blue Portals',
-      },
-      type: 'checkbox',
-      default: false,
-    },
   ],
 });

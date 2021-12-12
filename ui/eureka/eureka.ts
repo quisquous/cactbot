@@ -682,7 +682,7 @@ class EurekaTracker {
       // blue portals despawn & red portals spawn
       // <4 minutes>
       // red portals despawn
-      if (this.options.showBAPortalTimer && this.lastBAFateTimeMs) {
+      if (this.lastBAFateTimeMs) {
         const lastBAFateTimePlus10Ms = this.lastBAFateTimeMs + (10 * 1000 * 60);
         const lastBAFateTimePlus6Ms = this.lastBAFateTimeMs + (6 * 1000 * 60);
         const lastBAFateTimePlus3Ms = this.lastBAFateTimeMs + (3 * 1000 * 60);
