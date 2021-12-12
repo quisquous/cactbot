@@ -273,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '5x chasing puddles on you!',
           de: '5x verfolgende Flächen auf dir!',
-          fr: '5x zones au sol chainées sur vous !'
+          fr: '5x zones au sol chainées sur vous !',
           ko: '따라오는 5연속 장판 피하기!',
         },
       },
