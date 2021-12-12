@@ -275,7 +275,83 @@ export const kAbility = {
 
 // Full skill names of abilities that break combos.
 // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
-export const kComboBreakers = Object.freeze([
+export const kComboBreakers = [
+  // PLD
+  kAbility.FastBlade,
+  kAbility.RiotBlade,
+  kAbility.RageOfHalone,
+  kAbility.RoyalAuthority,
+  kAbility.GoringBlade,
+  kAbility.TotalEclipse,
+  kAbility.Prominence,
+  kAbility.HolySpirit,
+  kAbility.HolyCircle,
+  kAbility.Clemency,
+  kAbility.Confiteor,
+  kAbility.ShieldBash,
+  // WAR
+  kAbility.HeavySwing,
+  kAbility.Maim,
+  kAbility.StormsEye,
+  kAbility.StormsPath,
+  kAbility.Overpower,
+  kAbility.MythrilTempest,
+  // DRK
+  kAbility.HardSlash,
+  kAbility.SyphonStrike,
+  kAbility.Souleater,
+  kAbility.Unleash,
+  kAbility.StalwartSoul,
+  // GNB
+  kAbility.KeenEdge,
+  kAbility.BrutalShell,
+  kAbility.SolidBarrel,
+  kAbility.DemonSlice,
+  kAbility.DemonSlaughter,
+  // DRG
+  kAbility.TrueThrust,
+  kAbility.VorpalThrust,
+  kAbility.FullThrust,
+  kAbility.Disembowel,
+  kAbility.ChaosThrust,
+  kAbility.DoomSpike,
+  kAbility.SonicThrust,
+  kAbility.CoerthanTorment,
+  // NIN
+  kAbility.SpinningEdge,
+  kAbility.GustSlash,
+  kAbility.AeolianEdge,
+  kAbility.ArmorCrush,
+  kAbility.DeathBlossom,
+  kAbility.HakkeMujinsatsu,
+  // SAM
+  kAbility.Hakaze,
+  kAbility.Jinpu,
+  kAbility.Gekko,
+  kAbility.Shifu,
+  kAbility.Kasha,
+  kAbility.Yukikaze,
+  kAbility.Fuga,
+  kAbility.Mangetsu,
+  kAbility.Oka,
+  kAbility.MeikyoShisui,
+  // MCH
+  kAbility.SplitShot,
+  kAbility.SlugShot,
+  kAbility.CleanShot,
+  kAbility.HeatedSplitShot,
+  kAbility.HeatedSlugShot,
+  kAbility.HeatedCleanShot,
+  kAbility.SpreadShot,
+  // DNC
+  kAbility.Cascade,
+  kAbility.Fountain,
+  kAbility.Windmill,
+  kAbility.Bladeshower,
+];
+
+export const kComboBreakers5x = [
+  ...kComboBreakers,
   // LB
   kAbility.ShieldWall,
   kAbility.Stronghold,
@@ -304,86 +380,15 @@ export const kComboBreakers = Object.freeze([
   kAbility.Meteor,
   kAbility.Teraflare,
   kAbility.VermilionScourge,
-  // PLD
-  kAbility.FastBlade,
-  kAbility.RiotBlade,
-  kAbility.RageOfHalone,
-  kAbility.RoyalAuthority,
-  kAbility.GoringBlade,
-  kAbility.TotalEclipse,
-  kAbility.Prominence,
-  kAbility.HolySpirit,
-  kAbility.HolyCircle,
-  kAbility.Clemency,
-  kAbility.Confiteor,
+  // Ranged
   kAbility.ShieldLob,
-  kAbility.ShieldBash,
-  // WAR
-  kAbility.HeavySwing,
-  kAbility.Maim,
-  kAbility.StormsEye,
-  kAbility.StormsPath,
-  kAbility.Overpower,
-  kAbility.MythrilTempest,
   kAbility.Tomahawk,
-  // DRK
-  kAbility.HardSlash,
-  kAbility.SyphonStrike,
-  kAbility.Souleater,
-  kAbility.Unleash,
-  kAbility.StalwartSoul,
   kAbility.Unmend,
-  // GNB
-  kAbility.KeenEdge,
-  kAbility.BrutalShell,
-  kAbility.SolidBarrel,
-  kAbility.DemonSlice,
-  kAbility.DemonSlaughter,
   kAbility.LightningShot,
-  // DRG
-  kAbility.TrueThrust,
-  kAbility.VorpalThrust,
-  kAbility.FullThrust,
-  kAbility.Disembowel,
-  kAbility.ChaosThrust,
   kAbility.PiercingTalon,
-  kAbility.DoomSpike,
-  kAbility.SonicThrust,
-  kAbility.CoerthanTorment,
-  // NIN
-  kAbility.SpinningEdge,
-  kAbility.GustSlash,
-  kAbility.AeolianEdge,
-  kAbility.ArmorCrush,
-  kAbility.DeathBlossom,
-  kAbility.HakkeMujinsatsu,
   kAbility.ThrowingDagger,
-  // SAM
-  kAbility.Hakaze,
-  kAbility.Jinpu,
-  kAbility.Gekko,
-  kAbility.Shifu,
-  kAbility.Kasha,
-  kAbility.Yukikaze,
-  kAbility.Fuga,
-  kAbility.Mangetsu,
-  kAbility.Oka,
   kAbility.Enpi,
-  kAbility.MeikyoShisui,
-  // MCH
-  kAbility.SplitShot,
-  kAbility.SlugShot,
-  kAbility.CleanShot,
-  kAbility.HeatedSplitShot,
-  kAbility.HeatedSlugShot,
-  kAbility.HeatedCleanShot,
-  kAbility.SpreadShot,
-  // DNC
-  kAbility.Cascade,
-  kAbility.Fountain,
-  kAbility.Windmill,
-  kAbility.Bladeshower,
-]);
+];
 
 // [level][Sub][Div]
 // Source: http://theoryjerks.akhmorning.com/resources/levelmods/

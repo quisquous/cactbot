@@ -150,13 +150,13 @@ export class Player extends PlayerBase {
   // TODO: should make combo tracker as event emitter too?
   combo: ComboTracker;
 
-  constructor(jobsEmitter: JobsEventEmitter) {
+  constructor(jobsEmitter: JobsEventEmitter, private is5x: boolean) {
     super();
     this.ee = new EventEmitter();
     this.jobsEmitter = jobsEmitter;
 
     // setup combo tracker
-    this.combo = ComboTracker.setup((id) => {
+    this.combo = ComboTracker.setup(this.is5x, (id) => {
       this.emit('action/combo', id, this.combo);
     });
     this.on('action/you', (actionId) => {
