@@ -101,8 +101,9 @@ export interface JobDetail {
     umbralMilliseconds: number;
     umbralStacks: number;
     enochian: boolean;
+    paradox: boolean;
     umbralHearts: number;
-    foulCount: number;
+    polyglot: number;
     nextPolyglotMilliseconds: number;
   };
   'ACN': {
