@@ -56,11 +56,13 @@ Options.Triggers.push({
                 close: {
                     en: 'Close to boss',
                     de: 'Nahe am Boss',
+                    fr: 'Allez près du boss',
                     ko: '보스 가까이 붙기',
                 },
                 far: {
                     en: 'Away from boss',
                     de: 'Weg am Boss',
+                    fr: 'Éloignez-vous du boss',
                     ko: '보스에게서 멀어지기',
                 },
             },
@@ -98,11 +100,13 @@ Options.Triggers.push({
                 close: {
                     en: 'Go center next to Scrapline',
                     de: 'Geh zur mitte, nahe der Rollschlinge',
+                    fr: 'Allez au centre, près de la zone de frappe',
                     ko: '장판 중앙부분 옆으로',
                 },
                 far: {
                     en: 'Go sides away from Scrapline',
                     de: 'Geh seidlich der Rollschlinge',
+                    fr: 'Allez sur les côtes, loin de la zone de frappe',
                     ko: '장판과 멀리 떨어지기',
                 },
             },
@@ -135,6 +139,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Purple pad to shrink',
                     de: 'Lilane Fläche zum schrumpfen',
+                    fr: 'Zone violette pour rétrécir',
                     ko: '보라색 바닥 밟고 작아지기',
                 },
             },
@@ -151,6 +156,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Green pad for frog',
                     de: 'Grüne Fläsche für Frosch',
+                    fr: 'Zone verte pour transormation en grenouille',
                     ko: '초록색 바닥 밟고 개구리 되기',
                 },
             },
@@ -176,6 +182,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Avoid bomb lines',
                     de: 'Weiche den Bombenlinien aus',
+                    fr: 'Évitez la ligne de bombes',
                     ko: '폭탄의 직선범위 피하기',
                 },
             },
@@ -194,6 +201,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go to safe quadrant',
                     de: 'Geh in das sichere Feld',
+                    fr: 'Allez dans le quart safe',
                     ko: '안전한 사분면으로',
                 },
             },
@@ -221,6 +229,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from your tether add',
                     de: 'Weg von dem mit dir verbundenem Add',
+                    fr: 'Éloignez-vous de votre add lié',
                     ko: '선이 연결된 곳과 멀리 떨어지기',
                 },
             },
@@ -237,6 +246,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get to a corner!',
                     de: 'Geh in eine Ecke!',
+                    fr: 'Allez dans un coin !',
                     ko: '구석으로!',
                 },
             },
@@ -251,6 +261,7 @@ Options.Triggers.push({
                 text: {
                     en: '5x chasing puddles on you!',
                     de: '5x verfolgende Flächen auf dir!',
+                    fr: '5x zones au sol chainées sur vous !',
                     ko: '따라오는 5연속 장판 피하기!',
                 },
             },

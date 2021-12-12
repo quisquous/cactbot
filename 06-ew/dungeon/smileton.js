@@ -20,6 +20,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Knockback (one row)',
                     de: 'Rückstoß (eine Reihe)',
+                    fr: 'Poussée (une ligne)',
                 },
             },
         },
@@ -100,14 +101,17 @@ Options.Triggers.push({
                 smiley: {
                     en: 'Get hit by blue smiley',
                     de: 'Von der blauen Grinsen treffen lassen',
+                    fr: 'Faites-vous toucher par un sourir bleu',
                 },
                 frowny: {
                     en: 'Get hit by red frowny',
                     de: 'Von dem roten Grimigen treffen lassen',
+                    fr: 'Faites-vous toucher par un visage en colère rouge',
                 },
                 either: {
                     en: 'Get hit by either color',
                     de: 'Von irgendeiner Farbe treffen lassen',
+                    fr: 'Faites-vous toucher par une couleur',
                 },
             },
         },
