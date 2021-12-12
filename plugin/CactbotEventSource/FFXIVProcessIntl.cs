@@ -527,6 +527,12 @@ namespace Cactbot {
 
     [StructLayout(LayoutKind.Explicit)]
     public struct BlackMageJobMemory {
+      [Flags]
+      public enum EnochianFlags : byte {
+        None = 0,
+        Enochian = 1,
+        Paradox = 2,
+      }
       [FieldOffset(0x00)]
       public ushort nextPolyglotMilliseconds; // Number of ms left before polyglot proc.
 
@@ -540,15 +546,21 @@ namespace Cactbot {
       public byte umbralHearts;
 
       [FieldOffset(0x06)]
-      public byte foulCount;
+      public byte polyglot;
 
       [NonSerialized]
       [FieldOffset(0x07)]
-      private byte enochian_state; // Bit 0 = Enochian active. Bit 1 = Polygot active.
+      private EnochianFlags enochian_state;
 
       public bool enochian {
         get {
-          return (enochian_state & 0xF) == 1;
+          return enochian_state.HasFlag(EnochianFlags.Enochian);
+        }
+      }
+
+      public bool paradox {
+        get {
+          return enochian_state.HasFlag(EnochianFlags.Paradox);
         }
       }
     };
