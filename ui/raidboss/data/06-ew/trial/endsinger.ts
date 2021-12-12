@@ -162,6 +162,7 @@ const triggerSet: TriggerSet<Data> = {
         avoidLasers: {
           en: 'Avoid Head Lasers',
           de: 'Weiche den Kopflaser aus',
+          ja: '顔の直線AoEを避ける',
           ko: '머리가 쏘는 레이저 피하기',
         },
       },
@@ -198,11 +199,13 @@ const triggerSet: TriggerSet<Data> = {
         cardinal: {
           en: 'Cardinal edge',
           de: 'Kardinaler Rand',
+          ja: '東西南北の端へ',
           ko: '동서남북 끝으로',
         },
         intercardinal: {
           en: 'Intercardinal edge',
           de: 'Interkardinaler Rand',
+          ja: '斜めの端へ',
           ko: '대각선 끝으로',
         },
       },
@@ -287,6 +290,7 @@ const triggerSet: TriggerSet<Data> = {
         direction: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
       },
@@ -404,7 +408,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Doomed Stars': '終の星',
         'Kakodaimon': 'カコダイモーン',
@@ -412,6 +415,9 @@ const triggerSet: TriggerSet<Data> = {
         'oblivion': 'カオティック・ディメンション',
       },
       'replaceText': {
+        '\\(cast\\)': '(キャスト)',
+        '\\(small\\)': '(小さい)',
+        '\\(big\\)': '(大きい)',
         'Aporrhoia': 'アポロイア',
         'Crash': '衝突',
         'Dead Star': '惑星崩壊',
