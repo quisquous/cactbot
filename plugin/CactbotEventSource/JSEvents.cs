@@ -139,7 +139,7 @@ namespace Cactbot {
 
       public Point3F pos;
       public float rotation;
-      public int bait;
+      public uint bait;
 
       // One of the FooJobDetails structures, depending on the value of |job|.
       public object jobDetail;
