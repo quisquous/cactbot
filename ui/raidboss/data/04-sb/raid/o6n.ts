@@ -187,11 +187,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': '차다르누크 악령',
         'Easterly': '극풍',
         'Haunt': '사념체',
+        'I have claimed the girl in the picture!': '우후후후…… 그림 속 여자는 내가 데려가마……',
         'Portrayal of Earth': '땅의 그림',
         'Portrayal of Fire': '불의 그림',
         'Portrayal of Water': '물의 그림',

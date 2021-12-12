@@ -914,8 +914,8 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Aero Assault': '갈기갈기 에어로가',
         'All Things Ending': '소멸의 발차기',
-        'big': '大',
-        'small': '小',
+        'big': '큼',
+        'small': '작음',
         'Blizzard Blitz': '빙글빙글 블리자가',
         'Blizzard\\+Thunder': '블리자드+선더',
         'Celestriad': '세 개의 별',

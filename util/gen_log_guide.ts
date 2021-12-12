@@ -369,8 +369,8 @@ const lineDocs: LineDocs = {
   },
   Tether: {
     regexes: {
-      network: NetRegexes.network6d({ capture: true }).source,
-      logLine: Regexes.network6d({ capture: true }).source,
+      network: NetRegexes.tether({ capture: true }).source,
+      logLine: Regexes.tether({ capture: true }).source,
     },
     examples: {
       'en-US': [

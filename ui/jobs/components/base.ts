@@ -22,6 +22,7 @@ export interface ComponentInterface {
   options: JobsOptions;
   partyTracker: PartyTracker;
   player: Player;
+  is5x: boolean;
 }
 
 export class BaseComponent implements ComponentInterface {
@@ -30,8 +31,10 @@ export class BaseComponent implements ComponentInterface {
   options: JobsOptions;
   partyTracker: PartyTracker;
   player: Player;
+  is5x: boolean;
 
   inCombat: boolean;
+  comboDuration: number;
 
   constructor(o: ComponentInterface) {
     this.bars = o.bars;
@@ -39,6 +42,8 @@ export class BaseComponent implements ComponentInterface {
     this.options = o.options;
     this.partyTracker = o.partyTracker;
     this.player = o.player;
+    this.is5x = o.is5x;
+    this.comboDuration = o.is5x ? 15 : 30;
 
     this.inCombat = false;
 

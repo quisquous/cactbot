@@ -15,6 +15,8 @@ export interface Party {
   inParty: boolean;
 }
 
+export type BardSongType = 'Ballad' | 'Paeon' | 'Minuet' | 'None';
+
 export interface JobDetail {
   'PLD': { oath: number };
   'WAR': { beast: number };
@@ -69,10 +71,12 @@ export interface JobDetail {
     ka: boolean;
   };
   'BRD': {
-    songName: 'Ballad' | 'Paeon' | 'Minuet' | 'None';
+    songName: BardSongType;
+    lastPlayed: BardSongType;
     songMilliseconds: number;
     songProcs: number;
     soulGauge: number;
+    coda: (BardSongType)[];
   };
   'MCH': {
     overheatMilliseconds: number;
@@ -124,6 +128,7 @@ export interface JobDetail {
   'RDM': {
     whiteMana: number;
     blackMana: number;
+    manaStacks: number;
   };
 }
 

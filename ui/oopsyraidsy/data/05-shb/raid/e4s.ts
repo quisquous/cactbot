@@ -64,7 +64,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A été écrasé(e)',
             ja: '突進に当たる',
             cn: '被碾了',
-            ko: matches.ability, // FIXME
+            ko: '돌진 맞음',
           },
         };
       },

@@ -72,7 +72,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
   // Build the regex from the fields.
   const prefix = defKey !== 'Ability' ? logDefinitions[defKey].messageType : abilityMessageType;
   const hexCode = defKey !== 'Ability'
-    ? `00${parseInt(logDefinitions[defKey].type).toString(16)}`.slice(-2)
+    ? `00${parseInt(logDefinitions[defKey].type).toString(16)}`.slice(-2).toUpperCase()
     : abilityHexCode;
 
   let str = '';
