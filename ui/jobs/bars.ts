@@ -141,6 +141,10 @@ export class Bars {
       barsContainer.classList.add('pvp');
     opacityContainer.appendChild(barsContainer);
 
+    const procsContainer = document.createElement('div');
+    procsContainer.id = 'procs-container';
+    opacityContainer.appendChild(procsContainer);
+
     if (shouldShow.buffList) {
       if (this.options.JustBuffTracker) {
         // Just alias these two together so the rest of the code doesn't have
@@ -255,8 +259,9 @@ export class Bars {
       container = document.createElement('div');
       container.id = elementId;
       document.getElementById('bars')?.appendChild(container);
-      container.classList.add('proc-box');
     }
+
+    document.getElementById('procs-container')?.appendChild(container);
 
     const timerBox = TimerBox.create({
       stylefill: 'empty',
