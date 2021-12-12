@@ -49,6 +49,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under Orb ${num}',
+          ja: '${num}番目の玉へ',
         },
       },
     },
@@ -61,6 +62,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Behind Orb ${num}',
+          ja: '${num}番目の玉の後ろへ',
         },
       },
     },
@@ -93,6 +95,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go behind empty spot',
+          ja: '玉のない箇所へ',
         },
       },
     },
@@ -107,6 +110,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go behind still clone',
+          ja: '動いていないドグの後ろへ',
         },
       },
     },
