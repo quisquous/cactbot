@@ -210,7 +210,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Bomb': 'Bombe',
+        '(?<!Excavation )Bomb': 'Bombe',
         'Excavation Bomb': 'Sprengladung',
         'Face': 'Fratze',
         'Frameworker': 'Rahmenwerker',
@@ -249,7 +249,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bomb': 'bombe',
+        '(?<!Excavation )Bomb': 'bombe',
         'Excavation Bomb': 'mine de forage',
         'Face': 'Visage Imperturbable',
         'Frameworker': 'ouvrier modeleur',
@@ -288,7 +288,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Bomb': '爆弾',
+        '(?<!Excavation )Bomb': '爆弾',
         'Excavation Bomb': '採掘爆弾',
         'Face': 'フェイス',
         'Frameworker': 'フレームワーカー',
