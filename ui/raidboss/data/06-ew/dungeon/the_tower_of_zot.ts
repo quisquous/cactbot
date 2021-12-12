@@ -227,7 +227,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Berserker Sphere': 'バーサクスフィア',
         'Cinduruva': 'マグ',
@@ -238,7 +237,9 @@ const triggerSet: TriggerSet<Data> = {
         'Wisdom\'S Ward': '知恵の間',
       },
       'replaceText': {
+        'Delayed Element III': '玉：？？？ガ',
         'Delta Attack': 'デルタアタック',
+        'Delta Blizzard/Fire/Thunder III': 'デルタ・ブリザガ/ファイガ/サンダガ',
         'Dhrupad': 'ドゥルパド',
         'Explosive Force': '起爆',
         'Isitva Siddhi': 'イシトヴァシッディ',
@@ -248,6 +249,7 @@ const triggerSet: TriggerSet<Data> = {
         'Manusya Blizzard(?! )': 'マヌシャ・ブリザド',
         'Manusya Blizzard III': 'マヌシャ・ブリザガ',
         'Manusya Confuse': 'マヌシャ・コンフュ',
+        'Manusya Element III': 'マヌシャ・？？？ガ',
         'Manusya Faith': 'マヌシャ・フェイス',
         'Manusya Fire(?! )': 'マヌシャ・ファイア',
         'Manusya Fire III': 'マヌシャ・ファイガ',
@@ -259,6 +261,7 @@ const triggerSet: TriggerSet<Data> = {
         'Prapti Siddhi': 'プラプティシッディ',
         'Samsara': 'サンサーラ',
         'Sphere Shatter': '破裂',
+        'Transmute Element III': '魔力操作：？？？ガ',
         'Transmute Thunder III': '魔力操作：サンダガ',
       },
     },
