@@ -21,10 +21,12 @@ const storedMechanicsOutputStrings = {
   groups: {
     en: 'Healer Groups',
     de: 'Heiler-Gruppen',
+    ko: '힐러 그룹 쉐어',
   },
   stack: {
     en: 'Party Stack',
     de: 'Mit der Party sammeln',
+    ko: '파티 전체 쉐어',
   },
 };
 
@@ -41,6 +43,7 @@ const comboOutputStrings = {
   combo: {
     en: '${first} => ${second}',
     de: '${first} => ${second}',
+    ko: '${first} => ${second}',
   },
 };
 
@@ -65,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
         intercards: {
           en: 'Intercards',
           de: 'Interkardinal',
+          ko: '대각선 쪽으로',
         },
       },
     },
@@ -307,7 +311,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Positions par rôle',
           ja: 'ロール特定位置へ',
           cn: '去指定位置',
-          ko: '1단리밋 산개위치로',
+          ko: '직업별 산개위치로',
         },
       },
     },
@@ -342,6 +346,7 @@ const triggerSet: TriggerSet<Data> = {
         avoid: {
           en: 'Avoid Line Ends',
           de: 'Weiche den Enden der Linien aus',
+          ko: '선의 끝부분 피하기',
         },
       },
     },
@@ -359,6 +364,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack 5x',
           de: '5x Sammeln',
+          ko: '쉐어 5번',
         },
       },
     },
