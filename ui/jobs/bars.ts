@@ -259,7 +259,6 @@ export class Bars {
       container = document.createElement('div');
       container.id = elementId;
       document.getElementById('bars')?.appendChild(container);
-      // container.classList.add('proc-box');
     }
 
     document.getElementById('procs-container')?.appendChild(container);
