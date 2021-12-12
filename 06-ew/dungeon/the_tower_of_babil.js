@@ -332,6 +332,7 @@ Options.Triggers.push({
                 'Thunderball': 'sphère de foudre',
             },
             'replaceText': {
+                '\\?': ' ?',
                 'Aetherial Pull': 'Aspiration',
                 'Boundless Pain': 'Lamento',
                 'Charnel Claw': 'Griffes nécrosantes',
