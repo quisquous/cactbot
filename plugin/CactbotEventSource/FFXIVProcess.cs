@@ -146,7 +146,7 @@ namespace Cactbot {
       public short level = 0;
       public string debug_job;
       public int shield_value = 0;
-      public int bait = 0;
+      public uint bait = 0;
 
       public override bool Equals(object obj) {
         return obj is EntityData o &&
@@ -264,8 +264,8 @@ namespace Cactbot {
       return active_process_id == process_.Id;
     }
 
-    internal int GetBait() {
-      short[] jorts = Read16(bait_addr_, 1);
+    internal uint GetBait() {
+      uint[] jorts = Read32U(bait_addr_, 1);
       return jorts[0];
     }
     public unsafe abstract EntityData GetEntityDataFromByteArray(byte[] source);

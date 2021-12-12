@@ -505,7 +505,7 @@ namespace Cactbot {
       public byte umbralHearts;
 
       [FieldOffset(0x06)]
-      public byte foulCount;
+      public byte polyglot;
 
       [NonSerialized]
       [FieldOffset(0x07)]

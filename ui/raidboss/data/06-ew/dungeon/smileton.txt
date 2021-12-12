@@ -1,0 +1,130 @@
+### Smileton
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~#
+# FACE #
+#~~~~~~#
+
+# -p 6735:1009
+# -ii 6741 6736 6737 6C5E 673A 673B 673C 673D
+
+1000.0 "--sync--" sync / 00:0839::Smileport will be sealed off/ window 10000,0
+1009.0 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
+1018.1 "Mixed Feelings" sync / 1[56]:[^:]*:Face:6738:/
+1023.2 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
+1032.3 "Mixed Feelings" sync / 1[56]:[^:]*:Face:6738:/
+1043.4 "Off My Lawn" sync / 1[56]:[^:]*:Face:673E:/
+1044.4 "Temper, Temper" sync / 1[56]:[^:]*:Face:6740:/
+1054.6 "Temper's Flare" sync / 1[56]:[^:]*:Face:6743:/
+
+1063.8 "Upside Down" sync / 1[56]:[^:]*:Face:6739:/
+1072.0 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
+1079.1 "Off My Lawn" sync / 1[56]:[^:]*:Face:673E:/
+1081.1 "Mixed Feelings" sync / 1[56]:[^:]*:Face:6738:/
+1091.3 "Upside Down" sync / 1[56]:[^:]*:Face:6739:/
+1099.5 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
+
+1106.7 "Temper, Temper" sync / 1[56]:[^:]*:Face:6740:/
+1108.7 "Mixed Feelings" sync / 1[56]:[^:]*:Face:6738:/
+1112.7 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
+1119.8 "Off My Lawn" sync / 1[56]:[^:]*:Face:673E:/
+1121.8 "Mixed Feelings" sync / 1[56]:[^:]*:Face:6738:/
+1133.0 "Heart on Fire IV" sync / 1[56]:[^:]*:Face:6742:/
+1140.2 "Temper's Flare" sync / 1[56]:[^:]*:Face:6743:/
+
+# TODO: Guessing at the loop here.  1158.6 is the latest seen in an actual log.
+1150.4 "Upside Down" sync / 1[56]:[^:]*:Face:6739:/ window 50,50 jump 1063.8
+1158.6 "Lines of Fire" #sync / 1[56]:[^:]*:Face:6735:/
+# guessing below here
+1165.7 "Off My Lawn" #sync / 1[56]:[^:]*:Face:673E:/
+1167.7 "Mixed Feelings" #sync / 1[56]:[^:]*:Face:6738:/
+1177.9 "Upside Down" #sync / 1[56]:[^:]*:Face:6739:/
+1186.1 "Lines of Fire" #sync / 1[56]:[^:]*:Face:6735:/
+
+
+#~~~~~~~~~~~~~#
+# FRAMEWORKER #
+#~~~~~~~~~~~~~#
+
+ # -p 6745:2011
+ # -ii 6749 674B
+
+2000.0 "--sync--" sync / 00:0839::The Welcome Wheel will be sealed off/ window 10000,0
+2011.0 "Circular Saw" sync / 1[56]:[^:]*:Frameworker:6745:/
+2017.6 "--sync--" sync / 1[56]:[^:]*:Frameworker:674A:/
+2022.8 "Leap Forward" sync / 1[56]:[^:]*:Frameworker:6746:/
+
+2032.0 "Print Workers" sync / 1[56]:[^:]*:Frameworker:6DBC:/
+2044.2 "Leap Forward" sync / 1[56]:[^:]*:Printed Worker:6747:/
+2059.2 "Omnidimensional Onslaught" sync / 1[56]:[^:]*:Frameworker:6748:/
+2070.4 "Print Workers" sync / 1[56]:[^:]*:Frameworker:6DBC:/
+2082.1 "Leap Forward" sync / 1[56]:[^:]*:Printed Worker:6747:/
+2095.6 "Print Workers" sync / 1[56]:[^:]*:Frameworker:6DBC:/
+2107.3 "Leap Forward" sync / 1[56]:[^:]*:Printed Worker:6747:/
+2112.0 "Leap Forward" sync / 1[56]:[^:]*:Frameworker:6746:/
+
+2122.2 "Print Workers" sync / 1[56]:[^:]*:Frameworker:6DBC:/
+2133.9 "Leap Forward" sync / 1[56]:[^:]*:Printed Worker:6747:/
+2136.4 "Omnidimensional Onslaught" sync / 1[56]:[^:]*:Frameworker:6748:/
+2140.6 "Steel Beam" sync / 1[56]:[^:]*:Frameworker:6744:/
+# ???
+
+#~~~~~~~~~~~~~~~~#
+# THE BIG CHEESE #
+#~~~~~~~~~~~~~~~~#
+
+# -p 674E:3009
+# -ii 674C 6755
+
+3000.0 "--sync--" sync / 00:0839::The Frame will be sealed off/ window 10000,0
+3009.0 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
+3022.2 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3028.2 "Piercing Missile" sync / 1[56]:[^:]*:The Big Cheese:6751:/
+3036.4 "Dispense Explosives" sync / 1[56]:[^:]*:The Big Cheese:6C30:/
+3037.6 "--sync--" sync / 1[56]:[^:]*:Excavation Bomb:6C34:/
+3041.6 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
+3054.8 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3058.8 "Explosive Power" sync / 1[56]:[^:]*:The Big Cheese:6C31:/
+3060.0 "Excavated" sync / 1[56]:[^:]*:Excavation Bomb:6C32:/
+3064.0 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
+
+3077.1 "Left Disassembler/Right Disassembler" sync / 1[56]:[^:]*:The Big Cheese:(674F|6750):/
+3077.1 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3086.2 "Dispense Explosives" sync / 1[56]:[^:]*:The Big Cheese:6C30:/
+3087.4 "--sync--" sync / 1[56]:[^:]*:Excavation Bomb:6C34:/
+3091.4 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
+3104.6 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3108.6 "Electric Arc" sync / 1[56]:[^:]*:The Big Cheese:6753:/
+3121.2 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+
+3124.7 "Left Disassembler/Right Disassembler" sync / 1[56]:[^:]*:The Big Cheese:(674F|6750):/
+3137.8 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3141.9 "Leveling Missile" sync / 1[56]:[^:]*:The Big Cheese:6754:/
+3147.0 "Explosive Power" sync / 1[56]:[^:]*:The Big Cheese:6C31:/
+3148.2 "Excavated" sync / 1[56]:[^:]*:Excavation Bomb:6C32:/
+3158.2 "Piercing Missile" sync / 1[56]:[^:]*:The Big Cheese:6751:/
+3165.3 "Violent Discharge" sync / 1[56]:[^:]*:The Big Cheese:6752:/
+3173.4 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
+
+3186.5 "Left Disassembler/Right Disassembler" sync / 1[56]:[^:]*:The Big Cheese:(674F|6750):/
+3186.5 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3196.6 "Dispense Explosives" sync / 1[56]:[^:]*:The Big Cheese:6C30:/
+3197.8 "--sync--" sync / 1[56]:[^:]*:Excavation Bomb:6C34:/
+3201.8 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
+3215.0 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3219.0 "Electric Arc" sync / 1[56]:[^:]*:The Big Cheese:6753:/
+3231.6 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
+3234.5 "Excavated" sync / 1[56]:[^:]*:Excavation Bomb:6C32:/
+
+3235.1 "Left Disassembler/Right Disassembler" sync / 1[56]:[^:]*:The Big Cheese:(674F|6750):/ window 30,30 jump 3124.7
+3248.3 "Iron Kiss" #sync / 1[56]:[^:]*:Bomb:674D:/
+3252.3 "Leveling Missile" #sync / 1[56]:[^:]*:The Big Cheese:6754:/
+3257.4 "Explosive Power" #sync / 1[56]:[^:]*:The Big Cheese:6C31:/
+3258.6 "Excavated" #sync / 1[56]:[^:]*:Excavation Bomb:6C32:/
+3268.6 "Piercing Missile" #sync / 1[56]:[^:]*:The Big Cheese:6751:/
+3275.7 "Violent Discharge" #sync / 1[56]:[^:]*:The Big Cheese:6752:/
+3283.8 "Explosives Distribution" #sync / 1[56]:[^:]*:The Big Cheese:674E:/

@@ -143,7 +143,6 @@ namespace Cactbot {
     private static SemaphoreSlim ceSemaphore;
     private Dictionary<string, ACSelfOPCodes> acselfopcodes = null;
     private Dictionary<string, CEDirectorOPCodes> cedirectoropcodes = null;
-    private bool initialized = false;
 
     private Type MessageType = null;
     private Type messageHeader = null;

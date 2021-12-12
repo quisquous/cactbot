@@ -208,6 +208,9 @@ const gWeatherIcons: { [weather: string]: string } = {
   'Thunderstorms': '&#x26A1;',
   'Showers': '&#x2614;',
   'Gloom': '&#x2639;',
+  'Rain': '&#x1F4A6;',
+  'Wind': '&#x1F32A;',
+  'Dust Storms': '&#x1F4A8;',
 } as const;
 const gNightIcon = '&#x1F319;';
 const gDayIcon = '&#x263C;';

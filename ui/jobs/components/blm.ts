@@ -130,7 +130,7 @@ export class BLMComponent extends BaseComponent {
         inCombat: this.inCombat,
       });
     }
-    const fouls = jobDetail.foulCount;
+    const fouls = jobDetail.polyglot;
     for (let i = 0; i < 2; ++i) {
       if (fouls > i)
         this.xenoStacks[i]?.classList.add('active');

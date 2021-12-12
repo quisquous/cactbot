@@ -162,6 +162,7 @@ const triggerSet: TriggerSet<Data> = {
         avoidLasers: {
           en: 'Avoid Head Lasers',
           de: 'Weiche den Kopflaser aus',
+          ko: '머리가 쏘는 레이저 피하기',
         },
       },
     },
@@ -197,10 +198,12 @@ const triggerSet: TriggerSet<Data> = {
         cardinal: {
           en: 'Cardinal edge',
           de: 'Kardinaler Rand',
+          ko: '동서남북 끝으로',
         },
         intercardinal: {
           en: 'Intercardinal edge',
           de: 'Interkardinaler Rand',
+          ko: '대각선 끝으로',
         },
       },
     },
@@ -284,6 +287,7 @@ const triggerSet: TriggerSet<Data> = {
         direction: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
       },
     },
@@ -333,6 +337,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
+        'Doomed Stars': 'Endzeitplanet',
         'Kakodaimon': 'Kakodæmon',
         'The Endsinger': 'Endsängerin',
         'oblivion': 'Chaosdimension',
@@ -368,6 +373,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        'Doomed Stars': 'Planète À L\'Agonie',
         'Kakodaimon': 'cacodæmon',
         'The Endsinger': 'chantre de l\'anéantissement',
         'oblivion': 'Ruée chaotique',
@@ -400,6 +406,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        'Doomed Stars': '終の星',
         'Kakodaimon': 'カコダイモーン',
         'The Endsinger': '終焉を謳うもの',
         'oblivion': 'カオティック・ディメンション',

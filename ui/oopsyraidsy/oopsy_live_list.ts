@@ -18,6 +18,7 @@ const kCopiedMessage = {
 
 const errorMessageEnableACTWS = {
   en: 'Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay -> Start',
+  de: 'Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay -> Start',
 };
 
 export class DeathReportLive {
