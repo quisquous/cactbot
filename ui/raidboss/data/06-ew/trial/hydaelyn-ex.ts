@@ -531,7 +531,6 @@ const triggerSet: TriggerSet<Data> = {
         'Highest Holy': 'ハイエストホーリー',
         'Incandescence': '幻閃光',
         'Infralateral Arc': 'ラテラルアーク',
-        'Lateral Aureole': 'サイド・オーレオール',
         'Light of the Crystal': 'ライト・オブ・クリスタル',
         'Lightwave': 'ライトウェーブ',
         'Magos\'s Radiance': 'マゴスラジエンス',
