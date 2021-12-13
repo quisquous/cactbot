@@ -70,14 +70,25 @@ export class ASTComponent extends BaseComponent {
     else
       this.cardBox.innerText = 'O';
 
-    // Show how many seals you already have
-    // Turn green when you have 3 seals
-    const sealCount = seals.length;
-    this.sealBox.innerText = sealCount.toString();
-    if (sealCount === 3)
-      this.sealBox.parentNode.classList.add('ready');
-    else
-      this.sealBox.parentNode.classList.remove('ready');
+    if (this.is5x) {
+      // Show how many kind of seals you already have
+      // Turn green when you have all 3 kinds of seal
+      const sealCount = new Set(seals).size;
+      this.sealBox.innerText = sealCount.toString();
+      if (sealCount === 3)
+        this.sealBox.parentNode.classList.add('ready');
+      else
+        this.sealBox.parentNode.classList.remove('ready');
+    } else {
+      // Show how many seals you already have
+      // Turn green when you have 3 seals
+      const sealCount = seals.length;
+      this.sealBox.innerText = sealCount.toString();
+      if (sealCount === 3)
+        this.sealBox.parentNode.classList.add('ready');
+      else
+        this.sealBox.parentNode.classList.remove('ready');
+    }
   }
 
   override onUseAbility(id: string): void {
