@@ -28,6 +28,7 @@ export class SGEComponent extends BaseComponent {
     // addersgall and addersting stacks
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'sge-stacks';
+    stacksContainer.classList.add('stacks');
     this.bars.addJobBarContainer().appendChild(stacksContainer);
 
     const addersgallStacksConstainer = document.createElement('div');
