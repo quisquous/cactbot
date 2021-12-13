@@ -40,6 +40,7 @@ export class WHMComponent extends BaseComponent {
     // BloodLily Gauge
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'whm-stacks';
+    stacksContainer.classList.add('stacks');
     this.bars.addJobBarContainer().appendChild(stacksContainer);
     const bloodlilyContainer = document.createElement('div');
     bloodlilyContainer.id = 'whm-stacks-bloodlily';
