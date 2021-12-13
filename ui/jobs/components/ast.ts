@@ -70,9 +70,9 @@ export class ASTComponent extends BaseComponent {
     else
       this.cardBox.innerText = 'O';
 
-    // Show how many kind of seals you already have
-    // Turn green when you have all 3 kinds of seal
-    const sealCount = new Set(seals).size;
+    // Show how many seals you already have
+    // Turn green when you have 3 seals
+    const sealCount = seals.length;
     this.sealBox.innerText = sealCount.toString();
     if (sealCount === 3)
       this.sealBox.parentNode.classList.add('ready');
@@ -90,7 +90,7 @@ export class ASTComponent extends BaseComponent {
         this.combustBox.duration = 18;
         break;
       case kAbility.Draw:
-        this.drawBox.duration = 30;
+        this.drawBox.duration = 30 + this.drawBox.value;
         break;
       case kAbility.LucidDreaming:
         this.lucidBox.duration = 60;
