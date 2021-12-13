@@ -440,6 +440,10 @@
   height: 210px;
 }
 
+#procs-container.compact {
+  top: 80px;
+}
+
 #procs-container > div {
   display: flex;
 
