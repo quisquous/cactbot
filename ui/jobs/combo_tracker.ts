@@ -12,6 +12,13 @@ type StartMap = {
 
 export type ComboCallback = (id: string | undefined, combo: ComboTracker) => void;
 
+/**
+ * Track combos that the current player uses.
+ *
+ * Emit `combo` event for each combo/comboBreakers skill
+ * - when cast in combo, skill => its HexID
+ * - when cast out of combo/cast comboBreakers, skill => undefined
+ */
 export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
   player: Player;
 
@@ -38,9 +45,6 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     this.comboBreakers = comboBreakers;
     // A tree of nodes.
     this.startMap = {}; // {} key => { id: str, next: { key => node } }
-    // Called for each combo/comboBreakers skill
-    // when cast in combo, skill => its HexID
-    // when cast out of combo/cast comboBreakers, skill => null
     this.considerNext = this.startMap;
     this.isFinalSkill = false;
 

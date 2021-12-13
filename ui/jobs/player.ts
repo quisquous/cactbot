@@ -148,7 +148,6 @@ export class PlayerBase {
 export class Player extends PlayerBase {
   ee: EventEmitter;
   jobsEmitter: JobsEventEmitter;
-  // TODO: should make combo tracker as event emitter too?
   combo: ComboTracker;
 
   constructor(jobsEmitter: JobsEventEmitter, private is5x: boolean) {
