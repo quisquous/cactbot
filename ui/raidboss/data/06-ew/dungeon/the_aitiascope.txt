@@ -1,0 +1,147 @@
+# The Aitiascope
+
+# TODO: Missing loop for Livia
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~~~~~~~~~~#
+# LIVIA THE UNDETERRED #
+#~~~~~~~~~~~~~~~~~~~~~~#
+
+# -p 6448:1012
+# -ii 60C3 6444 6446
+
+1000.0 "--sync--" sync / 00:0839::The Central Observatory will be sealed off/ window 10000,0
+1012.0 "Frustration" sync / 1[56]:[^:]*:Livia the Undeterred:6448:/
+1022.2 "Aglaea Bite" sync / 1[56]:[^:]*:Livia the Undeterred:6449:/
+1037.3 "Aglaea Climb" sync / 1[56]:[^:]*:Livia the Undeterred:6442:/
+1047.4 "Aglaea Climb" sync / 1[56]:[^:]*:Livia the Undeterred:6443:/
+1057.8 "Aglaea Shot" sync / 1[56]:[^:]*:Livia the Undeterred:6445:/
+1068.0 "Aglaea Shot" sync / 1[56]:[^:]*:Aethershot:6447:/
+
+1079.0 "Odi et Amo" sync / 1[56]:[^:]*:Livia the Undeterred:644B:/
+1083.9 "Ignis Amoris" sync / 1[56]:[^:]*:Livia the Undeterred:644C:/
+1089.1 "Ignis Odi" sync / 1[56]:[^:]*:Livia the Undeterred:644D:/
+1094.4 "Disparagement" sync / 1[56]:[^:]*:Livia the Undeterred:644A:/
+
+1105.6 "Frustration" sync / 1[56]:[^:]*:Livia the Undeterred:6448:/
+1117.0 "Aglaea Shot" sync / 1[56]:[^:]*:Livia the Undeterred:6445:/
+1127.1 "Aglaea Climb" sync / 1[56]:[^:]*:Livia the Undeterred:6442:/
+1128.2 "Aglaea Shot" sync / 1[56]:[^:]*:Aethershot:6447:/
+1128.2 "Aglaea Shot" sync / 1[56]:[^:]*:Aethershot:6447:/
+
+1138.3 "Frustration" sync / 1[56]:[^:]*:Livia the Undeterred:6448:/
+1150.6 "Odi et Amo" sync / 1[56]:[^:]*:Livia the Undeterred:644B:/
+1155.5 "Ignis Amoris" sync / 1[56]:[^:]*:Livia the Undeterred:644C:/
+1160.7 "Ignis Odi" sync / 1[56]:[^:]*:Livia the Undeterred:644D:/
+1167.7 "Aglaea Climb" sync / 1[56]:[^:]*:Livia the Undeterred:6442:/
+
+1180.8 "Frustration" sync / 1[56]:[^:]*:Livia the Undeterred:6448:/
+1194.0 "Aglaea Bite" sync / 1[56]:[^:]*:Livia the Undeterred:6449:/
+1207.4 "Disparagement" sync / 1[56]:[^:]*:Livia the Undeterred:644A:/
+1218.8 "Aglaea Shot" sync / 1[56]:[^:]*:Livia the Undeterred:6445:/
+1229.0 "Aglaea Shot" sync / 1[56]:[^:]*:Aethershot:6447:/
+1240.0 "Odi et Amo" sync / 1[56]:[^:]*:Livia the Undeterred:644B:/
+# ???
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# RHITAHTYN THE UNSHAKABLE #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# -p 6455:2012
+# -ii 6454
+
+2000.0 "--sync--" sync / 00:0839::The Saltcrystal Strings will be sealed off/ window 10000,0
+2012.0 "Tartarean Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6455:/
+2020.5 "Tartarean Spark" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6457:/
+
+# Initial Shield Skewer
+2027.7 "--north--" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/
+2034.0 "Vexillatio" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:644E:/
+2034.0 "Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:644F:/
+2048.1 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6450:/
+2051.3 "--sync--" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/
+# TODO: "--middle--"
+2059.5 "Anvil of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6456:/
+2065.7 "--sync--" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/
+2071.0 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6452:/
+2086.2 "Tartarean Spark" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6457:/
+2098.4 "Tartarean Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6455:/
+
+# Shield Skewer with Shrapnel Shell
+2105.6 "--north--" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/
+2111.9 "Vexillatio" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:644E:/
+2111.9 "Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:644F:/
+2118.0 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6452:/
+2132.2 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6450:/
+2135.3 "--sync--" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/
+2142.4 "Tartarean Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6455:/
+2150.6 "--sync--" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/
+2155.8 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6452:/
+2162.1 "Tartarean Spark" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6457:/
+2168.4 "Tartarean Spark" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6457:/
+2176.6 "Anvil of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6456:/
+2188.7 "Tartarean Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6455:/
+2200.9 "Tartarean Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6455:/
+
+# Guessing this is the loop.  Have only seen up to 2239.8 in logs.
+2210.1 "--north--" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/ window 30,30 jump 2105.6
+2216.4 "Vexillatio" #sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:644E:/
+2216.4 "Impact" #sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:644F:/
+2222.5 "Shrapnel Shell" #sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6452:/
+2236.7 "Shield Skewer" #sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6450:/
+2239.8 "--sync--" #sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6458:/
+
+
+#~~~~~~~~~~~~~~~~~~#
+# AMON THE UNDYING #
+#~~~~~~~~~~~~~~~~~~#
+
+3000.0 "--sync--" sync / 00:0839::The Midnight Downwell will be sealed off/ window 10000,0
+3012.0 "Dark Forte" sync / 1[56]:[^:]*:Amon the Undying:6464:/
+3022.2 "Thundaga Forte (proximity)" sync / 1[56]:[^:]*:Amon the Undying:645A:/
+3028.0 "Thundaga Forte 1" sync / 1[56]:[^:]*:Amon the Undying:645B:/
+3034.0 "Thundaga Forte 2" sync / 1[56]:[^:]*:Amon the Undying:645C:/
+3038.4 "Strophe" sync / 1[56]:[^:]*:Amon the Undying:645D:/
+3044.5 "Antistrophe" sync / 1[56]:[^:]*:Amon the Undying:645E:/
+3053.3 "Epode" sync / 1[56]:[^:]*:Amon the Undying:645F:/
+3061.7 "Left Firaga Forte/Right Firaga Forte" sync / 1[56]:[^:]*:Amon the Undying:646[01]:/
+3071.8 "Entr'acte" sync / 1[56]:[^:]*:Amon the Undying:6465:/
+3086.0 "Eruption Forte" sync / 1[56]:[^:]*:Amon the Undying:6468:/
+3091.0 "--sync--" sync / 1[56]:[^:]*:Ysayle's Spirit:6467:/
+3093.0 "Eruption Forte" sync / 1[56]:[^:]*:Amon the Undying:6468:/
+
+3105.7 "Dreams of Ice" sync / 1[56]:[^:]*:Ysayle's Spirit:6C6C:/
+3111.0 "Curtain Call" sync / 1[56]:[^:]*:Amon the Undying:6466:/
+
+3122.2 "Strophe" sync / 1[56]:[^:]*:Amon the Undying:645D:/
+3128.3 "Antistrophe" sync / 1[56]:[^:]*:Amon the Undying:645E:/
+3137.1 "Epode" sync / 1[56]:[^:]*:Amon the Undying:645F:/
+3146.4 "Left Firaga Forte/Right Firaga Forte" sync / 1[56]:[^:]*:Amon the Undying:646[01]:/
+3154.5 "Dark Forte" sync / 1[56]:[^:]*:Amon the Undying:6464:/
+3167.7 "Thundaga Forte (proximity)" sync / 1[56]:[^:]*:Amon the Undying:645A:/
+3173.5 "Thundaga Forte 1" sync / 1[56]:[^:]*:Amon the Undying:645B:/
+3179.5 "Thundaga Forte 2" sync / 1[56]:[^:]*:Amon the Undying:645C:/
+
+3186.9 "Left Firaga Forte/Right Firaga Forte" sync / 1[56]:[^:]*:Amon the Undying:646[01]:/
+3195.1 "Entr'acte" sync / 1[56]:[^:]*:Amon the Undying:6465:/
+3206.3 "Eruption Forte" sync / 1[56]:[^:]*:Amon the Undying:6085:/
+3210.3 "Eruption Forte" sync / 1[56]:[^:]*:Amon the Undying:6468:/
+3220.5 "Left Firaga Forte/Right Firaga Forte" sync / 1[56]:[^:]*:Amon the Undying:646[01]:/
+3230.7 "Left Firaga Forte/Right Firaga Forte" sync / 1[56]:[^:]*:Amon the Undying:646[01]:/
+3238.9 "Entr'acte" sync / 1[56]:[^:]*:Amon the Undying:6465:/
+3247.0 "Dark Forte" sync / 1[56]:[^:]*:Amon the Undying:6464:/
+3255.1 "Entr'acte" sync / 1[56]:[^:]*:Amon the Undying:6465:/
+
+3267.3 "Strophe" sync / 1[56]:[^:]*:Amon the Undying:645D:/ window 50,50 jump 3122.2
+3273.4 "Antistrophe" #sync / 1[56]:[^:]*:Amon the Undying:645E:/
+3282.2 "Epode" #sync / 1[56]:[^:]*:Amon the Undying:645F:/
+3291.5 "Left Firaga Forte/Right Firaga Forte" #sync / 1[56]:[^:]*:Amon the Undying:646[01]:/
+3299.6 "Dark Forte" #sync / 1[56]:[^:]*:Amon the Undying:6464:/
+3312.8 "Thundaga Forte (proximity)" #sync / 1[56]:[^:]*:Amon the Undying:645A:/
+3318.6 "Thundaga Forte 1" #sync / 1[56]:[^:]*:Amon the Undying:645B:/
+3324.6 "Thundaga Forte 2" #sync / 1[56]:[^:]*:Amon the Undying:645C:/
