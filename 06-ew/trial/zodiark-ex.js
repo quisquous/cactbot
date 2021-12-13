@@ -97,7 +97,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'ja',
-            'missingTranslations': true,
             'replaceSync': {
                 'Arcane Sigil': '秘紋',
                 'Behemoth': 'ベヒーモス',
@@ -114,6 +113,7 @@ Options.Triggers.push({
                 'Astral Eclipse': 'アストラルエクリプス',
                 'Astral Flow': 'アストラルフロウ',
                 'Esoteric Dyad': 'エソテリックダイアド',
+                'Esoteric Pattern': '秘紋図形',
                 '(?<!Triple )Esoteric Ray': 'エソテリックレイ',
                 'Esoteric Sect': 'エソテリックセクト',
                 'Esoterikos': 'エソーテリコス',

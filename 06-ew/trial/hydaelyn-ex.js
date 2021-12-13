@@ -3,11 +3,13 @@ const storedMechanicsOutputStrings = {
     groups: {
         en: 'Healer Groups',
         de: 'Heiler-Gruppen',
+        ja: 'ヒラに頭割り',
         ko: '힐러 그룹 쉐어',
     },
     stack: {
         en: 'Party Stack',
         de: 'Mit der Party sammeln',
+        ja: '全員集合',
         ko: '파티 전체 쉐어',
     },
 };
@@ -16,6 +18,7 @@ const crystallizeOutputStrings = {
     crystallize: {
         en: 'Crystallize: ${name}',
         de: 'Kristalisieren: ${name}',
+        ja: 'クリスタライズ: ${name}',
     },
 };
 const comboOutputStrings = {
@@ -23,6 +26,7 @@ const comboOutputStrings = {
     combo: {
         en: '${first} => ${second}',
         de: '${first} => ${second}',
+        ja: '${first} => ${second}',
         ko: '${first} => ${second}',
     },
 };
@@ -47,6 +51,7 @@ Options.Triggers.push({
                 intercards: {
                     en: 'Intercards',
                     de: 'Interkardinal',
+                    ja: '斜めへ',
                     ko: '대각선 쪽으로',
                 },
             },
@@ -325,6 +330,7 @@ Options.Triggers.push({
                 avoid: {
                     en: 'Avoid Line Ends',
                     de: 'Weiche den Enden der Linien aus',
+                    ja: '線の端から離れる',
                     ko: '선의 끝부분 피하기',
                 },
             },
@@ -343,6 +349,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack 5x',
                     de: '5x Sammeln',
+                    ja: '頭割り５回',
                     ko: '쉐어 5번',
                 },
             },
@@ -478,20 +485,22 @@ Options.Triggers.push({
         },
         {
             'locale': 'ja',
-            'missingTranslations': true,
             'replaceSync': {
                 'Hydaelyn': 'ハイデリン',
                 'Mystic Refulgence': '幻想光',
                 'Parhelion': 'パルヘリオン',
             },
             'replaceText': {
+                '--middle': '--中央',
+                '--top-middle': '--中央前方',
                 'Anthelion': 'アントゥヘリオン',
-                'Aureole': 'オーレオール',
+                'Aureole/Lateral Aureole': '(サイド?) オーレオール',
                 'Beacon': '光芒',
                 'Bright Spectrum': 'ブライトスペクトル',
                 'Crystalline Blizzard III': 'クリスタル・ブリザガ',
                 'Crystalline Stone III': 'クリスタル・ストンガ',
                 'Crystalline Water III': 'クリスタル・ウォタガ',
+                'Crystalline Water/Stone III': 'クリスタル・ウォタガ/ストンガ',
                 'Crystallize': 'クリスタライズ',
                 'Dichroic Spectrum': 'ダイクロイックスペクトル',
                 'Echoes': 'エコーズ',
@@ -504,7 +513,6 @@ Options.Triggers.push({
                 'Highest Holy': 'ハイエストホーリー',
                 'Incandescence': '幻閃光',
                 'Infralateral Arc': 'ラテラルアーク',
-                'Lateral Aureole': 'サイド・オーレオール',
                 'Light of the Crystal': 'ライト・オブ・クリスタル',
                 'Lightwave': 'ライトウェーブ',
                 'Magos\'s Radiance': 'マゴスラジエンス',
