@@ -115,6 +115,7 @@ const kPrefixToCategory = {
     de: 'Endwalker (EW 6.x)',
     fr: 'Endwalker (EW 6.x)',
     ja: '暁月のフィナーレ (6.x)',
+    cn: '晓月之终途 (6.x)',
     ko: '효월의 종언 (6.x)',
   },
   'user': {
