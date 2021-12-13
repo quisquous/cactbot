@@ -1,7 +1,7 @@
 import PartyTracker from '../../../resources/party';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
-import ComboTracker from '../combo_tracker';
+import { ComboTracker } from '../combo_tracker';
 import { JobsEventEmitter, PartialFieldMatches } from '../event_emitter';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';

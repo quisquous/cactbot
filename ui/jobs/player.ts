@@ -7,7 +7,7 @@ import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
 
-import ComboTracker from './combo_tracker';
+import { ComboTracker } from './combo_tracker';
 import { JobsEventEmitter, PartialFieldMatches } from './event_emitter';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 

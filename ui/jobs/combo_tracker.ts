@@ -9,7 +9,7 @@ type StartMap = {
 
 export type ComboCallback = (id?: string) => void;
 
-export default class ComboTracker {
+export class ComboTracker {
   comboTimer?: number;
   comboBreakers: readonly string[];
   startMap: StartMap;
