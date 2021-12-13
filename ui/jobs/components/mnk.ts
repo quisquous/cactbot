@@ -72,6 +72,7 @@ export class MNKComponent extends BaseComponent {
 
   override onYouLoseEffect(id: string): void {
     switch (id) {
+      // TODO: delete TwinSnakes after every region launch 6.0
       case EffectId.TwinSnakes:
       case EffectId.DisciplinedFist:
         this.twinSnakesBox.duration = 0;
@@ -89,6 +90,7 @@ export class MNKComponent extends BaseComponent {
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     switch (id) {
+      // TODO: delete TwinSnakes after every region launch 6.0
       case EffectId.TwinSnakes:
       case EffectId.DisciplinedFist:
         // -0.5 for logline delay
