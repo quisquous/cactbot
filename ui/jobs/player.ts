@@ -7,7 +7,7 @@ import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
 
-import { ComboTracker } from './combo_tracker';
+import { ComboCallback, ComboTracker } from './combo_tracker';
 import { JobsEventEmitter, PartialFieldMatches } from './event_emitter';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
@@ -25,7 +25,6 @@ export type SpeedBuffs = {
   circleOfPower: boolean;
 };
 
-export type ComboCallback = (id: string | undefined, combo: ComboTracker) => void;
 export type GainCallback = (id: string, matches: PartialFieldMatches<'GainsEffect'>) => void;
 export type LoseCallback = (id: string, matches: PartialFieldMatches<'LosesEffect'>) => void;
 export type AbilityCallback = (id: string, matches: PartialFieldMatches<'Ability'>) => void;
