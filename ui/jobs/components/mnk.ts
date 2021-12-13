@@ -73,6 +73,7 @@ export class MNKComponent extends BaseComponent {
   override onYouLoseEffect(id: string): void {
     switch (id) {
       case EffectId.TwinSnakes:
+      case EffectId.DisciplinedFist:
         this.twinSnakesBox.duration = 0;
         break;
       case EffectId.LeadenFist:
@@ -89,6 +90,7 @@ export class MNKComponent extends BaseComponent {
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     switch (id) {
       case EffectId.TwinSnakes:
+      case EffectId.DisciplinedFist:
         // -0.5 for logline delay
         this.twinSnakesBox.duration = parseFloat(matches.duration ?? '0') - 0.5;
         break;
