@@ -228,7 +228,17 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['6C91', '6F11'], source: 'ハイデリン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6C91', '6F11'], source: '海德林', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['6C91', '6F11'], source: '하이델린', capture: false }),
-      response: Responses.goSides(),
+      // Late in the fight there is a Crystallize -> Aureole combo.
+      alertText: (data, _matches, output) => {
+        if (data.crystallize)
+          return output.combo!({ first: output.sides!(), second: output[data.crystallize]!() });
+        return output.sides!();
+      },
+      run: (data) => delete data.crystallize,
+      outputStrings: {
+        ...comboOutputStrings,
+        sides: Outputs.sides,
+      },
     },
     {
       id: 'HydaelynEx Lateral Aureole',
@@ -239,7 +249,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['65C5', '6F13'], source: 'ハイデリン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['65C5', '6F13'], source: '海德林', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['65C5', '6F13'], source: '하이델린', capture: false }),
-      response: Responses.goFrontBack(),
+      alertText: (data, _matches, output) => {
+        if (data.crystallize)
+          return output.combo!({ first: output.frontBack!(), second: output[data.crystallize]!() });
+        return output.frontBack!();
+      },
+      run: (data) => delete data.crystallize,
+      outputStrings: {
+        ...comboOutputStrings,
+        frontBack: Outputs.goFrontBack,
+      },
     },
     {
       id: 'HydaelynEx Mousa\'s Scorn',
