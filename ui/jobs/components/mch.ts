@@ -57,7 +57,7 @@ export class MCHComponent extends BaseComponent {
     // Wild Fire Gauge
     this.stacksContainer = document.createElement('div');
     this.stacksContainer.id = 'mch-stacks';
-    this.stacksContainer.classList.add('hide');
+    this.stacksContainer.classList.add('stacks', 'hide');
     this.bars.addJobBarContainer().appendChild(this.stacksContainer);
     const wildFireContainer = document.createElement('div');
     wildFireContainer.id = 'mch-stacks-wildfire';

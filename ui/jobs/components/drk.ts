@@ -101,15 +101,20 @@ export class DRKComponent extends BaseComponent {
         break;
       }
       case kAbility.Delirium: {
-        this.delirium.duration = 10.5;
-        this.delirium.threshold = 20;
-        this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium.active');
-        this.tid2 = window.setTimeout(() => {
-          this.delirium.duration = 79.5;
-          this.delirium.threshold = this.player.gcdSkill * 2;
-          this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium');
-        }, 10000);
-        break;
+        if (this.is5x) {
+          this.delirium.duration = 10.5;
+          this.delirium.threshold = 20;
+          this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium.active');
+          this.tid2 = window.setTimeout(() => {
+            this.delirium.duration = 79.5;
+            this.delirium.threshold = this.player.gcdSkill * 2;
+            this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium');
+          }, 10000);
+          break;
+        } else {
+          this.delirium.duration = 60;
+          break;
+        }
       }
       case kAbility.LivingShadow: {
         this.livingShadow.duration = 24;

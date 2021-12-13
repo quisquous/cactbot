@@ -143,6 +143,7 @@ export class Bars {
 
     const procsContainer = document.createElement('div');
     procsContainer.id = 'procs-container';
+    procsContainer.classList.toggle('compact', this.options.CompactView);
     opacityContainer.appendChild(procsContainer);
 
     if (shouldShow.buffList) {

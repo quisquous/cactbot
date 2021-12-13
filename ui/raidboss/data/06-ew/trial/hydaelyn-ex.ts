@@ -21,11 +21,15 @@ const storedMechanicsOutputStrings = {
   groups: {
     en: 'Healer Groups',
     de: 'Heiler-Gruppen',
+    ja: 'ヒラに頭割り',
+    cn: '治疗分摊组',
     ko: '힐러 그룹 쉐어',
   },
   stack: {
     en: 'Party Stack',
     de: 'Mit der Party sammeln',
+    ja: '全員集合',
+    cn: '8人分摊',
     ko: '파티 전체 쉐어',
   },
 };
@@ -35,6 +39,7 @@ const crystallizeOutputStrings = {
   crystallize: {
     en: 'Crystallize: ${name}',
     de: 'Kristalisieren: ${name}',
+    ja: 'クリスタライズ: ${name}',
   },
 };
 
@@ -43,6 +48,8 @@ const comboOutputStrings = {
   combo: {
     en: '${first} => ${second}',
     de: '${first} => ${second}',
+    ja: '${first} => ${second}',
+    cn: '${first} => ${second}',
     ko: '${first} => ${second}',
   },
 };
@@ -68,6 +75,8 @@ const triggerSet: TriggerSet<Data> = {
         intercards: {
           en: 'Intercards',
           de: 'Interkardinal',
+          ja: '斜めへ',
+          cn: '四角',
           ko: '대각선 쪽으로',
         },
       },
@@ -223,7 +232,17 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['6C91', '6F11'], source: 'ハイデリン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6C91', '6F11'], source: '海德林', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['6C91', '6F11'], source: '하이델린', capture: false }),
-      response: Responses.goSides(),
+      // Late in the fight there is a Crystallize -> Aureole combo.
+      alertText: (data, _matches, output) => {
+        if (data.crystallize)
+          return output.combo!({ first: output.sides!(), second: output[data.crystallize]!() });
+        return output.sides!();
+      },
+      run: (data) => delete data.crystallize,
+      outputStrings: {
+        ...comboOutputStrings,
+        sides: Outputs.sides,
+      },
     },
     {
       id: 'HydaelynEx Lateral Aureole',
@@ -234,7 +253,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['65C5', '6F13'], source: 'ハイデリン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['65C5', '6F13'], source: '海德林', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['65C5', '6F13'], source: '하이델린', capture: false }),
-      response: Responses.goFrontBack(),
+      alertText: (data, _matches, output) => {
+        if (data.crystallize)
+          return output.combo!({ first: output.frontBack!(), second: output[data.crystallize]!() });
+        return output.frontBack!();
+      },
+      run: (data) => delete data.crystallize,
+      outputStrings: {
+        ...comboOutputStrings,
+        frontBack: Outputs.goFrontBack,
+      },
     },
     {
       id: 'HydaelynEx Mousa\'s Scorn',
@@ -346,6 +374,8 @@ const triggerSet: TriggerSet<Data> = {
         avoid: {
           en: 'Avoid Line Ends',
           de: 'Weiche den Enden der Linien aus',
+          ja: '線の端から離れる',
+          cn: '远离线',
           ko: '선의 끝부분 피하기',
         },
       },
@@ -364,6 +394,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack 5x',
           de: '5x Sammeln',
+          ja: '頭割り５回',
+          cn: '5连分摊',
           ko: '쉐어 5번',
         },
       },
@@ -496,20 +528,22 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Hydaelyn': 'ハイデリン',
         'Mystic Refulgence': '幻想光',
         'Parhelion': 'パルヘリオン',
       },
       'replaceText': {
+        '--middle': '--中央',
+        '--top-middle': '--中央前方',
         'Anthelion': 'アントゥヘリオン',
-        'Aureole': 'オーレオール',
+        'Aureole/Lateral Aureole': '(サイド?) オーレオール',
         'Beacon': '光芒',
         'Bright Spectrum': 'ブライトスペクトル',
         'Crystalline Blizzard III': 'クリスタル・ブリザガ',
         'Crystalline Stone III': 'クリスタル・ストンガ',
         'Crystalline Water III': 'クリスタル・ウォタガ',
+        'Crystalline Water/Stone III': 'クリスタル・ウォタガ/ストンガ',
         'Crystallize': 'クリスタライズ',
         'Dichroic Spectrum': 'ダイクロイックスペクトル',
         'Echoes': 'エコーズ',
@@ -522,7 +556,6 @@ const triggerSet: TriggerSet<Data> = {
         'Highest Holy': 'ハイエストホーリー',
         'Incandescence': '幻閃光',
         'Infralateral Arc': 'ラテラルアーク',
-        'Lateral Aureole': 'サイド・オーレオール',
         'Light of the Crystal': 'ライト・オブ・クリスタル',
         'Lightwave': 'ライトウェーブ',
         'Magos\'s Radiance': 'マゴスラジエンス',

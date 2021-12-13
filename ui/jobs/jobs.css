@@ -80,7 +80,7 @@
 
 .bar-container {
   position: relative;
-  width: 201px;
+  width: 202px;
   height: 0;
   background: rgba(30, 30, 30, 0.7);
 }
@@ -269,109 +269,38 @@
 }
 
 /* Stacks */
-#whm-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 206px;
-  height: 12px;
-}
-
-#sam-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 206px;
-  height: 12px;
-}
-
-#mch-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 206px;
-  height: 12px;
-}
-
-#mch-stacks.hide {
-  display: none;
-}
-
-#sge-stacks,
-#blm-stacks {
+.stacks {
   display: flex;
   margin-top: 1px;
   width: 202px;
   height: 12px;
+  align-items: stretch;
 }
 
-#smn-stacks {
+.stacks > * {
   display: flex;
-  margin-top: 1px;
-  width: 204px;
-  height: 12px;
-}
-
-#whm-stacks-bloodlily,
-#mch-stacks-wildfire,
-#smn-stacks-ruin4 {
+  margin-right: 2px;
+  flex: 1;
   width: 100%;
   height: 100%;
+  align-items: stretch;
 }
 
-#sge-stacks-addersgall,
-#sge-stacks-addersting,
-#blm-stacks-heart,
-#blm-stacks-xeno {
-  width: 50%;
-  height: 100%;
-}
-
-#sam-stacks-setsu,
-#sam-stacks-getsu,
-#sam-stacks-ka {
+.stacks > * > * {
   background-color: rgba(174, 227, 235, 0.2);
   margin-right: 2px;
   display: inline-block;
   border: 1px solid black;
-  width: calc(33% - 4px);
   height: 100%;
+  flex: 1;
 }
 
-#whm-stacks-bloodlily > div,
-#sge-stacks-addersgall > div,
-#sge-stacks-addersting > div,
-#blm-stacks-heart > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(33% - 4px);
-  height: 100%;
-}
-
-#mch-stacks-wildfire > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(16% - 3px);
-  height: 100%;
+.stacks :last-child {
+  margin-right: 0;
 }
 
 #blm-stacks-xeno > div {
   background-color: rgba(66, 19, 128, 0.2);
-  margin-left: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(50% - 4px);
-  height: 100%;
-}
-
-#smn-stacks-ruin4 > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(25% - 4px);
-  height: 100%;
 }
 
 #whm-stacks-bloodlily > div.active {
@@ -438,6 +367,10 @@
   align-items: baseline;
   width: 210px;
   height: 210px;
+}
+
+#procs-container.compact {
+  top: 80px;
 }
 
 #procs-container > div {
