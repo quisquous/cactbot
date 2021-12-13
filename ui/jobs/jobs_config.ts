@@ -19,6 +19,7 @@ UserConfig.registerOptions('jobs', {
       id: 'CompactView',
       name: {
         en: 'Enable compact view',
+        fr: 'Activer la vue compacte',
         ja: 'コンパクトUIを有効にする',
         cn: '启用紧凑视图',
       },
