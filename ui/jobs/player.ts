@@ -157,18 +157,7 @@ export class Player extends PlayerBase {
     this.jobsEmitter = jobsEmitter;
 
     // setup combo tracker
-    this.combo = ComboTracker.setup(this.is5x, (id) => {
-      this.emit('action/combo', id, this.combo);
-    });
-    this.on('action/you', (actionId) => {
-      this.combo.HandleAbility(actionId);
-    });
-    this.on('hp', ({ hp }) => {
-      if (hp === 0)
-        this.combo.AbortCombo();
-    });
-    // Combos are job specific.
-    this.on('job', () => this.combo.AbortCombo());
+    this.combo = ComboTracker.setup(this.is5x, this);
 
     // setup event emitter
     this.jobsEmitter.on('player', (ev) => this.processPlayerChangedEvent(ev));
@@ -179,8 +168,8 @@ export class Player extends PlayerBase {
     const wrapper: ComboCallback = (id, combo) => {
       callback(id, combo);
     };
-    this.on('action/combo', wrapper);
-    this.once('job', () => this.off('action/combo', wrapper));
+    this.combo.on('combo', wrapper);
+    this.once('job', () => this.combo.off('combo', wrapper));
   }
 
   onMobGainsEffectFromYou(callback: GainCallback): void {

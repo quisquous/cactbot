@@ -1,4 +1,7 @@
+import { EventEmitter } from 'eventemitter3';
+
 import { kAbility, kComboBreakers, kComboBreakers5x } from './constants';
+import { Player } from './player';
 
 type StartMap = {
   [s: string]: {
@@ -7,17 +10,30 @@ type StartMap = {
   };
 };
 
-export type ComboCallback = (id?: string) => void;
+export type ComboCallback = (id: string | undefined, combo: ComboTracker) => void;
 
-export class ComboTracker {
+export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
+  player: Player;
+
+  comboDelayMs: number;
   comboTimer?: number;
   comboBreakers: readonly string[];
   startMap: StartMap;
-  callback: ComboCallback;
   considerNext: StartMap;
   isFinalSkill: boolean;
 
-  constructor(comboBreakers: readonly string[], callback: ComboCallback) {
+  constructor(
+    { comboBreakers, player, comboDelayMs }: {
+      player: Player;
+      comboBreakers: readonly string[];
+      comboDelayMs: number;
+    },
+  ) {
+    super();
+
+    this.player = player;
+
+    this.comboDelayMs = comboDelayMs;
     this.comboTimer = undefined;
     this.comboBreakers = comboBreakers;
     // A tree of nodes.
@@ -25,9 +41,17 @@ export class ComboTracker {
     // Called for each combo/comboBreakers skill
     // when cast in combo, skill => its HexID
     // when cast out of combo/cast comboBreakers, skill => null
-    this.callback = callback;
     this.considerNext = this.startMap;
     this.isFinalSkill = false;
+
+    // register events
+    this.player.on('action/you', (id) => this.HandleAbility(id));
+    this.player.on('hp', ({ hp }) => {
+      if (hp === 0)
+        this.AbortCombo();
+    });
+    // Combos are job specific.
+    this.player.on('job', () => this.AbortCombo());
   }
 
   AddCombo(skillList: string[]): void {
@@ -65,26 +89,26 @@ export class ComboTracker {
       this.considerNext = this.startMap;
     } else {
       this.considerNext = Object.assign({}, this.startMap, nextState?.next);
-      const kComboDelayMs = 15000;
       this.comboTimer = window.setTimeout(() => {
         this.AbortCombo();
-      }, kComboDelayMs);
+      }, this.comboDelayMs);
     }
 
     // If not aborting, then this is a valid combo skill.
-    if (nextState)
-      this.callback(id);
-    else
-      this.callback();
+    this.emit('combo', nextState ? id : undefined, this);
   }
 
   AbortCombo(id?: string): void {
     this.StateTransition(id);
   }
 
-  static setup(is5x: boolean, callback: ComboCallback): ComboTracker {
+  static setup(is5x: boolean, player: Player): ComboTracker {
     const breakers = is5x ? kComboBreakers5x : kComboBreakers;
-    const comboTracker = new ComboTracker(breakers, callback);
+    const comboTracker = new ComboTracker({
+      player: player,
+      comboBreakers: breakers,
+      comboDelayMs: is5x ? 15000 : 30000,
+    });
     // PLD
     comboTracker.AddCombo([
       kAbility.FastBlade,
