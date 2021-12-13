@@ -56,7 +56,7 @@ export class WARComponent extends BaseComponent {
       this.comboTimer.duration = this.comboDuration;
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
-    if (id !== EffectId.SurgingTempest)
+    if (id !== EffectId.SurgingTempest && id !== EffectId.StormsEye)
       return;
     const duration = parseFloat(matches.duration ?? '0');
     // TODO: the buff duration for Storm's Eye appears to be somewhat of a lie.
@@ -72,7 +72,7 @@ export class WARComponent extends BaseComponent {
     this.eyeBox.duration = duration + bonus;
   }
   override onYouLoseEffect(id: string): void {
-    if (id === EffectId.SurgingTempest)
+    if (id === EffectId.SurgingTempest || id === EffectId.StormsEye)
       this.eyeBox.duration = 0;
   }
 
