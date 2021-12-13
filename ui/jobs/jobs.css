@@ -299,6 +299,10 @@
   margin-right: 0;
 }
 
+#blm-stacks-xeno > div {
+  background-color: rgba(66, 19, 128, 0.2);
+}
+
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
 }
