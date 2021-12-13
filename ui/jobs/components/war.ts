@@ -56,6 +56,7 @@ export class WARComponent extends BaseComponent {
       this.comboTimer.duration = this.comboDuration;
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
+    // delete StormsEye after 6.x everywhere
     if (id !== EffectId.SurgingTempest && id !== EffectId.StormsEye)
       return;
     const duration = parseFloat(matches.duration ?? '0');
@@ -72,6 +73,7 @@ export class WARComponent extends BaseComponent {
     this.eyeBox.duration = duration + bonus;
   }
   override onYouLoseEffect(id: string): void {
+    // delete StormsEye after 6.x everywhere
     if (id === EffectId.SurgingTempest || id === EffectId.StormsEye)
       this.eyeBox.duration = 0;
   }
