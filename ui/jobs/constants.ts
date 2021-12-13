@@ -273,7 +273,9 @@ export const kAbility = {
   LucidDreaming: '1D8A',
 } as const;
 
-export const kComboActions = [
+// Combo actions for every jobs, this would apply to ComboTracker when
+// it is initialized, for determining whether the current action is in combo.
+export const kComboActions: string[][] = [
   // PLD
   [
     kAbility.FastBlade,
