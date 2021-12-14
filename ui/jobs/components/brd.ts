@@ -95,6 +95,7 @@ export class BRDComponent extends BaseComponent {
     this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song');
     this.repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
     this.repertoireBox.innerText = '';
+    // TODO: These threshold have not been adjust to fit EW
     if (jobDetail.songName === 'Minuet') {
       this.repertoireBox.innerText = jobDetail.songProcs.toString();
       this.repertoireBox.parentNode.classList.add('minuet');
@@ -115,12 +116,12 @@ export class BRDComponent extends BaseComponent {
       this.songBox.threshold = 13;
     }
 
-    if (typeof this.songBox.duration === 'number') {
-      const oldSeconds = this.songBox.duration - this.songBox.elapsed;
-      const seconds = jobDetail.songMilliseconds / 1000.0;
-      if (!this.songBox.duration || seconds > oldSeconds)
-        this.songBox.duration = seconds;
-    }
+    if (this.songBox.duration === null)
+      this.songBox.duration = 0;
+    const oldSeconds = this.songBox.duration - this.songBox.elapsed;
+    const seconds = jobDetail.songMilliseconds / 1000.0;
+    if (!this.songBox.duration || seconds > oldSeconds)
+      this.songBox.duration = seconds;
 
     // Soul Voice
     const soulGauge = jobDetail.soulGauge.toString();
