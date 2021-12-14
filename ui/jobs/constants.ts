@@ -190,6 +190,9 @@ export const kAbility = {
   HissatsuSenei: '4061',
   // BRD
   BattleVoice: '76',
+  MagesBallad: '72',
+  ArmysPaeon: '74',
+  theWanderersMinuet: 'DE7',
   // MCH
   SplitShot: 'B32',
   SlugShot: 'B34',

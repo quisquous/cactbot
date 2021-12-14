@@ -3,7 +3,7 @@ import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
-import { kDoTTickInterval } from '../constants';
+import { kAbility, kDoTTickInterval } from '../constants';
 import { DotTracker } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
 
@@ -16,7 +16,7 @@ export class BRDComponent extends BaseComponent {
   songBox: TimerBox;
   repertoireBox: ResourceBox;
   repertoireTimer: TimerBar;
-  repertoireTracker: DotTracker;
+  repertoireTracker5x: DotTracker;
   soulVoiceBox: ResourceBox;
 
   ethosStacks = 0;
@@ -50,17 +50,23 @@ export class BRDComponent extends BaseComponent {
     });
     this.repertoireTimer.toward = 'right';
     this.repertoireTimer.stylefill = 'fill';
-    // Only with-DoT-target you last attacked will trigger bars timer.
-    // So it work not well in multiple targets fight.
-    this.repertoireTracker = new DotTracker({ emitter: this.emitter, player: this.player });
-    this.repertoireTracker.onTick([
-      EffectId.Stormbite,
-      EffectId.Windbite,
-      EffectId.CausticBite,
-      EffectId.VenomousBite,
-    ], () => {
-      this.repertoireTimer.duration = kDoTTickInterval;
-    });
+
+    this.repertoireTracker5x = new DotTracker({ emitter: this.emitter, player: this.player });
+    if (this.is5x) {
+      // Only with-DoT-target you last attacked will trigger bars timer.
+      // So it work not well in multiple targets fight.
+      this.repertoireTracker5x.onTick([
+        EffectId.Stormbite,
+        EffectId.Windbite,
+        EffectId.CausticBite,
+        EffectId.VenomousBite,
+      ], () => {
+        this.repertoireTimer.duration = kDoTTickInterval;
+      });
+    } else {
+      this.repertoireTimer.loop = true;
+    }
+
     this.soulVoiceBox = this.bars.addResourceBox({
       classList: ['brd-color-soulvoice'],
     });
@@ -73,6 +79,20 @@ export class BRDComponent extends BaseComponent {
     this.straightShotProc.bigatzero = false;
   }
 
+  override onUseAbility(id: string): void {
+    switch (id) {
+      case kAbility.MagesBallad:
+      case kAbility.ArmysPaeon:
+      case kAbility.theWanderersMinuet:
+        // Seem EW BRD's repertoire always tick every 3s after song start
+        // 45s and 0s not included
+        // FIXME: stop timer when song is at last 3s or ended
+        if (!this.is5x)
+          this.repertoireTimer.duration = 3;
+        break;
+    }
+  }
+
   override onMobGainsEffectFromYou(id: string): void {
     // Iron jaws just refreshes these effects by gain once more,
     // so it doesn't need to be handled separately.
@@ -81,12 +101,18 @@ export class BRDComponent extends BaseComponent {
     switch (id) {
       case EffectId.Stormbite:
       case EffectId.Windbite:
-        this.stormBiteBox.duration = 45 - 0.5;
+        if (this.is5x)
+          this.stormBiteBox.duration = 30 - 0.5;
+        else
+          this.stormBiteBox.duration = 45 - 0.5;
         break;
 
       case EffectId.CausticBite:
       case EffectId.VenomousBite:
-        this.causticBiteBox.duration = 45 - 0.5;
+        if (this.is5x)
+          this.causticBiteBox.duration = 30 - 0.5;
+        else
+          this.causticBiteBox.duration = 45 - 0.5;
         break;
     }
   }
@@ -149,7 +175,10 @@ export class BRDComponent extends BaseComponent {
   override onYouGainEffect(id: string): void {
     switch (id) {
       case EffectId.StraightShotReady:
-        this.straightShotProc.duration = 30;
+        if (this.is5x)
+          this.straightShotProc.duration = 10;
+        else
+          this.straightShotProc.duration = 30;
         break;
       // Bard is complicated
       // Paeon -> Minuet/Ballad -> muse -> muse ends
