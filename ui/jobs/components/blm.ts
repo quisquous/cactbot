@@ -23,6 +23,12 @@ export class BLMComponent extends BaseComponent {
 
     this.umbralStacks = 0;
 
+    this.fireProc = this.bars.addProcBox({
+      id: 'blm-procs-fire',
+      fgColor: 'blm-color-fire',
+      threshold: 1000,
+    });
+    this.fireProc.bigatzero = false;
     this.thunderDot = this.bars.addProcBox({
       id: 'blm-dot-thunder',
       fgColor: 'blm-color-dot',
@@ -35,12 +41,6 @@ export class BLMComponent extends BaseComponent {
       threshold: 1000,
     });
     this.thunderProc.bigatzero = false;
-    this.fireProc = this.bars.addProcBox({
-      id: 'blm-procs-fire',
-      fgColor: 'blm-color-fire',
-      threshold: 1000,
-    });
-    this.fireProc.bigatzero = false;
 
     // It'd be super nice to use grid here.
     // Maybe some day when cactbot uses new cef.
