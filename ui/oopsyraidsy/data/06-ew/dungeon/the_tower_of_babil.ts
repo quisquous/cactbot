@@ -14,6 +14,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Babil Satellite Incendiary Circle': '6DE3', // Large donut AoE, before first boss
     'Babil Reaper Magitek Cannon': '6DE4', // AOE circle, before first boss
 
+    'Babil Barnabas Ground and Pound': '62EA', // Telegraphed line knockback, boss 1
+    'Babil Barnabas Dynamic Scrapline': '62F0', // Inner circle during Dynamic Scrapline, boss 1
+    'Babil Barnabas Dynamic Pound': '62EE', // Line during Dynamic Pound, boss 1
     'Babil Barnabas Electromagnetic Release 1': '62F1', // Center AoE circle, boss 1
     'Babil Barnabas Electromagnetic Release 2': '62EF', // Center magnetic line, boss 1
     'Babil Barnabas Rolling Scrapline': '62EB', // Center AoE circle, no magnets, boss 1
