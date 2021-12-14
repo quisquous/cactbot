@@ -17,6 +17,9 @@ export const kMPTickInterval = 3.0;
  */
 export const kDoTTickInterval = 70 * 60 / (1 * 24 * 60);
 
+export const kComboDelay = 30;
+export const kComboDelay5x = 15;
+
 export const kWellFedContentTypes: number[] = [
   ContentType.Dungeons,
   ContentType.Trials,

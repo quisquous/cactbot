@@ -1,6 +1,6 @@
 import { EventEmitter } from 'eventemitter3';
 
-import { kComboActions, kComboBreakers, kComboBreakers5x } from './constants';
+import { kComboActions, kComboBreakers, kComboBreakers5x, kComboDelay, kComboDelay5x } from './constants';
 import { Player } from './player';
 
 type StartMap = {
@@ -111,7 +111,7 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     const comboTracker = new ComboTracker({
       player: player,
       comboBreakers: breakers,
-      comboDelayMs: is5x ? 15000 : 30000,
+      comboDelayMs: (is5x ? kComboDelay5x : kComboDelay) * 1000,
     });
     kComboActions.forEach((skillList) => comboTracker.AddCombo(skillList));
     return comboTracker;

@@ -2,6 +2,7 @@ import PartyTracker from '../../../resources/party';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { ComboTracker } from '../combo_tracker';
+import { kComboDelay, kComboDelay5x } from '../constants';
 import { JobsEventEmitter, PartialFieldMatches } from '../event_emitter';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
@@ -43,7 +44,7 @@ export class BaseComponent implements ComponentInterface {
     this.partyTracker = o.partyTracker;
     this.player = o.player;
     this.is5x = o.is5x;
-    this.comboDuration = o.is5x ? 15 : 30;
+    this.comboDuration = o.is5x ? kComboDelay5x : kComboDelay;
 
     this.inCombat = false;
 
