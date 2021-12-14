@@ -138,8 +138,9 @@
 05-shb/trial/wol-ex.ts
 05-shb/ultimate/the_epic_of_alexander.ts
 06-ew/dungeon/smileton.ts
+06-ew/dungeon/the_aitiascope.ts
+06-ew/dungeon/the_tower_of_babil.ts
 06-ew/dungeon/the_tower_of_zot.ts
 06-ew/dungeon/vanaspati.ts
 06-ew/trial/hydaelyn-ex.ts
 06-ew/trial/zodiark.ts
-06-ew/dungeon/the_tower_of_babil.ts
