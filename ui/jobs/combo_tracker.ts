@@ -1,6 +1,12 @@
 import { EventEmitter } from 'eventemitter3';
 
-import { kComboActions, kComboBreakers, kComboBreakers5x, kComboDelay, kComboDelay5x } from './constants';
+import {
+  kComboActions,
+  kComboBreakers,
+  kComboBreakers5x,
+  kComboDelay,
+  kComboDelay5x,
+} from './constants';
 import { Player } from './player';
 
 type StartMap = {
