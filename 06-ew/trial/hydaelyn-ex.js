@@ -104,6 +104,17 @@ Options.Triggers.push({
             response: Responses.aoe(),
         },
         {
+            id: 'HydaelynEx Parhelion Tracker',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '65B0', source: 'Hydaelyn', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '65B0', source: 'Hydaelyn', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '65B0', source: 'Hydaelyn', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '65B0', source: 'ハイデリン', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '65B0', source: '海德林', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '65B0', source: '하이델린', capture: false }),
+            run: (data) => data.parhelion = true,
+        },
+        {
             id: 'HydaelynEx Crystallize Water',
             type: 'Ability',
             // We could call this out on startsUsing, but no action needs to be taken for ~17 seconds,
@@ -117,6 +128,29 @@ Options.Triggers.push({
             infoText: (_data, _matches, output) => output.crystallize({ name: output.groups() }),
             run: (data) => data.crystallize = 'groups',
             outputStrings: crystallizeOutputStrings,
+        },
+        {
+            // During Parhelion, there's a Crystallize Water with no mechanic in between.
+            id: 'HydaelynEx Crystallize Water Parhelion',
+            type: 'Ability',
+            netRegex: NetRegexes.ability({ id: ['659A', '6ED5'], source: 'Hydaelyn', capture: false }),
+            netRegexDe: NetRegexes.ability({ id: ['659A', '6ED5'], source: 'Hydaelyn', capture: false }),
+            netRegexFr: NetRegexes.ability({ id: ['659A', '6ED5'], source: 'Hydaelyn', capture: false }),
+            netRegexJa: NetRegexes.ability({ id: ['659A', '6ED5'], source: 'ハイデリン', capture: false }),
+            netRegexCn: NetRegexes.ability({ id: ['659A', '6ED5'], source: '海德林', capture: false }),
+            netRegexKo: NetRegexes.ability({ id: ['659A', '6ED5'], source: '하이델린', capture: false }),
+            condition: (data) => data.parhelion,
+            // There's 10 seconds between Crystallize Water ability and action in this one case.
+            // Subparhelion occurs ~2s before, but that's too soon.
+            delaySeconds: 5,
+            alertText: (_data, _matches, output) => output.groups(),
+            run: (data) => {
+                delete data.crystallize;
+                delete data.parhelion;
+            },
+            outputStrings: {
+                groups: crystallizeOutputStrings.groups,
+            },
         },
         {
             id: 'HydaelynEx Crystallize Ice',
