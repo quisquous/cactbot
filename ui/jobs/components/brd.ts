@@ -147,7 +147,7 @@ export class BRDComponent extends BaseComponent {
   override onYouGainEffect(id: string): void {
     switch (id) {
       case EffectId.StraightShotReady:
-        this.straightShotProc.duration = 10;
+        this.straightShotProc.duration = 30;
         break;
       // Bard is complicated
       // Paeon -> Minuet/Ballad -> muse -> muse ends
