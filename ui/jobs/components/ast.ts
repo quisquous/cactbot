@@ -101,7 +101,10 @@ export class ASTComponent extends BaseComponent {
         this.combustBox.duration = 18;
         break;
       case kAbility.Draw:
-        this.drawBox.duration = 30 + this.drawBox.value;
+        if (this.is5x)
+          this.drawBox.duration = 30;
+        else
+          this.drawBox.duration = 30 + this.drawBox.value;
         break;
       case kAbility.LucidDreaming:
         this.lucidBox.duration = 60;
