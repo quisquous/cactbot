@@ -26,17 +26,15 @@ hideall "--sync--"
 111.7 "Chemical Missile" sync / 1[56]:[^:]*:Proto-Omega:6328:/
 116.8 "Burn" sync / 1[56]:[^:]*:Proto-Omega:6329:/
 
-# TODO This is likely inaccurate past Mustard Bomb.
+# TODO This is likely inaccurate, but it's all we have.
 # More data is needed.
-120.4 "Iron Kiss" sync / 1[56]:[^:]*:Mark II Guided Missile:6327:/
-129.8 "Electric Slide" sync / 1[56]:[^:]*:Proto-Omega:632A:/
-145.9 "Mustard Bomb" sync / 1[56]:[^:]*:Proto-Omega:632B:/
-158.1 "Side Cannons" sync / 1[56]:[^:]*:Proto-Omega:(6320|6321):/ window 10,10
-166.3 "Guided Missile" sync / 1[56]:[^:]*:Proto-Omega:6326:/
-173.4 "Chemical Missile" sync / 1[56]:[^:]*:Proto-Omega:6328:/
-178.5 "Burn" sync / 1[56]:[^:]*:Proto-Omega:6329:/
-
-# ???
+120.4 "Iron Kiss" sync / 1[56]:[^:]*:Mark II Guided Missile:6327:/ jump 65.6
+127.8 "Electric Slide"
+139.0 "Mustard Bomb"
+151.2 "Side Cannons"
+159.4 "Guided Missile"
+166.5 "Chemical Missile"
+171.6 "Burn"
 
 #~~~~~~~~~~~~~#
 # ARCH-LAMBDA #

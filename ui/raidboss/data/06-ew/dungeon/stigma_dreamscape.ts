@@ -6,6 +6,8 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Does Mustard Bomb cleave? Should it be tankCleave() instead?
+
 export interface Data extends RaidbossData {
   lastBoss: boolean;
 }
@@ -105,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go to second dash side',
+          en: 'Get to wall at last dash',
         },
       },
     },
@@ -133,9 +135,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       // Dragons spawn outside the last boss, but those ones don't matter.
       // Ensure that we don't say anything until the player has engaged the last boss.
+      // 6435 is Plasmafodder, Stigma-4's auto-attack.
       id: 'Dreamscape Last Boss',
-      type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'A-4 Headquarters will be sealed off.*?', capture: false }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6435', source: 'Stigma-4', capture: false }),
       run: (data) => data.lastBoss = true,
     },
     {
@@ -155,7 +158,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.lastBoss,
       infoText: (_data, matches, output) => {
         // The arena is a 50x50 square, with (0,0) in the exact center.
-        const isEast = parseFloat(matches.x) > 5;
+        const isEast = parseFloat(matches.x) > 0;
         if (isEast)
           return output.east!();
         return output.west!();
