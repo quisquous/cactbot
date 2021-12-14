@@ -25,7 +25,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Babil Sky Armor Aethershot': '6DE7', // Circle AoE, after boss 1
     'Babil Rearguard Cermet Pile': '6DE8', // Line AoE, before boss 2
     'Babil Colossus Grand Sword': '6DE9', // Frontal cone, before boss 2
-    'Babil Avenger Shoulder Cannon': '6DEA', // AoE circle, before boss 2
+    'Babil Avenger Shoulder Cannon': '6DEA', // Targeted AoE circle, before boss 2
+    'Babil Death Machine Magitek Ray': '6DEB', // Long line AoE, before boss 2
 
     'Babil Magitek Chakram Mighty Blow': '62F4', // Arena AoE, if not mini, boss 2
     'Babil Lugae Surface Missile': '62F7', // Targeted AoE circles from Magitek Missile, boss 2
