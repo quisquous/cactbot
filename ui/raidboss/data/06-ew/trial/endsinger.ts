@@ -347,9 +347,9 @@ const triggerSet: TriggerSet<Data> = {
         'oblivion': 'Chaosdimension',
       },
       'replaceText': {
-        '\(big\)': '(groß)',
-        '\(cast\)': '(Wirkung)',
-        '\(small\)': '(klein)',
+        '\\(big\\)': '(groß)',
+        '\\(cast\\)': '(Wirkung)',
+        '\\(small\\)': '(klein)',
         'Aporrhoia': 'Aporia',
         'Crash': 'Impakt',
         'Dead Star': 'Planetenkollaps',
