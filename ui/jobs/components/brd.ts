@@ -81,12 +81,12 @@ export class BRDComponent extends BaseComponent {
     switch (id) {
       case EffectId.Stormbite:
       case EffectId.Windbite:
-        this.stormBiteBox.duration = 30 - 0.5;
+        this.stormBiteBox.duration = 45 - 0.5;
         break;
 
       case EffectId.CausticBite:
       case EffectId.VenomousBite:
-        this.causticBiteBox.duration = 30 - 0.5;
+        this.causticBiteBox.duration = 45 - 0.5;
         break;
     }
   }
