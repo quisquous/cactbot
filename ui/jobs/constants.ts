@@ -17,6 +17,9 @@ export const kMPTickInterval = 3.0;
  */
 export const kDoTTickInterval = 70 * 60 / (1 * 24 * 60);
 
+export const kComboDelay = 30;
+export const kComboDelay5x = 15;
+
 export const kWellFedContentTypes: number[] = [
   ContentType.Dungeons,
   ContentType.Trials,
@@ -275,6 +278,131 @@ export const kAbility = {
   // Role Action
   LucidDreaming: '1D8A',
 } as const;
+
+// Combo actions for every jobs, this would apply to ComboTracker when
+// it is initialized, for determining whether the current action is in combo.
+export const kComboActions: string[][] = [
+  // PLD
+  [
+    kAbility.FastBlade,
+    kAbility.RiotBlade,
+    kAbility.GoringBlade,
+  ],
+  // WAR
+  [
+    kAbility.HeavySwing,
+    kAbility.Maim,
+    kAbility.StormsEye,
+  ],
+  [
+    kAbility.HeavySwing,
+    kAbility.Maim,
+    kAbility.StormsPath,
+  ],
+  [
+    kAbility.Overpower,
+    kAbility.MythrilTempest,
+  ],
+  // DRK
+  [
+    kAbility.HardSlash,
+    kAbility.SyphonStrike,
+    kAbility.Souleater,
+  ],
+  [
+    kAbility.Unleash,
+    kAbility.StalwartSoul,
+  ],
+  // GNB
+  [
+    kAbility.KeenEdge,
+    kAbility.BrutalShell,
+    kAbility.SolidBarrel,
+  ],
+  [
+    kAbility.DemonSlice,
+    kAbility.DemonSlaughter,
+  ],
+  // DRG
+  [
+    kAbility.TrueThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ],
+  [
+    kAbility.RaidenThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ],
+  // NIN
+  [
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.AeolianEdge,
+  ],
+  [
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.ArmorCrush,
+  ],
+  [
+    kAbility.DeathBlossom,
+    kAbility.HakkeMujinsatsu,
+  ],
+  // SAM
+  [
+    kAbility.Hakaze,
+    kAbility.Jinpu,
+    kAbility.Gekko,
+  ],
+  [
+    kAbility.Hakaze,
+    kAbility.Shifu,
+    kAbility.Kasha,
+  ],
+  [
+    kAbility.Hakaze,
+    kAbility.Yukikaze,
+  ],
+  [
+    kAbility.Fuga,
+    kAbility.Mangetsu,
+  ],
+  [
+    kAbility.Fuga,
+    kAbility.Oka,
+  ],
+  // MCH
+  [
+    kAbility.SplitShot,
+    kAbility.SlugShot,
+    kAbility.CleanShot,
+  ],
+  [
+    kAbility.HeatedSplitShot,
+    kAbility.SlugShot,
+    kAbility.CleanShot,
+  ],
+  [
+    kAbility.HeatedSplitShot,
+    kAbility.HeatedSlugShot,
+    kAbility.CleanShot,
+  ],
+  [
+    kAbility.HeatedSplitShot,
+    kAbility.HeatedSlugShot,
+    kAbility.HeatedCleanShot,
+  ],
+  // DNC
+  [
+    kAbility.Cascade,
+    kAbility.Fountain,
+  ],
+  [
+    kAbility.Windmill,
+    kAbility.Bladeshower,
+  ],
+];
 
 // Full skill names of abilities that break combos.
 // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
