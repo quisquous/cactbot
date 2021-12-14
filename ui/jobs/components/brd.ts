@@ -24,13 +24,6 @@ export class BRDComponent extends BaseComponent {
   constructor(o: ComponentInterface) {
     super(o);
 
-    this.straightShotProc = this.bars.addProcBox({
-      id: 'brd-procs-straightshotready',
-      fgColor: 'brd-color-straightshotready',
-      threshold: 1000,
-    });
-    this.straightShotProc.bigatzero = false;
-
     // DoT
     this.causticBiteBox = this.bars.addProcBox({
       id: 'brd-procs-causticbite',
@@ -71,6 +64,13 @@ export class BRDComponent extends BaseComponent {
     this.soulVoiceBox = this.bars.addResourceBox({
       classList: ['brd-color-soulvoice'],
     });
+
+    this.straightShotProc = this.bars.addProcBox({
+      id: 'brd-procs-straightshotready',
+      fgColor: 'brd-color-straightshotready',
+      threshold: 1000,
+    });
+    this.straightShotProc.bigatzero = false;
   }
 
   override onMobGainsEffectFromYou(id: string): void {
