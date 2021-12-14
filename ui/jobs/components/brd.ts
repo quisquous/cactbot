@@ -128,6 +128,7 @@ export class BRDComponent extends BaseComponent {
     if (soulGauge !== this.soulVoiceBox.innerText) {
       this.soulVoiceBox.innerText = soulGauge;
       this.soulVoiceBox.parentNode.classList.remove('high');
+      // TODO: Maybe adjust to 80 for more Blast Arrow?
       if (jobDetail.soulGauge >= 95)
         this.soulVoiceBox.parentNode.classList.add('high');
     }
