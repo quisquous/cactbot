@@ -19,6 +19,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Babil Barnabas Rolling Scrapline': '62EB', // Center AoE circle, no magnets, boss 1
     'Babil Thunderball Shock': '62F2', // Cardinal/intercardinal AoE circles, boss 1
 
+    'Babil Sky Armor Aethershot': '6DE7', // Circle AoE, after boss 1
     'Babil Rearguard Cermet Pile': '6DE8', // Line AoE, before boss 2
     'Babil Colossus Grand Sword': '6DE9', // Frontal cone, before boss 2
     'Babil Avenger Shoulder Cannon': '6DEA', // AoE circle, before boss 2
@@ -28,7 +29,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Babil Magitek Explosive Explosion': '62F9', // Bomberman line AoE, boss 2
     'Babil Lugae Magitek Ray': '62FC', // Frontal line AoE, boss 2
 
-    'Babil Zot Sky Armor Garlean Fire': '5E4A', // Circle AoE, after boss 2
+    'Babil Gunship Garlean Fire': '6DEE', // Circle AoE, after boss 2
     'Babil Armored Weapon Diffractive Laser': '5E53', // Circle AoE, after boss 2
     'Babil Magitek Crane Crane Game': '6C35', // Large environmental circle AoE, after boss 2
     'Babil Hexadrone 2-Tonze Magitek Missile': '6DEC', // Circle AoE, after boss 2

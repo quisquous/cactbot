@@ -13,6 +13,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheTowerOfZot,
   damageWarn: {
     'Zot Armored Fiend Soporific Gas': '6CE2', // centered circle
+    'Zot Sky Armor Garlean Fire': '54EA', // targeted circle
     'Zot Minduruva Manusya Blizzard III': '6296', // blizzard pinwheel
     'Zot Minduruva Manusya Fire III': '6295', // fire donut
     'Zot Minduruva Manusya Thunder III': '6297', // thunder "cross" circles
