@@ -1045,7 +1045,7 @@ div.justbuffs div#procs-container {
 /* Proc box animation */
 .proc-box.in-combat .notify-when-expired.expired {
   display: block;
-  animation: var(--proc-box-notfy-animation, proc-box-flash) var(--proc-box-notify-duration, 1s) var(--proc-box-notify-repeat, infinite);
+  animation: var(--proc-box-notify-animation, proc-box-flash) var(--proc-box-notify-duration, 1s) var(--proc-box-notify-repeat, infinite);
 }
 
 @keyframes proc-box-flash {
