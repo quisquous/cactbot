@@ -102,7 +102,7 @@ namespace Cactbot {
 
     public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)
         : base(logger) {
-      Name = "Cactbot";
+      Name = "Cactbot Config";
 
       RegisterPresets();
 
