@@ -52,8 +52,15 @@ export class DRGComponent extends BaseComponent {
     });
   }
   override onCombo(skill: string): void {
+    // Both Disembowel and SonicThrust apply PowerSurge for 30s,
+    // but Disembowel will lock the buff duration until fully act.
+    // FIXME: SonicThrust untested.
     if (skill === kAbility.Disembowel)
       this.disembowelBox.duration = 30 + 1;
+    if (skill === kAbility.SonicThrust) {
+      if (!this.is5x)
+        this.disembowelBox.duration = 30 + 0.5;
+    }
   }
 
   override onUseAbility(id: string): void {
@@ -69,7 +76,10 @@ export class DRGComponent extends BaseComponent {
           'drg-color-lancecharge.active',
         );
         this.tid1 = window.setTimeout(() => {
-          this.lanceChargeBox.duration = 70;
+          if (this.is5x)
+            this.lanceChargeBox.duration = 70;
+          else
+            this.lanceChargeBox.duration = 40;
           this.lanceChargeBox.fg = computeBackgroundColorFrom(
             this.lanceChargeBox,
             'drg-color-lancecharge',
@@ -102,6 +112,9 @@ export class DRGComponent extends BaseComponent {
     this.highJumpBox.threshold = gcdSkill + 1;
   }
 
+  // TODO: Blood of the Dragon no longer have time limit.
+  // It can be merged with eyes guage(show duration in life of the dragon, and eye amount out of)
+  // to spare the second box for the new guage firstminds' focus
   override onJobDetailUpdate(jobDetail: JobDetail['DRG']): void {
     this.blood.parentNode.classList.remove('blood', 'life');
     if (jobDetail.bloodMilliseconds > 0) {
