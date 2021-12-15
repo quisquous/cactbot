@@ -34,7 +34,8 @@
   font-size: 12px;
 }
 
-.justbuffs #bars {
+.justbuffs #bars,
+.justbuffs #procs-container {
   display: none;
 }
 
