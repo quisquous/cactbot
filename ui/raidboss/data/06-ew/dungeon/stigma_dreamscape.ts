@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import outputs from '../../../../../resources/outputs';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -164,8 +164,8 @@ const triggerSet: TriggerSet<Data> = {
         return output.west!();
       },
       outputStrings: {
-        east: outputs.east,
-        west: outputs.west,
+        east: Outputs.east,
+        west: Outputs.west,
       },
     },
     {
