@@ -3,7 +3,7 @@ import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
-import ComboTracker from '../combo_tracker';
+import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
@@ -55,14 +55,14 @@ export class NINComponent extends BaseComponent {
       case EffectId.Mudra: {
         if (!this.mudraTriggerCd)
           return;
+        if (this.ninjutsu.duration === null)
+          this.ninjutsu.duration = 0;
+        const old = this.ninjutsu.duration - this.ninjutsu.elapsed;
+        if (old > 0)
+          this.ninjutsu.duration = old + 20;
+        else
+          this.ninjutsu.duration = 20 - 0.5;
 
-        if (typeof this.ninjutsu.duration === 'number') {
-          const old = this.ninjutsu.duration - this.ninjutsu.elapsed;
-          if (old > 0)
-            this.ninjutsu.duration = old + 20;
-          else
-            this.ninjutsu.duration = 20 - 0.5;
-        }
         this.mudraTriggerCd = false;
         break;
       }
@@ -129,12 +129,12 @@ export class NINComponent extends BaseComponent {
       this.ninki.parentNode.classList.add('low');
     else if (jobDetail.ninkiAmount >= 90)
       this.ninki.parentNode.classList.add('high');
-    if (typeof this.hutonBox.duration === 'number') {
-      const oldSeconds = this.hutonBox.duration - this.hutonBox.elapsed;
-      const seconds = jobDetail.hutonMilliseconds / 1000.0;
-      if (!this.hutonBox.duration || seconds > oldSeconds)
-        this.hutonBox.duration = seconds;
-    }
+    if (this.hutonBox.duration === null)
+      this.hutonBox.duration = 0;
+    const oldSeconds = this.hutonBox.duration - this.hutonBox.elapsed;
+    const seconds = jobDetail.hutonMilliseconds / 1000.0;
+    if (!this.hutonBox.duration || seconds > oldSeconds)
+      this.hutonBox.duration = seconds;
   }
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;

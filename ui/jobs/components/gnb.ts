@@ -2,7 +2,7 @@ import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
-import ComboTracker from '../combo_tracker';
+import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
@@ -22,16 +22,6 @@ export class GNBComponent extends BaseComponent {
     this.cartridgeBox = this.bars.addResourceBox({
       classList: ['gnb-color-cartridge'],
     });
-
-    this.noMercyBox = this.bars.addProcBox({
-      id: 'gnb-procs-nomercy',
-      fgColor: 'gnb-color-nomercy',
-    });
-
-    this.bloodfestBox = this.bars.addProcBox({
-      id: 'gnb-procs-bloodfest',
-      fgColor: 'gnb-color-bloodfest',
-    });
     // Combos
     this.gnashingFangBox = this.bars.addProcBox({
       id: 'gnb-procs-gnashingfang',
@@ -44,6 +34,16 @@ export class GNBComponent extends BaseComponent {
     this.cartridgeComboTimer = this.bars.addTimerBar({
       id: 'gnb-timers-cartridgecombo',
       fgColor: 'gnb-color-gnashingfang',
+    });
+
+    this.noMercyBox = this.bars.addProcBox({
+      id: 'gnb-procs-nomercy',
+      fgColor: 'gnb-color-nomercy',
+    });
+
+    this.bloodfestBox = this.bars.addProcBox({
+      id: 'gnb-procs-bloodfest',
+      fgColor: 'gnb-color-bloodfest',
     });
   }
   override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
@@ -95,7 +95,9 @@ export class GNBComponent extends BaseComponent {
 
   override onJobDetailUpdate(jobDetail: JobDetail['GNB']): void {
     this.cartridgeBox.innerText = jobDetail.cartridges.toString();
-    if (jobDetail.cartridges === 2)
+    if (jobDetail.cartridges === 3)
+      this.cartridgeBox.parentNode.classList.add('full');
+    else if (this.player.level < 88 && jobDetail.cartridges === 2)
       this.cartridgeBox.parentNode.classList.add('full');
     else
       this.cartridgeBox.parentNode.classList.remove('full');

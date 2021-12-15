@@ -104,6 +104,7 @@ export default {
   },
   sharedTankbuster: {
     en: 'Shared Tank Buster',
+    ko: '쉐어 탱버',
   },
   sharedTankbusterOnYou: {
     en: 'Shared Tank Buster on YOU',

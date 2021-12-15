@@ -266,6 +266,7 @@ def main(args):
         "Thancred",
         "Urianger",
         "Estinien",
+        "G'raha Tia",
         "Alphinaud's Avatar",
         "Alisaie's Avatar",
         "Thancred's Avatar",

@@ -23,6 +23,12 @@ export class BLMComponent extends BaseComponent {
 
     this.umbralStacks = 0;
 
+    this.fireProc = this.bars.addProcBox({
+      id: 'blm-procs-fire',
+      fgColor: 'blm-color-fire',
+      threshold: 1000,
+    });
+    this.fireProc.bigatzero = false;
     this.thunderDot = this.bars.addProcBox({
       id: 'blm-dot-thunder',
       fgColor: 'blm-color-dot',
@@ -35,17 +41,12 @@ export class BLMComponent extends BaseComponent {
       threshold: 1000,
     });
     this.thunderProc.bigatzero = false;
-    this.fireProc = this.bars.addProcBox({
-      id: 'blm-procs-fire',
-      fgColor: 'blm-color-fire',
-      threshold: 1000,
-    });
-    this.fireProc.bigatzero = false;
 
     // It'd be super nice to use grid here.
     // Maybe some day when cactbot uses new cef.
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'blm-stacks';
+    stacksContainer.classList.add('stacks');
     this.bars.addJobBarContainer().appendChild(stacksContainer);
 
     const heartStacksContainer = document.createElement('div');
@@ -77,17 +78,32 @@ export class BLMComponent extends BaseComponent {
   }
 
   override onUseAbility(id: string): void {
-    switch (id) {
-      case kAbility.Thunder1:
-      case kAbility.Thunder4:
-        this.thunderDot.duration = 18;
-        break;
-      case kAbility.Thunder2:
-        this.thunderDot.duration = 12;
-        break;
-      case kAbility.Thunder3:
-        this.thunderDot.duration = 24;
-        break;
+    if (this.is5x) {
+      switch (id) {
+        case kAbility.Thunder1:
+        case kAbility.Thunder4:
+          this.thunderDot.duration = 18;
+          break;
+        case kAbility.Thunder2:
+          this.thunderDot.duration = 12;
+          break;
+        case kAbility.Thunder3:
+          this.thunderDot.duration = 24;
+          break;
+      }
+    } else {
+      switch (id) {
+        case kAbility.Thunder2:
+        case kAbility.Thunder4:
+          this.thunderDot.duration = 18;
+          break;
+        case kAbility.Thunder1:
+          this.thunderDot.duration = 21;
+          break;
+        case kAbility.Thunder3:
+          this.thunderDot.duration = 30;
+          break;
+      }
     }
   }
 

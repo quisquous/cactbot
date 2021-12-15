@@ -7,7 +7,7 @@ import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/
 import { Job } from '../../types/job';
 import { NetFields } from '../../types/net_fields';
 
-import ComboTracker from './combo_tracker';
+import { ComboCallback, ComboTracker } from './combo_tracker';
 import { JobsEventEmitter, PartialFieldMatches } from './event_emitter';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
@@ -25,7 +25,6 @@ export type SpeedBuffs = {
   circleOfPower: boolean;
 };
 
-export type ComboCallback = (id: string | undefined, combo: ComboTracker) => void;
 export type GainCallback = (id: string, matches: PartialFieldMatches<'GainsEffect'>) => void;
 export type LoseCallback = (id: string, matches: PartialFieldMatches<'LosesEffect'>) => void;
 export type AbilityCallback = (id: string, matches: PartialFieldMatches<'Ability'>) => void;
@@ -58,6 +57,7 @@ export interface EventMap {
   // triggered when effect gains or loses
   'effect/gain': (effectId: string, info: PartialFieldMatches<'GainsEffect'>) => void;
   'effect/lose': (effectId: string, info: PartialFieldMatches<'LosesEffect'>) => void;
+  // triggered when you gain or lose a effect
   'effect/gain/you': (effectId: string, info: PartialFieldMatches<'GainsEffect'>) => void;
   'effect/lose/you': (effectId: string, info: PartialFieldMatches<'LosesEffect'>) => void;
 }
@@ -147,7 +147,6 @@ export class PlayerBase {
 export class Player extends PlayerBase {
   ee: EventEmitter;
   jobsEmitter: JobsEventEmitter;
-  // TODO: should make combo tracker as event emitter too?
   combo: ComboTracker;
 
   constructor(jobsEmitter: JobsEventEmitter, private is5x: boolean) {
@@ -156,18 +155,7 @@ export class Player extends PlayerBase {
     this.jobsEmitter = jobsEmitter;
 
     // setup combo tracker
-    this.combo = ComboTracker.setup(this.is5x, (id) => {
-      this.emit('action/combo', id, this.combo);
-    });
-    this.on('action/you', (actionId) => {
-      this.combo.HandleAbility(actionId);
-    });
-    this.on('hp', ({ hp }) => {
-      if (hp === 0)
-        this.combo.AbortCombo();
-    });
-    // Combos are job specific.
-    this.on('job', () => this.combo.AbortCombo());
+    this.combo = ComboTracker.setup(this.is5x, this);
 
     // setup event emitter
     this.jobsEmitter.on('player', (ev) => this.processPlayerChangedEvent(ev));
@@ -178,8 +166,8 @@ export class Player extends PlayerBase {
     const wrapper: ComboCallback = (id, combo) => {
       callback(id, combo);
     };
-    this.on('action/combo', wrapper);
-    this.once('job', () => this.off('action/combo', wrapper));
+    this.combo.on('combo', wrapper);
+    this.once('job', () => this.combo.off('combo', wrapper));
   }
 
   onMobGainsEffectFromYou(callback: GainCallback): void {
@@ -424,7 +412,7 @@ export class Player extends PlayerBase {
         if (!effectId)
           break;
 
-        if (matches.sourceId?.toUpperCase() === this.idHex)
+        if (matches.targetId?.toUpperCase() === this.idHex)
           this.emit('effect/gain/you', effectId, matches);
         this.emit('effect/gain', effectId, matches);
         break;
@@ -435,7 +423,7 @@ export class Player extends PlayerBase {
         if (!effectId)
           break;
 
-        if (matches.sourceId?.toUpperCase() === this.idHex)
+        if (matches.targetId?.toUpperCase() === this.idHex)
           this.emit('effect/lose/you', effectId, matches);
         this.emit('effect/lose', effectId, matches);
         break;

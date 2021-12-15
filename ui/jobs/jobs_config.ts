@@ -16,6 +16,18 @@ UserConfig.registerOptions('jobs', {
       default: false,
     },
     {
+      id: 'CompactView',
+      name: {
+        en: 'Enable compact view',
+        fr: 'Activer la vue compacte',
+        ja: 'コンパクトUIを有効にする',
+        cn: '启用紧凑视图',
+        ko: '간략한 UI 사용',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'LowerOpacityOutOfCombat',
       name: {
         en: 'Lower ui opacity when out of combat',

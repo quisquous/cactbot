@@ -105,7 +105,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sigil': '秘紋',
         'Behemoth': 'ベヒーモス',
@@ -122,6 +121,7 @@ const triggerSet: TriggerSet<Data> = {
         'Astral Eclipse': 'アストラルエクリプス',
         'Astral Flow': 'アストラルフロウ',
         'Esoteric Dyad': 'エソテリックダイアド',
+        'Esoteric Pattern': '秘紋図形',
         '(?<!Triple )Esoteric Ray': 'エソテリックレイ',
         'Esoteric Sect': 'エソテリックセクト',
         'Esoterikos': 'エソーテリコス',

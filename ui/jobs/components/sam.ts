@@ -3,7 +3,7 @@ import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
-import ComboTracker from '../combo_tracker';
+import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
 
@@ -28,9 +28,13 @@ export class SAMComponent extends BaseComponent {
     fgColor: 'combo-color',
   });
 
+  const stacksContainer = document.createElement('div');
+  stacksContainer.id = 'sam-stacks';
+  stacksContainer.classList.add('stacks');
   const senContainer = document.createElement('div');
-  senContainer.id = 'sam-stacks';
-  this.bars.addJobBarContainer().appendChild(senContainer);
+  senContainer.id = 'sam-stacks-sen';
+  stacksContainer.appendChild(senContainer);
+  this.bars.addJobBarContainer().appendChild(stacksContainer);
 
   this.setsu = document.createElement('div');
   this.getsu = document.createElement('div');

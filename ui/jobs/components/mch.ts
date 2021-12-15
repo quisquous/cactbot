@@ -3,7 +3,7 @@ import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
-import ComboTracker from '../combo_tracker';
+import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
@@ -57,7 +57,7 @@ export class MCHComponent extends BaseComponent {
     // Wild Fire Gauge
     this.stacksContainer = document.createElement('div');
     this.stacksContainer.id = 'mch-stacks';
-    this.stacksContainer.classList.add('hide');
+    this.stacksContainer.classList.add('stacks', 'hide');
     this.bars.addJobBarContainer().appendChild(this.stacksContainer);
     const wildFireContainer = document.createElement('div');
     wildFireContainer.id = 'mch-stacks-wildfire';
