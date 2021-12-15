@@ -22,6 +22,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Back Right / Front Left',
+                    de: 'hinten rechts / vorne links',
                 },
             },
         },
@@ -36,6 +37,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Back Left / Front Right',
+                    de: 'hinten links / vorne rechts',
                 },
             },
         },
@@ -77,6 +79,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Hide behind broken crystal',
+                    de: 'Hinter dem gebrochenen Kristall verstecken',
                 },
             },
         },
@@ -91,6 +94,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Away from Crosshairs',
+                    de: 'Weg von den Zielmarkierungen',
                 },
             },
         },
@@ -123,6 +127,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Hide Behind Ice',
+                    de: 'hinter dem Eis verstecken',
                 },
             },
         },
@@ -174,7 +179,6 @@ Options.Triggers.push({
                 'Ysayle\'s Spirit': 'Ysayles Seele',
             },
             'replaceText': {
-                '--north--': '--Norden--',
                 '\\(proximity\\)': '(Distanz)',
                 'Aglaea Bite': 'Aglaia-Biss',
                 'Aglaea Climb': 'Aglaia-Aufstieg',
