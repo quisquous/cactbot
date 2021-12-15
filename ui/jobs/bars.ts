@@ -253,16 +253,12 @@ export class Bars {
     scale?: number;
     notifyWhenExpired?: boolean;
   }): TimerBox {
-    const elementId = this.player.job.toLowerCase() + '-procs';
-
     let container = id ? document.getElementById(id) : undefined;
     if (!container) {
       container = document.createElement('div');
-      container.id = elementId;
-      document.getElementById('bars')?.appendChild(container);
+      container.classList.add('proc-box');
+      document.getElementById('procs-container')?.appendChild(container);
     }
-
-    document.getElementById('procs-container')?.appendChild(container);
 
     const timerBox = TimerBox.create({
       stylefill: 'empty',
@@ -273,6 +269,7 @@ export class Bars {
       roundupthreshold: false,
       valuescale: scale ? scale : 1,
     });
+    container.innerHTML = ''; // remove any existing timer boxes, if there are.
     container.appendChild(timerBox);
     if (fgColor)
       timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
