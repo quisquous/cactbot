@@ -1,13 +1,100 @@
+import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type Data = RaidbossData;
+// TODO: Lyssa Frostbite and Seek
+// TODO: Ladon Lord cleave directions
+// TODO: Hermes correct meteor
+// TODO: Hermes mirror dodge direction
+
+export interface Data extends RaidbossData {
+  isHermes?: boolean;
+}
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.KtisisHyperboreia,
   timelineFile: 'ktisis_hyperboreia.txt',
-  triggers: [],
+  triggers: [
+    {
+      id: 'Ktisis Lyssa Skull Dasher',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '625E', source: 'Lyssa' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Ktisis Lyssa Frigid Stomp',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '625D', source: 'Lyssa', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Ktisis Lyssa Heavy Smash',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '625C', source: 'Lyssa' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'Ktisis Ladon Lord Scratch',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '648F', source: 'Ladon Lord' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Ktisis Ladon Lord Intimidation',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '648D', source: 'Ladon Lord', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Ktisis Ladon Lord Pyric Blast',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '648E', source: 'Ladon Lord' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'Ktisis Hermes Trimegistos',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '651E', source: 'Hermes', capture: false }),
+      response: Responses.aoe(),
+      run: (data) => data.isHermes = true,
+    },
+    {
+      id: 'Ktisis Hermes True Tornado',
+      // StartsUsing line is self-targeted.
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      // This headmarker is used for the first two bosses but only Hermes cleaves.
+      condition: (data) => data.isHermes,
+      response: Responses.tankCleave('alert'),
+    },
+    {
+      id: 'Ktisis Hermes True Aero',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '652B', source: 'Hermes', capture: false }),
+      response: Responses.spread(),
+    },
+    {
+      id: 'Ktisis Hermes True Bravery',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6533', source: 'Hermes' }),
+      condition: (data) => data.CanSilence(),
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Ktisis Hermes Meteor Cosmic Kiss',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6523', source: 'Meteor', capture: false }),
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Hide behind unbroken meteor',
+        },
+      },
+    },
+  ],
   timelineReplace: [
     {
       'locale': 'de',
