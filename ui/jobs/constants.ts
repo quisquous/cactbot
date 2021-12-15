@@ -162,6 +162,7 @@ export const kAbility = {
   LanceCharge: '55',
   DragonSight: '1CE6',
   BattleLitany: 'DE5',
+  DraconianFury: '64AA',
   // NIN
   SpinningEdge: '8C0',
   GustSlash: '8C2',
@@ -191,6 +192,7 @@ export const kAbility = {
   KaeshiSetsugekka: '4066',
   HissatsuGuren: '1D48',
   HissatsuSenei: '4061',
+  Fuko: '64B4',
   // BRD
   BattleVoice: '76',
   MagesBallad: '72',
@@ -334,6 +336,16 @@ export const kComboActions: string[][] = [
     kAbility.Disembowel,
     kAbility.ChaosThrust,
   ],
+  [
+    kAbility.DoomSpike,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
+  ],
+  [
+    kAbility.DraconianFury,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
+  ],
   // NIN
   [
     kAbility.SpinningEdge,
@@ -370,6 +382,14 @@ export const kComboActions: string[][] = [
   ],
   [
     kAbility.Fuga,
+    kAbility.Oka,
+  ],
+  [
+    kAbility.Fuko,
+    kAbility.Mangetsu,
+  ],
+  [
+    kAbility.Fuko,
     kAbility.Oka,
   ],
   // MCH
@@ -466,6 +486,7 @@ export const kComboBreakers = [
   kAbility.Mangetsu,
   kAbility.Oka,
   kAbility.MeikyoShisui,
+  kAbility.Fuko,
   // MCH
   kAbility.SplitShot,
   kAbility.SlugShot,
