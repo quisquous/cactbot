@@ -54,33 +54,33 @@ hideall "--sync--"
 1011.2 "Meaningless Destruction" sync / 1[56]:[^:]*:Terminus Wrecker:6241:/
 1021.4 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
 1026.8 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:623A:/
-1036.2 "Aether Spray" sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
+1036.2 "Aether Spray (Knockback)" sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
 1048.5 "Total Wreck" sync / 1[56]:[^:]*:Terminus Wrecker:6242:/
 1053.8 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
 1059.2 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:6239:/
-1068.5 "Aether Spray" sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
+1068.5 "Aether Spray (Bubble)" sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
 
 1080.7 "Meaningless Destruction" sync / 1[56]:[^:]*:Terminus Wrecker:6241:/
 1091.0 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
 1096.4 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:623A:/
-1105.8 "Aether Spray" sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
+1105.8 "Aether Spray (Knockback)" sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
 1112.9 "--sync--" sync / 1[56]:[^:]*:Terminus Wrecker:623F:/
 1118.0 "Poison Heart" sync / 1[56]:[^:]*:Terminus Wrecker:6CCB:/
 1125.2 "Total Wreck" sync / 1[56]:[^:]*:Terminus Wrecker:6242:/
 1135.5 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
 1140.9 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:6239:/
-1150.2 "Aether Spray" sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
+1150.2 "Aether Spray (Bubble)" sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
 
 1162.4 "Meaningless Destruction" sync / 1[56]:[^:]*:Terminus Wrecker:6241:/ window 40,40 jump 1080.7
 1172.7 "Unholy Water" #sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
 1178.1 "Aether Siphon" #sync / 1[56]:[^:]*:Terminus Wrecker:623A:/
-1187.5 "Aether Spray" #sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
+1187.5 "Aether Spray (Knockback)" #sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
 1194.6 "--sync--" #sync / 1[56]:[^:]*:Terminus Wrecker:623F:/
 1199.7 "Poison Heart" #sync / 1[56]:[^:]*:Terminus Wrecker:6CCB:/
 1206.9 "Total Wreck" #sync / 1[56]:[^:]*:Terminus Wrecker:6242:/
 1217.2 "Unholy Water" #sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
 1222.6 "Aether Siphon" #sync / 1[56]:[^:]*:Terminus Wrecker:6239:/
-1231.9 "Aether Spray" #sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
+1231.9 "Aether Spray (Bubble)" #sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
 
 
 #~~~~~~~~~~~#
