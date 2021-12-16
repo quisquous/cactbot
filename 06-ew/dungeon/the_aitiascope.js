@@ -48,7 +48,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6449', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6449', source: 'Livia' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6449', source: '愛執のリウィア' }),
-            response: Responses.tankBuster(),
+            response: Responses.tankCleave('alert'),
         },
         {
             id: 'Aitiascope Livia Ignis Odi',
@@ -62,19 +62,13 @@ Options.Triggers.push({
         {
             id: 'Aitiascope Rhitahtyn Tartarean Impact',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '6455', source: 'Livia the Undeterred', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6455', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '6455', source: 'Livia', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6455', source: '愛執のリウィア', capture: false }),
+            netRegex: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn the Unshakable', capture: false }),
             response: Responses.aoe(),
         },
         {
             id: 'Aitiascope Rhitahtyn Shield Skewer',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '6450', source: 'Livia the Undeterred', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6450', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '6450', source: 'Livia', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6450', source: '愛執のリウィア', capture: false }),
+            netRegex: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn the Unshakable', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -86,10 +80,7 @@ Options.Triggers.push({
         {
             id: 'Aitiascope Rhitahtyn Shrapnel Shell',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '6452', source: 'Livia the Undeterred', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6452', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '6452', source: 'Livia', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6452', source: '愛執のリウィア', capture: false }),
+            netRegex: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn the Unshakable', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -101,11 +92,15 @@ Options.Triggers.push({
         {
             id: 'Aitiascope Rhitahtyn Anvil of Tartarus',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '6456', source: 'Livia the Undeterred' }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6456', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)' }),
-            netRegexFr: NetRegexes.startsUsing({ id: '6456', source: 'Livia' }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6456', source: '愛執のリウィア' }),
+            netRegex: NetRegexes.startsUsing({ id: '6456', source: 'Rhitahtyn the Unshakable' }),
             response: Responses.tankBuster(),
+        },
+        {
+            id: 'Aitiascope Sinking Regret Lost Opportunity',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '6B1F', source: 'Sinking Regret' }),
+            condition: (data) => data.CanStun(),
+            response: Responses.stun(),
         },
         {
             id: 'Aitiascope Amon Dark Forte',
