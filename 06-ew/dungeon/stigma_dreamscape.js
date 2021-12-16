@@ -144,10 +144,10 @@ Options.Triggers.push({
         {
             id: 'Dreamscape Wheel',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '6B9D', source: 'Arch-Lambda' }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6B9D', source: 'Erz-Lambda' }),
-            netRegexFr: NetRegexes.startsUsing({ id: '6B9D', source: 'Arch-Lambda' }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6B9D', source: 'アーチラムダ' }),
+            netRegex: NetRegexes.startsUsing({ id: '63B5', source: 'Arch-Lambda' }),
+            netRegexDe: NetRegexes.startsUsing({ id: '63B5', source: 'Erz-Lambda' }),
+            netRegexFr: NetRegexes.startsUsing({ id: '63B5', source: 'Arch-Lambda' }),
+            netRegexJa: NetRegexes.startsUsing({ id: '63B5', source: 'アーチラムダ' }),
             response: Responses.tankBuster(),
         },
         {
