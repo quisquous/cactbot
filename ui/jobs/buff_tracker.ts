@@ -8,6 +8,7 @@ import boleImage from '../../resources/ffxiv/status/bole.png';
 import brotherhoodImage from '../../resources/ffxiv/status/brotherhood.png';
 import chainStratagemImage from '../../resources/ffxiv/status/chain-stratagem.png';
 import devilmentImage from '../../resources/ffxiv/status/devilment.png';
+import devotionImage from '../../resources/ffxiv/status/devotion.png';
 import divinationImage from '../../resources/ffxiv/status/divination.png';
 import dragonSightImage from '../../resources/ffxiv/status/dragon-sight.png';
 import emboldenImage from '../../resources/ffxiv/status/embolden.png';
@@ -261,11 +262,6 @@ export class Buff {
 
 export class BuffTracker {
   buffInfo: { [s: string]: Omit<BuffInfo, 'name'> };
-  options: JobsOptions;
-  partyTracker: PartyTracker;
-  playerName: string;
-  leftBuffDiv: WidgetList;
-  rightBuffDiv: WidgetList;
   buffs: { [s: string]: Buff };
   gainEffectMap: { [s: string]: BuffInfo[] };
   loseEffectMap: { [s: string]: BuffInfo[] };
@@ -274,11 +270,12 @@ export class BuffTracker {
   mobLosesEffectMap: { [s: string]: BuffInfo[] };
 
   constructor(
-    options: JobsOptions,
-    playerName: string,
-    leftBuffDiv: WidgetList,
-    rightBuffDiv: WidgetList,
-    partyTracker: PartyTracker,
+    private options: JobsOptions,
+    private playerName: string,
+    private leftBuffDiv: WidgetList,
+    private rightBuffDiv: WidgetList,
+    private partyTracker: PartyTracker,
+    private is5x: boolean,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -574,6 +571,71 @@ export class BuffTracker {
       },
     };
 
+    // Abilities that are different in 5.x.
+    const v5x = {
+      litany: {
+        cooldownAbility: [kAbility.BattleLitany],
+        gainEffect: [EffectId.BattleLitany],
+        loseEffect: [EffectId.BattleLitany],
+        useEffectDuration: true,
+        durationSeconds: 20,
+        partyOnly: true,
+        icon: battleLitanyImage,
+        // Cyan.
+        borderColor: '#099',
+        sortKey: 2,
+        cooldown: 180,
+      },
+      battlevoice: {
+        cooldownAbility: [kAbility.BattleVoice],
+        gainEffect: [EffectId.BattleVoice],
+        loseEffect: [EffectId.BattleVoice],
+        useEffectDuration: true,
+        durationSeconds: 20,
+        partyOnly: true,
+        icon: battleVoiceImage,
+        // Red.
+        borderColor: '#D6371E',
+        sortKey: 7,
+        cooldown: 180,
+      },
+      brotherhood: {
+        cooldownAbility: [kAbility.Brotherhood],
+        gainEffect: [EffectId.Brotherhood],
+        loseEffect: [EffectId.Brotherhood],
+        useEffectDuration: true,
+        durationSeconds: 15,
+        partyOnly: true,
+        icon: brotherhoodImage,
+        // Dark Orange.
+        borderColor: '#994200',
+        sortKey: 11,
+        cooldown: 90,
+      },
+      devotion: {
+        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
+        // By the way, pet can delay using devotion after been ordered
+        // and if you order it to continue moving, it can greatly delay up to 30s,
+        // so it may not be accurate.
+        cooldownAbility: [kAbility.Devotion],
+        gainEffect: [EffectId.Devotion],
+        loseEffect: [EffectId.Devotion],
+        useEffectDuration: true,
+        durationSeconds: 15,
+        partyOnly: true,
+        icon: devotionImage,
+        // Yellow.
+        borderColor: '#ffbf00',
+        sortKey: 12,
+        cooldown: 180,
+      },
+    };
+
+    if (this.is5x) {
+      for (const [key, entry] of Object.entries(v5x))
+        this.buffInfo[key] = entry;
+    }
+
     this.gainEffectMap = {};
     this.loseEffectMap = {};
     this.cooldownAbilityMap = {};
@@ -621,25 +683,6 @@ export class BuffTracker {
         }
       }
     }
-
-    // const v520 = {
-    //   // identical with latest patch
-    //   /* example
-    //   trick: {
-    //     durationSeconds: 10,
-    //   },
-    //   */
-    // };
-
-    // const buffOverrides = {
-    //   cn: v520,
-    //   ko: v520,
-    // };
-
-    // for (const key in buffOverrides[this.options.ParserLanguage]) {
-    //   for (const key2 in buffOverrides[this.options.ParserLanguage][key])
-    //     this.buffInfo[key][key2] = buffOverrides[this.options.ParserLanguage][key][key2];
-    // }
   }
 
   onUseAbility(id: string, matches: Partial<NetMatches['Ability']>): void {
