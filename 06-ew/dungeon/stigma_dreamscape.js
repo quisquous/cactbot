@@ -52,6 +52,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go front of boss',
                     de: 'Geh vor den Boss',
+                    fr: 'Allez devant le boss',
                 },
             },
         },
@@ -75,10 +76,12 @@ Options.Triggers.push({
                 target: {
                     en: 'Stack + Knockback on YOU!',
                     de: 'Sammeln + Rückstoß auf DIR!',
+                    fr: 'Package + Poussée sur VOUS !',
                 },
                 allies: {
                     en: 'Stack + knockback on ${target}',
                     de: 'Sammeln + Rückstoß auf ${target}',
+                    fr: 'Package + Poussée sur ${target}',
                 },
             },
         },
@@ -92,6 +95,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Guided Missile on YOU',
                     de: 'Geführte Rakete auf DIR',
+                    fr: 'Missile guidé sur VOUS',
                 },
             },
         },
@@ -116,6 +120,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get to wall at last dash',
                     de: 'Geh zur Wand des letzten Ansturms',
+                    fr: 'Allez vers le mur après la dernière ruée',
                 },
             },
         },
@@ -132,6 +137,7 @@ Options.Triggers.push({
                 text: {
                     en: '#${num} laser on YOU!',
                     de: '#${num} Laser auf DIR!',
+                    fr: '#${num} Laser sur VOUS !',
                 },
             },
         },
@@ -202,6 +208,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Avoid side dashes',
                     de: 'Weiche den Anstürmen von der Seite aus',
+                    fr: 'Évitez les ruées sur les côtés',
                 },
             },
         },
@@ -251,8 +258,9 @@ Options.Triggers.push({
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Mindjack: Forward',
+                    en: 'Mindhack: Forward',
                     de: 'Geistlenkung: Vorwärts',
+                    fr: 'Piratage mental : Avant',
                 },
             },
         },
@@ -264,8 +272,9 @@ Options.Triggers.push({
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Mindjack: Back',
+                    en: 'Mindhack: Back',
                     de: 'Geistlenkung: Rückwärts',
+                    fr: 'Piratage mental : Arrière',
                 },
             },
         },
@@ -277,8 +286,9 @@ Options.Triggers.push({
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Mindjack: Left',
+                    en: 'Mindhack: Left',
                     de: 'Geistlenkung: Links',
+                    fr: 'Piratage mental : Gauche',
                 },
             },
         },
@@ -290,8 +300,9 @@ Options.Triggers.push({
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Mindjack: Right',
+                    en: 'Mindhack: Right',
                     de: 'Geistlenkung: Rechts',
+                    fr: 'Piratage mental : Droite',
                 },
             },
         },
