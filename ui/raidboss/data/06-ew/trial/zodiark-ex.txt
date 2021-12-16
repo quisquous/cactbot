@@ -40,6 +40,7 @@ hideall "Infernal Torrent"
 167.4 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
 
 # Adds
+177.4 "--adds targetable--"
 182.3 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
 187.4 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
 190.6 "Esoteric Pattern 1" sync / 1[56]:[^:]*:Arcane Sigil:67E[456]:/
@@ -59,7 +60,10 @@ hideall "Infernal Torrent"
 # Star tethers
 314.4 "--sync--" sync / 1[56]:[^:]*:Zodiark:67E9:/ window 300,10
 325.9 "Apomnemoneumata" sync / 1[56]:[^:]*:Zodiark:6D7B:/
+336.9 "--targetable--"
 347.6 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
+347.6 "--untargetable--"
+359.7 "--targetable--"
 364.7 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67E7:/
 368.7 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67E7:/
 372.7 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67E7:/
@@ -99,6 +103,8 @@ hideall "Infernal Torrent"
 
 # Star tethers 2
 535.7 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
+535.7 "--untargetable--"
+547.8 "--targetable--"
 552.8 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67E7:/
 556.8 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67E7:/
 560.8 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67E7:/
