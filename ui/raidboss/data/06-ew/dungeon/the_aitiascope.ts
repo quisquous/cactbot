@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away from Crosshairs',
           de: 'Weg von den Zielmarkierungen',
-          fr: 'Éloignez-vous du réticule',
+          fr: 'Éloignez-vous de la zone de ciblage',
         },
       },
     },
