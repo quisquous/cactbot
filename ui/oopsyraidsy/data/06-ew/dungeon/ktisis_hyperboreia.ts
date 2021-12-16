@@ -28,6 +28,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Ktisis Ladon Lord Pyric Breath 5': '648A', // 1/3 wide conal breath
     'Ktisis Ladon Lord Pyric Breath 6': '648B', // 1/3 wide conal breath
     'Ktisis Ladon Lord Pyric Sphere': '6491', // sphere bomberman lines
+    'Ktisis Ktiseos Stymphalid Tickle': '686B', // wide line
     'Ktisis Ktiseos Stymphalid Gust': '686D', // targeted circle
     'Ktisis Ktiseos Alkyone Flamespitter': '696A', // targeted conal
     'Ktisis Ktiseos Aello Sideslip': '686E', // centered circle
