@@ -108,6 +108,9 @@ hideall "--sync--"
 # AMON THE UNDYING #
 #~~~~~~~~~~~~~~~~~~#
 
+# -p 6464:3012
+# -ii 6088
+
 3000.0 "--sync--" sync / 00:0839::The Midnight Downwell will be sealed off/ window 10000,0
 3012.0 "Dark Forte" sync / 1[56]:[^:]*:Amon the Undying:6464:/
 3022.2 "Thundaga Forte (proximity)" sync / 1[56]:[^:]*:Amon the Undying:645A:/
