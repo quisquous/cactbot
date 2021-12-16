@@ -87,6 +87,7 @@ export class ComponentManager {
   ee: JobsEventEmitter;
   options: JobsOptions;
   partyTracker: PartyTracker;
+  is5x: boolean;
   player: Player;
   regexes?: RegexesHolder;
   component?: BaseComponent;
@@ -109,6 +110,7 @@ export class ComponentManager {
     this.options = o.options;
     this.partyTracker = o.partyTracker;
     this.player = o.player;
+    this.is5x = o.is5x;
 
     this.shouldShow = {};
     this.contentType = undefined;
@@ -240,6 +242,7 @@ export class ComponentManager {
           this.bars.o.leftBuffsList,
           this.bars.o.rightBuffsList,
           this.partyTracker,
+          this.is5x,
         );
       }
     });
