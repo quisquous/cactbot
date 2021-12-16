@@ -62,7 +62,8 @@ hideall "Infernal Torrent"
 325.9 "Apomnemoneumata" sync / 1[56]:[^:]*:Zodiark:6D7B:/
 336.9 "--targetable--"
 347.6 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
-360.3 "--targetable--"
+347.6 "--untargetable--"
+359.7 "--targetable--"
 364.7 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67E7:/
 368.7 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67E7:/
 372.7 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67E7:/
@@ -102,7 +103,8 @@ hideall "Infernal Torrent"
 
 # Star tethers 2
 535.7 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
-549.4 "--targetable--"
+535.7 "--untargetable--"
+547.8 "--targetable--"
 552.8 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67E7:/
 556.8 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67E7:/
 560.8 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67E7:/
