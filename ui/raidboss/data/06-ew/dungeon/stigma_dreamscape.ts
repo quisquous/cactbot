@@ -381,6 +381,7 @@ const triggerSet: TriggerSet<Data> = {
         'Stigma-4': 'Stigma-4',
       },
       'replaceText': {
+        '\\?': ' ?',
         '(?<!Multi-)AI Takeover': 'Appel de renforts',
         'Atomic Flame': 'Flammes atomiques',
         'Atomic Ray': 'Rayon atomique',
