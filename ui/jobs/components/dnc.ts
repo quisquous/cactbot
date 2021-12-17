@@ -89,7 +89,7 @@ export class DNCComponent extends BaseComponent {
         case EffectId.FlourishingFountain:
         case EffectId.FlourishingShower:
         case EffectId.FlourishingWindmill:
-        case EffectId.FlourishingFanDance: {
+        case EffectId.ThreefoldFanDance: { // 5.x names FlourishingFanDance, name changed but id not
           if (!(this.flourishEffect.includes(effect)))
             this.flourishEffect.push(effect);
           if (this.flourishEffect.length === 5 && this.flourishIsActive) {
