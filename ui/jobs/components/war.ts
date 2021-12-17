@@ -69,8 +69,8 @@ export class WARComponent extends BaseComponent {
     // See: https://github.com/quisquous/cactbot/issues/3778
     //
     // Here's a hack to at least get the initial application to be better.
-    const bonus = this.eyeBox.duration === 0 ? 1.1 : 0;
-    this.eyeBox.duration = duration + bonus;
+    const bonus = this.eyeBox.duration === 0 ? 1.6 : 0;
+    this.eyeBox.duration = duration + bonus - 0.5;
   }
   override onYouLoseEffect(id: string): void {
     // TODO: delete StormsEye after every region launch 6.0
