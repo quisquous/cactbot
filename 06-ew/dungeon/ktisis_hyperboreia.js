@@ -107,6 +107,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Hide behind unbroken meteor',
                     de: 'Hinter einem nicht zerbrochenen Meteor verstecken',
+                    fr: 'Cachez-vous derrière le météore intact',
                     ko: '금이 안 간 돌 뒤에 숨기',
                 },
             },
