@@ -91,6 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Hide behind unbroken meteor',
+          fr: 'Cachez-vous derrière le météore intact',
         },
       },
     },
