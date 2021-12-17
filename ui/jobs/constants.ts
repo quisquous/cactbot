@@ -193,6 +193,8 @@ export const kAbility = {
   HissatsuGuren: '1D48',
   HissatsuSenei: '4061',
   Fuko: '64B4',
+  // RPR
+  ArcaneCircle: '5F55',
   // BRD
   BattleVoice: '76',
   MagesBallad: '72',
@@ -244,6 +246,7 @@ export const kAbility = {
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
   Devotion: '1D1A',
+  SearingLight: '64F2',
   // RDM
   Verstone: '1D57',
   Verfire: '1D56',
