@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -197,11 +198,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Dragon Hybride' }),
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'ハイブリッドドラゴン' }),
       condition: (data) => data.lastBoss,
-      infoText: (_data, matches, output) => output.text!(),
+      infoText: (_data, matches, output) => {
+        // The arena is a 50x50 square, with (0,0) in the exact center.
+        const isEast = parseFloat(matches.x) > 0;
+        if (isEast)
+          return output.east!();
+        return output.west!();
+      },
       outputStrings: {
-        text: {
-          en: 'Get behind dragon',
-        },
+        east: Outputs.east,
+        west: Outputs.west,
       },
     },
     {
