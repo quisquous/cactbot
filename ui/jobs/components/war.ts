@@ -14,6 +14,7 @@ export class WARComponent extends BaseComponent {
   eyeBox: TimerBox;
   comboTimer: TimerBar;
   initial: boolean;
+  just: boolean;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -30,7 +31,8 @@ export class WARComponent extends BaseComponent {
       id: 'war-timers-combo',
       fgColor: 'combo-color',
     });
-    this.initial = true;
+    this.initial = false;
+    this.just = false;
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['WAR']): void {
@@ -57,9 +59,13 @@ export class WARComponent extends BaseComponent {
       (this.eyeBox.duration === null || this.eyeBox.duration === 0)) {
       this.eyeBox.duration = 30 + 1.1;
       this.initial = true;
+      this.just = true; // for continue with Inner Release at once case
       setTimeout(() => {
         this.initial = false;
       }, 550);
+      setTimeout(() => {
+        this.just = false;
+      }, 1100);
     }
     // FIXME: MythrilTempest delay untested
     if (skill === kAbility.MythrilTempest &&
@@ -76,14 +82,16 @@ export class WARComponent extends BaseComponent {
     if (skill)
       this.comboTimer.duration = this.comboDuration;
   }
+  override onUseAbility(id: string): void {
+    if (id === kAbility.InnerRelease && this.just === true)
+      this.eyeBox.duration = 45 + 0.5;
+  }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     // TODO: delete StormsEye after every region launch 6.0
     if (id !== EffectId.SurgingTempest && id !== EffectId.StormsEye)
       return;
     const duration = parseFloat(matches.duration ?? '0');
-    if (!this.initial)
-      // FIXME: If you use Inner Release at once following Storm's Eyes before count down begins,
-      // timer will be incorrect and mismatched about 0.5s-1s
+    if (!this.initial && !this.just)
       this.eyeBox.duration = duration - 0.5; // buff logline delay
   }
   override onYouLoseEffect(id: string): void {
