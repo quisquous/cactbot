@@ -81,8 +81,8 @@ hideall "--sync--"
 1074.4 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ window 15,15
 1077.4 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6490:/
 1079.8 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
-1082.5 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6491:/
 1081.9 "--rotate--"
+1082.5 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6491:/
 1088.9 "Pyric Breath #1" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
 1091.0 "Pyric Breath #2" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
 1099.1 "Intimidation" sync / 1[56]:[^:]*:Ladon Lord:648D:/
