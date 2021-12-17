@@ -193,10 +193,10 @@ const triggerSet: TriggerSet<Data> = {
       // they are likely to be hit.
       id: 'Dreamscape Touchdown',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Hybrid Dragon' }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Hybrid-Drache' }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Dragon Hybride' }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'ハイブリッドドラゴン' }),
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Hybrid Dragon' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Hybrid-Drache' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Dragon Hybride' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'ハイブリッドドラゴン' }),
       condition: (data) => data.lastBoss,
       infoText: (_data, matches, output) => {
         // The arena is a 50x50 square, with (0,0) in the exact center.
