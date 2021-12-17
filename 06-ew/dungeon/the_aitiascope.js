@@ -23,6 +23,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Back Right / Front Left',
                     de: 'hinten rechts / vorne links',
+                    fr: 'Derrière à droite / Devant à gauche',
                 },
             },
         },
@@ -38,6 +39,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Back Left / Front Right',
                     de: 'hinten links / vorne rechts',
+                    fr: 'Derrière à gauche / Devant à droite',
                 },
             },
         },
@@ -80,6 +82,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Hide behind broken crystal',
                     de: 'Hinter dem gebrochenen Kristall verstecken',
+                    fr: 'Cachez-vous derrière le cristal brisé',
                 },
             },
         },
@@ -95,6 +98,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from Crosshairs',
                     de: 'Weg von den Zielmarkierungen',
+                    fr: 'Éloignez-vous de la zone de ciblage',
                 },
             },
         },
@@ -138,6 +142,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Hide Behind Ice',
                     de: 'hinter dem Eis verstecken',
+                    fr: 'Cachez-vous derrière la glace',
                 },
             },
         },
@@ -221,7 +226,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Aethershot': 'Projectile d\'éther',
                 'Amon the Undying': 'Amon',
@@ -234,6 +238,8 @@ Options.Triggers.push({
                 'Ysayle\'s Spirit': 'âme d\'Ysayle',
             },
             'replaceText': {
+                '\\?': ' ?',
+                '\\(proximity\\)': '(proximité)',
                 'Aglaea Bite': 'Morsure d\'Aglaia',
                 'Aglaea Climb': 'Flambée d\'Aglaia',
                 'Aglaea Shot': 'Tir d\'Aglaia',
@@ -250,9 +256,10 @@ Options.Triggers.push({
                 'Ignis Amoris': 'Ignis Amoris',
                 'Ignis Odi': 'Ignis Odi',
                 '(?<!Tartarean )Impact(?! )': 'Ensevelissement',
-                'Left Firaga Forte': 'Méga Feu forte gauche',
+                'Left Firaga Forte(?!/)': 'Méga Feu forte gauche',
+                'Left Firaga Forte/Right Firaga Forte': 'Méga Feu forte gauche/droite',
                 'Odi et Amo': 'Odi et Amo',
-                'Right Firaga Forte': 'Méga Feu forte droit',
+                '(?<!/)Right Firaga Forte': 'Méga Feu forte droit',
                 'Shield Skewer': 'Perce-bouclier',
                 'Shrapnel Shell': 'Obus shrapnel',
                 '(?<!Anti)Strophe': 'Strophe',
