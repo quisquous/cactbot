@@ -34,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go To Silent Mouth',
           de: 'Geh zum geschlossenen Mund',
-          fr: 'Allez vers une bouche silencieuse',
+          fr: 'Allez sur une bouche silencieuse',
           ja: '閉める口へ',
           cn: '找闭着的嘴',
           ko: '말이 없는 입 쪽으로',
@@ -239,6 +239,7 @@ const triggerSet: TriggerSet<Data> = {
         'Trnakiya': 'Clairière de Vanaspati',
       },
       'replaceText': {
+        '\\(Bubble\\)': '(Bulle)',
         '\\(Knockback\\)': '(Poussée)',
         '\\(Spread\\)': '(Dispersion)',
         '--meteor': '--météore',
