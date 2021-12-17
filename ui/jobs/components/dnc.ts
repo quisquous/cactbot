@@ -65,20 +65,41 @@ export class DNCComponent extends BaseComponent {
   }
 
   override onYouLoseEffect(effect: string): void {
-    switch (effect) {
-      case EffectId.FlourishingSymmetry:
-      case EffectId.FlourishingFlow:
-      case EffectId.ThreefoldFanDance:
-      case EffectId.FourfoldFanDance: {
-        if (!(this.flourishEffect.includes(effect)))
-          this.flourishEffect.push(effect);
-        if (this.flourishEffect.length === 4 && this.flourishIsActive) {
-          this.flourish.duration = 60 - this.flourish.elapsed;
-          this.flourishIsActive = false;
-          this.flourish.threshold = this.player.gcdSkill + 1;
-          this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
+    if (!this.is5x) {
+      switch (effect) {
+        case EffectId.FlourishingSymmetry:
+        case EffectId.FlourishingFlow:
+        case EffectId.ThreefoldFanDance:
+        case EffectId.FourfoldFanDance: {
+          if (!(this.flourishEffect.includes(effect)))
+            this.flourishEffect.push(effect);
+          if ((this.flourishEffect.length === 4 && this.flourishIsActive) ||
+            (this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive)) {
+            this.flourish.duration = 60 - this.flourish.elapsed;
+            this.flourishIsActive = false;
+            this.flourish.threshold = this.player.gcdSkill + 1;
+            this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
+          }
+          break;
         }
-        break;
+      }
+    } else {
+      switch (effect) {
+        case EffectId.FlourishingCascade:
+        case EffectId.FlourishingFountain:
+        case EffectId.FlourishingShower:
+        case EffectId.FlourishingWindmill:
+        case EffectId.ThreefoldFanDance: { // 5.x names FlourishingFanDance, name changed but id not
+          if (!(this.flourishEffect.includes(effect)))
+            this.flourishEffect.push(effect);
+          if (this.flourishEffect.length === 5 && this.flourishIsActive) {
+            this.flourish.duration = 60 - this.flourish.elapsed;
+            this.flourishIsActive = false;
+            this.flourish.threshold = this.player.gcdSkill + 1;
+            this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
+          }
+          break;
+        }
       }
     }
   }
@@ -115,13 +136,19 @@ export class DNCComponent extends BaseComponent {
         break;
       }
       case kAbility.Flourish: {
-        this.flourish.duration = 30;
+        if (this.is5x)
+          this.flourish.duration = 20;
+        else
+          this.flourish.duration = 30;
         this.flourishEffect = [];
         this.flourishIsActive = true;
         this.flourish.threshold = 1000;
         this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish.active');
         this.tid2 = window.setTimeout(() => {
-          this.flourish.duration = 40;
+          if (this.is5x)
+            this.flourish.duration = 40;
+          else
+            this.flourish.duration = 30;
           this.flourishIsActive = false;
           this.flourish.threshold = this.player.gcdSkill + 1;
           this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
