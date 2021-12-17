@@ -122,6 +122,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hide behind unbroken meteor',
           de: 'Hinter einem nicht zerbrochenen Meteor verstecken',
+          ko: '금이 안 간 돌 뒤에 숨기',
         },
       },
     },
