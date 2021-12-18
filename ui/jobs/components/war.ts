@@ -67,7 +67,6 @@ export class WARComponent extends BaseComponent {
         this.just = false;
       }, 1100);
     }
-    // FIXME: MythrilTempest delay untested
     if (skill === kAbility.MythrilTempest &&
       (this.eyeBox.duration === null || this.eyeBox.duration === 0)) {
       if (!this.is5x)
