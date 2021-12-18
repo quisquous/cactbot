@@ -83,8 +83,12 @@ export class WARComponent extends BaseComponent {
       this.comboTimer.duration = this.comboDuration;
   }
   override onUseAbility(id: string): void {
-    if (id === kAbility.InnerRelease && this.just === true)
-      this.eyeBox.duration = 45 + 0.5;
+    if (id === kAbility.InnerRelease && this.just === true) {
+      if (this.is5x)
+        this.eyeBox.duration = 45 + 0.5;
+      else
+        this.eyeBox.duration = 40 + 0.5;
+    }
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     // TODO: delete StormsEye after every region launch 6.0
