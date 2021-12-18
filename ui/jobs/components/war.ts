@@ -71,7 +71,7 @@ export class WARComponent extends BaseComponent {
     if (skill === kAbility.MythrilTempest &&
       (this.eyeBox.duration === null || this.eyeBox.duration === 0)) {
       if (!this.is5x)
-        this.eyeBox.duration = 30 + 0.5;
+        this.eyeBox.duration = 30;
         this.initial = true;
         setTimeout(() => {
           this.initial = false;
