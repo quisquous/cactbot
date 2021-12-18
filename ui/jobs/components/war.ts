@@ -84,7 +84,7 @@ export class WARComponent extends BaseComponent {
   override onUseAbility(id: string): void {
     // If you use Inner Release following StormsEye initial at once
     // duration will still not go down until designed time
-    if (id === kAbility.InnerRelease && this.just === true) {
+    if ((id === kAbility.InnerRelease || id === kAbility.Berserk) && this.just === true) {
       if (this.is5x)
         this.eyeBox.duration = 30 + 15 + 0.5;
       else
