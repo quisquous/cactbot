@@ -83,11 +83,13 @@ export class WARComponent extends BaseComponent {
       this.comboTimer.duration = this.comboDuration;
   }
   override onUseAbility(id: string): void {
+    // If you use Inner Release following StormsEye initial at once
+    // duration will still not go down until designed time
     if (id === kAbility.InnerRelease && this.just === true) {
       if (this.is5x)
-        this.eyeBox.duration = 45 + 0.5;
+        this.eyeBox.duration = 30 + 15 + 0.5;
       else
-        this.eyeBox.duration = 40 + 0.5;
+        this.eyeBox.duration = 30 + 10 + 0.5;
     }
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
