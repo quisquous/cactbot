@@ -87,10 +87,8 @@ export class Bars {
     }
   }
 
-  _updateUIVisibility(hide?: boolean): void {
-    const bars = document.getElementById('bars');
-    if (bars)
-      bars.classList.toggle('pvp', hide ?? false);
+  _updateUIVisibility(inPvP?: boolean): void {
+    this.jobsContainer.dataset.inpvp = inPvP ? 'true' : 'false';
   }
 
   _setupJobContainers(job: Job, show: ShouldShow): void {
