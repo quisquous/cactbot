@@ -13,8 +13,7 @@ export class WARComponent extends BaseComponent {
   textBox: ResourceBox;
   eyeBox: TimerBox;
   comboTimer: TimerBar;
-  initial: boolean;
-  just: boolean;
+  bonus: number;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -31,8 +30,8 @@ export class WARComponent extends BaseComponent {
       id: 'war-timers-combo',
       fgColor: 'combo-color',
     });
-    this.initial = false;
-    this.just = false;
+
+    this.bonus = 0;
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['WAR']): void {
@@ -56,48 +55,20 @@ export class WARComponent extends BaseComponent {
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;
     if (skill === kAbility.StormsEye &&
-      (this.eyeBox.duration === null || this.eyeBox.duration === 0)) {
-      this.eyeBox.duration = 30 + 1.1;
-      this.initial = true;
-      this.just = true; // for continue with Inner Release at once case
-      setTimeout(() => {
-        this.initial = false;
-      }, 550);
-      setTimeout(() => {
-        this.just = false;
-      }, 1100);
-    }
-    if (skill === kAbility.MythrilTempest &&
-      (this.eyeBox.duration === null || this.eyeBox.duration === 0)) {
-      if (!this.is5x)
-        this.eyeBox.duration = 30;
-        this.initial = true;
-        setTimeout(() => {
-          this.initial = false;
-        }, 550);
-    }
+      (this.eyeBox.duration === null || this.eyeBox.duration === 0))
+      this.bonus = 1.6;
     if (combo.isFinalSkill)
       return;
     if (skill)
       this.comboTimer.duration = this.comboDuration;
-  }
-  override onUseAbility(id: string): void {
-    // If you use Inner Release following StormsEye initial at once
-    // duration will still not go down until designed time
-    if ((id === kAbility.InnerRelease || id === kAbility.Berserk) && this.just === true) {
-      if (this.is5x)
-        this.eyeBox.duration = 30 + 15 + 0.5;
-      else
-        this.eyeBox.duration = 30 + 10 + 0.5;
-    }
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     // TODO: delete StormsEye after every region launch 6.0
     if (id !== EffectId.SurgingTempest && id !== EffectId.StormsEye)
       return;
     const duration = parseFloat(matches.duration ?? '0');
-    if (!this.initial && !this.just)
-      this.eyeBox.duration = duration - 0.5; // buff logline delay
+    this.eyeBox.duration = duration + this.bonus - 0.5; // buff logline delay
+    this.bonus = 0;
   }
   override onYouLoseEffect(id: string): void {
     // TODO: delete StormsEye after every region launch 6.0
