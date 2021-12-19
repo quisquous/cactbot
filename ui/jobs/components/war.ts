@@ -54,6 +54,7 @@ export class WARComponent extends BaseComponent {
 
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;
+    // Storm's Eye initiation will freeze Surging Tempest buff for about 1.6s before countdown start
     if (skill === kAbility.StormsEye &&
       (this.eyeBox.duration === null || this.eyeBox.duration === 0))
       this.bonus = 1.6;
