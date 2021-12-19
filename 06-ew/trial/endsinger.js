@@ -135,6 +135,7 @@ Options.Triggers.push({
                 avoidLasers: {
                     en: 'Avoid Head Lasers',
                     de: 'Weiche den Kopflaser aus',
+                    fr: 'Évitez les lasers des têtes',
                     ja: '顔の直線AoEを避ける',
                     ko: '머리가 쏘는 레이저 피하기',
                 },
@@ -171,12 +172,14 @@ Options.Triggers.push({
                 cardinal: {
                     en: 'Cardinal edge',
                     de: 'Kardinaler Rand',
+                    fr: 'Au bord cardinal',
                     ja: '東西南北の端へ',
                     ko: '동서남북 끝으로',
                 },
                 intercardinal: {
                     en: 'Intercardinal edge',
                     de: 'Interkardinaler Rand',
+                    fr: 'Au bord intercardinal',
                     ja: '斜めの端へ',
                     ko: '대각선 끝으로',
                 },
@@ -257,6 +260,7 @@ Options.Triggers.push({
                 direction: {
                     en: '${dir1} / ${dir2}',
                     de: '${dir1} / ${dir2}',
+                    fr: '${dir1} / ${dir2}',
                     ja: '${dir1} / ${dir2}',
                     ko: '${dir1} / ${dir2}',
                 },
@@ -342,7 +346,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Doomed Stars': 'Planète À L\'Agonie',
                 'Kakodaimon': 'cacodæmon',
@@ -350,6 +353,9 @@ Options.Triggers.push({
                 'oblivion': 'Ruée chaotique',
             },
             'replaceText': {
+                '\\(big\\)': '(gros)',
+                '\\(cast\\)': '(incantation)',
+                '\\(small\\)': '(petit)',
                 'Aporrhoia': 'Aporie',
                 'Crash': 'Collision',
                 'Dead Star': 'Effondrement planétaire',
