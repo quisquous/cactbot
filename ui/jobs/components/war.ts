@@ -4,6 +4,7 @@ import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
 import { ComboTracker } from '../combo_tracker';
+import { kAbility } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
 
 import { BaseComponent, ComponentInterface } from './base';
@@ -12,6 +13,7 @@ export class WARComponent extends BaseComponent {
   textBox: ResourceBox;
   eyeBox: TimerBox;
   comboTimer: TimerBar;
+  bonus: number;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -28,6 +30,8 @@ export class WARComponent extends BaseComponent {
       id: 'war-timers-combo',
       fgColor: 'combo-color',
     });
+
+    this.bonus = 0;
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['WAR']): void {
@@ -50,6 +54,9 @@ export class WARComponent extends BaseComponent {
 
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;
+    // Storm's Eye initiation will freeze Surging Tempest buff for about 1.6s before countdown start
+    if (skill === kAbility.StormsEye && !this.eyeBox.duration)
+      this.bonus = 1.6;
     if (combo.isFinalSkill)
       return;
     if (skill)
@@ -60,17 +67,8 @@ export class WARComponent extends BaseComponent {
     if (id !== EffectId.SurgingTempest && id !== EffectId.StormsEye)
       return;
     const duration = parseFloat(matches.duration ?? '0');
-    // TODO: the buff duration for Storm's Eye appears to be somewhat of a lie.
-    // The initial application seems to have some variability 1.1-1.3ish?
-    // And Storm's Eye and Mythril Tempest when extending also do this.
-    // This needs more investigation and some fixing unfortunately,
-    // as this will drift a lot over the course of a fight.
-    // We may also need to track which skill caused this effect.
-    // See: https://github.com/quisquous/cactbot/issues/3778
-    //
-    // Here's a hack to at least get the initial application to be better.
-    const bonus = this.eyeBox.duration === 0 ? 1.1 : 0;
-    this.eyeBox.duration = duration + bonus;
+    this.eyeBox.duration = duration + this.bonus - 0.5; // buff logline delay
+    this.bonus = 0;
   }
   override onYouLoseEffect(id: string): void {
     // TODO: delete StormsEye after every region launch 6.0
