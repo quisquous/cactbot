@@ -18,6 +18,7 @@ const storedMechanicsOutputStrings = {
   stack: {
     en: 'Party Stack',
     de: 'Mit der Party sammeln',
+    fr: 'Package en groupe',
     ja: '全員集合',
     cn: '8人分摊',
     ko: '파티 전체 쉐어',
@@ -29,6 +30,7 @@ const crystallizeOutputStrings = {
   crystallize: {
     en: 'Crystallize: ${name}',
     de: 'Kristalisieren: ${name}',
+    fr: 'Cristallisation : ${name}',
     ja: 'クリスタライズ: ${name}',
   },
 };
@@ -38,6 +40,7 @@ const comboOutputStrings = {
   combo: {
     en: '${first} => ${second}',
     de: '${first} => ${second}',
+    fr: '${first} => ${second}',
     ja: '${first} => ${second}',
     cn: '${first} => ${second}',
     ko: '${first} => ${second}',
@@ -133,6 +136,7 @@ const triggerSet: TriggerSet<Data> = {
         intercards: {
           en: 'Intercards',
           de: 'Interkardinal',
+          fr: 'Intercardinal',
           ja: '斜めへ',
           cn: '四角',
           ko: '대각선 쪽으로',
@@ -282,6 +286,7 @@ const triggerSet: TriggerSet<Data> = {
         avoid: {
           en: 'Avoid Line Ends',
           de: 'Weiche den Enden der Linien aus',
+          fr: 'Évitez les fins de lignes',
           ja: '線の端から離れる',
           cn: '远离线',
           ko: '선의 끝부분 피하기',
@@ -302,6 +307,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack 5x',
           de: '5x Sammeln',
+          fr: '5x Packages',
           ja: '頭割り５回',
           cn: '5连分摊',
           ko: '쉐어 5번',
