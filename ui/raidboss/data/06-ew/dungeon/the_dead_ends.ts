@@ -6,9 +6,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: cleanse Necrosis from standing in bubbles on Caustic Grebuloff.
-// TODO: does Pox Flail cleave?
-
 export interface Data extends RaidbossData {
   seenLovingEmbrace?: boolean;
 }
@@ -45,6 +42,23 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     {
+      id: 'DeadEnds Grebuloff Necrosis',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B95' }),
+      condition: (data) => data.CanCleanse(),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Esuna ${player}',
+          de: 'Medica ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: '${player} にエスナ',
+          cn: '驱散: ${player}',
+          ko: '"${player}" 에스나',
+        },
+      },
+    },
+    {
       id: 'DeadEnds Pox Flail',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6540', source: 'Caustic Grebuloff' }),
@@ -77,7 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Avoid Lasers',
+          en: 'Stand Between Bits',
         },
       },
     },
@@ -91,7 +105,32 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DeadEnds Peacekeeper Elimination',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '654F', source: 'Peacekeeper' }),
-      response: Responses.tankCleave('alert'),
+      // TODO: this is maybe worth promoting to responses?
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankLaserOnYou: {
+            en: 'Tank Laser on YOU',
+            de: 'Tank Laser auf DIR',
+            fr: 'Tank laser sur VOUS',
+            ja: '自分にタンクレーザー',
+            cn: '坦克激光点名',
+            ko: '탱 레이저 대상자',
+          },
+          tankLaserOnPlayer: {
+            en: 'Tank Laser on ${player}',
+          },
+          avoidLaserOnPlayer: {
+            en: 'Avoid Laser on ${player}',
+          },
+        };
+
+        if (data.me === matches.target)
+          return { alertText: output.tankLaserOnYou!() };
+        if (data.role === 'healer')
+          return { alertText: output.tankLaserOnPlayer!({ player: data.ShortName(matches.target) }) };
+        return { info: output.avoidLaserOnPlayer!({ player: data.ShortName(matches.target) }) };
+      },
     },
     {
       id: 'DeadEnds Ra-La Warm Glow',
