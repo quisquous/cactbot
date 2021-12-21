@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -8,7 +9,9 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: cleanse Necrosis from standing in bubbles on Caustic Grebuloff.
 // TODO: does Pox Flail cleave?
 
-export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  seenLovingEmbrace?: boolean;
+}
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheDeadEnds,
@@ -111,14 +114,28 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Ra-la Loving Embrace Right',
       type: 'StartsUsing',
+      // The first Loving Embrace is a left/right cleave while the boss is in the middle of the room,
+      // so give a left/right call to the safe side.  The remaining Loving Embrace casts are when
+      // the boss has jumped all the way to an edge and the players are (probably) facing it and so
+      // reverse the calls here.
       netRegex: NetRegexes.startsUsing({ id: '6557', source: 'Ra-la', capture: false }),
-      response: Responses.goLeft(),
+      alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.right!() : output.left!(),
+      run: (data) => data.seenLovingEmbrace = true,
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+      },
     },
     {
       id: 'DeadEnds Ra-la Loving Embrace Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6558', source: 'Ra-la', capture: false }),
-      response: Responses.goRight(),
+      alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.left!() : output.right!(),
+      run: (data) => data.seenLovingEmbrace = true,
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+      },
     },
     {
       id: 'DeadEnds Ra-la Still Embrace',
