@@ -22,6 +22,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6DA3', source: 'Erichthonios', capture: false }),
       response: Responses.goRight(),
     },
+    /* Aetherflail sends startsUsing Gaoler's Flail as well so don't double tell
     {
       id: 'P1N Aetherflail Right',
       type: 'StartsUsing',
@@ -34,6 +35,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '65E0', source: 'Erichthonios', capture: false }),
       response: Responses.goRight(),
     },
+    */
     {
       id: 'P1N Warder\'s Wrath',
       type: 'StartsUsing',
@@ -44,6 +46,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1N Shining Cells',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '65E9', source: 'Erichthonios', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'P1N Slam Shut',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '65EA', source: 'Erichthonios', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -83,27 +91,11 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
-    /*
-    {
-      id: 'P1N Powerful Fire',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '65EC', source: 'Erichthonios', capture: false }),
-      alertText: (_data, _matches, _output) => {
-        return _output.light!();
-      },
-      outputStrings: {
-        light: {
-          en: 'Stand on light',
-        },
-      },
-    },
-    */
     {
       id: 'P1N Powerful Light',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '893', capture: true }),
       alertText: (_data, matches, _output) => {
-        console.log(matches);
         if (matches.count === '14C')
           return _output.light!();
         return _output.fire!();
