@@ -148,3 +148,4 @@
 06-ew/trial/hydaelyn.ts
 06-ew/trial/hydaelyn-ex.ts
 06-ew/trial/zodiark.ts
+06-ew/trial/zodiark-ex.ts
