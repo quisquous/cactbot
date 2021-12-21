@@ -20,6 +20,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'ZodiarkEx Algedon': '67EE', // untelegraphed diagonal knockback
     'ZodiarkEx Adikia 1': '63A9', // two hit east west circles
     'ZodiarkEx Adikia 2': '67F2', // two hit east west circles
+  },
+  damageFail: {
     'ZodiarkEx Explosion': '67E7', // Astral Eclipse explosions
   },
   shareFail: {
