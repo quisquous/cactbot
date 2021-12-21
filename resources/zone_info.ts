@@ -16,6 +16,62 @@ type ZoneInfoType = {
 };
 
 const data: ZoneInfoType = {
+  1002: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Erster Kreis',
+      'en': 'Asphodelos: The First Circle',
+      'fr': 'Les Limbes du Pandæmonium - Parvis',
+      'ja': '万魔殿パンデモニウム：辺獄編1',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
+  1004: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Zweiter Kreis',
+      'en': 'Asphodelos: The Second Circle',
+      'fr': 'Les Limbes du Pandæmonium - Cloaque',
+      'ja': '万魔殿パンデモニウム：辺獄編2',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
+  1006: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Dritter Kreis',
+      'en': 'Asphodelos: The Third Circle',
+      'fr': 'Les Limbes du Pandæmonium - Fournaise',
+      'ja': '万魔殿パンデモニウム：辺獄編3',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
+  1008: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Vierter Kreis',
+      'en': 'Asphodelos: The Fourth Circle',
+      'fr': 'Les Limbes du Pandæmonium - Abîme',
+      'ja': '万魔殿パンデモニウム：辺獄編4',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
   1010: {
     'contentType': 7,
     'exVersion': 4,
@@ -62,7 +118,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 4,
     'name': {
-      'de': 'Das Ende der Morgenröte',
+      'de': 'Endschreiter',
       'en': 'Endwalker',
       'fr': 'Arpenteur des finitudes',
       'ja': '暁月のフィナーレ',
