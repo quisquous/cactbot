@@ -1882,8 +1882,12 @@ const data: WeatherRateType = {
     ],
   },
   145: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Pandæmonium',
+    ],
   },
   146: {
     'rates': [
