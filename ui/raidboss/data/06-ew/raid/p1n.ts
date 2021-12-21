@@ -83,6 +83,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
+    /*
     {
       id: 'P1N Powerful Fire',
       type: 'Ability',
@@ -92,19 +93,26 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         light: {
-          en: 'Stand on fire',
+          en: 'Stand on light',
         },
       },
     },
+    */
     {
       id: 'P1N Powerful Light',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '65ED', source: 'Erichthonios', capture: false }),
-      alertText: (_data, _matches, _output) => {
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '893', capture: true }),
+      alertText: (_data, matches, _output) => {
+        console.log(matches);
+        if (matches.count === '14C')
+          return _output.light!();
         return _output.fire!();
       },
       outputStrings: {
         fire: {
+          en: 'Stand on fire',
+        },
+        light: {
           en: 'Stand on light',
         },
       },
