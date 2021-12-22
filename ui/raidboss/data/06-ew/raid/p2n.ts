@@ -1,5 +1,7 @@
 // import Conditions from '../../../../../resources/conditions';
+// import data from '../../../../../resources/content_type';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -9,6 +11,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   bodyActor?: PluginCombatantState;
+  dissociationHippo?: PluginCombatantState;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -31,9 +34,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2N Spoken Cataract',
       type: 'StartsUsing',
-      // create value for radiants that are readible (no hardcoded variables) -> we dont need FD
-      // Comment for what IDs are there for! TO DO!!!
-      netRegex: NetRegexes.startsUsing({ id: ['67FD', '67F8', '67F7', '67F9'], source: 'Hippokampos', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: 'Hippokampos', capture: true }),
       delaySeconds: 1,
       promise: async (data) => {
         const callData = await callOverlayHandler({
@@ -46,14 +47,14 @@ const triggerSet: TriggerSet<Data> = {
         // This is the real hippo, according to hp.
         const hippos = callData.combatants.filter((c) => c.BNpcID === 13721);
         if (hippos.length !== 1) {
-          console.error('SpokenCataract: There are more than one Hippo?!?: ${JSON.stringify(hippos)}');
+          console.error('SpokenCataract: There is not exactly one Hippo?!?: ${JSON.stringify(hippos)}');
+          data.bodyActor = undefined;
           return;
         }
         data.bodyActor = hippos[0];
       },
       alertText: (data, matches, _output) => {
-        // return 'body' + data.bodyActor?.Heading;
-        if (!data.bodyActor?.Heading) {
+        if (!data.bodyActor) {
           console.error('SpokenCataract: No boss actor found. Did the promise fail?');
           return;
         }
@@ -126,7 +127,8 @@ const triggerSet: TriggerSet<Data> = {
       // Spread aoe marker on some players, not all
       id: 'P2N Tainted Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6808', source: 'Hippokampos', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos', capture: true }),
+      condition: (data, matches) => matches.target === data.me,
       response: Responses.spread(),
     },
     {
@@ -135,6 +137,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P2N Sewage Erruption',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '680D', source: 'Hippokampos', capture: false }),
+      suppressSeconds: 5,
       response: Responses.spread(),
     },
     {
@@ -160,55 +163,41 @@ const triggerSet: TriggerSet<Data> = {
       // Aoe from outside the arena
       id: 'P2N Dissociation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos', capture: false }),
       delaySeconds: 1,
       promise: async (data) => {
         const callData = await callOverlayHandler({
           call: 'getCombatants',
         });
-        if (callData.combatants)
-          console.log(callData.combatants);
         if (!callData || !callData.combatants || !callData.combatants.length) {
-          console.error('SpokenCataract: failed to get combatants: ${JSON.stringify(callData)}');
+          console.error('Dissociation: failed to get combatants: ${JSON.stringify(callData)}');
           return;
         }
-        // This is the real hippo, according to hp.
+        // This is the right dissociationHippo, according to position.
         const hippos = callData.combatants.filter((c) => c.BNpcID === 14441);
+        console.log(hippos);
         if (hippos.length !== 1) {
-          console.error('SpokenCataract: There are more than one Hippo?!?: ${JSON.stringify(hippos)}');
+          console.error('Dissociation: There is not exactly one dissociationHippo?!', hippos);
+          console.log(callData.combatants);
+          data.dissociationHippo = undefined;
           return;
         }
-        data.bodyActor = hippos[0];
+        data.dissociationHippo = hippos[0];
       },
-      alertText: (data, matches, _output) => {
-        // return 'body' + data.bodyActor?.Heading;
-        if (!data.bodyActor?.PosX) {
-          console.error('SpokenCataract: No boss actor found. Did the promise fail?');
-          return;
+      alertText: (data, _matches, output) => {
+        if (!data.dissociationHippo) {
+          console.error('Dissociation: No boss actor found. Did the promise fail?');
+          return 'unknown';
         }
-        const xcord = data.bodyActor?.PosX;
-        let newHead = null;
-
+        const xcord = data.dissociationHippo.PosX;
         if (xcord === 110)
-          newHead = 'east';
+          return output.e!();
         if (xcord === 90)
-          newHead = 'west';
-        if (matches.id === '6806') {
-          if (newHead === 'east')
-            return 'West';
-          if (newHead === 'west')
-            return 'East';
-        }
+          return output.w!();
       },
       outputStrings: {
-        text: {
-          en: 'Tank Laser on YOU',
-          de: 'Tank Laser auf DIR',
-          fr: 'Tank laser sur VOUS',
-          ja: '自分にタンクレーザー',
-          cn: '坦克射线点名',
-          ko: '탱 레이저 대상자',
-        },
+        e: Outputs.east,
+        w: Outputs.west,
       },
     },
   ],
