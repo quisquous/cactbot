@@ -378,3 +378,4 @@
 06-ew/trial/zodiark-ex.txt
 06-ew/trial/endsinger.ts
 06-ew/trial/endsinger.txt
+06-ew/raid/p1n.ts
