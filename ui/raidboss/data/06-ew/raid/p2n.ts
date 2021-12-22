@@ -31,6 +31,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2N Spoken Cataract',
       type: 'StartsUsing',
+      // create value for radiants that are readible (no hardcoded variables) -> we dont need FD
+      // Comment for what IDs are there for! TO DO!!!
       netRegex: NetRegexes.startsUsing({ id: ['67FD', '67F8', '67F7', '67F9'], source: 'Hippokampos', capture: true }),
       delaySeconds: 1,
       promise: async (data) => {
@@ -96,6 +98,106 @@ const triggerSet: TriggerSet<Data> = {
             return 'body south, head east';
           if (bodyHeading === 'east')
             return 'body east, head north';
+        }
+      },
+      outputStrings: {
+        text: {
+          en: 'Tank Laser on YOU',
+          de: 'Tank Laser auf DIR',
+          fr: 'Tank laser sur VOUS',
+          ja: '自分にタンクレーザー',
+          cn: '坦克射线点名',
+          ko: '탱 레이저 대상자',
+        },
+      },
+    },
+    {
+      id: 'P2N Sewage Deluge',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '67F6', source: 'Hippokampos', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Aoe get on grid',
+        },
+      },
+    },
+    {
+      // Spread aoe marker on some players, not all
+      id: 'P2N Tainted Flood',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6808', source: 'Hippokampos', capture: false }),
+      response: Responses.spread(),
+    },
+    {
+      // Drops aoe zones beneath you -> run to dodge (on everyone)
+      // Not working currently properly -> On you not working.
+      id: 'P2N Sewage Erruption',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '680D', source: 'Hippokampos', capture: false }),
+      response: Responses.spread(),
+    },
+    {
+      // Shortly After Sewage Erruption, not every Sewage Erruption but every Predatory Sight, maybe one trigger for both
+      id: 'P2N Predatory Sight',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '680A', source: 'Hippokampos', capture: false }),
+      response: Responses.doritoStack(),
+    },
+    {
+      // Raidwide knockback -> dont get knocked into slurry
+      id: 'P2N Shockwave',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6807', source: 'Hippokampos', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Knockback stay on grid',
+        },
+      },
+    },
+    {
+      // Aoe from outside the arena
+      id: 'P2N Dissociation',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos', capture: true }),
+      delaySeconds: 1,
+      promise: async (data) => {
+        const callData = await callOverlayHandler({
+          call: 'getCombatants',
+        });
+        if (callData.combatants)
+          console.log(callData.combatants);
+        if (!callData || !callData.combatants || !callData.combatants.length) {
+          console.error('SpokenCataract: failed to get combatants: ${JSON.stringify(callData)}');
+          return;
+        }
+        // This is the real hippo, according to hp.
+        const hippos = callData.combatants.filter((c) => c.BNpcID === 14441);
+        if (hippos.length !== 1) {
+          console.error('SpokenCataract: There are more than one Hippo?!?: ${JSON.stringify(hippos)}');
+          return;
+        }
+        data.bodyActor = hippos[0];
+      },
+      alertText: (data, matches, _output) => {
+        // return 'body' + data.bodyActor?.Heading;
+        if (!data.bodyActor?.PosX) {
+          console.error('SpokenCataract: No boss actor found. Did the promise fail?');
+          return;
+        }
+        const xcord = data.bodyActor?.PosX;
+        let newHead = null;
+
+        if (xcord === 110)
+          newHead = 'east';
+        if (xcord === 90)
+          newHead = 'west';
+        if (matches.id === '6806') {
+          if (newHead === 'east')
+            return 'West';
+          if (newHead === 'west')
+            return 'East';
         }
       },
       outputStrings: {
