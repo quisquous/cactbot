@@ -25,13 +25,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2N Doubled Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '680E', source: 'Hippokampos', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: '680E', source: 'Hippokampos' }),
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'P2N Spoken Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: 'Hippokampos', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: 'Hippokampos' }),
       delaySeconds: 1,
       promise: async (data) => {
         const callData = await callOverlayHandler({
@@ -116,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Aoe get on grid',
+          en: 'Aoe--Get on grid',
         },
       },
     },
@@ -124,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
       // Spread aoe marker on some players, not all
       id: 'P2N Tainted Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos' }),
       condition: (data, matches) => matches.target === data.me,
       response: Responses.spread(),
     },
@@ -151,7 +151,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback stay on grid',
+          en: 'Knockback--Stay on grid',
         },
       },
     },
@@ -159,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
       // Aoe from head outside the arena
       id: 'P2N Dissociation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos' }),
       alertText: (_data, matches, output) => {
         const xcord = parseFloat(matches.x);
         if (xcord === 110)
