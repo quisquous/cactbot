@@ -74,10 +74,12 @@ Options.Triggers.push({
                 red: {
                     en: 'Get hit by red',
                     de: 'Von Rot treffen lassen',
+                    fr: 'Faites-vous toucher par le rouge',
                 },
                 blue: {
                     en: 'Get hit by blue',
                     de: 'Von Blau treffen lassen',
+                    fr: 'Faites-vous toucher par le bleu',
                 },
             },
         },
@@ -104,10 +106,12 @@ Options.Triggers.push({
                 fire: {
                     en: 'Stand on fire',
                     de: 'Auf der Feuerfläche stehen',
+                    fr: 'Placez-vous sur le feu',
                 },
                 light: {
                     en: 'Stand on light',
                     de: 'Auf der Lichtfläche stehen',
+                    fr: 'Placez-vous sur la lumière',
                 },
             },
         },
