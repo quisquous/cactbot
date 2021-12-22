@@ -12,31 +12,19 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p1n.txt',
   triggers: [
     {
+      // Also happens during Aetherflail Right (65DF)
       id: 'P1N Gaoler\'s Flail Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DA2', source: 'Erichthonios', capture: false }),
       response: Responses.goLeft(),
     },
     {
+      // Also happens during Aetherflail Left (65E0)
       id: 'P1N Gaoler\'s Flail Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DA3', source: 'Erichthonios', capture: false }),
       response: Responses.goRight(),
     },
-    /* Aetherflail sends startsUsing Gaoler's Flail as well so don't double tell
-    {
-      id: 'P1N Aetherflail Right',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65DF', source: 'Erichthonios', capture: false }),
-      response: Responses.goLeft(),
-    },
-    {
-      id: 'P1N Aetherflail Left',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65E0', source: 'Erichthonios', capture: false }),
-      response: Responses.goRight(),
-    },
-    */
     {
       id: 'P1N Warder\'s Wrath',
       type: 'StartsUsing',
