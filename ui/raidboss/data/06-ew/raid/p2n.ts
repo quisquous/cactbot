@@ -163,33 +163,10 @@ const triggerSet: TriggerSet<Data> = {
       // Aoe from outside the arena
       id: 'P2N Dissociation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos', capture: true }),
       delaySeconds: 1,
-      promise: async (data) => {
-        const callData = await callOverlayHandler({
-          call: 'getCombatants',
-        });
-        if (!callData || !callData.combatants || !callData.combatants.length) {
-          console.error('Dissociation: failed to get combatants: ${JSON.stringify(callData)}');
-          return;
-        }
-        // This is the right dissociationHippo, according to position.
-        const hippos = callData.combatants.filter((c) => c.BNpcID === 14441);
-        console.log(hippos);
-        if (hippos.length !== 1) {
-          console.error('Dissociation: There is not exactly one dissociationHippo?!', hippos);
-          console.log(callData.combatants);
-          data.dissociationHippo = undefined;
-          return;
-        }
-        data.dissociationHippo = hippos[0];
-      },
-      alertText: (data, _matches, output) => {
-        if (!data.dissociationHippo) {
-          console.error('Dissociation: No boss actor found. Did the promise fail?');
-          return 'unknown';
-        }
-        const xcord = data.dissociationHippo.PosX;
+      alertText: (data, matches, output) => {
+        const xcord = parseFloat(matches.x);
         if (xcord === 110)
           return output.e!();
         if (xcord === 90)
