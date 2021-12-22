@@ -67,9 +67,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         red: {
           en: 'Get hit by red',
+          fr: 'Faites-vous toucher par le rouge',
         },
         blue: {
           en: 'Get hit by blue',
+          fr: 'Faites-vous toucher par le bleu',
         },
       },
     },
@@ -92,9 +94,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fire: {
           en: 'Stand on fire',
+          fr: 'Placez-vous sur le feu',
         },
         light: {
           en: 'Stand on light',
+          fr: 'Placez-vous sur la lumière',
         },
       },
     },
