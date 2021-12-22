@@ -1,5 +1,3 @@
-// import Conditions from '../../../../../resources/conditions';
-// import data from '../../../../../resources/content_type';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -11,7 +9,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   bodyActor?: PluginCombatantState;
-  dissociationHippo?: PluginCombatantState;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -53,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
         }
         data.bodyActor = hippos[0];
       },
-      alertText: (data, matches, _output) => {
+      alertText: (data, matches, output) => {
         if (!data.bodyActor) {
           console.error('SpokenCataract: No boss actor found. Did the promise fail?');
           return;
@@ -72,44 +69,44 @@ const triggerSet: TriggerSet<Data> = {
 
         if (matches.id === '67F8') {
           if (bodyHeading === 'north')
-            return 'body north, head south';
+            return output.nw!() + '/' + output.ne!();
           if (bodyHeading === 'west')
-            return 'body west, head east';
+            return output.nw!() + '/' + output.sw!();
           if (bodyHeading === 'south')
-            return 'body south, head north';
+            return output.sw!() + '/' + output.se!();
           if (bodyHeading === 'east')
-            return 'body east, head west';
+            return output.ne!() + '/' + output.se!();
         }
         if (matches.id === '67F7') {
           if (bodyHeading === 'north')
-            return 'body north, head east';
+            return output.w!();
           if (bodyHeading === 'west')
-            return 'body west, head north';
+            return output.s!();
           if (bodyHeading === 'south')
-            return 'body south, head west';
+            return output.e!();
           if (bodyHeading === 'east')
-            return 'body east, head south';
+            return output.n!();
         }
         if (matches.id === '67F9') {
           if (bodyHeading === 'north')
-            return 'body north, head west';
+            return output.e!();
           if (bodyHeading === 'west')
-            return 'body west, head south';
+            return output.n!();
           if (bodyHeading === 'south')
-            return 'body south, head east';
+            return output.w!();
           if (bodyHeading === 'east')
-            return 'body east, head north';
+            return output.s!();
         }
       },
       outputStrings: {
-        text: {
-          en: 'Tank Laser on YOU',
-          de: 'Tank Laser auf DIR',
-          fr: 'Tank laser sur VOUS',
-          ja: '自分にタンクレーザー',
-          cn: '坦克射线点名',
-          ko: '탱 레이저 대상자',
-        },
+        n: Outputs.north,
+        e: Outputs.east,
+        w: Outputs.west,
+        s: Outputs.south,
+        ne: Outputs.northeast,
+        nw: Outputs.northwest,
+        se: Outputs.southeast,
+        sw: Outputs.southwest,
       },
     },
     {
@@ -133,7 +130,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // Drops aoe zones beneath you -> run to dodge (on everyone)
-      // Not working currently properly -> On you not working.
       id: 'P2N Sewage Erruption',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '680D', source: 'Hippokampos', capture: false }),
@@ -141,10 +137,10 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     {
-      // Shortly After Sewage Erruption, not every Sewage Erruption but every Predatory Sight, maybe one trigger for both
       id: 'P2N Predatory Sight',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '680A', source: 'Hippokampos', capture: false }),
+      delaySeconds: 3,
       response: Responses.doritoStack(),
     },
     {
@@ -160,17 +156,16 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // Aoe from outside the arena
+      // Aoe from head outside the arena
       id: 'P2N Dissociation',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos', capture: true }),
-      delaySeconds: 1,
-      alertText: (data, matches, output) => {
+      alertText: (_data, matches, output) => {
         const xcord = parseFloat(matches.x);
         if (xcord === 110)
-          return output.e!();
-        if (xcord === 90)
           return output.w!();
+        if (xcord === 90)
+          return output.e!();
       },
       outputStrings: {
         e: Outputs.east,
