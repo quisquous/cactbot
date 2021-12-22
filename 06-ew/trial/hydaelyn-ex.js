@@ -3,6 +3,7 @@ const storedMechanicsOutputStrings = {
     groups: {
         en: 'Healer Groups',
         de: 'Heiler-Gruppen',
+        fr: 'Healers en groupes',
         ja: 'ヒラに頭割り',
         cn: '治疗分摊组',
         ko: '힐러 그룹 쉐어',
@@ -10,6 +11,7 @@ const storedMechanicsOutputStrings = {
     stack: {
         en: 'Party Stack',
         de: 'Mit der Party sammeln',
+        fr: 'Package en groupe',
         ja: '全員集合',
         cn: '8人分摊',
         ko: '파티 전체 쉐어',
@@ -20,6 +22,7 @@ const crystallizeOutputStrings = {
     crystallize: {
         en: 'Crystallize: ${name}',
         de: 'Kristalisieren: ${name}',
+        fr: 'Cristallisation : ${name}',
         ja: 'クリスタライズ: ${name}',
     },
 };
@@ -54,6 +57,7 @@ Options.Triggers.push({
                 intercards: {
                     en: 'Intercards',
                     de: 'Interkardinal',
+                    fr: 'Intercardinal',
                     ja: '斜めへ',
                     cn: '四角',
                     ko: '대각선 쪽으로',
@@ -387,6 +391,7 @@ Options.Triggers.push({
                 avoid: {
                     en: 'Avoid Line Ends',
                     de: 'Weiche den Enden der Linien aus',
+                    fr: 'Évitez les fins de lignes',
                     ja: '線の端から離れる',
                     cn: '远离线',
                     ko: '선의 끝부분 피하기',
@@ -407,6 +412,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack 5x',
                     de: '5x Sammeln',
+                    fr: '5x Packages',
                     ja: '頭割り５回',
                     cn: '5连分摊',
                     ko: '쉐어 5번',
@@ -503,13 +509,15 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Hydaelyn': 'Hydaelyn',
                 'Mystic Refulgence': 'illusion de Lumière',
                 'Parhelion': 'Parhélie',
             },
             'replaceText': {
+                '\\?': ' ?',
+                '--top-middle': '--En haut au milieu',
+                '--middle': '--Milieu',
                 'Anthelion': 'Anthélie',
                 'Aureole': 'Auréole',
                 'Beacon': 'Rayon de Lumière',
@@ -517,6 +525,7 @@ Options.Triggers.push({
                 'Crystalline Blizzard III': 'Méga Glace cristallisée',
                 'Crystalline Stone III': 'Méga Terre cristallisée',
                 'Crystalline Water III': 'Méga Eau cristallisée',
+                'Crystalline Water/Stone III': 'Méga Eau/Terre cristallisée',
                 'Crystallize': 'Cristallisation',
                 'Dichroic Spectrum': 'Spectre dichroïque',
                 'Echoes': 'Échos',

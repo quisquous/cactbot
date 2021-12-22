@@ -349,6 +349,7 @@ Options.Triggers.push({
                 'Mystic Refulgence': 'illusion de Lumière',
             },
             'replaceText': {
+                '\\?': ' ?',
                 'Anthelion': 'Anthélie',
                 'Beacon': 'Rayon de Lumière',
                 'Crystalline Blizzard III': 'Méga Glace cristallisée',
