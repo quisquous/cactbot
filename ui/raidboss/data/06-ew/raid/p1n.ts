@@ -16,6 +16,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1N Gaoler\'s Flail Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DA2', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6DA2', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6DA2', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6DA2', source: 'エリクトニオス', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -23,24 +26,36 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1N Gaoler\'s Flail Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DA3', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6DA3', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6DA3', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6DA3', source: 'エリクトニオス', capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'P1N Warder\'s Wrath',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '65F4', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '65F4', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '65F4', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '65F4', source: 'エリクトニオス', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'P1N Shining Cells',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '65E9', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '65E9', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '65E9', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '65E9', source: 'エリクトニオス', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'P1N Slam Shut',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '65EA', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '65EA', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '65EA', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '65EA', source: 'エリクトニオス', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -67,9 +82,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         red: {
           en: 'Get hit by red',
+          de: 'Von Rot treffen lassen',
         },
         blue: {
           en: 'Get hit by blue',
+          de: 'Von Blau treffen lassen',
         },
       },
     },
@@ -77,6 +94,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1N Heavy Hand',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '65F3', source: 'Erichthonios' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '65F3', source: 'Erichthonios' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '65F3', source: 'Érichthonios' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '65F3', source: 'エリクトニオス' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -92,9 +112,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fire: {
           en: 'Stand on fire',
+          de: 'Auf der Feuerfläche stehen',
         },
         light: {
           en: 'Stand on light',
+          de: 'Auf der Lichtfläche stehen',
         },
       },
     },
