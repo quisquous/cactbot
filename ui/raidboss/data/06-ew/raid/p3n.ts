@@ -124,20 +124,20 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         if (!data.ashenEyeDirections)
           data.ashenEyeDirections = [];
-        // Convert radians into 4 quarters N = 0, E = 1, S = 2, W = 3
+        // Convert radians into 4 quarters N = 0, W = 1, S = 2, E = 3
         const heading = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
         switch (heading) {
           case 0:
             data.ashenEyeDirections.push('north');
             break;
           case 1:
-            data.ashenEyeDirections.push('east');
+            data.ashenEyeDirections.push('west');
             break;
           case 2:
             data.ashenEyeDirections.push('south');
             break;
           case 3:
-            data.ashenEyeDirections.push('west');
+            data.ashenEyeDirections.push('east');
             break;
         }
         if (data.ashenEyeDirections.length === 2) {
