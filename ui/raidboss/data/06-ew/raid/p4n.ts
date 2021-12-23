@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4N Northerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DAE', source: 'Hesperos', capture: false }),
-      delaySeconds: 4,
+      delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4N Easterly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DB0', source: 'Hesperos', capture: false }),
-      delaySeconds: 4,
+      delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -153,7 +153,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4N Southerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DAF', source: 'Hesperos', capture: false }),
-      delaySeconds: 4,
+      delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -165,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4N Westerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DB1', source: 'Hesperos', capture: false }),
-      delaySeconds: 4,
+      delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
