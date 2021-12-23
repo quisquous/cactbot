@@ -74,7 +74,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69DD', source: 'Hesperos', capture: false }),
       delaySeconds: 2,
-      alarmText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Get Other Role Tower',
@@ -177,7 +177,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4N Belone Bursts',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos', capture: false }),
-      alarmText: (data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Pop other role orbs',
