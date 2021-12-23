@@ -255,7 +255,6 @@ Options.Triggers.push({
             'replaceText': {
                 '\\(circles\\)': '(Kreise)',
                 '\\(spread\\)': '(Verteilen)',
-                '--jump--': '--Sprung--',
                 'Befoulment': 'Brackwasserbombe',
                 'Benevolence': 'Philanthropie',
                 'Blighted Water': 'Brackige Seele',
