@@ -148,30 +148,41 @@ const triggerSet: TriggerSet<Data> = {
             break;
         }
         if (data.ashenEyeDirections.length === 2) {
-          const dir = data.ashenEyeDirections[1];
-          switch (dir) {
+          let safeSpot = '';
+          let first = '';
+          const dir1 = data.ashenEyeDirections[0];
+          const dir2 = data.ashenEyeDirections[1];
+          switch (dir1) {
             case 'north':
-              return output.s!();
+              safeSpot = output.s!();
+              break;
             case 'west':
-              return output.e!();
+              safeSpot = output.e!();
+              break;
             case 'south':
-              return output.n!();
+              safeSpot = output.n!();
+              break;
             case 'east':
-              return output.w!();
+              safeSpot = output.w!();
+              break;
           }
-        } else if (data.ashenEyeDirections.length === 4) {
-          const dir = data.ashenEyeDirections[0];
-          data.ashenEyeDirections = undefined;
-          switch (dir) {
+          switch (dir2) {
             case 'north':
-              return output.n!();
+              first = output.s!();
+              break;
             case 'west':
-              return output.w!();
+              first = output.e!();
+              break;
             case 'south':
-              return output.s!();
+              first = output.n!();
+              break;
             case 'east':
-              return output.e!();
+              first = output.w!();
+              break;
           }
+          return first + ' then ' + safeSpot;
+        } else if (data.ashenEyeDirections.length > 3) {
+          data.ashenEyeDirections = [];
         }
       },
       outputStrings: {
