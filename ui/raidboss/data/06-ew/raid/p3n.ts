@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '66B2', source: 'Phoinix' }),
       suppressSeconds: 1,
-      response: Responses.tankBuster(),
+      response: Responses.tankCleave('alert'),
     },
     {
       id: 'P3N Darkened Fire Aoe',
@@ -99,7 +99,17 @@ const triggerSet: TriggerSet<Data> = {
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Sunbird', capture: false }),
       suppressSeconds: 1,
-      response: Responses.killAdds(),
+      alertText: (data, _matches, output) => {
+        if (data.role === 'tank')
+          return output.tank!();
+        return output.text!();
+      },
+      outputStrings: {
+        tank: {
+          en: 'Split Adds Don\'t Stack Circles',
+        },
+        text: Outputs.killAdds,
+      },
     },
     {
       id: 'P3N Dead Rebirth',
@@ -114,21 +124,20 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         if (!data.ashenEyeDirections)
           data.ashenEyeDirections = [];
-        switch (matches.heading) {
-          case '-3.14':
+        // Convert radians into 4 quarters N = 0, E = 1, S = 2, W = 3
+        const heading = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
+        switch (heading) {
+          case 0:
             data.ashenEyeDirections.push('north');
             break;
-          case '-1.57':
-            data.ashenEyeDirections.push('west');
-            break;
-          case '0.00':
-            data.ashenEyeDirections.push('south');
-            break;
-          case '1.57':
+          case 1:
             data.ashenEyeDirections.push('east');
             break;
-          default:
-            console.error('Ashen Eye: Got unforeseen ashen eye direction', matches.heading);
+          case 2:
+            data.ashenEyeDirections.push('south');
+            break;
+          case 3:
+            data.ashenEyeDirections.push('west');
             break;
         }
         if (data.ashenEyeDirections.length === 2) {
@@ -164,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
               first = output.w!();
               break;
           }
-          return first + ' then ' + safeSpot;
+          return output.combo!({ first: first, second: safeSpot });
         } else if (data.ashenEyeDirections.length > 3) {
           data.ashenEyeDirections = [];
         }
@@ -174,6 +183,14 @@ const triggerSet: TriggerSet<Data> = {
         e: Outputs.east,
         w: Outputs.west,
         s: Outputs.south,
+        combo: {
+          en: '${first} => ${second}',
+          de: '${first} => ${second}',
+          fr: '${first} => ${second}',
+          ja: '${first} => ${second}',
+          cn: '${first} => ${second}',
+          ko: '${first} => ${second}',
+        },
       },
     },
     {
