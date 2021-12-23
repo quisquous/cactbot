@@ -7,7 +7,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  ashenEyeDirections?: string[];
+  ashenEyeDirections?: number[];
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -124,53 +124,40 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         if (!data.ashenEyeDirections)
           data.ashenEyeDirections = [];
-        // Convert radians into 4 quarters N = 0, W = 1, S = 2, E = 3
+        // Convert radians into 4 quarters N = 0, E = 1, S = 2, W = 3
         const heading = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
-        switch (heading) {
-          case 0:
-            data.ashenEyeDirections.push('north');
-            break;
-          case 1:
-            data.ashenEyeDirections.push('west');
-            break;
-          case 2:
-            data.ashenEyeDirections.push('south');
-            break;
-          case 3:
-            data.ashenEyeDirections.push('east');
-            break;
-        }
+        data.ashenEyeDirections.push(heading);
         if (data.ashenEyeDirections.length === 2) {
           let safeSpot = '';
           let first = '';
           const dir1 = data.ashenEyeDirections[0];
           const dir2 = data.ashenEyeDirections[1];
           switch (dir1) {
-            case 'north':
-              safeSpot = output.s!();
-              break;
-            case 'west':
-              safeSpot = output.e!();
-              break;
-            case 'south':
+            case 0:
               safeSpot = output.n!();
               break;
-            case 'east':
+            case 1:
+              safeSpot = output.e!();
+              break;
+            case 2:
+              safeSpot = output.s!();
+              break;
+            case 3:
               safeSpot = output.w!();
               break;
           }
           switch (dir2) {
-            case 'north':
+            case 0:
               first = output.s!();
               break;
-            case 'west':
-              first = output.e!();
+            case 1:
+              first = output.w!();
               break;
-            case 'south':
+            case 2:
               first = output.n!();
               break;
-            case 'east':
-              first = output.w!();
+            case 3:
+              first = output.e!();
               break;
           }
           return output.combo!({ first: first, second: safeSpot });
