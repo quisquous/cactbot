@@ -19,14 +19,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3N Experimental Fireplume 1',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6698', source: 'Phoinix', capture: false }),
-      alertText: (_data, _matches, output) => {
-        return output.text!();
-      },
-      outputStrings: {
-        text: {
-          en: 'dodge rotating ground aoe then out',
-        },
-      },
+      response: Responses.getInThenOut(),
     },
     {
       id: 'P3N Experimental Fireplume 2',
@@ -178,6 +171,7 @@ const triggerSet: TriggerSet<Data> = {
             case 'east':
               return output.e!();
           }
+          data.ashenEyeDirections = undefined;
         }
       },
       outputStrings: {
@@ -186,12 +180,6 @@ const triggerSet: TriggerSet<Data> = {
         w: outputs.west,
         s: outputs.south,
       },
-    },
-    {
-      id: 'P3N Experimental Charplume',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '669C', source: 'Phoinix', capture: false }),
-      response: Responses.spread(),
     },
     {
       id: 'P3N Devouring Brand',
