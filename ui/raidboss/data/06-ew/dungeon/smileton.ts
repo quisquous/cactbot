@@ -62,6 +62,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Smileton Face Smiley Face Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'Relatively Small Face' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'Klein(?:e|er|es|en) Fratze' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'Visage Changeant' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'リトルフェイス' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.smileyFace = true,
     },
@@ -69,6 +72,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Smileton Face Smiley Face Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: 'ACB', source: 'Relatively Small Face' }),
+      netRegexDe: NetRegexes.losesEffect({ effectId: 'ACB', source: 'Klein(?:e|er|es|en) Fratze' }),
+      netRegexFr: NetRegexes.losesEffect({ effectId: 'ACB', source: 'Visage Changeant' }),
+      netRegexJa: NetRegexes.losesEffect({ effectId: 'ACB', source: 'リトルフェイス' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.smileyFace = false,
     },
@@ -76,6 +82,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Smileton Face Frowny Face Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'Relatively Small Face' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'Klein(?:e|er|es|en) Fratze' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'Visage Changeant' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'リトルフェイス' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.frownyFace = true,
     },
@@ -83,6 +92,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Smileton Face Frowny Face Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: 'ACC', source: 'Relatively Small Face' }),
+      netRegexDe: NetRegexes.losesEffect({ effectId: 'ACC', source: 'Klein(?:e|er|es|en) Fratze' }),
+      netRegexFr: NetRegexes.losesEffect({ effectId: 'ACC', source: 'Visage Changeant' }),
+      netRegexJa: NetRegexes.losesEffect({ effectId: 'ACC', source: 'リトルフェイス' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.frownyFace = false,
     },
@@ -116,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         either: {
           en: 'Get hit by red or blue face',
-          de: 'Von irgendeiner Farbe treffen lassen', // FIXME
+          de: 'Von irgendeiner Farbe treffen lassen',
           fr: 'Faites-vous toucher par une couleur', // FIXME
           ko: '아무 색의 빔 하나 맞기', // FIXME
         },
