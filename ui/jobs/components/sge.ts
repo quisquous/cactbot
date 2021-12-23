@@ -84,6 +84,7 @@ export class SGEComponent extends BaseComponent {
     switch (id) {
       case EffectId.EukrasianDosis:
       case EffectId.EukrasianDosisIi:
+      case EffectId.EukrasianDosisIii:
         this.eukrasianDosis.duration = parseInt(matches.duration ?? '0', 10);
         break;
     }
