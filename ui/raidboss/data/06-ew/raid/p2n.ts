@@ -60,48 +60,36 @@ const triggerSet: TriggerSet<Data> = {
           switch (heading) {
             case 0:
               return output.nc!();
-              break;
             case 1:
               return output.ec!();
-              break;
             case 2:
               return output.sc!();
-              break;
             case 3:
               return output.wc!();
-              break;
           }
         }
         if (matches.id === '67F7') {
           switch (heading) {
             case 0:
               return output.w!();
-              break;
             case 1:
               return output.n!();
-              break;
             case 2:
               return output.e!();
-              break;
             case 3:
               return output.s!();
-              break;
           }
         }
         if (matches.id === '67F9') {
           switch (heading) {
             case 0:
               return output.e!();
-              break;
             case 1:
               return output.s!();
-              break;
             case 2:
               return output.w!();
-              break;
             case 3:
               return output.n!();
-              break;
           }
         }
       },
