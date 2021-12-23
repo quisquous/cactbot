@@ -161,6 +161,7 @@ const triggerSet: TriggerSet<Data> = {
           }
         } else if (data.ashenEyeDirections.length === 4) {
           const dir = data.ashenEyeDirections[0];
+          data.ashenEyeDirections = undefined;
           switch (dir) {
             case 'north':
               return output.n!();
@@ -171,7 +172,6 @@ const triggerSet: TriggerSet<Data> = {
             case 'east':
               return output.e!();
           }
-          data.ashenEyeDirections = undefined;
         }
       },
       outputStrings: {
