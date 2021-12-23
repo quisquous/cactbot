@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         tank: {
-          en: 'Split Adds Don\'t Stack Circles',
+          en: 'Pull add circles apart',
         },
         text: Outputs.killAdds,
       },
