@@ -12,9 +12,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   zoneId: ZoneId.AsphodelosTheSecondCircle,
-  timelineFile: 'p2n.txt',
   triggers: [
     {
       id: 'P2N Murky Depths',
@@ -55,47 +53,56 @@ const triggerSet: TriggerSet<Data> = {
           console.error('SpokenCataract: No boss actor found. Did the promise fail?');
           return;
         }
-        const heading = data.bodyActor?.Heading;
-        let bodyHeading = null;
-
-        if (heading < -3.0 || heading > 3.0)
-          bodyHeading = 'north';
-        if (heading < -1.56 && heading > -1.58)
-          bodyHeading = 'west';
-        if (heading > -0.1 && heading < 0.1)
-          bodyHeading = 'south';
-        if (heading > 1.56 && heading < 1.58)
-          bodyHeading = 'east';
+        // Convert radians into 4 quarters N = 0, E = 1, S = 2, W = 3
+        const heading = Math.round(2 - 2 * data.bodyActor.Heading / Math.PI) % 4;
 
         if (matches.id === '67F8') {
-          if (bodyHeading === 'north')
-            return output.nw!() + '/' + output.ne!();
-          if (bodyHeading === 'west')
-            return output.nw!() + '/' + output.sw!();
-          if (bodyHeading === 'south')
-            return output.sw!() + '/' + output.se!();
-          if (bodyHeading === 'east')
-            return output.ne!() + '/' + output.se!();
+          switch (heading) {
+            case 0:
+              return output.nc!();
+              break;
+            case 1:
+              return output.ec!();
+              break;
+            case 2:
+              return output.sc!();
+              break;
+            case 3:
+              return output.wc!();
+              break;
+          }
         }
         if (matches.id === '67F7') {
-          if (bodyHeading === 'north')
-            return output.w!();
-          if (bodyHeading === 'west')
-            return output.s!();
-          if (bodyHeading === 'south')
-            return output.e!();
-          if (bodyHeading === 'east')
-            return output.n!();
+          switch (heading) {
+            case 0:
+              return output.w!();
+              break;
+            case 1:
+              return output.n!();
+              break;
+            case 2:
+              return output.e!();
+              break;
+            case 3:
+              return output.s!();
+              break;
+          }
         }
         if (matches.id === '67F9') {
-          if (bodyHeading === 'north')
-            return output.e!();
-          if (bodyHeading === 'west')
-            return output.n!();
-          if (bodyHeading === 'south')
-            return output.w!();
-          if (bodyHeading === 'east')
-            return output.s!();
+          switch (heading) {
+            case 0:
+              return output.e!();
+              break;
+            case 1:
+              return output.s!();
+              break;
+            case 2:
+              return output.w!();
+              break;
+            case 3:
+              return output.n!();
+              break;
+          }
         }
       },
       outputStrings: {
@@ -103,10 +110,18 @@ const triggerSet: TriggerSet<Data> = {
         e: Outputs.east,
         w: Outputs.west,
         s: Outputs.south,
-        ne: Outputs.northeast,
-        nw: Outputs.northwest,
-        se: Outputs.southeast,
-        sw: Outputs.southwest,
+        nc: {
+          en: 'North Corners',
+        },
+        ec: {
+          en: 'East Corners',
+        },
+        sc: {
+          en: 'South Corners',
+        },
+        wc: {
+          en: 'West Corners',
+        },
       },
     },
     {
@@ -161,10 +176,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos' }),
       alertText: (_data, matches, output) => {
-        const xcord = parseFloat(matches.x);
-        if (xcord === 110)
+        const xCoord = parseFloat(matches.x);
+        if (xCoord > 100)
           return output.w!();
-        if (xcord === 90)
+        if (xCoord < 100)
           return output.e!();
       },
       outputStrings: {
