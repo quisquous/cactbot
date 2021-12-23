@@ -14,12 +14,11 @@ export interface Data extends RaidbossData {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheFourthCircle,
   triggers: [
-    // Single Tankbuster
     {
       id: 'P4N Elegant Evisceration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A50', source: 'Hesperos', capture: true }),
-      response: Responses.tankBuster(),
+      netRegex: NetRegexes.startsUsing({ id: '6A50', source: 'Hesperos' }),
+      response: Responses.tankCleave(),
     },
     // Strong proximity Aoe
     {
@@ -38,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4N Well Pinax',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A3E', source: 'Hesperos', capture: false }),
-      delaySeconds: 1,
+      delaySeconds: 4,
       response: Responses.knockback(),
     },
     {
@@ -71,7 +70,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6A4F', source: 'Hesperos', capture: false }),
       response: Responses.awayFromFront(),
     },
-    // Needs proper call outs. Currently not clear what exactly to do
     {
       id: 'P4N Belone Coils',
       type: 'StartsUsing',
@@ -90,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Avoid Tank Tower',
         },
         avoidDpsTower: {
-          en: 'Avoid DPS Tower',
+          en: 'Avoid DPS Towers',
         },
         avoidHealerTower: {
           en: 'Avoid Healer Tower',
@@ -142,36 +140,34 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // Call outs can be adjusted to either merge all to one or give them directional knockback call out
-    // maybe adjust delay timer
     {
       id: 'P4N Northerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DAE', source: 'Hesperos', capture: false }),
-      delaySeconds: 2,
+      delaySeconds: 4,
       response: Responses.knockback(),
     },
     {
       id: 'P4N Easterly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DB0', source: 'Hesperos', capture: false }),
-      delaySeconds: 2,
+      delaySeconds: 4,
       response: Responses.knockback(),
     },
     {
       id: 'P4N Southerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DAF', source: 'Hesperos', capture: false }),
-      delaySeconds: 2,
+      delaySeconds: 4,
       response: Responses.knockback(),
     },
     {
       id: 'P4N Westerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DB1', source: 'Hesperos', capture: false }),
-      delaySeconds: 2,
+      delaySeconds: 4,
       response: Responses.knockback(),
     },
-    // Needs proper call outs. Currently not clear what exactly to do
     {
       id: 'P4N Belone Bursts',
       type: 'StartsUsing',
@@ -186,13 +182,13 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         avoidTankOrb: {
-          en: 'Dont Soak Tank Orb',
+          en: 'Avoid Tank Orbs--pop others',
         },
         avoidDpsOrb: {
-          en: 'Dont Soak DPS Orb',
+          en: 'Avoid DPS Orbs--pop others',
         },
         avoidHealerOrb: {
-          en: 'Dont Soak Healer Orb',
+          en: 'Avoid Healer Orbs--pop others',
         },
       },
     },
