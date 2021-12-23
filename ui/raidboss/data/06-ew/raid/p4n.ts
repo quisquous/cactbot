@@ -1,15 +1,10 @@
 import NetRegexes from '../../../../../resources/netregexes';
-// import Outputs from '../../../../../resources/outputs';
-// import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
-  bodyActor?: PluginCombatantState;
-}
+export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheFourthCircle,
@@ -18,7 +13,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4N Elegant Evisceration',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A50', source: 'Hesperos' }),
-      response: Responses.tankCleave(),
+      response: Responses.tankCleave('alert'),
     },
     // Strong proximity Aoe
     {
@@ -28,17 +23,21 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go to Corners',
+          en: 'Go to Corner',
         },
       },
     },
-    // Knockback from middle
     {
       id: 'P4N Well Pinax',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A3E', source: 'Hesperos', capture: false }),
       delaySeconds: 4,
-      response: Responses.knockback(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Middle Knockback',
+        },
+      },
     },
     {
       id: 'P4N Acid Pinax',
@@ -75,23 +74,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69DD', source: 'Hesperos', capture: false }),
       delaySeconds: 2,
-      alarmText: (data, _matches, output) => {
-        if (data.role === 'tank')
-          return output.avoidTankTower!();
-        if (data.role === 'dps')
-          return output.avoidDpsTower!();
-        if (data.role === 'healer')
-          return output.avoidHealerTower!();
-      },
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        avoidTankTower: {
-          en: 'Avoid Tank Tower',
-        },
-        avoidDpsTower: {
-          en: 'Avoid DPS Towers',
-        },
-        avoidHealerTower: {
-          en: 'Avoid Healer Tower',
+        text: {
+          en: 'Get Other Role Tower',
         },
       },
     },
@@ -102,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go North, Stand on sides',
+          en: 'Go North Edge',
         },
       },
     },
@@ -113,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go East, Stand on sides',
+          en: 'Go East Edge',
         },
       },
     },
@@ -124,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go South, Stand on sides',
+          en: 'Go South Edge',
         },
       },
     },
@@ -135,60 +121,66 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go West, Stand on sides',
+          en: 'Go West Edge',
         },
       },
     },
-    // Call outs can be adjusted to either merge all to one or give them directional knockback call out
     {
       id: 'P4N Northerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DAE', source: 'Hesperos', capture: false }),
       delaySeconds: 4,
-      response: Responses.knockback(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'North Knockback',
+        },
+      },
     },
     {
       id: 'P4N Easterly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DB0', source: 'Hesperos', capture: false }),
       delaySeconds: 4,
-      response: Responses.knockback(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'East Knockback',
+        },
+      },
     },
     {
       id: 'P4N Southerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DAF', source: 'Hesperos', capture: false }),
       delaySeconds: 4,
-      response: Responses.knockback(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'South Knockback',
+        },
+      },
     },
     {
       id: 'P4N Westerly Shift Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6DB1', source: 'Hesperos', capture: false }),
       delaySeconds: 4,
-      response: Responses.knockback(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'West Knockback',
+        },
+      },
     },
     {
       id: 'P4N Belone Bursts',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos', capture: false }),
-      alarmText: (data, _matches, output) => {
-        if (data.role === 'tank')
-          return output.avoidTankOrb!();
-        if (data.role === 'dps')
-          return output.avoidDpsOrb!();
-        if (data.role === 'healer')
-          return output.avoidHealerOrb!();
-      },
+      alarmText: (data, _matches, output) => output.text!(),
       outputStrings: {
-        avoidTankOrb: {
-          en: 'Avoid Tank Orbs--pop others',
-        },
-        avoidDpsOrb: {
-          en: 'Avoid DPS Orbs--pop others',
-        },
-        avoidHealerOrb: {
-          en: 'Avoid Healer Orbs--pop others',
+        text: {
+          en: 'Pop other role orbs',
         },
       },
     },
