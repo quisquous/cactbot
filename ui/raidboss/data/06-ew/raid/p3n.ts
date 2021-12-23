@@ -11,9 +11,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   zoneId: ZoneId.AsphodelosTheThirdCircle,
-  timelineFile: 'p3n.txt',
   triggers: [
     {
       id: 'P3N Experimental Fireplume 1',
@@ -54,14 +52,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3N Darkened Fire Aoe',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['010[C-F]'] }),
+      netRegex: NetRegexes.headMarker({ id: '010[C-F]' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => {
         return output.text!();
       },
       outputStrings: {
         text: {
-          en: 'Go to add',
+          en: 'Stand on Darkened Fire',
         },
       },
     },
@@ -102,20 +100,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.addedCombatant({ name: 'Sunbird', capture: false }),
       suppressSeconds: 1,
       response: Responses.killAdds(),
-    },
-    {
-      id: 'P3N Fore/Rear Carve',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66A[78]', source: 'Sunbird', capture: false }),
-      suppressSeconds: 1,
-      alertText: (_data, _matches, output) => {
-        return output.text!();
-      },
-      outputStrings: {
-        text: {
-          en: 'Dodge Add Cleave',
-        },
-      },
     },
     {
       id: 'P3N Dead Rebirth',
@@ -214,7 +198,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3N Spread Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['008B'] }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
