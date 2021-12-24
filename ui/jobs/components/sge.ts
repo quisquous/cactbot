@@ -66,6 +66,8 @@ export class SGEComponent extends BaseComponent {
       id: 'sge-proc-lucid',
       fgColor: 'sge-color-lucid',
     });
+
+    this.reset();
   }
 
   private _addActiveOnStacks(elements: HTMLDivElement[], stacks: number) {

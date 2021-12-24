@@ -45,6 +45,8 @@ export class GNBComponent extends BaseComponent {
       id: 'gnb-procs-bloodfest',
       fgColor: 'gnb-color-bloodfest',
     });
+
+    this.reset();
   }
   override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
     this.gnashingFangBox.valuescale = gcdSkill;

@@ -49,6 +49,8 @@ export class DRKComponent extends BaseComponent {
       id: 'drk-procs-livingshadow',
       fgColor: 'drk-color-livingshadow',
     });
+
+    this.reset();
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['DRK']): void {

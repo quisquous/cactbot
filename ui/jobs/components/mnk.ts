@@ -47,6 +47,8 @@ export class MNKComponent extends BaseComponent {
     // you hit snap punch at t=6 (which is probably fine).
     threshold: 5,
   });
+
+  this.reset();
 }
 
   override onJobDetailUpdate(jobDetail: JobDetail['MNK']): void {

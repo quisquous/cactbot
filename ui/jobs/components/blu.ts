@@ -24,6 +24,8 @@ lucidBox: TimerBox;
       id: 'blu-procs-lucid',
       fgColor: 'blu-color-lucid',
     });
+
+    this.reset();
   }
 
   override onUseAbility(id: string): void {

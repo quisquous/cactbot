@@ -75,6 +75,8 @@ export class BLMComponent extends BaseComponent {
     this.xenoTimer = this.bars.addResourceBox({
       classList: ['blm-xeno-timer'],
     });
+
+    this.reset();
   }
 
   override onUseAbility(id: string): void {

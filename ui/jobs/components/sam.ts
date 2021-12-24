@@ -23,55 +23,57 @@ export class SAMComponent extends BaseComponent {
 
   constructor(o: ComponentInterface) {
     super(o);
-  this.comboTimer = this.bars.addTimerBar({
-    id: 'sam-timers-combo',
-    fgColor: 'combo-color',
-  });
+    this.comboTimer = this.bars.addTimerBar({
+      id: 'sam-timers-combo',
+      fgColor: 'combo-color',
+    });
 
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'sam-stacks';
-  stacksContainer.classList.add('stacks');
-  const senContainer = document.createElement('div');
-  senContainer.id = 'sam-stacks-sen';
-  stacksContainer.appendChild(senContainer);
-  this.bars.addJobBarContainer().appendChild(stacksContainer);
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'sam-stacks';
+    stacksContainer.classList.add('stacks');
+    const senContainer = document.createElement('div');
+    senContainer.id = 'sam-stacks-sen';
+    stacksContainer.appendChild(senContainer);
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
 
-  this.setsu = document.createElement('div');
-  this.getsu = document.createElement('div');
-  this.ka = document.createElement('div');
+    this.setsu = document.createElement('div');
+    this.getsu = document.createElement('div');
+    this.ka = document.createElement('div');
 
-  this.setsu.id = 'sam-stacks-setsu';
-  this.getsu.id = 'sam-stacks-getsu';
-  this.ka.id = 'sam-stacks-ka';
-  [this.setsu, this.getsu, this.ka].forEach((e) => senContainer.appendChild(e));
+    this.setsu.id = 'sam-stacks-setsu';
+    this.getsu.id = 'sam-stacks-getsu';
+    this.ka.id = 'sam-stacks-ka';
+    [this.setsu, this.getsu, this.ka].forEach((e) => senContainer.appendChild(e));
 
-  this.kenkiGauge = this.bars.addResourceBox({
-    classList: ['sam-color-kenki'],
-  });
-  this.meditationGauge = this.bars.addResourceBox({
-    classList: ['sam-color-meditation'],
-  });
-  this.fuka = this.bars.addProcBox({
-    id: 'sam-procs-fuka',
-    fgColor: 'sam-color-fuka',
-    notifyWhenExpired: true,
-  });
+    this.kenkiGauge = this.bars.addResourceBox({
+      classList: ['sam-color-kenki'],
+    });
+    this.meditationGauge = this.bars.addResourceBox({
+      classList: ['sam-color-meditation'],
+    });
+    this.fuka = this.bars.addProcBox({
+      id: 'sam-procs-fuka',
+      fgColor: 'sam-color-fuka',
+      notifyWhenExpired: true,
+    });
 
-  this.fugetsu = this.bars.addProcBox({
-    id: 'sam-procs-fugetsu',
-    fgColor: 'sam-color-fugetsu',
-    notifyWhenExpired: true,
-  });
-  this.tsubameGaeshi = this.bars.addProcBox({
-    id: 'sam-procs-tsubamegaeshi',
-    fgColor: 'sam-color-tsubamegaeshi',
-  });
-  this.higanbana = this.bars.addProcBox({
-    id: 'sam-procs-higanbana',
-    fgColor: 'sam-color-higanbana',
-    notifyWhenExpired: true,
-  });
-}
+    this.fugetsu = this.bars.addProcBox({
+      id: 'sam-procs-fugetsu',
+      fgColor: 'sam-color-fugetsu',
+      notifyWhenExpired: true,
+    });
+    this.tsubameGaeshi = this.bars.addProcBox({
+      id: 'sam-procs-tsubamegaeshi',
+      fgColor: 'sam-color-tsubamegaeshi',
+    });
+    this.higanbana = this.bars.addProcBox({
+      id: 'sam-procs-higanbana',
+      fgColor: 'sam-color-higanbana',
+      notifyWhenExpired: true,
+    });
+
+    this.reset();
+  }
 
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;

@@ -19,56 +19,58 @@ export class RDMComponent extends BaseComponent {
 
   constructor(o: ComponentInterface) {
     super(o);
-  const container = this.bars.addJobBarContainer();
+    const container = this.bars.addJobBarContainer();
 
-  const incs = 20;
-  for (let i = 0; i < 100; i += incs) {
-    const marker = document.createElement('div');
-    marker.classList.add('marker');
-    marker.classList.add((i % 40 === 0) ? 'odd' : 'even');
-    container.appendChild(marker);
-    marker.style.left = `${i}%`;
-    marker.style.width = `${incs}%`;
+    const incs = 20;
+    for (let i = 0; i < 100; i += incs) {
+      const marker = document.createElement('div');
+      marker.classList.add('marker');
+      marker.classList.add((i % 40 === 0) ? 'odd' : 'even');
+      container.appendChild(marker);
+      marker.style.left = `${i}%`;
+      marker.style.width = `${incs}%`;
+    }
+
+    this.whiteManaBar = this.bars.addResourceBar({
+      id: 'rdm-white-bar',
+      fgColor: 'rdm-color-white-mana',
+      maxvalue: 100,
+    });
+
+    this.blackManaBar = this.bars.addResourceBar({
+      id: 'rdm-black-bar',
+      fgColor: 'rdm-color-black-mana',
+      maxvalue: 100,
+    });
+
+    this.whiteManaBox = this.bars.addResourceBox({
+      classList: ['rdm-color-white-mana'],
+    });
+
+    this.blackManaBox = this.bars.addResourceBox({
+      classList: ['rdm-color-black-mana'],
+    });
+
+    this.whiteProc = this.bars.addProcBox({
+      id: 'rdm-procs-white',
+      fgColor: 'rdm-color-white-mana',
+      threshold: 1000,
+    });
+    this.whiteProc.bigatzero = false;
+    this.blackProc = this.bars.addProcBox({
+      id: 'rdm-procs-black',
+      fgColor: 'rdm-color-black-mana',
+      threshold: 1000,
+    });
+    this.blackProc.bigatzero = false;
+
+    this.lucidBox = this.bars.addProcBox({
+      id: 'rdm-procs-lucid',
+      fgColor: 'rdm-color-lucid',
+    });
+
+    this.reset();
   }
-
-  this.whiteManaBar = this.bars.addResourceBar({
-    id: 'rdm-white-bar',
-    fgColor: 'rdm-color-white-mana',
-    maxvalue: 100,
-  });
-
-  this.blackManaBar = this.bars.addResourceBar({
-    id: 'rdm-black-bar',
-    fgColor: 'rdm-color-black-mana',
-    maxvalue: 100,
-  });
-
-  this.whiteManaBox = this.bars.addResourceBox({
-    classList: ['rdm-color-white-mana'],
-  });
-
-  this.blackManaBox = this.bars.addResourceBox({
-    classList: ['rdm-color-black-mana'],
-  });
-
-  this.whiteProc = this.bars.addProcBox({
-    id: 'rdm-procs-white',
-    fgColor: 'rdm-color-white-mana',
-    threshold: 1000,
-  });
-  this.whiteProc.bigatzero = false;
-  this.blackProc = this.bars.addProcBox({
-    id: 'rdm-procs-black',
-    fgColor: 'rdm-color-black-mana',
-    threshold: 1000,
-  });
-  this.blackProc.bigatzero = false;
-
-  this.lucidBox = this.bars.addProcBox({
-    id: 'rdm-procs-lucid',
-    fgColor: 'rdm-color-lucid',
-  });
-}
 
   override onUseAbility(id: string): void {
     if (id === kAbility.LucidDreaming)

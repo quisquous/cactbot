@@ -50,6 +50,8 @@ export class DRGComponent extends BaseComponent {
     this.eyes = this.bars.addResourceBox({
       classList: ['drg-color-eyes'],
     });
+
+    this.reset();
   }
   override onCombo(skill: string): void {
     // Both Disembowel and SonicThrust apply PowerSurge for 30s,
