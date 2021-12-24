@@ -47,6 +47,8 @@ export class ASTComponent extends BaseComponent {
     this.sealBox = this.bars.addResourceBox({
       classList: ['ast-color-seal'],
     });
+
+    this.reset();
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['AST']): void {

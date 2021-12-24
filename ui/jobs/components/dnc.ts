@@ -55,6 +55,8 @@ export class DNCComponent extends BaseComponent {
   this.espritGauge = this.bars.addResourceBox({
     classList: ['dnc-color-esprit'],
   });
+
+  this.reset();
 }
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;

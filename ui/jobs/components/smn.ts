@@ -26,49 +26,51 @@ export class SMN5xComponent extends BaseComponent {
 
   constructor(o: ComponentInterface) {
     super(o);
-  this.aetherflowStackBox = this.bars.addResourceBox({
-    classList: ['smn-color-aetherflow'],
-  });
+    this.aetherflowStackBox = this.bars.addResourceBox({
+      classList: ['smn-color-aetherflow'],
+    });
 
-  this.demiSummoningBox = this.bars.addResourceBox({
-    classList: ['smn-color-demisummon'],
-  });
+    this.demiSummoningBox = this.bars.addResourceBox({
+      classList: ['smn-color-demisummon'],
+    });
 
-  this.miasmaBox = this.bars.addProcBox({
-    id: 'smn-procs-miasma',
-    fgColor: 'smn-color-miasma',
-    notifyWhenExpired: true,
-  });
+    this.miasmaBox = this.bars.addProcBox({
+      id: 'smn-procs-miasma',
+      fgColor: 'smn-color-miasma',
+      notifyWhenExpired: true,
+    });
 
-  this.bioSmnBox = this.bars.addProcBox({
-    id: 'smn-procs-biosmn',
-    fgColor: 'smn-color-biosmn',
-    notifyWhenExpired: true,
-  });
+    this.bioSmnBox = this.bars.addProcBox({
+      id: 'smn-procs-biosmn',
+      fgColor: 'smn-color-biosmn',
+      notifyWhenExpired: true,
+    });
 
-  this.energyDrainBox = this.bars.addProcBox({
-    id: 'smn-procs-energydrain',
-    fgColor: 'smn-color-energydrain',
-  });
+    this.energyDrainBox = this.bars.addProcBox({
+      id: 'smn-procs-energydrain',
+      fgColor: 'smn-color-energydrain',
+    });
 
-  this.tranceBox = this.bars.addProcBox({
-    id: 'smn-procs-trance',
-    fgColor: 'smn-color-trance',
-  });
+    this.tranceBox = this.bars.addProcBox({
+      id: 'smn-procs-trance',
+      fgColor: 'smn-color-trance',
+    });
 
-  // FurtherRuin Stack Gauge
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'smn-stacks';
-  this.bars.addJobBarContainer().appendChild(stacksContainer);
-  const ruin4Container = document.createElement('div');
-  ruin4Container.id = 'smn-stacks-ruin4';
-  stacksContainer.appendChild(ruin4Container);
-  for (let i = 0; i < 4; ++i) {
-    const d = document.createElement('div');
-    ruin4Container.appendChild(d);
-    this.ruin4Stacks.push(d);
+    // FurtherRuin Stack Gauge
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'smn-stacks';
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
+    const ruin4Container = document.createElement('div');
+    ruin4Container.id = 'smn-stacks-ruin4';
+    stacksContainer.appendChild(ruin4Container);
+    for (let i = 0; i < 4; ++i) {
+      const d = document.createElement('div');
+      ruin4Container.appendChild(d);
+      this.ruin4Stacks.push(d);
+    }
+
+    this.reset();
   }
-}
   refreshFurtherRuin(): void {
     for (let i = 0; i < 4; ++i) {
       if (this.furtherRuin > i)

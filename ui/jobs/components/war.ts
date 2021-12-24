@@ -32,6 +32,8 @@ export class WARComponent extends BaseComponent {
     });
 
     this.bonus = 0;
+
+    this.reset();
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['WAR']): void {

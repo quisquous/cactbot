@@ -68,6 +68,8 @@ export class MCHComponent extends BaseComponent {
       wildFireContainer.appendChild(d);
       this.wildFireStacks.push(d);
     }
+
+    this.reset();
   }
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;

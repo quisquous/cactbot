@@ -16,26 +16,26 @@ export class WHMComponent extends BaseComponent {
 
   constructor(o: ComponentInterface) {
     super(o);
-  this.lilyBox = this.bars.addResourceBox({
-    classList: ['whm-color-lily'],
-  });
-  this.lilysecondBox = this.bars.addResourceBox({
-    classList: ['whm-color-lilysecond'],
-  });
+    this.lilyBox = this.bars.addResourceBox({
+      classList: ['whm-color-lily'],
+    });
+    this.lilysecondBox = this.bars.addResourceBox({
+      classList: ['whm-color-lilysecond'],
+    });
 
-  this.diaBox = this.bars.addProcBox({
-    id: 'whm-procs-dia',
-    fgColor: 'whm-color-dia',
-    notifyWhenExpired: true,
-  });
-  this.assizeBox = this.bars.addProcBox({
-    id: 'whm-procs-assize',
-    fgColor: 'whm-color-assize',
-  });
-  this.lucidBox = this.bars.addProcBox({
-    id: 'whm-procs-lucid',
-    fgColor: 'whm-color-lucid',
-  });
+    this.diaBox = this.bars.addProcBox({
+      id: 'whm-procs-dia',
+      fgColor: 'whm-color-dia',
+      notifyWhenExpired: true,
+    });
+    this.assizeBox = this.bars.addProcBox({
+      id: 'whm-procs-assize',
+      fgColor: 'whm-color-assize',
+    });
+    this.lucidBox = this.bars.addProcBox({
+      id: 'whm-procs-lucid',
+      fgColor: 'whm-color-lucid',
+    });
 
     // BloodLily Gauge
     const stacksContainer = document.createElement('div');
@@ -51,7 +51,9 @@ export class WHMComponent extends BaseComponent {
       bloodlilyContainer.appendChild(d);
       this.bloodlilyStacks.push(d);
     }
-}
+
+    this.reset();
+  }
 
   override onJobDetailUpdate(jobDetail: JobDetail['WHM']): void {
     const lily = jobDetail.lilyStacks;

@@ -77,6 +77,8 @@ export class BRDComponent extends BaseComponent {
       threshold: 1000,
     });
     this.straightShotProc.bigatzero = false;
+
+    this.reset();
   }
 
   override onUseAbility(id: string): void {

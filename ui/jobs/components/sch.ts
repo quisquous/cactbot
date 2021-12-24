@@ -37,6 +37,8 @@ export class SCHComponent extends BaseComponent {
     id: 'sch-procs-luciddreaming',
     fgColor: 'sch-color-lucid',
   });
+
+  this.reset();
 }
 
   override onJobDetailUpdate(jobDetail: JobDetail['SCH']): void {
