@@ -272,13 +272,16 @@ export class ComponentManager {
       this._onPartyWipe();
     });
 
-    this.player.on('action/you', (id, matches) => {
+    this.player.on('action/you', (id) => {
       if (this.regexes?.cordialRegex.test(id)) {
         this.gpPotion = true;
         window.setTimeout(() => {
           this.gpPotion = false;
         }, 2000);
       }
+    });
+
+    this.player.on('action', (id, matches) => {
       this.buffTracker?.onUseAbility(id, matches);
     });
 
