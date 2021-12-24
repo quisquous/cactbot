@@ -14,21 +14,13 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheThirdCircle,
   triggers: [
     {
-      id: 'P3N Experimental Fireplume 1',
+      id: 'P3N Experimental Fireplume Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6698', source: 'Phoinix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6698', source: 'Phoinix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6698', source: 'Protophénix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6698', source: 'フェネクス', capture: false }),
-      response: Responses.getInThenOut(),
-    },
-    {
-      id: 'P3N Experimental Fireplume 2',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6696', source: 'Phoinix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6696', source: 'Phoinix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6696', source: 'Protophénix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6696', source: 'フェネクス', capture: false }),
+      // This is Experimental Fireplume (6696) into Fireplume (6697), which starts casting 5s later.
+      netRegex: NetRegexes.startsUsing({ id: '6697', source: 'Phoinix', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6697', source: 'Phoinix', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6697', source: 'Protophénix', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6697', source: 'フェネクス', capture: false }),
       alertText: (_data, _matches, output) => {
         return output.outOfMiddle!();
       },
