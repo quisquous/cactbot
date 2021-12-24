@@ -225,6 +225,9 @@
   <data name="PresetZeffUI" xml:space="preserve">
     <value>ZeffUI</value>
   </data>
+  <data name="RegisteringProcessErrorMessage" xml:space="preserve">
+    <value>Error while registering process changed handler: {0}</value>
+  </data>
   <data name="RequireDotNetVersion" xml:space="preserve">
     <value>Requires .NET 4.6 or above. Using {0}</value>
   </data>
