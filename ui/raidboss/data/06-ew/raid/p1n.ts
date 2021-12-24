@@ -5,6 +5,9 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Intemperance calls out a 4th time; should only call out three
+// TODO: Right/Left + Fire/Light happen at the same time later; collect these together
+
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
