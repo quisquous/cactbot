@@ -35,7 +35,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6696', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6696', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6696', source: 'フェネクス', capture: false }),
-      alertText: (_data, _matches, output) => output.outOfMiddle!(),
+      durationSeconds: 8,
+      infoText: (_data, _matches, output) => output.outOfMiddle!(),
       outputStrings: {
         outOfMiddle: {
           en: 'Out Of Middle Soon',
