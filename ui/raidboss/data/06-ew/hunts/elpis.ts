@@ -5,6 +5,8 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Gurangatch Octuple Slammer rotation directions
+// TODO: Gurangatch Bone Shaker aoe
+// TODO: Gurangatch Wild Charge gap closer
 
 export type Data = RaidbossData;
 

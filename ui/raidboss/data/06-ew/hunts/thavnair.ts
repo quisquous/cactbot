@@ -5,8 +5,11 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Sugriva Butcher (?) tankbuster (cleave?)
-// TOOD: Yilan Brackish Rain (?) frontal untelegraphed(?) cleave
+// TODO: Sugriva Butcher tankbuster conal cleave
+// TODO: Sugriva Rip conal with Concussion dot
+// TODO: Sugriva Rock Throw (away front front circles)
+// TODO: Yilan Brackish Rain (?) frontal untelegraphed(?) cleave
+// TODO: Yilan Bog Bomb untelegraphed circle on a random target (can this be called?)
 
 export type Data = RaidbossData;
 

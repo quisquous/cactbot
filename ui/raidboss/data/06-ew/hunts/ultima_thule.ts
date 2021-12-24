@@ -5,6 +5,8 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Arch-Eta Tail Swipe rear cleave
+// TODO: Arch-Eta Steel Fang tankbuster
+// TODO: Fan Ail Death Sentence tankbuster
 
 export type Data = RaidbossData;
 

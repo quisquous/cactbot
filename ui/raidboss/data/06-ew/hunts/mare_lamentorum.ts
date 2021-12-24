@@ -6,7 +6,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Mousse Princess Banish tankbuster
-// TODO: Mousse Princess Flail centered aoe
+// TODO: Mousse Princess Amorphic Flail centered aoe
 
 export interface Data extends RaidbossData {
   wickedWhim?: boolean;
