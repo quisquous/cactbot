@@ -385,6 +385,15 @@ namespace CactbotEventSource.loc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while registering process changed handler: {0}.
+        /// </summary>
+        internal static string RegisteringProcessErrorMessage {
+            get {
+                return ResourceManager.GetString("RegisteringProcessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Requires .NET 4.6 or above. Using {0}.
         /// </summary>
         internal static string RequireDotNetVersion {

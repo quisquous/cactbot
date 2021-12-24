@@ -1,13 +1,30 @@
 ﻿using Advanced_Combat_Tracker;
 using System;
 using CactbotEventSource.loc;
+using System.Diagnostics;
 
 namespace Cactbot {
   public class FFXIVPlugin {
     private ILogger logger_;
+    private IActPluginV1 ffxiv_plugin_;
+    private Process process_ = null;
+    public Process Process => process_;
 
     public FFXIVPlugin(ILogger logger) {
       logger_ = logger;
+
+      foreach (var plugin in ActGlobals.oFormActMain.ActPlugins) {
+        // Skip disabled and unloaded plugins.
+        if (plugin.pluginObj == null)
+          continue;
+        var file = plugin.pluginFile.Name;
+        if (file == "FFXIV_ACT_Plugin.dll") {
+          if (ffxiv_plugin_ != null) {
+            logger_.LogWarning(Strings.MultiplePluginsLoadedErrorMessage);
+          }
+          ffxiv_plugin_ = plugin.pluginObj;
+        }
+      }
     }
 
     public string GetLocaleString() {
@@ -30,21 +47,7 @@ namespace Cactbot {
     }
 
     public int GetLanguageId() {
-      IActPluginV1 ffxiv_plugin = null;
-      foreach (var plugin in ActGlobals.oFormActMain.ActPlugins) {
-        // Skip disabled and unloaded plugins.
-        if (plugin.pluginObj == null)
-          continue;
-        var file = plugin.pluginFile.Name;
-        if (file == "FFXIV_ACT_Plugin.dll") {
-          if (ffxiv_plugin != null) {
-            logger_.LogWarning(Strings.MultiplePluginsLoadedErrorMessage);
-          }
-          ffxiv_plugin = plugin.pluginObj;
-        }
-      }
-
-      if (ffxiv_plugin == null) {
+      if (ffxiv_plugin_ == null) {
         logger_.LogError(Strings.NoFFXIVACTPluginFoundErrorMessage);
         return 0;
       }
@@ -53,11 +56,22 @@ namespace Cactbot {
         // Cannot "just" cast to FFXIV_ACT_Plugin.FFXIV_ACT_Plugin here, because
         // ACT uses LoadFrom which places the assembly into its own loading
         // context.  Use dynamic here to make this choice at runtime.
-        dynamic plugin_derived = ffxiv_plugin;
+        dynamic plugin_derived = ffxiv_plugin_;
         return (int)plugin_derived.DataRepository.GetSelectedLanguageID();
       } catch (Exception e) {
         logger_.LogError(Strings.DeterminingLanguageErrorMessage, e.ToString());
         return 0;
+      }
+    }
+
+    public void RegisterProcessChangedHandler(Action<Process> handler) {
+      var del = new FFXIV_ACT_Plugin.Common.ProcessChangedDelegate(handler);
+      try {
+        // See note in GetLanguageId.
+        dynamic plugin_derived = ffxiv_plugin_;
+        plugin_derived.DataSubscription.ProcessChanged += del;
+      } catch (Exception e) {
+        logger_.LogError(Strings.RegisteringProcessErrorMessage, e.ToString());
       }
     }
   }
