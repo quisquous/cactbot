@@ -1055,6 +1055,7 @@ div.justbuffs div#procs-container {
 }
 
 /** hide bars except hp-bar and mp-bar */
-#bars.pvp > div:not(#hp-bar):not(#mp-bar) {
+#jobs-container[data-inpvp="true"] #procs-container,
+#jobs-container[data-inpvp="true"] #opacity-container > #bars > div:not(#hp-bar):not(#mp-bar) {
   display: none;
 }

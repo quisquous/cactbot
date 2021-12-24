@@ -87,6 +87,7 @@ export class ComponentManager {
   ee: JobsEventEmitter;
   options: JobsOptions;
   partyTracker: PartyTracker;
+  is5x: boolean;
   player: Player;
   regexes?: RegexesHolder;
   component?: BaseComponent;
@@ -94,6 +95,7 @@ export class ComponentManager {
   // misc variables
   shouldShow: ShouldShow;
   contentType?: number;
+  inPvPZone?: boolean;
   // food buffs
   foodBuffExpiresTimeMs: number;
   foodBuffTimer: number;
@@ -109,6 +111,7 @@ export class ComponentManager {
     this.options = o.options;
     this.partyTracker = o.partyTracker;
     this.player = o.player;
+    this.is5x = o.is5x;
 
     this.shouldShow = {};
     this.contentType = undefined;
@@ -240,6 +243,7 @@ export class ComponentManager {
           this.bars.o.leftBuffsList,
           this.bars.o.rightBuffsList,
           this.partyTracker,
+          this.is5x,
         );
       }
     });
@@ -303,6 +307,7 @@ export class ComponentManager {
     });
 
     this.ee.on('zone/change', (id, _name, info) => {
+      this.inPvPZone = isPvPZone(id);
       this.contentType = info?.contentType;
 
       this.bars._updateFoodBuff({
@@ -315,7 +320,7 @@ export class ComponentManager {
       this.buffTracker?.clear();
 
       // Hide UI except HP and MP bar if change to pvp area.
-      this.bars._updateUIVisibility(isPvPZone(id));
+      this.bars._updateUIVisibility(this.inPvPZone);
     });
 
     this.ee.on('log/game', (_log, _line, rawLine) => {

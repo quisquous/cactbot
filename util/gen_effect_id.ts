@@ -50,6 +50,7 @@ const knownMapping = {
   'Wildfire': '861',
   'Chain Stratagem': '1221',
   'Vulnerability Up': '638',
+  'Eukrasian Dosis III': '2616',
 } as const;
 
 // These custom name of effect will not be checked, but you'd better make it clean.

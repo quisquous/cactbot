@@ -7,13 +7,14 @@ export type Data = OopsyData;
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheAitiascope,
   damageWarn: {
+    'Aitiascope Sinking Rivalry Egotism': '6B1A', // very large circle
     'Aitiascope Livia Aglaea Climb': '6444', // diagonal quadrant cleave
     'Aitiascope Livia Aglaea Shot 1': '6446', // lines
     'Aitiascope Livia Aglaea Shot 2': '6447', // lines coming back
     'Aitiascope Livia Ignis Amoris': '644C', // Odi et Amo targeted circles
     'Aitiascope Livia Disparagement': '644A', // wide conal
     'Aitiascope Sinking Desire The Path of Avarice': '6B1B', // line aoe
-    'Aitiascope Sinking Partiality Unrightful Claim': '6B1C', // centered circle
+    'Aitiascope Sinking Partiality Unrightful Claim': '6B1C', // centered circle, gives disease
     'Aitiascope Sinking Dissension Whisper of Our Discontent': '6B1D', // conal
     'Aitiascope Rhitahtyn Tartarean Spark': '6457', // laser line aoe
     'Aitiascope Rhitahtyn Shield Skewer': '6450', // charge
@@ -30,6 +31,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
   damageFail: {
     'Aitiascope Rhitahtyn Impact': '644F', // walls appearing during Vexillatio cast
     'Aitiascope Amon Curtain Call': '6466', // line of sight
+  },
+  shareFail: {
+    'Aitiascope Livia Aglaea Bite': '6449',
   },
 };
 

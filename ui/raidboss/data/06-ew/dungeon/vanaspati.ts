@@ -34,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go To Silent Mouth',
           de: 'Geh zum geschlossenen Mund',
-          fr: 'Allez vers une bouche silencieuse',
+          fr: 'Allez sur une bouche silencieuse',
           ja: '閉める口へ',
           cn: '找闭着的嘴',
           ko: '말이 없는 입 쪽으로',
@@ -135,6 +135,15 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.lookAway(),
     },
     {
+      id: 'Vanaspati Svarbanu Flames of Decay',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6252', source: 'スヴァーバーヌ', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
       id: 'Vanaspati Svarbhanu Cosmic Kiss Spread',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6250', source: 'Svarbhanu' }),
@@ -230,6 +239,7 @@ const triggerSet: TriggerSet<Data> = {
         'Trnakiya': 'Clairière de Vanaspati',
       },
       'replaceText': {
+        '\\(Bubble\\)': '(Bulle)',
         '\\(Knockback\\)': '(Poussée)',
         '\\(Spread\\)': '(Dispersion)',
         '--meteor': '--météore',

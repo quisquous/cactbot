@@ -1,4 +1,5 @@
 import EffectId from '../../resources/effect_id';
+import arcaneCircleImage from '../../resources/ffxiv/status/arcane-circle.png';
 import arrowImage from '../../resources/ffxiv/status/arrow.png';
 import astralImage from '../../resources/ffxiv/status/astral.png';
 import balanceImage from '../../resources/ffxiv/status/balance.png';
@@ -8,6 +9,7 @@ import boleImage from '../../resources/ffxiv/status/bole.png';
 import brotherhoodImage from '../../resources/ffxiv/status/brotherhood.png';
 import chainStratagemImage from '../../resources/ffxiv/status/chain-stratagem.png';
 import devilmentImage from '../../resources/ffxiv/status/devilment.png';
+import devotionImage from '../../resources/ffxiv/status/devotion.png';
 import divinationImage from '../../resources/ffxiv/status/divination.png';
 import dragonSightImage from '../../resources/ffxiv/status/dragon-sight.png';
 import emboldenImage from '../../resources/ffxiv/status/embolden.png';
@@ -18,6 +20,7 @@ import offguardImage from '../../resources/ffxiv/status/offguard.png';
 import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png';
 import physicalImage from '../../resources/ffxiv/status/physical.png';
 import potionImage from '../../resources/ffxiv/status/potion.png';
+import searingLightImage from '../../resources/ffxiv/status/searing-light.png';
 import spearImage from '../../resources/ffxiv/status/spear.png';
 import spireImage from '../../resources/ffxiv/status/spire.png';
 import standardFinishImage from '../../resources/ffxiv/status/standard-finish.png';
@@ -261,11 +264,6 @@ export class Buff {
 
 export class BuffTracker {
   buffInfo: { [s: string]: Omit<BuffInfo, 'name'> };
-  options: JobsOptions;
-  partyTracker: PartyTracker;
-  playerName: string;
-  leftBuffDiv: WidgetList;
-  rightBuffDiv: WidgetList;
   buffs: { [s: string]: Buff };
   gainEffectMap: { [s: string]: BuffInfo[] };
   loseEffectMap: { [s: string]: BuffInfo[] };
@@ -274,11 +272,12 @@ export class BuffTracker {
   mobLosesEffectMap: { [s: string]: BuffInfo[] };
 
   constructor(
-    options: JobsOptions,
-    playerName: string,
-    leftBuffDiv: WidgetList,
-    rightBuffDiv: WidgetList,
-    partyTracker: PartyTracker,
+    private options: JobsOptions,
+    private playerName: string,
+    private leftBuffDiv: WidgetList,
+    private rightBuffDiv: WidgetList,
+    private partyTracker: PartyTracker,
+    private is5x: boolean,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -372,16 +371,12 @@ export class BuffTracker {
         cooldown: 120,
       },
       embolden: {
-        // On each embolden stack changes,
-        // there will be a gain effect log with a wrong duration (always 20).
-        // So using stack to identify the first log.
         cooldownAbility: [kAbility.Embolden],
         gainEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
         loseEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
         useEffectDuration: true,
         durationSeconds: 20,
         partyOnly: true,
-        stack: 5,
         icon: emboldenImage,
         // Lime.
         borderColor: '#57FC4A',
@@ -572,7 +567,116 @@ export class BuffTracker {
         sortKey: 13,
         cooldown: 120,
       },
+      arcaneCircle: {
+        cooldownAbility: [kAbility.ArcaneCircle],
+        gainEffect: [EffectId.ArcaneCircle],
+        loseEffect: [EffectId.ArcaneCircle],
+        useEffectDuration: true,
+        durationSeconds: 20,
+        partyOnly: true,
+        icon: arcaneCircleImage,
+        // Light pink..
+        borderColor: '#F3A6FF',
+        sortKey: 14,
+        cooldown: 120,
+      },
+      searingLight: {
+        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
+        cooldownAbility: [kAbility.SearingLight],
+        gainEffect: [EffectId.SearingLight],
+        loseEffect: [EffectId.SearingLight],
+        useEffectDuration: true,
+        durationSeconds: 30,
+        partyOnly: true,
+        icon: searingLightImage,
+        // Pink.
+        borderColor: '#FF4A9D',
+        sortKey: 14,
+        cooldown: 120,
+      },
     };
+
+    // Abilities that are different in 5.x.
+    const v5x = {
+      litany: {
+        cooldownAbility: [kAbility.BattleLitany],
+        gainEffect: [EffectId.BattleLitany],
+        loseEffect: [EffectId.BattleLitany],
+        useEffectDuration: true,
+        durationSeconds: 20,
+        partyOnly: true,
+        icon: battleLitanyImage,
+        // Cyan.
+        borderColor: '#099',
+        sortKey: 2,
+        cooldown: 180,
+      },
+      embolden: {
+        // On each embolden stack changes,
+        // there will be a gain effect log with a wrong duration (always 20).
+        // So using stack to identify the first log.
+        cooldownAbility: [kAbility.Embolden],
+        gainEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
+        loseEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
+        useEffectDuration: true,
+        durationSeconds: 20,
+        partyOnly: true,
+        stack: 5,
+        icon: emboldenImage,
+        // Lime.
+        borderColor: '#57FC4A',
+        sortKey: 3,
+        cooldown: 120,
+      },
+      battlevoice: {
+        cooldownAbility: [kAbility.BattleVoice],
+        gainEffect: [EffectId.BattleVoice],
+        loseEffect: [EffectId.BattleVoice],
+        useEffectDuration: true,
+        durationSeconds: 20,
+        partyOnly: true,
+        icon: battleVoiceImage,
+        // Red.
+        borderColor: '#D6371E',
+        sortKey: 7,
+        cooldown: 180,
+      },
+      brotherhood: {
+        cooldownAbility: [kAbility.Brotherhood],
+        gainEffect: [EffectId.Brotherhood],
+        loseEffect: [EffectId.Brotherhood],
+        useEffectDuration: true,
+        durationSeconds: 15,
+        partyOnly: true,
+        icon: brotherhoodImage,
+        // Dark Orange.
+        borderColor: '#994200',
+        sortKey: 11,
+        cooldown: 90,
+      },
+      devotion: {
+        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
+        // By the way, pet can delay using devotion after been ordered
+        // and if you order it to continue moving, it can greatly delay up to 30s,
+        // so it may not be accurate.
+        cooldownAbility: [kAbility.Devotion],
+        gainEffect: [EffectId.Devotion],
+        loseEffect: [EffectId.Devotion],
+        useEffectDuration: true,
+        durationSeconds: 15,
+        partyOnly: true,
+        icon: devotionImage,
+        // Yellow.
+        borderColor: '#ffbf00',
+        sortKey: 12,
+        cooldown: 180,
+      },
+    };
+
+    if (this.is5x) {
+      for (const [key, entry] of Object.entries(v5x))
+        this.buffInfo[key] = entry;
+    }
 
     this.gainEffectMap = {};
     this.loseEffectMap = {};
@@ -621,25 +725,6 @@ export class BuffTracker {
         }
       }
     }
-
-    // const v520 = {
-    //   // identical with latest patch
-    //   /* example
-    //   trick: {
-    //     durationSeconds: 10,
-    //   },
-    //   */
-    // };
-
-    // const buffOverrides = {
-    //   cn: v520,
-    //   ko: v520,
-    // };
-
-    // for (const key in buffOverrides[this.options.ParserLanguage]) {
-    //   for (const key2 in buffOverrides[this.options.ParserLanguage][key])
-    //     this.buffInfo[key][key2] = buffOverrides[this.options.ParserLanguage][key][key2];
-    // }
   }
 
   onUseAbility(id: string, matches: Partial<NetMatches['Ability']>): void {

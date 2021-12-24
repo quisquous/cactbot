@@ -484,6 +484,7 @@ const data = {
   'Eubuleus': 'AE4',
   'EukrasianDosis': 'A36',
   'EukrasianDosisIi': 'A37',
+  'EukrasianDosisIii': 'A38',
   'EurekaMoment': 'ACD',
   'EwerDrawn': '395',
   'EwerHeld': '39C',
