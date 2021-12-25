@@ -2,31 +2,36 @@ Options.Triggers.push({
     zoneId: ZoneId.AsphodelosTheThirdCircle,
     triggers: [
         {
-            id: 'P3N Experimental Fireplume 1',
+            id: 'P3N Experimental Fireplume Rotating',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '6698', source: 'Phoinix', capture: false }),
             netRegexDe: NetRegexes.startsUsing({ id: '6698', source: 'Phoinix', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6698', source: 'Protophénix', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6698', source: 'フェネクス', capture: false }),
-            response: Responses.getInThenOut(),
+            infoText: (_data, _matches, output) => output.startMiddle(),
+            outputStrings: {
+                startMiddle: {
+                    en: 'Start Middle',
+                },
+            },
         },
         {
-            id: 'P3N Experimental Fireplume 2',
+            id: 'P3N Experimental Fireplume Out',
             type: 'StartsUsing',
+            // This is Experimental Fireplume (6696) into Fireplume (6697), which is an 11s warning.
             netRegex: NetRegexes.startsUsing({ id: '6696', source: 'Phoinix', capture: false }),
             netRegexDe: NetRegexes.startsUsing({ id: '6696', source: 'Phoinix', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6696', source: 'Protophénix', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6696', source: 'フェネクス', capture: false }),
-            alertText: (_data, _matches, output) => {
-                return output.outOfMiddle();
-            },
+            durationSeconds: 8,
+            infoText: (_data, _matches, output) => output.outOfMiddle(),
             outputStrings: {
                 outOfMiddle: {
-                    en: 'Out Of Middle',
+                    en: 'Out Of Middle Soon',
                     de: 'Raus aus der Mitte',
                     ja: '横へ',
                     cn: '远离中间',
-                    ko: '가운데 피하기',
+                    ko: '가운데 피하기', // FIXME
                 },
             },
         },
