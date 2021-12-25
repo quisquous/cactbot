@@ -120,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand Between Bits',
           de: 'Zwichen den Satelliten stehen',
+          fr: 'Placez-vous entre les drones',
           ko: '비트 사이에 자리잡기',
         },
       },
@@ -155,11 +156,13 @@ const triggerSet: TriggerSet<Data> = {
           tankLaserOnPlayer: {
             en: 'Tank Laser on ${player}',
             de: 'Tank Laser auf ${player}',
+            fr: 'Tank laser sur ${player}',
             ko: '${player} 탱 레이저',
           },
           avoidLaserOnPlayer: {
             en: 'Avoid Laser on ${player}',
             de: 'Weiche dem Laser von ${player} aus',
+            fr: 'Évitez le laser sur ${player}',
             ko: '${player} 탱 레이저 피하기',
           },
         };
@@ -250,6 +253,7 @@ const triggerSet: TriggerSet<Data> = {
         cleanse: {
           en: 'Heal ${player} to Full',
           de: 'Heile ${player} voll',
+          fr: 'Soignez ${player} à fond',
           ko: '${player} 풀피 채우기',
         },
       },
@@ -302,7 +306,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Caustic Grebuloff': 'Grébuloff en stade terminal',
         'Golden Wings': 'papillon d\'or',
@@ -315,6 +318,8 @@ const triggerSet: TriggerSet<Data> = {
         'Weeping Miasma': 'boule de toxine',
       },
       'replaceText': {
+        '\\(circles\\)': '(cercles)',
+        '\\(spread\\)': '(dispersion)',
         'Befoulment': 'Bombe de pus',
         'Benevolence': 'Philanthropie',
         'Blighted Water': 'Eau contaminée',
