@@ -50,16 +50,16 @@ hideall "--sync--"
 223.3 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
 232.5 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
 
-239.7 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+239.7 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
 248.4 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D):/
 249.9 "Shifting Strike (cleave)" sync / 1[56]:[^:]*:Hesperos:6A4E:/
-257.6 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+257.6 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
 266.2 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6DAE|6DAF|6DB0|6DB1):/
 267.9 "Shifting Strike (knockback)" sync / 1[56]:[^:]*:Hesperos:6DB2:/
-269.4 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+269.4 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
 278.4 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D|6DAE|6DAF|6DB0|6DB1):/
 279.9 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:(6DB2|6A4E):/
-285.6 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+285.6 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
 
 292.3 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
 300.5 "Belone Bursts" sync / 1[56]:[^:]*:Hesperos:69D9:/
@@ -77,14 +77,14 @@ hideall "--sync--"
 390.4 "Pinax 3" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
 397.1 "Burst" sync / 1[56]:[^:]*:Hesperos:6A4[456]:/
 403.4 "Pinax 4" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
-404.5 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+404.5 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
 413.5 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D|6DAE|6DAF|6DB0|6DB1):/
 415.0 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:(6DB2|6A4E):/
 428.9 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
 
 438.1 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
 446.3 "Belone Bursts" sync / 1[56]:[^:]*:Hesperos:69D9:/
-454.5 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+454.5 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
 463.1 "Westerly Shift" sync / 1[56]:[^:]*:Hesperos:6DB1:/
 464.8 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:6DB2:/
 478.3 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
