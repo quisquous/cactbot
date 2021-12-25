@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheFourthCircle,
+  timelineFile: 'p4n.txt',
   triggers: [
     {
       id: 'P4N Elegant Evisceration',
@@ -248,6 +249,15 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Pop other role orbs',
           de: 'Nimm einen Orb einer anderen Rolle',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Well Pinax/Levinstrike Pinax': 'Well/Levinstrike Pinax',
+        'Levinstrike Pinax/Well Pinax': 'Levinstrike/Well Pinax',
       },
     },
   ],
