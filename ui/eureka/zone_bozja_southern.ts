@@ -1310,7 +1310,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         fr: 'Le chien des enfers',
         ja: 'カニスディルス',
         cn: '战争妖犬——恐惧妖犬',
-        ko: '카니스 디루스',
+        ko: '전쟁 요마견 \'카니스 디루스\'',
       },
       shortLabel: {
         en: 'Hounds',
@@ -1318,7 +1318,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         fr: 'Chien',
         ja: 'カニスディルス',
         cn: '恐惧妖犬',
-        ko: '전쟁 요마견 \'카니스 디루스\'',
+        ko: '카니스 디루스',
       },
       x: 22.8,
       y: 28.8,

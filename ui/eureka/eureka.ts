@@ -177,7 +177,7 @@ const defaultOptions: EurekaOptions = {
       flagRegex: NetRegexes.gameLog({
         code: '00..',
         line:
-          '(?<before>.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
+          '(?<before>.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선|자트노르 고원) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
       }),
       trackerRegex: NetRegexes.gameLog(
         { line: '.*?(?:https://)?ffxiv-eureka\.com\/(?<id>[\\w-]{6}).*?' },
