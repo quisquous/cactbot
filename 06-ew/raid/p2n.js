@@ -96,18 +96,22 @@ Options.Triggers.push({
                 nc: {
                     en: 'North Corners',
                     de: 'nördliche Ecken',
+                    ko: '북쪽 모서리',
                 },
                 ec: {
                     en: 'East Corners',
                     de: 'östliche Ecken',
+                    ko: '동쪽 모서리',
                 },
                 sc: {
                     en: 'South Corners',
                     de: 'südliche Ecken',
+                    ko: '남쪽 모서리',
                 },
                 wc: {
                     en: 'West Corners',
                     de: 'westliche Ecken',
+                    ko: '서쪽 모서리',
                 },
             },
         },

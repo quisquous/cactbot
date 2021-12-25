@@ -115,7 +115,7 @@ Options.Triggers.push({
                     en: 'Get hit by red or blue face',
                     de: 'Von irgendeiner Farbe treffen lassen',
                     fr: 'Faites-vous toucher par une couleur',
-                    ko: '아무 색의 빔 하나 맞기', // FIXME
+                    ko: '아무 색의 빔 하나 맞기',
                 },
             },
         },

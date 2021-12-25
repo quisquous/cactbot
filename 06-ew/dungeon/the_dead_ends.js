@@ -108,6 +108,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stand Between Bits',
                     de: 'Zwichen den Satelliten stehen',
+                    ko: '비트 사이에 자리잡기',
                 },
             },
         },
@@ -142,10 +143,12 @@ Options.Triggers.push({
                     tankLaserOnPlayer: {
                         en: 'Tank Laser on ${player}',
                         de: 'Tank Laser auf ${player}',
+                        ko: '${player} 탱 레이저',
                     },
                     avoidLaserOnPlayer: {
                         en: 'Avoid Laser on ${player}',
                         de: 'Weiche dem Laser von ${player} aus',
+                        ko: '${player} 탱 레이저 피하기',
                     },
                 };
                 if (data.me === matches.target)
@@ -234,6 +237,7 @@ Options.Triggers.push({
                 cleanse: {
                     en: 'Heal ${player} to Full',
                     de: 'Heile ${player} voll',
+                    ko: '${player} 풀피 채우기',
                 },
             },
         },
