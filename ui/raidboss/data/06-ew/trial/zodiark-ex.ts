@@ -11,7 +11,7 @@ export interface Data extends RaidbossData {
   // sigilMap: { [id: string]: 'Blue' | 'Red' };
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   // storedTetherTargets: { [id: string]: PluginCombatantState };
-  // storedPythons: PluginCombatantState[];
+  activePythons: PluginCombatantState[];
   // For Quetz, mechanics which only use two of them always use the two with the highest ID
   activeQuetzs: PluginCombatantState[];
   // storedBehemoths: PluginCombatantState[];
@@ -160,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
     // storedTetherTargets: {},
     // storedBehemoths: [],
     activeQuetzs: [],
-    // storedPythons: [],
+    activePythons: [],
     // exoterikosCounter: 0,
     paradeigmaCounter: 0,
     // astralFlowCounter: 0,
@@ -187,6 +187,17 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
       promise: async (data, _matches) => {
+        // TODO: Since fetch already supports arrays don't bother overlay twice
+        if (data.paradeigmaCounter === 2 || data.paradeigmaCounter === 3 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 6) {
+          const python = await fetchCombatantsByBNpcID([14387]);
+          /*
+          console.log('------------');
+          for (const p of python)
+            console.log('paradeigma python: ', p);
+          console.log('------------');
+          */
+          data.activePythons = python;
+        }
         const quetz = await fetchCombatantsByBNpcID([14388]);
         /*
         console.log('------------');
@@ -197,9 +208,9 @@ const triggerSet: TriggerSet<Data> = {
         data.activeQuetzs = quetz;
       },
       alertText: (data, _matches, output) => {
+        ++data.paradeigmaCounter;
         if (data.paradeigmaCounter === 0)
           return output.underQuetz!();
-        ++data.paradeigmaCounter;
       },
       outputStrings: {
         underQuetz: {
@@ -251,6 +262,18 @@ const triggerSet: TriggerSet<Data> = {
         for (let i = 0; i < data.activeQuetzs.length; ++i) {
           const quetz = data.activeQuetzs[i];
           if (quetz && (quetz.ID === parseInt(matches.sourceId, 16)))
+            data.activeQuetzs.splice(i, 1);
+        }
+      },
+    },
+    {
+      id: 'ZodiarkEx Python End',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6650', source: 'Python', capture: true }),
+      run: (data, matches, _output) => {
+        for (let i = 0; i < data.activePythons.length; ++i) {
+          const python = data.activePythons[i];
+          if (python && (python.ID === parseInt(matches.sourceId, 16)))
             data.activeQuetzs.splice(i, 1);
         }
       },
@@ -321,7 +344,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
       alertText: (data, matches, _output) => {
-        console.log('algedon. quetz ', data.activeQuetzs.length, ' sigil ', data.activeSigils.length);
         if (matches.id === '67EC') {
           // NE/SW
           if (isSafe(data.activeSigils, data.activeQuetzs, 0))
@@ -338,6 +360,17 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'hehe',
+        },
+      },
+    },
+    {
+      id: 'ZodiarkEx Phobos',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '67F0', source: 'Zodiark', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Heavy DoT',
         },
       },
     },
