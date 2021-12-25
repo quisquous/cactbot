@@ -31,6 +31,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Corner',
           de: 'In eine Ecke gehen',
+          ko: '구석으로',
         },
       },
     },
@@ -47,6 +48,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Middle Knockback',
           de: 'Rückstoß von der Mitte',
+          ko: '중앙에서 넉백',
         },
       },
     },
@@ -108,6 +110,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Other Role Tower',
           de: 'Geh in einen Turm einer anderen Rolle',
+          ko: '내 직업군이 아닌쪽 장판 밟기',
         },
       },
     },
@@ -123,6 +126,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go North Edge',
           de: 'Geh zur nördlichen Kante',
+          ko: '북쪽 구석으로',
         },
       },
     },
@@ -138,6 +142,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go East Edge',
           de: 'Geh zur östlichen Kante',
+          ko: '동쪽 구석으로',
         },
       },
     },
@@ -153,6 +158,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go South Edge',
           de: 'Geh zur südlichen Kante',
+          ko: '남쪽 구석으로',
         },
       },
     },
@@ -168,6 +174,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go West Edge',
           de: 'Geh zur westlichen Kante',
+          ko: '서쪽 구석으로',
         },
       },
     },
@@ -184,6 +191,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'North Knockback',
           de: 'Rückstoß vom Norden',
+          ko: '북쪽 넉백',
         },
       },
     },
@@ -200,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'East Knockback',
           de: 'Rückstoß vom Osten',
+          ko: '동쪽 넉백',
         },
       },
     },
@@ -216,6 +225,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'South Knockback',
           de: 'Rückstoß vom Süden',
+          ko: '남쪽 넉백',
         },
       },
     },
@@ -232,6 +242,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'West Knockback',
           de: 'Rückstoß vom Westen',
+          ko: '서쪽 넉백',
         },
       },
     },
@@ -247,6 +258,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pop other role orbs',
           de: 'Nimm einen Orb einer anderen Rolle',
+          ko: '내 직업군과 다른 구슬 터뜨리기',
         },
       },
     },
