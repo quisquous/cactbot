@@ -51,6 +51,7 @@ const fetchCombatantsByTargetID = async (targetId: string[]) => {
     call: 'getCombatants',
     ids: decIds,
   });
+  console.log('fetch ', callData.combatants);
   return callData.combatants;
 };
 
@@ -187,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
       promise: async (data, _matches) => {
+        console.log('p cnt ', data.paradeigmaCounter);
         // TODO: Since fetch already supports arrays don't bother overlay twice
         if (data.paradeigmaCounter === 2 || data.paradeigmaCounter === 3 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 6) {
           const python = await fetchCombatantsByBNpcID([14387]);
@@ -198,14 +200,16 @@ const triggerSet: TriggerSet<Data> = {
           */
           data.activePythons = python;
         }
-        const quetz = await fetchCombatantsByBNpcID([14388]);
-        /*
-        console.log('------------');
-        for (const q of quetz)
-          console.log('paradeigma quetz: ', q);
-        console.log('------------');
-        */
-        data.activeQuetzs = quetz;
+        if (data.paradeigmaCounter === 0 || data.paradeigmaCounter === 1 || data.paradeigmaCounter === 4 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 7) {
+          const quetz = await fetchCombatantsByBNpcID([14388]);
+          /*
+          console.log('------------');
+          for (const q of quetz)
+            console.log('paradeigma quetz: ', q);
+          console.log('------------');
+          */
+          data.activeQuetzs = quetz;
+        }
       },
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
@@ -224,14 +228,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '67F3', source: 'Zodiark', capture: false }),
       response: Responses.aoe(),
     },
-    /* // FIXME: Add portals on tethers, handle green ones here later?
+    /*
     {
       // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
       id: 'Zodiark Arcane Sigil Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil', capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: ['67E6'], source: 'Arcane Sigil', capture: true }),
       preRun: (data, matches, _output) => {
-        data.activeSigils.push({ x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
+        console.log('s cast ', { x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
       },
       alertText: (_data, _matches, _output) => {
         return 'ALARM';
@@ -241,7 +245,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'ALARM',
         },
       },
-    },*/
+    },
+    */
     {
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
@@ -285,8 +290,10 @@ const triggerSet: TriggerSet<Data> = {
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
-          if (actor.ID)
-            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
+          if (actor.ID) {
+            console.log('blue ', { x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16) });
+            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16) });
+          }
         }
       },
       alertText: (data, matches, output) => {
@@ -315,8 +322,10 @@ const triggerSet: TriggerSet<Data> = {
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
-          if (actor.ID)
+          if (actor.ID) {
+            console.log('red ', { x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
             data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
+          }
         }
       },
       alertText: (data, matches, output) => {
@@ -368,6 +377,39 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '67F0', source: 'Zodiark', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Heavy DoT',
+        },
+      },
+    },
+    {
+      id: 'ZodiarkEx Astral Flow',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6662', '6663'], source: 'Zodiark', capture: false }),
+      alertText: (data, _matches, _output) => {
+        if (data.activeQuetzs.length === 0) {
+          console.log('AF no quetz');
+          console.log('AF no quetz');
+        }
+        for (const q of data.activeQuetzs)
+          console.log('AF quetz', q);
+        for (const s of data.activeSigils)
+          console.log('AF sigils', s);
+        let checkQuetzs = data.activeQuetzs;
+        if (data.paradeigmaCounter === 6) {
+          console.log('AF special AF');
+          checkQuetzs = [];
+        }
+        // 6662 CW, 6663 CCW
+        if (isSafe(data.activeSigils, checkQuetzs, 1))
+          return 'NW';
+        if (isSafe(data.activeSigils, checkQuetzs, 0))
+          return 'NE';
+        if (isSafe(data.activeSigils, checkQuetzs, 3))
+          return 'SW';
+        return 'SE';
+      },
       outputStrings: {
         text: {
           en: 'Heavy DoT',
