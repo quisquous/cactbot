@@ -28,7 +28,8 @@ hideall "--sync--"
 
 # There might be an enrage here? More data will be needed.
 110.7 "--untargetable--"
-118.0 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:66AD:/window 118.0,10
+118.0 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:66AD:/ window 118.0,10
+126.8 "--adds targetable--"
 127.0 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66A2:/
 135.1 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66A2:/ jump 127.0
 143.2 "Blazing Rain"
@@ -44,6 +45,7 @@ hideall "--sync--"
 
 # Post-intermission block, small differences from main rotation block.
 203.4 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66A2:/
+206.2 "Joint Pyre" sync / 1[56]:[^:]*:Sparkfledged:66A5:/
 209.1 "--sync--" sync / 1[56]:[^:]*:Phoinix:66AC:/
 221.2 "Dead Rebirth" sync / 1[56]:[^:]*:Phoinix:66A9:/ window 221.2,60
 231.4 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(66B4|66B5):/
