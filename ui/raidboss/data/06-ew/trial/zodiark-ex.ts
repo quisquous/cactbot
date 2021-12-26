@@ -552,7 +552,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Astral Flow',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6662', '6663'], source: 'Zodiark', capture: false }),
-      alertText: (data, _matches, output) => {
+      alertText: (data, _matches, _output) => {
         /*
         if (data.activeQuetzs.length === 0) {
           console.log('AF no quetz');
@@ -576,14 +576,35 @@ const triggerSet: TriggerSet<Data> = {
           // console.log('AF special AF');
           checkQuetzs = [];
         }
+        let str = '';
+        switch (getPythonConfiguration(data.activePythons)) {
+          // No pythons so no modifier
+          case -1:
+            break;
+          case 0:
+            str += 'python front';
+            break;
+          case 1:
+            str += 'python back';
+            break;
+          case 2:
+            str += 'python left';
+            break;
+          case 3:
+            str += 'python right';
+            break;
+          default:
+            str += 'python bugged good luck';
+            break;
+        }
         // 6662 CW, 6663 CCW
         if (isSafe(data.activeSigils, checkQuetzs, 1))
-          return output.northwest!();
+          return 'Northwest ' + str;
         if (isSafe(data.activeSigils, checkQuetzs, 0))
-          return output.northeast!();
+          return 'Northeast ' + str;
         if (isSafe(data.activeSigils, checkQuetzs, 3))
-          return output.southwest!();
-        return output.southeast!();
+          return 'Southwest ' + str;
+        return 'Southeast ' + str;
       },
       outputStrings: directionOutputStrings,
     },
