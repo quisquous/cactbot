@@ -8,17 +8,12 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  // sigilMap: { [id: string]: 'Blue' | 'Red' };
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
-  // storedTetherTargets: { [id: string]: PluginCombatantState };
+  activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activePythons: PluginCombatantState[];
   // For Quetz, mechanics which only use two of them always use the two with the highest ID
   activeQuetzs: PluginCombatantState[];
-  // storedBehemoths: PluginCombatantState[];
-  // exoterikosCounter: number;
   paradeigmaCounter: number;
-  // astralFlowCounter: number;
-  // adikiaCounter: number;
 }
 
 const directionOutputStrings = {
@@ -51,7 +46,6 @@ const fetchCombatantsByTargetID = async (targetId: string[]) => {
     call: 'getCombatants',
     ids: decIds,
   });
-  console.log('fetch ', callData.combatants);
   return callData.combatants;
 };
 
@@ -156,16 +150,11 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladZodiarksFall,
   timelineFile: 'zodiark-ex.txt',
   initData: () => ({
-    // sigilMap: {},
     activeSigils: [],
-    // storedTetherTargets: {},
-    // storedBehemoths: [],
+    activeFrontSigils: [],
     activeQuetzs: [],
     activePythons: [],
-    // exoterikosCounter: 0,
     paradeigmaCounter: 0,
-    // astralFlowCounter: 0,
-    // adikiaCounter: 0,
   }),
   triggers: [
     {
@@ -229,25 +218,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '67F3', source: 'Zodiark', capture: false }),
       response: Responses.aoe(),
     },
-    /*
-    {
-      // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
-      id: 'Zodiark Arcane Sigil Start',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67E6'], source: 'Arcane Sigil', capture: true }),
-      preRun: (data, matches, _output) => {
-        console.log('s cast ', { x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
-      },
-      alertText: (_data, _matches, _output) => {
-        return 'ALARM';
-      },
-      outputStrings: {
-        text: {
-          en: 'ALARM',
-        },
-      },
-    },
-    */
     {
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
@@ -292,7 +262,7 @@ const triggerSet: TriggerSet<Data> = {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID) {
-            console.log('blue ', { x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16) });
+            // console.log('blue ', { x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16) });
             data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16) });
           }
         }
@@ -324,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID) {
-            console.log('red ', { x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
+            // console.log('red ', { x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
             data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
           }
         }
@@ -347,6 +317,56 @@ const triggerSet: TriggerSet<Data> = {
         return output.north!();
       },
       outputStrings: directionOutputStrings,
+    },
+    {
+      id: 'ZodiarkEx Roiling Darkness Spawn',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatant({ name: 'Roiling Darkness', capture: false }),
+      suppressSeconds: 1,
+      response: Responses.killAdds(),
+    },
+    {
+      // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
+      id: 'ZodiarkEx Arcane Sigil Start',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil' }),
+      run: (data, matches, _output) => {
+        if (parseFloat(matches.y) < 100)
+          data.activeFrontSigils.push({ x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
+      },
+    },
+    {
+      id: 'ZodiarkEx Arcane Sigil Start Cleanup',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil', capture: false }),
+      delaySeconds: 0.2,
+      suppressSeconds: 0.2,
+      alertText: (data, _matches, output) => {
+        const activeFrontSigils = data.activeFrontSigils;
+        data.activeFrontSigils = [];
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === '67E4')
+          return output.sides!();
+        if (activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === '67E4' && activeFrontSigils[1]?.typeId === '67E4')
+          return output.middle!();
+        if (activeFrontSigils.length === 3) {
+          for (const sig of activeFrontSigils) {
+            // Find the middle sigil
+            if (sig.x > 90 && sig.x < 110) {
+              if (sig.typeId === '67E4')
+                return 'front sides';
+              if (sig.typeId === '67E5')
+                return 'back middle';
+              if (sig.typeId === '67E6')
+                return 'front middle';
+            }
+          }
+          console.log('adds?', activeFrontSigils);
+        }
+      },
+      outputStrings: {
+        sides: Outputs.sides,
+        middle: Outputs.middle,
+      },
     },
     {
       // 67EC is leaning left, 67ED is leaning right
@@ -389,6 +409,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6662', '6663'], source: 'Zodiark', capture: false }),
       alertText: (data, _matches, _output) => {
+        /*
         if (data.activeQuetzs.length === 0) {
           console.log('AF no quetz');
           console.log('AF no quetz');
@@ -397,9 +418,10 @@ const triggerSet: TriggerSet<Data> = {
           console.log('AF quetz', q);
         for (const s of data.activeSigils)
           console.log('AF sigils', s);
+        */
         let checkQuetzs = data.activeQuetzs;
         if (data.paradeigmaCounter === 6) {
-          console.log('AF special AF');
+          // console.log('AF special AF');
           checkQuetzs = [];
         }
         // 6662 CW, 6663 CCW
