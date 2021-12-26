@@ -228,7 +228,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
-        if (data.paradeigmaCounter === 0)
+        if (data.paradeigmaCounter === 1)
           return output.underQuetz!();
       },
       outputStrings: {
@@ -378,17 +378,25 @@ const triggerSet: TriggerSet<Data> = {
             // Find the middle sigil
             if (sig.x > 90 && sig.x < 110) {
               if (sig.typeId === '67E4')
-                return 'front sides';
+                return output.frontsides!();
               if (sig.typeId === '67E5')
-                return 'back middle';
+                return output.backmiddle!();
               if (sig.typeId === '67E6')
-                return 'front middle';
+                return output.frontmiddle!();
             }
           }
-          console.log('adds?', activeFrontSigils);
         }
       },
       outputStrings: {
+        frontsides: {
+          en: 'front sides',
+        },
+        backmiddle: {
+          en: 'back middle',
+        },
+        frontmiddle: {
+          en: 'front middle',
+        },
         sides: Outputs.sides,
         middle: Outputs.middle,
       },
@@ -484,25 +492,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
-      alertText: (data, matches, _output) => {
+      alertText: (data, matches, output) => {
         if (matches.id === '67EC') {
           // NE/SW
           if (isSafe(data.activeSigils, data.activeQuetzs, 0))
-            return 'NE';
-          return 'SW';
+            return output.northeast!();
+          return output.southwest!();
         }
         if (matches.id === '67ED') {
           // NW/SE
           if (isSafe(data.activeSigils, data.activeQuetzs, 1))
-            return 'NW';
-          return 'SE';
+            return output.northwest!();
+          return output.southeast!();
         }
       },
-      outputStrings: {
-        text: {
-          en: 'hehe',
-        },
-      },
+      outputStrings: directionOutputStrings,
     },
     {
       id: 'ZodiarkEx Adikia',
@@ -548,7 +552,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Astral Flow',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6662', '6663'], source: 'Zodiark', capture: false }),
-      alertText: (data, _matches, _output) => {
+      alertText: (data, _matches, output) => {
         /*
         if (data.activeQuetzs.length === 0) {
           console.log('AF no quetz');
@@ -574,18 +578,14 @@ const triggerSet: TriggerSet<Data> = {
         }
         // 6662 CW, 6663 CCW
         if (isSafe(data.activeSigils, checkQuetzs, 1))
-          return 'NW';
+          return output.northwest!();
         if (isSafe(data.activeSigils, checkQuetzs, 0))
-          return 'NE';
+          return output.northeast!();
         if (isSafe(data.activeSigils, checkQuetzs, 3))
-          return 'SW';
-        return 'SE';
+          return output.southwest!();
+        return output.southeast!();
       },
-      outputStrings: {
-        text: {
-          en: 'Heavy DoT',
-        },
-      },
+      outputStrings: directionOutputStrings,
     },
   ],
   timelineReplace: [
