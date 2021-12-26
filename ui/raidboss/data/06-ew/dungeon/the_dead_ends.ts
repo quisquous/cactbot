@@ -253,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
         cleanse: {
           en: 'Heal ${player} to Full',
           de: 'Heile ${player} voll',
-          fr: 'Soignez ${player} à fond',
+          fr: 'Soignez ${player} complètement',
           ko: '${player} 풀피 채우기',
         },
       },
