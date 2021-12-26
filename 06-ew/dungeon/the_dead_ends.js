@@ -108,6 +108,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stand Between Bits',
                     de: 'Zwichen den Satelliten stehen',
+                    fr: 'Placez-vous entre les drones',
                     ko: '비트 사이에 자리잡기',
                 },
             },
@@ -143,11 +144,13 @@ Options.Triggers.push({
                     tankLaserOnPlayer: {
                         en: 'Tank Laser on ${player}',
                         de: 'Tank Laser auf ${player}',
+                        fr: 'Tank laser sur ${player}',
                         ko: '${player} 탱 레이저',
                     },
                     avoidLaserOnPlayer: {
                         en: 'Avoid Laser on ${player}',
                         de: 'Weiche dem Laser von ${player} aus',
+                        fr: 'Évitez le laser sur ${player}',
                         ko: '${player} 탱 레이저 피하기',
                     },
                 };
@@ -237,6 +240,7 @@ Options.Triggers.push({
                 cleanse: {
                     en: 'Heal ${player} to Full',
                     de: 'Heile ${player} voll',
+                    fr: 'Soignez ${player} complètement',
                     ko: '${player} 풀피 채우기',
                 },
             },
@@ -289,7 +293,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Caustic Grebuloff': 'Grébuloff en stade terminal',
                 'Golden Wings': 'papillon d\'or',
@@ -302,6 +305,8 @@ Options.Triggers.push({
                 'Weeping Miasma': 'boule de toxine',
             },
             'replaceText': {
+                '\\(circles\\)': '(cercles)',
+                '\\(spread\\)': '(dispersion)',
                 'Befoulment': 'Bombe de pus',
                 'Benevolence': 'Philanthropie',
                 'Blighted Water': 'Eau contaminée',
