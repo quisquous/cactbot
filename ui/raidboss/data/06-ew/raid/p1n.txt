@@ -105,7 +105,7 @@ hideall "unknown_6d15"
 619.6 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
 626.7 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
 632.9 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-642.6 "--sync--" #sync / 14:[^:]*:Erichthonios:(65E0|65DF):/
+634.6 "--sync--" #sync / 14:[^:]*:Erichthonios:(65E0|65DF):/
 643.3 "Aetherflail Left/Aetherflail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
 643.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 
@@ -120,7 +120,7 @@ hideall "unknown_6d15"
 719.6 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
 726.7 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
 732.9 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-742.6 "--sync--" #sync / 14:[^:]*:Erichthonios:(65E0|65DF):/
+734.6 "--sync--" #sync / 14:[^:]*:Erichthonios:(65E0|65DF):/
 743.3 "Aetherflail Left/Aetherflail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
 743.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 
