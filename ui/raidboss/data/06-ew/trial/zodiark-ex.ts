@@ -19,6 +19,17 @@ export interface Data extends RaidbossData {
   paradeigmaCounter: number;
 }
 
+const dumpState = (data: Data) => {
+  console.log('sigils ', data.activeSigils);
+  console.log('frontSigils ', data.activeFrontSigils);
+  console.log('explosions ', data.activeExplosions);
+  console.log('pythons ', data.activePythons);
+  console.log('quetzs ', data.activeQuetzs);
+  console.log('lastExplosionSafe ', data.lastExplosionSafe);
+  console.log('explosionPatternCounter ', data.explosionPatternCounter);
+  console.log('paradeigmaCounter ', data.paradeigmaCounter);
+};
+
 const directionOutputStrings = {
   northeast: Outputs.northeast,
   north: Outputs.north,
@@ -202,6 +213,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
+      delaySeconds: 1,
       promise: async (data, _matches) => {
         console.log('p cnt ', data.paradeigmaCounter);
         // TODO: Since fetch already supports arrays don't bother overlay twice
@@ -225,6 +237,8 @@ const triggerSet: TriggerSet<Data> = {
           */
           data.activeQuetzs = quetz;
         }
+        console.log('Paradeigma dump');
+        dumpState(data);
       },
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
@@ -244,6 +258,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil', capture: true }),
@@ -287,8 +302,8 @@ const triggerSet: TriggerSet<Data> = {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID) {
-            // console.log('blue ', { x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16) });
-            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16) });
+            // console.log('blue ', { x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16).toUpperCase() });
+            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16).toUpperCase() });
           }
         }
       },
@@ -319,8 +334,8 @@ const triggerSet: TriggerSet<Data> = {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID) {
-            // console.log('red ', { x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
-            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16) });
+            // console.log('red ', { x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16).toUpperCase() });
+            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16).toUpperCase() });
           }
         }
       },
@@ -493,6 +508,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
       alertText: (data, matches, output) => {
+        console.log('Algedon dump');
+        dumpState(data);
         if (matches.id === '67EC') {
           // NE/SW
           if (isSafe(data.activeSigils, data.activeQuetzs, 0))
@@ -513,6 +530,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
       alertText: (data, _matches, output) => {
+        console.log('Adikia dump');
+        dumpState(data);
         const ps = getPythonConfiguration(data.activePythons);
         switch (ps) {
           case -1:
@@ -553,27 +572,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6662', '6663'], source: 'Zodiark', capture: false }),
       alertText: (data, _matches, _output) => {
-        /*
-        if (data.activeQuetzs.length === 0) {
-          console.log('AF no quetz');
-          console.log('AF no quetz');
-        }
-        for (const q of data.activeQuetzs)
-          console.log('AF quetz', q);
-
-        for (const s of data.activeSigils)
-          console.log('AF sigils', s);
-        */
-        if (data.activePythons.length === 0) {
-          console.log('AF no python');
-          console.log('AF no python');
-        }
-        for (const p of data.activePythons)
-          console.log('AF pythons', p);
-        console.log('AF python conf ', getPythonConfiguration(data.activePythons));
+        console.log('Astral Flow dump');
+        dumpState(data);
         let checkQuetzs = data.activeQuetzs;
         if (data.paradeigmaCounter === 6) {
-          // console.log('AF special AF');
+          console.log('AF special no quetz check');
           checkQuetzs = [];
         }
         let str = '';
