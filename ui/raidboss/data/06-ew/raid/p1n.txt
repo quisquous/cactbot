@@ -70,7 +70,7 @@ hideall "unknown_6d15"
 405.1 "Intemperate Torment" #sync / 1[56]:[^:]*:Erichthonios:65EF:/
 407.7 "Hot Spell/Cold Spell 1" #sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
 416.7 "Hot Spell/Cold Spell 2" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-525.7 "Hot Spell/Cold Spell 3" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+425.7 "Hot Spell/Cold Spell 3" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
 
 # Right Third
 469.8 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65D9:/
