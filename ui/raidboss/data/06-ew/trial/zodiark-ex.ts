@@ -139,6 +139,26 @@ const isSafeFromQuetz = (activeQuetzs: PluginCombatantState[], quadrant: number)
   return false;
 };
 
+// -1 -> Error 0 -> Lines, North, 1 -> Lines, South, 2 -> Columns West, 3 -> Columns East
+
+const getPythonConfiguration = (activePythons: PluginCombatantState[]) => {
+  if (activePythons.length < 2)
+    return -1;
+  const py = activePythons[0];
+  // Isn't this impossible?
+  if (!py)
+    return -1;
+  // Are pythons north or south?
+  if (py.PosY < 83 || py.PosY > 118) {
+    if (py.PosX > 79 && py.PosX < 89 || py.PosX > 100 && py.PosX < 110)
+      return 2;
+    return 3;
+  }
+  if (py.PosY > 79 && py.PosY < 89 || py.PosY > 100 && py.PosY < 110)
+    return 0;
+  return 1;
+};
+
 // Quadrants:
 //  1  |  0
 // ---------
@@ -255,7 +275,7 @@ const triggerSet: TriggerSet<Data> = {
         for (let i = 0; i < data.activePythons.length; ++i) {
           const python = data.activePythons[i];
           if (python && (python.ID === parseInt(matches.sourceId, 16)))
-            data.activeQuetzs.splice(i, 1);
+            data.activePythons.splice(i, 1);
         }
       },
     },
@@ -382,7 +402,6 @@ const triggerSet: TriggerSet<Data> = {
           data.activeExplosions.push({ x: parseFloat(matches.x), y: parseFloat(matches.y) });
         if (data.activeExplosions.length === 7) {
           const activeExplosions = data.activeExplosions;
-          console.log('parse explo ', activeExplosions);
           data.activeExplosions = [];
           // Explosions fall in a 9x9 grid
           // Find out which spots are safe
@@ -404,7 +423,6 @@ const triggerSet: TriggerSet<Data> = {
             if (ex.x > 110)
               grid[offset + 2] = false;
           }
-          console.log('explo grid ', grid);
           // FIXME: Commented parts prefer straight movement, loop prefers closest to northwest
           // ++data.explosionPatternCounter;
           // First explosion, prefer left and prefer front (melee) spot
@@ -487,6 +505,35 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'ZodiarkEx Adikia',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
+      alertText: (data, _matches, output) => {
+        const ps = getPythonConfiguration(data.activePythons);
+        switch (ps) {
+          case -1:
+            return output.text!();
+          case 0:
+            return output.northofmiddle!();
+          case 1:
+            return output.north!();
+          default:
+            console.log('Adikia: ERROR Unknown python configuration: ', ps);
+        }
+      },
+      outputStrings: {
+        text: {
+          en: 'double fists',
+        },
+        north: {
+          en: 'double fists, north',
+        },
+        northofmiddle: {
+          en: 'double fists, north of middle',
+        },
+      },
+    },
+    {
       id: 'ZodiarkEx Phobos',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '67F0', source: 'Zodiark', capture: false }),
@@ -509,9 +556,17 @@ const triggerSet: TriggerSet<Data> = {
         }
         for (const q of data.activeQuetzs)
           console.log('AF quetz', q);
+
         for (const s of data.activeSigils)
           console.log('AF sigils', s);
         */
+        if (data.activePythons.length === 0) {
+          console.log('AF no python');
+          console.log('AF no python');
+        }
+        for (const p of data.activePythons)
+          console.log('AF pythons', p);
+        console.log('AF python conf ', getPythonConfiguration(data.activePythons));
         let checkQuetzs = data.activeQuetzs;
         if (data.paradeigmaCounter === 6) {
           // console.log('AF special AF');
