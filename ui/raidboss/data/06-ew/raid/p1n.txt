@@ -18,8 +18,8 @@ hideall "unknown_6d15"
 0.0 "--sync--" sync /Engage!/ window 0,1
 
 ## First Gaoler's Flail
-8.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/ jump 108.7 window 10,10
-8.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/ jump 208.7 window 10,10
+8.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/ window 10,9 jump 108.7
+8.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/ window 10,9 jump 208.7
 17.4 "Gaoler's Flail Left/Gaoler's Flail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
 28.5 "Gaoler's Flail Right/Gaoler's Flail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
 39.0 "Warder's Wrath" #sync / 1[56]:[^:]*:Erichthonios:65F4:/
@@ -179,7 +179,7 @@ hideall "unknown_6d15"
 1355.8 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
 
 # Repeat
-1360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ jump 588.3
+1360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ window 50,50 jump 588.3
 1361.6 "--sync--" #sync / 14:[^:]*:Erichthonios:(6DA3|6DA2):/
 1370.3 "Aetherflail Left/Aetherflail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
 1370.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
