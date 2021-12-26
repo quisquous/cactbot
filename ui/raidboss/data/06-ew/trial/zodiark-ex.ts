@@ -20,11 +20,16 @@ export interface Data extends RaidbossData {
 }
 
 const dumpState = (data: Data) => {
-  console.log('sigils ', data.activeSigils);
-  console.log('frontSigils ', data.activeFrontSigils);
-  console.log('explosions ', data.activeExplosions);
-  console.log('pythons ', data.activePythons);
-  console.log('quetzs ', data.activeQuetzs);
+  for (const i of data.activeSigils)
+    console.log('sigil ', i);
+  for (const i of data.activeFrontSigils)
+    console.log('frontSigil ', i);
+  for (const i of data.activeExplosions)
+    console.log('explosion ', i);
+  for (const i of data.activePythons)
+    console.log('pythons ', i);
+  for (const i of data.activeQuetzs)
+    console.log('quetzs ', i);
   console.log('lastExplosionSafe ', data.lastExplosionSafe);
   console.log('explosionPatternCounter ', data.explosionPatternCounter);
   console.log('paradeigmaCounter ', data.paradeigmaCounter);
