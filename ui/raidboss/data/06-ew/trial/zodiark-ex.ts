@@ -10,9 +10,12 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
+  activeExplosions: { x: number; y: number }[];
   activePythons: PluginCombatantState[];
   // For Quetz, mechanics which only use two of them always use the two with the highest ID
   activeQuetzs: PluginCombatantState[];
+  lastExplosionSafe: number;
+  explosionPatternCounter: number;
   paradeigmaCounter: number;
 }
 
@@ -152,8 +155,11 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => ({
     activeSigils: [],
     activeFrontSigils: [],
+    activeExplosions: [],
     activeQuetzs: [],
     activePythons: [],
+    lastExplosionSafe: 0,
+    explosionPatternCounter: 0,
     paradeigmaCounter: 0,
   }),
   triggers: [
@@ -365,6 +371,94 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         sides: Outputs.sides,
         middle: Outputs.middle,
+      },
+    },
+    {
+      id: 'ZodiarkEx Explosion',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '67E7', source: 'Zodiark' }),
+      alertText: (data, matches, output) => {
+        if (data.activeExplosions.length < 7)
+          data.activeExplosions.push({ x: parseFloat(matches.x), y: parseFloat(matches.y) });
+        if (data.activeExplosions.length === 7) {
+          const activeExplosions = data.activeExplosions;
+          console.log('parse explo ', activeExplosions);
+          data.activeExplosions = [];
+          // Explosions fall in a 9x9 grid
+          // Find out which spots are safe
+          const grid: boolean[] = [true, true, true, true, true, true, true, true, true];
+          for (const ex of activeExplosions) {
+            // Which y row is this explosion in?
+            let offset = -1;
+            if (ex.y < 90)
+              offset = 0;
+            if (ex.y > 90 && ex.y < 110)
+              offset = 3;
+            if (ex.y > 110)
+              offset = 6;
+            // Which x column is this explosion in?
+            if (ex.x < 90)
+              grid[offset + 0] = false;
+            if (ex.x > 90 && ex.x < 110)
+              grid[offset + 1] = false;
+            if (ex.x > 110)
+              grid[offset + 2] = false;
+          }
+          console.log('explo grid ', grid);
+          // FIXME: Commented parts prefer straight movement, loop prefers closest to northwest
+          // ++data.explosionPatternCounter;
+          // First explosion, prefer left and prefer front (melee) spot
+          // if (data.explosionPatternCounter === 1) {
+          for (let i = 0; i < grid.length; ++i) {
+            if (grid[i]) {
+              // data.lastExplosionSafe = i;
+              return output[i]!();
+            }
+          }
+          // }
+          /*
+          // 2nd or 3rd pattern. Where do we go from lastExplosionSafe?
+          const lastSafe = data.lastExplosionSafe;
+          let newSafe = -1;
+          // Can we go up?
+          if (lastSafe - 3 >= 0 && grid[lastSafe - 3])
+            newSafe = lastSafe - 3;
+          // Left?
+          else if (lastSafe - 1 >= 0 && grid[lastSafe - 1])
+            newSafe = lastSafe - 1;
+          // Right?
+          else if (lastSafe + 1 !== 4 && lastSafe + 1 !== 7 && grid[lastSafe + 1])
+            newSafe = lastSafe + 1;
+          // Down?
+          else if (lastSafe + 3 <= 8 && grid[lastSafe + 3])
+            newSafe = lastSafe + 3;
+          // Up Left?
+          else if (lastSafe - 4 >= 0 && grid[lastSafe - 4])
+            newSafe = lastSafe - 4;
+          // Up Right?
+          else if (lastSafe - 2 >= 0 && grid[lastSafe - 2])
+            newSafe = lastSafe - 2;
+          // Down Left?
+          else if (lastSafe + 2 >= 8 && grid[lastSafe + 2])
+            newSafe = lastSafe + 2;
+          // Down Right?
+          else if (lastSafe + 4 >= 8 && grid[lastSafe + 4])
+            newSafe = lastSafe + 4;
+          data.lastExplosionSafe = newSafe;
+          return output[newSafe]!();
+          */
+        }
+      },
+      outputStrings: {
+        0: Outputs.northwest,
+        1: Outputs.north,
+        2: Outputs.northeast,
+        3: Outputs.west,
+        4: Outputs.middle,
+        5: Outputs.east,
+        6: Outputs.southwest,
+        7: Outputs.south,
+        8: Outputs.southeast,
       },
     },
     {
