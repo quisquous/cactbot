@@ -18,7 +18,7 @@ hideall "--sync--"
 84.6 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:67F6:/
 111.0 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6809:/
 126.9 "Predatory Sight" sync / 1[56]:[^:]*:Hippokampos:680B:/
-137.3 "Shockwave  (knockback)" sync / 1[56]:[^:]*:Hippokampos:6807:/
+137.3 "Shockwave (knockback)" sync / 1[56]:[^:]*:Hippokampos:6807:/
 148.6 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:6804:/
 153.7 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6805:/
 165.8 "Dissociation Dive" sync / 1[56]:[^:]*:Hippokampos:6806:/
@@ -41,7 +41,7 @@ hideall "--sync--"
 287.0 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:680F:/
 296.2 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:6804:/
 301.3 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6805:/
-310.7 "Shockwave  (knockback)" sync / 1[56]:[^:]*:Hippokampos:6807:/
+310.7 "Shockwave (knockback)" sync / 1[56]:[^:]*:Hippokampos:6807:/
 313.4 "Dissociation Dive" sync / 1[56]:[^:]*:Hippokampos:6806:/
 318.9 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6835:/
 325.3 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:6804:/
