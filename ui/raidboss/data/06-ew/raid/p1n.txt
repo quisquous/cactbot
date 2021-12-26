@@ -30,7 +30,7 @@ hideall "unknown_6d15"
 
 # Left First, Right Second
 116.7 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65DA:/
-117.4 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:
+117.4 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
 127.8 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65D9:/
 128.5 "Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
 139.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/ jump 139
