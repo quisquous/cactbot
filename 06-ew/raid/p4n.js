@@ -1,5 +1,6 @@
 Options.Triggers.push({
     zoneId: ZoneId.AsphodelosTheFourthCircle,
+    timelineFile: 'p4n.txt',
     triggers: [
         {
             id: 'P4N Elegant Evisceration',
@@ -252,6 +253,15 @@ Options.Triggers.push({
                     de: 'Nimm einen Orb einer anderen Rolle',
                     ko: '내 직업군과 다른 구슬 터뜨리기',
                 },
+            },
+        },
+    ],
+    timelineReplace: [
+        {
+            'locale': 'en',
+            'replaceText': {
+                'Well Pinax/Levinstrike Pinax': 'Well/Levinstrike Pinax',
+                'Levinstrike Pinax/Well Pinax': 'Levinstrike/Well Pinax',
             },
         },
     ],
