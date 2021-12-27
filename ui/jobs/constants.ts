@@ -234,6 +234,11 @@ export const kAbility = {
   Thunder3: '99',
   Thunder4: '1CFC',
   // SMN
+  EnergyDrain: '407C',
+  EnergySiphon: '407E',
+  SearingLight: '64F2',
+  SummonBahamut: '1D03',
+  SummonPhoenix: '64E7',
   // 5.x
   Miasma: 'A8',
   Miasma3: '1D01',
@@ -241,12 +246,9 @@ export const kAbility = {
   BioSmn2: 'B2',
   Bio3: '1D00',
   Tridisaster: 'DFC',
-  EnergyDrain: '407C',
-  EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
   Devotion: '1D1A',
-  SearingLight: '64F2',
   // RDM
   Verstone: '1D57',
   Verfire: '1D56',
