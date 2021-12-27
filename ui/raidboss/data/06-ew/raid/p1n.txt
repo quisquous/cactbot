@@ -14,10 +14,9 @@ hideall "--sync--"
 0.0 "--sync--" sync /Engage!/ window 0,1
 
 ## First Gaoler's Flail
-8.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/ window 10,9 jump 108.7
-8.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/ window 10,9 jump 208.7
-17.4 "Gaoler's Flail Left/Gaoler's Flail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-28.5 "Gaoler's Flail Right/Gaoler's Flail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+8.7 "--sync--" sync / 14:[^:]*:Erichthonios:(6DA2|6DA3):/ window 10,9
+17.4 "Gaoler's Flail Left/Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+28.5 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
 39.0 "Warder's Wrath" #sync / 1[56]:[^:]*:Erichthonios:65F4:/
 46.2 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
 51.5 "Pitiless Flail" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
