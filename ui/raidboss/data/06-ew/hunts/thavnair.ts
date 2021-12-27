@@ -37,6 +37,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         knockbackStack: {
           en: 'Knockback Stack',
+          fr: 'Package + Poussée'
         },
       },
     },
@@ -61,6 +62,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Forward March Away',
+          fr: '???',
         },
       },
     },
@@ -74,6 +76,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Backwards March Away',
+          fr: '???',
         },
       },
     },
@@ -86,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Left March Away',
+          fr: '???',
         },
       },
     },
@@ -98,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Right March Away',
+          fr: '???',
         },
       },
     },
