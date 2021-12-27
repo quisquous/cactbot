@@ -63,13 +63,13 @@ hideall "--sync--"
 293.3 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
 302.3 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
 305.6 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-316.1 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/ jump 1316.2
+316.1 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
 327.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
 336.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
 355.8 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
 
 # Repeat
-360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ window 50,50 jump 588.3
+360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ window 50,50 jump 188.3
 370.3 "Aetherflail Left/Aetherflail Right" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
 370.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 381.4 "Aetherflail Right/Aetherflail Left" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
