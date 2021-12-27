@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         outAndBehind: {
           en: 'Get Behind and Out',
+          fr: 'Passez derrière et à l\'extérieur',
         },
       },
     },
@@ -32,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         getFront: {
           en: 'Get Front',
+          fr: 'Allez devant',
         },
       },
     },
@@ -44,9 +46,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           missleOnYou: {
             en: 'GTFO with marker',
+            fr: '???',
           },
           missleMarker: {
             en: 'Away from marker',
+            fr: 'Éloignez-vous du marquage',
           },
         };
 
@@ -64,9 +68,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           missleOnYou: {
             en: 'Place donut marker under',
+            fr: 'En dessous le marquage du donut',
           },
           missleMarker: {
             en: 'Stack on marker',
+            fr: 'Packez-vous sur les marquages',
           },
         };
 
