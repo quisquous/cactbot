@@ -30,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
         followCharge: {
           en: 'Follow charge',
           de: 'Folge dem Ansturm',
+          fr: 'Suivez la charge',
         },
       },
     },
@@ -104,6 +105,7 @@ const triggerSet: TriggerSet<Data> = {
         getWayOut: {
           en: 'GTFO',
           de: 'Geh raus',
+          fr: 'Partez',
         },
       },
     },
