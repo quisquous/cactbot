@@ -118,7 +118,7 @@ export class SMNComponent extends BaseComponent {
     this._addActiveOnStacks(this.topazStacks, (jobDetail.activePrimal === 'Titan') ? jobDetail.attunement : (jobDetail.usableArcanum.includes('Topaz') ? 4 : 0));
     this._addActiveOnStacks(this.emeraldStacks, (jobDetail.activePrimal === 'Garuda') ? jobDetail.attunement : (jobDetail.usableArcanum.includes('Emerald') ? 4 : 0));
 
-    // dynamically change threshold of tranceBox, let user know you should use arcanum quickly.
+    // dynamically change threshold of tranceBox, let user know you should use arcanum quickly
     this.tranceBox.threshold = this.player.gcdSpell * (jobDetail.usableArcanum.length * 3 + 1);
   }
 
