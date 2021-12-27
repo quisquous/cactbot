@@ -163,7 +163,7 @@ hideall "unknown_6d15"
 
 # Right Sixth, Left Seventh
 1234.6 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/
-1243.3 "Autherflail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
+1243.3 "Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
 1243.4 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 1260.8 "Slam Shut" sync / 1[56]:[^:]*:Erichthonios:65EA:/
 1270.0 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
