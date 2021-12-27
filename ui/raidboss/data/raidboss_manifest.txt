@@ -368,6 +368,12 @@
 06-ew/dungeon/the_tower_of_babil.txt
 06-ew/dungeon/vanaspati.ts
 06-ew/dungeon/vanaspati.txt
+06-ew/hunts/elpis.ts
+06-ew/hunts/garlemald.ts
+06-ew/hunts/labyrinthos.ts
+06-ew/hunts/mare_lamentorum.ts
+06-ew/hunts/thavnair.ts
+06-ew/hunts/ultima_thule.ts
 06-ew/trial/hydaelyn.ts
 06-ew/trial/hydaelyn.txt
 06-ew/trial/hydaelyn-ex.ts
