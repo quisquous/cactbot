@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
         knockbackStack: {
           en: 'Knockback Stack',
           de: 'Rückstoß sammeln',
-          fr: 'Package + Poussée'
+          fr: 'Package + Poussée',
         },
       },
     },
