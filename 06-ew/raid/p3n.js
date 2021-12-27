@@ -1,5 +1,6 @@
 Options.Triggers.push({
     zoneId: ZoneId.AsphodelosTheThirdCircle,
+    timelineFile: 'p3n.txt',
     triggers: [
         {
             id: 'P3N Experimental Fireplume Rotating',
@@ -241,6 +242,14 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '008B' }),
             condition: Conditions.targetIsYou(),
             response: Responses.spread(),
+        },
+    ],
+    timelineReplace: [
+        {
+            'locale': 'en',
+            'replaceText': {
+                'Left Cinderwing/Right Cinderwing': 'Left/Right Cinderwing',
+            },
         },
     ],
 });
