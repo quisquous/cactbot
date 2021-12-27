@@ -49,11 +49,11 @@ const directionOutputStrings = {
   },
 };
 
-const fetchCombatantsByBNpcID = async (BNpcIDs: number[]) => {
+const fetchCombatantsByBNpcID = async (bNpcIDs: number[]) => {
   const callData = await callOverlayHandler({
     call: 'getCombatants',
   });
-  const combatants = callData.combatants.filter((c) => !!c.BNpcID && BNpcIDs.includes(c.BNpcID));
+  const combatants = callData.combatants.filter((c) => !!c.BNpcID && bNpcIDs.includes(c.BNpcID));
   return combatants;
 };
 
@@ -130,6 +130,12 @@ const isSafeFromSigil = (activeSigils: { x: number; y: number; typeId: string; n
 };
 
 const isSafeFromQuetz = (activeQuetzs: PluginCombatantState[], quadrant: number) => {
+  if (activeQuetzs.length > 2)
+    console.log('WARNING: too many quetz?');
+  if (activeQuetzs.length === 4) {
+    console.log('WARNING isSafeFromQuetz: Safe everywhere?');
+    return true;
+  }
   if (activeQuetzs.length === 0)
     return true;
   for (const quetz of activeQuetzs) {
@@ -202,17 +208,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Ania',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '67EF', source: 'Zordiarche' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '67EF', source: 'ゾディアーク' }),
-      response: Responses.tankBuster(),
-    },
-    {
-      id: 'ZodiarkEx Kokytos',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6C60', source: 'Zodiark', capture: false }),
-      response: Responses.bigAoe(),
+      netRegex: NetRegexes.startsUsing({ id: '6B63', source: 'Zodiark' }),
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'ZodiarkEx Paradeigma',
@@ -260,13 +257,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Styx',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '67F3', source: 'Zodiark', capture: false }),
-      response: Responses.aoe(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Stack x6',
+        },
+      },
     },
     {
       // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil', capture: true }),
+      netRegex: NetRegexes.ability({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil' }),
       run: (data, matches, _output) => {
         for (let i = 0; i < data.activeSigils.length; ++i) {
           const sig = data.activeSigils[i];
@@ -278,29 +280,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Quetz End',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6651', source: 'Quetzalcoatl', capture: true }),
-      run: (data, matches, _output) => {
-        for (let i = 0; i < data.activeQuetzs.length; ++i) {
-          const quetz = data.activeQuetzs[i];
-          if (quetz && (quetz.ID === parseInt(matches.sourceId, 16)))
-            data.activeQuetzs.splice(i, 1);
-        }
+      netRegex: NetRegexes.ability({ id: '6651', source: 'Quetzalcoatl', capture: false }),
+      run: (data, _matches, _output) => {
+        data.activeQuetzs = [];
       },
     },
     {
       id: 'ZodiarkEx Python End',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6650', source: 'Python', capture: true }),
-      run: (data, matches, _output) => {
-        for (let i = 0; i < data.activePythons.length; ++i) {
-          const python = data.activePythons[i];
-          if (python && (python.ID === parseInt(matches.sourceId, 16)))
-            data.activePythons.splice(i, 1);
-        }
+      netRegex: NetRegexes.ability({ id: '6650', source: 'Python', capture: false }),
+      run: (data, _matches, _output) => {
+        data.activePythons = [];
       },
     },
     {
-      id: 'ZodiarkEx Blue Tether',
+      id: 'ZodiarkEx Blue Cone Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '00A4', source: 'Zodiark' }),
       promise: async (data, matches) => {
@@ -320,19 +314,32 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         if (target.x < 100)
-          return output.west!();
+          return output.westCone!();
 
         if (target.x > 100)
-          return output.east!();
+          return output.eastCone!();
 
         if (target.y < 100)
-          return output.north!();
-        return output.south!();
+          return output.northCone!();
+        return output.southCone!();
       },
-      outputStrings: directionOutputStrings,
+      outputStrings: {
+        northCone: {
+          en: 'North Cone',
+        },
+        eastCone: {
+          en: 'East Cone',
+        },
+        westCone: {
+          en: 'West Cone',
+        },
+        southCone: {
+          en: 'South Cone',
+        },
+      },
     },
     {
-      id: 'ZodiarkEx Red Tether',
+      id: 'ZodiarkEx Red Box Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '00AB', source: 'Zodiark' }),
       promise: async (data, matches) => {
@@ -368,7 +375,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Roiling Darkness', capture: false }),
       suppressSeconds: 1,
-      response: Responses.killAdds(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: Outputs.killAdds.en + '(back first)',
+        },
+      },
     },
     {
       // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
@@ -435,21 +447,9 @@ const triggerSet: TriggerSet<Data> = {
           // Find out which spots are safe
           const grid: boolean[] = [true, true, true, true, true, true, true, true, true];
           for (const ex of activeExplosions) {
-            // Which y row is this explosion in?
-            let offset = -1;
-            if (ex.y < 90)
-              offset = 0;
-            if (ex.y > 90 && ex.y < 110)
-              offset = 3;
-            if (ex.y > 110)
-              offset = 6;
-            // Which x column is this explosion in?
-            if (ex.x < 90)
-              grid[offset + 0] = false;
-            if (ex.x > 90 && ex.x < 110)
-              grid[offset + 1] = false;
-            if (ex.x > 110)
-              grid[offset + 2] = false;
+            const xOffset = Math.round((ex.x - 86) / 14);
+            const yOffset = Math.round((ex.y - 86) / 14);
+            grid[xOffset + 3 * yOffset] = false;
           }
           // FIXME: Commented parts prefer straight movement, loop prefers closest to northwest
           // ++data.explosionPatternCounter;
