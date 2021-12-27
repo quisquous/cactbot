@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           waterMarker: {
             en: 'Away from water marker',
-            fr, 'Éloignez-vous du marquage eau',
+            fr: 'Éloignez-vous du marquage eau',
           },
         };
 
