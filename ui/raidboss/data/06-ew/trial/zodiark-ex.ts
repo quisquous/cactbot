@@ -191,6 +191,16 @@ const isSafe = (activeSigils: { x: number; y: number; typeId: string; npcId: str
   return false;
 };
 
+const removeUnwantedQuetz = (activeQuetzs: PluginCombatantState[]) => {
+  activeQuetzs.sort((a, b) => {
+    if (!a.ID || !b.ID)
+      return -1;
+    return b.ID - a.ID;
+  });
+  activeQuetzs.splice(-2);
+  return activeQuetzs;
+};
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladZodiarksFall,
   timelineFile: 'zodiark-ex.txt',
@@ -225,7 +235,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
-      delaySeconds: 1,
+      delaySeconds: 2,
       promise: async (data, _matches) => {
         console.log('p cnt ', data.paradeigmaCounter);
         // TODO: Since fetch already supports arrays don't bother overlay twice
@@ -239,14 +249,18 @@ const triggerSet: TriggerSet<Data> = {
           */
           data.activePythons = python;
         }
-        if (data.paradeigmaCounter === 0 || data.paradeigmaCounter === 1 || data.paradeigmaCounter === 4 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 7) {
-          const quetz = await fetchCombatantsByBNpcID([14388]);
+        if (data.paradeigmaCounter === 0 || data.paradeigmaCounter === 1 || data.paradeigmaCounter === 4 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 7 || data.paradeigmaCounter === 8) {
+          let quetz = await fetchCombatantsByBNpcID([14388]);
           /*
           console.log('------------');
           for (const q of quetz)
             console.log('paradeigma quetz: ', q);
           console.log('------------');
           */
+          if (data.paradeigmaCounter !== 0 && data.paradeigmaCounter !== 5 && data.paradeigmaCounter === 8 && quetz.length > 2) {
+            console.log('WARNING: Paradeigma found too many Quetz');
+            quetz = removeUnwantedQuetz(quetz);
+          }
           data.activeQuetzs = quetz;
         }
         console.log('Paradeigma dump');
