@@ -100,16 +100,18 @@ export class SMNComponent extends BaseComponent {
       Math.max(jobDetail.tranceMilliseconds, jobDetail.attunementMilliseconds
         ) / 1000);
     this.demiSummoningBox.innerText = '';
+    if (time > 0)
+      this.demiSummoningBox.innerText = time.toString();
+
     this.demiSummoningBox.parentNode.classList.toggle('bahamutready', jobDetail.nextSummoned === 'Bahamut');
     this.demiSummoningBox.parentNode.classList.toggle('firebirdready', jobDetail.nextSummoned === 'Phoenix');
     this.demiSummoningBox.parentNode.classList.toggle('garuda', jobDetail.activePrimal === 'Garuda');
     this.demiSummoningBox.parentNode.classList.toggle('titan', jobDetail.activePrimal === 'Titan');
     this.demiSummoningBox.parentNode.classList.toggle('ifrit', jobDetail.activePrimal === 'Ifrit');
+
     this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-trance');
     if (jobDetail.nextSummoned === 'Phoenix')
       this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-demisummon.firebirdready');
-    if (time > 0)
-      this.demiSummoningBox.innerText = time.toString();
 
     // Arcanum and Attunement Guage
     this._addActiveOnStacks(this.rubyStacks, (jobDetail.activePrimal === 'Ifrit') ? jobDetail.attunement : (jobDetail.usableArcanum.includes('Ruby') ? 2 : 0));
