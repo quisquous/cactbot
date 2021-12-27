@@ -627,7 +627,7 @@ namespace Cactbot {
 
       public String nextSummoned {
         get {
-          if ((stance & 0xEF) != 0)
+          if ((stance & 0x10) == 0)
             return "Bahamut";
           else
             return "Phoenix";

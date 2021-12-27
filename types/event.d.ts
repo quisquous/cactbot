@@ -123,7 +123,7 @@ export interface JobDetail {
     attunementMilliseconds: number;
     attunement: number;
     usableArcanum: ('Ruby' | 'Topaz' | 'Emerald')[];
-    activePrimal: ('Ifrit' | 'Titan' | 'Garuda')[];
+    activePrimal: 'Ifrit' | 'Titan' | 'Garuda' | null;
     nextSummoned: 'Bahamut' | 'Phoenix';
   };
   'RDM': {
