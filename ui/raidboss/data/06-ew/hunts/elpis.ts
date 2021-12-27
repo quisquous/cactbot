@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         rightThenLeft: {
           en: 'Right => Left',
+          fr: 'À droite => À gauche',
         },
       },
     },
@@ -32,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         leftThenRight: {
           en: 'Left => Right',
+          fr: 'À gauche => À droite',
         },
       },
     },
@@ -63,9 +65,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           waterOnYou: {
             en: 'GTFO with water',
+            fr: '???',
           },
           waterMarker: {
             en: 'Away from water marker',
+            fr, 'Éloignez-vous du marquage eau',
           },
         };
 
