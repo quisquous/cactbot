@@ -88,8 +88,8 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
           `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.dreadwyrmStacks} | ${detail.jobDetail.bahamutStance} | ${detail.jobDetail.bahamutSummoned} (${detail.jobDetail.stanceMilliseconds}) | ${detail.jobDetail.phoenixReady}`;
       } else if ('tranceMilliseconds' in detail.jobDetail) {
         jobInfo.innerText =
-          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | [${detail
-            .jobDetail.activePrimal ?? '-'}] | [${
+          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | ${detail
+            .jobDetail.activePrimal ?? '-'} | [${
             detail.jobDetail.usableArcanum.join(', ')
           }] | ${detail.jobDetail.nextSummoned}`;
       }
