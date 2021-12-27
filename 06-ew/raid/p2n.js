@@ -188,4 +188,63 @@ Options.Triggers.push({
             },
         },
     ],
+    timelineReplace: [
+        {
+            'locale': 'de',
+            'replaceSync': {
+                'Hippokampos': 'Hippokampos',
+            },
+            'replaceText': {
+                '\\(knockback\\)': '(Rückstoß)',
+                'Coherence Flare': 'Kohärenz Flare',
+                'Coherence Line': 'Kohärenz Linie',
+                'Dissociation(?! Dive)': 'Dissoziation',
+                'Dissociation Dive': 'Dissoziation Sturzflug',
+                'Doubled Impact': 'Doppeleinschlag',
+                'Murky Depths': 'Trübe Tiefen',
+                'Predatory Sight': 'Mal der Beute',
+                'Sewage Deluge': 'Abwasserflut',
+                'Sewage Eruption': 'Abwassereruption',
+                'Shockwave': 'Schockwelle',
+                'Spoken Cataract': 'Gehauchter Katarakt',
+                'Tainted Flood': 'Verseuchte Flut',
+            },
+        },
+        {
+            'locale': 'fr',
+            'missingTranslations': true,
+            'replaceSync': {
+                'Hippokampos': 'hippokampos',
+            },
+            'replaceText': {
+                'Dissociation': 'Dissociation',
+                'Doubled Impact': 'Double impact',
+                'Murky Depths': 'Tréfonds troubles',
+                'Predatory Sight': 'Marque de la proie',
+                'Sewage Deluge': 'Déluge d\'eaux usées',
+                'Sewage Eruption': 'Éruption d\'eaux usées',
+                'Shockwave': 'Onde de choc',
+                'Spoken Cataract': 'Souffle et cataracte',
+                'Tainted Flood': 'Inondation infâme',
+            },
+        },
+        {
+            'locale': 'ja',
+            'missingTranslations': true,
+            'replaceSync': {
+                'Hippokampos': 'ヒッポカムポス',
+            },
+            'replaceText': {
+                'Dissociation': 'ディソシエーション',
+                'Doubled Impact': 'ダブルインパクト',
+                'Murky Depths': 'マーキーディープ',
+                'Predatory Sight': '生餌の刻印',
+                'Sewage Deluge': 'スウェッジデリージュ',
+                'Sewage Eruption': 'スウェッジエラプション',
+                'Shockwave': 'ショックウェーブ',
+                'Spoken Cataract': 'ブレス＆カタラクティス',
+                'Tainted Flood': 'テインテッドフラッド',
+            },
+        },
+    ],
 });
