@@ -12,6 +12,7 @@ export interface Data extends RaidbossData {
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheThirdCircle,
+  timelineFile: 'p3n.txt',
   triggers: [
     {
       id: 'P3N Experimental Fireplume Rotating',
@@ -253,6 +254,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Left Cinderwing/Right Cinderwing': 'Left/Right Cinderwing',
+      },
     },
   ],
 };
