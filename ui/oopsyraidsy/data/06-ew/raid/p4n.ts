@@ -37,6 +37,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: 'Tank Tower',
+            de: 'Tank-Turm',
           },
         };
       },
@@ -53,6 +54,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: 'Healer Tower',
+            de: 'Heiler-Turm',
           },
         };
       },
@@ -69,6 +71,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: 'DPS Tower',
+            de: 'DD-Turm',
           },
         };
       },
@@ -85,6 +88,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: 'Tank Orb',
+            de: 'Tank-Orb',
           },
         };
       },
@@ -101,6 +105,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: 'Healer Orb',
+            de: 'Heiler-Orb',
           },
         };
       },
@@ -117,6 +122,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: 'DPS Orb',
+            de: 'DD-Orb',
           },
         };
       },
