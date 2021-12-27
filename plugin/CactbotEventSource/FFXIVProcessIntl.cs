@@ -614,11 +614,11 @@ namespace Cactbot {
 
       public string activePrimal {
         get {
-          if ((stance & 0xF) == 0x4)
+          if ((stance & 0xC) == 0x4)
             return "Ifrit";
-          else if ((stance & 0xF) == 0x8)
+          else if ((stance & 0xC) == 0x8)
             return "Titan";
-          else if ((stance & 0xF) == 0xC)
+          else if ((stance & 0xC) == 0xC)
             return "Garuda";
           else
             return null;

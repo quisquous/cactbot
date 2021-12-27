@@ -17,10 +17,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Gurangatch Left Hammer Slammer',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6B65', source: 'Gurangatch', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6B65', source: 'Grangatch', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6B65', source: 'Gurangatch', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6B65', source: 'グランガッチ', capture: false }),
       alarmText: (_data, _matches, output) => output.rightThenLeft!(),
       outputStrings: {
         rightThenLeft: {
           en: 'Right => Left',
+          de: 'Rechts => Links',
           fr: 'À droite => À gauche',
         },
       },
@@ -29,10 +33,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Gurangatch Right Hammer Slammer',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6B66', source: 'Gurangatch', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6B66', source: 'Grangatch', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6B66', source: 'Gurangatch', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6B66', source: 'グランガッチ', capture: false }),
       alarmText: (_data, _matches, output) => output.leftThenRight!(),
       outputStrings: {
         leftThenRight: {
           en: 'Left => Right',
+          de: 'Links => Rechts',
           fr: 'À gauche => À droite',
         },
       },
@@ -41,6 +49,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Petalodus Marine Mayhem',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69B7', source: 'ペタロドゥス' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -48,18 +59,27 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Petalodus Tidal Guillotine',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69BC', source: 'Petalodus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69BC', source: 'Petalodus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69BC', source: 'Petalodus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69BC', source: 'ペタロドゥス', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Petalodus Ancient Blizzard',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69BD', source: 'Petalodus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69BD', source: 'Petalodus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69BD', source: 'Petalodus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69BD', source: 'ペタロドゥス', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'Hunt Petalodus Waterga IV',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69BB', source: 'Petalodus' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69BB', source: 'Petalodus' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69BB', source: 'Petalodus' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69BB', source: 'ペタロドゥス' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -69,7 +89,12 @@ const triggerSet: TriggerSet<Data> = {
           },
           waterMarker: {
             en: 'Away from water marker',
-            fr: 'Éloignez-vous du marquage eau',
+            de: 'Geh mit Wasser raus',
+            fr: 'Éloignez-vous du marquage eau',   
+          },
+          waterMarker: {
+            en: 'Away from water marker',
+            de: 'Weg vom Wasser Marker',
           },
         };
 
