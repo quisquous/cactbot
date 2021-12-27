@@ -27,9 +27,9 @@ const dumpState = (data: Data) => {
   for (const i of data.activeExplosions)
     console.log('explosion ', i);
   for (const i of data.activePythons)
-    console.log('pythons ', i);
+    console.log('python ', i, ' x:', i.PosX, ' y:', i.PosY);
   for (const i of data.activeQuetzs)
-    console.log('quetzs ', i);
+    console.log('quetz ', i, ' x:', i.PosX, ' y:', i.PosY, ' id:', i.ID);
   console.log('lastExplosionSafe ', data.lastExplosionSafe);
   console.log('explosionPatternCounter ', data.explosionPatternCounter);
   console.log('paradeigmaCounter ', data.paradeigmaCounter);
@@ -225,7 +225,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
-      delaySeconds: 2,
+      delaySeconds: 4,
       promise: async (data, _matches) => {
         console.log('p cnt ', data.paradeigmaCounter);
         // TODO: Since fetch already supports arrays don't bother overlay twice
@@ -241,12 +241,6 @@ const triggerSet: TriggerSet<Data> = {
         }
         if (data.paradeigmaCounter === 0 || data.paradeigmaCounter === 1 || data.paradeigmaCounter === 4 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 7 || data.paradeigmaCounter === 8) {
           let quetz = await fetchCombatantsByBNpcID([14388]);
-          /*
-          console.log('------------');
-          for (const q of quetz)
-            console.log('paradeigma quetz: ', q);
-          console.log('------------');
-          */
           if (data.paradeigmaCounter !== 0 && data.paradeigmaCounter !== 5 && data.paradeigmaCounter !== 8 && quetz.length > 2) {
             console.log('WARNING: Paradeigma found too many Quetz');
             quetz = removeUnwantedQuetz(quetz);
