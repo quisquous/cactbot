@@ -33,9 +33,9 @@ hideall "--sync--"
 208.6 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:67F6:/
 227.1 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6809:/
 235.0 "Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(67F7|67F8|67F9|67FD):/
-250.7 "Sewage Eruption 1" sync / 1[56]:[^:]*:Hippokampos:680D:/
-252.2 "Sewage Eruption 2" sync / 1[56]:[^:]*:Hippokampos:680D:/
-253.7 "Sewage Eruption 3" sync / 1[56]:[^:]*:Hippokampos:680D:/
+250.7 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:680D:/
+252.2 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:680D:/
+253.7 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:680D:/
 259.5 "Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(67F7|67F8|67F9|67FD):/
 273.4 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6809:/
 279.8 "Predatory Sight" sync / 1[56]:[^:]*:Hippokampos:680B:/
@@ -49,9 +49,9 @@ hideall "--sync--"
 330.4 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6805:/
 342.3 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6D14:/
 342.5 "Dissociation Dive" sync / 1[56]:[^:]*:Hippokampos:6806:/
-342.5 "Sewage Eruption 1" sync / 1[56]:[^:]*:Hippokampos:680D:/
-344.0 "Sewage Eruption 2" sync / 1[56]:[^:]*:Hippokampos:680D:/
-345.5 "Sewage Eruption 3" sync / 1[56]:[^:]*:Hippokampos:680D:/
+342.5 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:680D:/
+344.0 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:680D:/
+345.5 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:680D:/
 347.9 "Coherence Flare" sync / 1[56]:[^:]*:Hippokampos:6800:/
 350.4 "Coherence Line" sync / 1[56]:[^:]*:Hippokampos:6802:/
 352.4 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6803:/
