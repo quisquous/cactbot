@@ -26,6 +26,7 @@ const triggerSet: TriggerSet<Data> = {
         startMiddle: {
           en: 'Start Middle',
           de: 'Starte mittig',
+          fr: 'Commencez au milieu',
           ko: '가운데에 있다가 밖으로',
         },
       },
@@ -44,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         outOfMiddle: {
           en: 'Out Of Middle Soon',
           de: 'Bald raus aus der Mitte',
+          fr: 'Sortez de la mêlée bientôt',
           ja: '横へ', // FIXME
           cn: '远离中间', // FIXME
           ko: '맵 바깥쪽으로',
@@ -81,6 +83,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand on Darkened Fire',
           de: 'Auf einer Schwarzen Lohe stehen',
+          fr: 'Placez-vous sur la flamme sombre',
           ko: '불꽃 위에 서기',
         },
       },
@@ -142,6 +145,7 @@ const triggerSet: TriggerSet<Data> = {
         tank: {
           en: 'Pull add circles apart',
           de: 'Zieh die Kreise der Adds auseinander',
+          fr: 'Attaquez les adds séparément',
           ko: '원 끼리 겹치지 않게 하기',
         },
         text: Outputs.killAdds,
@@ -236,6 +240,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Split Intercardinals',
           de: 'Interkardinal aufteilen',
+          fr: 'Dispersez-vous en intercardinal',
           ko: '대각선 쪽으로 나눠 자리잡기',
         },
       },

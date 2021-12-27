@@ -111,21 +111,25 @@ const triggerSet: TriggerSet<Data> = {
         nc: {
           en: 'North Corners',
           de: 'nördliche Ecken',
+          fr: 'Au coin nord',
           ko: '북쪽 모서리',
         },
         ec: {
           en: 'East Corners',
           de: 'östliche Ecken',
+          fr: 'Au coin est',
           ko: '동쪽 모서리',
         },
         sc: {
           en: 'South Corners',
           de: 'südliche Ecken',
+          fr: 'Au coin sud',
           ko: '남쪽 모서리',
         },
         wc: {
           en: 'West Corners',
           de: 'westliche Ecken',
+          fr: 'Au coin ouest',
           ko: '서쪽 모서리',
         },
       },
