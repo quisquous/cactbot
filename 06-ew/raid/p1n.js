@@ -120,4 +120,17 @@ Options.Triggers.push({
             },
         },
     ],
+    timelineReplace: [
+        {
+            'locale': 'en',
+            'replaceText': {
+                'Gaoler\'s Flail Left/Gaoler\'s Flail Right': 'Gaoler\'s Flail Left/Right',
+                'Gaoler\'s Flail Right/Gaoler\'s Flail Left': 'Gaoler\'s Flail Right/Left',
+                'Hot Spell/Cold Spell': 'Hot/Cold Spell',
+                'Powerful Fire/Powerful Light': 'Powerful Fire/Light',
+                'Aetherflail Left/Aetherflail Right': 'Aetherflail Left/Right',
+                'Aetherflail Right/Aetherflail Left': 'Aetherflail Right/Left',
+            },
+        },
+    ],
 });

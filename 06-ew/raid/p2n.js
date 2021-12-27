@@ -1,5 +1,6 @@
 Options.Triggers.push({
     zoneId: ZoneId.AsphodelosTheSecondCircle,
+    timelineFile: 'p2n.txt',
     triggers: [
         {
             id: 'P2N Murky Depths',
