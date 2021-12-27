@@ -24,6 +24,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go to Corner',
                     de: 'In eine Ecke gehen',
+                    fr: 'Allez dans un coin',
                     ko: '구석으로',
                 },
             },
@@ -41,6 +42,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Middle Knockback',
                     de: 'Rückstoß von der Mitte',
+                    fr: 'Poussée au milieu',
                     ko: '중앙에서 넉백',
                 },
             },
@@ -103,6 +105,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Other Role Tower',
                     de: 'Geh in einen Turm einer anderen Rolle',
+                    fr: 'Prenez la tour de votre rôle',
                     ko: '내 직업군이 아닌쪽 장판 밟기',
                 },
             },
@@ -119,6 +122,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go North Edge',
                     de: 'Geh zur nördlichen Kante',
+                    fr: 'Allez au bord nord',
                     ko: '북쪽 구석으로',
                 },
             },
@@ -135,6 +139,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go East Edge',
                     de: 'Geh zur östlichen Kante',
+                    fr: 'Allez au bord est',
                     ko: '동쪽 구석으로',
                 },
             },
@@ -151,6 +156,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go South Edge',
                     de: 'Geh zur südlichen Kante',
+                    fr: 'Allez au bord sud',
                     ko: '남쪽 구석으로',
                 },
             },
@@ -167,6 +173,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go West Edge',
                     de: 'Geh zur westlichen Kante',
+                    fr: 'Allez au bord ouest',
                     ko: '서쪽 구석으로',
                 },
             },
@@ -184,6 +191,7 @@ Options.Triggers.push({
                 text: {
                     en: 'North Knockback',
                     de: 'Rückstoß vom Norden',
+                    fr: 'Poussée au nord',
                     ko: '북쪽 넉백',
                 },
             },
@@ -201,6 +209,7 @@ Options.Triggers.push({
                 text: {
                     en: 'East Knockback',
                     de: 'Rückstoß vom Osten',
+                    fr: 'Poussée à l\'est',
                     ko: '동쪽 넉백',
                 },
             },
@@ -218,6 +227,7 @@ Options.Triggers.push({
                 text: {
                     en: 'South Knockback',
                     de: 'Rückstoß vom Süden',
+                    fr: 'Poussée au sud',
                     ko: '남쪽 넉백',
                 },
             },
@@ -235,6 +245,7 @@ Options.Triggers.push({
                 text: {
                     en: 'West Knockback',
                     de: 'Rückstoß vom Westen',
+                    fr: 'Poussée à l\'ouest',
                     ko: '서쪽 넉백',
                 },
             },
@@ -251,6 +262,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Pop other role orbs',
                     de: 'Nimm einen Orb einer anderen Rolle',
+                    fr: 'Éclatez l\'orbe d\'un autre rôle',
                     ko: '내 직업군과 다른 구슬 터뜨리기',
                 },
             },
