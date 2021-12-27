@@ -34,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from jump',
+          fr: 'Éloignez-vous du saut',
         },
       },
     },
@@ -61,9 +62,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         divebombOnYou: {
           en: 'Divebomb on YOU',
+          fr: 'Bombe plongeante sur VOUS',
         },
         divebombMarker: {
           en: 'Away from Divebomb Marker',
+          fr: 'Éloignez-vous de la bombe plongeante',
         },
       },
     },
