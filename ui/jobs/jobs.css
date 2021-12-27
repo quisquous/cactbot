@@ -348,6 +348,18 @@ div.justbuffs div#procs-container {
   background-color: rgb(65, 0, 200);
 }
 
+#smn-stacks-ruby > div.active {
+  background-color: rgb(240, 30, 30);
+}
+
+#smn-stacks-emerald > div.active {
+  background-color: rgb(0, 140, 0);
+}
+
+#smn-stacks-topaz > div.active {
+  background-color: rgb(238, 234, 14);
+}
+
 /* Procs */
 
 /*
@@ -1004,6 +1016,22 @@ div.justbuffs div#procs-container {
 
 .smn-color-demisummon.last {
   background-color: rgb(240, 30, 30);
+}
+
+.smn-color-demisummon.ifrit {
+  background-color: rgb(240, 30, 30);
+}
+
+.smn-color-demisummon.garuda {
+  background-color: rgb(0, 140, 0);
+}
+
+.smn-color-demisummon.titan {
+  background-color: rgb(238, 234, 14);
+}
+
+.smn-color-lucid {
+  background-color: rgb(227, 148, 210);
 }
 
 /* RDM */
