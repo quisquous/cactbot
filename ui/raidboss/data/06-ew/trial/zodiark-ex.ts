@@ -247,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
             console.log('paradeigma quetz: ', q);
           console.log('------------');
           */
-          if (data.paradeigmaCounter !== 0 && data.paradeigmaCounter !== 5 && data.paradeigmaCounter === 8 && quetz.length > 2) {
+          if (data.paradeigmaCounter !== 0 && data.paradeigmaCounter !== 5 && data.paradeigmaCounter !== 8 && quetz.length > 2) {
             console.log('WARNING: Paradeigma found too many Quetz');
             quetz = removeUnwantedQuetz(quetz);
           }
