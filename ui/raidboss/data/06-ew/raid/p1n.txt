@@ -6,12 +6,8 @@
 # timeline as that is the cast that is visible. However, damage is from the
 # Gaoler's Flail (6DA3|6DA2) cast end after.
 
-# Note: unknown_6d15 happens same time as marker for the stack
-# to avoid knockback mechanic.
-
 hideall "--Reset--"
 hideall "--sync--"
-hideall "unknown_6d15"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
@@ -23,7 +19,7 @@ hideall "unknown_6d15"
 17.4 "Gaoler's Flail Left/Gaoler's Flail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
 28.5 "Gaoler's Flail Right/Gaoler's Flail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
 39.0 "Warder's Wrath" #sync / 1[56]:[^:]*:Erichthonios:65F4:/
-46.2 "unknown_6d15" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
+46.2 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
 51.5 "Pitiless Flail" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
 58.6 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
 
@@ -32,7 +28,7 @@ hideall "unknown_6d15"
 117.4 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
 128.5 "Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
 139.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/ jump 239
-146.2 "unknown_6d15" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
+146.2 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
 151.5 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
 158.6 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
 170.5 "Gaoler's Flail Left/Gaoler's Flail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
@@ -43,7 +39,7 @@ hideall "unknown_6d15"
 217.4 "Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
 228.5 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
 239.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-246.2 "unknown_6d15" sync / 1[56]:[^:]*:Erichthonios:6D15:/
+246.2 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
 251.5 "Pitiless Flail (knockback)" sync / 1[56]:[^:]*:Erichthonios:65E5:/
 258.6 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
 
@@ -97,7 +93,7 @@ hideall "unknown_6d15"
 598.8 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 609.8 "Aetherflail Right/Aetherflail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
 609.9 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-614.3 "unknown_6d15" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
+614.3 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
 619.6 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
 626.7 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
 632.9 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
@@ -110,7 +106,7 @@ hideall "unknown_6d15"
 698.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 709.8 "Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
 709.9 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/ jump 809.9
-714.3 "unknown_6d15" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
+714.3 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
 719.6 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
 726.7 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
 732.9 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
@@ -124,7 +120,7 @@ hideall "unknown_6d15"
 798.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 809.8 "Aetherflail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
 809.9 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-814.3 "unknown_6d15" sync / 1[56]:[^:]*:Erichthonios:6D15:/
+814.3 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
 819.6 "Pitiless Flail (knockback)" sync / 1[56]:[^:]*:Erichthonios:65E5:/
 826.7 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
 832.9 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
@@ -185,7 +181,7 @@ hideall "unknown_6d15"
 1370.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 1381.4 "Aetherflail Right/Aetherflail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
 1381.5 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-1385.9 "unknown_6d15" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
+1385.9 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
 1391.2 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
 1398.3 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
 1404.5 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
