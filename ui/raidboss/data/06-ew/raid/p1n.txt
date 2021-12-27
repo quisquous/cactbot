@@ -14,173 +14,67 @@ hideall "--sync--"
 0.0 "--sync--" sync /Engage!/ window 0,1
 
 ## First Gaoler's Flail
-8.7 "--sync--" sync / 14:[^:]*:Erichthonios:(6DA2|6DA3):/ window 10,9
+8.7 "--sync--" sync / 14:[^:]*:Erichthonios:(6DA3|6DA2):/ window 10,9
 17.4 "Gaoler's Flail Left/Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
 28.5 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-39.0 "Warder's Wrath" #sync / 1[56]:[^:]*:Erichthonios:65F4:/
-46.2 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
-51.5 "Pitiless Flail" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
-58.6 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
-
-# Left First, Right Second
-108.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/
-117.4 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
-128.5 "Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
-139.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/ jump 239
-146.2 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
-151.5 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
-158.6 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
-170.5 "Gaoler's Flail Left/Gaoler's Flail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-181.1 "Heavy Hand" #sync / 1[56]:[^:]*:Erichthonios:65F3:/
-
-# Right First, Left Second
-208.7 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/
-217.4 "Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
-228.5 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
-239.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-246.2 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
-251.5 "Pitiless Flail (knockback)" sync / 1[56]:[^:]*:Erichthonios:65E5:/
-258.6 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
+39.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
+46.2 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
+51.5 "Pitiless Flail" sync / 1[56]:[^:]*:Erichthonios:65E5:/
+58.6 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
 
 ## Third Gaoler's Flail
-261.8 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/ jump 361.8
-261.8 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/ jump 461.8
-270.5 "Gaoler's Flail Left/Gaoler's Flail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-281.1 "Heavy Hand" #sync / 1[56]:[^:]*:Erichthonios:65F3:/
-293.2 "Intemperance" #sync / 1[56]:[^:]*:Erichthonios:65EE:/
-297.3 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-305.1 "Intemperate Torment" #sync / 1[56]:[^:]*:Erichthonios:65EF:/
-307.7 "Hot Spell/Cold Spell 1" #sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-316.7 "Hot Spell/Cold Spell 2" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-
-# Left Third
-361.8 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/
-370.5 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
-381.1 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/ jump 481.1
-393.2 "Intemperance" #sync / 1[56]:[^:]*:Erichthonios:65EE:/
-397.3 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-405.1 "Intemperate Torment" #sync / 1[56]:[^:]*:Erichthonios:65EF:/
-407.7 "Hot Spell/Cold Spell 1" #sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-416.7 "Hot Spell/Cold Spell 2" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-425.7 "Hot Spell/Cold Spell 3" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-
-# Right Third
-461.8 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/
-470.5 "Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
-481.1 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
-493.2 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
-497.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-505.1 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
-507.7 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-516.7 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-525.7 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-535.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-547.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
-562.7 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
-574.9 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
-575.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-583.1 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
-584.0 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+70.5 "Gaoler's Flail Left/Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+81.1 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
+93.2 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
+97.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+105.1 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
+107.7 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
+116.7 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+125.7 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+135.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
+147.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
+162.7 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
+174.9 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
+175.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+183.1 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
+184.0 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
 
 ## Beginning of Loop
-588.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+188.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
 
-## Fourth Gaoler's Flail
-590.0 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/ jump 690
-590.0 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/ jump 790
-598.7 "Aetherflail Left/Aetherflail Right?" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-598.8 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-609.8 "Aetherflail Right/Aetherflail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-609.9 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-614.3 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
-619.6 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
-626.7 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
-632.9 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-643.3 "Aetherflail Left/Aetherflail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-643.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+# Fourth Gaoler's Flail
+198.7 "Aetherflail Left/Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+198.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+209.8 "Aetherflail Right/Aetherflail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+209.9 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+214.3 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
+219.6 "Pitiless Flail" sync / 1[56]:[^:]*:Erichthonios:65E5:/
+226.7 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
+232.9 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
 
-# Left Fourth, Right Fifth
-690.0 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/
-698.7 "Aetherflail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
-698.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-709.8 "Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
-709.9 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/ jump 809.9
-714.3 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
-719.6 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
-726.7 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
-732.9 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-734.6 "--sync--" #sync / 14:[^:]*:Erichthonios:(6DA3|6DA2):/
-743.3 "Aetherflail Left/Aetherflail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-743.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-
-# Right Fourth, Left Fifth
-790.0 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/
-798.7 "Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
-798.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-809.8 "Aetherflail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
-809.9 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-814.3 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
-819.6 "Pitiless Flail (knockback)" sync / 1[56]:[^:]*:Erichthonios:65E5:/
-826.7 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
-832.9 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-
-## Sixth Gaoler's Flail
-834.6 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/ jump 934.6
-834.6 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/ jump 1234.6
-843.3 "Aetherflail Left/Aetherflail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-843.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-860.8 "Slam Shut" #sync / 1[56]:[^:]*:Erichthonios:65EA:/
-870.0 "Intemperance" #sync / 1[56]:[^:]*:Erichthonios:65EE:/
-874.1 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-881.7 "Intemperate Torment" #sync / 1[56]:[^:]*:Erichthonios:65EF:/
-884.3 "Hot Spell/Cold Spell 1" #sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-893.3 "Hot Spell/Cold Spell 2" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-902.3 "Hot Spell/Cold Spell 3" #sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-905.6 "Gaoler's Flail Right/Gaoler's Flail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-
-# Left Sixth, Right Seventh
-934.6 "--sync--" sync / 14:[^:]*:Erichthonios:6DA3:/
-943.3 "Aetherflail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
-943.4 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-960.8 "Slam Shut" sync / 1[56]:[^:]*:Erichthonios:65EA:/
-970.0 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
-974.1 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-981.7 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
-984.3 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-993.3 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-1002.3 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-1005.6 "Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
-1116.1 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/ jump 1316.2
-1127.3 "Warder's Wrath" #sync / 1[56]:[^:]*:Erichthonios:65F4:/
-1136.6 "Heavy Hand" #sync / 1[56]:[^:]*:Erichthonios:65F3:/
-1155.8 "Shining Cells" #sync / 1[56]:[^:]*:Erichthonios:65E9:/
-1160.0 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
-
-# Right Sixth, Left Seventh
-1234.6 "--sync--" sync / 14:[^:]*:Erichthonios:6DA2:/
-1243.3 "Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:6DA2:/
-1243.4 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-1260.8 "Slam Shut" sync / 1[56]:[^:]*:Erichthonios:65EA:/
-1270.0 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
-1274.1 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-1281.7 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
-1284.3 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-1293.3 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-1302.3 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-1305.6 "Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:6DA3:/
-1316.1 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-1327.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-1336.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
-1355.8 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
+# Sixth Gaoler's Flail
+243.3 "Aetherflail Left/Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+243.4 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+260.8 "Slam Shut" sync / 1[56]:[^:]*:Erichthonios:65EA:/
+270.0 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
+274.1 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+281.7 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
+284.3 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
+293.3 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+302.3 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+305.6 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+316.1 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/ jump 1316.2
+327.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
+336.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
+355.8 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
 
 # Repeat
-1360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ window 50,50 jump 588.3
-1361.6 "--sync--" #sync / 14:[^:]*:Erichthonios:(6DA3|6DA2):/
-1370.3 "Aetherflail Left/Aetherflail Right?" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-1370.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-1381.4 "Aetherflail Right/Aetherflail Left?" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-1381.5 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-1385.9 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
-1391.2 "Pitiless Flail (knockback)" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
-1398.3 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
-1404.5 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
+360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ window 50,50 jump 588.3
+370.3 "Aetherflail Left/Aetherflail Right" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+370.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+381.4 "Aetherflail Right/Aetherflail Left" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+381.5 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+385.9 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
+391.2 "Pitiless Flail" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
+398.3 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
+404.5 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
