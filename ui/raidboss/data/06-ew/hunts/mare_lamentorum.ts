@@ -14,9 +14,11 @@ export interface Data extends RaidbossData {
 
 const underThenOut = {
   en: 'Under => Out',
+  fr: 'En dessous => À l\'extérieur',
 };
 const outStayOut = {
   en: 'Out => Stay Out',
+  fr: 'À l\'extérieur => Restez-y',
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -76,6 +78,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from Right Flank',
+          fr: 'Éloignez-vous du flanc droit',
         },
       },
     },
@@ -88,6 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from Back',
+          fr: 'Éloignez-vous de l\'arrière',
         },
       },
     },
@@ -100,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from Left Flank',
+          fr: 'Éloignez-vous du flanc gauche',
         },
       },
     },
@@ -112,6 +117,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from Front',
+          fr: 'Éloignez-vous du devant',
         },
       },
     },
