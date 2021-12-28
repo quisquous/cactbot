@@ -8,7 +8,7 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 export type Data = OopsyData;
 
 const triggerSet: OopsyTriggerSet<Data> = {
-  zoneId: ZoneId.AsphodelosTheFourthCircle,
+  zoneId: ZoneId.AsphodelosTheSecondCircle,
   damageWarn: {
     'P2N Spoken Cataract 1': '67F7', // head and body cleave
     'P2N Spoken Cataract 2': '67F8', // head and body cleave
