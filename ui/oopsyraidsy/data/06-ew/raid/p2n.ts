@@ -23,6 +23,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareWarn: {
     'P2N Tainted Flood': '6809', // spread markers
   },
+  soloWarn: {
+    'P2N Coherence': '6802', // stack line
+  },
 };
 
 export default triggerSet;
