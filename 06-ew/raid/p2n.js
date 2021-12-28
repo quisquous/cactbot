@@ -137,18 +137,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6809', source: 'ヒッポカムポス' }),
-            condition: (data, matches) => matches.target === data.me,
-            response: Responses.spread(),
-        },
-        {
-            // Drops aoe zones beneath you -> run to dodge (on everyone)
-            id: 'P2N Sewage Erruption',
-            type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '680D', source: 'Hippokampos', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '680D', source: 'Hippokampos', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '680D', source: 'Hippokampos', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '680D', source: 'ヒッポカムポス', capture: false }),
-            suppressSeconds: 5,
+            condition: Conditions.targetIsYou(),
             response: Responses.spread(),
         },
         {
@@ -160,6 +149,38 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '680A', source: 'ヒッポカムポス', capture: false }),
             delaySeconds: 3,
             response: Responses.doritoStack(),
+        },
+        {
+            id: 'P2N Coherence Flare',
+            type: 'HeadMarker',
+            // This always comes before 6D14 below for the line stack marker.
+            netRegex: NetRegexes.headMarker({ id: '0057' }),
+            condition: Conditions.targetIsYou(),
+            alertText: (_data, _matches, output) => output.text(),
+            run: (data, matches) => data.flareTarget = matches.target,
+            outputStrings: {
+                text: {
+                    en: 'Flare on YOU',
+                    de: 'Flare auf DIR',
+                    fr: 'Brasier sur VOUS',
+                    ja: '自分にフレア',
+                    cn: '核爆点名',
+                    ko: '플레어 대상자',
+                },
+            },
+        },
+        {
+            id: 'P2N Coherence Stack',
+            // Coherence (6801) cast has an unknown (6D14) ability with the target before it.
+            type: 'Ability',
+            netRegex: NetRegexes.ability({ id: '6D14' }),
+            condition: (data) => data.flareTarget !== data.me,
+            alertText: (data, matches, output) => output.lineStackOn({ player: data.ShortName(matches.target) }),
+            outputStrings: {
+                lineStackOn: {
+                    en: 'Line stack on ${player}',
+                },
+            },
         },
         {
             // Raidwide knockback -> dont get knocked into slurry

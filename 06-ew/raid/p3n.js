@@ -234,15 +234,6 @@ Options.Triggers.push({
             },
         },
         {
-            id: 'P3N Searing Breeze',
-            type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '66B6', source: 'Phoinix', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '66B6', source: 'Phoinix', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '66B6', source: 'Protophénix', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '66B6', source: 'フェネクス', capture: false }),
-            response: Responses.stackThenSpread(),
-        },
-        {
             id: 'P3N Spread Marker',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '008B' }),
