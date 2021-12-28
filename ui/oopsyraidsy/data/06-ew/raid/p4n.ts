@@ -97,7 +97,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'P4N Explosive Aether Burst No Healer',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6A42' }),
-      condition: (data, matches) => data.party.isTank(matches.target),
+      condition: (data, matches) => data.party.isHealer(matches.target),
       mistake: (_data, matches) => {
         return {
           type: 'fail',
@@ -114,7 +114,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'P4N Explosive Aether Burst No DPS',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6A43' }),
-      condition: (data, matches) => data.party.isTank(matches.target),
+      condition: (data, matches) => data.party.isDPS(matches.target),
       mistake: (_data, matches) => {
         return {
           type: 'fail',
