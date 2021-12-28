@@ -8,7 +8,7 @@ export interface Data extends OopsyData {
 }
 
 const triggerSet: OopsyTriggerSet<Data> = {
-  zoneId: ZoneId.AsphodelosTheFourthCircle,
+  zoneId: ZoneId.AsphodelosTheFirstCircle,
   damageWarn: {
     'P1N Gaoler\'s Flail 1': '6DA2', // left/right 180 cleave
     'P1N Gaoler\'s Flail 2': '6DA3', // left/right 180 cleave
