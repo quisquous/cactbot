@@ -62,9 +62,9 @@ export class AST5xComponent extends BaseComponent {
     if (card in cardsMap)
       cardParent.classList.add(cardsMap[card].bonus);
 
-    // Show whether you already have bars seal
-    // O means it's OK to play bars card
-    // X means don't play bars card directly if time permits
+    // Show whether you already have this seal
+    // O means it's OK to play this card
+    // X means don't play this card directly if time permits
     if (!cardsMap[card])
       this.cardBox.innerText = '';
     else if (seals.includes(cardsMap[card].seal))
@@ -121,9 +121,7 @@ export class ASTComponent extends BaseComponent {
   lucidBox: TimerBox;
   cardBox: ResourceBox;
   minorBox: ResourceBox;
-  sign1: HTMLDivElement;
-  sign2: HTMLDivElement;
-  sign3: HTMLDivElement;
+  signs: HTMLElement[] = [];
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -152,26 +150,27 @@ export class ASTComponent extends BaseComponent {
       classList: ['ast-color-card'],
     });
 
+    // Sign
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'ast-stacks';
     stacksContainer.classList.add('stacks');
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
     const signContainer = document.createElement('div');
     signContainer.id = 'ast-stacks-sign';
     stacksContainer.appendChild(signContainer);
-    this.bars.addJobBarContainer().appendChild(stacksContainer);
-    this.sign1 = document.createElement('div');
-    this.sign2 = document.createElement('div');
-    this.sign3 = document.createElement('div');
 
-    this.sign1.id = 'ast-stacks-sign1';
-    this.sign2.id = 'ast-stacks-sign2';
-    this.sign3.id = 'ast-stacks-sign3';
-    [this.sign1, this.sign2, this.sign3].forEach((e) => signContainer.appendChild(e));
+    for (let i = 0; i < 3; ++i) {
+      const d = document.createElement('div');
+      signContainer.appendChild(d);
+      this.signs.push(d);
+    }
+    this.signs.reverse();
 
     this.reset();
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['AST']): void {
+    // Minor Arcana, ↑ = lord, + = lady
     const minor = jobDetail.crownCard;
     this.minorBox.parentNode.classList.toggle('lord', minor === 'Lord');
     this.minorBox.parentNode.classList.toggle('lady', minor === 'Lady');
@@ -191,9 +190,9 @@ export class ASTComponent extends BaseComponent {
     if (card in cardsMap)
       cardParent.classList.add(cardsMap[card].bonus);
 
-    // Show whether you already have bars seal
-    // O means it's OK to play bars card
-    // X means don't play bars card directly if time permits
+    // Show whether you already have this seal
+    // ○ means it's OK to play this card
+    // × means you'd better redraw if possible
     if (!cardsMap[card])
       this.cardBox.innerText = '';
     else if (sign.includes(cardsMap[card].seal))
@@ -201,19 +200,11 @@ export class ASTComponent extends BaseComponent {
     else
       this.cardBox.innerText = '○';
 
-    const signlist = sign.toString().split(',');
-    this.sign1.classList.remove('Solar', 'Lunar', 'Celestial');
-    this.sign2.classList.remove('Solar', 'Lunar', 'Celestial');
-    this.sign3.classList.remove('Solar', 'Lunar', 'Celestial');
-    if (signlist.length === 1) {
-      this.sign3.classList.add(signlist[0] ?? '');
-    } else if (signlist.length === 2) {
-      this.sign2.classList.add(signlist[0] ?? '');
-      this.sign3.classList.add(signlist[1] ?? '');
-    } else if (signlist.length === 3) {
-      this.sign1.classList.add(signlist[0] ?? '');
-      this.sign2.classList.add(signlist[1] ?? '');
-      this.sign3.classList.add(signlist[2] ?? '');
+    const signlist = sign.toString().split(',').reverse();
+    for (let i = 0; i < 3; ++i) {
+      this.signs[i]?.classList.remove('Solar', 'Lunar', 'Celestial');
+      if (signlist.length > i && signlist[0] !== '')
+        this.signs[i]?.classList.add(signlist[i] ?? '');
     }
   }
 

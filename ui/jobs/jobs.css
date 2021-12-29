@@ -308,41 +308,18 @@ div.justbuffs div#procs-container {
   background-color: rgb(190, 43, 30);
 }
 
-#ast-stacks-sign1.Solar {
+#ast-stacks-sign > div.Solar {
   background-color: rgb(255, 0, 0);
 }
 
-#ast-stacks-sign1.Lunar {
+#ast-stacks-sign > div.Lunar {
   background-color: rgb(222, 195, 95);
 }
 
-#ast-stacks-sign1.Celestial {
+#ast-stacks-sign > div.Celestial {
   background-color: rgb(125, 250, 250);
 }
 
-#ast-stacks-sign2.Solar {
-  background-color: rgb(255, 0, 0);
-}
-
-#ast-stacks-sign2.Lunar {
-  background-color: rgb(222, 195, 95);
-}
-
-#ast-stacks-sign2.Celestial {
-  background-color: rgb(125, 250, 250);
-}
-
-#ast-stacks-sign3.Solar {
-  background-color: rgb(255, 0, 0);
-}
-
-#ast-stacks-sign3.Lunar {
-  background-color: rgb(222, 195, 95);
-}
-
-#ast-stacks-sign3.Celestial {
-  background-color: rgb(125, 250, 250);
-}
 
 #sge-stacks-addersgall > div.active {
   background-color: rgb(120, 170, 250);
