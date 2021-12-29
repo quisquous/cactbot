@@ -72,25 +72,14 @@ export class AST5xComponent extends BaseComponent {
     else
       this.cardBox.innerText = 'O';
 
-    if (this.is5x) {
-      // Show how many kind of seals you already have
-      // Turn green when you have all 3 kinds of seal
-      const sealCount = new Set(seals).size;
-      this.sealBox.innerText = sealCount.toString();
-      if (sealCount === 3)
-        this.sealBox.parentNode.classList.add('ready');
-      else
-        this.sealBox.parentNode.classList.remove('ready');
-    } else {
-      // Show how many seals you already have
-      // Turn green when you have 3 seals
-      const sealCount = seals.length;
-      this.sealBox.innerText = sealCount.toString();
-      if (sealCount === 3)
-        this.sealBox.parentNode.classList.add('ready');
-      else
-        this.sealBox.parentNode.classList.remove('ready');
-    }
+    // Show how many kind of seals you already have
+    // Turn green when you have all 3 kinds of seal
+    const sealCount = new Set(seals).size;
+    this.sealBox.innerText = sealCount.toString();
+    if (sealCount === 3)
+      this.sealBox.parentNode.classList.add('ready');
+    else
+      this.sealBox.parentNode.classList.remove('ready');
   }
 
   override onUseAbility(id: string): void {
@@ -103,10 +92,7 @@ export class AST5xComponent extends BaseComponent {
         this.combustBox.duration = 18;
         break;
       case kAbility.Draw:
-        if (this.is5x)
-          this.drawBox.duration = 30;
-        else
-          this.drawBox.duration = 30 + this.drawBox.value;
+        this.drawBox.duration = 30;
         break;
       case kAbility.LucidDreaming:
         this.lucidBox.duration = 60;
