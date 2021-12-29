@@ -43,6 +43,7 @@ export interface JobDetail {
   };
   'AST': {
     heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
+    crownCard: 'Lord' | 'Lady';
     arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
   'SGE': {
