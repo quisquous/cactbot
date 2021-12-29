@@ -120,7 +120,10 @@ export class ASTComponent extends BaseComponent {
   drawBox: TimerBox;
   lucidBox: TimerBox;
   cardBox: ResourceBox;
-  sealBox: ResourceBox;
+  minorBox: ResourceBox;
+  sign1: HTMLDivElement;
+  sign2: HTMLDivElement;
+  sign3: HTMLDivElement;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -145,17 +148,42 @@ export class ASTComponent extends BaseComponent {
       classList: ['ast-color-card'],
     });
 
-    this.sealBox = this.bars.addResourceBox({
-      classList: ['ast-color-seal'],
+    this.minorBox = this.bars.addResourceBox({
+      classList: ['ast-color-card'],
     });
+
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'ast-stacks';
+    stacksContainer.classList.add('stacks');
+    const signContainer = document.createElement('div');
+    signContainer.id = 'ast-stacks-sign';
+    stacksContainer.appendChild(signContainer);
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
+    this.sign1 = document.createElement('div');
+    this.sign2 = document.createElement('div');
+    this.sign3 = document.createElement('div');
+
+    this.sign1.id = 'ast-stacks-sign1';
+    this.sign2.id = 'ast-stacks-sign2';
+    this.sign3.id = 'ast-stacks-sign3';
+    [this.sign1, this.sign2, this.sign3].forEach((e) => signContainer.appendChild(e));
 
     this.reset();
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['AST']): void {
-    const card = jobDetail.heldCard;
-    const seals = jobDetail.arcanums;
+    const minor = jobDetail.crownCard;
+    this.minorBox.parentNode.classList.toggle('lord', minor === 'Lord');
+    this.minorBox.parentNode.classList.toggle('lady', minor === 'Lady');
+    if (minor === 'Lord')
+      this.minorBox.innerText = '↑';
+    else if (minor === 'Lady')
+      this.minorBox.innerText = '＋';
+    else
+      this.minorBox.innerText = '';
 
+    const card = jobDetail.heldCard;
+    const sign = jobDetail.arcanums;
     // Show on which kind of jobs your card plays better by color
     // Blue on melee, purple on ranged, and grey when no card
     const cardParent = this.cardBox.parentNode;
@@ -168,29 +196,24 @@ export class ASTComponent extends BaseComponent {
     // X means don't play bars card directly if time permits
     if (!cardsMap[card])
       this.cardBox.innerText = '';
-    else if (seals.includes(cardsMap[card].seal))
-      this.cardBox.innerText = 'X';
+    else if (sign.includes(cardsMap[card].seal))
+      this.cardBox.innerText = '×';
     else
-      this.cardBox.innerText = 'O';
+      this.cardBox.innerText = '○';
 
-    if (this.is5x) {
-      // Show how many kind of seals you already have
-      // Turn green when you have all 3 kinds of seal
-      const sealCount = new Set(seals).size;
-      this.sealBox.innerText = sealCount.toString();
-      if (sealCount === 3)
-        this.sealBox.parentNode.classList.add('ready');
-      else
-        this.sealBox.parentNode.classList.remove('ready');
-    } else {
-      // Show how many seals you already have
-      // Turn green when you have 3 seals
-      const sealCount = seals.length;
-      this.sealBox.innerText = sealCount.toString();
-      if (sealCount === 3)
-        this.sealBox.parentNode.classList.add('ready');
-      else
-        this.sealBox.parentNode.classList.remove('ready');
+    const signlist = sign.toString().split(',');
+    this.sign1.classList.remove('Solar', 'Lunar', 'Celestial');
+    this.sign2.classList.remove('Solar', 'Lunar', 'Celestial');
+    this.sign3.classList.remove('Solar', 'Lunar', 'Celestial');
+    if (signlist.length === 1) {
+      this.sign3.classList.add(signlist[0] ?? '');
+    } else if (signlist.length === 2) {
+      this.sign2.classList.add(signlist[0] ?? '');
+      this.sign3.classList.add(signlist[1] ?? '');
+    } else if (signlist.length === 3) {
+      this.sign1.classList.add(signlist[0] ?? '');
+      this.sign2.classList.add(signlist[1] ?? '');
+      this.sign3.classList.add(signlist[2] ?? '');
     }
   }
 
@@ -204,9 +227,6 @@ export class ASTComponent extends BaseComponent {
         this.combustBox.duration = 18;
         break;
       case kAbility.Draw:
-        if (this.is5x)
-          this.drawBox.duration = 30;
-        else
           this.drawBox.duration = 30 + this.drawBox.value;
         break;
       case kAbility.LucidDreaming:
