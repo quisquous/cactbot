@@ -9,7 +9,7 @@ import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
 
-import { ASTComponent } from './ast';
+import { AST5xComponent, ASTComponent } from './ast';
 import { BaseComponent, ComponentInterface, ShouldShow } from './base';
 import { BLMComponent } from './blm';
 import { BLUComponent } from './blu';
@@ -131,6 +131,8 @@ export class ComponentManager {
     if (this.o.is5x) {
       if (job === 'SMN')
         return new SMN5xComponent(this.o);
+      if (job === 'AST')
+        return new AST5xComponent(this.o);
     }
 
     const Component = ComponentMap[job];
