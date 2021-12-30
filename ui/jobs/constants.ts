@@ -237,6 +237,8 @@ export const kAbility = {
   EnergyDrain: '407C',
   EnergySiphon: '407E',
   SearingLight: '64F2',
+  Aethercharge: '64C8',
+  DreadwyrmTrance: 'DFD',
   SummonBahamut: '1D03',
   SummonPhoenix: '64E7',
   // 5.x
@@ -246,7 +248,6 @@ export const kAbility = {
   BioSmn2: 'B2',
   Bio3: '1D00',
   Tridisaster: 'DFC',
-  DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
   Devotion: '1D1A',
   // RDM
