@@ -14,6 +14,11 @@ const cardsMap = {
   'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
 } as const;
 
+const minorMap = {
+  'Lord': '↑',
+  'Lady': '＋',
+} as const;
+
 export class AST5xComponent extends BaseComponent {
   combustBox: TimerBox;
   drawBox: TimerBox;
@@ -76,10 +81,7 @@ export class AST5xComponent extends BaseComponent {
     // Turn green when you have all 3 kinds of seal
     const sealCount = new Set(seals).size;
     this.sealBox.innerText = sealCount.toString();
-    if (sealCount === 3)
-      this.sealBox.parentNode.classList.add('ready');
-    else
-      this.sealBox.parentNode.classList.remove('ready');
+    this.sealBox.parentNode.classList.toggle('ready', sealCount === 3);
   }
 
   override onUseAbility(id: string): void {
@@ -173,12 +175,7 @@ export class ASTComponent extends BaseComponent {
     const minor = jobDetail.crownCard;
     this.minorBox.parentNode.classList.toggle('lord', minor === 'Lord');
     this.minorBox.parentNode.classList.toggle('lady', minor === 'Lady');
-    if (minor === 'Lord')
-      this.minorBox.innerText = '↑';
-    else if (minor === 'Lady')
-      this.minorBox.innerText = '＋';
-    else
-      this.minorBox.innerText = '';
+    this.minorBox.innerText = minorMap[minor] ?? '';
 
     const card = jobDetail.heldCard;
     const sign = jobDetail.arcanums;
@@ -199,12 +196,12 @@ export class ASTComponent extends BaseComponent {
     else
       this.cardBox.innerText = '○';
 
-    for (let i = 0; i < 3; ++i) {
-      this.signs[i]?.classList.remove('Solar', 'Lunar', 'Celestial');
+    this.signs.forEach((elem, i) => {
+      elem.classList.remove('Solar', 'Lunar', 'Celestial');
       const asign = sign[i];
       if (asign)
-        this.signs[i]?.classList.add(asign);
-    }
+        elem.classList.add(asign);
+    });
   }
 
   override onUseAbility(id: string): void {
