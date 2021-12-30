@@ -130,6 +130,8 @@ export class SMNComponent extends BaseComponent {
         break;
       case kAbility.SummonBahamut:
       case kAbility.SummonPhoenix:
+      case kAbility.Aethercharge:
+      case kAbility.DreadwyrmTrance:
         this.tranceBox.duration = this.bars.player.getActionCooldown(60000, 'spell');
         break;
       case kAbility.LucidDreaming:
