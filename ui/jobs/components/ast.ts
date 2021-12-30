@@ -164,7 +164,6 @@ export class ASTComponent extends BaseComponent {
       signContainer.appendChild(d);
       this.signs.push(d);
     }
-    this.signs.reverse();
 
     this.reset();
   }
@@ -200,11 +199,11 @@ export class ASTComponent extends BaseComponent {
     else
       this.cardBox.innerText = '○';
 
-    const signlist = sign.toString().split(',').reverse();
     for (let i = 0; i < 3; ++i) {
       this.signs[i]?.classList.remove('Solar', 'Lunar', 'Celestial');
-      if (signlist.length > i && signlist[0] !== '')
-        this.signs[i]?.classList.add(signlist[i] ?? '');
+      const asign = sign[i];
+      if (asign)
+        this.signs[i]?.classList.add(asign);
     }
   }
 
