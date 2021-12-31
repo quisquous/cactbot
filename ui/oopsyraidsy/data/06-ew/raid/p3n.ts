@@ -48,6 +48,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: 'Sparkfledged tethered',
+            de: 'Saat des Phoinix verbunden',
           },
         };
       },
