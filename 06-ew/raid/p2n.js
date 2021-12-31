@@ -179,6 +179,7 @@ Options.Triggers.push({
             outputStrings: {
                 lineStackOn: {
                     en: 'Line stack on ${player}',
+                    de: 'In einer Linie auf ${player} sammeln',
                 },
             },
         },
