@@ -197,12 +197,16 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil', capture: false }),
       delaySeconds: 0.2,
-      suppressSeconds: 0.2,
+      suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
         const activeFrontSigils = data.activeFrontSigils;
         data.activeFrontSigils = [];
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === '67E4')
           return output.sides!();
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === '67E5')
+          return output.south!();
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === '67E6')
+          return output.north!();
         if (activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === '67E4' && activeFrontSigils[1]?.typeId === '67E4')
           return output.middle!();
         if (activeFrontSigils.length === 3) {
@@ -220,6 +224,8 @@ const triggerSet: TriggerSet<Data> = {
         }
       },
       outputStrings: {
+        south: Outputs.south,
+        north: Outputs.north,
         frontsides: {
           en: 'front sides',
         },
