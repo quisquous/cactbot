@@ -718,6 +718,7 @@ namespace Cactbot {
         Celestial = 3,
       }
 
+      [NonSerialized]
       [FieldOffset(0x04)]
       private byte _heldCard;
 
