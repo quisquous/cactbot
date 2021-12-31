@@ -4,36 +4,14 @@ import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api'
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
-  activeExplosions: { x: number; y: number }[];
-  activePythons: PluginCombatantState[];
-  // For Quetz, mechanics which only use two of them always use the two with the highest ID
-  activeQuetzs: PluginCombatantState[];
-  lastExplosionSafe: number;
-  explosionPatternCounter: number;
   paradeigmaCounter: number;
+  adikiaCounter: number;
 }
-
-const dumpState = (data: Data) => {
-  for (const i of data.activeSigils)
-    console.log('sigil ', i);
-  for (const i of data.activeFrontSigils)
-    console.log('frontSigil ', i);
-  for (const i of data.activeExplosions)
-    console.log('explosion ', i);
-  for (const i of data.activePythons)
-    console.log('python ', i, ' x:', i.PosX, ' y:', i.PosY);
-  for (const i of data.activeQuetzs)
-    console.log('quetz ', i, ' x:', i.PosX, ' y:', i.PosY, ' id:', i.ID);
-  console.log('lastExplosionSafe ', data.lastExplosionSafe);
-  console.log('explosionPatternCounter ', data.explosionPatternCounter);
-  console.log('paradeigmaCounter ', data.paradeigmaCounter);
-};
 
 const directionOutputStrings = {
   northeast: Outputs.northeast,
@@ -45,16 +23,8 @@ const directionOutputStrings = {
   southwest: Outputs.southwest,
   east: Outputs.east,
   combo: {
-    en: '${dir1} / ${dir2}',
+    en: '${first} / ${second}',
   },
-};
-
-const fetchCombatantsByBNpcID = async (bNpcIDs: number[]) => {
-  const callData = await callOverlayHandler({
-    call: 'getCombatants',
-  });
-  const combatants = callData.combatants.filter((c) => !!c.BNpcID && bNpcIDs.includes(c.BNpcID));
-  return combatants;
 };
 
 const fetchCombatantsByTargetID = async (targetId: string[]) => {
@@ -68,151 +38,14 @@ const fetchCombatantsByTargetID = async (targetId: string[]) => {
   return callData.combatants;
 };
 
-const isSafeFromSigil = (activeSigils: { x: number; y: number; typeId: string; npcId: string }[], quadrant: number) => {
-  if (activeSigils.length === 0)
-    return true;
-  if (quadrant === 0) {
-    for (const sigil of activeSigils) {
-      // If this is a blue sigil
-      if (sigil.typeId === '67E6') {
-        if (sigil.x < 100 || sigil.y > 100)
-          return false;
-        // If this is a red sigil
-      } else if (sigil.typeId === '67E5') {
-        if (sigil.x > 100 || sigil.y < 100)
-          return false;
-      }
-      return true;
-    }
-  }
-  if (quadrant === 1) {
-    for (const sigil of activeSigils) {
-      // If this is a blue sigil
-      if (sigil.typeId === '67E6') {
-        if (sigil.x > 100 || sigil.y > 100)
-          return false;
-        // If this is a red sigil
-      } else if (sigil.typeId === '67E5') {
-        if (sigil.x < 100 || sigil.y < 100)
-          return false;
-      }
-      return true;
-    }
-  }
-  if (quadrant === 2) {
-    for (const sigil of activeSigils) {
-      // If this is a blue sigil
-      if (sigil.typeId === '67E6') {
-        if (sigil.x > 100 || sigil.y < 100)
-          return false;
-        // If this is a red sigil
-      } else if (sigil.typeId === '67E5') {
-        if (sigil.x < 100 || sigil.y > 100)
-          return false;
-      }
-      return true;
-    }
-  }
-  if (quadrant === 3) {
-    for (const sigil of activeSigils) {
-      // If this is a blue sigil
-      if (sigil.typeId === '67E6') {
-        if (sigil.x < 100 || sigil.y < 100)
-          return false;
-        // If this is a red sigil
-      } else if (sigil.typeId === '67E5') {
-        if (sigil.x > 100 || sigil.y > 100)
-          return false;
-      }
-      return true;
-    }
-  }
-};
-
-const isSafeFromQuetz = (activeQuetzs: PluginCombatantState[], quadrant: number) => {
-  if (activeQuetzs.length > 2)
-    console.log('WARNING: too many quetz?');
-  if (activeQuetzs.length === 4) {
-    console.log('WARNING isSafeFromQuetz: Safe everywhere?');
-    return true;
-  }
-  if (activeQuetzs.length === 0)
-    return true;
-  for (const quetz of activeQuetzs) {
-    switch (quadrant) {
-      case 0:
-        if (quetz.PosX > 100 && quetz.PosY < 100)
-          return true;
-        break;
-      case 1:
-        if (quetz.PosX < 100 && quetz.PosY < 100)
-          return true;
-        break;
-      case 2:
-        if (quetz.PosX < 100 && quetz.PosY > 100)
-          return true;
-        break;
-      case 3:
-        if (quetz.PosX > 100 && quetz.PosY > 100)
-          return true;
-        break;
-    }
-  }
-  return false;
-};
-
-// -1 -> Error 0 -> Lines, North, 1 -> Lines, South, 2 -> Columns West, 3 -> Columns East
-
-const getPythonConfiguration = (activePythons: PluginCombatantState[]) => {
-  if (activePythons.length < 2)
-    return -1;
-  const py = activePythons[0];
-  // Isn't this impossible?
-  if (!py)
-    return -1;
-  // Are pythons north or south?
-  if (py.PosY < 83 || py.PosY > 118) {
-    if (py.PosX > 79 && py.PosX < 89 || py.PosX > 100 && py.PosX < 110)
-      return 2;
-    return 3;
-  }
-  if (py.PosY > 79 && py.PosY < 89 || py.PosY > 100 && py.PosY < 110)
-    return 0;
-  return 1;
-};
-
-// Quadrants:
-//  1  |  0
-// ---------
-//  2  |  3
-const isSafe = (activeSigils: { x: number; y: number; typeId: string; npcId: string }[], activeQuetzs: PluginCombatantState[], quadrant: number) => {
-  if (isSafeFromQuetz(activeQuetzs, quadrant) && isSafeFromSigil(activeSigils, quadrant))
-    return true;
-  return false;
-};
-
-const removeUnwantedQuetz = (activeQuetzs: PluginCombatantState[]) => {
-  activeQuetzs.sort((a, b) => {
-    if (!a.ID || !b.ID)
-      return -1;
-    return b.ID - a.ID;
-  });
-  activeQuetzs.splice(-2);
-  return activeQuetzs;
-};
-
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladZodiarksFall,
   timelineFile: 'zodiark-ex.txt',
   initData: () => ({
     activeSigils: [],
     activeFrontSigils: [],
-    activeExplosions: [],
-    activeQuetzs: [],
-    activePythons: [],
-    lastExplosionSafe: 0,
-    explosionPatternCounter: 0,
     paradeigmaCounter: 0,
+    adikiaCounter: 0,
   }),
   triggers: [
     {
@@ -235,31 +68,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
-      delaySeconds: 4,
-      promise: async (data, _matches) => {
-        console.log('p cnt ', data.paradeigmaCounter);
-        // TODO: Since fetch already supports arrays don't bother overlay twice
-        if (data.paradeigmaCounter === 2 || data.paradeigmaCounter === 3 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 6) {
-          const python = await fetchCombatantsByBNpcID([14387]);
-          /*
-          console.log('------------');
-          for (const p of python)
-            console.log('paradeigma python: ', p);
-          console.log('------------');
-          */
-          data.activePythons = python;
-        }
-        if (data.paradeigmaCounter === 0 || data.paradeigmaCounter === 1 || data.paradeigmaCounter === 4 || data.paradeigmaCounter === 5 || data.paradeigmaCounter === 7 || data.paradeigmaCounter === 8) {
-          let quetz = await fetchCombatantsByBNpcID([14388]);
-          if (data.paradeigmaCounter !== 0 && data.paradeigmaCounter !== 5 && data.paradeigmaCounter !== 8 && quetz.length > 2) {
-            console.log('WARNING: Paradeigma found too many Quetz');
-            quetz = removeUnwantedQuetz(quetz);
-          }
-          data.activeQuetzs = quetz;
-        }
-        console.log('Paradeigma dump');
-        dumpState(data);
-      },
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
         if (data.paradeigmaCounter === 1)
@@ -293,22 +101,6 @@ const triggerSet: TriggerSet<Data> = {
           if (sig?.npcId === matches.sourceId)
             data.activeSigils.splice(i, 1);
         }
-      },
-    },
-    {
-      id: 'ZodiarkEx Quetz End',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6651', source: 'Quetzalcoatl', capture: false }),
-      run: (data, _matches, _output) => {
-        data.activeQuetzs = [];
-      },
-    },
-    {
-      id: 'ZodiarkEx Python End',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6650', source: 'Python', capture: false }),
-      run: (data, _matches, _output) => {
-        data.activePythons = [];
       },
     },
     {
@@ -452,98 +244,18 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ZodiarkEx Explosion',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67E7', source: 'Zodiark' }),
-      alertText: (data, matches, output) => {
-        if (data.activeExplosions.length < 7)
-          data.activeExplosions.push({ x: parseFloat(matches.x), y: parseFloat(matches.y) });
-        if (data.activeExplosions.length === 7) {
-          const activeExplosions = data.activeExplosions;
-          data.activeExplosions = [];
-          // Explosions fall in a 9x9 grid
-          // Find out which spots are safe
-          const grid: boolean[] = [true, true, true, true, true, true, true, true, true];
-          for (const ex of activeExplosions) {
-            const xOffset = Math.round((ex.x - 86) / 14);
-            const yOffset = Math.round((ex.y - 86) / 14);
-            grid[xOffset + 3 * yOffset] = false;
-          }
-          // FIXME: Commented parts prefer straight movement, loop prefers closest to northwest
-          // ++data.explosionPatternCounter;
-          // First explosion, prefer left and prefer front (melee) spot
-          // if (data.explosionPatternCounter === 1) {
-          for (let i = 0; i < grid.length; ++i) {
-            if (grid[i]) {
-              // data.lastExplosionSafe = i;
-              return output[i]!();
-            }
-          }
-          // }
-          /*
-          // 2nd or 3rd pattern. Where do we go from lastExplosionSafe?
-          const lastSafe = data.lastExplosionSafe;
-          let newSafe = -1;
-          // Can we go up?
-          if (lastSafe - 3 >= 0 && grid[lastSafe - 3])
-            newSafe = lastSafe - 3;
-          // Left?
-          else if (lastSafe - 1 >= 0 && grid[lastSafe - 1])
-            newSafe = lastSafe - 1;
-          // Right?
-          else if (lastSafe + 1 !== 4 && lastSafe + 1 !== 7 && grid[lastSafe + 1])
-            newSafe = lastSafe + 1;
-          // Down?
-          else if (lastSafe + 3 <= 8 && grid[lastSafe + 3])
-            newSafe = lastSafe + 3;
-          // Up Left?
-          else if (lastSafe - 4 >= 0 && grid[lastSafe - 4])
-            newSafe = lastSafe - 4;
-          // Up Right?
-          else if (lastSafe - 2 >= 0 && grid[lastSafe - 2])
-            newSafe = lastSafe - 2;
-          // Down Left?
-          else if (lastSafe + 2 >= 8 && grid[lastSafe + 2])
-            newSafe = lastSafe + 2;
-          // Down Right?
-          else if (lastSafe + 4 >= 8 && grid[lastSafe + 4])
-            newSafe = lastSafe + 4;
-          data.lastExplosionSafe = newSafe;
-          return output[newSafe]!();
-          */
-        }
-      },
-      outputStrings: {
-        0: Outputs.northwest,
-        1: Outputs.north,
-        2: Outputs.northeast,
-        3: Outputs.west,
-        4: Outputs.middle,
-        5: Outputs.east,
-        6: Outputs.southwest,
-        7: Outputs.south,
-        8: Outputs.southeast,
-      },
-    },
-    {
       // 67EC is leaning left, 67ED is leaning right
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
       alertText: (data, matches, output) => {
-        console.log('Algedon dump');
-        dumpState(data);
         if (matches.id === '67EC') {
           // NE/SW
-          if (isSafe(data.activeSigils, data.activeQuetzs, 0))
-            return output.northeast!();
-          return output.southwest!();
+          return output.combo!({ first: 'Northeast', second: 'Southwest' });
         }
         if (matches.id === '67ED') {
           // NW/SE
-          if (isSafe(data.activeSigils, data.activeQuetzs, 1))
-            return output.northwest!();
-          return output.southeast!();
+          return output.combo!({ first: 'Northwest', second: 'Southeast' });
         }
       },
       outputStrings: directionOutputStrings,
@@ -553,29 +265,24 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
       alertText: (data, _matches, output) => {
-        console.log('Adikia dump');
-        dumpState(data);
-        const ps = getPythonConfiguration(data.activePythons);
-        switch (ps) {
-          case -1:
-            return output.text!();
-          case 0:
-            return output.northofmiddle!();
+        ++data.adikiaCounter;
+        switch (data.adikiaCounter) {
           case 1:
-            return output.north!();
+            return output.text!();
+          case 2:
+            return output.lookforpython!();
+          case 3:
+            return output.text!();
           default:
-            console.log('Adikia: ERROR Unknown python configuration: ', ps);
+            return output.lookforpython!();
         }
       },
       outputStrings: {
         text: {
           en: 'double fists',
         },
-        north: {
-          en: 'double fists, north',
-        },
-        northofmiddle: {
-          en: 'double fists, north of middle',
+        lookforpython: {
+          en: 'double fists, look for python',
         },
       },
     },
@@ -589,50 +296,6 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Heavy DoT',
         },
       },
-    },
-    {
-      id: 'ZodiarkEx Astral Flow',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6662', '6663'], source: 'Zodiark', capture: false }),
-      alertText: (data, _matches, _output) => {
-        console.log('Astral Flow dump');
-        dumpState(data);
-        let checkQuetzs = data.activeQuetzs;
-        if (data.paradeigmaCounter === 6) {
-          console.log('AF special no quetz check');
-          checkQuetzs = [];
-        }
-        let str = '';
-        switch (getPythonConfiguration(data.activePythons)) {
-          // No pythons so no modifier
-          case -1:
-            break;
-          case 0:
-            str += 'python front';
-            break;
-          case 1:
-            str += 'python back';
-            break;
-          case 2:
-            str += 'python left';
-            break;
-          case 3:
-            str += 'python right';
-            break;
-          default:
-            str += 'python bugged good luck';
-            break;
-        }
-        // 6662 CW, 6663 CCW
-        if (isSafe(data.activeSigils, checkQuetzs, 1))
-          return 'Northwest ' + str;
-        if (isSafe(data.activeSigils, checkQuetzs, 0))
-          return 'Northeast ' + str;
-        if (isSafe(data.activeSigils, checkQuetzs, 3))
-          return 'Southwest ' + str;
-        return 'Southeast ' + str;
-      },
-      outputStrings: directionOutputStrings,
     },
   ],
   timelineReplace: [
