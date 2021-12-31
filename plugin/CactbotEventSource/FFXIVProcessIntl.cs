@@ -707,6 +707,8 @@ namespace Cactbot {
         Spear = 4,
         Ewer = 5,
         Spire = 6,
+        Lord = 0x70,
+        Lady = 0x80,
       }
 
       public enum Arcanum : byte {
@@ -716,8 +718,9 @@ namespace Cactbot {
         Celestial = 3,
       }
 
+      [NonSerialized]
       [FieldOffset(0x04)]
-      private Card _heldCard;
+      private byte _heldCard;
 
       [NonSerialized]
       [FieldOffset(0x05)]
@@ -733,7 +736,13 @@ namespace Cactbot {
 
       public string heldCard {
         get {
-          return _heldCard.ToString();
+          return ((Card)(_heldCard & 0xF)).ToString();
+        }
+      }
+
+      public string crownCard {
+        get {
+          return ((Card)(_heldCard & 0xF0)).ToString();
         }
       }
 

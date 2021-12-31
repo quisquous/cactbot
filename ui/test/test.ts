@@ -99,7 +99,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     } else if (detail.job === 'ACN' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.aetherflowStacks.toString();
     } else if (detail.job === 'AST' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.heldCard} [${detail.jobDetail.arcanums.join(', ')}]`;
+      jobInfo.innerText = `${detail.jobDetail.heldCard} | ${detail.jobDetail.crownCard} | [${
+        detail.jobDetail.arcanums.join(', ')
+      }]`;
     } else if (detail.job === 'MNK' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.chakraStacks}`;
     } else if (detail.job === 'MCH' && detail.jobDetail) {
