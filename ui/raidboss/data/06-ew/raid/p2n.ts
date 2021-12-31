@@ -195,6 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         lineStackOn: {
           en: 'Line stack on ${player}',
+          de: 'In einer Linie auf ${player} sammeln',
         },
       },
     },
