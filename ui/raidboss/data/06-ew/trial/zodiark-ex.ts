@@ -13,6 +13,12 @@ export interface Data extends RaidbossData {
   adikiaCounter: number;
 }
 
+const sigil = {
+  greenBeam: '67E4',
+  redBox: '67E5',
+  blueCone: '67E6',
+} as const;
+
 const directionOutputStrings = {
   northeast: Outputs.dirNE,
   north: Outputs.north,
@@ -27,10 +33,10 @@ const directionOutputStrings = {
   },
 };
 
-const fetchCombatantsByTargetID = async (targetId: string[]) => {
+const fetchCombatantsById = async (id: string[]) => {
   const decIds = [];
-  for (const id of targetId)
-    decIds.push(parseInt(id, 16));
+  for (const i of id)
+    decIds.push(parseInt(i, 16));
   const callData = await callOverlayHandler({
     call: 'getCombatants',
     ids: decIds,
@@ -81,10 +87,9 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil' }),
+      netRegex: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
       run: (data, matches, _output) => {
         for (let i = 0; i < data.activeSigils.length; ++i) {
           const sig = data.activeSigils[i];
@@ -98,10 +103,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '00A4', source: 'Zodiark' }),
       promise: async (data, matches) => {
-        const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
+        const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID)
-            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16).toUpperCase() });
+            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: sigil.blueCone, npcId: actor.ID.toString(16).toUpperCase() });
         }
       },
       alertText: (data, matches, output) => {
@@ -141,10 +146,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '00AB', source: 'Zodiark' }),
       promise: async (data, matches) => {
-        const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
+        const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID)
-            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16).toUpperCase() });
+            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: sigil.redBox, npcId: actor.ID.toString(16).toUpperCase() });
         }
       },
       alertText: (data, matches, output) => {
@@ -179,10 +184,9 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // 67E4 Green Beam, 67E5 Rectangle, 67E6 Wedge
       id: 'ZodiarkEx Arcane Sigil Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil' }),
+      netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
       run: (data, matches, _output) => {
         if (parseFloat(matches.y) < 100)
           data.activeFrontSigils.push({ x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
@@ -191,29 +195,29 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Arcane Sigil Start Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67E4', '67E5', '67E6'], source: 'Arcane Sigil', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil', capture: false }),
       delaySeconds: 0.2,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
         const activeFrontSigils = data.activeFrontSigils;
         data.activeFrontSigils = [];
-        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === '67E4')
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.greenBeam)
           return output.sides!();
-        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === '67E5')
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.redBox)
           return output.south!();
-        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === '67E6')
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.blueCone)
           return output.north!();
-        if (activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === '67E4' && activeFrontSigils[1]?.typeId === '67E4')
+        if (activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === sigil.greenBeam && activeFrontSigils[1]?.typeId === sigil.greenBeam)
           return output.middle!();
         if (activeFrontSigils.length === 3) {
           for (const sig of activeFrontSigils) {
             // Find the middle sigil
             if (sig.x > 90 && sig.x < 110) {
-              if (sig.typeId === '67E4')
+              if (sig.typeId === sigil.greenBeam)
                 return output.frontsides!();
-              if (sig.typeId === '67E5')
+              if (sig.typeId === sigil.redBox)
                 return output.backmiddle!();
-              if (sig.typeId === '67E6')
+              if (sig.typeId === sigil.blueCone)
                 return output.frontmiddle!();
             }
           }
