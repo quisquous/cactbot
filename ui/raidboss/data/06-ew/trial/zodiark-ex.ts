@@ -110,10 +110,8 @@ const triggerSet: TriggerSet<Data> = {
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
-          if (actor.ID) {
-            // console.log('blue ', { x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16).toUpperCase() });
+          if (actor.ID)
             data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E6', npcId: actor.ID.toString(16).toUpperCase() });
-          }
         }
       },
       alertText: (data, matches, output) => {
@@ -155,10 +153,8 @@ const triggerSet: TriggerSet<Data> = {
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsByTargetID([matches.targetId]);
         for (const actor of portalActors) {
-          if (actor.ID) {
-            // console.log('red ', { x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16).toUpperCase() });
+          if (actor.ID)
             data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: '67E5', npcId: actor.ID.toString(16).toUpperCase() });
-          }
         }
       },
       alertText: (data, matches, output) => {
@@ -257,11 +253,11 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         if (matches.id === '67EC') {
           // NE/SW
-          return output.combo!({ first: 'Northeast', second: 'Southwest' });
+          return output.combo!({ first: output.northeast!(), second: output.southwest!() });
         }
         if (matches.id === '67ED') {
           // NW/SE
-          return output.combo!({ first: 'Northwest', second: 'Southeast' });
+          return output.combo!({ first: output.northwest!(), second: output.southeast!() });
         }
       },
       outputStrings: directionOutputStrings,
