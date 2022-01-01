@@ -301,6 +301,8 @@ namespace Cactbot {
                 return JObject.FromObject(*(SamuraiJobMemory*)&p[0]);
             case EntityJob.SGE:
                 return JObject.FromObject(*(SageJobMemory*)&p[0]);
+            case EntityJob.RPR:
+                return JObject.FromObject(*(ReaperJobMemory*)&p[0]);
           }
           return null;
         }
@@ -798,6 +800,24 @@ namespace Cactbot {
 
       [FieldOffset(0x04)]
       public byte eukrasia;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct ReaperJobMemory {
+      [FieldOffset(0x00)]
+      public byte soul;
+
+      [FieldOffset(0x01)]
+      public byte shroud;
+
+      [FieldOffset(0x02)]
+      public ushort enshroudMilliseconds;
+
+      [FieldOffset(0x04)]
+      public byte lemureShroud;
+
+      [FieldOffset(0x05)]
+      public byte voidShroud;
     }
   }
 }

@@ -71,6 +71,13 @@ export interface JobDetail {
     getsu: boolean;
     ka: boolean;
   };
+  'RPR': {
+    soul: number;
+    shroud: number;
+    enshroudMilliseconds: number;
+    lemureShroud: number;
+    voidShroud: number;
+  };
   'BRD': {
     songName: BardSongType;
     lastPlayed: BardSongType;
