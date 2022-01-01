@@ -14,13 +14,13 @@ export interface Data extends RaidbossData {
 }
 
 const directionOutputStrings = {
-  northeast: Outputs.northeast,
+  northeast: Outputs.dirNE,
   north: Outputs.north,
-  northwest: Outputs.northwest,
+  northwest: Outputs.dirNW,
   west: Outputs.west,
-  southeast: Outputs.southeast,
+  southeast: Outputs.dirSE,
   south: Outputs.south,
-  southwest: Outputs.southwest,
+  southwest: Outputs.dirSW,
   east: Outputs.east,
   combo: {
     en: '${first} / ${second}',
