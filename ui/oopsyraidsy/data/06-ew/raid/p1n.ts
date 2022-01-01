@@ -78,7 +78,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             de: 'Rückstoß in die Wand',
             ja: '壁へノックバック',
             cn: '击退至墙',
-            ko: '넉백',
+            ko: '벽으로 넉백',
           },
         };
       },

@@ -38,6 +38,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Tank Tower',
             de: 'Tank-Turm',
+            ko: '탱커 장판',
           },
         };
       },
@@ -55,6 +56,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Healer Tower',
             de: 'Heiler-Turm',
+            ko: '힐러 장판',
           },
         };
       },
@@ -72,6 +74,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'DPS Tower',
             de: 'DD-Turm',
+            ko: '딜러 장판',
           },
         };
       },
@@ -89,6 +92,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Tank Orb',
             de: 'Tank-Orb',
+            ko: '탱커 구슬',
           },
         };
       },
@@ -106,6 +110,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Healer Orb',
             de: 'Heiler-Orb',
+            ko: '힐러 구슬',
           },
         };
       },
@@ -123,6 +128,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'DPS Orb',
             de: 'DD-Orb',
+            ko: '딜러 구슬',
           },
         };
       },
@@ -145,7 +151,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             de: 'Rückstoß in die Wand',
             ja: '壁へノックバック',
             cn: '击退至墙',
-            ko: '넉백',
+            ko: '벽으로 넉백',
           },
         };
       },
