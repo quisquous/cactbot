@@ -274,6 +274,14 @@ li:last-child {
   background-color: rgb(110, 225, 214);
 }
 
+.show-job-colors .rpr .bar {
+  background-color: rgb(150, 90, 144);
+}
+
+.show-job-colors .sge .bar {
+  background-color: rgb(128, 160, 240);
+}
+
 .job-icon {
   float: left;
   margin-right: 4px;
