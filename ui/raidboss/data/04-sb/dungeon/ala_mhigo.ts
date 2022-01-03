@@ -96,7 +96,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Protean',
+          en: 'Protean (Spread Out)',
           de: 'Um den Boss verteilen',
           fr: 'Changement',
           ja: 'ボスを基準として散開',
