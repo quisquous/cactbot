@@ -16,6 +16,20 @@ type ZoneInfoType = {
 };
 
 const data: ZoneInfoType = {
+  1000: {
+    'contentType': 9,
+    'exVersion': 4,
+    'name': {
+      'de': 'Euphoratron',
+      'en': 'The Excitatron 6000',
+      'fr': 'Le Ludodrome',
+      'ja': '宝物庫 エキサイトロン',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 100,
+    'weatherRate': 0,
+  },
   1002: {
     'contentType': 5,
     'exVersion': 4,
@@ -24,6 +38,20 @@ const data: ZoneInfoType = {
       'en': 'Asphodelos: The First Circle',
       'fr': 'Les Limbes du Pandæmonium - Parvis',
       'ja': '万魔殿パンデモニウム：辺獄編1',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
+  1003: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Erster Kreis (episch)',
+      'en': 'Asphodelos: The First Circle (Savage)',
+      'fr': 'Les Limbes du Pandæmonium - Parvis (sadique)',
+      'ja': '万魔殿パンデモニウム零式：辺獄編1',
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -44,6 +72,20 @@ const data: ZoneInfoType = {
     'sizeFactor': 400,
     'weatherRate': 145,
   },
+  1005: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Zweiter Kreis (episch)',
+      'en': 'Asphodelos: The Second Circle (Savage)',
+      'fr': 'Les Limbes du Pandæmonium - Cloaque (sadique)',
+      'ja': '万魔殿パンデモニウム零式：辺獄編2',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
   1006: {
     'contentType': 5,
     'exVersion': 4,
@@ -58,6 +100,20 @@ const data: ZoneInfoType = {
     'sizeFactor': 400,
     'weatherRate': 145,
   },
+  1007: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Dritter Kreis (episch)',
+      'en': 'Asphodelos: The Third Circle (Savage)',
+      'fr': 'Les Limbes du Pandæmonium - Fournaise (sadique)',
+      'ja': '万魔殿パンデモニウム零式：辺獄編3',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
   1008: {
     'contentType': 5,
     'exVersion': 4,
@@ -66,6 +122,20 @@ const data: ZoneInfoType = {
       'en': 'Asphodelos: The Fourth Circle',
       'fr': 'Les Limbes du Pandæmonium - Abîme',
       'ja': '万魔殿パンデモニウム：辺獄編4',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 145,
+  },
+  1009: {
+    'contentType': 5,
+    'exVersion': 4,
+    'name': {
+      'de': 'Asphodelos - Vierter Kreis (episch)',
+      'en': 'Asphodelos: The Fourth Circle (Savage)',
+      'fr': 'Les Limbes du Pandæmonium - Abîme (sadique)',
+      'ja': '万魔殿パンデモニウム零式：辺獄編4',
     },
     'offsetX': -100,
     'offsetY': -100,
