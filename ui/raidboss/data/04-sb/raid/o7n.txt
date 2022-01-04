@@ -12,7 +12,7 @@ hideall "--sync--"
 39 "Load" sync / 1[56]:[^:]*:Guardian:275C:/
 
 # Ultros
-200 "--sync--" sync / 1A:5D1:Ultros  Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
+200 "--sync--" sync / 1A:5D1:Ultros Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
 203 "Ink" sync / 1[56]:[^:]*:Guardian:275D:/
 209 "Diffractive Plasma" sync / 1[56]:[^:]*:Guardian:276E:/
 219 "Tentacle Simulation" sync / 1[56]:[^:]*:Guardian:275E:/
