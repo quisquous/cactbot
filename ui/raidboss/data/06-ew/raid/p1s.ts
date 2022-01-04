@@ -1,7 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
-//import ZoneId from '../../../../../resources/zone_id';
+// import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
@@ -10,6 +10,19 @@ export type Data = RaidbossData;
 const triggerSet: TriggerSet<Data> = {
   zoneId: 0x3EB,
   timelineFile: 'p1s.txt',
+  timelineTriggers: [
+    {
+      id: 'P1S Tile Positions',
+      regex: /(?:First|Second|Third) Element/,
+      beforeSeconds: 3,
+      infoText: (_data, _matches, output) => output.positions!(),
+      outputStrings: {
+        positions: {
+          en: 'Tile Positions',
+        },
+      },
+    },
+  ],
   triggers: [
     {
       id: 'P1S Warder\'s Wrath',
@@ -107,10 +120,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Pitiless Flail of Grace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '660E', source: 'Érichthonios' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '660E', source: 'エリクトニオス' }),
+      netRegex: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '660E', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '660E', source: 'エリクトニオス', capture: false }),
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
         directions: {
@@ -121,10 +134,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Pitiless Flail of Purgation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '660E', source: 'Érichthonios' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '660E', source: 'エリクトニオス' }),
+      netRegex: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '660E', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '660E', source: 'エリクトニオス', capture: false }),
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
         directions: {
@@ -182,19 +195,6 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Placez-vous sur la lumière',
           cn: '站在光',
           ko: '흰색 바닥 위에 서기',
-        },
-      },
-    },
-  ],
-  timelineTriggers: [
-    {
-      id: 'P1S Tile Positions',
-      regex: /(?:First|Second|Third) Element/,
-      beforeSeconds: 3,
-      infoText: (_data, _matches, output) => output.positions!(),
-      outputStrings: {
-        positions: {
-          en: 'Tile Positions',
         },
       },
     },
