@@ -3,7 +3,7 @@ import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
-import { commonReplacement } from './common_replacement';
+import { backCompatParsedSyncReplace, commonReplacement } from './common_replacement';
 import defaultOptions, { RaidbossOptions } from './raidboss_options';
 
 export type TimelineReplacement = {
@@ -388,15 +388,22 @@ export class TimelineParser {
     }
     // Common Replacements
     const replacement = commonReplacement[replaceKey];
-    if (!replacement)
-      return text;
-    for (const [key, value] of Object.entries(replacement)) {
+    for (const [key, value] of Object.entries(replacement ?? {})) {
       const repl = value[replaceLang];
       if (!repl)
         continue;
       const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
       text = text.replace(regex, repl);
     }
+
+    // Backwards compat replacements for Korean parsed log lines before 6.x changes.
+    if (replaceLang === 'ko' && replaceKey === 'replaceSync') {
+      for (const [key, repl] of Object.entries(backCompatParsedSyncReplace)) {
+        const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+        text = text.replace(regex, repl);
+      }
+    }
+
     return text;
   }
 
