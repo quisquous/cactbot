@@ -117,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data) => data.isEquinox = true,
       // Dawn Mantle is a 4.9s cast, plus the normal 2.5s delay.  (See Anthelion comment below.)
       delaySeconds: 2.5 + 4.9,
-      durationSeconds: (data) => data.crystallize ? 5.5 : 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         // If we've gotten some 8E1 effect, ignore this.
         if (!data.isEquinox)
@@ -156,19 +156,19 @@ const triggerSet: TriggerSet<Data> = {
       //     t=0 StartsCasting Crystallize
       //     t=4 ActionEffect Crystalize
       //     t=7 StatusAdd 81E (this regex)
-      //     t=9.5 marker appears (this seems faster than extreme?)
+      //     t=9.5 marker appears
       //     t=13 ActionEffect Anthelion
       //     t=17 ActionEffect Crystalline Blizzard
       //
       // We could call this out immediately, but then it's very close to the Crystallize call.
       // Additionally, if we call this out immediately then players have to remember something
-      // for 10 seconds.  A delay of 3 feels more natural in terms of time to react and
+      // for 10 seconds.  A delay of 2.5 feels more natural in terms of time to react and
       // handle this, rather than calling it out extremely early.  Also, add a duration so that
       // this stays on screen until closer to the Crystalline action.  This also puts this call
       // closer to when the marker appears on screen, and so feels a little bit more natural.
       preRun: (data) => data.isEquinox = false,
       delaySeconds: 2.5,
-      durationSeconds: (data) => data.crystallize ? 5.5 : 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.in!(), second: output[data.crystallize]!() });
@@ -191,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.gainsEffect({ effectId: '8E1', source: '하이델린', count: '1B4', capture: false }),
       preRun: (data) => data.isEquinox = false,
       delaySeconds: 2.5,
-      durationSeconds: (data) => data.crystallize ? 5.5 : 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.out!(), second: output[data.crystallize]!() });
