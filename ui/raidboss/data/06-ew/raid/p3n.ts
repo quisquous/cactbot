@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         outOfMiddle: {
           en: 'Out Of Middle Soon',
           de: 'Bald raus aus der Mitte',
-          fr: 'Sortez de la mêlée bientôt',
+          fr: 'Sortez du milieu bientôt',
           ja: '横へ', // FIXME
           cn: '远离中间', // FIXME
           ko: '맵 바깥쪽으로',
@@ -296,13 +296,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Phoinix': 'protophénix',
         'Sparkfledged': 'oiselet de feu',
         'Sunbird': 'Spross Des Phoinix',
       },
       'replaceText': {
+        '--fire expands--': '--élargissement du feu--',
+        '--giant fireplume\\?--': '--immolation de feu géant ?--',
         'Ashen Eye': 'Œil sombre',
         'Blazing Rain': 'Pluie brûlante',
         'Brightened Fire': 'Flamme de lumière',
@@ -317,8 +318,7 @@ const triggerSet: TriggerSet<Data> = {
         'Fledgling Flight': 'Nuée ailée',
         'Heat of Condemnation': 'Bourrasque infernale',
         'Joint Pyre': 'Combustion résonnante',
-        'Left Cinderwing': 'Incinération senestre',
-        'Right Cinderwing': 'Incinération dextre',
+        'Left Cinderwing/Right Cinderwing': 'Incinération senestre/dextre',
         'Scorched Exaltation': 'Flamme calcinante',
         'Searing Breeze': 'Jet incandescent',
         'Trail of Condemnation': 'Embrasement infernal',
