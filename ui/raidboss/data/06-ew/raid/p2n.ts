@@ -195,6 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         lineStackOn: {
           en: 'Line stack on ${player}',
+          fr: 'Packez-vous en ligne sur ${player}',
         },
       },
     },
@@ -253,12 +254,15 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hippokampos': 'hippokampos',
       },
       'replaceText': {
-        'Dissociation': 'Dissociation',
+        '\\(knockback\\)': '(poussée)',
+        'Coherence Flare': 'Cohérence Brasier',
+        'Coherence Line': 'Cohérence en ligne',
+        'Dissociation(?! Dive)': 'Dissociation',
+        'Dissociation Dive': 'Dissociation et plongeon',
         'Doubled Impact': 'Double impact',
         'Murky Depths': 'Tréfonds troubles',
         'Predatory Sight': 'Marque de la proie',
