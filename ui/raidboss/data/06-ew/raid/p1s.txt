@@ -66,10 +66,10 @@ hideall "--sync--"
 
 # Fourfold Shackles
 294.2 "Fourfold Shackles" sync / 1[56]:[^:]*:Erichthonios:6626:/
-303.2 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-308.2 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-313.2 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-318.2 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
+303.2 "Chain Pain #1" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
+308.2 "Chain Pain #2" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
+313.2 "Chain Pain #3" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
+318.2 "Chain Pain #4" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
 328.4 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
 
 # Tiles 2
