@@ -280,6 +280,7 @@ namespace Cactbot {
         ffxiv_ = new FFXIVProcessIntl(this);
         LogInfo(Strings.Version, "intl");
       }
+      plugin_helper.RegisterProcessChangedHandler(ffxiv_.OnProcessChanged);
       wipe_detector_ = new WipeDetector(this);
       fate_watcher_ = new FateWatcher(this, language_);
 
@@ -379,7 +380,7 @@ namespace Cactbot {
       //   it's a waste of CPU cycles.
       // * Since this only happens during startup, it's probably not worth fixing though. Not sure.
 
-      bool game_exists = ffxiv_.FindProcess();
+      bool game_exists = ffxiv_.HasProcess();
       if (game_exists != notify_state_.game_exists) {
         notify_state_.game_exists = game_exists;
         OnGameExists(new JSEvents.GameExistsEvent(game_exists));

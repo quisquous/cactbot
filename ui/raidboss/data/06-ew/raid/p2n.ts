@@ -195,7 +195,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         lineStackOn: {
           en: 'Line stack on ${player}',
+          de: 'In einer Linie auf ${player} sammeln',
           fr: 'Packez-vous en ligne sur ${player}',
+          ko: '${player} 직선 쉐어',
         },
       },
     },

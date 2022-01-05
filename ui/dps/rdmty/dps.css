@@ -1,7 +1,8 @@
 html {
   box-sizing: border-box;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #container {
@@ -274,6 +275,14 @@ li:last-child {
   background-color: rgb(110, 225, 214);
 }
 
+.show-job-colors .rpr .bar {
+  background-color: rgb(150, 90, 144);
+}
+
+.show-job-colors .sge .bar {
+  background-color: rgb(128, 160, 240);
+}
+
 .job-icon {
   float: left;
   margin-right: 4px;
@@ -343,4 +352,21 @@ li:last-child {
   left: 0;
   padding: 2px 4px;
   z-index: 100;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #00000;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1);
+  background-color: #00000;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  border-radius: 4px;
+  background-color: #0000;
 }

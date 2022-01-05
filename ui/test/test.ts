@@ -113,6 +113,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     } else if (detail.job === 'SGE' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.addersgall} (${detail.jobDetail.addersgallMilliseconds}) | ${detail.jobDetail.addersting} | ${detail.jobDetail.eukrasia.toString()}`;
+    } else if (detail.job === 'RPR' && detail.jobDetail) {
+      jobInfo.innerText =
+        `${detail.jobDetail.soul} | ${detail.jobDetail.shroud} | ${detail.jobDetail.enshroudMilliseconds} | ${detail.jobDetail.lemureShroud} | ${detail.jobDetail.voidShroud}`;
     } else {
       jobInfo.innerText = '';
     }
