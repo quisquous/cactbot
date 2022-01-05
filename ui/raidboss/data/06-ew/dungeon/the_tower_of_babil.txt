@@ -65,7 +65,7 @@ hideall "--sync--"
 368.4 "Ground and Pound 1"
 374.4 "Ground and Pound 2"
 
-# Common Thhundercall block, looping back to one of the two blocks.
+# Common Thundercall block, looping back to one of the two blocks.
 400.0 "Thundercall" sync / 1[56]:[^:]*:Barnabas:62ED:/
 406.5 "Rolling Scrapline" sync / 1[56]:[^:]*:Barnabas:62EB:/
 406.8 "Shock" sync / 1[56]:[^:]*:Thunderball:62F2:/
