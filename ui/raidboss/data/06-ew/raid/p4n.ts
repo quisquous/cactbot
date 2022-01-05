@@ -335,6 +335,7 @@ const triggerSet: TriggerSet<Data> = {
         'Bloodrake': 'Racle de sang',
         'Burst(?!s)': 'Explosion',
         'Decollation': 'Décollation',
+        'Directional Shift': 'Frappe mouvante vers un cardinal',
         'Elegant Evisceration': 'Éviscération élégante',
         'Hell Skewer': 'Embrochement infernal',
         '(?<!/)Levinstrike Pinax(?!/)': 'Pinax de foudre',
