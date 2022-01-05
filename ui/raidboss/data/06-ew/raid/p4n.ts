@@ -115,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Other Role Tower',
           de: 'Geh in einen Turm einer anderen Rolle',
-          fr: 'Prenez la tour de votre rôle',
+          fr: 'Prenez la tour d\'un autre rôle',
           cn: '踩其他职能的塔',
           ko: '내 직업군이 아닌쪽 장판 밟기',
         },
