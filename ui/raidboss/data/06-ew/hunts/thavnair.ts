@@ -47,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
         knockbackStack: {
           en: 'Knockback Stack',
           de: 'Rückstoß sammeln',
+          fr: 'Package + Poussée',
         },
       },
     },
@@ -78,6 +79,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Forward March Away',
           de: 'Geistlenkung vorwärts',
+          fr: 'Marche forcée avant',
         },
       },
     },
@@ -95,6 +97,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Backwards March Away',
           de: 'Geistlenkung rückwärts',
+          fr: 'Marche forcée arrière',
         },
       },
     },
@@ -111,6 +114,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Left March Away',
           de: 'Geistlenkung links',
+          fr: 'Marche forcée gauche',
         },
       },
     },
@@ -127,6 +131,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Right March Away',
           de: 'Geistlenkung rechts',
+          fr: 'Marche forcée droite',
         },
       },
     },

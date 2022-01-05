@@ -25,6 +25,7 @@ const triggerSet: TriggerSet<Data> = {
         outAndBehind: {
           en: 'Get Behind and Out',
           de: 'Geh hinter ihn und dann raus',
+          fr: 'Passez derrière et à l\'extérieur',
         },
       },
     },
@@ -40,6 +41,7 @@ const triggerSet: TriggerSet<Data> = {
         getFront: {
           en: 'Get Front',
           de: 'Geh nach Vorne',
+          fr: 'Allez devant',
         },
       },
     },
@@ -56,10 +58,12 @@ const triggerSet: TriggerSet<Data> = {
           missleOnYou: {
             en: 'GTFO with marker',
             de: 'Geh raus mit dem Marker',
+            fr: 'Partez avec le marquage',
           },
           missleMarker: {
             en: 'Away from marker',
             de: 'Weg vom Marker',
+            fr: 'Éloignez-vous du marquage',
           },
         };
 
@@ -81,10 +85,12 @@ const triggerSet: TriggerSet<Data> = {
           missleOnYou: {
             en: 'Place donut marker under',
             de: 'Platziere Donut-Marker unter ihm',
+            fr: 'En dessous le marquage du donut',
           },
           missleMarker: {
             en: 'Stack on marker',
             de: 'Auf dem Marker sammeln',
+            fr: 'Packez-vous sur les marquages',
           },
         };
 
