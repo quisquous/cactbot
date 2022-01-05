@@ -15,6 +15,7 @@ Options.Triggers.push({
                 outAndBehind: {
                     en: 'Get Behind and Out',
                     de: 'Geh hinter ihn und dann raus',
+                    fr: 'Passez derrière et à l\'extérieur',
                 },
             },
         },
@@ -30,6 +31,7 @@ Options.Triggers.push({
                 getFront: {
                     en: 'Get Front',
                     de: 'Geh nach Vorne',
+                    fr: 'Allez devant',
                 },
             },
         },
@@ -46,10 +48,12 @@ Options.Triggers.push({
                     missleOnYou: {
                         en: 'GTFO with marker',
                         de: 'Geh raus mit dem Marker',
+                        fr: 'Partez avec le marquage',
                     },
                     missleMarker: {
                         en: 'Away from marker',
                         de: 'Weg vom Marker',
+                        fr: 'Éloignez-vous du marquage',
                     },
                 };
                 if (data.me === matches.target)
@@ -70,10 +74,12 @@ Options.Triggers.push({
                     missleOnYou: {
                         en: 'Place donut marker under',
                         de: 'Platziere Donut-Marker unter ihm',
+                        fr: 'En dessous le marquage du donut',
                     },
                     missleMarker: {
                         en: 'Stack on marker',
                         de: 'Auf dem Marker sammeln',
+                        fr: 'Packez-vous sur les marquages',
                     },
                 };
                 if (data.me === matches.target)

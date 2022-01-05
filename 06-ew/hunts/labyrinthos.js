@@ -22,6 +22,7 @@ Options.Triggers.push({
                 followCharge: {
                     en: 'Follow charge',
                     de: 'Folge dem Ansturm',
+                    fr: 'Suivez la charge',
                 },
             },
         },
@@ -96,6 +97,7 @@ Options.Triggers.push({
                 getWayOut: {
                     en: 'GTFO',
                     de: 'Geh raus',
+                    fr: 'Partez',
                 },
             },
         },

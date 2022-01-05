@@ -32,6 +32,7 @@ Options.Triggers.push({
                 knockbackStack: {
                     en: 'Knockback Stack',
                     de: 'Rückstoß sammeln',
+                    fr: 'Package + Poussée',
                 },
             },
         },
@@ -63,6 +64,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Forward March Away',
                     de: 'Geistlenkung vorwärts',
+                    fr: 'Marche forcée avant',
                 },
             },
         },
@@ -80,6 +82,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Backwards March Away',
                     de: 'Geistlenkung rückwärts',
+                    fr: 'Marche forcée arrière',
                 },
             },
         },
@@ -96,6 +99,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Left March Away',
                     de: 'Geistlenkung links',
+                    fr: 'Marche forcée gauche',
                 },
             },
         },
@@ -112,6 +116,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Right March Away',
                     de: 'Geistlenkung rechts',
+                    fr: 'Marche forcée droite',
                 },
             },
         },

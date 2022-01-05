@@ -1,10 +1,12 @@
 const underThenOut = {
     en: 'Under => Out',
     de: 'Drunter => Raus',
+    fr: 'En dessous => À l\'extérieur',
 };
 const outStayOut = {
     en: 'Out => Stay Out',
     de: 'Raus => Drausen bleiben',
+    fr: 'À l\'extérieur => Restez-y',
 };
 Options.Triggers.push({
     zoneId: ZoneId.MareLamentorum,
@@ -82,6 +84,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from Right Flank',
                     de: 'Weg von der rechten Flanke',
+                    fr: 'Éloignez-vous du flanc droit',
                 },
             },
         },
@@ -98,6 +101,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from Back',
                     de: 'Weg von hinter ihr',
+                    fr: 'Éloignez-vous de l\'arrière',
                 },
             },
         },
@@ -114,6 +118,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from Left Flank',
                     de: 'Weg von der linker Flanke',
+                    fr: 'Éloignez-vous du flanc gauche',
                 },
             },
         },
@@ -130,6 +135,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from Front',
                     de: 'Weg von Vorne',
+                    fr: 'Éloignez-vous du devant',
                 },
             },
         },

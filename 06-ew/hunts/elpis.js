@@ -13,6 +13,7 @@ Options.Triggers.push({
                 rightThenLeft: {
                     en: 'Right => Left',
                     de: 'Rechts => Links',
+                    fr: 'À droite => À gauche',
                 },
             },
         },
@@ -28,6 +29,7 @@ Options.Triggers.push({
                 leftThenRight: {
                     en: 'Left => Right',
                     de: 'Links => Rechts',
+                    fr: 'À gauche => À droite',
                 },
             },
         },
@@ -72,10 +74,12 @@ Options.Triggers.push({
                     waterOnYou: {
                         en: 'GTFO with water',
                         de: 'Geh mit Wasser raus',
+                        fr: 'Partez avec l\'eau',
                     },
                     waterMarker: {
                         en: 'Away from water marker',
                         de: 'Weg vom Wasser Marker',
+                        fr: 'Éloignez-vous du marquage eau',
                     },
                 };
                 if (data.me === matches.target)

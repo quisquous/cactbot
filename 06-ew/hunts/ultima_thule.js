@@ -32,6 +32,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from jump',
                     de: 'Weg vom Sprung',
+                    fr: 'Éloignez-vous du saut',
                 },
             },
         },
@@ -69,10 +70,12 @@ Options.Triggers.push({
                 divebombOnYou: {
                     en: 'Divebomb on YOU',
                     de: 'Sturzflug auf DIR',
+                    fr: 'Bombe plongeante sur VOUS',
                 },
                 divebombMarker: {
                     en: 'Away from Divebomb Marker',
                     de: 'Weg von dem Sturzflug-Marker',
+                    fr: 'Éloignez-vous de la bombe plongeante',
                 },
             },
         },
