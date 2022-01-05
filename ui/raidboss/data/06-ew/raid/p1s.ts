@@ -1,14 +1,28 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-// import ZoneId from '../../../../../resources/zone_id';
+import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export type Data = RaidbossData;
 
+const flailDirections = {
+  l: Outputs.left,
+  r: Outputs.right,
+  combo: {
+    en: '${first} => ${second}',
+    de: '${first} => ${second}',
+    fr: '${first} => ${second}',
+    ja: '${first} => ${second}',
+    cn: '${first} => ${second}',
+    ko: '${first} => ${second}',
+  },
+};
+
 const triggerSet: TriggerSet<Data> = {
-  zoneId: 0x3EB,
+  zoneId: ZoneId.AsphodelosTheFirstCircleSavage,
   timelineFile: 'p1s.txt',
   timelineTriggers: [
     {
@@ -58,12 +72,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F6', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F6', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F6', source: 'エリクトニオス', capture: false }),
-      alertText: (_data, _matches, output) => output.directions!(),
-      outputStrings: {
-        directions: {
-          en: 'Right => Left',
-        },
-      },
+      alertText: (_data, _matches, output) => output.combo!({ first: output.r!(), second: output.l!() }),
+      outputStrings: flailDirections,
     },
     {
       id: 'P1S Gaoler\'s Flail Left => Right',
@@ -72,12 +82,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F7', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F7', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F7', source: 'エリクトニオス', capture: false }),
-      alertText: (_data, _matches, output) => output.directions!(),
-      outputStrings: {
-        directions: {
-          en: 'Left => Right',
-        },
-      },
+      alertText: (_data, _matches, output) => output.combo!({ first: output.l!(), second: output.r!() }),
+      outputStrings: flailDirections,
     },
     {
       id: 'P1S Gaoler\'s Flail Out => In',
@@ -86,11 +92,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F8', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F8', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F8', source: 'エリクトニオス', capture: false }),
-      alertText: (_data, _matches, output) => output.directions!(),
+      alertText: (_data, _matches, output) => output.outThenIn!(),
       outputStrings: {
-        directions: {
-          en: 'Out => In',
-        },
+        outThenIn: Outputs.outThenIn,
       },
     },
     {
@@ -100,11 +104,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F9', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F9', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F9', source: 'エリクトニオス', capture: false }),
-      alertText: (_data, _matches, output) => output.directions!(),
+      alertText: (_data, _matches, output) => output.inThenOut!(),
       outputStrings: {
-        directions: {
-          en: 'In => Out',
-        },
+        inThenOut: Outputs.inThenOut,
       },
     },
     {

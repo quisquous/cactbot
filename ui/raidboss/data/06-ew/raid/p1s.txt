@@ -9,6 +9,7 @@ hideall "--sync--"
 
 # First flail set
 0.0 "--sync--" sync /Engage!/ window 0,1
+9.4 "--sync--" sync / 14:[^:]*:Erichthonios:6629:/ window 11,9
 14.1 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:6629:/
 18.2 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
 22.8 "Aetherial Shackles" sync / 1[56]:[^:]*:Erichthonios:6625:/
@@ -17,8 +18,8 @@ hideall "--sync--"
 57.7 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:65F[6789]:/
 
 # First tank mechanic
-72.1 "Pitiless Flail of Grace/Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
-75.5 "True Flare/Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
+72.1 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
+75.5 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
 
 # Second flail set
 91.1 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:65F[6789]:/
@@ -35,8 +36,8 @@ hideall "--sync--"
 157.3 "Third element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
 
 # Second tank mechanic
-167.9 "Pitiless Flail of Grace/Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
-171.1 "True Flare/Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
+167.9 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
+171.1 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
 
 # Cells 1
 188.2 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:6616:/
@@ -47,8 +48,8 @@ hideall "--sync--"
 210.9 "Aetherflail" sync / 1[56]:[^:]*:Erichthonios:660D:/
 211.4 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6DAD:/
 211.7 "Powerful Fire/Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
-224.2 "Pitiless Flail of Grace/Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
-227.6 "True Flare/Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
+224.2 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
+227.6 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
 229.7 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
 242.9 "Aetherflail" sync / 1[56]:[^:]*:Erichthonios:6603:/
 243.7 "Powerful Fire/Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
@@ -87,8 +88,8 @@ hideall "--sync--"
 # Cells 2
 407.6 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:6616:/
 417.8 "Shackles of Time" sync / 1[56]:[^:]*:Erichthonios:661C:/
-425.1 "Pitiless Flail of Grace/Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
-428.4 "True Flare/Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
+425.1 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
+428.4 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
 432.8 "Inevitable Light" sync / 1[56]:[^:]*:Erichthonios:6EC2:/
 432.8 "Out of Time" sync / 1[56]:[^:]*:Erichthonios:661D:/
 540.8 "Aetherflail" sync / 1[56]:[^:]*:Erichthonios:6607:/
