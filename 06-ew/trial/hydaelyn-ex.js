@@ -3,7 +3,7 @@ const storedMechanicsOutputStrings = {
     groups: {
         en: 'Healer Groups',
         de: 'Heiler-Gruppen',
-        fr: 'Healers en groupes',
+        fr: 'Groupes sur les heals',
         ja: 'ヒラに頭割り',
         cn: '治疗分摊组',
         ko: '힐러 그룹 쉐어',
@@ -11,7 +11,7 @@ const storedMechanicsOutputStrings = {
     stack: {
         en: 'Party Stack',
         de: 'Mit der Party sammeln',
-        fr: 'Package en groupe',
+        fr: 'Package en équipe',
         ja: '全員集合',
         cn: '8人分摊',
         ko: '파티 전체 쉐어',
@@ -31,6 +31,7 @@ const comboOutputStrings = {
     combo: {
         en: '${first} => ${second}',
         de: '${first} => ${second}',
+        fr: '${first} => ${second}',
         ja: '${first} => ${second}',
         cn: '${first} => ${second}',
         ko: '${first} => ${second}',

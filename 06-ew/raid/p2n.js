@@ -180,6 +180,7 @@ Options.Triggers.push({
                 lineStackOn: {
                     en: 'Line stack on ${player}',
                     de: 'In einer Linie auf ${player} sammeln',
+                    fr: 'Packez-vous en ligne sur ${player}',
                     ko: '${player} 직선 쉐어',
                 },
             },
@@ -239,12 +240,15 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Hippokampos': 'hippokampos',
             },
             'replaceText': {
-                'Dissociation': 'Dissociation',
+                '\\(knockback\\)': '(poussée)',
+                'Coherence Flare': 'Cohérence Brasier',
+                'Coherence Line': 'Cohérence en ligne',
+                'Dissociation(?! Dive)': 'Dissociation',
+                'Dissociation Dive': 'Dissociation et plongeon',
                 'Doubled Impact': 'Double impact',
                 'Murky Depths': 'Tréfonds troubles',
                 'Predatory Sight': 'Marque de la proie',
