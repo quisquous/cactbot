@@ -22,7 +22,7 @@ const storedMechanicsOutputStrings = {
   groups: {
     en: 'Healer Groups',
     de: 'Heiler-Gruppen',
-    fr: 'Groupes des healers',
+    fr: 'Groupes sur les heals',
     ja: 'ヒラに頭割り',
     cn: '治疗分摊组',
     ko: '힐러 그룹 쉐어',
