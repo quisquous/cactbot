@@ -32,9 +32,9 @@ hideall "--sync--"
 122.6 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
 135.3 "First Element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
 141.4 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
-146.4 "Second element" sync / 1[56]:[^:]*:Erichthonios:662[123]:/
+146.4 "Second Element" sync / 1[56]:[^:]*:Erichthonios:662[123]:/
 151.6 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
-157.3 "Third element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
+157.3 "Third Element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
 
 # Second tank mechanic
 167.9 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
