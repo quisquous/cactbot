@@ -267,6 +267,26 @@ const data: HuntMap = {
     },
     'rank': 'A',
   },
+  'Burfurlur the Canny': {
+    'id': '10617',
+    'name': {
+      'de': [
+        'Burfurlur der Gerissene',
+        'Burfurlur der Gerissener',
+        'Burfurlur der Gerissenes',
+        'Burfurlur die Gerissene',
+        'Burfurlur die Gerissener',
+        'Burfurlur die Gerissenes',
+        'Burfurlur das Gerissene',
+        'Burfurlur das Gerissener',
+        'Burfurlur das Gerissenes',
+      ],
+      'en': 'Burfurlur the Canny',
+      'fr': 'Le Burfurlur',
+      'ja': 'ブーフールー',
+    },
+    'rank': 'S',
+  },
   'Campacti': {
     'id': '4372',
     'name': {
@@ -2002,6 +2022,16 @@ const data: HuntMap = {
       'ja': 'ペタロドゥス',
     },
     'rank': 'A',
+  },
+  'sphatika': {
+    'id': '10618',
+    'name': {
+      'de': 'Sphatika',
+      'en': 'sphatika',
+      'fr': 'Sphatika',
+      'ja': 'スパティカ',
+    },
+    'rank': 'S',
   },
   'stench blossom': {
     'id': '4373',
