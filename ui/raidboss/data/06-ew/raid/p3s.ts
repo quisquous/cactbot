@@ -55,6 +55,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Fire Positions',
+          fr: 'Positions feu',
         },
       },
     },
@@ -66,6 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Tank Tethers',
+          fr: 'Liens Tank',
         },
       },
     },
@@ -77,6 +79,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Middle (then rotate)',
+          fr: 'Soyez au centre (puis tourner)',
         },
       },
     },
@@ -88,6 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Middle (then out)',
+          fr: 'Soyez au centre (puis sortez)',
         },
       },
     },
@@ -118,6 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides + Spread',
+          fr: 'Côtés + Dispersez-vous',
         },
       },
     },
@@ -129,6 +134,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Middle Pairs',
+          fr: 'Paires au centre',
         },
       },
     },
@@ -176,6 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Middle (then rotate)',
+          fr: 'Soyez au centre (puis tourner)',
         },
       },
     },
@@ -188,6 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Middle (then out)',
+          fr: 'Soyez au centre (puis sortez)',
         },
       },
     },
@@ -208,6 +216,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stacks After',
+          fr: 'Packez-vous après',
         },
       },
     },
@@ -221,6 +230,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread After',
+          fr: 'Dispersez-vous après',
         },
       },
     },
@@ -233,6 +243,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread => Bird Tether',
+          fr: 'Dispersez-vous => Liens oiseaux',
         },
       },
     },
@@ -251,6 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stacks',
+          fr: 'Packez-vous',
         },
       },
     },
@@ -263,6 +275,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread',
+          fr: 'Dispersez-vous',
         },
       },
     },

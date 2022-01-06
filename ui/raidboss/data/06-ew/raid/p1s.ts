@@ -33,7 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         positions: {
           en: 'Tile Positions',
-          fr: 'Position tuiles'
+          fr: 'Position tuiles',
         },
       },
     },
@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         directions: {
           en: 'Tankbuster+Knockback => Stack',
-          fr: 'Tank buster+Repoussement => Packez-vous'
+          fr: 'Tank buster+Repoussement => Packez-vous',
         },
       },
     },
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         directions: {
           en: 'Tankbuster+Knockback => Flare',
-          fr: 'Tank buster+Repoussement => Brasier'
+          fr: 'Tank buster+Repoussement => Brasier',
         },
       },
     },
