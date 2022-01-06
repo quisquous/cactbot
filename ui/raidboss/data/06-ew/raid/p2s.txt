@@ -1,6 +1,6 @@
 ### P2S: Asphodelos: The Second Circle (Savage)
 #
-# -oc Hippokampos -ii 6822 6821 6829 6D4A
+# -it Hippokampos -oc Hippokampos -ii 6822 6821 6829 6D4A 6825
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -41,13 +41,13 @@ hideall "--sync--"
 228.9 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:6810:/
 246.4 "Shockwave" sync / 1[56]:[^:]*:Hippokampos:682F:/
 259.3 "Kampeos Harma" sync / 1[56]:[^:]*:Hippokampos:6823:/
-259.7 "Kampeos Harma 1" #sync / 1[56]:[^:]*:Hippokampos:(6825|6824):/
-261.2 "Kampeos Harma 2 (head)" #sync / 1[56]:[^:]*:Hippokampos:6825:/
-261.5 "Kampeos Harma 2 (body)" #sync / 1[56]:[^:]*:Hippokampos:6824:/
-262.8 "Kampeos Harma 3 (head)" #sync / 1[56]:[^:]*:Hippokampos:6825:/
-263.3 "Kampeos Harma 3 (body)" #sync / 1[56]:[^:]*:Hippokampos:6824:/
-264.5 "Kampeos Harma 4 (head)" sync / 1[56]:[^:]*:Hippokampos:6826:/
-265.2 "Kampeos Harma 4 (body)" sync / 1[56]:[^:]*:Hippokampos:6824:/
+259.3 "--untargetable--"
+259.7 "Kampeos Harma 1" #sync / 1[56]:[^:]*:Hippokampos:6824:/
+261.5 "Kampeos Harma 2" #sync / 1[56]:[^:]*:Hippokampos:6824:/
+263.3 "Kampeos Harma 3" #sync / 1[56]:[^:]*:Hippokampos:6824:/
+264.5 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6826:/
+265.2 "Kampeos Harma 4" sync / 1[56]:[^:]*:Hippokampos:6824:/
+266.7 "--targetable--"
 266.8 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
 269.9 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
 281.7 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:6832:/
