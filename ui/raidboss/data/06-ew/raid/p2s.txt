@@ -1,6 +1,6 @@
 ### P2S: Asphodelos: The Second Circle (Savage)
 #
-# -ii 6822 6821 6829
+# -oc Hippokampos -ii 6822 6821 6829 6D4A
 
 hideall "--Reset--"
 hideall "--sync--"
