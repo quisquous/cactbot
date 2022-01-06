@@ -168,9 +168,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P2S Coherence Flare',
-      type: 'HeadMarker',
+      type: 'Tether',
       // Whoever has tether when cast of 681B ends will be flared
-      netRegex: NetRegexes.headMarker({ id: '0054' }),
+      netRegex: NetRegexes.tether({ id: '0054', source: 'Hippokampos' }),
+      netRegexDe: NetRegexes.tether({ id: '0054', source: 'Hippokampos' }),
+      netRegexFr: NetRegexes.tether({ id: '0054', source: 'Hippokampos' }),
+      netRegexJa: NetRegexes.tether({ id: '0054', source: 'ヒッポカムポス' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data, matches) => data.flareTarget = matches.target,
@@ -190,10 +193,17 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.flareTarget !== data.me,
       // 12 second cast, delay for tether to settle
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
-      alertText: (_data, _matches, output) => output.flareLineStack!(),
+      alertText: (data, _matches, output) => {
+        if ( data.role === 'tank' )
+          return output.flareLineTank!();
+        return output.flareLineStack!();
+      },
       outputStrings: {
         flareLineStack: {
-          en: 'Flare => Line Stack',
+          en: 'Line Stack (behind tank)',
+        },
+        flareLineTank: {
+          en: 'Line Stack (be in front)',
         },
       },
     },
