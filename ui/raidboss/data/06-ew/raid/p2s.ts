@@ -122,16 +122,17 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const t = parseFloat(matches.duration);
+        // Effect durations are 13 seconds (short) and 28 seconds (long)
         if (t < 15)
-          return output.shortTide!();
-        return output.longTide!();
+          return output.arrowFirst!();
+        return output.spreadFirst!();
       },
       outputStrings: {
-        shortTide: {
-          en: 'Short Tide',
+        arrowFirst: {
+          en: 'Arrow First',
         },
-        longTide: {
-          en: 'Long Tide',
+        spreadFirst: {
+          en: 'Spread First',
         },
       },
     },
@@ -194,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       // 12 second cast, delay for tether to settle
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       alertText: (data, _matches, output) => {
-        if ( data.role === 'tank' )
+        if (data.role === 'tank')
           return output.flareLineTank!();
         return output.flareLineStack!();
       },
