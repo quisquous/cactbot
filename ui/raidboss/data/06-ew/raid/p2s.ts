@@ -264,6 +264,12 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Spoken Cataract/Winged Cataract': 'Spoken/Winged Cataract',
+      },
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
