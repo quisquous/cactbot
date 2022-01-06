@@ -28,7 +28,8 @@ hideall "--sync--"
 128.1 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
 134.5 "Predatory Avarice" sync / 1[56]:[^:]*:Hippokampos:6827:/
 152.2 "Winged Cataract/Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
-158.5 "Hard Water/Deadly Current" sync / 1[56]:[^:]*:Hippokampos:(6828|6829):/
+158.5 "Hard Water" sync / 1[56]:[^:]*:Hippokampos:6828|:/
+158.5 "Deadly Current" #sync sync / 1[56]:[^:]*:Hippokampos:6829:/
 171.9 "Channeling Flow" sync / 1[56]:[^:]*:Hippokampos:681E:/
 187.2 "Great Typhoon" sync / 1[56]:[^:]*:Hippokampos:(6820|6822):/
 187.7 "Crash" #sync / 1[56]:[^:]*:Hippokampos:6821:/
@@ -70,8 +71,9 @@ hideall "--sync--"
 364.4 "Predatory Avarice" sync / 1[56]:[^:]*:Hippokampos:6827:/
 370.8 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:682C:/
 375.9 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
-388.5 "Hard Water/Deadly Current" sync / 1[56]:[^:]*:Hippokampos:(6828|6829):/
-388.9 "Winged Cataract/Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
+388.5 "Hard Water" sync / 1[56]:[^:]*:Hippokampos:6828:/
+388.5 "Deadly Current" #sync / 1[56]:[^:]*:Hippokampos:6829:/
+388.9 "Winged Cataract/Spoken Cataract" #sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
 402.6 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:682C:/
 407.7 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
 415.8 "Sewage Eruption" sync / 1[56]:[^:]*:Hippokampos:6830:/
