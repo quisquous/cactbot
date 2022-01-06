@@ -34,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
         positions: {
           en: 'Tile Positions',
           de: 'Flächen-Positionen',
+          fr: 'Position tuiles',
         },
       },
     },
@@ -132,6 +133,7 @@ const triggerSet: TriggerSet<Data> = {
         directions: {
           en: 'Tankbuster+Knockback => Stack',
           de: 'Tankbuster+Rückstoß => Sammeln',
+          fr: 'Tank buster+Poussée => Packez-vous',
         },
       },
     },
@@ -147,6 +149,7 @@ const triggerSet: TriggerSet<Data> = {
         directions: {
           en: 'Tankbuster+Knockback => Flare',
           de: 'Tankbuster+Rückstoß => Flare',
+          fr: 'Tank buster+Poussée => Brasier',
         },
       },
     },
