@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         directions: {
           en: 'Tankbuster+Knockback => Stack',
-          fr: 'Tank buster+Repoussement => Packez-vous',
+          fr: 'Tank buster+Poussée => Packez-vous',
         },
       },
     },
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         directions: {
           en: 'Tankbuster+Knockback => Flare',
-          fr: 'Tank buster+Repoussement => Brasier',
+          fr: 'Tank buster+Poussée => Brasier',
         },
       },
     },
