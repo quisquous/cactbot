@@ -3355,8 +3355,8 @@ const data: FisherData = {
         'abalathischer Salamander',
       ],
       '20072': [
-        'Adamantium-Flösselhecht',
-        'Adamantium-Flösselhechte',
+        'Adamantit-Flösselhecht',
+        'Adamantit-Flösselhechte',
       ],
       '20073': 'Meditierer',
       '20074': [
@@ -6266,7 +6266,7 @@ const data: FisherData = {
         'mudcrab',
         'mudcrabs',
       ],
-      '4951': 'tri-colored carp',
+      '4951': 'tricolored carp',
       '4952': 'eunuch crayfish',
       '4953': [
         'jade eel',
