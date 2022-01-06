@@ -176,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.flareTarget = matches.target,
       outputStrings: {
         text: {
-          en: 'Tank flare tether on YOU',
+          en: 'Flare Tether',
         },
       },
     },
