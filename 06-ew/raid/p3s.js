@@ -46,6 +46,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Fire Positions',
                     de: 'Feuer-Positionen',
+                    fr: 'Positions feu',
                 },
             },
         },
@@ -61,6 +62,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Tank Tethers',
                     de: 'Tank-Verbindungen',
+                    fr: 'Liens Tank',
                 },
             },
         },
@@ -76,6 +78,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Middle (then rotate)',
                     de: 'Geh in die Mitte (und rotiere dann)',
+                    fr: 'Soyez au centre (puis tourner)',
                 },
             },
         },
@@ -91,6 +94,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Middle (then out)',
                     de: 'Geh in die Mitte (und dann raus)',
+                    fr: 'Soyez au centre (puis sortez)',
                 },
             },
         },
@@ -134,6 +138,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Sides + Spread',
                     de: 'Seiten + Verteilen',
+                    fr: 'Côtés + Dispersez-vous',
                 },
             },
         },
@@ -149,6 +154,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Middle Pairs',
                     de: 'Mittlere Paare',
+                    fr: 'Paires au centre',
                 },
             },
         },
@@ -203,6 +209,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Middle (then rotate)',
                     de: 'Geh in die Mitte (und rotiere dann)',
+                    fr: 'Soyez au centre (puis tourner)',
                 },
             },
         },
@@ -219,6 +226,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Middle (then out)',
                     de: 'Geh in die Mitte (und dann raus)',
+                    fr: 'Soyez au centre (puis sortez)',
                 },
             },
         },
@@ -246,6 +254,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stacks After',
                     de: 'Danach sammeln',
+                    fr: 'Packez-vous après',
                 },
             },
         },
@@ -263,6 +272,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Spread After',
                     de: 'Danach verteilen',
+                    fr: 'Dispersez-vous après',
                 },
             },
         },
@@ -276,6 +286,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Spread => Bird Tether',
                     de: 'Verteilen => Vogel-Verbindungen',
+                    fr: 'Dispersez-vous => Liens oiseaux',
                 },
             },
         },
@@ -301,6 +312,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stacks',
                     de: 'Sammeln',
+                    fr: 'Packez-vous',
                 },
             },
         },
@@ -317,6 +329,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Spread',
                     de: 'Verteilen',
+                    fr: 'Dispersez-vous',
                 },
             },
         },

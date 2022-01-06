@@ -23,6 +23,7 @@ Options.Triggers.push({
                 positions: {
                     en: 'Tile Positions',
                     de: 'Flächen-Positionen',
+                    fr: 'Position tuiles',
                 },
             },
         },
@@ -121,6 +122,7 @@ Options.Triggers.push({
                 directions: {
                     en: 'Tankbuster+Knockback => Stack',
                     de: 'Tankbuster+Rückstoß => Sammeln',
+                    fr: 'Tank buster+Poussée => Packez-vous',
                 },
             },
         },
@@ -136,6 +138,7 @@ Options.Triggers.push({
                 directions: {
                     en: 'Tankbuster+Knockback => Flare',
                     de: 'Tankbuster+Rückstoß => Flare',
+                    fr: 'Tank buster+Poussée => Brasier',
                 },
             },
         },
