@@ -387,7 +387,9 @@
 06-ew/raid/p1n.ts
 06-ew/raid/p1n.txt
 06-ew/raid/p2n.ts
+06-ew/raid/p2s.ts
 06-ew/raid/p2n.txt
+06-ew/raid/p2s.txt
 06-ew/raid/p3n.ts
 06-ew/raid/p3n.txt
 06-ew/raid/p4n.ts
