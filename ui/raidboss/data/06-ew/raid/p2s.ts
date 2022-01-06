@@ -172,7 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       // Whoever has tether when cast of 681B ends will be flared
       netRegex: NetRegexes.headMarker({ id: '0054' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       run: (data, matches) => data.flareTarget = matches.target,
       outputStrings: {
         text: {
