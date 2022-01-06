@@ -1,7 +1,7 @@
 ### P3S: Pandaemonium: Asphedolos, the Third Circle (Savage)
 # -p 6706:13.7 66E4:521.2
 # -it "Phoinix"
-# -ii 6701 66C1 66BD 66BF 6D0D 66CF 66D0 66C1 66D1 66FD 6705 66CB 66EC 66C7
+# -ii 6701 66C1 66BD 66BF 6D0D 66CF 66D0 66C1 66D1 66FD 6705 66CB 66EC 66C7 6DDD
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -20,6 +20,7 @@ hideall "--sync--"
 58.8 "Darkened Fire" sync / 1[56]:[^:]*:Phoinix:66B9:/
 69.0 "Brightened Fire x8" sync / 1[56]:[^:]*:Phoinix:66BC:/ duration 8.7
 96.5 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
+104.7 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
 114.9 "Devouring Brand" sync / 1[56]:[^:]*:Phoinix:66CE:/
 122.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(66BE|66C0):/
 131.9 "--fire expands--" sync / 1[56]:[^:]*:Phoinix:6D83:/
@@ -120,4 +121,6 @@ hideall "--sync--"
 865.4 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(6702|6703):/
 876.5 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
 883.6 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
-# TODO: enrage
+
+885.8 "--sync--" sync / 14:[^:]*:Phoinix:6C2B:/ window 20,20
+895.8 "Final Exaltation (enrage)" sync / 1[56]:[^:]*:Phoinix:6C2B:/

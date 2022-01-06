@@ -48,20 +48,54 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
-      id: 'P3S Experimental Fireplume Rotating',
+      id: 'P3S Darkened Fire',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '66B9', source: 'Phoinix', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Fire Positions',
+        },
+      },
+    },
+    {
+      id: 'P3S Heat of Condemnation',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6700', source: 'Phoinix', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Tank Tethers',
+        },
+      },
+    },
+    {
+      id: 'P3S Experimental Fireplume Rotating Cast',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '66C0', source: 'Phoinix', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Rotate',
+          en: 'Get Middle (then rotate)',
         },
       },
     },
     {
-      id: 'P3S Experimental Fireplume Out',
+      id: 'P3S Experimental Fireplume Out Cast',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '66BE', source: 'Phoinix', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle (then out)',
+        },
+      },
+    },
+    {
+      id: 'P3S Experimental Fireplume Out Marker',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '66BE', source: 'Phoinix', capture: false }),
+      // goldfish brain needs an extra "get out" call
       response: Responses.getOut(),
     },
     {
@@ -128,22 +162,40 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P3S Experimental Gloryplume Rotate',
+      id: 'P3S Dead Rebirth',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '66E4', source: 'Phoinix', capture: false }),
+      response: Responses.bigAoe(),
+    },
+    {
+      id: 'P3S Experimental Gloryplume Rotate Cast',
       type: 'StartsUsing',
       // 66CA (self) -> 66CB (rotating) -> etc
       netRegex: NetRegexes.startsUsing({ id: '66CA', source: 'Phoinix', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Rotate',
+          en: 'Get Middle (then rotate)',
+        },
+      },
+    },
+    {
+      id: 'P3S Experimental Gloryplume Out Cast',
+      type: 'StartsUsing',
+      // 66C6 (self) -> 66C7 (middle) -> etc
+      netRegex: NetRegexes.startsUsing({ id: '66C6', source: 'Phoinix', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle (then out)',
         },
       },
     },
     {
       id: 'P3S Experimental Gloryplume Out',
-      type: 'StartsUsing',
+      type: 'Ability',
       // 66C6 (self) -> 66C7 (middle) -> etc
-      netRegex: NetRegexes.startsUsing({ id: '66C', source: 'Phoinix', capture: false }),
+      netRegex: NetRegexes.ability({ id: '66C6', source: 'Phoinix', capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -152,10 +204,10 @@ const triggerSet: TriggerSet<Data> = {
       // 66CA (self) -> 66CB (rotating) -> 66CC (instant) -> 66CD (stacks)
       // 66C6 (self) -> 66C7 (middle) -> 66CC (instant) -> 66CD (stacks)
       netRegex: NetRegexes.ability({ id: '66CC', source: 'Phoinix', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Stacks',
+          en: 'Stacks After',
         },
       },
     },
@@ -165,7 +217,12 @@ const triggerSet: TriggerSet<Data> = {
       // 66CA (self) -> 66CB (rotating) -> 66C8 (instant) -> 66C9 (spread)
       // 66C6 (self) -> 66C7 (middle) -> 66C8 (instant) -> 66C9 (spread)
       netRegex: NetRegexes.ability({ id: '66C8', source: 'Phoinix', capture: false }),
-      response: Responses.spread(),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Spread After',
+        },
+      },
     },
     {
       id: 'P3S Sun\'s Pinion',
@@ -180,26 +237,32 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P3S Experimental Ashplume Stacks',
+      id: 'P3S Firestorms of Asphodelos',
       type: 'StartsUsing',
-      // 66C2 cast -> 66C3 stacks
-      netRegex: NetRegexes.startsUsing({ id: '66C2', source: 'Phoinix', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '66F0', source: 'Phoinix', capture: false }),
+      response: Responses.bigAoe(),
+    },
+    {
+      id: 'P3S Experimental Ashplume Stacks',
+      type: 'Ability',
+      // 66C2 cast -> 66C3 stacks damage
+      netRegex: NetRegexes.ability({ id: '66C2', source: 'Phoinix', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback -> Stacks',
+          en: 'Stacks',
         },
       },
     },
     {
       id: 'P3S Experimental Ashplume Spread',
-      type: 'StartsUsing',
-      // 66C4 cast -> 66C5 spread
-      netRegex: NetRegexes.startsUsing({ id: '66C4', source: 'Phoinix', capture: false }),
+      type: 'Ability',
+      // 66C4 cast -> 66C5 spread damage
+      netRegex: NetRegexes.ability({ id: '66C4', source: 'Phoinix', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback -> Spread',
+          en: 'Spread',
         },
       },
     },
