@@ -166,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => matches.target === data.me,
       response: Responses.spread(),
     },
-     {
+    {
       id: 'P2S Coherence Flare',
       type: 'HeadMarker',
       // Whoever has tether when cast of 681B ends will be flared
@@ -237,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!id)
           return;
 
-        let num = parseInt(id,16);
+        let num = parseInt(id, 16);
         const isTriangle = num >= 233;
         num -= 228;
         if (isTriangle)
