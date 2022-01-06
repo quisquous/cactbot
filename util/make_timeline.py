@@ -277,6 +277,7 @@ def main(args):
         "",
         "Crystal Exarch",
         "Mikoto",
+        "Liturgic Bell",
     ]
 
     # Format the phase timings
