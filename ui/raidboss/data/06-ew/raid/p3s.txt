@@ -1,7 +1,7 @@
 ### P3S: Pandaemonium: Asphedolos, the Third Circle (Savage)
 # -p 6706:13.7 66E4:521.2
-# -it "Phoinix"
-# -ii 6701 66C1 66BD 66BF 6D0D 66CF 66D0 66C1 66D1 66FD 6705 66CB 66EC 66C7 6DDD
+# -it "Phoinix" "Sunbird"
+# -ii 6701 66C1 66BD 66BF 6D0D 66CF 66D0 66C1 66D1 66FD 6705 66CB 66EC 66C7 6DDD 6D0F
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -32,12 +32,35 @@ hideall "--sync--"
 162.2 "--untargetable--"
 172.0 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FB|66FC):/
 173.6 "Flare of Condemnation/Sparks of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FE|66FF):/
+
+# Adds Phase 1
+180.8 "--adds targetable--"
 180.9 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
 189.0 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
 197.1 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
 205.2 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-# TODO: sort out add phase better
+208.9 "Great Whirlwind (enrage?)" sync / 1[56]:[^:]*:Sunbird:66D3:/
+
+# Adds Phase 2
 300.0 "Flames of Undeath 1" sync / 1[56]:[^:]*:Phoinix:66D6:/ window 300,0
+300.3 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+301.1 "--adds targetable--"
+303.3 "Joint Pyre" sync / 1[56]:[^:]*:Sunbird:66D8:/
+303.8 "Joint Pyre" #sync / 1[56]:[^:]*:Sunbird:66D8:/
+304.7 "Joint Pyre" sync / 1[56]:[^:]*:Sunbird:66D8:/
+305.1 "Joint Pyre" #sync / 1[56]:[^:]*:Sunbird:66D8:/
+308.3 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+316.4 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+317.2 "Fireglide Sweep" sync / 1[56]:[^:]*:Sunbird:66E0:/
+317.5 "Fireglide Sweep 1" #sync / 1[56]:[^:]*:Sunbird:66E1:/
+319.8 "Fireglide Sweep 2" #sync / 1[56]:[^:]*:Sunbird:66E1:/
+324.4 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+332.5 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+340.6 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+348.7 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+354.1 "Great Whirlwind (enrage?)" sync / 1[56]:[^:]*:Sunbird:66D5:/
+
+# Adds Phase 3
 500.0 "Flames of Undeath 2" sync / 1[56]:[^:]*:Phoinix:66D6:/ window 199,0
 
 502.0 "--targetable--"
