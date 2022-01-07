@@ -373,7 +373,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Darkblaze Twister': 'Schwarzlohensturm',
         'Fountain of Fire': 'Quell des Feuers',
