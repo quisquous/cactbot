@@ -246,15 +246,21 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: fireLightOutputStrings,
     },
     {
-      id: 'P1S Shackles of Time on You',
+      id: 'P1S Shackles of Time Target',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text!(),
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.shacklesOnYou!();
+        return output.shacklesOn!({ player: data.ShortName(matches.target) });
+      },
       // For raid calling purposes, this might be useful but don't clutter TTS.
       tts: null,
       outputStrings: {
-        text: {
+        shacklesOn: {
+          en: 'Shackles of Time on ${player}',
+        },
+        shacklesOnYou: {
           en: 'Shackles of Time on YOU',
         },
       },
