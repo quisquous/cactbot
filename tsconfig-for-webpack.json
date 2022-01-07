@@ -1,7 +1,16 @@
 {
+  "extends": "./tsconfig.base.json",
+  "ts-node": {
+    // This can be omitted when using ts-patch
+    "compiler": "ttypescript",
+    "moduleTypes": {
+      "webpack/*": "cjs",
+      // Globs are also supported with the same behavior as tsconfig "include"
+      "webpack/**/*": "cjs"
+    }
+  },
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "esModuleInterop": true​
+    "moduleResolution": "node",
+    "skipLibCheck": false
   }
 }

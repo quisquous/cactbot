@@ -62,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Prenez le lien, pointez vers l\'extérieur',
           ja: '線を取って外に向ける',
           cn: '接线引导',
-          ko: '선 가로채고 멀리 떨어지기',
+          ko: '선 가로채고 구석으로 유도하기',
         },
       },
     },
@@ -226,7 +226,7 @@ const triggerSet: TriggerSet<Data> = {
         getTowerTankHealerTowers: {
           en: 'Get Tower (tank/healer towers)',
           de: 'In den Turm',
-          fr: 'Prenez votre tour (tours Tank/Healers)',
+          fr: 'Prenez votre tour (tours T/H)',
           ja: '塔 (タンクヒラが塔)',
           cn: '踩塔（坦克/治疗踩塔）',
           ko: '기둥 처리 (탱/힐)',

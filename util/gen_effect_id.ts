@@ -28,6 +28,7 @@ const knownMapping = {
   'Lord of Crowns': '1876',
   'Lady of Crowns': '1877',
   'Divination': '1878',
+  'Further Ruin': '2701',
   'The Balance': '1882',
   'The Bole': '1883',
   'The Arrow': '1884',
@@ -45,11 +46,11 @@ const knownMapping = {
   'Caustic Bite': '1200',
   'Windbite': '129',
   'Venomous Bite': '124',
-  'Flourishing Fan Dance': '1820',
   'Higanbana': '1228',
   'Wildfire': '861',
   'Chain Stratagem': '1221',
   'Vulnerability Up': '638',
+  'Eukrasian Dosis III': '2616',
 } as const;
 
 // These custom name of effect will not be checked, but you'd better make it clean.

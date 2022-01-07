@@ -1,125 +1,132 @@
 # Susano Extreme
-# Original timeline from: https://www.reddit.com/r/ffxiv/comments/6lh5gu/act_timeline_kaizoban_for_susanolakshmi_ex/
+# -it Susano
+# -p 202C:9.1 21C6:300 2032:400
+# -ii 203F 2038 2039 203A 203B 202E 2037 208D 203D 2031 2044
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+hideall "--Reset--"
+hideall "--sync--"
+# Seasplitter knockback marker appearing, hidden for noise reasons.
+hideall "Yasakani-No-Magatama"
+# Used for triggers.
+hideall "--knockback cloud--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 ### Phase 1 ###
-1 "--Start--" sync /Let the revels begin/ window 10000
-10 "Assail"
-13 "Churn"
-31.5 "Knockback" duration 6
-38 "Seasplitter" duration 2.5
-44 "Stack"
-48.5 "Assail"
-51.5 "Churn"
-55.5 "Rasen Kaikyo" duration 3
-# 70 "Thunderhead add"
-72 "Knockback (cloud)" duration 6
-79 "Seasplitter" duration 2.5
-89.5 "Assail"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+9.1 "Assail" sync / 1[56]:[^:]*:Susano:202C:/ window 10,10
+12.3 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+36.4 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+40.7 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+42.5 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+47.7 "Assail" sync / 1[56]:[^:]*:Susano:202C:/
+50.8 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+58.8 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+70.0 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+77.1 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+81.4 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+81.5 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+88.2 "Assail" sync / 1[56]:[^:]*:Susano:202C:/
+93.8 "--untargetable--"
 
-### Phase 2 ###
-94 "--Phase 2 (72%)--" sync /How our hearts sing in the chaos/ window 10000
-118 "Ame-No-Murakumo add" sync /Added new combatant Ame-No-Murakumo/ window 120,0
-124 "Dark Levin"
-127 "Dark Levin"
-130 "Dark Levin"
-133 "Dark Levin"
-
-200 "Ame-No-Murakumo add" sync /Added new combatant Ame-No-Murakumo/ window 80,0
-206 "Dark Levin"
-209 "Dark Levin"
-212 "Dark Levin"
-215 "Dark Levin"
+### Phase 2 (hp push at ???% / time push)
+# sync to touching the Blade's Shadow, this happens twice
+300.0 "--sync--" sync / 1[56]:[^:]*:Susano:21C6:/ window 300,100
+305.6 "--targetable--"
+305.6 "--Dark Levin 1--"
+308.4 "--Dark Levin 2--"
+311.5 "--Dark Levin 3--"
+314.4 "--Dark Levin 4--"
 
 ### Phase 3 ###
-300 "--Phase 3--" sync /REJOICE!/ window 10000
-304 "Ame No Murakumo"
-320.6 "Stormsplitter" duration 5.5
-328 "Levinbolt" duration 5
-333.5 "Levinbolt" duration 5
-339 "Levinbolt" duration 5
-344.5 "Levinbolt" duration 5
+400.0 "Ame-No-Murakumo" sync / 1[56]:[^:]*:Susano:2032:/ window 400,100
+404.1 "Ame-No-Murakumo" sync / 1[56]:[^:]*:Susano:218C:/
+413.6 "--targetable--"
 
-358.5 "Ukehi x 2"
-359.5 "Ukehi (1)"
-361.5 "Ukehi (2)"
+425.9 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+432.6 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+438.1 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+443.5 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+449.0 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+458.9 "Ukehi x2" sync / 1[56]:[^:]*:Susano:2036:/
+467.2 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+474.5 "--knockback cloud--"
+474.5 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+478.8 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+478.9 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+480.6 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
 
-#367.5 "Thunderhead add"
-369.5 "Knockback (cloud)" duration 6
-376 "Seasplitter" duration 2.5
-382 "Stack"
-385.6 "Stormsplitter" duration 5.5
+490.8 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+495.9 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+497.5 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+503.0 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+506.7 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+508.5 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+514.0 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+521.1 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
 
-393 "Levinbolt" duration 5
-#396.5 "Thunderhead add"
-398.5 "Levinbolt + Thunder" duration 5
-404 "Levinbolt" duration 5
-409.5 "Levinbolt" duration 5
+531.5 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/
+547.2 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+554.5 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+557.1 "The Sealed Gate" sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/
+566.7 "Levinbolt Stun 1" sync / 1[56]:[^:]*:Susano:203C:/
+573.2 "Levinbolt Stun 2" sync / 1[56]:[^:]*:Susano:203C:/
+579.7 "Levinbolt Stun 3" sync / 1[56]:[^:]*:Susano:203C:/
+586.2 "Levinbolt Stun 4" sync / 1[56]:[^:]*:Susano:203C:/
+592.6 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+604.0 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+611.2 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+615.5 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+617.3 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+622.4 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
 
-420.5 "Ukehi x 3"
-421.5 "Ukehi (1)"
-423.7 "Ukehi (2)"
-426 "Ukehi (3)"
+632.7 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+642.9 "Levinbolt Stun 1" sync / 1[56]:[^:]*:Susano:203C:/
+649.3 "Levinbolt Stun 2" sync / 1[56]:[^:]*:Susano:203C:/
+655.9 "Levinbolt Stun 3" sync / 1[56]:[^:]*:Susano:203C:/
+662.4 "Levinbolt Stun 4" sync / 1[56]:[^:]*:Susano:203C:/
+669.8 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+676.1 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+684.1 "Rasen Kaikyo 1" sync / 1[56]:[^:]*:Susano:202D:/
+689.3 "Rasen Kaikyo 2" sync / 1[56]:[^:]*:Susano:202D:/
 
-431.5 "The Hidden Gate" sync /:Susano:2034:/ window 5,5
-442 "The Sealed Gate" duration 15
-444.5 "Rasen Kaikyo" duration 3
-449.5 "Stormsplitter" duration 5.5
+701.6 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+706.7 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+708.3 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+713.8 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+713.8 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+717.4 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+719.2 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+723.9 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+724.7 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+728.1 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+735.3 "--knockback cloud--"
+735.3 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+739.6 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+739.7 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+741.4 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+748.5 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
 
-461 "Stun + Levinbolt" duration 6.5
-467.5 "Stun + Levinbolt" duration 6.5
-474 "Stun + Levinbolt" duration 6.5
-480.5 "Stun + Levinbolt" duration 6.5
+760.0 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/
+776.0 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+781.1 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+782.7 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+785.6 "The Sealed Gate" sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/
+788.2 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+791.9 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+793.7 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+797.3 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+799.2 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+807.3 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+812.4 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+814.8 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+819.1 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+819.2 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+820.9 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+826.0 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+832.1 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
 
-492.5 "Ukehi x 3"
-493.5 "Ukehi (1)"
-495.7 "Ukehi (2)"
-498 "Ukehi (3)"
-
-505 "Churn"
-506.5 "Knockback (dice)" duration 6
-513 "Seasplitter" duration 2.5
-519 "Stack"
-
-519.8 "Rasen Kaikyo" duration 3
-528 "Stormsplitter" duration 5.5
-
-537 "Stun + Levinbolt" duration 6.5
-543.5 "Stun + Levinbolt" duration 6.5
-550 "Stun + Levinbolt" duration 6.5
-556.5 "Stun + Levinbolt" duration 6.5
-
-569.5 "Ukehi x 3"
-571 "Ukehi (1)"
-573.2 "Ukehi (2)"
-575 "Ukehi (3)"
-
-577.5 "Churn"
-581.5 "Rasen Kaikyo (1)" duration 3
-587 "Rasen Kaikyo (2)" duration 3
-
-597 "Stormsplitter" duration 5.5
-
-604.5 "Levinbolt" duration 5
-#607.5 "Thunderhead add"
-610 "Levinbolt + Thunder" duration 5
-611 "Rasen Kaikyo" duration 3
-615.5 "Levinbolt" duration 5
-621 "Levinbolt" duration 5
-621 "Rasen Kaikyo" duration 3
-
-#629 "Thunderhead add"
-631 "Knockback (cloud)" duration 6
-637.5 "Seasplitter" duration 2.5
-643.5 "Stack"
-
-649 "Ukehi x 3"
-650.5 "Ukehi (1)"
-652.7 "Ukehi (2)"
-654.5 "Ukehi (3)"
-
-661 "The Hidden Gate" sync /:Susano:2034:/ window 100,0 jump 431.5
-671.5 "The Sealed Gate" duration 15
-674 "Rasen Kaikyo" duration 3
-679 "Stormsplitter" duration 5.5
+843.6 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/ window 40,40 jump 531.5
+859.3 "Rasen Kaikyo" #sync / 1[56]:[^:]*:Susano:202D:/
+866.6 "Stormsplitter" #sync / 1[56]:[^:]*:Susano:2033:/
+869.2 "The Sealed Gate" #sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/

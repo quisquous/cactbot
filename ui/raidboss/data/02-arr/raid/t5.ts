@@ -1,6 +1,6 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
-import { watchCombatant } from '../../../../../resources/util';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -34,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
-        watchCombatant({
+        Util.watchCombatant({
           ids: [parseInt(matches.sourceId, 16)],
         }, (ret) => {
           const twintaniaBelowGivenHP = ret.combatants.some((c) => {
@@ -58,7 +58,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       response: Responses.tankBuster(),
     },
     {

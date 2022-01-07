@@ -7,11 +7,24 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export type Data = RaidbossData;
 
+// TODO: handle paintings? <_<
+
 // O6N - Sigmascape 2.0 Normal
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV20,
   timelineFile: 'o6n.txt',
   triggers: [
+    {
+      id: 'O6N Demonic Howl',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '282C', source: 'Demon Chadarnook', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '282C', source: 'Gefallen(?:e|er|es|en) Chadarnook', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '282C', source: 'Démon Chadarnouk', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '282C', source: 'チャダルヌーク・デーモン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '282C', source: '恶魔查达奴克', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '282C', source: '차다르누크 악령', capture: false }),
+      response: Responses.aoe(),
+    },
     {
       id: 'O6N Demonic Shear',
       type: 'StartsUsing',
@@ -24,19 +37,37 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
-      id: 'O6N Meteors',
+      id: 'O6N Demonic Pain',
+      type: 'Tether',
+      // 0001 = far enough, 0039 = too close
+      netRegex: NetRegexes.tether({ id: ['0001', '0039'] }),
+      condition: (data, matches) => data.me === matches.target || data.me === matches.source,
+      suppressSeconds: 10,
+      alertText: (data, matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Away From Boss',
+          de: 'Weg vom Boss',
+          fr: 'Éloignez-vous du boss',
+          cn: '远离BOSS',
+          ko: '보스에게서 떨어지기',
+        },
+      },
+    },
+    {
+      id: 'O6N Demonic Stone',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Drop AOEs Away',
+          en: 'Drop Chasing AOE Away',
           de: 'AoEs weglocken',
           fr: 'Posez les AoE au loin',
-          ja: '離れてAoEを置く',
-          cn: '远离放置AOE',
-          ko: '장판 멀리빼기',
+          ja: '離れてAoEを置く', // FIXME
+          cn: '远离放置追踪AOE',
+          ko: '연속장판 멀리빼기',
         },
       },
     },
@@ -156,11 +187,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': '차다르누크 악령',
         'Easterly': '극풍',
         'Haunt': '사념체',
+        'I have claimed the girl in the picture!': '우후후후…… 그림 속 여자는 내가 데려가마……',
         'Portrayal of Earth': '땅의 그림',
         'Portrayal of Fire': '불의 그림',
         'Portrayal of Water': '물의 그림',

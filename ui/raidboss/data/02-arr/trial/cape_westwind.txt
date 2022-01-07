@@ -4,20 +4,20 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 ### Phase 1: skewers and stuns
 0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 30,10
+2.0 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+10.6 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+19.0 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+24.4 "Gate Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:473:/ window 30,10
 
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10,100 jump 24.4
+29.8 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+38.4 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+46.8 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+52.2 "Gate Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:473:/ window 10,100 jump 24.4
 
 57.6 "Shield Skewer"
 66.2 "Shield Skewer"
@@ -26,19 +26,19 @@ hideall "--sync--"
 
 
 ### Phase 2 (80%): firebombs
-199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/ window 200,0
-200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 205,10
-208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-213.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
+199.0 "--sync--" sync / 00:0044:[^:]*:My shields are impregnable/ window 200,0
+200.0 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+204.3 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:474:/ window 205,10
+208.8 "Winds Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:472:/
+213.1 "Firebomb" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:476:/
 
-217.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-221.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-226.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-230.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
+217.4 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+221.7 "Drill Shot" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:475:/
+226.0 "Winds Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:472:/
+230.3 "Firebomb" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:476:/
 
-234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,100 jump 204.3
+234.6 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+238.9 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:474:/ window 20,100 jump 204.3
 243.4 "Winds Of Tartarus"
 247.7 "Firebomb"
 
@@ -49,23 +49,23 @@ hideall "--sync--"
 
 
 ### Phase 3 (60%): Adds
-400.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 200,20
-403.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
+400.0 "Gate Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:473:/ window 200,20
+403.5 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
 
 407.7 "Adds"
 # FIXME: sometimes this shield skewer doesn't happen???
-408.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-413.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,20
-417.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-422.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
+408.7 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+413.2 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:474:/ window 20,20
+417.9 "Winds Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:472:/
+422.4 "Firebomb" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:476:/
 
-426.9 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-431.4 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-435.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-440.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
+426.9 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+431.4 "Drill Shot" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:475:/
+435.9 "Winds Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:472:/
+440.4 "Firebomb" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:476:/
 
-445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,100 jump 413.2
+445.0 "Shield Skewer" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:471:/
+449.5 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:474:/ window 20,100 jump 413.2
 454.2 "Winds Of Tartarus"
 458.7 "Firebomb"
 
@@ -76,21 +76,21 @@ hideall "--sync--"
 
 
 ### Phase 4 (40%): magitek missiles
-584.3 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
+584.3 "--sync--" sync / 00:0044:[^:]*:Your defeat will bring/ window 600,0
 
-600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-604.5 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-608.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
+600.0 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:474:/
+604.5 "Firebomb" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:476:/
+608.8 "Winds Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:472:/
 
-610.0 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 610,30
-615.1 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-619.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-623.7 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-640.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-644.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-649.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
+610.0 "Magitek Missiles" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:478:/ window 610,30
+615.1 "Drill Shot" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:475:/
+619.4 "Firebomb" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:476:/
+623.7 "Winds Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:472:/
+640.2 "Shrapnel Shell" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:474:/
+644.7 "Firebomb" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:476:/
+649.0 "Winds Of Tartarus" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:472:/
 
-650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 20,100 jump 610.0
+650.2 "Magitek Missiles" sync / 1[56]:[^:]*:Rhitahtyn sas Arvina:478:/ window 20,100 jump 610.0
 655.3 "Drill Shot"
 659.6 "Firebomb"
 663.9 "Winds Of Tartarus"

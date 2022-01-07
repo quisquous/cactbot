@@ -1,6 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
-import { watchCombatant } from '../../../../resources/util';
+import Util from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
 import { LocaleText, TriggerSet } from '../../../../types/trigger';
@@ -8,6 +8,9 @@ import { LocaleText, TriggerSet } from '../../../../types/trigger';
 const strikingDummyNames: LocaleText = {
   en: 'Striking Dummy',
   de: 'Trainingspuppe',
+  ja: '木人',
+  cn: '木人',
+  ko: '나무인형',
 };
 
 export interface Data extends RaidbossData {
@@ -213,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に拍手した.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*向木人送上掌声.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
-      sound: '../../resources/sounds/freesound/power_up.ogg',
+      sound: '../../resources/sounds/freesound/power_up.webm',
       soundVolume: 0.3,
       tts: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -234,6 +237,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
+      netRegexCn: NetRegexes.echo({ line: 'cactbot语言.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
       infoText: (data, _matches, output) => output.text!({ lang: data.parserLang }),
       outputStrings: {
@@ -252,6 +256,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
+      netRegexJa: NetRegexes.echo({ line: 'cactbotレスポンステスト.*?', capture: false }),
+      netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
+      netRegexKo: NetRegexes.echo({ line: 'cactbot 응답 테스트.*?', capture: false }),
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -273,8 +280,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
+      netRegexJa: NetRegexes.echo({ line: 'cactbot探知テスト.*?', capture: false }),
+      netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
+      netRegexKo: NetRegexes.echo({ line: 'cactbot 탐지 테스트.*?', capture: false }),
       promise: (data) =>
-        watchCombatant({
+        Util.watchCombatant({
           names: [
             data.me,
             strikingDummyNames[data.lang] ?? strikingDummyNames['en'],
@@ -304,6 +314,9 @@ const triggerSet: TriggerSet<Data> = {
         close: {
           en: 'Dummy close!',
           de: 'Puppe beendet!',
+          ja: '木人に近すぎ！',
+          cn: '靠近木人！',
+          ko: '나무인형과 가까움!',
         },
       },
     },
@@ -381,6 +394,13 @@ const triggerSet: TriggerSet<Data> = {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
         'test sync': 'test sync',
+        'You burst out laughing at the striking dummy': '.*看着木人高声大笑',
+        'cactbot lang': 'cactbot语言',
+        'cactbot test response': 'cactbot响应测试',
+        'cactbot test watch': 'cactbot探测测试',
+        'You clap for the striking dummy': '.*向木人送上掌声',
+        'You psych yourself up alongside the striking dummy': '.*激励木人',
+        'You poke the striking dummy': '.*用手指戳向木人',
       },
       replaceText: {
         'Final Sting': '终极针',
@@ -401,6 +421,13 @@ const triggerSet: TriggerSet<Data> = {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
         'test sync': '테스트 싱크',
+        'You burst out laughing at the striking dummy': '.*나무인형을 보고 폭소를 터뜨립니다',
+        'cactbot lang': 'cactbot 언어',
+        'cactbot test response': 'cactbot 응답 테스트',
+        'cactbot test watch': 'cactbot 탐지 테스트',
+        'You clap for the striking dummy': '.*나무인형에게 박수를 보냅니다',
+        'You psych yourself up alongside the striking dummy': '.*나무인형에게 힘을 불어넣습니다',
+        'You poke the striking dummy': '.*나무인형을 쿡쿡 찌릅니다',
       },
       replaceText: {
         'Final Sting': '마지막 벌침',

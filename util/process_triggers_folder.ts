@@ -28,6 +28,14 @@ const removeImports = (lines: string[]) => {
   });
 };
 
+const removeExportOnDeclarations = (lines: string[]) => {
+  return lines.map((line) => {
+    if (!/^export const /.exec(line))
+      return line;
+    return line.replace(/^export /, '');
+  });
+};
+
 const changeExportToPush = (lines: string[]) => {
   // User files are not modules and so push onto a global Options variable rather than
   // exporting, so modify these files so that they can be used directly as user files.
@@ -75,6 +83,7 @@ const processFile = async (filename: string) => {
 
   lines = removeImports(lines);
   lines = changeExportToPush(lines);
+  lines = removeExportOnDeclarations(lines);
   const lintResult = await lint(lines);
   if (!lintResult) {
     console.error('${filename}: No result from linting?');
@@ -129,11 +138,17 @@ const processAllFiles = async (root: string, tscCmd: string) => {
   process.chdir(path.dirname(process.argv[1] ?? ''));
 
   // Clean up previous directory so tsc doesn't ignore them.
-  fs.rmdirSync(root, { recursive: true });
+  fs.rmSync(root, { recursive: true, force: true });
 
   // Generate javascript from typescript.
   // TODO: replace this with programatic use of TypeScript API.
-  execSync(tscCmd);
+  try {
+    execSync(tscCmd);
+  } catch (e) {
+    console.error(`Failed to run ${tscCmd}`);
+    console.error(e);
+    process.exit(6);
+  }
 
   // Process files.
   await walkDirAsync(root, async (filename) => processFile(filename));

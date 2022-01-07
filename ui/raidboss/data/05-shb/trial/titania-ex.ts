@@ -209,7 +209,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -609,10 +608,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Spirit Of Dew': '물의 정령',
         'Spirit of Flame': '불의 정령',
+        'Spirit of Wood': '나무의 정령',
         'Titania': '티타니아',
         'Puck': '요정의 권속',
         'Peaseblossom': '콩나무',

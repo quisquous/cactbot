@@ -2,6 +2,7 @@ import { Lang } from '../resources/languages';
 import PartyTracker from '../resources/party';
 
 import { Job, Role } from './job';
+import { NetMatches } from './net_matches';
 
 export interface BaseOptions {
   ParserLanguage: Lang;
@@ -36,7 +37,6 @@ export interface RaidbossData {
   CanCleanse: () => boolean;
   CanFeint: () => boolean;
   CanAddle: () => boolean;
-  StopCombat: () => void;
 }
 
 export interface OopsyData {

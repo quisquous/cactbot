@@ -33,8 +33,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '3AA' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
       deathReason: (data, matches) => {
-        if (data.hasThrottle?.[matches.target])
-          return { name: matches.target, text: matches.effect };
+        if (!data.hasThrottle?.[matches.target])
+          return;
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: matches.effect,
+        };
       },
     },
     {
@@ -53,7 +58,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '28AC', ...playerDamageFields }),
       condition: (data, matches) => !data.hasThrottle?.[matches.target],
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, text: matches.ability };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

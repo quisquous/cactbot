@@ -215,7 +215,7 @@ def parse_file(args):
                 entry["ability_name"] = line_fields[5]
 
             # Unknown abilities should be hidden sync lines by default.
-            if line_fields[5].startswith("Unknown_"):
+            if line_fields[5].startswith(("Unknown_", "unknown_")):
                 entry["ability_name"] = "--sync--"
             else:
                 entry["targetable"] = (
@@ -241,6 +241,10 @@ def main(args):
         "Garuda-Egi",
         "Titan-Egi",
         "Ifrit-Egi",
+        "Carbuncle",
+        "Ruby Ifrit",
+        "Emerald Garuda",
+        "Topaz Titan",
         "Emerald Carbuncle",
         "Topaz Carbuncle",
         "Ruby Carbuncle",
@@ -261,9 +265,19 @@ def main(args):
         "Minfilia",
         "Thancred",
         "Urianger",
+        "Estinien",
+        "G'raha Tia",
+        "Alphinaud's Avatar",
+        "Alisaie's Avatar",
+        "Thancred's Avatar",
+        "Urianger's Avatar",
+        "Y'shtola's Avatar",
+        "Estinien's Avatar",
+        "G'raha Tia's Avatar",
         "",
         "Crystal Exarch",
         "Mikoto",
+        "Liturgic Bell",
     ]
 
     # Format the phase timings
@@ -286,13 +300,13 @@ def main(args):
     output = []
     if entries[0]["line_type"] and entries[0]["line_type"] == "zone_seal":
         output.append(
-            '0 "Start" sync /00:0839:{} will be sealed off/ window 0,1'.format(
+            '0.0 "--sync--" sync / 00:0839::{} will be sealed off/ window 0,1'.format(
                 entries[0]["zone_message"].title()
             )
         )
         entries.pop(0)
     else:
-        output.append('0 "Start" sync /Engage!/ window 0,1')
+        output.append('0.0 "--sync--" sync /Engage!/ window 0,1')
 
     for entry in entries:
 
@@ -300,7 +314,7 @@ def main(args):
         if entry["line_type"] in ["21", "22"]:
             # First up, check if it's an ignored entry
             # Ignore autos, probably need a better rule than this
-            if entry["ability_name"] == "Attack":
+            if entry["ability_name"].lower() == "Attack".lower():
                 continue
 
         # Ignore abilities by NPC allies
@@ -371,7 +385,7 @@ def main(args):
         if entry["line_type"] == "34":
             output_entry = '{position:.1f} "{targetable}"'.format(**entry)
         else:
-            output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
+            output_entry = '{position:.1f} "{ability_name}" sync / 1[56]:[^:]*:{combatant}:{ability_id}:/'.format(
                 **entry
             )
 

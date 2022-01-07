@@ -159,7 +159,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3D88', source: 'エデン・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBusterSwap(),
     },
     {
@@ -626,7 +625,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ko',
       'replaceSync': {
         'Eden Prime': '에덴 프라임',
-        'Guardian of Paradise': '에덴 정원사',
+        'Guardian of Paradise': '에덴의 수호자',
       },
       'replaceText': {
         'Cross': '십자',

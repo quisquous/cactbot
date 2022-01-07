@@ -18,7 +18,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Gubal Hard Triclip',
       regex: /Triclip/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
@@ -31,7 +30,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Gubal Hard Properties of Darkness',
       regex: /Darkness \(buster\)/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
   ],
@@ -170,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
         stunMechanoscribe: {
           en: 'Stun Mechanoscribe',
           de: 'betäube Mechanoscholar',
-          fr: 'Stun sur le Mécano-scribe',
+          fr: 'Étourdissez le Mécano-scribe',
           ja: 'スタン：メカノスクライブ',
           cn: '眩晕人偶',
           ko: '기계 서기 기절',
@@ -461,7 +459,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Behemoth Ward': '고서의 베히모스',
         'Demon of the Tome': '고서의 악마',

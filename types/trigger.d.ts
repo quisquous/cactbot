@@ -1,6 +1,6 @@
 import { Lang, NonEnLang } from '../resources/languages';
 import { NetAnyMatches, NetMatches } from '../types/net_matches';
-import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
+import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline_parser';
 
 import { RaidbossData } from './data';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
@@ -165,7 +165,7 @@ export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None
 
 // Because timeline functions run during loading, they only support the base RaidbossData.
 export type TimelineFunc = (data: RaidbossData) => TimelineField;
-export type TimelineField = string | (string | TimelineFunc)[] | TimelineFunc | undefined;
+export type TimelineField = string | TimelineFunc | undefined | TimelineField[];
 
 export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, keyof RaidbossData>;
 
@@ -182,7 +182,10 @@ type RequiredFieldsAsUnion<Type> = {
 export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneIdType | number[];
+  // If the timeline exists, but needs significant improvements and a rewrite.
   timelineNeedsFixing?: boolean;
+  // If no timeline is possible for this zone, e.g. t3.
+  hasNoTimeline?: boolean;
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;
   timelineFile?: string;
@@ -222,3 +225,7 @@ export type LooseTriggerSet =
     triggers?: LooseTrigger[];
     timelineTriggers?: LooseTimelineTrigger[];
   };
+
+export interface RaidbossFileData {
+  [filename: string]: LooseTriggerSet | string;
+}

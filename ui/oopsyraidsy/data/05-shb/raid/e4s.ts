@@ -57,13 +57,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Run Over',
             de: 'Wurde überfahren',
             fr: 'A été écrasé(e)',
-            ja: matches.ability, // FIXME
-            cn: matches.ability, // FIXME
-            ko: matches.ability, // FIXME
+            ja: '突進に当たる',
+            cn: '被碾了',
+            ko: '돌진 맞음',
           },
         };
       },

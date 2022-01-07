@@ -26,7 +26,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '318F' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Knocked off',
@@ -75,7 +75,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return !data.hasHeadwind?.[matches.target] && !data.hasPrimordial?.[matches.target];
       },
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -88,7 +88,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return !data.hasHeadwind?.[matches.target] && !data.hasPrimordial?.[matches.target];
       },
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

@@ -7,51 +7,72 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export type Data = RaidbossData;
 
-// Note: no warnings for Sweeping Flames, Tail Sweep, or Roar.
+// Note: no warning for Roar (2CC3, 285D).
 
 // Rathalos Extreme
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheGreatHuntExtreme,
+  // Mechanics are random, no timeline is possible.
+  hasNoTimeline: true,
   triggers: [
     {
-      id: 'RathEx Mangle',
+      // Frontal conal + tail swipe on left side.
+      // The front conal is 90 degrees, facing front.  The tail swipe starts from direct left
+      // and goes counter-clockwise to (?) back right.  This means that the right flank is
+      // entirely safe, but the left flank has only a 1/8 pie slice of safety.  For consistency,
+      // call this out as "right flank" as "right or front left" is hard to parse.
+      id: 'RathEx Mangle Phase 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'リオレウス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '火龙', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '리오레우스', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
+      netRegex: NetRegexes.startsUsing({ id: '2853', source: 'Rathalos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2853', source: 'Rathalos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2853', source: 'Rathalos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2853', source: 'リオレウス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2853', source: '火龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2853', source: '리오레우스', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Mangle',
-          de: 'Biss und Schweifhieb',
-          fr: 'Broyage',
-          ja: 'アギト',
-          cn: '去侧面',
-          ko: '으깨기',
+          en: 'Right Flank (or out)',
+          de: 'Rechte Flanke (oder raus gehen)',
+          fr: 'Flanc droit (ou extérieur)',
+          cn: '右侧 (或远离)',
+          ko: '오른쪽 (혹은 멀리 가기)',
         },
       },
     },
     {
-      id: 'RathEx Rush',
+      id: 'RathEx Mangle Phase 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'リオレウス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '火龙', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '리오레우스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2863', source: 'Rathalos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2863', source: 'Rathalos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2863', source: 'Rathalos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2863', source: 'リオレウス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2863', source: '火龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2863', source: '리오레우스', capture: false }),
+      response: Responses.awayFromFront('info'),
+    },
+    {
+      // Tail swipe on the right side (and then 180 flip, repeat).
+      id: 'RathEx Tail Swing',
+      type: 'Ability',
+      // No starts using for this.
+      netRegex: NetRegexes.ability({ id: '2855', source: 'Rathalos', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '2855', source: 'Rathalos', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '2855', source: 'Rathalos', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '2855', source: 'リオレウス', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '2855', source: '火龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '2855', source: '리오레우스', capture: false }),
+      // This hits multiple people.
+      suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Rush',
-          de: 'Stürmen',
-          fr: 'Ruée',
-          ja: '突進',
-          cn: '龙车',
-          ko: '돌진',
+          // TODO: we could be fancier and say "Run through" or something for #2.
+          en: 'Left Flank (or out)',
+          de: 'Linke Flanke (oder raus gehen)',
+          fr: 'Suivez le flanc gauche (ou extérieur)',
+          cn: '左侧 (或远离)',
+          ko: '왼쪽 (혹은 멀리가기)',
         },
       },
     },
@@ -64,40 +85,30 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '리오레우스', capture: false }),
-      alarmText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Flaming Recoil',
-          de: 'Flammenschlag vorne',
-          fr: 'Bond enflammé',
-          ja: 'フレイムリコイル',
-          cn: '去背面',
-          ko: '반동 화염',
-        },
-      },
+      // This can one-shot, so alarm.
+      // It seems to be 180 degrees in front, so "Get Behind" rather than "Away From Front".
+      response: Responses.getBehind('alarm'),
     },
     {
-      id: 'RathEx Fire Breath',
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0081' }),
-      condition: Conditions.targetIsYou(),
+      id: 'RathEx Rush',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'リオレウス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '火龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '리오레우스', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Fire Breath on YOU',
-          de: 'Feueratem auf DIR',
-          fr: 'Souffle enflammé sur VOUS',
-          ja: '自分にファイアブレス',
-          cn: '火点名',
-          ko: '화염 숨결 대상자',
+          // For ranged players, Rush is different than Flaming Recoil because they may have to move.
+          en: 'Avoid Charge',
+          de: 'Weiche dem Ansturm aus',
+          fr: 'Évitez la charge',
+          cn: '避开冲锋',
+          ko: '돌진 피하기',
         },
       },
-    },
-    {
-      id: 'RathEx Fireball',
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0084', '005D'] }),
-      response: Responses.stackMarkerOn(),
     },
     {
       id: 'RathEx Adds',
@@ -108,9 +119,68 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.addedCombatant({ name: 'ステップ・シープ', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '草原绵羊', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '초원 양', capture: false }),
-      condition: (data) => data.role === 'tank',
       suppressSeconds: 5,
       response: Responses.killAdds(),
+    },
+    {
+      id: 'RathEx Garula Add',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6173', capture: false }),
+      // Garula stuns and then puts down the telegraph from the east.
+      // We could be like "go somewhere other than east", but "go west" is clearer.
+      response: Responses.goWest(),
+    },
+    {
+      id: 'RathEx Garula Targetable',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6173', capture: false }),
+      delaySeconds: 15,
+      // This is obnoxious to have as an alarm, but it will cause a wipe if nobody does this.
+      alarmText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Use Foothold for QTE',
+          de: 'Benutze Standbein für QTE',
+          fr: 'Utilisez le point d\'appui',
+          cn: '上龙背QTE',
+          ko: '등에 올라타기',
+        },
+      },
+    },
+    {
+      id: 'RathEx Fire Breath',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0081' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
+      // First fireball.
+      id: 'RathEx Fireball Initial',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      // Second and third fireball.
+      id: 'RathEx Fireball',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: ['0084'] }),
+      response: Responses.stackMarkerOn('info'),
+    },
+    {
+      id: 'RathEx Sweeping Flames',
+      type: 'Ability',
+      // No starts using for this.
+      netRegex: NetRegexes.ability({ id: '2862', source: 'Rathalos', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '2862', source: 'Rathalos', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '2862', source: 'Rathalos', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '2862', source: 'リオレウス', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '2862', source: '火龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '2862', source: '리오레우스', capture: false }),
+      // This hits multiple people.
+      suppressSeconds: 1,
+      response: Responses.awayFromFront('info'),
     },
   ],
   timelineReplace: [

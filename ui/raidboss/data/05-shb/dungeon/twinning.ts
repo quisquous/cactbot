@@ -19,7 +19,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus' }),
       netRegexJa: NetRegexes.startsUsing({ id: '3DBC', source: '量産型カーリア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DBC', source: '量产型卡利亚' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '3DBC', source: '양산형 칼리아' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DBC', source: '양산형 칼리야' }),
       condition: (data) => data.CanStun() || data.CanSilence(),
       response: Responses.stun(),
     },
@@ -102,7 +102,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -171,7 +170,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DFB', source: '泰空' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -376,7 +374,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'vitalized reptoid': '활성된 파충류',
         'The Tycoon': '타이쿤',
-        'surplus Kaliya': '양산형 칼리아',
+        'surplus Kaliya': '양산형 칼리야',
         'alpha zaghnal': '알파 자그날',
         'Servomechanical Minotaur': '자동제어 미노타우로스',
         'Mithridates': '미트리다테스',

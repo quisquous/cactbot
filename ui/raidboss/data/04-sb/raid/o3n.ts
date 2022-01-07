@@ -191,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get hit by Ribbit',
           de: 'Lass dich von Quaaak treffen',
-          fr: 'Soyez frappé par Coâââ',
+          fr: 'Faites-vous frapper par Coâââ',
           ja: 'クルルルルを受ける',
           cn: 'BOSS正面吃呱呱',
           ko: '개굴장판 맞기',

@@ -1,5 +1,3 @@
-import { LooseOopsyTrigger } from '../../types/oopsy';
-
 export type MissableBuffType = 'heal' | 'damage' | 'mitigation';
 
 export type MissableEffect = {
@@ -25,7 +23,7 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
     id: 'Collective Unconscious',
     type: 'mitigation',
     effectId: '351',
-    collectSeconds: 10,
+    collectSeconds: 20,
   },
   {
     id: 'Passage of Arms',
@@ -33,13 +31,20 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
     // Arms Up = 498 (others), Passage Of Arms = 497 (you).  Use both in case everybody is missed.
     effectId: ['497', '498'],
     ignoreSelf: true,
-    collectSeconds: 10,
+    collectSeconds: 15,
   },
   {
     id: 'Divine Veil',
     type: 'mitigation',
     effectId: '2D7',
     ignoreSelf: true,
+    collectSeconds: 2,
+  },
+  {
+    // RPR heal
+    id: 'Crest of Time Returned',
+    type: 'heal',
+    effectId: 'A26',
     collectSeconds: 2,
   },
 ] as const;
@@ -90,12 +95,25 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     id: 'Battle Voice',
     type: 'damage',
     abilityId: '76',
+    // TODO: remove this line after 5.x is not supported anymore.
+    // Technically Battle Voice can't miss the bard itself, so this is a noop in 6.x.
     ignoreSelf: true,
   },
   {
+    // 5x
     id: 'Devotion',
     type: 'damage',
     abilityId: '1D1A',
+  },
+  {
+    id: 'Searing Light',
+    type: 'damage',
+    abilityId: '64F2',
+  },
+  {
+    id: 'Arcane Circle',
+    type: 'damage',
+    abilityId: '5F55',
   },
   {
     id: 'Troubadour',
@@ -134,6 +152,12 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     id: 'Pulse of Life',
     type: 'heal',
     abilityId: 'D0',
+  },
+  {
+    // SMN phoenix heal
+    id: 'Everlasting Flight',
+    type: 'heal',
+    abilityId: '4085',
   },
   {
     id: 'Medica',
@@ -206,6 +230,16 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     abilityId: '40A7',
   },
   {
+    id: 'Kerachole',
+    type: 'mitigation',
+    abilityId: '5EEA',
+  },
+  {
+    id: 'Panhaima',
+    type: 'mitigation',
+    abilityId: '5EF7',
+  },
+  {
     id: 'Angel Feathers',
     type: 'heal',
     abilityId: '1097',
@@ -226,9 +260,60 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     abilityId: '40A9',
   },
   {
+    id: 'Stellar Burst',
+    type: 'heal',
+    abilityId: '1D10',
+  },
+  {
+    id: 'Stellar Explosion',
+    type: 'heal',
+    abilityId: '1D11',
+  },
+  {
     id: 'Astral Stasis',
     type: 'heal',
     abilityId: '1098',
+  },
+  {
+    id: 'Prognosis',
+    type: 'heal',
+    abilityId: '5EDE',
+  },
+  {
+    id: 'Physis',
+    type: 'heal',
+    abilityId: '5EE0',
+  },
+  {
+    id: 'Eukrasian Prognosis',
+    type: 'heal',
+    abilityId: '5EE4',
+  },
+  {
+    id: 'Ixochole',
+    type: 'heal',
+    abilityId: '5EEB',
+  },
+  {
+    id: 'Pepsis',
+    type: 'heal',
+    abilityId: '5EED',
+  },
+  {
+    id: 'Physis II',
+    type: 'heal',
+    abilityId: '5EEE',
+  },
+  {
+    id: 'Holos',
+    type: 'heal',
+    abilityId: '5EF6',
+  },
+  {
+    id: 'Pneuma',
+    type: 'heal',
+    // 5EFE on enemies, and 6CB6 on friendlies.
+    abilityId: '6CB6',
   },
   {
     id: 'White Wind',
@@ -247,12 +332,8 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   },
 ] as const;
 
-export const generateBuffTriggers = (): LooseOopsyTrigger[] => {
+export const generateBuffTriggerIds = (): string[] => {
   const buffs: MissableBuff[] = [...missedEffectBuffMap, ...missedAbilityBuffMap];
   buffs.sort((a, b) => a.id.localeCompare(b.id));
-  return buffs.map((buff) => {
-    return {
-      id: `Buff ${buff.id}`,
-    };
-  });
+  return buffs.map((buff) => `Buff ${buff.id}`);
 };

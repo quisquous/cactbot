@@ -24,9 +24,7 @@ export class LineEvent0x00 extends LineEvent {
       this.invalid = true;
 
     this.convertedLine = this.prefix() + this.type + ':' +
-      // If speaker is blank, it's excluded from the converted line
-      (this.speaker !== '' ? this.speaker + ':' : '') +
-      this.message.trim();
+      this.speaker + ':' + this.message.trim();
     this.convertedLine = LineEvent00.replaceChatSymbols(this.convertedLine);
   }
 
@@ -39,8 +37,8 @@ export class LineEvent0x00 extends LineEvent {
 
   static chatSymbolReplacements = [
     {
-      Search: /:\uE06F/g,
-      Replace: ':⇒',
+      Search: /\uE06F/g,
+      Replace: '⇒',
       Type: 'Symbol',
     },
     {

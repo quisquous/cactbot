@@ -97,6 +97,16 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.MatoyasRelict,
   ZoneId.Paglthan,
 
+  // Dungeons (Endwalker)
+  ZoneId.TheTowerOfZot,
+  ZoneId.TheTowerOfBabil,
+  ZoneId.Vanaspati,
+  ZoneId.KtisisHyperboreia,
+  ZoneId.TheAitiascope,
+  ZoneId.TheDeadEnds,
+  ZoneId.Smileton,
+  ZoneId.TheStigmaDreamscape,
+
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
   ZoneId.UnderTheArmor,
@@ -204,6 +214,15 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheAkhAfahAmphitheatreUnreal,
   ZoneId.TheNavelUnreal,
   ZoneId.TheWhorleaterUnreal,
+
+  // Trials (Endwalker)
+  ZoneId.TheDarkInside,
+  ZoneId.TheMothercrystal,
+  ZoneId.TheFinalDay,
+
+  // High-end Trials (Endwalker)
+  ZoneId.TheMinstrelsBalladZodiarksFall,
+  ZoneId.TheMinstrelsBalladHydaelynsCall,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -329,6 +348,18 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.EdensPromiseLitanySavage,
   ZoneId.EdensPromiseAnamorphosisSavage,
   ZoneId.EdensPromiseEternitySavage,
+
+  // Normal Raids (Endwalker)
+  ZoneId.AsphodelosTheFirstCircle,
+  ZoneId.AsphodelosTheSecondCircle,
+  ZoneId.AsphodelosTheThirdCircle,
+  ZoneId.AsphodelosTheFourthCircle,
+
+  // Savage Raids (Endwalker)
+  ZoneId.AsphodelosTheFirstCircleSavage,
+  ZoneId.AsphodelosTheSecondCircleSavage,
+  ZoneId.AsphodelosTheThirdCircleSavage,
+  ZoneId.AsphodelosTheFourthCircleSavage,
 
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,

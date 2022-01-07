@@ -4,13 +4,44 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: kill adds from failed Demon Simulation?
+
 export type Data = RaidbossData;
 
 // O7N - Sigmascape 3.0 Normal
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.SigmascapeV30,
   timelineFile: 'o7n.txt',
+  timelineTriggers: [
+    {
+      id: 'O7N Chakra Burst Towers',
+      regex: /Chakra Burst/,
+      beforeSeconds: 9,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '장판 하나씩 들어가기',
+        },
+      },
+    },
+  ],
   triggers: [
+    {
+      id: 'O7N Diffractive Plasma',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '276E', source: 'Guardian', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '276E', source: 'Wächter', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '276E', source: 'Gardien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '276E', source: 'ガーディアン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '276E', source: '守护者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '276E', source: '가디언', capture: false }),
+      response: Responses.aoe(),
+    },
     {
       id: 'O7N Magitek Ray',
       type: 'StartsUsing',
@@ -20,17 +51,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '276B', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276B', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276B', source: '가디언', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Magitek Ray',
-          de: 'Magitek-Laser',
-          fr: 'Rayon Magitek',
-          ja: '魔導レーザー',
-          cn: '直线AOE',
-          ko: '마도 레이저',
-        },
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'O7N Arm And Hammer',
@@ -56,13 +77,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'O7N Diffractive Laser',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2761', source: 'Guardian', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2761', source: 'Wächter', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2761', source: 'Gardien', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2761', source: 'ガーディアン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2761', source: '守护者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2761', source: '가디언', capture: false }),
+      type: 'GainsEffect',
+      // Air Force Simulation effect happens ~3 seconds before Diffractive Laser (2761) starts casting.
+      netRegex: NetRegexes.gainsEffect({ effectId: '5D2', capture: false }),
+      // All of the various hidden Guardian adds all get this effect.
+      suppressSeconds: 5,
       response: Responses.getOut(),
     },
     {
@@ -70,6 +89,67 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn('info'),
+    },
+    {
+      id: 'O7N Bomb Deployment',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '2762', source: 'Guardian', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2762', source: 'Wächter', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2762', source: 'Gardien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2762', source: 'ガーディアン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2762', source: '守护者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2762', source: '가디언', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Stand in glowing bomb circle',
+          de: 'Steh im grün-leuchtenden Kreis der Bombe',
+          fr: 'Placez-vous dans le cercle lumineux',
+          cn: '站在炸弹发光圈内',
+          ko: '장판에 한명씩 들어가기',
+        },
+      },
+    },
+    {
+      id: 'O7N Demon Simulation',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '2752', source: 'Guardian', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2752', source: 'Wächter', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2752', source: 'Gardien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2752', source: 'ガーディアン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2752', source: '守护者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2752', source: '가디언', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Activate 3 person towers',
+          de: 'Aktiviere 3 Spieler-Türme',
+          fr: 'Activez les tours avec 3 personnes',
+          cn: '3人踩塔',
+          ko: '3인장판 처리하기',
+        },
+      },
+    },
+    {
+      id: 'O7N Kill Phase Adds',
+      type: 'AddedCombatant',
+      // 7018 = Air Force
+      // 7110 = Dadaluma
+      // 7111 = Ultros
+      // 7113 = Bibliotaph
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['7018', '7110', '7111', '7113'] }),
+      infoText: (data, matches, output) => {
+        return output.kill!({ name: matches.name });
+      },
+      outputStrings: {
+        kill: {
+          en: 'Kill ${name} add',
+          de: 'Besiege ${name} Add',
+          fr: 'Tuez l\'add ${name}',
+          cn: '击杀 ${name} 小怪',
+          ko: '${name} 처치',
+        },
+      },
     },
   ],
   timelineReplace: [
@@ -215,7 +295,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Air Force': '에어포스',
         'Bibliotaph': '비블리오타프',
@@ -223,11 +302,13 @@ const triggerSet: TriggerSet<Data> = {
         'Guardian': '가디언',
         'Tentacle': '문어발',
         'Ultros': '오르트로스',
+        'WEAPON SYSTEMS ONLINE': '병기 제어 시스템 기동……',
       },
       'replaceText': {
         'Arm And Hammer': '양팔 내리치기',
         'Aura Cannon': '오라 포격',
         'Bomb Deployment': '폭탄 설치',
+        'Burst/Darkness': '마법작렬/보이드',
         'Chain Cannon': '기관총',
         'Chakra Burst': '차크라 폭발',
         'Demon Simulation': '불러오기: 악마',
@@ -238,10 +319,12 @@ const triggerSet: TriggerSet<Data> = {
         'Magitek Ray': '마도 레이저',
         'Main Cannon': '주포',
         'Missile Simulation': '불러오기: 미사일',
-        'Prey': 'プレイ',
+        'Plane Laser': '에어포스 레이저',
+        'Prey': '표식',
         'Run Program': '실체화 프로그램',
         'Shockwave': '충격파',
         'Tentacle Simulation': '불러오기: 문어발',
+        'Tentacle(?! )': '문어발',
         'Wallop': '매질',
       },
     },

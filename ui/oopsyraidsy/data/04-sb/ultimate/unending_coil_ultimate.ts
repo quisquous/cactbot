@@ -29,6 +29,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Twister Pop',
             de: 'Wirbelsturm berührt',
@@ -48,10 +49,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Pizza Slice',
             de: 'Pizzastück',
-            fr: 'Parts de pizza',
+            fr: 'Part de pizza',
             ja: 'サーミオニックバースト',
             cn: '天崩地裂',
             ko: '장판에 맞음',
@@ -143,7 +145,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text = matches.effect + ' #2';
         else
           text = matches.effect + ' #3';
-        return { name: matches.target, text: text };
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: text,
+        };
       },
     },
   ],

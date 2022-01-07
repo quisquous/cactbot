@@ -190,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
         spreadAndStay: {
           en: 'Spread and Stay',
           de: 'Verteilen und bleiben',
-          fr: 'Ecartez-vous et restez',
+          fr: 'Écartez-vous et restez',
           ja: '散開して待機',
           cn: '分散并停留',
           ko: '산개하고 가만히',
@@ -354,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
         dropOutsideKnockback: {
           en: 'Drop Outside + Knockback',
           de: 'Geh nächste Ecke nah am Tornado',
-          fr: 'Déposez dans les coins',
+          fr: 'Déposez dans les coins + Poussée',
           ja: 'メテオ捨てて + ノックバック',
           cn: '远离放点名 + 冲回人群',
           ko: '바깥으로 빼기 + 넉백',
@@ -457,7 +457,7 @@ const triggerSet: TriggerSet<Data> = {
         healAllToFull: {
           en: 'Heal All to Full',
           de: 'Alle vollheilen',
-          fr: 'Soignez tout le monde full vie',
+          fr: 'Soignez tout le monde complètement',
           ja: 'HP戻して',
           cn: '奶满全队',
           ko: '전원 체력 풀피로',
@@ -465,7 +465,7 @@ const triggerSet: TriggerSet<Data> = {
         healTankshealersToFull: {
           en: 'Heal Tanks/Healers to full',
           de: 'Tanks/Heiler vollheilen',
-          fr: 'Soignez Heals/Tanks full vie',
+          fr: 'Soignez Heals/Tanks complètement',
           ja: 'HP戻して',
           cn: '奶满T奶',
           ko: '탱/힐 체력 풀피로',

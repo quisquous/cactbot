@@ -1,5 +1,4 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
-import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
@@ -34,20 +33,6 @@ export class LineEvent0x19 extends LineEvent {
       spawn: this.timestamp,
       despawn: this.timestamp,
     });
-
-    let resolvedSourceName: string | undefined;
-    let resolvedTargetName: string | undefined;
-
-    if (this.sourceId !== '00')
-      resolvedSourceName = repo.resolveName(this.sourceId, this.sourceName);
-
-    if (this.targetId !== '00')
-      resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
-
-    const defeatedName = (resolvedTargetName ?? this.sourceName);
-    const killerName = (resolvedSourceName ?? this.sourceName);
-    this.convertedLine = this.prefix() + EmulatorCommon.properCase(defeatedName) +
-      ' was defeated by ' + EmulatorCommon.properCase(killerName) + '.';
   }
 }
 

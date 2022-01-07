@@ -473,8 +473,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target)
           return output.mornAfahOnYou!();
 
-        if (data.role === 'tank' || data.role === 'healer' || data.CanAddle())
-          return output.mornAfahOn!({ player: data.ShortName(matches.target) });
+        return output.mornAfahOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         mornAfahOnYou: {

@@ -1,18 +1,20 @@
-// canAnonymize: boolean whether this line can be anonymized
-// playerIds: map of indexes from a player id to the index of that player name
-// isUnknown: needs more information, never seen this log
-// optionalFields: a list of fields that are ok to not appear (or have invalid ids)
-// firstUnknownField: fields at this index and beyond are cleared, when anonymizing
-// globalInclude: include all of these lines in any split
-// lastInclude: include the last line of this type in any split
+import { NetFieldsReverse } from '../types/net_fields';
 
 export type LogDefinition = {
   type: string;
   name: string;
+  // Parsed ACT log line type.
+  messageType: string;
+  // include all of these lines in any split
   globalInclude?: boolean;
+  // include the last line of this type in any split
   lastInclude?: boolean;
+  // whether this line can be anonymized
   canAnonymize?: boolean;
+  // needs more information, never seen this log
   isUnknown?: boolean;
+  // fields at this index and beyond are cleared, when anonymizing
+  firstUnknownField?: number;
   fields?: { [fieldName: string]: number };
   subFields?: {
     [fieldName: string]: {
@@ -22,7 +24,10 @@ export type LogDefinition = {
       };
     };
   };
+  // map of indexes from a player id to the index of that player name
   playerIds?: { [fieldIdx: number]: number | null };
+  // a list of fields that are ok to not appear (or have invalid ids)
+  optionalFields?: readonly number[];
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 
@@ -30,6 +35,7 @@ const logDefinitions = {
   GameLog: {
     type: '00',
     name: 'GameLog',
+    messageType: 'ChatLog',
     fields: {
       type: 0,
       timestamp: 1,
@@ -61,6 +67,7 @@ const logDefinitions = {
   ChangeZone: {
     type: '01',
     name: 'ChangeZone',
+    messageType: 'Territory',
     fields: {
       type: 0,
       timestamp: 1,
@@ -73,6 +80,7 @@ const logDefinitions = {
   ChangedPlayer: {
     type: '02',
     name: 'ChangedPlayer',
+    messageType: 'ChangePrimaryPlayer',
     fields: {
       type: 0,
       timestamp: 1,
@@ -88,6 +96,7 @@ const logDefinitions = {
   AddedCombatant: {
     type: '03',
     name: 'AddedCombatant',
+    messageType: 'AddCombatant',
     fields: {
       type: 0,
       timestamp: 1,
@@ -120,6 +129,7 @@ const logDefinitions = {
   RemovedCombatant: {
     type: '04',
     name: 'RemovedCombatant',
+    messageType: 'RemoveCombatant',
     fields: {
       type: 0,
       timestamp: 1,
@@ -143,54 +153,10 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  AddBuff: {
-    type: '05',
-    name: 'AddBuff',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  RemoveBuff: {
-    type: '06',
-    name: 'RemoveBuff',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  FlyingText: {
-    type: '07',
-    name: 'FlyingText',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  OutgoingAbility: {
-    type: '08',
-    name: 'OutgoingAbility',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
-  IncomingAbility: {
-    type: '09',
-    name: 'IncomingAbility',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
   PartyList: {
     type: '11',
     name: 'PartyList',
+    messageType: 'PartyList',
     fields: {
       type: 0,
       timestamp: 1,
@@ -278,6 +244,7 @@ const logDefinitions = {
   PlayerStats: {
     type: '12',
     name: 'PlayerStats',
+    messageType: 'PlayerStats',
     fields: {
       type: 0,
       timestamp: 1,
@@ -297,22 +264,15 @@ const logDefinitions = {
       skillSpeed: 15,
       spellSpeed: 16,
       tenacity: 18,
+      localContentId: 19,
     },
     canAnonymize: true,
     lastInclude: true,
   },
-  CombatantHP: {
-    type: '13',
-    name: 'CombatantHP',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
   StartsUsing: {
     type: '20',
     name: 'StartsUsing',
+    messageType: 'StartsCasting',
     fields: {
       type: 0,
       timestamp: 1,
@@ -338,6 +298,7 @@ const logDefinitions = {
   Ability: {
     type: '21',
     name: 'Ability',
+    messageType: 'ActionEffect',
     fields: {
       type: 0,
       timestamp: 1,
@@ -369,6 +330,8 @@ const logDefinitions = {
       y: 41,
       z: 42,
       heading: 43,
+      sequence: 44,
+      targetIndex: 45,
     },
     playerIds: {
       2: 3,
@@ -381,6 +344,7 @@ const logDefinitions = {
   NetworkAOEAbility: {
     type: '22',
     name: 'NetworkAOEAbility',
+    messageType: 'AOEActionEffect',
     fields: {
       type: 0,
       timestamp: 1,
@@ -407,6 +371,7 @@ const logDefinitions = {
   NetworkCancelAbility: {
     type: '23',
     name: 'NetworkCancelAbility',
+    messageType: 'CancelAction',
     fields: {
       type: 0,
       timestamp: 1,
@@ -424,6 +389,7 @@ const logDefinitions = {
   NetworkDoT: {
     type: '24',
     name: 'NetworkDoT',
+    messageType: 'DoTHoT',
     fields: {
       type: 0,
       timestamp: 1,
@@ -451,6 +417,7 @@ const logDefinitions = {
   WasDefeated: {
     type: '25',
     name: 'WasDefeated',
+    messageType: 'Death',
     fields: {
       type: 0,
       timestamp: 1,
@@ -468,6 +435,7 @@ const logDefinitions = {
   GainsEffect: {
     type: '26',
     name: 'GainsEffect',
+    messageType: 'StatusAdd',
     fields: {
       type: 0,
       timestamp: 1,
@@ -479,8 +447,8 @@ const logDefinitions = {
       targetId: 7,
       target: 8,
       count: 9,
-      targetHp: 10,
-      hp: 11,
+      targetMaxHp: 10,
+      sourceMaxHp: 11,
     },
     playerIds: {
       5: 6,
@@ -491,6 +459,7 @@ const logDefinitions = {
   HeadMarker: {
     type: '27',
     name: 'HeadMarker',
+    messageType: 'TargetIcon',
     fields: {
       type: 0,
       timestamp: 1,
@@ -506,6 +475,7 @@ const logDefinitions = {
   NetworkRaidMarker: {
     type: '28',
     name: 'NetworkRaidMarker',
+    messageType: 'WaymarkMarker',
     fields: {
       type: 0,
       timestamp: 1,
@@ -522,6 +492,7 @@ const logDefinitions = {
   NetworkTargetMarker: {
     type: '29',
     name: 'NetworkTargetMarker',
+    messageType: 'SignMarker',
     fields: {
       type: 0,
       timestamp: 1,
@@ -540,6 +511,7 @@ const logDefinitions = {
   LosesEffect: {
     type: '30',
     name: 'LosesEffect',
+    messageType: 'StatusRemove',
     fields: {
       type: 0,
       timestamp: 1,
@@ -560,6 +532,7 @@ const logDefinitions = {
   NetworkGauge: {
     type: '31',
     name: 'NetworkGauge',
+    messageType: 'Gauge',
     fields: {
       type: 0,
       timestamp: 1,
@@ -580,6 +553,7 @@ const logDefinitions = {
   NetworkWorld: {
     type: '32',
     name: 'NetworkWorld',
+    messageType: 'World',
     fields: {
       type: 0,
       timestamp: 1,
@@ -589,6 +563,7 @@ const logDefinitions = {
   ActorControl: {
     type: '33',
     name: 'ActorControl',
+    messageType: 'Director',
     fields: {
       type: 0,
       timestamp: 1,
@@ -604,6 +579,7 @@ const logDefinitions = {
   NameToggle: {
     type: '34',
     name: 'NameToggle',
+    messageType: 'NameToggle',
     fields: {
       type: 0,
       timestamp: 1,
@@ -622,6 +598,7 @@ const logDefinitions = {
   Tether: {
     type: '35',
     name: 'Tether',
+    messageType: 'Tether',
     fields: {
       type: 0,
       timestamp: 1,
@@ -641,6 +618,7 @@ const logDefinitions = {
   LimitBreak: {
     type: '36',
     name: 'LimitBreak',
+    messageType: 'LimitBreak',
     fields: {
       type: 0,
       timestamp: 1,
@@ -652,6 +630,7 @@ const logDefinitions = {
   NetworkEffectResult: {
     type: '37',
     name: 'NetworkEffectResult',
+    messageType: 'EffectResult',
     fields: {
       type: 0,
       timestamp: 1,
@@ -678,6 +657,7 @@ const logDefinitions = {
   StatusEffect: {
     type: '38',
     name: 'StatusEffect',
+    messageType: 'StatusList',
     fields: {
       type: 0,
       timestamp: 1,
@@ -695,8 +675,7 @@ const logDefinitions = {
       data0: 15,
       data1: 16,
       data2: 17,
-      data3: 18,
-      data4: 19,
+      // Variable number of triplets here, but at least one.
     },
     playerIds: {
       2: 3,
@@ -707,6 +686,7 @@ const logDefinitions = {
   NetworkUpdateHP: {
     type: '39',
     name: 'NetworkUpdateHP',
+    messageType: 'UpdateHp',
     fields: {
       type: 0,
       timestamp: 1,
@@ -731,6 +711,7 @@ const logDefinitions = {
   Map: {
     type: '40',
     name: 'Map',
+    messageType: 'ChangeMap',
     fields: {
       type: 0,
       timestamp: 1,
@@ -741,9 +722,25 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
+  SystemLogMessage: {
+    type: '41',
+    name: 'SystemLogMessage',
+    messageType: 'SystemLogMessage',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      // unknown: 2,
+      id: 3,
+      param0: 4,
+      param1: 5,
+      param2: 6,
+    },
+    canAnonymize: true,
+  },
   ParserInfo: {
     type: '249',
     name: 'ParserInfo',
+    messageType: 'Settings',
     fields: {
       type: 0,
       timestamp: 1,
@@ -754,6 +751,7 @@ const logDefinitions = {
   ProcessInfo: {
     type: '250',
     name: 'ProcessInfo',
+    messageType: 'Process',
     fields: {
       type: 0,
       timestamp: 1,
@@ -764,6 +762,7 @@ const logDefinitions = {
   Debug: {
     type: '251',
     name: 'Debug',
+    messageType: 'Debug',
     fields: {
       type: 0,
       timestamp: 1,
@@ -774,6 +773,7 @@ const logDefinitions = {
   PacketDump: {
     type: '252',
     name: 'PacketDump',
+    messageType: 'PacketDump',
     fields: {
       type: 0,
       timestamp: 1,
@@ -783,6 +783,7 @@ const logDefinitions = {
   Version: {
     type: '253',
     name: 'Version',
+    messageType: 'Version',
     fields: {
       type: 0,
       timestamp: 1,
@@ -793,24 +794,17 @@ const logDefinitions = {
   Error: {
     type: '254',
     name: 'Error',
+    messageType: 'Error',
     fields: {
       type: 0,
       timestamp: 1,
     },
     canAnonymize: false,
   },
-  Timer: {
-    type: '255',
-    name: 'Timer',
-    fields: {
-      type: 0,
-      timestamp: 1,
-    },
-    isUnknown: true,
-  },
   None: {
     type: '[0-9]+',
     name: 'None',
+    messageType: 'None',
     fields: {
       type: 0,
       timestamp: 1,
@@ -825,5 +819,18 @@ console.assert(assertLogDefinitions);
 
 export type LogDefinitions = typeof logDefinitions;
 export type LogDefinitionTypes = keyof LogDefinitions;
+
+export type ParseHelperField<
+  Type extends LogDefinitionTypes,
+  Fields extends NetFieldsReverse[Type],
+  Field extends keyof Fields,
+> = {
+  field: Fields[Field] extends string ? Fields[Field] : never;
+  value?: string;
+};
+
+export type ParseHelperFields<T extends LogDefinitionTypes> = {
+  [field in keyof NetFieldsReverse[T]]: ParseHelperField<T, NetFieldsReverse[T], field>;
+};
 
 export default logDefinitions;

@@ -29,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Cleanse Doom soon',
           de: 'Reinige Verhängnis bald',
-          fr: 'Guérison sur le Glas bientot',
+          fr: 'Guérison du Glas bientôt',
           ja: '死の宣告にエスナ',
           cn: '驱散死宣',
           ko: '죽음의 선고 해제하기',

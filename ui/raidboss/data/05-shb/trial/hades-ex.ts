@@ -85,7 +85,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '47A6', source: '哈迪斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47A6', source: '하데스' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -209,7 +208,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47B8', source: '나브리알레스의 그림자', capture: false }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       delaySeconds: 25,
       response: Responses.aoe(),
     },
@@ -422,7 +420,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['以格约姆之影', '拉哈布雷亚之影'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
-      condition: (data) => data.role === 'healer',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -518,7 +515,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '47CC', source: '至尊无影之影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47CC', source: '아씨엔 프라임의 그림자', capture: false }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       delaySeconds: 12,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -839,7 +835,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ id: '47F6', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '47F6', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '47F6', source: '하데스', capture: false }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       // After tanks take tower damage
       delaySeconds: 2,
       suppressSeconds: 2,
@@ -1072,6 +1067,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
+        'Aetherial Gaol': '以太牢狱',
         'Arcane Font': '立体魔法阵',
         'Arcane Globe': '球体魔法阵',
         'Ascian Prime\'s Shade': '至尊无影之影',
@@ -1136,6 +1132,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
+        'Aetherial Gaol': '에테르 감옥',
         'Arcane Font': '입체 마법진',
         'Arcane Globe': '구체 마법진',
         'Ascian Prime\'s Shade': '아씨엔 프라임의 그림자',

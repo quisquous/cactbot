@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import { jobToRole } from '../../../../resources/util';
+import Util from '../../../../resources/util';
 import AnalyzedEncounter, { PerspectiveTrigger } from '../data/AnalyzedEncounter';
 import RaidEmulator from '../data/RaidEmulator';
 import EmulatorCommon, { cloneSafe, getTemplateChild, querySelectorSafe } from '../EmulatorCommon';
@@ -15,10 +15,12 @@ const jobOrder = [
   'WHM',
   'SCH',
   'AST',
+  'SGE',
   'MNK',
   'DRG',
   'NIN',
   'SAM',
+  'RPR',
   'BRD',
   'MCH',
   'DNC',
@@ -212,7 +214,7 @@ export default class EmulatedPartyInfo extends EventBus {
       bar.classList.remove('dps');
       if (combatant.job) {
         bar.classList.add(
-          jobToRole(combatant.job),
+          Util.jobToRole(combatant.job),
         );
       }
 

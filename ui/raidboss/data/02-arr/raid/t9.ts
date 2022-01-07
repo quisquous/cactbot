@@ -2,7 +2,7 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-import { watchCombatant } from '../../../../../resources/util';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -46,7 +46,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T9 Claw',
       regex: /Bahamut's Claw x5/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       response: Responses.tankBuster(),
     },
     {
@@ -170,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
-        watchCombatant({
+        Util.watchCombatant({
           ids: [parseInt(matches.sourceId, 16)],
         }, (ret) => {
           return ret.combatants.some((c) => {

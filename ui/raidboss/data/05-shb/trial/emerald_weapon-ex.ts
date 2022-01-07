@@ -20,7 +20,7 @@ export interface Data extends RaidbossData {
   seenMines?: boolean;
   orbs?: NetMatches['AddedCombatant'][];
   primusPlayers?: string[];
-  tertius?: NetMatches['StartsUsing'][];
+  tertius?: NetMatches['Ability'][];
 }
 
 const centerX = 100;
@@ -355,13 +355,15 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EmeraldEx Tertius Terminus Est',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'BitBlade', id: '55CD' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Revolverklingen-Arm', id: '55CD' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Pistolame Volante', id: '55CD' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ガンブレードビット', id: '55CD' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '枪刃浮游炮', id: '55CD' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '건블레이드 비트', id: '55CD' }),
+      // StartsUsing has positions but is inconsistent when entities are newly moved.
+      // This is still ~7s of warning, and if we wanted to be fancier, knowing 4 would be enough.
+      type: 'Ability',
+      netRegex: NetRegexes.abilityFull({ source: 'BitBlade', id: '55CD' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Revolverklingen-Arm', id: '55CD' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Pistolame Volante', id: '55CD' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'ガンブレードビット', id: '55CD' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '枪刃浮游炮', id: '55CD' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '건블레이드 비트', id: '55CD' }),
       durationSeconds: 7,
       alertText: (data, matches, output) => {
         (data.tertius ??= []).push(matches);
@@ -436,12 +438,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Emerald Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5585', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5585', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5585', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5585', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5585', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5585', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D6', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D6', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D6', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D6', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55D6', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55D6', capture: false }),
       // Don't collide with Tertius Terminus Est alert, and this is important.
       response: Responses.knockback('alarm'),
     },
@@ -674,7 +676,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'bitblade': '건블레이드 비트',
         'Black Wolf\'s Image': '가이우스의 환영',

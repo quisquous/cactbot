@@ -183,7 +183,7 @@ namespace Cactbot {
 
         // dump '\0' string terminators
         var memoryName = System.Text.Encoding.UTF8.GetString(mem.Name, EntityMemory.nameBytes).Split(new[] { '\0' }, 2)[0];
-        var capitalizedName = FFXIV_ACT_Plugin.Common.StringHelper.ToProperCase(memoryName);
+        var capitalizedName = System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(memoryName);
 
         EntityData entity = new EntityData() {
           name = capitalizedName,
@@ -505,7 +505,7 @@ namespace Cactbot {
       public byte umbralHearts;
 
       [FieldOffset(0x06)]
-      public byte foulCount;
+      public byte polyglot;
 
       [NonSerialized]
       [FieldOffset(0x07)]

@@ -44,14 +44,16 @@ const nameToJobEnum: Record<Job, number> = {
   BLU: 36,
   GNB: 37,
   DNC: 38,
+  RPR: 39,
+  SGE: 40,
 };
 
 const allJobs = Object.keys(nameToJobEnum) as Job[];
 const allRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer', 'none'] as Role[];
 
 const tankJobs: Job[] = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
-const healerJobs: Job[] = ['CNJ', 'WHM', 'SCH', 'AST'];
-const meleeDpsJobs: Job[] = ['PGL', 'MNK', 'LNC', 'DRG', 'ROG', 'NIN', 'SAM'];
+const healerJobs: Job[] = ['CNJ', 'WHM', 'SCH', 'AST', 'SGE'];
+const meleeDpsJobs: Job[] = ['PGL', 'MNK', 'LNC', 'DRG', 'ROG', 'NIN', 'SAM', 'RPR'];
 const rangedDpsJobs: Job[] = ['ARC', 'BRD', 'DNC', 'MCH'];
 const casterDpsJobs: Job[] = ['BLU', 'RDM', 'BLM', 'SMN', 'ACN', 'THM'];
 const dpsJobs: Job[] = [...meleeDpsJobs, ...rangedDpsJobs, ...casterDpsJobs];
@@ -111,7 +113,7 @@ const shouldCancelWatch = (
   return false;
 };
 
-export const watchCombatant: WatchCombatantFunc = (params, func) => {
+const watchCombatant: WatchCombatantFunc = (params, func) => {
   return new Promise<void>((res, rej) => {
     const delay = params.delay ?? 1000;
 
@@ -156,38 +158,42 @@ export const watchCombatant: WatchCombatantFunc = (params, func) => {
   });
 };
 
-export const clearWatchCombatants = (): void => {
-  while (watchCombatantMap.length > 0) {
-    const watch = watchCombatantMap.pop();
-    if (watch)
-      watch.cancel = true;
-  }
-};
+const Util = {
+  jobEnumToJob: (id: number) => {
+    const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
+    return job ?? 'NONE';
+  },
+  jobToJobEnum: (job: Job) => nameToJobEnum[job],
+  jobToRole: (job: Job) => {
+    const role = jobToRoleMap.get(job);
+    return role ?? 'none';
+  },
+  getAllRoles: (): readonly Role[] => allRoles,
+  isTankJob: (job: Job) => tankJobs.includes(job),
+  isHealerJob: (job: Job) => healerJobs.includes(job),
+  isMeleeDpsJob: (job: Job) => meleeDpsJobs.includes(job),
+  isRangedDpsJob: (job: Job) => rangedDpsJobs.includes(job),
+  isCasterDpsJob: (job: Job) => casterDpsJobs.includes(job),
+  isDpsJob: (job: Job) => dpsJobs.includes(job),
+  isCraftingJob: (job: Job) => craftingJobs.includes(job),
+  isGatheringJob: (job: Job) => gatheringJobs.includes(job),
+  isCombatJob: (job: Job) => {
+    return !craftingJobs.includes(job) && !gatheringJobs.includes(job);
+  },
+  canStun: (job: Job) => stunJobs.includes(job),
+  canSilence: (job: Job) => silenceJobs.includes(job),
+  canSleep: (job: Job) => sleepJobs.includes(job),
+  canCleanse: (job: Job) => cleanseJobs.includes(job),
+  canFeint: (job: Job) => feintJobs.includes(job),
+  canAddle: (job: Job) => addleJobs.includes(job),
+  watchCombatant: watchCombatant,
+  clearWatchCombatants: () => {
+    while (watchCombatantMap.length > 0) {
+      const watch = watchCombatantMap.pop();
+      if (watch)
+        watch.cancel = true;
+    }
+  },
+} as const;
 
-export const jobEnumToJob = (id: number): Job => {
-  const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
-  return job ?? 'NONE';
-};
-export const jobToJobEnum = (job: Job): number => nameToJobEnum[job];
-export const jobToRole = (job: Job): Role => {
-  const role = jobToRoleMap.get(job);
-  return role ?? 'none';
-};
-export const getAllRoles = (): readonly Role[] => allRoles;
-export const isTankJob = (job: Job): boolean => tankJobs.includes(job);
-export const isHealerJob = (job: Job): boolean => healerJobs.includes(job);
-export const isMeleeDpsJob = (job: Job): boolean => meleeDpsJobs.includes(job);
-export const isRangedDpsJob = (job: Job): boolean => rangedDpsJobs.includes(job);
-export const isCasterDpsJob = (job: Job): boolean => casterDpsJobs.includes(job);
-export const isDpsJob = (job: Job): boolean => dpsJobs.includes(job);
-export const isCraftingJob = (job: Job): boolean => craftingJobs.includes(job);
-export const isGatheringJob = (job: Job): boolean => gatheringJobs.includes(job);
-export const isCombatJob = (job: Job): boolean => {
-  return !craftingJobs.includes(job) && !gatheringJobs.includes(job);
-};
-export const canStun = (job: Job): boolean => stunJobs.includes(job);
-export const canSilence = (job: Job): boolean => silenceJobs.includes(job);
-export const canSleep = (job: Job): boolean => sleepJobs.includes(job);
-export const canCleanse = (job: Job): boolean => cleanseJobs.includes(job);
-export const canFeint = (job: Job): boolean => feintJobs.includes(job);
-export const canAddle = (job: Job): boolean => addleJobs.includes(job);
+export default Util;

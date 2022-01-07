@@ -17,7 +17,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bardam\'s Mettle Feathercut',
       regex: /Feathercut/,
       beforeSeconds: 4,
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
   ],
@@ -181,7 +180,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback Laser on YOU',
           de: 'Rückstoß-Laser auf DIR',
-          fr: 'Poussée-laser sur VOUS',
+          fr: 'Poussée laser sur VOUS',
           ja: '自分にノックバック',
           cn: '击退点名',
           ko: '날갯짓 대상자',

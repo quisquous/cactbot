@@ -74,12 +74,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'luminous aetheroplasm',
             de: 'Luminiszentes Ätheroplasma',
             fr: 'Éthéroplasma lumineux',
             ja: '光性爆雷',
             cn: '光性爆雷',
+            ko: '빛의 폭뢰',
           },
         };
       },
@@ -116,6 +118,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'Poupée morte',
             ja: 'ドールが死んだ',
             cn: '浮士德死亡',
+            ko: '인형이 죽음',
           },
         };
       },
@@ -126,7 +129,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4827', ...playerDamageFields }),
       condition: (data, matches) => !data.party.isTank(matches.target),
       mistake: (_data, matches) => {
-        return { type: 'fail', name: matches.target, text: matches.ability };
+        return { type: 'fail', name: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -158,6 +161,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.hasThrottle[matches.target])
           return;
         return {
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
         };
@@ -171,7 +175,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, text: matches.source };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.source };
       },
     },
   ],

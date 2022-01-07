@@ -22,6 +22,7 @@ import { RaidbossData as Data } from '../types/data';
 import { Matches } from '../types/net_matches';
 import {
   LocaleText,
+  LooseTrigger,
   Output,
   ResponseFunc,
   ResponseOutput,
@@ -37,13 +38,14 @@ type TargetedResponseFunc = ResponseFunc<Data, TargetedMatches>;
 type TargetedFunc = TriggerFunc<Data, TargetedMatches, TriggerOutput<Data, TargetedMatches>>;
 type StaticResponseFunc = ResponseFunc<Data, Matches>;
 
-type Severity = 'info' | 'alert' | 'alarm';
-type SevText = 'infoText' | 'alertText' | 'alarmText';
+export const severityList = ['info', 'alert', 'alarm'] as const;
+export type Severity = typeof severityList[number];
+export type SevText = 'infoText' | 'alertText' | 'alarmText';
 
 export const builtInResponseStr = 'cactbot-builtin-response';
 
 // All valid trigger fields.
-export const triggerFunctions = [
+export const triggerFunctions: (keyof LooseTrigger)[] = [
   'alarmText',
   'alertText',
   'condition',
@@ -65,7 +67,7 @@ export const triggerFunctions = [
 ];
 
 // Trigger fields that can produce text output.
-export const triggerTextOutputFunctions = [
+export const triggerTextOutputFunctions: (keyof LooseTrigger)[] = [
   'alarmText',
   'alertText',
   'infoText',
@@ -74,7 +76,7 @@ export const triggerTextOutputFunctions = [
 ];
 
 // If a trigger has any of these, then it has a visible/audio effect.
-export const triggerOutputFunctions = [
+export const triggerOutputFunctions: (keyof LooseTrigger)[] = [
   ...triggerTextOutputFunctions,
   'sound',
 ];
@@ -269,6 +271,52 @@ export const Responses = {
         },
       };
     },
+  sharedTankBuster: (targetSev?: Severity, otherSev?: Severity) => {
+    const outputStrings = {
+      sharedTankbusterOnYou: Outputs.sharedTankbusterOnYou,
+      sharedTankbusterOnTarget: Outputs.sharedTankbusterOnPlayer,
+      sharedTankbuster: Outputs.sharedTankbuster,
+      avoidCleave: Outputs.avoidTankCleave,
+    };
+    const targetFunc = (data: Data, matches: TargetedMatches, output: Output) => {
+      const target = getTarget(matches);
+      if (!target) {
+        if (data.role !== 'tank' && data.role !== 'healer')
+          return;
+        return output.sharedTankbuster?.();
+      }
+
+      if (target === data.me)
+        return output.sharedTankbusterOnYou?.();
+      if (data.role === 'tank' || data.role === 'healer')
+        return output.sharedTankbusterOnTarget?.({ player: target });
+    };
+
+    const otherFunc = (data: Data, matches: TargetedMatches, output: Output) => {
+      const target = getTarget(matches);
+      if (!target) {
+        if (data.role === 'tank' || data.role === 'healer')
+          return;
+        return output.avoidCleave?.();
+      }
+      if (target === data.me || data.role === 'tank' || data.role === 'healer')
+        return;
+
+      return output.avoidCleave?.();
+    };
+
+    const combined = combineFuncs(
+      defaultAlertText(targetSev),
+      targetFunc,
+      defaultInfoText(otherSev),
+      otherFunc,
+    );
+    return (_data: unknown, _matches: unknown, output: Output): TargetedResponseOutput => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = outputStrings;
+      return combined;
+    };
+  },
   miniBuster: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.miniBuster),
   aoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.aoe),
   bigAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bigAoe),

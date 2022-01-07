@@ -1,247 +1,169 @@
+import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import { EventResponses } from '../../types/event';
-import { NetMatches } from '../../types/net_matches';
 import { OopsyMistake } from '../../types/oopsy';
 
-import { MistakeObserver } from './mistake_observer';
-import {
-  IsPlayerId,
-  IsTriggerEnabled,
-  kFlagInstantDeath,
-  Translate,
-  UnscrambleDamage,
-} from './oopsy_common';
+import { MistakeObserver, ViewEvent } from './mistake_observer';
 import { OopsyOptions } from './oopsy_options';
 
-const kEarlyPullText = {
-  en: 'early pull',
-  de: 'zu früh angegriffen',
-  fr: 'early pull',
-  ja: 'タゲ取り早い',
-  cn: '抢开',
-  ko: '풀링 빠름',
-};
+const broadcastSource = 'oopsyraidsy';
+const msgSyncRequestType = 'SyncRequest';
+const msgSyncResponseType = 'SyncResponse';
 
-const kLatePullText = {
-  en: 'late pull',
-  de: 'zu spät angegriffen',
-  fr: 'late pull',
-  ja: 'タゲ取り遅い',
-  cn: '晚开',
-  ko: '풀링 늦음',
-};
-
-const kPartyWipeText = {
-  en: 'Party Wipe',
-  de: 'Gruppe ausgelöscht',
-  fr: 'Party Wipe',
-  ja: 'ワイプ',
-  cn: '团灭',
-  ko: '파티 전멸',
-};
-
-// Internal trigger id for early pull
-const kEarlyPullId = 'General Early Pull';
-
-// Collector:
-// * processes mistakes, adds lines to the live list
-// * handles timing issues with starting/stopping/early pulls
-export class MistakeCollector {
-  private inACTCombat = false;
-  private inGameCombat = false;
-  private startTime?: number;
-  private stopTime?: number;
-  private engageTime?: number;
-  public firstPuller?: string;
+// MistakeForwarder forwards observer calls to all observers.
+// It also collects all events in case a broadcast sync is requested.
+export class MistakeCollector implements MistakeObserver {
   private observers: MistakeObserver[] = [];
+  private events: ViewEvent[] = [];
+
+  private creationTime = Date.now();
+  private latestSyncTimestamp?: number;
 
   constructor(private options: OopsyOptions) {
-    this.Reset();
+    this.AddObserver(this);
+    this.RequestSync();
+  }
+
+  private DebugPrint(str: string): void {
+    if (this.options.Debug)
+      console.error(str);
+  }
+
+  private RequestSync(): void {
+    console.log(`RequestSync: ${this.creationTime}`);
+    void callOverlayHandler({
+      call: 'broadcast',
+      source: broadcastSource,
+      msg: {
+        type: msgSyncRequestType,
+        id: this.creationTime,
+        timestamp: this.creationTime,
+      },
+    });
+  }
+
+  private SendSyncResponse(): void {
+    this.DebugPrint(`SendSyncResponse: ${this.creationTime}`);
+    void callOverlayHandler({
+      call: 'broadcast',
+      source: broadcastSource,
+      msg: {
+        type: msgSyncResponseType,
+        id: this.creationTime,
+        timestamp: this.creationTime,
+        data: JSON.stringify(this.events),
+      },
+    });
+  }
+
+  private ReceiveSyncResponse(timestamp: number, data: string): void {
+    this.DebugPrint(`ReceiveSyncResponse: ${timestamp} (prev: ${this.latestSyncTimestamp ?? ''})`);
+    this.latestSyncTimestamp = timestamp;
+
+    try {
+      const parsed = JSON.parse(data) as unknown;
+      if (!Array.isArray(parsed)) {
+        console.error('Malformed sync response');
+        return;
+      }
+
+      // TODO: giant hacky type assertion here because type guarding this seems complicated.
+      // TODO: maybe there's some automated tooling we could use for this?
+      const events: ViewEvent[] = parsed as ViewEvent[];
+      for (const observer of this.observers)
+        observer.OnSyncEvents(events);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  OnBroadcastMessage(e: EventResponses['BroadcastMessage']): void {
+    if (e.source !== broadcastSource)
+      return;
+    const msg = e.msg;
+    if (!msg || typeof msg !== 'object')
+      return;
+
+    // Turn an unknown into an indexable object.
+    // TODO: is there some better way to do this?
+    const obj: { [key: string]: unknown } = {};
+    for (const [key, value] of Object.entries(msg ?? {}))
+      obj[key] = value;
+
+    // Ignore messages from ourselves.
+    // TODO: do we actually receive broadcast messages from ourselves, if subscribed?
+    if (obj.id === this.creationTime || obj.id === undefined)
+      return;
+
+    if (obj.type === msgSyncRequestType) {
+      // If this collector was created after this timestamp request, ignore it.
+      if (typeof obj.timestamp !== 'number' || obj.timestamp < this.creationTime) {
+        this.DebugPrint(
+          `OnBroadcastMessage: ignoring: (past creation): ${obj.timestamp as string}`,
+        );
+        return;
+      }
+      this.SendSyncResponse();
+    } else if (obj.type === msgSyncResponseType) {
+      if (typeof obj.timestamp !== 'number')
+        return;
+      // If we have data from further in the past, don't overwrite with partial future data.
+      if (this.latestSyncTimestamp && this.latestSyncTimestamp <= obj.timestamp) {
+        this.DebugPrint(`OnBroadcastMessage: ignoring (past data): ${obj.timestamp}`);
+        return;
+      }
+      const data = obj.data;
+      if (typeof data === 'string')
+        this.ReceiveSyncResponse(obj.timestamp, data);
+    }
+  }
+
+  OnEvent(event: ViewEvent): void {
+    this.events.push(event);
+  }
+
+  OnSyncEvents(events: ViewEvent[]): void {
+    // Clobber our current set of events with synced events.
+    //
+    // TODO: there could be some raciness here where if you open up the summary
+    // mid-fight, then an event could get dropped that occurred after the sync
+    // request but before the sync response was received.  This is not worth
+    // solving at the moment though.
+    this.events = events;
   }
 
   AddObserver(observer: MistakeObserver): void {
     this.observers.push(observer);
   }
 
-  Reset(): void {
-    this.startTime = undefined;
-    this.stopTime = undefined;
-    this.firstPuller = undefined;
-    this.engageTime = undefined;
-  }
-
-  StartCombat(): void {
-    // Wiping / in combat state / damage are all racy with each other.
-    // One potential ordering:
-    //   -in combat: false
-    //   -wipe
-    //   -belated death/damage <-- this damage shouldn't start
-    //   -damage (early pull) <-- this damage should
-    //   -in combat: true
-    // Therefore, suppress "start combat" after wipes within a short
-    // period of time.  Gross.
-    //
-    // Because damage comes before in combat (regardless of where engage
-    // occurs), StartCombat has to be responsible for clearing the mistakeObserver
-    // list.
-    const now = Date.now();
-    const kMinimumSecondsAfterWipe = 5;
-    if (this.stopTime && now - this.stopTime < 1000 * kMinimumSecondsAfterWipe)
-      return;
-    this.startTime = now;
-    this.stopTime = undefined;
-  }
-
-  StopCombat(): void {
-    this.startTime = undefined;
-    this.stopTime = Date.now();
-    this.firstPuller = undefined;
-    this.engageTime = undefined;
-  }
-
-  OnMistakeObj(m?: OopsyMistake): void {
+  OnMistakeObj(timestamp: number, m?: OopsyMistake): void {
     if (!m)
       return;
-    for (const observer of this.observers)
-      observer.OnMistakeObj(m);
-  }
-
-  AddEngage(): void {
-    if (!this.startTime)
-      throw new Error('Must StartCombat before AddEngage');
-
-    this.engageTime = Date.now();
-    if (!this.firstPuller) {
-      this.StartCombat();
-      return;
-    }
-    const seconds = ((Date.now() - this.startTime) / 1000);
-    if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      const text = `${Translate(this.options.DisplayLanguage, kEarlyPullText) ?? ''} (${
-        seconds.toFixed(1)
-      }s)`;
-      if (IsTriggerEnabled(this.options, kEarlyPullId)) {
-        this.OnMistakeObj({
-          type: 'pull',
-          name: this.firstPuller,
-          blame: this.firstPuller,
-          text: text,
-        });
-      }
+    for (const observer of this.observers) {
+      observer.OnEvent({
+        timestamp: timestamp,
+        type: 'Mistake',
+        mistake: m,
+      });
     }
   }
 
-  AddDamage(matches: NetMatches['Ability']): void {
-    if (!this.firstPuller) {
-      if (IsPlayerId(matches.sourceId))
-        this.firstPuller = matches.source;
-      else if (IsPlayerId(matches.targetId))
-        this.firstPuller = matches.target;
-      else
-        this.firstPuller = '???';
-
-      this.StartCombat();
-      if (this.engageTime) {
-        const seconds = ((Date.now() - this.engageTime) / 1000);
-        if (seconds >= this.options.MinimumTimeForPullMistake) {
-          const text = `${Translate(this.options.DisplayLanguage, kLatePullText) ?? ''} (${
-            seconds.toFixed(1)
-          }s)`;
-          if (IsTriggerEnabled(this.options, kEarlyPullId)) {
-            this.OnMistakeObj({
-              type: 'pull',
-              name: this.firstPuller,
-              blame: this.firstPuller,
-              text: text,
-            });
-          }
-        }
-      }
+  StartEncounter(timestamp: number): void {
+    for (const observer of this.observers) {
+      observer.OnEvent({
+        timestamp: timestamp,
+        type: 'StartEncounter',
+      });
     }
   }
 
-  AddDeath(name: string, matches: Partial<NetMatches['Ability']>): void {
-    let text = '';
-    if (matches) {
-      // Note: ACT just evaluates independently what the hp of everybody
-      // is and so may be out of date modulo one hp regen tick with
-      // respect to the "current" hp value, e.g. charybdis may appear to do
-      // more damage than you have hp, "killing" you.  This is good enough.
-
-      // TODO: record the last N seconds of damage, as often folks are
-      // killed by 2+ things (e.g. 3x flares, or 2x Blizzard III).
-
-      // hp string = (damage/hp at time of death)
-      let hp = '';
-      if (matches.flags === kFlagInstantDeath) {
-        // TODO: show something for infinite damage?
-      } else if (matches.targetCurrentHp && matches.damage) {
-        hp = ` (${UnscrambleDamage(matches.damage)}/${matches.targetCurrentHp})`;
-      }
-      text = `${matches?.ability ?? '???'}${hp}`;
+  OnChangeZone(timestamp: number, zoneName: string, zoneId: number): void {
+    for (const observer of this.observers) {
+      observer.OnEvent({
+        timestamp: timestamp,
+        type: 'ChangeZone',
+        zoneName: zoneName,
+        zoneId: zoneId,
+      });
     }
-    this.OnMistakeObj({
-      type: 'death',
-      name: name,
-      text: text,
-    });
-
-    // TODO: some things don't have abilities, e.g. jumping off titan ex.
-    // This will just show the last thing that hit you before you were
-    // defeated.  Maybe the unparsed log entries have this??
-  }
-
-  OnPartyWipeEvent(): void {
-    // TODO: record the time that StopCombat occurs and throw the party
-    // wipe then (to make post-wipe deaths more obvious), however this
-    // requires making liveList be able to insert items in a sorted
-    // manner instead of just being append only.
-    this.OnMistakeObj({
-      type: 'wipe',
-      text: kPartyWipeText,
-    });
-    // Party wipe usually comes a few seconds after everybody dies
-    // so this will clobber any late damage.
-    this.StopCombat();
-  }
-
-  OnInCombatChangedEvent(e: EventResponses['onInCombatChangedEvent']): void {
-    // For usability sake:
-    //   - to avoid dungeon trash starting stopping combat and resetting the
-    //     list repeatedly, only reset when ACT starts a new encounter.
-    //   - for consistency with DPS meters, fflogs, etc, use ACT's encounter
-    //     time as the start time, not when game combat becomes true.
-    //   - to make it more readable, show/hide old mistakes out of game
-    //     combat, and consider early pulls starting game combat early.  This
-    //     allows for one long dungeon ACT encounter to have multiple early
-    //     or late pulls.
-    const inGameCombat = e.detail.inGameCombat;
-    if (this.inGameCombat !== inGameCombat) {
-      this.inGameCombat = inGameCombat;
-      if (inGameCombat)
-        this.StartCombat();
-      else
-        this.StopCombat();
-
-      for (const observer of this.observers)
-        observer.SetInCombat(this.inGameCombat);
-    }
-
-    const inACTCombat = e.detail.inACTCombat;
-    if (this.inACTCombat !== inACTCombat) {
-      this.inACTCombat = inACTCombat;
-      if (inACTCombat) {
-        // TODO: This message should probably include the timestamp
-        // for when combat started.  Starting here is not the right
-        // time if this plugin is loaded while ACT is already in combat.
-        for (const observer of this.observers)
-          observer.StartNewACTCombat();
-      }
-    }
-  }
-
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
-    this.Reset();
-    for (const observer of this.observers)
-      observer.OnChangeZone(_e);
   }
 }

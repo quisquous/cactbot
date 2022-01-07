@@ -6,6 +6,7 @@ import { isLang, languages } from '../resources/languages';
 
 import { run as findMissingTranslations } from './find_missing_translations';
 import { default as generateEffectIds } from './gen_effect_id';
+import { default as generatePetNames } from './gen_pet_names';
 import { default as translateTimeline } from './translate_timeline';
 
 declare module 'inquirer' {
@@ -27,6 +28,7 @@ const getArgument = <T>(obj: unknown, propertyName: string): T | undefined => {
 
 const dataFilesMap: { readonly [filename: string]: () => Promise<void> } = {
   'effect_id': generateEffectIds,
+  'pet_names': generatePetNames,
 };
 
 const actionChoices = {

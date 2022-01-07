@@ -29,9 +29,14 @@ UserConfig.registerOptions('eureka', {
       type: 'float',
       default: 90,
       setterFunc: (options, value) => {
-        if (typeof value !== 'number')
+        let seconds: number;
+        if (typeof value === 'string')
+          seconds = parseFloat(value);
+        else if (typeof value === 'number')
+          seconds = value;
+        else
           return;
-        options['FlagTimeoutMs'] = value * 1000;
+        options['FlagTimeoutMs'] = seconds * 1000;
       },
     },
     {
@@ -41,8 +46,9 @@ UserConfig.registerOptions('eureka', {
         de: 'Bevorzuge komplette Namen für Scharmützel/Kritische Gefechte',
         fr:
           'Préférer les noms complet pour les escarmouches/Affrontements Cruciaux dans Bozja/Zadnor',
+        ja: 'スカーミッシュ/CEにフールネームを表示する',
         cn: '显示冲突战/紧急遭遇战全名',
-        ko: '돌발 임무/긴급 교전 줄임말 쓰지 않기 (한국어 버전은 차이 없음)',
+        ko: '돌발 교전/비상 교전 줄임말 쓰지 않기',
       },
       type: 'checkbox',
       default: false,
@@ -53,6 +59,7 @@ UserConfig.registerOptions('eureka', {
         en: 'Add information about Field Notes',
         de: 'Füge Informationen über Frontberichte hinzu',
         fr: 'Ajouter les informations relatives aux Rapports du Front Bozjien dans Bozja/Zadnor',
+        ja: 'フィールドノートに戦果記録情報を追加する',
         cn: '显示可能掉落的战果记录',
         ko: '전과기록 정보 보여주기',
       },
@@ -106,7 +113,7 @@ UserConfig.registerOptions('eureka', {
         fr: 'Jouer un son pour l\'apparition des affrontement cruciaux',
         ja: 'CE通知機能を有効にする',
         cn: '紧急遭遇战(CE)出现时播放提示音',
-        ko: '비상 교전(CE) 알림 소리 켜기',
+        ko: '비상 교전 알림 소리 켜기',
       },
       type: 'checkbox',
       default: true,
@@ -136,9 +143,6 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 1,
-      setterFunc: (options, value) => {
-        options['PopVolume'] = value;
-      },
     },
     {
       id: 'BunnyPopVolume',
@@ -152,9 +156,6 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 0.3,
-      setterFunc: (options, value) => {
-        options['BunnyPopVolume'] = value;
-      },
     },
     {
       id: 'CriticalPopVolume',
@@ -163,14 +164,11 @@ UserConfig.registerOptions('eureka', {
         de: 'Lautstärke des Kritischen Gefecht Sounds (0-1)',
         fr: 'Volume du son d\'apparition des affrontements cruciaux (0-1)',
         ja: 'CE通知音量 (0-1)',
-        cn: 'critical engagement提示音量（0-1）',
-        ko: '비상 교전(CE) 알림 소리 크기 (0-1)',
+        cn: 'CE提示音量（0-1）',
+        ko: '비상 교전 알림 소리 크기 (0-1)',
       },
       type: 'float',
       default: 0.3,
-      setterFunc: (options, value) => {
-        options['CriticalPopVolume'] = value;
-      },
     },
     {
       id: 'RefreshRateSeconds',
@@ -185,9 +183,14 @@ UserConfig.registerOptions('eureka', {
       type: 'float',
       default: 1,
       setterFunc: (options, value) => {
-        if (typeof value !== 'number')
+        let seconds: number;
+        if (typeof value === 'string')
+          seconds = parseFloat(value);
+        else if (typeof value === 'number')
+          seconds = value;
+        else
           return;
-        options['RefreshRateMs'] = value * 1000;
+        options['RefreshRateMs'] = seconds * 1000;
       },
     },
   ],

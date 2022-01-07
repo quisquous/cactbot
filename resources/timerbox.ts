@@ -47,6 +47,51 @@ export default class TimerBox extends HTMLElement {
     ];
   }
 
+  /** create an instance of TimerBox with attributes */
+  static create(o?: {
+    duration?: number;
+    threshold?: number;
+    scale?: number;
+    valuescale?: number;
+    bg?: string;
+    fg?: string;
+    toward?: 'top' | 'bottom';
+    stylefill?: 'fill' | 'empty';
+    hideafter?: number | null;
+    bigatzero?: boolean;
+    roundupthreshold?: boolean;
+  }): TimerBox {
+    if (!window.customElements.get('timer-box'))
+      window.customElements.define('timer-box', TimerBox);
+    const element = document.createElement('timer-box');
+    if (!o)
+      return element;
+
+    if (typeof o.duration === 'number')
+      element.duration = o.duration;
+    if (typeof o.threshold === 'number')
+      element.threshold = o.threshold;
+    if (typeof o.scale === 'number')
+      element.scale = o.scale;
+    if (typeof o.valuescale === 'number')
+      element.valuescale = o.valuescale;
+    if (typeof o.bg === 'string')
+      element.bg = o.bg;
+    if (typeof o.fg === 'string')
+      element.fg = o.fg;
+    if (typeof o.toward === 'string')
+      element.toward = o.toward;
+    if (typeof o.stylefill === 'string')
+      element.stylefill = o.stylefill;
+    if (typeof o.hideafter === 'number')
+      element.hideafter = o.hideafter;
+    if (typeof o.bigatzero === 'boolean')
+      element.bigatzero = o.bigatzero;
+    if (typeof o.roundupthreshold === 'boolean')
+      element.roundupthreshold = o.roundupthreshold;
+    return element;
+  }
+
   // The full duration of the current countdown. When this is changed,
   // the countdown restarts at the new value. If set to 0 then countdowns
   // are stopped.
@@ -508,3 +553,9 @@ export default class TimerBox extends HTMLElement {
 }
 
 window.customElements.define('timer-box', TimerBox);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'timer-box': TimerBox;
+  }
+}

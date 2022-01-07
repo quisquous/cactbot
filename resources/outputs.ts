@@ -102,6 +102,27 @@ export default {
     cn: '顺劈点名',
     ko: '나에게 광역 탱버',
   },
+  sharedTankbuster: {
+    en: 'Shared Tank Buster',
+    fr: 'Partagez le Tank buster',
+    ko: '쉐어 탱버',
+  },
+  sharedTankbusterOnYou: {
+    en: 'Shared Tank Buster on YOU',
+    de: 'geteilter Tankbuster auf DIR',
+    fr: 'Tank buster à partager sur VOUS',
+    ja: '自分にタンクシェア',
+    cn: '分摊死刑点名',
+    ko: '쉐어 탱버 대상자',
+  },
+  sharedTankbusterOnPlayer: {
+    en: 'Shared Tank Buster on ${player}',
+    de: 'geteilter Tankbuster on ${player}',
+    fr: 'Tank buster à partager sur ${player}',
+    ja: '${player} にタンクシェア',
+    cn: '分摊死刑点 ${player}',
+    ko: '"${player}" 쉐어 탱버',
+  },
   tankSwap: {
     en: 'Tank Swap!',
     de: 'Tankwechsel!',
@@ -134,7 +155,7 @@ export default {
     fr: 'Packez-vous',
     ja: '集合',
     cn: '集合',
-    ko: '쉐어뎀',
+    ko: '모이기',
   },
   stackOnYou: {
     en: 'Stack on YOU',
@@ -188,6 +209,10 @@ export default {
     // Opposite of a knockback.
     en: 'Draw In',
     de: 'Einzug',
+    fr: 'Attraction',
+    ja: '吸込み',
+    cn: '吸引',
+    ko: '끌어당김',
   },
   knockback: {
     en: 'Knockback',
@@ -291,7 +316,7 @@ export default {
   out: {
     en: 'Out',
     de: 'Raus',
-    fr: 'Exterieur',
+    fr: 'Extérieur',
     ja: '外へ',
     cn: '远离',
     ko: '밖으로',
@@ -337,7 +362,7 @@ export default {
     ko: '앞으로 => 뒤로',
   },
   goIntoMiddle: {
-    en: 'go into middle',
+    en: 'Get Middle',
     de: 'in die Mitte gehen',
     fr: 'Allez au milieu',
     ja: '中へ',
@@ -551,10 +576,10 @@ export default {
   wakeUp: {
     en: 'WAKE UP',
     de: 'AUFWACHEN',
-    fr: 'RÉVEILLES-TOI',
+    fr: 'RÉVEILLE-TOI',
     ja: '目を覚まして！',
     cn: '醒醒！动一动！！',
-    ko: '강제 퇴장 7분 전',
+    ko: '일어나세요!',
   },
   closeTethersWithPlayer: {
     en: 'Close Tethers (${player})',
@@ -615,7 +640,7 @@ export default {
   northwest: {
     en: 'Northwest',
     de: 'Nordwesten',
-    fr: 'nord-ouest',
+    fr: 'Nord-Ouest',
     ja: '北西',
     cn: '左上(西北)',
     ko: '북서',
@@ -623,7 +648,7 @@ export default {
   northeast: {
     en: 'Northeast',
     de: 'Nordosten',
-    fr: 'nord-est',
+    fr: 'Nord-Est',
     ja: '北東',
     cn: '右上(东北)',
     ko: '북동',
@@ -631,7 +656,7 @@ export default {
   southwest: {
     en: 'Southwest',
     de: 'Südwesten',
-    fr: 'sud-ouest',
+    fr: 'Sud-Ouest',
     ja: '南西',
     cn: '左下(西南)',
     ko: '남서',
@@ -639,7 +664,7 @@ export default {
   southeast: {
     en: 'Southeast',
     de: 'Südosten',
-    fr: 'sud-est',
+    fr: 'Sud-Est',
     ja: '南東',
     cn: '右下(东南)',
     ko: '남동',

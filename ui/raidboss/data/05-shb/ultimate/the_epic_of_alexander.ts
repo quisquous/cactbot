@@ -423,7 +423,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA J Kick',
       regex: /J Kick/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'healer' || data.role === 'tank',
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -492,16 +491,16 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
-        if (matches[1] === data.puddle)
+        if (matches[1] && parseInt(matches[1]) === data.puddle)
           return output.soakThisPuddle!({ num: matches[1] });
       },
       infoText: (data, matches, output) => {
-        if (matches[1] === data.puddle)
+        if (matches[1] && parseInt(matches[1]) === data.puddle)
           return;
         return output.puddle!({ num: matches[1] });
       },
       tts: (data, matches, output) => {
-        if (matches[1] === data.puddle)
+        if (matches[1] && parseInt(matches[1]) === data.puddle)
           return output.soakThisPuddleTTS!();
       },
       outputStrings: {
@@ -3258,6 +3257,7 @@ const triggerSet: TriggerSet<Data> = {
         'Brute Justice': '残暴正义号',
         'Cruise Chaser': '巡航驱逐者',
         'Jagd Doll': '狩猎人偶',
+        'Judgment Crystal': '审判结晶',
         'Liquid Hand': '活水之手',
         'Liquid Rage': '活水之怒',
         'Living Liquid': '有生命活水',
@@ -3359,6 +3359,7 @@ const triggerSet: TriggerSet<Data> = {
         'Brute Justice': '포악한 심판자',
         'Cruise Chaser': '순항추격기',
         'Jagd Doll': '인형 수렵병',
+        'Judgment Crystal': '심판의 결정체',
         'Liquid Hand': '액체 손',
         'Liquid Rage': '분노한 액체',
         'Living Liquid': '살아있는 액체',

@@ -1,113 +1,148 @@
-# Byakko Extreme
+### Byakko Extreme
+# -p 27DC:10.9
+# -it Hakutei / -it Byakko
+# -ii 27E3 27F6 265D 29A3 27EF 27F0 25CF 27F4 27E6 2944 27E9
 
 hideall "--sync--"
+hideall "--Reset--"
+# not useful to see
+hideall "Answer On High"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
-##### Phase 1
+### Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1
-0.7 "--sync--" sync / 00:0044:[^:]*:There is no turning back!/ window 1,30
-10.0 "Storm Pulse" # end of castbar
-16.0 "Heavenly Strike" # end of castbar
-26.0 "State Of Shock" # end of castbar
-28.5 "Highest Stakes 1" duration 4.5 # end of castbar
-38.5 "Highest Stakes 2" duration 4.5 # end of castbar
+6.9 "--sync--" sync / 14:[^:]*:Byakko:27DC:/ window 20,20
+10.9 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/
+17.1 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
+27.3 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
+28.5 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+34.7 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+37.5 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
+38.5 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+44.7 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
 
-55.0 "--sync--" sync /:27ED:Byakko/ window 60,5
-58.0 "Unrelenting Anguish" sync /:Byakko:27ED:/ window 5,5 # end of castbar
-63.5 "Storm Pulse" # end of castbar
-67.0 "Ominous Wind" # debuff
-74.5 "Fire And Lightning" # end of castbar
-83.5 "--leap north--"
-88.0 "Puddle Markers x2" # markers appearing
+55.5 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
+59.6 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
+65.8 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/
+68.0 "Ominous Wind" sync / 1[56]:[^:]*:Byakko:27EB:/
+77.4 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
+85.7 "--leap north--" sync / 1[56]:[^:]*:Byakko:2757:/
+87.3 "Dance Of The Incomplete" sync / 1[56]:[^:]*:Byakko:25D1:/
+92.2 "--Hakutei Add--"
+103.4 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/
+103.4 "Steel Claw" sync / 1[56]:[^:]*:Hakutei:27DF:/
+109.6 "Steel Claw" sync / 1[56]:[^:]*:Hakutei:27DF:/
+113.7 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
+116.6 "--tiger untargetable--"
+122.4 "White Herald" sync / 1[56]:[^:]*:Hakutei:27FA:/
+124.4 "--tiger targetable--"
+124.8 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
+128.6 "Fire and Lightning" sync / 1[56]:[^:]*:Hakutei:27DE:/
+133.0 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/
+135.1 "--untargetable--"
+135.2 "--sync--" sync / 1[56]:[^:]*:Hakutei:265E:/
+136.6 "The Voice Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F7:/
+159.8 "The Roar Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F9:/
+162.9 "--untargetable--"
 
-91.0 "Hakutei Add" # targetable
-100.5 "Storm Pulse" # end of castbar
-102.0 "Tiger Cleave" # damage
-108.0 "Tiger Cleave" # damage
-110.5 "Heavenly Strike" # end of castbar
-114.0 "--tiger untargetable--"
-120.0 "--tiger lands--" # damage
-116.5 "--sync--" sync /:27DD:Byakko/ window 5,5
-121.5 "Distant Clap" sync /:Byakko:27DD:/ window 5,5 # end of castbar
-124.5 "Fire And Lightning" # end of castbar
-129.0 "Storm Pulse" # end of castbar
-131.5 "--untargetable--"
-136.5 "TP Orbs" # appearing
-155.0 "Roar Of Thunder" # end of castbar
 
-##### Phase 2: zzz x infinity
-159.5 "--sync--" sync /00:0044:All creation trembles before my might!/ window 200,20
-198.0 "Donut AOE" # aoe disappears
-205.0 "Line AOE" # aoe disappears
-216.0 "Line AOE" # aoe disappears
-229.0 "Donut AOE" # aoe disappears
-233.0 "Line AOE" # aoe disappears
+### Phase 2: zzz x infinity
+191.1 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/ window 200,5
+197.2 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27F3:/
+208.1 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:27F1:/
+208.4 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/
+220.2 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:27F1:/
+222.6 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/
+228.7 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27F3:/
+237.3 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:27F1:/
 
-##### Phase 3: More Bubbles
-260.5 "--sync--" sync /:Byakko:27FB:/ window 300,20 # damage
-279.0 "Heavenly Strike" # end of castbar
-285.5 "Hundredfold Havoc" # appearing
-291.0 "State Of Shock" # end of castbar
-298.0 "Highest Stakes 1" # end of castbar
-308.0 "Highest Stakes 2" # end of castbar
-314.5 "Sweep The Leg" # end of castbar
 
-326.0 "--sync--" sync /:27ED:Byakko/ window 5,5
-329.0 "Unrelenting Anguish" sync /:Byakko:27ED:/ window 5,5 # end of castbar
-334.5 "Storm Pulse" # end of castbar
-339.0 "Orb Marker x3" duration 8 # appearing -> disappearing
-354.0 "Fire And Lightning" # end of castbar
-357.5 "--leap north--"
-363.0 "Fire And Lightning" # end of castbar
+### Phase 3: More Bubbles
+250.1 "--sync--" sync / 1[56]:[^:]*:Byakko:2A2A:/
+265.1 "Fell Swoop" sync / 1[56]:[^:]*:Byakko:27FB:/ window 300,10
+284.4 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
+290.5 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
+295.6 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
+296.6 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
+297.7 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+298.6 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
+304.0 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+306.9 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
+307.9 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+314.1 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+320.8 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27DB:/
 
-373.0 "Hakutei Add" # targetable
-373.5 "Puddle Markers x2" # markers appearing
-382.0 "--tiger untargetable--"
-384.0 "--sync--" sync /:27DD:Byakko/ window 5,5
-389.0 "Distant Clap" sync /:Byakko:27DD:/ window 5,5 # end of castbar
-387.0 "--tiger lands--" # damage
-392.0 "Fire And Lightning" # end of castbar
-392.0 "--sync--" sync /:27DD:Byakko/ window 5,5
-397.0 "Distant Clap" sync /:Byakko:27DD:/ window 5,5 # end of castbar
-400.0 "Fire And Lightning" # end of castbar
-407.5 "Heavenly Strike" # end of castbar
-408.5 "Tiger Cleave"
-419.5 "TP Orbs" # appearing
-438.0 "Roar Of Thunder" # end of castbar
+330.9 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/ window 10,10
+335.2 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
+341.4 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
+345.6 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:27E7:/
+351.6 "Ominous Wind" sync / 1[56]:[^:]*:Byakko:27EB:/
+353.6 "Gale Force" sync / 1[56]:[^:]*:Byakko:27E8:/
+361.0 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
+364.1 "--north--" sync / 1[56]:[^:]*:Byakko:2757:/
+369.9 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
 
-445.5 "--sync--" sync /:27DE:Hakutei/ window 5,5
-449.5 "Fire And Lightning" # end of castbar
-464.5 "Storm Pulse" # end of castbar
-475.5 "Orb Marker x3" duration 7 # appearing -> disappearing
-476.0 "Hundredfold Havoc" # appearing
-485.0 "State Of Shock" # end of castbar
-492.0 "Highest Stakes 1" # end of castbar
-502.0 "Highest Stakes 2" # end of castbar
-508.5 "Sweep The Leg" # end of castbar
-522.5 "Heavenly Strike" # end of castbar
-532.5 "Storm Pulse" # end of castbar
-540.5 "--sync--" sync /:27DD:Byakko/ window 5,5
-545.5 "Distant Clap" sync /:Byakko:27DD:/ window 5,5 # end of castbar
-551.5 "Heavenly Strike" # end of castbar
+373.1 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/
+374.5 "Dance Of The Incomplete" sync / 1[56]:[^:]*:Byakko:25D1:/
+379.5 "--tiger targetable--"
+388.8 "--tiger untargetable--"
+394.5 "White Herald" sync / 1[56]:[^:]*:Hakutei:27FA:/
+396.5 "--tiger targetable--"
+396.8 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
+400.7 "Fire and Lightning" sync / 1[56]:[^:]*:Hakutei:27DE:/
+405.0 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
+408.9 "Fire and Lightning" sync / 1[56]:[^:]*:Hakutei:27DE:/
+416.1 "Steel Claw" sync / 1[56]:[^:]*:Hakutei:27DF:/
+416.4 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
+422.4 "--sync--" sync / 1[56]:[^:]*:Hakutei:265E:/
+423.9 "The Voice Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F7:/
+436.5 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
+447.1 "The Roar Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F9:/
+450.6 "--sync--" sync / 1[56]:[^:]*:Hakutei:29E5:/
 
-561.0 "--sync--" sync /:27ED:Byakko/ window 5,5
-564.0 "Unrelenting Anguish" sync /:Byakko:27ED:/ window 5,5 # end of castbar
-570.0 "Storm Pulse" # end of castbar
-574.5 "Orb Marker x3" duration 8 # appearing -> disappearing
-583.0 "Ominous Wind" # debuff
-586.0 "--sync--" sync /:27DE:Hakutei/ window 5,5
-589.5 "Fire And Lightning" # end of castbar
-593.0 "--leap north--"
-594.5 "--sync--" sync /:27DE:Hakutei/ window 5,5
-598.0 "Fire And Lightning" # end of castbar
-613.5 "Storm Pulse" # end of castbar
-622.0 "Hundredfold Havoc" # appearing
-627.0 "State Of Shock" # end of castbar
-635.5 "Highest Stakes 1" # end of castbar
-645.5 "Highest Stakes 2" # end of castbar
-652.0 "Sweep The Leg" # end of castbar
+451.5 "--sync--" sync / 1[56]:[^:]*:Byakko:29E4:/
+453.5 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/
+459.3 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
+474.5 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
+484.8 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:27E7:/
+487.0 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
+492.0 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
+492.9 "Gale Force" sync / 1[56]:[^:]*:Byakko:27E8:/
+495.1 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
+495.8 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
+496.9 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+503.2 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+505.8 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
+506.9 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+513.2 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+519.7 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27DB:/
+534.2 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
+544.5 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
+557.9 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
+564.1 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
 
-661.5 "--leap middle--"
-666.0 "Storm Pulse x4" duration 7 # end of castbar => 4th damage
-683.0 "Enrage Storm Pulse" # wipe
+572.2 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
+576.3 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
+582.4 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
+586.7 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:27E7:/
+592.8 "Ominous Wind" sync / 1[56]:[^:]*:Byakko:27EB:/
+594.7 "Gale Force" sync / 1[56]:[^:]*:Byakko:27E8:/
+602.1 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
+605.3 "--north--" sync / 1[56]:[^:]*:Byakko:2757:/
+611.0 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
+626.2 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
+634.4 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
+639.4 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/
+640.5 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
+641.6 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+642.5 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/
+647.9 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+650.8 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
+651.8 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+658.1 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+664.8 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27DB:/
+
+674.9 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
+680.2 "Storm Pulse x4" sync / 1[56]:[^:]*:Byakko:27DC:/
+696.3 "Storm Pulse Enrage" sync / 1[56]:[^:]*:Byakko:2A09:/

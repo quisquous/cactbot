@@ -2,7 +2,7 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-import { watchCombatant } from '../../../../../resources/util';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -46,7 +46,7 @@ const resetTrio = (data: Data, trio: string) => {
 };
 
 // Begin copy and paste from dragon_test.js.
-const modDistance = (mark: number, dragon: number) => {
+export const modDistance = (mark: number, dragon: number) => {
   const oneWay = (dragon - mark + 8) % 8;
   const otherWay = (mark - dragon + 8) % 8;
   const distance = Math.min(oneWay, otherWay);
@@ -54,7 +54,7 @@ const modDistance = (mark: number, dragon: number) => {
   return distance;
 };
 
-const badSpots = (mark: number, dragon: number) => {
+export const badSpots = (mark: number, dragon: number) => {
   // All spots between mark and dragon are bad.  If distance == 1,
   // then the dragon hits the spot behind the mark too.  e.g. N
   // mark, NE dragon will also hit NW.
@@ -78,7 +78,7 @@ const badSpots = (mark: number, dragon: number) => {
   return bad;
 };
 
-const findDragonMarks = (array: number[]): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
+export const findDragonMarks = (array: number[]): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
   const marks = [-1, -1, -1];
   let isWideThirdDive = false;
 
@@ -373,7 +373,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -455,7 +454,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
-        watchCombatant({
+        Util.watchCombatant({
           ids: [parseInt(matches.sourceId, 16)],
         }, (ret) => {
           return ret.combatants.some((c) => {
@@ -629,7 +628,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!.*?', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
-      infoText: (_data, _matches, output) => output.text!(),
+      // Make this alert so it doesn't overlap with the dive infoText occuring here.
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away from Tank => Stack',
@@ -653,7 +653,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!.*?', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
-      infoText: (_data, _matches, output) => output.text!(),
+      // Make this alert so it doesn't overlap with the dive infoText occuring here.
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spread => Away from Tank',
@@ -1157,18 +1158,9 @@ const triggerSet: TriggerSet<Data> = {
         const result = findDragonMarks(data.naelDragons);
         if (!result)
           return;
-        const langMap = {
-          en: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
-          de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
-          fr: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],
-          ja: ['北', '北東', '東', '南東', '南', '南西', '西', '北西'],
-          cn: ['北', '东北', '东', '东南', '南', '西南', '西', '西北'],
-          ko: ['북', '북동', '동', '남동', '남', '남서', '서', '북서'],
-        };
-
-        const dirNames = langMap[data.displayLang] || langMap['en'];
+        const dirNames = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
         data.naelMarks = result.marks.map((i) => {
-          return dirNames[i] ?? '???';
+          return dirNames[i] ?? 'unknown';
         });
         data.wideThirdDive = result.wideThirdDive;
         data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1203,9 +1195,9 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         data.calledNaelDragons = true;
         const params = {
-          dive1: data.naelMarks?.[0],
-          dive2: data.naelMarks?.[1],
-          dive3: data.naelMarks?.[2],
+          dive1: output[data.naelMarks?.[0] ?? 'unknown']!(),
+          dive2: output[data.naelMarks?.[1] ?? 'unknown']!(),
+          dive3: output[data.naelMarks?.[2] ?? 'unknown']!(),
         };
         if (data.wideThirdDive)
           return output.marksWide!(params);
@@ -1228,6 +1220,15 @@ const triggerSet: TriggerSet<Data> = {
           cn: '标记: ${dive1}, ${dive2}, ${dive3} (大)',
           ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
         },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -1238,10 +1239,8 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
-        const dir = data.naelMarks ? data.naelMarks[data.naelDiveMarkerCount] : undefined;
-        if (!dir)
-          return output.text!({ dir: output.unknownDir!() });
-        return output.text!({ dir: dir });
+        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknownDir';
+        return output.text!({ dir: output[dir]!() });
       },
       outputStrings: {
         text: {
@@ -1251,6 +1250,14 @@ const triggerSet: TriggerSet<Data> = {
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
         unknownDir: Outputs.unknown,
       },
     },
@@ -2017,19 +2024,19 @@ const triggerSet: TriggerSet<Data> = {
         'Tail of Darkness': '暗尾',
         'Thunderwing': '雷翼',
         'Twintania': '双塔尼亚',
-        'From on high I descend, the hallowed moon to call': '我降临于此，对月长啸！',
-        'From on high I descend, the iron path to walk': '我降临于此，征战铁血霸道！',
-        'Take fire, O hallowed moon': '炽热燃烧！给予我月亮的祝福！',
-        'Blazing path, lead me to iron rule': '被炽热灼烧过的轨迹乃成铁血霸道！',
-        'O hallowed moon, take fire and scorch my foes': '月光啊！用你的炽热烧尽敌人！',
-        'O hallowed moon, shine you the iron path': '月光啊！照亮铁血霸道！',
-        'Fleeting light! \'Neath the red moon, scorch you the earth': '超新星啊，更加闪耀吧！照亮红月下炽热之地！',
-        'Fleeting light! Amid a rain of stars, exalt you the red moon': '超新星啊，更加闪耀吧！在星降之夜，称赞红月！',
-        'From on high I descend, the moon and stars to bring': '我降临于此对月长啸！召唤星降之夜！',
-        'From hallowed moon I descend, a rain of stars to bring': '我自月而来降临于此，召唤星降之夜！',
+        'From on high I descend, the hallowed moon to call': '我降临于此，\\s*对月长啸！',
+        'From on high I descend, the iron path to walk': '我降临于此，\\s*征战铁血霸道！',
+        'Take fire, O hallowed moon': '炽热燃烧！\\s*给予我月亮的祝福！',
+        'Blazing path, lead me to iron rule': '被炽热灼烧过的轨迹\\s*乃成铁血霸道！',
+        'O hallowed moon, take fire and scorch my foes': '月光啊！\\s*用你的炽热烧尽敌人！',
+        'O hallowed moon, shine you the iron path': '月光啊！\\s*照亮铁血霸道！',
+        'Fleeting light! \'Neath the red moon, scorch you the earth': '超新星啊，更加闪耀吧！\\s*照亮红月下炽热之地！',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon': '超新星啊，更加闪耀吧！\\s*在星降之夜，称赞红月！',
+        'From on high I descend, the moon and stars to bring': '我降临于此对月长啸！\\s*召唤星降之夜！',
+        'From hallowed moon I descend, a rain of stars to bring': '我自月而来降临于此，\\s*召唤星降之夜！',
         'From hallowed moon I bare iron, in my descent to wield': '我自月而来携钢铁降临于此！',
-        'From hallowed moon I descend, upon burning earth to tread': '我自月而来降临于此，踏过炽热之地！',
-        'Unbending iron, take fire and descend': '钢铁燃烧吧！成为我降临于此的刀剑吧！',
+        'From hallowed moon I descend, upon burning earth to tread': '我自月而来降临于此，\\s*踏过炽热之地！',
+        'Unbending iron, take fire and descend': '钢铁燃烧吧！\\s*成为我降临于此的刀剑吧！',
         'Unbending iron, descend with fiery edge': '钢铁成为我降临于此的燃烧之剑！',
       },
       'replaceText': {
@@ -2097,7 +2104,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
         'Fang of Light': '빛의 송곳니',
@@ -2109,6 +2115,20 @@ const triggerSet: TriggerSet<Data> = {
         'Tail of Darkness': '어둠의 꼬리',
         'Thunderwing': '번개날개',
         'Twintania': '트윈타니아',
+        'From on high I descend, the hallowed moon to call': '흉조가 내려와 달을 올려다보리라!',
+        'From on high I descend, the iron path to walk': '흉조가 내려와 강철의 패도를 걸으리라!',
+        'Take fire, O hallowed moon': '붉게 타오른 달의 축복을!',
+        'Blazing path, lead me to iron rule': '붉게 타오른 길을 강철의 패도로 만들겠노라!',
+        'O hallowed moon, take fire and scorch my foes': '달이여! 붉게 타올라 신의 적을 태워버려라!',
+        'O hallowed moon, shine you the iron path': '달이여! 강철의 패도를 비춰라!',
+        'Fleeting light! \'Neath the red moon, scorch you the earth': '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon': '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!',
+        'From on high I descend, the moon and stars to bring': '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!',
+        'From hallowed moon I descend, a rain of stars to bring': '달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!',
+        'From hallowed moon I bare iron, in my descent to wield': '달로부터 강철의 패도를 거쳐 흉조가 내려오리라!',
+        'From hallowed moon I descend, upon burning earth to tread': '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!',
+        'Unbending iron, take fire and descend': '강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!',
+        'Unbending iron, descend with fiery edge': '강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!',
       },
       'replaceText': {
         '--push--': '--최소 RDPS컷--',

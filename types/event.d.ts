@@ -15,6 +15,8 @@ export interface Party {
   inParty: boolean;
 }
 
+export type BardSongType = 'Ballad' | 'Paeon' | 'Minuet' | 'None';
+
 export interface JobDetail {
   'PLD': { oath: number };
   'WAR': { beast: number };
@@ -41,7 +43,14 @@ export interface JobDetail {
   };
   'AST': {
     heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
+    crownCard: 'Lord' | 'Lady';
     arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
+  };
+  'SGE': {
+    addersgallMilliseconds: number;
+    addersgall: 0 | 1 | 2 | 3;
+    addersting: 0 | 1 | 2 | 3;
+    eukrasia: 0 | 1;
   };
   'MNK': {
     chakraStacks: number;
@@ -62,11 +71,20 @@ export interface JobDetail {
     getsu: boolean;
     ka: boolean;
   };
+  'RPR': {
+    soul: number;
+    shroud: number;
+    enshroudMilliseconds: number;
+    lemureShroud: number;
+    voidShroud: number;
+  };
   'BRD': {
-    songName: 'Ballad' | 'Paeon' | 'Minuet' | 'None';
+    songName: BardSongType;
+    lastPlayed: BardSongType;
     songMilliseconds: number;
     songProcs: number;
     soulGauge: number;
+    coda: (BardSongType)[];
   };
   'MCH': {
     overheatMilliseconds: number;
@@ -91,24 +109,35 @@ export interface JobDetail {
     umbralMilliseconds: number;
     umbralStacks: number;
     enochian: boolean;
+    paradox: boolean;
     umbralHearts: number;
-    foulCount: number;
+    polyglot: number;
     nextPolyglotMilliseconds: number;
   };
   'ACN': {
     aetherflowStacks: number;
   };
   'SMN': {
+    // TODO: remove this after CN/KR patch 6.0 released.
     stanceMilliseconds: number;
     bahamutStance: 5 | 0;
     bahamutSummoned: 1 | 0;
     aetherflowStacks: number;
     dreadwyrmStacks: number;
     phoenixReady: number;
+  } | {
+    aetherflowStacks: number;
+    tranceMilliseconds: number;
+    attunementMilliseconds: number;
+    attunement: number;
+    usableArcanum: ('Ruby' | 'Topaz' | 'Emerald')[];
+    activePrimal: 'Ifrit' | 'Titan' | 'Garuda' | null;
+    nextSummoned: 'Bahamut' | 'Phoenix';
   };
   'RDM': {
     whiteMana: number;
     blackMana: number;
+    manaStacks: number;
   };
 }
 
@@ -291,13 +320,16 @@ export type SavedConfig = {
 
 type PlayerChangedJobDetails<T> = {
   job: T;
-  jobDetail: JobDetail[T];
+  jobDetail: T extends keyof JobDetail ? JobDetail[T] : never;
 } | {
   job: Job;
   jobDetail: null;
 };
 
 type PlayerChangedBase = {
+  // Decimal player id.
+  // TODO: should the plugin emit a hex string instead?
+  id: number;
   name: string;
   level: number;
   currentHP: number;
@@ -348,6 +380,12 @@ export interface PluginCombatantState {
   Heading: number;
 }
 
+type BroadcastHandler = (msg: {
+  call: 'broadcast';
+  source: string;
+  msg: unknown;
+}) => void;
+
 type SubscribeHandler = (msg: {
   call: 'subscribe';
   events: string[];
@@ -359,6 +397,11 @@ type GetCombatantsHandler = (msg: {
   names?: string[];
   props?: string[];
 }) => { combatants: PluginCombatantState[] };
+
+type OpenWebsiteWithWSHandler = (msg: {
+  call: 'openWebsiteWithWS';
+  url: string;
+}) => void;
 
 type CactbotReloadOverlaysHandler = (msg: {
   call: 'cactbotReloadOverlays';
@@ -394,13 +437,15 @@ type CactbotLoadDataHandler = (msg: {
   overlay: string;
 }) => ({ data: SavedConfig } | undefined);
 
-type CactbotChooseDirectoryHandler = <T>(msg: {
+type CactbotChooseDirectoryHandler = (msg: {
   call: 'cactbotChooseDirectory';
-}) => ({ data: T } | undefined);
+}) => ({ data: string } | undefined);
 
 export type OverlayHandlerAll = {
+  'broadcast': BroadcastHandler;
   'subscribe': SubscribeHandler;
   'getCombatants': GetCombatantsHandler;
+  'openWebsiteWithWS': OpenWebsiteWithWSHandler;
   'cactbotReloadOverlays': CactbotReloadOverlaysHandler;
   'cactbotLoadUser': CactbotLoadUserHandler;
   'cactbotRequestPlayerUpdate': CactbotRequestPlayerUpdateHandler;

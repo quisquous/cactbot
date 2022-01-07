@@ -1,7 +1,8 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
 import { LogEvent } from '../../../../types/event';
 import { LooseTimelineTrigger } from '../../../../types/trigger';
-import { TimelineController, TimelineReplacement, TimelineStyle } from '../../timeline';
+import { TimelineController } from '../../timeline';
+import { TimelineReplacement, TimelineStyle } from '../../timeline_parser';
 import LineEvent from '../data/network_log_converter/LineEvent';
 import RaidEmulator from '../data/RaidEmulator';
 

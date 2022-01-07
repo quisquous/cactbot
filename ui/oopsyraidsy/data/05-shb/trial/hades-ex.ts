@@ -61,7 +61,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Don't blame people who don't have tethers.
       condition: (data, matches) => data.hasDark && data.hasDark.includes(matches.target),
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, text: matches.ability };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -86,7 +86,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '47CB', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -118,6 +118,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.hasBeyondDeath[matches.target])
           return;
         return {
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
         };
@@ -152,6 +153,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.hasDoom[matches.target])
           return;
         return {
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
         };

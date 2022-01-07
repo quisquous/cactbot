@@ -1,3 +1,4 @@
+import logDefinitions, { LogDefinitionMap } from '../../../../../resources/netlog_defs';
 import { Job } from '../../../../../types/job';
 import EmulatorCommon, { getTimezoneOffsetMillis } from '../../EmulatorCommon';
 
@@ -8,6 +9,13 @@ const fields = {
   timestamp: 1,
 } as const;
 
+const unknownLogMessagePrefix = 'Unknown';
+
+const logMessagePrefix: { [type: string]: string } = {};
+const logDefsGeneric: LogDefinitionMap = logDefinitions;
+for (const def of Object.values(logDefsGeneric))
+  logMessagePrefix[def.type] = def.messageType;
+
 /**
  * Generic class to track an FFXIV log line
  */
@@ -16,6 +24,7 @@ export default class LineEvent {
   public convertedLine: string;
   public invalid = false;
   public index = 0;
+  public readonly decEventStr: string;
   public readonly decEvent: number;
   public readonly hexEvent: string;
   public readonly timestamp: number;
@@ -25,7 +34,8 @@ export default class LineEvent {
   constructor(repo: LogRepository, public networkLine: string, parts: string[]) {
     const timestampString = parts[fields.timestamp] ?? '0';
     this.tzOffsetMillis = getTimezoneOffsetMillis(timestampString);
-    this.decEvent = parseInt(parts[fields.event] ?? '0');
+    this.decEventStr = parts[fields.event] ?? '00';
+    this.decEvent = parseInt(this.decEventStr);
     this.hexEvent = EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
     this.timestamp = new Date(timestampString).getTime();
     this.checksum = parts.slice(-1)[0] ?? '';
@@ -35,7 +45,8 @@ export default class LineEvent {
 
   prefix(): string {
     const timeString = EmulatorCommon.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
-    return '[' + timeString + '] ' + this.hexEvent + ':';
+    const logMessageName = logMessagePrefix[this.decEventStr] ?? unknownLogMessagePrefix;
+    return `[${timeString}] ${logMessageName} ${this.hexEvent}:`;
   }
 
   static isDamageHallowed(damage: string): boolean {

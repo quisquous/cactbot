@@ -88,7 +88,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3EA3', source: 'イノセンス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EA3', source: '이노센스' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -145,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Kreis auf DIR',
           fr: 'Cercle sur vous',
           ja: 'サークルついた',
-          cn: '圈圈点你',
+          cn: '圈圈点名',
           ko: '원형징 대상자',
         },
       },

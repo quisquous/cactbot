@@ -33,7 +33,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '38E' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Cleansers missed Doom!',
@@ -41,6 +41,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'N\'a pas été dissipé(e) du Glas !',
             ja: '死の宣告',
             cn: '没解死宣',
+            ko: '죽음의 선고',
           },
         };
       },
@@ -52,7 +53,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '24B8', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Pushed off!',
@@ -60,6 +61,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A été poussé(e) !',
             ja: '落ちた',
             cn: '击退坠落',
+            ko: '넉백됨',
           },
         };
       },
@@ -70,7 +72,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '4E6' }),
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.effect };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
   ],

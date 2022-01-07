@@ -244,7 +244,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
@@ -440,7 +439,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['오메가', '오메가 M'] }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
@@ -612,7 +610,7 @@ const triggerSet: TriggerSet<Data> = {
         dodgeLeft: {
           en: 'Dodge Left',
           de: 'Links ausweichen',
-          fr: 'Evitez à gauche',
+          fr: 'Évitez à gauche',
           ja: '左側に離れる',
           cn: '左侧躲闪',
           ko: '오른쪽으로',
@@ -646,7 +644,7 @@ const triggerSet: TriggerSet<Data> = {
         dodgeRight: {
           en: 'Dodge Right',
           de: 'Rechts ausweichen',
-          fr: 'Evitez à droite',
+          fr: 'Évitez à droite',
           ja: '右側に離れる',
           cn: '右侧躲闪',
           ko: '왼쪽으로',
@@ -889,7 +887,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move out for Defamation',
           de: 'Rausgehen für Urteil',
-          fr: 'Ecartez-vous pour #médisance',
+          fr: 'Écartez-vous pour Médisance',
           ja: 'サークルを捨てる',
           cn: '离开人群传毒',
           ko: '잠재적 오류: 전이',

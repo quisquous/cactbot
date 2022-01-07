@@ -1,100 +1,118 @@
+import TimerBar from '../../../resources/timerbar';
+import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
-import { Bars } from '../bar';
+import { ResourceBox } from '../bars';
+import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
-import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
+import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
-let tid1: number;
+import { BaseComponent, ComponentInterface } from './base';
 
-export const setup = (bars: Bars): void => {
-  const cartridgeBox = bars.addResourceBox({
-    classList: ['gnb-color-cartridge'],
-  });
+export class GNBComponent extends BaseComponent {
+  cartridgeBox: ResourceBox;
+  noMercyBox: TimerBox;
+  bloodfestBox: TimerBox;
+  gnashingFangBox: TimerBox;
+  comboTimer: TimerBar;
+  cartridgeComboTimer: TimerBar;
+  tid1 = 0;
 
-  const noMercyBox = bars.addProcBox({
-    id: 'gnb-procs-nomercy',
-    fgColor: 'gnb-color-nomercy',
-  });
-  bars.onUseAbility(kAbility.NoMercy, () => {
-    noMercyBox.duration = 20;
-    noMercyBox.threshold = 1000;
-    noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
-    tid1 = window.setTimeout(() => {
-      noMercyBox.duration = 40;
-      noMercyBox.threshold = bars.gcdSkill + 1;
-      noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
-    }, 20000);
-  });
+  constructor(o: ComponentInterface) {
+    super(o);
+    this.cartridgeBox = this.bars.addResourceBox({
+      classList: ['gnb-color-cartridge'],
+    });
+    // Combos
+    this.gnashingFangBox = this.bars.addProcBox({
+      id: 'gnb-procs-gnashingfang',
+      fgColor: 'gnb-color-gnashingfang',
+    });
+    this.comboTimer = this.bars.addTimerBar({
+      id: 'gnb-timers-combo',
+      fgColor: 'combo-color',
+    });
+    this.cartridgeComboTimer = this.bars.addTimerBar({
+      id: 'gnb-timers-cartridgecombo',
+      fgColor: 'gnb-color-gnashingfang',
+    });
 
-  const bloodfestBox = bars.addProcBox({
-    id: 'gnb-procs-bloodfest',
-    fgColor: 'gnb-color-bloodfest',
-  });
-  bars.onUseAbility(kAbility.Bloodfest, () => {
-    bloodfestBox.duration = 90;
-  });
+    this.noMercyBox = this.bars.addProcBox({
+      id: 'gnb-procs-nomercy',
+      fgColor: 'gnb-color-nomercy',
+    });
 
-  bars.onStatChange('GNB', () => {
-    gnashingFangBox.valuescale = bars.gcdSkill;
-    gnashingFangBox.threshold = bars.gcdSkill * 3;
-    noMercyBox.valuescale = bars.gcdSkill;
-    bloodfestBox.valuescale = bars.gcdSkill;
-    bloodfestBox.threshold = bars.gcdSkill * 2 + 1;
-  });
-  // Combos
-  const gnashingFangBox = bars.addProcBox({
-    id: 'gnb-procs-gnashingfang',
-    fgColor: 'gnb-color-gnashingfang',
-  });
-  const comboTimer = bars.addTimerBar({
-    id: 'gnb-timers-combo',
-    fgColor: 'combo-color',
-  });
-  const cartridgeComboTimer = bars.addTimerBar({
-    id: 'gnb-timers-cartridgecombo',
-    fgColor: 'gnb-color-gnashingfang',
-  });
-  bars.onUseAbility(kAbility.GnashingFang, () => {
-    gnashingFangBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 30000);
-    cartridgeComboTimer.duration = 0;
-    cartridgeComboTimer.duration = 15;
-  });
-  bars.onUseAbility(kAbility.SavageClaw, () => {
-    cartridgeComboTimer.duration = 0;
-    cartridgeComboTimer.duration = 15;
-  });
-  bars.onUseAbility(kAbility.WickedTalon, () => {
-    cartridgeComboTimer.duration = 0;
-  });
-  bars.onCombo((skill) => {
-    comboTimer.duration = 0;
-    cartridgeComboTimer.duration = 0;
-    if (bars.combo.isFinalSkill)
+    this.bloodfestBox = this.bars.addProcBox({
+      id: 'gnb-procs-bloodfest',
+      fgColor: 'gnb-color-bloodfest',
+    });
+
+    this.reset();
+  }
+  override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
+    this.gnashingFangBox.valuescale = gcdSkill;
+    this.gnashingFangBox.threshold = gcdSkill * 3;
+    this.noMercyBox.valuescale = gcdSkill;
+    this.bloodfestBox.valuescale = gcdSkill;
+    this.bloodfestBox.threshold = gcdSkill * 2 + 1;
+  }
+
+  override onUseAbility(id: string): void {
+    switch (id) {
+      case kAbility.NoMercy: {
+        this.noMercyBox.duration = 20;
+        this.noMercyBox.threshold = 1000;
+        this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy.active');
+        this.tid1 = window.setTimeout(() => {
+          this.noMercyBox.duration = 40;
+          this.noMercyBox.threshold = this.player.gcdSkill + 1;
+          this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy');
+        }, 20000);
+        break;
+      }
+      case kAbility.Bloodfest:
+        this.bloodfestBox.duration = 90;
+        break;
+      case kAbility.GnashingFang:
+        this.gnashingFangBox.duration = this.bars.player.getActionCooldown(30000, 'skill');
+        this.cartridgeComboTimer.duration = 0;
+        this.cartridgeComboTimer.duration = this.comboDuration;
+        break;
+      case kAbility.SavageClaw:
+        this.cartridgeComboTimer.duration = 0;
+        this.cartridgeComboTimer.duration = this.comboDuration;
+        break;
+      case kAbility.WickedTalon:
+        this.cartridgeComboTimer.duration = 0;
+        break;
+    }
+  }
+  override onCombo(skill: string, combo: ComboTracker): void {
+    this.comboTimer.duration = 0;
+    this.cartridgeComboTimer.duration = 0;
+    if (combo.isFinalSkill)
       return;
     if (skill)
-      comboTimer.duration = 15;
-  });
+      this.comboTimer.duration = this.comboDuration;
+  }
 
-  bars.onJobDetailUpdate((jobDetail: JobDetail['GNB']) => {
-    cartridgeBox.innerText = jobDetail.cartridges.toString();
-    if (jobDetail.cartridges === 2)
-      cartridgeBox.parentNode.classList.add('full');
+  override onJobDetailUpdate(jobDetail: JobDetail['GNB']): void {
+    this.cartridgeBox.innerText = jobDetail.cartridges.toString();
+    if (jobDetail.cartridges === 3)
+      this.cartridgeBox.parentNode.classList.add('full');
+    else if (this.player.level < 88 && jobDetail.cartridges === 2)
+      this.cartridgeBox.parentNode.classList.add('full');
     else
-      cartridgeBox.parentNode.classList.remove('full');
-  });
+      this.cartridgeBox.parentNode.classList.remove('full');
+  }
 
-  resetFunc = (bars) => {
-    noMercyBox.duration = 0;
-    noMercyBox.threshold = bars.gcdSkill + 1;
-    noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
-    bloodfestBox.duration = 0;
-    gnashingFangBox.duration = 0;
-    cartridgeComboTimer.duration = 0;
-    comboTimer.duration = 0;
-    clearTimeout(tid1);
-  };
-};
-
-export const reset = (bars: Bars): void => {
-  resetFunc(bars);
-};
+  override reset(): void {
+    this.noMercyBox.duration = 0;
+    this.noMercyBox.threshold = this.player.gcdSkill + 1;
+    this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy');
+    this.bloodfestBox.duration = 0;
+    this.gnashingFangBox.duration = 0;
+    this.cartridgeComboTimer.duration = 0;
+    this.comboTimer.duration = 0;
+    window.clearTimeout(this.tid1);
+  }
+}

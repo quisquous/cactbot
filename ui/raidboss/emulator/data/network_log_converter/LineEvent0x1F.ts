@@ -48,13 +48,6 @@ export class LineEvent0x1F extends LineEvent {
       despawn: this.timestamp,
       job: this.jobGaugeBytes[0]?.toUpperCase(),
     });
-
-    this.convertedLine = this.prefix() +
-      this.id + ':' + (EmulatorCommon.properCase(this.name)) +
-      ':' + this.dataBytes1 +
-      ':' + this.dataBytes2 +
-      ':' + this.dataBytes3 +
-      ':' + this.dataBytes4;
   }
 }
 

@@ -1,4 +1,4 @@
-<html>
+<html lang="en-US">
 <head>
   <meta charset="utf-8" />
   <title>Cactbot Oopsyraidsy</title>
@@ -9,107 +9,184 @@
 </head>
 <body>
 <div id="container">
-  <div id="livelist" class="livelist hide-if-resizing">
-    <div class="livelist-shadow hide"></div>
+  <div class="flexcontainer">
+    <div id="death-report" class="death-report hide-if-resizing"></div>
+    <div id="livelist" class="livelist hide-if-resizing">
+      <div class="livelist-shadow hide"></div>
+    </div>
+    <div id="icon-container" class="icons hide">
+      <div id="icon-close" class="mistake-icon icon-entry icon-close"></div>
+      <div id="icon-summary" class="mistake-icon icon-entry icon-summary"></div>
+    </div>
   </div>
-  <div class="resize-helper" style="width:100%">
-    <div class="livelist">
-      <div class="livelist-shadow out-of-combat">
-        <div class="mistake-row">
-          <div class="mistake-icon pull"></div>
-          <div class="mistake-text">Pull: Tater (2.2s early)</div>
-          <div class="mistake-time">0:00</div>
+  <div class="resize-helper out-of-combat" style="width:100%">
+    <div class="flexcontainer">
+      <div class="death-report">
+        <div class="livelist-shadow">
+          <div class="death-title">
+            <div class="death-title-icon mistake-icon death"></div>
+            <div class="death-title-text">Tini Poutini</div>
+            <div class="death-title-close mistake-icon icon-entry icon-close"></div>
+          </div>
+          <div class="death-details">
+            <div class="death-row-hp">32000</div>
+            <div class="death-row-amount damage">-3450</div>
+            <div class="death-row-icon"></div>
+            <div class="death-row-text">Attack</div>
+            <div class="death-row-time">0:12</div>
+
+            <div class="death-row-hp">28550</div>
+            <div class="death-row-amount heal">+15398</div>
+            <div class="death-row-icon"></div>
+            <div class="death-row-text">Adlo</div>
+            <div class="death-row-time">0:14</div>
+
+            <div class="death-row-hp">43948</div>
+            <div class="death-row-amount damage">-3237</div>
+            <div class="death-row-icon"></div>
+            <div class="death-row-text">Attack</div>
+            <div class="death-row-time">0:16</div>
+
+            <div class="death-row-hp">40711</div>
+            <div class="death-row-amount"></div>
+            <div class="death-row-icon mistake-icon heal"></div>
+            <div class="death-row-text">Missed: Divine Veil</div>
+            <div class="death-row-time">0:20</div>
+
+            <div class="death-row-hp">40711</div>
+            <div class="death-row-amount damage">-3891</div>
+            <div class="death-row-icon"></div>
+            <div class="death-row-text">Attack</div>
+            <div class="death-row-time">0:22</div>
+
+            <div class="death-row-hp">36820</div>
+            <div class="death-row-amount"></div>
+            <div class="death-row-icon"></div>
+            <div class="death-row-text">Gain: Vengeance</div>
+            <div class="death-row-time">0:24</div>
+
+            <div class="death-row-hp">36820</div>
+            <div class="death-row-amount damage">-14039</div>
+            <div class="death-row-icon mistake-icon warn"></div>
+            <div class="death-row-text">Glower</div>
+            <div class="death-row-time">0:30</div>
+
+            <div class="death-row-hp">22781</div>
+            <div class="death-row-amount damage">-20205</div>
+            <div class="death-row-icon"></div>
+            <div class="death-row-text">Meteor</div>
+            <div class="death-row-time">0:42</div>
+
+            <div class="death-row-hp">2576</div>
+            <div class="death-row-amount damage">-20123</div>
+            <div class="death-row-icon"></div>
+            <div class="death-row-text">Meteor</div>
+            <div class="death-row-time">0:42</div>
+          </div>
         </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Poutini: Bahamut's Claw (38474/27910)</div>
-          <div class="mistake-time">0:05</div>
+      </div>
+      <div class="livelist">
+        <div class="livelist-shadow out-of-combat">
+          <div class="mistake-row">
+            <div class="mistake-icon pull"></div>
+            <div class="mistake-text">Pull: Tater (2.2s early)</div>
+            <div class="mistake-time">0:00</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Poutini: Bahamut's Claw (38474/27910)</div>
+            <div class="mistake-time">0:05</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon warn"></div>
+            <div class="mistake-text">6 fireball (Chip, Tot)</div>
+            <div class="mistake-time">0:27</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon damage"></div>
+            <div class="mistake-text">Missed Trick (Baked)</div>
+            <div class="mistake-time">1:07</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon fail"></div>
+            <div class="mistake-text">Tater: Twister</div>
+            <div class="mistake-time">1:13</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon fail"></div>
+            <div class="mistake-text">Tater: Chariot</div>
+            <div class="mistake-time">1:13</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon fail"></div>
+            <div class="mistake-text">Lefse: Sludge Dot</div>
+            <div class="mistake-time">1:14</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Gnocchi: Cauterize (23401/23401)</div>
+            <div class="mistake-time">1:15</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon warn"></div>
+            <div class="mistake-text">Chippy: Acceleration Bomb</div>
+            <div class="mistake-time">1:16</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon heal"></div>
+            <div class="mistake-text">Tater: missed medica</div>
+            <div class="mistake-time">1:17</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon warn"></div>
+            <div class="mistake-text">Tater: hit by lightning</div>
+            <div class="mistake-time">1:18</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Tater: Doom</div>
+            <div class="mistake-time">1:19</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Tot: Megaflare</div>
+            <div class="mistake-time">1:20</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Chippy: Megaflare</div>
+            <div class="mistake-time">1:21</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Latke: Megaflare</div>
+            <div class="mistake-time">1:22</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Lefse: Megaflare</div>
+            <div class="mistake-time">1:23</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Fry: Megaflare</div>
+            <div class="mistake-time">1:24</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon death"></div>
+            <div class="mistake-text">Poutine: Megaflare</div>
+            <div class="mistake-time">1:25</div>
+          </div>
+          <div class="mistake-row">
+            <div class="mistake-icon wipe"></div>
+            <div class="mistake-text">Party Wipe</div>
+            <div class="mistake-time">1:30</div>
+          </div>
         </div>
-        <div class="mistake-row">
-          <div class="mistake-icon warn"></div>
-          <div class="mistake-text">6 fireball (Chip, Tot)</div>
-          <div class="mistake-time">0:27</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon damage"></div>
-          <div class="mistake-text">Missed Trick (Baked)</div>
-          <div class="mistake-time">1:07</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon fail"></div>
-          <div class="mistake-text">Tater: Twister</div>
-          <div class="mistake-time">1:13</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon fail"></div>
-          <div class="mistake-text">Tater: Chariot</div>
-          <div class="mistake-time">1:13</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon fail"></div>
-          <div class="mistake-text">Lefse: Sludge Dot</div>
-          <div class="mistake-time">1:14</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Gnocchi: Cauterize (23401/23401)</div>
-          <div class="mistake-time">1:15</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon warn"></div>
-          <div class="mistake-text">Chippy: Acceleration Bomb</div>
-          <div class="mistake-time">1:16</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon heal"></div>
-          <div class="mistake-text">Tater: missed medica</div>
-          <div class="mistake-time">1:17</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon warn"></div>
-          <div class="mistake-text">Tater: hit by lightning</div>
-          <div class="mistake-time">1:18</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Tater: Doom</div>
-          <div class="mistake-time">1:19</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Tot: Megaflare</div>
-          <div class="mistake-time">1:20</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Chippy: Megaflare</div>
-          <div class="mistake-time">1:21</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Latke: Megaflare</div>
-          <div class="mistake-time">1:22</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Lefse: Megaflare</div>
-          <div class="mistake-time">1:23</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Fry: Megaflare</div>
-          <div class="mistake-time">1:24</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon death"></div>
-          <div class="mistake-text">Poutine: Megaflare</div>
-          <div class="mistake-time">1:25</div>
-        </div>
-        <div class="mistake-row">
-          <div class="mistake-icon wipe"></div>
-          <div class="mistake-text">Party Wipe</div>
-          <div class="mistake-time">1:30</div>
-        </div>
+      </div>
+      <div class="icons">
+        <div class="mistake-icon icon-entry icon-close"></div>
+        <div class="mistake-icon icon-entry icon-summary"></div>
       </div>
     </div>
   </div>

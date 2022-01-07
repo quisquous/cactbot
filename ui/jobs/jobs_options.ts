@@ -23,6 +23,7 @@ export interface JobsNonConfigOptions {
   GpAlarmSoundVolume: number;
   NotifyExpiredProcsInCombat: number;
   NotifyExpiredProcsInCombatSound: 'disabled' | 'expired' | 'threshold';
+  CompactView: boolean;
 }
 
 export interface JobsConfigOptions {
@@ -66,6 +67,7 @@ const defaultJobsNonConfigOptions: JobsNonConfigOptions = {
   GpAlarmSoundVolume: 0.8,
   NotifyExpiredProcsInCombat: 5,
   NotifyExpiredProcsInCombatSound: 'threshold',
+  CompactView: false,
 };
 
 // See user/jobs-example.js for documentation.

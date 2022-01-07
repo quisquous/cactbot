@@ -42,7 +42,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
-      condition: (data) => data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
@@ -54,7 +53,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
-      condition: (data) => data.role === 'healer',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

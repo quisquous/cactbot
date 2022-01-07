@@ -26,6 +26,63 @@ export default class ResourceBar extends HTMLElement {
   private _rightText: string;
   private _connected: boolean;
 
+  /** create an instance of ResourceBar with attributes */
+  static create(o?: {
+    value?: string;
+    maxvalue?: string;
+    lefttext?: string;
+    centertext?: string;
+    righttext?: string;
+    width?: string;
+    height?: string;
+    bg?: string;
+    fg?: string;
+    toward?: string;
+    stylefill?: 'empty' | 'full';
+    extravalue?: string;
+    extracolor?: string;
+    scale?: string;
+  }): ResourceBar {
+    // define this custom element if not defined yet
+    if (!window.customElements.get('resource-bar'))
+      window.customElements.define('resource-bar', ResourceBar);
+
+    const element = document.createElement('resource-bar');
+    if (!o)
+      return element;
+
+    if (typeof o.value === 'string')
+      element.value = o.value;
+    if (typeof o.maxvalue === 'string')
+      element.maxvalue = o.maxvalue;
+    if (typeof o.lefttext === 'string')
+      element.lefttext = o.lefttext;
+    if (typeof o.centertext === 'string')
+      element.centertext = o.centertext;
+    if (typeof o.righttext === 'string')
+      element.righttext = o.righttext;
+    if (typeof o.width === 'string')
+      element.width = o.width;
+    if (typeof o.height === 'string')
+      element.height = o.height;
+    if (typeof o.bg === 'string')
+      element.bg = o.bg;
+    if (typeof o.fg === 'string')
+      element.fg = o.fg;
+    if (typeof o.toward === 'string')
+      element.toward = o.toward;
+    if (typeof o.stylefill === 'string')
+      element.stylefill = o.stylefill;
+    if (typeof o.extravalue === 'string')
+      element.extravalue = o.extravalue;
+    if (typeof o.extracolor === 'string')
+      element.extracolor = o.extracolor;
+    if (typeof o.scale === 'string')
+      element.scale = o.scale;
+
+    return element;
+  }
+
   static get observedAttributes(): string[] {
     return [
       'value',
@@ -519,3 +576,9 @@ export default class ResourceBar extends HTMLElement {
 }
 
 window.customElements.define('resource-bar', ResourceBar);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'resource-bar': ResourceBar;
+  }
+}

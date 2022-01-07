@@ -5,7 +5,7 @@ type Sorter = () => number;
 
 type LeftRight = 'left' | 'right';
 type UpDown = 'up' | 'down';
-type Toward = `${LeftRight} ${UpDown}` | `${UpDown} ${LeftRight}`;
+export type Toward = `${LeftRight} ${UpDown}` | `${UpDown} ${LeftRight}`;
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
 
@@ -27,6 +27,39 @@ export default class WidgetList extends HTMLElement {
 
   static get observedAttributes(): string[] {
     return ['toward', 'elementwidth', 'elementheight', 'rowcolsize', 'maxnumber'];
+  }
+
+  /** create an instance of WidgetList with attributes */
+  static create(o?: {
+    toward?: Toward;
+    elementwidth?: string;
+    elementheight?: string;
+    rowcolsize?: number;
+    maxnumber?: number;
+    scale?: number;
+  }): WidgetList {
+    if (!window.customElements.get('widget-list'))
+      window.customElements.define('widget-list', WidgetList);
+
+    const element = document.createElement('widget-list');
+
+    if (!o)
+      return element;
+
+    if (typeof o.toward === 'string')
+      element.toward = o.toward;
+    if (typeof o.elementwidth === 'string')
+      element.elementwidth = o.elementwidth;
+    if (typeof o.elementheight === 'string')
+      element.elementheight = o.elementheight;
+    if (typeof o.rowcolsize === 'number')
+      element.rowcolsize = o.rowcolsize;
+    if (typeof o.maxnumber === 'number')
+      element.maxnumber = o.maxnumber;
+    if (typeof o.scale === 'number')
+      element.scale = o.scale;
+
+    return element;
   }
 
   // All visual dimensions are scaled by this.
@@ -347,3 +380,9 @@ export default class WidgetList extends HTMLElement {
 }
 
 window.customElements.define('widget-list', WidgetList);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'widget-list': WidgetList;
+  }
+}

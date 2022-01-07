@@ -1,0 +1,183 @@
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Amikiri
+# -p 1F72:4.5 1F73:100
+# -ii 1F74 1F78 1F77
+# -ic "Kamikiri"
+
+# Phase 1: 100% -> 90%, autos + mini busters
+0.0 "Start" sync / 00:0839::The Harutsuge Gate will be sealed off/ window 10000,0
+4.5 "Sharp Strike" sync / 1[56]:[^:]*:Amikiri:1F72:/ window 20,20
+12.7 "Sharp Strike" #sync / 1[56]:[^:]*:Amikiri:1F72:/
+20.9 "Sharp Strike" #sync / 1[56]:[^:]*:Amikiri:1F72:/
+29.1 "Sharp Strike" #sync / 1[56]:[^:]*:Amikiri:1F72:/
+37.3 "Sharp Strike" #sync / 1[56]:[^:]*:Amikiri:1F72:/
+
+# Phase 2: 90% -> 0%
+# Ignoring Sharp Strike (1F72) at this point, as timing is odd depending on Shuck failure.
+# There's also Sharp Strikes from the Kamikiri add as well, with its own inconsistent timing.
+# Also, there's no 0x14 lines for any of these things but Shuck.
+100.0 "Mucal Glob" sync / 1[56]:[^:]*:Amikiri:1F73:/ window 100,0
+132.2 "Shuck?" sync / 1[56]:[^:]*:Amikiri:1F75:/
+149.1 "--add--"
+161.8 "Digest" sync / 1[56]:[^:]*:Amikiri:1F79:/
+
+# TODO: is there another phase push in here that makes this Mucal Glob come earlier?
+181.7 "--add--"
+182.2 "Mucal Glob" sync / 1[56]:[^:]*:Amikiri:1F73:/ window 30,30
+194.4 "Digest" sync / 1[56]:[^:]*:Amikiri:1F79:/
+214.4 "Shuck?" sync / 1[56]:[^:]*:Amikiri:1F75:/
+229.5 "Digest" sync / 1[56]:[^:]*:Amikiri:1F79:/
+
+249.4 "--add--"
+249.9 "Mucal Glob" sync / 1[56]:[^:]*:Amikiri:1F73:/ window 30,30 jump 182.2
+262.1 "Digest" #sync / 1[56]:[^:]*:Amikiri:1F79:/
+282.1 "Shuck?" #sync / 1[56]:[^:]*:Amikiri:1F75:/
+292.2 "Digest" #sync / 1[56]:[^:]*:Amikiri:1F79:/
+
+
+### Ruby Princess
+# -p 1F7F:1006.4 1F7A:1107.0 1F7C:1203
+# -ii 1F7E 1F7D
+
+# Phase 1: 100 -> 90%, autos + mini busters
+1000.0 "Start" sync / 00:0839::The Akashio Hall will be sealed off/ window 10000,0
+1006.4 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/ window 20,20
+1013.5 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1020.6 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1027.7 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1034.8 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1041.9 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+
+# Phase 2: 90% -> 75%, one seduce, more mini busters
+1100.0 "--sync--" sync / 14:[^:]*:Ruby Princess:1F7A:/ window 100,0
+1107.0 "Seduce" sync / 1[56]:[^:]*:Ruby Princess:1F7A:/
+1115.1 "Coriolis Kick" sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1121.3 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/ window 20,20
+1126.4 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1131.5 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1136.6 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1141.7 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1146.8 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+
+# Phase 3: 75% -> 60%, introduction to chasing AOE
+1200.0 "--sync--" sync / 14:[^:]*:Ruby Princess:1F7C:/ window 200,0
+1203.0 "Abyssal Volcano" sync / 1[56]:[^:]*:Ruby Princess:1F7C:/
+1203.8 "Geothermal Flatulence x11" sync / 1[56]:[^:]*:Ruby Princess:24D7:/ duration 8.1
+1217.2 "Coriolis Kick" sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1225.4 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1232.5 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+
+1244.7 "Abyssal Volcano" sync / 1[56]:[^:]*:Ruby Princess:1F7C:/ window 30,30 jump 1203
+1245.5 "Geothermal Flatulence x11" #sync / 1[56]:[^:]*:Ruby Princess:24D7:/ duration 8.1
+1258.9 "Coriolis Kick" #sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1267.1 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1274.2 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+
+# Phase 4: 60% -> 0%, seduce loop
+1400.0 "--sync--" sync / 14:[^:]*:Ruby Princess:1F7A:/ window 290,0
+1407.0 "Seduce" sync / 1[56]:[^:]*:Ruby Princess:1F7A:/
+1415.1 "Coriolis Kick" sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1423.3 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1430.4 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1437.5 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+
+1449.7 "Abyssal Volcano" sync / 1[56]:[^:]*:Ruby Princess:1F7C:/
+1450.5 "Geothermal Flatulence x11" sync / 1[56]:[^:]*:Ruby Princess:24D7:/ duration 8.1
+1465.7 "Seduce" sync / 1[56]:[^:]*:Ruby Princess:1F7A:/
+1473.8 "Coriolis Kick" sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1482.0 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1489.1 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1496.2 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1512.9 "Seduce" sync / 1[56]:[^:]*:Ruby Princess:1F7A:/
+1521.1 "Coriolis Kick" sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1529.3 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1536.4 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1543.5 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+
+1555.6 "Abyssal Volcano" sync / 1[56]:[^:]*:Ruby Princess:1F7C:/ window 50,50 jump 1449.7
+1556.4 "Geothermal Flatulence x11" #sync / 1[56]:[^:]*:Ruby Princess:24D7:/ duration 8.1
+1571.4 "Seduce" #sync / 1[56]:[^:]*:Ruby Princess:1F7A:/
+1579.5 "Coriolis Kick" #sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1587.7 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1594.8 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1602.0 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1618.9 "Seduce" #sync / 1[56]:[^:]*:Ruby Princess:1F7A:/
+1627.0 "Coriolis Kick" #sync / 1[56]:[^:]*:Ruby Princess:1F7B:/
+1635.2 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1642.3 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+1649.4 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
+
+
+### Shisui Yohi (and friends)
+# -p 1F87:2006.5 1F80:2105
+# -ii 1FF7 1F83 1F84 1F85 1F86
+# -it "Shisui Yohi"
+
+# Phase 1: 100% -> 90%, autos and mini busters
+2000.0 "Start" sync / 00:0839::Shisui Gokagura will be sealed off/ window 10000,0
+2006.5 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2013.6 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+
+2023.8 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/ window 5,5 jump 2006.5
+2030.9 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+
+2041.1 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2048.2 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+
+# Phase 2: 90% -> 75%, one (1) thick fog
+2100.0 "--sync--" sync / 14:[^:]*:Shisui Yohi:1F80:/ window 100,0
+2105.0 "Thick Fog" sync / 1[56]:[^:]*:Shisui Yohi:1F80:/
+2108.1 "--untargetable--"
+2128.3 "Black Tide" sync / 1[56]:[^:]*:Shisui Yohi:1F81:/ window 30,30
+2131.3 "--targetable--"
+
+2136.4 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2146.5 "Mad Stare" sync / 1[56]:[^:]*:Shisui Yohi:1F82:/
+2153.7 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2160.8 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+
+2170.9 "Mad Stare" sync / 1[56]:[^:]*:Shisui Yohi:1F82:/ window 10,10 jump 2146.5
+2178.1 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2185.2 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+
+2195.3 "Mad Stare" #sync / 1[56]:[^:]*:Shisui Yohi:1F82:/
+2202.5 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2209.6 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+
+# Phase 3: 75% -> 60%, introduction to adds
+2300.0 "--adds--" sync / 03:........:Naishi-No-Kami:/  window 300,0
+2303.4 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2313.5 "Mad Stare" sync / 1[56]:[^:]*:Shisui Yohi:1F82:/
+
+2320.7 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/ window 5,30
+2325.8 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2330.9 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2336.0 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2343.1 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2350.2 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+
+# Phase 4: 60% -> 0%, thick fog and adds loop
+2400.0 "--sync--" sync / 14:[^:]*:Shisui Yohi:1F80:/ window 100,0
+2405.0 "Thick Fog" sync / 1[56]:[^:]*:Shisui Yohi:1F80:/
+2408.1 "--untargetable--"
+2428.3 "Black Tide" sync / 1[56]:[^:]*:Shisui Yohi:1F81:/
+2431.3 "--targetable--"
+2435.4 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2441.5 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2447.7 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2457.8 "Mad Stare" sync / 1[56]:[^:]*:Shisui Yohi:1F82:/
+2459.3 "--adds--"
+
+2477.0 "Thick Fog" sync / 1[56]:[^:]*:Shisui Yohi:1F80:/ window 30,30 jump 2405
+2480.1 "--untargetable--"
+2510.4 "Black Tide" #sync / 1[56]:[^:]*:Shisui Yohi:1F81:/
+2513.4 "--targetable--"
+2517.5 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2523.6 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2529.7 "Foul Nail" #sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
+2539.8 "Mad Stare" #sync / 1[56]:[^:]*:Shisui Yohi:1F82:/
+2541.3 "--adds--"

@@ -20,9 +20,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Be On A Platform',
           de: 'BSei auf einer Plattform',
-          fr: 'Soyez sur une plateforme ',
+          fr: 'Restez sur une plateforme ',
           ja: '円形床の上へ',
           cn: '站台子上',
+          ko: '원형 바닥 위로',
         },
       },
     },
@@ -385,7 +386,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Kingsloam': '진흙왕의 알현실',
         'Lakhamu': '라하무',

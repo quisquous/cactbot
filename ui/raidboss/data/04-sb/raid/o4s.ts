@@ -398,7 +398,7 @@ const triggerSet: TriggerSet<Data> = {
         dieInInIn: {
           en: 'die in in in',
           de: 'sterben rein rein rein',
-          fr: 'Mourrez Intérieur Intérieur Intérieur',
+          fr: 'Mourrez à l\'intérieur !',
           ja: '死になさい！',
           cn: '死亡',
           ko: '안쪽 레이저 맞기',
@@ -406,7 +406,7 @@ const triggerSet: TriggerSet<Data> = {
         outOutOut: {
           en: 'out out out',
           de: 'raus raus raus',
-          fr: 'Extérieur Extérieur Extérieur',
+          fr: 'Extérieur !',
           ja: '出て出て！',
           cn: '出去出去',
           ko: '바깥으로',
@@ -457,7 +457,7 @@ const triggerSet: TriggerSet<Data> = {
         dieOutOutOut: {
           en: 'die out out out',
           de: 'sterben raus raus raus',
-          fr: 'Mourrez Extérieur Extérieur Extérieur',
+          fr: 'Mourrez à l\'extérieur !',
           ja: '死になさい！',
           cn: '在外面死亡',
           ko: '바깥 레이저 맞기',
@@ -465,7 +465,7 @@ const triggerSet: TriggerSet<Data> = {
         inInIn: {
           en: 'in in in',
           de: 'rein rein rein',
-          fr: 'Intérieur Intérieur Intérieur',
+          fr: 'Intérieur !',
           ja: '入れ入れ',
           cn: '进去进去',
           ko: '안으로',
@@ -601,7 +601,7 @@ const triggerSet: TriggerSet<Data> = {
         beRightOnPurple: {
           en: 'Be Right On Purple',
           de: 'Rechts auf Pink',
-          fr: 'Soyez à droite sur le violet',
+          fr: 'Placez-vous à droite sur le violet',
           ja: '右の紫色に',
           cn: '去右边紫色',
           ko: '오른쪽 보라 맞기',
@@ -609,7 +609,7 @@ const triggerSet: TriggerSet<Data> = {
         beLeftOnBlue: {
           en: 'Be Left On Blue',
           de: 'Links auf Blau',
-          fr: 'Soyez à gauche sur le bleu',
+          fr: 'Placez-vous à gauche sur le bleu',
           ja: '左の青色に',
           cn: '去左边蓝色',
           ko: '왼쪽 파랑 맞기',
@@ -705,7 +705,7 @@ const triggerSet: TriggerSet<Data> = {
         chargeBeBehindOtherTank: {
           en: 'Charge: be behind other tank',
           de: 'Aufladung: hinter anderen Tank',
-          fr: 'Charge : Soyez derrière l\'autre tank',
+          fr: 'Charge : Placez-vous derrière l\'autre tank',
           ja: '突進: 他のタンクの後ろに',
           cn: '站在另一个坦克后面',
           ko: '탱커 뒤에 있기',
@@ -713,7 +713,7 @@ const triggerSet: TriggerSet<Data> = {
         chargeBeInTheVeryBack: {
           en: 'Charge: be in the very back',
           de: 'Aufladung: Ganz nach hinten',
-          fr: 'Charge : Soyez tout au fond',
+          fr: 'Charge : Placez-vous tout au fond',
           ja: '突進: 後ろの遠くへ',
           cn: '去后面',
           ko: '가장 뒤에 있기',
@@ -721,7 +721,7 @@ const triggerSet: TriggerSet<Data> = {
         chargeBeInFront: {
           en: 'Charge: be in front!',
           de: 'Aufladung: Ganz nach vorn',
-          fr: 'Charge : Soyez devant !',
+          fr: 'Charge : Placez-vous devant !',
           ja: '突進: 前方に',
           cn: '去前面',
           ko: '앞쪽으로',
@@ -729,7 +729,7 @@ const triggerSet: TriggerSet<Data> = {
         chargeBeBehindTanks: {
           en: 'Charge: be behind tanks',
           de: 'Aufladung: Hinter die Tanks',
-          fr: 'Charge : Soyez derrière les tanks',
+          fr: 'Charge : Placez-vous derrière les tanks',
           ja: '突進: タンクの後ろに',
           cn: '站在坦克后面',
           ko: '탱커 뒤로',
@@ -802,7 +802,7 @@ const triggerSet: TriggerSet<Data> = {
         tts: {
           en: 'go to middle',
           de: 'In die Mitte',
-          fr: 'allez au milieu',
+          fr: 'Allez au milieu',
           ja: '中央に',
           cn: '前往中间',
           ko: '중앙으로',
@@ -840,7 +840,7 @@ const triggerSet: TriggerSet<Data> = {
         beInFront: {
           en: 'Grand Cross Delta: Be in front of boss',
           de: 'Supernova Delta: Vor den Boss',
-          fr: 'Croix suprême delta : Soyez devant le boss',
+          fr: 'Croix suprême delta : Placez-vous devant le boss',
           ja: 'グランドクロス・デルタ: ボスの前に',
           cn: '站在boss前面',
           ko: '그랜드크로스: 델타, 보스 범위 끝으로',
@@ -848,7 +848,7 @@ const triggerSet: TriggerSet<Data> = {
         beOnSides: {
           en: 'Grand Cross Delta: Be on sides of boss',
           de: 'Supernova Delta: An die Seiten vom Boss',
-          fr: 'Croix suprême delta : Soyez sur les côtés du boss',
+          fr: 'Croix suprême delta : Placez-vous sur les côtés du boss',
           ja: 'グランドクロス・デルタ: ボスの横に',
           cn: '站在boss后面',
           ko: '그랜드크로스: 델타, 보스 옆쪽으로',
@@ -864,7 +864,7 @@ const triggerSet: TriggerSet<Data> = {
         beInFrontTTS: {
           en: 'delta: be in front',
           de: 'delta: vor den boss',
-          fr: 'delta : soyez devant',
+          fr: 'delta : Placez-vous devant',
           ja: 'ボスの前に',
           cn: '去前面',
           ko: '델타, 보스 범위 끝으로',
@@ -872,7 +872,7 @@ const triggerSet: TriggerSet<Data> = {
         beOnSidesTTS: {
           en: 'delta: be on sides',
           de: 'delta: an die seiten',
-          fr: 'delta : soyez sur les côtés',
+          fr: 'delta : Placez-vous sur les côtés',
           ja: 'ボスの横に',
           cn: '去两侧',
           ko: '델타, 보스 옆쪽으로',
@@ -922,7 +922,7 @@ const triggerSet: TriggerSet<Data> = {
         lookAwayAndStop: {
           en: 'look away and stop',
           de: 'wegschauen und stehenbleiben',
-          fr: 'regardez ailleurs et arrêtez',
+          fr: 'Regardez ailleurs et arrêtez',
           ja: '見ない、動かない',
           cn: '看外面并静止',
           ko: '바라보지 말고 멈추기',
@@ -965,7 +965,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'shriek: get mid, look away',
           de: 'Schrei: Zur mitte und wegschauen',
-          fr: 'Cri : allez au milieu, regardez ailleurs',
+          fr: 'Cri : Allez au milieu, regardez ailleurs',
           ja: '呪詛の叫声: 中へ、外を向け',
           cn: '石化点名',
           ko: '중앙으로, 바깥보기',
@@ -1326,12 +1326,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Exdeath': '艾克斯迪司',
         'Neo Exdeath': '新生艾克斯迪司',
       },
       'replaceText': {
+        '\\(charge\\)': '(排队)',
+        '\\(colors': '(鸳鸯锅',
+        'lasers\\)': '激光)',
         'Aero III': '暴风',
         'Almagest': '至高无上',
         'Black Hole': '黑洞',
@@ -1368,7 +1370,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Exdeath': '엑스데스',
         'Neo Exdeath': '네오 엑스데스',

@@ -1,4 +1,5 @@
 import { Lang } from '../resources/languages';
+import { TrackedEvent } from '../ui/oopsyraidsy/player_state_tracker';
 
 import { OopsyData } from './data';
 import { NetAnyMatches, NetMatches } from './net_matches';
@@ -25,15 +26,37 @@ export type OopsyField =
   | OopsyDeathReason
   | void;
 
+export type InternalOopsyTriggerType =
+  | 'Buff'
+  | 'Damage'
+  | 'GainsEffect'
+  | 'Share'
+  | 'Solo';
+
+export type DeathReportData = {
+  lang: Lang;
+  baseTimestamp: number | undefined;
+  deathTimestamp: number;
+  targetId: string;
+  targetName: string;
+  events: TrackedEvent[];
+};
+
 export type OopsyMistake = {
   type: OopsyMistakeType;
   name?: string;
-  // TODO: docs say blame can be an array but the code does not support that.
   blame?: string;
+  reportId?: string;
   text: string | LocaleText;
+  // Internal annotation for which trigger type created this.
+  // This will get overwritten when triggers are loaded/created.
+  triggerType?: InternalOopsyTriggerType;
+  // TODO: change type so this only exists for type='death'.
+  report?: DeathReportData;
 };
 
 export type OopsyDeathReason = {
+  id: string;
   name: string;
   text: string | LocaleText;
 };
@@ -47,7 +70,7 @@ export type OopsyTriggerField<Data extends OopsyData, MatchType extends NetAnyMa
   [Return] extends [void] ? OopsyFunc<Data, MatchType, void>
     : OopsyFunc<Data, MatchType, Return | undefined> | Return | undefined;
 
-export type BaseOopsyTrigger<Data, Type extends TriggerTypes> = {
+export type BaseOopsyTrigger<Data extends OopsyData, Type extends TriggerTypes> = {
   id: string;
   condition?: OopsyTriggerField<Data, NetMatches[Type], boolean>;
   delaySeconds?: OopsyTriggerField<Data, NetMatches[Type], number>;
@@ -67,7 +90,9 @@ type OopsyTriggerRegex<T extends TriggerTypes> = {
   netRegexKo?: CactbotBaseRegExp<T>;
 };
 
-export type OopsyTriggerGeneric<Data, T> = BaseOopsyTrigger<Data, T> & OopsyTriggerRegex<T>;
+export type OopsyTriggerGeneric<Data extends OopsyData, T extends TriggerTypes> =
+  & BaseOopsyTrigger<Data, T>
+  & OopsyTriggerRegex<T>;
 
 export type OopsyTrigger<Data extends OopsyData> =
   | (TriggerTypes extends infer T ? T extends TriggerTypes ? OopsyTriggerGeneric<Data, T> : never
@@ -103,3 +128,7 @@ export type LooseOopsyTriggerSet = Exclude<Partial<OopsyTriggerSet<OopsyData>>, 
   zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
   triggers?: LooseOopsyTrigger[];
 };
+
+export interface OopsyFileData {
+  [filename: string]: LooseOopsyTriggerSet;
+}

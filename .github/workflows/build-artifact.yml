@@ -2,9 +2,12 @@ name: Build artifact
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
+      - 'package.json'
       - 'util/publish.sh'
       - 'util/DEPS.json5'
       - 'util/fetch_deps.ts'
@@ -16,6 +19,7 @@ on:
     paths:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
+      - 'package.json'
       - 'util/publish.sh'
       - 'util/DEPS.json5'
       - 'util/fetch_deps.ts'
@@ -26,68 +30,67 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Set artifact name
-      shell: bash
-      run: |
-        sha=$(echo ${{ github.sha }} | cut -c 1-8)
-        echo "artifact_sha=$sha" >> $GITHUB_ENV
+      - name: Set artifact name
+        shell: bash
+        run: |
+          sha=$(echo ${{ github.sha }} | cut -c 1-8)
+          echo "artifact_sha=$sha" >> $GITHUB_ENV
 
-    - name: Check dependencies cache
-      id: cache-dependencies
-      uses: actions/cache@v2
-      with:
-        path: ./plugin/ThirdParty
-        key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.ts', './util/DEPS.json5') }}
-        restore-keys: |
-          ${{ runner.os }}-cactbot-
+      - name: Check dependencies cache
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./plugin/ThirdParty
+          key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.ts', './util/DEPS.json5') }}
+          restore-keys: |
+            ${{ runner.os }}-cactbot-
 
-    # Fetch dependencies only if cache-hit is false
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+      # Fetch dependencies only if cache-hit is false
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-    - name: Cache Dependencies
-      id: cache
-      uses: actions/cache@v2
-      with:
-        path: ./node_modules
-        key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
 
-    - name: Install Node Dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        npm ci --ignore-scripts
+      - name: Install Node Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          npm ci --ignore-scripts
 
-    - name: Fetch dependencies
-      if: steps.cache-dependencies.outputs.cache-hit != 'true'
-      run: |
-        npm run fetch-deps
+      - name: Fetch dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: |
+          npm run fetch-deps
 
-    - name: Set up msbuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      - name: Set up msbuild
+        uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Add Custom Problem Matcher
-      run: |
-        echo "::add-matcher::.github/matchers/${{ github.job }}.json"
+      - name: Add Custom Problem Matcher
+        run: |
+          echo "::add-matcher::.github/matchers/${{ github.job }}.json"
 
-    - name: MSBuild
-      run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
-      shell: cmd
+      - name: MSBuild
+        run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
+        shell: cmd
 
+      - name: Build JavaScript UI Module Bundles
+        run: npm run build
+        timeout-minutes: 10
 
-    - name: Build JavaScript UI Module Bundles
-      run: |
-        npm run build
+      - name: Generate artifact
+        shell: bash
+        run: ./util/publish.sh
 
-    - name: Generate artifact
-      shell: bash
-      run: ./util/publish.sh
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: cactbot-${{ env.artifact_sha }}
-        path: publish/cactbot-release/
-        retention-days: 30
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cactbot-${{ env.artifact_sha }}
+          path: publish/cactbot-release/
+          retention-days: 30

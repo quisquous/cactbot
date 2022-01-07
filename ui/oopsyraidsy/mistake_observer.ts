@@ -1,9 +1,20 @@
-import { EventResponses } from '../../types/event';
 import { OopsyMistake } from '../../types/oopsy';
 
+export type ViewEvent = {
+  timestamp: number;
+  type: 'Mistake';
+  mistake: OopsyMistake;
+} | {
+  timestamp: number;
+  type: 'StartEncounter';
+} | {
+  timestamp: number;
+  type: 'ChangeZone';
+  zoneName: string;
+  zoneId: number;
+};
+
 export interface MistakeObserver {
-  SetInCombat: (inCombat: boolean) => void;
-  OnMistakeObj: (m: OopsyMistake) => void;
-  StartNewACTCombat: () => void;
-  OnChangeZone: (e: EventResponses['ChangeZone']) => void;
+  OnEvent: (event: ViewEvent) => void;
+  OnSyncEvents: (events: ViewEvent[]) => void;
 }

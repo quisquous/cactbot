@@ -3,7 +3,7 @@ import { Party, PlayerChangedRet } from '../types/event';
 import { Job } from '../types/job';
 
 import { addOverlayListener } from './overlay_plugin_api';
-import { jobEnumToJob } from './util';
+import Util from './util';
 
 // Will redirect calls from `onPlayerChangedEvent` to |func| overriding with
 // |playerName| and their job.  Job is important for raidboss.
@@ -51,7 +51,7 @@ export const addPlayerChangedOverrideListener = (
     if (!player)
       return;
 
-    const newJob = jobEnumToJob(player.job);
+    const newJob = Util.jobEnumToJob(player.job);
     if (newJob === lastPlayerJob)
       return;
 

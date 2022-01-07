@@ -15,8 +15,6 @@ export class LineEvent0x02 extends LineEvent {
 
     this.id = parts[fields.id]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
-
-    this.convertedLine = this.prefix() + 'Changed primary player to ' + this.name + '.';
   }
 }
 

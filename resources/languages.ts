@@ -61,3 +61,14 @@ export const isLang = (lang?: string): lang is Lang => {
     return false;
   return langStrs.includes(lang);
 };
+
+export const langToLocale = (lang: Lang): string => {
+  return {
+    en: 'en',
+    de: 'de',
+    fr: 'fr',
+    ja: 'ja',
+    cn: 'zh-CN',
+    ko: 'ko',
+  }[lang];
+};

@@ -325,7 +325,7 @@ Object.defineProperty(Combatants.prototype, 'render', {
   configurable: true,
   value: function() {
     const rows = [];
-    const maxRows = 12;
+    const maxRows = 50;
     const isDataArray = _.isArray(this.props.data);
     const dataArray = isDataArray ? this.props.data : Object.keys(this.props.data);
     const limit = Math.max(dataArray.length, maxRows);

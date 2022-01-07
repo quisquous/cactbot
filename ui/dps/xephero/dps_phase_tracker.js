@@ -1,7 +1,8 @@
-import { LocaleRegex } from '../../../resources/translations';
+import { LocaleNetRegex } from '../../../resources/translations';
+import NetRegexes from '../../../resources/netregexes';
 
-const kTestPhaseStart = 'cactbot phase start';
-const kTestPhaseEnd = 'cactbot phase end';
+const kTestPhaseStart = NetRegexes.gameLog({ line: '.*?cactbot phase start.*?', capture: false });
+const kTestPhaseEnd = NetRegexes.gameLog({ line: '.*?cactbot phase end.*?', capture: false });
 
 export default class DpsPhaseTracker {
   constructor(options) {
@@ -31,29 +32,26 @@ export default class DpsPhaseTracker {
 
     this.lang = options.ParserLanguage;
 
-    this.areaSealRegex = LocaleRegex.areaSeal[this.lang] || LocaleRegex.areaSeal['en'];
-    this.areaUnsealRegex = LocaleRegex.areaUnseal[this.lang] || LocaleRegex.areaUnseal['en'];
-    this.countdownStartRegex = LocaleRegex.countdownStart[this.lang] ||
-      LocaleRegex.countdownStart['en'];
+    this.areaSealRegex = LocaleNetRegex.areaSeal[this.lang] || LocaleNetRegex.areaSeal['en'];
+    this.areaUnsealRegex = LocaleNetRegex.areaUnseal[this.lang] || LocaleNetRegex.areaUnseal['en'];
+    this.countdownStartRegex = LocaleNetRegex.countdownStart[this.lang] ||
+      LocaleNetRegex.countdownStart['en'];
   }
 
-  onLogEvent(logs) {
+  onNetLog(e) {
+    const log = e.rawLine;
     if (!this.defaultPhase) {
-      for (const log of logs) {
-        if (this.areaSealRegex.test(log) || log.includes(kTestPhaseStart)) {
-          this.defaultPhaseIdx++;
-          this.defaultPhase = 'B' + this.defaultPhaseIdx;
-          this.onFightPhaseStart(this.defaultPhase, this.lastData);
-          return;
-        }
+      if (this.areaSealRegex.test(log) || kTestPhaseStart.test(log)) {
+        this.defaultPhaseIdx++;
+        this.defaultPhase = 'B' + this.defaultPhaseIdx;
+        this.onFightPhaseStart(this.defaultPhase, this.lastData);
+        return;
       }
     } else {
-      for (const log of logs) {
-        if (this.areaUnsealRegex.test(log) || log.includes(kTestPhaseEnd)) {
-          this.onFightPhaseEnd(this.defaultPhase, this.lastData);
-          this.defaultPhase = 0;
-          return;
-        }
+      if (this.areaUnsealRegex.test(log) || kTestPhaseEnd.test(log)) {
+        this.onFightPhaseEnd(this.defaultPhase, this.lastData);
+        this.defaultPhase = 0;
+        return;
       }
     }
   }

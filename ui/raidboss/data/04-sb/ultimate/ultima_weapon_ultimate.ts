@@ -1,13 +1,16 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   phase?: string;
   titanGaols?: string[];
+  titanBury?: NetMatches['AddedCombatant'][];
 }
 
 // Ultima Weapon Ultimate
@@ -39,66 +42,6 @@ const triggerSet: TriggerSet<Data> = {
     },
   ],
   triggers: [
-    {
-      id: 'UWU Aetherochemical Laser Middle',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B84', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B84', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B84', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B84', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B84', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B84', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Middle Laser',
-          de: 'Laser (Mitte)',
-          fr: 'Laser (Milieu)',
-          ja: 'レーザー (中央)',
-          cn: '中间激光',
-        },
-      },
-    },
-    {
-      id: 'UWU Aetherochemical Laser Right',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B85', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B85', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B85', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B85', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B85', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B85', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'North Laser',
-          de: 'Laser (Norden)',
-          fr: 'Laser (Nord)',
-          ja: 'レーザー (北)',
-          cn: '右侧激光',
-        },
-      },
-    },
-    {
-      id: 'UWU Aetherochemical Laser Left',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B86', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B86', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B86', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B86', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B86', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B86', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'East Laser',
-          de: 'Laser (Osten)',
-          fr: 'Laser (Est)',
-          ja: 'レーザー (東)',
-          cn: '左侧激光',
-        },
-      },
-    },
     // Phases
     {
       id: 'UWU Suppression Phase',
@@ -293,6 +236,63 @@ const triggerSet: TriggerSet<Data> = {
       sound: 'Long',
     },
     {
+      id: 'UWU Titan Bury Direction',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1803' }),
+      condition: (data, matches) => {
+        (data.titanBury ??= []).push(matches);
+        return data.titanBury.length === 5;
+      },
+      alertText: (data, _matches, output) => {
+        const bombs = (data.titanBury ?? []).map((matches) => {
+          return { x: parseFloat(matches.x), y: parseFloat(matches.y) };
+        });
+        if (bombs.length !== 5) {
+          console.error(`Titan Bury: wrong bombs size: ${JSON.stringify(data.titanBury)}`);
+          return;
+        }
+        // 5 bombs drop, and then a 6th later.
+        // They all drop on one half of the arena, and then 3 on one half and 2 on the other.
+        // e.g. all 5 drop on north half, 3 on west half, 2 on east half.
+        const centerX = 100;
+        const centerY = 100;
+        const numDir = [0, 0, 0, 0]; // north, east, south, west
+        for (const bomb of bombs) {
+          if (bomb.y < centerY)
+            numDir[0]++;
+          else
+            numDir[2]++;
+          if (bomb.x < centerX)
+            numDir[3]++;
+          else
+            numDir[1]++;
+        }
+
+        for (let idx = 0; idx < numDir.length; ++idx) {
+          if (numDir[idx] !== 5)
+            continue;
+          // Example: dir is 1 (east), party is west, facing west.
+          // We need to check dir 0 (north, aka "right") and dir 2 (south, aka "left").
+          const numLeft = numDir[(idx + 1) % 4] ?? -1;
+          const numRight = numDir[(idx - 1 + 4) % 4] ?? -1;
+
+          if (numRight === 2 && numLeft === 3)
+            return output.right!();
+          if (numRight === 3 && numLeft === 2)
+            return output.left!();
+
+          console.error(`Titan Bury: bad counts: ${JSON.stringify(data.titanBury)}, ${idx}, ${numLeft}, ${numRight}`);
+          return;
+        }
+
+        console.error(`Titan Bury: failed to find dir: ${JSON.stringify(data.titanBury)}`);
+      },
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+      },
+    },
+    {
       id: 'UWU Titan Gaols',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
@@ -401,7 +401,70 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Geôle',
           ja: 'ジェイル',
           cn: '石牢点名',
-          ko: '감옥 → 나',
+          ko: '돌감옥 대상자',
+        },
+      },
+    },
+    {
+      id: 'UWU Aetherochemical Laser Middle',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'The Ultima Weapon', id: '2B84', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ultima-Waffe', id: '2B84', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ultima Arma', id: '2B84', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルテマウェポン', id: '2B84', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '究极神兵', id: '2B84', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알테마 웨폰', id: '2B84', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Middle Laser',
+          de: 'Laser (Mitte)',
+          fr: 'Laser (Milieu)',
+          ja: 'レーザー (中央)',
+          cn: '中间激光',
+          ko: '가운데 레이저',
+        },
+      },
+    },
+    {
+      id: 'UWU Aetherochemical Laser Right',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'The Ultima Weapon', id: '2B85', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ultima-Waffe', id: '2B85', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ultima Arma', id: '2B85', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルテマウェポン', id: '2B85', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '究极神兵', id: '2B85', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알테마 웨폰', id: '2B85', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'North Laser',
+          de: 'Laser (Norden)',
+          fr: 'Laser (Nord)',
+          ja: 'レーザー (北)',
+          cn: '右侧激光',
+          ko: '북쪽 레이저',
+        },
+      },
+    },
+    {
+      id: 'UWU Aetherochemical Laser Left',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ source: 'The Ultima Weapon', id: '2B86', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ultima-Waffe', id: '2B86', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ultima Arma', id: '2B86', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルテマウェポン', id: '2B86', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '究极神兵', id: '2B86', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알테마 웨폰', id: '2B86', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'East Laser',
+          de: 'Laser (Osten)',
+          fr: 'Laser (Est)',
+          ja: 'レーザー (東)',
+          cn: '左侧激光',
+          ko: '동쪽 레이저',
         },
       },
     },
@@ -677,7 +740,7 @@ const triggerSet: TriggerSet<Data> = {
         'Bomb Boulder': '爆破岩石',
         'Chirada': '妙翅',
         'Garuda': '迦楼罗',
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '哈哈哈哈哈！',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '哈哈哈哈哈！\\s*你们这些蝼蚁只有被我的狂风吹散的下场！',
         'Ifrit': '伊弗利特',
         'Lahabrea': '拉哈布雷亚',
         'Spiny Plume': '刺羽',
@@ -741,7 +804,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
-        'Bomb Boulder': '화강암 감옥',
+        'Bomb Boulder': '바위폭탄',
         'Chirada': '치라다',
         'Garuda': '가루다',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '시작하자, 버러지들아',

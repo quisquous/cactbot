@@ -31,7 +31,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '38F' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Slid off!',
@@ -39,6 +39,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A glissé(e) !',
             ja: '滑った',
             cn: '滑落',
+            ko: '미끄러짐',
           },
         };
       },
@@ -49,7 +50,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '1F8B', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Pushed off!',
@@ -57,6 +58,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             fr: 'A été poussé(e) !',
             ja: '落ちた',
             cn: '击退坠落',
+            ko: '넉백됨',
           },
         };
       },
@@ -68,14 +70,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '1F90', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
-            fr: 'A été pousser !',
+            fr: 'A été poussé(e) !',
             ja: '落ちた',
             cn: '击退坠落',
+            ko: '넉백됨',
           },
         };
       },

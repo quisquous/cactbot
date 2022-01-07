@@ -72,7 +72,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return !(data.phaseNumber === 3 && gameCount % 2 === 0) && matches.targetId !== 'E0000000';
       },
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -85,7 +85,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // If the player takes no damage, they did the mechanic correctly.
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
       run: (data) => data.gameCount = (data.gameCount ?? 0) + 1,
     },

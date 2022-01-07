@@ -27,7 +27,6 @@ export default class TimerIcon extends HTMLElement {
   static get observedAttributes(): string[] {
     return [
       'icon',
-      'name',
       'zoom',
       'duration',
       'width',
@@ -37,6 +36,47 @@ export default class TimerIcon extends HTMLElement {
       'text',
       'textcolor',
     ];
+  }
+
+  /** create an instance of TimerIcon with attributes */
+  static create(o?: {
+    icon?: string;
+    zoom?: number;
+    duration?: number;
+    width?: string;
+    height?: string;
+    bordercolor?: string;
+    bordersize?: string;
+    text?: string;
+    textcolor?: string;
+  }): TimerIcon {
+    if (!window.customElements.get('timer-icon'))
+      window.customElements.define('timer-icon', TimerIcon);
+
+    const element = document.createElement('timer-icon');
+    if (!o)
+      return element;
+
+    if (typeof o.icon === 'string')
+      element.icon = o.icon;
+    if (typeof o.zoom === 'number')
+      element.zoom = o.zoom;
+    if (typeof o.duration === 'number')
+      element.duration = o.duration;
+    if (typeof o.width === 'string')
+      element.width = o.width;
+    if (typeof o.height === 'string')
+      element.height = o.height;
+    if (typeof o.bordercolor === 'string')
+      element.bordercolor = o.bordercolor;
+    if (typeof o.bordersize === 'string')
+      element.bordersize = o.bordersize;
+    if (typeof o.text === 'string')
+      element.text = o.text;
+    if (typeof o.textcolor === 'string')
+      element.textcolor = o.textcolor;
+
+    return element;
   }
 
   // All visual dimensions are scaled by this.

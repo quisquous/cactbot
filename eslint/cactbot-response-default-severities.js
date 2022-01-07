@@ -97,7 +97,7 @@ module.exports = {
 
               fix: (fixer) => {
                 return fixer.replaceTextRange(
-                  [node.arguments[0].start, node.arguments[node.arguments.length - 1].end],
+                  [node.arguments[0].range[0], node.arguments[node.arguments.length - 1].range[1]],
                   '',
                 );
               },

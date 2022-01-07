@@ -10,12 +10,29 @@ export const kMPUI2Rate = 0.45;
 export const kMPUI3Rate = 0.60;
 export const kMPTickInterval = 3.0;
 
+/**
+ * DoT ticks on every "Eorzea minute",
+ * and it is known that 1 "Eorzea day" equals to 70 "Earth minutes",
+ * so 1 "Eorzea minute" is equal to `70 * 60 / (1 * 24 * 60)` = `2.9166667`
+ */
+export const kDoTTickInterval = 70 * 60 / (1 * 24 * 60);
+
+export const kComboDelay = 30;
+export const kComboDelay5x = 15;
+
 export const kWellFedContentTypes: number[] = [
   ContentType.Dungeons,
   ContentType.Trials,
   ContentType.Raids,
   ContentType.UltimateRaids,
 ];
+
+// this object holds effect id that is different from the patch 6.x
+// or removed in patch 6.x. In order to support CN/KR that is still
+// in patch 5.x, we move them here.
+export const patch5xEffectId = {
+  FurtherRuin5x: '4BC',
+};
 
 export const kAbility = {
   // LB
@@ -62,6 +79,7 @@ export const kAbility = {
   Confiteor: '404B',
   Clemency: 'DD5',
   FightOrFlight: '14',
+  BladeOfValor: '6496',
   // WAR
   HeavySwing: '1F',
   Maim: '25',
@@ -117,6 +135,8 @@ export const kAbility = {
   AspectedHelios: 'E11',
   Draw: 'E06',
   Divination: '40A8',
+  // SGE
+  Rhizomata: '5EF5',
   // MNK
   DragonKick: '4A',
   TwinSnakes: '3D',
@@ -142,6 +162,7 @@ export const kAbility = {
   LanceCharge: '55',
   DragonSight: '1CE6',
   BattleLitany: 'DE5',
+  DraconianFury: '64AA',
   // NIN
   SpinningEdge: '8C0',
   GustSlash: '8C2',
@@ -171,8 +192,14 @@ export const kAbility = {
   KaeshiSetsugekka: '4066',
   HissatsuGuren: '1D48',
   HissatsuSenei: '4061',
+  Fuko: '64B4',
+  // RPR
+  ArcaneCircle: '5F55',
   // BRD
   BattleVoice: '76',
+  MagesBallad: '72',
+  ArmysPaeon: '74',
+  theWanderersMinuet: 'DE7',
   // MCH
   SplitShot: 'B32',
   SlugShot: 'B34',
@@ -207,15 +234,20 @@ export const kAbility = {
   Thunder3: '99',
   Thunder4: '1CFC',
   // SMN
+  EnergyDrain: '407C',
+  EnergySiphon: '407E',
+  SearingLight: '64F2',
+  Aethercharge: '64C8',
+  DreadwyrmTrance: 'DFD',
+  SummonBahamut: '1D03',
+  SummonPhoenix: '64E7',
+  // 5.x
   Miasma: 'A8',
   Miasma3: '1D01',
   BioSmn: 'A4',
   BioSmn2: 'B2',
   Bio3: '1D00',
   Tridisaster: 'DFC',
-  EnergyDrain: '407C',
-  EnergySiphon: '407E',
-  DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
   Devotion: '1D1A',
   // RDM
@@ -255,9 +287,229 @@ export const kAbility = {
   LucidDreaming: '1D8A',
 } as const;
 
+// Combo actions for every jobs, this would apply to ComboTracker when
+// it is initialized, for determining whether the current action is in combo.
+export const kComboActions: string[][] = [
+  // PLD
+  [
+    kAbility.FastBlade,
+    kAbility.RiotBlade,
+    kAbility.GoringBlade,
+  ],
+  // WAR
+  [
+    kAbility.HeavySwing,
+    kAbility.Maim,
+    kAbility.StormsEye,
+  ],
+  [
+    kAbility.HeavySwing,
+    kAbility.Maim,
+    kAbility.StormsPath,
+  ],
+  [
+    kAbility.Overpower,
+    kAbility.MythrilTempest,
+  ],
+  // DRK
+  [
+    kAbility.HardSlash,
+    kAbility.SyphonStrike,
+    kAbility.Souleater,
+  ],
+  [
+    kAbility.Unleash,
+    kAbility.StalwartSoul,
+  ],
+  // GNB
+  [
+    kAbility.KeenEdge,
+    kAbility.BrutalShell,
+    kAbility.SolidBarrel,
+  ],
+  [
+    kAbility.DemonSlice,
+    kAbility.DemonSlaughter,
+  ],
+  // DRG
+  [
+    kAbility.TrueThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ],
+  [
+    kAbility.RaidenThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ],
+  [
+    kAbility.DoomSpike,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
+  ],
+  [
+    kAbility.DraconianFury,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
+  ],
+  // NIN
+  [
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.AeolianEdge,
+  ],
+  [
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.ArmorCrush,
+  ],
+  [
+    kAbility.DeathBlossom,
+    kAbility.HakkeMujinsatsu,
+  ],
+  // SAM
+  [
+    kAbility.Hakaze,
+    kAbility.Jinpu,
+    kAbility.Gekko,
+  ],
+  [
+    kAbility.Hakaze,
+    kAbility.Shifu,
+    kAbility.Kasha,
+  ],
+  [
+    kAbility.Hakaze,
+    kAbility.Yukikaze,
+  ],
+  [
+    kAbility.Fuga,
+    kAbility.Mangetsu,
+  ],
+  [
+    kAbility.Fuga,
+    kAbility.Oka,
+  ],
+  [
+    kAbility.Fuko,
+    kAbility.Mangetsu,
+  ],
+  [
+    kAbility.Fuko,
+    kAbility.Oka,
+  ],
+  // MCH
+  [
+    kAbility.SplitShot,
+    kAbility.SlugShot,
+    kAbility.CleanShot,
+  ],
+  [
+    kAbility.HeatedSplitShot,
+    kAbility.SlugShot,
+    kAbility.CleanShot,
+  ],
+  [
+    kAbility.HeatedSplitShot,
+    kAbility.HeatedSlugShot,
+    kAbility.CleanShot,
+  ],
+  [
+    kAbility.HeatedSplitShot,
+    kAbility.HeatedSlugShot,
+    kAbility.HeatedCleanShot,
+  ],
+  // DNC
+  [
+    kAbility.Cascade,
+    kAbility.Fountain,
+  ],
+  [
+    kAbility.Windmill,
+    kAbility.Bladeshower,
+  ],
+];
+
 // Full skill names of abilities that break combos.
 // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
-export const kComboBreakers = Object.freeze([
+export const kComboBreakers = [
+  // PLD
+  kAbility.FastBlade,
+  kAbility.RiotBlade,
+  kAbility.RageOfHalone,
+  kAbility.RoyalAuthority,
+  kAbility.GoringBlade,
+  kAbility.TotalEclipse,
+  kAbility.Prominence,
+  kAbility.HolySpirit,
+  kAbility.HolyCircle,
+  kAbility.Clemency,
+  kAbility.Confiteor,
+  kAbility.ShieldBash,
+  // WAR
+  kAbility.HeavySwing,
+  kAbility.Maim,
+  kAbility.StormsEye,
+  kAbility.StormsPath,
+  kAbility.Overpower,
+  kAbility.MythrilTempest,
+  // DRK
+  kAbility.HardSlash,
+  kAbility.SyphonStrike,
+  kAbility.Souleater,
+  kAbility.Unleash,
+  kAbility.StalwartSoul,
+  // GNB
+  kAbility.KeenEdge,
+  kAbility.BrutalShell,
+  kAbility.SolidBarrel,
+  kAbility.DemonSlice,
+  kAbility.DemonSlaughter,
+  // DRG
+  kAbility.TrueThrust,
+  kAbility.VorpalThrust,
+  kAbility.FullThrust,
+  kAbility.Disembowel,
+  kAbility.ChaosThrust,
+  kAbility.DoomSpike,
+  kAbility.SonicThrust,
+  kAbility.CoerthanTorment,
+  // NIN
+  kAbility.SpinningEdge,
+  kAbility.GustSlash,
+  kAbility.AeolianEdge,
+  kAbility.ArmorCrush,
+  kAbility.DeathBlossom,
+  kAbility.HakkeMujinsatsu,
+  // SAM
+  kAbility.Hakaze,
+  kAbility.Jinpu,
+  kAbility.Gekko,
+  kAbility.Shifu,
+  kAbility.Kasha,
+  kAbility.Yukikaze,
+  kAbility.Fuga,
+  kAbility.Mangetsu,
+  kAbility.Oka,
+  kAbility.MeikyoShisui,
+  kAbility.Fuko,
+  // MCH
+  kAbility.SplitShot,
+  kAbility.SlugShot,
+  kAbility.CleanShot,
+  kAbility.HeatedSplitShot,
+  kAbility.HeatedSlugShot,
+  kAbility.HeatedCleanShot,
+  kAbility.SpreadShot,
+  // DNC
+  kAbility.Cascade,
+  kAbility.Fountain,
+  kAbility.Windmill,
+  kAbility.Bladeshower,
+];
+
+export const kComboBreakers5x = [
+  ...kComboBreakers,
   // LB
   kAbility.ShieldWall,
   kAbility.Stronghold,
@@ -286,89 +538,19 @@ export const kComboBreakers = Object.freeze([
   kAbility.Meteor,
   kAbility.Teraflare,
   kAbility.VermilionScourge,
-  // PLD
-  kAbility.FastBlade,
-  kAbility.RiotBlade,
-  kAbility.RageOfHalone,
-  kAbility.RoyalAuthority,
-  kAbility.GoringBlade,
-  kAbility.TotalEclipse,
-  kAbility.Prominence,
-  kAbility.HolySpirit,
-  kAbility.HolyCircle,
-  kAbility.Clemency,
-  kAbility.Confiteor,
+  // Ranged
   kAbility.ShieldLob,
-  kAbility.ShieldBash,
-  // WAR
-  kAbility.HeavySwing,
-  kAbility.Maim,
-  kAbility.StormsEye,
-  kAbility.StormsPath,
-  kAbility.Overpower,
-  kAbility.MythrilTempest,
   kAbility.Tomahawk,
-  // DRK
-  kAbility.HardSlash,
-  kAbility.SyphonStrike,
-  kAbility.Souleater,
-  kAbility.Unleash,
-  kAbility.StalwartSoul,
   kAbility.Unmend,
-  // GNB
-  kAbility.KeenEdge,
-  kAbility.BrutalShell,
-  kAbility.SolidBarrel,
-  kAbility.DemonSlice,
-  kAbility.DemonSlaughter,
   kAbility.LightningShot,
-  // DRG
-  kAbility.TrueThrust,
-  kAbility.VorpalThrust,
-  kAbility.FullThrust,
-  kAbility.Disembowel,
-  kAbility.ChaosThrust,
   kAbility.PiercingTalon,
-  kAbility.DoomSpike,
-  kAbility.SonicThrust,
-  kAbility.CoerthanTorment,
-  // NIN
-  kAbility.SpinningEdge,
-  kAbility.GustSlash,
-  kAbility.AeolianEdge,
-  kAbility.ArmorCrush,
-  kAbility.DeathBlossom,
-  kAbility.HakkeMujinsatsu,
   kAbility.ThrowingDagger,
-  // SAM
-  kAbility.Hakaze,
-  kAbility.Jinpu,
-  kAbility.Gekko,
-  kAbility.Shifu,
-  kAbility.Kasha,
-  kAbility.Yukikaze,
-  kAbility.Fuga,
-  kAbility.Mangetsu,
-  kAbility.Oka,
   kAbility.Enpi,
-  kAbility.MeikyoShisui,
-  // MCH
-  kAbility.SplitShot,
-  kAbility.SlugShot,
-  kAbility.CleanShot,
-  kAbility.HeatedSplitShot,
-  kAbility.HeatedSlugShot,
-  kAbility.HeatedCleanShot,
-  kAbility.SpreadShot,
-  // DNC
-  kAbility.Cascade,
-  kAbility.Fountain,
-  kAbility.Windmill,
-  kAbility.Bladeshower,
-]);
+];
 
 // [level][Sub][Div]
-// Source: http://theoryjerks.akhmorning.com/resources/levelmods/
+// FIXME: Due to 6.0 data downscale, seems all parameter between lv50-80 has been changed
+// 70 80 90 has been determined, between them still lack
 export const kLevelMod = [
   [0, 0],
   [56, 56],
@@ -420,35 +602,45 @@ export const kLevelMod = [
   [311, 311],
   [322, 322],
   [331, 331],
-  [341, 341],
-  [342, 393],
-  [344, 444],
-  [345, 496],
-  [346, 548],
-  [347, 600],
-  [349, 651],
-  [350, 703],
-  [351, 755],
-  [352, 806],
-  [354, 858],
-  [355, 941],
-  [356, 1032],
-  [357, 1133],
-  [358, 1243],
-  [369, 1364],
-  [360, 1497],
-  [361, 1643],
-  [362, 1802],
-  [363, 1978],
-  [364, 2170],
-  [365, 2263],
-  [366, 2360],
-  [367, 2461],
-  [368, 2566],
-  [370, 2676],
-  [372, 2790],
-  [374, 2910],
-  [376, 3034],
-  [378, 3164],
-  [380, 3300],
+  [341, 341], // lv50
+  [342, 900],
+  [344, 900],
+  [345, 900],
+  [346, 900],
+  [347, 900],
+  [349, 900],
+  [350, 900],
+  [351, 900],
+  [352, 900],
+  [354, 900],
+  [355, 900],
+  [356, 900],
+  [357, 900],
+  [358, 900],
+  [369, 900],
+  [360, 900],
+  [361, 900],
+  [362, 900],
+  [363, 900],
+  [364, 900], // lv70, determined
+  [365, 1300],
+  [366, 1300],
+  [367, 1300],
+  [368, 1300],
+  [370, 1300],
+  [372, 1300],
+  [374, 1300],
+  [376, 1300],
+  [378, 1300],
+  [380, 1300], // lv80, determined
+  [382, 1900],
+  [384, 1900],
+  [386, 1900],
+  [388, 1900],
+  [390, 1900],
+  [392, 1900],
+  [394, 1900],
+  [396, 1900],
+  [398, 1900],
+  [400, 1900], // lv90, determined
 ] as const;

@@ -24,6 +24,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Tank Tether',
           de: 'Tank Verbindung',
+          fr: 'Lien tank',
           ja: 'タンク 線を取る',
           cn: '坦克接线远离人群',
           ko: '탱 블래스터 징',
@@ -180,6 +181,9 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Drop Fire Outside',
           de: 'Feuer draußen ablegen',
+          fr: 'Déposez le feu à l\'extérieur',
+          cn: '把火放在外面',
+          ko: '불 장판 바깥으로 유도',
         },
       },
     },
@@ -204,6 +208,9 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Use duty action on Conductive Focus',
           de: 'Benutze Spezialkommando auf "Ziel des Blitzstrahls"',
+          fr: 'Utilisez l\'action spéciale sur le Point de convergence électrique',
+          cn: '在雷力投射点上使用任务指令',
+          ko: '뇌력 투사 지점에 교란기 사용',
         },
       },
     },

@@ -76,7 +76,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B03' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B03' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B03' }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBusterSwap(),
     },
     {
@@ -381,6 +380,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '${dir} (${suffix})',
             ja: '${dir} (${suffix})',
             cn: '${dir} (${suffix})',
+            ko: '${dir} (${suffix})',
           },
           out: Outputs.out,
           in: Outputs.in,
@@ -898,6 +898,9 @@ const triggerSet: TriggerSet<Data> = {
         'Ruby Bit': '红宝石浮游炮',
         'Raven\'s Image': '奈尔的幻影',
         'Meteor': '陨石',
+        'Comet': '彗星',
+        'White Agony': '奈尔的悲叹',
+        'White Fury': '奈尔的愤怒',
       },
       'replaceText': {
         '--cutscene--': '--过场动画--',
@@ -948,6 +951,9 @@ const triggerSet: TriggerSet<Data> = {
         'Ruby Bit': '루비 비트',
         'Raven\'s Image': '넬의 환영',
         'Meteor': '메테오',
+        'Comet': '혜성',
+        'White Agony': '넬의 비탄',
+        'White Fury': '넬의 분노',
       },
       'replaceText': {
         '--cutscene--': '--컷신--',

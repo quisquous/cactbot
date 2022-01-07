@@ -5,7 +5,11 @@ import { Lang, NonEnLang } from '../../resources/languages';
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
   // Match Regexes, NetRegexes, and timeline constructions of seal log lines.
-  seal: '(?<=00:0839:|00\\|[^|]*\\|0839\\|\\|)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+  // FIXME: This seal regex includes an optional second colon, as "0839::?"".
+  // Once we have completely converted things for 6.0,
+  // we should come back here and make the doubled colon non-optional.
+  seal:
+    '(?<=00:0839::?|00\\|[^|]*\\|0839\\|\\|)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };
@@ -30,7 +34,7 @@ const textKeys = {
   Number: '--(\\s*\\d+\\s*)--',
 };
 
-type CommonReplacement = {
+export type CommonReplacement = {
   replaceSync: {
     [replaceKey: string]: { [key in Lang]?: string };
   };
@@ -107,7 +111,7 @@ export const commonReplacement: CommonReplacement = {
       de: '--Klone erscheinen--',
       fr: '--Apparition des clones--',
       ja: '--幻影出現--',
-      cn: '--克隆 体 出现--',
+      cn: '--幻影出现--',
       ko: '--분신 소환--',
     },
     '--corner--': {
@@ -150,7 +154,7 @@ export const commonReplacement: CommonReplacement = {
       fr: '--Gelé--',
       ja: '--凍結--',
       cn: '--冻结--',
-      ko: '--동결--',
+      ko: '--빙결--',
     },
     '--in--': {
       de: '--Rein--',
@@ -261,7 +265,7 @@ export const commonReplacement: CommonReplacement = {
       de: '--rotieren--',
       fr: '--rotation--',
       ja: '--回転--',
-      cn: '--龙回转--',
+      cn: '--旋转--',
       ko: '--회전--',
     },
     '--south--': {
@@ -324,7 +328,7 @@ export const commonReplacement: CommonReplacement = {
       de: '--teleportation--',
       fr: '--téléportation--',
       ja: '--テレポート--',
-      cn: '--傳送--',
+      cn: '--传送--',
       ko: '--순간 이동--',
     },
     '--untargetable--': {

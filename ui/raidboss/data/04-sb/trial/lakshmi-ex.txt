@@ -1,106 +1,109 @@
 # Lakshmi Extreme
-#
-# Timing for the last minute of the fight come from Farplaner:
-# https://www.reddit.com/r/ffxiv/comments/6lh5gu/act_timeline_kaizoban_for_susanolakshmi_ex/
+ # -p 2146:4 2157:100 214C:107.2 2342:400
+ # -it "Lakshmi"
+ # -ii 2157 249F 2153 2459 245A 23A8 23A9 255F 2158 2388 2389 23A4 2526 2525 2561
 
 hideall "--Reset--"
 hideall "--sync--"
 hideall "Alluring Arm"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 ### Adds
-0.0 "Start" sync /:Engage!/ window 0,1
-1.0 "--sync--" sync /:2146:Dreaming Kshatriya/ window 1,10
-15.5 "Inner Demons" # end of castbar
-15.5 "Stotram" # end of castbar
+0.0 "--sync--" sync /:Engage!/ window 0,1
+4.0 "Vril" sync / 1[56]:[^:]*:Dreaming Kshatriya:2146:/ window 10,10
+12.1 "Tail Slap" sync / 1[56]:[^:]*:Dreaming Kshatriya:258C:/
+16.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+16.9 "Inner Demons" sync / 1[56]:[^:]*:Dreaming Kshatriya:258D:/
+28.1 "Inner Demons" sync / 1[56]:[^:]*:Dreaming Kshatriya:258D:/
+29.0 "Tail Slap" sync / 1[56]:[^:]*:Dreaming Kshatriya:258C:/
+
 # infinite loop
 60.0 "--sync--" sync /.*/ window 0,30 jump 30
 
 ### Warmup
 # first auto comes out before rp text.
-100.0 "--sync--" sync /:Lakshmi:2157:/ window 100,0
-111.0 "Hand Of Grace" duration 11.5 # hat -> disappearing
-114.0 "The Pull Of Light" # end of castbar
-125.7 "Stotram" # end of castbar
-136.7 "The Pull Of Light" # end of castbar
-139.5 "The Path Of Light" duration 5.5 # hat -> cleave
-154.5 "Alluring Arm" # end of castbar
-157.0 "Hands Of Grace/Beauty" duration 11.5 # hat -> disappearing
-161.5 "The Pull Of Light" # end of castbar
-171.7 "Stotram" # end of castbar
-179.0 "The Pall Of Light" # end of castbar
-188.2 "The Pull Of Light" # end of castbar
+107.2 "Hand Of Grace" sync / 1[56]:[^:]*:Lakshmi:214C:/ window 110,0
+114.4 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+121.4 "Blissful Arrow" sync / 1[56]:[^:]*:Lakshmi:214F:/
+122.0 "Blissful Spear" sync / 1[56]:[^:]*:Lakshmi:2151:/
+124.6 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+135.8 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+143.1 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+153.2 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+160.4 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+167.5 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
+170.6 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+177.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
+187.0 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
 
 ### Chanchala #1
-194.0 "--sync--" sync /:2148:Lakshmi/ window 20,20
-196.5 "Chanchala" # end of castbar
-210.2 "Divine Denial" # end of castbar
-221.2 "Hand Of Beauty" duration 11.5 # hat -> disappearing
-225.5 "The Pull Of Light" # end of castbar
-228.5 "The Path Of Light" duration 5.5 # hat -> cleave
-246.0 "Divine Desire" # end of castbar
-249.5 "--chanchala end--"
+195.2 "Chanchala #1" sync / 1[56]:[^:]*:Lakshmi:2148:/
+209.0 "Divine Denial" sync / 1[56]:[^:]*:Lakshmi:2149:/
+217.2 "Hand Of Beauty" sync / 1[56]:[^:]*:Lakshmi:214D:/
+224.4 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
+231.4 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
+231.7 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
+245.0 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
+247.1 "--chanchala end--"
 
-258.2 "The Pull Of Light" # end of castbar
-266.2 "The Path Of Light" duration 5.5 # hat -> cleave
-279.0 "Stotram" # end of castbar
-282.0 "--untargetable--"
+257.3 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+269.7 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+277.8 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+281.5 "--untargetable--"
 
 ### More Adds
-287.5 "Adds Appear"
+287.1 "--targetable--"
 # infinite loop
 335.0 "--sync--" sync /.*/ window 0,50 jump 300
 
 ### Hugging
-400.0 "--sync--" sync /:Lakshmi:2342:Jagadishwari/ window 400,0
-421.0 "/dance"
+400.0 "Jagadishwari" sync / 1[56]:[^:]*:Lakshmi:2342:/ window 400,0
+421.4 "/dance"
+421.4 "--sync--" sync / 1[56]:[^:]*:Lakshmi:2159:/
+437.1 "Alluring Embrace" sync / 1[56]:[^:]*:Lakshmi:2343:/
+441.5 "--targetable--"
 
 ### Chanchala #2
-441.5 "--sync--" sync /:2148:Lakshmi/ window 20,20
-444.2 "Chanchala" # end of castbar
-459.5 "Divine Doubt" # end of castbar
-470.5 "The Path Of Light" duration 5.5 # hat -> cleave
-485.2 "The Pull Of Light" # end of castbar
-488.5 "--chanchala end--"
+441.7 "--sync--" sync / 14:[^:]*:Lakshmi:2148:/ window 50,10
+444.7 "Chanchala #2" sync / 1[56]:[^:]*:Lakshmi:2148:/
+458.5 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
+473.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
+484.0 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
+486.0 "--chanchala end--"
+509.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+511.5 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
 
-504.5 "Blissful Spear (Z)" duration 8.5 # appearing -> disappearing
-510.7 "The Pull Of Light" # end of castbar
-521.2 "Blissful Spear (mid)" duration 8.5 # appearing -> disappearing
-522.5 "The Path Of Light" duration 5.5 # hat -> cleave
-534.5 "The Pall Of Light" # end of castbar
-545.7 "Alluring Arm" # end of castbar
-548.2 "Hand Of Grace/Beauty" duration 11.5 # hat -> disappearing
-570.5 "Stotram" # end of castbar
+525.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+528.8 "Blissful Spear (mid)" sync / 1[56]:[^:]*:Lakshmi:2156:/
+533.1 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
+544.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+551.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+558.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
+558.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+569.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
 
 ### Chanchala #3
-579.0 "--sync--" sync /:2148:Lakshmi/ window 20,20
-581.7 "Chanchala" # end of castbar
-596.7 "Divine Doubt" # end of castbar
-612.2 "The Pall Of Light" # end of castbar
-631.0 "Blissful Spear (out)" duration 8.5 # appearing -> disappearing
-639.0 "Divine Desire" # end of castbar
-646.0 "Blissful Spear (Z)" duration 8.5 # appearing -> disappearing
-653.2 "The Pall Of Light" # end of castbar
-666.5 "Stotram" # end of castbar
-677.7 "Alluring Arm" # end of castbar
-680.7 "Hand Of Grace/Beauty" duration 11.5 # hat -> disappearing
-# TODO: duration 6??
-687.7 "The Path Of Light" duration 5.5 # hat -> cleave
-700.7 "Stotram" #end of castbar
+580.3 "Chanchala #3" sync / 1[56]:[^:]*:Lakshmi:2148:/
+595.6 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
+610.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
+636.5 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
+638.2 "Blissful Spear (out)" sync / 1[56]:[^:]*:Lakshmi:2154:/
+650.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
+651.8 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
+664.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:249D:/
+666.1 "--chanchala end--"
+675.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+682.5 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
+689.5 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
+689.8 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+697.9 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
 
-## Inexact times from here:
-
-711 "The Pull Of Light"
-721 "Hand Of Grace/Beauty" duration 11.5 # hat -> disappearing
-736 "Blissful Spear"
-741 "The Pall Of Light"
-743 "The Path Of Light" duration 6
-756 "Stotram"
+708.1 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+718.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+732.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
 
 ### Chanchala #4
-768 "Chanchala"
-774 "Divine Denial"
-
-### Enrage
-789 "Divine Denial (Enrage)"
+732.8 "Chanchala #4" sync / 1[56]:[^:]*:Lakshmi:2148:/
+735.0 "--sync--" sync / 14:[^:]*:Lakshmi:2560:/ window 1000,1000
+750.0 "Divine Denial Enrage" sync / 1[56]:[^:]*:Lakshmi:2560:/

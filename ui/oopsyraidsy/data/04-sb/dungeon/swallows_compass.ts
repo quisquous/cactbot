@@ -42,6 +42,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Swallows Compass The Long End': '2BA7', // Laser tether, Qitian Dasheng  boss 3
     'Swallows Compass The Long End 2': '2BAD', // Laser Tether, Shadows Of The Sage, boss 3
   },
+  soloFail: {
+    'Swallows Compass Five Fingered Punishment 1': '2BAB', // Stack marker, boss 3
+    'Swallows Compass Five Fingered Punishment 2': '2BB0', // Stack marker, boss 3
+  },
   triggers: [
     {
       // Standing in the lake, Diadarabotchi, boss 2
@@ -50,30 +54,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: matches.effect,
-        };
-      },
-    },
-    {
-      // Stack marker, boss 3
-      id: 'Swallows Compass Five Fingered Punishment',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['2BAB', '2BB0'], source: ['Qitian Dasheng', 'Shadow Of The Sage'] }),
-      condition: (_data, matches) => matches.type === '21', // Taking the stack solo is *probably* a mistake.
-      mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          text: {
-            en: `${matches.ability} (alone)`,
-            de: `${matches.ability} (allein)`,
-            fr: `${matches.ability} (seul(e))`,
-            ja: `${matches.ability} (一人)`,
-            cn: `${matches.ability} (单吃)`,
-            ko: `${matches.ability} (혼자 맞음)`,
-          },
         };
       },
     },

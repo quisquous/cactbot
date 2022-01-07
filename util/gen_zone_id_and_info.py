@@ -29,6 +29,7 @@ known_ids = {
 synthetic_ids = {
     "TheAkhAfahAmphitheatreUnreal": 930,
     "TheNavelUnreal": 953,
+    "TheWhorleaterUnreal": 972,
 }
 
 synthetic_zone_info = {
@@ -63,6 +64,22 @@ synthetic_zone_info = {
         "offsetY": 0,
         "sizeFactor": 400,
         "weatherRate": 23,
+    },
+    972: {
+        "contentType": 4,
+        "exVersion": 3,
+        "name": {
+            "cn": "利维亚桑幻巧战",
+            "de": "Traumprüfung - Leviathan",
+            "en": "The <Emphasis>Whorleater</Emphasis> (Unreal)",
+            "fr": "Le Briseur de marées (irréel)",
+            "ja": "幻リヴァイアサン討滅戦",
+            "ko": "환 리바이어선 토벌전",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 400,
+        "weatherRate": 38,
     },
 }
 

@@ -45,6 +45,9 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Lady tether on YOU',
           de: 'Verbindung auf DIR',
+          fr: 'Lien sur VOUS',
+          cn: '连线点名',
+          ko: '화염조 대상자',
         },
       },
     },
@@ -129,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
         'Tenzen': 'Tenzen',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Ashes To Ashes': 'Cendres du phénix',
         'Burn': 'Combustion',
         'Cremate': 'Crématorium',

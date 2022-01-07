@@ -298,7 +298,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': '아울루스 말 아시나',
         'Magitek Scorpion': '경비 전갈',
@@ -306,6 +305,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rhalgr\'s Gate': '파괴신의 문',
         'The Chamber of Knowledge': '아시나 가설 실험장',
         'The Hall of the Griffin': '그리핀 전당',
+        'The Storm': '뇌절',
         'Zenos Yae Galvus': '제노스 예 갈부스',
       },
       'replaceText': {
@@ -326,6 +326,9 @@ const triggerSet: TriggerSet<Data> = {
         'Order To Charge': '출격 명령',
         'Order To Fire': '공격 명령',
         'Storm, Swell, Sword': '비검 풍뇌요',
+        'Storm\\?/Swell\\?(?!/Sword)': '뇌절?/풍단?',
+        'Storm\\?/Swell\\?/Sword\\?': '뇌절?/풍단?/요도?',
+        'Swell/Sword': '풍단/요도',
         'Tail Laser': '꼬리 레이저',
         'Target Search': '대상 찾기',
         'Unmoving Troika': '부동삼단',

@@ -329,23 +329,34 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // TODO: we could theoretically get combatants here when sharp turn starts casting.
-      // Sharp Turn ability ids differentiate left/right.  We could use effect ids to know group.
-      // But how would you communicate where to stand? "behind and slightly/very right"?
-      id: 'Puppet Superior Sharp Turn',
+      id: 'Puppet Superior Sharp Turn Inside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4FAB', capture: false }),
-      delaySeconds: 3,
+      netRegex: NetRegexes.startsUsing({ id: ['4FA9', '5511', '5513'], capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Dodge Sword Charges',
-          de: 'Schwerteransturm ausweichen',
-          fr: 'Esquivez les charges d\'épées',
-          ja: 'ソード突進を避ける',
-          cn: '躲避左右刀冲锋',
-          ko: '돌진 피하기',
+          en: 'Move to Inside',
+          de: 'Nach Innen bewegen',
+          fr: 'Allez à l\'intérieur',
+          cn: '去里面',
+          ko: '안으로',
+        },
+      },
+    },
+    {
+      id: 'Puppet Superior Sharp Turn Outside',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['4FAA', '5512', '5514'], capture: false }),
+      suppressSeconds: 5,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Move to Outside',
+          de: 'Nach Außen bewegen',
+          fr: 'Allez à l\'extérieur',
+          cn: '去外面',
+          ko: '밖으로',
         },
       },
     },

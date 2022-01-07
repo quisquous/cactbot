@@ -1,7 +1,7 @@
-import { EventResponses } from '../../types/event';
 import { OopsyMistake } from '../../types/oopsy';
 
-import { MistakeObserver } from './mistake_observer';
+import { DeathReport } from './death_report';
+import { MistakeObserver, ViewEvent } from './mistake_observer';
 import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
@@ -29,6 +29,12 @@ export class OopsySummaryTable implements MistakeObserver {
   constructor(private options: OopsyOptions, private table: HTMLElement) {
     // this.table has one column for name, and then one for each of the types.
     document.documentElement.style.setProperty('--table-cols', (this.types.length + 1).toString());
+  }
+
+  Reset(): void {
+    this.mistakes = undefined;
+    while (this.table?.lastChild)
+      this.table.removeChild(this.table.lastChild);
   }
 
   BuildHeaderRow(parent: HTMLElement): void {
@@ -129,16 +135,15 @@ export class OopsySummaryTable implements MistakeObserver {
     }
   }
 
-  SetInCombat(_inCombat: boolean): void {
-    // noop
+  OnEvent(event: ViewEvent): void {
+    if (event.type === 'Mistake')
+      this.OnMistakeObj(event.mistake);
   }
 
-  StartNewACTCombat(): void {
-    // noop
-  }
-
-  OnChangeZone(_e: EventResponses['ChangeZone']): void {
-    // noop
+  OnSyncEvents(events: ViewEvent[]): void {
+    this.Reset();
+    for (const event of events)
+      this.OnEvent(event);
   }
 }
 
@@ -152,6 +157,14 @@ export class OopsySummaryList implements MistakeObserver {
     this.container.classList.remove('hide');
   }
 
+  Reset(): void {
+    this.pullIdx = 0;
+    this.baseTime = undefined;
+    this.currentDiv = null;
+    while (this.container?.lastChild)
+      this.container.removeChild(this.container.lastChild);
+  }
+
   private GetTimeStr(d: Date): string {
     // ISO-8601 or death.
     const month = `0${d.getMonth() + 1}`.slice(-2);
@@ -161,7 +174,7 @@ export class OopsySummaryList implements MistakeObserver {
     return `${d.getFullYear()}-${month}-${day} ${hours}:${minutes}`;
   }
 
-  private StartNewSectionIfNeeded(): HTMLElement {
+  private StartNewSectionIfNeeded(timestamp: number): HTMLElement {
     if (this.currentDiv)
       return this.currentDiv;
 
@@ -185,7 +198,7 @@ export class OopsySummaryList implements MistakeObserver {
       zoneDiv.innerText = `(${this.zoneName})`;
     headerDiv.appendChild(zoneDiv);
     const timeDiv = document.createElement('div');
-    timeDiv.innerText = this.GetTimeStr(new Date());
+    timeDiv.innerText = this.GetTimeStr(new Date(timestamp));
     headerDiv.appendChild(timeDiv);
 
     const rowContainer = document.createElement('div');
@@ -200,18 +213,18 @@ export class OopsySummaryList implements MistakeObserver {
     this.currentDiv = null;
   }
 
-  OnMistakeObj(m: OopsyMistake): void {
+  OnMistakeObj(timestamp: number, m: OopsyMistake): void {
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
     const blameText = blame ? `${ShortNamify(blame, this.options.PlayerNicks)}: ` : '';
     const text = Translate(this.options.DisplayLanguage, m.text);
     if (!text)
       return;
-    this.AddLine(iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, Date.now()));
+    this.AddLine(m, iconClass, `${blameText} ${text}`, GetFormattedTime(this.baseTime, timestamp));
   }
 
-  AddLine(iconClass: string, text: string, time: string): void {
-    const currentSection = this.StartNewSectionIfNeeded();
+  AddLine(m: OopsyMistake, iconClass: string, text: string, time: string): void {
+    const currentSection = this.StartNewSectionIfNeeded(this.baseTime ?? Date.now());
 
     const rowDiv = document.createElement('div');
     rowDiv.classList.add('mistake-row');
@@ -230,19 +243,92 @@ export class OopsySummaryList implements MistakeObserver {
     timeDiv.classList.add('mistake-time');
     timeDiv.innerHTML = time;
     rowDiv.appendChild(timeDiv);
+
+    if (!m.report)
+      return;
+
+    const collapserDiv = document.createElement('div');
+    collapserDiv.classList.add('mistake-collapser');
+    rowDiv.appendChild(collapserDiv);
+
+    const detailsDiv = document.createElement('div');
+    detailsDiv.classList.add('death-details');
+    currentSection.appendChild(detailsDiv);
+
+    let expanded = false;
+    rowDiv.addEventListener('click', () => {
+      expanded = !expanded;
+      if (expanded) {
+        collapserDiv.classList.add('expanded');
+        detailsDiv.classList.add('expanded');
+      } else {
+        collapserDiv.classList.remove('expanded');
+        detailsDiv.classList.remove('expanded');
+      }
+    });
+
+    const report = new DeathReport(m.report);
+    for (const event of report.parseReportLines()) {
+      const hpElem = document.createElement('div');
+      hpElem.classList.add('death-row-hp');
+      if (event.currentHp !== undefined)
+        hpElem.innerText = event.currentHp.toString();
+      detailsDiv.appendChild(hpElem);
+
+      const damageElem = document.createElement('div');
+      damageElem.classList.add('death-row-amount');
+      if (event.amountClass)
+        damageElem.classList.add(event.amountClass);
+      if (event.amountStr !== undefined)
+        damageElem.innerText = event.amountStr;
+      detailsDiv.appendChild(damageElem);
+
+      const iconElem = document.createElement('div');
+      iconElem.classList.add('death-row-icon');
+      if (event.icon !== undefined)
+        iconElem.classList.add('mistake-icon', event.icon);
+      detailsDiv.appendChild(iconElem);
+
+      const textElem = document.createElement('div');
+      textElem.classList.add('death-row-text');
+      if (event.text !== undefined)
+        textElem.innerHTML = event.text;
+      detailsDiv.appendChild(textElem);
+
+      const timeElem = document.createElement('div');
+      timeElem.classList.add('death-row-time');
+      timeElem.innerText = event.timestampStr;
+      detailsDiv.appendChild(timeElem);
+    }
   }
 
-  SetInCombat(_inCombat: boolean): void {
-    // noop
+  OnEvent(event: ViewEvent): void {
+    if (event.type === 'Mistake')
+      this.OnMistakeObj(event.timestamp, event.mistake);
+    else if (event.type === 'StartEncounter')
+      this.StartEncounter(event.timestamp);
+    else if (event.type === 'ChangeZone')
+      this.OnChangeZone(event.zoneName);
   }
 
-  StartNewACTCombat(): void {
+  OnSyncEvents(events: ViewEvent[]): void {
+    this.Reset();
+    for (const event of events)
+      this.OnEvent(event);
+  }
+
+  StartEncounter(timestamp: number): void {
+    // TODO: If you reload the summary while in combat, then the OnInCombatChangedEvent
+    // for the current combat will send a new StartEncounter (creating a new section)
+    // even though the current combat is still ongoing.  We could try to handle this
+    // by explicitly having StartEncounter/StopEncounter however this requires a bit
+    // of wrangling to get right.  For now, don't reload the summary while in combat.  ;)
     this.EndSection();
-    this.StartNewSectionIfNeeded();
-    this.baseTime = Date.now();
+    this.baseTime = timestamp;
+    this.StartNewSectionIfNeeded(timestamp);
   }
 
-  OnChangeZone(e: EventResponses['ChangeZone']): void {
-    this.zoneName = e.zoneName;
+  OnChangeZone(zoneName: string): void {
+    this.zoneName = zoneName;
   }
 }

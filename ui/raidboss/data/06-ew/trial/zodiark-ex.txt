@@ -1,0 +1,163 @@
+# Zodiark Extreme
+
+hideall "--Reset--"
+hideall "--sync--"
+# Useful for syncing, but just noisy.
+hideall "Exoterikos"
+hideall "Paradeigma"
+hideall "Triple Esoteric Ray"
+hideall "Infernal Stream"
+hideall "Infernal Torrent"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+1.8 "--sync--" sync / 1[56]:[^:]*:Zodiark:6C73:/ window 2.3,0
+10.8 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C60:/ window 11.3,5
+21.0 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+33.0 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
+37.1 "Styx x6" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 5.5
+50.4 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
+60.5 "Exoterikos 1" sync / 1[56]:[^:]*:Zodiark:67C1:/
+69.6 "Esoterikos 2" sync / 1[56]:[^:]*:Zodiark:67C0:/
+69.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+
+81.8 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+93.8 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
+93.9 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
+94.3 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67E2:/
+106.1 "Phobos" sync / 1[56]:[^:]*:Zodiark:67F0:/
+
+116.3 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+123.5 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+135.6 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
+141.2 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+141.8 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
+148.8 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
+
+155.9 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+166.0 "Adikia" sync / 1[56]:[^:]*:Zodiark:67F1:/
+167.4 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
+
+# Adds
+177.4 "--adds targetable--"
+182.3 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
+187.4 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
+190.6 "Esoteric Pattern 1" sync / 1[56]:[^:]*:Arcane Sigil:67E[456]:/
+
+192.5 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
+197.6 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
+200.9 "Esoteric Pattern 2" sync / 1[56]:[^:]*:Arcane Sigil:67E[456]:/
+
+202.6 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
+207.7 "--sync--" sync / 1[56]:[^:]*:Roiling Darkness:6631:/
+211.2 "Esoteric Pattern 3" sync / 1[56]:[^:]*:Arcane Sigil:67E[456]:/
+
+# Note: 67E8 + 67EA is adds still alive, 67E9 + 6D7B means all adds were killed
+214.4 "Apomnemoneumata Enrage?" sync / 1[56]:[^:]*:Zodiark:67E8:/
+225.9 "Apomnemoneumata" sync / 1[56]:[^:]*:Zodiark:6D7A:/
+
+# Star tethers
+314.4 "--sync--" sync / 1[56]:[^:]*:Zodiark:67E9:/ window 300,10
+325.9 "Apomnemoneumata" sync / 1[56]:[^:]*:Zodiark:6D7B:/
+336.9 "--targetable--"
+347.6 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
+347.6 "--untargetable--"
+359.7 "--targetable--"
+364.7 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67E7:/
+368.7 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67E7:/
+372.7 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67E7:/
+
+374.8 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
+374.9 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67E4:/
+377.9 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67E4:/
+390.9 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+406.1 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
+406.2 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
+407.2 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+408.2 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+409.2 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+411.9 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
+412.4 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67E2:/
+
+425.2 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
+437.3 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+446.4 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
+447.5 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+
+460.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+475.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
+475.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
+476.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+477.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+478.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+481.6 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
+481.6 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
+
+486.9 "Styx x7" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 8
+506.0 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+508.3 "Trimorphos Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C2:/
+510.1 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+514.1 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+520.5 "Adikia" sync / 1[56]:[^:]*:Zodiark:67F1:/
+
+# Star tethers 2
+535.7 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
+535.7 "--untargetable--"
+547.8 "--targetable--"
+552.8 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67E7:/
+556.8 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67E7:/
+560.8 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67E7:/
+565.3 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
+577.5 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
+
+587.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+594.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+606.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
+606.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
+607.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+608.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+609.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+612.4 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+613.0 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
+615.9 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67EB:/ duration 4
+
+622.9 "Styx x8" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 9
+639.3 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+648.4 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
+648.5 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67E4:/
+648.5 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+651.5 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67E4:/
+
+659.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+666.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+678.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
+678.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
+679.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+680.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+681.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+684.4 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+685.0 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
+685.5 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67E2:/
+
+693.9 "Phobos" sync / 1[56]:[^:]*:Zodiark:67F0:/
+714.8 "Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E6:/
+717.0 "Trimorphos Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C2:/
+718.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+722.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+729.2 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
+738.4 "Styx x9" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 10
+
+751.8 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+758.9 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
+771.0 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
+771.1 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
+772.1 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+773.1 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+774.1 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+776.6 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
+777.2 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
+777.2 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
+
+782.1 "Styx x9" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 10
+803.6 "Apomnemoneumata Enrage" sync / 1[56]:[^:]*:Zodiark:67F5:/

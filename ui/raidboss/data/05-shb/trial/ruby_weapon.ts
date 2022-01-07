@@ -67,7 +67,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC7' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC7' }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

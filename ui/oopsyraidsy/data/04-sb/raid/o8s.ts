@@ -65,7 +65,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '28E4', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -75,7 +75,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '28E3', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -84,7 +84,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '28DB' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Knocked off',
@@ -103,7 +103,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '28D6' }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Knocked off',

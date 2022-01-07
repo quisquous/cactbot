@@ -14,6 +14,7 @@ export const kShiftFlagValues = ['3E', '113', '213', '313'];
 export const kFlagInstantDeath = '36'; // Always 36 ?
 // miss, damage, block, parry, instant death
 export const kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
+export const kHealFlags = ['04'];
 
 // TODO: should we include damage != 0 here?
 export const damageFields = {
@@ -119,7 +120,9 @@ export const GetFormattedTime = (baseTime: number | undefined, time: number): st
 // Turns a scrambled string damage field into an integer.
 // Since fields are modified in place right now, this does nothing if called
 // again with an integer.  This is kind of a hack, sorry.
-export const UnscrambleDamage = (field: string): number => {
+export const UnscrambleDamage = (field?: string): number => {
+  if (field === undefined)
+    return 0;
   const len = field.length;
   if (len <= 4)
     return 0;
@@ -150,4 +153,26 @@ export const IsTriggerEnabled = (options: OopsyOptions, id: string): boolean => 
     return autoConfig.enabled;
 
   return true;
+};
+
+export const GetSoloMistakeText = (ability: string): LocaleText => {
+  return {
+    en: `${ability} (alone)`,
+    de: `${ability} (allein)`,
+    fr: `${ability} (seul(e))`,
+    ja: `${ability} (一人)`,
+    cn: `${ability} (单吃)`,
+    ko: `${ability} (혼자 맞음)`,
+  };
+};
+
+export const GetShareMistakeText = (ability: string): LocaleText => {
+  return {
+    en: `${ability} (share)`,
+    de: `${ability} (geteilt)`,
+    fr: `${ability} (partage)`,
+    ja: `${ability} (頭割り)`,
+    cn: `${ability} (重叠)`,
+    ko: `${ability} (쉐어)`,
+  };
 };

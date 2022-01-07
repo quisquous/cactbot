@@ -1,14 +1,8 @@
-import { NetFieldsReverse } from '../types/net_fields';
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
 
-import logDefinitions, { LogDefinitionTypes } from './netlog_defs';
+import logDefinitions, { LogDefinitionTypes, ParseHelperFields } from './netlog_defs';
 import Regexes from './regexes';
-
-// Differences from Regexes:
-// * may have more fields
-// * AddedCombatant npc id is broken up into npcNameId and npcBaseId
-// * gameLog always splits name into its own field (but previously wouldn't)
 
 const separator = '\\|';
 const matchDefault = '[^|]*';
@@ -27,19 +21,6 @@ const keysThatRequireTranslation = [
   'target',
   'line',
 ];
-
-type ParseHelperField<
-  Type extends LogDefinitionTypes,
-  Fields extends NetFieldsReverse[Type],
-  Field extends keyof Fields,
-> = {
-  field: Fields[Field] extends string ? Fields[Field] : never;
-  value?: string;
-};
-
-type ParseHelperFields<T extends LogDefinitionTypes> = {
-  [field in keyof NetFieldsReverse[T]]: ParseHelperField<T, NetFieldsReverse[T], field>;
-};
 
 const defaultParams = <
   T extends keyof typeof logDefinitions,
@@ -336,7 +317,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
   static gameNameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
-    // for compat with Regexes.
+    // Backwards compatability.
     return NetRegexes.gameLog(params);
   }
 
@@ -368,7 +349,19 @@ export default class NetRegexes {
     return parseHelper(params, 'nameToggle', defaultParams('NameToggle'));
   }
 
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#28-map
+   */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
     return parseHelper(params, 'map', defaultParams('Map'));
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#29-systemlogmessage
+   */
+  static systemLogMessage(
+    params?: NetParams['SystemLogMessage'],
+  ): CactbotBaseRegExp<'SystemLogMessage'> {
+    return parseHelper(params, 'systemLogMessage', defaultParams('SystemLogMessage'));
   }
 }

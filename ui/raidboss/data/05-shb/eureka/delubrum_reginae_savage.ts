@@ -2751,8 +2751,8 @@ const triggerSet: TriggerSet<Data> = {
           }
           return { alarmText: output.tankBusterOnYou!() };
         }
-        if (data.role === 'healer' || data.role === 'tank')
-          return { alertText: output.tankBusterOnPlayer!({ player: matches.target }) };
+        const sev = data.role === 'healer' || data.role === 'tank' ? 'alertText' : 'infoText';
+        return { [sev]: output.tankBusterOnPlayer!({ player: matches.target }) };
       },
     },
     {
@@ -3839,7 +3839,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<!Crowned )Marchosias': '마르코시아스',
         'Aetherial Bolt': '마탄',
@@ -3849,7 +3848,7 @@ const triggerSet: TriggerSet<Data> = {
         'Aetherial Ward': '마법 장벽',
         'Automatic Turret': '자동포탑',
         'Avowed Avatar': '맹세의 분열체',
-        'Ball Lightning': '전기 구체',
+        'Ball Lightning': '뇌구',
         'Ball Of Fire': '화염구',
         'Bicolor Golem': '두 빛깔 골렘',
         'Bozjan Phantom': '보즈야 유령',

@@ -6,12 +6,20 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// Object representing a "Deploy Armaments" attack.
+interface DeployArmaments {
+  sides: boolean;
+  vertical: boolean;
+  finishedTime: number;
+}
+
 export interface Data extends RaidbossData {
   busterTargets?: string[];
   cloneLunge?: boolean;
   seedTargets?: string[];
   seenSphere?: boolean;
   signalCount?: number;
+  deployArmaments?: DeployArmaments[];
 }
 
 // TODO:
@@ -468,6 +476,158 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       response: Responses.aoe(),
     },
+    // Deploy Armaments
+    //
+    // This attack has two variations and can be cast from two headings. The
+    // first variation causes two line AOEs to hit with the center being
+    // safe. The second variation causes a single line AOE to be cast in the
+    // middle, with the sides safe. It can either be cast horizontally or
+    // vertically over the arena.
+    //
+    // There are several skill IDs involved:
+    // 5C00: indicate start of a middle line attack. Always appears with one
+    //       5C02 cast
+    // 5C03: indicate start of a two side lines attack. Always appears with
+    //       2x 5C05 casts
+    // 5C01: indicates a single line attack comboing with the other boss.
+    //       Always appears simultaneously with the other bosses abilities
+    //       and a 6078 cast.
+    // 5C04: indicates a two side lines attack comboing with the other boss
+    //       Always appears simultaneously with the other bosses abilities
+    //       and 2x 6079 casts.
+    //
+    // Because these attacks overlap, we use one trigger to collect the
+    // active attacks, and a second trigger to display an alert on where to
+    // go for safety.
+    {
+      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Collect',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
+      run: (data, matches) => {
+        data.deployArmaments ??= [];
+
+        // Convert the heading into 0=N, 1=E, 2=S, 3=W
+        const direction = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
+
+        const obj: DeployArmaments = {
+          sides: matches.id === '5C03' || matches.id === '5C04',
+          finishedTime: Date.parse(matches.timestamp) + parseFloat(matches.castTime) * 1000,
+          vertical: direction === 0 || direction === 2,
+        };
+
+        data.deployArmaments.push(obj);
+      },
+    },
+    {
+      id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Trigger',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
+      delaySeconds: 0.25,
+      durationSeconds: 5,
+      suppressSeconds: 1,
+      alertText: (data, matches, output) => {
+        if (!data.deployArmaments)
+          return;
+
+        // Get time of current cast
+        const now = Date.parse(matches.timestamp);
+
+        // filter and remove any active attacks that have finished
+        const active = data.deployArmaments.filter((e) => e.finishedTime > now);
+        data.deployArmaments = active;
+
+        if (
+          active.some((e) => e.vertical && !e.sides) &&
+          active.some((e) => !e.vertical && !e.sides)
+        ) {
+          // Two middle-line AOEs, so go to the corner
+          return output.corner!();
+        } else if (
+          active.some((e) => e.vertical && e.sides) &&
+          active.some((e) => !e.vertical && e.sides)
+        ) {
+          // Two side-line AOEs, so go to the center
+          return output.center!();
+        } else if (
+          active.some((e) => e.vertical && !e.sides) &&
+          active.some((e) => !e.vertical && e.sides)
+        ) {
+          // vertical middle-line and horizontal side-lines
+          return output.westBoss!();
+        } else if (
+          active.some((e) => e.vertical && e.sides) &&
+          active.some((e) => !e.vertical && !e.sides)
+        ) {
+          // vertical side-lines and horizontal middle-line
+          return output.northBoss!();
+        } else if (active.some((e) => e.vertical && e.sides)) {
+          // vertical side-lines
+          return output.center!();
+        } else if (active.some((e) => e.vertical && !e.sides)) {
+          // vertical middle-line
+          return output.west!();
+        } else if (active.some((e) => !e.vertical && e.sides)) {
+          // horizontal side-lines
+          return output.center!();
+        } else if (active.some((e) => !e.vertical && !e.sides)) {
+          // horizontal middle-line
+          return output.north!();
+        }
+        // other combinations are unexpected
+        return output.oops!();
+      },
+      outputStrings: {
+        center: {
+          en: 'Go to Center',
+          de: 'Geh in die Mitte',
+          fr: 'Allez au milieu',
+          cn: '去中间',
+          ko: '가운데로',
+        },
+        northBoss: {
+          en: 'Go to North Boss',
+          de: 'Geh zum nördlichen Boss',
+          fr: 'Allez au Nord (boss)',
+          cn: '去北(上)边BOSS脚下',
+          ko: '북쪽 보스 근처로',
+        },
+        north: {
+          en: 'Go North',
+          de: 'Geh nach Norden',
+          fr: 'Allez au Nord',
+          cn: '去北(上)边',
+          ko: '북쪽으로',
+        },
+        westBoss: {
+          en: 'Go to West Boss',
+          de: 'Geh zum westlichen Boss',
+          fr: 'Allez à l\'Ouest (boss)',
+          cn: '去西(左)边BOSS脚下',
+          ko: '서쪽 보스 근처로',
+        },
+        west: {
+          en: 'Go West',
+          de: 'Geh nach Westen',
+          fr: 'Allez à l\'Ouest',
+          cn: '去西(左)边',
+          ko: '서쪽으로',
+        },
+        corner: {
+          en: 'Go to Corner',
+          de: 'Geh in eine Ecke',
+          fr: 'Allez dans un coin',
+          cn: '去角落',
+          ko: '구석으로',
+        },
+        oops: {
+          en: 'Avoid line AOEs',
+          de: 'Weiche den Linien AoEs aus',
+          fr: 'Évitez l\'AOE en ligne',
+          cn: '躲避直线AOE',
+          ko: '레이저 피하기',
+        },
+      },
+    },
     {
       id: 'Paradigm False Idol Screaming Score',
       type: 'StartsUsing',
@@ -593,7 +753,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge Building Below',
           de: 'Gebäude unter einem ausweichen',
-          fr: 'Esquivez le bâtiment venant du dessous',
+          fr: 'Esquivez le bâtiment arrivant d\'en dessous',
           ja: '下の建物に当たらないように',
           cn: '躲避下方建筑',
           ko: '컨테이너 박스 피하기',
@@ -1158,7 +1318,7 @@ const triggerSet: TriggerSet<Data> = {
         'Mixed Signals': '신호 변경',
         '(?<!Tandem Assault: )Passing Lance': '창 돌진',
         'Pervasion': '투과',
-        'Pillar Impact': '고드름 낙하',
+        'Pillar Impact': '낙하',
         'Place Of Power': '역장 생성',
         'Point: Black': '찌르기: 흑',
         'Point: White': '찌르기: 백',
@@ -1185,7 +1345,7 @@ const triggerSet: TriggerSet<Data> = {
         'Tandem Assault: Breakthrough': '연계 공격: 육중한 돌진',
         'Tandem Assault: Passing Lance': '연계 공격: 창 돌진',
         'The Final Song': '마지막 노래',
-        'Towerfall': '무너지는 탑',
+        'Towerfall': '무너짐',
         'Transference': '전이',
         'Uneven Footing': '격돌 충격',
         'Universal Assault': '전방위 공격',

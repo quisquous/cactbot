@@ -46,7 +46,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '280A' }),
       condition: (data, matches) => !data.hasFireResist?.[matches.target],
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -56,7 +56,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '2822', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

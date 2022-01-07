@@ -34,8 +34,15 @@
   font-size: 12px;
 }
 
-.justbuffs #bars {
+div.justbuffs div#bars,
+div.justbuffs div#procs-container {
   display: none;
+}
+
+/** force non-transparent when you are crafter/gatherer */
+#jobs.crafter > #opacity-container,
+#jobs.gatherer > #opacity-container {
+  opacity: 1 !important;
 }
 
 #mp-bar,
@@ -74,7 +81,7 @@
 
 .bar-container {
   position: relative;
-  width: 201px;
+  width: 202px;
   height: 0;
   background: rgba(30, 30, 30, 0.7);
 }
@@ -263,108 +270,62 @@
 }
 
 /* Stacks */
-#whm-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 206px;
-  height: 12px;
-}
-
-#sam-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 206px;
-  height: 12px;
-}
-
-#mch-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 206px;
-  height: 12px;
-}
-
-#mch-stacks.hide {
-  display: none;
-}
-
-#blm-stacks {
+.stacks {
   display: flex;
   margin-top: 1px;
   width: 202px;
   height: 12px;
+  align-items: stretch;
 }
 
-#smn-stacks {
+.stacks > * {
   display: flex;
-  margin-top: 1px;
-  width: 204px;
-  height: 12px;
-}
-
-#whm-stacks-bloodlily,
-#mch-stacks-wildfire,
-#smn-stacks-ruin4 {
+  margin-right: 2px;
+  flex: 1;
   width: 100%;
   height: 100%;
+  align-items: stretch;
 }
 
-#blm-stacks-heart,
-#blm-stacks-xeno {
-  width: 50%;
-  height: 100%;
-}
-
-#sam-stacks-setsu,
-#sam-stacks-getsu,
-#sam-stacks-ka {
+.stacks > * > * {
   background-color: rgba(174, 227, 235, 0.2);
   margin-right: 2px;
   display: inline-block;
   border: 1px solid black;
-  width: calc(33% - 4px);
   height: 100%;
+  flex: 1;
 }
 
-#whm-stacks-bloodlily > div,
-#blm-stacks-heart > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(33% - 4px);
-  height: 100%;
-}
-
-#mch-stacks-wildfire > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(16% - 3px);
-  height: 100%;
+.stacks :last-child {
+  margin-right: 0;
 }
 
 #blm-stacks-xeno > div {
   background-color: rgba(66, 19, 128, 0.2);
-  margin-left: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(50% - 4px);
-  height: 100%;
-}
-
-#smn-stacks-ruin4 > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(25% - 4px);
-  height: 100%;
 }
 
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
+}
+
+#ast-stacks-sign > div.Solar {
+  background-color: rgb(190, 43, 30);
+}
+
+#ast-stacks-sign > div.Lunar {
+  background-color: rgb(222, 195, 95);
+}
+
+#ast-stacks-sign > div.Celestial {
+  background-color: rgb(125, 250, 250);
+}
+
+#sge-stacks-addersgall > div.active {
+  background-color: rgb(120, 170, 250);
+}
+
+#sge-stacks-addersting > div.active {
+  background-color: rgb(195, 85, 155);
 }
 
 #sam-stacks-setsu.active {
@@ -399,6 +360,18 @@
   background-color: rgb(65, 0, 200);
 }
 
+#smn-stacks-ruby > div.active {
+  background-color: rgb(240, 30, 30);
+}
+
+#smn-stacks-emerald > div.active {
+  background-color: rgb(0, 140, 0);
+}
+
+#smn-stacks-topaz > div.active {
+  background-color: rgb(238, 234, 14);
+}
+
 /* Procs */
 
 /*
@@ -408,80 +381,28 @@
   All jobs should have procs in roughly the same spot, and the
   entire bars + procs should be roughly 250px wide, 210px tall.
 */
-.proc-box {
+
+#procs-container {
   position: absolute;
   top: 146px;
-  left: 0;
+  left: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 210px;
+  height: 210px;
 }
 
-/* Box 1 default at left 0, so not needed to define */
-
-/* Box 2/4 */
-#drk-procs-bloodweapon,
-#drg-procs-highjump,
-#nin-procs-trickattack,
-#sam-procs-jinpu,
-#brd-procs-stormbite,
-#smn-procs-biosmn {
-  position: relative;
-  display: inline-block;
-  left: calc(153px / 3);
+#procs-container.compact {
+  top: 80px;
 }
 
-/* Box 3/4 */
-#drk-procs-delirium,
-#drg-procs-lancecharge,
-#nin-procs-bunshin,
-#sam-procs-higanbana,
-#brd-procs-song,
-#smn-procs-energydrain {
-  position: relative;
-  display: inline-block;
-  left: calc(153px / 3 * 2);
-}
+#procs-container > div {
+  display: flex;
 
-/* Box 4/4 */
-#drk-procs-livingshadow,
-#drg-procs-dragonsight,
-#nin-procs-ninjutsu,
-#sam-procs-tsubamegaeshi,
-#brd-procs-straightshotready,
-#smn-procs-trance {
-  position: relative;
-  display: inline-block;
-  left: 153px;
-}
-
-/* Box 2/3 */
-#gnb-procs-nomercy,
-#whm-procs-assize,
-#sch-procs-aetherflow,
-#ast-procs-draw,
-#mnk-procs-twinsnakes,
-#mch-procs-airanchor,
-#dnc-procs-technicalstep,
-#blm-dot-thunder,
-#rdm-procs-black,
-#blu-procs-torment {
-  position: relative;
-  display: inline-block;
-  left: calc(153px / 2);
-}
-
-/* Box 3/3 */
-#gnb-procs-bloodfest,
-#whm-procs-lucid,
-#sch-procs-luciddreaming,
-#ast-procs-luciddreaming,
-#mnk-procs-demolish,
-#mch-procs-wildfire,
-#dnc-procs-flourish,
-#blm-procs-thunder,
-#rdm-procs-lucid,
-#blu-procs-lucid {
-  position: relative;
-  display: inline-block;
-  left: 153px;
+  /* every box is 50px big */
+  width: 50px;
 }
 
 /* Colors */
@@ -740,6 +661,31 @@
   background-color: rgb(227, 148, 210);
 }
 
+.ast-color-card.lady {
+  background-color: rgb(200, 160, 200);
+}
+
+.ast-color-card.lord {
+  background-color: rgb(200, 70, 70);
+}
+
+/* SGE */
+.sge-color-adder {
+  background-color: rgb(120, 170, 250);
+}
+
+.sge-color-dosis {
+  background-color: rgb(195, 85, 155);
+}
+
+.sge-color-rhizomata {
+  background-color: rgb(40, 95, 150);
+}
+
+.sge-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
 /* MNK */
 .mnk-color-chakra {
   background-color: rgb(230, 20, 20);
@@ -872,11 +818,11 @@
   background-color: rgb(255, 255, 160);
 }
 
-.sam-color-shifu {
+.sam-color-fuka {
   background-color: rgb(200, 180, 90);
 }
 
-.sam-color-jinpu {
+.sam-color-fugetsu {
   background-color: rgb(60, 160, 160);
 }
 
@@ -1092,6 +1038,22 @@
   background-color: rgb(240, 30, 30);
 }
 
+.smn-color-demisummon.ifrit {
+  background-color: rgb(240, 30, 30);
+}
+
+.smn-color-demisummon.garuda {
+  background-color: rgb(0, 140, 0);
+}
+
+.smn-color-demisummon.titan {
+  background-color: rgb(238, 234, 14);
+}
+
+.smn-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
 /* RDM */
 .rdm-color-white-mana {
   background-color: rgb(220, 220, 240);
@@ -1136,4 +1098,10 @@
   50% {
     opacity: 0;
   }
+}
+
+/** hide bars except hp-bar and mp-bar */
+#jobs-container[data-inpvp="true"] #procs-container,
+#jobs-container[data-inpvp="true"] #opacity-container > #bars > div:not(#hp-bar):not(#mp-bar) {
+  display: none;
 }

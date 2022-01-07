@@ -116,7 +116,7 @@ export type HuntEntry = {
   rank?: Rank;
   regex?: RegExp;
   hp?: number;
-}
+};
 
 export type HuntMap = {
   [huntName: string]: HuntEntry;

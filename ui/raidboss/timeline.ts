@@ -1,16 +1,21 @@
-import { Lang } from '../../resources/languages';
+import { Lang, langToLocale } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
-import { UnreachableCode } from '../../resources/not_reached';
-import Regexes from '../../resources/regexes';
 import TimerBar from '../../resources/timerbar';
 import { LocaleRegex } from '../../resources/translations';
 import { LogEvent } from '../../types/event';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
-import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
+import { LooseTimelineTrigger, RaidbossFileData } from '../../types/trigger';
 
-import { commonReplacement } from './common_replacement';
 import { PopupTextGenerator } from './popup-text';
 import { RaidbossOptions } from './raidboss_options';
+import {
+  Event,
+  Sync,
+  Text,
+  TimelineParser,
+  TimelineReplacement,
+  TimelineStyle,
+} from './timeline_parser';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -74,66 +79,6 @@ const activeText = {
   ko: '시전중:',
 };
 
-export type TimelineReplacement = {
-  locale: Lang;
-  missingTranslations?: boolean;
-  replaceSync?: { [regexString: string]: string };
-  replaceText?: { [timelineText: string]: string };
-};
-
-export type TimelineStyle = {
-  style: { [key: string]: string };
-  regex: RegExp;
-};
-
-export type Event = {
-  id: number;
-  time: number;
-  name: string;
-  text: string;
-  activeTime?: number;
-  lineNumber?: number;
-  duration?: number;
-  sortKey?: number;
-  isDur?: boolean;
-  style?: { [key: string]: string };
-};
-
-type Error = {
-  lineNumber?: number;
-  line?: string;
-  error: string;
-};
-
-export type Sync = {
-  id: number;
-  origRegexStr: string;
-  regex: RegExp;
-  start: number;
-  end: number;
-  time: number;
-  lineNumber: number;
-  jump?: number;
-};
-
-type ParsedPopupText = {
-  type: 'info' | 'alert' | 'alarm' | 'tts';
-  secondsBefore?: number;
-  text: string;
-};
-
-type ParsedTriggerText = {
-  type: 'trigger';
-  secondsBefore?: number;
-  text?: string;
-  matches: RegExpExecArray | null;
-  trigger: LooseTimelineTrigger;
-};
-
-type ParsedText = ParsedPopupText | ParsedTriggerText;
-
-type Text = ParsedText & { time: number };
-
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
   const div = document.createElement('div');
@@ -146,22 +91,20 @@ const computeBackgroundColorFrom = (element: HTMLElement, classList: string): st
   return color;
 };
 
-// This class reads the format of ACT Timeline plugin, described in
-// docs/TimelineGuide.md
 export class Timeline {
   private options: RaidbossOptions;
-  private perTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
-  private activeText: string;
   private replacements: TimelineReplacement[];
 
-  private ignores: { [ignoreId: string]: boolean };
-  public events: Event[];
-  private texts: Text[];
-  public syncStarts: Sync[];
-  private syncEnds: Sync[];
+  private activeText: string;
+
   private activeSyncs: Sync[];
   private activeEvents: Event[];
-  public errors: Error[];
+
+  public ignores: { [ignoreId: string]: boolean };
+  public events: Event[];
+  public texts: Text[];
+  public syncStarts: Sync[];
+  public syncEnds: Sync[];
 
   public timebase = 0;
 
@@ -182,12 +125,15 @@ export class Timeline {
     options: RaidbossOptions,
   ) {
     this.options = options || {};
-    this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
 
     const lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
     this.activeText = lang in activeText ? activeText[lang] : activeText['en'];
 
+    // Not sorted.
+    this.activeSyncs = [];
+    // Sorted by event occurrence time.
+    this.activeEvents = [];
     // A set of names which will not be notified about.
     this.ignores = {};
     // Sorted by event occurrence time.
@@ -198,338 +144,18 @@ export class Timeline {
     this.syncStarts = [];
     // Sorted by sync.end time.
     this.syncEnds = [];
-    // Not sorted.
-    this.activeSyncs = [];
-    // Sorted by event occurrence time.
-    this.activeEvents = [];
-    // Sorted by line.
-    this.errors = [];
+
     this.LoadFile(text, triggers, styles);
     this.Stop();
   }
 
-  private GetReplacedHelper(
-    text: string,
-    replaceKey: 'replaceSync' | 'replaceText',
-    replaceLang: Lang,
-    isGlobal: boolean,
-  ): string {
-    if (!this.replacements)
-      return text;
-
-    for (const r of this.replacements) {
-      if (r.locale && r.locale !== replaceLang)
-        continue;
-      const reps = r[replaceKey];
-      if (!reps)
-        continue;
-      for (const [key, value] of Object.entries(reps))
-        text = text.replace(Regexes.parse(key), value);
-    }
-    // Common Replacements
-    const replacement = commonReplacement[replaceKey];
-    if (!replacement)
-      return text;
-    for (const [key, value] of Object.entries(replacement)) {
-      const repl = value[replaceLang];
-      if (!repl)
-        continue;
-      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
-      text = text.replace(regex, repl);
-    }
-    return text;
-  }
-
-  private GetReplacedText(text: string): string {
-    if (!this.replacements)
-      return text;
-
-    const replaceLang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
-    const isGlobal = false;
-    return this.GetReplacedHelper(text, 'replaceText', replaceLang, isGlobal);
-  }
-
-  private GetReplacedSync(sync: string): string {
-    if (!this.replacements)
-      return sync;
-
-    const replaceLang = this.options.ParserLanguage || 'en';
-    const isGlobal = true;
-    return this.GetReplacedHelper(sync, 'replaceSync', replaceLang, isGlobal);
-  }
-
-  public GetMissingTranslationsToIgnore(): RegExp[] {
-    return [
-      '--Reset--',
-      '--sync--',
-      'Start',
-      '^ ?21:',
-      '^(\\(\\?\\<timestamp\\>\\^\\.\\{14\\}\\)) (1B|21|23):',
-      '^(\\^\\.\\{14\\})? ?(1B|21|23):',
-      '^::\\y{AbilityCode}:$',
-      '^\\.\\*$',
-    ].map((x) => Regexes.parse(x));
-  }
-
   private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
-    this.events = [];
-    this.syncStarts = [];
-    this.syncEnds = [];
-
-    let uniqueid = 1;
-    const texts: { [id: string]: ParsedText[] } = {};
-    const regexes = {
-      comment: /^\s*#/,
-      commentLine: /#.*$/,
-      durationCommand: /(?:[^#]*?\s)?(?<text>duration\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
-      ignore: /^hideall\s+\"(?<id>[^"]+)\"$/,
-      jumpCommand: /(?:[^#]*?\s)?(?<text>jump\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
-      line: /^(?<text>(?<time>[0-9]+(?:\.[0-9]+)?)\s+"(?<name>.*?)")(\s+(.*))?/,
-      popupText:
-        /^(?<type>info|alert|alarm)text\s+\"(?<id>[^"]+)\"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"(?<text>[^"]+)\")?$/,
-      soundAlert: /^define\s+soundalert\s+"[^"]*"\s+"[^"]*"$/,
-      speaker:
-        /define speaker "[^"]*"(\s+"[^"]*")?\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(-?[0-9]+(?:\.[0-9]+)?)/,
-      syncCommand: /(?:[^#]*?\s)?(?<text>sync\s*\/(?<regex>.*)\/)(?<args>\s.*)?$/,
-      tts:
-        /^alertall\s+"(?<id>[^"]*)"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)\s+(?<command>sound|speak\s+"[^"]*")\s+"(?<text>[^"]*)"$/,
-      windowCommand:
-        /(?:[^#]*?\s)?(?<text>window\s+(?:(?<start>[0-9]+(?:\.[0-9]+)?),)?(?<end>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
-    };
-
-    // Make all regexes case insensitive, and parse any special \y{} groups.
-    for (const trigger of triggers ?? []) {
-      if (trigger.regex)
-        trigger.regex = Regexes.parse(trigger.regex);
-    }
-
-    const lines = text.split('\n');
-    let lineNumber = 0;
-    for (let line of lines) {
-      ++lineNumber;
-      line = line.trim();
-      // Drop comments and empty lines.
-      if (!line || regexes.comment.test(line))
-        continue;
-      const originalLine = line;
-
-      let match = regexes.ignore.exec(line);
-      if (match && match['groups']) {
-        const ignore = match['groups'];
-        if (ignore.id)
-          this.ignores[ignore.id] = true;
-        continue;
-      }
-
-      match = regexes.tts.exec(line);
-      if (match && match['groups']) {
-        const tts = match['groups'];
-        if (!tts.id || !tts.beforeSeconds || !tts.command)
-          throw new UnreachableCode();
-        // TODO: Support alert sounds?
-        if (tts.command === 'sound')
-          continue;
-        const ttsItems = texts[tts.id] || [];
-        texts[tts.id] = ttsItems;
-        ttsItems.push({
-          type: 'tts',
-          secondsBefore: parseFloat(tts.beforeSeconds),
-          text: tts.text ? tts.text : tts.id,
-        });
-        continue;
-      }
-      match = regexes.soundAlert.exec(line);
-      if (match)
-        continue;
-      match = regexes.speaker.exec(line);
-      if (match)
-        continue;
-
-      match = regexes.popupText.exec(line);
-      if (match && match['groups']) {
-        const popupText = match['groups'];
-        if (!popupText.type || !popupText.id || !popupText.beforeSeconds)
-          throw new UnreachableCode();
-        const popupTextItems = texts[popupText.id] || [];
-        texts[popupText.id] = popupTextItems;
-        const type = popupText.type;
-        if (type !== 'info' && type !== 'alert' && type !== 'alarm')
-          continue;
-        popupTextItems.push({
-          type: type,
-          secondsBefore: parseFloat(popupText.beforeSeconds),
-          text: popupText.text ? popupText.text : popupText.id,
-        });
-        continue;
-      }
-      match = regexes.line.exec(line);
-      if (!(match && match['groups'])) {
-        this.errors.push({
-          lineNumber: lineNumber,
-          line: originalLine,
-          error: 'Invalid format',
-        });
-        console.log('Unknown timeline: ' + originalLine);
-        continue;
-      }
-      const parsedLine = match['groups'];
-      // Technically the name can be empty
-      if (!parsedLine.text || !parsedLine.time || parsedLine.name === undefined)
-        throw new UnreachableCode();
-      line = line.replace(parsedLine.text, '').trim();
-      // There can be # in the ability name, but probably not in the regex.
-      line = line.replace(regexes.commentLine, '').trim();
-
-      const seconds = parseFloat(parsedLine.time);
-      const e: Event = {
-        id: uniqueid++,
-        time: seconds,
-        // The original ability name in the timeline.  Used for hideall, infotext, etc.
-        name: parsedLine.name,
-        // The text to display.  Not used for any logic.
-        text: this.GetReplacedText(parsedLine.name),
-        activeTime: 0,
-        lineNumber: lineNumber,
-      };
-      if (line) {
-        let commandMatch = regexes.durationCommand.exec(line);
-        if (commandMatch && commandMatch['groups']) {
-          const durationCommand = commandMatch['groups'];
-          if (!durationCommand.text || !durationCommand.seconds)
-            throw new UnreachableCode();
-          line = line.replace(durationCommand.text, '').trim();
-          e.duration = parseFloat(durationCommand.seconds);
-        }
-
-        commandMatch = regexes.syncCommand.exec(line);
-        if (commandMatch && commandMatch['groups']) {
-          const syncCommand = commandMatch['groups'];
-          if (!syncCommand.text || !syncCommand.regex)
-            throw new UnreachableCode();
-          line = line.replace(syncCommand.text, '').trim();
-          const sync: Sync = {
-            id: uniqueid,
-            origRegexStr: syncCommand.regex,
-            regex: Regexes.parse(this.GetReplacedSync(syncCommand.regex)),
-            start: seconds - 2.5,
-            end: seconds + 2.5,
-            time: seconds,
-            lineNumber: lineNumber,
-          };
-          if (syncCommand.args) {
-            let argMatch = regexes.windowCommand.exec(syncCommand.args);
-            if (argMatch && argMatch['groups']) {
-              const windowCommand = argMatch['groups'];
-              if (!windowCommand.text || !windowCommand.end)
-                throw new UnreachableCode();
-              line = line.replace(windowCommand.text, '').trim();
-              if (windowCommand.start) {
-                sync.start = seconds - parseFloat(windowCommand.start);
-                sync.end = seconds + parseFloat(windowCommand.end);
-              } else {
-                sync.start = seconds - (parseFloat(windowCommand.end) / 2);
-                sync.end = seconds + (parseFloat(windowCommand.end) / 2);
-              }
-            }
-            argMatch = regexes.jumpCommand.exec(syncCommand.args);
-            if (argMatch && argMatch['groups']) {
-              const jumpCommand = argMatch['groups'];
-              if (!jumpCommand.text || !jumpCommand.seconds)
-                throw new UnreachableCode();
-              line = line.replace(jumpCommand.text, '').trim();
-              sync.jump = parseFloat(jumpCommand.seconds);
-            }
-          }
-          this.syncStarts.push(sync);
-          this.syncEnds.push(sync);
-        }
-      }
-      // If there's text left that isn't a comment then we didn't parse that text so report it.
-      if (line && !regexes.comment.exec(line)) {
-        console.log(`Unknown content '${line}' in timeline: ${originalLine}`);
-        this.errors.push({
-          lineNumber: lineNumber,
-          line: originalLine,
-          error: 'Extra text',
-        });
-      } else {
-        this.events.push(e);
-      }
-    }
-
-    // Validate that all timeline triggers match something.
-    for (const trigger of triggers ?? []) {
-      let found = false;
-      for (const event of this.events) {
-        if (trigger.regex && trigger.regex.test(event.name)) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        const text = `No match for timeline trigger ${trigger.regex?.source ??
-          ''} in ${trigger.id ?? ''}`;
-        this.errors.push({ error: text });
-        console.error(`*** ERROR: ${text}`);
-      }
-    }
-
-    for (const e of this.events) {
-      for (const matchedTextEvent of texts[e.name] ?? []) {
-        const type = matchedTextEvent.type;
-        if (type !== 'info' && type !== 'alert' && type !== 'alarm')
-          continue;
-        this.texts.push({
-          type: type,
-          time: e.time - (matchedTextEvent.secondsBefore || 0),
-          text: matchedTextEvent.text ?? '',
-        });
-      }
-
-      // Rather than matching triggers at run time, pre-match all the triggers
-      // against timeline text and insert them as text events to run.
-      for (const trigger of triggers ?? []) {
-        const m = trigger.regex?.exec(e.name);
-        if (!m)
-          continue;
-
-        // TODO: beforeSeconds should support being a function.
-        const autoConfig = trigger.id && this.perTriggerAutoConfig[trigger.id] || {};
-        const beforeSeconds = autoConfig['BeforeSeconds'] ?? trigger.beforeSeconds;
-
-        this.texts.push({
-          type: 'trigger',
-          time: e.time - (beforeSeconds || 0),
-          trigger: trigger,
-          matches: m,
-        });
-      }
-
-      for (const style of styles ?? []) {
-        if (!style.regex.test(e.name))
-          continue;
-        e.style = style.style;
-      }
-    }
-
-    // Sort by time, but when the time is the same, sort by file order.
-    // Then assign a sortKey to each event so that we can maintain that order.
-    this.events.sort((a, b) => {
-      if (a.time === b.time)
-        return a.id - b.id;
-      return a.time - b.time;
-    });
-    this.events.forEach((event, idx) => event.sortKey = idx);
-
-    this.texts.sort((a, b) => {
-      return a.time - b.time;
-    });
-    this.syncStarts.sort((a, b) => {
-      return a.start - b.start;
-    });
-    this.syncEnds.sort((a, b) => {
-      return a.end - b.end;
-    });
+    const parsed = new TimelineParser(text, this.replacements, triggers, styles, this.options);
+    this.ignores = parsed.ignores;
+    this.events = parsed.events;
+    this.texts = parsed.texts;
+    this.syncStarts = parsed.syncStarts;
+    this.syncEnds = parsed.syncEnds;
   }
 
   public Stop(): void {
@@ -860,7 +486,9 @@ export class TimelineUI {
     if (!this.root)
       throw new Error('can\'t find timeline-container');
 
+    // TODO: left for now as backwards compatibility with user css.  Remove this later??
     this.root.classList.add(`lang-${this.lang}`);
+    this.root.lang = langToLocale(this.lang);
     if (this.options.Skin)
       this.root.classList.add(`skin-${this.options.Skin}`);
 
@@ -934,7 +562,7 @@ export class TimelineUI {
 
   public OnAddTimer(fightNow: number, e: Event, channeling: boolean): void {
     const div = document.createElement('div');
-    const bar = document.createElement('timer-bar');
+    const bar = TimerBar.create();
     div.classList.add('timer-bar');
     div.appendChild(bar);
     bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
@@ -1058,7 +686,7 @@ export class TimelineUI {
     }
 
     if (!this.debugFightTimer) {
-      this.debugFightTimer = document.createElement('timer-bar');
+      this.debugFightTimer = TimerBar.create();
       this.debugFightTimer.width = '100px';
       this.debugFightTimer.height = '17px';
       this.debugFightTimer.duration = kBig;
@@ -1086,14 +714,14 @@ export class TimelineController {
   constructor(
     protected options: RaidbossOptions,
     protected ui: TimelineUI,
-    raidbossDataFiles: { [filename: string]: string },
+    raidbossDataFiles: RaidbossFileData,
   ) {
     this.options = options;
     this.ui = ui;
 
     this.timelines = {};
     for (const [filename, file] of Object.entries(raidbossDataFiles)) {
-      if (!filename.endsWith('.txt'))
+      if (!filename.endsWith('.txt') || typeof file !== 'string')
         continue;
       this.timelines[filename] = file;
     }

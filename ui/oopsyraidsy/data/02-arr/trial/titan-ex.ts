@@ -1,6 +1,8 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { playerDamageFields } from '../../../oopsy_common';
 
 export type Data = OopsyData;
 
@@ -21,6 +23,27 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareFail: {
     'TitanEx Mountain Buster': '5B8',
   },
+  triggers: [
+    {
+      id: 'TitanEx Landslide',
+      type: 'Ability',
+      netRegex: NetRegexes.abilityFull({ id: '5BB', ...playerDamageFields }),
+      deathReason: (_data, matches) => {
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: {
+            en: 'Pushed off!',
+            de: 'Runter geschubst!',
+            fr: 'A été poussé(e) !',
+            ja: '落ちた',
+            cn: '击退坠落',
+            ko: '넉백됨',
+          },
+        };
+      },
+    },
+  ],
 };
 
 export default triggerSet;

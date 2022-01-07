@@ -15,7 +15,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sohm Al Hard Wild Horn',
       regex: /Wild Horn/,
       beforeSeconds: 4,
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
   ],
@@ -197,7 +196,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['ラーヴァ・スコーピオン', 'テイル・スコーピオン'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['熔岩蝎', '尖尾蝎'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['용암 전갈', '꼬리 전갈'] }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -302,13 +300,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
+        'Gowrow': '高牢怪龙',
         'The Wound': '灵伤',
+        'The Scorpion\'s Tail': '尖尾蝎',
         'The Lava Tube': '大熔岩窟',
         'The Leightonward': '莱顿瓦德',
         'Small Spore Sac': '小型孢囊',
-        'Lava Scorpion': '熔岩蝎',
-        'The Scorpion\'s Tail': '尖尾蝎',
         '(?<!Small )Spore Sac': '孢囊',
+        'Lava Scorpion': '熔岩蝎',
       },
       'replaceText': {
         '\\(Adds x2\\)': '(小怪x2)',
@@ -332,6 +331,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
+        'Gowrow': '가우로우',
         'The Wound': '영봉의 상처',
         'The Lava Tube': '대용암굴',
         'The Leightonward': '레이튼워드',

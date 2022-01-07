@@ -1703,6 +1703,200 @@ const data: WeatherRateType = {
       'Snow',
     ],
   },
+  131: {
+    'rates': [
+      15,
+      60,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+      'Rain',
+    ],
+  },
+  132: {
+    'rates': [
+      10,
+      20,
+      25,
+      40,
+      80,
+      100,
+    ],
+    'weathers': [
+      'Fog',
+      'Rain',
+      'Showers',
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+    ],
+  },
+  133: {
+    'rates': [
+      45,
+      50,
+      55,
+      60,
+      85,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Snow',
+      'Thunder',
+      'Rain',
+      'Fog',
+      'Clouds',
+      'Fair Skies',
+      'Clear Skies',
+    ],
+  },
+  134: {
+    'rates': [
+      25,
+      40,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Clouds',
+      'Umbral Wind',
+      'Fair Skies',
+      'Clear Skies',
+    ],
+  },
+  135: {
+    'rates': [
+      15,
+      30,
+      100,
+    ],
+    'weathers': [
+      'Umbral Wind',
+      'Moon Dust',
+      'Fair Skies',
+    ],
+  },
+  136: {
+    'rates': [
+      15,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Astromagnetic Storm',
+      'Fair Skies',
+      'Umbral Wind',
+    ],
+  },
+  137: {
+    'rates': [
+      10,
+      50,
+      70,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Snow',
+    ],
+  },
+  138: {
+    'rates': [
+      10,
+      25,
+      40,
+      80,
+      100,
+    ],
+    'weathers': [
+      'Fog',
+      'Rain',
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+    ],
+  },
+  139: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Polarization',
+    ],
+  },
+  140: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Projection',
+    ],
+  },
+  141: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Apocalypse',
+    ],
+  },
+  142: {
+    'rates': [
+      5,
+      25,
+      65,
+      80,
+      90,
+    ],
+    'weathers': [
+      'Snow',
+      'Fair Skies',
+      'Clear Skies',
+      'Clouds',
+      'Fog',
+    ],
+  },
+  143: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Ultimatum',
+    ],
+  },
+  144: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Inevitability',
+    ],
+  },
+  145: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Pandæmonium',
+    ],
+  },
+  146: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Termination',
+    ],
+  },
 };
 
 export default data;

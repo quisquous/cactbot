@@ -49,7 +49,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '10B' }),
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.effect };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
     {
@@ -81,11 +81,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: 'Shocked Imp',
             de: 'Schockierter Imp',
             ja: 'カッパを解除しなかった',
             cn: '河童状态吃了暴雷',
+            ko: '물요정 상태 해제하지 않음',
           },
         };
       },
@@ -97,7 +99,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Always hits target, but if correctly resolved will deal 0 damage
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -107,7 +109,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Always hits target, but if correctly resolved will deal 0 damage
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

@@ -21,6 +21,16 @@ export type HuntMap = {
 };
 
 const data: HuntMap = {
+  'Aegeiros': {
+    'id': '10628',
+    'name': {
+      'de': 'Aegeiros',
+      'en': 'Aegeiros',
+      'fr': 'ægeiros',
+      'ja': 'アイゲイロス',
+    },
+    'rank': 'A',
+  },
   'Agathos': {
     'id': '4369',
     'name': {
@@ -116,6 +126,26 @@ const data: HuntMap = {
       'ko': '아크라부아멜루',
     },
     'rank': 'A',
+  },
+  'Arch-Eta': {
+    'id': '10634',
+    'name': {
+      'de': 'Erz-Eta',
+      'en': 'Arch-Eta',
+      'fr': 'Arch-Êta',
+      'ja': 'アーチイータ',
+    },
+    'rank': 'A',
+  },
+  'Armstrong': {
+    'id': '10619',
+    'name': {
+      'de': 'Armstrong',
+      'en': 'Armstrong',
+      'fr': 'Armstrong',
+      'ja': 'アームストロング',
+    },
+    'rank': 'S',
   },
   'Aswang': {
     'id': '6007',
@@ -236,6 +266,26 @@ const data: HuntMap = {
       'ko': '부네',
     },
     'rank': 'A',
+  },
+  'Burfurlur the Canny': {
+    'id': '10617',
+    'name': {
+      'de': [
+        'Burfurlur der Gerissene',
+        'Burfurlur der Gerissener',
+        'Burfurlur der Gerissenes',
+        'Burfurlur die Gerissene',
+        'Burfurlur die Gerissener',
+        'Burfurlur die Gerissenes',
+        'Burfurlur das Gerissene',
+        'Burfurlur das Gerissener',
+        'Burfurlur das Gerissenes',
+      ],
+      'en': 'Burfurlur the Canny',
+      'fr': 'Le Burfurlur',
+      'ja': 'ブーフールー',
+    },
+    'rank': 'S',
   },
   'Campacti': {
     'id': '4372',
@@ -373,6 +423,16 @@ const data: HuntMap = {
     },
     'rank': 'B',
   },
+  'Emperor\'s rose': {
+    'id': '10640',
+    'name': {
+      'de': 'Rose des Kaisers',
+      'en': 'Emperor\'s rose',
+      'fr': 'rosier de l\'empereur',
+      'ja': 'エンペラーズローズ',
+    },
+    'rank': 'B',
+  },
   'Enkelados': {
     'id': '4370',
     'name': {
@@ -394,6 +454,16 @@ const data: HuntMap = {
       'fr': 'Erle',
       'ja': 'アール',
       'ko': '얼',
+    },
+    'rank': 'A',
+  },
+  'Fan Ail': {
+    'id': '10633',
+    'name': {
+      'de': 'Fan Ail',
+      'en': 'Fan Ail',
+      'fr': 'Fan Ail',
+      'ja': 'ファン・アイル',
     },
     'rank': 'A',
   },
@@ -589,6 +659,16 @@ const data: HuntMap = {
     },
     'rank': 'S',
   },
+  'Gurangatch': {
+    'id': '10631',
+    'name': {
+      'de': 'Gurangatch',
+      'en': 'Gurangatch',
+      'fr': 'Gurangatch',
+      'ja': 'グランガチ',
+    },
+    'rank': 'A',
+  },
   'Gwas-y-neidr': {
     'id': '6010',
     'name': {
@@ -649,6 +729,16 @@ const data: HuntMap = {
     },
     'rank': 'B',
   },
+  'Iravati': {
+    'id': '10638',
+    'name': {
+      'de': 'Iravati',
+      'en': 'Iravati',
+      'fr': 'Iravati',
+      'ja': 'イラーヴァティ',
+    },
+    'rank': 'B',
+  },
   'Itzpapalotl': {
     'id': '8909',
     'name': {
@@ -682,6 +772,26 @@ const data: HuntMap = {
       'fr': 'Jongleur hécatombe',
       'ja': 'ジャグラー・ヘカトゥーム',
       'ko': '학살 곡예마',
+    },
+    'rank': 'B',
+  },
+  'Ker': {
+    'id': '10615',
+    'name': {
+      'de': 'Ker',
+      'en': 'Ker',
+      'fr': 'Kèr',
+      'ja': 'ケール',
+    },
+    'rank': 'S',
+  },
+  'Ker shroud': {
+    'id': '10616',
+    'name': {
+      'de': 'Diener von Ker',
+      'en': 'Ker shroud',
+      'fr': 'serviteur de Kèr',
+      'ja': 'ケールの従者',
     },
     'rank': 'B',
   },
@@ -953,6 +1063,16 @@ const data: HuntMap = {
     },
     'rank': 'B',
   },
+  'Minerva': {
+    'id': '10627',
+    'name': {
+      'de': 'Minerva',
+      'en': 'Minerva',
+      'fr': 'Minerva',
+      'ja': 'ミネルウァ',
+    },
+    'rank': 'A',
+  },
   'Minhocao': {
     'id': '2961',
     'name': {
@@ -1036,6 +1156,16 @@ const data: HuntMap = {
       'ko': '나리폰',
     },
     'rank': 'A',
+  },
+  'Narrow-rift': {
+    'id': '10622',
+    'name': {
+      'de': 'Enger Riss',
+      'en': 'Narrow-rift',
+      'fr': 'Rift-étroit',
+      'ja': 'ナロー＝リフト',
+    },
+    'rank': 'S',
   },
   'Naul': {
     'id': '2934',
@@ -1125,6 +1255,16 @@ const data: HuntMap = {
     },
     'rank': 'A',
   },
+  'Ophioneus': {
+    'id': '10621',
+    'name': {
+      'de': 'Ophioneus',
+      'en': 'Ophioneus',
+      'fr': 'Ophion',
+      'ja': 'オピオネウス',
+    },
+    'rank': 'S',
+  },
   'Orcus': {
     'id': '5990',
     'name': {
@@ -1148,6 +1288,16 @@ const data: HuntMap = {
       'ko': '오르가나',
     },
     'rank': 'S',
+  },
+  'Oskh Rhei': {
+    'id': '10646',
+    'name': {
+      'de': 'Oskh Rhei',
+      'en': 'Oskh Rhei',
+      'fr': 'Oskh Rhei',
+      'ja': 'オスク・レイ',
+    },
+    'rank': 'B',
   },
   'Ouzelum': {
     'id': '6009',
@@ -1220,6 +1370,16 @@ const data: HuntMap = {
       'ko': '파일라스터',
     },
     'rank': 'A',
+  },
+  'Ruminator': {
+    'id': '10620',
+    'name': {
+      'de': 'Grübler',
+      'en': 'Ruminator',
+      'fr': 'ruminateur',
+      'ja': 'ルミネイター',
+    },
+    'rank': 'S',
   },
   'Rusalka': {
     'id': '8896',
@@ -1339,6 +1499,16 @@ const data: HuntMap = {
     },
     'rank': 'B',
   },
+  'Shockmaw': {
+    'id': '10644',
+    'name': {
+      'de': 'Schockschlund',
+      'en': 'Shockmaw',
+      'fr': 'choc-gueule',
+      'ja': 'ショックモー',
+    },
+    'rank': 'B',
+  },
   'Sisiutl': {
     'id': '4371',
     'name': {
@@ -1415,6 +1585,16 @@ const data: HuntMap = {
     },
     'rank': 'A',
   },
+  'Storsie': {
+    'id': '10623',
+    'name': {
+      'de': 'Storsie',
+      'en': 'Storsie',
+      'fr': 'Storsie',
+      'ja': 'ストーシー',
+    },
+    'rank': 'A',
+  },
   'Sugaar': {
     'id': '8902',
     'name': {
@@ -1424,6 +1604,16 @@ const data: HuntMap = {
       'fr': 'Sugaar',
       'ja': 'シュガール',
       'ko': '슈가르',
+    },
+    'rank': 'A',
+  },
+  'Sugriva': {
+    'id': '10626',
+    'name': {
+      'de': 'Sugriva',
+      'en': 'Sugriva',
+      'fr': 'Sugriva',
+      'ja': 'スグリーヴァ',
     },
     'rank': 'A',
   },
@@ -1523,6 +1713,16 @@ const data: HuntMap = {
     },
     'rank': 'A',
   },
+  'Vajrakumara': {
+    'id': '10637',
+    'name': {
+      'de': 'Vajrakumara',
+      'en': 'Vajrakumara',
+      'fr': 'vajrakumara',
+      'ja': 'ヴァジュラクマーラ',
+    },
+    'rank': 'B',
+  },
   'Vochstein': {
     'id': '5992',
     'name': {
@@ -1611,6 +1811,26 @@ const data: HuntMap = {
     },
     'rank': 'S',
   },
+  'Yilan': {
+    'id': '10625',
+    'name': {
+      'de': 'Yilan',
+      'en': 'Yilan',
+      'fr': 'yilan',
+      'ja': 'ユラン',
+    },
+    'rank': 'A',
+  },
+  'Yumcax': {
+    'id': '10643',
+    'name': {
+      'de': 'Yumcax',
+      'en': 'Yumcax',
+      'fr': 'Yumcax',
+      'ja': 'ユムカクス',
+    },
+    'rank': 'B',
+  },
   'Zanig\'oh': {
     'id': '2943',
     'name': {
@@ -1634,6 +1854,16 @@ const data: HuntMap = {
       'ko': '조나 시커',
     },
     'rank': 'S',
+  },
+  'daphnia magna': {
+    'id': '10641',
+    'name': {
+      'de': 'Daphnia Magna',
+      'en': 'daphnia magna',
+      'fr': 'magna daphnie',
+      'ja': 'ダフニアマグナ',
+    },
+    'rank': 'B',
   },
   'false gigantopithecus': {
     'id': '4355',
@@ -1695,6 +1925,40 @@ const data: HuntMap = {
     },
     'rank': 'SS+',
   },
+  'genesis rock': {
+    'id': '10642',
+    'name': {
+      'de': 'Genesisfels',
+      'en': 'genesis rock',
+      'fr': 'pierre de la genèse',
+      'ja': 'ジェネシスロック',
+    },
+    'rank': 'B',
+  },
+  'green Archon': {
+    'id': '10635',
+    'name': {
+      'de': [
+        'grüne Exeget',
+        'grüner Exeget',
+        'grünes Exeget',
+      ],
+      'en': 'green Archon',
+      'fr': 'Preux feuillu',
+      'ja': '草賢人',
+    },
+    'rank': 'B',
+  },
+  'hulder': {
+    'id': '10624',
+    'name': {
+      'de': 'Hulder',
+      'en': 'hulder',
+      'fr': 'huldre',
+      'ja': 'フルドラ',
+    },
+    'rank': 'A',
+  },
   'kaiser behemoth': {
     'id': '4374',
     'name': {
@@ -1707,6 +1971,26 @@ const data: HuntMap = {
     },
     'rank': 'S',
   },
+  'level cheater': {
+    'id': '10645',
+    'name': {
+      'de': 'Stufenschummler',
+      'en': 'level cheater',
+      'fr': 'tricheniveau',
+      'ja': 'レベルチーター',
+    },
+    'rank': 'B',
+  },
+  'lunatender queen': {
+    'id': '10629',
+    'name': {
+      'de': 'Lunatender-Königin',
+      'en': 'lunatender queen',
+      'fr': 'pampa sélénienne reine',
+      'ja': 'ルナテンダー・クイーン',
+    },
+    'rank': 'A',
+  },
   'mindflayer': {
     'id': '2955',
     'name': {
@@ -1716,6 +2000,36 @@ const data: HuntMap = {
       'fr': 'flagelleur mental',
       'ja': 'マインドフレア',
       'ko': '정신지배자',
+    },
+    'rank': 'S',
+  },
+  'mousse princess': {
+    'id': '10630',
+    'name': {
+      'de': 'Mousse-Prinzessin',
+      'en': 'mousse princess',
+      'fr': 'princesse mousse',
+      'ja': 'ムースプリンセス',
+    },
+    'rank': 'A',
+  },
+  'petalodus': {
+    'id': '10632',
+    'name': {
+      'de': 'Petalodus',
+      'en': 'petalodus',
+      'fr': 'petalodus',
+      'ja': 'ペタロドゥス',
+    },
+    'rank': 'A',
+  },
+  'sphatika': {
+    'id': '10618',
+    'name': {
+      'de': 'Sphatika',
+      'en': 'sphatika',
+      'fr': 'Sphatika',
+      'ja': 'スパティカ',
     },
     'rank': 'S',
   },
@@ -1782,6 +2096,26 @@ const data: HuntMap = {
       'ko': '진흙인간',
     },
     'rank': 'A',
+  },
+  'warmonger': {
+    'id': '10639',
+    'name': {
+      'de': 'Kriegstreiber',
+      'en': 'warmonger',
+      'fr': 'Belliciste',
+      'ja': 'ウォーモンガー',
+    },
+    'rank': 'B',
+  },
+  'ü-u-ü-u': {
+    'id': '10636',
+    'name': {
+      'de': 'Ü-u-ü-u',
+      'en': 'ü-u-ü-u',
+      'fr': 'Ü-u-ü-u',
+      'ja': 'ウーヴウーヴ',
+    },
+    'rank': 'B',
   },
 };
 

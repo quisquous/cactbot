@@ -52,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
         stackMarkerOnYou: {
           en: 'Stack marker on YOU',
           de: 'Sammeln Marker auf DIR',
-          fr: 'Package marqueur sur VOUS',
+          fr: 'Marqueur de package sur VOUS',
           ja: '自分に集合',
           cn: '集合点名',
           ko: '쉐어징 대상자',
@@ -86,7 +86,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '250F', source: 'カタストロフィー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '250F', source: '灾变者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '250F', source: '카타스트로피' }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

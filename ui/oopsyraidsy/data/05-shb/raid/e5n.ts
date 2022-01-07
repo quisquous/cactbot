@@ -28,7 +28,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B5' }),
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.effect };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
     {
@@ -59,12 +59,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (no orb)`,
             de: `${matches.ability} (kein Orb)`,
             fr: `${matches.ability} (pas d'orbe)`,
             ja: `${matches.ability} (雷玉無し)`,
             cn: `${matches.ability} (没吃球)`,
+            ko: `${matches.ability} (구슬 안먹음)`,
           },
         };
       },
@@ -95,6 +97,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               fr: `${matches.ability} (nuages trop proches)`,
               ja: `${matches.ability} (雲近すぎ)`,
               cn: `${matches.ability} (雷云重叠)`,
+              ko: `${matches.ability} (구름이 너무 가까움)`,
             },
           };
         }

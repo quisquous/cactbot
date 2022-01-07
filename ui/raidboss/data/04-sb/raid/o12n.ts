@@ -32,7 +32,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['오메가', '오메가 M'] }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       suppressSeconds: 1,
       response: Responses.tankCleave('alert'),
     },
@@ -45,7 +44,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['오메가', '오메가 M'] }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
@@ -101,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move bosses apart',
           de: 'Bosse auseinander ziehen',
-          fr: 'Ecartez les boss',
+          fr: 'Écartez les boss',
           ja: 'ボスを引き離す',
           cn: '拉开boss',
           ko: '보스 서로 떨어뜨리기',
@@ -144,6 +142,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback from F; Away from M',
           de: 'Rückstoß von F; Weg von M',
+          cn: '被女性击退; 远离男性',
+          ko: 'F 넉백, M 광역기',
         },
       },
     },
@@ -217,6 +217,7 @@ const triggerSet: TriggerSet<Data> = {
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
         'Progress to party combat': 'Initiiere Gruppenkampf',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '<biep> Warnung. Erhöhte Wahrscheinlichkeit',
       },
       'replaceText': {
         'Beyond Strength': 'Schildkombo G',
@@ -287,6 +288,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……敗北の危険性が上昇……',
         'Omega(?!-)': 'オメガ',
@@ -325,6 +327,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
@@ -363,6 +366,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': '오메가',
         'Omega-M': '오메가 M',

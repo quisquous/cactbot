@@ -15,7 +15,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O1N Wyrm Tail',
       regex: /Wyrm Tail/,
       beforeSeconds: 4,
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.miniBuster(),
     },
   ],
@@ -45,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Breath Wing: Be beside boss',
           de: 'Atemschwinge: Neben Boss gehen',
-          fr: 'Aile déferlante : Soyez à côté du boss',
+          fr: 'Aile déferlante : Placez-vous à côté du boss',
           ja: 'ブレスウィング: ボスに近づく',
           cn: '站boss附近',
           ko: '날개바람: 보스 옆으로',
@@ -108,7 +107,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '23D7', source: 'アルテ・ロイテ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '23D7', source: '老者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '23D7', source: '알테 로이테' }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -217,7 +215,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '알테 로이테',
         'Ball Of Fire': '화염 구체',

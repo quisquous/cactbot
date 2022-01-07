@@ -32,6 +32,9 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dragon Cleave',
           de: 'Drachen-Cleave',
+          fr: 'Cleave du dragon',
+          cn: '巨龙吐息',
+          ko: '용 브레스',
         },
       },
     },
@@ -331,6 +334,9 @@ const triggerSet: TriggerSet<Data> = {
         kill: {
           en: 'Kill ${name}',
           de: 'Töte ${name}',
+          fr: 'Tuez ${name}',
+          cn: '击杀 ${name}',
+          ko: '${name} 잡기',
         },
       },
     },
@@ -344,6 +350,9 @@ const triggerSet: TriggerSet<Data> = {
         kill: {
           en: 'Kill Giant + Ninjas',
           de: 'Töte Riese + Ninjas',
+          fr: 'Tuez le Géant + Ninjas',
+          cn: '击杀 巨人 + 忍者',
+          ko: '철거인 + 닌자 잡기',
         },
       },
     },
@@ -371,14 +380,17 @@ const triggerSet: TriggerSet<Data> = {
         books: {
           en: 'Books (One Per Square)',
           de: 'Bücher (Eins pro Feld)',
-          fr: 'Danse de la reine : Livres', // FIXME
+          fr: 'Livres (Un par carré)',
           ja: '女王の舞い: 本', // FIXME
-          cn: '中间两排分格站位', // FIXME
-          ko: '여왕의 춤: 책', // FIXME
+          cn: '中间两排分格站位',
+          ko: '책 (칸마다 한명)',
         },
         magicHammer: {
           en: 'Books + Magic Hammer',
           de: 'Bücher + Zauberhammer',
+          fr: 'Livres + Marteau magique',
+          cn: '书 + 魔法锤',
+          ko: '책 + 마법망치',
         },
       },
     },
@@ -396,10 +408,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Clock',
           de: 'Himmelsrichtungen',
-          fr: 'Danse de la reine : Position', // FIXME
+          fr: 'Positions',
           ja: '女王の舞い: 散開', // FIXME
-          cn: '万变水波站位', // FIXME
-          ko: '여왕의 춤: 산개', // FIXME
+          cn: '八方站位',
+          ko: '산개',
         },
       },
     },
@@ -417,10 +429,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Be On Blue Square',
           de: 'Stehe auf einem blauem Feld',
-          fr: 'Danse de la reine : Carré de cristal', // FIXME
+          fr: 'Placez-vous sur un carré bleu',
           ja: '女王の舞い: 床', // FIXME
-          cn: '站在蓝地板', // FIXME
-          ko: '여왕의 춤: 대지', // FIXME
+          cn: '站在蓝地板',
+          ko: '파란 바닥 위로',
         },
       },
     },
@@ -438,10 +450,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Tethers',
           de: 'Dornenranken-Verbindungen',
-          fr: 'Danse de la reine : Liens', // FIXME
+          fr: 'Liens',
           ja: '女王の舞い: 茨', // FIXME
-          cn: '先集中后扯线', // FIXME
-          ko: '여왕의 춤: 가시', // FIXME
+          cn: '先集中后扯线',
+          ko: '가시줄 끊기',
         },
       },
     },
@@ -459,6 +471,8 @@ const triggerSet: TriggerSet<Data> = {
         breakTether: {
           en: 'Break Tether (${player})',
           de: 'Verbindung trennen (${player})',
+          fr: 'Cassez le lien (${player})',
+          cn: '扯断连线 (${player})',
           ko: '가시줄 끊기 ("${player}")',
         },
       },
@@ -513,18 +527,30 @@ const triggerSet: TriggerSet<Data> = {
         nwOutside: {
           en: 'NW Outside',
           de: 'NW Außen',
+          fr: 'NO Extérieur',
+          cn: '西北 外',
+          ko: '북서쪽 바깥',
         },
         nwInside: {
           en: 'NW Inside',
           de: 'NW Innen',
+          fr: 'NO Intérieur',
+          cn: '西北 内',
+          ko: '북서쪽 안',
         },
         seInside: {
           en: 'SE Inside',
           de: 'SO Innen',
+          fr: 'SE Intérieur',
+          cn: '东南 内',
+          ko: '남동쪽 바깥',
         },
         seOutside: {
           en: 'SE Outside',
           de: 'SO Außen',
+          fr: 'SE Intérieur',
+          cn: '东南 外',
+          ko: '남동쪽 안',
         },
       },
     },
@@ -693,19 +719,25 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '哈利卡纳苏斯',
         'Apanda': '阿班达',
         'Soul Reaper': '灵魂收割者',
       },
       'replaceText': {
-        '\\(Random\\)': '(随机)',
         '\\(Apanda\\)': '(阿班达)',
         '\\(Books\\)': '(图书)',
+        '\\(Cave\\)': '(监狱)',
         '\\(Clock\\)': '(八方)',
         '\\(Crystals\\)': '(水晶)',
-        '\\(Ultimate\\)': '(狂暴)',
+        '\\(Great Dragon\\)': '(巨龙)',
+        '\\(library\\)': '(图书馆)',
+        '\\(Ninjas/Giant\\)': '(忍者/巨人)',
+        '\\(Random\\)': '(随机)',
+        '\\(Soul Reapers\\)': '(死神)',
+        '\\(Spellblade Books\\)': '(魔法剑)',
+        '\\(Thorns\\)': '(荆棘)',
+        '\\(White Flame\\)': '(白焰)',
         'Blizzard': '冰结',
         'Critical Hit': '暴击',
         'Dimensional Wave': '次元波动',
@@ -713,7 +745,6 @@ const triggerSet: TriggerSet<Data> = {
         'Haste': '加速',
         'Magic Hammer': '魔法锤',
         'Mindjack': '精神控制',
-        'Ninjas/Giant': '忍者/巨人',
         'Oink': '哼哼哼哼哼！',
         'Panel Swap': '刷新盘面',
         'Place Dark Token': '召唤死形',
@@ -742,7 +773,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '할리카르나소스',
         'Apanda': '아판다',

@@ -18,6 +18,12 @@ addOverlayListener('onInCombatChangedEvent', (e) => {
 });
 
 addOverlayListener('onPlayerChangedEvent', (e) => {
+  const name = document.getElementById('name');
+  if (name)
+    name.innerText = e.detail.name;
+  const playerId = document.getElementById('playerId');
+  if (playerId)
+    playerId.innerText = e.detail.id.toString(16);
   const hp = document.getElementById('hp');
   if (hp)
     hp.innerText = `${e.detail.currentHP}/${e.detail.maxHP} (${e.detail.currentShield})`;
@@ -41,7 +47,8 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
   if (jobInfo) {
     const detail = e.detail;
     if (detail.job === 'RDM' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.whiteMana} | ${detail.jobDetail.blackMana}`;
+      jobInfo.innerText =
+        `${detail.jobDetail.whiteMana} | ${detail.jobDetail.blackMana} | ${detail.jobDetail.manaStacks}`;
     } else if (detail.job === 'WAR' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.beast.toString();
     } else if (detail.job === 'DRK' && detail.jobDetail) {
@@ -53,7 +60,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText = detail.jobDetail.oath.toString();
     } else if (detail.job === 'BRD' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.songName} | ${detail.jobDetail.songProcs} | ${detail.jobDetail.soulGauge} | ${detail.jobDetail.songMilliseconds}`;
+        `${detail.jobDetail.songName} | ${detail.jobDetail.lastPlayed} | ${detail.jobDetail.songProcs} | ${detail.jobDetail.soulGauge} | ${detail.jobDetail.songMilliseconds} | [${
+          detail.jobDetail.coda.join(', ')
+        }]`;
     } else if (detail.job === 'DNC' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.feathers} | ${detail.jobDetail.esprit} | [${
         detail.jobDetail.steps.join(', ')
@@ -65,7 +74,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
         `${detail.jobDetail.bloodMilliseconds} | ${detail.jobDetail.lifeMilliseconds} | ${detail.jobDetail.eyesAmount}`;
     } else if (detail.job === 'BLM' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds}) | ${detail.jobDetail.umbralHearts} | ${detail.jobDetail.foulCount} ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds})`;
+        `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds}) | ${detail.jobDetail.umbralHearts} | ${detail.jobDetail.polyglot} ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds}) | ${detail.jobDetail.paradox.toString()}`;
     } else if (detail.job === 'THM' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds})`;
@@ -73,15 +82,26 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText =
         `${detail.jobDetail.lilyStacks} (${detail.jobDetail.lilyMilliseconds}) | ${detail.jobDetail.bloodlilyStacks}`;
     } else if (detail.job === 'SMN' && detail.jobDetail) {
-      jobInfo.innerText =
-        `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.dreadwyrmStacks} | ${detail.jobDetail.bahamutStance} | ${detail.jobDetail.bahamutSummoned} (${detail.jobDetail.stanceMilliseconds}) | ${detail.jobDetail.phoenixReady}`;
+      // TODO: remove if-check after CN/KR patch 6.0 released.
+      if ('bahamutStance' in detail.jobDetail) {
+        jobInfo.innerText =
+          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.dreadwyrmStacks} | ${detail.jobDetail.bahamutStance} | ${detail.jobDetail.bahamutSummoned} (${detail.jobDetail.stanceMilliseconds}) | ${detail.jobDetail.phoenixReady}`;
+      } else if ('tranceMilliseconds' in detail.jobDetail) {
+        jobInfo.innerText =
+          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | ${detail
+            .jobDetail.activePrimal ?? '-'} | [${
+            detail.jobDetail.usableArcanum.join(', ')
+          }] | ${detail.jobDetail.nextSummoned}`;
+      }
     } else if (detail.job === 'SCH' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.fairyGauge} | ${detail.jobDetail.fairyStatus} (${detail.jobDetail.fairyMilliseconds})`;
     } else if (detail.job === 'ACN' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.aetherflowStacks.toString();
     } else if (detail.job === 'AST' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.heldCard} [${detail.jobDetail.arcanums.join(', ')}]`;
+      jobInfo.innerText = `${detail.jobDetail.heldCard} | ${detail.jobDetail.crownCard} | [${
+        detail.jobDetail.arcanums.join(', ')
+      }]`;
     } else if (detail.job === 'MNK' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.chakraStacks}`;
     } else if (detail.job === 'MCH' && detail.jobDetail) {
@@ -90,6 +110,12 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     } else if (detail.job === 'SAM' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.kenki} | ${detail.jobDetail.meditationStacks}(${detail.jobDetail.setsu.toString()},${detail.jobDetail.getsu.toString()},${detail.jobDetail.ka.toString()})`;
+    } else if (detail.job === 'SGE' && detail.jobDetail) {
+      jobInfo.innerText =
+        `${detail.jobDetail.addersgall} (${detail.jobDetail.addersgallMilliseconds}) | ${detail.jobDetail.addersting} | ${detail.jobDetail.eukrasia.toString()}`;
+    } else if (detail.job === 'RPR' && detail.jobDetail) {
+      jobInfo.innerText =
+        `${detail.jobDetail.soul} | ${detail.jobDetail.shroud} | ${detail.jobDetail.enshroudMilliseconds} | ${detail.jobDetail.lemureShroud} | ${detail.jobDetail.voidShroud}`;
     } else {
       jobInfo.innerText = '';
     }

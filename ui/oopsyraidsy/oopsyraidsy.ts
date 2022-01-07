@@ -28,9 +28,11 @@ export const addDebugInfo = (collector: MistakeCollector, numMistakes: number): 
   const types: OopsyMistakeType[] = ['death', 'fail', 'warn', 'pull'];
 
   // TODO: this should probably start/stop combat too for the summary page?
-  collector.StartCombat();
+  let fakeTimestamp = 0;
+  collector.StartEncounter(fakeTimestamp);
   for (let i = 0; i < numMistakes; ++i) {
-    collector.OnMistakeObj({
+    fakeTimestamp += 1000;
+    collector.OnMistakeObj(fakeTimestamp, {
       type: types[Math.floor(Math.random() * types.length)] ?? 'good',
       blame: names[Math.floor(Math.random() * names.length)],
       text: 'stuff',
@@ -59,6 +61,10 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   } else if (liveListElement) {
     const listView = new OopsyLiveList(options, liveListElement);
     mistakeCollector.AddObserver(listView);
+    addOverlayListener(
+      'onInCombatChangedEvent',
+      (e) => listView.SetInCombat(e.detail.inGameCombat),
+    );
   } else {
     throw new UnreachableCode();
   }
@@ -71,16 +77,12 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   const damageTracker = new DamageTracker(options, mistakeCollector, oopsyFileData);
 
   addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));
-  addOverlayListener('onPartyWipe', () => damageTracker.OnPartyWipeEvent());
   addOverlayListener('onPlayerChangedEvent', (e) => damageTracker.OnPlayerChange(e));
-  addOverlayListener('ChangeZone', (e) => {
-    damageTracker.OnChangeZone(e);
-    mistakeCollector.OnChangeZone(e);
-  });
+  addOverlayListener('ChangeZone', (e) => damageTracker.OnChangeZone(e));
   addOverlayListener('onInCombatChangedEvent', (e) => {
     damageTracker.OnInCombatChangedEvent(e);
-    mistakeCollector.OnInCombatChangedEvent(e);
   });
+  addOverlayListener('BroadcastMessage', (e) => mistakeCollector.OnBroadcastMessage(e));
 
   void callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 });

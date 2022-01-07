@@ -1,9 +1,10 @@
 // TODO: Fix import/order
 /* eslint-disable import/order */
-import { isLang, Lang } from './languages';
+import { CactbotConfigurator } from '../ui/config/config';
+import { isLang, Lang, langToLocale } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
-import { LocaleText } from '../types/trigger';
+import { LocaleObject, LocaleText } from '../types/trigger';
 import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
 import { UnreachableCode } from './not_reached';
 
@@ -26,52 +27,8 @@ import { Responses as _Responses } from './responses';
 const Responses = _Responses;
 import _Outputs from './outputs';
 const Outputs = _Outputs;
-import {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-  clearWatchCombatants,
-  getAllRoles,
-  isCasterDpsJob,
-  isCombatJob,
-  isCraftingJob,
-  isDpsJob,
-  isGatheringJob,
-  isHealerJob,
-  isMeleeDpsJob,
-  isRangedDpsJob,
-  isTankJob,
-  jobEnumToJob,
-  jobToJobEnum,
-  jobToRole,
-  watchCombatant,
-} from './util';
-const Util = {
-  canAddle,
-  canCleanse,
-  canFeint,
-  canSilence,
-  canSleep,
-  canStun,
-  clearWatchCombatants,
-  getAllRoles,
-  isCasterDpsJob,
-  isCombatJob,
-  isCraftingJob,
-  isDpsJob,
-  isGatheringJob,
-  isHealerJob,
-  isMeleeDpsJob,
-  isRangedDpsJob,
-  isTankJob,
-  jobEnumToJob,
-  jobToJobEnum,
-  jobToRole,
-  watchCombatant,
-} as const;
+import _Util from './util';
+const Util = _Util;
 import _ZoneId from './zone_id';
 const ZoneId = _ZoneId;
 import _ZoneInfo from './zone_info';
@@ -84,43 +41,37 @@ console.assert(
     Responses && Outputs && Util && ZoneId && ZoneInfo,
 );
 
-// TODO: this type is in config.js.
-type CactbotConfigurator = unknown;
-
 // TODO: move all of these to config.js?
-type UserFileCallback = (
+export type UserFileCallback = (
   jsFile: string,
   localFiles: { [filename: string]: string },
   options: BaseOptions,
   basePath: string,
 ) => void;
-type ConfigValue = string | number | boolean;
-type ConfigEntry = {
+export type ConfigValue = string | number | boolean;
+export type ConfigEntry = {
   id: string;
   name: LocaleText;
   type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory' | 'html';
+  html?: LocaleText;
   default: ConfigValue;
   debug?: boolean;
   debugOnly?: boolean;
   // For select.
-  options?: {
-    [lang in Lang]?: {
-      [selectText: string]: string;
-    };
-  };
+  options?: LocaleObject<{ [selectText: string]: string }>;
   setterFunc?: (options: BaseOptions, value: SavedConfigEntry) => void;
 };
 
-type OptionsTemplate = {
+export type OptionsTemplate = {
   buildExtraUI?: (base: CactbotConfigurator, container: HTMLElement) => void;
   processExtraOptions?: (options: BaseOptions, savedConfig: SavedConfigEntry) => void;
   options: ConfigEntry[];
 };
 
 class UserConfig {
-  private optionTemplates: { [overlayName: string]: OptionsTemplate } = {};
-  private savedConfig: SavedConfig = {};
-  private userFileCallbacks: { [overlayName: string]: UserFileCallback } = {};
+  public optionTemplates: { [overlayName: string]: OptionsTemplate } = {};
+  public userFileCallbacks: { [overlayName: string]: UserFileCallback } = {};
+  public savedConfig: SavedConfig = {};
 
   getDefaultBaseOptions(): BaseOptions {
     return {
@@ -313,7 +264,9 @@ class UserConfig {
       else
         options.DisplayLanguage = options.ParserLanguage || 'en';
 
-      document.body.classList.add(`lang-${options.DisplayLanguage}`);
+      // TODO: left for now as backwards compatibility with user css.  Remove this later??
+      document.documentElement.classList.add(`lang-${options.DisplayLanguage}`);
+      document.documentElement.lang = langToLocale(options.DisplayLanguage);
       this.addUnlockText(options.DisplayLanguage);
 
       // Handle processOptions after default language selection above,

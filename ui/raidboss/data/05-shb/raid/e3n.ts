@@ -26,7 +26,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3N Rip Current',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

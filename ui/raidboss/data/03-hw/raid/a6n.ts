@@ -355,7 +355,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
-        'Blaster(?! Mirage)': '冲击波',
+        'Blaster(?! Mirage)': '爆破者',
         'Blaster Mirage': '爆破者幻象',
         'Brawler': '争斗者',
         'Machinery Bay 67': '第67机工兵仓库',
@@ -391,7 +391,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Blaster(?! Mirage)': '폭파자',
         'Blaster Mirage': '폭파자의 환영',

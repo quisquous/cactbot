@@ -43,6 +43,61 @@ export default class TimerBar extends HTMLElement {
     ];
   }
 
+  /** create an instance of TimerBar with attributes */
+  static create(o?: {
+    duration?: number;
+    value?: number;
+    elapsed?: number;
+    hideafter?: number;
+    lefttext?: string;
+    centertext?: string;
+    righttext?: string;
+    width?: string;
+    height?: string;
+    bg?: string;
+    fg?: string;
+    stylefill?: 'empty' | 'fill';
+    toward?: 'left' | 'right';
+    loop?: boolean;
+  }): TimerBar {
+    if (!window.customElements.get('timer-bar'))
+      window.customElements.define('timer-bar', TimerBar);
+
+    const element = document.createElement('timer-bar');
+    if (!o)
+      return element;
+
+    if (typeof o.duration === 'number')
+      element.duration = o.duration;
+    if (typeof o.value === 'number')
+      element.value = o.value;
+    if (typeof o.elapsed === 'number')
+      element.elapsed = o.elapsed;
+    if (typeof o.hideafter === 'number')
+      element.hideafter = o.hideafter;
+    if (typeof o.lefttext === 'string')
+      element.lefttext = o.lefttext;
+    if (typeof o.centertext === 'string')
+      element.centertext = o.centertext;
+    if (typeof o.righttext === 'string')
+      element.righttext = o.righttext;
+    if (typeof o.width === 'string')
+      element.width = o.width;
+    if (typeof o.height === 'string')
+      element.height = o.height;
+    if (typeof o.bg === 'string')
+      element.bg = o.bg;
+    if (typeof o.fg === 'string')
+      element.fg = o.fg;
+    if (typeof o.stylefill === 'string')
+      element.stylefill = o.stylefill;
+    if (typeof o.toward === 'string')
+      element.toward = o.toward;
+    if (typeof o.loop === 'boolean')
+      element.loop = o.loop;
+    return element;
+  }
+
   // Background color.
   set bg(c: string | null) {
     if (c === null)
@@ -344,11 +399,11 @@ export default class TimerBar extends HTMLElement {
           display: none;
         }
         /* Korean better visibility CSS */
-        :host-context(.lang-ko) .text-container {
+        :lang(ko) .text-container {
           top: calc(50% - 1.5ex);
           height: calc(100% + 0.3ex);
         }
-        :host-context(.lang-ko) .timerbar-righttext {
+        :lang(ko) .timerbar-righttext {
           top: 0.3ex;
         }
       </style>

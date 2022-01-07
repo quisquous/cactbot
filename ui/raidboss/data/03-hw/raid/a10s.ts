@@ -327,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pass Prey',
           de: 'Makierung weitergeben',
-          fr: 'Passez le marquage',
+          fr: 'Passez la marque',
           ja: '狙い目を渡す',
           cn: '传递点名',
           ko: '징 넘김',

@@ -490,7 +490,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heal To Full',
           de: 'Vollheilen',
-          fr: 'Full life',
+          fr: 'Soignez complètement',
           ja: '全員のHPを全回復',
           cn: '奶满全队',
           ko: '체력 풀피로',
@@ -545,7 +545,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bolt on YOU',
           de: 'Blitz auf DIR',
-          fr: 'Eclair sur VOUS',
+          fr: 'Éclair sur VOUS',
           ja: '剣から離れる',
           cn: '离开剑所指的区域',
           ko: '번개 대상자',
@@ -770,7 +770,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heal Like Whoa',
           de: 'Heilen was das Zeug hält',
-          fr: 'Mass heal',
+          fr: 'Soignez de ouf !',
           ja: 'ヒーラー頑張って！',
           cn: '加大治疗',
           ko: '계속 힐 돌리기',
@@ -1227,7 +1227,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '성기사 아그리아스',
         'Aspersory': '성운의 물병',
@@ -1278,6 +1277,11 @@ const triggerSet: TriggerSet<Data> = {
         'Demi-Aquarius': '데미아쿠아리우스',
         'Demi-Aries': '데미아리에스',
         'Demi-Leo': '데미레오',
+        'Demi-Virgo Feet': '데미비르고 화살표',
+        'Demi-Virgo Line(?!\/)': '데미비르고 직선장판',
+        'Demi-Virgo Line/Tether': '데미비르고 직선장판/선연결',
+        'Demi-Virgo Tether(?!\/)': '데미비르고 선연결',
+        'Demi-Virgo Tether/Feet': '데미비르고 선연결/화살표',
         'Divine Light': '환광파',
         'Divine Ruination': '성광폭렬파',
         'Duskblade': '암흑의 검',

@@ -42,6 +42,10 @@ body {
   background: url(../../resources/ffxiv/jobs/ast-framed.png) 0 / contain;
 }
 
+.SGE .jobicon {
+  background: url(../../resources/ffxiv/jobs/sge-framed.png) 0 / contain;
+}
+
 .MNK .jobicon {
   background: url(../../resources/ffxiv/jobs/mnk-framed.png) 0 / contain;
 }
@@ -56,6 +60,10 @@ body {
 
 .SAM .jobicon {
   background: url(../../resources/ffxiv/jobs/sam-framed.png) 0 / contain;
+}
+
+.RPR .jobicon {
+  background: url(../../resources/ffxiv/jobs/rpr-framed.png) 0 / contain;
 }
 
 .BRD .jobicon {

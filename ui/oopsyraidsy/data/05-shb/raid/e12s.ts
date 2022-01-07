@@ -91,7 +91,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, text: matches.ability };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -223,6 +223,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           type: 'fail',
           name: matches.target,
           blame: owner,
+          reportId: matches.targetId,
           text: text,
         };
       },
@@ -250,6 +251,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
+          reportId: matches.targetId,
           text: {
             en: `${matches.ability} (from ${pillarOwner})`,
             de: `${matches.ability} (von ${pillarOwner})`,
@@ -287,6 +289,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
       run: (data, matches) => {
         data.smallLionIdToOwner ??= {};
         data.smallLionIdToOwner[matches.sourceId.toUpperCase()] = matches.target;
@@ -301,6 +304,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.abilityFull({ source: 'Abbild Eines Löwen', id: '58B9' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Création Léonine', id: '58B9' }),
       netRegexJa: NetRegexes.abilityFull({ source: '創られた獅子', id: '58B9' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '被创造的狮子', id: '58B9' }),
       mistake: (data, matches) => {
         // Folks baiting the big lion second can take the first small lion hit,
         // so it's not sufficient to check only the owner.
@@ -340,6 +344,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             type: 'fail',
             blame: owner,
             name: matches.target,
+            reportId: matches.targetId,
             text: {
               en: `${matches.ability} (from ${ownerNick}, ${dirObj['en']})`,
               de: `${matches.ability} (von ${ownerNick}, ${dirObj['de']})`,
@@ -370,6 +375,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ source: 'Abbild eines großen Löwen', id: '4F9E' }),
       netRegexFr: NetRegexes.ability({ source: 'création léonine royale', id: '4F9E' }),
       netRegexJa: NetRegexes.ability({ source: '創られた獅子王', id: '4F9E' }),
+      netRegexCn: NetRegexes.ability({ source: '被创造的狮子王', id: '4F9E' }),
       mistake: (data, matches) => {
         const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
@@ -424,6 +430,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           name: matches.target,
+          reportId: matches.targetId,
           text: `${matches.ability} (${labels.join(', ')})`,
         };
       },
@@ -438,7 +445,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['589A', '58B6', '58B7', '58C1'] }),
       deathReason: (_data, matches) => {
         return {
-          type: 'fail',
+          id: matches.targetId,
           name: matches.target,
           text: {
             en: 'Knocked off',
@@ -457,7 +464,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, text: matches.ability };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

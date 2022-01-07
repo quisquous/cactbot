@@ -667,7 +667,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '48F5', source: '９Ｓ：多脚戦車従属' }),
       netRegexCn: NetRegexes.startsUsing({ id: '48F5', source: '9S：接入多脚战车' }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F5', source: '9S: 다각전차 종속' }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -1140,6 +1139,12 @@ const triggerSet: TriggerSet<Data> = {
         'Warehouse A': '仓库A',
         'Warehouse B': '仓库B',
         'Warehouse C': '仓库C',
+        'The wall-mounted right arm begins to move': '墙面的右臂开始运作……',
+        'The wall-mounted flamethrowers activate\.': '墙面的火炎放射器开始运作……',
+        'The wall-mounted left arm begins to move': '墙面的左臂开始运作……',
+        'You hear frenzied movement from machines beneath': '地板下的机械生物动作很可疑……',
+        'The conveyer belts whirr to life!': '地面上的滚轴开始运作……',
+        'Flammable oil is leaking from the floor': '地板下开始充满可燃性液体……',
       },
       'replaceText': {
         '360-Degree Bombing Maneuver': '攻击：周边导弹轰炸',
@@ -1234,6 +1239,12 @@ const triggerSet: TriggerSet<Data> = {
         'Warehouse A': '창고 A',
         'Warehouse B': '창고 B',
         'Warehouse C': '창고 C',
+        'The wall-mounted right arm begins to move': '벽면의 오른팔이 움직이기 시작합니다……!',
+        'The wall-mounted flamethrowers activate\.': '벽면의 화염 방사기가 가동되었습니다……!',
+        'The wall-mounted left arm begins to move': '벽면의 왼팔이 움직이기 시작합니다……!',
+        'You hear frenzied movement from machines beneath': '바닥 아래의 기계생명체가 수상한 움직임을 보입니다……!',
+        'The conveyer belts whirr to life!': '바닥의 컨베이어가 움직이기 시작합니다……!',
+        'Flammable oil is leaking from the floor': '바닥 밑에 가연성 액체가 차오릅니다……!',
       },
       'replaceText': {
         'Front(?!al)': '앞',

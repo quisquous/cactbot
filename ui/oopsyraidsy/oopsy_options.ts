@@ -43,12 +43,24 @@ const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
 
 // TODO: figure out how to get this type from oopsyraidsy_config??
 // These values are overwritten and are just here for typing.
-const defaultOopsyConfigOptions = {
+
+export type DeathReportSide = 'left' | 'right' | 'disabled';
+
+type OopsyConfigOptions = {
+  Debug: boolean;
+  NumLiveListItemsInCombat: number;
+  MinimumTimeForPullMistake: number;
+  TimeToShowDeathReportMs: number;
+  DeathReportSide: DeathReportSide;
+};
+
+const defaultOopsyConfigOptions: OopsyConfigOptions = {
   Debug: false,
   NumLiveListItemsInCombat: 5,
   MinimumTimeForPullMistake: 0.4,
+  TimeToShowDeathReportMs: 4000,
+  DeathReportSide: 'left',
 };
-type OopsyConfigOptions = typeof defaultOopsyConfigOptions;
 
 export interface OopsyOptions extends BaseOptions, OopsyNonConfigOptions, OopsyConfigOptions {}
 

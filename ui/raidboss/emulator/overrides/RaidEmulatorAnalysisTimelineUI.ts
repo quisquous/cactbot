@@ -1,5 +1,5 @@
 import { RaidbossOptions } from '../../raidboss_options';
-import { Event } from '../../timeline';
+import { Event } from '../../timeline_parser';
 
 import RaidEmulatorTimelineUI, { EmulatorTimerBar } from './RaidEmulatorTimelineUI';
 

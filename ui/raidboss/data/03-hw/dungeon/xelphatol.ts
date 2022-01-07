@@ -232,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Tlachtli': '塔帕索利斗技场',
         'The Vortex': '风神祭坛',
         'Tozol Huatotl': '晴天霹雳 托佐尔·法托特尔',
+        'Floating Turret': '气球炮塔',
       },
       'replaceText': {
         '\\(buster\\)': '(死刑)',
@@ -260,7 +261,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Abalathian Hornbill': '아발라시아 뿔부리',
         'Dotoli Ciloc': '선풍의 도톨리 실록',
@@ -270,6 +270,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Tlachtli': '타팍솔리 투기장',
         'The Vortex': '접신 제단',
         'Tozol Huatotl': '청풍의 토졸 후아토틀',
+        'Floating Turret': '기구 포탑',
       },
       'replaceText': {
         'Aerial Blast': '대기 폭발',

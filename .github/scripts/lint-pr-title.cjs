@@ -140,7 +140,7 @@ const checkTitle = async (octokit, owner, repo, pullNumber) => {
   });
   const { title, user } = pullRequest;
   const userName = user?.login;
-  const m = /^(?<prefix>(?:[\w\[\]]*\s+)!?)?(?<scope>[^:]+):\s?(?<description>.+)$/.exec(title);
+  const m = /^(?<prefix>(?:[\w\[\]]*\s+)!?)?(?<scope>[^:]+): (?<description>.+)$/.exec(title);
   const lengthValid = title.length <= maxLength;
   let formatValid = false;
 

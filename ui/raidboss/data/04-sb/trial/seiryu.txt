@@ -1,0 +1,125 @@
+### Seiryu Normal
+# -p 37FE:12.7 37C4:90.7 37C9:205
+# -ii 380C 3802 3803 3C20 380B 3922 3923 380D 380E 3810 3811 3812 3C82 3807 3808 380A 3809 3A8D 37DC
+# -it Seiryu
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+8.7 "--sync--" sync / 14:[^:]*:Seiryu:37FE:/ window 10,10
+12.7 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+24.8 "Infirm Soul" sync / 1[56]:[^:]*:Seiryu:37FD:/
+33.1 "--sync--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+39.8 "Onmyo Sigil / Serpent-Eye Sigil" sync / 1[56]:[^:]*:Seiryu:3A0[78]:/
+52.9 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:3804:/
+54.1 "--sync--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+60.8 "Serpent-Eye Sigil / Onmyo Sigil" sync / 1[56]:[^:]*:Seiryu:3A0[78]:/
+62.9 "--sync--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+69.3 "Kuji-Kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+71.8 "Fortune-Blade Sigil" sync / 1[56]:[^:]*:Seiryu:3806:/
+88.6 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CE:/
+90.7 "--untargetable--"
+
+### Add Phase
+90.7 "--sync--" sync / 1[56]:[^:]*:Seiryu:37C4:/ window 20,50
+95.7 "--sync--" sync / 1[56]:[^:]*:Ao-No-Shiki:37EF:/
+100.7 "--sync--" sync / 1[56]:[^:]*:Iwa-No-Shiki:37EC:/
+101.7 "Red Rush" sync / 1[56]:[^:]*:Aka-No-Shiki:3C1D:/
+101.7 "Blue Bolt" sync / 1[56]:[^:]*:Ao-No-Shiki:3C1C:/
+106.5 "100-Tonze Swing" sync / 1[56]:[^:]*:Iwa-No-Shiki:3C1E:/
+107.4 "3x Doro-No-Shiki"
+107.4 "1x Numa-No-Shiki"
+112.7 "Yama-Kagura" sync / 1[56]:[^:]*:Ten-No-Shiki:3813:/
+118.8 "Kanabo" sync / 1[56]:[^:]*:Iwa-No-Shiki:3C1F:/
+123.8 "3x Doro-No-Shiki"
+123.8 "1x Numa-No-Shiki"
+
+### Final Phase
+200.0 "--sync--" sync / 14:[^:]*:Seiryu:37C9:/ window 200,0
+205.0 "Strength Of Spirit" sync / 1[56]:[^:]*:Seiryu:37C9:/
+208.1 "--sync--" sync / 1[56]:[^:]*:Seiryu:37CA:/
+232.1 "Dragon's Wake" sync / 1[56]:[^:]*:Seiryu:3800:/
+234.6 "--targetable--"
+234.7 "--sync--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+243.9 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+251.9 "Coursing River" sync / 1[56]:[^:]*:Blue Orochi:37F5:/
+262.0 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+270.0 "Coursing River" sync / 1[56]:[^:]*:Blue Orochi:37F5:/
+271.2 "Forbidden Arts 1" sync / 1[56]:[^:]*:Seiryu:37C5:/
+278.6 "Forbidden Arts 2" sync / 1[56]:[^:]*:Seiryu:3C72:/
+
+283.7 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CF:/
+293.8 "Handprint" sync / 1[56]:[^:]*:Yama-No-Shiki:37E[56]:/
+302.0 "Handprint" sync / 1[56]:[^:]*:Yama-No-Shiki:37E[56]:/
+309.8 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+310.1 "Handprint" sync / 1[56]:[^:]*:Yama-No-Shiki:37E[56]:/
+318.2 "Force Of Nature" sync / 1[56]:[^:]*:Yama-No-Shiki:37E9:/
+334.1 "--sync--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+340.7 "Onmyo Sigil / Serpent-Eye Sigil" sync / 1[56]:[^:]*:Seiryu:3A0[78]:/
+342.9 "--sync--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+349.0 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:3804:/
+349.7 "Kuji-Kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+352.2 "Fortune-Blade Sigil" sync / 1[56]:[^:]*:Seiryu:3806:/
+356.8 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+370.0 "Infirm Soul" sync / 1[56]:[^:]*:Seiryu:37FD:/
+376.1 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+
+# More adds
+387.3 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CD:/
+393.4 "--sync--" sync / 1[56]:[^:]*:Iwa-No-Shiki:37EC:/
+394.6 "--sync--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+399.2 "100-Tonze Swing" sync / 1[56]:[^:]*:Iwa-No-Shiki:3C1E:/
+401.2 "Onmyo Sigil / Serpent-Eye Sigil" sync / 1[56]:[^:]*:Seiryu:3A0[78]:/
+411.5 "Kanabo" sync / 1[56]:[^:]*:Iwa-No-Shiki:3C1F:/
+415.3 "--sync--" sync / 1[56]:[^:]*:Ao-No-Shiki:37EF:/
+421.3 "Red Rush" sync / 1[56]:[^:]*:Aka-No-Shiki:3C1D:/
+421.3 "Blue Bolt" sync / 1[56]:[^:]*:Ao-No-Shiki:3C1C:/
+424.4 "--sync--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+429.3 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:3804:/
+430.3 "Yama-Kagura" sync / 1[56]:[^:]*:Ten-No-Shiki:3813:/
+431.0 "Kuji-Kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+433.5 "Fortune-Blade Sigil" sync / 1[56]:[^:]*:Seiryu:3806:/
+443.2 "Handprint" sync / 1[56]:[^:]*:Yama-No-Shiki:37E[56]:/
+
+448.1 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+451.4 "Handprint" sync / 1[56]:[^:]*:Yama-No-Shiki:37E[56]:/
+456.2 "Coursing River" sync / 1[56]:[^:]*:Blue Orochi:37F5:/
+459.5 "Handprint" sync / 1[56]:[^:]*:Yama-No-Shiki:37E[56]:/
+467.7 "Force Of Nature" sync / 1[56]:[^:]*:Yama-No-Shiki:37E9:/
+
+# towers
+470.2 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:3C25:/
+480.4 "Serpent's Fang" sync / 1[56]:[^:]*:Seiryu:3A8C:/
+484.4 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+498.7 "--sync--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+505.2 "Kuji-Kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+505.6 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:3804:/
+507.7 "Fortune-Blade Sigil" sync / 1[56]:[^:]*:Seiryu:3806:/
+508.4 "--sync--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+515.0 "Onmyo Sigil / Serpent-Eye Sigil" sync / 1[56]:[^:]*:Seiryu:3A0[78]:/
+524.1 "Infirm Soul" sync / 1[56]:[^:]*:Seiryu:37FD:/
+530.2 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+540.4 "--sync--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+
+547.6 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+555.7 "Coursing River" sync / 1[56]:[^:]*:Blue Orochi:37F5:/
+558.8 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+565.9 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+573.9 "Coursing River" sync / 1[56]:[^:]*:Blue Orochi:37F5:/
+575.1 "Forbidden Arts" sync / 1[56]:[^:]*:Seiryu:37C5:/
+582.4 "Forbidden Arts" sync / 1[56]:[^:]*:Seiryu:3C72:/
+588.5 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+595.6 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+
+# adds loop
+610.8 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CD:/ window 100,100 jump 387.3
+616.9 "--sync--" #sync / 1[56]:[^:]*:Iwa-No-Shiki:37EC:/
+618.1 "--sync--" #sync / 1[56]:[^:]*:Seiryu:37D5:/
+622.7 "100-Tonze Swing" #sync / 1[56]:[^:]*:Iwa-No-Shiki:3C1E:/
+624.7 "Onmyo Sigil / Serpent-Eye Sigil" #ync /:Seiryu:3A0[78]:/
+635.0 "Kanabo" #sync / 1[56]:[^:]*:Iwa-No-Shiki:3C1F:/
+638.8 "--sync--" #sync / 1[56]:[^:]*:Ao-No-Shiki:37EF:/

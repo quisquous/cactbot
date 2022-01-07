@@ -1,0 +1,118 @@
+### Tsukuyomi Normal
+# -p 2BE3:14.2 2CB0:504 2BFD:677.3
+# -it "Tsukuyomi" / -it "Specter of Zenos"
+# -ii 2BEA 2CAC 2CAD 2BCB 2CAE
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+10.2 "--sync--" sync / 14:[^:]*:Tsukuyomi:2BE3:/ window 20,20
+14.2 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2BE3:/
+24.3 "Zashiki-Asobi" sync / 1[56]:[^:]*:Tsukuyomi:2BEC:/
+30.4 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE5:/
+35.3 "Tsuki-No-Maiogi" duration 4 #sync / 1[56]:[^:]*:Dancing Fan:2BED:/
+36.6 "Steel Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE7:/
+39.8 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BC0:/
+49.9 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+65.2 "Midnight Haze 1" sync / 1[56]:[^:]*:Tsukuyomi:2BE8:/
+69.6 "Midnight Haze 2" sync / 1[56]:[^:]*:Tsukuyomi:2BE9:/
+77.7 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE4:/
+79.9 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CB1:/
+85.0 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE6:/
+88.1 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
+107.0 "Nightbloom" sync / 1[56]:[^:]*:Tsukuyomi:2BEE:/ window 110,10
+108.0 "--untargetable--"
+
+
+### Phase 2: Adds
+127.8 "--Patriarch/Matriarch Adds--" sync / 03:........:Specter Of The Matriarch:/  window 30,10
+174.5 "--Empire/Homeland Adds--" sync / 03:........:Specter Of The Empire:/  window 80,10
+# TODO: Specter of Asahi shows up alone after all other adds are dead, so can't have a timeline entry.
+
+400.0 "Concentrativity" sync / 1[56]:[^:]*:Specter of Zenos:2BEF:/ window 400,0
+406.7 "Unmoving Troika" sync / 1[56]:[^:]*:Specter of Zenos:2CAB:/
+413.6 "--sync--" sync / 1[56]:[^:]*:Specter of Zenos:2BCA:/
+416.6 "--targetable--"
+423.7 "Dispersivity" sync / 1[56]:[^:]*:Specter:2BF0:/ window 40,40
+429.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
+435.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
+441.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
+447.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
+453.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
+
+
+### Phase 3: Selenomancy
+500.0 "--sync--" sync / 14:[^:]*:Tsukuyomi:2CB0:/ window 500,0
+504.0 "Nightbloom" sync / 1[56]:[^:]*:Tsukuyomi:2CB0:/
+509.9 "--targetable--"
+524.4 "Selenomancy" sync / 1[56]:[^:]*:Tsukuyomi:2BF1:/
+541.6 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE4:/
+543.6 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2C73:/
+543.8 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CB1:/
+549.0 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE6:/
+552.1 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
+565.3 "Antitwilight" sync / 1[56]:[^:]*:Tsukuyomi:2BF8:/
+575.5 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2BE3:/
+582.7 "Zashiki-Asobi" sync / 1[56]:[^:]*:Tsukuyomi:2BEC:/
+588.8 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE4:/
+591.0 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CB1:/
+593.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+596.2 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE6:/
+599.3 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
+611.5 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2BE3:/
+623.2 "Selenomancy" sync / 1[56]:[^:]*:Tsukuyomi:2BF1:/
+630.5 "Midnight Haze" sync / 1[56]:[^:]*:Tsukuyomi:2BE8:/
+635.0 "Midnight Haze" sync / 1[56]:[^:]*:Tsukuyomi:2BE9:/
+643.1 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE5:/
+649.3 "Steel Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE7:/
+652.2 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2C73:/
+652.5 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BC0:/
+667.7 "Perilune" sync / 1[56]:[^:]*:Tsukuyomi:2BF7:/
+
+
+### Phase 4: Dance Of The Dead -> Bright/Dark Blade (hp push and timed)
+677.3 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BFD:/ window 700,50
+678.3 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2D1F:/
+683.2 "Dance Of The Dead" sync / 1[56]:[^:]*:Tsukuyomi:2E79:/
+693.5 "Lunacy x3" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
+701.8 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+709.0 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+719.2 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+725.2 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+726.5 "Lunacy x4" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
+738.8 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+749.1 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2EB3:/
+758.2 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+759.0 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+763.4 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+770.6 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+780.7 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+786.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+788.1 "Lunacy x5" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
+801.5 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+
+# begin loop
+811.7 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2EB3:/
+820.8 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+821.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+826.1 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+833.2 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+843.4 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+849.4 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+850.7 "Lunacy x5" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
+864.1 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+
+# loop
+874.3 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2EB3:/ window 50,50 jump 811.7
+883.4 "Reprimand" #sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+884.3 "Tsuki-No-Maiogi" #sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+888.7 "Bright Blade/Dark Blade" #sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+895.8 "Reprimand" #sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+906.0 "Bright Blade/Dark Blade" #sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
+912.0 "Tsuki-No-Maiogi" #sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
+913.3 "Lunacy x5" #sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
+926.7 "Reprimand" #sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/

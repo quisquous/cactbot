@@ -104,7 +104,8 @@ Each trigger is an object with the following fields.  All fields are optional.
 
 * `type` is the icon: pull, warn, fail, potion, death, wipe (:arrow_forward::warning::no_entry_sign::cocktail::skull::toilet:).
 * `name` is an optional full player name to list as this mistake happening to.  This will prepend their name in the live list.
-* `blame` is an optional full player name (or array of full player names) to blame for this mistake.  If `name` is not specified, then the `name` will be the `blame` player.
+* `blame` is an optional full player name to blame for this mistake.  If `name` is not specified, then the `name` will be the `blame` player.
+* `reportId` is an optional player id.  If set, it will include this mistake in that player's death report.
 * `text` is an optional reason for the mistake.  It will be prepended by the blamed player's short name (if it exists).
 This will print ":no_entry_sign: Latke: Dynamo" in the live log.
 
@@ -113,6 +114,7 @@ mistake: (data, matches) => {
   return {
     type: 'fail',
     blame: matches.target,
+    reportId: matches.targetId,
     text: 'Dynamo'
   };
 },
@@ -120,6 +122,7 @@ mistake: (data, matches) => {
 
 ### `deathReason` format
 
+* `id` is the player id to override the death reason for.
 * `name` is the full player name to override the next death reason for.
 * `reason` is the string to use.
 
@@ -128,7 +131,8 @@ If this following trigger is used, then if a player dies without taking any othe
 ```javascript
 deathReason: (data, matches) => {
   return {
-    name: event.targetName,
+    id: matches.targetId,
+    name: matches.targetName,
     text: 'Doom Debuff',
   },
 },
