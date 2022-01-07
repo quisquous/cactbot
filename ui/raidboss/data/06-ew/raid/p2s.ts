@@ -288,10 +288,10 @@ const triggerSet: TriggerSet<Data> = {
         // 1/3 have to run to the other side, so make this louder.
         const isOdd = num % 2;
         if (isTriangle)
-          return {['infoText']: output.triangle!({ num: num })};
+          return { ['infoText']: output.triangle!({ num: num }) };
         else if (isOdd)
-          return {['alarmText']: output.squareAcross!({ num: num })};
-        return {['alertText']: output.squareBoss!({ num: num })};
+          return { ['alarmText']: output.squareAcross!({ num: num }) };
+        return { ['alertText']: output.squareBoss!({ num: num }) };
       },
     },
   ],
