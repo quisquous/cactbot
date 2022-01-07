@@ -68,6 +68,7 @@ Options.Triggers.push({
             outputStrings: {
                 closeShacklesOnYou: {
                     en: 'Close Shackles on YOU',
+                    de: 'Nahe Fesseln auf DIR',
                 },
             },
         },
@@ -84,6 +85,7 @@ Options.Triggers.push({
             outputStrings: {
                 farShacklesOnYou: {
                     en: 'Far Shackles on YOU',
+                    de: 'Entfernte Fesseln auf DIR',
                 },
             },
         },
@@ -113,12 +115,15 @@ Options.Triggers.push({
             outputStrings: {
                 closeShacklesOn: {
                     en: 'Close Shackles on ${close}',
+                    de: 'Nahe Fesseln auf ${close}',
                 },
                 farShacklesOn: {
                     en: 'Far Shackles on ${far}',
+                    de: 'Entfernte Fesseln auf ${far}',
                 },
                 shacklesOn: {
                     en: 'Close: ${close}, Far: ${far}',
+                    de: 'Nahe: ${close}, Entfernt: ${far}',
                 },
             },
         },
@@ -278,9 +283,11 @@ Options.Triggers.push({
             outputStrings: {
                 shacklesOn: {
                     en: 'Shackles of Time on ${player}',
+                    de: 'Aspektierende Ketten auf ${player}',
                 },
                 shacklesOnYou: {
                     en: 'Shackles of Time on YOU',
+                    de: 'Aspektierende Ketten auf DIR',
                 },
             },
         },
@@ -307,6 +314,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Close (3s)',
+                    de: 'Nahe (3s)',
                 },
             },
         },
@@ -320,6 +328,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Close (8s)',
+                    de: 'Nahe (8s)',
                 },
             },
         },
@@ -333,6 +342,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Close (13s)',
+                    de: 'Nahe (13s)',
                 },
             },
         },
@@ -346,6 +356,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Close (18s)',
+                    de: 'Nahe (18s)',
                 },
             },
         },
@@ -359,6 +370,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Far (3s)',
+                    de: 'Entfernt (3s)',
                 },
             },
         },
@@ -372,6 +384,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Far (8s)',
+                    de: 'Entfernt (8s)',
                 },
             },
         },
@@ -385,6 +398,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Far (13s)',
+                    de: 'Entfernt (13s)',
                 },
             },
         },
@@ -398,6 +412,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Far (18s)',
+                    de: 'Entfernt (18s)',
                 },
             },
         },
