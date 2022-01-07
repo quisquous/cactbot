@@ -105,15 +105,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P1S Aetherial Shackles',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6625', source: 'Erichthonios', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '6625', source: 'Erichthonios', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '6625', source: 'Érichthonios', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '6625', source: 'エリクトニオス', capture: false }),
-      // Shackle status effects go out after the ability is finished, provide small buffer
-      delaySeconds: 2,
-      durationSeconds: 8,
+      // Callout the other shackle(s) at info level
+      id: 'P1S Aetherial Shackles Callout',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB[67]' }),
+      condition: (data) => data.companionship !== undefined && data.loneliness !== undefined,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
       infoText: (data, _matches, output) => {
         if (!data.companionship || !data.loneliness)
           return;
@@ -121,6 +118,11 @@ const triggerSet: TriggerSet<Data> = {
           return output.farShacklesOn!({ far: data.ShortName(data.loneliness) });
         if (data.loneliness === data.me)
           return output.closeShacklesOn!({ close: data.ShortName(data.companionship) });
+        return output.shacklesOn!({ close: data.ShortName(data.companionship), far: data.ShortName(data.loneliness) });
+      },
+      tts: (data, _matches, output) => {
+        if (data.companionship === data.me || data.loneliness === data.me)
+          return null;
         return output.shacklesOn!({ close: data.ShortName(data.companionship), far: data.ShortName(data.loneliness) });
       },
       run: (data) => {
