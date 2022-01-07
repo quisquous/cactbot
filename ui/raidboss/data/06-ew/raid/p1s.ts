@@ -138,11 +138,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         farShacklesOn: {
           en: 'Far Shackles on ${far}',
-          fr: 'Chaînes éloignées sur ${close}',
+          fr: 'Chaînes éloignées sur ${far}',
         },
         shacklesOn: {
           en: 'Close: ${close}, Far: ${far}',
-          fr: 'Proches : ${close}, Éloignées: ${far}',
+          fr: 'Proches : ${close}, Éloignées : ${far}',
         },
       },
     },
