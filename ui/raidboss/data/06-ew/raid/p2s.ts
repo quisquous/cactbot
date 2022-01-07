@@ -20,8 +20,8 @@ export interface Data extends RaidbossData {
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-// The first 1B marker in the encounter is an Ominous Bubbling (00A1).
-const firstHeadmarker = parseInt('00A1', 16);
+// The first 1B marker in the encounter is an Doubled Impact (0103).
+const firstHeadmarker = parseInt('0103', 16);
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
