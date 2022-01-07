@@ -376,7 +376,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // A, B6C
       id: 'P1S Fourfold Shackles of Loneliness 2',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'B49' }),
