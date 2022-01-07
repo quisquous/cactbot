@@ -112,8 +112,6 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.companionship !== undefined && data.loneliness !== undefined,
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
       infoText: (data, _matches, output) => {
-        if (!data.companionship || !data.loneliness)
-          return;
         if (data.companionship === data.me)
           return output.farShacklesOn!({ far: data.ShortName(data.loneliness) });
         if (data.loneliness === data.me)
