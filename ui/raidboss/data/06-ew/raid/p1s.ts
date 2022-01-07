@@ -229,11 +229,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '893', capture: true }),
       preRun: (data, matches) => {
-        if (matches.count === '14C') {
-          data.safeColor = 'light';
-          return;
-        }
-        data.safeColor = 'fire';
+        data.safeColor = matches.count === '14C' ? 'light' : 'fire';
       },
       alertText: (data, _matches, output) => data.safeColor && output[data.safeColor]!(),
       outputStrings: fireLightOutputStrings,
