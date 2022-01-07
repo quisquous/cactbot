@@ -41,7 +41,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P2S Headmarker Tracker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.decOffset === 'undefined',
+      condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
     },
@@ -243,7 +243,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '682F', source: 'ヒッポカムポス' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      // 7.7 cast time, delay for proper arm's length
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 2.7,
       response: Responses.knockback(),
     },
     {
