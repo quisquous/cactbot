@@ -10,6 +10,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Add Aetherflail callouts to Powerful Light/Fire
 
 export interface Data extends RaidbossData {
+  companionship?: string;
+  loneliness?: string;
   safeColor?: string;
 }
 
@@ -74,11 +76,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1S Shackles of Companionship',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AB6' }),
-      condition: Conditions.targetIsYou(),
-      durationSeconds: (_data, matches) => parseFloat(matches.duration),
-      infoText: (_data, _matches, output) => output.text!(),
+      preRun: (data, matches) => data.companionship = matches.target,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.closeShacklesOnYou!();
+      },
       outputStrings: {
-        text: {
+        closeShacklesOnYou: {
           en: 'Close Shackles on YOU',
         },
       },
@@ -87,12 +92,50 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1S Shackles of Loneliness',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AB7' }),
-      condition: Conditions.targetIsYou(),
-      durationSeconds: (_data, matches) => parseFloat(matches.duration),
-      infoText: (_data, _matches, output) => output.text!(),
+      preRun: (data, matches) => data.loneliness = matches.target,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.farShacklesOnYou!();
+      },
       outputStrings: {
-        text: {
+        farShacklesOnYou: {
           en: 'Far Shackles on YOU',
+        },
+      },
+    },
+    {
+      id: 'P1S Aetherial Shackles',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6625', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '6625', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '6625', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '6625', source: 'エリクトニオス', capture: false }),
+      // Shackle status effects go out after the ability is finished, provide small buffer
+      delaySeconds: 2,
+      durationSeconds: 8,
+      infoText: (data, _matches, output) => {
+        if (!data.companionship || !data.loneliness)
+          return;
+        if (data.companionship === data.me)
+          return output.farShacklesOn!({ far: data.ShortName(data.loneliness) });
+        if (data.loneliness === data.me)
+          return output.closeShacklesOn!({ close: data.ShortName(data.companionship) });
+        return output.shacklesOn!({ close: data.ShortName(data.companionship), far: data.ShortName(data.loneliness) });
+      },
+      run: (data) => {
+        delete data.companionship;
+        delete data.loneliness;
+      },
+      outputStrings: {
+        closeShacklesOn: {
+          en: 'Close Shackles on ${close}',
+        },
+        farShacklesOn: {
+          en: 'Far Shackles on ${far}',
+        },
+        shacklesOn: {
+          en: 'Close: ${close}, Far: ${far}',
         },
       },
     },
