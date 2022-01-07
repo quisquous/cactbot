@@ -244,7 +244,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '682F', source: 'ヒッポカムポス' }),
       // 7.7 cast time, delay for proper arm's length
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 2.7,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
     },
     {
