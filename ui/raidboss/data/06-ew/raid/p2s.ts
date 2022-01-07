@@ -231,10 +231,11 @@ const triggerSet: TriggerSet<Data> = {
       // Raidwide knockback -> dont get knocked into slurry
       id: 'P2S Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '682F', source: 'ヒッポカムポス', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '682F', source: 'ヒッポカムポス' }),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       response: Responses.knockback(),
     },
     {
