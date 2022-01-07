@@ -87,6 +87,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         closeShacklesOnYou: {
           en: 'Close Shackles on YOU',
+          fr: 'Chaînes proches sur VOUS',
         },
       },
     },
@@ -103,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         farShacklesOnYou: {
           en: 'Far Shackles on YOU',
+          fr: 'Chaînes éloignées sur VOUS',
         },
       },
     },
@@ -132,12 +134,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         closeShacklesOn: {
           en: 'Close Shackles on ${close}',
+          fr: 'Chaînes proches sur ${close}',
         },
         farShacklesOn: {
           en: 'Far Shackles on ${far}',
+          fr: 'Chaînes éloignées sur ${close}',
         },
         shacklesOn: {
           en: 'Close: ${close}, Far: ${far}',
+          fr: 'Proches : ${close}, Éloignées: ${far}',
         },
       },
     },
@@ -297,9 +302,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         shacklesOn: {
           en: 'Shackles of Time on ${player}',
+          fr: 'Chaînes à retardement sur ${player}',
         },
         shacklesOnYou: {
           en: 'Shackles of Time on YOU',
+          fr: 'Chaînes à retardement sur VOUS',
         },
       },
     },
@@ -326,6 +333,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Close (3s)',
+          fr: 'Proches (3s)',
         },
       },
     },
@@ -339,6 +347,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Close (8s)',
+          fr: 'Proches (8s)',
         },
       },
     },
@@ -352,6 +361,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Close (13s)',
+          fr: 'Proches (13s)',
         },
       },
     },
@@ -365,6 +375,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Close (18s)',
+          fr: 'Proches (18s)',
         },
       },
     },
@@ -378,6 +389,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Far (3s)',
+          fr: 'Éloignées (3s)',
         },
       },
     },
@@ -391,6 +403,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Far (8s)',
+          fr: 'Éloignées (8s)',
         },
       },
     },
@@ -404,6 +417,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Far (13s)',
+          fr: 'Éloignées (13s)',
         },
       },
     },
@@ -417,6 +431,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Far (18s)',
+          fr: 'Éloignées (18s)',
         },
       },
     },
