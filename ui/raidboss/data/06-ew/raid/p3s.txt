@@ -34,7 +34,7 @@ hideall "--sync--"
 173.6 "Flare of Condemnation/Sparks of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FE|66FF):/
 
 # Adds Phase 1
-180.8 "--adds-targetable--"
+180.8 "--adds targetable--"
 180.9 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
 189.0 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
 197.1 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
@@ -44,7 +44,7 @@ hideall "--sync--"
 # Adds Phase 2
 300.0 "Flames of Undeath 1" sync / 1[56]:[^:]*:Phoinix:66D6:/ window 300,0
 300.3 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-301.1 "--adds-targetable--"
+301.1 "--adds targetable--"
 303.3 "Joint Pyre" sync / 1[56]:[^:]*:Sunbird:66D8:/
 303.8 "Joint Pyre" #sync / 1[56]:[^:]*:Sunbird:66D8:/
 304.7 "Joint Pyre" sync / 1[56]:[^:]*:Sunbird:66D8:/
