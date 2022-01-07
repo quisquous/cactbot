@@ -4,15 +4,34 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Callout cardinal for Spoken Cataract
 // TODO: Debuff collect for Marks and callouts for those without debuff
 // TODO: Add cardinal to Channeling Flow
+// TODO: Fix headmarker ids for Kampeos Harma Callouts
 
 export interface Data extends RaidbossData {
   flareTarget?: string;
+  decOffset?: number;
 }
+
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+// The first 1B marker in the encounter is an Ominous Bubbling (0093).
+const firstHeadmarker = parseInt('0093', 16);
+const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
+  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
+  // (This makes the offset 0, and !0 is true.)
+  if (typeof data.decOffset === 'undefined')
+    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheSecondCircleSavage,
@@ -221,18 +240,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Kampeos Harma Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E[56789ABC]' }),
+      netRegex: NetRegexes.headMarker({}),
       condition: Conditions.targetIsYou(),
-      response: (_data, matches, output) => {
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          square: {
-            en: '#${num} Square',
-            de: '#${num} Viereck',
-            fr: '#${num} Carré',
-            ja: '#${num} 四角',
-            cn: '#${num} 四角',
-            ko: '#${num} 짝수',
+          squareAcross: {
+            en: '#${num} Square, go across',
+          },
+          // Trying not to confuse with boss/across
+          squareBoss: {
+            en: '#${num} Square, boss tile',
           },
           triangle: {
             en: '#${num} Triangle',
@@ -244,21 +262,36 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-        const id = matches.id;
+        const id = getHeadmarkerId(data, matches);
         if (!id)
           return;
+        const harmaMarkers = [
+          '0091',
+          '0092',
+          '0093',
+          '0094',
+          '0095',
+          '0096',
+          '0097',
+          '0098',
+        ];
 
-        let num = parseInt(id, 16);
-        const isTriangle = num >= 233;
-        num -= 228;
+        if (!(id in harmaMarkers))
+          return;
+
+        let num = parseInt(id);
+        const isTriangle = num >= 95;
+        num -= 90;
         if (isTriangle)
           num -= 4;
 
-        // Odd numbers have to run to the other side, so make this louder.
-        // TODO: should this be alarm/alert instead of alert/info?
+        // 1/3 have to run to the other side, so make this louder.
         const isOdd = num % 2;
-        const text = isTriangle ? output.triangle!({ num: num }) : output.square!({ num: num });
-        return { [isOdd ? 'alertText' : 'infoText']: text };
+        if (isTriangle)
+          return {['infoText']: output.triangle!({ num: num })};
+        else if (isOdd)
+          return {['alarmText']: output.squareAcross!({ num: num })};
+        return {['alertText']: output.squareBoss!({ num: num })};
       },
     },
   ],
