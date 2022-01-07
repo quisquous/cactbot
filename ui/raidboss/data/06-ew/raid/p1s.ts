@@ -6,7 +6,19 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type Data = RaidbossData;
+// TODO: Fixup Intemperance callouts
+// TODO: Add Aetherflail callouts to Powerful Light/Fire
+
+export interface Data extends RaidbossData {
+  safeColor?: string;
+}
+
+const shackleMapping: { [duration: string]: number } = {
+  '3': 1,
+  '8': 2,
+  '13': 3,
+  '18': 4,
+};
 
 const flailDirections = {
   l: Outputs.left,
@@ -18,6 +30,23 @@ const flailDirections = {
     ja: '${first} => ${second}',
     cn: '${first} => ${second}',
     ko: '${first} => ${second}',
+  },
+};
+
+const fireLightOutputStrings = {
+  fire: {
+    en: 'Stand on fire',
+    de: 'Auf der Feuerfläche stehen',
+    fr: 'Placez-vous sur le feu',
+    cn: '站在火',
+    ko: '빨간색 바닥 위에 서기',
+  },
+  light: {
+    en: 'Stand on light',
+    de: 'Auf der Lichtfläche stehen',
+    fr: 'Placez-vous sur la lumière',
+    cn: '站在光',
+    ko: '흰색 바닥 위에 서기',
   },
 };
 
@@ -47,6 +76,32 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '662A', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '662A', source: 'エリクトニオス', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'P1S Shackles of Companionship',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB6' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Close Shackles on YOU',
+        },
+      },
+    },
+    {
+      id: 'P1S Shackles of Loneliness',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB7' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Far Shackles on YOU',
+        },
+      },
     },
     {
       id: 'P1S Shining Cells',
@@ -156,8 +211,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['AB3', 'AB4'], capture: true }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, _output) => {
-        return _matches.effectId === 'AB3' ? _output.red!() : _output.blue!();
+      alertText: (_data, matches, output) => {
+        return matches.effectId === 'AB3' ? output.red!() : output.blue!();
       },
       outputStrings: {
         red: {
@@ -176,30 +231,70 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    // Copy/paste from normal, seems to be the same
     {
       id: 'P1S Powerful Light/Fire',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '893', capture: true }),
-      alertText: (_data, matches, _output) => {
-        if (matches.count === '14C')
-          return _output.light!();
-        return _output.fire!();
+      preRun: (data, matches) => {
+        if (matches.count === '14C') {
+          data.safeColor = 'light';
+          return;
+        }
+        data.safeColor = 'fire';
       },
+      alertText: (data, _matches, output) => data.safeColor && output[data.safeColor]!(),
+      outputStrings: fireLightOutputStrings,
+    },
+    {
+      id: 'P1S Shackles of Time on You',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, _matches, output) => output.text!(),
+      // For raid calling purposes, this might be useful but don't clutter TTS.
+      tts: null,
       outputStrings: {
-        fire: {
-          en: 'Stand on fire',
-          de: 'Auf der Feuerfläche stehen',
-          fr: 'Placez-vous sur le feu',
-          cn: '站在火',
-          ko: '빨간색 바닥 위에 서기',
+        text: {
+          en: 'Shackles of Time on YOU',
         },
-        light: {
-          en: 'Stand on light',
-          de: 'Auf der Lichtfläche stehen',
-          fr: 'Placez-vous sur la lumière',
-          cn: '站在光',
-          ko: '흰색 바닥 위에 서기',
+      },
+    },
+    {
+      id: 'P1S Shackles of Time',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
+      alertText: (data, matches, output) => {
+        if (!data.safeColor)
+          return;
+        if (matches.target === data.me)
+          return output[data.safeColor]!();
+        return output[data.safeColor === 'fire' ? 'light' : 'fire']!();
+      },
+      outputStrings: fireLightOutputStrings,
+    },
+    {
+      id: 'P1S Fourfold Shackles of Companionship',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['B4[567]', 'B6B'] }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, matches, output) => output.colorAndNumber!({ num: shackleMapping[Math.ceil(parseFloat(matches.duration))] }),
+      outputStrings: {
+        colorAndNumber: {
+          en: 'Close #${num}',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Loneliness',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['B4[89A]', 'B6C'] }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, matches, output) => output.colorAndNumber!({ num: shackleMapping[Math.ceil(parseFloat(matches.duration))] }),
+      outputStrings: {
+        colorAndNumber: {
+          en: 'Far #${num}',
         },
       },
     },
