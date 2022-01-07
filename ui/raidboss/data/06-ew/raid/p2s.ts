@@ -38,6 +38,14 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p2s.txt',
   triggers: [
     {
+      id: 'P2S Headmarker Tracker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.decOffset === undefined,
+      // Unconditionally set the first headmarker here so that future triggers are conditional.
+      run: (data, matches) => getHeadmarkerId(data, matches),
+    },
+    {
       id: 'P2S Murky Depths',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6833', source: 'Hippokampos', capture: false }),
