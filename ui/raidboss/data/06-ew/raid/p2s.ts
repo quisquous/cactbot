@@ -332,7 +332,7 @@ const triggerSet: TriggerSet<Data> = {
         '\\(long\\)': '(Lang)',
         'Channeling Flow': 'Kanalschnellen',
         'Channeling Overflow': 'Kanalfluten',
-        'Coherence': 'Kohärenz',
+        'Coherence(?! [FL])': 'Kohärenz',
         'Coherence Flare': 'Kohärenz Flare',
         'Coherence Line': 'Kohärenz Linie',
         'Crash': 'Impakt',
@@ -364,7 +364,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Channeling Flow': 'Courant canalisant',
         'Channeling Overflow': 'Déversement canalisant',
-        'Coherence': 'Cohérence',
+        'Coherence(?! [FL])': 'Cohérence',
         'Crash': 'Collision',
         'Deadly Current': 'Torrent mortel',
         'Dissociation': 'Dissociation',
@@ -393,7 +393,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Channeling Flow': 'チャネリングフロウ',
         'Channeling Overflow': 'チャネリングオーバーフロウ',
-        'Coherence': 'コヒーレンス',
+        'Coherence(?! [FL])': 'コヒーレンス',
         'Crash': '衝突',
         'Deadly Current': '激流衝',
         'Dissociation': 'ディソシエーション',
