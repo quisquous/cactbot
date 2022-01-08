@@ -158,11 +158,12 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go to Corner',
-          de: 'In eine Ecke gehen',
-          fr: 'Allez dans un coin',
-          cn: '去角落',
-          ko: '구석으로',
+          en: 'Thunder',
+          de: 'Blitz',
+          fr: 'Tempête',
+          ja, 'サンダー',
+          cn: '闪雷风暴',
+          ko: '번개',
         },
       },
     },
