@@ -11,7 +11,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Bloodrake Handle tether Role Call (AF2 effectId) mechanic
 // TODO: Touch up timing of callouts of knockback/cleave and Pinax?
 // TODO: Begone Coils could potentially call dps or tank/healers and which gets tether.
-// TODO: Get non-tethered tile for safe spot from Elemental Resistance mechanic
 
 // Part Two
 // TODO: Wreath of Thorns 1 callout safe spot order (N/S or E/W)
@@ -421,6 +420,28 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Share two ${role} orbs',
+        },
+      },
+    },
+    {
+      id: 'P4S Periaktoi',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['69F5', '69F6', '69F7', '69F8'], source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['69F5', '69F6', '69F7', '69F8'], source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['69F5', '69F6', '69F7', '69F8'], source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['69F5', '69F6', '69F7', '69F8'], source: 'ヘスペロス' }),
+      alertText: (_data, matches, output) => {
+        const pinax: { [id: string]: string } = {
+          '69F5': 'Acid',
+          '69F6': 'Lava',
+          '69F7': 'Well',
+          '69F8': 'Levinstrike',
+        };
+        return output.text!({ pinax: pinax[matches.id] });
+      },
+      outputStrings: {
+        text: {
+          en: 'Be on ${pinax} tile',
         },
       },
     },
