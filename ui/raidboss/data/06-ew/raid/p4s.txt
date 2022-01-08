@@ -21,7 +21,7 @@ hideall "--sync--"
 # id is for a shift + cleave, and the second id is for shift + knockback.
 
 0.0 "--sync--" sync /Engage!/ window 0,1
-10.0 "--sync--" / 14:[^:]*:Hesperos:6A09:/ window 10,20
+10.0 "--sync--" sync / 14:[^:]*:Hesperos:6A09:/ window 10,20
 15.0 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
 23.2 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 30.3 "Aetheric Chlamys" sync / 1[56]:[^:]*:Hesperos:69EC:/
