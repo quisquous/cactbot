@@ -375,7 +375,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Belone Bursts Position',
+      id: 'P4S Belone Bursts',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos', capture: false }),
@@ -384,32 +384,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.rolePositions!(),
       outputStrings: {
         rolePositions: {
-          en: 'Role positions',
-          de: 'Rollenposition',
-          fr: 'Positions par rôle',
-          ja: 'ロール特定位置へ',
-          cn: '去指定位置',
-          ko: '직업별 산개위치로',
-        },
-      },
-    },
-    {
-      id: 'P4S Belone Bursts Orbs',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '69D9', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '69D9', source: 'ヘスペロス' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
-      infoText: (data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Orbs',
-          de: 'Orbs',
-          fr: 'Orbes',
-          ja: '玉',
-          cn: '球',
-          ko: '구슬',
+          en: 'Orb role positions',
         },
       },
     },
