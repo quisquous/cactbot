@@ -391,7 +391,6 @@ const triggerSet: TriggerSet<Data> = {
         'Spoken Cataract': 'Souffle et cataracte',
         'Tainted Flood': 'Inondation infâme',
         'Winged Cataract': 'Aile et cataracte',
-        'Spoken Cataract/Winged Cataract': 'Souffle/Aile cataracte',
       },
     },
     {
