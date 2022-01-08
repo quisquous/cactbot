@@ -155,15 +155,15 @@ Options.Triggers.push({
             // Aoe from head outside the arena
             id: 'P2S Dissociation',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-            netRegexDe: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-            netRegexFr: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-            netRegexJa: NetRegexes.startsUsing({ id: '682C', source: 'ヒッポカムポス' }),
+            netRegex: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+            netRegexDe: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+            netRegexFr: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+            netRegexJa: NetRegexes.startsUsing({ id: '682E', source: 'ヒッポカムポス' }),
             alertText: (_data, matches, output) => {
                 const xCoord = parseFloat(matches.x);
-                if (xCoord < 100)
-                    return output.w();
                 if (xCoord > 100)
+                    return output.w();
+                if (xCoord < 100)
                     return output.e();
             },
             outputStrings: {
@@ -322,7 +322,8 @@ Options.Triggers.push({
                 'Coherence Line': 'Kohärenz Linie',
                 'Crash': 'Impakt',
                 'Deadly Current': 'Tödliche Strömung',
-                'Dissociation': 'Dissoziation',
+                'Dissociation(?! Dive)': 'Dissoziation',
+                'Dissociation Dive': 'Dissoziation Sturzflug',
                 'Doubled Impact': 'Doppeleinschlag',
                 'Great Typhoon': 'Große Welle',
                 'Hard Water': 'Reißendes Wasser',
@@ -356,7 +357,8 @@ Options.Triggers.push({
                 'Coherence Line': 'Cohérence en ligne',
                 'Crash': 'Collision',
                 'Deadly Current': 'Torrent mortel',
-                'Dissociation': 'Dissociation',
+                'Dissociation(?! Dive)': 'Dissociation',
+                'Dissociation Dive': 'Dissociation et plongeon',
                 'Doubled Impact': 'Double impact',
                 'Great Typhoon': 'Flots tumultueux',
                 'Hard Water': 'Oppression aqueuse',
