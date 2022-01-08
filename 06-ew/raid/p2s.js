@@ -273,7 +273,7 @@ Options.Triggers.push({
                     '0097',
                     '0098',
                 ];
-                if (!(id in harmaMarkers))
+                if (!harmaMarkers.includes(id))
                     return;
                 let num = parseInt(id);
                 const isTriangle = num >= 95;
