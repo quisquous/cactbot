@@ -401,10 +401,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '69D9', source: 'Hespéros' }),
       netRegexJa: NetRegexes.startsUsing({ id: '69D9', source: 'ヘスペロス' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
-      infoText: (data, _matches, output) => output.text!({ role: data.actingRole }),
+      infoText: (data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Share two ${role} orbs',
+          en: 'Orbs',
+          de: 'Orbs',
+          fr: 'Orbes',
+          ja: '玉',
+          cn: '球',
+          ko: '구슬',
         },
       },
     },
@@ -563,7 +568,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '6A1C', source: 'Hespéros' }),
       netRegexJa: NetRegexes.ability({ id: '6A1C', source: 'ヘスペロス' }),
       preRun: (data, _matches) => {
-        data.fleetingImpulseCounter = (data.fleetingImpulseCounter ?? 0) +1;
+        data.fleetingImpulseCounter = (data.fleetingImpulseCounter ?? 0) + 1;
       },
       infoText: (data, matches, output) => {
         if (matches.target === data.me) {
