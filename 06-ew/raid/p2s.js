@@ -65,6 +65,7 @@ Options.Triggers.push({
                 directions: {
                     en: 'Back of head',
                     de: 'Zur Rückseite des Kopfes',
+                    fr: 'Derrière la tête',
                 },
             },
         },
@@ -81,6 +82,7 @@ Options.Triggers.push({
                 directions: {
                     en: 'Front of head',
                     de: 'Zur Vorderseite des Kopfes',
+                    fr: 'Devant la tête',
                 },
             },
         },
@@ -140,10 +142,12 @@ Options.Triggers.push({
                 arrowFirst: {
                     en: 'Arrow First',
                     de: 'Pfeil zuerst',
+                    fr: 'Flèches en premier',
                 },
                 spreadFirst: {
                     en: 'Spread First',
                     de: 'Verteilen zuerst',
+                    fr: 'Dispersez en premier',
                 },
             },
         },
@@ -193,6 +197,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Flare Tether',
                     de: 'Flare Verbindung',
+                    fr: 'Lien Brasier',
                 },
             },
         },
@@ -215,10 +220,12 @@ Options.Triggers.push({
                 flareLineStack: {
                     en: 'Line Stack (behind tank)',
                     de: 'Linien-Sammeln (hinter dem Tank)',
+                    fr: 'Package en ligne (derrière le tank)',
                 },
                 flareLineTank: {
                     en: 'Line Stack (be in front)',
                     de: 'Linien-Sammeln (vorne sein)',
+                    fr: 'Package en ligne (soyez devant)',
                 },
             },
         },
@@ -245,11 +252,13 @@ Options.Triggers.push({
                     squareAcross: {
                         en: '#${num} Square, go across',
                         de: '#${num} Viereck, geh gegenüber',
+                        fr: '#${num} Carré, allez à l\'opposé',
                     },
                     // Trying not to confuse with boss/across
                     squareBoss: {
                         en: '#${num} Square, boss tile',
                         de: '#${num} Viereck, Boss Fläche',
+                        fr: '#${num} Carré, case du boss',
                     },
                     triangle: {
                         en: '#${num} Triangle',
