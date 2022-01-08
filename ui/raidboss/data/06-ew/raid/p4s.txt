@@ -108,7 +108,7 @@ hideall "--sync--"
 #     6A25
 
 1000.0 "Start"
-1011.0 "--sync--" / 14:[^:]*:Hesperos:6A2D:/ window 1011,0
+1011.0 "--sync--" sync / 14:[^:]*:Hesperos:6A2D:/ window 1011,0
 1016.0 "Searing Stream" sync / 1[56]:[^:]*:Hesperos:6A2D:/
 
 # Act 1 - Thorns 1
