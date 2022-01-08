@@ -85,6 +85,7 @@ const triggerSet: TriggerSet<Data> = {
         directions: {
           en: 'Back of head',
           de: 'Zur Rückseite des Kopfes',
+          fr: 'Derrière la tête',
           ja: '頭の後ろへ',
           cn: '去头的后面',
         },
@@ -103,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
         directions: {
           en: 'Front of head',
           de: 'Zur Vorderseite des Kopfes',
+          fr: 'Devant la tête',
           ja: '頭の前へ',
           cn: '去头的前面',
         },
@@ -164,12 +166,14 @@ const triggerSet: TriggerSet<Data> = {
         arrowFirst: {
           en: 'Arrow First',
           de: 'Pfeil zuerst',
+          fr: 'Flèches en premier',
           ja: '突進→散開',
           cn: '先对冲',
         },
         spreadFirst: {
           en: 'Spread First',
           de: 'Verteilen zuerst',
+          fr: 'Dispersez en premier',
           ja: '散開→突進',
           cn: '先散开',
         },
@@ -221,6 +225,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Flare Tether',
           de: 'Flare Verbindung',
+          fr: 'Lien Brasier',
           ja: 'フレアの線',
           cn: '核爆连线',
         },
@@ -245,12 +250,14 @@ const triggerSet: TriggerSet<Data> = {
         flareLineStack: {
           en: 'Line Stack (behind tank)',
           de: 'Linien-Sammeln (hinter dem Tank)',
+          fr: 'Package en ligne (derrière le tank)',
           ja: '直線頭割り（タンクより後）',
           cn: '直线分摊（站坦克后面）',
         },
         flareLineTank: {
           en: 'Line Stack (be in front)',
           de: 'Linien-Sammeln (vorne sein)',
+          fr: 'Package en ligne (soyez devant)',
           ja: '直線頭割り（みんなの前に）',
           cn: '直线分摊（坦克站前面）',
         },
@@ -279,6 +286,7 @@ const triggerSet: TriggerSet<Data> = {
           squareAcross: {
             en: '#${num} Square, go across',
             de: '#${num} Viereck, geh gegenüber',
+            fr: '#${num} Carré, allez à l\'opposé',
             ja: '四角 #${num}：ボスの対角へ',
             cn: '方块 #${num}：去Boss斜对角',
           },
@@ -286,6 +294,7 @@ const triggerSet: TriggerSet<Data> = {
           squareBoss: {
             en: '#${num} Square, boss tile',
             de: '#${num} Viereck, Boss Fläche',
+            fr: '#${num} Carré, case du boss',
             ja: '四角 #${num}：ボスの後ろへ',
             cn: '方块 #${num}：去Boss后面',
           },
