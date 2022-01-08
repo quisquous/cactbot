@@ -84,6 +84,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         directions: {
           en: 'Back of head',
+          de: 'Zur Rückseite des Kopfes',
         },
       },
     },
@@ -99,6 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         directions: {
           en: 'Front of head',
+          de: 'Zur Vorderseite des Kopfes',
         },
       },
     },
@@ -157,9 +159,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         arrowFirst: {
           en: 'Arrow First',
+          de: 'Pfeil zuerst',
         },
         spreadFirst: {
           en: 'Spread First',
+          de: 'Verteilen zuerst',
         },
       },
     },
@@ -208,6 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Flare Tether',
+          de: 'Flare Verbindung',
         },
       },
     },
@@ -229,9 +234,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         flareLineStack: {
           en: 'Line Stack (behind tank)',
+          de: 'Linien-Sammeln (hinter dem Tank)',
         },
         flareLineTank: {
           en: 'Line Stack (be in front)',
+          de: 'Linien-Sammeln (vorne sein)',
         },
       },
     },
@@ -257,10 +264,12 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           squareAcross: {
             en: '#${num} Square, go across',
+            de: '#${num} Viereck, geh gegenüber',
           },
           // Trying not to confuse with boss/across
           squareBoss: {
             en: '#${num} Square, boss tile',
+            de: '#${num} Viereck, Boss Fläche',
           },
           triangle: {
             en: '#${num} Triangle',
@@ -314,21 +323,36 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Hippokampos': 'Hippokampos',
       },
       'replaceText': {
         '\\(knockback\\)': '(Rückstoß)',
+        '\\(short\\)': '(Kurz)',
+        '\\(long\\)': '(Lang)',
+        'Channeling Flow': 'Kanalschnellen',
+        'Channeling Overflow': 'Kanalfluten',
+        'Coherence': 'Kohärenz',
         'Coherence Flare': 'Kohärenz Flare',
         'Coherence Line': 'Kohärenz Linie',
+        'Crash': 'Impakt',
+        'Deadly Current': 'Tödliche Strömung',
+        'Dissociation': 'Dissoziation',
         'Doubled Impact': 'Doppeleinschlag',
+        'Great Typhoon': 'Große Welle',
+        'Hard Water': 'Reißendes Wasser',
+        'Kampeos Harma': 'Kampeos Harma',
         'Murky Depths': 'Trübe Tiefen',
+        'Ominous Bubbling(?! Groups)': 'Kopfwasser',
+        'Ominous Bubbling Groups': 'Kopfwasser Gruppen',
+        'Predatory Avarice': 'Massenmal',
         'Predatory Sight': 'Mal der Beute',
         'Sewage Deluge': 'Abwasserflut',
         'Sewage Eruption': 'Abwassereruption',
         'Shockwave': 'Schockwelle',
+        'Spoken Cataract': 'Gehauchter Katarakt',
         'Tainted Flood': 'Verseuchte Flut',
+        'Winged Cataract': 'Beschwingter Katarakt',
       },
     },
     {
@@ -338,14 +362,26 @@ const triggerSet: TriggerSet<Data> = {
         'Hippokampos': 'hippokampos',
       },
       'replaceText': {
+        'Channeling Flow': 'Courant canalisant',
+        'Channeling Overflow': 'Déversement canalisant',
+        'Coherence': 'Cohérence',
+        'Crash': 'Collision',
+        'Deadly Current': 'Torrent mortel',
         'Dissociation': 'Dissociation',
         'Doubled Impact': 'Double impact',
+        'Great Typhoon': 'Flots tumultueux',
+        'Hard Water': 'Oppression aqueuse',
+        'Kampeos Harma': 'Kampeos harma',
         'Murky Depths': 'Tréfonds troubles',
+        'Ominous Bubbling': 'Hydro-agression',
+        'Predatory Avarice': 'Double marque',
         'Predatory Sight': 'Marque de la proie',
         'Sewage Deluge': 'Déluge d\'eaux usées',
         'Sewage Eruption': 'Éruption d\'eaux usées',
         'Shockwave': 'Onde de choc',
+        'Spoken Cataract': 'Souffle et cataracte',
         'Tainted Flood': 'Inondation infâme',
+        'Winged Cataract': 'Aile et cataracte',
       },
     },
     {
@@ -355,14 +391,26 @@ const triggerSet: TriggerSet<Data> = {
         'Hippokampos': 'ヒッポカムポス',
       },
       'replaceText': {
+        'Channeling Flow': 'チャネリングフロウ',
+        'Channeling Overflow': 'チャネリングオーバーフロウ',
+        'Coherence': 'コヒーレンス',
+        'Crash': '衝突',
+        'Deadly Current': '激流衝',
         'Dissociation': 'ディソシエーション',
         'Doubled Impact': 'ダブルインパクト',
+        'Great Typhoon': '荒波',
+        'Hard Water': '重水塊',
+        'Kampeos Harma': 'カンペオスハルマ',
         'Murky Depths': 'マーキーディープ',
+        'Ominous Bubbling': '霊水弾',
+        'Predatory Avarice': '多重刻印',
         'Predatory Sight': '生餌の刻印',
         'Sewage Deluge': 'スウェッジデリージュ',
         'Sewage Eruption': 'スウェッジエラプション',
         'Shockwave': 'ショックウェーブ',
+        'Spoken Cataract': 'ブレス＆カタラクティス',
         'Tainted Flood': 'テインテッドフラッド',
+        'Winged Cataract': 'ウィング＆カタラクティス',
       },
     },
   ],
