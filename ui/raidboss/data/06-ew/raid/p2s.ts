@@ -119,7 +119,7 @@ const triggerSet: TriggerSet<Data> = {
         groups: {
           en: 'Healer Groups',
           de: 'Heiler-Gruppen',
-          fr: 'Healers en groupes',
+          fr: 'Groupes sur les heals',
           ja: 'ヒラに頭割り',
           cn: '治疗分摊组',
           ko: '힐러 그룹 쉐어',
@@ -162,12 +162,12 @@ const triggerSet: TriggerSet<Data> = {
         arrowFirst: {
           en: 'Arrow First',
           de: 'Pfeil zuerst',
-          fr: 'Flèches en premier',
+          fr: 'Flèches en premières',
         },
         spreadFirst: {
           en: 'Spread First',
           de: 'Verteilen zuerst',
-          fr: 'Dispersez en premier',
+          fr: 'Dispersez-vous en premier',
         },
       },
     },
@@ -175,15 +175,15 @@ const triggerSet: TriggerSet<Data> = {
       // Aoe from head outside the arena
       id: 'P2S Dissociation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '682C', source: 'ヒッポカムポス' }),
+      netRegex: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '682E', source: 'ヒッポカムポス' }),
       alertText: (_data, matches, output) => {
         const xCoord = parseFloat(matches.x);
-        if (xCoord < 100)
-          return output.w!();
         if (xCoord > 100)
+          return output.w!();
+        if (xCoord < 100)
           return output.e!();
       },
       outputStrings: {
@@ -245,7 +245,7 @@ const triggerSet: TriggerSet<Data> = {
         flareLineTank: {
           en: 'Line Stack (be in front)',
           de: 'Linien-Sammeln (vorne sein)',
-          fr: 'Package en ligne (soyez devant)',
+          fr: 'Package en ligne (Placez-vous devant)',
         },
       },
     },
@@ -346,7 +346,8 @@ const triggerSet: TriggerSet<Data> = {
         'Coherence Line': 'Kohärenz Linie',
         'Crash': 'Impakt',
         'Deadly Current': 'Tödliche Strömung',
-        'Dissociation': 'Dissoziation',
+        'Dissociation(?! Dive)': 'Dissoziation',
+        'Dissociation Dive': 'Dissoziation Sturzflug',
         'Doubled Impact': 'Doppeleinschlag',
         'Great Typhoon': 'Große Welle',
         'Hard Water': 'Reißendes Wasser',
@@ -366,31 +367,37 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hippokampos': 'hippokampos',
       },
       'replaceText': {
+        '\\(long\\)': '(long)',
+        '\\(knockback\\)': '(poussée)',
+        '\\(short\\)': '(court)',
         'Channeling Flow': 'Courant canalisant',
         'Channeling Overflow': 'Déversement canalisant',
         'Coherence(?! [FL])': 'Cohérence',
+        'Coherence Flare': 'Cohérence Brasier',
+        'Coherence Line': 'Cohérence en ligne',
         'Crash': 'Collision',
         'Deadly Current': 'Torrent mortel',
-        'Dissociation': 'Dissociation',
+        'Dissociation(?! Dive)': 'Dissociation',
+        'Dissociation Dive': 'Dissociation et plongeon',
         'Doubled Impact': 'Double impact',
         'Great Typhoon': 'Flots tumultueux',
         'Hard Water': 'Oppression aqueuse',
         'Kampeos Harma': 'Kampeos harma',
         'Murky Depths': 'Tréfonds troubles',
-        'Ominous Bubbling': 'Hydro-agression',
+        'Ominous Bubbling(?! Groups)': 'Hydro-agression',
+        'Ominous Bubbling Groups': 'Hydro-agression en groupes',
         'Predatory Avarice': 'Double marque',
         'Predatory Sight': 'Marque de la proie',
         'Sewage Deluge': 'Déluge d\'eaux usées',
         'Sewage Eruption': 'Éruption d\'eaux usées',
         'Shockwave': 'Onde de choc',
-        'Spoken Cataract': 'Souffle et cataracte',
+        'Spoken Cataract/Winged Cataract': 'Souffle/Aile et cataracte',
         'Tainted Flood': 'Inondation infâme',
-        'Winged Cataract': 'Aile et cataracte',
+        'Winged Cataract/Spoken Cataract': 'Aile/Souffle et cataracte',
       },
     },
     {

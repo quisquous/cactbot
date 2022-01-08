@@ -1,5 +1,6 @@
 ### P2S: Asphodelos: The Second Circle (Savage)
 #
+# -p 6833:11
 # -it Hippokampos -oc Hippokampos -ii 6822 6821 6829 6D4A 6825 6826
 
 hideall "--Reset--"
@@ -72,12 +73,14 @@ hideall "--sync--"
 375.9 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
 388.5 "Hard Water" sync / 1[56]:[^:]*:Hippokampos:6828:/
 388.5 "Deadly Current" #sync / 1[56]:[^:]*:Hippokampos:6829:/
+388.9 "Dissociation Dive" #sync / 1[56]:[^:]*:Hippokampos:682E:/
 388.9 "Winged Cataract/Spoken Cataract" #sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
 402.6 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:682C:/
 407.7 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
 415.8 "Sewage Eruption" sync / 1[56]:[^:]*:Hippokampos:6830:/
 419.8 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:6831:/
 421.1 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6837:/
+421.6 "Dissociation Dive" #sync / 1[56]:[^:]*:Hippokampos:682E:/
 421.6 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:6831:/
 423.4 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:6831:/
 428.2 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6838:/
@@ -106,6 +109,7 @@ hideall "--sync--"
 538.8 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:682C:/
 543.9 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
 552.0 "Sewage Eruption" sync / 1[56]:[^:]*:Hippokampos:6830:/
+555.9 "Dissociation Dive" #sync / 1[56]:[^:]*:Hippokampos:682E:/
 556.0 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:6831:/
 557.8 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:6831:/
 559.6 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:6831:/
