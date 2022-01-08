@@ -81,7 +81,7 @@ hideall "--sync--"
 421.6 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:6831:/
 423.4 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:6831:/
 428.2 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6838:/
-437.8 "" sync / 1[56]:[^:]*:Hippokampos:681B:/
+437.8 "--sync--" sync / 1[56]:[^:]*:Hippokampos:681B:/
 438.5 "Coherence Flare" sync / 1[56]:[^:]*:Hippokampos:681A:/
 441.1 "Coherence Line" sync / 1[56]:[^:]*:Hippokampos:681C:/
 443.1 "--sync--" sync / 1[56]:[^:]*:Hippokampos:681D:/
