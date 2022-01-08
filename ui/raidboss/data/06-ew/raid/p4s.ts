@@ -224,11 +224,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go North Edge',
-          de: 'Geh zur nördlichen Kante',
-          fr: 'Allez au bord nord',
-          cn: '去上 /北边',
-          ko: '북쪽 구석으로',
+          en: 'North Cleave',
         },
       },
     },
@@ -242,11 +238,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go East Edge',
-          de: 'Geh zur östlichen Kante',
-          fr: 'Allez au bord est',
-          cn: '去右 /东边',
-          ko: '동쪽 구석으로',
+          en: 'East Cleave',
         },
       },
     },
@@ -260,11 +252,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go South Edge',
-          de: 'Geh zur südlichen Kante',
-          fr: 'Allez au bord sud',
-          cn: '去下 /南边',
-          ko: '남쪽 구석으로',
+          en: 'South Cleave',
         },
       },
     },
@@ -278,11 +266,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go West Edge',
-          de: 'Geh zur westlichen Kante',
-          fr: 'Allez au bord ouest',
-          cn: '去左 /西边',
-          ko: '서쪽 구석으로',
+          en: 'West Cleave',
         },
       },
     },
