@@ -78,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'Bait Kothornos Kick?',
+          en: 'Bait Jump?',
         },
       },
     },
@@ -89,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Bait Kothornos Quake?',
+          en: 'Bait Earthshakers?',
         },
       },
     },
