@@ -485,7 +485,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => data.role === 'tank' ? output.tankbustersIn!() : output.getOut!(),
       outputStrings: {
         tankbustersIn: {
-          en: 'Get in, tankbuster',
+          en: 'In (Tankbusters)',
         },
         getOut: Outputs.out,
       },
