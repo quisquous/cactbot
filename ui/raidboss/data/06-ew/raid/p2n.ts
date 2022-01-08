@@ -116,6 +116,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Au coin nord',
           ko: '북쪽 모서리',
           ja: '北の角へ',
+          cn: '去北边的角',
         },
         ec: {
           en: 'East Corners',
@@ -123,6 +124,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Au coin est',
           ko: '동쪽 모서리',
           ja: '東の角へ',
+          cn: '去东边的角',
         },
         sc: {
           en: 'South Corners',
@@ -130,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Au coin sud',
           ko: '남쪽 모서리',
           ja: '南の角へ',
+          cn: '去南边的角',
         },
         wc: {
           en: 'West Corners',
@@ -137,6 +140,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Au coin ouest',
           ko: '서쪽 모서리',
           ja: '西の角へ',
+          cn: '去西边的角',
         },
       },
     },
@@ -203,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Packez-vous en ligne sur ${player}',
           ko: '${player} 직선 쉐어',
           ja: '${player}に直線頭割り',
+          cn: '${player} 直线分摊',
         },
       },
     },
