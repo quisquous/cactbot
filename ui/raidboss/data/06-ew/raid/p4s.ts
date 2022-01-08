@@ -9,7 +9,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // Part One
 // TODO: Bloodrake Handle tether Role Call (AF2 effectId) mechanic
-// TODO: Touch up timing of callouts of knockback/cleave and Pinax?
 // TODO: Begone Coils could potentially call dps or tank/healers and which gets tether.
 
 // Part Two
@@ -170,11 +169,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Well Pinax',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      netRegex: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false  }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false  }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros', capture: false  }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス', capture: false  }),
+      // 5.5 seconds to time with Directional Shift knockbacks
+      delaySeconds: 5.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -273,11 +273,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Northerly Shift Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '69FD', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '69FD', source: 'ヘスペロス' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      netRegex: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69FD', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69FD', source: 'ヘスペロス', capture: false }),
+      // 2.5 seconds to time with Well Pinax
+      delaySeconds: 2.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -292,11 +293,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Easterly Shift Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '69FF', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '69FF', source: 'ヘスペロス' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      netRegex: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69FF', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69FF', source: 'ヘスペロス', capture: false }),
+      // 2.5 seconds to time with Well Pinax
+      delaySeconds: 2.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -311,11 +313,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Southerly Shift Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '69FE', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '69FE', source: 'ヘスペロス' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      netRegex: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69FE', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69FE', source: 'ヘスペロス', capture: false }),
+      // 2.5 seconds to time with Well Pinax
+      delaySeconds: 2.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -330,11 +333,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Westerly Shift Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A00', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A00', source: 'ヘスペロス' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      netRegex: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6A00', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6A00', source: 'ヘスペロス', capture: false }),
+      // 2.5 seconds to time with Well Pinax
+      delaySeconds: 2.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
