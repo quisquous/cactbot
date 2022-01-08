@@ -535,19 +535,19 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P4S Fleeting Impulse',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A1C', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A1C', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A1C', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A1C', source: 'ヘスペロス' }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6A1C', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.ability({ id: '6A1C', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.ability({ id: '6A1C', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.ability({ id: '6A1C', source: 'ヘスペロス' }),
       preRun: (data, _matches) => {
-        if (typeof data.fleetingImpulseCounter === 'undefined')
-          data.fleetingImpulseCounter = 0;
-        return data.fleetingImpulseCounter++;
+        data.fleetingImpulseCounter = (data.fleetingImpulseCounter ?? 0) +1;
       },
       infoText: (data, matches, output) => {
-        if (matches.target === data.me)
-          return output.text!({ num: data.meFleetingImpulse = data.fleetingImpulseCounter });
+        if (matches.target === data.me) {
+          data.meFleetingImpulse = data.fleetingImpulseCounter;
+          return output.text!({ num: data.fleetingImpulseCounter });
+        }
       },
       outputStrings: {
         text: {
