@@ -19,7 +19,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Wreath of Thorns 2 headmarkers and tethers
 // TODO: Safe spot callouts for Wreath of Thorns 2?
 // TODO: Better Dark Design/tether break callouts
-// TODO: Wreath of Thorns 3 strategy (1 = melee, 2 = ranged) or 
+// TODO: Wreath of Thorns 3 strategy (1 = melee, 2 = ranged) or
 //       something more intelligent such as tracking the vulnerabilities?
 // TODO: Call out thorns soaks for Wreath of Thorns 3 (E/W?)
 // TODO: Heart Stake is tankbuster with DoT, does it need to be output differrently?
@@ -552,10 +552,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Wreath of Thorns 6',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A35', source: 'Hesperos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A35', source: 'Hesperos', capture: false  }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A35', source: 'Hespéros', capture: false  }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A35', source: 'ヘスペロス', capture: false  }),
+      netRegex: NetRegexes.startsUsing({ id: '6A35', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6A35', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6A35', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6A35', source: 'ヘスペロス' }),
+      // Take castTime and add to duration between cast and first soak - 1
+      // Multiply our number by the seconds between each soak.
+      // This leaves up the info until expected hit from start of tethers going out.
+      durationSeconds: (data, matches) => {
+        const myDuration = typeof data.meFleetingImpulse === 'undefined' ? 8 : data.meFleetingImpulse;
+        return parseFloat(matches.castTime) + 2.1 + myDuration * 1.2;
+      },
       infoText: (data, _matches, output) => output.text!({ num: data.meFleetingImpulse }),
       outputStrings: {
         text: {
