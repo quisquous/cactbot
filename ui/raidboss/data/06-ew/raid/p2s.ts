@@ -85,6 +85,8 @@ const triggerSet: TriggerSet<Data> = {
         directions: {
           en: 'Back of head',
           de: 'Zur Rückseite des Kopfes',
+          ja: '頭の後ろへ',
+          cn: '去头的后面',
         },
       },
     },
@@ -101,6 +103,8 @@ const triggerSet: TriggerSet<Data> = {
         directions: {
           en: 'Front of head',
           de: 'Zur Vorderseite des Kopfes',
+          ja: '頭の前へ',
+          cn: '去头的前面',
         },
       },
     },
@@ -119,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Heiler-Gruppen',
           fr: 'Healers en groupes',
           ja: 'ヒラに頭割り',
-          cn: '治疗分摊组',
+          cn: '与治疗分摊',
           ko: '힐러 그룹 쉐어',
         },
       },
@@ -160,10 +164,14 @@ const triggerSet: TriggerSet<Data> = {
         arrowFirst: {
           en: 'Arrow First',
           de: 'Pfeil zuerst',
+          ja: '突進→散開',
+          cn: '箭头突进→散开',
         },
         spreadFirst: {
           en: 'Spread First',
           de: 'Verteilen zuerst',
+          ja: '散開→突進',
+          cn: '散开→箭头突进',
         },
       },
     },
@@ -213,6 +221,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Flare Tether',
           de: 'Flare Verbindung',
+          ja: 'フレアの線',
+          cn: '核爆的线',
         },
       },
     },
@@ -235,10 +245,14 @@ const triggerSet: TriggerSet<Data> = {
         flareLineStack: {
           en: 'Line Stack (behind tank)',
           de: 'Linien-Sammeln (hinter dem Tank)',
+          ja: '直線頭割り（タンクより後）',
+          cn: '直线分摊（站坦克后面）',
         },
         flareLineTank: {
           en: 'Line Stack (be in front)',
           de: 'Linien-Sammeln (vorne sein)',
+          ja: '直線頭割り（みんなの前に）',
+          cn: '直线分摊（坦克站前面）',
         },
       },
     },
@@ -265,18 +279,22 @@ const triggerSet: TriggerSet<Data> = {
           squareAcross: {
             en: '#${num} Square, go across',
             de: '#${num} Viereck, geh gegenüber',
+            ja: '四角 #${num}：ボスの対角へ',
+            cn: '方块 #${num}：去Boss斜对角',
           },
           // Trying not to confuse with boss/across
           squareBoss: {
             en: '#${num} Square, boss tile',
             de: '#${num} Viereck, Boss Fläche',
+            ja: '四角 #${num}：ボスの後ろへ',
+            cn: '方块 #${num}：去Boss后面',
           },
           triangle: {
             en: '#${num} Triangle',
             de: '#${num} Dreieck',
             fr: '#${num} Triangle',
-            ja: '#${num} 三角',
-            cn: '#${num} 三角',
+            ja: '三角 #${num}',
+            cn: '三角 #${num}',
             ko: '#${num} 홀수',
           },
         };
