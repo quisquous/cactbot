@@ -9,7 +9,8 @@ hideall "--sync--"
 ### Hesperos I
 #
 # -p 6A09:15
-# -ii 6A16 69DA 69DB 69DC 69D0 69D1 69D2 69D3
+# -ii 6A16 69DA 69DB 69DC 69D0 69D1 69D2 69D3 69F5 69F6 69F7 69F8 69F9 69FA
+#     69FB 69FC
 
 # Note: every Pinax is also accompanied by a Mekhane (69D0 through 69D3)
 # of the same name.  These all happen at the same time, and are the
@@ -19,6 +20,11 @@ hideall "--sync--"
 # Easterly Shift (6A04, 69FF), and Westerly Shift (6A05, 6A00)
 # are all combined into "Directional Shift" for brevity.  The first
 # id is for a shift + cleave, and the second id is for shift + knockback.
+
+# Note: Periaktoi is accompanied by three explosive tiles and one non-explosive.
+# The non-explosive tile is the one not tethered in an earlier mechanic and has
+# Acid Pinax (69F5), Lava Pinax (69F6), Well Pinax (69F7), Levinstrike Pinax (69F8)
+# are the safe tiles.
 
 0.0 "--sync--" sync /Engage!/ window 0,1
 10.0 "--sync--" sync / 14:[^:]*:Hesperos:6A09:/ window 10,20
@@ -59,11 +65,11 @@ hideall "--sync--"
 200.1 "--element debuffs--" sync / 1[56]:[^:]*:Hesperos:69F3:/
 207.5 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 216.7 "Belone Bursts" sync / 1[56]:[^:]*:Hesperos:69D9:/
-230.8 "Periaktoi" sync / 1[56]:[^:]*:Hesperos:(69F4|69F5|69FA|69FB|69FC):/
-230.8 "Acid Pinax" #sync / 1[56]:[^:]*:Hesperos:69F5:/
-230.8 "Well Pinax" #sync / 1[56]:[^:]*:Hesperos:69FB:/
-230.8 "Lava Pinax" #sync / 1[56]:[^:]*:Hesperos:69FA:/
-230.8 "Levinstrike Pinax" #sync / 1[56]:[^:]*:Hesperos:69FC:/
+230.8 "Periaktoi" sync / 1[56]:[^:]*:Hesperos:69F4:/
+230.8 "Acid Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F5|69F9):/
+230.8 "Well Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F7|69FB):/
+230.8 "Lava Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F6|69FA):/
+230.8 "Levinstrike Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F8|69FC):/
 243.0 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 
 # Towers
