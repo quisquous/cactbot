@@ -168,26 +168,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // Aoe from head outside the arena
-      id: 'P2S Dissociation',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '682C', source: 'Hippokampos' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '682C', source: 'ヒッポカムポス' }),
-      alertText: (_data, matches, output) => {
-        const xCoord = parseFloat(matches.x);
-        if (xCoord < 100)
-          return output.w!();
-        if (xCoord > 100)
-          return output.e!();
-      },
-      outputStrings: {
-        e: Outputs.east,
-        w: Outputs.west,
-      },
-    },
-    {
       // Spread aoe marker on some players, not all
       id: 'P2S Tainted Flood',
       type: 'StartsUsing',
