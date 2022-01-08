@@ -441,7 +441,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'Be on ${pinax} tile',
+          en: '${pinax} safe',
         },
       },
     },
