@@ -1,0 +1,119 @@
+### P2S: Asphodelos: The Second Circle (Savage)
+#
+# -it Hippokampos -oc Hippokampos -ii 6822 6821 6829 6D4A 6825 6826
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+11.0 "--sync--" sync / 14:[^:]*:Hippokampos:6833:/ window 15,15
+16.0 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:6833:/
+26.3 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:6832:/
+31.5 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+38.8 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:6810:/
+48.0 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+61.8 "Spoken Cataract/Winged Cataract" sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
+81.9 "Coherence" sync / 1[56]:[^:]*:Hippokampos:681B:/
+82.6 "Coherence Flare" sync / 1[56]:[^:]*:Hippokampos:681A:/
+85.1 "Coherence Line" sync / 1[56]:[^:]*:Hippokampos:681C:/
+87.2 "--sync--" sync / 1[56]:[^:]*:Hippokampos:681D:/
+98.4 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:6833:/
+105.1 "Ominous Bubbling" sync / 1[56]:[^:]*:Hippokampos:682A:/
+115.9 "Shockwave" sync / 1[56]:[^:]*:Hippokampos:682F:/
+119.7 "Ominous Bubbling Groups" sync / 1[56]:[^:]*:Hippokampos:682B:/
+
+# Predatory Avarice and Channeling Flow
+128.1 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+134.5 "Predatory Avarice" sync / 1[56]:[^:]*:Hippokampos:6827:/
+152.2 "Winged Cataract/Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
+158.5 "Hard Water" sync / 1[56]:[^:]*:Hippokampos:6828:/
+158.5 "Deadly Current" #sync sync / 1[56]:[^:]*:Hippokampos:6829:/
+171.9 "Channeling Flow" sync / 1[56]:[^:]*:Hippokampos:681E:/
+187.2 "Great Typhoon" sync / 1[56]:[^:]*:Hippokampos:(6820|6822):/
+187.7 "Crash" #sync / 1[56]:[^:]*:Hippokampos:6821:/
+202.2 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:6832:/
+212.3 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:6833:/
+
+# Kampeos Harma
+221.5 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+228.9 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:6810:/
+246.4 "Shockwave" sync / 1[56]:[^:]*:Hippokampos:682F:/
+259.3 "Kampeos Harma" sync / 1[56]:[^:]*:Hippokampos:6823:/
+259.3 "--untargetable--"
+259.7 "Kampeos Harma 1" #sync / 1[56]:[^:]*:Hippokampos:6824:/
+261.5 "Kampeos Harma 2" #sync / 1[56]:[^:]*:Hippokampos:6824:/
+263.3 "Kampeos Harma 3" #sync / 1[56]:[^:]*:Hippokampos:6824:/
+265.2 "Kampeos Harma 4" sync / 1[56]:[^:]*:Hippokampos:6824:/
+266.7 "--targetable--"
+266.8 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
+269.9 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+281.7 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:6832:/
+290.8 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:6833:/
+
+# Timed Channeling Flow 1
+297.0 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+304.4 "Channeling Overflow" sync / 1[56]:[^:]*:Hippokampos:6DC2:/
+311.6 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6837:/
+318.7 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6838:/
+319.7 "Great Typhoon (short)" sync / 1[56]:[^:]*:Hippokampos:(6820|6822):/
+320.2 "Crash" #sync / 1[56]:[^:]*:Hippokampos:6821:/
+327.0 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6837:/
+334.1 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6838:/
+334.7 "Great Typhoon (long)" sync / 1[56]:[^:]*:Hippokampos:(6820|6822):/
+335.2 "Crash" #sync / 1[56]:[^:]*:Hippokampos:6821:/
+345.2 "Spoken Cataract/Winged Cataract" sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
+
+# Dissociation and Sewage Eruption 1
+357.9 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+364.4 "Predatory Avarice" sync / 1[56]:[^:]*:Hippokampos:6827:/
+370.8 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:682C:/
+375.9 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
+388.5 "Hard Water" sync / 1[56]:[^:]*:Hippokampos:6828:/
+388.5 "Deadly Current" #sync / 1[56]:[^:]*:Hippokampos:6829:/
+388.9 "Winged Cataract/Spoken Cataract" #sync / 1[56]:[^:]*:Hippokampos:(6811|6812|6813|6814|6815|6816|6817|6818):/
+402.6 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:682C:/
+407.7 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
+415.8 "Sewage Eruption" sync / 1[56]:[^:]*:Hippokampos:6830:/
+419.8 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:6831:/
+421.1 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6837:/
+421.6 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:6831:/
+423.4 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:6831:/
+428.2 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6838:/
+437.8 "--sync--" sync / 1[56]:[^:]*:Hippokampos:681B:/
+438.5 "Coherence Flare" sync / 1[56]:[^:]*:Hippokampos:681A:/
+441.1 "Coherence Line" sync / 1[56]:[^:]*:Hippokampos:681C:/
+443.1 "--sync--" sync / 1[56]:[^:]*:Hippokampos:681D:/
+453.4 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:6832:/
+461.5 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:6833:/
+
+# Timed Channeling Flow 2
+471.7 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+479.2 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:6810:/
+488.4 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6836:/
+496.1 "Channeling Overflow" sync / 1[56]:[^:]*:Hippokampos:6DC2:/
+511.3 "Great Typhoon (short)" sync / 1[56]:[^:]*:Hippokampos:(6820|6822):/
+511.8 "Crash" #sync / 1[56]:[^:]*:Hippokampos:6821:/
+513.5 "Coherence" sync / 1[56]:[^:]*:Hippokampos:681B:/
+514.2 "Coherence Flare" sync / 1[56]:[^:]*:Hippokampos:681A:/
+516.6 "Coherence Line" sync / 1[56]:[^:]*:Hippokampos:681C:/
+518.6 "--sync--" sync / 1[56]:[^:]*:Hippokampos:681D:/
+526.2 "Great Typhoon (long)" sync / 1[56]:[^:]*:Hippokampos:(6820|6822):/
+526.7 "Crash" #sync / 1[56]:[^:]*:Hippokampos:6821:/
+
+# Dissociation and Sewage Eruption 2
+538.8 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:682C:/
+543.9 "--sync--" sync / 1[56]:[^:]*:Hippokampos:682D:/
+552.0 "Sewage Eruption" sync / 1[56]:[^:]*:Hippokampos:6830:/
+556.0 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:6831:/
+557.8 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:6831:/
+559.6 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:6831:/
+563.3 "Ominous Bubbling" sync / 1[56]:[^:]*:Hippokampos:682A:/
+573.9 "Shockwave" sync / 1[56]:[^:]*:Hippokampos:682F:/
+577.9 "Ominous Bubbling Groups" sync / 1[56]:[^:]*:Hippokampos:682B:/
+588.3 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:6832:/
+600.4 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:6833:/
+611.6 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:6833:/
+
+626.5 "Sewage Deluge (enrage)" sync / 1[56]:[^:]*:Hippokampos:6834:/
