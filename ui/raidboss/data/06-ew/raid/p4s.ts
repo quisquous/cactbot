@@ -169,10 +169,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Well Pinax',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false  }),
-      netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false  }),
-      netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros', capture: false  }),
-      netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス', capture: false  }),
+      netRegex: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス', capture: false }),
       // 5.5 seconds to time with Directional Shift knockbacks
       delaySeconds: 5.5,
       alertText: (_data, _matches, output) => output.text!(),
