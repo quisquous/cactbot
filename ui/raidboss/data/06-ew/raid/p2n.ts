@@ -122,9 +122,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'East Corners',
           de: 'östliche Ecken',
           fr: 'Au coin est',
-          ko: '동쪽 모서리',
           ja: '東の角へ',
           cn: '去东边的角',
+          ko: '동쪽 모서리',
         },
         sc: {
           en: 'South Corners',
