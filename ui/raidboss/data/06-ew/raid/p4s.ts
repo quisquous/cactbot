@@ -417,16 +417,38 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['69F5', '69F6', '69F7', '69F8'], source: 'ヘスペロス' }),
       alertText: (_data, matches, output) => {
         const pinax: { [id: string]: string } = {
-          '69F5': 'Acid',
-          '69F6': 'Lava',
-          '69F7': 'Well',
-          '69F8': 'Levinstrike',
+          '69F5': output.acid!(),
+          '69F6': output.lava!(),
+          '69F7': output.well!(),
+          '69F8': output.thunder!(),
         };
         return output.text!({ pinax: pinax[matches.id] });
       },
       outputStrings: {
         text: {
           en: '${pinax} safe',
+        },
+        acid: {
+          en: 'Acid',
+        },
+        lava: {
+          en: 'Lava',
+          de: 'Lava',
+          fr: 'Lave',
+          ja: 'ラーヴァ',
+          cn: '岩浆',
+          ko: '용암',
+        },
+        well: {
+          en: 'Well',
+        },
+        thunder: {
+          en: 'Thunder',
+          de: 'Blitz',
+          fr: 'Tempête',
+          ja: 'サンダー',
+          cn: '闪雷风暴',
+          ko: '번개',
         },
       },
     },
