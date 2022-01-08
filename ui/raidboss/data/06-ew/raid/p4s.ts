@@ -377,7 +377,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'Acting ${role}',
+          en: 'Acting ${actingRole}',
         },
         dps: {
           en: 'DPS',
@@ -516,10 +516,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Wreath of Thorns 5',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A34', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A34', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A34', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A34', source: 'ヘスペロス' }),
+      netRegex: NetRegexes.startsUsing({ id: '6A34', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6A34', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6A34', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6A34', source: 'ヘスペロス', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
