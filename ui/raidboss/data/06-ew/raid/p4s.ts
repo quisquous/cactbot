@@ -112,7 +112,7 @@ const triggerSet: TriggerSet<Data> = {
   ],
   triggers: [
     {
-      id: 'P2S Headmarker Tracker',
+      id: 'P4S Headmarker Tracker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: (data) => data.decOffset === undefined,
