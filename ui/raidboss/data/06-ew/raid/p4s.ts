@@ -165,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P4S Bloodrake Store',
-      //Call out first role stored in the sword, is non-standard comp possible?
+      // Call out first role stored in the sword, is non-standard comp possible?
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
       netRegexDe: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
@@ -198,7 +198,8 @@ const triggerSet: TriggerSet<Data> = {
           'dps': output.dps!(),
           'tank/healer': output.tankHealers!(),
         };
-        if ((data.swordRole ??= []).includes('dps'))
+        const dps = (data.swordRole ??= []).includes('dps');
+        if (dps)
           return output.stock!({ role: roles['dps'] });
         if (data.swordRole.length)
           return output.stock!({ role: roles['tank/healer'] });
@@ -215,8 +216,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['AF2', 'AF3'], capture: true }),
       condition: (data) => Conditions.targetIsYou() && (data.bloodrakeCounter ?? 0) < 3,
       alertText: (data, matches, output) => {
-        if ((data.swordRole ??= []).includes(data.role) && matches.effectId === 'AF2')
-           return output.passRoleCall!();
+        const roleStored = (data.swordRole ??= []).includes(data.role);
+        if ( roleStored && matches.effectId === 'AF2')
+          return output.passRoleCall!();
         // AF3 is obtained after passing Role Call (AF2)
         data.hasRoleCall = false;
       },
@@ -238,7 +240,8 @@ const triggerSet: TriggerSet<Data> = {
       // Delay callout until debuffs are out
       delaySeconds: 1.4,
       alertText: (data, _matches, output) => {
-        if (!data.hasRoleCall && !(data.swordRole ??= []).includes(data.role))
+        const roleStored = (data.swordRole ??= []).includes(data.role);
+        if (!data.hasRoleCall && !roleStored)
           return output.text!();
       },
       run: (data) => {
@@ -265,9 +268,11 @@ const triggerSet: TriggerSet<Data> = {
           'dps': output.dps!(),
           'tank/healer': output.tankHealer!(),
         };
-        if ((data.capeRole ??= []).includes('dps'))
+        
+        const dps = (data.capeRole ??= []).includes('dps');
+        if (dps)
           return output.roleTethers!({ role: roles['dps'] });
-        if ((data.capeRole.length))
+        if (data.capeRole.length)
           return output.roleTethers!({ role: roles['tank/healer'] });
         return output.roleTethers!({ role: '???' });
       },
