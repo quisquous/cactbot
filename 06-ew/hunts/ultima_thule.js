@@ -1,5 +1,5 @@
 Options.Triggers.push({
-    zoneId: ZoneId.Elpis,
+    zoneId: ZoneId.UltimaThule,
     triggers: [
         {
             id: 'Hunt Arch-Eta Energy Wave',
