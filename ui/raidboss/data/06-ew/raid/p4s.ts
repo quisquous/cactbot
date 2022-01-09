@@ -130,10 +130,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Bloodrake',
       // AoE hits tethered players in first one, the non-tethered in second
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A40', source: 'Hesperos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A40', source: 'Hesperos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A40', source: 'Hespéros', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A40', source: 'ヘスペロス', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '69D8', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69D8', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69D8', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69D8', source: 'ヘスペロス', capture: false }),
       response: Responses.aoe(),
     },
     {
