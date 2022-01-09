@@ -11,7 +11,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
-  zoneId: ZoneId.Elpis,
+  zoneId: ZoneId.UltimaThule,
   triggers: [
     {
       id: 'Hunt Arch-Eta Energy Wave',
