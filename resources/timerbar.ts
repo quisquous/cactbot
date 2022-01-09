@@ -164,7 +164,7 @@ export default class TimerBar extends HTMLElement {
   get value(): number {
     if (!this._start)
       return this._duration;
-    const elapsedMs = new Date().getTime() - this._start;
+    const elapsedMs = Date.now() - this._start;
     return Math.max(0, this._duration - (elapsedMs / 1000));
   }
 
@@ -175,7 +175,7 @@ export default class TimerBar extends HTMLElement {
   get elapsed(): number {
     if (!this._start)
       return 0;
-    return (new Date().getTime() - this._start) / 1000;
+    return (Date.now() - this._start) / 1000;
   }
 
   // If "right" then animates left-to-right (the default). If "left"
@@ -525,7 +525,7 @@ export default class TimerBar extends HTMLElement {
   }
 
   draw(): void {
-    const elapsedSec = (new Date().getTime() - this._start) / 1000;
+    const elapsedSec = (Date.now() - this._start) / 1000;
     const remainSec = Math.max(0, this._duration - elapsedSec);
     let percent = this._duration <= 0 ? 0 : remainSec / this._duration;
     // Keep it between 0 and 1.
@@ -585,7 +585,7 @@ export default class TimerBar extends HTMLElement {
 
   setvalue(remainSec: number): void {
     const elapsedSec = Math.max(0, this._duration - remainSec);
-    this._start = new Date().getTime() - (elapsedSec * 1000);
+    this._start = Date.now() - (elapsedSec * 1000);
 
     if (!this._connected)
       return;
@@ -598,7 +598,7 @@ export default class TimerBar extends HTMLElement {
   }
 
   advance(): void {
-    const elapsedSec = (new Date().getTime() - this._start) / 1000;
+    const elapsedSec = (Date.now() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // Timer completed
       if (this._loop && this._duration > 0) {
