@@ -25,6 +25,7 @@ export interface Data extends RaidbossData {
   tetherRole?: string[];
   debuffRole?: string[];
   hasRoleCall?: boolean;
+  beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
@@ -230,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
             (data.debuffRole ??= []).push('healer');
             data.debuffRole.push('tank');
           }
- 
+
           // For second coils, if you are not in the debuff list here you are tower
           if (!data.debuffRole.includes(data.role))
             return { ['alertText']: output.roleTowers!({ role: roles[role] }) };
