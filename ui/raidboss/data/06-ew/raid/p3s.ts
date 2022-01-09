@@ -387,7 +387,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         middle: Outputs.middle,
-        OutIntercards: {
+        outIntercards: {
           en: 'Out + Intercards',
         },
         outCardinals: {
