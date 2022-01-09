@@ -25,8 +25,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   actingRole?: string;
   decOffset?: number;
-  swordRole?: string[];
-  capeRole?: string[];
+  tetherRole?: string[];
+  debuffRole?: string[];
   hasRoleCall?: boolean;
   bloodrakeCounter?: number;
   fleetingImpulseCounter?: number;
@@ -37,23 +37,16 @@ const roleOutputStrings = {
   tankHealer: {
     en: 'Tank/Healer',
   },
-  tankHealers: {
-    en: 'Tanks/Healers',
-  },
   dps: {
     en: 'DPS',
   },
   roleTethers: {
     en: '${role} Tethers',
   },
-  stock: {
-    en: 'Stock: ${role}',
-    de: 'Sammeln: ${role}',
-    fr: 'Stocker : ${role}',
-    ja: 'ストック: ${role}',
-    cn: '暂存: ${role}',
-    ko: '저장: ${role}',
+  roleDebuffs: {
+     en: '${role} Role Calls',   
   },
+  unknown: Outputs.unknown,
 };
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -174,39 +167,30 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
-        if (data.party.isDPS(matches.target)) {
-          (data.swordRole ??= []).push('dps');
-          return output.dps!();
-        }
-        (data.swordRole ??= []).push('tank');
-        data.swordRole.push('healer');
-        return output.tankHealers!();
-      },
-      outputStrings: roleOutputStrings,
-    },
-    {
-      id: 'P4S Aetheric Chlamys',
-      // Move role stored in sword to cape
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '69EC', source: 'Hesperos', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '69EC', source: 'Hesperos', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '69EC', source: 'Hespéros', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '69EC', source: 'ヘスペロス', capture: false }),
-      condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
-      infoText: (data, _matches, output) => {
         const roles: { [role: string]: string } = {
           'dps': output.dps!(),
-          'tank/healer': output.tankHealers!(),
+          'tank/healer': output.tankHealer!(),
         };
-        const dps = (data.swordRole ??= []).includes('dps');
-        if (dps)
-          return output.stock!({ role: roles['dps'] });
-        if (data.swordRole.length)
-          return output.stock!({ role: roles['tank/healer'] });
-      },
-      run: (data) => {
-        data.capeRole = data.swordRole;
-        delete data.swordRole;
+
+        let role = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
+
+        if ((data.bloodrakeCounter ?? 0) === 2) {
+          if (role === 'dps')
+            (data.debuffRole ??= []).push(role);
+          else {
+            (data.debuffRole ??= []).push('healer');
+            data.debuffRole.push('tank');
+          }
+          return output.roleDebuffs!({ role: roles[role]});
+        }
+
+        if (role === 'dps')
+          (data.tetherRole ??= []).push(role);
+        else {
+          (data.tetherRole ??= []).push('healer');
+          data.tetherRole.push('tank');
+        }
+        return output.roleTethers!({ role: roles[role]});
       },
       outputStrings: roleOutputStrings,
     },
@@ -216,8 +200,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['AF2', 'AF3'], capture: true }),
       condition: (data) => Conditions.targetIsYou() && (data.bloodrakeCounter ?? 0) < 3,
       alertText: (data, matches, output) => {
-        const roleStored = (data.swordRole ??= []).includes(data.role);
-        if (roleStored && matches.effectId === 'AF2')
+        const debuffRole = (data.debuffRole ??= []).includes(data.role);
+        if (debuffRole && matches.effectId === 'AF2')
           return output.passRoleCall!();
         // AF3 is obtained after passing Role Call (AF2)
         data.hasRoleCall = false;
@@ -230,7 +214,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P4S Director\'s Belone',
-      // Roles in sword released
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '69E6', source: 'Hesperos', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '69E6', source: 'Hesperos', capture: false }),
@@ -240,12 +223,12 @@ const triggerSet: TriggerSet<Data> = {
       // Delay callout until debuffs are out
       delaySeconds: 1.4,
       alertText: (data, _matches, output) => {
-        const roleStored = (data.swordRole ??= []).includes(data.role);
-        if (!data.hasRoleCall && !roleStored)
+        const debuffRole = (data.debuffRole ??= []).includes(data.role);
+        if (!data.hasRoleCall && !debuffRole)
           return output.text!();
       },
       run: (data) => {
-        delete data.swordRole;
+        delete data.debuffRole;
       },
       outputStrings: {
         text: {
@@ -255,7 +238,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P4S Inversive Chlamys',
-      // Roles in cape released
       // Possible a player still has not yet passed debuff
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69ED', source: 'Hesperos', capture: false }),
@@ -267,16 +249,18 @@ const triggerSet: TriggerSet<Data> = {
         const roles: { [role: string]: string } = {
           'dps': output.dps!(),
           'tank/healer': output.tankHealer!(),
+          '???': output.unknown!(),
         };
-        const dps = (data.capeRole ??= []).includes('dps');
+
+        const dps = (data.tetherRole ??= []).includes('dps');
         if (dps)
           return output.roleTethers!({ role: roles['dps'] });
-        if (data.capeRole.length)
+        if (data.tetherRole.length)
           return output.roleTethers!({ role: roles['tank/healer'] });
-        return output.roleTethers!({ role: '???' });
+        return output.roleTethers!({ role: roles['???'] });
       },
       run: (data) => {
-        delete data.capeRole;
+        delete data.tetherRole;
         data.hasRoleCall = false;
       },
       outputStrings: roleOutputStrings,
