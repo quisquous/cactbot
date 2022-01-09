@@ -44,7 +44,7 @@ const roleOutputStrings = {
     en: '${role} Tethers',
   },
   roleDebuffs: {
-     en: '${role} Role Calls',   
+    en: '${role} Role Calls',
   },
   unknown: Outputs.unknown,
 };
@@ -172,25 +172,27 @@ const triggerSet: TriggerSet<Data> = {
           'tank/healer': output.tankHealer!(),
         };
 
-        let role = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
+        const role = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
 
         if ((data.bloodrakeCounter ?? 0) === 2) {
-          if (role === 'dps')
+          if (role === 'dps') {
             (data.debuffRole ??= []).push(role);
+          }
           else {
             (data.debuffRole ??= []).push('healer');
             data.debuffRole.push('tank');
           }
-          return output.roleDebuffs!({ role: roles[role]});
+          return output.roleDebuffs!({ role: roles[role] });
         }
 
-        if (role === 'dps')
+        if (role === 'dps') {
           (data.tetherRole ??= []).push(role);
+        }
         else {
           (data.tetherRole ??= []).push('healer');
           data.tetherRole.push('tank');
         }
-        return output.roleTethers!({ role: roles[role]});
+        return output.roleTethers!({ role: roles[role] });
       },
       outputStrings: roleOutputStrings,
     },
