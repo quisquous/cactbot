@@ -8,7 +8,6 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Part one
-// TODO: Fixup Director's Belone callouts
 // TODO: Fixup Well Pinax in combo with Directional Shift (knockback) timings
 
 // Part Two
@@ -25,10 +24,36 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   actingRole?: string;
   decOffset?: number;
+  tetherRole?: string[];
+  debuffRole?: string[];
+  hasRoleCall?: boolean;
+  beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
 }
+
+const roleOutputStrings = {
+  tankHealer: {
+    en: 'Tank/Healer',
+  },
+  dps: {
+    en: 'DPS',
+  },
+  roleTethers: {
+    en: '${role} Tethers',
+  },
+  roleDebuffs: {
+    en: '${role} Role Calls',
+  },
+  roleEverything: {
+    en: '${role} Everything',
+  },
+  roleTowers: {
+    en: '${role} Towers',
+  },
+  unknown: Outputs.unknown,
+};
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
@@ -136,6 +161,185 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '69D8', source: 'ヘスペロス', capture: false }),
       preRun: (data) => data.bloodrakeCounter = (data.bloodrakeCounter ?? 0) + 1,
       response: Responses.aoe(),
+    },
+    {
+      id: 'P4S Bloodrake Store',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.ability({ id: '69D8', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.ability({ id: '69D8', source: 'ヘスペロス' }),
+      condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        const roles: { [role: string]: string } = {
+          'dps': output.dps!(),
+          'tank/healer': output.tankHealer!(),
+        };
+
+        const roleRaked = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
+        const roleOther = data.party.isDPS(matches.target) ? 'tank/healer' : 'dps';
+
+        // Second bloodrake = Debuffs later
+        if ((data.bloodrakeCounter ?? 0) === 2) {
+          if (roleRaked === 'dps') {
+            (data.debuffRole ??= []).push('healer');
+            data.debuffRole.push('tank');
+          } else {
+            (data.debuffRole ??= []).push(roleOther);
+          }
+
+          // May end up needing both tether and debuff
+          const tetherRole = data.tetherRole ??= [];
+          const debuffRole = data.tetherRole ??= [];
+          if (tetherRole[0] === debuffRole[0])
+            return output.roleEverything!({ role: roles[roleOther] });
+          return output.roleDebuffs!({ role: roles[roleOther] });
+        }
+
+        // First bloodrake = Tethers later
+        if (roleRaked === 'dps') {
+          (data.tetherRole ??= []).push('healer');
+          data.tetherRole.push('tank');
+        } else {
+          (data.tetherRole ??= []).push(roleOther);
+        }
+        return output.roleTethers!({ role: roles[roleOther] });
+      },
+      outputStrings: roleOutputStrings,
+    },
+    {
+      id: 'P4S Belone Coils',
+      // 69DE is No Tank/Healer Belone Coils
+      // 69DF is No DPS Belone Coils
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'ヘスペロス' }),
+      preRun: (data) => {
+        if (!data.beloneCoilsTwo) {
+          delete data.debuffRole;
+          delete data.tetherRole;
+          data.hasRoleCall = false;
+        }
+      },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = roleOutputStrings;
+
+        const roles: { [role: string]: string } = {
+          'dps': output.dps!(),
+          'tank/healer': output.tankHealer!(),
+        };
+
+        const roleTowers = matches.id === '69DE' ? 'dps' : 'tank/healer';
+        const roleOther = matches.id === '69DE' ? 'tank/healer' : 'dps'; 
+
+        // Second Coils = Debuffs later
+        if (data.beloneCoilsTwo) {
+          if (roleTowers === 'dps') {
+            (data.debuffRole ??= []).push('healer');
+            data.debuffRole.push('tank');
+          } else {
+            (data.debuffRole ??= []).push(roleTowers);
+          }
+
+          // For second coils, if you are not in the debuff list here you are tower
+          if (!data.debuffRole.includes(data.role))
+            return { ['alertText']: output.roleTowers!({ role: roles[roleTowers] }) };
+
+          // If you have tethers and debuff, you need everything
+          const tetherRole = data.tetherRole ??= [];
+          const debuffRole = data.tetherRole ??= [];
+          if (debuffRole[0] === tetherRole[0])
+            return { ['infoText']: output.roleEverything!({ role: roles[roleOther] }) };
+          return { ['infoText']: output.roleDebuffs!({ role: roles[roleOther] }) };
+        }
+
+        // First Coils = Tethers later
+        if (roleTowers === 'dps') {
+          (data.tetherRole ??= []).push('healer');
+          data.tetherRole.push('tank');
+        } else {
+          (data.tetherRole ??= []).push(roleTowers);
+        }
+
+        // For first coils, there are tower and tethers
+        if (data.tetherRole.includes(data.role))
+          return { ['alertText']: output.roleTethers!({ role: roles[roleOther] }) };
+        return { ['alertText']: output.roleTowers!({ role: roles[roleTowers] }) };
+      },
+      run: (data) => data.beloneCoilsTwo = true,
+    },
+    {
+      id: 'P4S Role Call',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AF2', 'AF3'], capture: true }),
+      condition: Conditions.targetIsYou(),
+      alertText: (data, matches, output) => {
+        const debuffRole = (data.debuffRole ??= []).includes(data.role);
+        if (debuffRole && matches.effectId === 'AF2')
+          return output.passRoleCall!();
+        // AF3 is obtained after passing Role Call (AF2)
+        data.hasRoleCall = false;
+      },
+      outputStrings: {
+        passRoleCall: {
+          en: 'Pass Role Call',
+        },
+      },
+    },
+    {
+      id: 'P4S Director\'s Belone',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '69E6', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '69E6', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '69E6', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '69E6', source: 'ヘスペロス', capture: false }),
+      // Delay callout until debuffs are out
+      delaySeconds: 1.4,
+      alertText: (data, _matches, output) => {
+        const debuffRole = (data.debuffRole ??= []).includes(data.role);
+        if (!data.hasRoleCall && !debuffRole)
+          return output.text!();
+      },
+      run: (data) => {
+        delete data.debuffRole;
+      },
+      outputStrings: {
+        text: {
+          en: 'Get Role Call',
+        },
+      },
+    },
+    {
+      id: 'P4S Inversive Chlamys',
+      // Possible a player still has not yet passed debuff
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '69ED', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69ED', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69ED', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69ED', source: 'ヘスペロス', capture: false }),
+      alertText: (data, _matches, output) => {
+        const roles: { [role: string]: string } = {
+          'dps': output.dps!(),
+          'tank/healer': output.tankHealer!(),
+          '???': output.unknown!(),
+        };
+
+        const dps = (data.tetherRole ??= []).includes('dps');
+        if (dps)
+          return output.roleTethers!({ role: roles['dps'] });
+        if (data.tetherRole.length)
+          return output.roleTethers!({ role: roles['tank/healer'] });
+        return output.roleTethers!({ role: roles['???'] });
+      },
+      run: (data) => {
+        delete data.tetherRole;
+        data.hasRoleCall = false;
+      },
+      outputStrings: roleOutputStrings,
     },
     {
       id: 'P4S Elegant Evisceration',
