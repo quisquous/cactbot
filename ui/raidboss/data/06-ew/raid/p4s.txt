@@ -35,7 +35,7 @@ hideall "--sync--"
 47.7 "Director's Belone" sync / 1[56]:[^:]*:Hesperos:69E6:/
 48.5 "--debuffs--" sync / 1[56]:[^:]*:Hesperos:69E7:/
 63.9 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69ED:/
-64.1 "Cursed Casting" sync / 1[56]:[^:]*:Hesperos:69E9:/
+64.1 "Cursed Casting" sync / 1[56]:[^:]*:Hesperos:(69E8|69E9):/
 64.7 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69EE:/
 73.1 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
 82.3 "Elegant Evisceration 1" sync / 1[56]:[^:]*:Hesperos:6A08:/
@@ -84,8 +84,8 @@ hideall "--sync--"
 297.9 "Director's Belone" sync / 1[56]:[^:]*:Hesperos:69E6:/
 298.7 "--debuffs--" sync / 1[56]:[^:]*:Hesperos:69E7:/
 314.1 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69ED:/
-314.3 "Cursed Casting" #sync / 1[56]:[^:]*:Hesperos:69E9:/
-314.9 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69EF:/
+314.3 "Cursed Casting" #sync / 1[56]:[^:]*:Hesperos:(69E8|69E9):/
+314.9 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:(69EF|69EE):/
 323.3 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
 332.5 "Elegant Evisceration 1" sync / 1[56]:[^:]*:Hesperos:6A08:/
 335.7 "Elegant Evisceration 2" sync / 1[56]:[^:]*:Hesperos:6819:/
