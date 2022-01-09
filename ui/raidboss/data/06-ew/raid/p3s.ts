@@ -370,29 +370,21 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P3S Death\'s Toll Tracker',
-      // In case you miss the debuff, can at least place the eye properly
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66ED', source: 'Phoinix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '66ED', source: 'Phoinix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '66ED', source: 'Protophénix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '66ED', source: 'フェネクス', capture: false }),
-      run: (data) => data.deathsToll = true,
-    },
-    {
       id: 'P3S Death\'s Toll Number',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['ACA'], capture: true }),
-      condition: Conditions.targetIsYou(),
       // Delay callout until Ashen Eye start's casting
       delaySeconds: 16,
-      infoText: (_data, matches, output) => {
-        return {
-          '1': output.goToCardinals!(),
-          '2': output.intercards!(),
-          '4': output.middle!(),
-        }[matches.count];
+      infoText: (data, matches, output) => {
+        if (matches.target === data.me) {
+          return {
+            '1': output.goToCardinals!(),
+            '2': output.intercards!(),
+            '4': output.middle!(),
+          }[matches.count];
+        };
       },
+      preRun: (data) => data.deathsToll = true,
       outputStrings: {
         middle: Outputs.middle,
         intercards: {
