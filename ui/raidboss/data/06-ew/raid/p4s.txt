@@ -75,12 +75,12 @@ hideall "--sync--"
 # Towers
 250.1 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
 260.3 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69ED:/
-260.9 "Burst" sync / 1[56]:[^:]*:Hesperos:69DE:/
+260.9 "Burst" sync / 1[56]:[^:]*:Hesperos:(69DE|69DF):/
 261.1 "Inversive Chlamys" #sync / 1[56]:[^:]*:Hesperos:6F15:/
 267.4 "Aetheric Chlamys" sync / 1[56]:[^:]*:Hesperos:69EC:/
 275.6 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 283.7 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
-294.5 "Burst" sync / 1[56]:[^:]*:Hesperos:69DE:/
+294.5 "Burst" sync / 1[56]:[^:]*:Hesperos:(69DE|69DF):/
 297.9 "Director's Belone" sync / 1[56]:[^:]*:Hesperos:69E6:/
 298.7 "--debuffs--" sync / 1[56]:[^:]*:Hesperos:69E7:/
 314.1 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69ED:/
