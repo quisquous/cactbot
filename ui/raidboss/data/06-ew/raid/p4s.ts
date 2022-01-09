@@ -217,7 +217,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => Conditions.targetIsYou() && (data.bloodrakeCounter ?? 0) < 3,
       alertText: (data, matches, output) => {
         const roleStored = (data.swordRole ??= []).includes(data.role);
-        if ( roleStored && matches.effectId === 'AF2')
+        if (roleStored && matches.effectId === 'AF2')
           return output.passRoleCall!();
         // AF3 is obtained after passing Role Call (AF2)
         data.hasRoleCall = false;
@@ -268,7 +268,6 @@ const triggerSet: TriggerSet<Data> = {
           'dps': output.dps!(),
           'tank/healer': output.tankHealer!(),
         };
-        
         const dps = (data.capeRole ??= []).includes('dps');
         if (dps)
           return output.roleTethers!({ role: roles['dps'] });
