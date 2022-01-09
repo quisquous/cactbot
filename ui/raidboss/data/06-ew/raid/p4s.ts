@@ -7,9 +7,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// Part One
-// TODO: Bloodrake Handle tether Role Call (AF2 effectId) mechanic during Coils
-
 // Part Two
 // TODO: Wreath of Thorns 1 callout safe spot order (N/S or E/W)
 // TODO: Verify Nearsight/Farsight ids
@@ -45,6 +42,9 @@ const roleOutputStrings = {
   },
   roleDebuffs: {
     en: '${role} Role Calls',
+  },
+  roleTowers: {
+    en: '${role} Towers',
   },
   unknown: Outputs.unknown,
 };
@@ -158,7 +158,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P4S Bloodrake Store',
-      // Call out first role stored in the sword, is non-standard comp possible?
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
       netRegexDe: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
@@ -174,31 +173,90 @@ const triggerSet: TriggerSet<Data> = {
 
         const role = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
 
+        // Second bloodrake = Tethers later
         if ((data.bloodrakeCounter ?? 0) === 2) {
-          if (role === 'dps')
-            (data.debuffRole ??= []).push(role);
-          else {
-            (data.debuffRole ??= []).push('healer');
-            data.debuffRole.push('tank');
+          if (role === 'dps') {
+            (data.tetherRole ??= []).push(role);
+          } else {
+            (data.tetherRole ??= []).push('healer');
+            data.tetherRole.push('tank');
           }
-          return output.roleDebuffs!({ role: roles[role] });
+          return output.roleTethers!({ role: roles[role] });
         }
 
-        if (role === 'dps')
-          (data.tetherRole ??= []).push(role);
-        else {
-          (data.tetherRole ??= []).push('healer');
-          data.tetherRole.push('tank');
+        // First bloodrake = Debuffs later
+        if (role === 'dps') {
+          (data.debuffRole ??= []).push(role);
+        } else {
+          (data.debuffRole ??= []).push('healer');
+          data.debuffRole.push('tank');
         }
         return output.roleTethers!({ role: roles[role] });
       },
       outputStrings: roleOutputStrings,
     },
     {
+      id: 'P4S Belone Coils',
+      // 69DE is No Tank/Healer Belone Coils
+      // 69DF is No DPS Belone Coils
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'ヘスペロス' }),
+      preRun: (data) => {
+        if (!data.beloneCoilsTwo) {
+          delete data.debuffRole;
+          delete data.tetherRole;
+          data.hasRoleCall = false;
+        }
+      },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = roleOutputStrings;
+
+        const roles: { [role: string]: string } = {
+          'dps': output.dps!(),
+          'tank/healer': output.tankHealer!(),
+        };
+
+        const role = matches.id === '69DE' ? 'dps' : 'tank/healer';
+
+        // Second Coils = Debuffs later
+        if (data.beloneCoilsTwo) {
+          if (role === 'dps') {
+            (data.debuffRole ??= []).push(role);
+          } else {
+            (data.debuffRole ??= []).push('healer');
+            data.debuffRole.push('tank');
+          }
+ 
+          // For second coils, if you are not in the debuff list here you are tower
+          if (!data.debuffRole.includes(data.role))
+            return { ['alertText']: output.roleTowers!({ role: roles[role] }) };
+          return { ['infoText']: output.roleDebuffs!({ role: roles[role] }) };
+        }
+
+        // First Coils = Tethers later
+        if (role === 'dps') {
+          (data.tetherRole ??= []).push(role);
+        } else {
+          (data.tetherRole ??= []).push('healer');
+          data.tetherRole.push('tank');
+        }
+
+        // For first coils, there are tower and tethers
+        if (data.tetherRole.includes(data.role))
+          return { ['alertText']: output.roleTethers!({ role: roles[role] }) };
+        return { ['alertText']: output.roleTowers!({ role: roles[role] }) };
+      },
+      run: (data) => data.beloneCoilsTwo = true,
+    },
+    {
       id: 'P4S Role Call',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['AF2', 'AF3'], capture: true }),
-      condition: (data) => Conditions.targetIsYou() && (data.bloodrakeCounter ?? 0) < 3,
+      condition: Conditions.targetIsYou(),
       alertText: (data, matches, output) => {
         const debuffRole = (data.debuffRole ??= []).includes(data.role);
         if (debuffRole && matches.effectId === 'AF2')
@@ -219,7 +277,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '69E6', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '69E6', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '69E6', source: 'ヘスペロス', capture: false }),
-      condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
       // Delay callout until debuffs are out
       delaySeconds: 1.4,
       alertText: (data, _matches, output) => {
@@ -244,7 +301,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69ED', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69ED', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69ED', source: 'ヘスペロス', capture: false }),
-      condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
       alertText: (data, _matches, output) => {
         const roles: { [role: string]: string } = {
           'dps': output.dps!(),
