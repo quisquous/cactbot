@@ -9,7 +9,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // Part Two
 // TODO: Wreath of Thorns 1 callout safe spot order (N/S or E/W)
-// TODO: Verify Nearsight/Farsight ids
 // TODO: Wreath of Thorns 2 headmarkers and tethers
 // TODO: Safe spot callouts for Wreath of Thorns 2?
 // TODO: Better Dark Design/tether break callouts
