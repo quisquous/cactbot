@@ -44,6 +44,9 @@ const roleOutputStrings = {
   roleDebuffs: {
     en: '${role} Role Calls',
   },
+  roleEverything: {
+    en: '${role} Everything,'
+  },
   roleTowers: {
     en: '${role} Towers',
   },
@@ -182,6 +185,11 @@ const triggerSet: TriggerSet<Data> = {
             (data.tetherRole ??= []).push('healer');
             data.tetherRole.push('tank');
           }
+
+          // May end up needing both tether and debuff
+          const debuffRole = data.debuffRole ??= [];
+          if (data.tetherRole[0] === debuffRole[0])
+            return output.roleEverything!({ role: roles[role] });
           return output.roleTethers!({ role: roles[role] });
         }
 
@@ -235,6 +243,11 @@ const triggerSet: TriggerSet<Data> = {
           // For second coils, if you are not in the debuff list here you are tower
           if (!data.debuffRole.includes(data.role))
             return { ['alertText']: output.roleTowers!({ role: roles[role] }) };
+
+          // If you have tethers and debuff, you need everything
+           const tetherRole = data.tetherRole ??= [];
+          if (data.debuffRole[0] === tetherRole[0])
+            return { ['infoText']: output.roleEverything!({ role: roles[role] }) };   
           return { ['infoText']: output.roleDebuffs!({ role: roles[role] }) };
         }
 
@@ -619,27 +632,6 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'サンダー',
           cn: '闪雷风暴',
           ko: '번개',
-        },
-      },
-    },
-    {
-      id: 'P4S Belone Coils',
-      // This is either DPS towers or tank/healer towers
-      // The roles maked by tower grab tethers
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69DD', source: 'Hesperos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '69DD', source: 'Hesperos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '69DD', source: 'Hespéros', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '69DD', source: 'ヘスペロス', capture: false }),
-      delaySeconds: 2,
-      infoText: (data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Get other role Tower',
-          de: 'Geh in einen Turm einer anderen Rolle',
-          fr: 'Prenez la tour d\'un autre rôle',
-          cn: '踩其他职能的塔',
-          ko: '내 직업군이 아닌쪽 장판 밟기',
         },
       },
     },
