@@ -537,33 +537,33 @@ export default class TimerBar extends HTMLElement {
     this.foregroundElement.style.transform = `scaleX(${percent.toFixed(3)})`;
     if (this._leftText !== '') {
       if (this._leftText === 'remain')
-        this.leftTextElement.innerHTML = displayRemain;
+        this.leftTextElement.innerText = displayRemain;
       else if (this._leftText === 'duration')
-        this.leftTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
+        this.leftTextElement.innerText = `${displayRemain} / ${this._duration}`;
       else if (this._leftText === 'percent')
-        this.leftTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
+        this.leftTextElement.innerText = `${(percent * 100).toFixed(1)} %`;
       else if (this._leftText === 'elapsed')
-        this.leftTextElement.innerHTML = displayElapsed;
+        this.leftTextElement.innerText = displayElapsed;
     }
     if (this._centerText !== '') {
       if (this._centerText === 'remain')
-        this.centerTextElement.innerHTML = displayRemain;
+        this.centerTextElement.innerText = displayRemain;
       else if (this._centerText === 'duration')
-        this.centerTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
+        this.centerTextElement.innerText = `${displayRemain} / ${this._duration}`;
       else if (this._centerText === 'percent')
-        this.centerTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
+        this.centerTextElement.innerText = `${(percent * 100).toFixed(1)} %`;
       else if (this._centerText === 'elapsed')
-        this.centerTextElement.innerHTML = displayElapsed;
+        this.centerTextElement.innerText = displayElapsed;
     }
     if (this._rightText !== '') {
       if (this._rightText === 'remain')
-        this.rightTextElement.innerHTML = displayRemain;
+        this.rightTextElement.innerText = displayRemain;
       else if (this._rightText === 'duration')
-        this.rightTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
+        this.rightTextElement.innerText = `${displayRemain} / ${this._duration}`;
       else if (this._rightText === 'percent')
-        this.rightTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
+        this.rightTextElement.innerText = `${(percent * 100).toFixed(1)} %`;
       else if (this._rightText === 'elapsed')
-        this.rightTextElement.innerHTML = displayElapsed;
+        this.rightTextElement.innerText = displayElapsed;
     }
   }
 
