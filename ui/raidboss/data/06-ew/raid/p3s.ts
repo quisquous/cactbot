@@ -379,29 +379,19 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         if (matches.target === data.me) {
           return {
-            '1': output.goToCardinals!(),
-            '2': output.intercards!(),
+            '1': output.outCardinals!(),
+            '2': output.outIntercards!(),
             '4': output.middle!(),
           }[matches.count];
         };
       },
       outputStrings: {
         middle: Outputs.middle,
-        intercards: {
-          en: 'Intercards',
-          de: 'Interkardinal',
-          fr: 'Intercardinal',
-          ja: '斜めへ',
-          cn: '四角',
-          ko: '대각선 쪽으로',
+        OutIntercards: {
+          en: 'Out + Intercards',
         },
-        goToCardinals: {
-          en: 'Go To Cardinals',
-          de: 'An die Kanten',
-          fr: 'Allez sur les cardinaux',
-          ja: '横や縦へ',
-          cn: '靠边',
-          ko: '십자 산개',
+        outCardinals: {
+          en: 'Out + Cardinals',
         },
       },
     },
