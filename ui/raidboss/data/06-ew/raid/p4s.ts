@@ -175,9 +175,8 @@ const triggerSet: TriggerSet<Data> = {
         const role = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
 
         if ((data.bloodrakeCounter ?? 0) === 2) {
-          if (role === 'dps') {
+          if (role === 'dps')
             (data.debuffRole ??= []).push(role);
-          }
           else {
             (data.debuffRole ??= []).push('healer');
             data.debuffRole.push('tank');
@@ -185,9 +184,8 @@ const triggerSet: TriggerSet<Data> = {
           return output.roleDebuffs!({ role: roles[role] });
         }
 
-        if (role === 'dps') {
+        if (role === 'dps')
           (data.tetherRole ??= []).push(role);
-        }
         else {
           (data.tetherRole ??= []).push('healer');
           data.tetherRole.push('tank');
