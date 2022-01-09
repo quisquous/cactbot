@@ -379,9 +379,9 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         if (matches.target === data.me) {
           return {
-            '1': output.outCardinals!(),
-            '2': output.outIntercards!(),
-            '4': output.middle!(),
+            '01': output.outCardinals!(),
+            '02': output.outIntercards!(),
+            '04': output.middle!(),
           }[matches.count];
         }
       },
