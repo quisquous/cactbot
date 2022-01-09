@@ -383,7 +383,7 @@ const triggerSet: TriggerSet<Data> = {
             '2': output.outIntercards!(),
             '4': output.middle!(),
           }[matches.count];
-        };
+        }
       },
       outputStrings: {
         middle: Outputs.middle,
