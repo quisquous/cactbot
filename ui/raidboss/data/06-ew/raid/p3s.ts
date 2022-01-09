@@ -373,8 +373,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3S Death\'s Toll Number',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['ACA'], capture: true }),
+      preRun: (data) => data.deathsToll = true,
       // Delay callout until Ashen Eye start's casting
-      delaySeconds: 16,
+      delaySeconds: 15.5,
       infoText: (data, matches, output) => {
         if (matches.target === data.me) {
           return {
@@ -384,7 +385,6 @@ const triggerSet: TriggerSet<Data> = {
           }[matches.count];
         };
       },
-      preRun: (data) => data.deathsToll = true,
       outputStrings: {
         middle: Outputs.middle,
         intercards: {
