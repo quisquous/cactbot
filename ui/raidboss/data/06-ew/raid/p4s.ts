@@ -45,7 +45,7 @@ const roleOutputStrings = {
     en: '${role} Role Calls',
   },
   roleEverything: {
-    en: '${role} Everything,'
+    en: '${role} Everything',
   },
   roleTowers: {
     en: '${role} Towers',
@@ -245,9 +245,9 @@ const triggerSet: TriggerSet<Data> = {
             return { ['alertText']: output.roleTowers!({ role: roles[role] }) };
 
           // If you have tethers and debuff, you need everything
-           const tetherRole = data.tetherRole ??= [];
+          const tetherRole = data.tetherRole ??= [];
           if (data.debuffRole[0] === tetherRole[0])
-            return { ['infoText']: output.roleEverything!({ role: roles[role] }) };   
+            return { ['infoText']: output.roleEverything!({ role: roles[role] }) };
           return { ['infoText']: output.roleDebuffs!({ role: roles[role] }) };
         }
 
