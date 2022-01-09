@@ -220,7 +220,7 @@ export default class TimerBox extends HTMLElement {
   get value(): number {
     if (!this._start)
       return this._duration;
-    const elapsedMs = new Date().getTime() - this._start;
+    const elapsedMs = Date.now() - this._start;
     return Math.max(0, this._duration - (elapsedMs / 1000));
   }
 
@@ -228,7 +228,7 @@ export default class TimerBox extends HTMLElement {
   get elapsed(): number {
     if (!this._start)
       return 0;
-    return (new Date().getTime() - this._start) / 1000;
+    return (Date.now() - this._start) / 1000;
   }
 
   // Whether to round up the value to the nearest integer before thresholding.
@@ -451,7 +451,7 @@ export default class TimerBox extends HTMLElement {
     if (!this._connected)
       return;
 
-    const elapsedSec = (new Date().getTime() - this._start) / 1000;
+    const elapsedSec = (Date.now() - this._start) / 1000;
     const remainingSec = Math.max(0, this._duration - elapsedSec);
     let rounded;
     if (this._roundUpThreshold)
@@ -499,7 +499,7 @@ export default class TimerBox extends HTMLElement {
     this.classList.remove('expired');
     this._notifyThresholdCallbacks = true;
 
-    this._start = new Date().getTime();
+    this._start = Date.now();
 
     for (const f of this._onResetCallbacks)
       window.setTimeout(f, 0);
@@ -508,7 +508,7 @@ export default class TimerBox extends HTMLElement {
   }
 
   advance(): void {
-    const elapsedSec = (new Date().getTime() - this._start) / 1000;
+    const elapsedSec = (Date.now() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // We need to check for this._duration > 0 here, as for undocumented reason the
       // duration of a timerbox is always set to zero before it is set to the
