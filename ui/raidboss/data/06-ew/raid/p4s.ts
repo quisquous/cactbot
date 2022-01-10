@@ -27,6 +27,8 @@ export interface Data extends RaidbossData {
   tetherRole?: string[];
   debuffRole?: string[];
   hasRoleCall?: boolean;
+  pinaxCount?: number;
+  wellShiftKnockback?: boolean;
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   fleetingImpulseCounter?: number;
@@ -359,6 +361,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69D7', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69D7', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69D7', source: 'ヘスペロス', capture: false }),
+      preRun: (data) => data.pinaxCount = (data.pinaxCount ?? 0) + 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -378,14 +381,36 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス', capture: false }),
-      // Set to 5.5 to time with Direction Shift knockbacks
-      delaySeconds: 5.5,
-      alertText: (_data, _matches, output) => output.text!(),
+      preRun: (data) => data.pinaxCount = (data.pinaxCount ?? 0) + 1,
+      infoText: (data, _matches, output) => {
+        if ((data.pinaxCount ?? 0) % 2)
+          return output.text!();
+        data.wellShiftKnockback = true;
+        return output.wellShift!();
+      },
       outputStrings: {
         text: {
           en: 'Well',
         },
+        wellShift: {
+          en: 'Well and Shift',
+        },
       },
+    },
+    {
+      id: 'P4S Well Pinax Knockback',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス' }),
+      delaySeconds: (data, matches) => {
+        // Delay for for Directional Shift on Even Well/Levinstrike Pinax Count
+        if ((data.pinaxCount ?? 0) % 2) 
+          return parseFloat(matches.castTime) - 5;
+        return parseFloat(matches.castTime) - 2.4;
+      },
+      response: Responses.knockback(),
     },
     {
       id: 'P4S Acid Pinax',
@@ -526,6 +551,18 @@ const triggerSet: TriggerSet<Data> = {
           en: 'West Cape',
         },
       },
+    },
+    {
+      id: 'P4S Directional Shift Knockback',
+      // Callout Knockback during Levinstrike + Shift
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'ヘスペロス' }),
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
+      condition: (data) => !data.wellShiftKnockback,
+      response: Responses.knockback(),
     },
     {
       id: 'P4S Acting Role',
