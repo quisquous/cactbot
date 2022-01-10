@@ -234,7 +234,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         const roleTowers = matches.id === '69DE' ? 'dps' : 'tank/healer';
-        const roleOther = matches.id === '69DE' ? 'tank/healer' : 'dps'; 
+        const roleOther = matches.id === '69DE' ? 'tank/healer' : 'dps';
 
         // Second Coils = Debuffs later
         if (data.beloneCoilsTwo) {
