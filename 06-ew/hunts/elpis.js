@@ -5,9 +5,11 @@ Options.Triggers.push({
             id: 'Hunt Gurangatch Left Hammer Slammer',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '6B65', source: 'Gurangatch', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6B65', source: 'Grangatch', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6B65', source: 'Gurangatch', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6B65', source: 'Gurangatch', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6B65', source: 'グランガッチ', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6B65', source: 'グランガチ', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '6B65', source: '固兰盖奇', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '6B65', source: '그란갓치', capture: false }),
             alarmText: (_data, _matches, output) => output.rightThenLeft(),
             outputStrings: {
                 rightThenLeft: {
@@ -21,9 +23,11 @@ Options.Triggers.push({
             id: 'Hunt Gurangatch Right Hammer Slammer',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '6B66', source: 'Gurangatch', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6B66', source: 'Grangatch', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6B66', source: 'Gurangatch', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6B66', source: 'Gurangatch', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6B66', source: 'グランガッチ', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6B66', source: 'グランガチ', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '6B66', source: '固兰盖奇', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '6B66', source: '그란갓치', capture: false }),
             alarmText: (_data, _matches, output) => output.leftThenRight(),
             outputStrings: {
                 leftThenRight: {
