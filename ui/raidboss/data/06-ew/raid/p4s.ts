@@ -7,9 +7,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// Part one
-// TODO: Fixup Well Pinax in combo with Directional Shift (knockback) timings
-
 // Part Two
 // TODO: Wreath of Thorns 1 callout safe spot order (N/S or E/W)
 // TODO: Wreath of Thorns 2 headmarkers and tethers
@@ -406,10 +403,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス' }),
       delaySeconds: (data, matches) => {
         // Delay for for Directional Shift on Even Well/Levinstrike Pinax Count
-        if ((data.pinaxCount ?? 0) % 2) 
+        if ((data.pinaxCount ?? 0) % 2)
           return parseFloat(matches.castTime) - 5;
         return parseFloat(matches.castTime) - 2.4;
       },
+      durationSeconds: (data) => data.wellShiftKnockback ? 2.4 : 5,
       response: Responses.knockback(),
     },
     {
@@ -560,9 +558,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hesperos' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hespéros' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'ヘスペロス' }),
-      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       condition: (data) => !data.wellShiftKnockback,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
+      run: (data) => data.wellShiftKnockback = false,
     },
     {
       id: 'P4S Acting Role',
