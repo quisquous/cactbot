@@ -372,6 +372,10 @@ div.justbuffs div#procs-container {
   background-color: rgb(238, 234, 14);
 }
 
+#rdm-stacks-manastack > div.active {
+  background-color: rgb(255, 100, 100);
+}
+
 /* Procs */
 
 /*

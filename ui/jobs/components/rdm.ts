@@ -138,6 +138,8 @@ export class RDMComponent extends BaseComponent {
   blackProc: TimerBox;
   flecheBox: TimerBox;
   contreSixteBox: TimerBox;
+  stacksContainer: HTMLDivElement;
+  manaStacks: HTMLElement[] = [];
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -196,6 +198,20 @@ export class RDMComponent extends BaseComponent {
       fgColor: 'rdm-color-contresixte',
     });
 
+    this.stacksContainer = document.createElement('div');
+    this.stacksContainer.id = 'rdm-stacks';
+    this.stacksContainer.classList.add('stacks', 'hide');
+    this.bars.addJobBarContainer().appendChild(this.stacksContainer);
+    const manaStackContainer = document.createElement('div');
+    manaStackContainer.id = 'rdm-stacks-manastack';
+    this.stacksContainer.appendChild(manaStackContainer);
+
+    for (let i = 0; i < 3; ++i) {
+      const d = document.createElement('div');
+      manaStackContainer.appendChild(d);
+      this.manaStacks.push(d);
+    }
+
     this.reset();
   }
 
@@ -229,6 +245,14 @@ export class RDMComponent extends BaseComponent {
       this.blackManaBox.parentNode.classList.toggle('dim', jobDetail.blackMana < 50);
       this.blackManaBar.fg = computeBackgroundColorFrom(this.blackManaBar, jobDetail.blackMana < 50 ? 'rdm-color-black-mana.dim' : 'rdm-color-black-mana');
     }
+
+    this.stacksContainer.classList.toggle('hide', jobDetail.manaStacks === 0);
+    for (let i = 0; i < 3; ++i) {
+      if (jobDetail.manaStacks > i)
+        this.manaStacks[i]?.classList.add('active');
+      else
+        this.manaStacks[i]?.classList.remove('active');
+      }
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
