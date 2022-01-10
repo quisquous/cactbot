@@ -419,6 +419,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '--fire expands--': '--Feuer breitet sich aus--',
+        '--giant fireplume\\?--': '--riesige Feuerfieder?--',
         'Ashen Eye': 'Aschener Blick',
         '(?<!\\w )Ashplume': 'Aschenfieder',
         'Beacons of Asphodelos': 'Asphodeische Flamme',
