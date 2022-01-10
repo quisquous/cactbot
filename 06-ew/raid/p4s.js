@@ -45,6 +45,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Bait Jump?',
+                    de: 'Sprung ködern?',
                 },
             },
         },
@@ -56,6 +57,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Bait Earthshakers?',
+                    de: 'Erdstoß ködern?',
                 },
             },
         },
@@ -149,6 +151,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Well',
+                    de: 'Brunnen',
                 },
             },
         },
@@ -191,6 +194,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'North Cleave',
+                    de: 'Cleave in den Norden',
                 },
             },
         },
@@ -205,6 +209,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'East Cleave',
+                    de: 'Cleave in den Osten',
                 },
             },
         },
@@ -219,6 +224,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'South Cleave',
+                    de: 'Cleave in den Süden',
                 },
             },
         },
@@ -233,6 +239,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'West Cleave',
+                    de: 'Cleave in den Westen',
                 },
             },
         },
@@ -247,6 +254,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'North Cape',
+                    de: 'Umhang im Norden',
                 },
             },
         },
@@ -261,6 +269,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'East Cape',
+                    de: 'Umhang im Osten',
                 },
             },
         },
@@ -275,6 +284,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'South Cape',
+                    de: 'Umhang im Süden',
                 },
             },
         },
@@ -289,6 +299,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'West Cape',
+                    de: 'Umhang im Westen',
                 },
             },
         },
@@ -308,15 +319,19 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Acting ${actingRole}',
+                    de: 'Handel ale ${actingRole}',
                 },
                 dps: {
                     en: 'DPS',
+                    de: 'DPS',
                 },
                 healer: {
                     en: 'Healer',
+                    de: 'Heiler',
                 },
                 tank: {
                     en: 'Tank',
+                    de: 'Tank',
                 },
             },
         },
@@ -331,6 +346,7 @@ Options.Triggers.push({
             outputStrings: {
                 rolePositions: {
                     en: 'Orb role positions',
+                    de: 'Orb Rollenposition',
                 },
             },
         },
@@ -353,9 +369,11 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: '${pinax} safe',
+                    de: '${pinax} sicher',
                 },
                 acid: {
                     en: 'Acid',
+                    de: 'Gift',
                 },
                 lava: {
                     en: 'Lava',
@@ -367,6 +385,7 @@ Options.Triggers.push({
                 },
                 well: {
                     en: 'Well',
+                    de: 'Brunnen',
                 },
                 thunder: {
                     en: 'Thunder',
@@ -398,6 +417,7 @@ Options.Triggers.push({
             outputStrings: {
                 tankbustersIn: {
                     en: 'In (Tankbusters)',
+                    de: 'Rein (Tankbusters)',
                 },
                 getOut: Outputs.out,
             },
@@ -413,6 +433,7 @@ Options.Triggers.push({
             outputStrings: {
                 tankbustersOut: {
                     en: 'Get out, tankbuster',
+                    de: 'Raus, tankbuster',
                 },
                 getIn: Outputs.in,
             },
@@ -457,6 +478,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Spread at tethered thorn',
+                    de: 'Verteilen bei der Dornenhecke',
                 },
             },
         },
@@ -480,6 +502,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: '${num}',
+                    de: '${num}',
                 },
             },
         },
@@ -501,6 +524,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Thorn ${num}',
+                    de: 'Dornen ${num}',
                 },
             },
         },
