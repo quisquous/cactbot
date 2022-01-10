@@ -173,13 +173,13 @@ export class RDMComponent extends BaseComponent {
 
     this.whiteProc = this.bars.addProcBox({
       id: 'rdm-procs-white',
-      fgColor: 'rdm-color-white-mana',
+      fgColor: 'rdm-color-stone',
       threshold: 1000,
     });
     this.whiteProc.bigatzero = false;
     this.blackProc = this.bars.addProcBox({
       id: 'rdm-procs-black',
-      fgColor: 'rdm-color-black-mana',
+      fgColor: 'rdm-color-fire',
       threshold: 1000,
     });
     this.blackProc.bigatzero = false;

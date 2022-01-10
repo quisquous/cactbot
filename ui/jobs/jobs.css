@@ -1075,6 +1075,14 @@ div.justbuffs div#procs-container {
   background-color: rgb(227, 148, 210);
 }
 
+.rdm-color-stone {
+  background-color: rgb(250, 176, 73);
+}
+
+.rdm-color-fire {
+  background-color: rgb(240, 76, 0);
+}
+
 /* BLU */
 .blu-color-offguard {
   background-color: rgb(210, 255, 196);
