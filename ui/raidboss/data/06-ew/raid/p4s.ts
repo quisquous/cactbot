@@ -495,7 +495,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Northerly Shift Knockback',
+      id: 'P4S Northerly Shift Cape',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos', capture: false }),
@@ -509,7 +509,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Easterly Shift Knockback',
+      id: 'P4S Easterly Shift Cape',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos', capture: false }),
@@ -523,7 +523,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Southerly Shift Knockback',
+      id: 'P4S Southerly Shift Cape',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos', capture: false }),
@@ -537,7 +537,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Westerly Shift Knockback',
+      id: 'P4S Westerly Shift Cape',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos', capture: false }),
