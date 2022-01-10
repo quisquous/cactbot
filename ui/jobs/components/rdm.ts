@@ -233,11 +233,9 @@ export class RDMComponent extends BaseComponent {
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.VerstoneReady)
-      this.whiteProc.duration = parseFloat(matches.duration ?? '0') - this.player.gcdSpell;
-    if (id === EffectId.VerfireReady) {
-      this.blackProc.duration = 0;
-      this.blackProc.duration = parseFloat(matches.duration ?? '0') - this.player.gcdSpell;
-    }
+      this.whiteProc.duration = parseFloat(matches.duration ?? '0') - (this.player.gcdSpell * 0.8 - 0.5);
+    if (id === EffectId.VerfireReady)
+      this.blackProc.duration = parseFloat(matches.duration ?? '0') - (this.player.gcdSpell * 0.8 - 0.5);
   }
   override onYouLoseEffect(id: string) :void {
     if (id === EffectId.VerstoneReady)
