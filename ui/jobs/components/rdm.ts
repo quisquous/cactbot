@@ -5,6 +5,7 @@ import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
 import { kAbility } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
+import { computeBackgroundColorFrom } from '../utils';
 
 import { BaseComponent, ComponentInterface } from './base';
 
@@ -220,19 +221,13 @@ export class RDMComponent extends BaseComponent {
 
     if (this.whiteManaBox.innerText !== white) {
       this.whiteManaBox.innerText = white;
-      const p = this.whiteManaBox.parentNode;
-      if (jobDetail.whiteMana < 80)
-        p.classList.add('dim');
-      else
-        p.classList.remove('dim');
+      this.whiteManaBox.parentNode.classList.toggle('dim', jobDetail.whiteMana < 50);
+      this.whiteManaBar.fg = computeBackgroundColorFrom(this.whiteManaBar, jobDetail.whiteMana < 50 ? 'rdm-color-white-mana.dim' : 'rdm-color-white-mana');
     }
     if (this.blackManaBox.innerText !== black) {
       this.blackManaBox.innerText = black;
-      const p = this.blackManaBox.parentNode;
-      if (jobDetail.blackMana < 80)
-        p.classList.add('dim');
-      else
-        p.classList.remove('dim');
+      this.blackManaBox.parentNode.classList.toggle('dim', jobDetail.blackMana < 50);
+      this.blackManaBar.fg = computeBackgroundColorFrom(this.blackManaBar, jobDetail.blackMana < 50 ? 'rdm-color-black-mana.dim' : 'rdm-color-black-mana');
     }
   }
 
