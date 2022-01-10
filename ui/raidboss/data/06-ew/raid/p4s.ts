@@ -78,6 +78,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Jump?',
+          de: 'Sprung ködern?',
         },
       },
     },
@@ -89,6 +90,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Earthshakers?',
+          de: 'Erdstoß ködern?',
         },
       },
     },
@@ -180,6 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Well',
+          de: 'Brunnen',
         },
       },
     },
@@ -222,6 +225,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'North Cleave',
+          de: 'Cleave in den Norden',
         },
       },
     },
@@ -236,6 +240,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'East Cleave',
+          de: 'Cleave in den Osten',
         },
       },
     },
@@ -250,6 +255,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'South Cleave',
+          de: 'Cleave in den Süden',
         },
       },
     },
@@ -264,6 +270,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'West Cleave',
+          de: 'Cleave in den Westen',
         },
       },
     },
@@ -278,6 +285,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'North Cape',
+          de: 'Umhang im Norden',
         },
       },
     },
@@ -292,6 +300,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'East Cape',
+          de: 'Umhang im Osten',
         },
       },
     },
@@ -306,6 +315,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'South Cape',
+          de: 'Umhang im Süden',
         },
       },
     },
@@ -320,6 +330,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'West Cape',
+          de: 'Umhang im Westen',
         },
       },
     },
@@ -339,15 +350,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Acting ${actingRole}',
+          de: 'Handel ale ${actingRole}',
         },
         dps: {
           en: 'DPS',
+          de: 'DPS',
         },
         healer: {
           en: 'Healer',
+          de: 'Heiler',
         },
         tank: {
           en: 'Tank',
+          de: 'Tank',
         },
       },
     },
@@ -362,6 +377,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         rolePositions: {
           en: 'Orb role positions',
+          de: 'Orb Rollenposition',
         },
       },
     },
@@ -384,9 +400,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${pinax} safe',
+          de: '${pinax} sicher',
         },
         acid: {
           en: 'Acid',
+          de: 'Gift',
         },
         lava: {
           en: 'Lava',
@@ -398,6 +416,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         well: {
           en: 'Well',
+          de: 'Brunnen',
         },
         thunder: {
           en: 'Thunder',
@@ -429,6 +448,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankbustersIn: {
           en: 'In (Tankbusters)',
+          de: 'Rein (Tankbusters)',
         },
         getOut: Outputs.out,
       },
@@ -444,6 +464,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankbustersOut: {
           en: 'Get out, tankbuster',
+          de: 'Raus, tankbuster',
         },
         getIn: Outputs.in,
       },
@@ -488,6 +509,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread at tethered thorn',
+          de: 'Verteilen bei der Dornenhecke',
         },
       },
     },
@@ -510,6 +532,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${num}',
+          de: '${num}',
         },
       },
     },
@@ -531,6 +554,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Thorn ${num}',
+          de: 'Dornen ${num}',
         },
       },
     },
