@@ -141,11 +141,11 @@ export class RDMComponent extends BaseComponent {
     super(o);
     const container = this.bars.addJobBarContainer();
 
-    const incs = 20;
+    const incs = 25;
     for (let i = 0; i < 100; i += incs) {
       const marker = document.createElement('div');
       marker.classList.add('marker');
-      marker.classList.add((i % 40 === 0) ? 'odd' : 'even');
+      marker.classList.add((i % 50 === 0) ? 'odd' : 'even');
       container.appendChild(marker);
       marker.style.left = `${i}%`;
       marker.style.width = `${incs}%`;
