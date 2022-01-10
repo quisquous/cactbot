@@ -135,7 +135,8 @@ export class RDMComponent extends BaseComponent {
   blackManaBox: ResourceBox;
   whiteProc: TimerBox;
   blackProc: TimerBox;
-  lucidBox: TimerBox;
+  flecheBox: TimerBox;
+  contreSixteBox: TimerBox;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -184,21 +185,30 @@ export class RDMComponent extends BaseComponent {
     });
     this.blackProc.bigatzero = false;
 
-    this.lucidBox = this.bars.addProcBox({
-      id: 'rdm-procs-lucid',
-      fgColor: 'rdm-color-lucid',
+    this.flecheBox = this.bars.addProcBox({
+      id: 'rdm-procs-fleche',
+      fgColor: 'rdm-color-fleche',
+    });
+
+    this.contreSixteBox = this.bars.addProcBox({
+      id: 'rdm-procs-contresixte',
+      fgColor: 'rdm-color-contresixte',
     });
 
     this.reset();
   }
 
   override onUseAbility(id: string): void {
-    if (id === kAbility.LucidDreaming)
-      this.lucidBox.duration = 60;
+    if (id === kAbility.Fleche)
+      this.flecheBox.duration = 25;
+    if (id === kAbility.ContreSixte)
+      this.contreSixteBox.duration = this.player.level < 74 ? 45 : 35;
   }
   override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
-    this.lucidBox.valuescale = gcdSpell;
-    this.lucidBox.threshold = gcdSpell + 1;
+    this.flecheBox.valuescale = gcdSpell;
+    this.flecheBox.threshold = gcdSpell + 1;
+    this.contreSixteBox.valuescale = gcdSpell;
+    this.contreSixteBox.threshold = gcdSpell + 1;
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['RDM']): void {
@@ -242,7 +252,8 @@ export class RDMComponent extends BaseComponent {
   }
 
   override reset(): void {
-    this.lucidBox.duration = 0;
+    this.flecheBox.duration = 0;
+    this.contreSixteBox.duration = 0;
     this.whiteProc.duration = 0;
     this.blackProc.duration = 0;
   }
