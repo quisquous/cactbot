@@ -9,6 +9,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   deathsToll?: boolean;
+  deathsTollPending?: boolean;
   decOffset?: number;
 }
 
@@ -373,7 +374,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3S Death\'s Toll Number',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['ACA'], capture: true }),
-      preRun: (data) => data.deathsToll = true,
+      condition: (data) => !data.deathsTollPending,
+      // Force this to only run once without Conditions.targetIsYou()
+      // in case user is dead but needs to place fledgling flight properly
+      preRun: (data) => data.deathsTollPending = data.deathsToll = true,
       // Delay callout until Ashen Eye start's casting
       delaySeconds: 15.5,
       infoText: (data, matches, output) => {
