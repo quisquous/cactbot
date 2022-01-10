@@ -372,6 +372,10 @@ div.justbuffs div#procs-container {
   background-color: rgb(238, 234, 14);
 }
 
+#rdm-stacks-manastack > div.active {
+  background-color: rgb(255, 100, 100);
+}
+
 /* Procs */
 
 /*
@@ -1073,6 +1077,22 @@ div.justbuffs div#procs-container {
 
 .rdm-color-lucid {
   background-color: rgb(227, 148, 210);
+}
+
+.rdm-color-stone {
+  background-color: rgb(250, 176, 73);
+}
+
+.rdm-color-fire {
+  background-color: rgb(240, 76, 0);
+}
+
+.rdm-color-fleche {
+  background-color: rgb(25, 190, 255);
+}
+
+.rdm-color-contresixte {
+  background-color: rgb(30, 80, 170);
 }
 
 /* BLU */
