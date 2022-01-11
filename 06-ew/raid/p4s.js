@@ -126,7 +126,8 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69D7', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69D7', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69D7', source: 'ヘスペロス', capture: false }),
-            alertText: (_data, _matches, output) => output.text(),
+            durationSeconds: 6,
+            alarmText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'Thunder',
@@ -145,13 +146,11 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス', capture: false }),
-            // Set to 5.5 to time with Direction Shift knockbacks
-            delaySeconds: 5.5,
-            alertText: (_data, _matches, output) => output.text(),
+            infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
-                    en: 'Well',
-                    de: 'Brunnen',
+                    en: 'Well Pinax',
+                    de: 'Brunnen', // FIXME
                 },
             },
         },
@@ -162,7 +161,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69D4', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69D4', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69D4', source: 'ヘスペロス', capture: false }),
-            response: Responses.spread(),
+            response: Responses.spread('alert'),
         },
         {
             id: 'P4S Lava Pinax',
@@ -250,7 +249,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69FD', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69FD', source: 'ヘスペロス', capture: false }),
-            alertText: (_data, _matches, output) => output.text(),
+            infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'North Cape',
@@ -265,7 +264,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69FF', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69FF', source: 'ヘスペロス', capture: false }),
-            alertText: (_data, _matches, output) => output.text(),
+            infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'East Cape',
@@ -280,7 +279,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69FE', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69FE', source: 'ヘスペロス', capture: false }),
-            alertText: (_data, _matches, output) => output.text(),
+            infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'South Cape',
@@ -295,7 +294,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6A00', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6A00', source: 'ヘスペロス', capture: false }),
-            alertText: (_data, _matches, output) => output.text(),
+            infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'West Cape',
