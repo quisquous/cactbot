@@ -828,8 +828,8 @@ const triggerSet: TriggerSet<Data> = {
         'Acid Pinax/Lava Pinax': 'Acid/Lava Pinax',
         'Lava Pinax/Acid Pinax': 'Lava/Acid Pinax',
       },
-   },
-   {
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
