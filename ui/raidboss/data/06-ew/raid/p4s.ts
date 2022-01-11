@@ -391,7 +391,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Well',
-          de: 'Brunnen', // FIXME
+          de: 'Brunnen',
         },
         wellShift: {
           en: 'Well and Shift',
