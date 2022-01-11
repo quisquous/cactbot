@@ -150,7 +150,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Well Pinax',
-                    de: 'Brunnen', // FIXME
+                    de: 'Brunnen-Pinax',
                 },
             },
         },
