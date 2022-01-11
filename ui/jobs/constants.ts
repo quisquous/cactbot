@@ -277,6 +277,8 @@ export const kAbility = {
   EnchantedReprise: '4090',
   Embolden: '1D60',
   Manafication: '1D61',
+  Fleche: '1D5D',
+  ContreSixte: '1D5F',
   // BLU
   SongOfTorment: '2C7A',
   OffGuard: '2C93',

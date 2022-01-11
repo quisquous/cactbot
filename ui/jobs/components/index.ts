@@ -22,7 +22,7 @@ import { MCHComponent } from './mch';
 import { MNKComponent } from './mnk';
 import { NINComponent } from './nin';
 import { PLDComponent } from './pld';
-import { RDMComponent } from './rdm';
+import { RDM5xComponent, RDMComponent } from './rdm';
 import { RPRComponent } from './rpr';
 import { SAMComponent } from './sam';
 import { SCHComponent } from './sch';
@@ -133,6 +133,8 @@ export class ComponentManager {
         return new SMN5xComponent(this.o);
       if (job === 'AST')
         return new AST5xComponent(this.o);
+      if (job === 'RDM')
+        return new RDM5xComponent(this.o);
     }
 
     const Component = ComponentMap[job];
