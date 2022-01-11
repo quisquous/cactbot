@@ -102,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Jump?',
+          de: 'Sprung ködern?',
         },
       },
     },
@@ -113,6 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Earthshakers?',
+          de: 'Erdstoß ködern?',
         },
       },
     },
@@ -359,7 +361,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '69D7', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69D7', source: 'ヘスペロス', capture: false }),
       preRun: (data) => data.pinaxCount = (data.pinaxCount ?? 0) + 1,
-      alertText: (_data, _matches, output) => output.text!(),
+      durationSeconds: 6,
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Thunder',
@@ -388,6 +391,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Well',
+          de: 'Brunnen', // FIXME
         },
         wellShift: {
           en: 'Well and Shift',
@@ -411,13 +415,14 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.knockback(),
     },
     {
+
       id: 'P4S Acid Pinax',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69D4', source: 'Hesperos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '69D4', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69D4', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69D4', source: 'ヘスペロス', capture: false }),
-      response: Responses.spread(),
+      response: Responses.spread('alert'),
     },
     {
       id: 'P4S Lava Pinax',
@@ -449,6 +454,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'North Cleave',
+          de: 'Cleave in den Norden',
         },
       },
     },
@@ -463,6 +469,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'East Cleave',
+          de: 'Cleave in den Osten',
         },
       },
     },
@@ -477,6 +484,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'South Cleave',
+          de: 'Cleave in den Süden',
         },
       },
     },
@@ -491,6 +499,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'West Cleave',
+          de: 'Cleave in den Westen',
         },
       },
     },
@@ -501,10 +510,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69FD', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69FD', source: 'ヘスペロス', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'North Cape',
+          de: 'Umhang im Norden',
         },
       },
     },
@@ -515,10 +525,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69FF', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69FF', source: 'ヘスペロス', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'East Cape',
+          de: 'Umhang im Osten',
         },
       },
     },
@@ -529,10 +540,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69FE', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69FE', source: 'ヘスペロス', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'South Cape',
+          de: 'Umhang im Süden',
         },
       },
     },
@@ -543,10 +555,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A00', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A00', source: 'ヘスペロス', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'West Cape',
+          de: 'Umhang im Westen',
         },
       },
     },
@@ -579,15 +592,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Acting ${actingRole}',
+          de: 'Handel ale ${actingRole}',
         },
         dps: {
           en: 'DPS',
+          de: 'DPS',
         },
         healer: {
           en: 'Healer',
+          de: 'Heiler',
         },
         tank: {
           en: 'Tank',
+          de: 'Tank',
         },
       },
     },
@@ -602,6 +619,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         rolePositions: {
           en: 'Orb role positions',
+          de: 'Orb Rollenposition',
         },
       },
     },
@@ -624,9 +642,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${pinax} safe',
+          de: '${pinax} sicher',
         },
         acid: {
           en: 'Acid',
+          de: 'Gift',
         },
         lava: {
           en: 'Lava',
@@ -638,6 +658,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         well: {
           en: 'Well',
+          de: 'Brunnen',
         },
         thunder: {
           en: 'Thunder',
@@ -669,6 +690,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankbustersIn: {
           en: 'In (Tankbusters)',
+          de: 'Rein (Tankbusters)',
         },
         getOut: Outputs.out,
       },
@@ -684,6 +706,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankbustersOut: {
           en: 'Get out, tankbuster',
+          de: 'Raus, tankbuster',
         },
         getIn: Outputs.in,
       },
@@ -728,6 +751,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread at tethered thorn',
+          de: 'Verteilen bei der Dornenhecke',
         },
       },
     },
@@ -750,6 +774,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${num}',
+          de: '${num}',
         },
       },
     },
@@ -771,6 +796,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Thorn ${num}',
+          de: 'Dornen ${num}',
         },
       },
     },
@@ -804,30 +830,57 @@ const triggerSet: TriggerSet<Data> = {
         'Lava Pinax/Acid Pinax': 'Lava/Acid Pinax',
       },
     },
-    {
+   {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
         'Hesperos': 'Hesperos',
       },
       'replaceText': {
-        '\\(cleave\\)': '(Cleave)',
-        '\\(knockback\\)': '(Rückstoß)',
+        '--debuffs--': '--Debuffs--',
+        '--element debuffs--': '--Elementar-Debuffs--',
+        '--role debuffs--': '--Rollen-Debuffs--',
         'Acid Pinax': 'Säure-Pinax',
+        'Aetheric Chlamys': 'Ätherische Chlamys',
+        'Akanthai: Act 1': 'Akanthai: Erster Akt',
+        'Akanthai: Act 2': 'Akanthai: Zweiter Akt',
+        'Akanthai: Act 3': 'Akanthai: Dritter Akt',
+        'Akanthai: Act 4': 'Akanthai: Vierter Akt',
+        'Akanthai: Curtain Call': 'Akanthai: Vorhang',
+        'Akanthai: Finale': 'Akanthai: Finale',
         'Belone Bursts': 'Berstendes Belone',
         'Belone Coils': 'Gewundenes Belone',
         'Bloodrake': 'Blutharke',
-        'Burst(?!s)': 'Einschlag',
+        '(?<!Belone )Burst': 'Explosion',
+        'Cursed Casting': 'Fluches Frucht',
+        'Dark Design': 'Finsteres Formen',
         'Decollation': 'Enthauptung',
-        'Directional Shift': 'Himmelsrichtung-Schwingen',
+        'Director\'s Belone': 'Maskiertes Belone',
         'Elegant Evisceration': 'Adrette Ausweidung',
-        'Hell Skewer': 'Höllenspieß',
+        'Elemental Belone': 'Elementares Belone',
+        'Fleeting Impulse': 'Flüchtiger Impuls',
+        'Heart Stake': 'Herzenspfahl',
+        'Hell\'s Sting': 'Höllenstich',
+        'Hemitheos\'s Aero III': 'Hemitheisches Windga',
+        'Hemitheos\'s Dark IV': 'Hemitheisches Nachtka',
+        'Hemitheos\'s Fire III': 'Hemitheisches Feuga',
+        'Hemitheos\'s Fire IV': 'Hemitheisches Feuka',
+        'Hemitheos\'s Thunder III': 'Hemitheisches Blitzga',
+        'Hemitheos\'s Water IV': 'Hemitheisches Aquaka',
+        'Inversive Chlamys': 'Invertierte Chlamys',
+        'Kothornos Kick': 'Kothornoi-Tritt',
+        'Kothornos Quake': 'Kothornoi-Beben',
+        'Lava Pinax': 'Lava-Pinax',
         'Levinstrike Pinax': 'Donner-Pinax',
+        'Periaktoi': 'Periaktoi',
         '(?<!\\w )Pinax': 'Pinax',
+        'Searing Stream': 'Sengender Strom',
         'Setting the Scene': 'Vorhang auf',
         'Shifting Strike': 'Schwingenschlag',
+        'Ultimate Impulse': 'Ultimativer Impuls',
+        'Vengeful Belone': 'Rachsüchtiges Belone',
         'Well Pinax': 'Brunnen-Pinax',
-        'Westerly Shift': 'Schwingen gen Westen',
+        'Wreath of Thorns': 'Dornenhecke',
       },
     },
     {
@@ -837,25 +890,47 @@ const triggerSet: TriggerSet<Data> = {
         'Hesperos': 'Hespéros',
       },
       'replaceText': {
-        '\\(cleave\\)': '(cleave)',
-        '\\(knockback\\)': '(poussée)',
         'Acid Pinax': 'Pinax de poison',
+        'Aetheric Chlamys': 'Chlamyde d\'éther',
+        'Akanthai: Act 1': 'La Tragédie des épines : acte I',
+        'Akanthai: Act 2': 'La Tragédie des épines : acte II',
+        'Akanthai: Act 3': 'La Tragédie des épines : acte III',
+        'Akanthai: Act 4': 'La Tragédie des épines : acte IV',
+        'Akanthai: Curtain Call': 'La Tragédie des épines : rappel',
+        'Akanthai: Finale': 'La Tragédie des épines : acte final',
         'Belone Bursts': 'Bélos enchanté : explosion',
         'Belone Coils': 'Bélos enchanté : rotation',
         'Bloodrake': 'Racle de sang',
-        'Burst(?!s)': 'Explosion',
+        '(?<!Belone )Burst': 'Explosion',
+        'Cursed Casting': 'Malédiction immortelle',
+        'Dark Design': 'Dessein noir',
         'Decollation': 'Décollation',
-        'Directional Shift': 'Frappe mouvante vers un cardinal',
+        'Director\'s Belone': 'Bélos enchanté : persona',
         'Elegant Evisceration': 'Éviscération élégante',
-        'Hell Skewer': 'Embrochement infernal',
-        '(?<!/)Levinstrike Pinax(?!/)': 'Pinax de foudre',
-        'Levinstrike Pinax/Well Pinax': 'Pinax de foudre/eau',
+        'Elemental Belone': 'Bélos enchanté : élémentaire',
+        'Fleeting Impulse': 'Impulsion fugace',
+        'Heart Stake': 'Pieu dans le cœur',
+        'Hell\'s Sting': 'Pointe infernale',
+        'Hemitheos\'s Aero III': 'Méga Vent de l\'hémithéos',
+        'Hemitheos\'s Dark IV': 'Giga Ténèbres de l\'hémithéos',
+        'Hemitheos\'s Fire III': 'Méga Feu de l\'hémithéos',
+        'Hemitheos\'s Fire IV': 'Giga Feu de l\'hémithéos',
+        'Hemitheos\'s Thunder III': 'Méga Foudre de l\'hémithéos',
+        'Hemitheos\'s Water IV': 'Giga Eau de l\'hémithéos',
+        'Inversive Chlamys': 'Chlamyde retournée',
+        'Kothornos Kick': 'Coup de cothurne',
+        'Kothornos Quake': 'Piétinement de cothurne',
+        'Lava Pinax': 'Pinax de feu',
+        'Levinstrike Pinax': 'Pinax de foudre',
+        'Periaktoi': 'Périacte',
         '(?<!\\w )Pinax': 'Pinax',
+        'Searing Stream': 'Flux ardent',
         'Setting the Scene': 'Lever de rideau',
         'Shifting Strike': 'Frappe mouvante',
-        '(?<!/)Well Pinax(?!/)': 'Pinax d\'eau',
-        'Well Pinax/Levinstrike Pinax': 'Pinax d\'eau/foudre',
-        'Westerly Shift': 'Frappe mouvante vers l\'ouest',
+        'Ultimate Impulse': 'Impulsion ultime',
+        'Vengeful Belone': 'Bélos enchanté : vengeance',
+        'Well Pinax': 'Pinax d\'eau',
+        'Wreath of Thorns': 'Haie d\'épines',
       },
     },
     {
@@ -866,19 +941,46 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         'Acid Pinax': 'ピナクスポイズン',
+        'Aetheric Chlamys': 'エーテルクラミュス',
+        'Akanthai: Act 1': '茨の悲劇：序幕',
+        'Akanthai: Act 2': '茨の悲劇：第ニ幕',
+        'Akanthai: Act 3': '茨の悲劇：第三幕',
+        'Akanthai: Act 4': '茨の悲劇：第四幕',
+        'Akanthai: Curtain Call': '茨の悲劇：カーテンコール',
+        'Akanthai: Finale': '茨の悲劇：終幕',
         'Belone Bursts': 'エンチャンテッドペロネー：エクスプロージョン',
         'Belone Coils': 'エンチャンテッドペロネー：ラウンド',
         'Bloodrake': 'ブラッドレイク',
-        'Burst(?!s)': '大爆発',
+        '(?<!Belone )Burst': '爆発',
+        'Cursed Casting': '呪詛発動',
+        'Dark Design': 'ダークデザイン',
         'Decollation': 'デコレーション',
+        'Director\'s Belone': 'エンチャンテッドペロネー：ペルソナ',
         'Elegant Evisceration': 'エレガントイヴィセレーション',
-        'Hell Skewer': 'ヘルスキュアー',
+        'Elemental Belone': 'エンチャンテッドペロネー：エレメンタル',
+        'Fleeting Impulse': 'フリーティングインパルス',
+        'Heart Stake': 'ハートステイク',
+        'Hell\'s Sting': 'ヘルスティング',
+        'Hemitheos\'s Aero III': 'ヘーミテオス・エアロガ',
+        'Hemitheos\'s Dark IV': 'ヘーミテオス・ダージャ',
+        'Hemitheos\'s Fire III': 'ヘーミテオス・ファイガ',
+        'Hemitheos\'s Fire IV': 'ヘーミテオス・ファイジャ',
+        'Hemitheos\'s Thunder III': 'ヘーミテオス・サンダガ',
+        'Hemitheos\'s Water IV': 'ヘーミテオス・ウォタジャ',
+        'Inversive Chlamys': 'インヴァースクラミュス',
+        'Kothornos Kick': 'コトルヌスキック',
+        'Kothornos Quake': 'コトルヌスクエイク',
+        'Lava Pinax': 'ピナクスラーヴァ',
         'Levinstrike Pinax': 'ピナクスサンダー',
+        'Periaktoi': 'ペリアクトイ',
         '(?<!\\w )Pinax': 'ピナクス',
+        'Searing Stream': 'シアリングストリーム',
         'Setting the Scene': '劇場創造',
         'Shifting Strike': 'シフティングストライク',
+        'Ultimate Impulse': 'アルティメットインパルス',
+        'Vengeful Belone': 'エンチャンテッドペロネー：リベンジ',
         'Well Pinax': 'ピナクススプラッシュ',
-        'Westerly Shift': 'シフティングストライクW',
+        'Wreath of Thorns': 'ソーンヘッジ',
       },
     },
   ],
