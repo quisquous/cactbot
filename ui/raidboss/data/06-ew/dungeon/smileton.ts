@@ -30,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['6C5E', '673E'], source: 'Fratze', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['6C5E', '673E'], source: 'Visage Imperturbable', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6C5E', '673E'], source: 'フェイス', capture: false }),
+      suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
