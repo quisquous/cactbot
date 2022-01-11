@@ -182,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Well Pinax',
-          de: 'Brunnen', // FIXME
+          de: 'Brunnen-Pinax',
         },
       },
     },
