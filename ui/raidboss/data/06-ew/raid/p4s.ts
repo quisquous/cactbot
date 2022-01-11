@@ -415,7 +415,6 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.knockback(),
     },
     {
-
       id: 'P4S Acid Pinax',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69D4', source: 'Hesperos', capture: false }),
@@ -829,7 +828,7 @@ const triggerSet: TriggerSet<Data> = {
         'Acid Pinax/Lava Pinax': 'Acid/Lava Pinax',
         'Lava Pinax/Acid Pinax': 'Lava/Acid Pinax',
       },
-    },
+   },
    {
       'locale': 'de',
       'missingTranslations': true,
