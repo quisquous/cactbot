@@ -252,7 +252,7 @@ const triggerSet: TriggerSet<Data> = {
 
           // If you have tethers and debuff, you need everything
           const tetherRole = data.tetherRole ??= [];
-          const debuffRole = data.tetherRole ??= [];
+          const debuffRole = data.debuffRole ??= [];
           if (debuffRole[0] === tetherRole[0])
             return { ['infoText']: output.roleEverything!({ role: roles[roleOther] }) };
           return { ['infoText']: output.roleDebuffs!({ role: roles[roleOther] }) };
