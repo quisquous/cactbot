@@ -418,7 +418,7 @@ const triggerSet: TriggerSet<Data> = {
         return parseFloat(matches.castTime) - 2.4;
       },
       durationSeconds: (data) => data.wellShiftKnockback ? 2.4 : 5,
-      response: Responses.knockback(),
+      response: (data) => Responses.knockback(data.wellShiftKnockback ? 'alert' : 'info'),
     },
     {
       id: 'P4S Acid Pinax',
