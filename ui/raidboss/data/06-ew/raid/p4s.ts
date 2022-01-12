@@ -279,12 +279,17 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['AF2', 'AF3'], capture: true }),
       condition: Conditions.targetIsYou(),
       alertText: (data, matches, output) => {
-        // Call 'Pass Role Call' if not in the debuff role
-        const notdebuffRole = !(data.debuffRole ??= []).includes(data.role);
-        if (notdebuffRole && matches.effectId === 'AF2')
-          return output.passRoleCall!();
+        const debuffRole = (data.debuffRole ??= []).includes(data.role);
+        if (matches.effectId === 'AF2') {
+          // Call Pass Role Call if not in the debuff role
+          if (!debuffRole)
+            return output.passRoleCall!();
+          data.hasRoleCall = true;
+        }
+
         // AF3 is obtained after passing Role Call (AF2)
-        data.hasRoleCall = false;
+        if (matches.effectId === 'AF3')
+          data.hasRoleCall = false;
       },
       outputStrings: {
         passRoleCall: {
@@ -303,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 1.4,
       alertText: (data, _matches, output) => {
         const debuffRole = (data.debuffRole ??= []).includes(data.role);
-        if (!data.hasRoleCall && !debuffRole)
+        if (!data.hasRoleCall && debuffRole)
           return output.text!();
       },
       run: (data) => {
