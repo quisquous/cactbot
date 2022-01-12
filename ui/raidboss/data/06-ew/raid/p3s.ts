@@ -405,7 +405,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         middle: Outputs.middle,
         outIntercards: {
-          en: 'Out + Intercards',
+          en: 'Intercards + Out',
         },
         outCardinals: {
           en: 'Out + Cardinals',
