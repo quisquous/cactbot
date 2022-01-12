@@ -418,7 +418,16 @@ const triggerSet: TriggerSet<Data> = {
         return parseFloat(matches.castTime) - 2.4;
       },
       durationSeconds: (data) => data.wellShiftKnockback ? 2.4 : 5,
-      response: (data) => Responses.knockback(data.wellShiftKnockback ? 'alert' : 'info'),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          knockback: Outputs.knockback,
+        };
+
+        if (data.wellShiftKnockback)
+          return { ['alertText']: output.knockback!() };
+        return { ['infoText']: output.knockback!() };
+      },
     },
     {
       id: 'P4S Acid Pinax',
