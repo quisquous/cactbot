@@ -392,7 +392,7 @@ const triggerSet: TriggerSet<Data> = {
         if ((data.pinaxCount ?? 0) % 2)
           return output.text!();
         data.wellShiftKnockback = true;
-        return output.shiftedWell!();
+        return output.shiftWell!();
       },
       outputStrings: {
         text: {
