@@ -392,15 +392,15 @@ const triggerSet: TriggerSet<Data> = {
         if ((data.pinaxCount ?? 0) % 2)
           return output.text!();
         data.wellShiftKnockback = true;
-        return output.wellShift!();
+        return output.shiftedWell!();
       },
       outputStrings: {
         text: {
-          en: 'Well',
-          de: 'Brunnen',
+          en: 'Well Pinax',
+          de: 'Brunnen-Pinax',
         },
-        wellShift: {
-          en: 'Well and Shift',
+        shiftWell: {
+          en: 'Well then Shift',
         },
       },
     },
@@ -422,11 +422,18 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           knockback: Outputs.knockback,
+          middleKnockback: {
+            en: 'Middle Knockback',
+            de: 'Rückstoß von der Mitte',
+            fr: 'Poussée au milieu',
+            cn: '中间击退',
+            ko: '중앙에서 넉백',
+          },
         };
 
         if (data.wellShiftKnockback)
           return { ['alertText']: output.knockback!() };
-        return { ['infoText']: output.knockback!() };
+        return { ['infoText']: output.middleKnockback!() };
       },
     },
     {
