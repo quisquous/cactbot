@@ -134,7 +134,7 @@ Options.Triggers.push({
                     de: 'Blitz',
                     fr: 'Tempête',
                     ja: 'サンダー',
-                    cn: '闪雷风暴',
+                    cn: '雷',
                     ko: '번개',
                 },
             },
@@ -151,6 +151,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Well Pinax',
                     de: 'Brunnen-Pinax',
+                    cn: '水',
                 },
             },
         },
@@ -194,6 +195,7 @@ Options.Triggers.push({
                 text: {
                     en: 'North Cleave',
                     de: 'Cleave in den Norden',
+                    cn: '北 两侧',
                 },
             },
         },
@@ -209,6 +211,7 @@ Options.Triggers.push({
                 text: {
                     en: 'East Cleave',
                     de: 'Cleave in den Osten',
+                    cn: '东 两侧',
                 },
             },
         },
@@ -224,6 +227,7 @@ Options.Triggers.push({
                 text: {
                     en: 'South Cleave',
                     de: 'Cleave in den Süden',
+                    cn: '南 两侧',
                 },
             },
         },
@@ -239,6 +243,7 @@ Options.Triggers.push({
                 text: {
                     en: 'West Cleave',
                     de: 'Cleave in den Westen',
+                    cn: '西 两侧',
                 },
             },
         },
@@ -254,6 +259,7 @@ Options.Triggers.push({
                 text: {
                     en: 'North Cape',
                     de: 'Umhang im Norden',
+                    cn: '北 击退',
                 },
             },
         },
@@ -269,6 +275,7 @@ Options.Triggers.push({
                 text: {
                     en: 'East Cape',
                     de: 'Umhang im Osten',
+                    cn: '东 击退',
                 },
             },
         },
@@ -284,6 +291,7 @@ Options.Triggers.push({
                 text: {
                     en: 'South Cape',
                     de: 'Umhang im Süden',
+                    cn: '南 击退',
                 },
             },
         },
@@ -299,6 +307,7 @@ Options.Triggers.push({
                 text: {
                     en: 'West Cape',
                     de: 'Umhang im Westen',
+                    cn: '西 击退',
                 },
             },
         },
@@ -319,18 +328,22 @@ Options.Triggers.push({
                 text: {
                     en: 'Acting ${actingRole}',
                     de: 'Handel ale ${actingRole}',
+                    cn: '扮演 ${actingRole}',
                 },
                 dps: {
                     en: 'DPS',
                     de: 'DPS',
+                    cn: 'DPS',
                 },
                 healer: {
                     en: 'Healer',
                     de: 'Heiler',
+                    cn: '治疗',
                 },
                 tank: {
                     en: 'Tank',
                     de: 'Tank',
+                    cn: '坦克',
                 },
             },
         },
@@ -346,6 +359,7 @@ Options.Triggers.push({
                 rolePositions: {
                     en: 'Orb role positions',
                     de: 'Orb Rollenposition',
+                    cn: '职能撞球站位',
                 },
             },
         },
@@ -369,29 +383,32 @@ Options.Triggers.push({
                 text: {
                     en: '${pinax} safe',
                     de: '${pinax} sicher',
+                    cn: '${pinax} 安全',
                 },
                 acid: {
                     en: 'Acid',
                     de: 'Gift',
+                    cn: '毒',
                 },
                 lava: {
                     en: 'Lava',
                     de: 'Lava',
                     fr: 'Lave',
                     ja: 'ラーヴァ',
-                    cn: '岩浆',
+                    cn: '火',
                     ko: '용암',
                 },
                 well: {
                     en: 'Well',
                     de: 'Brunnen',
+                    cn: '水',
                 },
                 thunder: {
                     en: 'Thunder',
                     de: 'Blitz',
                     fr: 'Tempête',
                     ja: 'サンダー',
-                    cn: '闪雷风暴',
+                    cn: '雷',
                     ko: '번개',
                 },
             },
@@ -417,6 +434,7 @@ Options.Triggers.push({
                 tankbustersIn: {
                     en: 'In (Tankbusters)',
                     de: 'Rein (Tankbusters)',
+                    cn: '靠近 (坦克死刑)',
                 },
                 getOut: Outputs.out,
             },
@@ -433,6 +451,7 @@ Options.Triggers.push({
                 tankbustersOut: {
                     en: 'Get out, tankbuster',
                     de: 'Raus, tankbuster',
+                    cn: '去外面, 坦克死刑',
                 },
                 getIn: Outputs.in,
             },
@@ -478,6 +497,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Spread at tethered thorn',
                     de: 'Verteilen bei der Dornenhecke',
+                    cn: '在连线荆棘处散开',
                 },
             },
         },
@@ -502,6 +522,7 @@ Options.Triggers.push({
                 text: {
                     en: '${num}',
                     de: '${num}',
+                    cn: '${num}',
                 },
             },
         },
@@ -524,6 +545,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Thorn ${num}',
                     de: 'Dornen ${num}',
+                    cn: '荆棘 ${num}',
                 },
             },
         },
