@@ -36,7 +36,7 @@ const roleOutputStrings = {
   tankHealer: {
     en: 'Tank/Healer',
   },
-  dps:{
+  dps: {
     en: 'DPS',
     de: 'DPS',
   },
