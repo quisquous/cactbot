@@ -7,9 +7,9 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: 006[B-F] are probably fledgling headmarkers
-
 export interface Data extends RaidbossData {
+  deathsToll?: boolean;
+  deathsTollPending?: boolean;
   decOffset?: number;
 }
 
@@ -187,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P3S Bright Fire Marker',
+      id: 'P3S Bright Fire Marker and Fledgling Flights',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: Conditions.targetIsYou(),
@@ -202,6 +202,10 @@ const triggerSet: TriggerSet<Data> = {
           '0054': output.num6!(),
           '0055': output.num7!(),
           '0056': output.num8!(),
+          '006B': data.deathsToll ? output.west!() : output.east!(),
+          '006C': data.deathsToll ? output.east!() : output.west!(),
+          '006D': data.deathsToll ? output.north!() : output.south!(),
+          '006E': data.deathsToll ? output.south!() : output.north!(),
         }[id];
       },
       outputStrings: {
@@ -213,6 +217,10 @@ const triggerSet: TriggerSet<Data> = {
         num6: Outputs.num6,
         num7: Outputs.num7,
         num8: Outputs.num8,
+        east: Outputs.east,
+        west: Outputs.west,
+        south: Outputs.south,
+        north: Outputs.north,
       },
     },
     {
@@ -375,6 +383,35 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'P3S Death\'s Toll Number',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['ACA'], capture: true }),
+      // Force this to only run once without Conditions.targetIsYou()
+      // in case user is dead but needs to place fledgling flight properly
+      preRun: (data) => data.deathsToll = true,
+      // Delay callout until Ashen Eye start's casting
+      delaySeconds: 15.5,
+      infoText: (data, matches, output) => {
+        if (matches.target === data.me && !data.deathsTollPending) {
+          data.deathsTollPending = true;
+          return {
+            '01': output.outCardinals!(),
+            '02': output.outIntercards!(),
+            '04': output.middle!(),
+          }[matches.count];
+        }
+      },
+      outputStrings: {
+        middle: Outputs.middle,
+        outIntercards: {
+          en: 'Intercards + Out',
+        },
+        outCardinals: {
+          en: 'Out + Cardinals',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -395,6 +432,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '--fire expands--': '--Feuer breitet sich aus--',
+        '--giant fireplume\\?--': '--riesige Feuerfieder?--',
         'Ashen Eye': 'Aschener Blick',
         '(?<!\\w )Ashplume': 'Aschenfieder',
         'Beacons of Asphodelos': 'Asphodeische Flamme',

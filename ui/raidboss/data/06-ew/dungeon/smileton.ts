@@ -26,10 +26,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Smileton Face Off My Lawn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6C5E', '673E'], source: 'Face', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['6C5E', '673E'], source: 'Fratze', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['6C5E', '673E'], source: 'Visage Imperturbable', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['6C5E', '673E'], source: 'フェイス', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '673E', source: 'Face', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '673E', source: 'Fratze', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '673E', source: 'Visage Imperturbable', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '673E', source: 'フェイス', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6752', source: 'Bittelächeln', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6752', source: 'Béatotron', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6752', source: 'ビッグチーズ', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.aoe(),
     },
     {
       id: 'Smileton The Big Cheese Right Disassembler',
