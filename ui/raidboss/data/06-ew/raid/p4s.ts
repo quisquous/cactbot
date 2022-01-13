@@ -36,8 +36,9 @@ const roleOutputStrings = {
   tankHealer: {
     en: 'Tank/Healer',
   },
-  dps: {
+  dps:{
     en: 'DPS',
+    de: 'DPS',
   },
   roleTethers: {
     en: '${role} Tethers',
@@ -613,10 +614,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Acting ${actingRole}',
           de: 'Handel ale ${actingRole}',
         },
-        dps: {
-          en: 'DPS',
-          de: 'DPS',
-        },
+        dps: roleOutputStrings.dps,
         healer: {
           en: 'Healer',
           de: 'Heiler',
