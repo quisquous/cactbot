@@ -311,9 +311,6 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.hasRoleCall && debuffRole)
           return output.text!();
       },
-      run: (data) => {
-        delete data.debuffRole;
-      },
       outputStrings: {
         text: {
           en: 'Get Role Call',
