@@ -218,6 +218,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hespéros' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'ヘスペロス' }),
+      suppressSeconds: 1,
       preRun: (data) => {
         if (!data.beloneCoilsTwo) {
           delete data.debuffRole;
