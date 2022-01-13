@@ -218,7 +218,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hespéros' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'ヘスペロス' }),
-      suppressSeconds: 1,
       preRun: (data) => {
         if (!data.beloneCoilsTwo) {
           delete data.debuffRole;
@@ -226,6 +225,7 @@ const triggerSet: TriggerSet<Data> = {
           data.hasRoleCall = false;
         }
       },
+      suppressSeconds: 1,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = roleOutputStrings;
