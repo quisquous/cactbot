@@ -171,7 +171,7 @@ Options.Triggers.push({
             },
         },
         {
-            id: 'P3S Bright Fire Marker',
+            id: 'P3S Bright Fire Marker and Fledgling Flights',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({}),
             condition: Conditions.targetIsYou(),
@@ -186,6 +186,10 @@ Options.Triggers.push({
                     '0054': output.num6(),
                     '0055': output.num7(),
                     '0056': output.num8(),
+                    '006B': data.deathsToll ? output.west() : output.east(),
+                    '006C': data.deathsToll ? output.east() : output.west(),
+                    '006D': data.deathsToll ? output.north() : output.south(),
+                    '006E': data.deathsToll ? output.south() : output.north(),
                 }[id];
             },
             outputStrings: {
@@ -197,6 +201,10 @@ Options.Triggers.push({
                 num6: Outputs.num6,
                 num7: Outputs.num7,
                 num8: Outputs.num8,
+                east: Outputs.east,
+                west: Outputs.west,
+                south: Outputs.south,
+                north: Outputs.north,
             },
         },
         {
@@ -359,6 +367,35 @@ Options.Triggers.push({
                 },
             },
         },
+        {
+            id: 'P3S Death\'s Toll Number',
+            type: 'GainsEffect',
+            netRegex: NetRegexes.gainsEffect({ effectId: ['ACA'], capture: true }),
+            // Force this to only run once without Conditions.targetIsYou()
+            // in case user is dead but needs to place fledgling flight properly
+            preRun: (data) => data.deathsToll = true,
+            // Delay callout until Ashen Eye start's casting
+            delaySeconds: 15.5,
+            infoText: (data, matches, output) => {
+                if (matches.target === data.me && !data.deathsTollPending) {
+                    data.deathsTollPending = true;
+                    return {
+                        '01': output.outCardinals(),
+                        '02': output.outIntercards(),
+                        '04': output.middle(),
+                    }[matches.count];
+                }
+            },
+            outputStrings: {
+                middle: Outputs.middle,
+                outIntercards: {
+                    en: 'Intercards + Out',
+                },
+                outCardinals: {
+                    en: 'Out + Cardinals',
+                },
+            },
+        },
     ],
     timelineReplace: [
         {
@@ -379,6 +416,7 @@ Options.Triggers.push({
             },
             'replaceText': {
                 '--fire expands--': '--Feuer breitet sich aus--',
+                '--giant fireplume\\?--': '--riesige Feuerfieder?--',
                 'Ashen Eye': 'Aschener Blick',
                 '(?<!\\w )Ashplume': 'Aschenfieder',
                 'Beacons of Asphodelos': 'Asphodeische Flamme',
