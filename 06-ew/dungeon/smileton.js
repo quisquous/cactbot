@@ -148,7 +148,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6752', source: 'Bittelächeln', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6752', source: 'Béatotron', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6752', source: 'ビッグチーズ', capture: false }),
-            response: Responses.goRight(),
+            response: Responses.aoe(),
         },
         {
             id: 'Smileton The Big Cheese Right Disassembler',
