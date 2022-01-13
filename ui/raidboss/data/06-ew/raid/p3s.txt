@@ -16,6 +16,7 @@ hideall "--sync--"
 22.8 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
 
 34.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(66BE|66C0):/
+40.1 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:66BF:/
 44.6 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(6702|6703):/
 58.8 "Darkened Fire" sync / 1[56]:[^:]*:Phoinix:66B9:/
 69.0 "Brightened Fire x8" sync / 1[56]:[^:]*:Phoinix:66BC:/ duration 8.7
@@ -23,11 +24,13 @@ hideall "--sync--"
 104.7 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
 114.9 "Devouring Brand" sync / 1[56]:[^:]*:Phoinix:66CE:/
 122.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(66BE|66C0):/
+128.2 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:66BF:/
 131.9 "--fire expands--" sync / 1[56]:[^:]*:Phoinix:6D83:/
 132.2 "Searing Breeze" sync / 1[56]:[^:]*:Phoinix:6704:/
 140.4 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(6702|6703):/
 149.5 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
 157.6 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(66BE|66C0):/
+163.7 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:66BF:/
 
 162.2 "--untargetable--"
 172.0 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FB|66FC):/
