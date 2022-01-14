@@ -26,7 +26,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack for Puddle AOEs',
                     de: 'Stacken (Pfützen)',
-                    fr: 'Packez-vous pour l\'AoE',
+                    fr: 'Packez les zones au sol d\'AoEs',
                     ja: 'スタック',
                     cn: '集合放置AOE',
                     ko: '중앙에 모이기',
@@ -46,6 +46,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Bait Jump?',
                     de: 'Sprung ködern?',
+                    fr: 'Attirez le saut ?',
                 },
             },
         },
@@ -58,6 +59,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Bait Earthshakers?',
                     de: 'Erdstoß ködern?',
+                    fr: 'Orientez les secousses ?',
                 },
             },
         },
@@ -132,7 +134,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Thunder',
                     de: 'Blitz',
-                    fr: 'Tempête',
+                    fr: 'Foudre',
                     ja: 'サンダー',
                     cn: '雷',
                     ko: '번개',
@@ -151,6 +153,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Well Pinax',
                     de: 'Brunnen-Pinax',
+                    fr: 'Pinax d\'eau',
                     cn: '水',
                 },
             },
@@ -176,7 +179,7 @@ Options.Triggers.push({
                 groups: {
                     en: 'Healer Groups',
                     de: 'Heiler-Gruppen',
-                    fr: 'Healers en groupes',
+                    fr: 'Groupes sur les heals',
                     ja: 'ヒラに頭割り',
                     cn: '治疗分摊组',
                     ko: '힐러 그룹 쉐어',
@@ -195,6 +198,7 @@ Options.Triggers.push({
                 text: {
                     en: 'North Cleave',
                     de: 'Cleave in den Norden',
+                    fr: 'Cleave au nord',
                     cn: '北 两侧',
                 },
             },
@@ -211,6 +215,7 @@ Options.Triggers.push({
                 text: {
                     en: 'East Cleave',
                     de: 'Cleave in den Osten',
+                    fr: 'Cleave à l\'est',
                     cn: '东 两侧',
                 },
             },
@@ -227,6 +232,7 @@ Options.Triggers.push({
                 text: {
                     en: 'South Cleave',
                     de: 'Cleave in den Süden',
+                    fr: 'Cleave au sud',
                     cn: '南 两侧',
                 },
             },
@@ -243,6 +249,7 @@ Options.Triggers.push({
                 text: {
                     en: 'West Cleave',
                     de: 'Cleave in den Westen',
+                    fr: 'Cleave à l\'ouest',
                     cn: '西 两侧',
                 },
             },
@@ -259,6 +266,7 @@ Options.Triggers.push({
                 text: {
                     en: 'North Cape',
                     de: 'Umhang im Norden',
+                    fr: 'Cape au nord',
                     cn: '北 击退',
                 },
             },
@@ -275,6 +283,7 @@ Options.Triggers.push({
                 text: {
                     en: 'East Cape',
                     de: 'Umhang im Osten',
+                    fr: 'Cape à l\'est',
                     cn: '东 击退',
                 },
             },
@@ -291,6 +300,7 @@ Options.Triggers.push({
                 text: {
                     en: 'South Cape',
                     de: 'Umhang im Süden',
+                    fr: 'Cape au sud',
                     cn: '南 击退',
                 },
             },
@@ -307,6 +317,7 @@ Options.Triggers.push({
                 text: {
                     en: 'West Cape',
                     de: 'Umhang im Westen',
+                    fr: 'Cape à l\'ouest',
                     cn: '西 击退',
                 },
             },
@@ -328,21 +339,25 @@ Options.Triggers.push({
                 text: {
                     en: 'Acting ${actingRole}',
                     de: 'Handel ale ${actingRole}',
+                    fr: 'Acteur ${actingRole}',
                     cn: '扮演 ${actingRole}',
                 },
                 dps: {
                     en: 'DPS',
                     de: 'DPS',
+                    fr: 'DPS',
                     cn: 'DPS',
                 },
                 healer: {
                     en: 'Healer',
                     de: 'Heiler',
+                    fr: 'Healer',
                     cn: '治疗',
                 },
                 tank: {
                     en: 'Tank',
                     de: 'Tank',
+                    fr: 'Tank',
                     cn: '坦克',
                 },
             },
@@ -359,6 +374,7 @@ Options.Triggers.push({
                 rolePositions: {
                     en: 'Orb role positions',
                     de: 'Orb Rollenposition',
+                    fr: 'Positions pour les orbes de rôles',
                     cn: '职能撞球站位',
                 },
             },
@@ -383,17 +399,19 @@ Options.Triggers.push({
                 text: {
                     en: '${pinax} safe',
                     de: '${pinax} sicher',
+                    fr: '${pinax} safe',
                     cn: '${pinax} 安全',
                 },
                 acid: {
                     en: 'Acid',
                     de: 'Gift',
+                    fr: 'Poison',
                     cn: '毒',
                 },
                 lava: {
                     en: 'Lava',
                     de: 'Lava',
-                    fr: 'Lave',
+                    fr: 'Feu',
                     ja: 'ラーヴァ',
                     cn: '火',
                     ko: '용암',
@@ -401,12 +419,13 @@ Options.Triggers.push({
                 well: {
                     en: 'Well',
                     de: 'Brunnen',
+                    fr: 'Eau',
                     cn: '水',
                 },
                 thunder: {
                     en: 'Thunder',
                     de: 'Blitz',
-                    fr: 'Tempête',
+                    fr: 'Foudre',
                     ja: 'サンダー',
                     cn: '雷',
                     ko: '번개',
@@ -434,6 +453,7 @@ Options.Triggers.push({
                 tankbustersIn: {
                     en: 'In (Tankbusters)',
                     de: 'Rein (Tankbusters)',
+                    fr: 'Intérieur (Tank busters)',
                     cn: '靠近 (坦克死刑)',
                 },
                 getOut: Outputs.out,
@@ -451,6 +471,7 @@ Options.Triggers.push({
                 tankbustersOut: {
                     en: 'Get out, tankbuster',
                     de: 'Raus, tankbuster',
+                    fr: 'Sortez, Tank busters',
                     cn: '去外面, 坦克死刑',
                 },
                 getIn: Outputs.in,
@@ -497,6 +518,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Spread at tethered thorn',
                     de: 'Verteilen bei der Dornenhecke',
+                    fr: 'Dispersez-vous vers une épine liée',
                     cn: '在连线荆棘处散开',
                 },
             },
@@ -522,6 +544,7 @@ Options.Triggers.push({
                 text: {
                     en: '${num}',
                     de: '${num}',
+                    fr: '${num}',
                     cn: '${num}',
                 },
             },
@@ -545,6 +568,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Thorn ${num}',
                     de: 'Dornen ${num}',
+                    fr: 'Épine ${num}',
                     cn: '荆棘 ${num}',
                 },
             },
@@ -561,7 +585,7 @@ Options.Triggers.push({
                 protean: {
                     en: 'Protean',
                     de: 'Himmelsrichtungen',
-                    fr: 'Position',
+                    fr: 'Positions',
                     ja: '8方向散開',
                     cn: '分散站位',
                     ko: '정해진 위치로 산개',
@@ -634,12 +658,15 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Hesperos': 'Hespéros',
             },
             'replaceText': {
-                'Acid Pinax': 'Pinax de poison',
+                '--debuffs--': '--debuffs--',
+                '--element debuffs--': '--debuffs d\'éléments--',
+                '--role debuffs--': '--debuffs de rôles--',
+                '(?<!/)Acid Pinax(?!/)': 'Pinax de poison',
+                'Acid Pinax/Lava Pinax': 'Pinax de poison/feu',
                 'Aetheric Chlamys': 'Chlamyde d\'éther',
                 'Akanthai: Act 1': 'La Tragédie des épines : acte I',
                 'Akanthai: Act 2': 'La Tragédie des épines : acte II',
@@ -654,6 +681,8 @@ Options.Triggers.push({
                 'Cursed Casting': 'Malédiction immortelle',
                 'Dark Design': 'Dessein noir',
                 'Decollation': 'Décollation',
+                'Demigod Double': 'Gémellité du demi-dieu',
+                'Directional Shift': 'Frappe mouvante vers un cardinal',
                 'Director\'s Belone': 'Bélos enchanté : persona',
                 'Elegant Evisceration': 'Éviscération élégante',
                 'Elemental Belone': 'Bélos enchanté : élémentaire',
@@ -669,8 +698,11 @@ Options.Triggers.push({
                 'Inversive Chlamys': 'Chlamyde retournée',
                 'Kothornos Kick': 'Coup de cothurne',
                 'Kothornos Quake': 'Piétinement de cothurne',
-                'Lava Pinax': 'Pinax de feu',
-                'Levinstrike Pinax': 'Pinax de foudre',
+                '(?<!/)Lava Pinax(?!/)': 'Pinax de feu',
+                'Lava Pinax/Acid Pinax': 'Pinax de feu/poison',
+                '(?<!/)Levinstrike Pinax(?!/)': 'Pinax de foudre',
+                'Levinstrike Pinax/Well Pinax': 'Pinax de foudre/eau',
+                'Nearsight': 'Frappe introspéctive',
                 'Periaktoi': 'Périacte',
                 '(?<!\\w )Pinax': 'Pinax',
                 'Searing Stream': 'Flux ardent',
@@ -678,7 +710,8 @@ Options.Triggers.push({
                 'Shifting Strike': 'Frappe mouvante',
                 'Ultimate Impulse': 'Impulsion ultime',
                 'Vengeful Belone': 'Bélos enchanté : vengeance',
-                'Well Pinax': 'Pinax d\'eau',
+                '(?<!/)Well Pinax(?!/)': 'Pinax d\'eau',
+                'Well Pinax/Levinstrike Pinax': 'Pinax d\'eau/foudre',
                 'Wreath of Thorns': 'Haie d\'épines',
             },
         },

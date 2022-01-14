@@ -459,7 +459,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Darkblaze Twister': 'Tourbillon enflammé des Limbes',
                 'Fountain of Fire': 'Flamme de la vie',
@@ -469,6 +468,7 @@ Options.Triggers.push({
             },
             'replaceText': {
                 '--fire expands--': '--élargissement du feu--',
+                '--giant fireplume\\?--': '--immolation de feu géant ?--',
                 'Ashen Eye': 'Œil sombre',
                 '(?<!\\w )Ashplume': 'Immolation de feu ténébreux',
                 'Beacons of Asphodelos': 'Feu des Limbes',
