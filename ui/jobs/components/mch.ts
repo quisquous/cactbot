@@ -16,6 +16,7 @@ export class MCHComponent extends BaseComponent {
   batteryGauge: ResourceBox;
   drillBox: TimerBox;
   airAnchorBox: TimerBox;
+  chainSawBox: TimerBox;
   wildFireBox: TimerBox;
   stacksContainer: HTMLDivElement;
 
@@ -47,6 +48,11 @@ export class MCHComponent extends BaseComponent {
     this.airAnchorBox = this.bars.addProcBox({
       id: 'mch-procs-airanchor',
       fgColor: 'mch-color-airanchor',
+    });
+
+    this.chainSawBox = this.bars.addProcBox({
+      id: 'mch-procs-chainsaw',
+      fgColor: 'mch-color-chainsaw',
     });
 
     this.wildFireBox = this.bars.addProcBox({
@@ -140,6 +146,9 @@ export class MCHComponent extends BaseComponent {
       case kAbility.HotShot:
         this.airAnchorBox.duration = this.player.getActionCooldown(40000, 'skill');
         break;
+      case kAbility.ChainSaw:
+        this.chainSawBox.duration = this.player.getActionCooldown(60000, 'skill');
+        break;
       case kAbility.WildFire: {
         this.wildFireBox.duration = 10 + 0.9; // animation delay
         this.wildFireBox.threshold = 1000;
@@ -163,6 +172,8 @@ export class MCHComponent extends BaseComponent {
     this.drillBox.threshold = gcdSkill * 3 + 1;
     this.airAnchorBox.valuescale = gcdSkill;
     this.airAnchorBox.threshold = gcdSkill * 3 + 1;
+    this.chainSawBox.valuescale = gcdSkill;
+    this.chainSawBox.threshold = gcdSkill * 3 + 1;
     this.wildFireBox.valuescale = gcdSkill;
     this.wildFireBox.threshold = gcdSkill + 1;
   }
@@ -171,6 +182,7 @@ export class MCHComponent extends BaseComponent {
     this.comboTimer.duration = 0;
     this.drillBox.duration = 0;
     this.airAnchorBox.duration = 0;
+    this.chainSawBox.duration = 0;
     this.wildFireCounts = 0;
     this.wildFireActive = false;
     this.refreshWildFireGauge();

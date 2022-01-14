@@ -900,8 +900,12 @@ div.justbuffs div#procs-container {
   background-color: rgba(80, 200, 200, 0.5);
 }
 
+.mch-color-chainsaw {
+  background-color: rgba(190, 60, 100);
+}
+
 .mch-color-wildfire {
-  background-color: rgba(190, 80, 70);
+  background-color: rgba(160, 40, 20, 0.7);
 }
 
 .mch-color-wildfire.active {

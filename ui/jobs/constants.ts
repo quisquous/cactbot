@@ -215,6 +215,7 @@ export const kAbility = {
   WildFire: 'B3E',
   HeatBlast: '1CF2',
   AutoCrossbow: '4071',
+  ChainSaw: '64BC',
   // DNC
   Cascade: '3E75',
   Fountain: '3E76',
