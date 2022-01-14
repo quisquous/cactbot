@@ -104,6 +104,7 @@ hideall "--sync--"
 403.2 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
 412.4 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
 421.6 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
+432.5 "--untargetable--"
 437.6 "Decollation (enrage)" sync / 1[56]:[^:]*:Hesperos:6A0B:/
 
 
