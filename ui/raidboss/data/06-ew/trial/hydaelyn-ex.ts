@@ -539,7 +539,7 @@ const triggerSet: TriggerSet<Data> = {
         '--top-middle': '--En haut au milieu',
         '--middle': '--Milieu',
         'Anthelion': 'Anthélie',
-        'Aureole': 'Auréole',
+        'Aureole/Lateral Aureole': 'Auréole/Auréole latérale',
         'Beacon': 'Rayon de Lumière',
         'Bright Spectrum': 'Spectre lumineux',
         'Crystalline Blizzard III': 'Méga Glace cristallisée',
