@@ -24,6 +24,7 @@ export interface Data extends RaidbossData {
   tetherRole?: string[];
   debuffRole?: string[];
   hasRoleCall?: boolean;
+  ignoreChlamys?: boolean;
   pinaxCount?: number;
   wellShiftKnockback?: boolean;
   beloneCoilsTwo?: boolean;
@@ -216,15 +217,16 @@ const triggerSet: TriggerSet<Data> = {
       // 69DE is No Tank/Healer Belone Coils
       // 69DF is No DPS Belone Coils
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['69DE', '69DF'], source: 'ヘスペロス' }),
+      netRegex: NetRegexes.startsUsing({ id: ['69DE', '69DF', '69E0', '69E1'], source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['69DE', '69DF', '69E0', '69E1'], source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['69DE', '69DF', '69E0', '69E1'], source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['69DE', '69DF', '69E0', '69E1'], source: 'ヘスペロス' }),
       preRun: (data) => {
         if (!data.beloneCoilsTwo) {
           delete data.debuffRole;
           delete data.tetherRole;
           data.hasRoleCall = false;
+          data.ignoreChlamys = true;
         }
       },
       suppressSeconds: 1,
@@ -328,13 +330,13 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69ED', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69ED', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69ED', source: 'ヘスペロス', capture: false }),
+      condition: (data) => !data.ignoreChlamys,
       alertText: (data, _matches, output) => {
         const roles: { [role: string]: string } = {
           'dps': output.dps!(),
           'tank/healer': output.tankHealer!(),
           '???': output.unknown!(),
         };
-
         const dps = (data.tetherRole ??= []).includes('dps');
         if (dps)
           return output.roleTethers!({ role: roles['dps'] });
@@ -345,6 +347,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         delete data.tetherRole;
         data.hasRoleCall = false;
+        data.ignoreChlamys = false;
       },
       outputStrings: roleOutputStrings,
     },
