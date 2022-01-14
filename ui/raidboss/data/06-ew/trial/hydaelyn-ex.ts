@@ -558,7 +558,6 @@ const triggerSet: TriggerSet<Data> = {
         'Highest Holy': 'Miracle suprême',
         'Incandescence': 'Incandescence',
         'Infralateral Arc': 'Arc infralatéral',
-        'Lateral Aureole': 'Auréole latérale',
         'Light of the Crystal': 'Lumière du cristal',
         'Lightwave': 'Vague de Lumière',
         'Magos\'s Radiance': 'Radiance du mage',
