@@ -785,6 +785,31 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.sharedTankBuster(),
     },
     {
+      id: 'P4S Color Headmarkers',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: Conditions.targetIsYou(),
+      alertText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        return {
+          '012E': output.greenTether1!(),
+          '012F': output.orangeTether!(),
+          '012D': output.purpleTether!(),
+        }[id];
+      },
+      outputStrings: {
+        purpleTether: {
+          en: 'Purple Tether',
+        },
+        orangeTether: {
+          en: 'Orange Tether',
+        },
+        greenTether: {
+          en: 'Green Tether',
+        },
+      },
+    },
+    {
       id: 'P4S Ultimate Impulse',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A2C', source: 'Hesperos', capture: false }),
