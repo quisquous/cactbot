@@ -9,7 +9,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // Part Two
 // TODO: Wreath of Thorns 2 additional tether info?
-// TODO: Safe spot callouts for Wreath of Thorns 2?
 // TODO: Better Dark Design/tether break callouts
 // TODO: Wreath of Thorns 3 strategy (1 = melee, 2 = ranged) or
 //       something more intelligent such as tracking the vulnerabilities?
@@ -765,9 +764,11 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         // Collect all Hesperos entities up front, so when we find the tether on the
         // boss we can look up their spawn order
-        // North/South and East/West are the last four combatants
-        // Hesperos #38 #39 = East / west
-        // Hespoers #36 #37 = North / South
+        // North/South and East/West are the last four combatants in Act One
+        // Example:
+        //   Hesperos #38 #39 = East / west
+        //   Hespoers #36 #37 = North / South
+        // Act Two follows a similar pattern
         data.thornIds ??= [];
         data.thornIds.push(parseInt(matches.id, 16));
       },
@@ -783,7 +784,8 @@ const triggerSet: TriggerSet<Data> = {
       // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
       suppressSeconds: 7,
       infoText: (data, matches, output) => {
-        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
+        (data.thornIds ??= []).sort((a, b) => a - b);
+        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
         const thornMap: { [thorn: number]: string } = {
           35: output.text!({ dir1: output.north!(), dir2: output.south!() }),
           36: output.text!({ dir1: output.north!(), dir2: output.south!() }),
@@ -881,6 +883,41 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6A2C', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A2C', source: 'ヘスペロス', capture: false }),
       response: Responses.bigAoe(),
+    },
+    {
+      id: 'P4S Act Two Safe Spots',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '2',
+      // Tethers come out Cardinals (0 seconds), (3s) Other Cardinals
+      suppressSeconds: 4,
+      infoText: (data, matches, output) => {
+        (data.thornIds ??= []).sort((a, b) => a - b);
+        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
+        const thornMap: { [thorn: number]: string } = {
+          31: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          32: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          33: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          34: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          35: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          36: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          37: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          38: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+        };
+        return thornMap[thorn];
+      },
+      outputStrings: {
+        text: {
+          en: '${dir1}/${dir2} first',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
     },
     {
       id: 'P4S Heart Stake',
