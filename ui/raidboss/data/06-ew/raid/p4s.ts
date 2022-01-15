@@ -40,6 +40,7 @@ const roleOutputStrings = {
   dps: {
     en: 'DPS',
     de: 'DPS',
+    fr: 'DPS',
     cn: 'DPS',
   },
   roleTethers: {
@@ -86,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack for Puddle AOEs',
           de: 'Stacken (Pfützen)',
-          fr: 'Packez-vous pour l\'AoE',
+          fr: 'Packez les zones au sol d\'AoEs',
           ja: 'スタック',
           cn: '集合放置AOE',
           ko: '중앙에 모이기',
@@ -106,6 +107,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Jump?',
           de: 'Sprung ködern?',
+          fr: 'Attirez le saut ?',
         },
       },
     },
@@ -118,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Earthshakers?',
           de: 'Erdstoß ködern?',
+          fr: 'Orientez les secousses ?',
         },
       },
     },
@@ -376,7 +379,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Thunder',
           de: 'Blitz',
-          fr: 'Tempête',
+          fr: 'Foudre',
           ja: 'サンダー',
           cn: '雷',
           ko: '번개',
@@ -401,6 +404,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Well Pinax',
           de: 'Brunnen-Pinax',
+          fr: 'Pinax d\'eau',
           cn: '水',
         },
         shiftWell: {
@@ -461,7 +465,7 @@ const triggerSet: TriggerSet<Data> = {
         groups: {
           en: 'Healer Groups',
           de: 'Heiler-Gruppen',
-          fr: 'Healers en groupes',
+          fr: 'Groupes sur les heals',
           ja: 'ヒラに頭割り',
           cn: '治疗分摊组',
           ko: '힐러 그룹 쉐어',
@@ -480,6 +484,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'North Cleave',
           de: 'Cleave in den Norden',
+          fr: 'Cleave au nord',
           cn: '北 两侧',
         },
       },
@@ -496,6 +501,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'East Cleave',
           de: 'Cleave in den Osten',
+          fr: 'Cleave à l\'est',
           cn: '东 两侧',
         },
       },
@@ -512,6 +518,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'South Cleave',
           de: 'Cleave in den Süden',
+          fr: 'Cleave au sud',
           cn: '南 两侧',
         },
       },
@@ -528,6 +535,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'West Cleave',
           de: 'Cleave in den Westen',
+          fr: 'Cleave à l\'ouest',
           cn: '西 两侧',
         },
       },
@@ -544,6 +552,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'North Cape',
           de: 'Umhang im Norden',
+          fr: 'Cape au nord',
           cn: '北 击退',
         },
       },
@@ -560,6 +569,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'East Cape',
           de: 'Umhang im Osten',
+          fr: 'Cape à l\'est',
           cn: '东 击退',
         },
       },
@@ -576,6 +586,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'South Cape',
           de: 'Umhang im Süden',
+          fr: 'Cape au sud',
           cn: '南 击退',
         },
       },
@@ -592,6 +603,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'West Cape',
           de: 'Umhang im Westen',
+          fr: 'Cape à l\'ouest',
           cn: '西 击退',
         },
       },
@@ -626,17 +638,20 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Acting ${actingRole}',
           de: 'Handel ale ${actingRole}',
+          fr: 'Acteur ${actingRole}',
           cn: '扮演 ${actingRole}',
         },
         dps: roleOutputStrings.dps,
         healer: {
           en: 'Healer',
           de: 'Heiler',
+          fr: 'Healer',
           cn: '治疗',
         },
         tank: {
           en: 'Tank',
           de: 'Tank',
+          fr: 'Tank',
           cn: '坦克',
         },
       },
@@ -653,6 +668,7 @@ const triggerSet: TriggerSet<Data> = {
         rolePositions: {
           en: 'Orb role positions',
           de: 'Orb Rollenposition',
+          fr: 'Positions pour les orbes de rôles',
           cn: '职能撞球站位',
         },
       },
@@ -677,17 +693,19 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${pinax} safe',
           de: '${pinax} sicher',
+          fr: '${pinax} safe',
           cn: '${pinax} 安全',
         },
         acid: {
           en: 'Acid',
           de: 'Gift',
+          fr: 'Poison',
           cn: '毒',
         },
         lava: {
           en: 'Lava',
           de: 'Lava',
-          fr: 'Lave',
+          fr: 'Feu',
           ja: 'ラーヴァ',
           cn: '火',
           ko: '용암',
@@ -695,12 +713,13 @@ const triggerSet: TriggerSet<Data> = {
         well: {
           en: 'Well',
           de: 'Brunnen',
+          fr: 'Eau',
           cn: '水',
         },
         thunder: {
           en: 'Thunder',
           de: 'Blitz',
-          fr: 'Tempête',
+          fr: 'Foudre',
           ja: 'サンダー',
           cn: '雷',
           ko: '번개',
@@ -728,6 +747,7 @@ const triggerSet: TriggerSet<Data> = {
         tankbustersIn: {
           en: 'In (Tankbusters)',
           de: 'Rein (Tankbusters)',
+          fr: 'Intérieur (Tank busters)',
           cn: '靠近 (坦克死刑)',
         },
         getOut: Outputs.out,
@@ -745,6 +765,7 @@ const triggerSet: TriggerSet<Data> = {
         tankbustersOut: {
           en: 'Get out, tankbuster',
           de: 'Raus, tankbuster',
+          fr: 'Sortez, Tank busters',
           cn: '去外面, 坦克死刑',
         },
         getIn: Outputs.in,
@@ -791,6 +812,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread at tethered thorn',
           de: 'Verteilen bei der Dornenhecke',
+          fr: 'Dispersez-vous vers une épine liée',
           cn: '在连线荆棘处散开',
         },
       },
@@ -815,6 +837,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${num}',
           de: '${num}',
+          fr: '${num}',
           cn: '${num}',
         },
       },
@@ -838,6 +861,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Thorn ${num}',
           de: 'Dornen ${num}',
+          fr: 'Épine ${num}',
           cn: '荆棘 ${num}',
         },
       },
@@ -854,7 +878,7 @@ const triggerSet: TriggerSet<Data> = {
         protean: {
           en: 'Protean',
           de: 'Himmelsrichtungen',
-          fr: 'Position',
+          fr: 'Positions',
           ja: '8方向散開',
           cn: '分散站位',
           ko: '정해진 위치로 산개',
@@ -927,12 +951,15 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hesperos': 'Hespéros',
       },
       'replaceText': {
-        'Acid Pinax': 'Pinax de poison',
+        '--debuffs--': '--debuffs--',
+        '--element debuffs--': '--debuffs d\'éléments--',
+        '--role debuffs--': '--debuffs de rôles--',
+        '(?<!/)Acid Pinax(?!/)': 'Pinax de poison',
+        'Acid Pinax/Lava Pinax': 'Pinax de poison/feu',
         'Aetheric Chlamys': 'Chlamyde d\'éther',
         'Akanthai: Act 1': 'La Tragédie des épines : acte I',
         'Akanthai: Act 2': 'La Tragédie des épines : acte II',
@@ -947,6 +974,8 @@ const triggerSet: TriggerSet<Data> = {
         'Cursed Casting': 'Malédiction immortelle',
         'Dark Design': 'Dessein noir',
         'Decollation': 'Décollation',
+        'Demigod Double': 'Gémellité du demi-dieu',
+        'Directional Shift': 'Frappe mouvante vers un cardinal',
         'Director\'s Belone': 'Bélos enchanté : persona',
         'Elegant Evisceration': 'Éviscération élégante',
         'Elemental Belone': 'Bélos enchanté : élémentaire',
@@ -962,8 +991,11 @@ const triggerSet: TriggerSet<Data> = {
         'Inversive Chlamys': 'Chlamyde retournée',
         'Kothornos Kick': 'Coup de cothurne',
         'Kothornos Quake': 'Piétinement de cothurne',
-        'Lava Pinax': 'Pinax de feu',
-        'Levinstrike Pinax': 'Pinax de foudre',
+        '(?<!/)Lava Pinax(?!/)': 'Pinax de feu',
+        'Lava Pinax/Acid Pinax': 'Pinax de feu/poison',
+        '(?<!/)Levinstrike Pinax(?!/)': 'Pinax de foudre',
+        'Levinstrike Pinax/Well Pinax': 'Pinax de foudre/eau',
+        'Nearsight': 'Frappe introspéctive',
         'Periaktoi': 'Périacte',
         '(?<!\\w )Pinax': 'Pinax',
         'Searing Stream': 'Flux ardent',
@@ -971,7 +1003,8 @@ const triggerSet: TriggerSet<Data> = {
         'Shifting Strike': 'Frappe mouvante',
         'Ultimate Impulse': 'Impulsion ultime',
         'Vengeful Belone': 'Bélos enchanté : vengeance',
-        'Well Pinax': 'Pinax d\'eau',
+        '(?<!/)Well Pinax(?!/)': 'Pinax d\'eau',
+        'Well Pinax/Levinstrike Pinax': 'Pinax d\'eau/foudre',
         'Wreath of Thorns': 'Haie d\'épines',
       },
     },
