@@ -144,7 +144,7 @@ hideall "--sync--"
 1122.5 "Hemitheos's Thunder III x2" sync / 1[56]:[^:]*:Hesperos:(6A0D|6A0E):/
 1122.5 "Hemitheos's Fire IV" #sync / 1[56]:[^:]*:Hesperos:6A0D:/
 1123.2 "Hemitheos's Fire III x2" #sync / 1[56]:[^:]*:Hesperos:6A18:/
-1124.2 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Hesperos:6A1B:/
+1124.2 "Hemitheos's Aero III" #sync / 1[56]:[^:]*:Hesperos:6A1B:/
 1129.7 "Ultimate Impulse" sync / 1[56]:[^:]*:Hesperos:6A2C:/
 
 # Act 3 - Thorns 3 plus Jump, Shakers, and Knockback
