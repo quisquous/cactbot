@@ -780,7 +780,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
       netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
       condition: (data) => data.act === '1',
-      suppressSeconds: 1,
+      // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
+      suppressSeconds: 7,
       infoText: (data, matches, output) => {
         const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap: { [thorn: number]: string } = {
