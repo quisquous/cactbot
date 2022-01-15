@@ -277,8 +277,9 @@ const triggerSet: TriggerSet<Data> = {
           data.hasRoleCall = false;
           data.ignoreChlamys = true;
         }
-        else 
+        else {
           data.ignoreChlamys = false;
+        }
       },
       suppressSeconds: 1,
       response: (data, matches, output) => {
