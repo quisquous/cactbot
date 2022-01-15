@@ -247,6 +247,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Second Coils = Debuffs later
         if (data.beloneCoilsTwo) {
+          data.ignoreChlamys = false;
           if (roleTowers === 'dps') {
             (data.debuffRole ??= []).push('healer');
             data.debuffRole.push('tank');
@@ -348,9 +349,10 @@ const triggerSet: TriggerSet<Data> = {
         return output.roleTethers!({ role: roles['???'] });
       },
       run: (data) => {
-        delete data.tetherRole;
-        data.hasRoleCall = false;
-        data.ignoreChlamys = false;
+        if (!data.beloneCoilsTwo) {
+          delete data.tetherRole;
+          data.hasRoleCall = false;
+        }
       },
       outputStrings: roleOutputStrings,
     },
