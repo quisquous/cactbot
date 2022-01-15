@@ -216,52 +216,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: roleOutputStrings,
     },
     {
-      id: 'P4S Bloodrake Store',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.ability({ id: '69D8', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.ability({ id: '69D8', source: 'ヘスペロス' }),
-      condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
-      suppressSeconds: 1,
-      infoText: (data, matches, output) => {
-        const roles: { [role: string]: string } = {
-          'dps': output.dps!(),
-          'tank/healer': output.tankHealer!(),
-        };
-
-        const roleRaked = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
-        const roleOther = data.party.isDPS(matches.target) ? 'tank/healer' : 'dps';
-
-        // Second bloodrake = Debuffs later
-        if ((data.bloodrakeCounter ?? 0) === 2) {
-          if (roleRaked === 'dps') {
-            (data.debuffRole ??= []).push('healer');
-            data.debuffRole.push('tank');
-          } else {
-            (data.debuffRole ??= []).push(roleOther);
-          }
-
-          // May end up needing both tether and debuff
-          const tetherRole = data.tetherRole ??= [];
-          const debuffRole = data.debuffRole ??= [];
-          if (tetherRole[0] === debuffRole[0])
-            return output.roleEverything!({ role: roles[roleOther] });
-          return output.roleDebuffs!({ role: roles[roleOther] });
-        }
-
-        // First bloodrake = Tethers later
-        if (roleRaked === 'dps') {
-          (data.tetherRole ??= []).push('healer');
-          data.tetherRole.push('tank');
-        } else {
-          (data.tetherRole ??= []).push(roleOther);
-        }
-        return output.roleTethers!({ role: roles[roleOther] });
-      },
-      outputStrings: roleOutputStrings,
-    },
-    {
       id: 'P4S Belone Coils',
       // 69DE is No Tank/Healer Belone Coils
       // 69DF is No DPS Belone Coils
@@ -276,8 +230,7 @@ const triggerSet: TriggerSet<Data> = {
           delete data.tetherRole;
           data.hasRoleCall = false;
           data.ignoreChlamys = true;
-        }
-        else {
+        } else {
           data.ignoreChlamys = false;
         }
       },
