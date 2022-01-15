@@ -8,8 +8,7 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Part Two
-// TODO: Wreath of Thorns 1 callout safe spot order (N/S or E/W)
-// TODO: Wreath of Thorns 2 headmarkers and tethers
+// TODO: Wreath of Thorns 2 additional tether info?
 // TODO: Safe spot callouts for Wreath of Thorns 2?
 // TODO: Better Dark Design/tether break callouts
 // TODO: Wreath of Thorns 3 strategy (1 = melee, 2 = ranged) or
@@ -29,6 +28,8 @@ export interface Data extends RaidbossData {
   wellShiftKnockback?: boolean;
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
+  act?: string;
+  thornIds?: number[];
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
 }
@@ -737,6 +738,68 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6A2D', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A2D', source: 'ヘスペロス', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'P4S Act',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'ヘスペロス' }),
+      run: (data, matches) => {
+        const actMap: { [id: string]: string } = {
+          '6A0C': '1',
+          '6EB4': '2',
+          '6EB5': '3',
+          '6EB6': '4',
+          '6EB7': 'finale',
+          '6A36': 'curtain',
+        };
+        data.act = actMap[matches.id];
+      },
+    },
+    {
+      id: 'P4S Thorns Collector',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '10744' }),
+      run: (data, matches) => {
+        // Collect all Hesperos entities up front, so when we find the tether on the
+        // boss we can look up their spawn order
+        // North/South and East/West are the last four combatants
+        // Hesperos #38 #39 = East / west
+        // Hespoers #36 #37 = North / South
+        data.thornIds ??= [];
+        data.thornIds.push(parseInt(matches.id, 16));
+      },
+    },
+    {
+      id: 'P4S Act One Safe Spots',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '1',
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
+        const thornMap: { [thorn: number]: string } = {
+          35: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          36: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          37: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          38: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+        };
+        return thornMap[thorn];
+      },
+      outputStrings: {
+        text: {
+          en: '${dir1}/${dir2} first',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
     },
     {
       id: 'P4S Nearsight',
