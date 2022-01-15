@@ -792,7 +792,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
         return {
-          '012E': output.greenTether1!(),
+          '012E': output.greenTether!(),
           '012F': output.orangeTether!(),
           '012D': output.purpleTether!(),
         }[id];
