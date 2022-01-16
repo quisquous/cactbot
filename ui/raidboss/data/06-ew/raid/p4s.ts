@@ -775,7 +775,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Thunder',
           de: 'Blitz',
           fr: 'Foudre',
-          ja: 'サンダー',
+          cn: '雷',
           ja: '雷/青',
           ko: '번개/파랑',
         },
