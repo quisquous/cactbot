@@ -430,7 +430,7 @@ const triggerSet: TriggerSet<Data> = {
           ko: '물 피낙스',
         },
         shiftWell: {
-          en: 'Well then Shift',
+          en: 'Well => Shift',
           ja: '水、その後シフティング',
           ko: '물, 그리고 보스 기믹',
         },
