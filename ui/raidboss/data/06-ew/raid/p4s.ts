@@ -125,10 +125,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Jump ${dir}?',
-          de: 'Sprung ködern ?', // FIXME
-          fr: 'Attirez le saut ?', // FIXME
-          ja: 'ジャンプ誘導?', // FIXME
-          ko: '점프 유도?', // FIXME
+          de: 'Sprung ködern ${dir}?', // FIXME
+          fr: 'Attirez le saut ${dir}?', // FIXME
+          ja: 'ジャンプ誘導 ${dir}?', // FIXME
+          ko: '점프 유도 ${dir}?', // FIXME
         },
         east: Outputs.east,
         west: Outputs.west,
