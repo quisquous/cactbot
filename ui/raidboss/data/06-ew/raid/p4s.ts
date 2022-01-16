@@ -975,6 +975,41 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.bigAoe(),
     },
     {
+      id: 'P4S Act Three Bait Order',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '3',
+      // Tethers come out East or West (0 seconds), (3s) Middle knockack, (6) Opposite Cardinal
+      suppressSeconds: 7,
+      infoText: (data, matches, output) => {
+        (data.thornIds ??= []).sort((a, b) => a - b);
+        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
+        const thornMap: { [thorn: number]: string } = {
+          31: output.text!({ dir1: output.east!() }),
+          32: output.text!({ dir1: output.east!() }),
+          33: output.text!({ dir1: output.east!() }),
+          34: output.text!({ dir1: output.east!() }),
+          35: output.text!({ dir1: output.west!() }),
+          36: output.text!({ dir1: output.west!() }),
+          37: output.text!({ dir1: output.west!() }),
+          38: output.text!({ dir1: output.west!() }),
+        };
+        return thornMap[thorn];
+      },
+      outputStrings: {
+        text: {
+          en: 'Bait Jump ${dir1} first',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
       id: 'P4S Heart Stake',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A2B', source: 'Hesperos' }),
