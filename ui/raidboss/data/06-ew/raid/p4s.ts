@@ -29,6 +29,8 @@ export interface Data extends RaidbossData {
   bloodrakeCounter?: number;
   act?: string;
   thornIds?: number[];
+  jumpDir1?: string;
+  kickTwo?: boolean;
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
 }
@@ -111,18 +113,26 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Kothornos Kick/,
       beforeSeconds: 5,
       infoText: (data, _matches, output) => {
-        if (data.role === 'tank' || data.role === 'healer')
-          return;
-        return output.text!();
+        let jumpDir;
+        if (data.jumpDir1 === 'east')
+          jumpDir = !data.kickTwo ? output.east!() : output.west!();
+        if (data.jumpDir1 === 'west')
+          jumpDir = !data.kickTwo ? output.west!() : output.east!();
+
+        return output.text!({ dir: jumpDir });
       },
+      run: (data) => data.kickTwo = true,
       outputStrings: {
         text: {
-          en: 'Bait Jump?',
-          de: 'Sprung ködern?',
-          fr: 'Attirez le saut ?',
-          ja: 'ジャンプ誘導?',
-          ko: '점프 유도?',
+          en: 'Bait Jump ${dir}?',
+          de: 'Sprung ködern ?', // FIXME
+          fr: 'Attirez le saut ?', // FIXME
+          ja: 'ジャンプ誘導?', // FIXME
+          ko: '점프 유도?', // FIXME
         },
+        east: Outputs.east,
+        west: Outputs.west,
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -997,6 +1007,19 @@ const triggerSet: TriggerSet<Data> = {
           37: output.text!({ dir1: output.west!() }),
           38: output.text!({ dir1: output.west!() }),
         };
+
+        const thornMapDirs: { [thorn: number]: string } = {
+          31: 'east',
+          32: 'east',
+          33: 'east',
+          34: 'east',
+          35: 'west',
+          36: 'west',
+          37: 'west',
+          38: 'west',
+        };
+
+        data.jumpDir1 = thornMapDirs[thorn];
         return thornMap[thorn];
       },
       outputStrings: {
