@@ -646,8 +646,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Thorn ${num}',
           de: 'Dornen ${num}',
-          ja: '羽 ${num}',
           fr: 'Épine ${num}',
+          ja: '羽 ${num}',
           cn: '荆棘 ${num}',
           ko: '가시 ${num}',
         },
