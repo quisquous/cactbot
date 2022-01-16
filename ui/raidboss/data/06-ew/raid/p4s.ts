@@ -1003,9 +1003,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Jump ${dir1} first',
         },
-        north: Outputs.north,
         east: Outputs.east,
-        south: Outputs.south,
         west: Outputs.west,
       },
     },
