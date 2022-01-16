@@ -955,7 +955,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: Conditions.targetIsYou(),
-      alertText: (data, matches, output) => {
+      infoText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
         return {
           '012C': output.blueTether!(),
