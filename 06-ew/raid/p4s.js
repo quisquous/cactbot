@@ -619,7 +619,7 @@ Options.Triggers.push({
                     ja: '羽 ${num}',
                     cn: '荆棘 ${num}',
                     ko: '가시 ${num}',
-                  },
+                },
             },
         },
         {
