@@ -542,11 +542,11 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => data.role === 'tank' ? output.tankbustersOut!() : output.getIn!(),
       outputStrings: {
         tankbustersOut: {
-          en: 'Get out, tankbuster',
-          de: 'Raus, tankbuster',
-          fr: 'Sortez, Tank busters',
+          en: 'Out (Tankbusters)',
+          de: 'Raus, tankbuster', // FIXME
+          fr: 'Sortez, Tank busters', // FIXME
           ja: 'タンク離れる',
-          cn: '去外面, 坦克死刑',
+          cn: '去外面, 坦克死刑', // FIXME
           ko: '탱커 바깥쪽으로',
         },
         getIn: Outputs.in,
