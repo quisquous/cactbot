@@ -524,7 +524,7 @@ const triggerSet: TriggerSet<Data> = {
         tankbustersIn: {
           en: 'In (Tankbusters)',
           de: 'Rein (Tankbusters)',
-          fr: 'Intérieur (Tank busters)',
+          fr: 'À l\'intérieur (Tank busters)',
           ja: 'タンク近づく',
           cn: '靠近 (坦克死刑)',
           ko: '탱커 안쪽으로',
@@ -544,7 +544,7 @@ const triggerSet: TriggerSet<Data> = {
         tankbustersOut: {
           en: 'Out (Tankbusters)',
           de: 'Raus, tankbuster', // FIXME
-          fr: 'Sortez, Tank busters', // FIXME
+          fr: 'À l\'extérieur, Tank busters',
           ja: 'タンク離れる',
           cn: '去外面, 坦克死刑', // FIXME
           ko: '탱커 바깥쪽으로',
