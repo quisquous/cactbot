@@ -28,6 +28,7 @@ export interface Data extends RaidbossData {
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   act?: string;
+  thornIds?: number[];
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
 }
@@ -810,6 +811,51 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P4S Thorns Collector',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '10744' }),
+      run: (data, matches) => {
+        // Collect all Hesperos entities up front, so when we find the tether on the
+        // boss we can look up their spawn order
+        // North/South and East/West are the last four combatants
+        // Hesperos #38 #39 = East / west
+        // Hespoers #36 #37 = North / South
+        data.thornIds ??= [];
+        data.thornIds.push(parseInt(matches.id, 16));
+      },
+    },
+    {
+      id: 'P4S Act One Safe Spots',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '1',
+      // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
+      suppressSeconds: 7,
+      infoText: (data, matches, output) => {
+        (data.thornIds ??= []).sort((a, b) => a - b);
+        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
+        const thornMap: { [thorn: number]: string } = {
+          35: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          36: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          37: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          38: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+        };
+        return thornMap[thorn];
+      },
+      outputStrings: {
+        text: {
+          en: '${dir1}/${dir2} first',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
       id: 'P4S Nearsight',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A26', source: 'Hesperos', capture: false }),
@@ -858,6 +904,66 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '6E78', source: 'ヘスペロス' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.sharedTankBuster(),
+    },
+    {
+      id: 'P4S Act Two Safe Spots',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '2',
+      // Tethers come out Cardinals (0 seconds), (3s) Other Cardinals
+      suppressSeconds: 4,
+      infoText: (data, matches, output) => {
+        (data.thornIds ??= []).sort((a, b) => a - b);
+        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
+        const thornMap: { [thorn: number]: string } = {
+          31: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          32: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          33: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          34: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          35: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          36: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          37: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          38: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+        };
+        return thornMap[thorn];
+      },
+      outputStrings: {
+        text: {
+          en: '${dir1}/${dir2} first',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'P4S Color Headmarkers',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: Conditions.targetIsYou(),
+      alertText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        return {
+          '012E': output.greenTether!(),
+          '012F': output.orangeTether!(),
+          '012D': output.purpleTether!(),
+        }[id];
+      },
+      outputStrings: {
+        purpleTether: {
+          en: 'Purple Tether',
+        },
+        orangeTether: {
+          en: 'Orange Tether',
+        },
+        greenTether: {
+          en: 'Green Tether',
+        },
+      },
     },
     {
       id: 'P4S Ultimate Impulse',
