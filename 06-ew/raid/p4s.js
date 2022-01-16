@@ -510,7 +510,7 @@ Options.Triggers.push({
             alertText: (data, _matches, output) => data.role === 'tank' ? output.tankbustersOut() : output.getIn(),
             outputStrings: {
                 tankbustersOut: {
-                    en: 'Get out, tankbuster',
+                    en: 'Out (Tankbusters)',
                     de: 'Raus, tankbuster',
                     fr: 'Sortez, Tank busters',
                     ja: 'タンク離れる',
