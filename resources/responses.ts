@@ -289,7 +289,7 @@ export const Responses = {
       if (target === data.me)
         return output.sharedTankbusterOnYou?.();
       if (data.role === 'tank' || data.role === 'healer')
-        return output.sharedTankbusterOnTarget?.({ player: target });
+        return output.sharedTankbusterOnTarget?.({ player: data.ShortName(target) });
     };
 
     const otherFunc = (data: Data, matches: TargetedMatches, output: Output) => {
