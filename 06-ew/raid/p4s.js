@@ -492,7 +492,7 @@ Options.Triggers.push({
                 tankbustersIn: {
                     en: 'In (Tankbusters)',
                     de: 'Rein (Tankbusters)',
-                    fr: 'Intérieur (Tank busters)',
+                    fr: 'À l\'intérieur (Tank busters)',
                     ja: 'タンク近づく',
                     cn: '靠近 (坦克死刑)',
                     ko: '탱커 안쪽으로',
@@ -512,7 +512,7 @@ Options.Triggers.push({
                 tankbustersOut: {
                     en: 'Out (Tankbusters)',
                     de: 'Raus, tankbuster',
-                    fr: 'Sortez, Tank busters',
+                    fr: 'À l\'extérieur, Tank busters',
                     ja: 'タンク離れる',
                     cn: '去外面, 坦克死刑',
                     ko: '탱커 바깥쪽으로',
