@@ -27,7 +27,6 @@ export interface Data extends RaidbossData {
   wellShiftKnockback?: boolean;
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
-  act?: string;
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
 }
@@ -789,25 +788,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6A2D', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A2D', source: 'ヘスペロス', capture: false }),
       response: Responses.aoe(),
-    },
-    {
-      id: 'P4S Act',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'ヘスペロス' }),
-      run: (data, matches) => {
-        const actMap: { [id: string]: string } = {
-          '6A0C': '1',
-          '6EB4': '2',
-          '6EB5': '3',
-          '6EB6': '4',
-          '6EB7': 'finale',
-          '6A36': 'curtain',
-        };
-        data.act = actMap[matches.id];
-      },
     },
     {
       id: 'P4S Nearsight',
