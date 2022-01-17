@@ -1120,6 +1120,22 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P4S Curtain Call Debuffs',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AF4', capture: true }),
+      condition: (data) => Conditions.targetIsYou() && data.act === 'curtain',
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return (data.role === 'dps' ? duration - 12: duration - 6);
+      },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Break Tether',
+        },
+      },
+    },
+    {
       id: 'P4S Hell\'s Sting',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A1E', source: 'Hesperos', capture: false }),
