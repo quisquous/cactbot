@@ -352,18 +352,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '69ED', source: 'ヘスペロス', capture: false }),
       condition: (data) => !data.ignoreChlamys,
       alertText: (data, _matches, output) => {
-        const roles: { [role: string]: string } = {
-          'dps': output.dps!(),
-          'tank/healer': output.tankHealer!(),
-          '???': output.unknown!(),
-        };
-
         const dps = (data.tetherRole ??= []).includes('dps');
         if (dps)
-          return output.roleTethers!({ role: roles['dps'] });
+          return output.roleTethers!({ role: output.dps!() });
         if (data.tetherRole.length)
-          return output.roleTethers!({ role: roles['tank/healer'] });
-        return output.roleTethers!({ role: roles['???'] });
+          return output.roleTethers!({ role: output.tankHealer!() });
+        return output.roleTethers!({ role: output.unknown!() });
       },
       run: (data) => {
         if (!data.beloneCoilsTwo) {
