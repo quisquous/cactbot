@@ -955,28 +955,33 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: Conditions.targetIsYou(),
-      infoText: (data, matches, output) => {
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          purpleTether: {
+            en: 'Purple Tether',
+          },
+          orangeTether: {
+            en: 'Orange Tether',
+          },
+          greenTether: {
+            en: 'Green Tether',
+          },
+          blueTether: {
+            en: 'Blue Tether',
+          },
+        };
         const id = getHeadmarkerId(data, matches);
-        return {
-          '012C': output.blueTether!(),
-          '012D': output.purpleTether!(),
-          '012E': output.greenTether!(),
-          '012F': output.orangeTether!(),
-        }[id];
-      },
-      outputStrings: {
-        purpleTether: {
-          en: 'Purple Tether',
-        },
-        orangeTether: {
-          en: 'Orange Tether',
-        },
-        greenTether: {
-          en: 'Green Tether',
-        },
-        blueTether: {
-          en: 'Blue Tether',
-        },
+        console.error(`Got headmarker ${id} from ${matches.id}`);
+        
+        const headMarkers: { [id: string]: string } = { 
+          '00D7': output.blueTether!(),
+          '00D8': output.purpleTether!(),
+          '00D9': output.greenTether!(),
+          '00DA': output.orangeTether!(),
+        };
+        
+        return { infoText: headMarkers[id] };
       },
     },
     {
