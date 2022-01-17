@@ -70,9 +70,9 @@ hideall "--sync--"
 230.8 "Well Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F7|69FB):/
 230.8 "Lava Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F6|69FA):/
 230.8 "Levinstrike Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F8|69FC):/
-243.0 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 
 # Towers
+243.0 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 250.1 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
 260.3 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69ED:/
 260.9 "Burst" sync / 1[56]:[^:]*:Hesperos:(69DE|69DF|69E0|69E1):/
@@ -176,7 +176,7 @@ hideall "--sync--"
 1316.5 "Fleeting Impulse x8" sync / 1[56]:[^:]*:Hesperos:6EB8:/ duration 9.8
 1327.3 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Hesperos:6A1B:/
 1336.0 "Wreath of Thorns 6" sync / 1[56]:[^:]*:Hesperos:6A35:/
-1339.1 "Hemitheos's Thunder III x8" sync / 1[56]:[^:]*:Hesperos:6A0E:/ duration 8.4
+1339.1 "Hemitheos's Thunder III x8" #sync / 1[56]:[^:]*:Hesperos:6A0E:/ duration 8.4
 1353.3 "Nearsight/Farsight" sync / 1[56]:[^:]*:Hesperos:(6A28|6DDB):/
 1365.4 "Searing Stream" sync / 1[56]:[^:]*:Hesperos:6A2D:/
 1374.5 "Demigod Double" sync / 1[56]:[^:]*:Hesperos:6E78:/
