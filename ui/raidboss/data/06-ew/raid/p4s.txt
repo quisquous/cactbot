@@ -70,17 +70,17 @@ hideall "--sync--"
 230.8 "Well Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F7|69FB):/
 230.8 "Lava Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F6|69FA):/
 230.8 "Levinstrike Pinax" #sync / 1[56]:[^:]*:Hesperos:(69F8|69FC):/
-243.0 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 
 # Towers
+243.0 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 250.1 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
 260.3 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69ED:/
-260.9 "Burst" sync / 1[56]:[^:]*:Hesperos:(69DE|69DF):/
+260.9 "Burst" sync / 1[56]:[^:]*:Hesperos:(69DE|69DF|69E0|69E1):/
 261.1 "Inversive Chlamys" #sync / 1[56]:[^:]*:Hesperos:6F15:/
 267.4 "Aetheric Chlamys" sync / 1[56]:[^:]*:Hesperos:69EC:/
 275.6 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:69D8:/
 283.7 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
-294.5 "Burst" sync / 1[56]:[^:]*:Hesperos:(69DE|69DF):/
+294.5 "Burst" sync / 1[56]:[^:]*:Hesperos:(69DE|69DF|69E0|69E1):/
 297.9 "Director's Belone" sync / 1[56]:[^:]*:Hesperos:69E6:/
 298.7 "--debuffs--" sync / 1[56]:[^:]*:Hesperos:69E7:/
 314.1 "Inversive Chlamys" sync / 1[56]:[^:]*:Hesperos:69ED:/
@@ -104,6 +104,7 @@ hideall "--sync--"
 403.2 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
 412.4 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
 421.6 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A09:/
+432.5 "--untargetable--"
 437.6 "Decollation (enrage)" sync / 1[56]:[^:]*:Hesperos:6A0B:/
 
 
@@ -111,7 +112,12 @@ hideall "--sync--"
 #
 # -p 6A2D:1016
 # -ii 6A0D 6A0E 6A14 6A16 6A18 6A1C 6A1E 6A1F 6A28 6DDB 6A22 6A26 6A27 6A29
-#     6A25
+#     6A25 6CD7 6A0F 6A1A
+
+# Note: Thorn mechanics have a pass (first) and fail (second) spell.
+#       Hemitheos's Thunder III (6A0E, 6A0F)
+#       Hemitheos's Fire III (6A18, 6CD7)
+#       Hemitheos's Aero III (6A1B, 6A1A)
 
 1000.0 "Start"
 1011.0 "--sync--" sync / 14:[^:]*:Hesperos:6A2D:/ window 1011,0
@@ -130,15 +136,15 @@ hideall "--sync--"
 1083.0 "Akanthai: Act 2" sync / 1[56]:[^:]*:Hesperos:6EB4:/
 1092.2 "Demigod Double" sync / 1[56]:[^:]*:Hesperos:6E78:/
 1102.4 "Wreath of Thorns 2" sync / 1[56]:[^:]*:Hesperos:6A30:/
-1110.4 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hesperos:6A16:/
+1110.4 "Hemitheos's Dark IV" #sync / 1[56]:[^:]*:Hesperos:6A16:/
 1113.7 "Dark Design" sync / 1[56]:[^:]*:Hesperos:6A2A:/
 1115.5 "Hemitheos's Fire IV" sync / 1[56]:[^:]*:Hesperos:(6A0D|6A0E):/
-1115.5 "Hemitheos's Thunder III" #sync / 1[56]:[^:]*:Hesperos:6A0E:/
-1115.9 "Hemitheos's Fire III" #sync / 1[56]:[^:]*:Hesperos:6A18:/
-1122.5 "Hemitheos's Thunder III x2" sync / 1[56]:[^:]*:Hesperos:(6A0E|6A0D):/
-1122.5 "Hemitheos's Fire IV x2" #sync / 1[56]:[^:]*:Hesperos:6A0D:/
-1123.2 "Hemitheos's Fire III" #sync / 1[56]:[^:]*:Hesperos:6A18:/
-1124.2 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Hesperos:6A1B:/
+1115.5 "Hemitheos's Thunder III x2" #sync / 1[56]:[^:]*:Hesperos:6A0E:/
+1115.9 "Hemitheos's Fire III x2" #sync / 1[56]:[^:]*:Hesperos:6A18:/
+1122.5 "Hemitheos's Thunder III x2" sync / 1[56]:[^:]*:Hesperos:(6A0D|6A0E):/
+1122.5 "Hemitheos's Fire IV" #sync / 1[56]:[^:]*:Hesperos:6A0D:/
+1123.2 "Hemitheos's Fire III x2" #sync / 1[56]:[^:]*:Hesperos:6A18:/
+1124.2 "Hemitheos's Aero III" #sync / 1[56]:[^:]*:Hesperos:6A1B:/
 1129.7 "Ultimate Impulse" sync / 1[56]:[^:]*:Hesperos:6A2C:/
 
 # Act 3 - Thorns 3 plus Jump, Shakers, and Knockback
@@ -170,7 +176,7 @@ hideall "--sync--"
 1316.5 "Fleeting Impulse x8" sync / 1[56]:[^:]*:Hesperos:6EB8:/ duration 9.8
 1327.3 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Hesperos:6A1B:/
 1336.0 "Wreath of Thorns 6" sync / 1[56]:[^:]*:Hesperos:6A35:/
-1339.1 "Hemitheos's Thunder III x8" sync / 1[56]:[^:]*:Hesperos:6A0E:/ duration 8.4
+1339.1 "Hemitheos's Thunder III x8" #sync / 1[56]:[^:]*:Hesperos:6A0E:/ duration 8.4
 1353.3 "Nearsight/Farsight" sync / 1[56]:[^:]*:Hesperos:(6A28|6DDB):/
 1365.4 "Searing Stream" sync / 1[56]:[^:]*:Hesperos:6A2D:/
 1374.5 "Demigod Double" sync / 1[56]:[^:]*:Hesperos:6E78:/
