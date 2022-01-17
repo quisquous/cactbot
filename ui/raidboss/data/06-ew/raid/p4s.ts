@@ -861,8 +861,8 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Hesperos: null combatants`);
           return;
         }
-        if (combatantData.combatants.length < 38) {
-          console.error(`Hesperos: expected at least 38 combatants got ${combatantData.combatants.length}`);
+        if (combatantData.combatants.length < 39) {
+          console.error(`Hesperos: expected at least 39 combatants got ${combatantData.combatants.length}`);
           return;
         }
 
