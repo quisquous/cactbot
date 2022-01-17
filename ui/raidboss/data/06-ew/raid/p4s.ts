@@ -972,15 +972,14 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
         const id = getHeadmarkerId(data, matches);
-        console.error(`Got headmarker ${id} from ${matches.id}`);
-        
-        const headMarkers: { [id: string]: string } = { 
+
+        const headMarkers: { [id: string]: string } = {
           '00D7': output.blueTether!(),
           '00D8': output.purpleTether!(),
           '00D9': output.greenTether!(),
           '00DA': output.orangeTether!(),
         };
-        
+
         return { infoText: headMarkers[id] };
       },
     },
