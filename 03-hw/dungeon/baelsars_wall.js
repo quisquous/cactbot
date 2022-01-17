@@ -123,7 +123,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Break chain on ${player}',
                     de: 'Kette von ${player} brechen',
-                    fr: 'Cassez les chaînes de ${player}',
+                    fr: 'Cassez la chaînes sur ${player}',
                     ja: '${player}の線を取る',
                     cn: '截断${player}的线',
                     ko: '${player}의 사슬 부수기',
