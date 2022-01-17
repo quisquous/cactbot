@@ -1,11 +1,14 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // Part Two
 // TODO: Wreath of Thorns 2 additional tether info?
@@ -822,16 +825,57 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P4S Thorns Collector',
-      type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '10744' }),
-      run: (data, matches) => {
-        // Collect all Hesperos entities up front, so when we find the tether on the
-        // boss we can look up their spawn order
-        // North/South and East/West are the last four combatants
-        // Hesperos #38 #39 = East / west
-        // Hespoers #36 #37 = North / South
-        data.thornIds ??= [];
-        data.thornIds.push(parseInt(matches.id, 16));
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6A0C', source: 'Hespéros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6A0C', source: 'ヘスペロス', capture: false }),
+      promise: async (data, _matches, _output) => {
+        // Collect all Hesperos entities up front
+        const hesperosLocaleNames: LocaleText = {
+          en: 'Hesperos',
+          de: 'Hesperos',
+          fr: 'Hespéros',
+          ja: 'ヘスペロス',
+        };
+
+        // select the Hesperos combatants
+        let combatantName = null;
+        combatantName = hesperosLocaleNames[data.parserLang];
+
+        let combatantData = null;
+        if (combatantName) {
+          combatantData = await callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantName],
+          });
+        }
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantData === null) {
+          console.error(`Hesperos: null data`);
+          return;
+        }
+        if (!combatantData.combatants) {
+          console.error(`Hesperos: null combatants`);
+          return;
+        }
+        if (combatantData.combatants.length < 38) {
+          console.error(`Hesperos: expected at least 38 combatants got ${combatantData.combatants.length}`);
+          return;
+        }
+
+        // the lowest eight Hesperos IDs are the thorns that tether the boss
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortedCombatantData = combatantData.combatants.sort(sortCombatants);
+
+        if (!sortedCombatantData)
+          throw new UnreachableCode();
+
+        sortedCombatantData.forEach( (combatant: PluginCombatantState) => {
+          (data.thornIds ??= []).push(combatant.ID ?? 0);
+        });
       },
     },
     {
@@ -845,8 +889,7 @@ const triggerSet: TriggerSet<Data> = {
       // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
       suppressSeconds: 7,
       infoText: (data, matches, output) => {
-        (data.thornIds ??= []).sort((a, b) => a - b);
-        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap: { [thorn: number]: string } = {
           35: output.text!({ dir1: output.north!(), dir2: output.south!() }),
           36: output.text!({ dir1: output.north!(), dir2: output.south!() }),
@@ -926,8 +969,7 @@ const triggerSet: TriggerSet<Data> = {
       // Tethers come out Cardinals (0 seconds), (3s) Other Cardinals
       suppressSeconds: 4,
       infoText: (data, matches, output) => {
-        (data.thornIds ??= []).sort((a, b) => a - b);
-        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap: { [thorn: number]: string } = {
           31: output.text!({ dir1: output.north!(), dir2: output.south!() }),
           32: output.text!({ dir1: output.north!(), dir2: output.south!() }),
@@ -1003,8 +1045,7 @@ const triggerSet: TriggerSet<Data> = {
       // Tethers come out East or West (0 seconds), (3s) Middle knockack, (6) Opposite Cardinal
       suppressSeconds: 7,
       infoText: (data, matches, output) => {
-        (data.thornIds ??= []).sort((a, b) => a - b);
-        const thorn = data.thornIds.indexOf(parseInt(matches.sourceId, 16));
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap: { [thorn: number]: string } = {
           31: output.text!({ dir1: output.east!() }),
           32: output.text!({ dir1: output.east!() }),
