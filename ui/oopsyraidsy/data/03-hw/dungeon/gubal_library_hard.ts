@@ -85,6 +85,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Shocked Imp',
             de: 'Schockierter Imp',
+            fr: 'Kappa choqué(e)',
             ja: 'カッパを解除しなかった',
             cn: '河童状态吃了暴雷',
             ko: '물요정 상태 해제하지 않음',
