@@ -406,9 +406,11 @@ const triggerSet: TriggerSet<Data> = {
         middle: Outputs.middle,
         outIntercards: {
           en: 'Intercards + Out',
+          fr: 'Intercadinal + Extérieur',
         },
         outCardinals: {
           en: 'Out + Cardinals',
+          fr: 'Extérieur + Cardinal',
         },
       },
     },
