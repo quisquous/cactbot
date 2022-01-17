@@ -46,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
         breakGaolOn: {
           en: 'Break Gaol on ${player}',
           de: 'Zerstöre das Gefängnis von ${player}',
+          fr: 'Brisez la geôle sur ${player}',
           ja: '${player}にジェイル',
           cn: '石牢点${player}',
           ko: '${player} 돌감옥 해제',
@@ -53,6 +54,7 @@ const triggerSet: TriggerSet<Data> = {
         gaolOnYou: {
           en: 'Gaol on YOU',
           de: 'Gefängnis auf DIR',
+          fr: 'Geôle sur VOUS',
           ja: '自分にジェイル',
           cn: '石牢点名',
           ko: '돌감옥 대상자',
