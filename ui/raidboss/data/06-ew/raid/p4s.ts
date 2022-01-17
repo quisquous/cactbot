@@ -1127,7 +1127,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => Conditions.targetIsYou() && data.act === 'curtain',
       delaySeconds: (data, matches) => {
         const duration = parseFloat(matches.duration);
-        return (data.role === 'dps' ? duration - 12: duration - 6);
+        return (data.role === 'dps' ? duration - 12 : duration - 6);
       },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
