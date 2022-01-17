@@ -873,7 +873,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!sortedCombatantData)
           throw new UnreachableCode();
 
-        sortedCombatantData.forEach( (combatant: PluginCombatantState) => {
+        sortedCombatantData.forEach((combatant: PluginCombatantState) => {
           (data.thornIds ??= []).push(combatant.ID ?? 0);
         });
       },
