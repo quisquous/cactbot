@@ -31,6 +31,7 @@ export interface Data extends RaidbossData {
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   act?: string;
+  colorHeadmarkerIds?: number[];
   thornIds?: number[];
   jumpDir1?: string;
   kickTwo?: boolean;
@@ -78,13 +79,23 @@ const roleOutputStrings = {
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-// The first 1B marker in the encounter is an Elegant Evisceration? (00DA?).
+// The first 1B marker in the encounter is an Elegant Evisceration (00DA).
+// The first 1B marker in the phase 2 encounter could be one of three:
+// Purple, Green, Orange color tethers (012D, 012E, 012F)
 const firstHeadmarker = parseInt('00DA', 16);
+const purpleMarker = parseInt('012D', 16);
+
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
-  if (typeof data.decOffset === 'undefined')
-    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  if (typeof data.decOffset === 'undefined') {
+    if (typeof data.act === 'undefined')
+      data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+    else {
+      data.colorHeadmarkerIds ??= [];
+      data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
+    }
+  }
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
   // Fortunately, we don't have to worry about whether or not this is robust,
   // since we know all the IDs that will be present in the encounter.
@@ -982,7 +993,23 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Color Headmarkers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: Conditions.targetIsYou(),
+      condition: (data) => Conditions.targetIsYou() && (data.act !== undefined),
+      preRun: (data, matches) => {
+        // Generate decOffset if not yet defined, essentially this part runs only in Act 2
+        if (data.decOffset === undefined) {
+          const id = parseInt(matches.id, 16)
+
+          // Find our color headmarkers IDs for the instance
+          data.colorHeadmarkerIds ??= [];
+          data.colorHeadmarkerIds.push(id);
+
+          // Sort to get purple headmarker first
+          if (data.colorHeadmarkerIds.length === 3) {
+            data.colorHeadmarkerIds.sort((a, b) => a - b);
+          };
+        }
+      },
+      delaySeconds: (data) => (data.decOffset) ? 0 : 0.1,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
