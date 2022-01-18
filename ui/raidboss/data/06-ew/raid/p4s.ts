@@ -1200,8 +1200,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'B7D', capture: true }),
       condition: (data) => data.act === 'curtain',
-      suppressSeconds: 1,
       preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
+      suppressSeconds: 1,
       delaySeconds: (_data, matches) => parseFloat(matches.duration),
       alarmText: (data, _matches, output) => {
         if (data.curtainCallGroup === 1 && data.curtainCallTracker === 2)
