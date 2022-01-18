@@ -186,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Headmarker Tracker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.decOffset === undefined,
+      condition: (data) => data.decOffset === undefined && data.act === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
     },
