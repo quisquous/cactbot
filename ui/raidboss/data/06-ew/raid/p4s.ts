@@ -1178,6 +1178,9 @@ const triggerSet: TriggerSet<Data> = {
           group: {
             en: 'Tether Group ${num}',
           },
+          group1: {
+            en: 'Group ${num} Tethers',
+          },
           1: Outputs.num1,
           2: Outputs.num2,
           3: Outputs.num3,
@@ -1187,29 +1190,26 @@ const triggerSet: TriggerSet<Data> = {
         data.curtainCallGroup = (Math.ceil(parseFloat(matches.duration)) - 2) / 10;
 
         if (parseFloat(matches.duration) < 13)
-          return { alarmText: output.group!({ num: data.curtainCallGroup }) };
+          return { alarmText: output.group1!({ num: data.curtainCallGroup }) };
         return { infoText: output.group!({ num: data.curtainCallGroup }) };
       },
     },
     {
-      id: 'P4S Curtain Call Breaks',
-      // Call out break tether for the one player remaining in the group
+      id: 'P4S Curtain Call Reminders',
+      // Alarms for the other groups
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'B7D', capture: true }),
       condition: (data) => data.act === 'curtain',
       suppressSeconds: 1,
       preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
       delaySeconds: (_data, matches) => parseFloat(matches.duration),
-      infoText: (data, _matches, output) => {
-        // Currently this calls it to two players where only one should have a tether remaining
-        if (data.curtainCallGroup === 1 && data.curtainCallTracker === 1)
-          return output.breakTether!();
-        if (data.curtainCallGroup === 2 && data.curtainCallTracker === 3)
-          return output.breakTether!();
-        if (data.curtainCallGroup === 3 && data.curtainCallTracker === 5)
-          return output.breakTether!();
-        if (data.curtainCallGroup === 4 && data.curtainCallTracker === 7)
-          return output.breakTether!();
+      alarmText: (data, _matches, output) => {
+        if (data.curtainCallGroup === 1 && data.curtainCallTracker === 2)
+          return output.group!();
+        if (data.curtainCallGroup === 2 && data.curtainCallTracker === 4)
+          return output.group!();
+        if (data.curtainCallGroup === 3 && data.curtainCallTracker === 6)
+          return output.group!();
       },
       run: (data) => {
         // Clear once 8 tethers have been broken
@@ -1217,8 +1217,8 @@ const triggerSet: TriggerSet<Data> = {
           data.curtainCallTracker = 0;
       },
       outputStrings: {
-        breakTether: {
-          en: 'Break Tether?',
+        group: {
+          en: 'Group ${num} Tethers',
         },
       },
     },
