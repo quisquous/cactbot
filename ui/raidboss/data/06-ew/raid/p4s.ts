@@ -1002,10 +1002,10 @@ const triggerSet: TriggerSet<Data> = {
         const id = getHeadmarkerId(data, matches);
 
         const headMarkers: { [id: string]: string } = {
-          '00D7': output.blueTether!(),
-          '00D8': output.purpleTether!(),
-          '00D9': output.greenTether!(),
-          '00DA': output.orangeTether!(),
+          '012C': output.blueTether!(),
+          '012D': output.purpleTether!(),
+          '012E': output.greenTether!(),
+          '012F': output.orangeTether!(),
         };
 
         return { infoText: headMarkers[id] };
