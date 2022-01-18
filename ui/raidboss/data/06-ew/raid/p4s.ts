@@ -88,14 +88,13 @@ const purpleMarker = parseInt('012D', 16);
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
-  if (typeof data.decOffset === 'undefined') {
+  if (typeof data.decOffset === 'undefined')
     if (typeof data.act === 'undefined')
       data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
     else {
       data.colorHeadmarkerIds ??= [];
       data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
     }
-  }
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
   // Fortunately, we don't have to worry about whether or not this is robust,
   // since we know all the IDs that will be present in the encounter.
@@ -995,18 +994,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.headMarker({}),
       condition: (data) => Conditions.targetIsYou() && (data.act !== undefined),
       preRun: (data, matches) => {
-        // Generate decOffset if not yet defined, essentially this part runs only in Act 2
+        // Generate decOffset if not yet defined
         if (data.decOffset === undefined) {
           const id = parseInt(matches.id, 16)
 
           // Find our color headmarkers IDs for the instance
           data.colorHeadmarkerIds ??= [];
           data.colorHeadmarkerIds.push(id);
-
-          // Sort to get purple headmarker first
-          if (data.colorHeadmarkerIds.length === 3) {
+          if (data.colorHeadmarkerIds.length === 3)
             data.colorHeadmarkerIds.sort((a, b) => a - b);
-          };
         }
       },
       delaySeconds: (data) => (data.decOffset) ? 0 : 0.1,
@@ -1174,8 +1170,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AF4', capture: true }),
       condition: (data) => Conditions.targetIsYou() && data.act === 'curtain',
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 12,
-      durationSeconds: 12,
       response: (_data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -1195,6 +1189,8 @@ const triggerSet: TriggerSet<Data> = {
           42: output.group4!(),
         };
 
+        if (parseFloat(matches.duration) < 13)
+          return { alarmText: output.group!({ num: durationMap[12] }) };
         return { infoText: output.group!({ num: durationMap[Math.ceil(parseFloat(matches.duration))] }) };
       },
     },
