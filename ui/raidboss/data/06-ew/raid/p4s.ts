@@ -102,7 +102,7 @@ const curtainCallOutputStrings = {
     en: 'Group ${num} Tethers',
   },
   groupTank: {
-      en: '${tankSwap}? => Group ${num} Tethers',
+    en: '${tankSwap}? => Group ${num} Tethers',
   },
   tankSwap: Outputs.tankSwap,
   1: Outputs.num1,
