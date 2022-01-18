@@ -38,6 +38,7 @@ export interface Data extends RaidbossData {
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
   curtainCallGroup?: number;
+  curtainCallTracker?: number;
 }
 
 const roleOutputStrings = {
@@ -1188,6 +1189,37 @@ const triggerSet: TriggerSet<Data> = {
         if (parseFloat(matches.duration) < 13)
           return { alarmText: output.group!({ num: data.curtainCallGroup }) };
         return { infoText: output.group!({ num: data.curtainCallGroup }) };
+      },
+    },
+    {
+      id: 'P4S Curtain Call Breaks',
+      // Call out break tether for the one player remaining in the group
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B7D', capture: true }),
+      condition: (data) => data.act === 'curtain',
+      suppressSeconds: 1,
+      preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      infoText: (data, _matches, output) => {
+        // Currently this calls it to two players where only one should have a tether remaining
+        if (data.curtainCallGroup === 1 && data.curtainCallTracker === 1)
+          return output.breakTether!();
+        if (data.curtainCallGroup === 2 && data.curtainCallTracker === 3)
+          return output.breakTether!();
+        if (data.curtainCallGroup === 3 && data.curtainCallTracker === 5)
+          return output.breakTether!();
+        if (data.curtainCallGroup === 4 && data.curtainCallTracker === 7)
+          return output.breakTether!();
+      },
+      run: (data) => {
+        // Clear once 8 tethers have been broken
+        if (data.curtainCallTracker == 8)
+          data.curtainCallTracker = 0;
+      },
+      outputStrings: {
+        breakTether: {
+          en: 'Break Tether?',
+        },
       },
     },
     {
