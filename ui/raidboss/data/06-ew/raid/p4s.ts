@@ -1032,16 +1032,8 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 7,
       infoText: (data, matches, output) => {
         const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
-        const thornMap: { [thorn: number]: string } = {
-          31: output.text!({ dir1: output.east!() }),
-          32: output.text!({ dir1: output.east!() }),
-          33: output.text!({ dir1: output.east!() }),
-          34: output.text!({ dir1: output.east!() }),
-          35: output.text!({ dir1: output.west!() }),
-          36: output.text!({ dir1: output.west!() }),
-          37: output.text!({ dir1: output.west!() }),
-          38: output.text!({ dir1: output.west!() }),
-        };
+        const num = parseInt(matches.sourceId, 16);
+        console.error(`Act Two: Found thorn index of ${thorn} and id ${num} with ${matches.sourceId}`);
 
         const thornMapDirs: { [thorn: number]: string } = {
           31: 'east',
@@ -1055,7 +1047,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         data.jumpDir1 = thornMapDirs[thorn];
-        return thornMap[thorn];
+        return output[thornMapDirs[thorn] ??= 'unknown']!();
       },
       outputStrings: {
         text: {
@@ -1063,6 +1055,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         east: Outputs.east,
         west: Outputs.west,
+        unknown: Outputs.unknown,
       },
     },
     {
