@@ -96,7 +96,6 @@ const defaultRaidbossConfigOptions = {
   PullSoundVolume: 1,
   cactbotWormholeStrat: false,
   cactbote8sUptimeKnockbackStrat: false,
-  cactbotp4sCurtainCallBreakTime: 6.0,
 };
 type RaidbossConfigOptions = typeof defaultRaidbossConfigOptions;
 
