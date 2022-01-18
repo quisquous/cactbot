@@ -32,6 +32,7 @@ export interface Data extends RaidbossData {
   bloodrakeCounter?: number;
   act?: string;
   colorHeadmarkerIds?: number[];
+  actTwoPurpleHealer?: string;
   thornIds?: number[];
   jumpDir1?: string;
   kickTwo?: boolean;
@@ -76,6 +77,21 @@ const roleOutputStrings = {
     ko: '타워: ${role}',
   },
   unknown: Outputs.unknown,
+};
+
+const tetherOutputStrings = {
+  purpleTether: {
+    en: 'Purple Tether',
+  },
+  orangeTether: {
+    en: 'Orange Tether',
+  },
+  greenTether: {
+    en: 'Green Tether',
+  },
+  blueTether: {
+    en: 'Blue Tether',
+  },
 };
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -992,39 +1008,34 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P4S Color Headmarker Tracker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.decOffset === undefined && data.act !== undefined,
+      // Unconditionally set the first headmarker here so that future triggers are conditional.
+      run: (data, matches) => {
+        // Generate decOffset if not yet defined
+        const id = parseInt(matches.id, 16);
+
+        // Find our color headmarkers IDs for the instance
+        data.colorHeadmarkerIds ??= [];
+        data.colorHeadmarkerIds.push(id);
+        if (data.colorHeadmarkerIds.length === 3) {
+          data.colorHeadmarkerIds.sort((a, b) => a - b);
+          getHeadmarkerId(data, matches);
+        }
+      },
+    },
+    {
       id: 'P4S Color Headmarkers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data) => Conditions.targetIsYou() && (data.act !== undefined),
-      preRun: (data, matches) => {
-        // Generate decOffset if not yet defined
-        if (data.decOffset === undefined) {
-          const id = parseInt(matches.id, 16);
-
-          // Find our color headmarkers IDs for the instance
-          data.colorHeadmarkerIds ??= [];
-          data.colorHeadmarkerIds.push(id);
-          if (data.colorHeadmarkerIds.length === 3)
-            data.colorHeadmarkerIds.sort((a, b) => a - b);
-        }
-      },
+      condition: (data) => data.act !== undefined,
       delaySeconds: (data) => (data.decOffset) ? 0 : 0.1,
       response: (data, matches, output) => {
         // cactbot-builtin-response
-        output.responseOutputStrings = {
-          purpleTether: {
-            en: 'Purple Tether',
-          },
-          orangeTether: {
-            en: 'Orange Tether',
-          },
-          greenTether: {
-            en: 'Green Tether',
-          },
-          blueTether: {
-            en: 'Blue Tether',
-          },
-        };
+        output.responseOutputStrings = tetherOutputStrings;
+
         const id = getHeadmarkerId(data, matches);
 
         const headMarkers: { [id: string]: string } = {
@@ -1034,8 +1045,25 @@ const triggerSet: TriggerSet<Data> = {
           '012F': output.orangeTether!(),
         };
 
-        return { infoText: headMarkers[id] };
+        // Record who has Act 2 Purple Tether
+        if (id === '012D' && data.act === '2')
+          data.actTwoPurpleHealer = matches.target;
+
+        if (matches.target === data.me)
+          return { infoText: headMarkers[id] };
       },
+    },
+    {
+      id: 'P4S Act Two Purple Tether Tank',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AC' }),
+      condition: (data) => Conditions.targetIsYou() && data.act === '2',
+      delaySeconds: 0.2,
+      infoText: (data, matches, output) => {
+        if (matches.source === data.actTwoPurpleHealer)
+          return output.purpleTether!();
+      },
+      outputStrings: tetherOutputStrings,
     },
     {
       id: 'P4S Ultimate Impulse',
