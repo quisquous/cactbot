@@ -94,6 +94,23 @@ const tetherOutputStrings = {
   },
 };
 
+const curtainCallOutputStrings = {
+  tetherGroup: {
+    en: 'Tether Group ${num}',
+  },
+  groupTethers: {
+    en: 'Group ${num} Tethers',
+  },
+  groupTank: {
+      en: '${tankSwap}? => Group ${num} Tethers',
+  },
+  tankSwap: Outputs.tankSwap,
+  1: Outputs.num1,
+  2: Outputs.num2,
+  3: Outputs.num3,
+  4: Outputs.num4,
+};
+
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
@@ -1202,31 +1219,16 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => Conditions.targetIsYou() && data.act === 'curtain',
       response: (data, matches, output) => {
         // cactbot-builtin-response
-        output.responseOutputStrings = {
-          group: {
-            en: 'Tether Group ${num}',
-          },
-          group1: {
-            en: 'Group ${num} Tethers',
-          },
-          groupTank: {
-            en: '${tankSwap}? => Group ${num} Tethers',
-          },
-          tankSwap: Outputs.tankSwap,
-          1: Outputs.num1,
-          2: Outputs.num2,
-          3: Outputs.num3,
-          4: Outputs.num4,
-        };
+        output.responseOutputStrings = curtainCallOutputStrings;
 
         data.curtainCallGroup = (Math.ceil(parseFloat(matches.duration)) - 2) / 10;
 
         if (parseFloat(matches.duration) < 13) {
           if (data.role === 'tank')
             return { alarmText: output.groupTank!({ tankSwap: output.tankSwap!({ num: output[data.curtainCallGroup]!() }) }) };
-          return { alarmText: output.group1!({ num: data.curtainCallGroup }) };
+          return { alarmText: output.groupTethers!({ num: data.curtainCallGroup }) };
         }
-        return { infoText: output.group!({ num: data.curtainCallGroup }) };
+        return { infoText: output.tetherGroup!({ num: data.curtainCallGroup }) };
       },
     },
     {
@@ -1246,7 +1248,7 @@ const triggerSet: TriggerSet<Data> = {
         ) {
           if (data.role === 'tank')
             return output.groupTank!({ tankSwap: output.tankSwap!({ num: output[data.curtainCallGroup]!() }) });
-          return output.group!({ num: output[data.curtainCallGroup]!() });
+          return output.groupTethers!({ num: output[data.curtainCallGroup]!() });
         }
       },
       run: (data) => {
@@ -1254,19 +1256,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.curtainCallTracker === 8)
           data.curtainCallTracker = 0;
       },
-      outputStrings: {
-        group: {
-          en: 'Group ${num} Tethers',
-        },
-        groupTank: {
-          en: '${tankSwap}? => Group ${num} Tethers',
-        },
-        tankSwap: Outputs.tankSwap,
-        1: Outputs.num1,
-        2: Outputs.num2,
-        3: Outputs.num3,
-        4: Outputs.num4,
-      },
+      outputStrings: curtainCallOutputStrings,
     },
     {
       id: 'P4S Hell\'s Sting',
