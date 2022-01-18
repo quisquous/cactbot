@@ -8,7 +8,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { LocaleText, TriggerSet } from '../../../../../types/trigger';
+import { TriggerSet } from '../../../../../types/trigger';
 
 
 // Part Two
@@ -821,22 +821,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Thorns Collector',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A0C', source: 'Hespéros', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A0C', source: 'ヘスペロス', capture: false }),
-      promise: async (data, _matches, _output) => {
+      netRegex: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6A0C', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6A0C', source: 'ヘスペロス' }),
+      promise: async (data, matches, _output) => {
         // Collect all Hesperos entities up front
-        const hesperosLocaleNames: LocaleText = {
-          en: 'Hesperos',
-          de: 'Hesperos',
-          fr: 'Hespéros',
-          ja: 'ヘスペロス',
-        };
-
-        // select the Hesperos combatants
         let combatantName = null;
-        combatantName = hesperosLocaleNames[data.parserLang];
+        combatantName = matches.source;
 
         let combatantData = null;
         if (combatantName) {
