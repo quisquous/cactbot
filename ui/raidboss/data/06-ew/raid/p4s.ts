@@ -37,6 +37,7 @@ export interface Data extends RaidbossData {
   kickTwo?: boolean;
   fleetingImpulseCounter?: number;
   meFleetingImpulse?: number;
+  curtainCallGroup?: number;
 }
 
 const roleOutputStrings = {
@@ -1166,32 +1167,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Curtain Call Debuffs',
       // Durations could be 12s, 22s, 32s, and 42s
-      // Trigger waits until time remaining is 12s to call your group
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AF4', capture: true }),
       condition: (data) => Conditions.targetIsYou() && data.act === 'curtain',
-      response: (_data, matches, output) => {
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           group: {
             en: 'Tether Group ${num}',
           },
-          group1: Outputs.num1,
-          group2: Outputs.num2,
-          group3: Outputs.num3,
-          group4: Outputs.num4,
+          1: Outputs.num1,
+          2: Outputs.num2,
+          3: Outputs.num3,
+          4: Outputs.num4,
         };
 
-        const durationMap: { [duration: number]: string } = {
-          12: output.group1!(),
-          22: output.group2!(),
-          32: output.group3!(),
-          42: output.group4!(),
-        };
+        data.curtainCallGroup = (Math.ceil(parseFloat(matches.duration)) - 2) / 10;
 
         if (parseFloat(matches.duration) < 13)
-          return { alarmText: output.group!({ num: durationMap[12] }) };
-        return { infoText: output.group!({ num: durationMap[Math.ceil(parseFloat(matches.duration))] }) };
+          return { alarmText: output.group!({ num: data.curtainCallGroup }) };
+        return { infoText: output.group!({ num: data.curtainCallGroup }) };
       },
     },
     {
