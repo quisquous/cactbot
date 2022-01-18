@@ -1181,6 +1181,10 @@ const triggerSet: TriggerSet<Data> = {
           group1: {
             en: 'Group ${num} Tethers',
           },
+          groupTank: {
+            en: '${tankSwap)? => Group ${num} Tethers',
+          },
+          tankSwap: Outputs.tankSwap,
           1: Outputs.num1,
           2: Outputs.num2,
           3: Outputs.num3,
@@ -1189,8 +1193,11 @@ const triggerSet: TriggerSet<Data> = {
 
         data.curtainCallGroup = (Math.ceil(parseFloat(matches.duration)) - 2) / 10;
 
-        if (parseFloat(matches.duration) < 13)
+        if (parseFloat(matches.duration) < 13) {
+          if (data.role === 'tank')
+            return { alarmText: output.groupTank!({ tankSwap: output.tankSwap!({ num: output[data.curtainCallGroup]!() }) }) };
           return { alarmText: output.group1!({ num: data.curtainCallGroup }) };
+        }
         return { infoText: output.group!({ num: data.curtainCallGroup }) };
       },
     },
@@ -1201,15 +1208,18 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: 'B7D', capture: true }),
       condition: (data) => data.act === 'curtain',
       preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
-      suppressSeconds: 1,
       delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      suppressSeconds: 1,
       alarmText: (data, _matches, output) => {
-        if (data.curtainCallGroup === 1 && data.curtainCallTracker === 2)
-          return output.group!();
-        if (data.curtainCallGroup === 2 && data.curtainCallTracker === 4)
-          return output.group!();
-        if (data.curtainCallGroup === 3 && data.curtainCallTracker === 6)
-          return output.group!();
+        if (
+          (data.curtainCallGroup === 1 && data.curtainCallTracker === 2) ||
+          (data.curtainCallGroup === 2 && data.curtainCallTracker === 4) ||
+          (data.curtainCallGroup === 3 && data.curtainCallTracker === 6)
+        ) {
+          if (data.role === 'tank')
+            return output.groupTank!({ tankSwap: output.tankSwap!({ num: output[data.curtainCallGroup]!() }) });
+          return output.group!({ num: output[data.curtainCallGroup]!() });
+        }
       },
       run: (data) => {
         // Clear once 8 tethers have been broken
@@ -1220,6 +1230,14 @@ const triggerSet: TriggerSet<Data> = {
         group: {
           en: 'Group ${num} Tethers',
         },
+        groupTank: {
+          en: '${tankSwap)? => Group ${num} Tethers',
+        },
+        tankSwap: Outputs.tankSwap,
+        1: Outputs.num1,
+        2: Outputs.num2,
+        3: Outputs.num3,
+        4: Outputs.num4,
       },
     },
     {
