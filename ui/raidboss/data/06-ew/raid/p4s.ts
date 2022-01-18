@@ -1147,7 +1147,17 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => Conditions.targetIsYou() && data.act === 'curtain',
       delaySeconds: (data, matches) => {
         const duration = parseFloat(matches.duration);
-        return (data.role === 'dps' ? duration - 12 : duration - 6);
+
+        // Check if custom duration was set in options
+        let breakTime = parseFloat(typeof data.options.cactbotp4sCurtainCallBreakTime === 'string' ? data.options.cactbotp4sCurtainCallBreakTime : '6' );
+
+        // Check for NaN and validate timing within duration window
+        if (!isNaN(breakTime) && breakTime >= 2 && breakTime <= 12)
+            return duration - breakTime;
+
+        // Timing fell outside of window or was NaN, default to 6
+        breakTime = 6;
+        return duration - breakTime;
       },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
