@@ -10,7 +10,6 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-
 // Part Two
 // TODO: Wreath of Thorns 2 additional tether info?
 // TODO: Better Dark Design/tether break callouts
