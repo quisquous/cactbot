@@ -1644,6 +1644,14 @@ const templateOptions: OptionsTemplate = {
       type: 'checkbox',
       default: false,
     },
+    {
+      id: 'cactbotp4sCurtainCallBreakTime',
+      name: {
+        en: 'p4s: Curtain Call Thornpricked seconds remaining for \'Break Tether\' (2-12)',
+      },
+      type: 'float',
+      default: 6,
+    },
   ],
 };
 
