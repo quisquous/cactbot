@@ -1213,7 +1213,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => {
         // Clear once 8 tethers have been broken
-        if (data.curtainCallTracker == 8)
+        if (data.curtainCallTracker === 8)
           data.curtainCallTracker = 0;
       },
       outputStrings: {
