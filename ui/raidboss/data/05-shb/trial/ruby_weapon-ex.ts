@@ -92,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Line Ends',
           de: 'Weg von den Linienenden',
+          fr: 'Éloignez-vous des fins de lignes',
           ja: '線の端から避ける',
           cn: '远离线末端',
           ko: '선 끝나는 곳 피하기',
@@ -112,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away from Lines',
           de: 'Weg von den Linien',
-          fr: 'En dehors des sillons',
+          fr: 'Éloignez-vous des sillons',
           ja: '線から離れる',
           cn: '远离线',
           ko: '선 피하기',
@@ -133,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get On Lines',
           de: 'Auf die Linien gehen',
-          fr: 'Sur les sillons',
+          fr: 'Allez sur les sillons',
           ja: '線を踏む',
           cn: '靠近线',
           ko: '선 위로 올라가기',
@@ -160,6 +161,7 @@ const triggerSet: TriggerSet<Data> = {
         outOfMiddle: {
           en: 'Out Of Middle',
           de: 'Raus aus der Mitte',
+          fr: 'Sortez du milieu',
           ja: '横へ',
           cn: '远离中间',
           ko: '가운데 피하기',
@@ -378,6 +380,7 @@ const triggerSet: TriggerSet<Data> = {
           text: {
             en: '${dir} (${suffix})',
             de: '${dir} (${suffix})',
+            fr: '${dir} (${suffix})',
             ja: '${dir} (${suffix})',
             cn: '${dir} (${suffix})',
             ko: '${dir} (${suffix})',
@@ -387,6 +390,7 @@ const triggerSet: TriggerSet<Data> = {
           blueSuffix: {
             en: 'blue',
             de: 'Blau',
+            fr: 'Bleu',
             ja: '青',
             cn: '蓝',
             ko: '파랑',
@@ -394,6 +398,7 @@ const triggerSet: TriggerSet<Data> = {
           redSuffix: {
             en: 'red',
             de: 'Rot',
+            fr: 'Rouge',
             ja: '赤',
             cn: '红',
             ko: '빨강',
@@ -401,6 +406,7 @@ const triggerSet: TriggerSet<Data> = {
           bothSuffix: {
             en: 'both',
             de: 'Beides',
+            fr: 'Les deux',
             ja: '両方',
             cn: '全部',
             ko: '둘 다',
@@ -523,6 +529,7 @@ const triggerSet: TriggerSet<Data> = {
           text: {
             en: 'Blue Head (Go East)',
             de: 'Blauer Kopf (Geh nach Osten)',
+            fr: 'Tête bleu (Allez à l\'est)',
             ja: '青いヘッド (東へ)',
             cn: '蓝头 (去东边)',
             ko: '파란색 (동쪽)',
@@ -553,6 +560,7 @@ const triggerSet: TriggerSet<Data> = {
           text: {
             en: 'Red Head (Go West)',
             de: 'Roter Kopf (Geh nach Westen)',
+            fr: 'Tête rouge (Allez à l\'ouest)',
             ja: '赤いヘッド (西へ)',
             cn: '红头 (去西边)',
             ko: '빨간색 (서쪽)',
