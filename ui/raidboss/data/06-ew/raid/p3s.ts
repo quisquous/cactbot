@@ -360,14 +360,8 @@ const triggerSet: TriggerSet<Data> = {
           if (matches.source === 'Sunbird') {
             for (const s of data.sunbirds) {
               if (s.ID && s.ID.toString(16).toUpperCase() === matches.sourceId) {
-                if (s.PosY < 93)
-                  data.sunbirdTethers.push({ name: matches.target, pos: 0 });
-                else if (s.PosY > 107)
-                  data.sunbirdTethers.push({ name: matches.target, pos: 2 });
-                else if (s.PosX < 93)
-                  data.sunbirdTethers.push({ name: matches.target, pos: 3 });
-                else if (s.PosX > 107)
-                  data.sunbirdTethers.push({ name: matches.target, pos: 1 });
+                const pos = Math.round(2 - 2 * Math.atan2(s.PosX - 100, s.PosY - 100) / Math.PI) % 4;
+                data.sunbirdTethers.push({ name: matches.target, pos: pos });
               }
             }
           } else {
@@ -389,6 +383,20 @@ const triggerSet: TriggerSet<Data> = {
         }
         for (const s of data.sunbirdTethers) {
           if (s.name === lookupName) {
+            // If we were tethered to the sunbird go opposite
+            if (lookupName === data.me) {
+              switch (s.pos) {
+                case 0:
+                  return output.s!();
+                case 1:
+                  return output.w!();
+                case 2:
+                  return output.n!();
+                case 3:
+                  return output.e!();
+              }
+            }
+            // If we were not tethered directly go to sunbird
             switch (s.pos) {
               case 0:
                 return output.n!();
