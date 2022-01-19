@@ -28,7 +28,6 @@ export interface Data extends RaidbossData {
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   fleetingImpulseCounter?: number;
-  meFleetingImpulse?: number;
 }
 
 const roleOutputStrings = {
@@ -881,11 +880,13 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data, _matches) => {
         data.fleetingImpulseCounter = (data.fleetingImpulseCounter ?? 0) + 1;
       },
-      infoText: (data, matches, output) => {
-        if (matches.target === data.me) {
-          data.meFleetingImpulse = data.fleetingImpulseCounter;
+      // ~22.3 seconds between #1 Fleeting Impulse (6A1C) to #1 Hemitheos's Thunder III (6A0E)
+      // ~21.2 seconds between #8 Fleeting Impulse (6A1C) to #8 Hemitheos's Thunder III (6A0E).
+      // Split the difference with 22 seconds.
+      durationSeconds: 22,
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
           return output.text!({ num: data.fleetingImpulseCounter });
-        }
       },
       outputStrings: {
         text: {
@@ -895,32 +896,6 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${num}',
           cn: '${num}',
           ko: '${num}',
-        },
-      },
-    },
-    {
-      id: 'P4S Wreath of Thorns 6',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A35', source: 'Hesperos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A35', source: 'Hesperos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A35', source: 'Hespéros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A35', source: 'ヘスペロス' }),
-      // Take castTime and add to duration between cast and first soak - 1
-      // Multiply our number by the seconds between each soak.
-      // This leaves up the info until expected hit from start of tethers going out.
-      durationSeconds: (data, matches) => {
-        const myDuration = typeof data.meFleetingImpulse === 'undefined' ? 8 : data.meFleetingImpulse;
-        return parseFloat(matches.castTime) + 2.1 + myDuration * 1.2;
-      },
-      infoText: (data, _matches, output) => output.text!({ num: data.meFleetingImpulse }),
-      outputStrings: {
-        text: {
-          en: 'Thorn ${num}',
-          de: 'Dornen ${num}',
-          fr: 'Épine ${num}',
-          ja: '羽 ${num}',
-          cn: '荆棘 ${num}',
-          ko: '가시 ${num}',
         },
       },
     },
