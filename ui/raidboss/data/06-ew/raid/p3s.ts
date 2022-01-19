@@ -351,24 +351,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error('SunbirdTether: There is not exactly four Sunbirds?!?: ${JSON.stringify(sunbirds)}');
           return;
         }
-        /*
-        console.log('------------');
-        for (const s of sunbirds) {
-          if (!s.ID) {
-            console.error('SunbirdTether: Sunbird without ID? ', s);
-            return;
-          }
-          if (s.PosY < 93)
-            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is north');
-          else if (s.PosY > 107)
-            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is south');
-          else if (s.PosX < 93)
-            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is west');
-          else if (s.PosX > 107)
-            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is east');
-        }
-        console.log('------------');
-        */
         data.sunbirds = sunbirds;
       },
       alertText: (data, matches, output) => {
@@ -409,22 +391,22 @@ const triggerSet: TriggerSet<Data> = {
           if (s.name === lookupName) {
             switch (s.pos) {
               case 0:
-                return 'Tethered North Sunbird';
+                return output.n!();
               case 1:
-                return 'Tethered East Sunbird';
+                return output.e!();
               case 2:
-                return 'Tethered South Sunbird';
+                return output.s!();
               case 3:
-                return 'Tethered West Sunbird';
+                return output.w!();
             }
           }
         }
-        return output.text!();
       },
       outputStrings: {
-        text: {
-          en: 'Tether!',
-        },
+        n: Outputs.north,
+        e: Outputs.east,
+        s: Outputs.south,
+        w: Outputs.west,
       },
     },
     {
