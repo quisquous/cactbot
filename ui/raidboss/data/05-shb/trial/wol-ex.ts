@@ -892,7 +892,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Ninja': 'ninja spectral',
         'Warrior Of Light': 'Guerrier de la Lumière primordial',
