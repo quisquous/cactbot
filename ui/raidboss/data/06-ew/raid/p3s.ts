@@ -1,15 +1,21 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   deathsToll?: boolean;
   deathsTollPending?: boolean;
+  sunbirdTethers: { name: string; pos: number }[];
+  p2pTethers: { source: string; target: string }[];
+  sunbirds: PluginCombatantState[];
+  sunbirdTetherCounter: number;
   decOffset?: number;
 }
 
@@ -32,6 +38,14 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheThirdCircleSavage,
   timelineFile: 'p3s.txt',
+  initData: () => {
+    return {
+      sunbirds: [],
+      sunbirdTethers: [],
+      p2pTethers: [],
+      sunbirdTetherCounter: 0,
+    };
+  },
   triggers: [
     {
       id: 'P3S Headmarker Tracker',
@@ -317,6 +331,98 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Dispersez-vous après',
           ja: 'あとで散開',
           cn: '然后分散',
+        },
+      },
+    },
+    {
+      id: 'P3S Sunbird Tether',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0039' }),
+      promise: async (data) => {
+        const callData = await callOverlayHandler({
+          call: 'getCombatants',
+        });
+        if (!callData || !callData.combatants || !callData.combatants.length) {
+          console.error('SunbirdTether: failed to get combatants: ${JSON.stringify(callData)}');
+          return;
+        }
+        const sunbirds = callData.combatants.filter((c) => c.BNpcID === 13635);
+        if (sunbirds.length !== 4) {
+          console.error('SunbirdTether: There is not exactly four Sunbirds?!?: ${JSON.stringify(sunbirds)}');
+          return;
+        }
+        /*
+        console.log('------------');
+        for (const s of sunbirds) {
+          if (!s.ID) {
+            console.error('SunbirdTether: Sunbird without ID? ', s);
+            return;
+          }
+          if (s.PosY < 93)
+            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is north');
+          else if (s.PosY > 107)
+            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is south');
+          else if (s.PosX < 93)
+            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is west');
+          else if (s.PosX > 107)
+            console.log('sunbird ', '(', s.ID.toString(16).toUpperCase(), ')', s, 'is east');
+        }
+        console.log('------------');
+        */
+        data.sunbirds = sunbirds;
+      },
+      alertText: (data, matches, output) => {
+        ++data.sunbirdTetherCounter;
+        if (data.sunbirdTetherCounter < 8) {
+          // Save tether
+          if (matches.source === 'Sunbird') {
+            for (const s of data.sunbirds) {
+              if (s.ID && s.ID.toString(16).toUpperCase() === matches.sourceId) {
+                if (s.PosY < 93)
+                  data.sunbirdTethers.push({ name: matches.target, pos: 0 });
+                else if (s.PosY > 107)
+                  data.sunbirdTethers.push({ name: matches.target, pos: 2 });
+                else if (s.PosX < 93)
+                  data.sunbirdTethers.push({ name: matches.target, pos: 3 });
+                else if (s.PosX > 107)
+                  data.sunbirdTethers.push({ name: matches.target, pos: 1 });
+              }
+            }
+          } else {
+            // If it's not from a sunbird it's p2p
+            data.p2pTethers.push({ source: matches.source, target: matches.target });
+          }
+          return;
+        }
+        // All 8 tethers collected, make the call
+        // Start with own name
+        let lookupName = data.me;
+        // If we're tethered to a player look for this player's sunbird tether instead
+        for (const t of data.p2pTethers) {
+          if (t.target === lookupName) {
+            lookupName = t.target;
+            break;
+          }
+        }
+        for (const s of data.sunbirdTethers) {
+          if (s.name === lookupName) {
+            switch (s.pos) {
+              case 0:
+                return 'Tethered North Sunbird';
+              case 1:
+                return 'Tethered East Sunbird';
+              case 2:
+                return 'Tethered South Sunbird';
+              case 3:
+                return 'Tethered West Sunbird';
+            }
+          }
+        }
+        return output.text!();
+      },
+      outputStrings: {
+        text: {
+          en: 'Tether!',
         },
       },
     },
