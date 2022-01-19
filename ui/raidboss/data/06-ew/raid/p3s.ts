@@ -373,7 +373,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       alertText: (data, matches, output) => {
         ++data.sunbirdTetherCounter;
-        if (data.sunbirdTetherCounter < 8) {
+        if (data.sunbirdTetherCounter <= 8) {
           // Save tether
           if (matches.source === 'Sunbird') {
             for (const s of data.sunbirds) {
@@ -392,7 +392,8 @@ const triggerSet: TriggerSet<Data> = {
             // If it's not from a sunbird it's p2p
             data.p2pTethers.push({ source: matches.source, target: matches.target });
           }
-          return;
+          if (data.sunbirdTetherCounter < 8)
+            return;
         }
         // All 8 tethers collected, make the call
         // Start with own name
@@ -400,7 +401,7 @@ const triggerSet: TriggerSet<Data> = {
         // If we're tethered to a player look for this player's sunbird tether instead
         for (const t of data.p2pTethers) {
           if (t.target === lookupName) {
-            lookupName = t.target;
+            lookupName = t.source;
             break;
           }
         }
