@@ -30,7 +30,7 @@ const sharedOutputStrings = {
   sharedTankStack: {
     en: 'Tank stack',
     de: 'Tanks sammeln',
-    fr: 'Package Tanks',
+    fr: 'Package tanks',
     ja: 'タンク頭割り',
     cn: '坦克分摊',
     ko: '탱끼리 모이기',
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Red Circle',
           de: 'Weg vom roten Kreis',
-          fr: 'Éloignez vous du cercle rouge',
+          fr: 'Éloignez-vous du cercle rouge',
           cn: '远离红圈',
           ko: '빨간 장판에서 멀리 떨어지기',
         },
@@ -244,7 +244,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Lines Away From Safe Spot',
           de: 'Linien weg vom Safespot ködern',
-          fr: 'Orientez les lignes hors de la zone sûre',
+          fr: 'Orientez les lignes hors de la zone safe',
           ja: '線を安置に被らないように捨てる',
           cn: '诱导直线，不要覆盖安全点',
           ko: '안전지대 밖으로 장판 유도',
@@ -336,7 +336,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge Arrow Lines',
           de: 'Weiche den Pfeillinien aus',
-          fr: 'Évitez les flèches (lignes)',
+          fr: 'Esquivez les lignes fléchées',
           cn: '避开箭头路径',
           ko: '화살표 방향 피하기',
         },
@@ -504,7 +504,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go North; Dodge Soldiers/Divebombs',
           de: 'Geh nach Norden; Achte auf die Lücken zwischen den Soldaten',
-          fr: 'Allez au Nord, Évitez les soldats et les bombes',
+          fr: 'Allez au Nord, esquivez les soldats et les bombes plongeantes',
           ja: '飛行部隊と射撃部隊を見覚える', // FIXME
           cn: '去北边；躲避士兵射击/飞机轰炸',
           ko: '북쪽으로 이동, 엑사플레어, 병사 사격 확인',
@@ -560,7 +560,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'bitblade': 'pistolame volante',
         'Black Wolf\'s Image': 'spectre de Gaius',
@@ -571,10 +570,12 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         '--cutscene--': '--cinématique--',
         'Aetheroplasm Production': 'Condensation d\'éthéroplasma',
-        'Aire Tam Storm': 'Aire Tam Storm',
+        'Aire Tam Storm(?! /)': 'Aire Tam Storm',
+        'Aire Tam Storm / Emerald Crusher': 'Aire Tam / Écraseur',
         'Bit Storm': 'Salve circulaire',
         'Divide Et Impera': 'Divide Et Impera',
         'Emerald Beam': 'Rayon émeraude',
+        'Emerald Crusher / Aire Tam Storm': 'Écraseur / Aire Tam',
         'Emerald Shot': 'Tir émeraude',
         'Expire': 'Jet de plasma',
         'Heirsbane': 'Fléau de l\'héritier',
@@ -591,7 +592,6 @@ const triggerSet: TriggerSet<Data> = {
         'Tertius Terminus Est': 'Terminus Est : Tres',
         'Mechanized Maneuver': 'Murmuration stratégique',
         'Bombs Away': 'Ordre de bombardement',
-        'Emerald Crusher': 'Écraseur émeraude',
         'Full Rank': 'Regroupement de toutes les unités',
         'Final Formation': 'Alignement de toutes les unités',
         'Fatal Fire': 'Attaque groupée',
