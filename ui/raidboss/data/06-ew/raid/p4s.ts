@@ -100,10 +100,6 @@ const curtainCallOutputStrings = {
   groupTethers: {
     en: 'Group ${num} Tethers',
   },
-  1: Outputs.num1,
-  2: Outputs.num2,
-  3: Outputs.num3,
-  4: Outputs.num4,
 };
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -1194,16 +1190,18 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       alarmText: (data, _matches, output) => {
         if (
-          (data.curtainCallGroup === 1 && data.curtainCallTracker === 2) ||
-          (data.curtainCallGroup === 2 && data.curtainCallTracker === 4) ||
-          (data.curtainCallGroup === 3 && data.curtainCallTracker === 6)
+          (data.curtainCallGroup === 2 && data.curtainCallTracker === 2) ||
+          (data.curtainCallGroup === 3 && data.curtainCallTracker === 4) ||
+          (data.curtainCallGroup === 4 && data.curtainCallTracker === 6)
         )
-          return output.groupTethers!({ num: output[data.curtainCallGroup]!() });
+          return output.groupTethers!({ num: data.curtainCallGroup });
       },
       run: (data) => {
         // Clear once 8 tethers have been broken
-        if (data.curtainCallTracker === 8)
+        if (data.curtainCallTracker === 8) {
           data.curtainCallTracker = 0;
+          data.curtainCallGroup = 0;
+        }
       },
       outputStrings: curtainCallOutputStrings,
     },
