@@ -88,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Derrière la tête',
           ja: '頭の後ろへ',
           cn: '去头的后面',
-          ko: '뒤통수 쪽으로'
+          ko: '뒤통수 쪽으로',
         },
       },
     },

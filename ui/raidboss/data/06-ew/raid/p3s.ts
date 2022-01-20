@@ -188,7 +188,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Paires au milieu',
           ja: '中央直線安置：二人組で頭割り',
           cn: '中间 两人分摊',
-          ko: '가운데서 짝꿍끼리 산개'
+          ko: '가운데서 짝꿍끼리 산개',
         },
       },
     },

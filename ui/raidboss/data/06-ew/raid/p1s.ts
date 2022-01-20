@@ -257,7 +257,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Tank buster + Poussée => Packez-vous',
           ja: 'タンクバスター+ノックバック => 頭割り',
           cn: '坦克死刑+击退 => 分摊',
-          ko: '탱버 + 넉백 → 쉐어'
+          ko: '탱버 + 넉백 → 쉐어',
         },
       },
     },
@@ -276,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Tank buster + Poussée => Brasier',
           ja: 'タンクバスター+ノックバック => フレア',
           cn: '坦克死刑+击退 => 核爆',
-          ko: '탱버 + 넉백 → 플레어'
+          ko: '탱버 + 넉백 → 플레어',
         },
       },
     },
