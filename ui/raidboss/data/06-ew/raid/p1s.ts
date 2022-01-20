@@ -351,7 +351,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.oppositeParty!();
-        return output.oppositePlayer!({ player: matches.target });
+        return output.oppositePlayer!({ player: data.ShortName(matches.target) });
       },
       outputStrings: fireLightOutputStrings,
     },
