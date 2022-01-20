@@ -159,13 +159,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Kothornos Kick',
       regex: /Kothornos Kick/,
-      beforeSeconds: 5,
+      beforeSeconds: 5.3,
       infoText: (data, _matches, output) => {
         let jumpDir;
         if (data.jumpDir1 === 'east')
-          jumpDir = !data.kickTwo ? output.east!() : output.west!();
-        if (data.jumpDir1 === 'west')
           jumpDir = !data.kickTwo ? output.west!() : output.east!();
+        if (data.jumpDir1 === 'west')
+          jumpDir = !data.kickTwo ? output.east!() : output.west!();
 
         return output.text!({ dir: jumpDir });
       },
