@@ -34,6 +34,7 @@ const roleOutputStrings = {
   tankHealer: {
     en: 'Tank/Healer',
     ja: 'タンク＆ヒーラ',
+    cn: '坦克/治疗',
     ko: '탱&힐',
   },
   dps: {
@@ -47,21 +48,25 @@ const roleOutputStrings = {
   roleTethers: {
     en: '${role} Tethers',
     ja: '線もらう: ${role}',
+    cn: '${role} 截线',
     ko: '줄 받기: ${role}',
   },
   roleDebuffs: {
     en: '${role} Role Calls',
     ja: 'デバフもらう: ${role}',
+    cn: '${role} 拿毒',
     ko: '디버프 받기: ${role}',
   },
   roleEverything: {
     en: '${role} Everything',
     ja: '${role} 全てもらう',
+    cn: '${role} 处理全部',
     ko: '${role} 전부 받아요',
   },
   roleTowers: {
     en: '${role} Towers',
     ja: '塔: ${role}',
+    cn: '${role} 踩塔',
     ko: '타워: ${role}',
   },
   unknown: Outputs.unknown,
@@ -118,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sprung ködern?',
           fr: 'Attirez le saut ?',
           ja: 'ジャンプ誘導?',
+          cn: '引导跳跃?',
           ko: '점프 유도?',
         },
       },
@@ -133,6 +139,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Erdstoß ködern?',
           fr: 'Orientez les secousses ?',
           ja: 'アスシェイカー誘導?',
+          cn: '引导地震?',
           ko: '어스세이커 유도?',
         },
       },
@@ -318,6 +325,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         passRoleCall: {
           en: 'Pass Role Call',
+          cn: '传毒',
         },
       },
     },
@@ -338,6 +346,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Role Call',
+          cn: '拿毒',
         },
       },
     },
@@ -424,6 +433,7 @@ const triggerSet: TriggerSet<Data> = {
         shiftWell: {
           en: 'Well => Shift',
           ja: '水、その後シフティング',
+          cn: '水 => 位移',
           ko: '물, 그리고 보스 기믹',
         },
       },
@@ -816,7 +826,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Raus, tankbuster', // FIXME
           fr: 'À l\'extérieur, Tank busters',
           ja: 'タンク離れる',
-          cn: '去外面, 坦克死刑', // FIXME
+          cn: '远离 (坦克死刑)',
           ko: '탱커 바깥쪽으로',
         },
         getIn: Outputs.in,
