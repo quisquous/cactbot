@@ -72,7 +72,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Away from Lines',
                     de: 'Weg von den Linien',
-                    fr: 'En dehors des sillons',
+                    fr: 'Éloignez-vous des sillons',
                     ja: '線から離れる',
                     cn: '远离线',
                     ko: '선 피하기',
@@ -93,7 +93,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get On Lines',
                     de: 'Auf die Linien gehen',
-                    fr: 'Sur les sillons',
+                    fr: 'Allez sur les sillons',
                     ja: '線の上へ',
                     cn: '靠近线',
                     ko: '선 위로 올라가기',

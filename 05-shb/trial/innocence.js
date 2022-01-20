@@ -221,7 +221,7 @@ Options.Triggers.push({
                 'Drop Of Light': 'Goutte de lumière',
                 'Daybreak': 'Point du jour',
                 'Beatific Vision': 'Vision béatifique',
-                '--add Phase--': '--add phase--',
+                '--add Phase--': '--phase d\'add--',
             },
         },
         {
