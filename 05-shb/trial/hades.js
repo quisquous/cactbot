@@ -82,7 +82,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Dodge Giant Circles',
                     de: 'Weiche dem großen Kreis aus',
-                    fr: 'Esquivez les cercles géants',
+                    fr: 'Évitez les cercles géants',
                     ja: '降ったサークルを避ける',
                     cn: '躲避大圈',
                     ko: '대형장판피하기',

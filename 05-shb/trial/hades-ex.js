@@ -150,7 +150,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Go to Safe Spot',
                     de: 'Geh zur sicheren Stelle',
-                    fr: 'Allez dans la zone safe',
+                    fr: 'Allez dans la zone sûre',
                     ja: '安全の場所へ移動',
                     cn: '前往安全区域',
                     ko: '안전 지대로 이동',
@@ -207,7 +207,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Point Tether Out',
                     de: 'Verbindung nach draußen richten',
-                    fr: 'Pointez le lien vers l\'extérieur',
+                    fr: 'Lien vers l\'extérieur',
                     ja: '線を外に引く',
                     cn: '连线',
                     ko: '선 연결 바깥으로 빼기',
@@ -419,7 +419,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Heal T/H to Full',
                     de: 'Heile T/H voll',
-                    fr: 'Soignez T/H complétement',
+                    fr: 'Soignez T/H max vie',
                     ja: 'タンク／ヒーラーのHPを満タンに',
                     cn: '奶满T奶',
                     ko: '탱/힐 풀피로 만들기',
