@@ -45,6 +45,12 @@ const fireLightOutputStrings = {
     cn: '站在光',
     ko: '흰색 바닥 위에 서기',
   },
+  oppositePlayer: {
+    en: 'Stand on color opposite of ${player}',
+  },
+  oppositeParty: {
+    en: 'Stand on color opposite of Party',
+  },
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -343,11 +349,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
       alertText: (data, matches, output) => {
-        if (!data.safeColor)
-          return;
         if (matches.target === data.me)
-          return output[data.safeColor]!();
-        return output[data.safeColor === 'fire' ? 'light' : 'fire']!();
+          return output.oppositeParty!();
+        return output.oppositePlayer!({ player: matches.target });
       },
       outputStrings: fireLightOutputStrings,
     },
