@@ -13,9 +13,7 @@ export interface Data extends RaidbossData {
   deathsToll?: boolean;
   deathsTollPending?: boolean;
   sunbirdTethers: { name: string; pos: number }[];
-  p2pTethers: { source: string; target: string }[];
   sunbirds: PluginCombatantState[];
-  sunbirdTetherCounter: number;
   decOffset?: number;
 }
 
@@ -42,8 +40,6 @@ const triggerSet: TriggerSet<Data> = {
     return {
       sunbirds: [],
       sunbirdTethers: [],
-      p2pTethers: [],
-      sunbirdTetherCounter: 0,
     };
   },
   triggers: [
@@ -335,9 +331,9 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P3S Sunbird Tether',
+      id: 'P3S Sunbird Tether Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0039' }),
+      netRegex: NetRegexes.tether({ id: '0039', source: 'Sunbird' }),
       promise: async (data) => {
         const callData = await callOverlayHandler({
           call: 'getCombatants',
@@ -353,35 +349,27 @@ const triggerSet: TriggerSet<Data> = {
         }
         data.sunbirds = sunbirds;
       },
+      run: (data, matches, _output) => {
+        for (const s of data.sunbirds) {
+          if (s.ID && s.ID.toString(16).toUpperCase() === matches.sourceId) {
+            const pos = Math.round(2 - 2 * Math.atan2(s.PosX - 100, s.PosY - 100) / Math.PI) % 4;
+            data.sunbirdTethers.push({ name: matches.target, pos: pos });
+          }
+        }
+      },
+    },
+    {
+      id: 'P3S Sunbird Tether',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0039' }),
+      condition: (data, matches, _output) => matches.target === data.me,
+      delaySeconds: 0.5,
       alertText: (data, matches, output) => {
-        ++data.sunbirdTetherCounter;
-        if (data.sunbirdTetherCounter <= 8) {
-          // Save tether
-          if (matches.source === 'Sunbird') {
-            for (const s of data.sunbirds) {
-              if (s.ID && s.ID.toString(16).toUpperCase() === matches.sourceId) {
-                const pos = Math.round(2 - 2 * Math.atan2(s.PosX - 100, s.PosY - 100) / Math.PI) % 4;
-                data.sunbirdTethers.push({ name: matches.target, pos: pos });
-              }
-            }
-          } else {
-            // If it's not from a sunbird it's p2p
-            data.p2pTethers.push({ source: matches.source, target: matches.target });
-          }
-          if (data.sunbirdTetherCounter < 8)
-            return;
-        }
-        // All 8 tethers collected, make the call
-        // Start with own name
         let lookupName = data.me;
-        // If we're tethered to a player look for this player's sunbird tether instead
-        for (const t of data.p2pTethers) {
-          if (t.target === lookupName) {
-            lookupName = t.source;
-            break;
-          }
-        }
+        if (matches.source !== 'Sunbird')
+          lookupName = matches.source;
         for (const s of data.sunbirdTethers) {
+          // Is this the Sunbird in question?
           if (s.name === lookupName) {
             // If we were tethered to the sunbird go opposite
             if (lookupName === data.me) {
