@@ -1053,7 +1053,7 @@ const triggerSet: TriggerSet<Data> = {
         // Check if received three three unique headmarkers in Act Two
         data.colorHeadmarkerIds ??= [];
         if (data.colorHeadmarkerIds.length !== 3) {
-          console.error(`Act ${data.act ?? "Unknown"}: Only found ${data.colorHeadmarkerIds.length} unique headmarkers in Act 2, expected 3! Will assume one was purple.`);
+          console.error(`Act ${data.act ?? 'Unknown'}: Only found ${data.colorHeadmarkerIds.length} unique headmarkers in Act 2, expected 3! Will assume one was purple.`);
 
           if (!data.decOffset) {
             // Sort IDs as we rely on purple at index 0 for offset calculation
