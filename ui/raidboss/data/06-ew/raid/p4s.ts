@@ -18,6 +18,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Call out thorns soaks for Wreath of Thorns 3 (E/W?)
 // TODO: Heart Stake is tankbuster with DoT, does it need to be output differrently?
 // TODO: Wreath of Thorns 4 headmarkers and tethers
+// TODO: Act 2 Callout for the 'tank' tethered to 'healer' with purple headmarker
 
 export interface Data extends RaidbossData {
   actingRole?: string;
@@ -32,7 +33,6 @@ export interface Data extends RaidbossData {
   bloodrakeCounter?: number;
   act?: string;
   colorHeadmarkerIds?: number[];
-  actTwoPurpleHealer?: string;
   thornIds?: number[];
   jumpDir1?: string;
   kickTwo?: boolean;
@@ -1061,25 +1061,9 @@ const triggerSet: TriggerSet<Data> = {
           '012F': output.orangeTether!(),
         };
 
-        // Record who has Act 2 Purple Tether
-        if (id === '012D' && data.act === '2')
-          data.actTwoPurpleHealer = matches.target;
-
         if (matches.target === data.me)
           return { infoText: headMarkers[id] };
       },
-    },
-    {
-      id: 'P4S Act Two Purple Tether Tank',
-      type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AC' }),
-      condition: (data) => Conditions.targetIsYou() && data.act === '2',
-      delaySeconds: 0.2,
-      infoText: (data, matches, output) => {
-        if (matches.source === data.actTwoPurpleHealer)
-          return output.purpleTether!();
-      },
-      outputStrings: tetherOutputStrings,
     },
     {
       id: 'P4S Ultimate Impulse',
