@@ -1054,9 +1054,12 @@ const triggerSet: TriggerSet<Data> = {
         data.colorHeadmarkerIds ??= [];
         if (data.colorHeadmarkerIds.length !== 3) {
           console.error(`Act ${data.act}: Only found ${data.colorHeadmarkerIds.length} unique headmarkers in Act 2, expected 3! Will assume one was purple.`);
-          // Sort IDs as we rely on purple at index 0 for offset calculation
-          data.colorHeadmarkerIds.sort((a, b) => a - b);
-          data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
+
+          if (!data.decOffset) {
+            // Sort IDs as we rely on purple at index 0 for offset calculation
+            data.colorHeadmarkerIds.sort((a, b) => a - b);
+            data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
+          }
         }
         const id = getHeadmarkerId(data, matches);
 
