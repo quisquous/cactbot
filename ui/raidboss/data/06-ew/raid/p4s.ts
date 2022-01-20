@@ -12,13 +12,13 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // Part Two
 // TODO: Wreath of Thorns 2 additional tether info?
+// TODO: Act 2 Callout for the 'tank' tethered to 'healer' with purple headmarker
 // TODO: Better Dark Design/tether break callouts
 // TODO: Wreath of Thorns 3 strategy (1 = melee, 2 = ranged) or
 //       something more intelligent such as tracking the vulnerabilities?
-// TODO: Call out thorns soaks for Wreath of Thorns 3 (E/W?)
 // TODO: Heart Stake is tankbuster with DoT, does it need to be output differrently?
-// TODO: Wreath of Thorns 4 headmarkers and tethers
-// TODO: Act 2 Callout for the 'tank' tethered to 'healer' with purple headmarker
+// TODO: Act 4 Blue/Purple Tether strategy?
+// TODO: Curtain Call tank swap
 
 export interface Data extends RaidbossData {
   actingRole?: string;
@@ -100,10 +100,6 @@ const curtainCallOutputStrings = {
   groupTethers: {
     en: 'Group ${num} Tethers',
   },
-  groupTank: {
-    en: '${tankSwap}? => Group ${num} Tethers',
-  },
-  tankSwap: Outputs.tankSwap,
   1: Outputs.num1,
   2: Outputs.num2,
   3: Outputs.num3,
@@ -1182,11 +1178,8 @@ const triggerSet: TriggerSet<Data> = {
 
         data.curtainCallGroup = (Math.ceil(parseFloat(matches.duration)) - 2) / 10;
 
-        if (parseFloat(matches.duration) < 13) {
-          if (data.role === 'tank')
-            return { alarmText: output.groupTank!({ tankSwap: output.tankSwap!({ num: output[data.curtainCallGroup]!() }) }) };
+        if (parseFloat(matches.duration) < 13)
           return { alarmText: output.groupTethers!({ num: data.curtainCallGroup }) };
-        }
         return { infoText: output.tetherGroup!({ num: data.curtainCallGroup }) };
       },
     },
@@ -1204,11 +1197,8 @@ const triggerSet: TriggerSet<Data> = {
           (data.curtainCallGroup === 1 && data.curtainCallTracker === 2) ||
           (data.curtainCallGroup === 2 && data.curtainCallTracker === 4) ||
           (data.curtainCallGroup === 3 && data.curtainCallTracker === 6)
-        ) {
-          if (data.role === 'tank')
-            return output.groupTank!({ tankSwap: output.tankSwap!({ num: output[data.curtainCallGroup]!() }) });
+        )
           return output.groupTethers!({ num: output[data.curtainCallGroup]!() });
-        }
       },
       run: (data) => {
         // Clear once 8 tethers have been broken
