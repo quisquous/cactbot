@@ -1027,8 +1027,14 @@ const triggerSet: TriggerSet<Data> = {
 
         // Find our color headmarkers IDs for the instance
         data.colorHeadmarkerIds ??= [];
-        data.colorHeadmarkerIds.push(id);
+
+        // Add the ID if it has not yet been seen
+        if (!data.colorHeadmarkerIds.indexOf(id))
+          data.colorHeadmarkerIds.push(id);
+
+        // Check if we have seen expected unique IDs
         if (data.colorHeadmarkerIds.length === 3) {
+          // Sort IDs as we rely on purple at index 0 for offset calculation
           data.colorHeadmarkerIds.sort((a, b) => a - b);
           getHeadmarkerId(data, matches);
         }
@@ -1044,6 +1050,14 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = tetherOutputStrings;
 
+        // Check if received three three unique headmarkers in Act Two
+        data.colorHeadmarkerIds ??= [];
+        if (data.colorHeadmarkerIds.length !== 3) {
+          console.error(`Act ${data.act}: Only found ${data.colorHeadmarkerIds.length} unique headmarkers in Act 2, expected 3! Will assume one was purple.`);
+          // Sort IDs as we rely on purple at index 0 for offset calculation
+          data.colorHeadmarkerIds.sort((a, b) => a - b);
+          data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
+        }
         const id = getHeadmarkerId(data, matches);
 
         const headMarkers: { [id: string]: string } = {
