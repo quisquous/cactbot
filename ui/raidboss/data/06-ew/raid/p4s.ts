@@ -1020,31 +1020,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: (data) => data.decOffset === undefined && data.act !== undefined,
-      // Unconditionally set the first headmarker here so that future triggers are conditional.
-      run: (data, matches) => {
-        // Generate decOffset if not yet defined
-        const id = parseInt(matches.id, 16);
-
-        // Find our color headmarkers IDs for the instance
-        data.colorHeadmarkerIds ??= [];
-
-        // Add the ID if it has not yet been seen
-        if (!data.colorHeadmarkerIds.indexOf(id))
-          data.colorHeadmarkerIds.push(id);
-
-        // Check if we have seen expected unique IDs
-        if (data.colorHeadmarkerIds.length === 3) {
-          // Sort IDs as we rely on purple at index 0 for offset calculation
-          data.colorHeadmarkerIds.sort((a, b) => a - b);
-          getHeadmarkerId(data, matches);
-        }
-      },
-    },
-    {
-      id: 'P4S Color Headmarker Tracker',
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.decOffset === undefined && data.act !== undefined,
       // Gather headmarkers in Act 2
       run: (data, matches) => {
         const id = parseInt(matches.id, 16);
