@@ -117,6 +117,9 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   if (typeof data.decOffset === 'undefined') {
     if (typeof data.act === 'undefined') {
       data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+    } else {
+      data.colorHeadmarkerIds ??= [];
+      data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
     }
   }
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
