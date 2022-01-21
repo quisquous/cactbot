@@ -117,9 +117,6 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   if (typeof data.decOffset === 'undefined') {
     if (typeof data.act === 'undefined') {
       data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
-    } else {
-      data.colorHeadmarkerIds ??= [];
-      data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
     }
   }
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
@@ -1041,25 +1038,40 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P4S Color Headmarker Tracker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.decOffset === undefined && data.act !== undefined,
+      // Gather headmarkers in Act 2
+      run: (data, matches) => {
+        const id = parseInt(matches.id, 16);
+
+        data.colorHeadmarkerIds ??= [];
+        data.colorHeadmarkerIds.push(id);
+      },
+    },
+    {
       id: 'P4S Color Headmarkers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: (data) => data.act !== undefined,
-      delaySeconds: (data) => (data.decOffset) ? 0 : 0.1,
+      // Delay some for headmarkers to be gathered
+      delaySeconds: (data) => (data.decOffset) ? 0 : 0.3,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = tetherOutputStrings;
 
-        // Check if received three three unique headmarkers in Act Two
+        // Calculate offset from purple headmarker in Act 2
         data.colorHeadmarkerIds ??= [];
-        if (data.colorHeadmarkerIds.length !== 3) {
-          console.error(`Act ${data.act ?? 'Unknown'}: Only found ${data.colorHeadmarkerIds.length} unique headmarkers in Act 2, expected 3! Will assume one was purple.`);
+        if (!data.decOffset) {
+          // Log message in case there isn't enough headmarkers
+          // Doable with 5 as the first headmarker on missing target to be removed is two greens
+          if (data.colorHeadmarkerIds.length < 5)
+            console.error(`Act ${data.act ?? 'Unknown'}: Found ${data.colorHeadmarkerIds.length} headmarkers in Act 2, expected at least 5! Assumed one was purple.`);
 
-          if (!data.decOffset) {
-            // Sort IDs as we rely on purple at index 0 for offset calculation
-            data.colorHeadmarkerIds.sort((a, b) => a - b);
-            data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
-          }
+          // Sort IDs, relying on purple at index 0 for offset calculation
+          data.colorHeadmarkerIds.sort((a, b) => a - b);
+          data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
         }
         const id = getHeadmarkerId(data, matches);
 
