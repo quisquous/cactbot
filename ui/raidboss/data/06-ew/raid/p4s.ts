@@ -123,7 +123,6 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
     if (typeof data.act === 'undefined') {
       data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
     } else {
-      data.colorHeadmarkerIds ??= [];
       data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
     }
   }
@@ -1037,8 +1036,6 @@ const triggerSet: TriggerSet<Data> = {
       // Gather headmarkers in Act 2
       run: (data, matches) => {
         const id = parseInt(matches.id, 16);
-
-        data.colorHeadmarkerIds ??= [];
         data.colorHeadmarkerIds.push(id);
       },
     },
@@ -1054,7 +1051,6 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = tetherOutputStrings;
 
         // Calculate offset from purple headmarker in Act 2
-        data.colorHeadmarkerIds ??= [];
         if (!data.decOffset) {
           // Log message in case there isn't enough headmarkers
           // Doable with 5 as the first headmarker on missing target to be removed is two greens
@@ -1100,7 +1096,6 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const num = parseInt(matches.sourceId, 16);
-        console.error(`Act Two: Found thorn index of ${thorn} and id ${num} with ${matches.sourceId}`);
 
         const thornMapDirs: { [thorn: number]: string } = {
           31: 'east',
