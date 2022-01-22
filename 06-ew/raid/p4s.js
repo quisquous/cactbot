@@ -1,6 +1,7 @@
 const roleOutputStrings = {
     tankHealer: {
         en: 'Tank/Healer',
+        fr: 'Tank/Healer',
         ja: 'タンク＆ヒーラ',
         cn: '坦克/治疗',
         ko: '탱&힐',
@@ -15,24 +16,28 @@ const roleOutputStrings = {
     },
     roleTethers: {
         en: '${role} Tethers',
+        fr: 'Liens ${role}',
         ja: '線もらう: ${role}',
         cn: '${role} 截线',
         ko: '줄 받기: ${role}',
     },
     roleDebuffs: {
         en: '${role} Role Calls',
+        fr: 'Debuffs ${role}',
         ja: 'デバフもらう: ${role}',
         cn: '${role} 拿毒',
         ko: '디버프 받기: ${role}',
     },
     roleEverything: {
         en: '${role} Everything',
+        fr: 'Tout ${role}',
         ja: '${role} 全てもらう',
         cn: '${role} 处理全部',
         ko: '${role} 전부 받아요',
     },
     roleTowers: {
         en: '${role} Towers',
+        fr: 'Tours ${role}',
         ja: '塔: ${role}',
         cn: '${role} 踩塔',
         ko: '타워: ${role}',
@@ -286,6 +291,7 @@ Options.Triggers.push({
             outputStrings: {
                 passRoleCall: {
                     en: 'Pass Role Call',
+                    fr: 'Passez votre debuff',
                     ja: 'デバフ渡す',
                     cn: '传毒',
                     ko: '디버프 건네기',
@@ -310,6 +316,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Get Role Call',
+                    fr: 'Prenez un debuff',
                     ja: 'デバフもらう',
                     cn: '拿毒',
                     ko: '디버프 받기',
@@ -404,6 +411,7 @@ Options.Triggers.push({
                 },
                 shiftWell: {
                     en: 'Well => Shift',
+                    fr: 'Eau => Frappe mouvante',
                     ja: '水 => シフティング',
                     cn: '水 => 位移',
                     ko: '물 => 동서남북 기믹',
@@ -653,7 +661,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Acting ${actingRole}',
                     de: 'Handel ale ${actingRole}',
-                    fr: 'Acteur ${actingRole}',
+                    fr: 'Rôle ${actingRole}',
                     ja: 'ロール: ${actingRole}',
                     cn: '扮演 ${actingRole}',
                     ko: '역할: ${actingRole}',
@@ -796,7 +804,7 @@ Options.Triggers.push({
                 tankbustersOut: {
                     en: 'Out (Tankbusters)',
                     de: 'Raus, tankbuster',
-                    fr: 'À l\'extérieur, Tank busters',
+                    fr: 'À l\'extérieur (Tank busters)',
                     ja: 'タンク離れる',
                     cn: '远离 (坦克死刑)',
                     ko: '탱커 바깥쪽으로',
