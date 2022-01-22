@@ -896,7 +896,7 @@ const triggerSet: TriggerSet<Data> = {
         }
         const combatantDataLength = combatantData.combatants.length;
         if (combatantDataLength < 8) {
-          console.error(`Hesperos: expected at least 8 combatants got ${combatantData.combatants.length}`);
+          console.error(`Hesperos: expected at least 8 combatants got ${combatantDataLength}`);
           return;
         }
 
