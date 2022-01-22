@@ -45,12 +45,6 @@ const fireLightOutputStrings = {
     cn: '站在光',
     ko: '흰색 바닥 위에 서기',
   },
-  oppositePlayer: {
-    en: 'Stand on color opposite of ${player}',
-  },
-  oppositeParty: {
-    en: 'Stand on color opposite of Party',
-  },
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -353,7 +347,14 @@ const triggerSet: TriggerSet<Data> = {
           return output.oppositeParty!();
         return output.oppositePlayer!({ player: data.ShortName(matches.target) });
       },
-      outputStrings: fireLightOutputStrings,
+      outputStrings: {
+        oppositePlayer: {
+          en: 'Opposite color of ${player}',
+        },
+        oppositeParty: {
+          en: 'Opposite color of Party',
+        },
+      },
     },
     {
       id: 'P1S Fourfold Shackles of Companionship 1',
