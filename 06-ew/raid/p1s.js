@@ -334,13 +334,18 @@ Options.Triggers.push({
             type: 'GainsEffect',
             netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
             alertText: (data, matches, output) => {
-                if (!data.safeColor)
-                    return;
                 if (matches.target === data.me)
-                    return output[data.safeColor]();
-                return output[data.safeColor === 'fire' ? 'light' : 'fire']();
+                    return output.oppositeParty();
+                return output.oppositePlayer({ player: data.ShortName(matches.target) });
             },
-            outputStrings: fireLightOutputStrings,
+            outputStrings: {
+                oppositePlayer: {
+                    en: 'Opposite color of ${player}',
+                },
+                oppositeParty: {
+                    en: 'Opposite color of Party',
+                },
+            },
         },
         {
             id: 'P1S Fourfold Shackles of Companionship 1',
