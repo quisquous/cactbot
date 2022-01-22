@@ -1029,7 +1029,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Color Headmarker Tracker',
+      id: 'P4S Color Headmarker Collector',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: (data) => data.decOffset === undefined && data.act !== undefined,
