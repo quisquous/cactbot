@@ -1092,7 +1092,6 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 7,
       infoText: (data, matches, output) => {
         const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
-        const num = parseInt(matches.sourceId, 16);
 
         const thornMapDirs: { [thorn: number]: string } = {
           31: 'east',
