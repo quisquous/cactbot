@@ -57,45 +57,45 @@ hideall "--sync--"
 
 
 
-### Marquis Morbol
+### Morbol Marquis
 # -p 3E16:508.5 -ii 3E11 3E14
 500.0 "--sync--" sync / 00:0839::Phytobiology will be sealed off/ window 500,0
-505.0 "--sync--" sync / 1[56]:[^:]*:Marquis Morbol:3E14:/ window 505,5
-508.5 "Lash" sync / 1[56]:[^:]*:Marquis Morbol:3E16:/
-516.1 "Sap Shower" sync / 1[56]:[^:]*:Marquis Morbol:3E15:/
-524.7 "Arbor Storm" sync / 1[56]:[^:]*:Marquis Morbol:3E17:/
+505.0 "--sync--" sync / 1[56]:[^:]*:Morbol Marquis:3E14:/ window 505,5
+508.5 "Lash" sync / 1[56]:[^:]*:Morbol Marquis:3E16:/
+516.1 "Sap Shower" sync / 1[56]:[^:]*:Morbol Marquis:3E15:/
+524.7 "Arbor Storm" sync / 1[56]:[^:]*:Morbol Marquis:3E17:/
 
 # extensible tendrils appears to have some variation on start time
-532.3 "--sync--" sync / 14:[^:]*:Marquis Morbol:3E10:/ window 30,10
-537.3 "Extensible Tendrils" sync / 1[56]:[^:]*:Marquis Morbol:3E10:/ duration 25
-564.7 "Putrid Breath" sync / 1[56]:[^:]*:Marquis Morbol:3E12:/
-569.0 "Lash" #sync / 1[56]:[^:]*:Marquis Morbol:3E16:/
-575.0 "Lash" #sync / 1[56]:[^:]*:Marquis Morbol:3E16:/
-581.1 "Blossom" sync / 1[56]:[^:]*:Marquis Morbol:3E13:/
-589.7 "Arbor Storm" sync / 1[56]:[^:]*:Marquis Morbol:3E17:/
+532.3 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 30,10
+537.3 "Extensible Tendrils" sync / 1[56]:[^:]*:Morbol Marquis:3E10:/ duration 25
+564.7 "Putrid Breath" sync / 1[56]:[^:]*:Morbol Marquis:3E12:/
+569.0 "Lash" #sync / 1[56]:[^:]*:Morbol Marquis:3E16:/
+575.0 "Lash" #sync / 1[56]:[^:]*:Morbol Marquis:3E16:/
+581.1 "Blossom" sync / 1[56]:[^:]*:Morbol Marquis:3E13:/
+589.7 "Arbor Storm" sync / 1[56]:[^:]*:Morbol Marquis:3E17:/
 
-598.3 "--sync--" sync / 14:[^:]*:Marquis Morbol:3E10:/ window 10,10
-603.3 "Extensible Tendrils" sync / 1[56]:[^:]*:Marquis Morbol:3E10:/ duration 25
-611.4 "Sap Shower" sync / 1[56]:[^:]*:Marquis Morbol:3E15:/
-630.8 "Putrid Breath" sync / 1[56]:[^:]*:Marquis Morbol:3E12:/
-634.2 "Lash" sync / 1[56]:[^:]*:Marquis Morbol:3E16:/
-646.6 "Blossom" sync / 1[56]:[^:]*:Marquis Morbol:3E13:/
-653.3 "Sap Shower" sync / 1[56]:[^:]*:Marquis Morbol:3E15:/
-657.1 "Lash" sync / 1[56]:[^:]*:Marquis Morbol:3E16:/
+598.3 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 10,10
+603.3 "Extensible Tendrils" sync / 1[56]:[^:]*:Morbol Marquis:3E10:/ duration 25
+611.4 "Sap Shower" sync / 1[56]:[^:]*:Morbol Marquis:3E15:/
+630.8 "Putrid Breath" sync / 1[56]:[^:]*:Morbol Marquis:3E12:/
+634.2 "Lash" sync / 1[56]:[^:]*:Morbol Marquis:3E16:/
+646.6 "Blossom" sync / 1[56]:[^:]*:Morbol Marquis:3E13:/
+653.3 "Sap Shower" sync / 1[56]:[^:]*:Morbol Marquis:3E15:/
+657.1 "Lash" sync / 1[56]:[^:]*:Morbol Marquis:3E16:/
 
-660.3 "--sync--" sync / 14:[^:]*:Marquis Morbol:3E10:/ window 10,10
-665.3 "Extensible Tendrils" sync / 1[56]:[^:]*:Marquis Morbol:3E10:/
-692.6 "Putrid Breath" sync / 1[56]:[^:]*:Marquis Morbol:3E12:/
-699.0 "Arbor Storm" sync / 1[56]:[^:]*:Marquis Morbol:3E17:/
-707.6 "Blossom" sync / 1[56]:[^:]*:Marquis Morbol:3E13:/
-716.1 "Arbor Storm" sync / 1[56]:[^:]*:Marquis Morbol:3E17:/
+660.3 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 10,10
+665.3 "Extensible Tendrils" sync / 1[56]:[^:]*:Morbol Marquis:3E10:/
+692.6 "Putrid Breath" sync / 1[56]:[^:]*:Morbol Marquis:3E12:/
+699.0 "Arbor Storm" sync / 1[56]:[^:]*:Morbol Marquis:3E17:/
+707.6 "Blossom" sync / 1[56]:[^:]*:Morbol Marquis:3E13:/
+716.1 "Arbor Storm" sync / 1[56]:[^:]*:Morbol Marquis:3E17:/
 
-724.8 "--sync--" sync / 14:[^:]*:Marquis Morbol:3E10:/ window 10,10
-729.8 "Extensible Tendrils" sync / 1[56]:[^:]*:Marquis Morbol:3E10:/ duration 25
-737.9 "Sap Shower" sync / 1[56]:[^:]*:Marquis Morbol:3E15:/
-757.3 "Putrid Breath" sync / 1[56]:[^:]*:Marquis Morbol:3E12:/
-760.7 "Lash" sync / 1[56]:[^:]*:Marquis Morbol:3E16:/
-773.1 "Blossom" sync / 1[56]:[^:]*:Marquis Morbol:3E13:/ window 50,50 jump 646.6
+724.8 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 10,10
+729.8 "Extensible Tendrils" sync / 1[56]:[^:]*:Morbol Marquis:3E10:/ duration 25
+737.9 "Sap Shower" sync / 1[56]:[^:]*:Morbol Marquis:3E15:/
+757.3 "Putrid Breath" sync / 1[56]:[^:]*:Morbol Marquis:3E12:/
+760.7 "Lash" sync / 1[56]:[^:]*:Morbol Marquis:3E16:/
+773.1 "Blossom" sync / 1[56]:[^:]*:Morbol Marquis:3E13:/ window 50,50 jump 646.6
 779.8 "Sap Shower"
 783.6 "Lash"
 
