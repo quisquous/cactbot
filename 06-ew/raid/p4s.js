@@ -2,6 +2,7 @@ const roleOutputStrings = {
     tankHealer: {
         en: 'Tank/Healer',
         ja: 'タンク＆ヒーラ',
+        cn: '坦克/治疗',
         ko: '탱&힐',
     },
     dps: {
@@ -15,21 +16,25 @@ const roleOutputStrings = {
     roleTethers: {
         en: '${role} Tethers',
         ja: '線もらう: ${role}',
+        cn: '${role} 截线',
         ko: '줄 받기: ${role}',
     },
     roleDebuffs: {
         en: '${role} Role Calls',
         ja: 'デバフもらう: ${role}',
+        cn: '${role} 拿毒',
         ko: '디버프 받기: ${role}',
     },
     roleEverything: {
         en: '${role} Everything',
         ja: '${role} 全てもらう',
+        cn: '${role} 处理全部',
         ko: '${role} 전부 받아요',
     },
     roleTowers: {
         en: '${role} Towers',
         ja: '塔: ${role}',
+        cn: '${role} 踩塔',
         ko: '타워: ${role}',
     },
     unknown: Outputs.unknown,
@@ -84,6 +89,7 @@ Options.Triggers.push({
                     de: 'Sprung ködern?',
                     fr: 'Attirez le saut ?',
                     ja: 'ジャンプ誘導?',
+                    cn: '引导跳跃?',
                     ko: '점프 유도?',
                 },
             },
@@ -99,6 +105,7 @@ Options.Triggers.push({
                     de: 'Erdstoß ködern?',
                     fr: 'Orientez les secousses ?',
                     ja: 'アスシェイカー誘導?',
+                    cn: '引导地震?',
                     ko: '어스세이커 유도?',
                 },
             },
@@ -280,6 +287,7 @@ Options.Triggers.push({
                 passRoleCall: {
                     en: 'Pass Role Call',
                     ja: 'デバフ渡す',
+                    cn: '传毒',
                     ko: '디버프 건네기',
                 },
             },
@@ -303,6 +311,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Role Call',
                     ja: 'デバフもらう',
+                    cn: '拿毒',
                     ko: '디버프 받기',
                 },
             },
@@ -396,6 +405,7 @@ Options.Triggers.push({
                 shiftWell: {
                     en: 'Well => Shift',
                     ja: '水 => シフティング',
+                    cn: '水 => 位移',
                     ko: '물 => 동서남북 기믹',
                 },
             },
@@ -788,7 +798,7 @@ Options.Triggers.push({
                     de: 'Raus, tankbuster',
                     fr: 'À l\'extérieur, Tank busters',
                     ja: 'タンク離れる',
-                    cn: '去外面, 坦克死刑',
+                    cn: '远离 (坦克死刑)',
                     ko: '탱커 바깥쪽으로',
                 },
                 getIn: Outputs.in,
