@@ -208,6 +208,11 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  initData: () => {
+    return {
+      colorHeadmarkerIds: []
+    };
+  },
   triggers: [
     {
       id: 'P4S Headmarker Tracker',
