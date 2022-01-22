@@ -127,6 +127,11 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheFourthCircleSavage,
   timelineFile: 'p4s.txt',
+  initData: () => {
+    return {
+      colorHeadmarkerIds: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'P4S Dark Design',
@@ -154,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
           jumpDir = !data.kickTwo ? output.west!() : output.east!();
         else if (data.jumpDir1 === 'west')
           jumpDir = !data.kickTwo ? output.east!() : output.west!();
-        
+
         return output.text!({ dir: jumpDir });
       },
       run: (data) => data.kickTwo = true,
@@ -205,11 +210,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-  initData: () => {
-    return {
-      colorHeadmarkerIds: []
-    };
-  },
   triggers: [
     {
       id: 'P4S Headmarker Tracker',
