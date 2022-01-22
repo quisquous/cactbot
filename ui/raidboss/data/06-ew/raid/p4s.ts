@@ -1190,7 +1190,7 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = curtainCallOutputStrings;
 
-        data.curtainCallGroup = (Math.ceil(parseFloat(matches.duration)) - 2) / 10;
+        data.curtainCallGroup = Math.ceil(((parseFloat(matches.duration)) - 2) / 10);
 
         if (data.curtainCallGroup === 1)
           return { alarmText: output.groupTethers!({ num: data.curtainCallGroup }) };
