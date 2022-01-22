@@ -88,6 +88,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Derrière la tête',
           ja: '頭の後ろへ',
           cn: '去头的后面',
+          ko: '뒤통수 쪽으로',
         },
       },
     },
@@ -107,6 +108,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Devant la tête',
           ja: '頭の前へ',
           cn: '去头的前面',
+          ko: '바라보는 쪽으로',
         },
       },
     },
@@ -169,6 +171,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Flèches en premières',
           ja: '突進→散開',
           cn: '先对冲',
+          ko: '화살표 돌진 먼저',
         },
         spreadFirst: {
           en: 'Spread First',
@@ -176,6 +179,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Dispersez-vous en premier',
           ja: '散開→突進',
           cn: '先散开',
+          ko: '산개 먼저',
         },
       },
     },
@@ -228,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Lien Brasier',
           ja: 'フレアの線',
           cn: '核爆连线',
+          ko: '플레어 선',
         },
       },
     },
@@ -253,6 +258,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Package en ligne (derrière le tank)',
           ja: '直線頭割り（タンクより後）',
           cn: '直线分摊（站坦克后面）',
+          ko: '탱커 뒤로 직선 쉐어',
         },
         flareLineTank: {
           en: 'Line Stack (be in front)',
@@ -260,6 +266,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Package en ligne (Placez-vous devant)',
           ja: '直線頭割り（みんなの前に）',
           cn: '直线分摊（坦克站前面）',
+          ko: '직선 쉐어 맨 앞으로',
         },
       },
     },
@@ -289,6 +296,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: '#${num} Carré, allez à l\'opposé',
             ja: '四角 #${num}：ボスの対角へ',
             cn: '方块 #${num}：去Boss斜对角',
+            ko: '#${num} ■, 보스 대각 발판으로',
           },
           // Trying not to confuse with boss/across
           squareBoss: {
@@ -297,6 +305,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: '#${num} Carré, case du boss',
             ja: '四角 #${num}：ボスの後ろへ',
             cn: '方块 #${num}：去Boss后面',
+            ko: '#${num} ■, 보스 발판으로',
           },
           triangle: {
             en: '#${num} Triangle',
@@ -304,7 +313,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: '#${num} Triangle',
             ja: '三角 #${num}',
             cn: '三角 #${num}',
-            ko: '#${num} 홀수',
+            ko: '#${num} ▲',
           },
         };
 

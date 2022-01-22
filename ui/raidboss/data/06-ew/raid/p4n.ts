@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Middle Knockback',
           de: 'Rückstoß von der Mitte',
           fr: 'Poussée au milieu',
-          ja: '中央からノックバック',
+          ja: '真ん中からノックバック',
           cn: '中间击退',
           ko: '중앙에서 넉백',
         },
