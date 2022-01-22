@@ -1193,7 +1193,7 @@ const triggerSet: TriggerSet<Data> = {
         data.curtainCallGroup = Math.ceil(((parseFloat(matches.duration)) - 2) / 10);
 
         if (data.curtainCallGroup === 1)
-          return { alarmText: output.groupTethers!({ num: data.curtainCallGroup }) };
+          return { alarmText: output.tetherGroup!({ num: data.curtainCallGroup }) };
         return { infoText: output.tetherGroup!({ num: data.curtainCallGroup }) };
       },
     },
