@@ -894,14 +894,15 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Hesperos: null combatants`);
           return;
         }
-        if (combatantData.combatants.length < 39) {
-          console.error(`Hesperos: expected at least 39 combatants got ${combatantData.combatants.length}`);
+        const combatantDataLength = combatantData.combatants.length;
+        if (combatantDataLength < 8) {
+          console.error(`Hesperos: expected at least 8 combatants got ${combatantData.combatants.length}`);
           return;
         }
 
         // the lowest eight Hesperos IDs are the thorns that tether the boss
         const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
-        const sortedCombatantData = combatantData.combatants.sort(sortCombatants);
+        const sortedCombatantData = combatantData.combatants.sort(sortCombatants).splice(combatantDataLength - 8, combatantDataLength);
 
         if (!sortedCombatantData)
           throw new UnreachableCode();
@@ -924,10 +925,10 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap: { [thorn: number]: string } = {
-          35: output.text!({ dir1: output.north!(), dir2: output.south!() }),
-          36: output.text!({ dir1: output.north!(), dir2: output.south!() }),
-          37: output.text!({ dir1: output.east!(), dir2: output.west!() }),
-          38: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          4: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          5: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          6: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          7: output.text!({ dir1: output.east!(), dir2: output.west!() }),
         };
         return thornMap[thorn];
       },
@@ -1004,14 +1005,14 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap: { [thorn: number]: string } = {
-          31: output.text!({ dir1: output.north!(), dir2: output.south!() }),
-          32: output.text!({ dir1: output.north!(), dir2: output.south!() }),
-          33: output.text!({ dir1: output.north!(), dir2: output.south!() }),
-          34: output.text!({ dir1: output.north!(), dir2: output.south!() }),
-          35: output.text!({ dir1: output.east!(), dir2: output.west!() }),
-          36: output.text!({ dir1: output.east!(), dir2: output.west!() }),
-          37: output.text!({ dir1: output.east!(), dir2: output.west!() }),
-          38: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          0: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          1: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          2: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          3: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          4: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          5: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          6: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          7: output.text!({ dir1: output.east!(), dir2: output.west!() }),
         };
         return thornMap[thorn];
       },
@@ -1094,14 +1095,14 @@ const triggerSet: TriggerSet<Data> = {
         const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
 
         const thornMapDirs: { [thorn: number]: string } = {
-          31: 'east',
-          32: 'east',
-          33: 'east',
-          34: 'east',
-          35: 'west',
-          36: 'west',
-          37: 'west',
-          38: 'west',
+          0: 'east',
+          1: 'east',
+          2: 'east',
+          3: 'east',
+          4: 'west',
+          5: 'west',
+          6: 'west',
+          7: 'west',
         };
 
         data.jumpDir1 = thornMapDirs[thorn];
