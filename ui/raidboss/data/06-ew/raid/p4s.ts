@@ -99,11 +99,8 @@ const tetherOutputStrings = {
 };
 
 const curtainCallOutputStrings = {
-  tetherGroup: {
-    en: 'Tether Group ${num}',
-  },
-  groupTethers: {
-    en: 'Group ${num} Tethers',
+  group: {
+    en: 'Group ${num}',
   },
 };
 
@@ -1193,8 +1190,8 @@ const triggerSet: TriggerSet<Data> = {
         data.curtainCallGroup = Math.ceil(((parseFloat(matches.duration)) - 2) / 10);
 
         if (data.curtainCallGroup === 1)
-          return { alarmText: output.tetherGroup!({ num: data.curtainCallGroup }) };
-        return { infoText: output.tetherGroup!({ num: data.curtainCallGroup }) };
+          return { alarmText: output.group!({ num: data.curtainCallGroup }) };
+        return { infoText: output.group!({ num: data.curtainCallGroup }) };
       },
     },
     {
@@ -1212,7 +1209,7 @@ const triggerSet: TriggerSet<Data> = {
           (data.curtainCallGroup === 3 && data.curtainCallTracker === 4) ||
           (data.curtainCallGroup === 4 && data.curtainCallTracker === 6)
         )
-          return output.groupTethers!({ num: data.curtainCallGroup });
+          return output.group!({ num: data.curtainCallGroup });
       },
       run: (data) => {
         // Clear once 8 tethers have been broken
