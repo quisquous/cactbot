@@ -173,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sprung ködern ${dir}?', // FIXME
           fr: 'Attirez le saut ${dir}?', // FIXME
           ja: 'ジャンプ誘導 ${dir}?', // FIXME
-          cn: '引导跳跃 ${dir}?', // FIXME 
+          cn: '引导跳跃 ${dir}?', // FIXME
           ko: '점프 유도 ${dir}?', // FIXME
         },
         east: Outputs.east,
@@ -1189,7 +1189,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AF4', capture: true }),
       condition: (data, matches) => {
-        return (Conditions.targetIsYou() && data.act === 'curtain');
+        return (data.me === matches.target && data.act === 'curtain');
       },
       response: (data, matches, output) => {
         // cactbot-builtin-response
