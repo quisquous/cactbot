@@ -32,7 +32,7 @@ export interface Data extends RaidbossData {
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   act?: string;
-  colorHeadmarkerIds?: number[];
+  colorHeadmarkerIds: number[];
   thornIds?: number[];
   jumpDir1?: string;
   kickTwo?: boolean;
