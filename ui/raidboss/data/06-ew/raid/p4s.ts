@@ -1045,7 +1045,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.headMarker({}),
       condition: (data) => data.act !== undefined,
       // Delay some for headmarkers to be gathered
-      delaySeconds: (data) => (data.decOffset) ? 0 : 0.3,
+      delaySeconds: (data) => data.decOffset ? 0 : 0.3,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = tetherOutputStrings;
