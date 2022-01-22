@@ -1174,7 +1174,7 @@ const triggerSet: TriggerSet<Data> = {
       // Durations could be 12s, 22s, 32s, and 42s
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AF4', capture: true }),
-      condition: (data) => Conditions.targetIsYou() && data.act === 'curtain',
+      condition: (data) => { return (Conditions.targetIsYou() && data.act === 'curtain') },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = curtainCallOutputStrings;
