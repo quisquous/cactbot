@@ -45,7 +45,7 @@ Options.Triggers.push({
                     dodgeClonesAndStack: {
                         en: 'Dodge Clones + Stack',
                         de: 'Klonen ausweichen und Sammeln',
-                        fr: 'Évitez les Clones + packez-vous',
+                        fr: 'Esquivez les Clones + packez-vous',
                         ja: 'ターミナス・エストを避ける／頭割り集合',
                         cn: '躲避剑气 + 集合分摊',
                         ko: '분신 피하기 + 집합',

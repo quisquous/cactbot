@@ -889,7 +889,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Spectral Ninja': 'ninja spectral',
                 'Warrior Of Light': 'Guerrier de la Lumière primordial',
@@ -927,7 +926,6 @@ Options.Triggers.push({
                 'Imbued Ice/Fire': 'Magilame Méga Glace/Feu',
                 'Katon\\: San': 'Katon : San',
                 'Limit Break': 'Transcendance',
-                'BLM/WHM': 'MNO/MBL',
                 'Limit -> DRK/BRD': 'Transcendance -> CHN/BRD',
                 'Meteor Impact': 'Impact de météore',
                 'Perfect Decimation': 'Décimation parfaite',
@@ -937,6 +935,7 @@ Options.Triggers.push({
                 'Radiant Meteor': 'Météore flamboyant',
                 'Shining Wave': 'Épée flamboyante',
                 'Solemn Confiteor': 'Confiteor solennel',
+                'Specter -> BLM/WHM': 'Spectres -> MNO/MBL',
                 'Specter Of Light': 'Sommation des braves',
                 '(?<!\\w )Stone(?! Earth)': 'Méga Terre',
                 'Suiton\\: San': 'Suiton : San',

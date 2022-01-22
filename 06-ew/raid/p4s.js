@@ -997,7 +997,7 @@ Options.Triggers.push({
                 'Lava Pinax/Acid Pinax': 'Pinax de feu/poison',
                 '(?<!/)Levinstrike Pinax(?!/)': 'Pinax de foudre',
                 'Levinstrike Pinax/Well Pinax': 'Pinax de foudre/eau',
-                'Nearsight': 'Frappe introspéctive',
+                'Nearsight/Farsight': 'Frappe introspéctive/visionnaire',
                 'Periaktoi': 'Périacte',
                 '(?<!\\w )Pinax': 'Pinax',
                 'Searing Stream': 'Flux ardent',
