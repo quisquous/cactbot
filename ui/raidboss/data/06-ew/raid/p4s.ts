@@ -45,6 +45,7 @@ const roleOutputStrings = {
   tankHealer: {
     en: 'Tank/Healer',
     ja: 'タンク＆ヒーラ',
+    cn: '坦克/治疗',
     ko: '탱&힐',
   },
   dps: {
@@ -58,21 +59,25 @@ const roleOutputStrings = {
   roleTethers: {
     en: '${role} Tethers',
     ja: '線もらう: ${role}',
+    cn: '${role} 截线',
     ko: '줄 받기: ${role}',
   },
   roleDebuffs: {
     en: '${role} Role Calls',
     ja: 'デバフもらう: ${role}',
+    cn: '${role} 拿毒',
     ko: '디버프 받기: ${role}',
   },
   roleEverything: {
     en: '${role} Everything',
     ja: '${role} 全てもらう',
+    cn: '${role} 处理全部',
     ko: '${role} 전부 받아요',
   },
   roleTowers: {
     en: '${role} Towers',
     ja: '塔: ${role}',
+    cn: '${role} 踩塔',
     ko: '타워: ${role}',
   },
   unknown: Outputs.unknown,
@@ -168,6 +173,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sprung ködern ${dir}?', // FIXME
           fr: 'Attirez le saut ${dir}?', // FIXME
           ja: 'ジャンプ誘導 ${dir}?', // FIXME
+          cn: '引导跳跃 ${dir}?', // FIXME 
           ko: '점프 유도 ${dir}?', // FIXME
         },
         east: Outputs.east,
@@ -186,6 +192,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Erdstoß ködern?',
           fr: 'Orientez les secousses ?',
           ja: 'アスシェイカー誘導?',
+          cn: '引导地震?',
           ko: '어스세이커 유도?',
         },
       },
@@ -371,6 +378,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         passRoleCall: {
           en: 'Pass Role Call',
+          ja: 'デバフ渡す',
+          cn: '传毒',
+          ko: '디버프 건네기',
         },
       },
     },
@@ -391,6 +401,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Role Call',
+          ja: 'デバフもらう',
+          cn: '拿毒',
+          ko: '디버프 받기',
         },
       },
     },
@@ -476,8 +489,9 @@ const triggerSet: TriggerSet<Data> = {
         },
         shiftWell: {
           en: 'Well => Shift',
-          ja: '水、その後シフティング',
-          ko: '물, 그리고 보스 기믹',
+          ja: '水 => シフティング',
+          cn: '水 => 位移',
+          ko: '물 => 동서남북 기믹',
         },
       },
     },
@@ -503,7 +517,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Middle Knockback',
             de: 'Rückstoß von der Mitte',
             fr: 'Poussée au milieu',
-            ja: '中央でノックバック',
+            ja: '真ん中でノックバック',
             cn: '中间击退',
             ko: '중앙에서 넉백',
           },
@@ -557,7 +571,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Cleave au nord',
           ja: '北の横',
           cn: '北 两侧',
-          ko: '북쪽으로',
+          ko: '북쪽 칼 휘두르기',
         },
       },
     },
@@ -576,7 +590,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Cleave à l\'est',
           ja: '東の横',
           cn: '东 两侧',
-          ko: '동쪽으로',
+          ko: '동쪽 칼 휘두르기',
         },
       },
     },
@@ -595,7 +609,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Cleave au sud',
           ja: '南の横',
           cn: '南 两侧',
-          ko: '남쪽으로',
+          ko: '남쪽 칼 휘두르기',
         },
       },
     },
@@ -614,7 +628,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Cleave à l\'ouest',
           ja: '西の横',
           cn: '西 两侧',
-          ko: '서쪽으로',
+          ko: '서쪽 칼 휘두르기',
         },
       },
     },
@@ -965,7 +979,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Raus, tankbuster', // FIXME
           fr: 'À l\'extérieur, Tank busters',
           ja: 'タンク離れる',
-          cn: '去外面, 坦克死刑', // FIXME
+          cn: '远离 (坦克死刑)',
           ko: '탱커 바깥쪽으로',
         },
         getIn: Outputs.in,
@@ -1136,7 +1150,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Dispersez-vous vers une épine liée',
           ja: '結ばれた羽の方で散開',
           cn: '在连线荆棘处散开',
-          ko: '연결된 가시덤불 주위 산개',
+          ko: '연결된 가시 덤불 주위 산개',
         },
       },
     },
@@ -1163,9 +1177,9 @@ const triggerSet: TriggerSet<Data> = {
           en: '${num}',
           de: '${num}',
           fr: '${num}',
-          ja: '${num}',
+          ja: '羽: ${num}番目',
           cn: '${num}',
-          ko: '${num}',
+          ko: '가시: ${num}번째',
         },
       },
     },
@@ -1343,7 +1357,7 @@ const triggerSet: TriggerSet<Data> = {
         'Lava Pinax/Acid Pinax': 'Pinax de feu/poison',
         '(?<!/)Levinstrike Pinax(?!/)': 'Pinax de foudre',
         'Levinstrike Pinax/Well Pinax': 'Pinax de foudre/eau',
-        'Nearsight': 'Frappe introspéctive',
+        'Nearsight/Farsight': 'Frappe introspéctive/visionnaire',
         'Periaktoi': 'Périacte',
         '(?<!\\w )Pinax': 'Pinax',
         'Searing Stream': 'Flux ardent',
