@@ -108,7 +108,7 @@ Options.Triggers.push({
         {
             id: 'Anyder Arbor Storm',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
+            netRegex: NetRegexes.startsUsing({ id: '3E17', source: 'Morbol Marquis', capture: false }),
             netRegexDe: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis-Morbol', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '3E17', source: 'マーカス・モルボル', capture: false }),
@@ -177,7 +177,7 @@ Options.Triggers.push({
         {
             'locale': 'de',
             'replaceSync': {
-                'Marquis Morbol': 'Marquis-Morbol',
+                'Morbol Marquis': 'Marquis-Morbol',
                 'Evil Armor': 'bös(?:e|er|es|en) Kampfmaschine',
                 'Quetzalcoatl': 'Quetzalcoatl',
                 'Doliodus': 'Doliodus',
@@ -210,7 +210,7 @@ Options.Triggers.push({
         {
             'locale': 'fr',
             'replaceSync': {
-                'Marquis Morbol': 'Marquis morbol',
+                'Morbol Marquis': 'Marquis morbol',
                 'Evil Armor': 'Armure maléfique',
                 'Quetzalcoatl': 'Quetzalcóatl',
                 'Doliodus': 'Doliodus',
@@ -243,7 +243,7 @@ Options.Triggers.push({
         {
             'locale': 'ja',
             'replaceSync': {
-                'marquis morbol': 'マーカス・モルボル',
+                'morbol marquis': 'マーカス・モルボル',
                 'Evil Armor': 'イビルアーマー',
                 'Quetzalcoatl': 'ケツァクウァトル',
                 'Doliodus': 'ドリオドゥス',
@@ -276,7 +276,7 @@ Options.Triggers.push({
         {
             'locale': 'cn',
             'replaceSync': {
-                'Marquis Morbol': '侯爵魔界花',
+                'Morbol Marquis': '侯爵魔界花',
                 'Evil Armor': '恶魔装甲',
                 'Quetzalcoatl': '克察尔科亚特尔',
                 'Doliodus': '原祖鲨',
@@ -309,7 +309,7 @@ Options.Triggers.push({
         {
             'locale': 'ko',
             'replaceSync': {
-                'Marquis Morbol': '몰볼 후작',
+                'Morbol Marquis': '몰볼 후작',
                 'Evil Armor': '사악한 갑옷',
                 'Quetzalcoatl': '케찰코아틀',
                 'Doliodus': '돌리오두스',
