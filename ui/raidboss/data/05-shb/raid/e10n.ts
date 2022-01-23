@@ -285,7 +285,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Shadowkeeper': 'Ordre royal',
+        'Shadowkeeper': 'Roi De L\'Ombre',
       },
       'replaceText': {
         'Backward Implosion': 'Implosion dorsale',
