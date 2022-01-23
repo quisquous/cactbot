@@ -1203,7 +1203,7 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
       delaySeconds: (_data, matches) => parseFloat(matches.duration),
       suppressSeconds: 1,
-      alarmText: (data, _matches, output) => {
+      infoText: (data, _matches, output) => {
         if (
           (data.curtainCallGroup === 2 && data.curtainCallTracker === 2) ||
           (data.curtainCallGroup === 3 && data.curtainCallTracker === 4) ||
