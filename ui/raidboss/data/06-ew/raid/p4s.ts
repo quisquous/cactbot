@@ -159,18 +159,28 @@ const triggerSet: TriggerSet<Data> = {
           jumpDir = !data.kickTwo ? output.west!() : output.east!();
         else if (data.jumpDir1 === 'west')
           jumpDir = !data.kickTwo ? output.east!() : output.west!();
+        else
+          return output.baitJump!();
 
-        return output.text!({ dir: jumpDir });
+        return output.baitJumpDir!({ dir: jumpDir });
       },
       run: (data) => data.kickTwo = true,
       outputStrings: {
-        text: {
+        baitJumpDir: {
           en: 'Bait Jump ${dir}?',
           de: 'Sprung ködern ${dir}?', // FIXME
           fr: 'Attirez le saut ${dir}?', // FIXME
           ja: 'ジャンプ誘導 ${dir}?', // FIXME
           cn: '引导跳跃 ${dir}?', // FIXME
           ko: '점프 유도 ${dir}?', // FIXME
+        },
+        baitJump: {
+          en: 'Bait Jump?',
+          de: 'Sprung ködern?',
+          fr: 'Attirez le saut?',
+          ja: 'ジャンプ誘導?',
+          cn: '引导跳跃',
+          ko: '점프 유도',
         },
         east: Outputs.east,
         west: Outputs.west,
