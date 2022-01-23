@@ -38,7 +38,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'lost food buff',
             de: 'Nahrungsbuff verloren',
-            fr: 'Buff nourriture terminée',
+            fr: 'Buff nourriture perdue',
             ja: '飯効果が失った',
             cn: '失去食物BUFF',
             ko: '음식 버프 해제',
