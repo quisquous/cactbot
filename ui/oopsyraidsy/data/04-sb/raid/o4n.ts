@@ -38,7 +38,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Cleansers missed Doom!',
             de: 'Doom-Reinigung vergessen!',
-            fr: 'N\'a pas été dissipé(e) du Glas !',
+            fr: 'Dissipation du Glas manquée!',
             ja: '死の宣告',
             cn: '没解死宣',
             ko: '죽음의 선고',
@@ -58,7 +58,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
-            fr: 'A été poussé(e) !',
+            fr: 'Repoussé(e) !',
             ja: '落ちた',
             cn: '击退坠落',
             ko: '넉백됨',
