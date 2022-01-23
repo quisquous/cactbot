@@ -31,7 +31,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Knocked off',
             de: 'Runtergefallen',
-            fr: 'A été assommé(e)',
+            fr: 'Renversé(e)',
             ja: 'ノックバック',
             cn: '击退坠落',
             ko: '넉백',
