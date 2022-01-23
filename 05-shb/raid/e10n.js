@@ -276,7 +276,7 @@ Options.Triggers.push({
         {
             'locale': 'fr',
             'replaceSync': {
-                'Shadowkeeper': 'Ordre royal',
+                'Shadowkeeper': 'Roi De L\'Ombre',
             },
             'replaceText': {
                 'Backward Implosion': 'Implosion dorsale',

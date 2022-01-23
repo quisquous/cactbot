@@ -868,7 +868,7 @@ Options.Triggers.push({
         {
             'locale': 'fr',
             'replaceSync': {
-                'Shadowkeeper': 'Ordre royal',
+                'Shadowkeeper': 'Roi De L\'Ombre',
                 'Shadow Of A Hero': 'ombre de héros',
                 'Shadefire': 'Feu ombral',
             },

@@ -920,6 +920,7 @@ Options.Triggers.push({
         {
             'locale': 'fr',
             'replaceSync': {
+                'Aetherial Gaol': 'Geôle Éthérée',
                 'Arcane Font': 'Solide Arcanique',
                 'Arcane Globe': 'Globe Arcanique',
                 'Ascian Prime\'s Shade': 'Spectre de Primo-Ascien',

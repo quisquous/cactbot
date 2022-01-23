@@ -72,6 +72,7 @@ Options.Triggers.push({
                 avoidTether: {
                     en: 'Avoid ${player} and tethers',
                     de: 'Weiche ${player} und Verbindungen aus',
+                    fr: 'Évitez ${player} et les liens',
                     ja: '${player}と線から離れる',
                     cn: '远离${player}及其连线',
                     ko: '${player}와 선 피하기',
@@ -147,7 +148,7 @@ Options.Triggers.push({
                 getKnocked: {
                     en: 'Get Knocked into Safe (no anti-knockback)',
                     de: 'Lass dich in den Safespot zurückstoßen (kein Rückstoßschutz)',
-                    fr: 'Faites-vous pousser en zone sûre (pas d\'anti-poussée)',
+                    fr: 'Faites-vous pousser en zone safe (pas d\'anti-poussée)',
                     ja: 'ボスの正面に (堅実魔効かない)',
                     cn: '站在Boss正面 (防击退无效)',
                     ko: '안전한 구역으로 넉백당하기',
