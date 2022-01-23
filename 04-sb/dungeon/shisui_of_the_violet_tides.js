@@ -111,7 +111,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Amikiri': 'Amikiri',
                 'Naishi-No-Kami': 'Naishi no Kami',
@@ -122,6 +121,9 @@ Options.Triggers.push({
                 'The Harutsuge Gate': 'Porte de Harutsuge',
             },
             'replaceText': {
+                '\\?': ' ?',
+                '--add--': '--add--',
+                '--adds--': '--adds--',
                 'Abyssal Volcano': 'Volcan abyssal',
                 'Black Tide': 'Marée noire',
                 'Coriolis Kick': 'Coup de pied Coriolis',

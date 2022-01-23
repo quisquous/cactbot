@@ -78,7 +78,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Fire Buff',
                     de: 'Nimm Feuer Buff',
-                    fr: 'Obtenez le buff de Feu',
+                    fr: 'Prenez le buff de Feu',
                     cn: '去火BUFF',
                     ko: '화염 속성 버프 얻기',
                 },
@@ -98,7 +98,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Ice Buff',
                     de: 'Nimm Eis Buff',
-                    fr: 'Obtenez le buff de Glace',
+                    fr: 'Prenez le buff de Glace',
                     cn: '去冰BUFF',
                     ko: '빙결 속성 버프 얻기',
                 },
@@ -118,7 +118,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Lightning Buff',
                     de: 'Nimm Blitz Buff',
-                    fr: 'Obtenez le buff d\'Éclair',
+                    fr: 'Prenez le buff d\'Éclair',
                     cn: '去雷BUFF',
                     ko: '뇌격 속성 버프 얻기',
                 },
@@ -202,7 +202,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Inferno': 'Inferno',
                 'Magna Roader': 'magna rouleur magitek',
@@ -213,6 +212,7 @@ Options.Triggers.push({
                 'The Assessment Grounds': 'Terrain d\'évaluation',
             },
             'replaceText': {
+                '--adds--': '--adds--',
                 'Barrier Shift': 'Change-Barrière',
                 'Gale Cut': 'Chute de pointes',
                 'Ketu & Rahu': 'Ketu et Rahu',
@@ -223,6 +223,7 @@ Options.Triggers.push({
                 'Rahu Blaster': 'Canon Rahu',
                 'Rahu Cut': 'Dépassement Rahu',
                 'Stab': 'Poignardage',
+                'Towers': 'Tours',
                 'Wheel': 'Roue',
                 'Wild Speed': 'Course folle',
             },
