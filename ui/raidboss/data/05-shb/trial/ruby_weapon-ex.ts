@@ -805,6 +805,8 @@ const triggerSet: TriggerSet<Data> = {
         'Ruby Bit': 'Drones rubis',
         'Raven\'s Image': 'Spectre De Nael',
         'The Ruby Weapon': 'Arme Rubis',
+        'White Agony': 'Angoisse De Nael',
+        'White Fury': 'Fureur De Nael',
       },
       'replaceText': {
         '\\?': ' ?',
