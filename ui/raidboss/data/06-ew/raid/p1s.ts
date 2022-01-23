@@ -360,9 +360,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         oppositePlayer: {
           en: 'Opposite color of ${player}',
+          fr: 'Couleur opposée de ${player}',
         },
         oppositeParty: {
           en: 'Opposite color of Party',
+          fr: 'Couleur opposée à l\'équipe',
         },
       },
     },
