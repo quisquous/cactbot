@@ -406,7 +406,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const shared: LocaleText = {
           en: 'shared',
           de: 'geteilt',
-          fr: 'Partagé(e)'
+          fr: 'Partagé(e)',
           ja: '重ねた',
           cn: '重叠',
           ko: '같이 맞음',
