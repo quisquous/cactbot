@@ -258,9 +258,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3S Sunbird Tether',
       type: 'Tether',
       // There is no need for a delay here, because all of the tethers are ordered:
-      //   Sunbird => Player1
+      //   SunbirdA => Player1
       //   Player1 => Player2
-      //   Sunbird => Player3
+      //   SunbirdB => Player3
       //   Player3 => Player4
       // ...therefore if this tether has the current player as a target, then we
       // will have seen the Sunbird => Player tether previously if it exists in the
@@ -277,6 +277,10 @@ const triggerSet: TriggerSet<Data> = {
         const birdId = parentTether?.sourceId ?? myTether.sourceId;
         const bird = data.sunbirds.find((x) => x.id === birdId);
         if (!bird) {
+          // Note: 0001 tethers happen later with the Sunshadow birds during the Fountain of Fire
+          // section.  In most cases, a player will get a tether during add phase and then this
+          // will be suppressed in the fountain section.  In the rare case they don't, they
+          // may get this error, but nothing will be printed on screen.
           console.error(`SunbirdTether: no bird ${birdId}`);
           return;
         }
