@@ -312,9 +312,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         playerTether: {
           en: '${dir} (away from ${player})',
+          fr: '${dir} (éloignez-vous de ${player})',
         },
         birdTether: {
           en: '${dir} (away from bird)',
+          fr: '${dir} (éloignez-vous de l\'oiseau)',
         },
         north: Outputs.north,
         northeast: Outputs.northeast,
