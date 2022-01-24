@@ -244,7 +244,7 @@ const triggerSet: TriggerSet<Data> = {
       // 0039 when pink, 0001 when stretched purple.
       // TODO: in general, it seems like the tethers are picked to start unstretched,
       // but plausibly you could create a scenario where one starts stretched?
-      netRegex: NetRegexes.tether({ id: ['0039', '0001'] }),
+      netRegex: NetRegexes.tether({ source: 'Sunbird', id: ['0039', '0001'] }),
       run: (data, matches) => data.sunbirdTethers.push(matches),
     },
     {
