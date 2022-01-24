@@ -16,6 +16,12 @@ const getHeadmarkerId = (data, matches) => {
 Options.Triggers.push({
     zoneId: ZoneId.AsphodelosTheThirdCircleSavage,
     timelineFile: 'p3s.txt',
+    initData: () => {
+        return {
+            sunbirds: [],
+            sunbirdTethers: [],
+        };
+    },
     triggers: [
         {
             id: 'P3S Headmarker Tracker',
@@ -211,6 +217,91 @@ Options.Triggers.push({
                 west: Outputs.west,
                 south: Outputs.south,
                 north: Outputs.north,
+            },
+        },
+        {
+            id: 'P3S Sunbird Tether Collector',
+            type: 'Tether',
+            // 0039 when pink, 0001 when stretched purple.
+            // TODO: in general, it seems like the tethers are picked to start unstretched,
+            // but plausibly you could create a scenario where one starts stretched?
+            netRegex: NetRegexes.tether({ source: 'Sunbird', id: ['0039', '0001'] }),
+            run: (data, matches) => data.sunbirdTethers.push(matches),
+        },
+        {
+            id: 'P3S Sunbird Collector',
+            type: 'AddedCombatant',
+            // Small birds are 13633, and big birds are 13635.
+            netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '13635' }),
+            run: (data, matches) => data.sunbirds.push(matches),
+        },
+        {
+            id: 'P3S Sunbird Tether',
+            type: 'Tether',
+            // There is no need for a delay here, because all of the tethers are ordered:
+            //   SunbirdA => Player1
+            //   Player1 => Player2
+            //   SunbirdB => Player3
+            //   Player3 => Player4
+            // ...therefore if this tether has the current player as a target, then we
+            // will have seen the Sunbird => Player tether previously if it exists in the
+            // Sunbird Tether Collector line.
+            netRegex: NetRegexes.tether({ id: ['0039', '0001'] }),
+            condition: Conditions.targetIsYou(),
+            // There are additional tether lines when you stretch/unstretch the tether, and
+            // adds will re-tether somebody new if somebody dies right before dashing.  Only call once.
+            suppressSeconds: 9999,
+            alertText: (data, matches, output) => {
+                let _a;
+                const myTether = matches;
+                const parentTether = data.sunbirdTethers.find((x) => x.targetId === myTether.sourceId);
+                const birdId = (_a = parentTether === null || parentTether === void 0 ? void 0 : parentTether.sourceId) !== null && _a !== void 0 ? _a : myTether.sourceId;
+                const bird = data.sunbirds.find((x) => x.id === birdId);
+                if (!bird) {
+                    // Note: 0001 tethers happen later with the Sunshadow birds during the Fountain of Fire
+                    // section.  In most cases, a player will get a tether during add phase and then this
+                    // will be suppressed in the fountain section.  In the rare case they don't, they
+                    // may get this error, but nothing will be printed on screen.
+                    console.error(`SunbirdTether: no bird ${birdId}`);
+                    return;
+                }
+                const centerX = 100;
+                const centerY = 100;
+                const x = parseFloat(bird.x) - centerX;
+                const y = parseFloat(bird.y) - centerY;
+                const birdDir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+                const adjustedDir = (birdDir + (parentTether === undefined ? 4 : 0)) % 8;
+                const outputDir = {
+                    0: output.north(),
+                    1: output.northeast(),
+                    2: output.east(),
+                    3: output.southeast(),
+                    4: output.south(),
+                    5: output.southwest(),
+                    6: output.west(),
+                    7: output.northwest(),
+                }[adjustedDir];
+                if (!outputDir)
+                    throw new UnreachableCode();
+                if (parentTether)
+                    return output.playerTether({ dir: outputDir, player: data.ShortName(myTether.source) });
+                return output.birdTether({ dir: outputDir });
+            },
+            outputStrings: {
+                playerTether: {
+                    en: '${dir} (away from ${player})',
+                },
+                birdTether: {
+                    en: '${dir} (away from bird)',
+                },
+                north: Outputs.north,
+                northeast: Outputs.northeast,
+                east: Outputs.east,
+                southeast: Outputs.southeast,
+                south: Outputs.south,
+                southwest: Outputs.southwest,
+                west: Outputs.west,
+                northwest: Outputs.northwest,
             },
         },
         {
