@@ -33,6 +33,7 @@ export interface Data extends RaidbossData {
 const roleOutputStrings = {
   tankHealer: {
     en: 'Tank/Healer',
+    de: 'Tank/Heiler',
     fr: 'Tank/Healer',
     ja: 'タンク＆ヒーラ',
     cn: '坦克/治疗',
@@ -48,6 +49,7 @@ const roleOutputStrings = {
   },
   roleTethers: {
     en: '${role} Tethers',
+    de: '${role} Verbindung',
     fr: 'Liens ${role}',
     ja: '線もらう: ${role}',
     cn: '${role} 截线',
@@ -62,6 +64,7 @@ const roleOutputStrings = {
   },
   roleEverything: {
     en: '${role} Everything',
+    de: '${role} Alles',
     fr: 'Tout ${role}',
     ja: '${role} 全てもらう',
     cn: '${role} 处理全部',
@@ -69,6 +72,7 @@ const roleOutputStrings = {
   },
   roleTowers: {
     en: '${role} Towers',
+    de: '${role} Türme',
     fr: 'Tours ${role}',
     ja: '塔: ${role}',
     cn: '${role} 踩塔',
@@ -443,6 +447,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         shiftWell: {
           en: 'Well => Shift',
+          de: 'Brunnen => Schwingen',
           fr: 'Eau => Frappe mouvante',
           ja: '水 => シフティング',
           cn: '水 => 位移',
@@ -835,7 +840,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankbustersOut: {
           en: 'Out (Tankbusters)',
-          de: 'Raus, tankbuster', // FIXME
+          de: 'Raus, Tankbuster',
           fr: 'À l\'extérieur (Tank busters)',
           ja: 'タンク離れる',
           cn: '远离 (坦克死刑)',

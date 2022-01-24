@@ -419,12 +419,14 @@ const triggerSet: TriggerSet<Data> = {
         middle: Outputs.middle,
         outIntercards: {
           en: 'Intercards + Out',
+          de: 'Interkardinal + Raus',
           fr: 'Intercadinal + Extérieur',
           ja: '斜め + 外側',
           ko: '비스듬히 + 바깥쪽',
         },
         outCardinals: {
           en: 'Out + Cardinals',
+          de: 'Raus + Kardinal',
           fr: 'Extérieur + Cardinal',
           ja: '外側 + 十字',
           ko: '바깥쪽 + 십자로',
