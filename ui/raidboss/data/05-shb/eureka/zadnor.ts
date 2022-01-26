@@ -804,7 +804,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback (behind pillar)',
           de: 'Rückstoß (hinter dem Eissplitter)',
-          fr: 'Poussée (derrière le pilier)',          
+          fr: 'Poussée (derrière le pilier)',
           cn: '击退到柱子后',
           ko: '기둥 뒤로 넉백',
         },
