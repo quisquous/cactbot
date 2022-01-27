@@ -45,7 +45,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Knocked off',
             de: 'Runtergefallen',
-            fr: 'A été assommé(e)',
+            fr: 'Renversé(e)',
             ja: 'ノックバック',
             cn: '击退坠落',
             ko: '넉백',
@@ -65,6 +65,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Pushed into wall',
             de: 'Rückstoß in die Wand',
+            fr: 'Poussé(e) dans le mur',
             ja: '壁へノックバック',
             cn: '击退至墙',
             ko: '넉백',

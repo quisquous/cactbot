@@ -1,20 +1,24 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Part Two
 // TODO: Wreath of Thorns 2 additional tether info?
+// TODO: Act 2 Callout for the 'tank' tethered to 'healer' with purple headmarker
 // TODO: Better Dark Design/tether break callouts
 // TODO: Wreath of Thorns 3 strategy (1 = melee, 2 = ranged) or
 //       something more intelligent such as tracking the vulnerabilities?
-// TODO: Call out thorns soaks for Wreath of Thorns 3 (E/W?)
 // TODO: Heart Stake is tankbuster with DoT, does it need to be output differrently?
-// TODO: Wreath of Thorns 4 headmarkers and tethers
+// TODO: Act 4 Blue/Purple Tether strategy?
+// TODO: Curtain Call tank swap
 
 export interface Data extends RaidbossData {
   actingRole?: string;
@@ -27,7 +31,14 @@ export interface Data extends RaidbossData {
   wellShiftKnockback?: boolean;
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
+  act?: string;
+  colorHeadmarkerIds: number[];
+  thornIds?: number[];
+  jumpDir1?: string;
+  kickTwo?: boolean;
   fleetingImpulseCounter?: number;
+  curtainCallGroup?: number;
+  curtainCallTracker?: number;
 }
 
 const roleOutputStrings = {
@@ -81,11 +92,36 @@ const roleOutputStrings = {
   unknown: Outputs.unknown,
 };
 
+const tetherOutputStrings = {
+  purpleTether: {
+    en: 'Purple Tether',
+  },
+  orangeTether: {
+    en: 'Orange Tether',
+  },
+  greenTether: {
+    en: 'Green Tether',
+  },
+  blueTether: {
+    en: 'Blue Tether',
+  },
+};
+
+const curtainCallOutputStrings = {
+  group: {
+    en: 'Group ${num}',
+  },
+};
+
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-// The first 1B marker in the encounter is an Elegant Evisceration? (00DA?).
+// The first 1B marker in the encounter is an Elegant Evisceration (00DA).
+// The first 1B marker in the phase 2 encounter could be one of three:
+// Purple, Green, Orange color tethers (012D, 012E, 012F)
 const firstHeadmarker = parseInt('00DA', 16);
+const purpleMarker = parseInt('012D', 16);
+
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
@@ -100,6 +136,11 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheFourthCircleSavage,
   timelineFile: 'p4s.txt',
+  initData: () => {
+    return {
+      colorHeadmarkerIds: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'P4S Dark Design',
@@ -120,21 +161,39 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Kothornos Kick',
       regex: /Kothornos Kick/,
-      beforeSeconds: 5,
+      beforeSeconds: 5.3,
       infoText: (data, _matches, output) => {
-        if (data.role === 'tank' || data.role === 'healer')
-          return;
-        return output.text!();
+        let jumpDir = '';
+        if (data.jumpDir1 === 'east')
+          jumpDir = !data.kickTwo ? output.west!() : output.east!();
+        else if (data.jumpDir1 === 'west')
+          jumpDir = !data.kickTwo ? output.east!() : output.west!();
+        else
+          return output.baitJump!();
+
+        return output.baitJumpDir!({ dir: jumpDir });
       },
+      run: (data) => data.kickTwo = true,
       outputStrings: {
-        text: {
+        baitJumpDir: {
+          en: 'Bait Jump ${dir}?',
+          de: 'Sprung ködern ${dir}?', // FIXME
+          fr: 'Attirez le saut ${dir}?', // FIXME
+          ja: 'ジャンプ誘導 ${dir}?', // FIXME
+          cn: '引导跳跃 ${dir}?', // FIXME
+          ko: '점프 유도 ${dir}?', // FIXME
+        },
+        baitJump: {
           en: 'Bait Jump?',
           de: 'Sprung ködern?',
-          fr: 'Attirez le saut ?',
+          fr: 'Attirez le saut?',
           ja: 'ジャンプ誘導?',
-          cn: '引导跳跃?',
-          ko: '점프 유도?',
+          cn: '引导跳跃',
+          ko: '점프 유도',
         },
+        east: Outputs.east,
+        west: Outputs.west,
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -175,7 +234,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Headmarker Tracker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.decOffset === undefined,
+      condition: (data) => data.decOffset === undefined && data.act === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
     },
@@ -810,6 +869,103 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'P4S Act Tracker',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'ヘスペロス' }),
+      run: (data, matches) => {
+        const actMap: { [id: string]: string } = {
+          '6A0C': '1',
+          '6EB4': '2',
+          '6EB5': '3',
+          '6EB6': '4',
+          '6EB7': 'finale',
+          '6A36': 'curtain',
+        };
+        data.act = actMap[matches.id];
+      },
+    },
+    {
+      id: 'P4S Thorns Collector',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6A0C', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6A0C', source: 'ヘスペロス' }),
+      promise: async (data, matches, _output) => {
+        // Collect all Hesperos entities up front
+        let combatantName = null;
+        combatantName = matches.source;
+
+        let combatantData = null;
+        if (combatantName) {
+          combatantData = await callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantName],
+          });
+        }
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantData === null) {
+          console.error(`Hesperos: null data`);
+          return;
+        }
+        if (!combatantData.combatants) {
+          console.error(`Hesperos: null combatants`);
+          return;
+        }
+        const combatantDataLength = combatantData.combatants.length;
+        if (combatantDataLength < 8) {
+          console.error(`Hesperos: expected at least 8 combatants got ${combatantDataLength}`);
+          return;
+        }
+
+        // the lowest eight Hesperos IDs are the thorns that tether the boss
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortedCombatantData = combatantData.combatants.sort(sortCombatants).splice(combatantDataLength - 8, combatantDataLength);
+
+        if (!sortedCombatantData)
+          throw new UnreachableCode();
+
+        sortedCombatantData.forEach((combatant: PluginCombatantState) => {
+          (data.thornIds ??= []).push(combatant.ID ?? 0);
+        });
+      },
+    },
+    {
+      id: 'P4S Act One Safe Spots',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '1',
+      // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
+      suppressSeconds: 7,
+      infoText: (data, matches, output) => {
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
+        const thornMap: { [thorn: number]: string } = {
+          4: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          5: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          6: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          7: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+        };
+        return thornMap[thorn];
+      },
+      outputStrings: {
+        text: {
+          en: '${dir1}/${dir2} first',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
       id: 'P4S Nearsight',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A26', source: 'Hesperos', capture: false }),
@@ -860,6 +1016,86 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.sharedTankBuster(),
     },
     {
+      id: 'P4S Act Two Safe Spots',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '2',
+      // Tethers come out Cardinals (0 seconds), (3s) Other Cardinals
+      suppressSeconds: 4,
+      infoText: (data, matches, output) => {
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
+        const thornMap: { [thorn: number]: string } = {
+          0: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          1: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          2: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          3: output.text!({ dir1: output.north!(), dir2: output.south!() }),
+          4: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          5: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          6: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+          7: output.text!({ dir1: output.east!(), dir2: output.west!() }),
+        };
+        return thornMap[thorn];
+      },
+      outputStrings: {
+        text: {
+          en: '${dir1}/${dir2} first',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'P4S Color Headmarker Collector',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.decOffset === undefined && data.act !== undefined,
+      // Gather headmarkers in Act 2
+      run: (data, matches) => {
+        const id = parseInt(matches.id, 16);
+        data.colorHeadmarkerIds.push(id);
+      },
+    },
+    {
+      id: 'P4S Color Headmarkers',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.act !== undefined,
+      // Delay some for headmarkers to be gathered
+      delaySeconds: (data) => data.decOffset ? 0 : 0.3,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = tetherOutputStrings;
+
+        // Calculate offset from purple headmarker in Act 2
+        if (!data.decOffset) {
+          // Log message in case there isn't enough headmarkers
+          // Doable with 5 as the first headmarker on missing target to be removed is two greens
+          if (data.colorHeadmarkerIds.length < 5)
+            console.error(`Act ${data.act ?? 'Unknown'}: Found ${data.colorHeadmarkerIds.length} headmarkers in Act 2, expected at least 5! Assumed one was purple.`);
+
+          // Sort IDs, relying on purple at index 0 for offset calculation
+          data.colorHeadmarkerIds.sort((a, b) => a - b);
+          data.decOffset = (data.colorHeadmarkerIds[0] ?? 0) - purpleMarker;
+        }
+        const id = getHeadmarkerId(data, matches);
+
+        const headMarkers: { [id: string]: string } = {
+          '012C': output.blueTether!(),
+          '012D': output.purpleTether!(),
+          '012E': output.greenTether!(),
+          '012F': output.orangeTether!(),
+        };
+
+        if (matches.target === data.me)
+          return { infoText: headMarkers[id] };
+      },
+    },
+    {
       id: 'P4S Ultimate Impulse',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A2C', source: 'Hesperos', capture: false }),
@@ -867,6 +1103,42 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6A2C', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A2C', source: 'ヘスペロス', capture: false }),
       response: Responses.bigAoe(),
+    },
+    {
+      id: 'P4S Act Three Bait Order',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00AD', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00AD', source: 'ヘスペロス' }),
+      condition: (data) => data.act === '3',
+      // Tethers come out East or West (0 seconds), (3s) Middle knockack, (6) Opposite Cardinal
+      suppressSeconds: 7,
+      infoText: (data, matches, output) => {
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
+
+        const thornMapDirs: { [thorn: number]: string } = {
+          0: 'east',
+          1: 'east',
+          2: 'east',
+          3: 'east',
+          4: 'west',
+          5: 'west',
+          6: 'west',
+          7: 'west',
+        };
+
+        data.jumpDir1 = thornMapDirs[thorn];
+        return output[thornMapDirs[thorn] ??= 'unknown']!();
+      },
+      outputStrings: {
+        text: {
+          en: 'Bait Jump ${dir1} first',
+        },
+        east: Outputs.east,
+        west: Outputs.west,
+        unknown: Outputs.unknown,
+      },
     },
     {
       id: 'P4S Heart Stake',
@@ -925,6 +1197,51 @@ const triggerSet: TriggerSet<Data> = {
           ko: '가시: ${num}번째',
         },
       },
+    },
+    {
+      id: 'P4S Curtain Call Debuffs',
+      // Durations could be 12s, 22s, 32s, and 42s
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AF4', capture: true }),
+      condition: (data, matches) => {
+        return (data.me === matches.target && data.act === 'curtain');
+      },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = curtainCallOutputStrings;
+
+        data.curtainCallGroup = Math.ceil(((parseFloat(matches.duration)) - 2) / 10);
+
+        if (data.curtainCallGroup === 1)
+          return { alarmText: output.group!({ num: data.curtainCallGroup }) };
+        return { infoText: output.group!({ num: data.curtainCallGroup }) };
+      },
+    },
+    {
+      id: 'P4S Curtain Call Reminders',
+      // Alarms for the other groups
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B7D', capture: true }),
+      condition: (data) => data.act === 'curtain',
+      preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        if (
+          (data.curtainCallGroup === 2 && data.curtainCallTracker === 2) ||
+          (data.curtainCallGroup === 3 && data.curtainCallTracker === 4) ||
+          (data.curtainCallGroup === 4 && data.curtainCallTracker === 6)
+        )
+          return output.group!({ num: data.curtainCallGroup });
+      },
+      run: (data) => {
+        // Clear once 8 tethers have been broken
+        if (data.curtainCallTracker === 8) {
+          data.curtainCallTracker = 0;
+          data.curtainCallGroup = 0;
+        }
+      },
+      outputStrings: curtainCallOutputStrings,
     },
     {
       id: 'P4S Hell\'s Sting',

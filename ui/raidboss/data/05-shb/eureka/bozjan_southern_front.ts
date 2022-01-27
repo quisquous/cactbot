@@ -939,7 +939,7 @@ const triggerSet: TriggerSet<Data> = {
         'Albeleo\'s Monstrosity': 'Bête D\'Albeleo',
         'Albeleo\'s Hrodvitnir': 'Hródvitnir',
         'Electric Charge': 'Boule D\'Énergie',
-        '7 minutes have elapsed since your last activity..*?': 'Votre personnage est inactif depuis 7 minutes.*?',
+        '7 minutes have elapsed since your last activity..*?': 'Votre personnage est inactif depuis 7 minutes',
         '4Th Legion Helldiver': 'plongeur infernal de la 4e légion',
         'Adrammelech': 'Adrammelech',
         'Bladesmeet': 'Hall des Lames',

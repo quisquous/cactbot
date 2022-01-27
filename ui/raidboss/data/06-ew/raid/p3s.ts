@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -10,6 +11,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   deathsToll?: boolean;
   deathsTollPending?: boolean;
+  sunbirdTethers: NetMatches['Tether'][];
+  sunbirds: NetMatches['AddedCombatant'][];
   decOffset?: number;
 }
 
@@ -32,6 +35,12 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheThirdCircleSavage,
   timelineFile: 'p3s.txt',
+  initData: () => {
+    return {
+      sunbirds: [],
+      sunbirdTethers: [],
+    };
+  },
   triggers: [
     {
       id: 'P3S Headmarker Tracker',
@@ -230,6 +239,96 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P3S Sunbird Tether Collector',
+      type: 'Tether',
+      // 0039 when pink, 0001 when stretched purple.
+      // TODO: in general, it seems like the tethers are picked to start unstretched,
+      // but plausibly you could create a scenario where one starts stretched?
+      netRegex: NetRegexes.tether({ source: 'Sunbird', id: ['0039', '0001'] }),
+      run: (data, matches) => data.sunbirdTethers.push(matches),
+    },
+    {
+      id: 'P3S Sunbird Collector',
+      type: 'AddedCombatant',
+      // Small birds are 13633, and big birds are 13635.
+      netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '13635' }),
+      run: (data, matches) => data.sunbirds.push(matches),
+    },
+    {
+      id: 'P3S Sunbird Tether',
+      type: 'Tether',
+      // There is no need for a delay here, because all of the tethers are ordered:
+      //   SunbirdA => Player1
+      //   Player1 => Player2
+      //   SunbirdB => Player3
+      //   Player3 => Player4
+      // ...therefore if this tether has the current player as a target, then we
+      // will have seen the Sunbird => Player tether previously if it exists in the
+      // Sunbird Tether Collector line.
+      netRegex: NetRegexes.tether({ id: ['0039', '0001'] }),
+      condition: Conditions.targetIsYou(),
+      // There are additional tether lines when you stretch/unstretch the tether, and
+      // adds will re-tether somebody new if somebody dies right before dashing.  Only call once.
+      suppressSeconds: 9999,
+      alertText: (data, matches, output) => {
+        const myTether = matches;
+        const parentTether = data.sunbirdTethers.find((x) => x.targetId === myTether.sourceId);
+
+        const birdId = parentTether?.sourceId ?? myTether.sourceId;
+        const bird = data.sunbirds.find((x) => x.id === birdId);
+        if (!bird) {
+          // Note: 0001 tethers happen later with the Sunshadow birds during the Fountain of Fire
+          // section.  In most cases, a player will get a tether during add phase and then this
+          // will be suppressed in the fountain section.  In the rare case they don't, they
+          // may get this error, but nothing will be printed on screen.
+          console.error(`SunbirdTether: no bird ${birdId}`);
+          return;
+        }
+
+        const centerX = 100;
+        const centerY = 100;
+        const x = parseFloat(bird.x) - centerX;
+        const y = parseFloat(bird.y) - centerY;
+        const birdDir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+
+        const adjustedDir = (birdDir + (parentTether === undefined ? 4 : 0)) % 8;
+        const outputDir = {
+          0: output.north!(),
+          1: output.northeast!(),
+          2: output.east!(),
+          3: output.southeast!(),
+          4: output.south!(),
+          5: output.southwest!(),
+          6: output.west!(),
+          7: output.northwest!(),
+        }[adjustedDir];
+        if (!outputDir)
+          throw new UnreachableCode();
+
+        if (parentTether)
+          return output.playerTether!({ dir: outputDir, player: data.ShortName(myTether.source) });
+        return output.birdTether!({ dir: outputDir });
+      },
+      outputStrings: {
+        playerTether: {
+          en: '${dir} (away from ${player})',
+          fr: '${dir} (éloignez-vous de ${player})',
+        },
+        birdTether: {
+          en: '${dir} (away from bird)',
+          fr: '${dir} (éloignez-vous de l\'oiseau)',
+        },
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+      },
+    },
+    {
       id: 'P3S Dead Rebirth',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '66E4', source: 'Phoinix', capture: false }),
@@ -286,7 +385,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '66C6', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '66C6', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '66C6', source: 'フェネクス', capture: false }),
-      response: Responses.getOut(),
+      // If you hang around to wait for the spread/stack, you will get killed.
+      // It's easy to get complacement by the end of the fight, so make this loud.
+      response: Responses.getOut('alarm'),
     },
     {
       id: 'P3S Experimental Gloryplume Stack',
