@@ -245,6 +245,9 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: in general, it seems like the tethers are picked to start unstretched,
       // but plausibly you could create a scenario where one starts stretched?
       netRegex: NetRegexes.tether({ source: 'Sunbird', id: ['0039', '0001'] }),
+      netRegexDe: NetRegexes.tether({ source: 'Spross Des Phoinix', id: ['0039', '0001'] }),
+      netRegexFr: NetRegexes.tether({ source: 'Oiselet Étincelant', id: ['0039', '0001'] }),
+      netRegexJa: NetRegexes.tether({ source: '陽炎鳥', id: ['0039', '0001'] }),
       run: (data, matches) => data.sunbirdTethers.push(matches),
     },
     {
@@ -312,10 +315,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         playerTether: {
           en: '${dir} (away from ${player})',
+          de: '${dir} (weg von ${player})',
           fr: '${dir} (éloignez-vous de ${player})',
         },
         birdTether: {
           en: '${dir} (away from bird)',
+          de: '${dir} (weg vom Vogel)',
           fr: '${dir} (éloignez-vous de l\'oiseau)',
         },
         north: Outputs.north,

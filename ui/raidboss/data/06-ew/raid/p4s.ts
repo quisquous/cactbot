@@ -68,6 +68,7 @@ const roleOutputStrings = {
   },
   roleDebuffs: {
     en: '${role} Role Calls',
+    de: '${role} Dreifäulenoper',
     fr: 'Debuffs ${role}',
     ja: 'デバフもらう: ${role}',
     cn: '${role} 拿毒',
@@ -95,21 +96,26 @@ const roleOutputStrings = {
 const tetherOutputStrings = {
   purpleTether: {
     en: 'Purple Tether',
+    de: 'Lila Verbindung',
   },
   orangeTether: {
     en: 'Orange Tether',
+    de: 'Orangene Verbindung',
   },
   greenTether: {
     en: 'Green Tether',
+    de: 'Grüne Verbindung',
   },
   blueTether: {
     en: 'Blue Tether',
+    de: 'Blaue Verbindung',
   },
 };
 
 const curtainCallOutputStrings = {
   group: {
     en: 'Group ${num}',
+    de: 'Group ${num}',
   },
 };
 
@@ -177,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitJumpDir: {
           en: 'Bait Jump ${dir}?',
-          de: 'Sprung ködern ${dir}?', // FIXME
+          de: 'Sprung ködern ${dir}?',
           fr: 'Attirez le saut ${dir}?', // FIXME
           ja: 'ジャンプ誘導 ${dir}?', // FIXME
           cn: '引导跳跃 ${dir}?', // FIXME
@@ -393,6 +399,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         passRoleCall: {
           en: 'Pass Role Call',
+          de: 'Dreifäulenoper weitergeben',
           fr: 'Passez votre debuff',
           ja: 'デバフ渡す',
           cn: '传毒',
@@ -417,6 +424,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Role Call',
+          de: 'Nimm Dreifäulenoper',
           fr: 'Prenez un debuff',
           ja: 'デバフもらう',
           cn: '拿毒',
@@ -586,7 +594,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'North Cleave',
-          de: 'Cleave in den Norden',
+          de: 'Cleave vom Norden',
           fr: 'Cleave au nord',
           ja: '北の横',
           cn: '北 两侧',
@@ -605,7 +613,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'East Cleave',
-          de: 'Cleave in den Osten',
+          de: 'Cleave vom Osten',
           fr: 'Cleave à l\'est',
           ja: '東の横',
           cn: '东 两侧',
@@ -624,7 +632,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'South Cleave',
-          de: 'Cleave in den Süden',
+          de: 'Cleave vom Süden',
           fr: 'Cleave au sud',
           ja: '南の横',
           cn: '南 两侧',
@@ -643,7 +651,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'West Cleave',
-          de: 'Cleave in den Westen',
+          de: 'Cleave vom Westen',
           fr: 'Cleave à l\'ouest',
           ja: '西の横',
           cn: '西 两侧',
@@ -662,7 +670,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'North Cape',
-          de: 'Umhang im Norden',
+          de: 'Rückstoß vom Norden',
           fr: 'Cape au nord',
           ja: '北でノックバック',
           cn: '北 击退',
@@ -681,7 +689,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'East Cape',
-          de: 'Umhang im Osten',
+          de: 'Rückstoß vom Osten',
           fr: 'Cape à l\'est',
           ja: '東でノックバック',
           cn: '东 击退',
@@ -700,7 +708,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'South Cape',
-          de: 'Umhang im Süden',
+          de: 'Rückstoß vom Süden',
           fr: 'Cape au sud',
           ja: '南でノックバック',
           cn: '南 击退',
@@ -719,7 +727,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'West Cape',
-          de: 'Umhang im Westen',
+          de: 'Rückstoß vom Westen',
           fr: 'Cape à l\'ouest',
           ja: '西でノックバック',
           cn: '西 击退',
@@ -958,6 +966,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${dir1}/${dir2} first',
+          de: '${dir1}/${dir2} zuerst',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -1042,6 +1051,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${dir1}/${dir2} first',
+          de: '${dir1}/${dir2} zuerst',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -1134,6 +1144,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Jump ${dir1} first',
+          de: 'Köder Sprung ${dir1} zuerst',
         },
         east: Outputs.east,
         west: Outputs.west,
@@ -1275,7 +1286,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Hesperos': 'Hesperos',
       },
@@ -1298,9 +1308,12 @@ const triggerSet: TriggerSet<Data> = {
         'Cursed Casting': 'Fluches Frucht',
         'Dark Design': 'Finsteres Formen',
         'Decollation': 'Enthauptung',
+        'Demigod Double': 'Hemitheischer Hieb',
         'Director\'s Belone': 'Maskiertes Belone',
+        'Directional Shift': 'Himmelsrichtung-Schwingen',
         'Elegant Evisceration': 'Adrette Ausweidung',
         'Elemental Belone': 'Elementares Belone',
+        'Farsight': 'Blick in die Ferne',
         'Fleeting Impulse': 'Flüchtiger Impuls',
         'Heart Stake': 'Herzenspfahl',
         'Hell\'s Sting': 'Höllenstich',
@@ -1315,6 +1328,7 @@ const triggerSet: TriggerSet<Data> = {
         'Kothornos Quake': 'Kothornoi-Beben',
         'Lava Pinax': 'Lava-Pinax',
         'Levinstrike Pinax': 'Donner-Pinax',
+        'Nearsight': 'Blick nach innen',
         'Periaktoi': 'Periaktoi',
         '(?<!\\w )Pinax': 'Pinax',
         'Searing Stream': 'Sengender Strom',
