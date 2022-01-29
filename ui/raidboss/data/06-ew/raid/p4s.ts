@@ -594,7 +594,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'North Cleave',
-          de: 'Cleave vom Norden',
+          de: 'Cleave -> Geh in den Norden',
           fr: 'Cleave au nord',
           ja: '北の横',
           cn: '北 两侧',
@@ -613,7 +613,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'East Cleave',
-          de: 'Cleave vom Osten',
+          de: 'Cleave -> Geh in den Osten',
           fr: 'Cleave à l\'est',
           ja: '東の横',
           cn: '东 两侧',
@@ -632,7 +632,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'South Cleave',
-          de: 'Cleave vom Süden',
+          de: 'Cleave -> Geh in den Süden',
           fr: 'Cleave au sud',
           ja: '南の横',
           cn: '南 两侧',
@@ -651,7 +651,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'West Cleave',
-          de: 'Cleave vom Westen',
+          de: 'Cleave -> Geh in den Westen',
           fr: 'Cleave à l\'ouest',
           ja: '西の横',
           cn: '西 两侧',
@@ -670,7 +670,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'North Cape',
-          de: 'Rückstoß vom Norden',
+          de: 'Rückstoß -> Geh in den Norden',
           fr: 'Cape au nord',
           ja: '北でノックバック',
           cn: '北 击退',
@@ -689,7 +689,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'East Cape',
-          de: 'Rückstoß vom Osten',
+          de: 'Rückstoß -> Geh in den Osten',
           fr: 'Cape à l\'est',
           ja: '東でノックバック',
           cn: '东 击退',
@@ -708,7 +708,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'South Cape',
-          de: 'Rückstoß vom Süden',
+          de: 'Rückstoß -> Geh in den Süden',
           fr: 'Cape au sud',
           ja: '南でノックバック',
           cn: '南 击退',
@@ -727,7 +727,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'West Cape',
-          de: 'Rückstoß vom Westen',
+          de: 'Rückstoß -> Geh in den Westen',
           fr: 'Cape à l\'ouest',
           ja: '西でノックバック',
           cn: '西 击退',
