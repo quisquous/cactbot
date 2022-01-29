@@ -572,7 +572,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': 'Schwerer Beschuss',
         'Friction': 'Windklinge',
         'Geocrush': 'Geo-Stoß',
-        'Great Whirlwind': 'Großer Wirbelsturm', //FIXME
+        'Great Whirlwind': 'Großer Wirbelsturm', // FIXME
         'Hellfire': 'Höllenfeuer',
         'Homing Lasers': 'Leitlaser',
         'Incinerate': 'Einäschern',
@@ -706,7 +706,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '誘爆',
         'Friction': 'ウィンドブレード',
         'Geocrush': 'ジオクラッシュ',
-        'Great Whirlwind': '大旋風', //FIXME
+        'Great Whirlwind': '大旋風', // FIXME
         'Hellfire': '地獄の火炎',
         'Homing Lasers': '誘導レーザー',
         'Incinerate': 'インシネレート',
@@ -773,7 +773,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '诱导爆炸',
         'Friction': '烈风刃',
         'Geocrush': '大地粉碎',
-        'Great Whirlwind': '大龙卷风', //FIXME
+        'Great Whirlwind': '大龙卷风', // FIXME
         'Hellfire': '地狱之火炎',
         'Homing Lasers': '诱导射线',
         'Incinerate': '烈焰焚烧',
@@ -840,7 +840,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '유폭',
         'Friction': '바람의 칼날',
         'Geocrush': '대지 붕괴',
-        'Great Whirlwind': '대선풍', //FIXME
+        'Great Whirlwind': '대선풍', // FIXME
         'Hellfire': '지옥의 화염',
         'Homing Lasers': '유도 레이저',
         'Incinerate': '소각',
