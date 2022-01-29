@@ -255,7 +255,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Knockback -> Out of Middle',
                     de: 'Rückstoß -> Raus aus der Mitte',
-                    fr: 'Poussée -> Éloignez-vous du milieu',
+                    fr: 'Poussée -> Sortez du milieu',
                     ja: 'ノックバック -> 外へ',
                     cn: '击退 -> 去外面',
                     ko: '넉백 -> 가운데 피하기',
@@ -540,7 +540,7 @@ Options.Triggers.push({
                 center: {
                     en: 'Go to Center',
                     de: 'Geh in die Mitte',
-                    fr: 'Allez au milieu',
+                    fr: 'Allez au centre',
                     cn: '去中间',
                     ko: '가운데로',
                 },
@@ -582,7 +582,7 @@ Options.Triggers.push({
                 oops: {
                     en: 'Avoid line AOEs',
                     de: 'Weiche den Linien AoEs aus',
-                    fr: 'Évitez l\'AOE en ligne',
+                    fr: 'Évitez les AoEs en ligne',
                     cn: '躲避直线AOE',
                     ko: '레이저 피하기',
                 },
@@ -925,7 +925,6 @@ Options.Triggers.push({
             },
             'replaceText': {
                 '--targetable\\?--': '--ciblable ?--',
-                'Black Dissonance': 'Noir : rongement',
                 '(?<!Tandem Assault: )Bloody Sweep': 'Balayage tranchant',
                 '(?<!Tandem Assault: )Breakthrough': 'Grande ruée',
                 'Child\'s Play': 'Marionnettiste',
@@ -998,7 +997,7 @@ Options.Triggers.push({
                 'Wandering Trail': 'Disques magiques',
                 'Wave: Black': 'Noir : onde',
                 'Wave: White': 'Blanc : onde',
-                'White Dissonance': 'Blanc : rongement',
+                'White Dissonance / Black Dissonance': 'Blanc/Noir : rongement',
                 'Wipe: Black': 'Noir : grosse Explosion',
                 'Wipe: White': 'Blanc : grosse Explosion',
             },
