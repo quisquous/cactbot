@@ -180,18 +180,21 @@ const triggerSet: TriggerSet<Data> = {
         knockbackDonut: {
           en: 'Knockback + Stack Donuts Middle',
           de: 'Rückstoß + Donuts mittig sammeln',
+          fr: 'Poussée + Packez les donuts au milieu',
           cn: '击退 + 月环集合击退',
           ko: '넉백 + 도넛장판 피하기',
         },
         knockbackIntoCircle: {
           en: 'Knockback (towards first circles)',
           de: 'Rückstoß (zu den ersten Kreisen)',
+          fr: 'Poussée (vers les premiers cercles)',
           cn: '向第一个圈圈击退',
           ko: '먼저 뜬 장판으로 넉백',
         },
         knockbackIntoSafe: {
           en: 'Knockback (towards open spots)',
           de: 'Rückstoß (zum offenen Bereich)',
+          fr: 'Poussée (vers des endroits ouverts)',
           cn: '向空缺位置击退',
           ko: '안전지대로 넉백',
         },
@@ -200,6 +203,7 @@ const triggerSet: TriggerSet<Data> = {
           // so using knockback prevention is probably the best advice.
           en: 'Knockback (prevent)',
           de: 'Rückstoß (verhindern)',
+          fr: 'Poussée (empêchez-là)',
           cn: '防击退',
           ko: '넉백 (거리유지 추천)',
         },
@@ -228,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Chain Cannon on YOU',
           de: 'Kettenkanone auf DIR',
+          fr: 'Canon en chaine sur VOUS',
           cn: '直线点名',
           ko: '기관총 대상자',
         },
@@ -245,6 +250,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stay Out of Lasers',
           de: 'Aus den Lasern gehen',
+          fr: 'Restez à l\'écart des lasers',
           cn: '避开直线点名',
           ko: '레이저 피하기',
         },
@@ -280,12 +286,14 @@ const triggerSet: TriggerSet<Data> = {
         dodge: {
           en: 'Dodge 4 Charges',
           de: 'Weiche 4 Anstürmen aus',
+          fr: 'Esquivez les 4 charges',
           cn: '躲避4次冲锋',
           ko: '4연속 돌진 뒤돌아서 맞기',
         },
         point: {
           en: 'Point at 4 Charges',
           de: 'Zeige auf dir 4 Anstürmen',
+          fr: 'Pointez à 4 charges',
           cn: '瞄准4次冲锋',
           ko: '4연속 돌진 쳐다보며 맞기',
         },
@@ -370,6 +378,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Behind Hernais',
           de: 'Geh hinter Hernais',
+          fr: 'Passez derrière Hernais',
           cn: '去腐犬背后',
           ko: '에르네이스 뒤로',
         },
@@ -426,24 +435,28 @@ const triggerSet: TriggerSet<Data> = {
         forward: {
           en: 'March Forward Into Middle',
           de: 'Marchiere Vorwärts in die Mitte',
+          fr: 'Marche en avant vers le milieu',
           cn: '强制移动: 前，去中间',
           ko: '정신장악: 앞, 가운데로',
         },
         backward: {
           en: 'March Backward Into Middle',
           de: 'Marchiere Rückwärts in die Mitte',
+          fr: 'Marche en arrière vers le milieu',
           cn: '强制移动: 后，去中间',
           ko: '정신장악: 뒤, 가운데로',
         },
         left: {
           en: 'March Left Into Middle',
           de: 'Marchiere Links in die Mitte',
+          fr: 'Marche à gauche vers le milieu',
           cn: '强制移动: 左，去中间',
           ko: '정신장악: 왼쪽, 가운데로',
         },
         right: {
           en: 'March Right Into Middle',
           de: 'Marchiere Rechts in die Mitte',
+          fr: 'Marche à droite vers le milieu',
           cn: '强制移动: 右，去中间',
           ko: '정신장악: 오른쪽, 가운데로',
         },
@@ -499,6 +512,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${num} (spread for laser)',
           de: '${num} (verteile für Laser)',
+          fr: '${num} (dispersion pour le laser)',
           cn: '${num} (激光分散)',
           ko: '${num} (레이저 대비 산개)',
         },
@@ -542,6 +556,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hide Behind Silver Shard',
           de: 'Hinter Silber-Splitter verstecken',
+          fr: 'Cachez-vous derrière l\'éclat argenté',
           cn: '躲在银色碎片后',
           ko: '흰색 기둥 뒤로',
         },
@@ -562,6 +577,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hide Behind Gold Shard',
           de: 'Hinter Gold-Splitter verstecken',
+          fr: 'Cachez-vous derrière l\'éclat doré',
           cn: '躲在金色碎片后',
           ko: '노란 기둥 뒤로',
         },
@@ -582,6 +598,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Orbs',
           de: 'Weg von den Orbs',
+          fr: 'Éloignez-vous des orbes',
           cn: '远离球球',
           ko: '구체 피하기',
         },
@@ -715,6 +732,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: should this be a response/output?
           en: 'Out of Front',
           de: 'Weg von Vorne',
+          fr: 'À l\'extérieur du devant',
           cn: '避开正面',
           ko: '정면 피하기',
         },
@@ -786,6 +804,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback (behind pillar)',
           de: 'Rückstoß (hinter dem Eissplitter)',
+          fr: 'Poussée (derrière le pilier)',
           cn: '击退到柱子后',
           ko: '기둥 뒤로 넉백',
         },
@@ -808,6 +827,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hide Behind Pillar',
           de: 'Hinter dem Eissplitter verstecken',
+          fr: 'Cachez-vous derrière le pilier',
           cn: '躲在柱子后',
           ko: '기둥 뒤에 숨기',
         },
@@ -853,7 +873,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Dashes',
           de: 'Sprint ausweichen',
-          fr: 'Évitez les charges',
+          fr: 'Évitez les ruées',
           ja: 'ブレードを避ける',
           cn: '躲开冲锋',
           ko: '돌진 피하기',
@@ -879,6 +899,7 @@ const triggerSet: TriggerSet<Data> = {
         twoClocks: {
           en: 'Go Perpendicular To Clock Hands',
           de: 'Geh Senkrecht von den Uhrzeigern',
+          fr: 'Aller perpendiculairement aux aiguilles de l\'horloge',
           cn: '垂直于时钟指针移动',
           ko: '시계바늘의 수직 방향으로 이동',
         },
@@ -890,6 +911,7 @@ const triggerSet: TriggerSet<Data> = {
           // have a trigger for three clocks.  "Mechanics Are Happening <se.6>"
           en: 'Dodge Three Clocks',
           de: 'Weiche den 3 Uhren aus',
+          fr: 'Esquivez 3 horloges',
           cn: '躲避3个时钟',
           ko: '시계 3개 피하기',
         },
@@ -959,6 +981,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Follow Slow Orb',
           de: 'Folge dem langsamen Orb',
+          fr: 'Suivez l\'orbe lente',
           cn: '跟随慢速球',
           ko: '느린 구체 따라가기',
         },
@@ -980,6 +1003,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Orb',
           de: 'Weg vom Orb',
+          fr: 'Éloignez-vous de l\'orbe',
           cn: '远离球球',
           ko: '구체 피하기',
         },
@@ -1024,6 +1048,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Find Phantom; Dodge Left',
           de: 'Finde das Abbild; weiche Links aus',
+          fr: 'Trouvez le Double : Esquivez à gauche',
           cn: '寻找幻影; 向左躲避',
           ko: '분신 찾고, 왼쪽으로 피하기',
         },
@@ -1043,6 +1068,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Find Phantom; Dodge Right',
           de: 'Finde das Abbild; weiche Rechts aus',
+          fr: 'Trouvez le Double : Esquivez à droite',
           cn: '寻找幻影; 向右躲避',
           ko: '분신 찾고, 오른쪽으로 피하기',
         },
@@ -1062,6 +1088,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Hammer; Rotate Outside',
           de: 'Weg vom Hammer; nach Außen rotieren',
+          fr: 'Éloignez-vous du marteau; Tournez à l\'extérieur',
           cn: '远离锤子; 向外旋转',
           ko: '기둥에서 멀리 떨어지고, 바깥쪽 계속 돌기',
         },
@@ -1096,7 +1123,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: should this be a response/output?
           en: 'Get In Front',
           de: 'Geh vor den Boss',
-          fr: 'Soyez devant',
+          fr: 'Placez-vous devant',
           ja: 'ボスの正面へ',
           cn: '去Boss正面',
           ko: '정면에 서기',
@@ -1166,6 +1193,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Orbs -> Under Orbs',
           de: 'Weiche Orbs aus -> Unter die Orbs',
+          fr: 'Évitez les orbes -> En dessous les orbes',
           cn: '避开球 -> 去球下',
           ko: '구체 피하기 -> 구체 밑으로',
         },
@@ -1187,6 +1215,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: this is also an aoe, and this is a pretty poor description.
           en: 'Go to small orb',
           de: 'Geh zum kleinen Orb',
+          fr: 'Allez à la petite orbe',
           cn: '去小球',
           ko: '작은 구체쪽으로',
         },
@@ -1219,6 +1248,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Slow Clocks',
           de: 'Geh zu den langsamen Uhren',
+          fr: 'Allez sur les horloges lentes',
           cn: '去慢时钟',
           ko: '느린 시계로',
         },
@@ -1238,6 +1268,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Fast Clocks',
           de: 'Geh zu den schnellen Uhren',
+          fr: 'Allez sur les horloges rapides',
           cn: '去快时钟',
           ko: '빠른 시계로',
         },
@@ -1257,6 +1288,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bird Dashes',
           de: 'Vogel-Anstürme',
+          fr: 'Plongeons des oiseaux',
           cn: '躲避红鸟',
           ko: '붉은새 피하기',
         },
@@ -1355,6 +1387,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack together to bait Ignis Est',
           de: 'Versammeln um Ignis Est zu ködern',
+          fr: 'Packez-vous pour attirer l\'Ignis Est',
           cn: '集合诱导是为烈火',
           ko: '보스 앞으로 모이기',
         },
@@ -1386,6 +1419,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get far away from X charges',
           de: 'Weit weg von den X Anstürmen',
+          fr: 'Éloignez-vous des charges X',
           cn: '远离X冲锋',
           ko: 'X자에서 멀리 떨어지기',
         },
@@ -1438,6 +1472,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Opening Toward Undodgeable Line',
           de: 'Öffnen in Richtung der nicht ausweichbaren Linie',
+          fr: 'Ouverture dans une ligne inesquivable',
           cn: '开口朝向无法躲避的线',
           ko: '피할 수 없는쪽으로 약점 방향 맞추기',
         },
@@ -1486,6 +1521,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack + Knockback to Safe Spot',
           de: 'Sammeln + Rückstoß in den sicheren Bereich',
+          fr: 'Package + Poussée vers un endroit safe',
           cn: '集合 + 向安全区击退',
           ko: '집합 + 안전장소로 넉백',
         },
@@ -1520,6 +1556,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Orb',
           de: 'Weg vom Orb',
+          fr: 'Éloignez-vous de l\'orbe',
           cn: '远离球球',
           ko: '구체 피하기',
         },
@@ -1565,24 +1602,28 @@ const triggerSet: TriggerSet<Data> = {
         forward: {
           en: 'March Forward (avoid puddles)',
           de: 'Marchiere Vorwärts (weiche den Flächen aus)',
+          fr: 'Marche en avant (évitez les zones au sol)',
           cn: '强制移动: 前, 避开圈圈',
           ko: '정신장악: 앞, 장판 피하기',
         },
         backward: {
           en: 'March Backward (avoid puddles)',
           de: 'Marchiere Rückwärts (weiche den Flächen aus)',
+          fr: 'Marche en arrière (évitez les zones au sol)',
           cn: '强制移动: 后, 避开圈圈',
           ko: '정신장악: 뒤, 장판 피하기',
         },
         left: {
           en: 'March Left (avoid puddles)',
           de: 'Marchiere Links (weiche den Flächen aus)',
+          fr: 'Marche à gauche (évitez les zones au sol)',
           cn: '强制移动: 左, 避开圈圈',
           ko: '정신장악: 왼쪽, 장판 피하기',
         },
         right: {
           en: 'March Right (avoid puddles)',
           de: 'Marchiere Rechts (weiche den Flächen aus)',
+          fr: 'Marche à droite (évitez les zones au sol)',
           cn: '强制移动: 右, 避开圈圈',
           ko: '정신장악: 오른쪽, 장판 피하기',
         },
@@ -1625,6 +1666,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get In Puddle',
           de: 'Geh in die Flächen',
+          fr: 'Prenez une zone au sol',
           cn: '进入圈圈',
           ko: '장판 밟기',
         },
@@ -1645,6 +1687,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Chasing AOEs',
           de: 'Weiche den verfolgenden AoEs aus',
+          fr: 'Évitez les AoEs',
           cn: '躲避追踪AOE',
           ko: '따라오는 장판 피하기',
         },
@@ -1666,6 +1709,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: this is "titan line bombs".  Is there a better wording here?
           en: 'Go to third line',
           de: 'Geh zur 3. Linie',
+          fr: 'Allez à la troisième ligne',
           cn: '去第三行',
           ko: '세번째 장판으로',
         },
@@ -1714,6 +1758,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go Intercardinals',
           de: 'Geh zu Interkardinalen Richtungen',
+          fr: 'Allez en intercardinal',
           cn: '去四角',
           ko: '대각선으로',
         },
@@ -1733,6 +1778,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Under (towards charge)',
           de: 'Geh unter den Boss (zum Ansturm hin)',
+          fr: 'Passez en dessous (vers la charge)',
           cn: '去下方 (朝向冲锋方向)',
           ko: '보스 밑으로 (화살표 따라가기)',
         },
@@ -1753,6 +1799,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go Intercards (away from charge)',
           de: 'Geh zu Interkardinalen Richtungen (weg vom Ansturm)',
+          fr: 'Allez en intercardinal (éloignez-vous de la charge)',
           cn: '去四角 (躲避冲锋)',
           ko: '대각선으로 (화살표쪽 피하기)',
         },
@@ -1797,7 +1844,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: during spiral scourge could be "get under middle/outer light orb"?
           en: 'Get Under Light Orb',
           de: 'Unter einem Lichtorb stellen',
-          fr: 'Allez sous un Orbe lumineux',
+          fr: 'Allez sous un orbe lumineux',
           ja: '白玉へ',
           cn: '靠近白球',
           ko: '하얀 구슬 안으로',
@@ -1835,6 +1882,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Follow Dawon',
           de: 'Folge Dawon',
+          fr: 'Suivez Dawon',
           cn: '跟随小达温',
           ko: '다우언 따라가기',
         },
@@ -1860,6 +1908,7 @@ const triggerSet: TriggerSet<Data> = {
           avoidTankLaser: {
             en: 'Avoid Tank Laser',
             de: 'Weiche dem Tanklaser aus',
+            fr: 'Évitez le tank laser',
             cn: '躲避坦克激光',
             ko: '탱 레이저 피하기',
           },
@@ -1910,6 +1959,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Growing Circles',
           de: 'Weiche den wachsenden Kreisen aus',
+          fr: 'Évitez les cercles grandissants',
           cn: '躲避变大圈圈',
           ko: '커지는 장판 피하기',
         },
@@ -1956,6 +2006,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pop Balloons',
           de: 'Orbs nehmen',
+          fr: 'Apparition des boules',
           cn: '吃球',
           ko: '구체 부딪히기',
         },
@@ -1980,12 +2031,14 @@ const triggerSet: TriggerSet<Data> = {
         knockbackBits: {
           en: 'Knockback (away from bits)',
           de: 'Rückstoß (Weg von den Magiteks)',
+          fr: 'Poussée (éloignez-vous des drones)',
           cn: '击退 (避开浮游炮)',
           ko: '넉백 (비트 피하기)',
         },
         knockbackNox: {
           en: 'Knockback (into empty corner)',
           de: 'Rückstoß (in die leere Ecke)',
+          fr: 'Poussée (dans un coin vide)',
           cn: '击退 (进入空角落)',
           ko: '안전지대로 넉백',
         },
@@ -2020,6 +2073,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
+          fr: 'Laser sur VOUS',
           cn: '激光点名',
           ko: '레이저 대상자',
         },
@@ -2064,12 +2118,14 @@ const triggerSet: TriggerSet<Data> = {
         dodgeFirst: {
           en: '(Dodge -> Stop)',
           de: '(Ausweichen -> Stop)',
+          fr: '(Esquivez -> Arrêtez)',
           cn: '(躲避 -> 停停停)',
           ko: '(피하기 -> 멈추기)',
         },
         dodgeSecond: {
           en: '(Stop -> Dodge)',
           de: '(Stop -> Ausweichen)',
+          fr: '(Arrêtez -> Esquivez)',
           cn: '(停停停 -> 躲避)',
           ko: '(멈추기 -> 피하기)',
         },
@@ -2223,7 +2279,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '4Th Legion Augur': 'augure de la 4e légion',
         '4Th Legion Blackburn': 'Escarre de la 4e légion',
@@ -2231,14 +2286,18 @@ const triggerSet: TriggerSet<Data> = {
         '4Th-Make Cuchulainn': 'cúchulainn de la 4e légion',
         '4th-Make Hashmal': 'Hashmal de la 4e légion',
         '4th-Make Shemhazai': 'Shemhazai de la 4e légion',
+        '7 minutes have elapsed since your last activity..*?': 'Votre personnage est inactif depuis 7 minutes',
         '(?<!4Th Legion )Blackburn': 'Escarre',
         'Dawon The Younger': 'Dawon junior',
         'Diabolic Bit': 'drone de Diablo',
         'Dyunbu the Accursed': 'Dyunbu l\'impure',
+        'Hedetet': 'Hededèt',
+        'Hrodvitnir': 'Hródvitnir',
         'Flameborne Zirnitra': 'zirnitra des flammes',
         'Huma': 'homa',
         'Ice Sprite': 'élémentaire de glace',
         'Ignis Est': 'Ignis Est',
+        'Kampe': 'Campé',
         'Magitek Development': 'Section des recherches magitek',
         'Phantom Hashmal': 'double du Hashmal',
         'Sartauvoir The Inferno': 'Sartauvoir le fer rouge',
@@ -2257,6 +2316,8 @@ const triggerSet: TriggerSet<Data> = {
         'Waveborne Zirnitra': 'zirnitra des torrents',
       },
       'replaceText': {
+        '--lasers--': '--lasers',
+        '--line stack': '--package en ligne--',
         '74 Degrees': 'Aqua-tir',
         'Advanced Death IV': 'Giga Mort renforcée',
         'Advanced Death Ray': 'Rayon de la mort renforcé',
@@ -2290,21 +2351,22 @@ const triggerSet: TriggerSet<Data> = {
         'Hyperpyroplexy': 'Hyperpyroplexie',
         'Ignis Est': 'Ignis Est',
         'Immolate': 'Immolation',
-        'Left Brand': 'Marque au fer rouge gauche',
+        'Left Brand/Right Brand': 'Marque au fer rouge gauche/droite',
         'Light Pseudopillar': 'Colonne lumineuse magismologique',
         'Magitek Bit': 'Éjection de drones',
-        'Magitek Crossray': 'Rayon croisé magitek',
-        'Magitek Halo': 'Cercle enflammé magitek',
+        'Magitek Crossray/Magitek Halo': 'Rayon croisé/Cercle enflammé magitek',
+        'Magitek Halo/Magitek Crossray': 'Cercle enflammé/Rayon croisé magitek',
         'Mannatheihwon Flame': 'Flamme de Mannatheihwo',
         'Might Of Malice': 'Coup de pied puissant',
         'Missile Command': 'Commande missile',
         'Missile Salvo': 'Salve de missiles',
-        'Mobile Crossray': 'Rayon croisé mobile',
-        'Mobile Halo': 'Cercle enflammé mobile',
+        'Mobile Crossray/Mobile Halo': 'Rayon croisé/Cercle enflammé mobile',
+        'Mobile Halo/Mobile Crossray': 'Cercle enflammé/Rayon croisé mobile',
         'Necrotic Billow': 'Immolation putréfiante',
         'Nihility\'s Song': 'Chant de la vacuité',
-        'North Wind': 'Vent de nord',
+        'North Wind/South Wind': 'Vent de nord/sud',
         'Obey': 'À l\'écoute du maître',
+        'Orb': 'Orbe',
         'Pain Storm': 'Tempête de douleur',
         'Painful Gust': 'Rafale suppliciante',
         'Pentagust': 'Pentasouffle',
@@ -2317,11 +2379,9 @@ const triggerSet: TriggerSet<Data> = {
         '(?<!r)Pyroplexy': 'Pyroplexie',
         'Raw Heat': 'Vague explosive',
         'Read Orders: Field Support': 'Ordre tactique : Infanterie de soutien',
-        'Reverse Time Eruption': 'Éruption à devancement',
-        'Right Brand': 'Marque au fer rouge droit',
+        'Reverse Time Eruption( [0-9])': 'Éruption à devancement$1',
         'Ruinous Pseudomen': 'Mauvais présage magismologique',
         'Sanctified Quake III': 'Méga Séisme sanctifié',
-        'South Wind': 'Vent de sud',
         'Spiral Scourge': 'Spirale empalante',
         'Stormborne Zirnitra': 'zirnitra des flammes',
         'Stormcall': 'Appel des tempêtes',
@@ -2330,7 +2390,8 @@ const triggerSet: TriggerSet<Data> = {
         'Swooping Frenzy': 'Plongeon frénétique',
         'Terminus Est': 'Terminus Est',
         'Thermal Gust': 'Bourrasque incandescente',
-        '(?<!Reverse )Time Eruption': 'Éruption à retardement',
+        '(?<!Reverse )Time Eruption( [0-9])': 'Éruption à retardement$1',
+        'Time Eruption/Reverse Time Eruption': 'Éruption à retardement/devancement',
         'Tooth And Talon': 'Lacération du Roi bestial',
         'Touchdown': 'Atterrissage',
         'Turbine': 'Turbine',
