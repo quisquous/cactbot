@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand on Darkened Fire',
           de: 'Auf einer Schwarzen Lohe stehen',
-          fr: 'Placez-vous sur la flamme sombre',
+          fr: 'Placez-vous sur une flamme sombre',
           ja: '黒い炎の上へ',
           cn: '站在黑色火焰',
           ko: '불꽃 위에 서기',
@@ -304,7 +304,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Phoinix': 'protophénix',
         'Sparkfledged': 'oiselet de feu',
-        'Sunbird': 'Spross Des Phoinix',
+        'Sunbird': 'oiselet étincelant',
       },
       'replaceText': {
         '--fire expands--': '--élargissement du feu--',

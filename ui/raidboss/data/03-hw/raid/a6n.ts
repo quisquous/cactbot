@@ -278,7 +278,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Blaster(?! Mirage)': 'Fracasseur',
         'Blaster Mirage': 'réplique du Fracasseur',
@@ -309,9 +308,7 @@ const triggerSet: TriggerSet<Data> = {
         'Ultra Flash': 'Ultraflash',
         'Minefield': 'Champ de mines',
         'Supercharge': 'Super charge',
-        'Single Buster': 'Pulsoréacteur',
-        'Double Buster': 'Double pulsoréacteur',
-        'Rocket Drill': 'Roquette-foreuse',
+        'Single Buster/Double Buster/Rocket Drill': 'Réacteur/Foreuse',
       },
     },
     {

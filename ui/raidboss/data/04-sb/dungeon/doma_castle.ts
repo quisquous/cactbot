@@ -109,7 +109,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': 'module d\'hexadrone',
         'Hypertuned Grynewaht': 'Grynewaht hyper-renforcé',
@@ -123,15 +122,18 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '2-Tonze Magitek Missile': 'Missiles magitek de 2 tonz',
+        'Bits Activate': 'Activation des modules',
         'Cermet Pile': 'Amas de cermet',
         'Chainsaw': 'Tronçonneuse',
         'Circle Of Death': 'Cercle de la mort',
         'Clean Cut': 'Tranchage net',
         'Delay-Action Charge': 'Charge à retardement',
+        'Hexadrone Bits': 'Modules d\'hexadrone',
         'Garlean Fire': 'Feu garlemaldais',
         'Gunsaw': 'Canon-tronçonneur',
         'Magitek Missiles': 'Missiles magitek',
         'Magitek Ray': 'Rayon magitek',
+        'Rearguard Mines': 'Drones d\'arrière-garde',
         'Thermobaric Charge': 'Charge thermobarique',
       },
     },

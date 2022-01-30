@@ -251,12 +251,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Articulated Bit': 'bras autonome',
         'The Diamond Weapon': 'Arme Diamant',
       },
       'replaceText': {
+        '\\(Jump\\)': '(Saut)',
         'Adamant Purge': 'Armure adaptative',
         'Adamant Sphere': 'Sphère de diamant',
         'Aetherial Bullet': 'Rayon éthéré',

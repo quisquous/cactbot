@@ -197,6 +197,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
           de: `${matches.ability} (von ${ownerNick}, #${number})`,
+          fr: `${matches.ability} (de ${ownerNick}, #${number})`,
           ja: `${matches.ability} (${ownerNick}から、#${number})`,
           cn: `${matches.ability} (来自${ownerNick}，#${number})`,
           ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번)`,
@@ -205,6 +206,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} north)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} norden)`,
+            fr: `${matches.ability} (de ${ownerNick}, #${number} nord)`,
             ja: `${matches.ability} (北の${ownerNick}から、#${number})`,
             cn: `${matches.ability} (来自北方${ownerNick}，#${number})`,
             ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 북쪽)`,
@@ -213,6 +215,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} south)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} Süden)`,
+            fr: `${matches.ability} (de ${ownerNick}, #${number} sud)`,
             ja: `${matches.ability} (南の${ownerNick}から、#${number})`,
             cn: `${matches.ability} (来自南方${ownerNick}，#${number})`,
             ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 남쪽)`,
@@ -387,6 +390,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const northBigLion: LocaleText = {
           en: 'north big lion',
           de: 'Nordem, großer Löwe',
+          fr: 'Grand lion du nord',
           ja: '大ライオン(北)',
           cn: '北方大狮子',
           ko: '북쪽 큰 사자',
@@ -394,6 +398,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const southBigLion: LocaleText = {
           en: 'south big lion',
           de: 'Süden, großer Löwe',
+          fr: 'Grand lion du sud',
           ja: '大ライオン(南)',
           cn: '南方大狮子',
           ko: '남쪽 큰 사자',
@@ -401,6 +406,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const shared: LocaleText = {
           en: 'shared',
           de: 'geteilt',
+          fr: 'Partagé(e)',
           ja: '重ねた',
           cn: '重叠',
           ko: '같이 맞음',
@@ -408,6 +414,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const fireDebuff: LocaleText = {
           en: 'had fire',
           de: 'hatte Feuer',
+          fr: 'A eu(e) le feu',
           ja: '炎付き',
           cn: '火Debuff',
           ko: '화염 디버프 받음',
@@ -450,7 +457,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Knocked off',
             de: 'Runtergefallen',
-            fr: 'A été assommé(e)',
+            fr: 'Renversé(e)',
             ja: 'ノックバック',
             cn: '击退坠落',
             ko: '넉백',

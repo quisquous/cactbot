@@ -1007,7 +1007,7 @@ const triggerSet: TriggerSet<Data> = {
         'Blaster(?! Mirage)': 'Fracasseur',
         'Brawler': 'Bagarreur',
         'Brute Justice': 'Justicier',
-        'Hidden Mine': 'Explosion de mine',
+        'Hidden Mine': 'mine furtive',
         'Onslaughter': 'Attaqueur',
         'Steam Chakram': 'Chakram de vapeur',
         'Steam Regulator B': 'Régulateur de vapeur β',

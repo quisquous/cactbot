@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge Giant Circles',
           de: 'Weiche dem großen Kreis aus',
-          fr: 'Évitez les cercles géants',
+          fr: 'Esquivez les cercles géants',
           ja: '降ったサークルを避ける',
           cn: '躲避大圈',
           ko: '대형장판피하기',
