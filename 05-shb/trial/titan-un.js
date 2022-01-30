@@ -30,7 +30,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Gaoler Adds',
                     de: 'graniten Kerkermeister Adds',
-                    fr: 'Adds geôlier',
+                    fr: 'Adds Geôlier',
                     ja: '雑魚: 子タイタン',
                     cn: '小土豆出现',
                     ko: '화강암 감옥 쫄',

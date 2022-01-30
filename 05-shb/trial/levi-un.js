@@ -236,7 +236,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Wave Spume Adds',
                     de: 'Gischtwelle Adds',
-                    fr: 'Tuez les écumes ondulantes',
+                    fr: 'Adds Écumes ondulantes',
                     ja: 'ウェイブ・スピューム出現',
                     cn: '蓝泡泡出现',
                     ko: '파랑 물거품 출현',
