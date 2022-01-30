@@ -749,7 +749,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Tank Stack in Tower',
           de: 'Auf Tank im Turm sammeln',
-          fr: 'Package tanks dans les tours',
+          fr: 'Package tanks dans la tour',
           ja: 'タンクは塔に頭割り',
           cn: '坦克塔内分摊',
           ko: '탱커 쉐어',
@@ -771,7 +771,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Tank Spread in Tower',
           de: 'Tank im Turm verteilen',
-          fr: 'Dispersion tanks dans les tours',
+          fr: 'Dispersion tanks dans la tour',
           ja: 'タンクは塔に散開',
           cn: '坦克塔内分散',
           ko: '탱커 산개',

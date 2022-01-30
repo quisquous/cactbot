@@ -47,7 +47,7 @@ const sharedOutputStrings = {
   stone: {
     en: 'Protean',
     de: 'Himmelsrichtungen',
-    fr: 'Position',
+    fr: 'Positions',
     ja: '散開',
     cn: '散开',
     ko: '위치 산개',
@@ -115,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
         limitBreak2: {
           en: 'healer stacks',
           de: 'Heiler stacks',
-          fr: 'Package healers',
+          fr: 'Packages sur les healers',
           ja: 'ヒーラーと集合',
           cn: '与治疗集合',
           ko: '좌우 산개',
