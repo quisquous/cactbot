@@ -319,36 +319,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: fireLightOutputStrings,
     },
     {
-      id: 'P1S Shackles of Time Target',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
-      infoText: (data, matches, output) => {
-        if (data.me === matches.target)
-          return output.shacklesOnYou!();
-        return output.shacklesOn!({ player: data.ShortName(matches.target) });
-      },
-      // For raid calling purposes, this might be useful but don't clutter TTS.
-      tts: null,
-      outputStrings: {
-        shacklesOn: {
-          en: 'Shackles of Time on ${player}',
-          de: 'Aspektierende Ketten auf ${player}',
-          fr: 'Chaînes à retardement sur ${player}',
-          ja: '時限の魔鎖：${player}',
-          cn: '时限魔锁点${player}',
-          ko: '시간의 쇠사슬: ${player}',
-        },
-        shacklesOnYou: {
-          en: 'Shackles of Time on YOU',
-          de: 'Aspektierende Ketten auf DIR',
-          fr: 'Chaînes à retardement sur VOUS',
-          ja: '時限の魔鎖ついた',
-          cn: '时限魔锁点名',
-          ko: '내게 시간의 쇠사슬',
-        },
-      },
-    },
-    {
       id: 'P1S Shackles of Time',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
