@@ -50,8 +50,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69C6', source: 'Hulder' }),
       netRegexFr: NetRegexes.startsUsing({ id: '69C6', source: 'Huldre' }),
       netRegexJa: NetRegexes.startsUsing({ id: '69C6', source: 'フルドラ' }),
-      // Maybe just buster??
-      response: Responses.tankCleave('alert'),
+      // Not a cleave.
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Hunt Hulder Ode to Lost Love',
