@@ -242,6 +242,7 @@ div.justbuffs div#procs-container {
 /* Space for 2 resource boxes */
 .drg #right-side-icons,
 .sam #right-side-icons,
+.rpr #right-side-icons,
 .brd #right-side-icons,
 .mch #right-side-icons,
 .dnc #right-side-icons,
@@ -836,6 +837,39 @@ div.justbuffs div#procs-container {
 
 .sam-color-higanbana {
   background-color: rgb(220, 115, 60);
+}
+
+/* RPR */
+.rpr-color-deathsdesign {
+  background-color: rgb(140, 35, 140);
+}
+
+.rpr-color-gluttony {
+  background-color: rgb(220, 60, 100);
+}
+
+.rpr-color-soulslice {
+  background-color: rgb(15, 35, 75);
+}
+
+.rpr-color-arcanecircle {
+  background-color: rgb(220, 150, 180);
+}
+
+.rpr-color-arcanecircle.active {
+  background-color: rgb(200, 40, 120);
+}
+
+.rpr-color-rpr-color-bloodsowncircle {
+  background-color: rgb(100, 220, 150);
+}
+
+.rpr-color-soul {
+  background-color: rgb(180, 20, 20);
+}
+
+.rpr-color-shroud {
+  background-color: rgb(0, 170, 170);
 }
 
 /* BRD */

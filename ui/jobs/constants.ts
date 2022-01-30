@@ -194,6 +194,14 @@ export const kAbility = {
   HissatsuSenei: '4061',
   Fuko: '64B4',
   // RPR
+  Slice: '5F35',
+  WaxingSlice: '5F36',
+  InfernalSlice: '5F37',
+  SpinningScythe: '5F38',
+  NightmareScythe: '5F39',
+  Gluttony: '5F49',
+  SoulSlice: '5F3C',
+  SoulScythe: '5F3D',
   ArcaneCircle: '5F55',
   // BRD
   BattleVoice: '76',
@@ -401,6 +409,16 @@ export const kComboActions: string[][] = [
     kAbility.Fuko,
     kAbility.Oka,
   ],
+  // RPR
+  [
+    kAbility.Slice,
+    kAbility.WaxingSlice,
+    kAbility.InfernalSlice,
+  ],
+  [
+    kAbility.SpinningScythe,
+    kAbility.NightmareScythe,
+  ],
   // MCH
   [
     kAbility.SplitShot,
@@ -496,6 +514,12 @@ export const kComboBreakers = [
   kAbility.Oka,
   kAbility.MeikyoShisui,
   kAbility.Fuko,
+  // RPR
+  kAbility.Slice,
+  kAbility.WaxingSlice,
+  kAbility.InfernalSlice,
+  kAbility.SpinningScythe,
+  kAbility.NightmareScythe,
   // MCH
   kAbility.SplitShot,
   kAbility.SlugShot,
