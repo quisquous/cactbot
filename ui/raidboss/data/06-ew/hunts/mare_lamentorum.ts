@@ -5,23 +5,9 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Mousse Princess Banish tankbuster
-// TODO: Mousse Princess Amorphic Flail centered aoe
-
 export interface Data extends RaidbossData {
   wickedWhim?: boolean;
 }
-
-const underThenOut = {
-  en: 'Under => Out',
-  de: 'Drunter => Raus',
-  fr: 'En dessous => À l\'extérieur',
-};
-const outStayOut = {
-  en: 'Out => Stay Out',
-  de: 'Raus => Drausen bleiben',
-  fr: 'À l\'extérieur => Restez-y',
-};
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MareLamentorum,
@@ -36,8 +22,8 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => data.wickedWhim ? output.under!() : output.out!(),
       run: (data) => delete data.wickedWhim,
       outputStrings: {
-        under: underThenOut,
-        out: outStayOut,
+        under: Outputs.getUnder,
+        out: Outputs.out,
       },
     },
     {
@@ -50,17 +36,18 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => data.wickedWhim ? output.out!() : output.under!(),
       run: (data) => delete data.wickedWhim,
       outputStrings: {
-        under: underThenOut,
-        out: outStayOut,
+        under: Outputs.getUnder,
+        out: Outputs.out,
       },
     },
     {
       id: 'Hunt Lunatender Queen Avert Your Eyes',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE9', source: 'Lunatender Queen', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6AE9', source: 'Lunatender-Königin', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6AE9', source: 'Pampa Sélénienne Reine', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6AE9', source: 'ルナテンダー・クイーン', capture: false }),
+      // 6AE3 is normal, 6AE9 is with whim.  Just handle them both here.
+      netRegex: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'ルナテンダー・クイーン', capture: false }),
       alertText: (data, _matches, output) => data.wickedWhim ? output.lookTowards!() : output.lookAway!(),
       run: (data) => delete data.wickedWhim,
       outputStrings: {
@@ -153,6 +140,25 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Éloignez-vous du devant',
         },
       },
+    },
+    {
+      id: 'Hunt Mousse Princess Banish',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6ABB', source: 'Mousse Princess' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6ABB', source: 'Mousse-Prinzessin' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6ABB', source: 'Princesse Mousse' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6ABB', source: 'ムースプリンセス' }),
+      // Doesn't cleave (I think?).
+      response: Responses.tankBuster('info'),
+    },
+    {
+      id: 'Hunt Mousse Princess Amorphic Flail',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AB9', source: 'Mousse Princess', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AB9', source: 'Mousse-Prinzessin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AB9', source: 'Princesse Mousse', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AB9', source: 'ムースプリンセス', capture: false }),
+      response: Responses.outOfMelee(),
     },
   ],
 };
