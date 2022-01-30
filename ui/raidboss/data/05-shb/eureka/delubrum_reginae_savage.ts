@@ -994,7 +994,7 @@ const triggerSet: TriggerSet<Data> = {
         knockback: {
           en: 'Knockback to safe spot',
           de: 'Rückstoß in den sicheren Bereich',
-          fr: 'Poussée en zone sûre',
+          fr: 'Poussée en zone safe',
           ja: '安置へノックバック',
           cn: '击退到安全点',
           ko: '안전한 곳으로 넉백되기',
@@ -1695,7 +1695,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get In Front',
           de: 'Geh vor den Boss',
-          fr: 'Soyez devant',
+          fr: 'Passez devant',
           ja: 'ボスの正面へ',
           cn: '去Boss正面',
           ko: '보스 정면에 서기',
@@ -2372,7 +2372,7 @@ const triggerSet: TriggerSet<Data> = {
         getCleaved: {
           en: '${dir1} Safe Spot => ${dir2} for cleave',
           de: 'Sichere Stelle ${dir1} => ${dir2} für Cleave',
-          fr: '${dir1} Zone sûre => ${dir2} pour le cleave',
+          fr: '${dir1} Zone safe => ${dir2} pour le cleave',
           ja: '${dir1}に安置 => ${dir2}範囲攻撃に',
           cn: '去${dir1}方安全点 => 去${dir2}吃顺劈',
           ko: '${dir1} 안전 지대 => ${dir2} 광역 맞기',
@@ -2380,7 +2380,7 @@ const triggerSet: TriggerSet<Data> = {
         safeSpot: {
           en: '${dir} Safe Spot',
           de: 'Sichere Stelle ${dir}',
-          fr: '${dir} Zone sûre',
+          fr: '${dir} Zone safe',
           ja: '${dir}に安置',
           cn: '去${dir}方安全点',
           ko: '${dir} 안전 지대',

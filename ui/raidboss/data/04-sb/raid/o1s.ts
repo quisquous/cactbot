@@ -124,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
         'Wyrm Tail': 'Queue du dragon ancestral',
       },
       'replaceText': {
-        '\\(safe\\)': '(sûre)',
+        '\\(safe\\)': '(safe)',
         '\\(spread\\)': '(dispersion)',
         '\\(stack\\)': '(package)',
         'Blaze': 'Givre',

@@ -83,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move To Safe Spot',
           de: 'Zur sicheren Zone',
-          fr: 'Allez en zone sûre',
+          fr: 'Allez en zone safe',
           ja: '安置へ',
           cn: '去安全点',
           ko: '안전 지대로 이동',
