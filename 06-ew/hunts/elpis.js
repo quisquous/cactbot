@@ -38,6 +38,17 @@ Options.Triggers.push({
             },
         },
         {
+            id: 'Hunt Gurangatch Bone Shaker',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '6B78', source: 'Gurangatch', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6B78', source: 'Gurangatch', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '6B78', source: 'Gurangatch', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6B78', source: 'グランガチ', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '6B78', source: '固兰盖奇', capture: false }),
+            netRegexKo: NetRegexes.startsUsing({ id: '6B6B7866', source: '그란갓치', capture: false }),
+            response: Responses.aoe(),
+        },
+        {
             id: 'Hunt Petalodus Marine Mayhem',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),

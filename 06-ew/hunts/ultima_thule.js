@@ -4,10 +4,10 @@ Options.Triggers.push({
         {
             id: 'Hunt Arch-Eta Energy Wave',
             type: 'StartsUsing',
-            netRegex: NetRegexes.startsUsing({ id: '6A55', source: 'Arch-Eta', capture: false }),
-            netRegexDe: NetRegexes.startsUsing({ id: '6A55', source: 'Erz-Eta', capture: false }),
-            netRegexFr: NetRegexes.startsUsing({ id: '6A55', source: 'Arch-Êta', capture: false }),
-            netRegexJa: NetRegexes.startsUsing({ id: '6A55', source: 'アーチイータ', capture: false }),
+            netRegex: NetRegexes.startsUsing({ id: '6A85', source: 'Arch-Eta', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6A85', source: 'Erz-Eta', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '6A85', source: 'Arch-Êta', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6A85', source: 'アーチイータ', capture: false }),
             response: Responses.awayFromFront(),
         },
         {
@@ -18,6 +18,22 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ id: '6A88', source: 'Arch-Êta', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6A88', source: 'アーチイータ', capture: false }),
             response: Responses.aoe(),
+        },
+        {
+            id: 'Hunt Arch-Eta Tail Swipe',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '6A86', source: 'Arch-Eta', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6A86', source: 'Erz-Eta', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '6A86', source: 'Arch-Êta', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6A86', source: 'アーチイータ', capture: false }),
+            alertText: (_data, _matches, output) => output.getFront(),
+            outputStrings: {
+                getFront: {
+                    en: 'Get Front',
+                    de: 'Geh nach Vorne',
+                    fr: 'Allez devant',
+                },
+            },
         },
         {
             id: 'Hunt Arch-Eta Fanged Lunge',
@@ -35,6 +51,15 @@ Options.Triggers.push({
                     fr: 'Éloignez-vous du saut',
                 },
             },
+        },
+        {
+            id: 'Hunt Arch-Eta Steel Fang',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '6A89', source: 'Arch-Eta' }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6A89', source: 'Erz-Eta' }),
+            netRegexFr: NetRegexes.startsUsing({ id: '6A89', source: 'Arch-Êta' }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6A89', source: 'アーチイータ' }),
+            response: Responses.tankBuster('info'),
         },
         {
             id: 'Hunt Fan Ail Cyclone Wing',
