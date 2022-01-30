@@ -113,11 +113,57 @@ Options.Triggers.push({
             },
         },
         {
+            id: 'P2S Mark of the Tides Collect',
+            type: 'GainsEffect',
+            // Status goes out with Predatory Avarice (6827).
+            netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
+            run: (data, matches) => {
+ let _a; return ((_a = data.avarice) !== null && _a !== void 0 ? _a : (data.avarice = [])).push(matches);
+},
+        },
+        {
             id: 'P2S Mark of the Tides',
+            type: 'GainsEffect',
+            netRegex: NetRegexes.gainsEffect({ effectId: 'AD0', capture: false }),
+            delaySeconds: (data) => {
+ let _a; return ((_a = data.avarice) === null || _a === void 0 ? void 0 : _a.length) === 2 ? 0 : 0.5;
+},
+            response: (data, _matches, output) => {
+                let _a; let _b;
+                // cactbot-builtin-response
+                output.responseOutputStrings = {
+                    marks: {
+                        en: 'Marks: ${player1}, ${player2}',
+                    },
+                    avariceOnYou: {
+                        en: 'Avarice on YOU',
+                    },
+                    unknown: Outputs.unknown,
+                };
+                if (data.avarice === undefined)
+                    return;
+                const name1 = data.avarice[0] ? data.ShortName((_a = data.avarice[0]) === null || _a === void 0 ? void 0 : _a.target) : output.unknown();
+                const name2 = data.avarice[1] ? data.ShortName((_b = data.avarice[1]) === null || _b === void 0 ? void 0 : _b.target) : output.unknown();
+                const markText = output.marks({ player1: name1, player2: name2 });
+                const isOnYou = data.avarice.find((m) => m.target === data.me);
+                if (isOnYou) {
+                    return {
+                        alertText: output.avariceOnYou(),
+                        infoText: markText,
+                    };
+                }
+                return { infoText: markText };
+            },
+            run: (data) => delete data.avarice,
+        },
+        {
+            id: 'P2S Mark of the Tides Move',
             type: 'GainsEffect',
             netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
             condition: Conditions.targetIsYou(),
-            alertText: (_data, matches, output) => output.awayFromGroup(),
+            // 23 second duration, safe to move ~16.7s for first time, ~15s for the second.
+            delaySeconds: (data, matches) => parseFloat(matches.duration) - 6,
+            alarmText: (_data, matches, output) => output.awayFromGroup(),
             outputStrings: {
                 awayFromGroup: Outputs.awayFromGroup,
             },
