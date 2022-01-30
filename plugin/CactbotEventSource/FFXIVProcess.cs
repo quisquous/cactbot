@@ -223,14 +223,19 @@ namespace Cactbot {
     }
 
     public void OnProcessChanged(Process process) {
-      if (process != null && process.HasExited)
+      logger_.LogInfo("PIDDEBUG: OnProcessChanged: process_: {0}", process_ != null ? process_.Id.ToString() : "(null)");
+      if (process != null && process.HasExited) {
+        logger_.LogInfo("PIDDEBUG: OnProcessChanged: process HasExited");
         process = null;
+      }
       bool changed_existance = (process_ == null) != (process == null);
       bool changed_pid = process_ != null && process != null && process_.Id != process.Id;
+      logger_.LogInfo("PIDDEBUG: OnProcessChanged: changed_existence: {0}, changed_pid: {1}", changed_existance, changed_pid);
       if (changed_existance || changed_pid) {
         player_ptr_addr_ = IntPtr.Zero;
         job_data_outer_addr_ = IntPtr.Zero;
         process_ = process != null ? new LimitedProcess(process) : null;
+        logger_.LogInfo("PIDDEBUG: OnProcessChanged: set: {0}", process_ != null ? process_.Id.ToString() : "(null)");
 
         if (process_ != null) {
           ReadSignatures();

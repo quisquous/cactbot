@@ -65,12 +65,14 @@ namespace Cactbot {
     }
 
     public void RegisterProcessChangedHandler(Action<Process> handler) {
+      logger_.LogInfo("PIDDEBUG: RegisterProcessChangedHander");
       var del = new FFXIV_ACT_Plugin.Common.ProcessChangedDelegate(handler);
       try {
         // See note in GetLanguageId.
         dynamic plugin_derived = ffxiv_plugin_;
         plugin_derived.DataSubscription.ProcessChanged += del;
       } catch (Exception e) {
+        logger_.LogInfo("PIDDEBUG: RegisterProcessChangedHander Exception: {0}", e.ToString());
         logger_.LogError(Strings.RegisteringProcessErrorMessage, e.ToString());
       }
     }
