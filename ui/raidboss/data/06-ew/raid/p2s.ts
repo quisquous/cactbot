@@ -15,6 +15,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   flareTarget?: string;
   decOffset?: number;
+  avarice?: NetMatches['GainsEffect'][];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -133,11 +134,55 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P2S Mark of the Tides Collect',
+      type: 'GainsEffect',
+      // Status goes out with Predatory Avarice (6827).
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
+      run: (data, matches) => (data.avarice ??= []).push(matches),
+    },
+    {
       id: 'P2S Mark of the Tides',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0', capture: false }),
+      delaySeconds: (data) => data.avarice?.length === 2 ? 0 : 0.5,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          marks: {
+            en: 'Marks: ${player1}, ${player2}',
+          },
+          avariceOnYou: {
+            en: 'Avarice on YOU',
+          },
+          unknown: Outputs.unknown,
+        };
+
+        if (data.avarice === undefined)
+          return;
+
+        const name1 = data.avarice[0] ? data.ShortName(data.avarice[0]?.target) : output.unknown!();
+        const name2 = data.avarice[1] ? data.ShortName(data.avarice[1]?.target) : output.unknown!();
+        const markText = output.marks!({ player1: name1, player2: name2 });
+
+        const isOnYou = data.avarice.find((m) => m.target === data.me);
+        if (isOnYou) {
+          return {
+            alertText: output.avariceOnYou!(),
+            infoText: markText,
+          };
+        }
+        return { infoText: markText };
+      },
+      run: (data) => delete data.avarice,
+    },
+    {
+      id: 'P2S Mark of the Tides Move',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, matches, output) => output.awayFromGroup!(),
+      // 23 second duration, safe to move ~16.7s for first time, ~15s for the second.
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 6,
+      alarmText: (_data, matches, output) => output.awayFromGroup!(),
       outputStrings: {
         awayFromGroup: Outputs.awayFromGroup,
       },
