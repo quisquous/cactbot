@@ -138,7 +138,7 @@ export class DRGComponent extends BaseComponent {
   lanceChargeBox: TimerBox;
   dragonSightBox: TimerBox;
   blood: ResourceBox;
-  eyes: ResourceBox;
+  firstmindsFocus: ResourceBox;
   tid1 = 0;
   tid2 = 0;
 
@@ -173,8 +173,8 @@ export class DRGComponent extends BaseComponent {
     this.blood = this.bars.addResourceBox({
       classList: ['drg-color-blood'],
     });
-    this.eyes = this.bars.addResourceBox({
-      classList: ['drg-color-eyes'],
+    this.firstmindsFocus = this.bars.addResourceBox({
+      classList: ['drg-color-firstmindsfocus'],
     });
 
     this.reset();
@@ -182,13 +182,10 @@ export class DRGComponent extends BaseComponent {
   override onCombo(skill: string): void {
     // Both Disembowel and SonicThrust apply PowerSurge for 30s,
     // but Disembowel will lock the buff duration until fully act.
-    // FIXME: SonicThrust untested.
     if (skill === kAbility.Disembowel)
       this.disembowelBox.duration = 30 + 1;
-    if (skill === kAbility.SonicThrust) {
-      if (!this.is5x)
-        this.disembowelBox.duration = 30 + 0.5;
-    }
+    if (skill === kAbility.SonicThrust)
+      this.disembowelBox.duration = 30;
   }
 
   override onUseAbility(id: string): void {
@@ -199,34 +196,19 @@ export class DRGComponent extends BaseComponent {
         break;
       case kAbility.LanceCharge: {
         this.lanceChargeBox.duration = 20;
-        this.lanceChargeBox.fg = computeBackgroundColorFrom(
-          this.lanceChargeBox,
-          'drg-color-lancecharge.active',
-        );
+        this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge.active');
         this.tid1 = window.setTimeout(() => {
-          if (this.is5x)
-            this.lanceChargeBox.duration = 70;
-          else
-            this.lanceChargeBox.duration = 40;
-          this.lanceChargeBox.fg = computeBackgroundColorFrom(
-            this.lanceChargeBox,
-            'drg-color-lancecharge',
-          );
+          this.lanceChargeBox.duration = 40;
+          this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge');
         }, 20000);
         break;
       }
       case kAbility.DragonSight: {
         this.dragonSightBox.duration = 20;
-        this.dragonSightBox.fg = computeBackgroundColorFrom(
-          this.dragonSightBox,
-          'drg-color-dragonsight.active',
-        );
+        this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight.active');
         this.tid2 = window.setTimeout(() => {
           this.dragonSightBox.duration = 100;
-          this.dragonSightBox.fg = computeBackgroundColorFrom(
-            this.dragonSightBox,
-            'drg-color-dragonsight',
-          );
+          this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight');
         }, 20000);
         break;
       }
@@ -240,50 +222,31 @@ export class DRGComponent extends BaseComponent {
     this.highJumpBox.threshold = gcdSkill + 1;
   }
 
-  // TODO: Blood of the Dragon no longer have time limit.
-  // It can be merged with eyes guage(show duration in life of the dragon, and eye amount out of)
-  // to spare the second box for the new guage firstminds' focus
   override onJobDetailUpdate(jobDetail: JobDetail['DRG']): void {
-    this.blood.parentNode.classList.remove('blood', 'life');
-    if (jobDetail.bloodMilliseconds > 0) {
-      this.blood.parentNode.classList.add('blood');
-      this.blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000).toString();
-      if (jobDetail.bloodMilliseconds < 5000)
-        this.blood.parentNode.classList.remove('blood');
-    } else if (jobDetail.lifeMilliseconds > 0) {
-      this.blood.parentNode.classList.add('life');
+    this.blood.parentNode.classList.remove('zero', 'one', 'two');
+    this.blood.parentNode.classList.toggle('life', jobDetail.lifeMilliseconds > 0);
+    if (jobDetail.lifeMilliseconds > 0) {
       this.blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000).toString();
     } else {
-      this.blood.innerText = '';
-    }
-
-    this.eyes.parentNode.classList.remove('zero', 'one', 'two');
-    if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
-      this.eyes.innerText = jobDetail.eyesAmount.toString();
+      this.blood.innerText = jobDetail.eyesAmount.toString();
       if (jobDetail.eyesAmount === 0)
-        this.eyes.parentNode.classList.add('zero');
+        this.blood.parentNode.classList.add('zero');
       else if (jobDetail.eyesAmount === 1)
-        this.eyes.parentNode.classList.add('one');
+        this.blood.parentNode.classList.add('one');
       else if (jobDetail.eyesAmount === 2)
-        this.eyes.parentNode.classList.add('two');
-    } else {
-      this.eyes.innerText = '';
+        this.blood.parentNode.classList.add('two');
     }
+    // ↓↓ need update plugin job detail
+    // this.firstmindsFocus.innerText = jobDetail.firstmindsFocus.toString();
   }
 
   override reset(): void {
     this.highJumpBox.duration = 0;
     this.disembowelBox.duration = 0;
     this.lanceChargeBox.duration = 0;
-    this.lanceChargeBox.fg = computeBackgroundColorFrom(
-      this.lanceChargeBox,
-      'drg-color-lancecharge',
-    );
+    this.lanceChargeBox.fg = computeBackgroundColorFrom(this.lanceChargeBox, 'drg-color-lancecharge');
     this.dragonSightBox.duration = 0;
-    this.dragonSightBox.fg = computeBackgroundColorFrom(
-      this.dragonSightBox,
-      'drg-color-dragonsight',
-    );
+    this.dragonSightBox.fg = computeBackgroundColorFrom(this.dragonSightBox, 'drg-color-dragonsight');
     window.clearTimeout(this.tid1);
     window.clearTimeout(this.tid2);
   }

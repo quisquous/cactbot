@@ -733,6 +733,18 @@ div.justbuffs div#procs-container {
   background-color: rgba(0, 89, 255, 0.5);
 }
 
+.drg-color-blood.zero {
+  background-color: rgba(0, 89, 255, 0.5);
+}
+
+.drg-color-blood.one {
+  background-color: rgba(200, 50, 200, 0.6);
+}
+
+.drg-color-blood.two {
+  background-color: rgba(217, 51, 0, 0.7);
+}
+
 .drg-color-blood.life {
   background-color: rgba(217, 51, 0);
 }
@@ -771,6 +783,10 @@ div.justbuffs div#procs-container {
 
 .drg-color-dragonsight.active {
   background-color: rgb(217, 51, 0);
+}
+
+.drg-color-firstmindsfocus {
+  background-color: rgb(170, 80, 200);
 }
 
 /* NIN */
