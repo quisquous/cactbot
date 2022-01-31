@@ -2007,7 +2007,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Purple Bait: Be In Back Of Group',
                     de: 'Lila locken: Hinter der Gruppe sein',
-                    fr: 'Attirez le violet : Soyez derrière le groupe',
+                    fr: 'Attirez le violet : Placez-vous derrière le groupe',
                     ja: '逃亡監察',
                     cn: '大暗: 去人群后面',
                     ko: '보라/도망감찰; 유도역할/사람들 뒤에 있기',

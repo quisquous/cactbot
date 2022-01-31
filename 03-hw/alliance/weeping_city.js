@@ -404,7 +404,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Close to axes, avoid bulbs',
                     de: 'Nahe den Äxten, vermeide Knospen',
-                    fr: 'Soyez proche des haches, évitez les bulbes',
+                    fr: 'Restez proche des haches, évitez les bulbes',
                     ja: '刃物の髪に近づき、丸い髪から離れる',
                     cn: '靠近斧状发，远离球状发',
                     ko: '도끼모양에 붙고, 둥근모양은 피하기',

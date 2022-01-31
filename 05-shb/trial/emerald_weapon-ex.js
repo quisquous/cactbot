@@ -251,7 +251,7 @@ Options.Triggers.push({
                 protean: {
                     en: 'Protean',
                     de: 'Himmelsrichtungen',
-                    fr: 'Position',
+                    fr: 'Positions',
                     ja: '8方向散開',
                     cn: '分散站位',
                     ko: '정해진 위치로 산개',

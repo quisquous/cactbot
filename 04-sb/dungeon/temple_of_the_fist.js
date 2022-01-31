@@ -119,7 +119,7 @@ Options.Triggers.push({
                 text: {
                     en: 'watch for safe',
                     de: 'nach sicherer Position schauen',
-                    fr: 'Trouvez une zone sûre',
+                    fr: 'Trouvez une zone safe',
                     ja: '安置へ',
                     cn: '前往安全区',
                     ko: '안전지대 찾기',

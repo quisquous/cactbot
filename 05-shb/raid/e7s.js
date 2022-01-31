@@ -110,7 +110,7 @@ Options.Triggers.push({
                 stackOn: {
                     en: 'Stack (${players})',
                     de: 'Sammeln (${players})',
-                    fr: 'Package (${players})',
+                    fr: 'Package sur (${players})',
                     ja: '頭割り (${players})',
                     cn: '分摊 (${players})',
                     ko: '모이기 (${players})',

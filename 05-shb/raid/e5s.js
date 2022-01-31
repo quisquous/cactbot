@@ -251,7 +251,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Position for Stormcloud',
                     de: 'Position für die Wolke',
-                    fr: 'Position pour les nuages',
+                    fr: 'Positions pour les nuages',
                     ja: '雷雲散開',
                     cn: '雷云站位',
                     ko: '번개 구름 위치 잡기',
@@ -307,7 +307,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Be in your position',
                     de: 'Befinde dich auf deiner Position!',
-                    fr: 'Soyez à votre position',
+                    fr: 'Placez-vous à votre position',
                     ja: '突進、自分の位置へ',
                     cn: '冲锋站位',
                     ko: '자기 위치에 있기',

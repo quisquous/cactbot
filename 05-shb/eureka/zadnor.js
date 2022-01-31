@@ -1097,7 +1097,7 @@ Options.Triggers.push({
                     // TODO: should this be a response/output?
                     en: 'Get In Front',
                     de: 'Geh vor den Boss',
-                    fr: 'Placez-vous devant',
+                    fr: 'Passez devant',
                     ja: 'ボスの正面へ',
                     cn: '去Boss正面',
                     ko: '정면에 서기',

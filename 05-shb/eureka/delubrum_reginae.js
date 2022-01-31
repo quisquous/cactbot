@@ -1042,7 +1042,7 @@ Options.Triggers.push({
                     plusTwo: {
                         en: 'Be in ${side} Cleave (+2 Hot)',
                         de: 'Sei im ${side} Cleave (+2 Heiß)',
-                        fr: 'Soyez du ${side} Cleave (+2 chaud)',
+                        fr: 'Placez-vous du ${side} Cleave (+2 chaud)',
                         ja: '${side}側へ (炎属性+2)',
                         cn: '去${side}侧 (火+2)',
                         ko: '${side} 광역기 맞기 (+2 불속성)',
@@ -1050,7 +1050,7 @@ Options.Triggers.push({
                     plusOne: {
                         en: 'Be in ${side} Cleave (+1 Hot)',
                         de: 'Sei im ${side} Cleave (+1 Heiß)',
-                        fr: 'Soyez du ${side} Cleave (+1 chaud)',
+                        fr: 'Placez-vous du ${side} Cleave (+1 chaud)',
                         ja: '${side}側へ (炎属性+1)',
                         cn: '去${side}侧 (火+1)',
                         ko: '${side} 광역기 맞기 (+1 불속성)',
@@ -1058,7 +1058,7 @@ Options.Triggers.push({
                     minusOne: {
                         en: 'Be in ${side} Cleave (-1 Cold)',
                         de: 'Sei im ${side} Cleave (-1 Kalt)',
-                        fr: 'Soyez du ${side} Cleave (-1 froid)',
+                        fr: 'Placez-vous du ${side} Cleave (-1 froid)',
                         ja: '${side}側へ (氷属性-1)',
                         cn: '去${side}侧 (冰-1)',
                         ko: '${side} 광역기 맞기 (-1 얼음속성)',
@@ -1066,7 +1066,7 @@ Options.Triggers.push({
                     minusTwo: {
                         en: 'Be in ${side} Cleave (-2 Cold)',
                         de: 'Sei im ${side} Cleave (-2 Kalt)',
-                        fr: 'Soyez du ${side} Cleave (-2 froid)',
+                        fr: 'Placez-vous du ${side} Cleave (-2 froid)',
                         ja: '${side}側へ (氷属性-2)',
                         cn: '去${side}侧 (冰-2)',
                         ko: '${side} 광역기 맞기 (-2 얼음속성)',
@@ -1243,7 +1243,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get In Front',
                     de: 'Geh vor den Boss',
-                    fr: 'Soyez devant',
+                    fr: 'Passez devant',
                     ja: 'ボスの正面へ',
                     cn: '去正面',
                     ko: '정면에 서기',

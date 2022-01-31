@@ -38,7 +38,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Protean',
                     de: 'Himmelsrichtungen',
-                    fr: 'Position',
+                    fr: 'Positions',
                     ja: '散開',
                     cn: '散开',
                     ko: '위치 산개',

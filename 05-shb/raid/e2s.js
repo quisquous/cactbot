@@ -123,7 +123,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Protean',
                     de: 'Himmelsrichtungen',
-                    fr: 'Position',
+                    fr: 'Positions',
                     ja: '散開',
                     cn: '分散站位',
                     ko: '정해진 위치로 산개',
@@ -569,7 +569,7 @@ Options.Triggers.push({
                 text: {
                     en: 'In, Protean, Sides',
                     de: 'Rein, Himmelsrichtungen, Seiten',
-                    fr: 'Intérieur, Position, Côtés',
+                    fr: 'Intérieur, Positions, Côtés',
                     ja: '中 => 散開 => 横',
                     cn: '脚下 => 站位 => 两侧',
                     ko: '중앙 => 산개 => 측면',
@@ -590,7 +590,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Sides, In, Protean',
                     de: 'Seiten, Rein, Himmelsrichtungen',
-                    fr: 'Côtés, Intérieur, Position',
+                    fr: 'Côtés, Intérieur, Positions',
                     ja: '横 => 中 => 散開',
                     cn: '两侧 => 脚下 => 站位',
                     ko: '측면 => 중앙 => 산개',

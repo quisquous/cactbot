@@ -41,7 +41,7 @@ const artOfDarknessOutputStrings = {
     protean: {
         en: 'Protean',
         de: 'Himmelsrichtungen',
-        fr: 'Position',
+        fr: 'Positions',
         ja: '散開',
         cn: '散开',
         ko: '산개',
@@ -605,7 +605,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Tile Positions',
                     de: 'Kachel Positionen',
-                    fr: 'Allez sur votre case',
+                    fr: 'Positions',
                     ja: '定めたパネルに待機',
                     cn: '上自己的方块',
                     ko: '바닥 자리잡기',

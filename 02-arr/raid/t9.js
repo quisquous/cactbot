@@ -467,7 +467,7 @@ Options.Triggers.push({
                 safeZone: {
                     en: 'Safe zone: ${dir}',
                     de: 'Sichere Zone: ${dir}',
-                    fr: 'Zone sûre : ${dir}',
+                    fr: 'Zone safe : ${dir}',
                     ja: '安置: ${dir}',
                     cn: '安全点在：${dir}',
                     ko: '안전 지대: ${dir}',

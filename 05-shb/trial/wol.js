@@ -341,7 +341,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack Groups',
                     de: 'Gruppen stacken',
-                    fr: 'Package de groupe',
+                    fr: 'Packages de groupes',
                     ja: '集合',
                     cn: '集合',
                     ko: '쉐어징 모이기',
