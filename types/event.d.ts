@@ -59,6 +59,7 @@ export interface JobDetail {
     eyesAmount: number;
     bloodMilliseconds: number;
     lifeMilliseconds: number;
+    firstmindsFocus: number;
   };
   'NIN': {
     hutonMilliseconds: number;

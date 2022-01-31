@@ -503,6 +503,10 @@ namespace Cactbot {
             return 0;
         }
       }
+
+      [NonSerialized]
+      [FieldOffset(0x04)]
+      public byte firstmindsFocus;
     };
 
     [Serializable]

@@ -236,8 +236,8 @@ export class DRGComponent extends BaseComponent {
       else if (jobDetail.eyesAmount === 2)
         this.blood.parentNode.classList.add('two');
     }
-    // ↓↓ need update plugin job detail
-    // this.firstmindsFocus.innerText = jobDetail.firstmindsFocus.toString();
+
+    this.firstmindsFocus.innerText = jobDetail.firstmindsFocus.toString();
   }
 
   override reset(): void {
