@@ -134,6 +134,7 @@ export const kAbility = {
   AspectedBenefic: 'E0B',
   AspectedHelios: 'E11',
   Draw: 'E06',
+  MinorArcana: '1D13',
   Divination: '40A8',
   // SGE
   Rhizomata: '5EF5',
