@@ -137,6 +137,9 @@ export const kAbility = {
   Divination: '40A8',
   // SGE
   Rhizomata: '5EF5',
+  Phlegma: '5EE1',
+  Phlegma2: '5EF3',
+  Phlegma3: '5EF9',
   // MNK
   DragonKick: '4A',
   TwinSnakes: '3D',

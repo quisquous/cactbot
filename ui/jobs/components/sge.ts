@@ -13,8 +13,11 @@ export class SGEComponent extends BaseComponent {
   adderstingStacks: HTMLDivElement[];
   adderTimerBox: ResourceBox;
   eukrasianDosis: TimerBox;
+  phlegma: TimerBox;
   rhizomata: TimerBox;
   lucidDream: TimerBox;
+  multipleCall: boolean;
+  tid = 0;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -51,6 +54,11 @@ export class SGEComponent extends BaseComponent {
       notifyWhenExpired: true,
     });
 
+    this.phlegma = this.bars.addProcBox({
+      id: 'sge-proc-phlegma',
+      fgColor: 'sge-color-phlegma',
+    });
+
     this.rhizomata = this.bars.addProcBox({
       id: 'sge-proc-rhizomata',
       fgColor: 'sge-color-rhizomata',
@@ -64,7 +72,7 @@ export class SGEComponent extends BaseComponent {
     this.adderTimerBox = this.bars.addResourceBox({
       classList: ['sge-color-adder'],
     });
-
+    this.multipleCall = false;
     this.reset();
   }
 
@@ -74,10 +82,25 @@ export class SGEComponent extends BaseComponent {
   }
 
   override onUseAbility(id: string): void {
-    if (id === kAbility.LucidDreaming)
-      this.lucidDream.duration = 60;
-    else if (id === kAbility.Rhizomata)
-      this.rhizomata.duration = 90;
+    switch (id) {
+      case kAbility.Phlegma:
+      case kAbility.Phlegma2:
+      case kAbility.Phlegma3:
+        if (!this.multipleCall) { // Avoid multiple call in AOE
+          this.phlegma.duration = 45 + this.phlegma.value;
+          this.multipleCall = true;
+          this.tid = window.setTimeout(() => {
+            this.multipleCall = false;
+          }, 1000);
+        }
+        break;
+      case kAbility.Rhizomata:
+        this.rhizomata.duration = 90;
+        break;
+      case kAbility.LucidDreaming:
+        this.lucidDream.duration = 60;
+        break;
+    }
   }
 
   override onMobGainsEffectFromYou(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
@@ -102,6 +125,8 @@ export class SGEComponent extends BaseComponent {
   override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
     this.eukrasianDosis.valuescale = gcdSpell;
     this.eukrasianDosis.threshold = gcdSpell + 1;
+    this.phlegma.valuescale = gcdSpell;
+    this.phlegma.threshold = gcdSpell + 1;
     this.rhizomata.valuescale = gcdSpell;
     this.rhizomata.threshold = gcdSpell + 1;
     this.lucidDream.valuescale = gcdSpell;
@@ -114,6 +139,7 @@ export class SGEComponent extends BaseComponent {
 
   override reset(): void {
     this.eukrasianDosis.duration = 0;
+    this.phlegma.duration = 0;
     this.rhizomata.duration = 0;
     this.lucidDream.duration = 0;
   }
