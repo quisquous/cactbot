@@ -1528,7 +1528,7 @@ const triggerSet: TriggerSet<Data> = {
         firstWeave: {
           en: 'Go North (donut bottom/circle top)',
           de: 'Geh nach Norden (Donut unten/Kreise oben)',
-          fr: 'Allez au nord (donut bas/cercle haut)',
+          fr: 'Allez au nord (donut en bas/cercle en haut)',
           ja: '北へ (下にドーナツ/上に円)',
           cn: '去下环上圆列北侧',
           ko: '북쪽으로 (도넛이 아래, 원이 위인 곳)',
@@ -1536,7 +1536,7 @@ const triggerSet: TriggerSet<Data> = {
         secondWeave: {
           en: 'Stay South (square bottom/circle top)',
           de: 'Geh nach Süden (Viereck unten/Kreise oben)',
-          fr: 'Restez au sud (fond carré/cercle haut)',
+          fr: 'Restez au sud (carré en bas/cercle en haut)',
           ja: '南へ（下に四角/上に円）',
           cn: '待在下方上圆列南侧',
           ko: '남쪽으로 (사각형이 아래, 원이 위인 곳)',
@@ -1557,7 +1557,7 @@ const triggerSet: TriggerSet<Data> = {
           goSouth: {
             en: 'Go South; Knockback to Glowing Donut',
             de: 'Geh nach Süden; Rückstoß zum leuchtenden Donut',
-            fr: 'Allez au sud; Poussée du donut brillant',
+            fr: 'Allez au sud; Poussée vers le donut embrasé',
             ja: '南へ、光ってるドーナツへノックバック',
             cn: '去发光环形列南侧',
             ko: '남쪽으로, 빛나는 도넛쪽으로 넉백',
@@ -1565,7 +1565,7 @@ const triggerSet: TriggerSet<Data> = {
           goNorth: {
             en: 'Go North; Knockback from Glowing Circle',
             de: 'Geh nach Norden; Rückstoß zum leuchtenden Kreis',
-            fr: 'Allez au nord; Poussée du cercle brillant',
+            fr: 'Allez au nord; Poussée depuis le cercle verdâtre',
             ja: '北へ、光ってる円からノックバック',
             cn: '去发光圆形列北侧',
             ko: '북쪽으로, 빛나는 원에서 넉백',
@@ -1852,7 +1852,7 @@ const triggerSet: TriggerSet<Data> = {
         plusTwo: {
           en: '+2 Heat Arrow',
           de: '+2 Heiß-Pfeile',
-          fr: 'Flèche de chaleur +2',
+          fr: 'La flèche de chaleur +2',
           ja: '炎属性+2',
           cn: '火+2箭',
           ko: '+2 불 화살',
@@ -1860,7 +1860,7 @@ const triggerSet: TriggerSet<Data> = {
         plusOne: {
           en: '+1 Heat Arrow',
           de: '+1 Heiß-Pfeile',
-          fr: 'Flèche de chaleur +1',
+          fr: 'La flèche de chaleur +1',
           ja: '炎属性+1',
           cn: '火+1箭',
           ko: '+1 불 화살',
@@ -1868,7 +1868,7 @@ const triggerSet: TriggerSet<Data> = {
         emptySpot: {
           en: 'Empty Spot',
           de: 'Leeres Feld',
-          fr: 'Emplacement vide',
+          fr: 'L\'emplacement vide',
           ja: 'そのままにする',
           cn: '空白',
           ko: '빈 자리',
@@ -1876,7 +1876,7 @@ const triggerSet: TriggerSet<Data> = {
         minusOne: {
           en: '-1 Cold Arrow',
           de: '-1 Kalt-Pfeile',
-          fr: 'Flèche de froid -1',
+          fr: 'La flèche de froid -1',
           ja: '氷属性-1',
           cn: '冰-1箭',
           ko: '-1 얼음 화살',
@@ -1884,7 +1884,7 @@ const triggerSet: TriggerSet<Data> = {
         minusTwo: {
           en: '-2 Cold Arrow',
           de: '-2 Kalt-Pfeile',
-          fr: 'Flèche de froid -2',
+          fr: 'La flèche de froid -2',
           ja: '氷属性-2',
           cn: '冰-2箭',
           ko: '-2 얼음 화살',
@@ -1892,7 +1892,7 @@ const triggerSet: TriggerSet<Data> = {
         unknownTemperature: {
           en: 'Opposite Arrow',
           de: 'Entgegengesetze Pfeile',
-          fr: 'Flèche de l\'élément opposé',
+          fr: 'La flèche de l\'élément opposé',
           ja: '体温と逆のあみだ',
           cn: '相反温度的箭',
           ko: '반대속성 화살',
@@ -1900,7 +1900,7 @@ const triggerSet: TriggerSet<Data> = {
         forwards: {
           en: 'forwards',
           de: 'Vorwärts',
-          fr: 'Vers l\'avant',
+          fr: 'vers l\'avant',
           ja: '前',
           cn: '前',
           ko: '앞',
@@ -1908,7 +1908,7 @@ const triggerSet: TriggerSet<Data> = {
         backwards: {
           en: 'backwards',
           de: 'Rückwärts',
-          fr: 'Vers l\'arrière',
+          fr: 'vers l\'arrière',
           ja: '後ろ',
           cn: '后',
           ko: '뒤',
@@ -1916,7 +1916,7 @@ const triggerSet: TriggerSet<Data> = {
         left: {
           en: 'left',
           de: 'Links',
-          fr: 'À gauche',
+          fr: 'à gauche',
           ja: '左',
           cn: '左',
           ko: '왼쪽',
@@ -1924,7 +1924,7 @@ const triggerSet: TriggerSet<Data> = {
         right: {
           en: 'right',
           de: 'Rechts',
-          fr: 'À droite',
+          fr: 'à droite',
           ja: '右',
           cn: '右',
           ko: '오른쪽',
@@ -1940,7 +1940,7 @@ const triggerSet: TriggerSet<Data> = {
         marchToArrow: {
           en: 'March ${dir} to ${arrow}',
           de: 'Marchiere ${dir} zum ${arrow}',
-          fr: 'Marqueur ${dir} de ${arrow}',
+          fr: 'Marchez ${dir} de ${arrow}',
           ja: '強制移動: ${dir} > ${arrow}',
           cn: '强制移动：${dir} > ${arrow}',
           ko: '강제이동 ${dir} > ${arrow}',
@@ -2030,7 +2030,7 @@ const triggerSet: TriggerSet<Data> = {
         forwards: {
           en: 'forwards',
           de: 'Vorwärts',
-          fr: 'Vers l\'avant',
+          fr: 'vers l\'avant',
           ja: '前',
           cn: '前',
           ko: '앞',
@@ -2038,7 +2038,7 @@ const triggerSet: TriggerSet<Data> = {
         backwards: {
           en: 'backwards',
           de: 'Rückwärts',
-          fr: 'Vers l\'arrière',
+          fr: 'vers l\'arrière',
           ja: '後ろ',
           cn: '后',
           ko: '뒤',
@@ -2046,7 +2046,7 @@ const triggerSet: TriggerSet<Data> = {
         left: {
           en: 'left',
           de: 'Links',
-          fr: 'À gauche',
+          fr: 'à gauche',
           ja: '左',
           cn: '左',
           ko: '왼쪽',
@@ -2054,7 +2054,7 @@ const triggerSet: TriggerSet<Data> = {
         right: {
           en: 'right',
           de: 'Rechts',
-          fr: 'À droite',
+          fr: 'à droite',
           ja: '右',
           cn: '右',
           ko: '오른쪽',
@@ -2070,7 +2070,7 @@ const triggerSet: TriggerSet<Data> = {
         marchToMeteor: {
           en: 'March ${dir} to ${meteor}',
           de: 'Marchiere ${dir} zum ${meteor}',
-          fr: 'Marqueur ${dir} du ${meteor}',
+          fr: 'Marchez ${dir} du ${meteor}',
           ja: '強制移動: ${dir} > ${meteor}',
           cn: '强制移动：${dir} > ${meteor}',
           ko: '강제이동 ${dir} > ${meteor}',
