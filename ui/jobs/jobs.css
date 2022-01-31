@@ -71,6 +71,7 @@ div.justbuffs div#procs-container {
 .whm #hp-bar,
 .sch #hp-bar,
 .ast #hp-bar,
+.sge #hp-bar,
 .blu #hp-bar {
   height: 18px;
 }
@@ -157,7 +158,8 @@ div.justbuffs div#procs-container {
 #drk-boxes > div,
 #whm-boxes > div,
 #sch-boxes > div,
-#ast-boxes > div {
+#ast-boxes > div,
+#sge-boxes > div {
   width: 35px;
   height: 35px;
 }
@@ -166,7 +168,8 @@ div.justbuffs div#procs-container {
 #drk-boxes .text,
 #whm-boxes .text,
 #sch-boxes .text,
-#ast-boxes .text {
+#ast-boxes .text,
+#sge-boxes .text {
   text-align: center;
   position: relative;
   top: 6px;
@@ -253,6 +256,7 @@ div.justbuffs div#procs-container {
 
 /* Space for 1 big resource box */
 .drk #right-side-icons,
+.sge #right-side-icons,
 .nin #right-side-icons {
   left: 250px;
 }
@@ -301,10 +305,6 @@ div.justbuffs div#procs-container {
   margin-right: 0;
 }
 
-#blm-stacks-xeno > div {
-  background-color: rgba(66, 19, 128, 0.2);
-}
-
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
 }
@@ -323,6 +323,10 @@ div.justbuffs div#procs-container {
 
 #sge-stacks-addersgall > div.active {
   background-color: rgb(120, 170, 250);
+}
+
+#sge-stacks-addersting > div {
+  background-color: rgba(66, 19, 128, 0.2);
 }
 
 #sge-stacks-addersting > div.active {
@@ -351,6 +355,10 @@ div.justbuffs div#procs-container {
 
 #blm-stacks-heart > div.active {
   background-color: rgb(174, 227, 235);
+}
+
+#blm-stacks-xeno > div {
+  background-color: rgba(66, 19, 128, 0.2);
 }
 
 #blm-stacks-xeno > div.active {
@@ -677,6 +685,10 @@ div.justbuffs div#procs-container {
 /* SGE */
 .sge-color-adder {
   background-color: rgb(120, 170, 250);
+}
+
+.sge-color-adder.exceed {
+  background-color: rgb(255, 0, 0);
 }
 
 .sge-color-dosis {
