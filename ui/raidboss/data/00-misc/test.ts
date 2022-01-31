@@ -8,6 +8,7 @@ import { LocaleText, TriggerSet } from '../../../../types/trigger';
 const strikingDummyNames: LocaleText = {
   en: 'Striking Dummy',
   de: 'Trainingspuppe',
+  fr: 'Mannequin d\'entraînement',
   ja: '木人',
   cn: '木人',
   ko: '나무인형',
@@ -78,7 +79,7 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Stack for Angry Dummy',
           de: 'Sammeln für Wütender Dummy',
-          fr: 'Packez-vous pour Mannequin en colère',
+          fr: 'Packez-vous pour le Mannequin en colère',
           ja: '怒る木人に集合',
           cn: '木人处集合',
           ko: '화난 나무인형에 집합',
@@ -236,6 +237,7 @@ const triggerSet: TriggerSet<Data> = {
       // In game: /echo cactbot lang
       netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
+      netRegexFr: NetRegexes.echo({ line: 'cactbot langue.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot语言.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
@@ -256,6 +258,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
+      netRegexFr: NetRegexes.echo({ line: 'cactbot test de réponse.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbotレスポンステスト.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 응답 테스트.*?', capture: false }),
@@ -280,6 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
+      netRegexFr: NetRegexes.echo({ line: 'cactbot montre d\'essai.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot探知テスト.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 탐지 테스트.*?', capture: false }),
@@ -314,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
         close: {
           en: 'Dummy close!',
           de: 'Puppe beendet!',
+          fr: 'Mannequin proche !',
           ja: '木人に近すぎ！',
           cn: '靠近木人！',
           ko: '나무인형과 가까움!',
@@ -351,8 +356,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       locale: 'fr',
       replaceSync: {
+        'cactbot lang': 'cactbot langue',
+        'cactbot test response': 'cactbot test de réponse',
+        'cactbot test watch': 'cactbot montre d\'essai',
         'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
         'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
+        'You burst out laughing at the striking dummy': 'Vous vous esclaffez devant le mannequin d\'entraînement',
+        'You clap for the striking dummy': 'Vous applaudissez le mannequin d\'entraînement',
+        'You poke the striking dummy': 'Vous touchez légèrement le mannequin d\'entraînement du doigt',
+        'You psych yourself up alongside the striking dummy': 'Vous vous motivez devant le mannequin d\'entraînement',
         'test sync': 'test sync',
       },
       replaceText: {
