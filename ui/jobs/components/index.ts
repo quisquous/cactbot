@@ -15,7 +15,7 @@ import { BLMComponent } from './blm';
 import { BLUComponent } from './blu';
 import { BRDComponent } from './brd';
 import { DNCComponent } from './dnc';
-import { DRGComponent } from './drg';
+import { DRG5xComponent, DRGComponent } from './drg';
 import { DRKComponent } from './drk';
 import { GNBComponent } from './gnb';
 import { MCHComponent } from './mch';
@@ -135,6 +135,8 @@ export class ComponentManager {
         return new AST5xComponent(this.o);
       if (job === 'RDM')
         return new RDM5xComponent(this.o);
+      if (job === 'DRG')
+        return new DRG5xComponent(this.o);
     }
 
     const Component = ComponentMap[job];
