@@ -674,6 +674,10 @@ div.justbuffs div#procs-container {
   background-color: rgb(200, 70, 70);
 }
 
+.ast-color-minordraw {
+  background-color: rgb(250, 120, 60);
+}
+
 /* SGE */
 .sge-color-adder {
   background-color: rgb(120, 170, 250);

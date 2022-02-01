@@ -120,6 +120,7 @@ export class AST5xComponent extends BaseComponent {
 export class ASTComponent extends BaseComponent {
   combustBox: TimerBox;
   drawBox: TimerBox;
+  minorDrawBox: TimerBox;
   lucidBox: TimerBox;
   cardBox: ResourceBox;
   minorBox: ResourceBox;
@@ -137,6 +138,11 @@ export class ASTComponent extends BaseComponent {
     this.drawBox = this.bars.addProcBox({
       id: 'ast-procs-draw',
       fgColor: 'ast-color-draw',
+    });
+
+    this.minorDrawBox = this.bars.addProcBox({
+      id: 'ast-procs-minordraw',
+      fgColor: 'ast-color-minordraw',
     });
 
     this.lucidBox = this.bars.addProcBox({
@@ -214,7 +220,10 @@ export class ASTComponent extends BaseComponent {
         this.combustBox.duration = 18;
         break;
       case kAbility.Draw:
-          this.drawBox.duration = 30 + this.drawBox.value;
+        this.drawBox.duration = 30 + this.drawBox.value;
+        break;
+      case kAbility.MinorArcana:
+        this.minorDrawBox.duration = 60;
         break;
       case kAbility.LucidDreaming:
         this.lucidBox.duration = 60;
@@ -226,6 +235,8 @@ export class ASTComponent extends BaseComponent {
     this.combustBox.threshold = gcdSpell + 1;
     this.drawBox.valuescale = gcdSpell;
     this.drawBox.threshold = gcdSpell + 1;
+    this.minorDrawBox.valuescale = gcdSpell;
+    this.minorDrawBox.threshold = gcdSpell + 1;
     this.lucidBox.valuescale = gcdSpell;
     this.lucidBox.threshold = gcdSpell + 1;
   }
@@ -233,6 +244,7 @@ export class ASTComponent extends BaseComponent {
   override reset(): void {
     this.combustBox.duration = 0;
     this.drawBox.duration = 0;
+    this.minorDrawBox.duration = 0;
     this.lucidBox.duration = 0;
   }
 }
