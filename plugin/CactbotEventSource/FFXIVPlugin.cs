@@ -7,8 +7,6 @@ namespace Cactbot {
   public class FFXIVPlugin {
     private ILogger logger_;
     private IActPluginV1 ffxiv_plugin_;
-    private Process process_ = null;
-    public Process Process => process_;
 
     public FFXIVPlugin(ILogger logger) {
       logger_ = logger;
@@ -74,6 +72,24 @@ namespace Cactbot {
       } catch (Exception e) {
         logger_.LogInfo("PIDDEBUG: RegisterProcessChangedHander Exception: {0}", e.ToString());
         logger_.LogError(Strings.RegisteringProcessErrorMessage, e.ToString());
+      }
+    }
+
+    public Process GetCurrentProcess() {
+      if (ffxiv_plugin_ == null) {
+        logger_.LogInfo("PIDDEBUG: GetCurrentProcess: no plugin");
+        return null;
+      }
+
+      try {
+        dynamic plugin_derived = ffxiv_plugin_;
+        var process = plugin_derived.DataRepository.GetCurrentFFXIVProcess();
+        logger_.LogInfo("PIDDEBUG: GetCurrentProcess: process_: {0}", process != null ? process.Id.ToString() : "(null)");
+        return process;
+      } catch (Exception e) {
+        logger_.LogInfo("PIDDEBUG: GetCurrentProcessErrorMessage Exception: {0}", e.ToString());
+        logger_.LogError(Strings.GetCurrentProcessErrorMessage, e.ToString());
+        return null;
       }
     }
   }

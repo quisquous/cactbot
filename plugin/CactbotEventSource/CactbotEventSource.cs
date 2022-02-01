@@ -280,7 +280,12 @@ namespace Cactbot {
         ffxiv_ = new FFXIVProcessIntl(this);
         LogInfo(Strings.Version, "intl");
       }
+
+      // Avoid initialization races by always calling OnProcessChanged with the current process
+      // in case the ffxiv plugin has already sent this event and it never changes again.
       plugin_helper.RegisterProcessChangedHandler(ffxiv_.OnProcessChanged);
+      ffxiv_.OnProcessChanged(plugin_helper.GetCurrentProcess());
+
       wipe_detector_ = new WipeDetector(this);
       fate_watcher_ = new FateWatcher(this, language_);
 
