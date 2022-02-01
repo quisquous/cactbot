@@ -72,8 +72,8 @@ const defaultJobsNonConfigOptions: JobsNonConfigOptions = {
 
 // See user/jobs-example.js for documentation.
 const defaultJobsConfigOptions: JobsConfigOptions = {
-  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],
-  ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'BLM', 'BLU'],
+  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'SGE', 'BLU'],
+  ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'SGE', 'BLM', 'BLU'],
 
   ShowMPTicker: ['BLM'],
 
