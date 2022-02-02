@@ -256,6 +256,7 @@ div.justbuffs div#procs-container {
 
 /* Space for 1 big resource box */
 .drk #right-side-icons,
+.whm #right-side-icons,
 .sge #right-side-icons,
 .nin #right-side-icons {
   left: 250px;
@@ -263,7 +264,6 @@ div.justbuffs div#procs-container {
 
 /* Space for 2 big resource box */
 .pld #right-side-icons,
-.whm #right-side-icons,
 .sch #right-side-icons,
 .ast #right-side-icons {
   left: 288px;
@@ -303,6 +303,14 @@ div.justbuffs div#procs-container {
 
 .stacks :last-child {
   margin-right: 0;
+}
+
+#whm-stacks-lily > div.active {
+  background-color: rgb(60, 80, 200);
+}
+
+#whm-stacks-bloodlily > div {
+  background-color: rgba(66, 19, 128, 0.2);
 }
 
 #whm-stacks-bloodlily > div.active {
@@ -594,10 +602,6 @@ div.justbuffs div#procs-container {
 
 .whm-color-lucid {
   background-color: rgb(227, 148, 210);
-}
-
-.whm-color-lily {
-  background-color: rgb(60, 80, 200);
 }
 
 .whm-color-lilysecond {
