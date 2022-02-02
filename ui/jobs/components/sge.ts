@@ -83,7 +83,6 @@ export class SGEComponent extends BaseComponent {
       case kAbility.Phlegma:
       case kAbility.Phlegma2:
       case kAbility.Phlegma3:
-        console.log(matches.targetIndex);
         if (matches.targetIndex === '0') { // Avoid multiple call in AOE
           this.phlegma.duration = 45 + this.phlegma.value;
         }
