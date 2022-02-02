@@ -18,10 +18,8 @@ export class RPRComponent extends BaseComponent {
   soulGauge: ResourceBox;
   shroudGauge: ResourceBox;
   comboTimer: TimerBar;
-  multipleCall: boolean;
   tid1 = 0;
   tid2 = 0;
-  tid3 = 0;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -60,7 +58,6 @@ export class RPRComponent extends BaseComponent {
       fgColor: 'combo-color',
     });
 
-    this.multipleCall = false;
     this.reset();
   }
 
@@ -86,18 +83,14 @@ export class RPRComponent extends BaseComponent {
     }
   }
 
-  override onUseAbility(id: string): void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>): void {
     switch (id) {
       case kAbility.SoulSlice:
       case kAbility.SoulScythe:
         if (this.player.level < 78) {
           this.soulSliceBox.duration = 30;
-        } else if (!this.multipleCall) { // Avoid multiple call in AOE
+        } else if (matches.targetIndex === '0') { // Avoid multiple call in AOE
           this.soulSliceBox.duration = 30 + this.soulSliceBox.value;
-          this.multipleCall = true;
-          this.tid3 = window.setTimeout(() => {
-            this.multipleCall = false;
-          }, 1000);
         }
         break;
       case kAbility.Gluttony:
@@ -148,13 +141,11 @@ export class RPRComponent extends BaseComponent {
     this.deathsDesignBox.duration = 0;
     this.gluttonyBox.duration = 0;
     this.soulSliceBox.duration = 0;
-    this.multipleCall = false;
     this.arcaneCircleBox.duration = 0;
     this.arcaneCircleBox.threshold = this.player.gcdSkill + 1;
     this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-arcanecircle');
     window.clearTimeout(this.tid1);
     window.clearTimeout(this.tid2);
-    window.clearTimeout(this.tid3);
     this.comboTimer.duration = 0;
   }
 }
