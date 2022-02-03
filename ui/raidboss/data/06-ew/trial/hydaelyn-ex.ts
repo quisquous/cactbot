@@ -13,7 +13,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   brightSpectrumStack?: string[];
   crystallize?: 'spread' | 'groups' | 'stack';
-  seenCrystalAbility?: boolean;
   parhelion?: boolean;
 }
 
@@ -319,14 +318,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HydaelynEx Crystal of Light',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '65BE', source: 'Crystal of Light', capture: true }),
-      condition: (data) => !data.seenCrystalAbility,
-      preRun: (data) => data.seenCrystalAbility = true,
-      // Three of these abilities happen at once, only catch one
-      suppressSeconds: 1,
+      // Each of the three adds fires every 1.1s or so until about Exodus or their death
+      suppressSeconds: 60,
       infoText: (data, matches, output) => {
         // North Crystals: (87.87, 93.00),  (112.12, 86.00), (112.12, 93)
         // South Crystals: (87.87, 107.00), (100.00, 114.00), (112.12, 107.00)
-        const isSouthFirst = parseInt(matches.y) > 100;
+        const isSouthFirst = parseFloat(matches.y) > 100;
         if (data.role === 'tank')
           return output.dirEchoes!({ dir: isSouthFirst ? output.north!() : output.south!() });
         return output.dirCrystals!({ dir: isSouthFirst ? output.south!() : output.north!() });
