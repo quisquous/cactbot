@@ -6,7 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: how to call out crystal LOS???
-// TODO: call out directions where party/tanks should go in add phase?
 // TODO: call Chakram stack locations / direction to run
 // TODO: call out intercard to run to in the final phase
 // TODO: Lightwave has different ids, do these mean anything?
@@ -14,6 +13,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   brightSpectrumStack?: string[];
   crystallize?: 'spread' | 'groups' | 'stack';
+  seenCrystalAbility?: boolean;
   parhelion?: boolean;
 }
 
@@ -314,6 +314,33 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '65C0', source: '海德林' }),
       netRegexKo: NetRegexes.startsUsing({ id: '65C0', source: '하이델린' }),
       response: Responses.sharedTankBuster(),
+    },
+    {
+      id: 'HydaelynEx Crystal of Light',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '65BE', source: 'Crystal of Light', capture: true }),
+      condition: (data) => !data.seenCrystalAbility,
+      preRun: (data) => data.seenCrystalAbility = true,
+      // Three of these abilities happen at once, only catch one
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        // North Crystals: (87.87, 93.00),  (112.12, 86.00), (112.12, 93)
+        // South Crystals: (87.87, 107.00), (100.00, 114.00), (112.12, 107.00)
+        const isSouthFirst = parseInt(matches.y) > 100;
+        if (data.role === 'tank')
+          return output.dirEchoes!({ dir: isSouthFirst ? output.north!() : output.south!() });
+        return output.dirCrystals!({ dir: isSouthFirst ? output.south!() : output.north!() });
+      },
+      outputStrings: {
+        dirCrystals: {
+          en: '${dir} Crystals first',
+        },
+        dirEchoes: {
+          en: 'Move Echoes ${dir} first',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+      },
     },
     {
       id: 'HydaelynEx Exodus',
