@@ -358,7 +358,7 @@ const triggerSet: TriggerSet<Data> = {
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
-        'cactbot test watch': 'cactbot montre d\'essai',
+        'cactbot test watch': 'cactbot test d\'observation',
         'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
         'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
         'You burst out laughing at the striking dummy': 'Vous vous esclaffez devant le mannequin d\'entraînement',
