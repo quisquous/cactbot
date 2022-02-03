@@ -283,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
-      netRegexFr: NetRegexes.echo({ line: 'cactbot montre d\'essai.*?', capture: false }),
+      netRegexFr: NetRegexes.echo({ line: 'cactbot test d\'observation.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot探知テスト.*?', capture: false }),
       netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 탐지 테스트.*?', capture: false }),
