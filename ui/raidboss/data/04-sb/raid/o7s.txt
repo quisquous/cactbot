@@ -9,7 +9,7 @@ hideall "--sync--"
 21 "Arm And Hammer" sync / 1[56]:[^:]*:Guardian:2789:/
 31 "Atomic Ray" sync / 1[56]:[^:]*:Guardian:278D:/
 40 "Prey" sync / 1[56]:[^:]*:Guardian:278A:/
-49 "Load ??" sync / 1[56]:[^:]*:Guardian:275C:/
+49 "Load?" sync / 1[56]:[^:]*:Guardian:275C:/
 50 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]+:[^:]*:[^:]*:[^:]*:Guardian:/ jump 1050
 52 "Shockwave?"
 
@@ -93,7 +93,7 @@ hideall "--sync--"
 499 "Diffractive Plasma" sync / 1[56]:[^:]*:Guardian:278B:/
 
 # Divergence point
-509 "Load/Skip ???" sync / 1[56]:[^:]*:Guardian:(275C|2773):/
+509 "Load/Skip?" sync / 1[56]:[^:]*:Guardian:(275C|2773):/
 510 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]+:[^:]*:[^:]*:[^:]*:Guardian:/ jump 2510       # Bibliotaph buff, jump to A1
 510 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]+:[^:]*:[^:]*:[^:]*:Guardian:/ jump 3510         # Dadaluma buff, jump to A2
 512 "Shockwave?"
@@ -275,7 +275,7 @@ hideall "--sync--"
 1470 "Diffractive Plasma" sync / 1[56]:[^:]*:Guardian:278B:/
 
 # Divergence point
-1481 "Load/Skip ??" sync / 1[56]:[^:]*:Guardian:(275C|2773):/
+1481 "Load/Skip?" sync / 1[56]:[^:]*:Guardian:(275C|2773):/
 1482 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 4482       # Bibliotaph buff, jump to B1
 1482 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 5482         # Dadaluma buff, jump to B2
 1484 "Shockwave?"
