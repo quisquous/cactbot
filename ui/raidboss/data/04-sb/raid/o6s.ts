@@ -40,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hallowed Wind Stack',
           de: 'Heiliger Boden Wind',
-          fr: 'Packez vous dans le vent',
+          fr: 'Packez-vous dans le vent',
           ja: '隅で頭割り',
           cn: '风分摊',
           ko: '쉐어징',
@@ -152,17 +152,17 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': 'démon Chadarnouk',
         'Easterly': 'rafale ultime',
         'Goddess Chadarnook': 'déesse Chadarnouk',
         'Haunt': 'Cauchemar corporel',
+        'I have claimed the girl in the picture!': 'Héhéhé... La fille du tableau m\'appartient.',
         'Portrayal of Earth': 'peinture de la terre',
         'Portrayal of Fire': 'peinture du feu',
         'Portrayal of Water': 'peinture de l\'eau',
         'Portrayal of Wind': 'peinture du vent',
-        'The Storm\'s Grip': 'Emprise de la tempête',
+        'The Storm\'s Grip': 'Zone de tempête',
       },
       'replaceText': {
         'Demonic Howl': 'Hurlement démoniaque',
@@ -174,7 +174,7 @@ const triggerSet: TriggerSet<Data> = {
         'Demonic Wave': 'Vague démoniaque',
         'Divine Lure': 'Séduction divine',
         'Earthquake': 'Grand séisme',
-        'Easterlies': 'Rafale Ultim',
+        'Easterlies': 'Rafales ultimes',
         'Featherlance': 'Lance de plume',
         'Flash Fire': 'Flammes subites',
         'Flash Flood': 'Pluie subite',
