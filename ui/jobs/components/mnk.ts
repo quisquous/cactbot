@@ -11,7 +11,8 @@ import { BaseComponent, ComponentInterface } from './base';
 
 export class MNKComponent extends BaseComponent {
   formTimer: TimerBar
-  textBox: ResourceBox
+  chakraBox: ResourceBox
+  nadiBox: ResourceBox
   dragonKickBox: TimerBox
   twinSnakesBox: TimerBox
   demolishBox: TimerBox
@@ -25,22 +26,27 @@ export class MNKComponent extends BaseComponent {
     fgColor: 'mnk-color-form',
   });
 
-  this.textBox = this.bars.addResourceBox({
+  this.chakraBox = this.bars.addResourceBox({
     classList: ['mnk-color-chakra'],
   });
-    this. dragonKickBox = this.bars.addProcBox({
+
+  this.nadiBox = this.bars.addResourceBox({
+    classList: ['mnk-color-nadi'],
+  });
+
+  this.dragonKickBox = this.bars.addProcBox({
     id: 'mnk-procs-dragonkick',
     fgColor: 'mnk-color-dragonkick',
     threshold: 6,
   });
 
-  this. twinSnakesBox = this.bars.addProcBox({
+  this.twinSnakesBox = this.bars.addProcBox({
     id: 'mnk-procs-twinsnakes',
     fgColor: 'mnk-color-twinsnakes',
     threshold: 6,
   });
 
-  this. demolishBox = this.bars.addProcBox({
+  this.demolishBox = this.bars.addProcBox({
     id: 'mnk-procs-demolish',
     fgColor: 'mnk-color-demolish',
     // Slightly shorter time, to make the box not pop right as
@@ -53,14 +59,15 @@ export class MNKComponent extends BaseComponent {
 
   override onJobDetailUpdate(jobDetail: JobDetail['MNK']): void {
     const chakra = jobDetail.chakraStacks.toString();
-    if (this.textBox.innerText !== chakra) {
-      this.textBox.innerText = chakra;
-      const p = this.textBox.parentNode;
-      if (jobDetail.chakraStacks < 5)
-        p.classList.add('dim');
-      else
-        p.classList.remove('dim');
+    if (this.chakraBox.innerText !== chakra) {
+      this.chakraBox.innerText = chakra;
+      this.chakraBox.parentNode.classList.toggle('dim', jobDetail.chakraStacks < 5);
     }
+
+    this.nadiBox.parentNode.classList.toggle('lunar', jobDetail.lunarNadi === true);
+    this.nadiBox.parentNode.classList.toggle('solar', jobDetail.solarNadi === true);
+    this.nadiBox.parentNode.classList.toggle('both', (jobDetail.lunarNadi && jobDetail.solarNadi) === true);
+    this.nadiBox.innerText = new Set(jobDetail.beastChakra).size.toString();
   }
 
 
@@ -112,6 +119,7 @@ export class MNKComponent extends BaseComponent {
       case EffectId.OpoOpoForm:
       case EffectId.RaptorForm:
       case EffectId.CoeurlForm:
+      case EffectId.FormlessFist:
         this.formTimer.duration = 0;
         this.formTimer.duration = parseFloat(matches.duration ?? '0');
         this.formTimer.fg = computeBackgroundColorFrom(this.formTimer, 'mnk-color-form');
