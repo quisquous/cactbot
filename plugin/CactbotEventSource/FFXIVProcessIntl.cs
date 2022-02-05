@@ -504,7 +504,6 @@ namespace Cactbot {
         }
       }
 
-      [NonSerialized]
       [FieldOffset(0x04)]
       public byte firstmindsFocus;
     };
