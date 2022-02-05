@@ -67,7 +67,8 @@ export class MNKComponent extends BaseComponent {
     this.nadiBox.parentNode.classList.toggle('lunar', jobDetail.lunarNadi === true);
     this.nadiBox.parentNode.classList.toggle('solar', jobDetail.solarNadi === true);
     this.nadiBox.parentNode.classList.toggle('both', (jobDetail.lunarNadi && jobDetail.solarNadi) === true);
-    this.nadiBox.innerText = new Set(jobDetail.beastChakra).size.toString();
+    const chakraCount = new Set(jobDetail.beastChakra).size;
+    this.nadiBox.innerText = chakraCount > 0 ? chakraCount.toString() : '';
   }
 
 

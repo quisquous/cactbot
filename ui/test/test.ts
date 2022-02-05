@@ -104,7 +104,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       }]`;
     } else if (detail.job === 'MNK' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.chakraStacks} | ${detail.jobDetail.solarNadi.toString()} | ${detail.jobDetail.lunarNadi.toString()} | [${
+        `${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lunarNadi.toString()} | ${detail.jobDetail.solarNadi.toString()} | [${
           detail.jobDetail.beastChakra.join(', ')
         }]`;
     } else if (detail.job === 'MCH' && detail.jobDetail) {
