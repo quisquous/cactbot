@@ -53,24 +53,29 @@ const tetherOutputStrings = {
     purpleTether: {
         en: 'Purple Tether',
         de: 'Lila Verbindung',
+        cn: '紫标连线',
     },
     orangeTether: {
         en: 'Orange Tether',
         de: 'Orangene Verbindung',
+        cn: '橙标连线',
     },
     greenTether: {
         en: 'Green Tether',
         de: 'Grüne Verbindung',
+        cn: '绿标连线',
     },
     blueTether: {
         en: 'Blue Tether',
         de: 'Blaue Verbindung',
+        cn: '蓝标连线',
     },
 };
 const curtainCallOutputStrings = {
     group: {
         en: 'Group ${num}',
         de: 'Group ${num}',
+        cn: '${num} 组',
     },
 };
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -919,6 +924,7 @@ Options.Triggers.push({
                 text: {
                     en: '${dir1}/${dir2} first',
                     de: '${dir1}/${dir2} zuerst',
+                    cn: '先去 ${dir1}/${dir2}',
                 },
                 north: Outputs.north,
                 east: Outputs.east,
@@ -1094,6 +1100,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Bait Jump ${dir1} first',
                     de: 'Köder Sprung ${dir1} zuerst',
+                    cn: '引导跳跃 先去 ${dir1}',
                 },
                 east: Outputs.east,
                 west: Outputs.west,
