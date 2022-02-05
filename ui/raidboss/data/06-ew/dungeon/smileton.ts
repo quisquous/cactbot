@@ -36,7 +36,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Knockback (one row)',
           de: 'Rückstoß (eine Reihe)',
           fr: 'Poussée (une ligne)',
-          ja: '一列ノックバック',
+          ja: '一行ノックバック',
           cn: '击退 (向后一行)',
           ko: '넉백 (한 칸)',
         },
