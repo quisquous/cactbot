@@ -154,7 +154,7 @@ const defaultOptions: EurekaOptions = {
           '(?<before>.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front|Zadnor) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
       }),
       trackerRegex: NetRegexes.gameLog(
-        { line: '.*?(?:https://)?ffxiv-eureka\\.com/(?<id>[\\w-]{6}).*?' },
+        { line: '.*?(?:https://)?ffxiv-eureka\\.com/(?<id>[_\\w-]{6}).*?' },
       ),
       importRegex: NetRegexes.gameLog(
         { code: '00..', line: '.*?NMs on cooldown: (?<nms>\\S.*\\))*?' },
@@ -168,7 +168,7 @@ const defaultOptions: EurekaOptions = {
           '(?<before>.*)\ue0bb(?:常风之地|恒冰之地|涌火之地|丰水之地) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
       }),
       trackerRegex: NetRegexes.gameLog(
-        { line: '.*?(?:https://)?ffxiv-eureka\\.com/(?<id>[\\w-]{6}).*?' },
+        { line: '.*?(?:https://)?ffxiv-eureka\\.com/(?<id>[_\\w-]{6}).*?' },
       ),
       importRegex: NetRegexes.gameLog({ code: '00..', line: '.*?冷却中的NM: (?<nms>\\S.*\\))*?' }),
       timeRegex: Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
@@ -180,7 +180,7 @@ const defaultOptions: EurekaOptions = {
           '(?<before>.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선|자트노르 고원) \\( (?<x>\\y{Float})\\s*, (?<y>\\y{Float}) \\)(?<after>.*?)',
       }),
       trackerRegex: NetRegexes.gameLog(
-        { line: '.*?(?:https://)?ffxiv-eureka\.com\/(?<id>[\\w-]{6}).*?' },
+        { line: '.*?(?:https://)?ffxiv-eureka\.com\/(?<id>[_\\w-]{6}).*?' },
       ),
       importRegex: NetRegexes.gameLog({ code: '00..', line: '.*?토벌한 마물: (?<nms>\\S.*\\))*?' }),
       timeRegex: Regexes.parse(/(.*) \((\d*)분\)/),
