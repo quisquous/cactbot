@@ -5,6 +5,7 @@ import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
 import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
+import { PartialFieldMatches } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
 
 import { BaseComponent, ComponentInterface } from './base';
@@ -19,7 +20,6 @@ export class DNCComponent extends BaseComponent {
   tid1 = 0;
   tid2 = 0;
 
-  technicalIsActive = false;
   elapsed = 0;
   flourishEffect: string[] = [];
   flourishIsActive = false;
@@ -106,7 +106,7 @@ export class DNCComponent extends BaseComponent {
     }
   }
 
-  override onUseAbility(id: string): void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>): void {
     switch (id) {
       case kAbility.StandardStep:
         this.standardStep.duration = 30;
@@ -119,10 +119,9 @@ export class DNCComponent extends BaseComponent {
       case kAbility.DoubleTechnicalFinish:
       case kAbility.SingleTechnicalFinish: {
         // Avoid multiple call in one TechnicalFinish.
-        if (this.technicalIsActive)
+        if (matches.targetIndex !== '0')
           return;
         this.elapsed = this.technicalStep.elapsed;
-        this.technicalIsActive = true;
         this.technicalStep.duration = 20;
         this.technicalStep.threshold = 1000;
         this.technicalStep.fg = computeBackgroundColorFrom(
@@ -130,7 +129,6 @@ export class DNCComponent extends BaseComponent {
           'dnc-color-technicalstep.active',
         );
         this.tid1 = window.setTimeout(() => {
-          this.technicalIsActive = false;
           this.technicalStep.duration = 100 - this.elapsed;
           this.technicalStep.threshold = this.player.gcdSkill + 1;
           this.technicalStep.fg = computeBackgroundColorFrom(this.technicalStep, 'dnc-color-technicalstep');
@@ -182,7 +180,6 @@ export class DNCComponent extends BaseComponent {
     this.comboTimer.duration = 0;
     this.standardStep.duration = 0;
     this.technicalStep.duration = 0;
-    this.technicalIsActive = false;
     this.elapsed = 0;
     this.technicalStep.threshold = this. player.gcdSkill + 1;
     this.technicalStep.fg = computeBackgroundColorFrom(this.technicalStep, 'dnc-color-technicalstep');

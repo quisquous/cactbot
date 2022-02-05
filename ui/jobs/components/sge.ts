@@ -16,8 +16,6 @@ export class SGEComponent extends BaseComponent {
   phlegma: TimerBox;
   rhizomata: TimerBox;
   lucidDream: TimerBox;
-  multipleCall: boolean;
-  tid = 0;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -72,7 +70,6 @@ export class SGEComponent extends BaseComponent {
     this.adderTimerBox = this.bars.addResourceBox({
       classList: ['sge-color-adder'],
     });
-    this.multipleCall = false;
     this.reset();
   }
 
@@ -81,17 +78,13 @@ export class SGEComponent extends BaseComponent {
       elements[i]?.classList.toggle('active', i < stacks);
   }
 
-  override onUseAbility(id: string): void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>): void {
     switch (id) {
       case kAbility.Phlegma:
       case kAbility.Phlegma2:
       case kAbility.Phlegma3:
-        if (!this.multipleCall) { // Avoid multiple call in AOE
+        if (matches.targetIndex === '0') { // Avoid multiple call in AOE
           this.phlegma.duration = 45 + this.phlegma.value;
-          this.multipleCall = true;
-          this.tid = window.setTimeout(() => {
-            this.multipleCall = false;
-          }, 1000);
         }
         break;
       case kAbility.Rhizomata:
