@@ -343,12 +343,8 @@ div.justbuffs div#procs-container {
   background-color: rgb(195, 85, 155);
 }
 
-#mnk-stacks-lunar {
-  flex: 0.3;
-}
-
-#mnk-stacks-solar {
-  flex: 0.3;
+#mnk-stacks-beastchakra {
+  flex: 5;
 }
 
 #mnk-stacks-lunar > div {
