@@ -191,17 +191,27 @@ div.justbuffs div#procs-container {
   font-size: 16px;
 }
 
-#mnk-boxes > div,
 #blm-boxes > div {
   width: 30px;
   height: 30px;
 }
 
-#mnk-boxes .text,
 #blm-boxes .text {
   text-align: center;
   position: relative;
   top: 6px;
+  font-size: 16px;
+}
+
+#mnk-boxes > div {
+  width: 32px;
+  height: 32px;
+}
+
+#mnk-boxes .text {
+  text-align: center;
+  position: relative;
+  top: 7px;
   font-size: 16px;
 }
 
@@ -243,7 +253,6 @@ div.justbuffs div#procs-container {
 }
 
 /* Space for 2 resource boxes */
-.mnk #right-side-icons,
 .drg #right-side-icons,
 .sam #right-side-icons,
 .rpr #right-side-icons,
@@ -332,6 +341,42 @@ div.justbuffs div#procs-container {
 
 #sge-stacks-addersting > div.active {
   background-color: rgb(195, 85, 155);
+}
+
+#mnk-stacks-lunar {
+  flex: 0.3;
+}
+
+#mnk-stacks-solar {
+  flex: 0.3;
+}
+
+#mnk-stacks-lunar > div {
+  background-color: rgba(66, 19, 128, 0.2);
+}
+
+#mnk-stacks-solar > div {
+  background-color: rgba(66, 19, 128, 0.2);
+}
+
+#mnk-stacks-lunar > div.active {
+  background-color: rgb(90, 50, 170);
+}
+
+#mnk-stacks-solar > div.active {
+  background-color: rgb(200, 200, 200);
+}
+
+#mnk-stacks-beastchakra > div.Opo {
+  background-color: rgb(150, 90, 180);
+}
+
+#mnk-stacks-beastchakra > div.Coeurl {
+  background-color: rgb(240, 100, 150);
+}
+
+#mnk-stacks-beastchakra > div.Raptor {
+  background-color: rgb(75, 155, 120);
 }
 
 #sam-stacks-setsu.active {
@@ -719,22 +764,6 @@ div.justbuffs div#procs-container {
 
 .mnk-color-chakra.dim {
   background-color: rgba(244, 194, 66, 0.3);
-}
-
-.mnk-color-nadi {
-  background-color: rgb(40, 40, 40);
-}
-
-.mnk-color-nadi.lunar {
-  background-color: rgb(90, 50, 170);
-}
-
-.mnk-color-nadi.solar {
-  background-color: rgb(200, 200, 200);
-}
-
-.mnk-color-nadi.both {
-  background-color: rgb(250, 0, 0);
 }
 
 .mnk-color-form {

@@ -12,11 +12,13 @@ import { BaseComponent, ComponentInterface } from './base';
 export class MNKComponent extends BaseComponent {
   formTimer: TimerBar
   chakraBox: ResourceBox
-  nadiBox: ResourceBox
   dragonKickBox: TimerBox
   twinSnakesBox: TimerBox
   demolishBox: TimerBox
   perfectBalanceActive = false;
+  lunarStacks: HTMLDivElement[];
+  beastChakraStacks: HTMLDivElement[] = [];
+  solarStacks: HTMLDivElement[];
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -28,10 +30,6 @@ export class MNKComponent extends BaseComponent {
 
   this.chakraBox = this.bars.addResourceBox({
     classList: ['mnk-color-chakra'],
-  });
-
-  this.nadiBox = this.bars.addResourceBox({
-    classList: ['mnk-color-nadi'],
   });
 
   this.dragonKickBox = this.bars.addProcBox({
@@ -54,6 +52,44 @@ export class MNKComponent extends BaseComponent {
     threshold: 5,
   });
 
+  const stacksContainer = document.createElement('div');
+  stacksContainer.id = 'mnk-stacks';
+  stacksContainer.classList.add('stacks');
+  this.bars.addJobBarContainer().appendChild(stacksContainer);
+
+  if (this.is5x)
+    stacksContainer.classList.add('hide');
+
+  const lunarStacksContainer = document.createElement('div');
+  lunarStacksContainer.id = 'mnk-stacks-lunar';
+  stacksContainer.appendChild(lunarStacksContainer);
+
+  const beastChakraStacksContainer = document.createElement('div');
+  beastChakraStacksContainer.id = 'mnk-stacks-beastchakra';
+  stacksContainer.appendChild(beastChakraStacksContainer);
+
+  const solarStacksContainer = document.createElement('div');
+  solarStacksContainer.id = 'mnk-stacks-solar';
+  stacksContainer.appendChild(solarStacksContainer);
+
+  this.lunarStacks = [];
+  this.beastChakraStacks = [];
+  this.solarStacks = [];
+
+  const lunarStack = document.createElement('div');
+  lunarStacksContainer.appendChild(lunarStack);
+  this.lunarStacks.push(lunarStack);
+
+  for (let i = 0; i < 3; i++) {
+    const beastChakraStack = document.createElement('div');
+    beastChakraStacksContainer.appendChild(beastChakraStack);
+    this.beastChakraStacks.push(beastChakraStack);
+  }
+
+  const solarStack = document.createElement('div');
+  solarStacksContainer.appendChild(solarStack);
+  this.solarStacks.push(solarStack);
+
   this.reset();
 }
 
@@ -63,15 +99,17 @@ export class MNKComponent extends BaseComponent {
       this.chakraBox.innerText = chakra;
       this.chakraBox.parentNode.classList.toggle('dim', jobDetail.chakraStacks < 5);
     }
-    if (!this.is5x) {
-      this.nadiBox.parentNode.classList.toggle('lunar', jobDetail.lunarNadi === true);
-      this.nadiBox.parentNode.classList.toggle('solar', jobDetail.solarNadi === true);
-      this.nadiBox.parentNode.classList.toggle('both', (jobDetail.lunarNadi && jobDetail.solarNadi) === true);
-      const chakraCount = new Set(jobDetail.beastChakra).size;
-      this.nadiBox.innerText = chakraCount > 0 ? chakraCount.toString() : '';
-    } else {
-      this.nadiBox.classList.add('hide');
-    }
+
+    if (this.is5x)
+      return;
+    this.beastChakraStacks.forEach((elem, i) => {
+      elem.classList.remove('Opo', 'Coeurl', 'Raptor');
+      const beastChakra = jobDetail.beastChakra[i];
+      if (beastChakra)
+        elem.classList.add(beastChakra);
+    });
+    this.lunarStacks[0]?.classList.toggle('active', jobDetail.lunarNadi);
+    this.solarStacks[0]?.classList.toggle('active', jobDetail.solarNadi);
   }
 
 
