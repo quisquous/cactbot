@@ -720,6 +720,22 @@ div.justbuffs div#procs-container {
   background-color: rgba(244, 194, 66, 0.3);
 }
 
+.mnk-color-nadi {
+  background-color: rgb(40, 40, 40);
+}
+
+.mnk-color-nadi.lunar {
+  background-color: rgb(90, 50, 170);
+}
+
+.mnk-color-nadi.solar {
+  background-color: rgb(200, 200, 200);
+}
+
+.mnk-color-nadi.both {
+  background-color: rgb(250, 0, 0);
+}
+
 .mnk-color-form {
   background-color: rgb(180, 200, 220);
 }
