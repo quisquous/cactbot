@@ -54,7 +54,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Drop Chasing AOE Away',
                     de: 'AoEs weglocken',
-                    fr: 'Posez les AoE au loin',
+                    fr: 'Déposez les AoEs au loin',
                     ja: '離れてAoEを置く',
                     cn: '远离放置追踪AOE',
                     ko: '연속장판 멀리빼기',
@@ -93,11 +93,11 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Demon Chadarnook': 'démon Chadarnouk',
                 'Easterly': 'rafale ultime',
                 'Haunt': 'Cauchemar corporel',
+                'I have claimed the girl in the picture!': 'Héhéhé... La fille du tableau m\'appartient.',
                 'Portrayal of Earth': 'peinture de la terre',
                 'Portrayal of Fire': 'peinture du feu',
                 'Portrayal of Water': 'peinture de l\'eau',

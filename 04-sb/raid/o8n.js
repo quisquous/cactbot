@@ -104,7 +104,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Get Outside Destination',
                     de: 'Geh aus dem Zielkreis raus',
-                    fr: 'Placez-vous à l\'extérieur du cercle d\'arrivée',
+                    fr: 'Allez à côté du cercle extérieur',
                     cn: '去传送目的地的外圈',
                     ko: '마법진 바깥쪽으로 이동',
                 },
@@ -225,7 +225,7 @@ Options.Triggers.push({
                 text: {
                     en: 'True Ice: Get in',
                     de: 'Wahre Eis: Reingehen',
-                    fr: 'Vraie glace : Allez à l\'intérieur',
+                    fr: 'Vraie glace : À l\'intérieur',
                     ja: '真ブリザガ: 入る',
                     cn: '真冰：靠近',
                     ko: '진실 블리자가: 안으로',
@@ -247,7 +247,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Fake Ice: Get in',
                     de: 'Falsches Eis: Reingehen',
-                    fr: 'Fausse glace: Allez à l\'intérieur',
+                    fr: 'Fausse glace: À l\'intérieur',
                     ja: '偽ブリザガ: 入る',
                     cn: '假冰：靠近',
                     ko: '거짓 블리자가: 안으로',
@@ -314,9 +314,9 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Graven Image': 'Statue divine',
+                'Destroy! Destroy! Destroy! I will destroy it all!': 'Je détruirai le monde entier ! Plus personne ne pourra rêver !',
                 'Kefka': 'Kefka',
             },
             'replaceText': {

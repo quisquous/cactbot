@@ -193,7 +193,7 @@ Options.Triggers.push({
                 'Arm And Hammer': 'Marteau stratégique',
                 'Aura Cannon': 'Rayon d\'aura',
                 'Bomb Deployment': 'Déploiement de bombes',
-                'Burst/Darkness': 'Explosion Magique',
+                'Burst/Darkness': 'Explosion/Aura',
                 'Chain Cannon': 'Canon automatique',
                 'Chakra Burst': 'Explosion d\'aura',
                 'Demon Simulation': 'Chargement : démon',
