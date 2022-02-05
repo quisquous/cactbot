@@ -63,12 +63,15 @@ export class MNKComponent extends BaseComponent {
       this.chakraBox.innerText = chakra;
       this.chakraBox.parentNode.classList.toggle('dim', jobDetail.chakraStacks < 5);
     }
-
-    this.nadiBox.parentNode.classList.toggle('lunar', jobDetail.lunarNadi === true);
-    this.nadiBox.parentNode.classList.toggle('solar', jobDetail.solarNadi === true);
-    this.nadiBox.parentNode.classList.toggle('both', (jobDetail.lunarNadi && jobDetail.solarNadi) === true);
-    const chakraCount = new Set(jobDetail.beastChakra).size;
-    this.nadiBox.innerText = chakraCount > 0 ? chakraCount.toString() : '';
+    if (!this.is5x) {
+      this.nadiBox.parentNode.classList.toggle('lunar', jobDetail.lunarNadi === true);
+      this.nadiBox.parentNode.classList.toggle('solar', jobDetail.solarNadi === true);
+      this.nadiBox.parentNode.classList.toggle('both', (jobDetail.lunarNadi && jobDetail.solarNadi) === true);
+      const chakraCount = new Set(jobDetail.beastChakra).size;
+      this.nadiBox.innerText = chakraCount > 0 ? chakraCount.toString() : '';
+    } else {
+      this.nadiBox.classList.add('hide');
+    }
   }
 
 
