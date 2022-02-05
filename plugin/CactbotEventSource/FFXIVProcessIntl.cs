@@ -665,8 +665,56 @@ namespace Cactbot {
 
     [StructLayout(LayoutKind.Explicit)]
     public struct MonkJobMemory {
+      public enum Beast : byte {
+        None = 0,
+        Coeurl = 1,
+        Opo = 2,
+        Raptor = 3,
+      }
+
       [FieldOffset(0x00)]
       public byte chakraStacks;
+
+      [NonSerialized]
+      [FieldOffset(0x01)]
+      private Beast beastChakra1;
+
+      [NonSerialized]
+      [FieldOffset(0x02)]
+      private Beast beastChakra2;
+
+      [NonSerialized]
+      [FieldOffset(0x03)]
+      private Beast beastChakra3;
+
+      [NonSerialized]
+      [FieldOffset(0x04)]
+      private byte Nadi;
+
+      public string[] beastChakra {
+        get {
+          Beast[] _beasts = { beastChakra1, beastChakra2, beastChakra3 };
+          return _beasts.Select(a => a.ToString()).Where(a => a != "None").ToArray();
+        }
+      }
+
+      public bool solarNadi {
+        get {
+          if ((Nadi & 0x4) == 0x4)
+            return true;
+          else
+            return false;
+        }
+      }
+
+      public bool lunarNadi {
+        get {
+          if ((Nadi & 0x2) == 0x2)
+            return true;
+          else
+            return false;
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]
