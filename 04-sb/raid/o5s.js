@@ -124,7 +124,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Agony': 'Fantôme Souffrant',
                 'Malice': 'Malveillance',
@@ -135,7 +134,7 @@ Options.Triggers.push({
             'replaceText': {
                 ' Ghosts': ' Fantômes',
                 'Acid Rain': 'Pluie acide',
-                'Add Wave': 'Vague d\'Adds',
+                'Add Wave': 'Vague d\'adds',
                 'All In The Mind': 'Force de volonté',
                 'Crossing Whistle': 'Sifflet traversée',
                 'Diabolic Headlamp': 'Phare diabolique',
@@ -143,10 +142,11 @@ Options.Triggers.push({
                 'Diabolic Wind': 'Vent diabolique',
                 'Doom Strike': 'Frappe létale',
                 'Encumber': 'Encombrement',
-                'Ghosts spawn': 'Pop des Fantômes',
+                'Ghosts spawn': 'Apparition des Fantômes',
                 'Head On': 'Plein fouet',
+                'Knockback Whistle': 'Poussée sifflet',
                 'Saintly Beam': 'Faisceaux sacrés',
-                'Tether Whistle': 'Sifflet liens',
+                'Tether Whistle': 'Liens sifflet',
             },
         },
         {
