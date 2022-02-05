@@ -54,6 +54,9 @@ export interface JobDetail {
   };
   'MNK': {
     chakraStacks: number;
+    beastChakra: ('Coeurl' | 'Opo' | 'Raptor')[];
+    solarNadi: boolean;
+    lunarNadi: boolean;
   };
   'DRG': {
     eyesAmount: number;
