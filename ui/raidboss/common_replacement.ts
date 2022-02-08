@@ -9,7 +9,7 @@ export const syncKeys = {
   // Once we have completely converted things for 6.0,
   // we should come back here and make the doubled colon non-optional.
   seal:
-    '(?<=00:0839:|00\\|[^|]*\\|0839\\|\\|):?(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+    '(?<=00:0839::?|00\\|[^|]*\\|0839\\|\\|)([^:].*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };
