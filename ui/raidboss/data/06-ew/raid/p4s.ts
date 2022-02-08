@@ -97,21 +97,25 @@ const tetherOutputStrings = {
   purpleTether: {
     en: 'Purple Tether',
     de: 'Lila Verbindung',
+    fr: 'lien violet',
     cn: '紫标连线',
   },
   orangeTether: {
     en: 'Orange Tether',
     de: 'Orangene Verbindung',
+    fr: 'Lien orange',
     cn: '橙标连线',
   },
   greenTether: {
     en: 'Green Tether',
     de: 'Grüne Verbindung',
+    fr: 'Lien vert',
     cn: '绿标连线',
   },
   blueTether: {
     en: 'Blue Tether',
     de: 'Blaue Verbindung',
+    fr: 'Lien bleu',
     cn: '蓝标连线',
   },
 };
@@ -120,6 +124,7 @@ const curtainCallOutputStrings = {
   group: {
     en: 'Group ${num}',
     de: 'Group ${num}',
+    fr: 'Groupe ${num}',
     cn: '${num} 组',
   },
 };
@@ -189,7 +194,7 @@ const triggerSet: TriggerSet<Data> = {
         baitJumpDir: {
           en: 'Bait Jump ${dir}?',
           de: 'Sprung ködern ${dir}?',
-          fr: 'Attirez le saut ${dir}?', // FIXME
+          fr: 'Attirez le saut à l\'${dir}?',
           ja: 'ジャンプ誘導 ${dir}?', // FIXME
           cn: '引导跳跃 ${dir}?', // FIXME
           ko: '점프 유도 ${dir}?', // FIXME
@@ -197,7 +202,7 @@ const triggerSet: TriggerSet<Data> = {
         baitJump: {
           en: 'Bait Jump?',
           de: 'Sprung ködern?',
-          fr: 'Attirez le saut?',
+          fr: 'Attirez le saut ?',
           ja: 'ジャンプ誘導?',
           cn: '引导跳跃',
           ko: '점프 유도',
@@ -972,6 +977,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1}/${dir2} first',
           de: '${dir1}/${dir2} zuerst',
+          fr: '${dir1}/${dir2} en premier',
           cn: '先去 ${dir1}/${dir2}',
         },
         north: Outputs.north,
@@ -1058,6 +1064,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1}/${dir2} first',
           de: '${dir1}/${dir2} zuerst',
+          fr: '${dir1}/${dir2} en premier',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -1151,6 +1158,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Jump ${dir1} first',
           de: 'Köder Sprung ${dir1} zuerst',
+          fr: 'Attirez le saut à l\'${dir1} en premier',
           cn: '引导跳跃 先去 ${dir1}',
         },
         east: Outputs.east,
