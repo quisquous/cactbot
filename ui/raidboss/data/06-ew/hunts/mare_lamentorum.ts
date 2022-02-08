@@ -1,13 +1,10 @@
 import NetRegexes from '../../../../../resources/netregexes';
-import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
-  wickedWhim?: boolean;
-}
+export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MareLamentorum,
@@ -19,12 +16,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6AE5', source: 'Lunatender-Königin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6AE5', source: 'Pampa Sélénienne Reine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AE5', source: 'ルナテンダー・クイーン', capture: false }),
-      alertText: (data, _matches, output) => data.wickedWhim ? output.under!() : output.out!(),
-      run: (data) => delete data.wickedWhim,
-      outputStrings: {
-        under: Outputs.getUnder,
-        out: Outputs.out,
-      },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Lunatender Queen Away With You Whim',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AEB', source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AEB', source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AEB', source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AEB', source: 'ルナテンダー・クイーン', capture: false }),
+      response: Responses.getUnder(),
     },
     {
       id: 'Hunt Lunatender Queen You May Approach',
@@ -33,36 +34,34 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6AE4', source: 'Lunatender-Königin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6AE4', source: 'Pampa Sélénienne Reine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AE4', source: 'ルナテンダー・クイーン', capture: false }),
-      alertText: (data, _matches, output) => data.wickedWhim ? output.out!() : output.under!(),
-      run: (data) => delete data.wickedWhim,
-      outputStrings: {
-        under: Outputs.getUnder,
-        out: Outputs.out,
-      },
+      response: Responses.getUnder(),
+    },
+    {
+      id: 'Hunt Lunatender Queen You May Approach Whim',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AEA', source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AEA', source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AEA', source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AEA', source: 'ルナテンダー・クイーン', capture: false }),
+      response: Responses.getUnder(),
     },
     {
       id: 'Hunt Lunatender Queen Avert Your Eyes',
       type: 'StartsUsing',
-      // 6AE3 is normal, 6AE9 is with whim.  Just handle them both here.
-      netRegex: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'Lunatender Queen', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'Lunatender-Königin', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'Pampa Sélénienne Reine', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['6AE3', '6AE9'], source: 'ルナテンダー・クイーン', capture: false }),
-      alertText: (data, _matches, output) => data.wickedWhim ? output.lookTowards!() : output.lookAway!(),
-      run: (data) => delete data.wickedWhim,
-      outputStrings: {
-        lookTowards: Outputs.lookTowardsBoss,
-        lookAway: Outputs.lookAway,
-      },
+      netRegex: NetRegexes.startsUsing({ id: '6AE3', source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AE3', source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AE3', source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AE3', source: 'ルナテンダー・クイーン', capture: false }),
+      response: Responses.lookAway(),
     },
     {
-      id: 'Hunt Lunatender Queen Wicked Whim',
+      id: 'Hunt Lunatender Queen Avert Your Eyes Whim',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE7', source: 'Lunatender Queen', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6AE7', source: 'Lunatender-Königin', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6AE7', source: 'Pampa Sélénienne Reine', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6AE7', source: 'ルナテンダー・クイーン', capture: false }),
-      run: (data) => data.wickedWhim = true,
+      netRegex: NetRegexes.startsUsing({ id: '6AE9', source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AE9', source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AE9', source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AE9', source: 'ルナテンダー・クイーン', capture: false }),
+      response: Responses.lookTowards(),
     },
     {
       id: 'Hunt Lunatender Queen 999,000 Needles',
