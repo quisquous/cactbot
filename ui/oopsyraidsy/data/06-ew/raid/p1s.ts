@@ -6,7 +6,9 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 // TODO: shackles could probably be handled with more nuance than just "was it shared"
 //       but this is the most common failure mode and is easy to write.
 
-export type Data = OopsyData;
+export interface Data extends OopsyData {
+  spell?: { [name: string]: 'cold' | 'hot' };
+}
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheFirstCircleSavage,
@@ -51,11 +53,66 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   triggers: [
     {
-      id: 'P1S Damage Down',
+      id: 'P1S Cold Spell Track',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B5F' }),
+      // No need to track this falling off or deleting it.
+      // When the next round comes along, it will reassign and give it to somebody.
+      // TODO: not sure if somebody dies if this falls off and so maybe we should track losing it?
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB3' }),
+      run: (data, matches) => (data.spell ??= {})[matches.target] = 'cold',
+    },
+    {
+      id: 'P1S Hot Spell Track',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB4' }),
+      run: (data, matches) => (data.spell ??= {})[matches.target] = 'hot',
+    },
+    {
+      id: 'P1S Cold Spell',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6622' }),
+      condition: (data, matches) => data.spell?.[matches.target] === 'cold',
       mistake: (_data, matches) => {
-        return { type: 'damage', text: matches.effect, blame: matches.target };
+        return {
+          type: 'damage',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
+      },
+    },
+    {
+      id: 'P1S Hot Spell',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6621' }),
+      condition: (data, matches) => data.spell?.[matches.target] === 'hot',
+      mistake: (_data, matches) => {
+        return {
+          type: 'damage',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
+      },
+    },
+    {
+      id: 'P1S Pitiless Flail Knockback',
+      type: 'Ability',
+      // 660E = grace, 660F = purgation
+      netRegex: NetRegexes.ability({ id: ['660E', '660F'] }),
+      deathReason: (_data, matches) => {
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: {
+            en: 'Pushed into wall',
+            de: 'Rückstoß in die Wand',
+            fr: 'Poussé(e) dans le mur',
+            ja: '壁へノックバック',
+            cn: '击退至墙',
+            ko: '벽으로 넉백',
+          },
+        };
       },
     },
   ],
