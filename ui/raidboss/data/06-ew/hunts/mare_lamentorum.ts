@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6AEA', source: 'Lunatender-Königin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6AEA', source: 'Pampa Sélénienne Reine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AEA', source: 'ルナテンダー・クイーン', capture: false }),
-      response: Responses.getUnder(),
+      response: Responses.getOut(),
     },
     {
       id: 'Hunt Lunatender Queen Avert Your Eyes',
