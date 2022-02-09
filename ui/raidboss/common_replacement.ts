@@ -55,7 +55,7 @@ export const commonReplacement: CommonReplacement = {
       en: '$1 will be sealed off',
       de:
         'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
-      fr: 'Fermeture d(?:e|u|es) $1 dans',
+      fr: 'Fermeture d(?:e|u|es) (?:l\'|la |les? )?$1 dans',
       ja: '$1の封鎖まであと',
       cn: '距$1被封锁还有',
       ko: '15초 후에 $1(?:이|가) 봉쇄됩니다',
