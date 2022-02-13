@@ -307,7 +307,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Line Stack (behind tank)',
           de: 'Linien-Sammeln (hinter dem Tank)',
           fr: 'Package en ligne (derrière le tank)',
-          ja: '直線頭割り（タンクより後）',
+          ja: '直線頭割り（タンクより後ろ）',
           cn: '直线分摊（站坦克后面）',
           ko: '탱커 뒤로 직선 쉐어',
         },
