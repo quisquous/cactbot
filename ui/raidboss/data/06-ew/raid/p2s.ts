@@ -152,13 +152,13 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Marks: ${player1}, ${player2}',
             de: 'Marker: ${player1}, ${player2}',
             fr: 'Marques sur : ${player1}, ${player2}',
-            ja: '多重刻印: ${player1}, ${player2}',
+            ja: 'マーカー: ${player1}, ${player2}',
           },
           avariceOnYou: {
             en: 'Avarice on YOU',
             de: 'Marker auf DIR',
             fr: 'Marque sur VOUS',
-            ja: '多重刻印ついた',
+            ja: 'マーカーついた',
           },
           unknown: Outputs.unknown,
         };
