@@ -152,11 +152,13 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Marks: ${player1}, ${player2}',
             de: 'Marker: ${player1}, ${player2}',
             fr: 'Marques sur : ${player1}, ${player2}',
+            ja: '多重刻印: ${player1}, ${player2}',
           },
           avariceOnYou: {
             en: 'Avarice on YOU',
             de: 'Marker auf DIR',
             fr: 'Marque sur VOUS',
+            ja: '多重刻印ついた',
           },
           unknown: Outputs.unknown,
         };
@@ -352,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
             en: '#${num} Square, boss tile',
             de: '#${num} Viereck, Boss Fläche',
             fr: '#${num} Carré, case du boss',
-            ja: '四角 #${num}：ボスの後ろへ',
+            ja: '四角 #${num}：ボスの下へ',
             cn: '方块 #${num}：去Boss后面',
             ko: '#${num} ■, 보스 발판으로',
           },
