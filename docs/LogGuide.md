@@ -415,6 +415,8 @@ There are a number of reasons to avoid basing triggers on game log lines:
 - inconsistent text (gains effect vs suffers effect, begins casting vs readies, you vs player name)
 - often vague (the attack misses)
 - can change spelling at the whim of SquareEnix
+- requires the relevant type of line to be enabled in the player's battle log settings
+- is the most likely to require variants for other languages
 
 Instead, the recommendation is to base your triggers on ACT log lines that are not type `0x00`.
 Prefer using [NetworkBuff](#line26) line instead of "suffers the effect" game log lines.
@@ -557,7 +559,8 @@ ACT Log Line Examples:
 
 This combatant may be invisible and fake.  The real ones have more HP.
 For example, at the start of Deltascape V2.0 you will see messages like the
-latter 5 examples above.
+latter 5 examples above. In addition, anything with an NPC ID of 9020 (0x233C)
+is almost certainly fake.
 
 In heavy zones (e.g. Eureka), combatants may be culled if there are too many
 things nearby.
@@ -760,26 +763,33 @@ to include both possibilities.
 
 Ground AOEs that don't hit anybody are considered [NetworkAOEAbility](#line22) lines.
 
+There are two fields on 21/22 lines that provide information about the number of targets affected. The `targetCount`
+field indicates the number of targets. The `targetIndex` field indicates which target this particular line refers to.
+For example, for a 21-line, you would see a `targetIndex` of 0, and a `targetCount` of 1. For an AoE ability that hits
+three targets, all three lines would have a `targetCount` of 3, but the `targetIndex` would be 0, 1, and 2 for the three
+lines. Thus, you can determine all of the targets hit by a particular ability usage by collecting 21/22-lines until you
+see one for which `targetCount - 1 == targetIndex`.
+
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=Ability&lang=en-US) -->
 
 #### Structure
 
 ```log
 Network Log Line Structure:
-21|[timestamp]|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags]|[damage]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|[?]|[?]|[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[sequence]|[targetIndex]
+21|[timestamp]|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags1]|[damage1]|[flags2]|[damage2]|...|[flags8]|[damage8]|[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|[?]|[?]|[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[sequence]|[targetIndex]|[targetCount]
 
 ACT Log Line Structure:
-[timestamp] ActionEffect 15:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:[?]:[?]:[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[sequence]:[targetIndex]
+[timestamp] ActionEffect 15:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags1]:[damage1]:[flags2]:[damage2]:...[flags8]:[damage8]:[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:[?]:[?]:[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[sequence]:[targetIndex]:[targetCount]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:2[12]))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<flags>(?:[^|]*))\|(?<damage>(?:[^|]*))\|(?:[^|]*\|){14}(?<targetCurrentHp>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<targetCurrentMp>(?:[^|]*))\|(?<targetMaxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<targetX>(?:[^|]*))\|(?<targetY>(?:[^|]*))\|(?<targetZ>(?:[^|]*))\|(?<targetHeading>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|(?<sequence>(?:[^|]*))\|(?<targetIndex>(?:[^|]*))\|
+^(?<type>(?:2[12]))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<flags1>(?:[^|]*))\|(?<damage1>(?:[^|]*))\|(?:[^|]*\|){14}(?<targetCurrentHp>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<targetCurrentMp>(?:[^|]*))\|(?<targetMaxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<targetX>(?:[^|]*))\|(?<targetY>(?:[^|]*))\|(?<targetZ>(?:[^|]*))\|(?<targetHeading>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|(?<sequence>(?:[^|]*))\|(?<targetIndex>(?:[^|]*))|(?<targetCount>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) (?:ActionEffect|AOEActionEffect) (?<type>(?:15|16)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<id>(?:[^:]*)):(?<ability>(?:(?:[^:]|: )*?)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<flags>(?:[^:]*)):(?<damage>(?:[^:]*))(?::[^:]*){14}:(?<targetCurrentHp>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<targetCurrentMp>(?:[^:]*)):(?<targetMaxMp>(?:[^:]*))(?::[^:]*){2}:(?<targetX>(?:[^:]*)):(?<targetY>(?:[^:]*)):(?<targetZ>(?:[^:]*)):(?<targetHeading>(?:[^:]*)):(?<currentHp>(?:[^:]*)):(?<maxHp>(?:[^:]*)):(?<currentMp>(?:[^:]*)):(?<maxMp>(?:[^:]*))(?::[^:]*){2}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*)):(?<sequence>(?:[^:]*)):(?<targetIndex>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) (?:ActionEffect|AOEActionEffect) (?<type>(?:15|16)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<id>(?:[^:]*)):(?<ability>(?:(?:[^:]|: )*?)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<flags1>(?:[^:]*)):(?<damage1>(?:[^:]*))(?::[^:]*){14}:(?<targetCurrentHp>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<targetCurrentMp>(?:[^:]*)):(?<targetMaxMp>(?:[^:]*))(?::[^:]*){2}:(?<targetX>(?:[^:]*)):(?<targetY>(?:[^:]*)):(?<targetZ>(?:[^:]*)):(?<targetHeading>(?:[^:]*)):(?<currentHp>(?:[^:]*)):(?<maxHp>(?:[^:]*)):(?<currentMp>(?:[^:]*)):(?<maxMp>(?:[^:]*))(?::[^:]*){2}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*)):(?<sequence>(?:[^:]*)):(?<targetIndex>(?:[^:]*)):(?<targetCount>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples
@@ -838,47 +848,71 @@ Network ability lines are a combination of raw network data
 and frequently sampled data from memory
 (e.g. the `66480` current hp value and `-653.0394` x position).
 
-This means that there's a number of caveats going on to handling all the data in these lines.  The raw network data is subject to change over time from ff14 servers.  Also, the data from memory may be slightly stale and out of date
+This means that there's a number of caveats going on to handling all the data in these lines. The raw network data is
+subject to change over time from ff14 servers. Also, the data from memory may be slightly stale and out of date
+
+#### Action Effects
+
+Each ability may have one or more effects. These are indicated by the flagsX and damageX fields, between `targetName`
+and `targetCurHp`. There are eight pairs, each with a 'flags' field and a 'damage' field. The damage field is not
+necessarily always damage. For example, for a buff application, it indicates which buff ID is about to be applied.
+
+This means that damage is not necessarily the first flag. If you are simply trying to determine how much damage a
+particular ability did, there is no specific field you can look at - you must parse all of them and find the one that
+indicates damage.
 
 #### Ability Flags
 
-Damage bitmasks:
+The 'flags' field for each pair of values can be further broken down.
+
+The rightmost byte indicates the type of effect:
+
+Damage flags:
 
 - 0x01 = dodge
 - 0x03 = damage done
+- 0x04 = heal
 - 0x05 = blocked damage
 - 0x06 = parried damage
 - 0x33 = instant death
+
+Non-damage flags:
+
+- 0x02 = fully resisted
+- 0x08 = 'X has no effect' message
+- 0x0b = mp gain ('damage' indicates amount)
+- 0x0e = status applied to target ('damage >> 16' indicates status effect ID)
+- 0x0f = status applied to caster ('damage >> 16' indicates status effect ID)
+- 0x14 = 'no effect' message related to a particular status effect ('damage >> 16' indicates status effect ID)
+
+The next byte to the left indicates the 'severity' for damage effects:
+
 - 0x100 = crit damage
 - 0x200 = direct hit damage
 - 0x300 = crit direct hit damage
 
-Heal bitmasks:
+The byte to the left of that one indicates the 'severity' for heal effects:
 
 - 0x00004 = heal
 - 0x10004 = crit heal
 
-Other bitmasks appear on particular abilities, and can indicate whether bane
-missed or hit recipients.  However, these all appear ability-specific.
+Other bitmasks appear on particular abilities, and can indicate whether bane missed or hit recipients. However, these
+all appear ability-specific.
 
-Some of these flags also indicate whether the ability is part of a combo or not
-and whether the positional was hit.
+Some of these flags also indicate whether the ability is part of a combo or not and whether the positional was hit.
 However, these values do not seem to be consistent between jobs.
 
-For example, the flags for successful trick attack are `28710.03`.
-The `.` here represents 0-3 as the trick may crit, dh, both, or neither.
-The flags for a missed trick attack are `710.03`.
-Thus, there's a `0x28700000` mask applied here when the positional is correct,
-which was determined via experimentation.
+For example, the flags for successful trick attack are `28710.03`. The `.` here represents 0-3 as the trick may crit,
+dh, both, or neither. The flags for a missed trick attack are `710.03`. Thus, there's a `0x28700000` mask applied here
+when the positional is correct, which was determined via experimentation.
 
-If you care about specific ability flags, you likely have to do this research yourself.
-Please send pull requests to this document so it can be shared!
+If you care about specific ability flags, you likely have to do this research yourself. Please send pull requests to
+this document so it can be shared!
 
 #### Ability Damage
 
 Damage bitmasks:
-    0x1000 = hallowed, no damage
-    0x4000 = "a lot" of damage
+0x1000 = hallowed, no damage 0x4000 = "a lot" of damage
 
 The damage value in an ability usage is not the literal damage, because that would be too easy.
 
@@ -894,23 +928,6 @@ The total damage is calculated as D A (B-D) as three bytes together interpreted
 as an integer.
 
 For example, `424E400F` becomes `0F 42 (4E - OF = 3F)` => `0F 42 3F` => 999999
-
-#### Special Case Shifts
-
-It is not clear what this represents, but sometimes the flags is replaced by
-one (or more) pairs of values.
-
-The most likely case is that if flags is `3F`,
-then the flags and damage are in index 9 and 10 instead of 7 and 8, respectively.
-In other words, when you see flags being a particular value,
-you need to shift everything over two to find the real flags.
-See the example below.
-It is also to be noted that this value has slowly increased over time and was
-`3C` back in 2017.
-
-The other shift is that plenary indulgence lists the number of stacks in the flags as `113`, `213`, or `313` respectively.
-These are always followed by `4C3`.
-Therefore, these should also be shifted over two to find the real flags.
 
 #### Ability Examples
 
@@ -1122,6 +1139,25 @@ You cannot count on the time remaining to be precise.
 In rare cases, the time will already have counted down a tiny bit.
 This matters for cases such as ucob Nael phase doom debuffs.
 
+The 'stacks' value may also indicate other information about the buff. For example, Mudra will show different stack
+values for different combinations of Mudra. The only way to be sure that you are getting a "real" stack value is by
+cross-referencing with game data (such as via Xivapi) to see what the game says the max stack amount for that ability
+is (0 is the max for most abilities).
+
+#### Refreshes, Overwrites, and Deaths
+
+If a buff is refreshed early, you will get another 26-line. You will not get a 30-line indicating that the existing
+buff has been removed. The same is true for when stacks are consumed or added.
+
+Most debuffs allow one player to place the debuff on each target. For some, such as Trick Attack, only one can be on
+the enemy at a time. If a buff is overwritten, a 30-line will be generated for the status effect that got bumped.
+
+Thus, it is sufficient to track buffs using a combination of caster, target, and status effect ID. A refresh or stack
+change will have the same caster, target, and status effect, while an overwrite will generate a 30-line anyway.
+
+When a unit dies, you will get 30-lines for buffs that were removed by it dying, so there is no need to handle that
+specially in order to have accurate buff tracking.
+
 <a name="line27"></a>
 
 ### Line 27 (0x1B): NetworkTargetIcon (Head Marker)
@@ -1172,9 +1208,13 @@ although the fields before the `id` infrequently have non-zero values.
 Note: It's unclear when the head markers disappear.
 Maybe one of these fields is a duration time? It's not clear what either of these unknown values mean.
 
-Also, this appears to only be true on later fights.
-Turn 5 fireball and conflag headmarkers are actions from Twintania and not `NetworkTargetIcon` lines.
-It seems likely this was implemented later and nobody wanted to break old content by updating it to use newer types.
+Also, this appears to only be true on later fights. Turn 5 fireball and conflag headmarkers are actions from Twintania
+and not `NetworkTargetIcon` lines. It seems likely this was implemented later and nobody wanted to break old content by
+updating it to use newer types.
+
+Note that newer content uses 'sequential headmarkers' - every headmark is offset by a per-instance value. You will need
+to wait until you see the first headmarker in the instance, and then use this as an offset by which to adjust all the
+other IDs you see.
 
 #### Head Marker IDs
 
@@ -1706,13 +1746,35 @@ at the moment the action is "locked in".
 > so I would need to do a lot of work-arounds."
 
 Structure:
-`25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
-
+`25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Unused]:[Unused]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
+`37|[timestamp]|[targetId]|[targetName]|[Sequence Number]|[target hp]|[target max hp]|[target mp]|[target max mp]|[unused]|[unused]|[x]|[y]|[z]|[heading]|[unknown]|[unknown]|[unknown]|[unknown]|[unknown]|[unknown]|[unknown]|[unknown]|16985ce13b1e6fa6`
 Examples:
 
 ```log
 25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:
+37|2022-02-12T20:06:22.0750000-08:00|1234ABCD|Foo Bar|0004ADA6|473|473|73|10000|0||38.99|101.76|-8.00|1.11|0800|0|04DE|01|020008B2|BFD20004|0|107284AA|16985ce13b1e6fa6
 ```
+
+#### Tracking Ability Resolution
+
+Unfortunately, this is not particularly clean. For one, while the server does tell the game when an action is resolved,
+it does not tell the game when an action will not resolve (ghosting). However, the caster dying or target becoming
+untargetable is usually a decent indicator that something will not resolve.
+
+Note that AoE abilities may have the same sequence ID for all targets hit. Thus, you need to key off of both the
+sequence ID, *and* the target.
+
+In addition, you don't always get a 37-line. For example, a heal that is pure overheal will not generate one.
+
+#### HP Values
+
+Sometimes, only the current HP is present, rather than current and max. In this case, it should be assumed that the max
+HP is unchanged.
+
+The current HP value is actually an update to the target's HP. In other words, it is the target's HP after this ability
+resolves, and thus is the most up to date HP value for the target. Line 38 and 39 also work this way, while other lines
+pull HP data from memory, and do not necessarily indicate HP changes in the first place. Thus, if you only care about
+HP, then you should ideally use only 37/38/39 lines.
 
 <a name="line38"></a>
 
