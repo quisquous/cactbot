@@ -912,7 +912,8 @@ this document so it can be shared!
 #### Ability Damage
 
 Damage bitmasks:
-0x1000 = hallowed, no damage 0x4000 = "a lot" of damage
+- 0x1000 = hallowed, no damage
+- 0x4000 = "a lot" of damage
 
 The damage value in an ability usage is not the literal damage, because that would be too easy.
 
