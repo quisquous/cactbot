@@ -113,7 +113,7 @@ Options.Triggers.push({
                     en: 'Get hit by red frowny',
                     de: 'Von dem roten Grimigen treffen lassen',
                     fr: 'Faites-vous toucher par un visage en colère rouge',
-                    ja: 'しかめっ面(赤)',
+                    ja: 'ムカムカ(赤)',
                     cn: '吃红脸AOE',
                     ko: '빨간색 얼굴이 쏘는 빔 맞기',
                 },

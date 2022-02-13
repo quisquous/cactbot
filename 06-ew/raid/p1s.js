@@ -313,11 +313,13 @@ Options.Triggers.push({
                     en: 'Opposite color of ${player}',
                     de: 'Gegenteilige Farbe von ${player}',
                     fr: 'Couleur opposée de ${player}',
+                    ja: '${player}と反対の色へ',
                 },
                 oppositeParty: {
                     en: 'Opposite color of Party',
                     de: 'Gegenteilige Farbe von der Party',
                     fr: 'Couleur opposée à l\'équipe',
+                    ja: '他のメンバーと反対の色へ',
                 },
             },
         },
