@@ -351,12 +351,19 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55CC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55CC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55CC', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => delete data.tertius,
+      outputStrings: {
+        text: {
+          en: 'Watch for Swords',
+        },
+      },
     },
     {
       id: 'EmeraldEx Tertius Terminus Est',
       // StartsUsing has positions but is inconsistent when entities are newly moved.
-      // This is still ~7s of warning, and if we wanted to be fancier, knowing 4 would be enough.
+      // We provide more time by using logic to predict where the last two
+      // swords will drop.
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'BitBlade', id: '55CD' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Revolverklingen-Arm', id: '55CD' }),
@@ -364,13 +371,13 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.abilityFull({ source: 'ガンブレードビット', id: '55CD' }),
       netRegexCn: NetRegexes.abilityFull({ source: '枪刃浮游炮', id: '55CD' }),
       netRegexKo: NetRegexes.abilityFull({ source: '건블레이드 비트', id: '55CD' }),
-      durationSeconds: 7,
+      durationSeconds: 9,
       alertText: (data, matches, output) => {
         (data.tertius ??= []).push(matches);
-        if (data.tertius.length !== 6)
+        if (data.tertius.length !== 4)
           return;
 
-        const [s0, s1, s2, s3, s4, s5] = data.tertius.map((sword) => {
+        const [s0, s1, s2, s3] = data.tertius.map((sword) => {
           const x = parseFloat(sword.x) - centerX;
           const y = parseFloat(sword.y) - centerY;
           if (Math.abs(x) < 10 && Math.abs(y) < 10)
@@ -379,6 +386,13 @@ const triggerSet: TriggerSet<Data> = {
             return y < 0 ? output.dirNW!() : output.dirSW!();
           return y < 0 ? output.dirNE!() : output.dirSE!();
         });
+
+        // We know that the swords will land in all 4 corners plus twice in
+        // the center areas. Predict the last two swords by removing the
+        // ones we've already gotten.
+        const spawns: string[] = [output.dirNE!(), output.dirNW!(), output.dirSE!(), output.dirSW!(), output.middle!(), output.middle!()];
+
+        const [s4, s5] = spawns.filter((x) => ![s0, s1, s2, s3].includes(x));
 
         if (!s0 || !s1 || !s2 || !s3 || !s4 || !s5)
           throw new UnreachableCode();
