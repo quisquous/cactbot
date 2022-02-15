@@ -196,8 +196,8 @@ class OrderedTriggerList {
   idToIndex: { [id: string]: number } = {};
 
   push(trigger: ProcessedTrigger) {
-    const idx = trigger.id ? this.idToIndex[trigger.id] : undefined;
-    if (idx && trigger.id) {
+    const idx = trigger.id !== undefined ? this.idToIndex[trigger.id] : undefined;
+    if (idx !== undefined && trigger.id !== undefined) {
       const oldTrigger = this.triggers[idx];
 
       if (oldTrigger === undefined)
@@ -215,7 +215,7 @@ class OrderedTriggerList {
     }
 
     // Normal case of a new trigger, with no overriding.
-    if (trigger.id)
+    if (trigger.id !== undefined)
       this.idToIndex[trigger.id] = this.triggers.length;
     this.triggers.push(trigger);
   }
