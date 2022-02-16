@@ -331,9 +331,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dirCrystals: {
           en: '${dir} Crystals first',
+          fr: 'Premiers cristaux au ${dir} ',
         },
         dirEchoes: {
           en: 'Move Echoes ${dir} first',
+          fr: 'Déplacez les échos au ${dir} en premier',
         },
         north: Outputs.north,
         south: Outputs.south,
