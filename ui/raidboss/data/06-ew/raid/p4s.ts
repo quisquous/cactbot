@@ -30,7 +30,8 @@ export interface Data extends RaidbossData {
   beloneCoilsTwo?: boolean;
   bloodrakeCounter?: number;
   act?: string;
-  actTwoHeadMarkers: { [name: string]: string };
+  actHeadmarkers: { [name: string]: string };
+  actFourThorn?: PluginCombatantState;
   thornIds?: number[];
   jumpDir1?: string;
   kickTwo?: boolean;
@@ -161,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p4s.txt',
   initData: () => {
     return {
-      actTwoHeadMarkers: {},
+      actHeadmarkers: {},
     };
   },
   timelineTriggers: [
@@ -914,6 +915,7 @@ const triggerSet: TriggerSet<Data> = {
           '6A36': 'curtain',
         };
         data.act = actMap[matches.id];
+        data.actHeadmarkers = {};
       },
     },
     {
@@ -1089,12 +1091,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Act 2 Color Collector',
+      id: 'P4S Act Headmarker Collector',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.act === '2',
+      condition: (data) => data.act !== undefined,
       run: (data, matches) => {
-        data.actTwoHeadMarkers[matches.target] = getHeadmarkerId(data, matches, orangeMarker);
+        data.actHeadmarkers[matches.target] = getHeadmarkerId(data, matches, orangeMarker);
       },
     },
     {
@@ -1107,10 +1109,10 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // Only the healer gets a purple headmarker, and the tethered tank does not.
-        const id = data.actTwoHeadMarkers[matches.source] ?? data.actTwoHeadMarkers[matches.target];
+        const id = data.actHeadmarkers[matches.source] ?? data.actHeadmarkers[matches.target];
 
         if (id === undefined) {
-          console.error(`Act 2 Tether: missing headmarker: ${JSON.stringify(data.actTwoHeadMarkers)}`);
+          console.error(`Act 2 Tether: missing headmarker: ${JSON.stringify(data.actHeadmarkers)}`);
           return;
         }
 
@@ -1165,6 +1167,89 @@ const triggerSet: TriggerSet<Data> = {
 
         if (matches.target === data.me)
           return { infoText: headMarkers[id] };
+      },
+    },
+    {
+      id: 'P4S Act 4 Color Tether',
+      type: 'Tether',
+      // Tether comes after the headmarker color.
+      netRegex: NetRegexes.tether({ id: '00A[CD]', source: 'Hesperos' }),
+      netRegexDe: NetRegexes.tether({ id: '00A[CD]', source: 'Hesperos' }),
+      netRegexFr: NetRegexes.tether({ id: '00A[CD]', source: 'Hespéros' }),
+      netRegexJa: NetRegexes.tether({ id: '00A[CD]', source: 'ヘスペロス' }),
+      condition: (data, matches) => data.act === '4' && matches.target === data.me,
+      suppressSeconds: 9999,
+      promise: async (data, matches) => {
+        const result = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+        const myThorn = result.combatants[0];
+        if (!myThorn) {
+          console.error(`Act 4 Tether: null data`);
+          return;
+        }
+
+        data.actFourThorn = myThorn;
+      },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          blueTether: tetherOutputStrings.blueTether,
+          purpleTether: tetherOutputStrings.purpleTether,
+          blueTetherDir: {
+            en: 'Blue Tether (${dir})',
+          },
+          purpleTetherDir: {
+            en: 'Purple Tether (${dir})',
+          },
+          dirN: Outputs.dirN,
+          dirNE: Outputs.dirNE,
+          dirE: Outputs.dirE,
+          dirSE: Outputs.dirSE,
+          dirS: Outputs.dirS,
+          dirSW: Outputs.dirSW,
+          dirW: Outputs.dirW,
+          dirNW: Outputs.dirNW,
+          unknown: Outputs.unknown,
+        };
+
+        const id = data.actHeadmarkers[matches.target];
+        if (id === undefined) {
+          console.error(`Act 2 Tether: missing headmarker: ${JSON.stringify(data.actHeadmarkers)}`);
+          return;
+        }
+
+        if (data.actFourThorn === undefined) {
+          if (id === '012C')
+            return { infoText: output.blueTether!() };
+          if (id === '012D')
+            return { alertText: output.purpleTether!() };
+          return;
+        }
+
+        const centerX = 100;
+        const centerY = 100;
+        const x = data.actFourThorn.PosX - centerX;
+        const y = data.actFourThorn.PosY - centerY;
+        // Dirs: N = 0, NE = 1, ..., NW = 7
+        const thornDir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+
+        const dirStr: string = {
+          0: output.dirN!(),
+          1: output.dirNE!(),
+          2: output.dirE!(),
+          3: output.dirSE!(),
+          4: output.dirS!(),
+          5: output.dirSW!(),
+          6: output.dirW!(),
+          7: output.dirNW!(),
+        }[thornDir] ?? output.unknown!();
+
+        if (id === '012C')
+          return { infoText: output.blueTetherDir!({ dir: dirStr }) };
+        if (id === '012D')
+          return { alertText: output.purpleTetherDir!({ dir: dirStr }) };
       },
     },
     {
