@@ -1120,6 +1120,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.tether({ id: '00A[CD]', source: 'Hespéros' }),
       netRegexJa: NetRegexes.tether({ id: '00A[CD]', source: 'ヘスペロス' }),
       condition: (data, matches) => data.act === '4' && matches.target === data.me,
+      durationSeconds: (data, matches) => data.actHeadmarkers[matches.target] === '012D' ? 12 : 9,
       suppressSeconds: 9999,
       promise: async (data, matches) => {
         const result = await callOverlayHandler({
