@@ -3,6 +3,9 @@ import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
+// Note: Gaoler's Flail 6F56-6601 can hit people but doesn't do damage.
+//       Presumably this is the animation/weapon dropping on the ground?
+
 // TODO: shackles could probably be handled with more nuance than just "was it shared"
 //       but this is the most common failure mode and is easy to write.
 
@@ -13,26 +16,14 @@ export interface Data extends OopsyData {
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheFirstCircleSavage,
   damageWarn: {
-    'P1S Gaoler\'s Flail 1': '65F6', // various gaoler's flail in/out/left/right mechanics
-    'P1S Gaoler\'s Flail 2': '65F7', // etc
-    'P1S Gaoler\'s Flail 3': '65F8',
-    'P1S Gaoler\'s Flail 4': '65F9',
-    'P1S Gaoler\'s Flail 5': '65FA',
-    'P1S Gaoler\'s Flail 6': '65FB',
-    'P1S Gaoler\'s Flail 7': '65FC',
-    'P1S Gaoler\'s Flail 8': '65FD',
-    'P1S Gaoler\'s Flail 9': '65FE',
-    'P1S Gaoler\'s Flail 10': '65FF',
-    'P1S Gaoler\'s Flail 11': '6600',
-    'P1S Gaoler\'s Flail 12': '6601',
-    'P1S Gaoler\'s Flail 13': '6DA6',
-    'P1S Gaoler\'s Flail 14': '6DA7',
-    'P1S Gaoler\'s Flail 15': '6DA8',
-    'P1S Gaoler\'s Flail 16': '6DA9',
-    'P1S Gaoler\'s Flail 17': '6DAA',
-    'P1S Gaoler\'s Flail 18': '6DAB',
-    'P1S Gaoler\'s Flail 19': '6DAC',
-    'P1S Gaoler\'s Flail 20': '6DAD',
+    'P1S Gaoler\'s Flail 1': '6DA6', // go left first
+    'P1S Gaoler\'s Flail 2': '6DA7', // go right first
+    'P1S Gaoler\'s Flail 3': '6DA8', // go out first
+    'P1S Gaoler\'s Flail 4': '6DA9', // go in first
+    'P1S Gaoler\'s Flail 5': '6DAA', // go left second
+    'P1S Gaoler\'s Flail 6': '6DAB', // go right second
+    'P1S Gaoler\'s Flail 7': '6DAC', // go out second
+    'P1S Gaoler\'s Flail 8': '6DAD', // go in second
     'P1S Powerful Fire': '661A', // fire explosion during fire/light
     'P1S Powerful Light': '661B', // light explosion during fire/light
     'P1S Intemperate Flames': '6C75', // missed fire temperature square
