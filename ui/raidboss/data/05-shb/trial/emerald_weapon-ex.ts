@@ -356,6 +356,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Watch for Swords',
+          fr: 'Repérez les épées',
         },
       },
     },
