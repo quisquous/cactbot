@@ -1062,12 +1062,15 @@ Options.Triggers.push({
             outputStrings: {
                 purpleTether: {
                     en: 'Purple (with ${player})',
+                    fr: 'Violet (avec ${player})',
                 },
                 orangeTether: {
                     en: 'Fire (with ${player})',
+                    fr: 'Feu (avec ${player})',
                 },
                 greenTether: {
                     en: 'Air (with ${player})',
+                    fr: 'Air (avec ${player})',
                 },
             },
         },

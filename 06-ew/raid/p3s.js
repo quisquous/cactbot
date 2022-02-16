@@ -52,7 +52,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Fire Positions',
                     de: 'Feuer-Positionen',
-                    fr: 'Positions feu',
+                    fr: 'Positions pour les flammes',
                     ja: '黒い炎の位置に散開',
                     cn: '暗炎站位',
                     ko: '불꽃 산개 위치로',
