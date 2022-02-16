@@ -15,7 +15,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Wreath of Thorns 3 strategy (1 = melee, 2 = ranged) or
 //       something more intelligent such as tracking the vulnerabilities?
 // TODO: Heart Stake is tankbuster with DoT, does it need to be output differrently?
-// TODO: Act 4 Blue/Purple Tether strategy?
 // TODO: Curtain Call tank swap
 
 export interface Data extends RaidbossData {
@@ -90,41 +89,6 @@ const roleOutputStrings = {
     ko: '타워: ${role}',
   },
   unknown: Outputs.unknown,
-};
-
-const tetherOutputStrings = {
-  purpleTether: {
-    en: 'Purple Tether',
-    de: 'Lila Verbindung',
-    fr: 'lien violet',
-    ja: 'ダージャ(紫)',
-    cn: '紫标连线',
-    ko: '다쟈 (자주색)',
-  },
-  orangeTether: {
-    en: 'Orange Tether',
-    de: 'Orangene Verbindung',
-    fr: 'Lien orange',
-    ja: 'ファイガ (赤)',
-    cn: '橙标连线',
-    ko: '파이가 (빨강)',
-  },
-  greenTether: {
-    en: 'Green Tether',
-    de: 'Grüne Verbindung',
-    fr: 'Lien vert',
-    ja: 'エアロガ (緑)',
-    cn: '绿标连线',
-    ko: '에어로가 (녹색)',
-  },
-  blueTether: {
-    en: 'Blue Tether',
-    de: 'Blaue Verbindung',
-    fr: 'Lien bleu',
-    ja: 'ワタガ (青)',
-    cn: '蓝标连线',
-    ko: '워터가 (파랑)',
-  },
 };
 
 const curtainCallOutputStrings = {
@@ -1148,28 +1112,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P4S Color Headmarkers',
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.act !== '2',
-      response: (data, matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = tetherOutputStrings;
-
-        const id = getHeadmarkerId(data, matches, orangeMarker);
-
-        const headMarkers: { [id: string]: string } = {
-          '012C': output.blueTether!(),
-          '012D': output.purpleTether!(),
-          '012E': output.greenTether!(),
-          '012F': output.orangeTether!(),
-        };
-
-        if (matches.target === data.me)
-          return { infoText: headMarkers[id] };
-      },
-    },
-    {
       id: 'P4S Act 4 Color Tether',
       type: 'Tether',
       // Tether comes after the headmarker color.
@@ -1195,8 +1137,22 @@ const triggerSet: TriggerSet<Data> = {
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          blueTether: tetherOutputStrings.blueTether,
-          purpleTether: tetherOutputStrings.purpleTether,
+          blueTether: {
+            en: 'Blue Tether',
+            de: 'Blaue Verbindung',
+            fr: 'Lien bleu',
+            ja: 'ワタガ (青)',
+            cn: '蓝标连线',
+            ko: '워터가 (파랑)',
+          },
+          purpleTether: {
+            en: 'Purple Tether',
+            de: 'Lila Verbindung',
+            fr: 'lien violet',
+            ja: 'ダージャ(紫)',
+            cn: '紫标连线',
+            ko: '다쟈 (자주색)',
+          },
           blueTetherDir: {
             en: 'Blue Tether (${dir})',
           },
