@@ -87,15 +87,14 @@ const curtainCallOutputStrings = {
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
 // The first 1B marker in the encounter is an Elegant Evisceration (00DA).
-// The first 1B marker in the phase 2 encounter could be one of three:
-// Purple, Green, Orange color tethers (012D, 012E, 012F)
-const firstHeadmarker = parseInt('00DA', 16);
-const purpleMarker = parseInt('012D', 16);
-const getHeadmarkerId = (data, matches) => {
+// The first 1B marker in the phase 2 encounter is the Act 2 fire headmarker (012F).
+const eviscerationMarker = parseInt('00DA', 16);
+const orangeMarker = parseInt('012F', 16);
+const getHeadmarkerId = (data, matches, firstDecimalMarker) => {
     // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
     // (This makes the offset 0, and !0 is true.)
     if (typeof data.decOffset === 'undefined')
-        data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+        data.decOffset = parseInt(matches.id, 16) - firstDecimalMarker;
     // The leading zeroes are stripped when converting back to string, so we re-add them here.
     // Fortunately, we don't have to worry about whether or not this is robust,
     // since we know all the IDs that will be present in the encounter.
@@ -106,7 +105,7 @@ Options.Triggers.push({
     timelineFile: 'p4s.txt',
     initData: () => {
         return {
-            colorHeadmarkerIds: [],
+            actTwoHeadMarkers: {},
         };
     },
     timelineTriggers: [
@@ -201,9 +200,13 @@ Options.Triggers.push({
             id: 'P4S Headmarker Tracker',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({}),
-            condition: (data) => data.decOffset === undefined && data.act === undefined,
+            condition: (data) => data.decOffset === undefined,
             // Unconditionally set the first headmarker here so that future triggers are conditional.
-            run: (data, matches) => getHeadmarkerId(data, matches),
+            run: (data, matches) => {
+                const isDoorBoss = data.act === undefined;
+                const first = isDoorBoss ? eviscerationMarker : orangeMarker;
+                getHeadmarkerId(data, matches, first);
+            },
         },
         {
             id: 'P4S Decollation',
@@ -1026,38 +1029,57 @@ Options.Triggers.push({
             },
         },
         {
-            id: 'P4S Color Headmarker Collector',
+            id: 'P4S Act 2 Color Collector',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({}),
-            condition: (data) => data.decOffset === undefined && data.act !== undefined,
-            // Gather headmarkers in Act 2
+            condition: (data) => data.act === '2',
             run: (data, matches) => {
-                const id = parseInt(matches.id, 16);
-                data.colorHeadmarkerIds.push(id);
+                data.actTwoHeadMarkers[matches.target] = getHeadmarkerId(data, matches, orangeMarker);
+            },
+        },
+        {
+            id: 'P4S Act 2 Color Tether',
+            type: 'Tether',
+            netRegex: NetRegexes.tether({ id: '00AC' }),
+            condition: (data) => data.act === '2',
+            alertText: (data, matches, output) => {
+                let _a;
+                if (matches.target !== data.me && matches.source !== data.me)
+                    return;
+                // Only the healer gets a purple headmarker, and the tethered tank does not.
+                const id = (_a = data.actTwoHeadMarkers[matches.source]) !== null && _a !== void 0 ? _a : data.actTwoHeadMarkers[matches.target];
+                if (id === undefined) {
+                    console.error(`Act 2 Tether: missing headmarker: ${JSON.stringify(data.actTwoHeadMarkers)}`);
+                    return;
+                }
+                const other = data.ShortName(matches.target === data.me ? matches.source : matches.target);
+                return {
+                    '012D': output.purpleTether({ player: other }),
+                    '012E': output.greenTether({ player: other }),
+                    '012F': output.orangeTether({ player: other }),
+                }[id];
+            },
+            outputStrings: {
+                purpleTether: {
+                    en: 'Purple (with ${player})',
+                },
+                orangeTether: {
+                    en: 'Fire (with ${player})',
+                },
+                greenTether: {
+                    en: 'Air (with ${player})',
+                },
             },
         },
         {
             id: 'P4S Color Headmarkers',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({}),
-            condition: (data) => data.act !== undefined,
-            // Delay some for headmarkers to be gathered
-            delaySeconds: (data) => data.decOffset ? 0 : 0.3,
+            condition: (data) => data.act !== '2',
             response: (data, matches, output) => {
-                let _a; let _b;
                 // cactbot-builtin-response
                 output.responseOutputStrings = tetherOutputStrings;
-                // Calculate offset from purple headmarker in Act 2
-                if (!data.decOffset) {
-                    // Log message in case there isn't enough headmarkers
-                    // Doable with 5 as the first headmarker on missing target to be removed is two greens
-                    if (data.colorHeadmarkerIds.length < 5)
-                        console.error(`Act ${(_a = data.act) !== null && _a !== void 0 ? _a : 'Unknown'}: Found ${data.colorHeadmarkerIds.length} headmarkers in Act 2, expected at least 5! Assumed one was purple.`);
-                    // Sort IDs, relying on purple at index 0 for offset calculation
-                    data.colorHeadmarkerIds.sort((a, b) => a - b);
-                    data.decOffset = ((_b = data.colorHeadmarkerIds[0]) !== null && _b !== void 0 ? _b : 0) - purpleMarker;
-                }
-                const id = getHeadmarkerId(data, matches);
+                const id = getHeadmarkerId(data, matches, orangeMarker);
                 const headMarkers = {
                     '012C': output.blueTether(),
                     '012D': output.purpleTether(),
