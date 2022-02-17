@@ -99,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move bosses apart',
           de: 'Bosse auseinander ziehen',
-          fr: 'Écartez les boss',
+          fr: 'Déplacez les boss séparément',
           ja: 'ボスを引き離す',
           cn: '拉开boss',
           ko: '보스 서로 떨어뜨리기',
@@ -142,6 +142,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback from F; Away from M',
           de: 'Rückstoß von F; Weg von M',
+          fr: 'Poussée depuis F; Éloignez-vous de M',
           cn: '被女性击退; 远离男性',
           ko: 'F 넉백, M 광역기',
         },
@@ -250,8 +251,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': 'Alerte... Alerte... Forte augmentation',
+        'Calculations indicate increased probability of defeat': 'Forte augmentation des probabilités de défaite',
         'Omega(?!-)': 'Oméga',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
