@@ -291,6 +291,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bottom First',
+          fr: 'Le bas en premier',
         },
       },
     },
@@ -305,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Top First',
+          fr: 'Le haut en premier',
         },
       },
     },
