@@ -261,6 +261,34 @@ Options.Triggers.push({
                 },
             },
         },
+        {
+            id: 'P1S Intemperate Torment Bottom',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '661F', source: 'Erichthonios', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '661F', source: 'Erichthonios', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '661F', source: 'Érichthonios', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '661F', source: 'エリクトニオス', capture: false }),
+            infoText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Bottom First',
+                },
+            },
+        },
+        {
+            id: 'P1S Intemperate Torment Top',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '6620', source: 'Erichthonios', capture: false }),
+            netRegexDe: NetRegexes.startsUsing({ id: '6620', source: 'Erichthonios', capture: false }),
+            netRegexFr: NetRegexes.startsUsing({ id: '6620', source: 'Érichthonios', capture: false }),
+            netRegexJa: NetRegexes.startsUsing({ id: '6620', source: 'エリクトニオス', capture: false }),
+            infoText: (_data, _matches, output) => output.text(),
+            outputStrings: {
+                text: {
+                    en: 'Top First',
+                },
+            },
+        },
         // Copy/paste from normal, seems to be the same
         {
             id: 'P1S Hot/Cold Spell',
