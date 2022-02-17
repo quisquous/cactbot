@@ -149,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind => Spread',
           de: 'Hinter => Verteilen',
-          fr: 'Derrière -> Dispersez-vous',
+          fr: 'Derrière => Dispersez-vous',
           ja: '後ろ -> 散開',
           cn: '背后 => 分散',
           ko: '뒤 => 산개',
@@ -192,7 +192,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move Bosses Apart',
           de: 'Bosse auseinander ziehen',
-          fr: 'Séparez les boss',
+          fr: 'Déplacez les boss séparément',
           ja: 'ボスを離して',
           cn: '拉开Boss',
           ko: '보스 떨어뜨리기',
@@ -213,7 +213,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move Bosses Together',
           de: 'Bosse zusammenziehen',
-          fr: 'Packez les boss',
+          fr: 'Déplacez les boss ensembles',
           ja: 'ボスを重ねて',
           cn: '拉近Boss',
           ko: '보스 붙이기',
@@ -284,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bring Bosses Middle, Face Eye',
           de: 'Zieh Bosse zur Mitte, zum Auge drehen',
-          fr: 'Placez les boss au centre, face à l\'œil',
+          fr: 'Placez les boss au milieu, face à l\'œil',
           ja: 'ボスを中央に、目を見る',
           cn: '把BOSS拉到中间，面向眼睛',
           ko: '보스들 중앙으로 데려오고, 눈쪽 보기',
@@ -307,7 +307,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Middle (Blades)',
           de: 'Zur Mitte (Schwerter)',
-          fr: 'Allez au centre (Lames)',
+          fr: 'Allez au milieu (Lames)',
           ja: '中へ (剣)',
           cn: '去中间 (剑)',
           ko: '중앙으로 (검)',
@@ -351,7 +351,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind => Out + Spread',
           de: 'Hinter => Raus + Verteilen',
-          fr: 'Derrière -> Extérieur + Dispersion',
+          fr: 'Derrière => Extérieur + Dispersion',
           ja: '後ろ => 外へ + 散開',
           cn: '去背后 => 远离 + 分散',
           ko: '뒤 => 밖으로 + 산개',
@@ -399,7 +399,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread => Follow M',
           de: 'Verteilen => Folge M',
-          fr: 'Dispersion -> Suivez M',
+          fr: 'Dispersion => Suivez M',
           ja: '散開 -> Mを追う',
           cn: '分散 => 去男性脚下',
           ko: '산개 => M 따라가기',
@@ -496,7 +496,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack Groups',
           de: 'Gruppen-Sammeln',
-          fr: 'Package en groupe',
+          fr: 'Package en groupes',
           ja: '組み分け頭割り',
           cn: '分组分摊',
           ko: '그룹별 쉐어',
@@ -602,7 +602,7 @@ const triggerSet: TriggerSet<Data> = {
         monitorsLeft: {
           en: 'Monitors Left',
           de: 'Monitore Links',
-          fr: 'Moniteur Gauche',
+          fr: 'Moniteurs à gauche',
           ja: '波動砲 (左)',
           cn: '探测左边',
           ko: '모니터 왼쪽',
@@ -636,7 +636,7 @@ const triggerSet: TriggerSet<Data> = {
         monitorsRight: {
           en: 'Monitors Right',
           de: 'Monitore Rechts',
-          fr: 'Moniteur Droite',
+          fr: 'Moniteurs à droite',
           ja: '波動砲 (右)',
           cn: '探测右边',
           ko: '모니터 오른쪽',
@@ -887,7 +887,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move out for Defamation',
           de: 'Rausgehen für Urteil',
-          fr: 'Écartez-vous pour Médisance',
+          fr: 'Sortez pour Médisance',
           ja: 'サークルを捨てる',
           cn: '离开人群传毒',
           ko: '잠재적 오류: 전이',
@@ -955,7 +955,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Back Left',
           de: 'Hinten Links',
-          fr: 'Arrière gauche',
+          fr: 'Derrière à gauche',
           ja: '左後ろ',
           cn: '左后',
           ko: '좌측 후방',
@@ -976,7 +976,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Back Right',
           de: 'Hinten Rechts',
-          fr: 'Arrière droite',
+          fr: 'Derrière à droite',
           ja: '右後ろ',
           cn: '右后',
           ko: '우측 후방',
@@ -1121,6 +1121,7 @@ const triggerSet: TriggerSet<Data> = {
         'Right Arm Unit': 'unité bras droit',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Advanced Optical Laser': 'Laser optique S',
         'Advanced Suppression': 'Programme d\'assistance S',
         '(?<! )Archive All': 'Archivage intégral',
@@ -1167,8 +1168,9 @@ const triggerSet: TriggerSet<Data> = {
         'Superliminal Motion': 'Combo lame F',
         'Superliminal Steel': 'Combo lame B',
         '(?<! )Suppression': 'Programme d\'assistance F',
-        'Synthetic Blades': 'Lame optionnelle',
-        'Synthetic Shield': 'Bouclier optionnel',
+        'Synthetic Blades(?!/)': 'Lame optionnelle',
+        'Synthetic Blades/Synthetic Shield': 'Lame/Bouclier optionel',
+        '(?<!/)Synthetic Shield': 'Bouclier optionnel',
         'Target Analysis': 'Analyse de cible',
         '(?<! )Wave Cannon': 'Canon plasma',
       },
