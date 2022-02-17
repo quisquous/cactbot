@@ -467,7 +467,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Back and Sides',
           de: 'Hinten und Seiten',
-          fr: 'Arrière et côtés',
+          fr: 'Derrière et sur les côtés',
           ja: '後方の横へ',
           cn: '后方两侧',
           ko: '뒤로 => 양옆으로',

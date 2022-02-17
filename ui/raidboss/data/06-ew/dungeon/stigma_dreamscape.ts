@@ -296,7 +296,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mindhack: Forward',
           de: 'Geistlenkung: Vorwärts',
-          fr: 'Piratage mental : Avant',
+          fr: 'Piratage mental : Vers l\'avant',
           ja: '強制移動 : 前',
           cn: '强制移动 : 前',
           ko: '강제이동: 앞',
@@ -313,7 +313,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mindhack: Back',
           de: 'Geistlenkung: Rückwärts',
-          fr: 'Piratage mental : Arrière',
+          fr: 'Piratage mental : Vers l\'arrière',
           ja: '強制移動 : 後ろ',
           cn: '强制移动 : 后',
           ko: '강제이동: 뒤',
@@ -330,7 +330,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mindhack: Left',
           de: 'Geistlenkung: Links',
-          fr: 'Piratage mental : Gauche',
+          fr: 'Piratage mental : Vers la gauche',
           ja: '強制移動 : 左',
           cn: '强制移动 : 左',
           ko: '강제이동: 왼쪽',
@@ -347,7 +347,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mindhack: Right',
           de: 'Geistlenkung: Rechts',
-          fr: 'Piratage mental : Droite',
+          fr: 'Piratage mental : Vers la droite',
           ja: '強制移動 : 右',
           cn: '强制移动 : 右',
           ko: '강제이동: 오른쪽',

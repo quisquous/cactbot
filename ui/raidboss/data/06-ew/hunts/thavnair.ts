@@ -95,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Forward March Away',
           de: 'Geistlenkung vorwärts',
-          fr: 'Marche forcée avant',
+          fr: 'Marche forcée en avant',
         },
       },
     },
@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Backwards March Away',
           de: 'Geistlenkung rückwärts',
-          fr: 'Marche forcée arrière',
+          fr: 'Marche forcée en arrière',
         },
       },
     },
@@ -130,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Left March Away',
           de: 'Geistlenkung links',
-          fr: 'Marche forcée gauche',
+          fr: 'Marche forcée à gauche',
         },
       },
     },
@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Right March Away',
           de: 'Geistlenkung rechts',
-          fr: 'Marche forcée droite',
+          fr: 'Marche forcée à droite',
         },
       },
     },
