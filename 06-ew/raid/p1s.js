@@ -41,7 +41,7 @@ Options.Triggers.push({
                 positions: {
                     en: 'Tile Positions',
                     de: 'Flächen-Positionen',
-                    fr: 'Positions',
+                    fr: 'Positions sur les cases',
                     ja: '自分の担当マスへ',
                     cn: '上自己的方块',
                     ko: '담당 타일로',
@@ -272,7 +272,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Bottom First',
-                    fr: 'Le bas en premier',
+                    fr: 'Cube inférieur en premier',
                 },
             },
         },
@@ -287,7 +287,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Top First',
-                    fr: 'Le haut en premier',
+                    fr: 'Cube supérieur en premier',
                 },
             },
         },
