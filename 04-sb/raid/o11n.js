@@ -109,7 +109,7 @@ Options.Triggers.push({
                 moveLeft: {
                     en: 'Move (Left)',
                     de: 'Bewegen (Links)',
-                    fr: 'Bougez (Gauche)',
+                    fr: 'Bougez (À gauche)',
                     ja: '動け (左へ)',
                     cn: '去左边',
                     ko: '이동 (왼쪽)',
@@ -117,7 +117,7 @@ Options.Triggers.push({
                 stayLeft: {
                     en: 'Stay (Left)',
                     de: 'Stehenbleiben (Links)',
-                    fr: 'Restez ici (Gauche)',
+                    fr: 'Restez (À gauche)',
                     ja: 'そのまま (左に)',
                     cn: '呆在左边',
                     ko: '멈추기 (왼쪽)',
@@ -143,7 +143,7 @@ Options.Triggers.push({
                 stayRight: {
                     en: 'Stay (Right)',
                     de: 'Stehenbleiben (Rechts)',
-                    fr: 'Restez ici (Droite)',
+                    fr: 'Restez (À droite)',
                     ja: 'そのまま (右に)',
                     cn: '呆在右边',
                     ko: '멈추기 (오른쪽)',
@@ -151,7 +151,7 @@ Options.Triggers.push({
                 moveRight: {
                     en: 'Move (Right)',
                     de: 'Bewegen (Rechts)',
-                    fr: 'Bougez (droite)',
+                    fr: 'Bougez (À droite)',
                     ja: '動け (右へ)',
                     cn: '去右边',
                     ko: '이동 (오른쪽)',
@@ -239,6 +239,7 @@ Options.Triggers.push({
                 'Rocket Punch': 'Astéropoing',
             },
             'replaceText': {
+                '\\?': ' ?',
                 'Atomic Ray': 'Rayon atomique',
                 'Ballistic Impact': 'Impact de missile',
                 'Ballistic Missile': 'Tir de missile',

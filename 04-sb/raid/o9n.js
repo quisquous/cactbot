@@ -29,7 +29,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Orb Tethers',
                     de: 'Kugel-Verbindungen',
-                    fr: 'Attrapez les orbes',
+                    fr: 'Liens orbes',
                     ja: '線',
                     cn: '连线',
                     ko: '구슬 줄',
@@ -61,7 +61,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Stack for Donuts',
                     de: 'Für Donuts sammeln',
-                    fr: 'Packez-vous pour l\'aoe en donut',
+                    fr: 'Packez-vous pour les donuts',
                     cn: '集合水环',
                     ko: '모여서 도넛장판 피하기',
                 },
@@ -135,7 +135,7 @@ Options.Triggers.push({
                     // proximity damage.  So this is trying to communicate more of a GTFO.
                     en: 'Drop Flare Away',
                     de: 'Flare weit weg ablegen',
-                    fr: 'Déposez les Brasiers au loin',
+                    fr: 'Déposez le brasier au loin',
                     cn: '核爆放在远处',
                     ko: '플레어 바깥으로 유도',
                 },
@@ -168,7 +168,7 @@ Options.Triggers.push({
                 stackGroups: {
                     en: 'Split into stack groups',
                     de: 'In Sammel-Gruppen aufteilen',
-                    fr: 'Séparez les groupes et packez-vous',
+                    fr: 'Divisez-vous en groupes packés',
                     cn: '分组分摊',
                     ko: '쉐어징끼리 떨어지기',
                 },
@@ -239,7 +239,7 @@ Options.Triggers.push({
                 'Earthquake': 'Grand séisme',
                 'Fiendish Orbs': 'Ordre de poursuite',
                 'Knock(?! )': 'Impact',
-                'Long/Lat Implosion': 'Implosion Hz/Vert',
+                'Long/Lat Implosion': 'Implosion horizontale/verticale',
                 'Soul of Chaos': 'Âme du chaos',
                 'Stray Flames': 'Flammes du chaos',
                 'Stray Spray': 'Eaux du chaos',
