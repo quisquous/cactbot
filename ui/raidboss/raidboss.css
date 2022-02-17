@@ -147,10 +147,6 @@
   margin-bottom: 2;
 }
 
-.timeline-grid .timer-bar {
-  transition: all var(--transition-time);
-}
-
 :lang(ko) .timer-bar {
   height: 23px;
 }
