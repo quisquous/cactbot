@@ -272,6 +272,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Bottom First',
+                    fr: 'Le bas en premier',
                 },
             },
         },
@@ -286,6 +287,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Top First',
+                    fr: 'Le haut en premier',
                 },
             },
         },
