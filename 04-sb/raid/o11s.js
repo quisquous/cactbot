@@ -79,7 +79,7 @@ Options.Triggers.push({
                 moveLeft: {
                     en: 'Move (Left)',
                     de: 'Bewegen (Links)',
-                    fr: 'Bougez (Gauche)',
+                    fr: 'Bougez (À gauche)',
                     ja: '反対へ (左)',
                     cn: '移动 (左)',
                     ko: '오른쪽으로',
@@ -87,7 +87,7 @@ Options.Triggers.push({
                 stayLeft: {
                     en: 'Stay (Left)',
                     de: 'Stehenbleiben (Links)',
-                    fr: 'Restez ici (Gauche)',
+                    fr: 'Restez (À gauche)',
                     ja: 'そのまま (左)',
                     cn: '不动 (左)',
                     ko: '대기 (오른쪽)',
@@ -113,7 +113,7 @@ Options.Triggers.push({
                 stayRight: {
                     en: 'Stay (Right)',
                     de: 'Stehenbleiben (Rechts)',
-                    fr: 'Restez ici (Droite)',
+                    fr: 'Restez (À droite)',
                     ja: 'そのまま (右)',
                     cn: '不动 (右)',
                     ko: '대기 (왼쪽)',
@@ -121,7 +121,7 @@ Options.Triggers.push({
                 moveRight: {
                     en: 'Move (Right)',
                     de: 'Bewegen (Rechts)',
-                    fr: 'Bougez (Droite)',
+                    fr: 'Bougez (À droite)',
                     ja: '反対へ (右)',
                     cn: '移动 (右)',
                     ko: '왼쪽으로',
@@ -142,7 +142,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Left (then opposite)',
                     de: 'Links (dann umgekehrt)',
-                    fr: 'Gauche (puis Droite)',
+                    fr: 'À gauche (puis à l\'opposée)',
                     ja: '左 (零式)',
                     cn: '左 (零式)',
                     ko: '왼쪽으로 (바로 반대로)',
@@ -163,7 +163,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Right (then opposite)',
                     de: 'Rechts (dann umgekehrt)',
-                    fr: 'Droite (puis Gauche)',
+                    fr: 'À droite (puis à l\'opposée)',
                     ja: '右 (零式)',
                     cn: '右 (零式)',
                     ko: '오른쪽으로 (바로 반대로)',
@@ -185,7 +185,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Opposite (Left)',
                     de: 'Umgekehrt (Links)',
-                    fr: 'Côté opposé (Gauche)',
+                    fr: 'À l\'opposée (À gauche)',
                     ja: '反対へ (左)',
                     cn: '对面 (左)',
                     ko: '오른쪽으로',
@@ -207,7 +207,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Opposite (Right)',
                     de: 'Umgekehrt (Rechts)',
-                    fr: 'Côté opposé (Droite)',
+                    fr: 'À l\'opposée (À droite)',
                     ja: '反対へ (右)',
                     cn: '对面 (右)',
                     ko: '왼쪽으로',
@@ -294,8 +294,8 @@ Options.Triggers.push({
                 'Repel': 'Répulsion',
                 'Reset': 'Réinitialisation',
                 'Rush': 'Ruée',
-                'Starboard/Larboard Cannon': 'Tribord/Bâbord',
-                'Starboard/Larboard Surge': 'Tribord/Bâbord',
+                'Starboard/Larboard Cannon': 'Canon à tribord/bâbord',
+                'Starboard/Larboard Surge': 'Canon à tribord/bâbord',
                 '(?<! )Storage Violation': 'Corruption de données S',
                 'Unmitigated Explosion': 'Grosse explosion',
                 'Update Program': 'Boucle de programme : mise à jour',
