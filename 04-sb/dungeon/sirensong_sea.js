@@ -121,7 +121,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Backwards March',
                     de: 'Marchiere Rückwärts',
-                    fr: 'Marche arrière forcée',
+                    fr: 'Marche forcée en arrière',
                     cn: '强制移动: 后',
                     ko: '정신 장악: 뒤',
                 },

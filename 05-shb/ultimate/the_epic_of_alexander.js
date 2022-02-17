@@ -2285,7 +2285,7 @@ Options.Triggers.push({
                 partyBackRight: {
                     en: 'Party: back right',
                     de: 'Gruppe: hinten rechts',
-                    fr: 'Groupe : arrière droite',
+                    fr: 'Groupe : derrière à droite',
                     ja: '右後ろ',
                     cn: '右后',
                     ko: '오른쪽 뒤!!!',
@@ -2293,7 +2293,7 @@ Options.Triggers.push({
                 partyBackLeft: {
                     en: 'Party: back left',
                     de: 'Gruppe: hinten links',
-                    fr: 'Groupe : arrière gauche',
+                    fr: 'Groupe : derrière à gauche',
                     ja: '左後ろ',
                     cn: '左后',
                     ko: '왼쪽 뒤!!!',

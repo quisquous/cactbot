@@ -529,7 +529,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Front left / Back right',
                     de: 'Vorne Links / Hinten Rechts',
-                    fr: 'Avant-gauche / Arrière-droite',
+                    fr: 'Devant à gauche / Derrière à droite',
                     ja: '左前 / 右後ろ',
                     cn: '前左 / 后右',
                     ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
@@ -550,7 +550,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Front right / Back left',
                     de: 'Vorne Rechts / Hinten Links',
-                    fr: 'Avant-droite / Arrière-gauche',
+                    fr: 'Devant à droite / Derrière à gauche',
                     ja: '右前 / 左後ろ',
                     cn: '前右 / 后左',
                     ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
@@ -577,7 +577,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Front left / Back right',
                     de: 'Vorne Links / Hinten Rechts',
-                    fr: 'Avant-gauche / Arrière-droite',
+                    fr: 'Devant à gauche / Derrière à droite',
                     ja: '左前 / 右後ろ',
                     cn: '前左 / 后右',
                     ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
@@ -600,7 +600,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Front right / Back left',
                     de: 'Vorne Rechts / Hinten Links',
-                    fr: 'Avant-droite / Arrière-gauche',
+                    fr: 'Devant à droite / Derrière à gauche',
                     ja: '右前 / 左後ろ',
                     cn: '前右 / 后左',
                     ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',

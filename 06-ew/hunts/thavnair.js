@@ -84,7 +84,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Forward March Away',
                     de: 'Geistlenkung vorwärts',
-                    fr: 'Marche forcée avant',
+                    fr: 'Marche forcée en avant',
                 },
             },
         },
@@ -102,7 +102,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Backwards March Away',
                     de: 'Geistlenkung rückwärts',
-                    fr: 'Marche forcée arrière',
+                    fr: 'Marche forcée en arrière',
                 },
             },
         },
@@ -119,7 +119,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Left March Away',
                     de: 'Geistlenkung links',
-                    fr: 'Marche forcée gauche',
+                    fr: 'Marche forcée à gauche',
                 },
             },
         },
@@ -136,7 +136,7 @@ Options.Triggers.push({
                 text: {
                     en: 'Right March Away',
                     de: 'Geistlenkung rechts',
-                    fr: 'Marche forcée droite',
+                    fr: 'Marche forcée à droite',
                 },
             },
         },
