@@ -141,7 +141,7 @@ Options.Triggers.push({
                         fr: 'Tank laser sur VOUS',
                         ja: '自分に対人光線',
                         cn: '坦克激光点名',
-                        ko: '탱 레이저 대상자',
+                        ko: '탱커 레이저',
                     },
                     tankLaserOnPlayer: {
                         en: 'Tank Laser on ${player}',
@@ -149,7 +149,7 @@ Options.Triggers.push({
                         fr: 'Tank laser sur ${player}',
                         ja: '${player} に対人光線',
                         cn: '坦克激光点名 ${player}',
-                        ko: '${player} 탱 레이저',
+                        ko: '탱커 레이저: ${player}',
                     },
                     avoidLaserOnPlayer: {
                         en: 'Avoid Laser on ${player}',
@@ -157,7 +157,7 @@ Options.Triggers.push({
                         fr: 'Évitez le laser sur ${player}',
                         ja: '${player} への対人光線を避ける',
                         cn: '远离激光点名: ${player}',
-                        ko: '${player} 탱 레이저 피하기',
+                        ko: '탱커 레이저 피하기: ${player}',
                     },
                 };
                 if (data.me === matches.target)
@@ -249,7 +249,7 @@ Options.Triggers.push({
                     fr: 'Soignez ${player} complètement',
                     ja: '${player} をフル回復',
                     cn: '奶满 ${player}',
-                    ko: '${player} 풀피 채우기',
+                    ko: '완전 회복: ${player}',
                 },
             },
         },
