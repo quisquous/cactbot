@@ -1,6 +1,5 @@
 // TODO:
 //   Update Knave knockback directions to instead use cardinals
-//   Hansel and Gretel Bloody Sweep
 //   Hansel and Gretel Stronger Together Tethered
 //   Hansel & Gretel Passing Lance
 //   Hansel & Gretel Breakthrough
@@ -374,6 +373,53 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '5C7[34]', source: ['韩塞尔', '格雷特'], capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '5C7[34]', source: ['헨젤', '그레텔'], capture: false }),
             response: Responses.aoe(),
+        },
+        {
+            id: 'Paradigm Hansel/Gretel Bloody Sweep',
+            type: 'StartsUsing',
+            netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+            durationSeconds: 5,
+            suppressSeconds: 1,
+            alertText: (_data, matches, output) => {
+                // Hansel and Gretel each have unique abilities which indicate which
+                // side of the Bloody Sweep they're starting in. Hanssel is left
+                // handed, and Gretel is right handed. 5C54 and 5C55 indicate that
+                // Hansel is on the right and Gretel is on the left, relative to the
+                // two bosses. Using this, we can identify if the safe area is
+                // between the two, or on the opposite side of the arena.
+                //
+                // A further complication is that the pair might use Transference
+                // first, which causes them to swap places. We can detect this based
+                // on the cast time of the Bloody Sweep ability, since the cast time
+                // will be extended to account for the Transference. If the swap
+                // will take place, then the cast time will go from 7.7 seconds up
+                // to 12.7 seconds. We use an average of 10 seconds to detect the
+                // swap.
+                if (matches.id === '5C54' || matches.id === '5C55') {
+                    // Hansel is on the right and Gretel is on the left.
+                    if (parseFloat(matches.castTime) > 10) {
+                        // Hansel and Gretel will switch places
+                        return output.between();
+                    }
+                    // Hansel and Gretel stay in same position
+                    return output.opposite();
+                }
+                // Gretel is on the right and Hansel is on the left.
+                if (parseFloat(matches.castTime) > 10) {
+                    // Hansel and Gretel will switch places
+                    return output.opposite();
+                }
+                // Hansel and Gretel stay in same position
+                return output.between();
+            },
+            outputStrings: {
+                between: {
+                    en: 'Move between',
+                },
+                opposite: {
+                    en: 'Move opposite',
+                },
+            },
         },
         {
             id: 'Paradigm Red Girl Cruelty',
