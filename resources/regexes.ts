@@ -145,26 +145,17 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
   static ability(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
-    return parseHelper(params, 'Ability', {
-      ...defaultParams('Ability', [
-        'type',
-        'timestamp',
-        'sourceId',
-        'source',
-        'id',
-        'ability',
-        'targetId',
-        'target',
-      ]),
-    });
+    return parseHelper(params, 'Ability', defaultParams('Ability'));
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
+   *
+   * @deprecated Use `ability` instead
    */
   static abilityFull(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
-    return parseHelper(params, 'Ability', defaultParams('Ability'));
+    return this.ability(params);
   }
 
   /**
