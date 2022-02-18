@@ -329,6 +329,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Watch for Swords',
+                    de: 'Schau nach den Schwertern',
                     fr: 'Repérez les épées',
                 },
             },
