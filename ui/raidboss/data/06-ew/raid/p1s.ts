@@ -291,6 +291,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bottom First',
+          de: 'Unten zuerst',
           fr: 'Cube inférieur en premier',
           ja: '下から',
           ko: '아래부터',
@@ -308,6 +309,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Top First',
+          de: 'Oben zuerst',
           fr: 'Cube supérieur en premier',
           ja: '上から',
           ko: '위부터',
@@ -535,7 +537,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Erichthonios': 'Erichthonios',
       },
@@ -552,6 +553,7 @@ const triggerSet: TriggerSet<Data> = {
         'Inevitable Flame': 'Aspektiertes Feuer',
         'Inevitable Light': 'Aspektiertes Licht',
         'Intemperance': 'Zehrende Elemente',
+        'Intemperate Torment': 'Zehrende Vollstreckung',
         'Lethe': 'Schloss und Riegel',
         'Pitiless Flail of Grace': 'Heilige Zucht und Ordnung',
         'Pitiless Flail of Purgation': 'Feurige Zucht und Ordnung',
@@ -585,6 +587,7 @@ const triggerSet: TriggerSet<Data> = {
         'Heavy Hand': 'Chaîne de supplice',
         'Inevitable Flame/Inevitable Light': 'Explosion à retardement',
         'Intemperance': 'Corrosion élémentaire',
+        'Intemperate Torment': 'Exécution corrosive',
         'Lethe': 'Descente aux limbes',
         'Pitiless Flail of Grace(?!/)': 'Chaîne transperçante sacrée',
         'Pitiless Flail of Grace/Pitiless Flail of Purgation': 'Chaîne sacrée/infernale',
@@ -615,6 +618,7 @@ const triggerSet: TriggerSet<Data> = {
         'Inevitable Flame': '時限炎爆',
         'Inevitable Light': '時限光爆',
         'Intemperance': '氷火の侵食',
+        'Intemperate Torment': '侵食執行',
         'Lethe': '辺獄送り',
         'Pitiless Flail of Grace': '懲罰連撃・聖',
         'Pitiless Flail of Purgation': '懲罰連撃・炎',

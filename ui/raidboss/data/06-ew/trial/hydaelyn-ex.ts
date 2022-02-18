@@ -318,6 +318,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HydaelynEx Crystal of Light',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '65BE', source: 'Crystal of Light', capture: true }),
+      netRegexDe: NetRegexes.abilityFull({ id: '65BE', source: 'Lichtkristall', capture: true }),
+      netRegexFr: NetRegexes.abilityFull({ id: '65BE', source: 'Cristal De Lumière', capture: true }),
+      netRegexJa: NetRegexes.abilityFull({ id: '65BE', source: '光のクリスタル', capture: true }),
       // Each of the three adds fires every 1.1s or so until about Exodus or their death
       suppressSeconds: 60,
       infoText: (data, matches, output) => {
@@ -331,10 +334,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dirCrystals: {
           en: '${dir} Crystals first',
+          de: 'Kristall im ${dir} zuerst',
           fr: 'Premiers cristaux au ${dir} ',
         },
         dirEchoes: {
           en: 'Move Echoes ${dir} first',
+          de: 'Bewege Echoes zuerst nach ${dir}',
           fr: 'Déplacez les échos au ${dir} en premier',
         },
         north: Outputs.north,
@@ -512,6 +517,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
+        'Crystal of Light': 'Lichtkristall',
         'Hydaelyn': 'Hydaelyn',
         'Mystic Refulgence': 'Truglicht',
         'Parhelion': 'Parhelion',
@@ -556,6 +562,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Crystal of Light': 'Cristal De Lumière',
         'Hydaelyn': 'Hydaelyn',
         'Mystic Refulgence': 'illusion de Lumière',
         'Parhelion': 'Parhélie',
@@ -599,6 +606,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Crystal of Light': '光のクリスタル',
         'Hydaelyn': 'ハイデリン',
         'Mystic Refulgence': '幻想光',
         'Parhelion': 'パルヘリオン',
