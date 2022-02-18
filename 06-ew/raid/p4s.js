@@ -1125,10 +1125,8 @@ Options.Triggers.push({
                     unknown: Outputs.unknown,
                 };
                 const id = data.actHeadmarkers[matches.target];
-                if (id === undefined) {
-                    console.error(`Act 2 Tether: missing headmarker: ${JSON.stringify(data.actHeadmarkers)}`);
+                if (id === undefined)
                     return;
-                }
                 if (data.actFourThorn === undefined) {
                     if (id === '012C')
                         return { infoText: output.blueTether() };
