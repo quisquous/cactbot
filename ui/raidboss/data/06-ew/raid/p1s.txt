@@ -1,6 +1,18 @@
 ### P1S: Asphodelos: The First Circle (Savage)
 #
-# -it 'Erichthonios' -oc 'Erichthonios' -p "6629:14.1"
+# -p 6629:14.1
+# -ii 6612 6628 6622 6623 6624 6613 65F6 65F7 65F8 65F9 65FA 65FB 65FC 65FD 65FE 65FF 6600 6601 6602 6603 6606 6607 6608 6609 660A 660B 660C 660D
+
+# Notes:
+# * Chain Pain both 6627/6628, but only sync on one.
+# * Hot Spell/Cold Spell are renamed First/Second/Third Element
+# * Hot Spell/Cold Spell happen at the same time, so only sync on one.
+# * Gaoler's Flail has many different ids, 6F56-6601 and 6DA6-6DAD.
+#   6DA6-6DAD appear to be the damage, so consistently use this everywhere and ignore the casts,
+#   some of which are for the animation and (maybe?) the weapons dropping which can hit people
+#   but doesn't seem to do damage??
+# * Aetherflail is 6602 6603 6606 6607 6608 6609 660A 660B 660C 660D and also is paired with
+#   Gaoler's Flail 6DA6-6DAD for damage, so for timing consistency skip these as well and use damage.
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -9,32 +21,33 @@ hideall "--sync--"
 
 # First flail set
 0.0 "--sync--" sync /Engage!/ window 0,1
-9.4 "--middle--" sync / 14:[^:]*:Erichthonios:6629:/ window 11,9
+9.4 "--sync--" sync / 14:[^:]*:Erichthonios:6629:/ window 11,9
 14.1 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:6629:/
 18.2 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
 22.8 "Aetherial Shackles" sync / 1[56]:[^:]*:Erichthonios:6625:/
 31.9 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
-41.7 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-57.7 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6(5F[6-F]|60[01]):/
-60.8 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/
+41.7 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:6627:/
+58.5 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/ window 3,2
+61.3 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/ window 2,3
 
 # First tank mechanic
 72.1 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
 75.5 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
 
 # Second flail set
-91.1 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6(5F[6-F]|60[01]):/
-94.2 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/
+91.9 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/ window 3,2
+94.7 "Gaoler's Flail" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/ window 2,3
 105.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
 
 # Tiles 1
 118.5 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:661E:/
 122.6 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-135.3 "First Element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
+134.4 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:(661F|6620):/
+135.3 "First Element" sync / 1[56]:[^:]*:Erichthonios:6621:/
 141.4 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
-146.4 "Second Element" sync / 1[56]:[^:]*:Erichthonios:662[123]:/
+146.4 "Second Element" sync / 1[56]:[^:]*:Erichthonios:6621:/
 151.6 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
-157.3 "Third Element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
+157.3 "Third Element" sync / 1[56]:[^:]*:Erichthonios:6621:/
 
 # Second tank mechanic
 167.9 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
@@ -62,51 +75,78 @@ hideall "--sync--"
 
 # Fourfold Shackles
 294.2 "Fourfold Shackles" sync / 1[56]:[^:]*:Erichthonios:6626:/
-303.2 "Chain Pain #1" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-308.2 "Chain Pain #2" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-313.2 "Chain Pain #3" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-318.2 "Chain Pain #4" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
+303.2 "Chain Pain #1" sync / 1[56]:[^:]*:Erichthonios:6627:/
+308.2 "Chain Pain #2" sync / 1[56]:[^:]*:Erichthonios:6627:/
+313.2 "Chain Pain #3" sync / 1[56]:[^:]*:Erichthonios:6627:/
+318.2 "Chain Pain #4" sync / 1[56]:[^:]*:Erichthonios:6627:/
 328.4 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
 
 # Tiles 2
 341.6 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:661E:/
 345.7 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-358.6 "First Element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
-369.6 "Second Element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
-373.2 "Gaoler's Flail In/Out" sync / 1[56]:[^:]*:Erichthonios:6(5F[6-F]|60[01]):/
-376.3 "Gaoler's Flail Out/In" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/
-380.6 "Third Element" sync / 1[56]:[^:]*:Erichthonios:662[12]:/
+357.4 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:(661F|6620):/
+358.6 "First Element" sync / 1[56]:[^:]*:Erichthonios:6621:/
+369.6 "Second Element" sync / 1[56]:[^:]*:Erichthonios:6621:/
+374.0 "Gaoler's Flail In/Out" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/ window 3,2
+376.8 "Gaoler's Flail Out/In" sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/ window 2,3
+380.6 "Third Element" sync / 1[56]:[^:]*:Erichthonios:6621:/
 389.4 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
 
-# Cells 2, Shackles of Time first
+
+# Cells 2 -> branch
 407.6 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:6616:/
-417.8 "Shackles of Time/Aetherial Shackles" sync / 1[56]:[^:]*:Erichthonios:661C:/
-417.8 "--sync--" sync / 1[56]:[^:]*:Erichthonios:6625:/ jump 1010.8
-425.1 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
-428.4 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
-432.8 "Inevitable Flame/Inevitable Light" sync / 1[56]:[^:]*:Erichthonios:6EC[12]:/
-441.9 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
-449.1 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-453.9 "Aetherial Shackles" sync / 1[56]:[^:]*:Erichthonios:6625:/
-465.1 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:6619:/
-466.0 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
-472.9 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
-474.2 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
-485.5 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/ jump 1077.3
-506.6 "Powerful Fire/Powerful Light + Gaoler's Flail"
-509.4 "Powerful Fire/Powerful Light + Gaoler's Flail"
+
+# -> Shackles of Time first?
+417.8 "Shackles of Time?" sync / 1[56]:[^:]*:Erichthonios:661C:/ jump 617.8 window 20,20
+425.1 "Pitiless Flail of Grace/Pitiless Flail of Purgation?" #sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
+428.4 "True Flare/True Holy?" #sync / 1[56]:[^:]*:Erichthonios:661[01]:/
+432.8 "Inevitable Flame/Inevitable Light?" #sync / 1[56]:[^:]*:Erichthonios:6EC[12]:/
+441.9 "Warder's Wrath?" #sync / 1[56]:[^:]*:Erichthonios:662A:/
+
+# -> Aetherial Shackles first?
+417.8 "Aetherial Shackles?" sync / 1[56]:[^:]*:Erichthonios:6625:/ jump 1010.8 window 20,20
+428.9 "Aetherchain?" #sync / 1[56]:[^:]*:Erichthonios:6619:/
+429.8 "Powerful Fire/Powerful Light?" #sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
+436.7 "Chain Pain?" #sync / 1[56]:[^:]*:Erichthonios:6627:/
+438.0 "Powerful Fire/Powerful Light?" #sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
+447.3 "Warder's Wrath?" #sync / 1[56]:[^:]*:Erichthonios:662A:/
+
+
+# Cells 2, Shackles of Time first
+617.8 "Shackles of Time" sync / 1[56]:[^:]*:Erichthonios:661C:/
+625.1 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
+628.4 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
+632.8 "Inevitable Flame/Inevitable Light" sync / 1[56]:[^:]*:Erichthonios:6EC[12]:/
+641.9 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
+649.1 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+653.9 "Aetherial Shackles" sync / 1[56]:[^:]*:Erichthonios:6625:/
+665.1 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:6619:/
+666.0 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
+672.9 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:6627:/
+674.2 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
+
+685.5 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/ jump 1077.3
+692.7 "--sync--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
+706.8 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
+706.8 "Gaoler's Flail" #sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/
+709.6 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
+709.6 "Gaoler's Flail" #sync / 1[56]:[^:]*:Erichthonios:6DA[2-9A-D]:/
+
 
 # Cells 2, Aetherial Shackles first
 1010.8 "Aetherial Shackles" sync / 1[56]:[^:]*:Erichthonios:6625:/
 1021.9 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:6619:/
 1022.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
-1029.7 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:662[78]:/
+1029.7 "Chain Pain" sync / 1[56]:[^:]*:Erichthonios:6627:/
 1031.0 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:661[AB]:/
 1040.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
 1051.5 "Shackles of Time" sync / 1[56]:[^:]*:Erichthonios:661C:/
-1058.9 "Pitiless Flail of Grace" sync / 1[56]:[^:]*:Erichthonios:660E:/
+1058.9 "Pitiless Flail of Grace/Pitiless Flail of Purgation" sync / 1[56]:[^:]*:Erichthonios:660[EF]:/
 1062.1 "True Flare/True Holy" sync / 1[56]:[^:]*:Erichthonios:661[01]:/
 1066.4 "Inevitable Flame/Inevitable Light" sync / 1[56]:[^:]*:Erichthonios:6EC[12]:/
+
+
+# Final section
 1077.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:662A:/
 1084.5 "--sync--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
 
