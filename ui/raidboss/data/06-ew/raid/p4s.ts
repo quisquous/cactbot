@@ -1124,18 +1124,21 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         purpleTether: {
           en: 'Purple (with ${player})',
+          de: 'Lila (mit ${player})',
           fr: 'Violet (avec ${player})',
           ja: 'ダージャ (${player})',
           ko: '다쟈 (${player})',
         },
         orangeTether: {
           en: 'Fire (with ${player})',
+          de: 'Feuer (mit ${player})',
           fr: 'Feu (avec ${player})',
           ja: 'ファイガ (${player})',
           ko: '파이가 (${player})',
         },
         greenTether: {
           en: 'Air (with ${player})',
+          de: 'Luft (mit ${player})',
           fr: 'Air (avec ${player})',
           ja: 'エアロガ (${player})',
           ko: '에어로가 (${player})',
