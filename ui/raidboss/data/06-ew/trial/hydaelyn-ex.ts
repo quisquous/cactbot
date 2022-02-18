@@ -317,14 +317,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Crystal of Light',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '65BE', source: 'Crystal of Light', capture: true }),
-      netRegexDe: NetRegexes.ability({ id: '65BE', source: 'Lichtkristall', capture: true }),
-      netRegexFr: NetRegexes.ability({ id: '65BE', source: 'Cristal De Lumière', capture: true }),
-      netRegexJa: NetRegexes.ability({ id: '65BE', source: '光のクリスタル', capture: true }),
+      netRegex: NetRegexes.abilityFull({ id: '65BE', source: 'Crystal of Light', capture: true }),
+      netRegexDe: NetRegexes.abilityFull({ id: '65BE', source: 'Lichtkristall', capture: true }),
+      netRegexFr: NetRegexes.abilityFull({ id: '65BE', source: 'Cristal De Lumière', capture: true }),
+      netRegexJa: NetRegexes.abilityFull({ id: '65BE', source: '光のクリスタル', capture: true }),
       // Each of the three adds fires every 1.1s or so until about Exodus or their death
       suppressSeconds: 60,
       infoText: (data, matches, output) => {
-        // North Crystals: (87.87, 93.00),  (112.12, 86.00), (112.12, 93)
+        // North Crystals: (87.87, 93.00),  (100.00, 86.00), (112.12, 93)
         // South Crystals: (87.87, 107.00), (100.00, 114.00), (112.12, 107.00)
         const isSouthFirst = parseFloat(matches.y) > 100;
         if (data.role === 'tank')
