@@ -506,7 +506,17 @@ Options.Triggers.push({
     ],
     timelineReplace: [
         {
+            'locale': 'en',
+            'replaceText': {
+                'Pitiless Flail of Grace/Pitiless Flail of Purgation': 'Flail of Grace/Purgation',
+                'True Flare/True Holy': 'True Flare/Holy',
+                'Powerful Fire/Powerful Light': 'Powerful Fire/Light',
+                'Inevitable Flame/Inevitable Light': 'Inevitable Flame/Light',
+            },
+        },
+        {
             'locale': 'de',
+            'missingTranslations': true,
             'replaceSync': {
                 'Erichthonios': 'Erichthonios',
             },
@@ -540,6 +550,7 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
+            'missingTranslations': true,
             'replaceSync': {
                 'Erichthonios': 'Érichthonios',
             },
