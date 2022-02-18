@@ -54,7 +54,7 @@ const roleOutputStrings = {
     fr: 'DPS',
     ja: 'DPS',
     cn: 'DPS',
-    ko: 'DPS',
+    ko: '딜러',
   },
   roleTethers: {
     en: '${role} Tethers',
@@ -78,7 +78,7 @@ const roleOutputStrings = {
     fr: 'Tout ${role}',
     ja: '${role} 全てもらう',
     cn: '${role} 处理全部',
-    ko: '${role} 전부 받아요',
+    ko: '${role} 전부 받기',
   },
   roleTowers: {
     en: '${role} Towers',
@@ -96,25 +96,33 @@ const tetherOutputStrings = {
     en: 'Purple Tether',
     de: 'Lila Verbindung',
     fr: 'lien violet',
+    ja: 'ダージャ(紫)',
     cn: '紫标连线',
+    ko: '다쟈 (자주색)',
   },
   orangeTether: {
     en: 'Orange Tether',
     de: 'Orangene Verbindung',
     fr: 'Lien orange',
+    ja: 'ファイガ (赤)',
     cn: '橙标连线',
+    ko: '파이가 (빨강)',
   },
   greenTether: {
     en: 'Green Tether',
     de: 'Grüne Verbindung',
     fr: 'Lien vert',
+    ja: 'エアロガ (緑)',
     cn: '绿标连线',
+    ko: '에어로가 (녹색)',
   },
   blueTether: {
     en: 'Blue Tether',
     de: 'Blaue Verbindung',
     fr: 'Lien bleu',
+    ja: 'ワタガ (青)',
     cn: '蓝标连线',
+    ko: '워터가 (파랑)',
   },
 };
 
@@ -123,7 +131,9 @@ const curtainCallOutputStrings = {
     en: 'Group ${num}',
     de: 'Group ${num}',
     fr: 'Groupe ${num}',
+    ja: '${num} 組',
     cn: '${num} 组',
+    ko: '그룹: ${num}',
   },
 };
 
@@ -192,9 +202,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait Jump ${dir}?',
           de: 'Sprung ködern ${dir}?',
           fr: 'Attirez le saut à l\'${dir}?',
-          ja: 'ジャンプ誘導 ${dir}?', // FIXME
+          ja: 'ジャンプ誘導?: ${dir}',
           cn: '引导跳跃 ${dir}?', // FIXME
-          ko: '점프 유도 ${dir}?', // FIXME
+          ko: '점프 유도?: ${dir}',
         },
         baitJump: {
           en: 'Bait Jump?',
@@ -202,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Attirez le saut ?',
           ja: 'ジャンプ誘導?',
           cn: '引导跳跃',
-          ko: '점프 유도',
+          ko: '점프 유도?',
         },
         east: Outputs.east,
         west: Outputs.west,
@@ -979,7 +989,9 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir1}/${dir2} first',
           de: '${dir1}/${dir2} zuerst',
           fr: '${dir1}/${dir2} en premier',
+          ja: '${dir1}/${dir2}から',
           cn: '先去 ${dir1}/${dir2}',
+          ko: '${dir1}/${dir2}부터',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -1066,6 +1078,9 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir1}/${dir2} first',
           de: '${dir1}/${dir2} zuerst',
           fr: '${dir1}/${dir2} en premier',
+          ja: '${dir1}/${dir2}から',
+          cn: '先去 ${dir1}/${dir2}',
+          ko: '${dir1}/${dir2}부터',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -1110,14 +1125,20 @@ const triggerSet: TriggerSet<Data> = {
         purpleTether: {
           en: 'Purple (with ${player})',
           fr: 'Violet (avec ${player})',
+          ja: 'ダージャ (${player})',
+          ko: '다쟈 (${player})',
         },
         orangeTether: {
           en: 'Fire (with ${player})',
           fr: 'Feu (avec ${player})',
+          ja: 'ファイガ (${player})',
+          ko: '파이가 (${player})',
         },
         greenTether: {
           en: 'Air (with ${player})',
           fr: 'Air (avec ${player})',
+          ja: 'エアロガ (${player})',
+          ko: '에어로가 (${player})',
         },
       },
     },
@@ -1184,7 +1205,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait Jump ${dir1} first',
           de: 'Köder Sprung ${dir1} zuerst',
           fr: 'Attirez le saut à l\'${dir1} en premier',
+          ja: 'ジャンプ誘導: ${dir1}',
           cn: '引导跳跃 先去 ${dir1}',
+          ko: '점프 유도: ${dir1}',
         },
         east: Outputs.east,
         west: Outputs.west,
