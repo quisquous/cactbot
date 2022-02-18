@@ -624,7 +624,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Liquid Tank',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
@@ -635,7 +635,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Hand Tank',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'membre liquide', id: '4979' }),
@@ -646,7 +646,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Cruise Chaser Tank',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
@@ -657,7 +657,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Brute Tank',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Brutalus', id: '497B' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Justicier', id: '497B' }),
@@ -2242,7 +2242,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Alpha Ordained Motion 2',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
@@ -2263,7 +2263,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Alpha Ordained Stillness 2',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
@@ -2284,7 +2284,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Alpha Safe Spot',
-      type: 'Ability',
+      type: 'AbilityFull',
       // The non-safe alexanders use 489F.
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
@@ -2570,7 +2570,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Beta Radiant',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
@@ -2607,7 +2607,7 @@ const triggerSet: TriggerSet<Data> = {
       // Spread (per person) is 48A2.
       // Stack (two people) is 48A3.
       id: 'TEA Beta Optical Spread',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
@@ -2629,7 +2629,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Beta Optical Stack',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
@@ -2762,7 +2762,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Trine Initial',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
@@ -2921,7 +2921,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TEA Trine Second',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),

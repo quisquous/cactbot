@@ -473,7 +473,7 @@ const triggerSet: TriggerSet<Data> = {
 
       // Because of this, we need only see one entity use a 21 log line and we can find the rest.
       id: 'SophiaEX Quasar Setup',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '19A[89]' }),
       condition: (data) => !data.scaleSophias,
       // We *really* shouldn't have to suppress this...

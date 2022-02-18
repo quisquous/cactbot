@@ -60,7 +60,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'Test Bootshine',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '35' }),
       condition: (data, matches) => {
         if (matches.source !== data.me)

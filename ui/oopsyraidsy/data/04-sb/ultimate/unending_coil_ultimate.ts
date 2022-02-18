@@ -20,7 +20,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   triggers: [
     {
       id: 'UCU Twister Death',
-      type: 'Ability',
+      type: 'AbilityFull',
       // Instant death has a special flag value, differentiating
       // from the explosion damage you take when somebody else
       // pops one.
@@ -43,7 +43,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'UCU Thermionic Burst',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '26B9', ...playerDamageFields }),
       mistake: (_data, matches) => {
         return {
@@ -63,7 +63,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'UCU Chain Lightning',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '26C8', ...playerDamageFields }),
       mistake: (_data, matches) => {
         // It's hard to assign blame for lightning.  The debuffs

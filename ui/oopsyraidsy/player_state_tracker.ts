@@ -237,8 +237,8 @@ export class PlayerStateTracker {
   OnAbility(line: string, splitLine: string[]): void {
     // Abilities can not miss everybody (e.g. Battle Voice never hitting the source)
     // so check both target and source.
-    const targetId = splitLine[logDefinitions.Ability.fields.targetId];
-    const sourceId = splitLine[logDefinitions.Ability.fields.sourceId];
+    const targetId = splitLine[logDefinitions.AbilityFull.fields.targetId];
+    const sourceId = splitLine[logDefinitions.AbilityFull.fields.sourceId];
     const targetInParty = this.IsInParty(targetId);
     const sourceInParty = this.IsInParty(sourceId);
     if (sourceId === undefined || targetId === undefined)
@@ -248,7 +248,7 @@ export class PlayerStateTracker {
     if (sourceInParty)
       this.deadIds.delete(sourceId);
 
-    const abilityId = splitLine[logDefinitions.Ability.fields.id];
+    const abilityId = splitLine[logDefinitions.AbilityFull.fields.id];
     if (abilityId === undefined)
       return;
 
@@ -388,7 +388,7 @@ export class PlayerStateTracker {
     for (const event of events) {
       if (event.type !== 'Ability')
         continue;
-      const id = event.splitLine[logDefinitions.Ability.fields.id];
+      const id = event.splitLine[logDefinitions.AbilityFull.fields.id];
       if (!id)
         continue;
 
@@ -403,11 +403,11 @@ export class PlayerStateTracker {
         event.mistake = this.mistakeDamageMap[id];
       } else if (isSharedDamage && id in this.mistakeShareMap) {
         event.mistake = this.mistakeShareMap[id];
-        const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
+        const ability = event.splitLine[logDefinitions.AbilityFull.fields.ability] ?? '???';
         event.mistakeText = Translate(this.options.DisplayLanguage, GetShareMistakeText(ability));
       } else if (!isSharedDamage && id in this.mistakeSoloMap) {
         event.mistake = this.mistakeSoloMap[id];
-        const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
+        const ability = event.splitLine[logDefinitions.AbilityFull.fields.ability] ?? '???';
         event.mistakeText = Translate(this.options.DisplayLanguage, GetSoloMistakeText(ability));
       }
     }

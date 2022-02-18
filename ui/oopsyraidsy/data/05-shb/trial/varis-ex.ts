@@ -36,7 +36,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   triggers: [
     {
       id: 'VarisEx Terminus Est',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '4CB4', ...playerDamageFields }),
       suppressSeconds: 1,
       mistake: (_data, matches) => {

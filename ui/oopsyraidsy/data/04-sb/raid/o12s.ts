@@ -84,7 +84,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'O12S1 Magic Vulnerability Damage',
-      type: 'Ability',
+      type: 'AbilityFull',
       // 332E = Pile Pitch stack
       // 333E = Electric Slide (Omega-M square 1-4 dashes)
       // 333F = Electric Slide (Omega-F triangle 1-4 dashes)

@@ -37,6 +37,7 @@ type LocaleText = LocaleObject<string>;
 // Exclude these types since they're not relevant or covered elsewhere
 type ExcludedLineDocs =
   | 'None'
+  | 'Ability'
   | 'NetworkAOEAbility'
   | 'NetworkWorld'
   | 'NetworkEffectResult'
@@ -233,7 +234,7 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  Ability: {
+  AbilityFull: {
     regexes: {
       network: NetRegexes.abilityFull({ capture: true }).source,
       logLine: Regexes.abilityFull({ capture: true }).source,

@@ -39,7 +39,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // Everybody gets hits by this, but it's only a failure if it does damage.
       id: 'O3S The Game',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '2301', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {

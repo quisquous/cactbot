@@ -137,7 +137,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // These ability ids can be ordered differently and "hit" people when levitating.
       id: 'DelubrumSav Guard Lots Cast',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: ['5827', '5828', '5B6C', '5B6D', '5BB6', '5BB7', '5B88', '5B89'], ...playerDamageFields }),
       condition: (_data, matches) => matches.flags.slice(-2) === '03',
       mistake: (_data, matches) => {

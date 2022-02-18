@@ -66,12 +66,14 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
   // Special case for Ability to handle aoe and non-aoe.
   const abilityMessageType =
-    `(?:${logDefinitions.Ability.messageType}|${logDefinitions.NetworkAOEAbility.messageType})`;
+    `(?:${logDefinitions.AbilityFull.messageType}|${logDefinitions.NetworkAOEAbility.messageType})`;
   const abilityHexCode = '(?:15|16)';
 
   // Build the regex from the fields.
-  const prefix = defKey !== 'Ability' ? logDefinitions[defKey].messageType : abilityMessageType;
-  const hexCode = defKey !== 'Ability'
+  const prefix = !['Ability', 'AbilityFull'].includes(defKey)
+    ? logDefinitions[defKey].messageType
+    : abilityMessageType;
+  const hexCode = !['Ability', 'AbilityFull'].includes(defKey)
     ? `00${parseInt(logDefinitions[defKey].type).toString(16)}`.slice(-2).toUpperCase()
     : abilityHexCode;
 
@@ -163,8 +165,8 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
-  static abilityFull(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
-    return parseHelper(params, 'Ability', defaultParams('Ability'));
+  static abilityFull(params?: NetParams['AbilityFull']): CactbotBaseRegExp<'AbilityFull'> {
+    return parseHelper(params, 'AbilityFull', defaultParams('AbilityFull'));
   }
 
   /**

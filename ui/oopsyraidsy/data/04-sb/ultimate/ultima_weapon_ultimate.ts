@@ -63,7 +63,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Featherlance explosion.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
       id: 'UWU Featherlance',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '2B43', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {

@@ -271,7 +271,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ShivaUn Shiva Circles',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Shiva', id: '537B' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Shiva', id: '537B' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Shiva', id: '537B' }),

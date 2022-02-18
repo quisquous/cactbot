@@ -27,7 +27,7 @@ import {
 // * maybe if a player is fully healed, trim abilities before that?
 
 const processAbilityLine = (splitLine: string[]) => {
-  const flagIdx = logDefinitions.Ability.fields.flags;
+  const flagIdx = logDefinitions.AbilityFull.fields.flags;
   let flags = splitLine[flagIdx] ?? '';
   let damage = splitLine[flagIdx + 1] ?? '';
   if (kShiftFlagValues.includes(flags)) {
@@ -102,8 +102,8 @@ export class DeathReport {
       if (event.type === 'Ability') {
         const ability = processAbilityLine(event.splitLine);
         if (ability.isAttack && ability.amount > 0) {
-          const abilityName = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
-          const currentHp = event.splitLine[logDefinitions.Ability.fields.targetCurrentHp] ?? '???';
+          const abilityName = event.splitLine[logDefinitions.AbilityFull.fields.ability] ?? '???';
+          const currentHp = event.splitLine[logDefinitions.AbilityFull.fields.targetCurrentHp] ?? '???';
           const text = `${abilityName} (${ability.amount}/${currentHp})`;
           return {
             type: 'death',
@@ -280,8 +280,8 @@ export class DeathReport {
     if (amountClass === undefined || amountStr === undefined)
       return;
 
-    const abilityName = splitLine[logDefinitions.Ability.fields.ability] ?? '???';
-    const currentHpStr = splitLine[logDefinitions.Ability.fields.targetCurrentHp];
+    const abilityName = splitLine[logDefinitions.AbilityFull.fields.ability] ?? '???';
+    const currentHpStr = splitLine[logDefinitions.AbilityFull.fields.targetCurrentHp];
     const currentHp = currentHpStr !== undefined ? parseInt(currentHpStr) : 0;
     return {
       timestamp: event.timestamp,
@@ -339,8 +339,8 @@ export class DeathReport {
     let sourceName: string | undefined;
 
     if (event.type === 'MissedAbility') {
-      buffName = event.splitLine[logDefinitions.Ability.fields.ability];
-      sourceName = event.splitLine[logDefinitions.Ability.fields.source];
+      buffName = event.splitLine[logDefinitions.AbilityFull.fields.ability];
+      sourceName = event.splitLine[logDefinitions.AbilityFull.fields.source];
     } else if (event.type === 'MissedEffect') {
       buffName = event.splitLine[logDefinitions.GainsEffect.fields.effect];
       sourceName = event.splitLine[logDefinitions.GainsEffect.fields.source];

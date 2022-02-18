@@ -170,7 +170,7 @@ class Radar {
   private lang: Lang;
   private nameToHuntEntry: HuntMap;
   private regexes: {
-    abilityFull: CactbotBaseRegExp<'Ability'>;
+    abilityFull: CactbotBaseRegExp<'AbilityFull'>;
     addedCombatantFull: CactbotBaseRegExp<'AddedCombatant'>;
     instanceChanged: CactbotBaseRegExp<'GameLog'>;
     wasDefeated: CactbotBaseRegExp<'WasDefeated'>;

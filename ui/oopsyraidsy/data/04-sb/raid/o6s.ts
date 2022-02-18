@@ -52,7 +52,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // Look away; does damage if failed.
       id: 'O6S Divine Lure',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '2822', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {

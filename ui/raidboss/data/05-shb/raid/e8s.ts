@@ -244,7 +244,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'E8S Icicle Impact',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Shiva', id: '4DA0' }),

@@ -67,7 +67,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // When this happens, the target explodes, hitting nearby people
       // but also themselves.
       id: 'TEA Exhaust',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '481F', ...playerDamageFields }),
       condition: (_data, matches) => matches.target === matches.source,
       mistake: (_data, matches) => {
@@ -105,7 +105,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'TEA Reducible Complexity',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '4821', ...playerDamageFields }),
       mistake: (data, matches) => {
         return {
@@ -125,7 +125,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'TEA Drainage',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '4827', ...playerDamageFields }),
       condition: (data, matches) => !data.party.isTank(matches.target),
       mistake: (_data, matches) => {
@@ -171,7 +171,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Balloon Popping.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
       id: 'TEA Outburst',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {

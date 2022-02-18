@@ -16,7 +16,7 @@ const abilityWarn = (args: { abilityId: string; id: string }): OopsyTrigger<Data
     console.error('Missing ability ' + JSON.stringify(args));
   const trigger: OopsyTrigger<Data> = {
     id: args.id,
-    type: 'Ability',
+    type: 'AbilityFull',
     netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
     condition: (_data, matches) => matches.flags.substr(-2) === '0E',
     mistake: (_data, matches) => {

@@ -45,8 +45,8 @@ export class EncounterFinder {
     win: CactbotBaseRegExp<'ActorControl'>;
     wipe: CactbotBaseRegExp<'ActorControl'>;
     commence: CactbotBaseRegExp<'ActorControl'>;
-    playerAttackingMob: CactbotBaseRegExp<'Ability'>;
-    mobAttackingPlayer: CactbotBaseRegExp<'Ability'>;
+    playerAttackingMob: CactbotBaseRegExp<'AbilityFull'>;
+    mobAttackingPlayer: CactbotBaseRegExp<'AbilityFull'>;
   };
 
   sealRegexes: Array<CactbotBaseRegExp<'GameLog'>> = [];
@@ -68,8 +68,8 @@ export class EncounterFinder {
       win: NetRegexes.network6d({ command: '40000003' }),
       wipe: NetRegexes.network6d({ command: '40000010' }),
       commence: NetRegexes.network6d({ command: '4000000[16]' }),
-      playerAttackingMob: NetRegexes.ability({ sourceId: '1.{7}', targetId: '4.{7}' }),
-      mobAttackingPlayer: NetRegexes.ability({ sourceId: '4.{7}', targetId: '1.{7}' }),
+      playerAttackingMob: NetRegexes.abilityFull({ sourceId: '1.{7}', targetId: '4.{7}' }),
+      mobAttackingPlayer: NetRegexes.abilityFull({ sourceId: '4.{7}', targetId: '1.{7}' }),
     };
 
     const sealReplace = commonReplacement.replaceSync[syncKeys.seal];

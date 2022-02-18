@@ -14,7 +14,7 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   firstUnknownHeadmarker?: string;
   gloryOfBozjaCount?: number;
-  seekerFirstMercy?: NetMatches['Ability'];
+  seekerFirstMercy?: NetMatches['AbilityFull'];
   seekerSwords?: string[];
   calledSeekerSwords?: boolean;
   splitterDist?: number;
@@ -214,7 +214,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DelubrumSav Seeker First Mercy',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: ['Trinity Seeker', 'Seeker Avatar'], id: '5B61' }),
       netRegexDe: NetRegexes.abilityFull({ source: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], id: '5B61' }),
       netRegexFr: NetRegexes.abilityFull({ source: ['Trinité Soudée', 'Clone De La Trinité Soudée'], id: '5B61' }),
@@ -703,7 +703,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DelubrumSav Seeker Baleful Comet Direction',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Seeker Avatar', id: '5AD7' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Spaltteil Der Sucher', id: '5AD7' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Clone De La Trinité Soudée', id: '5AD7' }),

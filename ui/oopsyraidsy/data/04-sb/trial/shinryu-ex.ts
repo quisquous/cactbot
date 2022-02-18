@@ -61,7 +61,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'ShinryuEx Tidal Wave',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '25DA', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
@@ -81,7 +81,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // Knockback from center.
       id: 'Shinryu Aerial Blast',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '25DF', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {

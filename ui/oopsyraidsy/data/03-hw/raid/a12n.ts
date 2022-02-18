@@ -33,7 +33,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // It is a failure for a Severity marker to stack with the Solidarity group.
       id: 'A12N Assault Failure',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '1AF2', ...playerDamageFields }),
       condition: (data, matches) => data.assault?.includes(matches.target),
       mistake: (_data, matches) => {

@@ -88,7 +88,7 @@ export class BaseComponent implements ComponentInterface {
     /** noop */
   }
 
-  onUseAbility(_id: string, _ability: PartialFieldMatches<'Ability'>): void {
+  onUseAbility(_id: string, _ability: PartialFieldMatches<'AbilityFull'>): void {
     /** noop */
   }
 

@@ -199,7 +199,7 @@ const triggerSet: TriggerSet<Data> = {
       // Bomb positions are all x = (86 west, 100 mid, 114 east), y = (86, 100, 114).
       // Note: as these may hit multiple people, there may be multiple lines for the same bomb.
       id: 'E4S Bury Directions',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '4142', source: 'Bomb Boulder' }),
       netRegexDe: NetRegexes.abilityFull({ id: '4142', source: 'Bomber-Brocken' }),
       netRegexFr: NetRegexes.abilityFull({ id: '4142', source: 'Bombo Rocher' }),

@@ -61,7 +61,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // Look away; does damage if failed.
       id: 'O8S Indolent Will',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '28E4', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
@@ -71,7 +71,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // Look towards; does damage if failed.
       id: 'O8S Ave Maria',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '28E3', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {

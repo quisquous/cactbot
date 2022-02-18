@@ -78,7 +78,7 @@ export class SGEComponent extends BaseComponent {
       elements[i]?.classList.toggle('active', i < stacks);
   }
 
-  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>): void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'AbilityFull'>): void {
     switch (id) {
       case kAbility.Phlegma:
       case kAbility.Phlegma2:

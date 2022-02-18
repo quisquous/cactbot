@@ -172,9 +172,9 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
-  static abilityFull(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
+  static abilityFull(params?: NetParams['AbilityFull']): CactbotBaseRegExp<'AbilityFull'> {
     return parseHelper(params, 'abilityFull', {
-      ...defaultParams('Ability'),
+      ...defaultParams('AbilityFull'),
       // Override type
       0: { field: 'type', value: '2[12]' },
     });

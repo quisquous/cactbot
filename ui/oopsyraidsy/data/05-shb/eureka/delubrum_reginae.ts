@@ -82,7 +82,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // At least during The Queen, these ability ids can be ordered differently,
       // and the first explosion "hits" everyone, although with "1B" flags.
       id: 'Delubrum Lots Cast',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: ['565A', '565B', '57FD', '57FE', '5B86', '5B87', '59D2', '5D93'], ...playerDamageFields }),
       condition: (_data, matches) => matches.flags.slice(-2) === '03',
       mistake: (_data, matches) => {

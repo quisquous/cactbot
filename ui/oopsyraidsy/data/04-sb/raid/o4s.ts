@@ -65,7 +65,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'O4S2 Blizzard III',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '23F8', ...playerDamageFields }),
       // Ignore unavoidable raid aoe Blizzard III.
       condition: (data) => !data.isDecisiveBattleElement,
@@ -75,7 +75,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'O4S2 Thunder III',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '23FD', ...playerDamageFields }),
       // Only consider this during random mechanic after decisive battle.
       condition: (data) => data.isDecisiveBattleElement,
@@ -97,7 +97,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'O4S2 Forked Lightning',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '242E', ...playerDamageFields }),
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
@@ -140,7 +140,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'O4S2 Double Attack Collect',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
       run: (data, matches) => {
         data.doubleAttackMatches = data.doubleAttackMatches || [];
@@ -149,7 +149,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'O4S2 Double Attack',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
       mistake: (data) => {
         const arr = data.doubleAttackMatches;

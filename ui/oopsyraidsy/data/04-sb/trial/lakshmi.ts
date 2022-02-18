@@ -32,7 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   triggers: [
     {
       id: 'Lakshmi Divine Denial Knocked Off',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '2485', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {

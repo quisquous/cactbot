@@ -81,7 +81,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'E7N Light\'s Course',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: ['4C3E', '4C40', '4C22', '4C3C', '4E63'], ...playerDamageFields }),
       condition: (data, matches) => {
         return !data.hasUmbral || !data.hasUmbral[matches.target];
@@ -94,7 +94,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'E7N Darks\'s Course',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: ['4C3D', '4C23', '4C41', '4C43'], ...playerDamageFields }),
       condition: (data, matches) => {
         return !data.hasAstral || !data.hasAstral[matches.target];

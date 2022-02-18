@@ -32,7 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'O2N Earthquake',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '2515', ...playerDamageFields }),
       // This deals damage only to non-floating targets.
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,

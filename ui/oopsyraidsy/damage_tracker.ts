@@ -98,7 +98,7 @@ export class DamageTracker {
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
-  private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
+  private abilityFullRegex: CactbotBaseRegExp<'AbilityFull'>;
   private wipeCactbotEcho: CactbotBaseRegExp<'GameLog'>;
   private combatState = new CombatState(this);
   private engageTime?: number;
@@ -264,7 +264,7 @@ export class DamageTracker {
       case logDefinitions.AddedCombatant.type:
         this.playerStateTracker.OnAddedCombatant(line, splitLine);
         break;
-      case logDefinitions.Ability.type:
+      case logDefinitions.AbilityFull.type:
       case logDefinitions.NetworkAOEAbility.type:
         this.OnAbilityEvent(line, splitLine);
         this.playerStateTracker.OnAbility(line, splitLine);
@@ -510,7 +510,7 @@ export class DamageTracker {
       const id = dict[key];
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
-        type: 'Ability',
+        type: 'AbilityFull',
         netRegex: NetRegexes.abilityFull({ id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
           return {
@@ -558,7 +558,7 @@ export class DamageTracker {
       const id = dict[key];
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
-        type: 'Ability',
+        type: 'AbilityFull',
         netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
           return {
@@ -581,7 +581,7 @@ export class DamageTracker {
       const id = dict[key];
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
-        type: 'Ability',
+        type: 'AbilityFull',
         netRegex: NetRegexes.abilityFull({ type: '21', id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
           return {

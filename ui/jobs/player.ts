@@ -28,7 +28,7 @@ export type SpeedBuffs = {
 
 export type GainCallback = (id: string, matches: PartialFieldMatches<'GainsEffect'>) => void;
 export type LoseCallback = (id: string, matches: PartialFieldMatches<'LosesEffect'>) => void;
-export type AbilityCallback = (id: string, matches: PartialFieldMatches<'Ability'>) => void;
+export type AbilityCallback = (id: string, matches: PartialFieldMatches<'AbilityFull'>) => void;
 export type ZoneChangeCallback = (id: number, name: string, info?: typeof ZoneInfo[number]) => void;
 
 export interface EventMap {
@@ -50,10 +50,10 @@ export interface EventMap {
   'player': (player: Player) => void;
 
   // triggered when casts actions
-  'action': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
-  'action/you': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
-  'action/party': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
-  'action/other': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
+  'action': (actionId: string, info: PartialFieldMatches<'AbilityFull'>) => void;
+  'action/you': (actionId: string, info: PartialFieldMatches<'AbilityFull'>) => void;
+  'action/party': (actionId: string, info: PartialFieldMatches<'AbilityFull'>) => void;
+  'action/other': (actionId: string, info: PartialFieldMatches<'AbilityFull'>) => void;
   // triggered when combo state changes
   'action/combo': (actionId: string | undefined, combo: ComboTracker) => void;
   // triggered when effect gains or loses
@@ -227,7 +227,7 @@ export class Player extends PlayerBase {
   }
 
   onUseAbility(callback: AbilityCallback): void {
-    const wrapper = (id: string, matches: PartialFieldMatches<'Ability'>) => {
+    const wrapper = (id: string, matches: PartialFieldMatches<'AbilityFull'>) => {
       callback(id, matches);
     };
     this.on('action/you', wrapper);
@@ -432,9 +432,9 @@ export class Player extends PlayerBase {
         this.emit('effect/lose', effectId, matches);
         break;
       }
-      case logDefinitions.Ability.type:
+      case logDefinitions.AbilityFull.type:
       case logDefinitions.NetworkAOEAbility.type: {
-        const matches = normalizeLogLine(line, logDefinitions.Ability.fields);
+        const matches = normalizeLogLine(line, logDefinitions.AbilityFull.fields);
         const sourceId = matches.sourceId?.toUpperCase();
         const id = matches.id;
         if (!id)

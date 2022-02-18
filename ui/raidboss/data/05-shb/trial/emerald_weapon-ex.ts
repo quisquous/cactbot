@@ -20,7 +20,7 @@ export interface Data extends RaidbossData {
   seenMines?: boolean;
   orbs?: NetMatches['AddedCombatant'][];
   primusPlayers?: string[];
-  tertius?: NetMatches['Ability'][];
+  tertius?: NetMatches['AbilityFull'][];
 }
 
 const centerX = 100;
@@ -365,7 +365,7 @@ const triggerSet: TriggerSet<Data> = {
       // StartsUsing has positions but is inconsistent when entities are newly moved.
       // We provide more time by using logic to predict where the last two
       // swords will drop.
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'BitBlade', id: '55CD' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Revolverklingen-Arm', id: '55CD' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Pistolame Volante', id: '55CD' }),

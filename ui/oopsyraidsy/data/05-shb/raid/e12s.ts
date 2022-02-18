@@ -87,7 +87,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Big circle ground aoes during Shiva junction.
       // This can be shielded through as long as that person doesn't stack.
       id: 'E12S Icicle Impact',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
@@ -116,7 +116,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // These sculptures are added at the start of the fight, so we need to check where they
       // use the "Classical Sculpture" ability and end up on the arena for real.
       id: 'E12S Promise Chiseled Sculpture Classical Sculpture',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Chiseled Sculpture', id: '58B2' }),
       run: (data, matches) => {
         // This will run per person that gets hit by the same sculpture, but that's fine.
@@ -302,7 +302,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'E12S Promise Small Lion Lionsblaze',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ source: 'Beastly Sculpture', id: '58B9' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Abbild Eines Löwen', id: '58B9' }),
       netRegexFr: NetRegexes.abilityFull({ source: 'Création Léonine', id: '58B9' }),
@@ -467,7 +467,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'E12S Oracle Shadoweye',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {

@@ -25,8 +25,8 @@ export class RegexesHolder {
   StatsRegex: CactbotBaseRegExp<'PlayerStats'>;
   YouGainEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
   YouLoseEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
-  YouUseAbilityRegex: CactbotBaseRegExp<'Ability'>;
-  AnybodyAbilityRegex: CactbotBaseRegExp<'Ability'>;
+  YouUseAbilityRegex: CactbotBaseRegExp<'AbilityFull'>;
+  AnybodyAbilityRegex: CactbotBaseRegExp<'AbilityFull'>;
   MobGainsEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
   MobLosesEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
   MobGainsEffectFromYouRegex: CactbotBaseRegExp<'GainsEffect'>;
@@ -43,8 +43,8 @@ export class RegexesHolder {
 
     this.YouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
     this.YouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
-    this.YouUseAbilityRegex = NetRegexes.ability({ source: playerName });
-    this.AnybodyAbilityRegex = NetRegexes.ability();
+    this.YouUseAbilityRegex = NetRegexes.abilityFull({ source: playerName });
+    this.AnybodyAbilityRegex = NetRegexes.abilityFull();
     this.MobGainsEffectRegex = NetRegexes.gainsEffect({ targetId: '4.{7}' });
     this.MobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
     this.MobGainsEffectFromYouRegex = NetRegexes.gainsEffect({

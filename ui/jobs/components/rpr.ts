@@ -83,7 +83,7 @@ export class RPRComponent extends BaseComponent {
     }
   }
 
-  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>): void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'AbilityFull'>): void {
     switch (id) {
       case kAbility.SoulSlice:
       case kAbility.SoulScythe:

@@ -51,10 +51,10 @@ export class MissedBuffCollector {
   // Caller has vetted that we care about the target, so we don't need to do that here.
   // Most (all) buffs only hit the party, and so no need to vet that the source is in the party.
   OnAbilityBuff(splitLine: string[], buff: MissableAbility): void {
-    const sourceId = splitLine[logDefinitions.Ability.fields.sourceId];
-    const targetId = splitLine[logDefinitions.Ability.fields.targetId];
-    const buffName = splitLine[logDefinitions.Ability.fields.ability];
-    const timestamp = splitLine[logDefinitions.Ability.fields.timestamp];
+    const sourceId = splitLine[logDefinitions.AbilityFull.fields.sourceId];
+    const targetId = splitLine[logDefinitions.AbilityFull.fields.targetId];
+    const buffName = splitLine[logDefinitions.AbilityFull.fields.ability];
+    const timestamp = splitLine[logDefinitions.AbilityFull.fields.timestamp];
     if (
       sourceId === undefined || targetId === undefined || buffName === undefined ||
       timestamp === undefined

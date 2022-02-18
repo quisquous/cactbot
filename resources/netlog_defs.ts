@@ -295,9 +295,9 @@ const logDefinitions = {
     },
     canAnonymize: true,
   },
-  Ability: {
+  AbilityFull: {
     type: '21',
-    name: 'Ability',
+    name: 'AbilityFull',
     messageType: 'ActionEffect',
     fields: {
       type: 0,
@@ -339,6 +339,26 @@ const logDefinitions = {
     },
     optionalFields: [6],
     firstUnknownField: 44,
+    canAnonymize: true,
+  },
+  Ability: {
+    type: '21',
+    name: 'Ability',
+    messageType: 'ActionEffect',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      sourceId: 2,
+      source: 3,
+      id: 4,
+      ability: 5,
+      targetId: 6,
+      target: 7,
+    },
+    playerIds: {
+      2: 3,
+      6: 7,
+    },
     canAnonymize: true,
   },
   NetworkAOEAbility: {

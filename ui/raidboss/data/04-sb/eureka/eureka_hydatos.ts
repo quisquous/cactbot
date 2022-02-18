@@ -130,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'BA West Side',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
@@ -142,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'BA East Side',
-      type: 'Ability',
+      type: 'AbilityFull',
       netRegex: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
       netRegexDe: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
       netRegexFr: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
