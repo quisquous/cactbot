@@ -153,12 +153,14 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Marker: ${player1}, ${player2}',
             fr: 'Marques sur : ${player1}, ${player2}',
             ja: 'マーカー: ${player1}, ${player2}',
+            ko: '징: ${player1}, ${player2}',
           },
           avariceOnYou: {
             en: 'Avarice on YOU',
             de: 'Marker auf DIR',
             fr: 'Marque sur VOUS',
             ja: 'マーカーついた',
+            ko: '내가 징 대상자',
           },
           unknown: Outputs.unknown,
         };
