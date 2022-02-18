@@ -153,16 +153,7 @@ export default class NetRegexes {
    */
   static ability(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
     return parseHelper(params, 'ability', {
-      ...defaultParams('Ability', [
-        'type',
-        'timestamp',
-        'sourceId',
-        'source',
-        'id',
-        'ability',
-        'targetId',
-        'target',
-      ]),
+      ...defaultParams('Ability'),
       // Override type
       0: { field: 'type', value: '2[12]' },
     });
@@ -171,13 +162,11 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
+   *
+   * @deprecated Use `ability` instead
    */
   static abilityFull(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
-    return parseHelper(params, 'abilityFull', {
-      ...defaultParams('Ability'),
-      // Override type
-      0: { field: 'type', value: '2[12]' },
-    });
+    return this.ability(params);
   }
 
   /**
