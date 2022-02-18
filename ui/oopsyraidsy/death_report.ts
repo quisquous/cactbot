@@ -103,7 +103,8 @@ export class DeathReport {
         const ability = processAbilityLine(event.splitLine);
         if (ability.isAttack && ability.amount > 0) {
           const abilityName = event.splitLine[logDefinitions.AbilityFull.fields.ability] ?? '???';
-          const currentHp = event.splitLine[logDefinitions.AbilityFull.fields.targetCurrentHp] ?? '???';
+          const currentHp = event.splitLine[logDefinitions.AbilityFull.fields.targetCurrentHp] ??
+            '???';
           const text = `${abilityName} (${ability.amount}/${currentHp})`;
           return {
             type: 'death',
