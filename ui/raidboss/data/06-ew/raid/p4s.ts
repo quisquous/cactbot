@@ -1156,9 +1156,11 @@ const triggerSet: TriggerSet<Data> = {
           },
           blueTetherDir: {
             en: 'Blue Tether (${dir})',
+            de: 'Blaue Verbindung (${dir})',
           },
           purpleTetherDir: {
             en: 'Purple Tether (${dir})',
+            de: 'Lilane Verbindung (${dir})',
           },
           dirN: Outputs.dirN,
           dirNE: Outputs.dirNE,
