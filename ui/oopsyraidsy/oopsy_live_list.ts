@@ -351,7 +351,9 @@ export class OopsyLiveList implements MistakeObserver {
 
       div.appendChild(msg);
       window.setTimeout(() => {
-        document.body.removeChild(msg);
+        // oopsy live list may have been hidden/destroyed before the timeout happens.
+        if (msg.parentNode)
+          div.removeChild(msg);
       }, 1000);
     });
     this.items.push(div);
