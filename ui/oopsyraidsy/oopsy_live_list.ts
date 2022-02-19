@@ -83,6 +83,7 @@ export class DeathReportLive {
   public hide(): void {
     while (this.reportElem.lastChild)
       this.reportElem.removeChild(this.reportElem.lastChild);
+    this.cancelQueue();
   }
 
   private cancelQueue(): void {
