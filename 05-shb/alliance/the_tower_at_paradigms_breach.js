@@ -378,6 +378,11 @@ Options.Triggers.push({
             id: 'Paradigm Hansel/Gretel Bloody Sweep',
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+            netRegexDe: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hänsel', 'Gretel'] }),
+            netRegexFr: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+            netRegexJa: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['ヘンゼル', 'グレーテル'] }),
+            netRegexCn: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['韩塞尔', '格雷特'] }),
+            netRegexKo: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['헨젤', '그레텔'] }),
             durationSeconds: 5,
             suppressSeconds: 1,
             alertText: (_data, matches, output) => {
@@ -415,9 +420,11 @@ Options.Triggers.push({
             outputStrings: {
                 between: {
                     en: 'Move between',
+                    de: 'Laufe zwischen beide Bosse',
                 },
                 opposite: {
                     en: 'Move opposite',
+                    de: 'Laufe entgegengesetzt beider Bosse',
                 },
             },
         },
