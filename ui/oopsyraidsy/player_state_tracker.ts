@@ -202,7 +202,9 @@ export class PlayerStateTracker {
   OnAddedCombatant(line: string, splitLine: string[]): void {
     const petId = splitLine[logDefinitions.AddedCombatant.fields.id];
     const ownerId = splitLine[logDefinitions.AddedCombatant.fields.ownerId];
-    if (petId === undefined || ownerId === undefined || ownerId === '0')
+    if (petId === undefined || ownerId === undefined)
+      return;
+    if (ownerId === '0' || ownerId === '0000')
       return;
 
     // Fix any lowercase ids.
