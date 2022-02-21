@@ -1172,7 +1172,6 @@ const triggerSet: TriggerSet<Data> = {
         'The memories of heroes past live on again': 'L\'égide des héros vaillants vous a ressuscité',
         'The Proto Ozma Containment Unit': 'l\'enceinte de confinement de Proto-Ozma',
         'The Shin-Zantetsuken Containment Unit': 'l\'enceinte de confinement de Shin-Zantetsuken',
-        'will be sealed off': 'Fermeture d(?:e|u|es) .*? dans',
       },
       'replaceText': {
         '\\?': ' ?',
