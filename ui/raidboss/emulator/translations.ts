@@ -39,21 +39,21 @@ const emulatorButtons: Translation = {
   '.loadNetworkLogButton': {
     en: 'Load Network Log',
     de: 'Lade Network Log',
-    fr: 'Charger Network Log',
+    fr: 'Charger le Network Log',
     ja: 'ネットワークログを読み込む',
     cn: '加载网络日志',
   },
   '.exportDBButton': {
     en: 'Export DB',
     de: 'DB exportieren',
-    fr: 'Export DB',
+    fr: 'Exporter DB',
     ja: 'DBをエクスポート',
     cn: '导出数据库',
   },
   '.importDBButton': {
     en: 'Import DB',
     de: 'DB importieren',
-    fr: 'Import DB',
+    fr: 'Importer DB',
     ja: 'DBをインポート',
     cn: '导入数据库',
   },
@@ -80,7 +80,7 @@ const emulatorImportModal: Translation = {
   '.importProgressModal .modal-title': {
     en: 'Log File Import Progress',
     de: 'Fortschritt des Logdatei Imports',
-    fr: 'Import du fichier log en cours',
+    fr: 'Progression de l\'importation du fichier journal',
     ja: 'ログファイルのインポート進捗',
     cn: '日志文件导入进度',
   },
@@ -149,8 +149,7 @@ const emulatorDeleteModal: Translation = {
   '.deleteDBModal .modal-body': {
     en: '<p>You are about to delete the encounter database. Are you sure?</p>',
     de: '<p>Du bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
-    fr:
-      '<p>Vous êtes sur le point de supprimer la base de données du combat. En êtes-vous sûr ?</p>',
+    fr: '<p>Vous êtes sur le point de supprimer la base de données du combat. En êtes-vous sûr ?</p>',
     ja: '<p>エンカウントDBを削除します。よろしいですか？</p>',
     cn: '<p>即将删除战斗数据库。确定删除吗？</p>',
   },
@@ -287,6 +286,7 @@ const emulatorDisconnectedModal: Translation = {
   '.disconnectedModal .modal-title': {
     en: 'Currently Disconnected',
     de: 'Momentan nicht vebunden',
+    fr: 'Actuellement déconnecté',
     ja: '切断されています',
     cn: '已断开连接',
   },
@@ -345,7 +345,7 @@ const emulatorLabels: Translation = {
   ' label[for=hideCollector]': {
     en: 'Hide Collectors',
     de: 'Verstecke "Sammel" Einträge',
-    fr: 'Masquer les entrées "Collecté"',
+    fr: 'Masquer les entrées collectées',
     ja: '無出力トリガーを隠す',
     cn: '隐藏收集器',
   },
