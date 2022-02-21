@@ -37,7 +37,7 @@ const mathOutputStrings = {
   stayOut: {
     en: 'Stay out',
     de: 'Draußen stehen',
-    fr: 'Restez dehors',
+    fr: 'Restez à l\'extérieur',
     ja: '入らない',
     cn: '远离',
     ko: '바깥에 있기',
@@ -45,7 +45,7 @@ const mathOutputStrings = {
   standIn1: {
     en: 'Stand in 1',
     de: 'In 1 stehen',
-    fr: 'Allez sur le 1',
+    fr: 'Placez-vous sur le 1',
     ja: '１を踏む',
     cn: '站在 1',
     ko: '답: 1',
@@ -53,7 +53,7 @@ const mathOutputStrings = {
   standIn2: {
     en: 'Stand in 2',
     de: 'In 2 stehen',
-    fr: 'Allez sur le 2',
+    fr: 'Placez-vous sur le 2',
     ja: '２を踏む',
     cn: '站在 2',
     ko: '답: 2',
@@ -61,7 +61,7 @@ const mathOutputStrings = {
   standIn3: {
     en: 'Stand in 3',
     de: 'In 3 stehen',
-    fr: 'Allez sur le 3',
+    fr: 'Placez-vous sur le 3',
     ja: '３を踏む',
     cn: '站在 3',
     ko: '답: 3',
@@ -69,7 +69,7 @@ const mathOutputStrings = {
   standIn4: {
     en: 'Stand in 4',
     de: 'In 4 stehen',
-    fr: 'Allez sur le 4',
+    fr: 'Placez-vous sur le 4',
     ja: '４を踏む',
     cn: '站在 4',
     ko: '답: 4',
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Look for Tsunami',
           de: 'Auf Krug achten',
-          fr: 'Attention Tsunami',
+          fr: 'Repérez le Tsunami',
           ja: '水瓶が向いてる方向から離れる',
           cn: '离开水瓶口方向',
           ko: '대해일 확인',
@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Look for Tsunami',
           de: 'Auf Krug achten',
-          fr: 'Attention Tsunami',
+          fr: 'Repérez le Tsunami',
           ja: '水瓶が向いてる方向から離れる',
           cn: '离开水瓶口方向',
           ko: '대해일 확인',
@@ -158,7 +158,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Look for Tsunami',
           de: 'Auf Krug achten',
-          fr: 'Attention Tsunami',
+          fr: 'Repérez le Tsunami',
           ja: '水瓶が向いてる方向から離れる',
           cn: '离开水瓶口方向',
           ko: '대해일 확인',
@@ -234,7 +234,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stretch Tether Outside',
           de: 'Verbindung nach außen strecken',
-          fr: 'Lien vers l\'exterieur',
+          fr: 'Étirez le lien vers l\'exterieur',
           ja: '線を伸ばして外に向ける',
           cn: '将连线朝外远离人群',
           ko: '줄 바깥으로 늘이기',
@@ -255,7 +255,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stop Clocks',
           de: 'Uhrzeiger nach außen',
-          fr: 'Arrêtez horloge',
+          fr: 'Arrêtez les horloges',
           ja: '針を外に向ける',
           cn: '定时炸弹',
           ko: '시간 폭탄',
@@ -482,7 +482,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move to Positive',
           de: 'Ins Positive laufen',
-          fr: 'Allez sur le plus',
+          fr: 'Allez sur le positif',
           ja: 'プラス（＋）へ',
           cn: '移动到正极',
           ko: '+전하 쪽으로',
@@ -499,7 +499,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move to Negative',
           de: 'Ins Negative laufen',
-          fr: 'Allez sur le moins',
+          fr: 'Allez sur le négatif',
           ja: 'マイナス（－）へ',
           cn: '移动到负极',
           ko: '-전하 쪽으로',
@@ -624,7 +624,7 @@ const triggerSet: TriggerSet<Data> = {
         'Archaeodemon': 'archéodémon',
         'Belias, The Gigas': 'Bélias le Titan',
         'Construct 7': 'Bâtisseur n°7',
-        'Dark Rain': 'Trombe d\'eau',
+        'Dark Rain': 'sphère d\'eau ténébreuse',
         'Echoes from Time\'s Garden': 'Jardin d\'un autre temps',
         'Famfrit, The Darkening Cloud': 'Famfrit le Nuage Ténébreux',
         '(?<! )Gigas': 'serviteur de Bélias',
@@ -635,6 +635,10 @@ const triggerSet: TriggerSet<Data> = {
         'Yiazmat': 'Yiazmat',
       },
       'replaceText': {
+        '\\(close\\)': '(proche)',
+        '\\(combo\\)': '(combo)',
+        '\\(far\\)': '(loin)',
+        '\\(single\\)': '(unique)',
         'Accelerate': 'Aplatir',
         'Annihilation Mode': 'Module Exterminator',
         'Archaeodemon spawn': 'Apparition des Archéodémons',
