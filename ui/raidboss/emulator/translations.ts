@@ -149,8 +149,7 @@ const emulatorDeleteModal: Translation = {
   '.deleteDBModal .modal-body': {
     en: '<p>You are about to delete the encounter database. Are you sure?</p>',
     de: '<p>Du bist kurz davor die Kampfdatenbank zu löschen. Bist du sicher?</p>',
-    fr: 
-      '<p>Vous êtes sur le point de supprimer la base de données du combat. En êtes-vous sûr ?</p>',
+    fr: '<p>Vous êtes sur le point de supprimer la base de données du combat. En êtes-vous sûr ?</p>',
     ja: '<p>エンカウントDBを削除します。よろしいですか？</p>',
     cn: '<p>即将删除战斗数据库。确定删除吗？</p>',
   },
