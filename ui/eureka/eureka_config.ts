@@ -44,8 +44,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Prefer complete names for Skirmishes/Critical Engagements',
         de: 'Bevorzuge komplette Namen für Scharmützel/Kritische Gefechte',
-        fr:
-          'Préférer les noms complet pour les escarmouches/Affrontements Cruciaux dans Bozja/Zadnor',
+        fr: 'Préférer les noms complet pour les Escarmouches/Affrontements Cruciaux dans Bozja/Zadnor',
         ja: 'スカーミッシュ/CEにフールネームを表示する',
         cn: '显示冲突战/紧急遭遇战全名',
         ko: '돌발 교전/비상 교전 줄임말 쓰지 않기',
