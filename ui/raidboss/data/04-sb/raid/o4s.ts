@@ -1205,7 +1205,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Exdeath': 'Exdeath',
+        '(?<! )Exdeath': 'Exdeath',
+        'Neo Exdeath': 'Neo Exdeath',
       },
       'replaceText': {
         '\\(charge\\)': '(Aufladung)',
@@ -1246,7 +1247,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Exdeath': 'Exdeath',
+        '(?<! )Exdeath': 'Exdeath',
+        'Neo Exdeath': 'Néo-Exdeath',
       },
       'replaceText': {
         '\\(colors\\)': '(couleurs)',
