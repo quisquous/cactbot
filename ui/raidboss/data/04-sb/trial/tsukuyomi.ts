@@ -200,8 +200,8 @@ const triggerSet: TriggerSet<Data> = {
         'Tsukuyomi': 'Tsukuyomi',
       },
       'replaceText': {
-        '--Empire/Homeland Adds': '--Adds Impériaux/Domiens--'
-        '--Patriarch/Matriarch Adds--': '--Adds Parâtres/Marâtres--'
+        '--Empire/Homeland Adds': '--Adds Impériaux/Domiens--',
+        '--Patriarch/Matriarch Adds--': '--Adds Parâtres/Marâtres--',
         'Antitwilight': 'Belle-de-nuit',
         'Bright Blade/Dark Blade': 'Lame blafarde/ténébreuse',
         'Concentrativity': 'Kenki concentré',
