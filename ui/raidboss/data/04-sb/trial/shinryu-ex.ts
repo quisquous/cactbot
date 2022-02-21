@@ -746,7 +746,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '--Phase': '--Phase',
-        '--Reiryu Adds--': '--Adds Reiryu--'
+        '--Reiryu Adds--': '--Adds Reiryu--',
         'Aerial Blast': 'Rafale aérienne',
         'Atomic Ray': 'Rayon atomique',
         'Cocoon Markers': 'Marqueurs Cocon',
