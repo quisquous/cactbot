@@ -1129,7 +1129,7 @@ Options.Triggers.push({
         {
             'locale': 'fr',
             'replaceSync': {
-                '7 minutes have elapsed since your last activity..*?': 'Votre personnage est inactif depuis 7 minutes',
+                '7 minutes have elapsed since your last activity.': 'Votre personnage est inactif depuis 7 minutes',
                 'Absolute Virtue': 'Vertu absolue',
                 'Arsenal Centaur': 'Centaure de l\'Arsenal',
                 'Art': 'Art',
@@ -1144,7 +1144,7 @@ Options.Triggers.push({
                 'Ozmashade': 'Ombre d\'Ozma',
                 'Proto Ozma(?! containment)': 'Proto-Ozma',
                 'Raiden': 'Raiden',
-                'Relative Virtue': 'Vertu relative',
+                'Relative Virtue(?! gains)': 'Vertu relative',
                 'Relative Virtue gains the effect of Astral Essence': 'Vertu relative bénéficie de l\'effet.*?Bras de Lumière',
                 'Relative Virtue gains the effect of Umbral Essence': 'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres',
                 'Shadow': 'Ombre de Proto-Ozma',
