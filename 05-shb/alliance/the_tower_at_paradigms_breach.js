@@ -421,10 +421,12 @@ Options.Triggers.push({
                 between: {
                     en: 'Move between',
                     de: 'Laufe zwischen beide Bosse',
+                    fr: 'Allez entre les boss',
                 },
                 opposite: {
                     en: 'Move opposite',
                     de: 'Laufe entgegengesetzt beider Bosse',
+                    fr: 'Allez à l\'opposé des boss',
                 },
             },
         },

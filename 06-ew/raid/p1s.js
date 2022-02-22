@@ -552,7 +552,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Erichthonios': 'Érichthonios',
             },

@@ -720,7 +720,6 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Icicle': 'stalactite',
                 'Left Wing': 'aile gauche',
@@ -732,6 +731,7 @@ Options.Triggers.push({
             },
             'replaceText': {
                 '--Phase': '--Phase',
+                '--Reiryu Adds--': '--Adds Reiryu--',
                 'Aerial Blast': 'Rafale aérienne',
                 'Atomic Ray': 'Rayon atomique',
                 'Cocoon Markers': 'Marqueurs Cocon',

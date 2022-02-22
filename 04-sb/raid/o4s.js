@@ -1164,7 +1164,8 @@ Options.Triggers.push({
         {
             'locale': 'de',
             'replaceSync': {
-                'Exdeath': 'Exdeath',
+                '(?<! )Exdeath': 'Exdeath',
+                'Neo Exdeath': 'Neo Exdeath',
             },
             'replaceText': {
                 '\\(charge\\)': '(Aufladung)',
@@ -1205,7 +1206,8 @@ Options.Triggers.push({
         {
             'locale': 'fr',
             'replaceSync': {
-                'Exdeath': 'Exdeath',
+                '(?<! )Exdeath': 'Exdeath',
+                'Neo Exdeath': 'Néo-Exdeath',
             },
             'replaceText': {
                 '\\(colors\\)': '(couleurs)',

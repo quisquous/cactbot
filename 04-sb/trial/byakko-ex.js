@@ -330,14 +330,15 @@ Options.Triggers.push({
         },
         {
             'locale': 'fr',
-            'missingTranslations': true,
             'replaceSync': {
                 'Byakko': 'Byakko',
                 'Hakutei': 'Hakutei',
                 'Twofold is my wrath, twice-cursed my foes!': 'Ma colère devient double !',
             },
             'replaceText': {
+                '--Hakutei Add--': '--Add Hakutei--',
                 '--leap north--': '--saut au nord--',
+                '--tiger targetable--': '--tigre ciblable--',
                 '--tiger untargetable--': '--tigre non ciblable--',
                 'Answer On High': 'Foudre céleste',
                 'Bombogenesis': 'Bombogénèse',
