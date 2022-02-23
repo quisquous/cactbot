@@ -1,4 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -6,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   orbCount: number;
+  orbs: Map<'Fire' | 'Bio', number>;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -14,6 +16,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       orbCount: 0,
+      orbs: new Map<'Fire' | 'Bio', number>(),
     };
   },
   triggers: [
@@ -34,29 +37,70 @@ const triggerSet: TriggerSet<Data> = {
       // 631B = Transmute Blizzard III
       // 631C = Transmute Thunder III
       // 631D = Transmute Bio III
-      netRegex: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Minduruva', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Rug', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ', capture: false }),
-      // FIXME: if this is `run` then data.orbCount has an off-by-one (one less) count in the emulator.
-      // `run` must happen synchronously before other triggers if the trigger is not asynchronous.
-      // It's possible this is a general raidboss bug as well, but it is untested.
-      preRun: (data) => data.orbCount++,
+      netRegex: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Minduruva' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Rug' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ' }),
+      run: (data, matches) => {
+        const transmuteFire = '629A';
+        const transmuteBio = '631D';
+
+        data.orbCount++;
+
+        // We only expect one of these at once
+        if (matches.id === transmuteFire)
+          data.orbs.set('Fire', data.orbCount);
+        else if (matches.id === transmuteBio)
+          data.orbs.set('Bio', data.orbCount);
+      },
     },
     {
-      id: 'Zot Minduruva Transmute Fire III',
+      id: 'Zot Minduruva Manusya III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '629A', source: 'Minduruva', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '629A', source: 'Rug', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '629A', source: 'Anabella', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '629A', source: 'ラグ', capture: false }),
-      durationSeconds: 13,
-      // These are info so that any Under/Behind from Fire III / Bio III above take precedence.
-      // But, sometimes the run from Bio III -> Transmute Fire III is tight so warn ahead of
-      // time which orb the player needs to run to.
-      infoText: (data, _matches, output) => output.text!({ num: data.orbCount }),
+      // 6291 = Manusya Fire III
+      // 6292 = Manusya Blizzard III
+      // 6293 = Manusya Thunder III
+      // 6294 = Manusya Bio III
+      netRegex: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Minduruva' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Rug' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Anabella' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'ラグ' }),
+      durationSeconds: (data) => {
+        // Based on network log data analysis, the first orb will finish
+        // 8 seconds after this cast started, while the second orb will
+        // finish 12 seconds after this cast started.
+        //
+        // For simplicity, if we have an overlapping mechanic, use a
+        // duration of 12 to keep this alert up long enough to cover all
+        // cases.
+        if (data.orbs.size > 0)
+          return 12;
+      },
+      alertText: (data, matches, output) => {
+        const fire = '6291';
+        const blizzard = '6292';
+        const thunder = '6293';
+        const bio = '6294';
+
+        if (matches.id === blizzard || matches.id === thunder) {
+          if (data.orbs.has('Fire'))
+            return output.fireOrb!({ num: data.orbs.get('Fire') });
+          else if (data.orbs.has('Bio'))
+            return output.bioOrb!({ num: data.orbs.get('Bio') });
+        } else if (matches.id === fire) {
+          if (data.orbs.has('Bio'))
+            return output.fireThenBio!({ num: data.orbs.get('Bio') });
+
+          return output.getUnder!();
+        } else if (matches.id === bio) {
+          if (data.orbs.has('Fire'))
+            return output.bioThenFire!({ num: data.orbs.get('Fire') });
+
+          return output.getBehind!();
+        }
+      },
       outputStrings: {
-        text: {
+        fireOrb: {
           en: 'Under Orb ${num}',
           de: 'Unter den ${num}. Orb',
           fr: 'En dessous l\'orbe ${num}',
@@ -64,19 +108,7 @@ const triggerSet: TriggerSet<Data> = {
           cn: '靠近第${num}个球',
           ko: '${num}번 구슬 밑으로',
         },
-      },
-    },
-    {
-      id: 'Zot Minduruva Transmute Bio III',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '631D', source: 'Minduruva', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '631D', source: 'Rug', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '631D', source: 'Anabella', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '631D', source: 'ラグ', capture: false }),
-      durationSeconds: 13,
-      infoText: (data, _matches, output) => output.text!({ num: data.orbCount }),
-      outputStrings: {
-        text: {
+        bioOrb: {
           en: 'Behind Orb ${num}',
           de: 'Hinter den ${num}. Orb',
           fr: 'Allez derrière l\'orbe ${num}',
@@ -84,6 +116,24 @@ const triggerSet: TriggerSet<Data> = {
           cn: '去第${num}个球的终点方向贴边',
           ko: '${num}번 구슬 뒤로',
         },
+        fireThenBio: {
+          en: 'Get Under => Behind Orb ${num}',
+          de: 'Unter ihn => Hinter den ${num}. Orb',
+          fr: 'En dessous => Allez derrière l\'orbe ${num}',
+          ja: 'ボスに貼り付く=> ${num}番目の玉の後ろへ',
+          cn: '去脚下 => 去第${num}个球的终点方向贴边',
+          ko: '보스 아래로 => ${num}번 구슬 뒤로',
+        },
+        bioThenFire: {
+          en: 'Get Behind => Under Orb ${num}',
+          de: 'Hinter ihn => Unter den ${num}. Orb',
+          fr: 'Passez derrière => En dessous l\'orbe ${num}',
+          ja: '背面へ => ${num}番目の玉へ',
+          cn: '去背后 => 靠近第${num}个球',
+          ko: '보스 뒤로 => ${num}번 구슬 밑으로',
+        },
+        getUnder: Outputs.getUnder,
+        getBehind: Outputs.getBehind,
       },
     },
     {
@@ -94,7 +144,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '629C', source: 'Anabella', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '629C', source: 'ラグ', capture: false }),
       // There's a Dhrupad cast after every transmute sequence.
-      run: (data) => data.orbCount = 0,
+      run: (data) => {
+        data.orbCount = 0;
+        data.orbs = new Map<'Fire' | 'Bio', number>();
+      },
     },
     {
       id: 'Zot Sanduruva Isitva Siddhi',
