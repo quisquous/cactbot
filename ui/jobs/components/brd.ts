@@ -305,12 +305,12 @@ export class BRDComponent extends BaseComponent {
       this.repertoireBox.innerText = '';
       this.repertoireBox.parentNode.classList.add('ballad');
       this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song.ballad');
-      this.songBox.threshold = 3;
+      this.songBox.threshold = 14;
     } else if (jobDetail.songName === 'Paeon') {
       this.repertoireBox.innerText = jobDetail.songProcs.toString();
       this.repertoireBox.parentNode.classList.add('paeon');
       this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song.paeon');
-      this.songBox.threshold = 13;
+      this.songBox.threshold = 3;
     }
 
     if (this.songBox.duration === null)
@@ -326,7 +326,7 @@ export class BRDComponent extends BaseComponent {
       this.soulVoiceBox.innerText = soulGauge;
       this.soulVoiceBox.parentNode.classList.remove('high');
       // TODO: Maybe adjust to 80 for more Blast Arrow?
-      if (jobDetail.soulGauge >= 95)
+      if (jobDetail.soulGauge >= 80)
         this.soulVoiceBox.parentNode.classList.add('high');
     }
 
