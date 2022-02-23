@@ -66,10 +66,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'ラグ' }),
       durationSeconds: (data) => {
+        // Based on network log data analysis, the first orb will finish
+        // 8 seconds after this cast started, while the second orb will
+        // finish 12 seconds after this cast started.
+        //
+        // For simplicity, if we have an overlapping mechanic, use a
+        // duration of 12 to keep this alert up long enough to cover all
+        // cases.
         if (data.orbs.size > 0)
-          return 7.40;
-
-        return 3.70;
+          return 12;
       },
       alertText: (data, matches, output) => {
         const fire = '6291';
