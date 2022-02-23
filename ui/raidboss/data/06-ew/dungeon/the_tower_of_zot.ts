@@ -7,7 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   orbCount: number;
-  orbs: Map<string, number>;
+  orbs: Map<'Fire' | 'Bio', number>;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -16,7 +16,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       orbCount: 0,
-      orbs: new Map<string, number>(),
+      orbs: new Map<'Fire' | 'Bio', number>(),
     };
   },
   triggers: [
@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       // There's a Dhrupad cast after every transmute sequence.
       run: (data) => {
         data.orbCount = 0;
-        data.orbs = new Map<string, number>();
+        data.orbs = new Map<'Fire' | 'Bio', number>();
       },
     },
     {
