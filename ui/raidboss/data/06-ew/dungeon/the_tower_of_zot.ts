@@ -42,12 +42,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ' }),
       run: (data, matches) => {
+        const transmuteFire = '629A';
+        const transmuteBio = '631D';
+
         data.orbCount++;
 
         // We only expect one of these at once
-        if (matches.id === '629A')
+        if (matches.id === transmuteFire)
           data.orbs.set('Fire', data.orbCount);
-        else if (matches.id === '631D')
+        else if (matches.id === transmuteBio)
           data.orbs.set('Bio', data.orbCount);
       },
     },
@@ -69,20 +72,22 @@ const triggerSet: TriggerSet<Data> = {
         return 3.70;
       },
       alertText: (data, matches, output) => {
-        if (matches.id === '6292' || matches.id === '6293') {
-          // Thunder and Blizzard
+        const fire = '6291';
+        const blizzard = '6292';
+        const thunder = '6293';
+        const bio = '6294';
+
+        if (matches.id === blizzard || matches.id === thunder) {
           if (data.orbs.has('Fire'))
             return output.fireOrb!({ num: data.orbs.get('Fire') });
           else if (data.orbs.has('Bio'))
             return output.bioOrb!({ num: data.orbs.get('Bio') });
-        } else if (matches.id === '6291') {
-          // Fire
+        } else if (matches.id === fire) {
           if (data.orbs.has('Bio'))
             return output.fireThenBio!({ num: data.orbs.get('Bio') });
 
           return output.getUnder!();
-        } else if (matches.id === '6294') {
-          // Bio
+        } else if (matches.id === bio) {
           if (data.orbs.has('Fire'))
             return output.bioThenFire!({ num: data.orbs.get('Fire') });
 
