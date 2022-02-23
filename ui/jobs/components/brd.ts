@@ -262,9 +262,8 @@ export class BRDComponent extends BaseComponent {
       case kAbility.MagesBallad:
       case kAbility.ArmysPaeon:
       case kAbility.theWanderersMinuet:
-        // Seem EW BRD's repertoire always tick every 3s after song start
+        // Repertoire always tick every 3s after song start
         // 45s and 0s not included
-        // FIXME: stop timer when song is at last 3s or ended
         this.repertoireTimer.duration = 3;
         break;
     }
@@ -292,7 +291,6 @@ export class BRDComponent extends BaseComponent {
     this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song');
     this.repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
     this.repertoireBox.innerText = '';
-    // TODO: These threshold have not been adjust to fit EW
     if (jobDetail.songName === 'Minuet') {
       this.repertoireBox.innerText = jobDetail.songProcs.toString();
       this.repertoireBox.parentNode.classList.add('minuet');
@@ -319,13 +317,14 @@ export class BRDComponent extends BaseComponent {
     const seconds = jobDetail.songMilliseconds / 1000.0;
     if (!this.songBox.duration || seconds > oldSeconds)
       this.songBox.duration = seconds;
+    if (seconds < 3 && this.repertoireTimer.value !== 0)
+      this.repertoireTimer.duration = 0;
 
     // Soul Voice
     const soulGauge = jobDetail.soulGauge.toString();
     if (soulGauge !== this.soulVoiceBox.innerText) {
       this.soulVoiceBox.innerText = soulGauge;
       this.soulVoiceBox.parentNode.classList.remove('high');
-      // TODO: Maybe adjust to 80 for more Blast Arrow?
       if (jobDetail.soulGauge >= 80)
         this.soulVoiceBox.parentNode.classList.add('high');
     }
