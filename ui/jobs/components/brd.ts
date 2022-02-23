@@ -208,7 +208,6 @@ export class BRDComponent extends BaseComponent {
   songBox: TimerBox;
   repertoireBox: ResourceBox;
   repertoireTimer: TimerBar;
-  repertoireTracker5x: DotTracker;
   soulVoiceBox: ResourceBox;
 
   ethosStacks = 0;
@@ -242,22 +241,7 @@ export class BRDComponent extends BaseComponent {
     });
     this.repertoireTimer.toward = 'right';
     this.repertoireTimer.stylefill = 'fill';
-
-    this.repertoireTracker5x = new DotTracker({ emitter: this.emitter, player: this.player });
-    if (this.is5x) {
-      // Only with-DoT-target you last attacked will trigger bars timer.
-      // So it work not well in multiple targets fight.
-      this.repertoireTracker5x.onTick([
-        EffectId.Stormbite,
-        EffectId.Windbite,
-        EffectId.CausticBite,
-        EffectId.VenomousBite,
-      ], () => {
-        this.repertoireTimer.duration = kDoTTickInterval;
-      });
-    } else {
-      this.repertoireTimer.loop = true;
-    }
+    this.repertoireTimer.loop = true;
 
     this.soulVoiceBox = this.bars.addResourceBox({
       classList: ['brd-color-soulvoice'],
@@ -281,8 +265,7 @@ export class BRDComponent extends BaseComponent {
         // Seem EW BRD's repertoire always tick every 3s after song start
         // 45s and 0s not included
         // FIXME: stop timer when song is at last 3s or ended
-        if (!this.is5x)
-          this.repertoireTimer.duration = 3;
+        this.repertoireTimer.duration = 3;
         break;
     }
   }
@@ -295,18 +278,12 @@ export class BRDComponent extends BaseComponent {
     switch (id) {
       case EffectId.Stormbite:
       case EffectId.Windbite:
-        if (this.is5x)
-          this.stormBiteBox.duration = 30 - 0.5;
-        else
-          this.stormBiteBox.duration = 45 - 0.5;
+        this.stormBiteBox.duration = 45 - 0.5;
         break;
 
       case EffectId.CausticBite:
       case EffectId.VenomousBite:
-        if (this.is5x)
-          this.causticBiteBox.duration = 30 - 0.5;
-        else
-          this.causticBiteBox.duration = 45 - 0.5;
+        this.causticBiteBox.duration = 45 - 0.5;
         break;
     }
   }
@@ -369,10 +346,7 @@ export class BRDComponent extends BaseComponent {
   override onYouGainEffect(id: string): void {
     switch (id) {
       case EffectId.StraightShotReady:
-        if (this.is5x)
-          this.straightShotProc.duration = 10;
-        else
-          this.straightShotProc.duration = 30;
+        this.straightShotProc.duration = 30;
         break;
       // Bard is complicated
       // Paeon -> Minuet/Ballad -> muse -> muse ends
