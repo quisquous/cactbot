@@ -209,6 +209,9 @@ export class BRDComponent extends BaseComponent {
   repertoireBox: ResourceBox;
   repertoireTimer: TimerBar;
   soulVoiceBox: ResourceBox;
+  wanderersCoda: HTMLDivElement;
+  magesCoda: HTMLDivElement;
+  armysCoda: HTMLDivElement;
 
   ethosStacks = 0;
 
@@ -237,6 +240,28 @@ export class BRDComponent extends BaseComponent {
     this.repertoireTimer.toward = 'right';
     this.repertoireTimer.stylefill = 'fill';
     this.repertoireTimer.loop = true;
+
+    // Coda
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'brd-stacks';
+    stacksContainer.classList.add('stacks');
+    const codaContainer = document.createElement('div');
+    codaContainer.id = 'brd-stacks-coda';
+    stacksContainer.appendChild(codaContainer);
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
+
+    this.magesCoda = document.createElement('div');
+    this.armysCoda = document.createElement('div');
+    this.wanderersCoda = document.createElement('div');
+
+    this.magesCoda.id = 'brd-stacks-magescoda';
+    this.armysCoda.id = 'brd-stacks-armyscoda';
+    this.wanderersCoda.id = 'brd-stacks-wandererscoda';
+    [
+      this.magesCoda,
+      this.armysCoda,
+      this.wanderersCoda
+    ].forEach((e) => codaContainer.appendChild(e));
 
     this.soulVoiceBox = this.bars.addResourceBox({
       classList: ['brd-color-soulvoice'],
@@ -286,6 +311,7 @@ export class BRDComponent extends BaseComponent {
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['BRD']): void {
+    // song
     this.songBox.fg = computeBackgroundColorFrom(this.songBox, 'brd-color-song');
     this.repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
     this.repertoireBox.innerText = '';
@@ -317,6 +343,11 @@ export class BRDComponent extends BaseComponent {
       this.songBox.duration = seconds;
     if (seconds < 3 && this.repertoireTimer.value !== 0)
       this.repertoireTimer.duration = 0;
+
+    // coda
+    this.magesCoda.classList.toggle('active', jobDetail.coda.includes('Ballad'));
+    this.armysCoda.classList.toggle('active', jobDetail.coda.includes('Paeon'));
+    this.wanderersCoda.classList.toggle('active', jobDetail.coda.includes('Minuet'));
 
     // Soul Voice
     const soulGauge = jobDetail.soulGauge.toString();

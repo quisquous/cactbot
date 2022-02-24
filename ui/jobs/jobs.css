@@ -395,6 +395,18 @@ div.justbuffs div#procs-container {
   background-color: rgb(237, 180, 180);
 }
 
+#brd-stacks-magescoda.active {
+  background-color: rgb(143, 90, 143);
+}
+
+#brd-stacks-armyscoda.active {
+  background-color: rgb(207, 205, 52);
+}
+
+#brd-stacks-wandererscoda.active {
+  background-color: rgb(100, 150, 100);
+}
+
 #mch-stacks-wildfire > div.active {
   background-color: rgb(250, 0, 0);
 }
