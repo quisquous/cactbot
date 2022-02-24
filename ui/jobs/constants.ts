@@ -213,6 +213,7 @@ export const kAbility = {
   ArmysPaeon: '74',
   theWanderersMinuet: 'DE7',
   EmpyrealArrow: 'DE6',
+  RadiantFinale: '64B9',
   // MCH
   SplitShot: 'B32',
   SlugShot: 'B34',

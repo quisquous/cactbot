@@ -20,6 +20,7 @@ import offguardImage from '../../resources/ffxiv/status/offguard.png';
 import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png';
 import physicalImage from '../../resources/ffxiv/status/physical.png';
 import potionImage from '../../resources/ffxiv/status/potion.png';
+import finaleImage from '../../resources/ffxiv/status/radiant-finale.png';
 import searingLightImage from '../../resources/ffxiv/status/searing-light.png';
 import spearImage from '../../resources/ffxiv/status/spear.png';
 import spireImage from '../../resources/ffxiv/status/spire.png';
@@ -508,6 +509,19 @@ export class BuffTracker {
         borderColor: '#D6371E',
         sortKey: 7,
         cooldown: 120,
+      },
+      finale: {
+        cooldownAbility: [kAbility.RadiantFinale],
+        gainEffect: [EffectId.RadiantFinale],
+        loseEffect: [EffectId.RadiantFinale],
+        useEffectDuration: true,
+        durationSeconds: 15,
+        partyOnly: true,
+        icon: finaleImage,
+        // Yellow.
+        borderColor: '#ddd044',
+        sortKey: 7,
+        cooldown: 110,
       },
       chain: {
         cooldownAbility: [kAbility.ChainStratagem],
