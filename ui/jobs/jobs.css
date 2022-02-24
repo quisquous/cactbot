@@ -963,6 +963,10 @@ div.justbuffs div#procs-container {
   background-color: rgb(72, 117, 202);
 }
 
+.brd-color-bite {
+  background-color: rgb(150, 30, 90);
+}
+
 .brd-color-straightshotready {
   background-color: rgb(240, 130, 80);
 }
@@ -993,6 +997,10 @@ div.justbuffs div#procs-container {
 
 .brd-color-soulvoice.high {
   background-color: rgb(250, 100, 0);
+}
+
+.brd-color-empyreal {
+  background-color: rgb(80, 200, 250);
 }
 
 /* MCH */

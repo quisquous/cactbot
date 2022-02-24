@@ -203,8 +203,8 @@ export class BRD5xComponent extends BaseComponent {
 
 export class BRDComponent extends BaseComponent {
   straightShotProc: TimerBox;
-  causticBiteBox: TimerBox;
-  stormBiteBox: TimerBox;
+  biteBox: TimerBox;
+  empyrealBox: TimerBox;
   songBox: TimerBox;
   repertoireBox: ResourceBox;
   repertoireTimer: TimerBar;
@@ -216,14 +216,9 @@ export class BRDComponent extends BaseComponent {
     super(o);
 
     // DoT
-    this.causticBiteBox = this.bars.addProcBox({
-      id: 'brd-procs-causticbite',
-      fgColor: 'brd-color-causticbite',
-      notifyWhenExpired: true,
-    });
-    this.stormBiteBox = this.bars.addProcBox({
-      id: 'brd-procs-stormbite',
-      fgColor: 'brd-color-stormbite',
+    this.biteBox = this.bars.addProcBox({
+      id: 'brd-procs-bite',
+      fgColor: 'brd-color-bite',
       notifyWhenExpired: true,
     });
 
@@ -247,6 +242,11 @@ export class BRDComponent extends BaseComponent {
       classList: ['brd-color-soulvoice'],
     });
 
+    this.empyrealBox = this.bars.addProcBox({
+      id: 'brd-procs-empyreal',
+      fgColor: 'brd-color-empyreal',
+    });
+
     this.straightShotProc = this.bars.addProcBox({
       id: 'brd-procs-straightshotready',
       fgColor: 'brd-color-straightshotready',
@@ -266,23 +266,21 @@ export class BRDComponent extends BaseComponent {
         // 45s and 0s not included
         this.repertoireTimer.duration = 3;
         break;
+      case kAbility.EmpyrealArrow:
+        this.empyrealBox.duration = 15;
+        break;
     }
   }
 
   override onMobGainsEffectFromYou(id: string): void {
-    // Iron jaws just refreshes these effects by gain once more,
-    // so it doesn't need to be handled separately.
     // Log line of getting DoT comes a little late after DoT appear on target,
     // so -0.5s
     switch (id) {
       case EffectId.Stormbite:
       case EffectId.Windbite:
-        this.stormBiteBox.duration = 45 - 0.5;
-        break;
-
       case EffectId.CausticBite:
       case EffectId.VenomousBite:
-        this.causticBiteBox.duration = 45 - 0.5;
+        this.biteBox.duration = 45 - 0.5;
         break;
     }
   }
@@ -335,11 +333,11 @@ export class BRDComponent extends BaseComponent {
   }
 
   override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
-    this.stormBiteBox.valuescale = gcdSkill;
-    this.stormBiteBox.threshold = gcdSkill * 2;
-    this.causticBiteBox.valuescale = gcdSkill;
-    this.causticBiteBox.threshold = gcdSkill * 2;
+    this.biteBox.valuescale = gcdSkill;
+    this.biteBox.threshold = gcdSkill * 2;
     this.songBox.valuescale = gcdSkill;
+    this.empyrealBox.valuescale = gcdSkill;
+    this.empyrealBox.threshold = gcdSkill;
   }
 
   override onYouGainEffect(id: string): void {
@@ -386,8 +384,7 @@ export class BRDComponent extends BaseComponent {
 
   override reset(): void {
     this.straightShotProc.duration = 0;
-    this.stormBiteBox.duration = 0;
-    this.causticBiteBox.duration = 0;
+    this.biteBox.duration = 0;
     this.repertoireTimer.duration = 0;
     this.ethosStacks = 0;
     this.songBox.duration = 0;
