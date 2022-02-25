@@ -106,7 +106,7 @@ export class RPRComponent extends BaseComponent {
           this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-arcanecircle');
         }, 20000);
         // This block monitors unlock time of Plentiful Harvest.
-        if (this.player.level > 88) {
+        if (!(this.player.level < 88)) {
           this.arcaneCircleBox.duration = 6;
           this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-bloodsowncircle');
           this.tid2 = window.setTimeout(() => {
