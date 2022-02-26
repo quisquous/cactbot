@@ -1199,6 +1199,7 @@ ID | Name | Sample Locations | Consistent meaning?
 0039 | Purple Spread Circle (large) | Ravana N/EX, Shinryu EX | Yes
 003E | Stack Marker (bordered) | o8n/s, Dun Scaith | Yes
 0046 | Green Pinwheel | Dun Scaith boss 1, o5n/s | Yes
+0048 | Stack Marker | Sephirot | Yes
 004B | Acceleration Bomb | Weeping City boss 3, Susano N/EX, o4s | Yes
 004C | Purple Fire Circle (large) | e2n/s | Yes
 0054 | Thunder Tether (orange) | Titania EX | N/A
