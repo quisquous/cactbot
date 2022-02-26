@@ -37,38 +37,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.earthshaker(),
     },
     {
+      // The coordinates for skill are inconsistent and can't be used to
+      // reliably determine the position of the knockback.
       id: 'Sephirot Pillar of Mercy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16EA', source: 'Sephirot' }),
-      alertText: (_data, matches, output) => {
-        // The pillars spawn in slightly randomized positions, typically
-        // either in the west side, center, or east side. The X position
-        // range for the arena is -20 to 20.
-        //
-        // TODO: Sometimes the coordinates for the Pillar of Mercy seem to be
-        // wrong (an xPos of -10 for a central knockback or +12.5 for a west
-        // knockback). It's unclear if this is a bug in the parser or
-        // cactbot.
-        const xPos = parseFloat(matches.x);
-
-        if (xPos < -6)
-          return output.west!();
-        if (xPos > 6)
-          return output.east!();
-
-        return output.center!();
-      },
-      outputStrings: {
-        west: {
-          en: 'Knockback from West',
-        },
-        east: {
-          en: 'Knockback from East',
-        },
-        center: {
-          en: 'Knockback from Center',
-        },
-      },
+      netRegex: NetRegexes.startsUsing({ id: '16EA', source: 'Sephirot', capture: false }),
+      response: Responses.knockback(),
     },
     {
       id: 'Sephirot Storm of Words Revelation',
