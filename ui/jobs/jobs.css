@@ -387,6 +387,14 @@ div.justbuffs div#procs-container {
   background-color: rgb(139, 209, 242);
 }
 
+#rpr-stacks-enshroud > div.lemure {
+  background-color: rgb(70, 255, 255);
+}
+
+#rpr-stacks-enshroud > div.void {
+  background-color: rgb(255, 0, 255);
+}
+
 #sam-stacks-getsu.active {
   background-color: rgb(185, 185, 242);
 }
@@ -954,7 +962,7 @@ div.justbuffs div#procs-container {
   background-color: rgb(200, 40, 120);
 }
 
-.rpr-color-rpr-color-bloodsowncircle {
+.rpr-color-bloodsowncircle {
   background-color: rgb(100, 220, 150);
 }
 

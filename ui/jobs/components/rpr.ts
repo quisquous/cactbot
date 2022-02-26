@@ -18,6 +18,8 @@ export class RPRComponent extends BaseComponent {
   soulGauge: ResourceBox;
   shroudGauge: ResourceBox;
   comboTimer: TimerBar;
+  stacksContainer: HTMLDivElement;
+  shroud: HTMLElement[] = [];
   tid1 = 0;
   tid2 = 0;
 
@@ -54,9 +56,23 @@ export class RPRComponent extends BaseComponent {
     });
 
     this.comboTimer = this.bars.addTimerBar({
-      id: 'nin-timers-combo',
+      id: 'rpr-timers-combo',
       fgColor: 'combo-color',
     });
+
+    this.stacksContainer = document.createElement('div');
+    this.stacksContainer.id = 'rpr-stacks';
+    this.stacksContainer.classList.add('stacks', 'hide');
+    this.bars.addJobBarContainer().appendChild(this.stacksContainer);
+    const enshroudContainer = document.createElement('div');
+    enshroudContainer.id = 'rpr-stacks-enshroud';
+    this.stacksContainer.appendChild(enshroudContainer);
+
+    for (let i = 0; i < 5; ++i) {
+      const d = document.createElement('div');
+      enshroudContainer.appendChild(d);
+      this.shroud.push(d);
+    }
 
     this.reset();
   }
@@ -64,7 +80,18 @@ export class RPRComponent extends BaseComponent {
   override onJobDetailUpdate(jobDetail: JobDetail['RPR']): void {
     this.soulGauge.innerText = jobDetail.soul.toString();
     this.shroudGauge.innerText = jobDetail.shroud.toString();
-    // TODO: Enshourd related gauge
+    // Enshroud related gauge
+    this.stacksContainer.classList.toggle('hide', jobDetail.enshroudMilliseconds === 0);
+    for (let i = 0; i < 5; ++i) {
+      this.shroud[i]?.classList.toggle('lemure', jobDetail.lemureShroud > i);
+      if (jobDetail.lemureShroud + jobDetail.voidShroud === 5) {
+        this.shroud[4 - i]?.classList.toggle('void', jobDetail.voidShroud > i);
+      } else {
+        this.shroud[2 - i]?.classList.toggle('void', jobDetail.voidShroud > i);
+        this.shroud[3]?.classList.remove('void');
+        this.shroud[4]?.classList.remove('void');
+      }
+    }
   }
 
   override onMobGainsEffectFromYou(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
@@ -106,7 +133,7 @@ export class RPRComponent extends BaseComponent {
           this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-arcanecircle');
         }, 20000);
         // This block monitors unlock time of Plentiful Harvest.
-        if (this.player.level > 88) {
+        if (!(this.player.level < 88)) {
           this.arcaneCircleBox.duration = 6;
           this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-bloodsowncircle');
           this.tid2 = window.setTimeout(() => {
