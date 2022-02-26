@@ -60,7 +60,6 @@ describe('regex tests', () => {
     assert.equal(matches?.z, '-39.29175');
     assert.equal(matches?.heading, '-3.013695');
     assert.equal(matches?.sequence, '0000B2D4');
-    assert.equal(matches?.targetIndex, '0');
 
     assert.equal(Regexes.ability().source, Regexes.abilityFull().source);
   });
