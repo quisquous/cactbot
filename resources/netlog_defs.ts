@@ -331,7 +331,6 @@ const logDefinitions = {
       z: 42,
       heading: 43,
       sequence: 44,
-      targetIndex: 45,
     },
     playerIds: {
       2: 3,
