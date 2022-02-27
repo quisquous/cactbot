@@ -766,20 +766,20 @@ Ground AOEs that don't hit anybody are considered [NetworkAOEAbility](#line22) l
 
 ```log
 Network Log Line Structure:
-21|[timestamp]|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags]|[damage]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|[?]|[?]|[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[sequence]|[targetIndex]|[targetCount]
+21|[timestamp]|[sourceId]|[source]|[id]|[ability]|[targetId]|[target]|[flags]|[damage]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[?]|[targetCurrentHp]|[targetMaxHp]|[targetCurrentMp]|[targetMaxMp]|[?]|[?]|[targetX]|[targetY]|[targetZ]|[targetHeading]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[sequence]
 
 ACT Log Line Structure:
-[timestamp] ActionEffect 15:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:[?]:[?]:[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[sequence]:[targetIndex]:[targetCount]
+[timestamp] ActionEffect 15:[sourceId]:[source]:[id]:[ability]:[targetId]:[target]:[flags]:[damage]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[?]:[targetCurrentHp]:[targetMaxHp]:[targetCurrentMp]:[targetMaxMp]:[?]:[?]:[targetX]:[targetY]:[targetZ]:[targetHeading]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[sequence]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:2[12]))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<flags>(?:[^|]*))\|(?<damage>(?:[^|]*))\|(?:[^|]*\|){14}(?<targetCurrentHp>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<targetCurrentMp>(?:[^|]*))\|(?<targetMaxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<targetX>(?:[^|]*))\|(?<targetY>(?:[^|]*))\|(?<targetZ>(?:[^|]*))\|(?<targetHeading>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|(?<sequence>(?:[^|]*))\|(?<targetIndex>(?:[^|]*))\|(?<targetCount>(?:[^|]*))\|
+^(?<type>(?:2[12]))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<flags>(?:[^|]*))\|(?<damage>(?:[^|]*))\|(?:[^|]*\|){14}(?<targetCurrentHp>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<targetCurrentMp>(?:[^|]*))\|(?<targetMaxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<targetX>(?:[^|]*))\|(?<targetY>(?:[^|]*))\|(?<targetZ>(?:[^|]*))\|(?<targetHeading>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|(?<sequence>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) (?:ActionEffect|AOEActionEffect) (?<type>(?:15|16)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<id>(?:[^:]*)):(?<ability>(?:(?:[^:]|: )*?)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<flags>(?:[^:]*)):(?<damage>(?:[^:]*))(?::[^:]*){14}:(?<targetCurrentHp>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<targetCurrentMp>(?:[^:]*)):(?<targetMaxMp>(?:[^:]*))(?::[^:]*){2}:(?<targetX>(?:[^:]*)):(?<targetY>(?:[^:]*)):(?<targetZ>(?:[^:]*)):(?<targetHeading>(?:[^:]*)):(?<currentHp>(?:[^:]*)):(?<maxHp>(?:[^:]*)):(?<currentMp>(?:[^:]*)):(?<maxMp>(?:[^:]*))(?::[^:]*){2}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*)):(?<sequence>(?:[^:]*)):(?<targetIndex>(?:[^:]*)):(?<targetCount>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) (?:ActionEffect|AOEActionEffect) (?<type>(?:15|16)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<id>(?:[^:]*)):(?<ability>(?:(?:[^:]|: )*?)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<flags>(?:[^:]*)):(?<damage>(?:[^:]*))(?::[^:]*){14}:(?<targetCurrentHp>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<targetCurrentMp>(?:[^:]*)):(?<targetMaxMp>(?:[^:]*))(?::[^:]*){2}:(?<targetX>(?:[^:]*)):(?<targetY>(?:[^:]*)):(?<targetZ>(?:[^:]*)):(?<targetHeading>(?:[^:]*)):(?<currentHp>(?:[^:]*)):(?<maxHp>(?:[^:]*)):(?<currentMp>(?:[^:]*)):(?<maxMp>(?:[^:]*))(?::[^:]*){2}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*)):(?<sequence>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples

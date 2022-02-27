@@ -19,6 +19,7 @@ export class DNCComponent extends BaseComponent {
   espritGauge: ResourceBox;
   tid1 = 0;
   tid2 = 0;
+  lastTechnicalStepTimestamp?: string;
 
   elapsed = 0;
   flourishEffect: string[] = [];
@@ -119,8 +120,10 @@ export class DNCComponent extends BaseComponent {
       case kAbility.DoubleTechnicalFinish:
       case kAbility.SingleTechnicalFinish: {
         // Avoid multiple call in one TechnicalFinish.
-        if (matches.targetIndex !== '0')
+        // TODO: use targetIndex instead.
+        if (matches.timestamp === this.lastTechnicalStepTimestamp)
           return;
+        this.lastTechnicalStepTimestamp = matches.timestamp;
         this.elapsed = this.technicalStep.elapsed;
         this.technicalStep.duration = 20;
         this.technicalStep.threshold = 1000;
