@@ -38,8 +38,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
             run: (data) => {
-                let _a;
-                data.probeCount = ((_a = data.probeCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.probeCount = (data.probeCount ?? 0) + 1;
                 data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
                 data.myProbe = data.dpsProbe === data.role.startsWith('dps');
             },
@@ -74,8 +73,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0069' }),
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.blueCircle) !== null && _a !== void 0 ? _a : (data.blueCircle = []);
+                data.blueCircle ?? (data.blueCircle = []);
                 data.blueCircle.push(matches.target);
             },
             delaySeconds: 0.3,

@@ -217,8 +217,7 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: tetherIds }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.tethers) !== null && _a !== void 0 ? _a : (data.tethers = {});
+                data.tethers ?? (data.tethers = {});
                 data.tethers[matches.target] = matches.sourceId;
             },
         },

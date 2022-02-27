@@ -25,8 +25,7 @@ Options.Triggers.push({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 return ret.combatants.some((c) => {
-                    let _a;
-                    const currentHPCheck = (_a = data.hpThresholds[data.currentPhase]) !== null && _a !== void 0 ? _a : -1;
+                    const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
                     return c.CurrentHP / c.MaxHP <= currentHPCheck;
                 });
             }),

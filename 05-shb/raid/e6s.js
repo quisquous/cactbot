@@ -52,9 +52,7 @@ Options.Triggers.push({
                 }
                 // we need to filter for the Ifrit with the highest ID
                 // since that one is always the safe spot.
-                const currentHighestCombatant = combatantData.combatants.sort((a, b) => {
- let _a; let _b; return ((_a = a.ID) !== null && _a !== void 0 ? _a : 0) - ((_b = b.ID) !== null && _b !== void 0 ? _b : 0);
-}).pop();
+                const currentHighestCombatant = combatantData.combatants.sort((a, b) => (a.ID ?? 0) - (b.ID ?? 0)).pop();
                 // all variation ranges for all the 9 ball positions for the kicking actors
                 // north      x: 96-104   y: 85-93
                 // northeast  x: 107-115  y: 85-93

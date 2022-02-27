@@ -316,8 +316,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑' }),
             netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.vent) !== null && _a !== void 0 ? _a : (data.vent = []);
+                data.vent ?? (data.vent = []);
                 data.vent.push(matches.source);
             },
         },

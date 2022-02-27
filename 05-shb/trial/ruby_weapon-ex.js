@@ -216,12 +216,11 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
             netRegexKo: NetRegexes.addedCombatantFull({ name: '넬의 환영' }),
             run: (data, matches) => {
-                let _a;
                 // 112,108 (east)
                 // 88,108 (west)
                 // TODO: it's impossible to do anything with this now,
                 // as there's no actor id in the startsUsing line.  T_T
-                (_a = data.ravens) !== null && _a !== void 0 ? _a : (data.ravens = {});
+                data.ravens ?? (data.ravens = {});
                 if (parseFloat(matches.x) < 100)
                     data.ravens.red = matches.id;
                 else
@@ -237,9 +236,8 @@ Options.Triggers.push({
                     return output.text();
             },
             run: (data, matches) => {
-                let _a;
                 // data.colors is the color of the add you are attacking (this debuff is red).
-                (_a = data.colors) !== null && _a !== void 0 ? _a : (data.colors = {});
+                data.colors ?? (data.colors = {});
                 data.colors[matches.target] = 'blue';
             },
             outputStrings: {
@@ -262,9 +260,8 @@ Options.Triggers.push({
                     return output.text();
             },
             run: (data, matches) => {
-                let _a;
                 // data.colors is the color of the add you are attacking (this debuff is blue).
-                (_a = data.colors) !== null && _a !== void 0 ? _a : (data.colors = {});
+                data.colors ?? (data.colors = {});
                 data.colors[matches.target] = 'red';
             },
             outputStrings: {
@@ -295,11 +292,10 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4AFF' }),
             netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4AFF' }),
             condition: (data, matches) => {
-                let _a; let _b;
                 if (data.role !== 'healer' && data.role !== 'tank')
                     return false;
-                const myColor = (_a = data.colors) === null || _a === void 0 ? void 0 : _a[data.me];
-                if (myColor && myColor === ((_b = data.colors) === null || _b === void 0 ? void 0 : _b[matches.target]))
+                const myColor = data.colors?.[data.me];
+                if (myColor && myColor === data.colors?.[matches.target])
                     return true;
                 return data.me === matches.target;
             },
@@ -325,9 +321,8 @@ Options.Triggers.push({
             // Blind to Grief: 8A1
             netRegex: NetRegexes.gainsEffect({ effectId: ['8A0', '8A1'] }),
             run: (data, matches) => {
-                let _a;
                 const isBlue = matches.effectId.toUpperCase() === '8A1';
-                (_a = data.colorToImageId) !== null && _a !== void 0 ? _a : (data.colorToImageId = {});
+                data.colorToImageId ?? (data.colorToImageId = {});
                 data.colorToImageId[isBlue ? 'blue' : 'red'] = matches.targetId;
             },
         },
@@ -343,8 +338,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: ['4EB0', '4EB1'] }),
             netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: ['4EB0', '4EB1'] }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.imageIdToAction) !== null && _a !== void 0 ? _a : (data.imageIdToAction = {});
+                data.imageIdToAction ?? (data.imageIdToAction = {});
                 data.imageIdToAction[matches.sourceId] = matches.id;
             },
         },
@@ -451,8 +445,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AFC', capture: false }),
             netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
             preRun: (data) => {
-                let _a;
-                (_a = data.ravens) !== null && _a !== void 0 ? _a : (data.ravens = {});
+                data.ravens ?? (data.ravens = {});
                 const tmp = data.ravens.red;
                 data.ravens.red = data.ravens.blue;
                 data.ravens.blue = tmp;
@@ -460,11 +453,10 @@ Options.Triggers.push({
             // This gets cast twice (maybe once for each add)?
             suppressSeconds: 1,
             infoText: (data, _matches, output) => {
-                let _a;
                 // TODO: it'd be nice to call out which raven was alive?
                 if (data.ravenDead)
                     return;
-                const color = (_a = data.colors) === null || _a === void 0 ? void 0 : _a[data.me];
+                const color = data.colors?.[data.me];
                 if (!color)
                     return;
                 if (color === 'red')

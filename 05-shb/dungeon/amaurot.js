@@ -7,9 +7,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0039' }),
             condition: Conditions.targetIsYou(),
-            preRun: (data) => {
- let _a; return data.meteor = ((_a = data.meteor) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.meteor = (data.meteor ?? 0) + 1,
             infoText: (data, _matches, output) => {
                 if (data.meteor === 1)
                     return output.dropMeteorWest();

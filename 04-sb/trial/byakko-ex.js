@@ -123,8 +123,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
             run: (data) => {
-                let _a;
-                data.roarCount = ((_a = data.roarCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.roarCount = (data.roarCount ?? 0) + 1;
             },
         },
         {
@@ -254,8 +253,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
             run: (data) => {
-                let _a;
-                data.stakeCount = ((_a = data.stakeCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.stakeCount = (data.stakeCount ?? 0) + 1;
             },
         },
         {

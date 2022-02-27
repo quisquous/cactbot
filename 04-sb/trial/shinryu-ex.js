@@ -623,14 +623,12 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0028' }),
             condition: (data, matches) => {
-                let _a;
-                (_a = data.shakerTargets) !== null && _a !== void 0 ? _a : (data.shakerTargets = []);
+                data.shakerTargets ?? (data.shakerTargets = []);
                 data.shakerTargets.push(matches.target);
                 return data.shakerTargets.length === 2;
             },
             alarmText: (data, _matches, output) => {
-                let _a;
-                if ((_a = data.shakerTargets) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+                if (data.shakerTargets?.includes(data.me))
                     return output.earthshakerOnYou();
             },
             alertText: (data, _matches, output) => {

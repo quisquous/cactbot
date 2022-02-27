@@ -154,8 +154,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '005D' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.anguish) !== null && _a !== void 0 ? _a : (data.anguish = []);
+                data.anguish ?? (data.anguish = []);
                 data.anguish.push(matches.target);
             },
         },

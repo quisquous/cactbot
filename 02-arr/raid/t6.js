@@ -28,11 +28,10 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: '0012' }),
             run: (data, matches) => {
-                let _a; let _b; let _c;
-                let _d; let _e; let _f; let _g;
-                (_a = data.thornMap) !== null && _a !== void 0 ? _a : (data.thornMap = {});
-                ((_b = (_d = data.thornMap)[_e = matches.source]) !== null && _b !== void 0 ? _b : (_d[_e] = [])).push(matches.target);
-                ((_c = (_f = data.thornMap)[_g = matches.target]) !== null && _c !== void 0 ? _c : (_f[_g] = [])).push(matches.source);
+                let _a; let _b; let _c; let _d;
+                data.thornMap ?? (data.thornMap = {});
+                ((_a = data.thornMap)[_b = matches.source] ?? (_a[_b] = [])).push(matches.target);
+                ((_c = data.thornMap)[_d = matches.target] ?? (_c[_d] = [])).push(matches.source);
             },
         },
         {
@@ -46,8 +45,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
             condition: Conditions.targetIsYou(),
             infoText: (data, _matches, output) => {
-                let _a; let _b;
-                const partners = (_b = (_a = data.thornMap) === null || _a === void 0 ? void 0 : _a[data.me]) !== null && _b !== void 0 ? _b : [];
+                const partners = data.thornMap?.[data.me] ?? [];
                 if (partners.length === 0)
                     return output.thornsOnYou();
                 if (partners.length === 1)

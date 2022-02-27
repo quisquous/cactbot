@@ -101,9 +101,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '2408', source: '艾克斯迪司', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2408', source: '엑스데스', capture: false }),
             condition: (data) => {
-                let _a;
                 // Without a condition, this notifies on the first one, where it's meaningless.
-                data.battleCount = ((_a = data.battleCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.battleCount = (data.battleCount ?? 0) + 1;
                 return data.battleCount > 1;
             },
             delaySeconds: 6,

@@ -205,7 +205,6 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
             run: (data, matches) => {
-                let _a;
                 const limitCutNumberMap = {
                     '004F': 1,
                     '0050': 2,
@@ -219,7 +218,7 @@ Options.Triggers.push({
                 const limitCutNumber = limitCutNumberMap[matches.id];
                 if (!limitCutNumber)
                     return;
-                (_a = data.limitCutMap) !== null && _a !== void 0 ? _a : (data.limitCutMap = {});
+                data.limitCutMap ?? (data.limitCutMap = {});
                 data.limitCutMap[limitCutNumber] = matches.target;
                 if (matches.target === data.me) {
                     data.limitCutNumber = limitCutNumber;
@@ -243,9 +242,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
             condition: Conditions.targetIsYou(),
-            durationSeconds: (data) => {
- let _a; return (_a = data.limitCutDelay) !== null && _a !== void 0 ? _a : 0;
-},
+            durationSeconds: (data) => data.limitCutDelay ?? 0,
             infoText: (data, _matches, output) => output.text({ num: data.limitCutNumber }),
             outputStrings: {
                 text: {
@@ -263,9 +260,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
             condition: Conditions.targetIsYou(),
-            delaySeconds: (data) => {
- let _a; return ((_a = data.limitCutDelay) !== null && _a !== void 0 ? _a : 0) - 5;
-},
+            delaySeconds: (data) => (data.limitCutDelay ?? 0) - 5,
             alertText: (data, _matches, output) => {
                 if (!data.limitCutNumber || !data.limitCutMap)
                     return;

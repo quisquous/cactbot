@@ -333,12 +333,8 @@ Options.Triggers.push({
                     data.phaserOutputs = ['out', 'healerStacks', 'sides'];
             },
             durationSeconds: 15,
-            infoText: (data, _matches, output) => {
- let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]()).join(' -> ');
-},
-            run: (data) => {
- let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
-},
+            infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]()).join(' -> '),
+            run: (data) => data.phaserOutputs?.shift(),
             outputStrings: phaserOutputStrings,
         },
         {
@@ -352,8 +348,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
             delaySeconds: 7,
             alertText: (data, _matches, output) => {
-                let _a;
-                const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+                const key = data.phaserOutputs?.shift();
                 if (key)
                     return output[key]();
             },
@@ -370,8 +365,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
             delaySeconds: 12,
             alertText: (data, _matches, output) => {
-                let _a;
-                const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+                const key = data.phaserOutputs?.shift();
                 if (key)
                     return output[key]();
             },
@@ -393,12 +387,8 @@ Options.Triggers.push({
                     data.phaserOutputs = ['sides', 'healerStacks', 'out'];
             },
             durationSeconds: 15,
-            infoText: (data, _matches, output) => {
- let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.map((key) => output[key]()).join(' -> ');
-},
-            run: (data) => {
- let _a; return (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
-},
+            infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]()).join(' -> '),
+            run: (data) => data.phaserOutputs?.shift(),
             outputStrings: phaserOutputStrings,
         },
         {
@@ -412,8 +402,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
             delaySeconds: 8,
             alertText: (data, _matches, output) => {
-                let _a;
-                const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+                const key = data.phaserOutputs?.shift();
                 if (key)
                     return output[key]();
             },
@@ -430,8 +419,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
             delaySeconds: 12,
             alertText: (data, _matches, output) => {
-                let _a;
-                const key = (_a = data.phaserOutputs) === null || _a === void 0 ? void 0 : _a.shift();
+                const key = data.phaserOutputs?.shift();
                 if (key)
                     return output[key]();
             },
@@ -543,9 +531,7 @@ Options.Triggers.push({
                 const output = data.artOfDarknessIdMap[matches.id];
                 return output === 'goRight' || output === 'goLeft';
             },
-            run: (data, matches) => {
- let _a; let _b; let _c; return (_a = data.artOfDarkness) === null || _a === void 0 ? void 0 : _a.push((_c = (_b = data.artOfDarknessIdMap) === null || _b === void 0 ? void 0 : _b[matches.id]) !== null && _c !== void 0 ? _c : 'unknown');
-},
+            run: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
         },
         {
             // Fire the trigger on stack or protean since we want the callout as soon as possible.
@@ -563,17 +549,14 @@ Options.Triggers.push({
                 const output = data.artOfDarknessIdMap[matches.id];
                 return output === 'stackWithPartner' || output === 'protean';
             },
-            preRun: (data, matches) => {
- let _a; let _b; let _c; return (_a = data.artOfDarkness) === null || _a === void 0 ? void 0 : _a.push((_c = (_b = data.artOfDarknessIdMap) === null || _b === void 0 ? void 0 : _b[matches.id]) !== null && _c !== void 0 ? _c : 'unknown');
-},
+            preRun: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
             durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
             alertText: (data, _matches, output) => {
-                let _a;
                 // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
-                const callout = (_a = data.artOfDarkness) === null || _a === void 0 ? void 0 : _a.slice();
+                const callout = data.artOfDarkness?.slice();
                 if (data.finalArtOfDarkness)
-                    callout === null || callout === void 0 ? void 0 : callout.push(data.finalArtOfDarkness);
-                return callout === null || callout === void 0 ? void 0 : callout.map((key) => output[key]()).join(' -> ');
+                    callout?.push(data.finalArtOfDarkness);
+                return callout?.map((key) => output[key]()).join(' -> ');
             },
             run: (data) => delete data.artOfDarkness,
             outputStrings: artOfDarknessOutputStrings,

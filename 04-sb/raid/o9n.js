@@ -146,9 +146,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '003E' }),
             // these stack markers come out in pairs, so collect them.
-            run: (data, matches) => {
- let _a; return ((_a = data.stackMarker) !== null && _a !== void 0 ? _a : (data.stackMarker = [])).push(matches.target);
-},
+            run: (data, matches) => (data.stackMarker ?? (data.stackMarker = [])).push(matches.target),
         },
         {
             id: 'O9N Stack',
@@ -157,8 +155,7 @@ Options.Triggers.push({
             delaySeconds: 0.5,
             suppressSeconds: 1,
             alertText: (data, _matches, output) => {
-                let _a;
-                if ((_a = data.stackMarker) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+                if (data.stackMarker?.includes(data.me))
                     return output.stackOnYou();
                 return output.stackGroups();
             },

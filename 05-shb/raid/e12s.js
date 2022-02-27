@@ -12,8 +12,8 @@ const titanTetherId = '008D';
 const tetherIds = ['008E', '008F', '0090', '0091'];
 const getTetherString = (tethers, output) => {
     // All tethers in E12S are double tethers, plus an optional junction (not in the tether list).
-    const sorted = tethers === null || tethers === void 0 ? void 0 : tethers.sort();
-    const [first, second] = sorted !== null && sorted !== void 0 ? sorted : [];
+    const sorted = tethers?.sort();
+    const [first, second] = sorted ?? [];
     if (!first || !second)
         return;
     const comboStr = first + second;
@@ -233,7 +233,6 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({}),
             condition: (data) => data.isDoorBoss,
             response: (data, matches, output) => {
-                let _a;
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
                     formlessBusterAndSwap: {
@@ -250,7 +249,7 @@ Options.Triggers.push({
                 // Track tankbuster targets, regardless if this is on you or not.
                 // Use this to make more intelligent calls when the cast starts.
                 if (id === '00DA') {
-                    (_a = data.formlessTargets) !== null && _a !== void 0 ? _a : (data.formlessTargets = []);
+                    data.formlessTargets ?? (data.formlessTargets = []);
                     data.formlessTargets.push(matches.target);
                 }
                 // From here on out, any response is for the current player.
@@ -273,7 +272,6 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({}),
             condition: (data) => data.isDoorBoss,
             response: (data, matches, output) => {
-                let _a;
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
                     // The first round has only one blue.
@@ -315,7 +313,7 @@ Options.Triggers.push({
                 };
                 const id = getHeadmarkerId(data, matches);
                 if (id === '00BB') {
-                    (_a = data.weightTargets) !== null && _a !== void 0 ? _a : (data.weightTargets = []);
+                    data.weightTargets ?? (data.weightTargets = []);
                     data.weightTargets.push(matches.target);
                     // Handle double blue titan on 2nd and 3rd iterations.
                     if (data.seenFirstBombs && data.weightTargets.length === 2) {
@@ -362,10 +360,9 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9818' }),
             run: (data, matches) => {
-                let _a;
                 // Collect both sculptures up front, so when we find the tether on the
                 // current player we can look up both of them immediately.
-                (_a = data.statueIds) !== null && _a !== void 0 ? _a : (data.statueIds = []);
+                data.statueIds ?? (data.statueIds = []);
                 data.statueIds.push(parseInt(matches.id, 16));
             },
         },
@@ -389,7 +386,6 @@ Options.Triggers.push({
                 return 8;
             },
             promise: async (data, matches) => {
-                let _a; let _b; let _c; let _d;
                 // Set an initial value here, just in case anything errors.
                 data.statueDir = 'unknown';
                 // Calculate distance to center to determine inner vs outer
@@ -417,29 +413,28 @@ Options.Triggers.push({
                     const y = statue.PosY - centerY;
                     statues.push({
                         dist: Math.hypot(x, y),
-                        hexId: `00000000${(_b = (_a = statue.ID) === null || _a === void 0 ? void 0 : _a.toString(16)) !== null && _b !== void 0 ? _b : ''}`.slice(-8).toUpperCase(),
+                        hexId: `00000000${statue.ID?.toString(16) ?? ''}`.slice(-8).toUpperCase(),
                     });
                 }
                 // Sort so that closest statue (inner) is first
                 statues.sort((a, b) => a.dist - b.dist);
-                if (((_c = statues[0]) === null || _c === void 0 ? void 0 : _c.hexId) === matches.targetId)
+                if (statues[0]?.hexId === matches.targetId)
                     data.statueDir = 'inner';
-                else if (((_d = statues[1]) === null || _d === void 0 ? void 0 : _d.hexId) === matches.targetId)
+                else if (statues[1]?.hexId === matches.targetId)
                     data.statueDir = 'outer';
                 else
                     console.error(`sculpture: missing ${matches.targetId}, ${JSON.stringify(statues)}`);
             },
             infoText: (data, _matches, output) => {
-                let _a; let _b;
                 const numMap = {
                     1: output.laser1(),
                     2: output.laser2(),
                     3: output.laser3(),
                     4: output.laser4(),
                 };
-                const numStr = numMap[(_a = data.statueTetherNumber) !== null && _a !== void 0 ? _a : -1];
+                const numStr = numMap[data.statueTetherNumber ?? -1];
                 if (!numStr) {
-                    console.error(`sculpture: invalid tether number: ${(_b = data.statueTetherNumber) !== null && _b !== void 0 ? _b : '???'}`);
+                    console.error(`sculpture: invalid tether number: ${data.statueTetherNumber ?? '???'}`);
                     return;
                 }
                 if (!data.statueDir) {
@@ -536,7 +531,6 @@ Options.Triggers.push({
             durationSeconds: 3,
             suppressSeconds: 1,
             response: (data, _matches, output) => {
-                let _a;
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
                     laser1: Outputs.num1,
@@ -569,7 +563,7 @@ Options.Triggers.push({
                     },
                 };
                 // Start one ahead, so that it calls out #2 after #1 has finished.
-                data.statueLaserCount = ((_a = data.statueLaserCount) !== null && _a !== void 0 ? _a : 1) + 1;
+                data.statueLaserCount = (data.statueLaserCount ?? 1) + 1;
                 const numMap = {
                     1: output.laser1(),
                     2: output.laser2(),
@@ -757,9 +751,8 @@ Options.Triggers.push({
             netRegex: NetRegexes.tether({ id: shivaTetherId, capture: false }),
             // Call out what the mechanic will be so that folks have time to move.
             preRun: (data) => {
-                let _a;
                 data.junctionSuffix = 'spread';
-                data.junctionCount = ((_a = data.junctionCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.junctionCount = (data.junctionCount ?? 0) + 1;
             },
             // Add in a slight delay for this big aoe so that trigger is < 10 seconds ahead.
             // Any further than 10 seconds and it's easy to miss reprisal or addle.
@@ -789,9 +782,8 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: titanTetherId, capture: false }),
             preRun: (data) => {
-                let _a;
                 data.junctionSuffix = 'stacks';
-                data.junctionCount = ((_a = data.junctionCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.junctionCount = (data.junctionCount ?? 0) + 1;
             },
             // Add in a slight delay for this big aoe so that trigger is < 10 seconds ahead.
             // Any further than 10 seconds and it's easy to miss reprisal or addle.
@@ -829,8 +821,7 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: tetherIds }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.tethers) !== null && _a !== void 0 ? _a : (data.tethers = []);
+                data.tethers ?? (data.tethers = []);
                 data.tethers.push(matches.id);
             },
         },
@@ -862,9 +853,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: ['4E43', '5893'] }),
             netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: ['4E43', '5893'] }),
             netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: ['4E43', '5893'] }),
-            preRun: (data) => {
- let _a; return data.castCount = ((_a = data.castCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.castCount = (data.castCount ?? 0) + 1,
             // The pattern is cast - cast - release - release - cast - release.
             // #4 (the 2nd release) starts casting just before the second lion fire breath.
             // Delay just a smidgen so that hypothetically you don't jump off your bait spot early.
@@ -919,8 +908,7 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9819' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.smallLions) !== null && _a !== void 0 ? _a : (data.smallLions = []);
+                data.smallLions ?? (data.smallLions = []);
                 data.smallLions.push(matches);
             },
         },
@@ -937,7 +925,6 @@ Options.Triggers.push({
             // Don't collide with reach left/right call.
             delaySeconds: 0.5,
             response: (data, matches, output) => {
-                let _a;
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
                     lionTetherOnYou: {
@@ -979,7 +966,7 @@ Options.Triggers.push({
                 };
                 if (!data.smallLions || data.smallLions.length === 0)
                     return;
-                const lion = (_a = data.smallLions) === null || _a === void 0 ? void 0 : _a.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
+                const lion = data.smallLions?.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
                 if (!lion) {
                     console.error('Unable to locate a valid lion.');
                     return { alertText: output.lionTetherOnYou() };
@@ -1324,20 +1311,16 @@ Options.Triggers.push({
             netRegex: NetRegexes.gainsEffect({ effectId: ['690', '99[68CEF]'] }),
             condition: (data, matches) => data.phase === 'intermediate' && matches.target === data.me,
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.debuffs) !== null && _a !== void 0 ? _a : (data.debuffs = {});
+                data.debuffs ?? (data.debuffs = {});
                 data.debuffs[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
             },
             durationSeconds: 20,
             infoText: (data, _matches, output) => {
-                let _a;
-                const unsortedIds = Object.keys((_a = data.debuffs) !== null && _a !== void 0 ? _a : {});
+                const unsortedIds = Object.keys(data.debuffs ?? {});
                 if (unsortedIds.length !== 3)
                     return;
                 // Sort effect ids descending by duration.
-                const sortedIds = unsortedIds.sort((a, b) => {
- let _a; let _b; let _c; let _d; return ((_b = (_a = data.debuffs) === null || _a === void 0 ? void 0 : _a[b]) !== null && _b !== void 0 ? _b : 0) - ((_d = (_c = data.debuffs) === null || _c === void 0 ? void 0 : _c[a]) !== null && _d !== void 0 ? _d : 0);
-});
+                const sortedIds = unsortedIds.sort((a, b) => (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0));
                 const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
                 const [key0, key1, key2] = keys;
                 if (!key0 || !key1 || !key2)
@@ -1400,8 +1383,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
             condition: (data) => data.phase === 'basic',
             run: (data, matches) => {
-                let _a;
-                (_a = data.eyes) !== null && _a !== void 0 ? _a : (data.eyes = []);
+                data.eyes ?? (data.eyes = []);
                 data.eyes.push(matches.target);
             },
         },
@@ -1413,8 +1395,7 @@ Options.Triggers.push({
             delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
             suppressSeconds: 3,
             alertText: (data, _matches, output) => {
-                let _a;
-                const [player1, player2] = (_a = data.eyes) !== null && _a !== void 0 ? _a : [];
+                const [player1, player2] = data.eyes ?? [];
                 if (player1 !== data.me && player2 !== data.me) {
                     // Call out both player names if you don't have eye
                     return output.lookAwayFromPlayers({
@@ -1499,9 +1480,8 @@ Options.Triggers.push({
             // Collect Sorrow's Hourglass locations
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9823' }),
             run: (data, matches) => {
-                let _a;
                 const id = matches.id.toUpperCase();
-                (_a = data.sorrows) !== null && _a !== void 0 ? _a : (data.sorrows = {});
+                data.sorrows ?? (data.sorrows = {});
                 data.sorrows[id] = matchedPositionToDir(matches);
             },
         },
@@ -1515,8 +1495,7 @@ Options.Triggers.push({
             durationSeconds: 4,
             suppressSeconds: 3,
             infoText: (data, matches, output) => {
-                let _a;
-                const sorrow1 = (_a = data.sorrows) === null || _a === void 0 ? void 0 : _a[matches.sourceId.toUpperCase()];
+                const sorrow1 = data.sorrows?.[matches.sourceId.toUpperCase()];
                 if (sorrow1 === undefined)
                     return;
                 // Calculate opposite side
@@ -1643,8 +1622,7 @@ Options.Triggers.push({
             // In advanced, Aero comes in ~23 and ~31s flavors
             condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
             infoText: (data, matches, output) => {
-                let _a;
-                (_a = data.doubleAero) !== null && _a !== void 0 ? _a : (data.doubleAero = []);
+                data.doubleAero ?? (data.doubleAero = []);
                 data.doubleAero.push(data.ShortName(matches.target));
                 if (data.doubleAero.length !== 2)
                     return;

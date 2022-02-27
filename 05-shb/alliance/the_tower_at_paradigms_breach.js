@@ -126,8 +126,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '00DA' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
+                data.busterTargets ?? (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -331,8 +330,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0060' }),
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.seedTargets) !== null && _a !== void 0 ? _a : (data.seedTargets = []);
+                data.seedTargets ?? (data.seedTargets = []);
                 data.seedTargets.push(matches.target);
             },
             infoText: (data, matches, output) => {
@@ -532,8 +530,7 @@ Options.Triggers.push({
             type: 'StartsUsing',
             netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.deployArmaments) !== null && _a !== void 0 ? _a : (data.deployArmaments = []);
+                data.deployArmaments ?? (data.deployArmaments = []);
                 // Convert the heading into 0=N, 1=E, 2=S, 3=W
                 const direction = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
                 const obj = {
@@ -707,8 +704,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '008B' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.busterTargets) !== null && _a !== void 0 ? _a : (data.busterTargets = []);
+                data.busterTargets ?? (data.busterTargets = []);
                 data.busterTargets.push(matches.target);
             },
         },
@@ -794,13 +790,10 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.tether({ id: '0036', target: '開花シタ神', capture: false }),
             netRegexCn: NetRegexes.tether({ id: '0036', target: '开花的神明', capture: false }),
             netRegexKo: NetRegexes.tether({ id: '0036', target: '꽃피운 신', capture: false }),
-            preRun: (data) => {
- let _a; return data.signalCount = ((_a = data.signalCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.signalCount = (data.signalCount ?? 0) + 1,
             durationSeconds: 5,
             alertText: (data, _matches, output) => {
-                let _a;
-                if (((_a = data.signalCount) !== null && _a !== void 0 ? _a : 0) % 5 === 0)
+                if ((data.signalCount ?? 0) % 5 === 0)
                     return output.text();
             },
             outputStrings: {

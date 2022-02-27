@@ -176,8 +176,7 @@ Options.Triggers.push({
             type: 'Tether',
             netRegex: NetRegexes.tether({ id: '0026' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.ferroTether) !== null && _a !== void 0 ? _a : (data.ferroTether = {});
+                data.ferroTether ?? (data.ferroTether = {});
                 data.ferroTether[matches.source] = matches.target;
                 data.ferroTether[matches.target] = matches.source;
             },
@@ -187,8 +186,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.ferroMarker) !== null && _a !== void 0 ? _a : (data.ferroMarker = {});
+                data.ferroMarker ?? (data.ferroMarker = {});
                 data.ferroMarker[matches.target] = matches.id;
             },
         },
@@ -203,12 +201,11 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: 'F01' }),
             netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'F01' }),
             alertText: (data, matches, output) => {
-                let _a; let _b;
-                (_a = data.ferroTether) !== null && _a !== void 0 ? _a : (data.ferroTether = {});
-                (_b = data.ferroMarker) !== null && _b !== void 0 ? _b : (data.ferroMarker = {});
+                data.ferroTether ?? (data.ferroTether = {});
+                data.ferroMarker ?? (data.ferroMarker = {});
                 const partner = data.ferroTether[data.me];
                 const marker1 = data.ferroMarker[data.me];
-                const marker2 = data.ferroMarker[partner !== null && partner !== void 0 ? partner : ''];
+                const marker2 = data.ferroMarker[partner ?? ''];
                 if (!partner || !marker1 || !marker2)
                     return matches.ability + ' (???)';
                 if (marker1 === marker2)

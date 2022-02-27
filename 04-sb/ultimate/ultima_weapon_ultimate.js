@@ -225,13 +225,11 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1803' }),
             condition: (data, matches) => {
-                let _a;
-                ((_a = data.titanBury) !== null && _a !== void 0 ? _a : (data.titanBury = [])).push(matches);
+                (data.titanBury ?? (data.titanBury = [])).push(matches);
                 return data.titanBury.length === 5;
             },
             alertText: (data, _matches, output) => {
-                let _a; let _b; let _c;
-                const bombs = ((_a = data.titanBury) !== null && _a !== void 0 ? _a : []).map((matches) => {
+                const bombs = (data.titanBury ?? []).map((matches) => {
                     return { x: parseFloat(matches.x), y: parseFloat(matches.y) };
                 });
                 if (bombs.length !== 5) {
@@ -259,8 +257,8 @@ Options.Triggers.push({
                         continue;
                     // Example: dir is 1 (east), party is west, facing west.
                     // We need to check dir 0 (north, aka "right") and dir 2 (south, aka "left").
-                    const numLeft = (_b = numDir[(idx + 1) % 4]) !== null && _b !== void 0 ? _b : -1;
-                    const numRight = (_c = numDir[(idx - 1 + 4) % 4]) !== null && _c !== void 0 ? _c : -1;
+                    const numLeft = numDir[(idx + 1) % 4] ?? -1;
+                    const numRight = numDir[(idx - 1 + 4) % 4] ?? -1;
                     if (numRight === 2 && numLeft === 3)
                         return output.right();
                     if (numRight === 3 && numLeft === 2)
@@ -285,15 +283,13 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
             netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.titanGaols) !== null && _a !== void 0 ? _a : (data.titanGaols = []);
+                data.titanGaols ?? (data.titanGaols = []);
                 data.titanGaols.push(matches.target);
                 if (data.titanGaols.length === 3)
                     data.titanGaols.sort();
             },
             alertText: (data, _matches, output) => {
-                let _a;
-                if (((_a = data.titanGaols) === null || _a === void 0 ? void 0 : _a.length) !== 3)
+                if (data.titanGaols?.length !== 3)
                     return;
                 const idx = data.titanGaols.indexOf(data.me);
                 if (idx < 0)
@@ -302,8 +298,7 @@ Options.Triggers.push({
                 return output.num({ num: idx + 1 });
             },
             infoText: (data, _matches, output) => {
-                let _a;
-                if (((_a = data.titanGaols) === null || _a === void 0 ? void 0 : _a.length) !== 3)
+                if (data.titanGaols?.length !== 3)
                     return;
                 return output.text({
                     player1: data.ShortName(data.titanGaols[0]),

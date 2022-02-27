@@ -205,9 +205,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '2502', source: 'カタストロフィー', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ id: '2502', source: '灾变者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '2502', source: '카타스트로피', capture: false }),
-            preRun: (data) => {
- let _a; return (_a = data.antiCounter) !== null && _a !== void 0 ? _a : (data.antiCounter = 0);
-},
+            preRun: (data) => data.antiCounter ?? (data.antiCounter = 0),
             durationSeconds: (data) => {
                 if (data.antiCounter === 0 && data.levitating)
                     return 3;
@@ -232,8 +230,7 @@ Options.Triggers.push({
                     return output.antilight();
             },
             run: (data) => {
-                let _a;
-                data.antiCounter = ((_a = data.antiCounter) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.antiCounter = (data.antiCounter ?? 0) + 1;
                 data.antiCounter += 1;
             },
             outputStrings: {

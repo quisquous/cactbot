@@ -187,8 +187,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.addedCombatantFull({ name: '炸弹' }),
             netRegexKo: NetRegexes.addedCombatantFull({ name: '폭탄' }),
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.boostBombs) !== null && _a !== void 0 ? _a : (data.boostBombs = []);
+                data.boostBombs ?? (data.boostBombs = []);
                 data.boostBombs.push(bombLocation(matches));
             },
             alertText: (data, _matches, output) => {

@@ -359,9 +359,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '布里欧纳克', id: '51D0', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '브류나크', id: '51D0', capture: false }),
             condition: (data) => !data.helldiver,
-            preRun: (data) => {
- let _a; return data.energyCount = ((_a = data.energyCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.energyCount = (data.energyCount ?? 0) + 1,
             infoText: (data, _matches, output) => {
                 if (data.energyCount === 1)
                     return output.getUnderOrb();
@@ -476,8 +474,7 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '944[3-8]' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.orbs) !== null && _a !== void 0 ? _a : (data.orbs = {});
+                data.orbs ?? (data.orbs = {});
                 data.orbs[matches.id.toUpperCase()] = matches.npcNameId;
             },
         },
@@ -499,12 +496,8 @@ Options.Triggers.push({
             //  7.1: orb tethers appear
             // 10.1: Adrammelech uses Accursed Becoming
             // 17.3: Adrammelech uses orb ability #1.
-            preRun: (data) => {
- let _a; return data.fiendCount = ((_a = data.fiendCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
-            durationSeconds: (data) => {
- let _a; return Object.keys((_a = data.orbs) !== null && _a !== void 0 ? _a : {}).length === 4 ? 23 : 14;
-},
+            preRun: (data) => data.fiendCount = (data.fiendCount ?? 0) + 1,
+            durationSeconds: (data) => Object.keys(data.orbs ?? {}).length === 4 ? 23 : 14,
             suppressSeconds: 20,
             infoText: (data, _matches, output) => {
                 // Let your actor id memes be dreams!
@@ -557,8 +550,7 @@ Options.Triggers.push({
             delaySeconds: 7.2 - 5,
             durationSeconds: 4.5,
             alertText: (data, _matches, output) => {
-                let _a;
-                (_a = data.orbOutput) !== null && _a !== void 0 ? _a : (data.orbOutput = []);
+                data.orbOutput ?? (data.orbOutput = []);
                 const orb = data.orbOutput.shift();
                 if (!orb)
                     return;
@@ -578,8 +570,7 @@ Options.Triggers.push({
             // 2.5 seconds warning, as it's weird if this shows up way before the first orb.
             delaySeconds: 9 - 2.5,
             alertText: (data, _matches, output) => {
-                let _a;
-                (_a = data.orbOutput) !== null && _a !== void 0 ? _a : (data.orbOutput = []);
+                data.orbOutput ?? (data.orbOutput = []);
                 const orb = data.orbOutput.shift();
                 if (!orb)
                     return;
@@ -592,8 +583,7 @@ Options.Triggers.push({
             type: 'AddedCombatant',
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9449' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.warped) !== null && _a !== void 0 ? _a : (data.warped = {});
+                data.warped ?? (data.warped = {});
                 data.warped[matches.id.toUpperCase()] = {
                     x: parseFloat(matches.x),
                     y: parseFloat(matches.y),

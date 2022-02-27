@@ -47,8 +47,7 @@ Options.Triggers.push({
             regex: /Rush \d/,
             beforeSeconds: 5,
             infoText: (data, _matches, output) => {
-                let _a;
-                data.rushCount = ((_a = data.rushCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.rushCount = (data.rushCount ?? 0) + 1;
                 return output.text({ num: data.rushCount });
             },
             outputStrings: {
@@ -174,8 +173,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
             response: Responses.goFrontOrSides(),
             run: (data) => {
-                let _a;
-                (_a = data.firstFrost) !== null && _a !== void 0 ? _a : (data.firstFrost = 'driving');
+                data.firstFrost ?? (data.firstFrost = 'driving');
             },
         },
         {
@@ -394,12 +392,10 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: ['希瓦', '圣龙'], id: ['4D98', '4D79'] }),
             netRegexKo: NetRegexes.startsUsing({ source: ['시바', '성룡'], id: ['4D98', '4D79'] }),
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.akhMornTargets) !== null && _a !== void 0 ? _a : (data.akhMornTargets = []);
+                data.akhMornTargets ?? (data.akhMornTargets = []);
                 data.akhMornTargets.push(matches.target);
             },
             response: (data, matches, output) => {
-                let _a;
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
                     akhMornOnYou: {
@@ -424,7 +420,7 @@ Options.Triggers.push({
                     // other alerts (akh rhai "move" and worm's lament numbers).
                     return { [data.role === 'tank' ? 'infoText' : 'alarmText']: output.akhMornOnYou() };
                 }
-                if (((_a = data.akhMornTargets) === null || _a === void 0 ? void 0 : _a.length) !== 2)
+                if (data.akhMornTargets?.length !== 2)
                     return;
                 if (data.akhMornTargets.includes(data.me))
                     return;
@@ -534,9 +530,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7C', capture: false }),
             netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7C', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7C', capture: false }),
-            run: (data) => {
- let _a; return data.wyrmsLament = ((_a = data.wyrmsLament) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            run: (data) => data.wyrmsLament = (data.wyrmsLament ?? 0) + 1,
         },
         {
             id: 'E8S Wyrmclaw',

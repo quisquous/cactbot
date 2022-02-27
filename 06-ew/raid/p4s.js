@@ -201,9 +201,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69D8', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69D8', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69D8', source: 'ヘスペロス', capture: false }),
-            preRun: (data) => {
- let _a; return data.bloodrakeCounter = ((_a = data.bloodrakeCounter) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.bloodrakeCounter = (data.bloodrakeCounter ?? 0) + 1,
             response: Responses.aoe(),
         },
         {
@@ -213,12 +211,9 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
             netRegexFr: NetRegexes.ability({ id: '69D8', source: 'Hespéros' }),
             netRegexJa: NetRegexes.ability({ id: '69D8', source: 'ヘスペロス' }),
-            condition: (data) => {
- let _a; return ((_a = data.bloodrakeCounter) !== null && _a !== void 0 ? _a : 0) < 3;
-},
+            condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
             suppressSeconds: 1,
             infoText: (data, matches, output) => {
-                let _a; let _b; let _c; let _d; let _e; let _f; let _g;
                 const roles = {
                     'dps': output.dps(),
                     'tank/healer': output.tankHealer(),
@@ -226,26 +221,26 @@ Options.Triggers.push({
                 const roleRaked = data.party.isDPS(matches.target) ? 'dps' : 'tank/healer';
                 const roleOther = data.party.isDPS(matches.target) ? 'tank/healer' : 'dps';
                 // Second bloodrake = Debuffs later
-                if (((_a = data.bloodrakeCounter) !== null && _a !== void 0 ? _a : 0) === 2) {
+                if ((data.bloodrakeCounter ?? 0) === 2) {
                     if (roleRaked === 'dps') {
-                        ((_b = data.debuffRole) !== null && _b !== void 0 ? _b : (data.debuffRole = [])).push('healer');
+                        (data.debuffRole ?? (data.debuffRole = [])).push('healer');
                         data.debuffRole.push('tank');
                     } else {
-                        ((_c = data.debuffRole) !== null && _c !== void 0 ? _c : (data.debuffRole = [])).push(roleOther);
+                        (data.debuffRole ?? (data.debuffRole = [])).push(roleOther);
                     }
                     // May end up needing both tether and debuff
-                    const tetherRole = (_d = data.tetherRole) !== null && _d !== void 0 ? _d : (data.tetherRole = []);
-                    const debuffRole = (_e = data.debuffRole) !== null && _e !== void 0 ? _e : (data.debuffRole = []);
+                    const tetherRole = data.tetherRole ?? (data.tetherRole = []);
+                    const debuffRole = data.debuffRole ?? (data.debuffRole = []);
                     if (tetherRole[0] === debuffRole[0])
                         return output.roleEverything({ role: roles[roleOther] });
                     return output.roleDebuffs({ role: roles[roleOther] });
                 }
                 // First bloodrake = Tethers later
                 if (roleRaked === 'dps') {
-                    ((_f = data.tetherRole) !== null && _f !== void 0 ? _f : (data.tetherRole = [])).push('healer');
+                    (data.tetherRole ?? (data.tetherRole = [])).push('healer');
                     data.tetherRole.push('tank');
                 } else {
-                    ((_g = data.tetherRole) !== null && _g !== void 0 ? _g : (data.tetherRole = [])).push(roleOther);
+                    (data.tetherRole ?? (data.tetherRole = [])).push(roleOther);
                 }
                 return output.roleTethers({ role: roles[roleOther] });
             },
@@ -272,7 +267,6 @@ Options.Triggers.push({
             },
             suppressSeconds: 1,
             response: (data, matches, output) => {
-                let _a; let _b; let _c; let _d; let _e; let _f;
                 // cactbot-builtin-response
                 output.responseOutputStrings = roleOutputStrings;
                 const roles = {
@@ -284,27 +278,27 @@ Options.Triggers.push({
                 // Second Coils = Debuffs later
                 if (data.beloneCoilsTwo) {
                     if (roleTowers === 'dps') {
-                        ((_a = data.debuffRole) !== null && _a !== void 0 ? _a : (data.debuffRole = [])).push('healer');
+                        (data.debuffRole ?? (data.debuffRole = [])).push('healer');
                         data.debuffRole.push('tank');
                     } else {
-                        ((_b = data.debuffRole) !== null && _b !== void 0 ? _b : (data.debuffRole = [])).push('dps');
+                        (data.debuffRole ?? (data.debuffRole = [])).push('dps');
                     }
                     // For second coils, if you are not in the debuff list here you are tower
                     if (!data.debuffRole.includes(data.role))
                         return { ['alertText']: output.roleTowers({ role: roles[roleTowers] }) };
                     // If you have tethers and debuff, you need everything
-                    const tetherRole = (_c = data.tetherRole) !== null && _c !== void 0 ? _c : (data.tetherRole = []);
-                    const debuffRole = (_d = data.debuffRole) !== null && _d !== void 0 ? _d : (data.debuffRole = []);
+                    const tetherRole = data.tetherRole ?? (data.tetherRole = []);
+                    const debuffRole = data.debuffRole ?? (data.debuffRole = []);
                     if (debuffRole[0] === tetherRole[0])
                         return { ['infoText']: output.roleEverything({ role: roles[roleOther] }) };
                     return { ['infoText']: output.roleDebuffs({ role: roles[roleOther] }) };
                 }
                 // First Coils = Tethers later
                 if (roleTowers === 'dps') {
-                    ((_e = data.tetherRole) !== null && _e !== void 0 ? _e : (data.tetherRole = [])).push('healer');
+                    (data.tetherRole ?? (data.tetherRole = [])).push('healer');
                     data.tetherRole.push('tank');
                 } else {
-                    ((_f = data.tetherRole) !== null && _f !== void 0 ? _f : (data.tetherRole = [])).push('dps');
+                    (data.tetherRole ?? (data.tetherRole = [])).push('dps');
                 }
                 // For first coils, there are tower and tethers
                 if (data.tetherRole.includes(data.role))
@@ -319,8 +313,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.gainsEffect({ effectId: ['AF2', 'AF3'], capture: true }),
             condition: Conditions.targetIsYou(),
             infoText: (data, matches, output) => {
-                let _a;
-                const debuffRole = ((_a = data.debuffRole) !== null && _a !== void 0 ? _a : (data.debuffRole = [])).includes(data.role);
+                const debuffRole = (data.debuffRole ?? (data.debuffRole = [])).includes(data.role);
                 if (matches.effectId === 'AF2') {
                     // Call Pass Role Call if not in the debuff role
                     if (!debuffRole)
@@ -352,8 +345,7 @@ Options.Triggers.push({
             // Delay callout until debuffs are out
             delaySeconds: 1.4,
             alertText: (data, _matches, output) => {
-                let _a;
-                const debuffRole = ((_a = data.debuffRole) !== null && _a !== void 0 ? _a : (data.debuffRole = [])).includes(data.role);
+                const debuffRole = (data.debuffRole ?? (data.debuffRole = [])).includes(data.role);
                 if (!data.hasRoleCall && debuffRole)
                     return output.text();
             },
@@ -378,8 +370,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '69ED', source: 'ヘスペロス', capture: false }),
             condition: (data) => !data.ignoreChlamys,
             alertText: (data, _matches, output) => {
-                let _a;
-                const dps = ((_a = data.tetherRole) !== null && _a !== void 0 ? _a : (data.tetherRole = [])).includes('dps');
+                const dps = (data.tetherRole ?? (data.tetherRole = [])).includes('dps');
                 if (dps)
                     return output.roleTethers({ role: output.dps() });
                 if (data.tetherRole.length)
@@ -412,9 +403,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69D7', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69D7', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69D7', source: 'ヘスペロス', capture: false }),
-            preRun: (data) => {
- let _a; return data.pinaxCount = ((_a = data.pinaxCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.pinaxCount = (data.pinaxCount ?? 0) + 1,
             durationSeconds: 6,
             alarmText: (_data, _matches, output) => output.text(),
             outputStrings: {
@@ -435,12 +424,9 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス', capture: false }),
-            preRun: (data) => {
- let _a; return data.pinaxCount = ((_a = data.pinaxCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.pinaxCount = (data.pinaxCount ?? 0) + 1,
             infoText: (data, _matches, output) => {
-                let _a;
-                if (((_a = data.pinaxCount) !== null && _a !== void 0 ? _a : 0) % 2)
+                if ((data.pinaxCount ?? 0) % 2)
                     return output.text();
                 data.wellShiftKnockback = true;
                 return output.shiftWell();
@@ -472,9 +458,8 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ id: '69D6', source: 'Hespéros' }),
             netRegexJa: NetRegexes.startsUsing({ id: '69D6', source: 'ヘスペロス' }),
             delaySeconds: (data, matches) => {
-                let _a;
                 // Delay for for Directional Shift on Even Well/Levinstrike Pinax Count
-                if (((_a = data.pinaxCount) !== null && _a !== void 0 ? _a : 0) % 2)
+                if ((data.pinaxCount ?? 0) % 2)
                     return parseFloat(matches.castTime) - 5;
                 return parseFloat(matches.castTime) - 2.4;
             },
@@ -872,15 +857,12 @@ Options.Triggers.push({
                     return;
                 }
                 // the lowest eight Hesperos IDs are the thorns that tether the boss
-                const sortCombatants = (a, b) => {
- let _a; let _b; return ((_a = a.ID) !== null && _a !== void 0 ? _a : 0) - ((_b = b.ID) !== null && _b !== void 0 ? _b : 0);
-};
+                const sortCombatants = (a, b) => (a.ID ?? 0) - (b.ID ?? 0);
                 const sortedCombatantData = combatantData.combatants.sort(sortCombatants).splice(combatantDataLength - 8, combatantDataLength);
                 if (!sortedCombatantData)
                     throw new UnreachableCode();
                 sortedCombatantData.forEach((combatant) => {
-                    let _a; let _b;
-                    ((_a = data.thornIds) !== null && _a !== void 0 ? _a : (data.thornIds = [])).push((_b = combatant.ID) !== null && _b !== void 0 ? _b : 0);
+                    (data.thornIds ?? (data.thornIds = [])).push(combatant.ID ?? 0);
                 });
             },
         },
@@ -895,8 +877,7 @@ Options.Triggers.push({
             // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
             suppressSeconds: 7,
             infoText: (data, matches, output) => {
-                let _a;
-                const thorn = ((_a = data.thornIds) !== null && _a !== void 0 ? _a : (data.thornIds = [])).indexOf(parseInt(matches.sourceId, 16));
+                const thorn = (data.thornIds ?? (data.thornIds = [])).indexOf(parseInt(matches.sourceId, 16));
                 const thornMap = {
                     4: output.text({ dir1: output.north(), dir2: output.south() }),
                     5: output.text({ dir1: output.north(), dir2: output.south() }),
@@ -981,8 +962,7 @@ Options.Triggers.push({
             // Tethers come out Cardinals (0 seconds), (3s) Other Cardinals
             suppressSeconds: 4,
             infoText: (data, matches, output) => {
-                let _a;
-                const thorn = ((_a = data.thornIds) !== null && _a !== void 0 ? _a : (data.thornIds = [])).indexOf(parseInt(matches.sourceId, 16));
+                const thorn = (data.thornIds ?? (data.thornIds = [])).indexOf(parseInt(matches.sourceId, 16));
                 const thornMap = {
                     0: output.text({ dir1: output.north(), dir2: output.south() }),
                     1: output.text({ dir1: output.north(), dir2: output.south() }),
@@ -1025,11 +1005,10 @@ Options.Triggers.push({
             netRegex: NetRegexes.tether({ id: '00AC' }),
             condition: (data) => data.act === '2',
             alertText: (data, matches, output) => {
-                let _a;
                 if (matches.target !== data.me && matches.source !== data.me)
                     return;
                 // Only the healer gets a purple headmarker, and the tethered tank does not.
-                const id = (_a = data.actHeadmarkers[matches.source]) !== null && _a !== void 0 ? _a : data.actHeadmarkers[matches.target];
+                const id = data.actHeadmarkers[matches.source] ?? data.actHeadmarkers[matches.target];
                 if (id === undefined) {
                     console.error(`Act 2 Tether: missing headmarker: ${JSON.stringify(data.actHeadmarkers)}`);
                     return;
@@ -1089,7 +1068,6 @@ Options.Triggers.push({
                 data.actFourThorn = myThorn;
             },
             response: (data, matches, output) => {
-                let _a;
                 // cactbot-builtin-response
                 output.responseOutputStrings = {
                     blueTether: {
@@ -1144,7 +1122,7 @@ Options.Triggers.push({
                 const y = data.actFourThorn.PosY - centerY;
                 // Dirs: N = 0, NE = 1, ..., NW = 7
                 const thornDir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
-                const dirStr = (_a = {
+                const dirStr = {
                     0: output.dirN(),
                     1: output.dirNE(),
                     2: output.dirE(),
@@ -1153,7 +1131,7 @@ Options.Triggers.push({
                     5: output.dirSW(),
                     6: output.dirW(),
                     7: output.dirNW(),
-                }[thornDir]) !== null && _a !== void 0 ? _a : output.unknown();
+                }[thornDir] ?? output.unknown();
                 if (id === '012C')
                     return { infoText: output.blueTetherDir({ dir: dirStr }) };
                 if (id === '012D')
@@ -1180,8 +1158,7 @@ Options.Triggers.push({
             // Tethers come out East or West (0 seconds), (3s) Middle knockack, (6) Opposite Cardinal
             suppressSeconds: 7,
             infoText: (data, matches, output) => {
-                let _a; let _b;
-                const thorn = ((_a = data.thornIds) !== null && _a !== void 0 ? _a : (data.thornIds = [])).indexOf(parseInt(matches.sourceId, 16));
+                const thorn = (data.thornIds ?? (data.thornIds = [])).indexOf(parseInt(matches.sourceId, 16));
                 const thornMapDirs = {
                     0: 'east',
                     1: 'east',
@@ -1193,7 +1170,7 @@ Options.Triggers.push({
                     7: 'west',
                 };
                 data.jumpDir1 = thornMapDirs[thorn];
-                return output[(_b = thornMapDirs[thorn]) !== null && _b !== void 0 ? _b : (thornMapDirs[thorn] = 'unknown')]();
+                return output[thornMapDirs[thorn] ?? (thornMapDirs[thorn] = 'unknown')]();
             },
             outputStrings: {
                 text: {
@@ -1246,8 +1223,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.ability({ id: '6A1C', source: 'Hespéros' }),
             netRegexJa: NetRegexes.ability({ id: '6A1C', source: 'ヘスペロス' }),
             preRun: (data, _matches) => {
-                let _a;
-                data.fleetingImpulseCounter = ((_a = data.fleetingImpulseCounter) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.fleetingImpulseCounter = (data.fleetingImpulseCounter ?? 0) + 1;
             },
             // ~22.3 seconds between #1 Fleeting Impulse (6A1C) to #1 Hemitheos's Thunder III (6A0E)
             // ~21.2 seconds between #8 Fleeting Impulse (6A1C) to #8 Hemitheos's Thunder III (6A0E).
@@ -1291,9 +1267,7 @@ Options.Triggers.push({
             type: 'GainsEffect',
             netRegex: NetRegexes.gainsEffect({ effectId: 'B7D', capture: true }),
             condition: (data) => data.act === 'curtain',
-            preRun: (data) => {
- let _a; return data.curtainCallTracker = ((_a = data.curtainCallTracker) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
             delaySeconds: (_data, matches) => parseFloat(matches.duration),
             suppressSeconds: 1,
             infoText: (data, _matches, output) => {

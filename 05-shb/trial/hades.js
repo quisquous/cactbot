@@ -343,8 +343,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: ['0060', '003E'] }),
             condition: (data) => !data.neoHades,
             run: (data, matches) => {
-                let _a;
-                (_a = data.ancient) !== null && _a !== void 0 ? _a : (data.ancient = {});
+                data.ancient ?? (data.ancient = {});
                 data.ancient[matches.target] = matches.id;
             },
         },
@@ -356,9 +355,7 @@ Options.Triggers.push({
             infoText: (data, _matches, output) => {
                 if (!data.ancient || !data.ancient[data.me])
                     return;
-                const name = Object.keys(data.ancient).find((key) => {
- let _a; return ((_a = data.ancient) === null || _a === void 0 ? void 0 : _a[key]) === '003E';
-});
+                const name = Object.keys(data.ancient).find((key) => data.ancient?.[key] === '003E');
                 return output.text({ player: data.ShortName(name) });
             },
             outputStrings: {

@@ -195,8 +195,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.ability({ id: '3851', source: '仿制圣域' }),
             netRegexKo: NetRegexes.ability({ id: '3851', source: '모조 성역' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.halidom) !== null && _a !== void 0 ? _a : (data.halidom = []);
+                data.halidom ?? (data.halidom = []);
                 data.halidom.push(matches.target);
             },
         },
@@ -212,8 +211,7 @@ Options.Triggers.push({
             delaySeconds: 0.5,
             suppressSeconds: 10,
             alertText: (data, _matches, output) => {
-                let _a;
-                if (data.agriasGhostCleanse || ((_a = data.halidom) === null || _a === void 0 ? void 0 : _a.includes(data.me)))
+                if (data.agriasGhostCleanse || data.halidom?.includes(data.me))
                     return;
                 return output.text();
             },

@@ -147,8 +147,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
             condition: Conditions.targetIsYou(),
             preRun: (data) => {
-                let _a;
-                data.entropyCount = ((_a = data.entropyCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.entropyCount = (data.entropyCount ?? 0) + 1;
             },
             delaySeconds: (data, matches) => {
                 // Warn dps earlier to stack.
@@ -560,8 +559,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
             run: (data) => {
-                let _a;
-                data.blazeCount = ((_a = data.blazeCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.blazeCount = (data.blazeCount ?? 0) + 1;
                 if (data.blazeCount >= 3)
                     data.phaseType = 'enrage';
             },

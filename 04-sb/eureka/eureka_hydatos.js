@@ -629,9 +629,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.gameLog({ line: '相对的美德附加了“光之腕”效果.*?', capture: false }),
             condition: (data) => data.sealed,
             run: (data) => {
-                let _a;
                 // RV clones get buffs in the reverse order that they do their attacks in.
-                (_a = data.clones) !== null && _a !== void 0 ? _a : (data.clones = []);
+                data.clones ?? (data.clones = []);
                 data.clones.push('astral');
             },
         },
@@ -645,9 +644,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.gameLog({ line: '相对的美德附加了“暗之腕”效果.*?', capture: false }),
             condition: (data) => data.sealed,
             run: (data) => {
-                let _a;
                 // RV clones get buffs in the reverse order that they do their attacks in.
-                (_a = data.clones) !== null && _a !== void 0 ? _a : (data.clones = []);
+                data.clones ?? (data.clones = []);
                 data.clones.push('umbral');
             },
         },
@@ -734,8 +732,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
             condition: (data) => data.sealed,
             preRun: (data) => {
-                let _a;
-                data.blackHoleCount = ((_a = data.blackHoleCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.blackHoleCount = (data.blackHoleCount ?? 0) + 1;
             },
             alarmText: (data, _matches, output) => output.blackHole({ num: data.blackHoleCount }),
             tts: (data, _matches, output) => output.blackHoleTTS({ num: data.blackHoleCount }),

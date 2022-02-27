@@ -308,8 +308,7 @@ Options.Triggers.push({
                 return output.text();
             },
             run: (data) => {
-                let _a;
-                data.sphereCount = ((_a = data.sphereCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.sphereCount = (data.sphereCount ?? 0) + 1;
             },
             outputStrings: {
                 text: {

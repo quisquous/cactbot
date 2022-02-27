@@ -13,8 +13,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
             run: (data) => {
-                let _a;
-                data.starbirthCount = ((_a = data.starbirthCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.starbirthCount = (data.starbirthCount ?? 0) + 1;
                 data.starbirthActive = true;
             },
         },
@@ -242,9 +241,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ id: '38FC', source: 'イノセンス' }),
             netRegexCn: NetRegexes.ability({ id: '38FC', source: '无瑕灵君' }),
             netRegexKo: NetRegexes.ability({ id: '38FC', source: '이노센스' }),
-            preRun: (data) => {
- let _a; return data.lightPillar = ((_a = data.lightPillar) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.lightPillar = (data.lightPillar ?? 0) + 1,
             alarmText: (data, matches, output) => {
                 if (matches.target !== data.me)
                     return;

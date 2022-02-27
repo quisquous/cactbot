@@ -82,13 +82,12 @@ Options.Triggers.push({
                 data.slamLevis = callData.combatants.filter((c) => c.BNpcID === 12669);
             },
             alertText: (data, _matches, output) => {
-                let _a; let _b;
                 // Slams happen at +/-~14.6 +/-~13.
-                const filtered = (_b = (_a = data.slamLevis) === null || _a === void 0 ? void 0 : _a.filter((c) => {
+                const filtered = data.slamLevis?.filter((c) => {
                     const offsetX = Math.abs(Math.abs(c.PosX) - 14.6);
                     const offsetY = Math.abs(Math.abs(c.PosY) - 13);
                     return offsetX < 1 && offsetY < 1;
-                })) !== null && _b !== void 0 ? _b : [];
+                }) ?? [];
                 const levi = filtered[0];
                 if (!levi || filtered.length !== 1)
                     return;

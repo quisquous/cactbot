@@ -40,23 +40,21 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
             condition: (data, matches) => {
-                let _a;
                 // Cave phase has no stack markers.
                 if (data.phaseNumber === 2)
                     return false;
-                (_a = data.holyTargets) !== null && _a !== void 0 ? _a : (data.holyTargets = []);
+                data.holyTargets ?? (data.holyTargets = []);
                 data.holyTargets.push(matches.target);
                 return data.holyTargets.length === 3;
             },
             alertText: (data, _matches, output) => {
-                let _a; let _b; let _c;
-                if (((_a = data.holyTargets) === null || _a === void 0 ? void 0 : _a[0]) === data.me)
+                if (data.holyTargets?.[0] === data.me)
                     return output.stackOnYou();
                 for (let i = 1; i < 3; i++) {
-                    if (((_b = data.holyTargets) === null || _b === void 0 ? void 0 : _b[i]) === data.me)
+                    if (data.holyTargets?.[i] === data.me)
                         return output.out();
                 }
-                return output.stackOnHolytargets({ player: (_c = data.holyTargets) === null || _c === void 0 ? void 0 : _c[0] });
+                return output.stackOnHolytargets({ player: data.holyTargets?.[0] });
             },
             run: (data) => delete data.holyTargets,
             outputStrings: {

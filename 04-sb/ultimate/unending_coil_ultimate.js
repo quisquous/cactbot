@@ -200,9 +200,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.ability({ id: '26C5', source: '火角' }),
             netRegexKo: NetRegexes.ability({ id: '26C5', source: '화염뿔' }),
             run: (data, matches) => {
-                let _a;
-                let _b; let _c;
-                ((_a = (_b = data.fireballs)[_c = data.naelFireballCount]) !== null && _a !== void 0 ? _a : (_b[_c] = [])).push(matches.target);
+                let _a; let _b;
+                ((_a = data.fireballs)[_b = data.naelFireballCount] ?? (_a[_b] = [])).push(matches.target);
             },
         },
         {
@@ -335,8 +334,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0076' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.hatch) !== null && _a !== void 0 ? _a : (data.hatch = []);
+                data.hatch ?? (data.hatch = []);
                 data.hatch.push(matches.target);
             },
         },
@@ -403,8 +401,7 @@ Options.Triggers.push({
                 ids: [parseInt(matches.sourceId, 16)],
             }, (ret) => {
                 return ret.combatants.some((c) => {
-                    let _a;
-                    const currentHPCheck = (_a = data.hpThresholds[data.currentPhase]) !== null && _a !== void 0 ? _a : -1;
+                    const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
                     return c.CurrentHP / c.MaxHP <= currentHPCheck;
                 });
             }),
@@ -842,8 +839,7 @@ Options.Triggers.push({
             type: 'GainsEffect',
             netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.dooms) !== null && _a !== void 0 ? _a : (data.dooms = [null, null, null]);
+                data.dooms ?? (data.dooms = [null, null, null]);
                 let order = null;
                 if (parseFloat(matches.duration) < 9)
                     order = 0;
@@ -877,8 +873,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.ability({ source: '光牙', id: '26CA', capture: false }),
             netRegexKo: NetRegexes.ability({ source: '빛의 송곳니', id: '26CA', capture: false }),
             infoText: (data, _matches, output) => {
-                let _a;
-                (_a = data.doomCount) !== null && _a !== void 0 ? _a : (data.doomCount = 0);
+                data.doomCount ?? (data.doomCount = 0);
                 let name;
                 if (data.dooms)
                     name = data.dooms[data.doomCount];
@@ -933,18 +928,16 @@ Options.Triggers.push({
             delaySeconds: 51,
             suppressSeconds: 99999,
             alertText: (data, _matches, output) => {
-                let _a;
                 // All players should be neutral by the time fire #2 happens.
                 // If you have ice at this point, it means you missed the first
                 // stack.  Therefore, make sure you stack.  It's possible you
                 // can survive until fire 3 happens, but it's not 100%.
                 // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
-                if (!((_a = data.fireballs[1]) === null || _a === void 0 ? void 0 : _a.includes(data.me)))
+                if (!data.fireballs[1]?.includes(data.me))
                     return output.fireOutBeInIt();
             },
             infoText: (data, _matches, output) => {
-                let _a;
-                if ((_a = data.fireballs[1]) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+                if (data.fireballs[1]?.includes(data.me))
                     return output.fireOut();
             },
             run: (data) => data.naelFireballCount = 2,
@@ -979,19 +972,16 @@ Options.Triggers.push({
             delaySeconds: 77,
             suppressSeconds: 99999,
             alertText: (data, _matches, output) => {
-                let _a; let _b;
                 // If you were the person with fire tether #2, then you could
                 // have fire debuff here and need to not stack.
-                if (((_a = data.fireballs[1]) === null || _a === void 0 ? void 0 : _a.includes(data.me)) && ((_b = data.fireballs[2]) === null || _b === void 0 ? void 0 : _b.includes(data.me)))
+                if (data.fireballs[1]?.includes(data.me) && data.fireballs[2]?.includes(data.me))
                     return output.fireInAvoid();
             },
             infoText: (data, _matches, output) => {
-                let _a;
-                const tookTwo = (_a = data.fireballs[1]) === null || _a === void 0 ? void 0 : _a.filter((p) => {
-                    let _a;
-                    return (_a = data.fireballs[2]) === null || _a === void 0 ? void 0 : _a.includes(p);
+                const tookTwo = data.fireballs[1]?.filter((p) => {
+                    return data.fireballs[2]?.includes(p);
                 });
-                if (tookTwo === null || tookTwo === void 0 ? void 0 : tookTwo.includes(data.me))
+                if (tookTwo?.includes(data.me))
                     return;
                 if (tookTwo && tookTwo.length > 0) {
                     const players = tookTwo.map((name) => data.ShortName(name)).join(', ');
@@ -1039,14 +1029,11 @@ Options.Triggers.push({
             delaySeconds: 98,
             suppressSeconds: 99999,
             alertText: (data, _matches, output) => {
-                let _a;
-                const tookTwo = (_a = data.fireballs[1]) === null || _a === void 0 ? void 0 : _a.filter((p) => {
-                    let _a;
-                    return (_a = data.fireballs[2]) === null || _a === void 0 ? void 0 : _a.includes(p);
+                const tookTwo = data.fireballs[1]?.filter((p) => {
+                    return data.fireballs[2]?.includes(p);
                 });
-                const tookThree = (tookTwo !== null && tookTwo !== void 0 ? tookTwo : []).filter((p) => {
-                    let _a;
-                    return (_a = data.fireballs[3]) === null || _a === void 0 ? void 0 : _a.includes(p);
+                const tookThree = (tookTwo ?? []).filter((p) => {
+                    return data.fireballs[3]?.includes(p);
                 });
                 data.tookThreeFireballs = tookThree.includes(data.me);
                 // It's possible that you can take 1, 2, and 3 even if nobody dies with
@@ -1105,8 +1092,7 @@ Options.Triggers.push({
                     return;
                 const dirNames = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
                 data.naelMarks = result.marks.map((i) => {
-                    let _a;
-                    return (_a = dirNames[i]) !== null && _a !== void 0 ? _a : 'unknown';
+                    return dirNames[i] ?? 'unknown';
                 });
                 data.wideThirdDive = result.wideThirdDive;
                 data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1139,12 +1125,11 @@ Options.Triggers.push({
             condition: (data) => data.naelMarks && !data.calledNaelDragons,
             durationSeconds: 10,
             infoText: (data, _matches, output) => {
-                let _a; let _b; let _c; let _d; let _e; let _f;
                 data.calledNaelDragons = true;
                 const params = {
-                    dive1: output[(_b = (_a = data.naelMarks) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : 'unknown'](),
-                    dive2: output[(_d = (_c = data.naelMarks) === null || _c === void 0 ? void 0 : _c[1]) !== null && _d !== void 0 ? _d : 'unknown'](),
-                    dive3: output[(_f = (_e = data.naelMarks) === null || _e === void 0 ? void 0 : _e[2]) !== null && _f !== void 0 ? _f : 'unknown'](),
+                    dive1: output[data.naelMarks?.[0] ?? 'unknown'](),
+                    dive2: output[data.naelMarks?.[1] ?? 'unknown'](),
+                    dive3: output[data.naelMarks?.[2] ?? 'unknown'](),
                 };
                 if (data.wideThirdDive)
                     return output.marksWide(params);
@@ -1184,10 +1169,9 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '0014' }),
             condition: (data) => !data.trio,
             alarmText: (data, matches, output) => {
-                let _a; let _b;
                 if (matches.target !== data.me)
                     return;
-                const dir = (_b = (_a = data.naelMarks) === null || _a === void 0 ? void 0 : _a[data.naelDiveMarkerCount]) !== null && _b !== void 0 ? _b : 'unknownDir';
+                const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknownDir';
                 return output.text({ dir: output[dir]() });
             },
             outputStrings: {

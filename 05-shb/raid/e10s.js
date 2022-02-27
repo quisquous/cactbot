@@ -395,8 +395,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.addedCombatantFull({ name: '영웅의 그림자' }),
             condition: (data) => data.clones,
             run: (data, matches) => {
-                let _a;
-                (_a = data.myClone) !== null && _a !== void 0 ? _a : (data.myClone = []);
+                data.myClone ?? (data.myClone = []);
                 const clonesJob = parseInt(matches.job, 16);
                 if (clonesJob === Util.jobToJobEnum(data.job))
                     data.myClone.push(matches.id.toUpperCase());
@@ -434,14 +433,13 @@ Options.Triggers.push({
             condition: (data) => !data.headMarkerTriggered,
             durationSeconds: 7,
             alertText: (data, matches, output) => {
-                let _a; let _b;
                 if (!data.myClone || data.myClone.length !== 1) {
                     data.headMarkerTriggered = true;
                     return output.unknown();
                 }
                 if (matches.targetId === data.myClone[0]) {
                     data.headMarkerTriggered = true;
-                    return output[(_b = (_a = data.shadowMarkerMap) === null || _a === void 0 ? void 0 : _a[matches.id]) !== null && _b !== void 0 ? _b : 'unknown']();
+                    return output[data.shadowMarkerMap?.[matches.id] ?? 'unknown']();
                 }
             },
             outputStrings: {

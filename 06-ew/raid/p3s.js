@@ -255,10 +255,9 @@ Options.Triggers.push({
             // adds will re-tether somebody new if somebody dies right before dashing.  Only call once.
             suppressSeconds: 9999,
             alertText: (data, matches, output) => {
-                let _a;
                 const myTether = matches;
                 const parentTether = data.sunbirdTethers.find((x) => x.targetId === myTether.sourceId);
-                const birdId = (_a = parentTether === null || parentTether === void 0 ? void 0 : parentTether.sourceId) !== null && _a !== void 0 ? _a : myTether.sourceId;
+                const birdId = parentTether?.sourceId ?? myTether.sourceId;
                 const bird = data.sunbirds.find((x) => x.id === birdId);
                 if (!bird) {
                     // Note: 0001 tethers happen later with the Sunshadow birds during the Fountain of Fire

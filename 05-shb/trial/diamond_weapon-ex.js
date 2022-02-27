@@ -31,9 +31,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA7', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA7', capture: false }),
             response: Responses.aoe(),
-            run: (data) => {
- let _a; return data.phase = (_a = data.phase) !== null && _a !== void 0 ? _a : 1;
-},
+            run: (data) => data.phase = data.phase ?? 1,
         },
         // @TODO: There's probably a better callout for these mechanics, e.g.
         // `jump -> stay -> aoe`

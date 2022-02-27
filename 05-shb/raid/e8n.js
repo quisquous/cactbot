@@ -270,8 +270,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0017' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.rampant) !== null && _a !== void 0 ? _a : (data.rampant = {});
+                data.rampant ?? (data.rampant = {});
                 data.rampant[matches.target] = matches.id;
             },
         },
@@ -282,8 +281,7 @@ Options.Triggers.push({
             delaySeconds: 0.5,
             suppressSeconds: 2,
             alertText: (data, _matches, output) => {
-                let _a;
-                if ((_a = data.rampant) === null || _a === void 0 ? void 0 : _a[data.me])
+                if (data.rampant?.[data.me])
                     return output.coneOnYouAvoidTowers();
                 return output.standInATower();
             },

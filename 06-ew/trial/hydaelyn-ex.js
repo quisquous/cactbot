@@ -461,9 +461,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.startsUsing({ id: '65B9', source: 'ハイデリン' }),
             netRegexCn: NetRegexes.startsUsing({ id: '65B9', source: '海德林' }),
             netRegexKo: NetRegexes.startsUsing({ id: '65B9', source: '하이델린' }),
-            preRun: (data, matches) => {
- let _a; return ((_a = data.brightSpectrumStack) !== null && _a !== void 0 ? _a : (data.brightSpectrumStack = [])).push(matches.target);
-},
+            preRun: (data, matches) => (data.brightSpectrumStack ?? (data.brightSpectrumStack = [])).push(matches.target),
             infoText: (data, matches, output) => {
                 if (data.me === matches.target)
                     return output.spread();
@@ -483,8 +481,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '65B8', source: '海德林' }),
             netRegexKo: NetRegexes.startsUsing({ id: '65B8', source: '하이델린' }),
             infoText: (data, matches, output) => {
-                let _a;
-                if ((_a = data.brightSpectrumStack) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+                if (data.brightSpectrumStack?.includes(data.me))
                     return;
                 if (data.me === matches.target || data.role === 'tank')
                     return output.sharedTankbuster();

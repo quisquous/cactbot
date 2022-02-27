@@ -52,10 +52,9 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.gainsEffect({ target: ['탐구의 삼위일체', '탐구의 분열체'], effectId: '808' }),
             durationSeconds: 10,
             alertText: (data, matches, output) => {
-                let _a;
                 if (data.calledSeekerSwords)
                     return;
-                (_a = data.seekerSwords) !== null && _a !== void 0 ? _a : (data.seekerSwords = []);
+                data.seekerSwords ?? (data.seekerSwords = []);
                 data.seekerSwords.push(matches.count.toUpperCase());
                 if (data.seekerSwords.length <= 1)
                     return;
@@ -1118,8 +1117,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '誓约之分身', id: '5974' }),
             netRegexKo: NetRegexes.startsUsing({ source: '맹세의 분열체', id: '5974' }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.unseenIds) !== null && _a !== void 0 ? _a : (data.unseenIds = []);
+                data.unseenIds ?? (data.unseenIds = []);
                 data.unseenIds.push(parseInt(matches.sourceId, 16));
             },
         },

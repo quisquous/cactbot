@@ -268,7 +268,6 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.addedCombatantFull({ name: ['火角', '冰爪', '雷翼'] }),
             netRegexKo: NetRegexes.addedCombatantFull({ name: ['화염뿔', '얼음발톱', '번개날개'] }),
             run: (data, matches) => {
-                let _a;
                 // Lowercase all of the names here for case insensitive matching.
                 const allNames = {
                     en: ['firehorn', 'iceclaw', 'thunderwing'],
@@ -292,7 +291,7 @@ Options.Triggers.push({
                 // N = (0, -28), E = (28, 0), S = (0, 28), W = (-28, 0)
                 // Map N = 0, NE = 1, ..., NW = 7
                 const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
-                (_a = data.dragons) !== null && _a !== void 0 ? _a : (data.dragons = [0, 0, 0]);
+                data.dragons ?? (data.dragons = [0, 0, 0]);
                 data.dragons[idx] = dir;
             },
         },
@@ -330,9 +329,7 @@ Options.Triggers.push({
                     'west',
                     'northwest',
                 ];
-                data.naelMarks = [d0, d2].map((i) => {
- let _a; return (_a = dirNames[(i + 1) % 8]) !== null && _a !== void 0 ? _a : 'unknown';
-});
+                data.naelMarks = [d0, d2].map((i) => dirNames[(i + 1) % 8] ?? 'unknown');
                 // Safe zone is one to the left of the first dragon, unless
                 // the last dragon is diving there.  If that's true, use
                 // one to the right of the second dragon.
@@ -352,13 +349,10 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
             durationSeconds: 12,
-            infoText: (data, _matches, output) => {
-                let _a; let _b; let _c; let _d;
-                return output.marks({
-                    dir1: output[(_b = (_a = data.naelMarks) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : 'unknown'](),
-                    dir2: output[(_d = (_c = data.naelMarks) === null || _c === void 0 ? void 0 : _c[1]) !== null && _d !== void 0 ? _d : 'unknown'](),
-                });
-            },
+            infoText: (data, _matches, output) => output.marks({
+                dir1: output[data.naelMarks?.[0] ?? 'unknown'](),
+                dir2: output[data.naelMarks?.[1] ?? 'unknown'](),
+            }),
             outputStrings: {
                 ...diveDirections,
                 marks: {
@@ -459,9 +453,7 @@ Options.Triggers.push({
             delaySeconds: 3,
             durationSeconds: 6,
             suppressSeconds: 20,
-            infoText: (data, _matches, output) => {
- let _a; return output.safeZone({ dir: output[(_a = data.safeZone) !== null && _a !== void 0 ? _a : 'unknown']() });
-},
+            infoText: (data, _matches, output) => output.safeZone({ dir: output[data.safeZone ?? 'unknown']() }),
             outputStrings: {
                 ...diveDirections,
                 safeZone: {
@@ -480,17 +472,15 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '0014' }),
             condition: Conditions.targetIsYou(),
             alarmText: (data, matches, output) => {
-                let _a; let _b;
-                (_a = data.naelDiveMarkerCount) !== null && _a !== void 0 ? _a : (data.naelDiveMarkerCount = 0);
+                data.naelDiveMarkerCount ?? (data.naelDiveMarkerCount = 0);
                 if (matches.target !== data.me)
                     return;
                 const marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
-                const dir = (_b = data.naelMarks) === null || _b === void 0 ? void 0 : _b[data.naelDiveMarkerCount];
+                const dir = data.naelMarks?.[data.naelDiveMarkerCount];
                 return output.goToMarkerInDir({ marker: marker, dir: dir });
             },
             tts: (data, matches, output) => {
-                let _a;
-                (_a = data.naelDiveMarkerCount) !== null && _a !== void 0 ? _a : (data.naelDiveMarkerCount = 0);
+                data.naelDiveMarkerCount ?? (data.naelDiveMarkerCount = 0);
                 if (matches.target !== data.me)
                     return;
                 return output.goToMarker({ marker: ['A', 'B', 'C'][data.naelDiveMarkerCount] });

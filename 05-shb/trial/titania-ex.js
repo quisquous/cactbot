@@ -301,8 +301,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ id: '3D37', source: '요정의 권속', capture: false }),
             condition: (data) => data.role === 'tank',
             preRun: (data) => {
-                let _a;
-                (_a = data.pummelCount) !== null && _a !== void 0 ? _a : (data.pummelCount = 0);
+                data.pummelCount ?? (data.pummelCount = 0);
                 data.pummelCount++;
             },
             infoText: (data, _matches, output) => output.text({ num: data.pummelCount }),
@@ -324,8 +323,7 @@ Options.Triggers.push({
             condition: Conditions.targetIsYou(),
             response: Responses.spread(),
             run: (data) => {
-                let _a;
-                (_a = data.bomb) !== null && _a !== void 0 ? _a : (data.bomb = {});
+                data.bomb ?? (data.bomb = {});
                 data.bomb[data.me] = true;
             },
         },
@@ -388,9 +386,7 @@ Options.Triggers.push({
             netRegexJa: NetRegexes.ability({ id: '3D29', source: 'ティターニア', capture: false }),
             netRegexCn: NetRegexes.ability({ id: '3D29', source: '缇坦妮雅', capture: false }),
             netRegexKo: NetRegexes.ability({ id: '3D29', source: '티타니아', capture: false }),
-            preRun: (data) => {
- let _a; return data.thunderCount = ((_a = data.thunderCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.thunderCount = (data.thunderCount ?? 0) + 1,
             suppressSeconds: 1,
             infoText: (data, _matches, output) => output.text({ num: data.thunderCount }),
             outputStrings: {

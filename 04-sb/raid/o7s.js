@@ -229,8 +229,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
             alertText: (data, _matches, output) => {
-                let _a;
-                data.loadCount = ((_a = data.loadCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.loadCount = (data.loadCount ?? 0) + 1;
                 if (data.loadCount === 1) {
                     // First load is unknown.
                     return output.screen();
@@ -315,8 +314,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
             infoText: (data, _matches, output) => {
-                let _a;
-                data.runCount = ((_a = data.runCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.runCount = (data.runCount ?? 0) + 1;
                 if (data.runCount === 1)
                     return output.dada();
                 else if (data.runCount === 2)

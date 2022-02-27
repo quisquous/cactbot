@@ -226,9 +226,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '至尊伊甸', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '에덴 프라임', capture: false }),
             run: (data) => {
-                let _a;
                 // Note: this happens *after* the marks, so is setting up vice for the next marks.
-                data.viceCount = ((_a = data.viceCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.viceCount = (data.viceCount ?? 0) + 1;
                 const viceMap = {
                     1: 'dps',
                     2: 'tank',

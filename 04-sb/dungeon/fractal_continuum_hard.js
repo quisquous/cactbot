@@ -225,8 +225,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.dischord) !== null && _a !== void 0 ? _a : (data.dischord = {});
+                data.dischord ?? (data.dischord = {});
                 data.dischord[matches.id] = matches.target;
             },
         },
@@ -237,10 +236,9 @@ Options.Triggers.push({
             condition: Conditions.targetIsYou(),
             delaySeconds: 0.5,
             infoText: (data, matches, output) => {
-                let _a;
                 const partnerId = matches.id === '004D' ? '004E' : '004D';
                 // If for some reason there is no partner, we get a vulnerability or bleed and are sad.
-                const partner = (_a = data.dischord) === null || _a === void 0 ? void 0 : _a[partnerId];
+                const partner = data.dischord?.[partnerId];
                 if (!partner)
                     return;
                 return output.text({ player: data.ShortName(partner) });

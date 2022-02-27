@@ -123,22 +123,20 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB[89AB]' }),
             netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB[89AB]' }),
             preRun: (data, matches) => {
-                let _a;
                 const chargeMap = {
                     '1AB8': 'getIn',
                     '1AB9': 'getOut',
                     '1ABA': 'spread',
                     '1ABB': 'stackMarker',
                 };
-                data.charges.push((_a = chargeMap[matches.id]) !== null && _a !== void 0 ? _a : 'unknown');
+                data.charges.push(chargeMap[matches.id] ?? 'unknown');
             },
             response: (data, _matches, output) => {
-                let _a;
                 // cactbot-builtin-response
                 output.responseOutputStrings = chargeOutputStrings;
                 // Call the first one out with alert, the other two with info.
                 const severity = data.charges.length > 1 ? 'infoText' : 'alertText';
-                const charge = (_a = data.charges[data.charges.length - 1]) !== null && _a !== void 0 ? _a : 'unknown';
+                const charge = data.charges[data.charges.length - 1] ?? 'unknown';
                 return { [severity]: output[charge]() };
             },
         },

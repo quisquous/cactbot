@@ -72,8 +72,7 @@ Options.Triggers.push({
                     return output.text();
             },
             run: (data, matches) => {
-                let _a;
-                (_a = data.beyondDefenseVuln) !== null && _a !== void 0 ? _a : (data.beyondDefenseVuln = []);
+                data.beyondDefenseVuln ?? (data.beyondDefenseVuln = []);
                 data.beyondDefenseVuln.push(matches.target);
             },
             outputStrings: {
@@ -205,8 +204,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
             netRegexKo: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
             run: (data, matches) => {
-                let _a;
-                (_a = data.solarRayTargets) !== null && _a !== void 0 ? _a : (data.solarRayTargets = []);
+                data.solarRayTargets ?? (data.solarRayTargets = []);
                 data.solarRayTargets.push(matches.target);
                 data.seenSolarRay = true;
             },
@@ -818,8 +816,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '682', '686'] }),
             condition: (data) => !data.calledHelloNoMarker,
             run: (data, matches) => {
-                let _a;
-                (_a = data.helloDebuffs) !== null && _a !== void 0 ? _a : (data.helloDebuffs = {});
+                data.helloDebuffs ?? (data.helloDebuffs = {});
                 data.helloDebuffs[matches.target] = matches.effectId;
             },
         },
@@ -831,8 +828,7 @@ Options.Triggers.push({
             delaySeconds: 0.3,
             suppressSeconds: 1,
             infoText: (data, _matches, output) => {
-                let _a;
-                if (data.me in ((_a = data.helloDebuffs) !== null && _a !== void 0 ? _a : {}))
+                if (data.me in (data.helloDebuffs ?? {}))
                     return;
                 return output.text();
             },
@@ -872,8 +868,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: ['003E', '0060'] }),
             condition: (data) => data.isFinalOmega,
             run: (data, matches) => {
-                let _a;
-                (_a = data.archiveMarkers) !== null && _a !== void 0 ? _a : (data.archiveMarkers = {});
+                data.archiveMarkers ?? (data.archiveMarkers = {});
                 data.archiveMarkers[matches.target] = matches.id;
             },
         },
@@ -888,8 +883,7 @@ Options.Triggers.push({
                 return data.archiveMarkers && Object.keys(data.archiveMarkers).length === 5;
             },
             infoText: (data, _matches, output) => {
-                let _a;
-                if (data.me in ((_a = data.archiveMarkers) !== null && _a !== void 0 ? _a : {}))
+                if (data.me in (data.archiveMarkers ?? {}))
                     return;
                 for (const player in data.archiveMarkers) {
                     if (data.archiveMarkers[player] !== '003E')
@@ -967,11 +961,10 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'] }),
             netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'] }),
             run: (data, matches) => {
-                let _a; let _b;
                 // Create a 3 digit binary value, R = 0, B = 1.
                 // e.g. BBR = 110 = 6
-                (_a = data.armValue) !== null && _a !== void 0 ? _a : (data.armValue = 0);
-                (_b = data.numArms) !== null && _b !== void 0 ? _b : (data.numArms = 0);
+                data.armValue ?? (data.armValue = 0);
+                data.numArms ?? (data.numArms = 0);
                 data.armValue *= 2;
                 if (matches.id === '009D')
                     data.armValue += 1;

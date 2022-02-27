@@ -105,8 +105,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.tether({ source: '푸른 사역귀', id: '0011' }),
             delaySeconds: 0.5,
             infoText: (data, matches, output) => {
-                let _a;
-                if ((_a = data.redRush) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+                if (data.redRush?.includes(data.me))
                     return;
                 if (matches.target === data.me)
                     return output.stackOnYou();
@@ -128,16 +127,13 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.tether({ source: '红之式鬼', id: '0011' }),
             netRegexKo: NetRegexes.tether({ source: '붉은 사역귀', id: '0011' }),
             alertText: (data, matches, output) => {
-                let _a;
                 // If targeted by two, skip.
-                if ((_a = data.redRush) === null || _a === void 0 ? void 0 : _a.includes(data.me))
+                if (data.redRush?.includes(data.me))
                     return;
                 if (data.me === matches.target)
                     return output.text();
             },
-            run: (data, matches) => {
- let _a; return ((_a = data.redRush) !== null && _a !== void 0 ? _a : (data.redRush = [])).push(matches.target);
-},
+            run: (data, matches) => (data.redRush ?? (data.redRush = [])).push(matches.target),
             outputStrings: {
                 text: {
                     en: 'Point Knockback Tether Outside',

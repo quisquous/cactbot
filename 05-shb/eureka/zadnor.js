@@ -132,9 +132,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '暴风札尼尔查妖蛇', id: '5E54' }),
             netRegexKo: NetRegexes.startsUsing({ source: '폭풍 지르니트라', id: '5E54' }),
             condition: (data) => data.ce === 'serpents',
-            preRun: (data) => {
- let _a; return data.serpentsTurbineCount = ((_a = data.serpentsTurbineCount) !== null && _a !== void 0 ? _a : 0) + 1;
-},
+            preRun: (data) => data.serpentsTurbineCount = (data.serpentsTurbineCount ?? 0) + 1,
             delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
             alertText: (data, _matches, output) => {
                 // TODO: how does this loop?
@@ -466,8 +464,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: limitCutHeadmarkers }),
             condition: (data, matches) => data.ce === 'diremite' && data.me === matches.target,
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.diremiteHailfire) !== null && _a !== void 0 ? _a : (data.diremiteHailfire = []);
+                data.diremiteHailfire ?? (data.diremiteHailfire = []);
                 data.diremiteHailfire.push(matches.target);
             },
             alertText: (_data, matches, output) => {
@@ -864,8 +861,7 @@ Options.Triggers.push({
             netRegexKo: NetRegexes.startsUsing({ source: 'IV군단 벨리아스', id: '5D95', capture: false }),
             condition: (data) => data.ce === 'time',
             infoText: (data, _matches, output) => {
-                let _a;
-                data.timeBombCount = ((_a = data.timeBombCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.timeBombCount = (data.timeBombCount ?? 0) + 1;
                 // Belias alternates 2 and 3 Time Bombs, starting with 2.
                 return data.timeBombCount % 2 ? output.twoClocks() : output.threeClocks();
             },
@@ -1311,8 +1307,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8F' }),
             netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8F' }),
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.sartauvoirPyrocrisis) !== null && _a !== void 0 ? _a : (data.sartauvoirPyrocrisis = []);
+                data.sartauvoirPyrocrisis ?? (data.sartauvoirPyrocrisis = []);
                 data.sartauvoirPyrocrisis.push(matches.target);
             },
             alertText: (data, matches, output) => {
@@ -1848,9 +1843,8 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ source: '小达温', id: '5DD0', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ source: '다우언 주니어', id: '5DD0', capture: false }),
             infoText: (data, _matches, output) => {
-                let _a;
                 // Every other Swooping Frenzy is followed by a Frigid Pulse, starting with the first.
-                data.saunionSwoopingCount = ((_a = data.saunionSwoopingCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.saunionSwoopingCount = (data.saunionSwoopingCount ?? 0) + 1;
                 if (data.saunionSwoopingCount % 2)
                     return output.text();
             },
@@ -1999,8 +1993,7 @@ Options.Triggers.push({
             // TODO: these feel really late with 5 seconds, should they call instantly at 7?
             delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
             alertText: (data, _matches, output) => {
-                let _a;
-                data.diabloDealingCount = ((_a = data.diabloDealingCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.diabloDealingCount = (data.diabloDealingCount ?? 0) + 1;
                 return data.diabloDealingCount % 2 ? output.knockbackBits() : output.knockbackNox();
             },
             outputStrings: {
@@ -2038,8 +2031,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.headMarker({ id: '0017' }),
             condition: (data) => data.ce === 'dalriadaDiablo',
             preRun: (data, matches) => {
-                let _a;
-                (_a = data.diabloPillar) !== null && _a !== void 0 ? _a : (data.diabloPillar = []);
+                data.diabloPillar ?? (data.diabloPillar = []);
                 data.diabloPillar.push(matches.target);
             },
             alertText: (data, matches, output) => {

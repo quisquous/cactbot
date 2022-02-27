@@ -12,10 +12,9 @@ Options.Triggers.push({
             regex: /Lightfast Blade/,
             beforeSeconds: 15,
             infoText: (data, _matches, output) => {
-                let _a;
                 // The third lightfast blade comes very close to second,
                 // so suppress its message.
-                data.lightfastCount = ((_a = data.lightfastCount) !== null && _a !== void 0 ? _a : 0) + 1;
+                data.lightfastCount = (data.lightfastCount ?? 0) + 1;
                 if (data.lightfastCount !== 3)
                     return;
                 return output.text();
@@ -158,9 +157,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.message({ line: '墙面的右臂开始运作…….*?', capture: false }),
             netRegexKo: NetRegexes.message({ line: '벽면의 오른팔이 움직이기 시작합니다……!.*?', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
-            run: (data) => {
- let _a; return data.alliance = (_a = data.alliance) !== null && _a !== void 0 ? _a : 'A';
-},
+            run: (data) => data.alliance = data.alliance ?? 'A',
             outputStrings: {
                 text: {
                     en: 'Dodge Moving Circle',
