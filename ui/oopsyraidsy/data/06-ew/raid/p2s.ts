@@ -39,7 +39,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareFail: {
     'P2S Kampeos Harma Square': '6824', // square dashes #1-4
     'P2S Kampeos Harma Triangle 1': '6825', // triangle circle aoes #1-3
-    'P2S Kampeos Harma Triangle 2': '6826', // triangle circle aoes #4
+    // TODO: re-enable this once oopsy can ignore targetCount=1 0x16 lines
+    // 'P2S Kampeos Harma Triangle 2': '6826', // triangle circle aoes #4
   },
   soloWarn: {
     'P2S Ominous Bubbling': '682B', // healer stacks after shockwave
