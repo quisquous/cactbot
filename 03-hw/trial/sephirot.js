@@ -43,6 +43,7 @@ Options.Triggers.push({
             outputStrings: {
                 text: {
                     en: 'Kill Storm of Words or die',
+                    fr: 'Tuez Tempête de mots ou mourrez',
                 },
             },
         },

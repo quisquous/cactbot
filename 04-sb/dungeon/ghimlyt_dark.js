@@ -243,8 +243,8 @@ Options.Triggers.push({
             },
             'replaceText': {
                 '\\?': ' ?',
-                '\\(windup\\)': '(Préparation)',
-                '\\(cast\\)': '(Lancement)',
+                '\\(windup\\)': '(préparation)',
+                '\\(cast\\)': '(lancement)',
                 'Aglaia Bite': 'Morsure d\'Aglaia',
                 'Angry Salamander': 'Colère de la salamandre',
                 'Artificial Boost': 'Amplificateur magitek',

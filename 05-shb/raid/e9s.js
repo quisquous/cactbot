@@ -880,7 +880,7 @@ Options.Triggers.push({
                 '\\(L/R\\)': '(G/D)',
                 'The Third Art Of Darkness': 'Arts ténébreux triple',
                 'The Second Art Of Darkness': 'Arts ténébreux double',
-                'The Art Of Darkness(?! \\\\())': 'Arts ténébreux (Pos/Packs)',
+                'The Art Of Darkness(?! \\\\())': 'Arts ténébreux (Positions/Packages)',
                 'Summon': 'Invocation',
                 'Rejuvenating Balm': 'Tir vivifiant',
                 'Particle Concentration': 'Rayon sphérique',
