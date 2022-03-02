@@ -300,7 +300,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Hidden Gate': 'Porte cachée',
         'The Sealed Gate': 'Porte scellée',
         'Ukehi': 'Ukehi',
-        'Yata-No-Kagami': 'Yata no Kagami',
+        'Yata-No-Kagami': '--poussée--',
         'Brightstorm': 'Claire tempête',
         'Yasakani-No-Magatama': 'Yasakani no Magatama',
         'The Parting Clouds': 'Dispersion de nuages',

@@ -387,7 +387,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '\\(big\\)': '(gros)',
-        '\\(cast\\)': '(incantation)',
+        '\\(cast\\)': '(lancement)',
         '\\(small\\)': '(petit)',
         'Aporrhoia': 'Aporie',
         'Crash': 'Collision',
