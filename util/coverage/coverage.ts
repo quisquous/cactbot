@@ -239,6 +239,8 @@ const miscStrings = {
       'This list may contain content that is in development and is not yet included in the latest cactbot release. Anything that is listed as covered here will be included in the next release of cactbot.  If you are using the <a href="https://github.com/quisquous/cactbot/blob/main/CONTRIBUTING.md#validating-changes-via-remote-urls">quisquous.github.io version</a> as the url for your overlays, this list will be up to date.',
     de:
       'Diese Liste kann Inhalte enthalten, welche momentan in Entwicklung sind uns sich noch nicht im aktuellstem Cactbot Release befinden. Alles was hier aufgelistet ist, wird sich im nächsten Release von Cactbot befinden. Wenn du <a href="https://github.com/quisquous/cactbot/blob/main/CONTRIBUTING.md#validating-changes-via-remote-urls">quisquous.github.io version</a> als URL für dein Overlay benutzt, sind die Inhalte in dieser Liste bereits für dich verfügbar.',
+    fr:
+      'Cette liste peut contenir du contenu en cours de développement et qui n\'est pas encore inclus dans la dernière version de cactbot. Tout ce qui est répertorié comme couvert ici, sera inclus dans la prochaine version de cactbot. Si vous utilisez la <a href="https://github.com/quisquous/cactbot/blob/main/CONTRIBUTING.md#validating-changes-via-remote-urls">version quisquous.github.io</a > comme url pour vos overlays, cette liste sera à jour.',
     ja:
       'このリストは開発中機能や最新リリースバージョンに公開されていないコンテンツを含まれています。リストに含まれているコンテンツは次バージョンに公開される予定があります。また、OverlayPluginのURL欄に<a href="https://github.com/quisquous/cactbot/blob/main/CONTRIBUTING.md#validating-changes-via-remote-urls">「quisquous.github.io」のページのURL</a>を入力している場合はこのリストに含まれているコンテンツと一致し、すべてのコンテンツを使えるようになります。',
     cn:
