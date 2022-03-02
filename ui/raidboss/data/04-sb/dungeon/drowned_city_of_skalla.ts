@@ -251,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '\\?': ' ?',
-        '\\(cast\\)': '(incantation)',
+        '\\(cast\\)': '(lancement)',
         'Bloody Puddle': 'Mare ensanglantée',
         'Bubble Burst': 'Bulles explosives',
         '(?<!/)Cross Of Chaos(?!/)': 'Croix du chaos',
