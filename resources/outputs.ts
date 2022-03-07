@@ -105,6 +105,7 @@ export default {
   sharedTankbuster: {
     en: 'Shared Tank Buster',
     fr: 'Partagez le Tank buster',
+    cn: '分摊死刑',
     ko: '쉐어 탱버',
   },
   sharedTankbusterOnYou: {

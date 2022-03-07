@@ -449,11 +449,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Move between',
           de: 'Laufe zwischen beide Bosse',
           fr: 'Allez entre les boss',
+          cn: '移动到BOSS之间',
         },
         opposite: {
           en: 'Move opposite',
           de: 'Laufe entgegengesetzt beider Bosse',
           fr: 'Allez à l\'opposé des boss',
+          cn: '移动到BOSS对面',
         },
       },
     },
