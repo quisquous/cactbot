@@ -20,6 +20,7 @@ const errorMessageEnableACTWS = {
   en: 'Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay -> Start',
   de: 'Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay -> Start',
   fr: 'Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay -> Start',
+  cn: 'Plugins -> OverlayPlugin WSServer -> 直播/本地悬浮窗 -> 启用',
   ko: 'Plugins -> OverlayPlugin WSServer -> Stream/Local 오버레이 -> 시작',
 };
 
