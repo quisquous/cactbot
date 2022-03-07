@@ -95,7 +95,7 @@ Options.Triggers.push({
                     en: 'Stack for Puddle AOEs',
                     de: 'Stacken (Pfützen)',
                     fr: 'Packez les zones au sol d\'AoEs',
-                    ja: '真ん中で頭割り',
+                    ja: 'AoEを誘導',
                     cn: '集合放置AOE',
                     ko: '중앙에 모이기',
                 },
