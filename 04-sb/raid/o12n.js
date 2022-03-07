@@ -317,13 +317,13 @@ Options.Triggers.push({
         },
         {
             'locale': 'cn',
+            'missingTranslations': true,
             'replaceSync': {
                 'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
                 'Omega(?!-)': '欧米茄',
                 'Omega-M': '欧米茄M',
                 'Optical Unit': '视觉组',
                 'Progress to party combat': '确认到单独战斗的极限',
-                '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '警告……警告……失败的危险性上升……',
             },
             'replaceText': {
                 'Beyond Strength': '盾连击G',

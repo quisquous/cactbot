@@ -44,7 +44,6 @@ Options.Triggers.push({
                 text: {
                     en: 'Kill Storm of Words or die',
                     fr: 'Tuez Tempête de mots ou mourrez',
-                    cn: '击杀言语风暴!',
                 },
             },
         },
