@@ -328,6 +328,7 @@ Options.Triggers.push({
                     en: 'Watch for Swords',
                     de: 'Schau nach den Schwertern',
                     fr: 'Repérez les épées',
+                    cn: '观察剑',
                 },
             },
         },
