@@ -66,6 +66,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),
       netRegexJa: NetRegexes.startsUsing({ id: '69B7', source: 'ペタロドゥス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '69B7', source: '瓣齿鲨' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -76,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69BC', source: 'Petalodus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69BC', source: 'Petalodus', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69BC', source: 'ペタロドゥス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '69BC', source: '瓣齿鲨', capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -85,6 +87,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69BD', source: 'Petalodus', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69BD', source: 'Petalodus', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69BD', source: 'ペタロドゥス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '69BD', source: '瓣齿鲨', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -94,6 +97,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69BB', source: 'Petalodus' }),
       netRegexFr: NetRegexes.startsUsing({ id: '69BB', source: 'Petalodus' }),
       netRegexJa: NetRegexes.startsUsing({ id: '69BB', source: 'ペタロドゥス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '69BB', source: '瓣齿鲨' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {

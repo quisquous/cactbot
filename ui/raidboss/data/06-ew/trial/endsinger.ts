@@ -62,6 +62,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['662E', '6634'], source: 'Endzeitplanet', capture: true }),
       netRegexFr: NetRegexes.startsUsing({ id: ['662E', '6634'], source: 'Planète À L\'Agonie', capture: true }),
       netRegexJa: NetRegexes.startsUsing({ id: ['662E', '6634'], source: '終の星', capture: true }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['662E', '6634'], source: '迈向终结的星球', capture: true }),
       delaySeconds: 0.5,
       promise: async (data, matches) => {
         const starData = await callOverlayHandler({
@@ -88,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['662C', '6682'], source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['662C', '6682'], source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['662C', '6682'], source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['662C', '6682'], source: '讴歌终结之物', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -97,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.tether({ source: 'Endsängerin', id: '00A6' }),
       netRegexFr: NetRegexes.tether({ source: 'Chantre De L\'Anéantissement', id: '00A6' }),
       netRegexJa: NetRegexes.tether({ source: '終焉を謳うもの', id: '00A6' }),
+      netRegexCn: NetRegexes.tether({ source: '讴歌终结之物', id: '00A6' }),
       delaySeconds: 10,
       alertText: (data, matches, output) => {
         return getOrbSafeDir(data, matches.targetId, output);
@@ -110,6 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6C69', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6C69', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C69', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6C69', source: '讴歌终结之物', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -119,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6644', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6644', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6644', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6644', source: '讴歌终结之物', capture: false }),
       response: Responses.goSides(),
     },
     {
@@ -128,6 +133,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6642', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6642', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6642', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6642', source: '讴歌终结之物', capture: false }),
       response: Responses.goMiddle(),
     },
     {
@@ -137,6 +143,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6649', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6649', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6649', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6649', source: '讴歌终结之物', capture: false }),
       response: Responses.spread(),
     },
     {
@@ -146,6 +153,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '6649', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '6649', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6649', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '6649', source: '讴歌终结之物', capture: false }),
       response: Responses.moveAway(),
     },
     {
@@ -155,6 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '663D', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '663D', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '663D', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '663D', source: '讴歌终结之物', capture: false }),
       infoText: (_data, _matches, output) => {
         return output.avoidLasers!();
       },
@@ -175,6 +184,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6652', source: 'Endsängerin', capture: true }),
       netRegexFr: NetRegexes.startsUsing({ id: '6652', source: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.startsUsing({ id: '6652', source: '終焉を謳うもの', capture: true }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6652', source: '讴歌终结之物', capture: true }),
       response: Responses.tankCleave(),
     },
     {
@@ -184,6 +194,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6646', source: 'Endsängerin', capture: true }),
       netRegexFr: NetRegexes.startsUsing({ id: '6646', source: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.startsUsing({ id: '6646', source: '終焉を謳うもの', capture: true }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6646', source: '讴歌终结之物', capture: true }),
       condition: (_data, matches) => {
         // Find one head that's not dead center
         return parseFloat(matches.x) !== 100 || parseFloat(matches.y) !== 100;
@@ -220,6 +231,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.nameToggle({ toggle: '00', name: 'Endsängerin', capture: true }),
       netRegexFr: NetRegexes.nameToggle({ toggle: '00', name: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.nameToggle({ toggle: '00', name: '終焉を謳うもの', capture: true }),
+      netRegexCn: NetRegexes.nameToggle({ toggle: '00', name: '讴歌终结之物', capture: true }),
       condition: (data) => data.phase === 1,
       delaySeconds: 4,
       promise: async (data, matches) => {
@@ -306,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6B58', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6B58', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B58', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6B58', source: '讴歌终结之物', capture: false }),
       run: (data) => data.phase = 2,
     },
     {
@@ -315,6 +328,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '664E', source: 'Endsängerin', capture: true }),
       netRegexFr: NetRegexes.startsUsing({ id: '664E', source: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.startsUsing({ id: '664E', source: '終焉を謳うもの', capture: true }),
+      netRegexCn: NetRegexes.startsUsing({ id: '664E', source: '讴歌终结之物', capture: true }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -325,6 +339,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6B59', source: 'Endsängerin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6B59', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B59', source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6B59', source: '讴歌终结之物', capture: false }),
       alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.text!();
@@ -445,6 +460,39 @@ const triggerSet: TriggerSet<Data> = {
         'Telomania': 'テロスマニア',
         'Telos': 'テロス',
         'Ultimate Fate': 'ウルティマフェイト',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Doomed Stars': '迈向终结的星球',
+        'Kakodaimon': '恶灵魔',
+        'The Endsinger': '讴歌终结之物',
+        'oblivion': '混沌次元',
+      },
+      'replaceText': {
+        'Aporrhoia': '流溢',
+        'Crash': '冲撞',
+        'Dead Star': '坍缩星',
+        'Death\'s Embrace': '死亡拥抱',
+        'Ekstasis': '恍惚',
+        'Elegeia(?! )': '哀歌',
+        'Elegeia Unforgotten': '哀歌：记录事件',
+        'Elenchos': '反诘',
+        'Epigonoi': '后裔',
+        'Fatalism': '宿命',
+        'Galaxias': '银河',
+        'Hubris': '傲慢',
+        'Interstellar': '星际穿越',
+        'Katastrophe': '灾祟',
+        'Meteor Outburst': '陨石爆发',
+        'Meteor Radiant': '陨石辐射点',
+        'Nemesis': '复仇',
+        'Planetes': '行迈之星',
+        'Telomania': '终末狂热',
+        'Telos': '终末',
+        'Ultimate Fate': '终极命运',
       },
     },
   ],
