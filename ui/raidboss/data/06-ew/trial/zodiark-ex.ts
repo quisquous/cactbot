@@ -17,6 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
       netRegexFr: NetRegexes.startsUsing({ id: '67EF', source: 'Zordiarche' }),
       netRegexJa: NetRegexes.startsUsing({ id: '67EF', source: 'ゾディアーク' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '67EF', source: '佐迪亚克' }),
       response: Responses.tankBuster(),
     },
   ],

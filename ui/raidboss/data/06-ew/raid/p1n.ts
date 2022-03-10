@@ -22,6 +22,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6DA2', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6DA2', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DA2', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6DA2', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -32,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6DA3', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6DA3', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DA3', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6DA3', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -41,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F4', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F4', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F4', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '65F4', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -50,6 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65E9', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65E9', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65E9', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '65E9', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -59,6 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65EA', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65EA', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65EA', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '65EA', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -108,6 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F3', source: 'Erichthonios' }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F3', source: 'Érichthonios' }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F3', source: 'エリクトニオス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '65F3', source: '埃里克特翁尼亚斯' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },

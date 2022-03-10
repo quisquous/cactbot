@@ -257,6 +257,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6C59', source: 'Echo Der Hydaelyn', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6C59', source: 'Écho D\'Hydaelyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C59', source: 'ハイデリン・エコー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6C59', source: '海德林的回声', capture: false }),
       alertText: (_data, _matches, output) => output.stack!(),
       outputStrings: {
         stack: crystallizeOutputStrings.stack,
@@ -270,6 +271,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6C5A', source: 'Echo Der Hydaelyn' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6C5A', source: 'Écho D\'Hydaelyn' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C5A', source: 'ハイデリン・エコー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6C5A', source: '海德林的回声' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.spread!(),
       outputStrings: {

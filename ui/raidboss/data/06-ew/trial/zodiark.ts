@@ -24,6 +24,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6B62', source: 'Zodiark' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6B62', source: 'Zordiarche' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B62', source: 'ゾディアーク' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6B62', source: '佐迪亚克' }),
       response: Responses.tankBuster(),
     },
     {
@@ -33,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '67D1', source: 'Zodiark', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '67D1', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67D1', source: 'ゾディアーク', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '67D1', source: '佐迪亚克', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       // Warn about knockback just as a precaution in case players don't make it.
       // Also, technically NE/SW is safe, but having all players run together is better.
@@ -54,6 +56,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '67D2', source: 'Zodiark', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '67D2', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67D2', source: 'ゾディアーク', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '67D2', source: '佐迪亚克', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

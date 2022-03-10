@@ -321,6 +321,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.abilityFull({ id: '65BE', source: 'Lichtkristall', capture: true }),
       netRegexFr: NetRegexes.abilityFull({ id: '65BE', source: 'Cristal De Lumière', capture: true }),
       netRegexJa: NetRegexes.abilityFull({ id: '65BE', source: '光のクリスタル', capture: true }),
+      netRegexCn: NetRegexes.abilityFull({ id: '65BE', source: '光之水晶', capture: true }),
       // Each of the three adds fires every 1.1s or so until about Exodus or their death
       suppressSeconds: 60,
       infoText: (data, matches, output) => {
