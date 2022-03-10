@@ -9,7 +9,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6238', source: 'Terminus-Häscher', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6238', source: 'Pillard De L\'Apocalypse', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6238', source: 'ターミナス・スナッチャー', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6238', source: '终末的抢夺', capture: false }),
             response: Responses.aoe(),
         },
         {
@@ -19,7 +18,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6231', source: 'Terminus-Häscher', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6231', source: 'Pillard De L\'Apocalypse', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6231', source: 'ターミナス・スナッチャー', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6231', source: '终末的抢夺', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -39,7 +37,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6235', source: 'Terminus-Häscher' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6235', source: 'Pillard De L\'Apocalypse' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6235', source: 'ターミナス・スナッチャー' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6235', source: '终末的抢夺' }),
             response: Responses.tankBuster(),
         },
         {
@@ -49,7 +46,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6233', source: 'Terminus-Häscher', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6233', source: 'Pillard De L\'Apocalypse', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6233', source: 'ターミナス・スナッチャー', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6233', source: '终末的抢夺', capture: false }),
             response: Responses.goLeft(),
         },
         {
@@ -59,7 +55,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6234', source: 'Terminus-Häscher', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6234', source: 'Pillard De L\'Apocalypse', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6234', source: 'ターミナス・スナッチャー', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6234', source: '终末的抢夺', capture: false }),
             response: Responses.goRight(),
         },
         {
@@ -69,7 +64,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6236', source: 'Terminus-Häscher' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6236', source: 'Pillard De L\'Apocalypse' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6236', source: 'ターミナス・スナッチャー' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6236', source: '终末的抢夺' }),
             condition: Conditions.targetIsYou(),
             response: Responses.spread(),
         },
@@ -80,7 +74,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6241', source: 'Terminus-Verwüster', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6241', source: 'Destructeur De L\'Apocalypse', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6241', source: 'ターミナス・レッカー', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6241', source: '终末的破坏', capture: false }),
             response: Responses.aoe(),
         },
         {
@@ -90,7 +83,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6242', source: 'Terminus-Verwüster' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6242', source: 'Destructeur De L\'Apocalypse' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6242', source: 'ターミナス・レッカー' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6242', source: '终末的破坏' }),
             response: Responses.tankBuster(),
         },
         {
@@ -100,7 +92,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '623C', source: 'Terminus-Verwüster' }),
             netRegexFr: NetRegexes.startsUsing({ id: '623C', source: 'Destructeur De L\'Apocalypse' }),
             netRegexJa: NetRegexes.startsUsing({ id: '623C', source: 'ターミナス・レッカー' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '623C', source: '终末的破坏' }),
             delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
             response: Responses.knockback(),
         },
@@ -111,7 +102,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '623B', source: 'Terminus-Verwüster', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '623B', source: 'Destructeur De L\'Apocalypse', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '623B', source: 'ターミナス・レッカー', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '623B', source: '终末的破坏', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -131,7 +121,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6C21', source: 'Terminus-Zerrer', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6C21', source: 'Picoreur De L\'Apocalypse', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6C21', source: 'ターミナス・ツイッチャー', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6C21', source: '终末的抽搐', capture: false }),
             response: Responses.lookAway(),
         },
         {
@@ -141,7 +130,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6252', source: 'スヴァーバーヌ', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6252', source: '斯伐婆奴', capture: false }),
             response: Responses.aoe(),
         },
         {
@@ -151,7 +139,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6250', source: 'Svarbhanu' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6250', source: 'Svarbhanu' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6250', source: 'スヴァーバーヌ' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6250', source: '斯伐婆奴' }),
             condition: Conditions.targetIsYou(),
             response: Responses.spread(),
         },
@@ -162,7 +149,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6253', source: 'Svarbhanu' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6253', source: 'Svarbhanu' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6253', source: 'スヴァーバーヌ' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6253', source: '斯伐婆奴' }),
             response: Responses.tankBuster(),
         },
         {
@@ -172,7 +158,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6248', source: 'Svarbhanu', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6248', source: 'Svarbhanu', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6248', source: 'スヴァーバーヌ', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6248', source: '斯伐婆奴', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -304,42 +289,6 @@ Options.Triggers.push({
                 'Vitriol': '有言実行',
                 'Wallow': '嗚咽',
                 'What Is Left/What Is Right': '穢れた左手/右手',
-            },
-        },
-        {
-            'locale': 'cn',
-            'missingTranslations': true,
-            'replaceSync': {
-                'Devatagara': '天神寺',
-                'Insight': '村长屋前',
-                'Svarbhanu': '斯伐婆奴',
-                'Terminus Snatcher': '终末的抢夺',
-                'Terminus Twitcher': '终末的抽搐',
-                'Terminus Wrecker': '终末的破坏',
-                'Trnakiya': '森中空地',
-            },
-            'replaceText': {
-                'Aether Siphon': '属性吸收',
-                'Aether Spray': '属性放出',
-                'Aetherial Disruption': '地脉失控',
-                'Chaotic Pulse': '地脉活性',
-                'Chaotic Undercurrent': '地脉乱流',
-                'Cosmic Kiss': '流星坠落',
-                'Crumbling Sky': '召唤流星',
-                'Flames of Decay': '绝望之炎',
-                'Gnashing of Teeth': '啃咬',
-                'Last Gasp': '哀诉',
-                'Lost Hope': '恍惚的叫声',
-                'Meaningless Destruction': '绝望中的狂乱',
-                'Mouth Off': '空口白话',
-                'Note of Despair': '绝望的叫声',
-                'Poison Heart': '毒液块',
-                'Total Wreck': '极尽破坏',
-                'Unholy Water': '水牢弹',
-                'Vitriol': '言出必行',
-                'Wallow': '呜咽',
-                'What Is Left': '污秽的左手',
-                'What Is Right': '污秽的右手',
             },
         },
     ],

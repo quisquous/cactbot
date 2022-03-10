@@ -9,7 +9,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6448', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6448', source: 'Livia', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6448', source: '愛執のリウィア', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6448', source: '迷执爱恋的莉维亚', capture: false }),
             response: Responses.aoe(),
         },
         {
@@ -19,7 +18,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6442', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6442', source: 'Livia', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6442', source: '愛執のリウィア', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6442', source: '迷执爱恋的莉维亚', capture: false }),
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -39,7 +37,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6443', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6443', source: 'Livia', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6443', source: '愛執のリウィア', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6443', source: '迷执爱恋的莉维亚', capture: false }),
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -59,7 +56,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6449', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6449', source: 'Livia' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6449', source: '愛執のリウィア' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6449', source: '迷执爱恋的莉维亚' }),
             response: Responses.tankCleave('alert'),
         },
         {
@@ -69,7 +65,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '644D', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)' }),
             netRegexFr: NetRegexes.startsUsing({ id: '644D', source: 'Livia' }),
             netRegexJa: NetRegexes.startsUsing({ id: '644D', source: '愛執のリウィア' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '644D', source: '迷执爱恋的莉维亚' }),
             response: Responses.stackMarkerOn(),
         },
         {
@@ -79,7 +74,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6455', source: '宿執のリットアティン', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6455', source: '强执忠义的里塔提恩', capture: false }),
             response: Responses.aoe(),
         },
         {
@@ -89,7 +83,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6450', source: '宿執のリットアティン', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6450', source: '强执忠义的里塔提恩', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -109,7 +102,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6452', source: '宿執のリットアティン', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6452', source: '强执忠义的里塔提恩', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -129,7 +121,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6456', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6456', source: 'Rhitahtyn' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6456', source: '宿執のリットアティン' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6456', source: '强执忠义的里塔提恩' }),
             response: Responses.tankBuster(),
         },
         {
@@ -139,7 +130,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6B1F', source: 'Versunken(?:e|er|es|en) Reue' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6B1F', source: 'Regret Enfoui' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6B1F', source: 'サンクン・リグレト' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6B1F', source: '沉沦的后悔' }),
             condition: (data) => data.CanStun(),
             response: Responses.stun(),
         },
@@ -150,7 +140,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6464', source: 'Amon' }),
             netRegexFr: NetRegexes.startsUsing({ id: '6464', source: 'Amon' }),
             netRegexJa: NetRegexes.startsUsing({ id: '6464', source: '異執のアモン' }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6464', source: '邪执外道的亚蒙' }),
             response: Responses.tankBuster(),
         },
         {
@@ -160,7 +149,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.ability({ id: '6C6C', source: 'Ysayles Seele', capture: false }),
             netRegexFr: NetRegexes.ability({ id: '6C6C', source: 'Âme D\'Ysayle', capture: false }),
             netRegexJa: NetRegexes.ability({ id: '6C6C', source: 'イゼルの魂', capture: false }),
-            netRegexCn: NetRegexes.ability({ id: '6C6C', source: '伊塞勒的灵魂', capture: false }),
             alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -180,7 +168,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6465', source: 'Amon', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6465', source: 'Amon', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6465', source: '異執のアモン', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6465', source: '邪执外道的亚蒙', capture: false }),
             response: Responses.aoe(),
         },
         {
@@ -190,7 +177,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6460', source: 'Amon', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6460', source: 'Amon', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6460', source: '異執のアモン', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6460', source: '邪执外道的亚蒙', capture: false }),
             response: Responses.goRight(),
         },
         {
@@ -200,7 +186,6 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '6461', source: 'Amon', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '6461', source: 'Amon', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '6461', source: '異執のアモン', capture: false }),
-            netRegexCn: NetRegexes.startsUsing({ id: '6461', source: '邪执外道的亚蒙', capture: false }),
             response: Responses.goLeft(),
         },
     ],
@@ -340,50 +325,6 @@ Options.Triggers.push({
                 'Tartarean Spark': 'タルタロススパーク',
                 'Thundaga Forte': 'フォルテサンダガ',
                 'Vexillatio': 'ウェクシッラティオ',
-            },
-        },
-        {
-            'locale': 'cn',
-            'missingTranslations': true,
-            'replaceSync': {
-                'Aethershot': '以太弹',
-                'Amon the Undying': '邪执外道的亚蒙',
-                'Livia the Undeterred': '迷执爱恋的莉维亚',
-                'Rhitahtyn the Unshakable': '强执忠义的里塔提恩',
-                'Sinking Regret': '沉沦的后悔',
-                'The Central Observatory': '主观测室',
-                'The Midnight Downwell': '乱流海域',
-                'The Saltcrystal Strings': '结晶海域',
-                'Ysayle\'s Spirit': '伊塞勒的灵魂',
-            },
-            'replaceText': {
-                'Aglaea Bite': '典雅女神枪',
-                'Aglaea Climb': '典雅女神连枪',
-                'Aglaea Shot': '典雅女神射击',
-                'Antistrophe': '回舞歌',
-                'Anvil of Tartarus': '冥狱铁砧',
-                'Curtain Call': '离场',
-                'Dark Forte': '暗强音',
-                'Disparagement': '蔑视',
-                'Dreams of Ice': '寒冰的幻想',
-                'Entr\'acte': '间歇',
-                'Epode': '长短句交替',
-                'Eruption Forte': '强音喷发',
-                'Frustration': '挫败',
-                'Ignis Amoris': '爱之火',
-                'Ignis Odi': '恨之火',
-                '(?<!Tartarean )Impact': '冲击',
-                'Left Firaga Forte': '左侧强音爆炎',
-                'Left Firaga Forte(?!/)': '左侧强音爆炎',
-                'Odi et Amo': '恨且爱',
-                'Right Firaga Forte': '右侧强音爆炎',
-                'Shield Skewer': '盾牌穿刺',
-                'Shrapnel Shell': '榴散弹',
-                '(?<!Anti)Strophe': '正旋舞歌',
-                'Tartarean Impact': '冥狱冲击',
-                'Tartarean Spark': '冥狱火花',
-                'Thundaga Forte': '强音暴雷',
-                'Vexillatio': '布旗',
             },
         },
     ],
