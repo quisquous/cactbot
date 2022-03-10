@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Rug' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'ラグ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: '拉格' }),
       response: Responses.tankBuster(),
     },
     {
@@ -41,6 +42,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Rug' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: '拉格' }),
       run: (data, matches) => {
         const transmuteFire = '629A';
         const transmuteBio = '631D';
@@ -65,6 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Rug' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'ラグ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['629[1-4]'], source: '拉格' }),
       durationSeconds: (data) => {
         // Based on network log data analysis, the first orb will finish
         // 8 seconds after this cast started, while the second orb will
@@ -143,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '629C', source: 'Rug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '629C', source: 'Anabella', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '629C', source: 'ラグ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '629C', source: '拉格', capture: false }),
       // There's a Dhrupad cast after every transmute sequence.
       run: (data) => {
         data.orbCount = 0;
@@ -157,6 +161,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Dug' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Samanta' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'ドグ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: '多格' }),
       response: Responses.tankBuster(),
     },
     {
@@ -167,6 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Dug', capture: false }),
       netRegexFr: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Samanta', capture: false }),
       netRegexJa: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'ドグ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: ['62A1', '62BC'], source: '多格', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -186,6 +192,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '62A5', source: 'Dug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '62A5', source: 'Samanta', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62A5', source: 'ドグ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '62A5', source: '多格', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -205,6 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '62B9', source: 'Mug', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '62B9', source: 'Maria', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62B9', source: 'マグ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '62B9', source: '马格', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -214,6 +222,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '62A9', source: 'Mug' }),
       netRegexFr: NetRegexes.startsUsing({ id: '62A9', source: 'Maria' }),
       netRegexJa: NetRegexes.startsUsing({ id: '62A9', source: 'マグ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '62A9', source: '马格' }),
       response: Responses.tankBuster(),
     },
     {
@@ -223,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '62B8', source: 'Mug' }),
       netRegexFr: NetRegexes.startsUsing({ id: '62B8', source: 'Maria' }),
       netRegexJa: NetRegexes.startsUsing({ id: '62B8', source: 'マグ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '62B8', source: '马格' }),
       response: Responses.stackMarkerOn(),
     },
   ],

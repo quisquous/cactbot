@@ -24,6 +24,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '625E', source: 'Lyssa' }),
       netRegexFr: NetRegexes.startsUsing({ id: '625E', source: 'Lyssa' }),
       netRegexJa: NetRegexes.startsUsing({ id: '625E', source: 'リッサ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '625E', source: '吕萨' }),
       response: Responses.tankBuster(),
     },
     {
@@ -33,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '625D', source: 'Lyssa', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '625D', source: 'Lyssa', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '625D', source: 'リッサ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '625D', source: '吕萨', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -42,6 +44,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '625C', source: 'Lyssa' }),
       netRegexFr: NetRegexes.startsUsing({ id: '625C', source: 'Lyssa' }),
       netRegexJa: NetRegexes.startsUsing({ id: '625C', source: 'リッサ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '625C', source: '吕萨' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -51,6 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '648F', source: 'Ladon-Lord' }),
       netRegexFr: NetRegexes.startsUsing({ id: '648F', source: 'Seigneur Ladon' }),
       netRegexJa: NetRegexes.startsUsing({ id: '648F', source: 'ラドンロード' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '648F', source: '拉冬之王' }),
       response: Responses.tankBuster(),
     },
     {
@@ -60,6 +64,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '648D', source: 'Ladon-Lord', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '648D', source: 'Seigneur Ladon', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '648D', source: 'ラドンロード', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '648D', source: '拉冬之王', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -69,6 +74,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '648E', source: 'Ladon-Lord' }),
       netRegexFr: NetRegexes.startsUsing({ id: '648E', source: 'Seigneur Ladon' }),
       netRegexJa: NetRegexes.startsUsing({ id: '648E', source: 'ラドンロード' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '648E', source: '拉冬之王' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -78,6 +84,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '651E', source: 'Hermes', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '651E', source: 'Hermès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '651E', source: 'ヘルメス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '651E', source: '赫尔墨斯', capture: false }),
       response: Responses.aoe(),
       run: (data) => data.isHermes = true,
     },
@@ -97,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '652B', source: 'Hermes', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '652B', source: 'Hermès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '652B', source: 'ヘルメス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '652B', source: '赫尔墨斯', capture: false }),
       response: Responses.spread(),
     },
     {
@@ -106,6 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6533', source: 'Hermes' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6533', source: 'Hermès' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6533', source: 'ヘルメス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6533', source: '赫尔墨斯' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -116,6 +125,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '6523', source: 'Meteor', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '6523', source: 'Météore', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6523', source: 'メテオ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '6523', source: '陨石', capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -22,6 +22,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'バルナバ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: '巴尔纳伯', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -43,6 +44,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
       netRegexFr: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
       netRegexJa: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'バルナバ' }),
+      netRegexCn: NetRegexes.headMarker({ id: ['0122', '0123'], target: '巴尔纳伯' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '0122',
     },
     {
@@ -52,6 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'バルナバ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: '巴尔纳伯', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -91,6 +94,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '巴尔纳伯' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '6245',
     },
     {
@@ -100,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '巴尔纳伯', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -136,6 +141,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62EB', source: 'バルナバ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '62EB', source: '巴尔纳伯', capture: false }),
       response: Responses.outOfMelee(),
     },
     {
@@ -151,6 +157,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62F3', source: 'ルゲイエ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '62F3', source: '卢格', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
@@ -171,6 +178,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62F5', source: 'ルゲイエ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '62F5', source: '卢格', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -190,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62FA', source: 'ルゲイエ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '62FA', source: '卢格', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -199,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62F8', source: 'ルゲイエ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '62F8', source: '卢格', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -219,6 +229,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62FE', source: 'アニマ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '62FE', source: '阿尼玛', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -237,6 +248,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6300', source: 'アニマ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6300', source: '阿尼玛', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -247,6 +259,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6301', source: 'Mega-Graviton' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6301', source: 'Méga Graviton' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6301', source: 'メガグラビトン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6301', source: '百万重力' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
@@ -266,6 +279,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6303', source: 'アニマ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '6303', source: '阿尼玛', capture: false }),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {

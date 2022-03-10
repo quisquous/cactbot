@@ -17,6 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6448', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6448', source: 'Livia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6448', source: '愛執のリウィア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6448', source: '迷执爱恋的莉维亚', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -26,6 +27,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6442', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6442', source: 'Livia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6442', source: '愛執のリウィア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6442', source: '迷执爱恋的莉维亚', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -45,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6443', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6443', source: 'Livia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6443', source: '愛執のリウィア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6443', source: '迷执爱恋的莉维亚', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -64,6 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6449', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6449', source: 'Livia' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6449', source: '愛執のリウィア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6449', source: '迷执爱恋的莉维亚' }),
       response: Responses.tankCleave('alert'),
     },
     {
@@ -73,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '644D', source: 'Livia (?:der|die|das) Glühend(?:e|er|es|en)' }),
       netRegexFr: NetRegexes.startsUsing({ id: '644D', source: 'Livia' }),
       netRegexJa: NetRegexes.startsUsing({ id: '644D', source: '愛執のリウィア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '644D', source: '迷执爱恋的莉维亚' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -82,6 +87,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6455', source: '宿執のリットアティン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6455', source: '强执忠义的里塔提恩', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -91,6 +97,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6450', source: '宿執のリットアティン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6450', source: '强执忠义的里塔提恩', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -110,6 +117,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6452', source: '宿執のリットアティン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6452', source: '强执忠义的里塔提恩', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -129,6 +137,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6456', source: 'Rhitahtyn (?:der|die|das) Geplagt(?:e|er|es|en)' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6456', source: 'Rhitahtyn' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6456', source: '宿執のリットアティン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6456', source: '强执忠义的里塔提恩' }),
       response: Responses.tankBuster(),
     },
     {
@@ -138,6 +147,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6B1F', source: 'Versunken(?:e|er|es|en) Reue' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6B1F', source: 'Regret Enfoui' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B1F', source: 'サンクン・リグレト' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6B1F', source: '沉沦的后悔' }),
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
@@ -148,6 +158,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6464', source: 'Amon' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6464', source: 'Amon' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6464', source: '異執のアモン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6464', source: '邪执外道的亚蒙' }),
       response: Responses.tankBuster(),
     },
     {
@@ -157,6 +168,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '6C6C', source: 'Ysayles Seele', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '6C6C', source: 'Âme D\'Ysayle', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6C6C', source: 'イゼルの魂', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '6C6C', source: '伊塞勒的灵魂', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -176,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6465', source: 'Amon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6465', source: 'Amon', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6465', source: '異執のアモン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6465', source: '邪执外道的亚蒙', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -185,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6460', source: 'Amon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6460', source: 'Amon', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6460', source: '異執のアモン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6460', source: '邪执外道的亚蒙', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -194,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6461', source: 'Amon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6461', source: 'Amon', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6461', source: '異執のアモン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6461', source: '邪执外道的亚蒙', capture: false }),
       response: Responses.goLeft(),
     },
   ],

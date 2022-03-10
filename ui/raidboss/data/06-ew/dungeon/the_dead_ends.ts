@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '653C', source: 'Typhoid Der Endzeit', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '653C', source: 'Grébuloff En Stade Terminal', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '653C', source: 'グレビュオフ・メルター', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '653C', source: '变异的格雷布洛弗', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -31,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '6EBD', source: 'Typhoid Der Endzeit' }),
       netRegexFr: NetRegexes.ability({ id: '6EBD', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.ability({ id: '6EBD', source: 'グレビュオフ・メルター' }),
+      netRegexCn: NetRegexes.ability({ id: '6EBD', source: '变异的格雷布洛弗' }),
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
@@ -41,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6542', source: 'Typhoid Der Endzeit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6542', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6542', source: 'グレビュオフ・メルター' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6542', source: '变异的格雷布洛弗' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -50,6 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6544', source: 'Typhoid Der Endzeit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6544', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6544', source: 'グレビュオフ・メルター' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6544', source: '变异的格雷布洛弗' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -77,6 +81,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6540', source: 'Typhoid Der Endzeit' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6540', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6540', source: 'グレビュオフ・メルター' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6540', source: '变异的格雷布洛弗' }),
       response: Responses.tankBuster(),
     },
     {
@@ -86,6 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6550', source: 'Friedenswächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6550', source: 'Pacificateur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6550', source: 'ピースキーパー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6550', source: '和平捍卫者', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -95,6 +101,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6EC7', source: 'Friedenswächter' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6EC7', source: 'Pacificateur' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6EC7', source: 'ピースキーパー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6EC7', source: '和平捍卫者' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -105,6 +112,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6548', source: 'Friedenswächter' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6548', source: 'Pacificateur' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6548', source: 'ピースキーパー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6548', source: '和平捍卫者' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -115,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6EBF', source: 'Friedenswächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6EBF', source: 'Pacificateur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6EBF', source: 'ピースキーパー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6EBF', source: '和平捍卫者', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -134,6 +143,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '654B', source: 'Friedenswächter', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '654B', source: 'Pacificateur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '654B', source: 'ピースキーパー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '654B', source: '和平捍卫者', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -143,6 +153,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '654F', source: 'Friedenswächter' }),
       netRegexFr: NetRegexes.startsUsing({ id: '654F', source: 'Pacificateur' }),
       netRegexJa: NetRegexes.startsUsing({ id: '654F', source: 'ピースキーパー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '654F', source: '和平捍卫者' }),
       // TODO: this is maybe worth promoting to responses?
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -187,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '655E', source: 'Ra-La', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '655E', source: 'Ra-La', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '655E', source: 'ラーラー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '655E', source: '拉啦', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -196,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '655D', source: 'Ra-La' }),
       netRegexFr: NetRegexes.startsUsing({ id: '655D', source: 'Ra-La' }),
       netRegexJa: NetRegexes.startsUsing({ id: '655D', source: 'ラーラー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '655D', source: '拉啦' }),
       response: Responses.tankBuster(),
     },
     {
@@ -205,6 +218,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '655A', source: 'Ra-La' }),
       netRegexFr: NetRegexes.startsUsing({ id: '655A', source: 'Ra-La' }),
       netRegexJa: NetRegexes.startsUsing({ id: '655A', source: 'ラーラー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '655A', source: '拉啦' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -218,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6557', source: 'Ra-La', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6557', source: 'Ra-La', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6557', source: 'ラーラー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6557', source: '拉啦', capture: false }),
       alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.right!() : output.left!(),
       run: (data) => data.seenLovingEmbrace = true,
       outputStrings: {
@@ -232,6 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6558', source: 'Ra-La', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6558', source: 'Ra-La', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6558', source: 'ラーラー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6558', source: '拉啦', capture: false }),
       alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.left!() : output.right!(),
       run: (data) => data.seenLovingEmbrace = true,
       outputStrings: {
@@ -246,6 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '655C', source: 'Ra-La' }),
       netRegexFr: NetRegexes.startsUsing({ id: '655C', source: 'Ra-La' }),
       netRegexJa: NetRegexes.startsUsing({ id: '655C', source: 'ラーラー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '655C', source: '拉啦' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

@@ -30,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '673E', source: 'Fratze', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '673E', source: 'Visage Imperturbable', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '673E', source: 'フェイス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '673E', source: '面像', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -49,6 +50,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6743', source: 'Fratze', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6743', source: 'Visage Imperturbable', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6743', source: 'フェイス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6743', source: '面像', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -58,6 +60,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6742', source: 'Fratze' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6742', source: 'Visage Imperturbable' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6742', source: 'フェイス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6742', source: '面像' }),
       response: Responses.tankBuster(),
     },
     {
@@ -67,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'Klein(?:e|er|es|en) Fratze' }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'Visage Changeant' }),
       netRegexJa: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'リトルフェイス' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: 'ACB', source: '小面像' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.smileyFace = true,
     },
@@ -77,6 +81,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.losesEffect({ effectId: 'ACB', source: 'Klein(?:e|er|es|en) Fratze' }),
       netRegexFr: NetRegexes.losesEffect({ effectId: 'ACB', source: 'Visage Changeant' }),
       netRegexJa: NetRegexes.losesEffect({ effectId: 'ACB', source: 'リトルフェイス' }),
+      netRegexCn: NetRegexes.losesEffect({ effectId: 'ACB', source: '小面像' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.smileyFace = false,
     },
@@ -87,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'Klein(?:e|er|es|en) Fratze' }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'Visage Changeant' }),
       netRegexJa: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'リトルフェイス' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: 'ACC', source: '小面像' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.frownyFace = true,
     },
@@ -97,6 +103,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.losesEffect({ effectId: 'ACC', source: 'Klein(?:e|er|es|en) Fratze' }),
       netRegexFr: NetRegexes.losesEffect({ effectId: 'ACC', source: 'Visage Changeant' }),
       netRegexJa: NetRegexes.losesEffect({ effectId: 'ACC', source: 'リトルフェイス' }),
+      netRegexCn: NetRegexes.losesEffect({ effectId: 'ACC', source: '小面像' }),
       condition: Conditions.targetIsYou(),
       run: (data) => data.frownyFace = false,
     },
@@ -107,6 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6738', source: 'Fratze', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6738', source: 'Visage Imperturbable', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6738', source: 'フェイス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6738', source: '面像', capture: false }),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         if (data.smileyFace)
@@ -149,6 +157,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6745', source: 'Rahmenwerker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6745', source: 'Ouvrier Modeleur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6745', source: 'フレームワーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6745', source: '框架工作员', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -158,6 +167,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6744', source: 'Rahmenwerker' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6744', source: 'Ouvrier Modeleur' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6744', source: 'フレームワーカー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6744', source: '框架工作员' }),
       response: Responses.tankBuster(),
     },
     {
@@ -167,6 +177,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6752', source: 'Bittelächeln', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6752', source: 'Béatotron', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6752', source: 'ビッグチーズ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6752', source: '大笑脸', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -176,6 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '674F', source: 'Bittelächeln', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '674F', source: 'Béatotron', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '674F', source: 'ビッグチーズ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '674F', source: '大笑脸', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -185,6 +197,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6750', source: 'Bittelächeln', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6750', source: 'Béatotron', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6750', source: 'ビッグチーズ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6750', source: '大笑脸', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -194,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6751', source: 'Bittelächeln' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6751', source: 'Béatotron' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6751', source: 'ビッグチーズ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6751', source: '大笑脸' }),
       response: Responses.tankBuster(),
     },
     {
@@ -203,6 +217,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6755', source: 'Bittelächeln' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6755', source: 'Béatotron' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6755', source: 'ビッグチーズ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6755', source: '大笑脸' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -213,6 +228,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6753', source: 'Bittelächeln' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6753', source: 'Béatotron' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6753', source: 'ビッグチーズ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6753', source: '大笑脸' }),
       response: Responses.stackMarkerOn(),
     },
   ],

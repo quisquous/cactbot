@@ -20,6 +20,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6238', source: 'Terminus-Häscher', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6238', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6238', source: 'ターミナス・スナッチャー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6238', source: '终末的抢夺', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -29,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6231', source: 'Terminus-Häscher', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6231', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6231', source: 'ターミナス・スナッチャー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6231', source: '终末的抢夺', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -48,6 +50,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6235', source: 'Terminus-Häscher' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6235', source: 'Pillard De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6235', source: 'ターミナス・スナッチャー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6235', source: '终末的抢夺' }),
       response: Responses.tankBuster(),
     },
     {
@@ -57,6 +60,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6233', source: 'Terminus-Häscher', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6233', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6233', source: 'ターミナス・スナッチャー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6233', source: '终末的抢夺', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -66,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6234', source: 'Terminus-Häscher', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6234', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6234', source: 'ターミナス・スナッチャー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6234', source: '终末的抢夺', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -75,6 +80,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6236', source: 'Terminus-Häscher' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6236', source: 'Pillard De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6236', source: 'ターミナス・スナッチャー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6236', source: '终末的抢夺' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -85,6 +91,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6241', source: 'Terminus-Verwüster', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6241', source: 'Destructeur De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6241', source: 'ターミナス・レッカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6241', source: '终末的破坏', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -94,6 +101,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6242', source: 'Terminus-Verwüster' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6242', source: 'Destructeur De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6242', source: 'ターミナス・レッカー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6242', source: '终末的破坏' }),
       response: Responses.tankBuster(),
     },
     {
@@ -103,6 +111,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '623C', source: 'Terminus-Verwüster' }),
       netRegexFr: NetRegexes.startsUsing({ id: '623C', source: 'Destructeur De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '623C', source: 'ターミナス・レッカー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '623C', source: '终末的破坏' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
     },
@@ -113,6 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '623B', source: 'Terminus-Verwüster', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '623B', source: 'Destructeur De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '623B', source: 'ターミナス・レッカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '623B', source: '终末的破坏', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -132,6 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6C21', source: 'Terminus-Zerrer', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6C21', source: 'Picoreur De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C21', source: 'ターミナス・ツイッチャー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6C21', source: '终末的抽搐', capture: false }),
       response: Responses.lookAway(),
     },
     {
@@ -141,6 +152,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6252', source: 'スヴァーバーヌ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6252', source: '斯伐婆奴', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -150,6 +162,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6250', source: 'Svarbhanu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6250', source: 'Svarbhanu' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6250', source: 'スヴァーバーヌ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6250', source: '斯伐婆奴' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -160,6 +173,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6253', source: 'Svarbhanu' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6253', source: 'Svarbhanu' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6253', source: 'スヴァーバーヌ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6253', source: '斯伐婆奴' }),
       response: Responses.tankBuster(),
     },
     {
@@ -169,6 +183,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6248', source: 'Svarbhanu', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6248', source: 'Svarbhanu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6248', source: 'スヴァーバーヌ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6248', source: '斯伐婆奴', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
