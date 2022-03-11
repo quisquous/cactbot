@@ -456,7 +456,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Anima': '阿尼玛',
         'Barnabas': '巴尔纳伯',

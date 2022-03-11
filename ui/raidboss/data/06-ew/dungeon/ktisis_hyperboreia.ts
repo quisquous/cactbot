@@ -265,7 +265,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Concept Review': '创造生物评价室',
         'Hermes': '赫尔墨斯',

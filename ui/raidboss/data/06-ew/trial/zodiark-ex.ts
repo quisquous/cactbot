@@ -146,7 +146,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sigil': '秘纹',
         'Behemoth': '贝希摩斯',
@@ -163,6 +162,7 @@ const triggerSet: TriggerSet<Data> = {
         'Astral Eclipse': '星蚀',
         'Astral Flow': '星极超流',
         'Esoteric Dyad': '神秘二分',
+        'Esoteric Pattern': '秘纹图案',
         '(?<!Triple )Esoteric Ray': '神秘光线',
         'Esoteric Sect': '神秘切割',
         'Esoterikos': '内纹',

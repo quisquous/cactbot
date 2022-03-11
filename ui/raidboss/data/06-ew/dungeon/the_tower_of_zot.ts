@@ -365,7 +365,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Berserker Sphere': '狂暴晶球',
         'Cinduruva': '马格',
@@ -379,7 +378,10 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         'Cinduruva': '马格',
+        'Delayed Element III': '延迟元素',
+        'Delayed Thunder III': '延迟暴雷',
         'Delta Attack': '三角攻击',
+        'Delta Blizzard/Fire/Thunder III': '三角冰封/爆炎/暴雷',
         'Dhrupad': '德鲁帕德',
         'Explosive Force': '起爆',
         'Isitva Siddhi': '物创灭',
@@ -389,6 +391,7 @@ const triggerSet: TriggerSet<Data> = {
         'Manusya Blizzard(?! )': '人趣冰结',
         'Manusya Blizzard III': '人趣冰封',
         'Manusya Confuse': '人趣混乱',
+        'Manusya Element III': '人趣元素',
         'Manusya Faith': '人趣信念',
         'Manusya Fire(?! )': '人趣火炎',
         'Manusya Fire III': '人趣爆炎',
@@ -401,6 +404,7 @@ const triggerSet: TriggerSet<Data> = {
         'Samsara': '轮回',
         'Sanduruva': '多格',
         'Sphere Shatter': '碎裂',
+        'Transmute Element III': '魔力操纵：元素',
         'Transmute Thunder III': '魔力操纵：暴雷',
       },
     },

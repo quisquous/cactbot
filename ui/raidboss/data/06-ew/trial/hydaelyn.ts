@@ -20,7 +20,7 @@ const storedMechanicsOutputStrings = {
     de: 'Mit der Party sammeln',
     fr: 'Package en groupe',
     ja: '全員集合',
-    cn: '8人分摊',
+    cn: '全体分摊',
     ko: '파티 전체 쉐어',
   },
 };
@@ -32,6 +32,7 @@ const crystallizeOutputStrings = {
     de: 'Kristalisieren: ${name}',
     fr: 'Cristallisation : ${name}',
     ja: 'クリスタライズ: ${name}',
+    cn: '水晶化: ${name}',
   },
 };
 
@@ -426,7 +427,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Echo of Hydaelyn': '海德林的回声',
         '(?<!of )Hydaelyn': '海德林',

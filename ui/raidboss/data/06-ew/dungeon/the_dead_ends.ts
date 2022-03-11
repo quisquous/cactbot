@@ -418,7 +418,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Caustic Grebuloff': '变异的格雷布洛弗',
         'Golden Wings': '黄金蝶',
@@ -431,6 +430,8 @@ const triggerSet: TriggerSet<Data> = {
         'Weeping Miasma': '腐烂毒素',
       },
       'replaceText': {
+        '\\(circles\\)': '(圆)',
+        '\\(spread\\)': '(扩散)',
         'Befoulment': '脓液弹',
         'Benevolence': '博爱',
         'Blighted Water': '腐水块',

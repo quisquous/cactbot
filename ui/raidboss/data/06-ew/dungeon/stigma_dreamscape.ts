@@ -503,7 +503,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'A-4 Command': 'A4指挥部',
         'A-4 Conquest': 'A4占领地',

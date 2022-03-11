@@ -173,6 +173,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Weiche den Kopflaser aus',
           fr: 'Évitez les lasers des têtes',
           ja: '顔の直線AoEを避ける',
+          cn: '躲避头部激光',
           ko: '머리가 쏘는 레이저 피하기',
         },
       },
@@ -213,6 +214,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Kardinaler Rand',
           fr: 'Au bord cardinal',
           ja: '東西南北の端へ',
+          cn: '去四边',
           ko: '동서남북 끝으로',
         },
         intercardinal: {
@@ -220,6 +222,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Interkardinaler Rand',
           fr: 'Au bord intercardinal',
           ja: '斜めの端へ',
+          cn: '去四角',
           ko: '대각선 끝으로',
         },
       },
@@ -307,6 +310,7 @@ const triggerSet: TriggerSet<Data> = {
           de: '${dir1} / ${dir2}',
           fr: '${dir1} / ${dir2}',
           ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
       },
@@ -350,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'JETZT Tank LB',
           fr: 'Transcendance Tank maintenant !',
           ja: '今タンクLB',
-          cn: '坦克LB',
+          cn: '坦克LB！',
           ko: '탱리밋',
         },
       },
@@ -464,7 +468,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Doomed Stars': '迈向终结的星球',
         'Kakodaimon': '恶灵魔',
@@ -472,6 +475,9 @@ const triggerSet: TriggerSet<Data> = {
         'oblivion': '混沌次元',
       },
       'replaceText': {
+        '\\(big\\)': '(大)',
+        '\\(cast\\)': '(投掷)',
+        '\\(small\\)': '(小)',
         'Aporrhoia': '流溢',
         'Crash': '冲撞',
         'Dead Star': '坍缩星',
