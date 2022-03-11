@@ -27,6 +27,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Get Behind and Out',
           de: 'Geh hinter ihn und dann raus',
           fr: 'Passez derrière et à l\'extérieur',
+          cn: '去背后',
         },
       },
     },
@@ -44,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Get Front',
           de: 'Geh nach Vorne',
           fr: 'Allez devant',
+          cn: '去正面',
         },
       },
     },
@@ -62,11 +64,13 @@ const triggerSet: TriggerSet<Data> = {
             en: 'GTFO with marker',
             de: 'Geh raus mit dem Marker',
             fr: 'Partez avec le marquage',
+            cn: '快躲开标记',
           },
           missleMarker: {
             en: 'Away from marker',
             de: 'Weg vom Marker',
             fr: 'Éloignez-vous du marquage',
+            cn: '躲开标记',
           },
         };
 
@@ -90,11 +94,13 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Place donut marker under',
             de: 'Platziere Donut-Marker unter ihm',
             fr: 'En dessous le marquage du donut',
+            cn: '放置环形标记',
           },
           missleMarker: {
             en: 'Stack on marker',
             de: 'Auf dem Marker sammeln',
             fr: 'Packez-vous sur les marquages',
+            cn: '标记处集合',
           },
         };
 

@@ -360,7 +360,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<!Excavation )Bomb': '炸弹',
         'Excavation Bomb': '采掘炸弹',

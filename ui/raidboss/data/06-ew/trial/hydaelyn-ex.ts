@@ -23,7 +23,7 @@ const storedMechanicsOutputStrings = {
     de: 'Heiler-Gruppen',
     fr: 'Groupes sur les heals',
     ja: 'ヒラに頭割り',
-    cn: '治疗分摊组',
+    cn: '治疗分组分摊',
     ko: '힐러 그룹 쉐어',
   },
   stack: {
@@ -31,7 +31,7 @@ const storedMechanicsOutputStrings = {
     de: 'Mit der Party sammeln',
     fr: 'Package en équipe',
     ja: '全員集合',
-    cn: '8人分摊',
+    cn: '全体分摊',
     ko: '파티 전체 쉐어',
   },
 };
@@ -43,6 +43,7 @@ const crystallizeOutputStrings = {
     de: 'Kristalisieren: ${name}',
     fr: 'Cristallisation : ${name}',
     ja: 'クリスタライズ: ${name}',
+    cn: '水晶化: ${name}',
   },
 };
 
@@ -337,11 +338,13 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir} Crystals first',
           de: 'Kristall im ${dir} zuerst',
           fr: 'Premiers cristaux au ${dir} ',
+          cn: '先攻击 ${dir} 水晶',
         },
         dirEchoes: {
           en: 'Move Echoes ${dir} first',
           de: 'Bewege Echoes zuerst nach ${dir}',
           fr: 'Déplacez les échos au ${dir} en premier',
+          cn: '先拉回声到 ${dir} ',
         },
         north: Outputs.north,
         south: Outputs.south,
@@ -649,7 +652,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Crystal of Light': '光之水晶',
         'Hydaelyn': '海德林',
@@ -657,6 +659,8 @@ const triggerSet: TriggerSet<Data> = {
         'Parhelion': '幻日',
       },
       'replaceText': {
+        '--top-middle': '--前方中间',
+        '--middle': '--中间',
         'Anthelion': '反假日',
         'Aureole': '晕光',
         'Beacon': '光芒',
@@ -664,6 +668,7 @@ const triggerSet: TriggerSet<Data> = {
         'Crystalline Blizzard III': '水晶冰封',
         'Crystalline Stone III': '水晶垒石',
         'Crystalline Water III': '水晶狂水',
+        'Crystalline Water/Stone III': '水晶狂水/垒石',
         'Crystallize': '结晶',
         'Dichroic Spectrum': '二色光谱',
         'Echoes': '回声',
