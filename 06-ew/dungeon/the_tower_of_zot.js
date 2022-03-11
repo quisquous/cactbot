@@ -16,6 +16,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Rug' }),
             netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Anabella' }),
             netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'ラグ' }),
+            netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: '拉格' }),
             response: Responses.tankBuster(),
         },
         {
@@ -29,6 +30,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Rug' }),
             netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella' }),
             netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ' }),
+            netRegexCn: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: '拉格' }),
             run: (data, matches) => {
                 const transmuteFire = '629A';
                 const transmuteBio = '631D';
@@ -51,6 +53,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Rug' }),
             netRegexFr: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Anabella' }),
             netRegexJa: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'ラグ' }),
+            netRegexCn: NetRegexes.startsUsing({ id: ['629[1-4]'], source: '拉格' }),
             durationSeconds: (data) => {
                 // Based on network log data analysis, the first orb will finish
                 // 8 seconds after this cast started, while the second orb will
@@ -126,6 +129,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '629C', source: 'Rug', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '629C', source: 'Anabella', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '629C', source: 'ラグ', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '629C', source: '拉格', capture: false }),
             // There's a Dhrupad cast after every transmute sequence.
             run: (data) => {
                 data.orbCount = 0;
@@ -140,6 +144,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Dug' }),
             netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Samanta' }),
             netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'ドグ' }),
+            netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: '多格' }),
             response: Responses.tankBuster(),
         },
         {
@@ -150,6 +155,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Dug', capture: false }),
             netRegexFr: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Samanta', capture: false }),
             netRegexJa: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'ドグ', capture: false }),
+            netRegexCn: NetRegexes.ability({ id: ['62A1', '62BC'], source: '多格', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -169,6 +175,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '62A5', source: 'Dug', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '62A5', source: 'Samanta', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '62A5', source: 'ドグ', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '62A5', source: '多格', capture: false }),
             infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
@@ -188,6 +195,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '62B9', source: 'Mug', capture: false }),
             netRegexFr: NetRegexes.startsUsing({ id: '62B9', source: 'Maria', capture: false }),
             netRegexJa: NetRegexes.startsUsing({ id: '62B9', source: 'マグ', capture: false }),
+            netRegexCn: NetRegexes.startsUsing({ id: '62B9', source: '马格', capture: false }),
             response: Responses.aoe(),
         },
         {
@@ -197,6 +205,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '62A9', source: 'Mug' }),
             netRegexFr: NetRegexes.startsUsing({ id: '62A9', source: 'Maria' }),
             netRegexJa: NetRegexes.startsUsing({ id: '62A9', source: 'マグ' }),
+            netRegexCn: NetRegexes.startsUsing({ id: '62A9', source: '马格' }),
             response: Responses.tankBuster(),
         },
         {
@@ -206,6 +215,7 @@ Options.Triggers.push({
             netRegexDe: NetRegexes.startsUsing({ id: '62B8', source: 'Mug' }),
             netRegexFr: NetRegexes.startsUsing({ id: '62B8', source: 'Maria' }),
             netRegexJa: NetRegexes.startsUsing({ id: '62B8', source: 'マグ' }),
+            netRegexCn: NetRegexes.startsUsing({ id: '62B8', source: '马格' }),
             response: Responses.stackMarkerOn(),
         },
     ],
@@ -334,6 +344,51 @@ Options.Triggers.push({
                 'Sphere Shatter': '破裂',
                 'Transmute Element III': '魔力操作：？？？ガ',
                 'Transmute Thunder III': '魔力操作：サンダガ',
+            },
+        },
+        {
+            'locale': 'cn',
+            'replaceSync': {
+                'Berserker Sphere': '狂暴晶球',
+                'Cinduruva': '马格',
+                'Ingenuity\'s Ingress': '技巧之间',
+                'Minduruva': '拉格',
+                'Prosperity\'S Promise': '财富之间',
+                'Prosperity\'s Promise': '财富之间',
+                'Sanduruva': '多格',
+                'Wisdom\'S Ward': '智慧之间',
+                'Wisdom\'s Ward': '智慧之间',
+            },
+            'replaceText': {
+                'Cinduruva': '马格',
+                'Delayed Element III': '延迟元素',
+                'Delayed Thunder III': '延迟暴雷',
+                'Delta Attack': '三角攻击',
+                'Delta Blizzard/Fire/Thunder III': '三角冰封/爆炎/暴雷',
+                'Dhrupad': '德鲁帕德',
+                'Explosive Force': '起爆',
+                'Isitva Siddhi': '物创灭',
+                'Manusya Berserk': '人趣狂暴',
+                'Manusya Bio(?! )': '人趣毒菌',
+                'Manusya Bio III': '人趣剧毒菌',
+                'Manusya Blizzard(?! )': '人趣冰结',
+                'Manusya Blizzard III': '人趣冰封',
+                'Manusya Confuse': '人趣混乱',
+                'Manusya Element III': '人趣元素',
+                'Manusya Faith': '人趣信念',
+                'Manusya Fire(?! )': '人趣火炎',
+                'Manusya Fire III': '人趣爆炎',
+                'Manusya Reflect': '人趣反射',
+                'Manusya Stop': '人趣停止',
+                'Manusya Thunder(?! )': '人趣闪雷',
+                'Manusya Thunder III': '人趣暴雷',
+                'Prakamya Siddhi': '大愿成',
+                'Prapti Siddhi': '身所达',
+                'Samsara': '轮回',
+                'Sanduruva': '多格',
+                'Sphere Shatter': '碎裂',
+                'Transmute Element III': '魔力操纵：元素',
+                'Transmute Thunder III': '魔力操纵：暴雷',
             },
         },
     ],
