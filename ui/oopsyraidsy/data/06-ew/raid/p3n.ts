@@ -50,6 +50,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'Sparkfledged tethered',
             de: 'Saat des Phoinix verbunden',
             fr: 'Oiselet de feu lié',
+            ko: '불새 선 연결됨',
           },
         };
       },
