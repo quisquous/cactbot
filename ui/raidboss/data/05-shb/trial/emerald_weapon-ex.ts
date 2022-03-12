@@ -359,6 +359,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Schau nach den Schwertern',
           fr: 'Repérez les épées',
           cn: '观察剑',
+          ko: '칼 떨어지는 위치 보기',
         },
       },
     },
