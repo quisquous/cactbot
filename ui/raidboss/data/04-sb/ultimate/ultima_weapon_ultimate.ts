@@ -773,7 +773,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '诱导爆炸',
         'Friction': '烈风刃',
         'Geocrush': '大地粉碎',
-        'Great Whirlwind': '大龙卷风', // FIXME
+        'Great Whirlwind': '大龙卷风',
         'Hellfire': '地狱之火炎',
         'Homing Lasers': '诱导射线',
         'Incinerate': '烈焰焚烧',
