@@ -325,7 +325,7 @@ Options.Triggers.push({
                         fr: '#${num} Carré, allez à l\'opposé',
                         ja: '四角 #${num}：ボスの対角へ',
                         cn: '方块 #${num}：去Boss斜对角',
-                        ko: '#${num} ■, 보스 대각 발판으로',
+                        ko: '#${num} 네모, 보스 대각 발판으로',
                     },
                     // Trying not to confuse with boss/across
                     squareBoss: {
@@ -334,7 +334,7 @@ Options.Triggers.push({
                         fr: '#${num} Carré, case du boss',
                         ja: '四角 #${num}：ボスの下へ',
                         cn: '方块 #${num}：去Boss后面',
-                        ko: '#${num} ■, 보스 발판으로',
+                        ko: '#${num} 네모, 보스 발판으로',
                     },
                     triangle: {
                         en: '#${num} Triangle',
@@ -342,7 +342,7 @@ Options.Triggers.push({
                         fr: '#${num} Triangle',
                         ja: '三角 #${num}',
                         cn: '三角 #${num}',
-                        ko: '#${num} ▲',
+                        ko: '#${num} 세모',
                     },
                 };
                 const id = getHeadmarkerId(data, matches);

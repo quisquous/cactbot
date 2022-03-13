@@ -363,6 +363,7 @@ Options.Triggers.push({
                 'Optical Unit': '광학 유닛',
                 'Progress to party combat': '단독 전투 한계 확인',
                 'Calculations indicate increased probability of defeat': '패배 위험성 상승',
+                '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '패배 위험성 상승',
             },
             'replaceText': {
                 'Beyond Strength': '방패 연격 G',
