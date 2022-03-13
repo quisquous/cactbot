@@ -168,15 +168,15 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sprung ködern ${dir}?',
           fr: 'Attirez le saut à l\'${dir}?',
           ja: 'ジャンプ誘導?: ${dir}',
-          cn: '引导跳跃 ${dir}?', // FIXME
-          ko: '점프 유도: ${dir}?',
+          cn: '引导跳跃 ${dir}?',
+          ko: '점프 유도?: ${dir}',
         },
         baitJump: {
           en: 'Bait Jump?',
           de: 'Sprung ködern?',
           fr: 'Attirez le saut ?',
           ja: 'ジャンプ誘導?',
-          cn: '引导跳跃',
+          cn: '引导跳跃?',
           ko: '점프 유도?',
         },
         east: Outputs.east,
