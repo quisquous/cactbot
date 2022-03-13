@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geh hinter ihn und dann raus',
           fr: 'Passez derrière et à l\'extérieur',
           cn: '去背后',
+          ko: '뒤로 그리고 밖으로',
         },
       },
     },
@@ -46,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geh nach Vorne',
           fr: 'Allez devant',
           cn: '去正面',
+          ko: '앞으로',
         },
       },
     },
@@ -65,12 +67,14 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Geh raus mit dem Marker',
             fr: 'Partez avec le marquage',
             cn: '快躲开标记',
+            ko: '나에게 징 멀리 빠지기',
           },
           missleMarker: {
             en: 'Away from marker',
             de: 'Weg vom Marker',
             fr: 'Éloignez-vous du marquage',
             cn: '躲开标记',
+            ko: '징에서 멀리 떨어지기',
           },
         };
 
@@ -95,12 +99,14 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Platziere Donut-Marker unter ihm',
             fr: 'En dessous le marquage du donut',
             cn: '放置环形标记',
+            ko: '나에게 도넛 장판',
           },
           missleMarker: {
             en: 'Stack on marker',
             de: 'Auf dem Marker sammeln',
             fr: 'Packez-vous sur les marquages',
             cn: '标记处集合',
+            ko: '도넛징 대상자에게 붙기',
           },
         };
 

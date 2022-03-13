@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rechts => Links',
           fr: 'À droite => À gauche',
           cn: '右 => 左',
+          ko: '오른쪽 => 왼쪽',
         },
       },
     },
@@ -47,6 +48,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Links => Rechts',
           fr: 'À gauche => À droite',
           cn: '左 => 右',
+          ko: '왼쪽 => 오른쪽',
         },
       },
     },
@@ -108,12 +110,14 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Geh mit Wasser raus',
             fr: 'Partez avec l\'eau',
             cn: '快躲开水',
+            ko: '나에게 물징 멀리 빠지기',
           },
           waterMarker: {
             en: 'Away from water marker',
             de: 'Weg vom Wasser Marker',
             fr: 'Éloignez-vous du marquage eau',
             cn: '躲开水标记',
+            ko: '물징에서 멀리 떨어지기',
           },
         };
 
