@@ -130,7 +130,7 @@ Options.Triggers.push({
                     de: 'Sprung ködern?',
                     fr: 'Attirez le saut ?',
                     ja: 'ジャンプ誘導?',
-                    cn: '引导跳跃',
+                    cn: '引导跳跃?',
                     ko: '점프 유도?',
                 },
                 east: Outputs.east,
