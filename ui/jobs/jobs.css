@@ -387,20 +387,20 @@ div.justbuffs div#procs-container {
   background-color: rgb(139, 209, 242);
 }
 
+#sam-stacks-getsu.active {
+  background-color: rgb(100, 100, 238);
+}
+
+#sam-stacks-ka.active {
+  background-color: rgb(230, 142, 142);
+}
+
 #rpr-stacks-enshroud > div.lemure {
   background-color: rgb(70, 255, 255);
 }
 
 #rpr-stacks-enshroud > div.void {
   background-color: rgb(255, 0, 255);
-}
-
-#sam-stacks-getsu.active {
-  background-color: rgb(185, 185, 242);
-}
-
-#sam-stacks-ka.active {
-  background-color: rgb(237, 180, 180);
 }
 
 #brd-stacks-magescoda.active {
@@ -926,11 +926,11 @@ div.justbuffs div#procs-container {
 }
 
 .sam-color-fuka {
-  background-color: rgb(200, 180, 90);
+  background-color: rgb(200, 50, 40);
 }
 
 .sam-color-fugetsu {
-  background-color: rgb(60, 160, 160);
+  background-color: rgb(10, 40, 160);
 }
 
 .sam-color-tsubamegaeshi {
