@@ -35,7 +35,7 @@ jobs:
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version
         run: |
-          echo "CACTBOT_RELEASE=cactbot-${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
         shell: bash
       - name: Check dependencies cache
         id: cache-dependencies
@@ -64,16 +64,16 @@ jobs:
         shell: bash
       - name: Create Release Artifact
         run: |
-          mkdir ${{ env.CACTBOT_RELEASE }}
-          mv publish/cactbot-release/cactbot/ ${{ env.CACTBOT_RELEASE }}
-          compress-archive ${{ env.CACTBOT_RELEASE }} ${{ env.CACTBOT_RELEASE }}.zip
+          mkdir cactbot
+          mv publish/cactbot-release/cactbot/ cactbot
+          compress-archive cactbot cactbot.zip
         shell: pwsh
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         with:
           tag_name: ${{ github.ref }}
-          release_name: ${{ env.CACTBOT_RELEASE }}
+          release_name: cactbot-${{ env.RELEASE_VERSION }}
           body: |
             Changes in this release:
             - plugin
@@ -84,6 +84,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ env.CACTBOT_RELEASE }}.zip
-          asset_name: ${{ env.CACTBOT_RELEASE }}.zip
+          asset_path: ./cactbot.zip
+          asset_name: cactbot-${{ env.RELEASE_VERSION }}.zip
           asset_content_type: application/zip
