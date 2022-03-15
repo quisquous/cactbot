@@ -208,7 +208,8 @@ export class ComponentManager {
       this.gpAlarmReady = false;
 
       this.bars._setupJobContainers(job, {
-        buffList: this.shouldShow.buffList ?? true,
+        buffList: this.shouldShow.buffList ??
+          (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
         pullBar: this.shouldShow.pullBar ?? true,
         hpBar: this.shouldShow.hpBar ?? (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
         mpBar: this.shouldShow.mpBar ??
