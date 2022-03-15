@@ -20,6 +20,7 @@ export class SAMComponent extends BaseComponent {
   fugetsu: TimerBox;
   tsubameGaeshi: TimerBox;
   higanbana: TimerBox;
+  lastTsubameGaeshiTimestamp?: string;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -85,27 +86,12 @@ export class SAMComponent extends BaseComponent {
   override onJobDetailUpdate(jobDetail: JobDetail['SAM']): void {
     this.kenkiGauge.innerText = jobDetail.kenki.toString();
     this.meditationGauge.innerText = jobDetail.meditationStacks.toString();
-    if (jobDetail.kenki >= 70)
-      this.kenkiGauge.parentNode.classList.add('high');
-    else
-      this.kenkiGauge.parentNode.classList.remove('high');
-    if (jobDetail.meditationStacks >= 2)
-      this.meditationGauge.parentNode.classList.add('high');
-    else
-      this.meditationGauge.parentNode.classList.remove('high');
+    this.kenkiGauge.parentNode.classList.toggle('high', jobDetail.kenki >= 70);
+    this.meditationGauge.parentNode.classList.toggle('high', jobDetail.meditationStacks >= 2);
 
-    if (jobDetail.setsu)
-      this.setsu.classList.add('active');
-    else
-      this.setsu.classList.remove('active');
-    if (jobDetail.getsu)
-      this.getsu.classList.add('active');
-    else
-      this.getsu.classList.remove('active');
-    if (jobDetail.ka)
-      this.ka.classList.add('active');
-    else
-      this.ka.classList.remove('active');
+    this.setsu.classList.toggle('active', jobDetail.setsu);
+    this.getsu.classList.toggle('active', jobDetail.getsu);
+    this.ka.classList.toggle('active', jobDetail.ka);
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>):void {
@@ -125,12 +111,21 @@ export class SAMComponent extends BaseComponent {
       this.fugetsu.duration = 0;
   }
 
-  override onUseAbility(id: string) :void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>) :void {
     switch (id) {
       case kAbility.KaeshiHiganbana:
       case kAbility.KaeshiGoken:
       case kAbility.KaeshiSetsugekka:
-        this.tsubameGaeshi.duration = 60;
+        if (this.player.level > 84) {
+          if (matches.timestamp !== this.lastTsubameGaeshiTimestamp) {
+            // TODO: use targetIndex instead.
+            // Avoid multiple call in AOE
+            this.tsubameGaeshi.duration = 60 + this.tsubameGaeshi.value;
+            this.lastTsubameGaeshiTimestamp = matches.timestamp;
+          }
+        } else {
+          this.tsubameGaeshi.duration = 60;
+        }
         break;
     }
   }
