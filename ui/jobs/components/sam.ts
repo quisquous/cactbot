@@ -52,15 +52,15 @@ export class SAMComponent extends BaseComponent {
     this.meditationGauge = this.bars.addResourceBox({
       classList: ['sam-color-meditation'],
     });
-    this.fuka = this.bars.addProcBox({
-      id: 'sam-procs-fuka',
-      fgColor: 'sam-color-fuka',
-      notifyWhenExpired: true,
-    });
 
     this.fugetsu = this.bars.addProcBox({
       id: 'sam-procs-fugetsu',
       fgColor: 'sam-color-fugetsu',
+      notifyWhenExpired: true,
+    });
+    this.fuka = this.bars.addProcBox({
+      id: 'sam-procs-fuka',
+      fgColor: 'sam-color-fuka',
       notifyWhenExpired: true,
     });
     this.tsubameGaeshi = this.bars.addProcBox({
@@ -95,19 +95,19 @@ export class SAMComponent extends BaseComponent {
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>):void {
-    if (id === EffectId.Fugetsu) {
+    if (id === EffectId.Fuka) {
       this.fuka.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
       this.player.speedBuffs.fuka = true;
     }
-    if (id === EffectId.Fuka)
+    if (id === EffectId.Fugetsu)
       this.fugetsu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   }
   override onYouLoseEffect(id: string):void {
-    if (id === EffectId.Fugetsu) {
+    if (id === EffectId.Fuka) {
       this.fuka.duration = 0;
       this.player.speedBuffs.fuka = false;
     }
-    if (id === EffectId.Fuka)
+    if (id === EffectId.Fugetsu)
       this.fugetsu.duration = 0;
   }
 
@@ -116,7 +116,7 @@ export class SAMComponent extends BaseComponent {
       case kAbility.KaeshiHiganbana:
       case kAbility.KaeshiGoken:
       case kAbility.KaeshiSetsugekka:
-        if (this.player.level > 84) {
+        if (this.player.level >= 84) {
           if (matches.timestamp !== this.lastTsubameGaeshiTimestamp) {
             // TODO: use targetIndex instead.
             // Avoid multiple call in AOE
