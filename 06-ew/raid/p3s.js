@@ -591,8 +591,9 @@ Options.Triggers.push({
                 'Sunbird': 'oiselet étincelant',
             },
             'replaceText': {
+                '\\?': ' ?',
                 '--fire expands--': '--élargissement du feu--',
-                '--giant fireplume\\?--': '--immolation de feu géant ?--',
+                '--giant fireplume': '--immolation de feu géant',
                 'Ashen Eye': 'Œil sombre',
                 '(?<!\\w )Ashplume': 'Immolation de feu ténébreux',
                 'Beacons of Asphodelos': 'Feu des Limbes',

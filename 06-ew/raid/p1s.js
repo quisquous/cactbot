@@ -572,6 +572,7 @@ Options.Triggers.push({
                 'Erichthonios': 'Érichthonios',
             },
             'replaceText': {
+                '\\?': ' ?',
                 'Aetherchain': 'Chaînes explosives',
                 '(?<!/)Aetherial Shackles': 'Chaîne de malédiction',
                 'Chain Pain': 'Exécution maudite',
