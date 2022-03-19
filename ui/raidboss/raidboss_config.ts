@@ -1617,6 +1617,86 @@ const templateOptions: OptionsTemplate = {
       default: 1,
     },
     {
+      id: 'RumbleEnabled',
+      name: {
+        en: 'Enable gamepad rumble for triggers',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
+      id: 'InfoRumbleDuration',
+      name: {
+        en: 'Duration (milliseconds) of rumble for info triggers',
+      },
+      type: 'float',
+      default: 400,
+    },
+    {
+      id: 'InfoRumbleWeak',
+      name: {
+        en: 'Magnitude (0-1) of weak rumble for info triggers',
+      },
+      type: 'float',
+      default: 0.5,
+    },
+    {
+      id: 'InfoRumbleStrong',
+      name: {
+        en: 'Magnitude (0-1) of strong rumble for info triggers',
+      },
+      type: 'float',
+      default: 0,
+    },
+    {
+      id: 'AlertRumbleDuration',
+      name: {
+        en: 'Duration (milliseconds) of rumble for alert triggers',
+      },
+      type: 'float',
+      default: 500,
+    },
+    {
+      id: 'AlertRumbleWeak',
+      name: {
+        en: 'Magnitude (0-1) of weak rumble for alert triggers',
+      },
+      type: 'float',
+      default: 0,
+    },
+    {
+      id: 'AlertRumbleStrong',
+      name: {
+        en: 'Magnitude (0-1) of strong rumble for alert triggers',
+      },
+      type: 'float',
+      default: 0.5,
+    },
+    {
+      id: 'AlarmRumbleDuration',
+      name: {
+        en: 'Duration (milliseconds) of rumble for alarm triggers',
+      },
+      type: 'float',
+      default: 750,
+    },
+    {
+      id: 'AlarmRumbleWeak',
+      name: {
+        en: 'Magnitude (0-1) of weak rumble for alarm triggers',
+      },
+      type: 'float',
+      default: 0.75,
+    },
+    {
+      id: 'AlarmRumbleStrong',
+      name: {
+        en: 'Magnitude (0-1) of strong rumble for alarm triggers',
+      },
+      type: 'float',
+      default: 0.75,
+    },
+    {
       id: 'cactbotWormholeStrat',
       // TODO: maybe need some way to group these kinds of
       // options if we end up having a lot?
