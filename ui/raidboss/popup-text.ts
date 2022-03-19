@@ -1218,6 +1218,7 @@ export class PopupText {
 
     // getGamepads returns a "GamePadList" which isn't iterable.
     [...navigator.getGamepads()].forEach((gp) => {
+      // This list also contains nulls so that the gamepad index is preserved.
       if (!gp)
         return;
 
@@ -1225,6 +1226,7 @@ export class PopupText {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const gamepad: any = gp;
 
+      // Future calls to `playEffect` will cut off the previous effect.
       // eslint-disable-next-line max-len
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
       void gamepad?.vibrationActuator?.playEffect(gamepad.vibrationActuator.type, {
