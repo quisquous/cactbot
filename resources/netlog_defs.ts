@@ -729,7 +729,7 @@ const logDefinitions = {
       type: 0,
       timestamp: 1,
       instance: 2,
-      logMessageId: 3,
+      id: 3,
       param0: 4,
       param1: 5,
       param2: 6,

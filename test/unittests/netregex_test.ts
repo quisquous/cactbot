@@ -382,7 +382,7 @@ describe('netregex tests', () => {
     const matches = lines[1].match(NetRegexes.systemLogMessage())?.groups;
     assert.equal(matches?.type, '41');
     assert.equal(matches?.instance, '8004001E');
-    assert.equal(matches?.logMessageId, '7DD');
+    assert.equal(matches?.id, '7DD');
     assert.equal(matches?.param0, 'FF5FDA02');
     assert.equal(matches?.param1, 'E1B');
     assert.equal(matches?.param2, '00');

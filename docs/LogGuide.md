@@ -1883,20 +1883,20 @@ and so there is no timing advantage to using one over the other.
 
 ```log
 Network Log Line Structure:
-41|[timestamp]|[instance]|[logMessageId]|[param0]|[param1]|[param2]
+41|[timestamp]|[instance]|[id]|[param0]|[param1]|[param2]
 
 ACT Log Line Structure:
-[timestamp] SystemLogMessage 29:[instance]:[logMessageId]:[param0]:[param1]:[param2]
+[timestamp] SystemLogMessage 29:[instance]:[id]:[param0]:[param1]:[param2]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:41))\|(?<timestamp>(?:[^|]*))\|(?<instance>(?:[^|]*))\|(?<logMessageId>(?:[^|]*))\|(?<param0>(?:[^|]*))\|(?<param1>(?:[^|]*))\|(?<param2>(?:[^|]*))\|
+^(?<type>(?:41))\|(?<timestamp>(?:[^|]*))\|(?<instance>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<param0>(?:[^|]*))\|(?<param1>(?:[^|]*))\|(?<param2>(?:[^|]*))\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) SystemLogMessage (?<type>29):(?<instance>(?:[^:]*)):(?<logMessageId>(?:[^:]*)):(?<param0>(?:[^:]*)):(?<param1>(?:[^:]*)):(?<param2>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) SystemLogMessage (?<type>29):(?<instance>(?:[^:]*)):(?<id>(?:[^:]*)):(?<param0>(?:[^:]*)):(?<param1>(?:[^:]*)):(?<param2>(?:[^:]*))(?:$|:)
 ```
 
 #### Examples
@@ -1919,7 +1919,7 @@ The `instance` parameter is identical to `instance` in [actor control line)](#li
 The first two bytes are the update type
 and the second two bytes are ids in the [InstanceContent table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/InstanceContent.csv).
 
-The `logMessageId` parameter is an id into the [LogMessage table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/LogMessage.csv).
+The `id` parameter is an id into the [LogMessage table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/LogMessage.csv).
 
 Hex ID | Link | Shortened Message
 --- | --- | ---
@@ -1946,7 +1946,7 @@ Here are two network logs lines:
 `0054` is the [InstanceContent](https://xivapi.com/InstanceContent/84?pretty=true) id,
 so this is The Dead Ends.
 
-`7DC` is the `logMessageId`, which [corresponds](https://xivapi.com/LogMessage/2012?pretty=true) to:
+`7DC` is the `id`, which [corresponds](https://xivapi.com/LogMessage/2012?pretty=true) to:
 `"<Clickable(<SheetEn(PlaceName,2,IntegerParameter(1),2,1)\/>)\/> will be sealed off in <Value>IntegerParameter(2)<\/Value> <If(Equal(IntegerParameter(2),1))>second<Else\/>seconds<\/If>!"`
 
 Use the log message itself to handle the other parameters.
@@ -1963,7 +1963,7 @@ Here's one other example:
 00|2022-02-18T22:03:00.0000000-08:00|0BBE||You obtain a little leafman.|51d9427a6354d3af
 ```
 
-`2EE` is the `logMessageId`, which [corresponds](https://xivapi.com/LogMessage/750?pretty=true) to:
+`2EE` is the `id`, which [corresponds](https://xivapi.com/LogMessage/750?pretty=true) to:
 `"<Clickable(<If(Equal(ObjectParameter(1),ObjectParameter(2)))>you<Else/><If(PlayerParameter(7))><SheetEn(ObjStr,2,PlayerParameter(7),1,1)/><Else/>ObjectParameter(2)</If></If>)/> <If(Equal(ObjectParameter(1),ObjectParameter(2)))>obtain<Else/>obtains</If> <SheetEn(Item,1,IntegerParameter(1),1,1)/>."`
 
 Here, `param1` is `758A`, which [corresponds](https://xivapi.com/Item/30090?pretty=true) to "Little Leafman" in the `Item` table.
