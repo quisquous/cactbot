@@ -728,8 +728,8 @@ const logDefinitions = {
     fields: {
       type: 0,
       timestamp: 1,
-      // unknown: 2,
-      id: 3,
+      instance: 2,
+      logMessageId: 3,
       param0: 4,
       param1: 5,
       param2: 6,
