@@ -390,10 +390,11 @@ describe('regex tests', () => {
     ] as const;
     regexCaptureTest((params?: RegexUtilParams) => Regexes.systemLogMessage(params), lines);
 
-    const matches = lines[0].match(Regexes.systemLogMessage())?.groups;
-    assert.equal(matches?.id, '901');
-    assert.equal(matches?.param0, '619A9200');
-    assert.equal(matches?.param1, '00');
-    assert.equal(matches?.param2, '3C');
+    const matches = lines[1].match(Regexes.systemLogMessage())?.groups;
+    assert.equal(matches?.instance, '8004001E');
+    assert.equal(matches?.logMessageId, '7DD');
+    assert.equal(matches?.param0, 'FF5FDA02');
+    assert.equal(matches?.param1, 'E1B');
+    assert.equal(matches?.param2, '00');
   });
 });
