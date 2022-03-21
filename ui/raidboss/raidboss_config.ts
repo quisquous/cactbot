@@ -1246,6 +1246,105 @@ const userFileHandler: UserFileCallback = (
   }
 };
 
+const processPerTriggerAutoConfig = (options: RaidbossOptions, savedConfig: SavedConfigEntry) => {
+  // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
+  const optionName = 'PerTriggerAutoConfig';
+
+  const perTriggerAutoConfig = options[optionName] ??= {};
+  if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
+    return;
+  const triggers = savedConfig['triggers'];
+  if (!triggers || typeof triggers !== 'object' || Array.isArray(triggers))
+    return;
+
+  const outputObjs: { [key: string]: TriggerAutoConfig } = {};
+  const keys = Object.keys(kTriggerOptions);
+  for (const key of keys) {
+    const obj = outputObjs[key] = {};
+    setOptionsFromOutputValue(obj, key);
+  }
+
+  for (const [id, entry] of Object.entries(triggers)) {
+    if (typeof entry !== 'object' || Array.isArray(entry))
+      return;
+
+    const autoConfig: TriggerAutoConfig = {};
+
+    const output = entry[kOptionKeys.output]?.toString();
+    if (output)
+      Object.assign(autoConfig, outputObjs[output]);
+
+    const duration = validDurationOrUndefined(entry[kOptionKeys.duration]);
+    if (duration)
+      autoConfig[kOptionKeys.duration] = duration;
+
+    const beforeSeconds = validDurationOrUndefined(entry[kOptionKeys.beforeSeconds]);
+    if (beforeSeconds)
+      autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
+
+    const outputStrings = entry[kOptionKeys.outputStrings];
+    // Validate that the SavedConfigEntry is an an object with string values,
+    // which is a subset of the OutputStrings type.
+    if (
+      ((entry?: SavedConfigEntry): entry is { [key: string]: string } => {
+        if (typeof entry !== 'object' || Array.isArray(entry))
+          return false;
+        for (const value of Object.values(entry)) {
+          if (typeof value !== 'string')
+            return false;
+        }
+        return true;
+      })(outputStrings)
+    )
+      autoConfig[kOptionKeys.outputStrings] = outputStrings;
+
+    if (output || duration || outputStrings)
+      perTriggerAutoConfig[id] = autoConfig;
+  }
+};
+
+const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: SavedConfigEntry) => {
+  const optionName = 'PerZoneTimelineConfig';
+  // SavedConfig uses this key structure:
+  // * 'timeline', zoneId (as string), 'enable', text, boolean
+  // * 'timeline', zoneId (as string), 'globalReplace', text, string
+  // ...and this function transforms it into a `PerZoneTimelineConfig`.
+
+  const perZoneTimelineConfig = options[optionName] ??= {};
+  if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
+    return;
+  const timeline = savedConfig['timeline'];
+  if (!timeline || typeof timeline !== 'object' || Array.isArray(timeline))
+    return;
+
+  for (const [zoneKey, zoneEntry] of Object.entries(timeline)) {
+    const zoneId = parseInt(zoneKey);
+    if (!zoneId)
+      continue;
+    const timelineConfig = perZoneTimelineConfig[zoneId] ??= {};
+
+    if (!zoneEntry || typeof zoneEntry !== 'object' || Array.isArray(zoneEntry))
+      continue;
+
+    const enableEntry = zoneEntry['enable'];
+    const replaceEntry = zoneEntry['globalReplace'];
+
+    if (enableEntry && typeof enableEntry === 'object' && !Array.isArray(enableEntry)) {
+      for (const [key, value] of Object.entries(enableEntry)) {
+        if (typeof value === 'boolean' && !value)
+          (timelineConfig.Ignore ??= []).push(key);
+      }
+    }
+
+    if (replaceEntry && typeof replaceEntry === 'object' && !Array.isArray(replaceEntry)) {
+      for (const [key, value] of Object.entries(replaceEntry)) {
+        if (typeof value === 'string')
+          (timelineConfig.Rename ??= {})[key] = value;
+      }
+    }
+  }
+};
+
 const templateOptions: OptionsTemplate = {
   buildExtraUI: (base, container) => {
     const builder = new RaidbossConfigurator(base);
@@ -1255,64 +1354,12 @@ const templateOptions: OptionsTemplate = {
     });
   },
   processExtraOptions: (baseOptions, savedConfig) => {
-    // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
-    const optionName = 'PerTriggerAutoConfig';
-
     // TODO: Rewrite user_config to be templated on option type so that this function knows
     // what type of options it is using.  Without this, perTriggerAutoConfig is unknown.
     const options = baseOptions as RaidbossOptions;
 
-    const perTriggerAutoConfig = options[optionName] ??= {};
-    if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
-      return;
-    const triggers = savedConfig['triggers'];
-    if (!triggers || typeof triggers !== 'object' || Array.isArray(triggers))
-      return;
-
-    const outputObjs: { [key: string]: TriggerAutoConfig } = {};
-    const keys = Object.keys(kTriggerOptions);
-    for (const key of keys) {
-      const obj = outputObjs[key] = {};
-      setOptionsFromOutputValue(obj, key);
-    }
-
-    for (const [id, entry] of Object.entries(triggers)) {
-      if (typeof entry !== 'object' || Array.isArray(entry))
-        return;
-
-      const autoConfig: TriggerAutoConfig = {};
-
-      const output = entry[kOptionKeys.output]?.toString();
-      if (output)
-        Object.assign(autoConfig, outputObjs[output]);
-
-      const duration = validDurationOrUndefined(entry[kOptionKeys.duration]);
-      if (duration)
-        autoConfig[kOptionKeys.duration] = duration;
-
-      const beforeSeconds = validDurationOrUndefined(entry[kOptionKeys.beforeSeconds]);
-      if (beforeSeconds)
-        autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
-
-      const outputStrings = entry[kOptionKeys.outputStrings];
-      // Validate that the SavedConfigEntry is an an object with string values,
-      // which is a subset of the OutputStrings type.
-      if (
-        ((entry?: SavedConfigEntry): entry is { [key: string]: string } => {
-          if (typeof entry !== 'object' || Array.isArray(entry))
-            return false;
-          for (const value of Object.values(entry)) {
-            if (typeof value !== 'string')
-              return false;
-          }
-          return true;
-        })(outputStrings)
-      )
-        autoConfig[kOptionKeys.outputStrings] = outputStrings;
-
-      if (output || duration || outputStrings)
-        perTriggerAutoConfig[id] = autoConfig;
-    }
+    processPerTriggerAutoConfig(options, savedConfig);
+    processPerZoneTimelineConfig(options, savedConfig);
   },
   options: [
     {

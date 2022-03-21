@@ -27,9 +27,15 @@ export type PerTriggerOption = Partial<{
   TTSText: TriggerOutput<RaidbossData, Matches>;
 }>;
 
+export type TimelineConfig = Partial<{
+  Ignore: string[];
+  Rename: { [text: string]: string };
+}>;
+
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
 export type PerTriggerOptions = { [triggerId: string]: PerTriggerOption };
 export type DisabledTriggers = { [triggerId: string]: boolean };
+export type PerZoneTimelineConfig = { [zoneId: number]: TimelineConfig };
 
 type RaidbossNonConfigOptions = {
   PlayerNicks: { [gameName: string]: string };
@@ -42,6 +48,7 @@ type RaidbossNonConfigOptions = {
   DisabledTriggers: DisabledTriggers;
   PerTriggerAutoConfig: PerTriggerAutoConfig;
   PerTriggerOptions: PerTriggerOptions;
+  PerZoneTimelineConfig: PerZoneTimelineConfig;
   Triggers: LooseTriggerSet[];
   PlayerNameOverride?: string;
   IsRemoteRaidboss: boolean;
@@ -65,6 +72,7 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
 
   PerTriggerAutoConfig: {},
   PerTriggerOptions: {},
+  PerZoneTimelineConfig: {},
 
   Triggers: [],
 
