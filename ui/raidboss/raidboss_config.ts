@@ -18,6 +18,7 @@ import {
   Output,
   OutputStrings,
   RaidbossFileData,
+  TimelineField,
   TriggerAutoConfig,
 } from '../../types/trigger';
 import {
@@ -30,6 +31,7 @@ import {
 import raidbossFileData from './data/raidboss_manifest.txt';
 import { RaidbossTriggerField, RaidbossTriggerOutput } from './popup-text';
 import raidbossOptions, { RaidbossOptions } from './raidboss_options';
+import { TimelineParser } from './timeline_parser';
 
 const kOptionKeys = {
   output: 'Output',
@@ -740,11 +742,57 @@ class RaidbossConfigurator {
     container.appendChild(headerDiv);
   }
 
+  timelineFromSet(set: ConfigLooseTriggerSet): TimelineParser {
+    let text = '';
+
+    // Recursively turn the timeline array into a string.
+    const addTimeline = (obj?: TimelineField) => {
+      if (obj === undefined)
+        return;
+      if (Array.isArray(obj)) {
+        for (const objVal of obj)
+          addTimeline(objVal);
+      } else if (typeof obj === 'function') {
+        // Hack, pass blank data in, as we don't have a real data here.
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        const blankData: RaidbossData = {} as RaidbossData;
+        try {
+          addTimeline(obj(blankData));
+        } catch (e) {
+          // Do nothing if this fails.
+          // Functions are pretty uncommon in built-in timelines.
+          // If user functions do funky things, those extra lines will be skipped.
+        }
+      } else if (obj) {
+        text = `${text}\n${obj}`;
+      }
+    };
+    addTimeline(set.timeline);
+    return new TimelineParser(text, [], []);
+  }
+
   // The internal part of timeline editing ui.
   buildTimelineUI(set: ConfigLooseTriggerSet, parent: HTMLElement): void {
-    const dummy = document.createElement('div');
-    dummy.innerText = 'blah';
-    parent.appendChild(dummy);
+    const timeline = this.timelineFromSet(set);
+    const uniqEvents: { [key: string]: string } = {};
+
+    for (const event of timeline.events) {
+      if (event.name in uniqEvents)
+        continue;
+      if (event.name in timeline.ignores)
+        continue;
+      uniqEvents[event.name] = event.text;
+    }
+
+    const keys = Object.keys(uniqEvents).sort();
+    for (const key of keys) {
+      const event = uniqEvents[key];
+      if (!event)
+        continue;
+      const dummy = document.createElement('div');
+      dummy.innerText = event;
+      parent.appendChild(dummy);
+    }
   }
 
   // This duplicates the raidboss function of the same name.
