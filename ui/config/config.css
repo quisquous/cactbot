@@ -223,6 +223,22 @@ html {
   border-right: none;
 }
 
+.timeline-text-container {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-gap: 5px;
+  margin: 12px 0 24px 24px;
+  align-items: center;
+}
+
+.timeline-text-enable {
+  justify-self: center;
+}
+
+.timeline-text-edit {
+  max-width: 300px;
+}
+
 .trigger-file-options {
   display: grid;
   margin: 12px;

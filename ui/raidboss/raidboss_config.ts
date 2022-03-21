@@ -272,6 +272,19 @@ const kDetailKeys = {
   },
 } as const;
 
+// Ordered set of headers in the timeline edit table.
+const kTimelineTableHeaders = {
+  shouldDisplayText: {
+    en: 'Show',
+  },
+  text: {
+    en: 'Timeline Text',
+  },
+  overrideText: {
+    en: 'Rename',
+  },
+} as const;
+
 const detailKeys: { [key in keyof LooseTrigger]: DetailKey } = kDetailKeys;
 
 const kMiscTranslations = {
@@ -501,8 +514,11 @@ class RaidbossConfigurator {
 
       triggerContainer.appendChild(headerDiv);
 
-      if (info.triggerSet.timeline)
-        this.buildTimelineUIContainer(info.triggerSet, triggerContainer);
+      // Timeline editing is tied to a single, specific zoneId per file for now.
+      // We could add more indirection (via fileKey?) and look up zoneId -> fileKey[]
+      // and fileKey -> timeline edits if needed.
+      if (info.triggerSet.timeline && typeof info.zoneId === 'number')
+        this.buildTimelineUIContainer(info.zoneId, info.triggerSet, triggerContainer, userOptions);
 
       const triggerOptions = document.createElement('div');
       triggerOptions.classList.add('trigger-file-options');
@@ -722,7 +738,12 @@ class RaidbossConfigurator {
   }
 
   // Build the top level timeline editing expandable container.
-  buildTimelineUIContainer(set: ConfigLooseTriggerSet, parent: HTMLElement): void {
+  buildTimelineUIContainer(
+    zoneId: number,
+    set: ConfigLooseTriggerSet,
+    parent: HTMLElement,
+    options: RaidbossOptions,
+  ): void {
     const container = document.createElement('div');
     container.classList.add('timeline-edit-container', 'collapsed');
     parent.appendChild(container);
@@ -734,15 +755,18 @@ class RaidbossConfigurator {
     headerDiv.onclick = () => {
       container.classList.toggle('collapsed');
       // Build the rest of this UI on demand lazily.
-      if (!hasEverBeenExpanded)
-        this.buildTimelineUI(set, container);
+      if (!hasEverBeenExpanded) {
+        const timeline = this.timelineFromSet(set, options);
+        this.buildTimelineUI(zoneId, timeline, container);
+      }
       hasEverBeenExpanded = true;
     };
     headerDiv.innerText = this.base.translate(kMiscTranslations.editTimeline);
     container.appendChild(headerDiv);
   }
 
-  timelineFromSet(set: ConfigLooseTriggerSet): TimelineParser {
+  // Returns a parsed timeline from a given trigger set.
+  timelineFromSet(set: ConfigLooseTriggerSet, options: RaidbossOptions): TimelineParser {
     let text = '';
 
     // Recursively turn the timeline array into a string.
@@ -768,12 +792,13 @@ class RaidbossConfigurator {
       }
     };
     addTimeline(set.timeline);
-    return new TimelineParser(text, [], []);
+    // Using the timelineReplace and the current set of options lets the timeline
+    // entries look like they would in game.
+    return new TimelineParser(text, set.timelineReplace ?? [], [], [], options);
   }
 
   // The internal part of timeline editing ui.
-  buildTimelineUI(set: ConfigLooseTriggerSet, parent: HTMLElement): void {
-    const timeline = this.timelineFromSet(set);
+  buildTimelineUI(zoneId: number, timeline: TimelineParser, parent: HTMLElement): void {
     const uniqEvents: { [key: string]: string } = {};
 
     for (const event of timeline.events) {
@@ -784,14 +809,48 @@ class RaidbossConfigurator {
       uniqEvents[event.name] = event.text;
     }
 
+    const container = document.createElement('div');
+    container.classList.add('timeline-text-container');
+    parent.appendChild(container);
+
+    for (const header of Object.values(kTimelineTableHeaders)) {
+      const div = document.createElement('div');
+      div.innerText = this.base.translate(header);
+      container.appendChild(div);
+    }
+
     const keys = Object.keys(uniqEvents).sort();
     for (const key of keys) {
       const event = uniqEvents[key];
       if (!event)
         continue;
-      const dummy = document.createElement('div');
-      dummy.innerText = event;
-      parent.appendChild(dummy);
+
+      const checkInput = document.createElement('input');
+      checkInput.classList.add('timeline-text-enable');
+      checkInput.type = 'checkbox';
+      container.appendChild(checkInput);
+
+      const enableId = ['timeline', zoneId.toString(), 'enable', key];
+      const defaultValue = true;
+      checkInput.checked = this.base.getBooleanOption('raidboss', enableId, defaultValue);
+      checkInput.onchange = () => this.base.setOption('raidboss', enableId, checkInput.checked);
+
+      const timelineText = document.createElement('div');
+      timelineText.classList.add('timeline-text-text');
+      timelineText.innerHTML = event;
+      container.appendChild(timelineText);
+
+      const textInput = document.createElement('input');
+      textInput.classList.add('timeline-text-edit');
+      textInput.placeholder = event;
+
+      const textId = ['timeline', zoneId.toString(), 'globalReplace', key];
+      textInput.value = this.base.getStringOption('raidboss', textId, '');
+      const setFunc = () => this.base.setOption('raidboss', textId, textInput.value);
+      textInput.onchange = setFunc;
+      textInput.oninput = setFunc;
+
+      container.appendChild(textInput);
     }
   }
 
