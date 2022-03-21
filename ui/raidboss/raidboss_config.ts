@@ -327,6 +327,10 @@ const kMiscTranslations = {
     cn: '显示触发器源码',
     ko: '트리거 출처 열기',
   },
+  // The header for the editing timeline section inside a trigger file.
+  editTimeline: {
+    en: 'Edit Timeline',
+  },
 };
 
 const validDurationOrUndefined = (valEntry?: SavedConfigEntry) => {
@@ -494,6 +498,9 @@ class RaidbossConfigurator {
       }
 
       triggerContainer.appendChild(headerDiv);
+
+      if (info.triggerSet.timeline)
+        this.buildTimelineUIContainer(info.triggerSet, triggerContainer);
 
       const triggerOptions = document.createElement('div');
       triggerOptions.classList.add('trigger-file-options');
@@ -710,6 +717,34 @@ class RaidbossConfigurator {
         }
       }
     }
+  }
+
+  // Build the top level timeline editing expandable container.
+  buildTimelineUIContainer(set: ConfigLooseTriggerSet, parent: HTMLElement): void {
+    const container = document.createElement('div');
+    container.classList.add('timeline-edit-container', 'collapsed');
+    parent.appendChild(container);
+
+    let hasEverBeenExpanded = false;
+
+    const headerDiv = document.createElement('div');
+    headerDiv.classList.add('timeline-edit-header');
+    headerDiv.onclick = () => {
+      container.classList.toggle('collapsed');
+      // Build the rest of this UI on demand lazily.
+      if (!hasEverBeenExpanded)
+        this.buildTimelineUI(set, container);
+      hasEverBeenExpanded = true;
+    };
+    headerDiv.innerText = this.base.translate(kMiscTranslations.editTimeline);
+    container.appendChild(headerDiv);
+  }
+
+  // The internal part of timeline editing ui.
+  buildTimelineUI(set: ConfigLooseTriggerSet, parent: HTMLElement): void {
+    const dummy = document.createElement('div');
+    dummy.innerText = 'blah';
+    parent.appendChild(dummy);
   }
 
   // This duplicates the raidboss function of the same name.
@@ -936,10 +971,12 @@ class RaidbossConfigurator {
     // `files` is map of filename => triggerSet (for trigger files)
     // `map` is a sorted map of shortened zone key => { various fields, triggerSet }
     const triggerFiles: { [filename: string]: ConfigLooseTriggerSet } = {};
+    const timelineFiles: { [filename: string]: string } = {};
     for (const [filename, triggerSetOrString] of Object.entries(files)) {
       if (typeof triggerSetOrString === 'string')
-        continue;
-      triggerFiles[filename] = triggerSetOrString;
+        timelineFiles[filename] = triggerSetOrString;
+      else
+        triggerFiles[filename] = triggerSetOrString;
     }
 
     const map = this.base.processFiles<ConfigLooseTriggerSet>(triggerFiles, userOptions.Triggers);
@@ -961,6 +998,9 @@ class RaidbossConfigurator {
         rawTriggers.trigger.push(...triggerSet.triggers);
       if (triggerSet.timelineTriggers)
         rawTriggers.timeline.push(...triggerSet.timelineTriggers);
+
+      if (!triggerSet.isUserTriggerSet && triggerSet.filename)
+        flattenTimeline(triggerSet, triggerSet.filename, timelineFiles);
 
       item.triggers = {};
       for (const [key, triggerArr] of Object.entries(rawTriggers)) {

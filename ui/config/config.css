@@ -187,6 +187,42 @@ html {
   margin-right: 20px;
 }
 
+.timeline-edit-container {
+  margin: 12px 0 12px 12px;
+  grid-column-end: span 2;
+}
+
+.timeline-edit-header {
+  background-color: #ebebeb;
+  padding: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+
+  /* use grid to vertically center */
+  display: grid;
+  grid-template-columns: repeat(1, auto 1fr);
+  justify-items: left;
+  align-items: center;
+}
+
+.timeline-edit-header::before {
+  content: '';
+  box-sizing: border-box;
+  margin-right: 5px;
+  width: 6px;
+  height: 6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid black;
+}
+
+.collapsed .timeline-edit-header::before {
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid black;
+  border-right: none;
+}
+
 .trigger-file-options {
   display: grid;
   margin: 12px;
