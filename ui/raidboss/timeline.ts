@@ -118,6 +118,7 @@ export class Timeline {
   public ui?: TimelineUI;
 
   constructor(
+    private zoneId: number,
     text: string,
     replacements: TimelineReplacement[],
     triggers: LooseTimelineTrigger[],
@@ -150,7 +151,14 @@ export class Timeline {
   }
 
   private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
-    const parsed = new TimelineParser(text, this.replacements, triggers, styles, this.options);
+    const parsed = new TimelineParser(
+      text,
+      this.replacements,
+      triggers,
+      styles,
+      this.options,
+      this.zoneId,
+    );
     this.ignores = parsed.ignores;
     this.events = parsed.events;
     this.texts = parsed.texts;
@@ -770,6 +778,7 @@ export class TimelineController {
   }
 
   public SetActiveTimeline(
+    zoneId: number,
     timelineFiles: string[],
     timelines: string[],
     replacements: TimelineReplacement[],
@@ -792,8 +801,16 @@ export class TimelineController {
     for (const timeline of timelines)
       text = `${text}\n${timeline}`;
 
-    if (text)
-      this.activeTimeline = new Timeline(text, replacements, triggers, styles, this.options);
+    if (text) {
+      this.activeTimeline = new Timeline(
+        zoneId,
+        text,
+        replacements,
+        triggers,
+        styles,
+        this.options,
+      );
+    }
     this.ui.SetTimeline(this.activeTimeline);
   }
 
@@ -808,6 +825,7 @@ export class TimelineLoader {
   }
 
   public SetTimelines(
+    zoneId: number,
     timelineFiles: string[],
     timelines: string[],
     replacements: TimelineReplacement[],
@@ -815,6 +833,7 @@ export class TimelineLoader {
     styles: TimelineStyle[],
   ): void {
     this.timelineController.SetActiveTimeline(
+      zoneId,
       timelineFiles,
       timelines,
       replacements,

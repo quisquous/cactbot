@@ -4,7 +4,7 @@ import Regexes from '../../resources/regexes';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
 import { backCompatParsedSyncReplace, commonReplacement } from './common_replacement';
-import defaultOptions, { RaidbossOptions } from './raidboss_options';
+import defaultOptions, { RaidbossOptions, TimelineConfig } from './raidboss_options';
 
 export type TimelineReplacement = {
   locale: Lang;
@@ -72,6 +72,7 @@ export class TimelineParser {
   protected options: RaidbossOptions;
   protected perTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
   protected replacements: TimelineReplacement[];
+  private timelineConfig: TimelineConfig;
 
   public ignores: { [ignoreId: string]: boolean };
   public events: Event[];
@@ -86,6 +87,7 @@ export class TimelineParser {
     triggers: LooseTimelineTrigger[],
     styles?: TimelineStyle[],
     options?: RaidbossOptions,
+    zoneId?: number,
   ) {
     this.options = options ?? defaultOptions;
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
@@ -103,6 +105,12 @@ export class TimelineParser {
     this.syncEnds = [];
     // Sorted by line.
     this.errors = [];
+
+    this.timelineConfig = typeof zoneId === 'number'
+      ? this.options.PerZoneTimelineConfig[zoneId] ?? {}
+      : {};
+    for (const text of this.timelineConfig.Ignore ?? [])
+      this.ignores[text] = true;
 
     this.parse(text, triggers, styles ?? []);
   }
@@ -408,6 +416,10 @@ export class TimelineParser {
   }
 
   private GetReplacedText(text: string): string {
+    const rename = this.timelineConfig?.Rename?.[text];
+    if (rename !== undefined)
+      return rename;
+
     if (!this.replacements)
       return text;
 
