@@ -1043,6 +1043,31 @@ class RaidbossConfigurator {
   }
 }
 
+const flattenTimeline = (
+  set: ConfigLooseTriggerSet,
+  filename: string,
+  files: { [filename: string]: string },
+) => {
+  // Convert set.timelineFile to set.timeline.
+  if (!set.timelineFile)
+    return;
+  const lastIndex = Math.max(filename.lastIndexOf('/'), filename.lastIndexOf('\\'));
+  // If lastIndex === -1, truncate name to the empty string.
+  // if lastIndex > -1, truncate name after the final slash.
+  const dir = filename.substring(0, lastIndex + 1);
+
+  const timelineFile = `${dir}${set.timelineFile}`;
+  delete set.timelineFile;
+
+  if (!(timelineFile in files)) {
+    console.log(`ERROR: '${filename}' specifies non-existent timeline file '${timelineFile}'.`);
+    return;
+  }
+
+  // set.timeline is processed recursively.
+  set.timeline = [set.timeline, files[timelineFile]];
+};
+
 // Raidboss needs to do some extra processing of user files.
 const userFileHandler: UserFileCallback = (
   name: string,
@@ -1070,24 +1095,7 @@ const userFileHandler: UserFileCallback = (
     set.filename = `${basePath}${name}`;
     set.isUserTriggerSet = true;
 
-    // Convert set.timelineFile to set.timeline.
-    if (set.timelineFile) {
-      const lastIndex = Math.max(name.lastIndexOf('/'), name.lastIndexOf('\\'));
-      // If lastIndex === -1, truncate name to the empty string.
-      // if lastIndex > -1, truncate name after the final slash.
-      const dir = name.substring(0, lastIndex + 1);
-
-      const timelineFile = `${dir}${set.timelineFile}`;
-      delete set.timelineFile;
-
-      if (!(timelineFile in files)) {
-        console.log(`ERROR: '${name}' specifies non-existent timeline file '${timelineFile}'.`);
-        continue;
-      }
-
-      // set.timeline is processed recursively.
-      set.timeline = [set.timeline, files[timelineFile]];
-    }
+    flattenTimeline(set, name, files);
   }
 };
 
