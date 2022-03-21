@@ -806,6 +806,8 @@ class RaidbossConfigurator {
         continue;
       if (event.name in timeline.ignores)
         continue;
+      // name = original timeline text
+      // text = replaced text in current language
       uniqEvents[event.name] = event.text;
     }
 
@@ -830,6 +832,8 @@ class RaidbossConfigurator {
       checkInput.type = 'checkbox';
       container.appendChild(checkInput);
 
+      // Enable/disable here behaves identically to `hideall "key"`, where this text will
+      // not be shown, but timeline triggers related to it will still fire.
       const enableId = ['timeline', zoneId.toString(), 'enable', key];
       const defaultValue = true;
       checkInput.checked = this.base.getBooleanOption('raidboss', enableId, defaultValue);
@@ -844,6 +848,8 @@ class RaidbossConfigurator {
       textInput.classList.add('timeline-text-edit');
       textInput.placeholder = event;
 
+      // Any changes are tied to the original timeline text (key), but the config ui will
+      // display the current language's text with replacements (event) as the placeholder above.
       const textId = ['timeline', zoneId.toString(), 'globalReplace', key];
       textInput.value = this.base.getStringOption('raidboss', textId, '');
       const setFunc = () => this.base.setOption('raidboss', textId, textInput.value);

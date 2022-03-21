@@ -416,6 +416,8 @@ export class TimelineParser {
   }
 
   private GetReplacedText(text: string): string {
+    // Anything in the timeline config takes precedence over timelineReplace sections in
+    // the trigger file.  It is also a full replacement, vs the regex-style GetReplacedHelper.
     const rename = this.timelineConfig?.Rename?.[text];
     if (rename !== undefined)
       return rename;
