@@ -250,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
 
         data.storedBoss = bossCombatant;
       },
-      alertText: (data, matches, output) => {
+      alertText: (data, _matches, output) => {
         const boss = data.storedBoss;
 
         if (!boss)

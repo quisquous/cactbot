@@ -1366,7 +1366,7 @@ export class PopupText {
     return div;
   }
 
-  _playAudioFile(triggerHelper: TriggerHelper, url: string, volume?: number): void {
+  _playAudioFile(_triggerHelper: TriggerHelper, url: string, volume?: number): void {
     const audio = new Audio(url);
     audio.volume = volume ?? 1;
     void audio.play();

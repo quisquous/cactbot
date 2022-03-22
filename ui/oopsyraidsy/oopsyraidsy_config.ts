@@ -364,7 +364,7 @@ const templateOptions: OptionsTemplate = {
 
 const userFileHandler: UserFileCallback = (
   name: string,
-  files: { [filename: string]: string },
+  _files: { [filename: string]: string },
   baseOptions: BaseOptions,
   basePath: string,
 ) => {

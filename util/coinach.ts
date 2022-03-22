@@ -179,7 +179,7 @@ export class CoinachWriter {
   async write(
     filename: string,
     scriptname: string,
-    variable: string | null,
+    _variable: string | null,
     d: unknown[],
   ): Promise<void> {
     const fullPath = path.join(this.cactbotPath, filename);

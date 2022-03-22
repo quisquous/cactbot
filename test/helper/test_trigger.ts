@@ -486,7 +486,7 @@ const testTriggerFile = (file: string) => {
           // so always succeed here and we'll validate later.
           return () => '';
         },
-        set(target, property: string, value): boolean {
+        set(_target, property: string, value): boolean {
           if (property === 'responseOutputStrings') {
             // The normal output proxy assigns here, but we want to keep the same
             // object so we can inspect it outside the proxy.

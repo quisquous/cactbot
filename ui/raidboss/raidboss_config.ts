@@ -399,7 +399,7 @@ const setOptionsFromOutputValue = (
 class DoNothingFuncProxy {
   constructor(outputStringsCallback: (outputStrings: OutputStrings) => void) {
     return new Proxy(this, {
-      set(target, property, value): boolean {
+      set(_target, property, value): boolean {
         if (property === 'responseOutputStrings') {
           // TODO: need some way of verifying that a value is an OutputStrings.
           outputStringsCallback(value as OutputStrings);
