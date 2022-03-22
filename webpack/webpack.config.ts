@@ -105,7 +105,7 @@ export default (
       static: [
         path.join(__dirname, '../dist/resources/ffxiv'),
         path.join(__dirname, '../dist/resources/sounds'),
-        path.join(__dirname, '../ui/raidboss/skins/'),
+        path.join(__dirname, '../dist/ui/raidboss/skins/'),
       ],
       devMiddleware: {
         writeToDisk: true,
