@@ -102,5 +102,19 @@ Options.Triggers.push({
                 },
             },
         },
+        {
+            id: 'Angra Mainyu Level 100 Flare Marker',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '002C' }),
+            condition: Conditions.targetIsNotYou(),
+            response: Responses.awayFrom(),
+        },
+        {
+            id: 'Angra Mainyu Level 150 Death Marker',
+            type: 'HeadMarker',
+            netRegex: NetRegexes.headMarker({ id: '002D' }),
+            condition: Conditions.targetIsNotYou(),
+            response: Responses.awayFrom(),
+        },
     ],
 });
