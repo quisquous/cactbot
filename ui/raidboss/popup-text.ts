@@ -742,12 +742,12 @@ export class PopupText {
     this.Reset();
 
     this.timelineLoader.SetTimelines(
-      this.zoneId,
       timelineFiles,
       timelines,
       replacements,
       timelineTriggers,
       timelineStyles,
+      this.zoneId,
     );
   }
 

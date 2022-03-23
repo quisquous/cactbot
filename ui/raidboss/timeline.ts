@@ -118,12 +118,12 @@ export class Timeline {
   public ui?: TimelineUI;
 
   constructor(
-    private zoneId: number,
     text: string,
     replacements: TimelineReplacement[],
     triggers: LooseTimelineTrigger[],
     styles: TimelineStyle[],
     options: RaidbossOptions,
+    private zoneId: number,
   ) {
     this.options = options || {};
     this.replacements = replacements;
@@ -778,12 +778,12 @@ export class TimelineController {
   }
 
   public SetActiveTimeline(
-    zoneId: number,
     timelineFiles: string[],
     timelines: string[],
     replacements: TimelineReplacement[],
     triggers: LooseTimelineTrigger[],
     styles: TimelineStyle[],
+    zoneId: number,
   ): void {
     this.activeTimeline = null;
 
@@ -803,12 +803,12 @@ export class TimelineController {
 
     if (text) {
       this.activeTimeline = new Timeline(
-        zoneId,
         text,
         replacements,
         triggers,
         styles,
         this.options,
+        zoneId,
       );
     }
     this.ui.SetTimeline(this.activeTimeline);
@@ -825,20 +825,20 @@ export class TimelineLoader {
   }
 
   public SetTimelines(
-    zoneId: number,
     timelineFiles: string[],
     timelines: string[],
     replacements: TimelineReplacement[],
     triggers: LooseTimelineTrigger[],
     styles: TimelineStyle[],
+    zoneId: number,
   ): void {
     this.timelineController.SetActiveTimeline(
-      zoneId,
       timelineFiles,
       timelines,
       replacements,
       triggers,
       styles,
+      zoneId,
     );
   }
 

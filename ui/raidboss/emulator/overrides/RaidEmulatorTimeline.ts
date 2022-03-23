@@ -8,14 +8,14 @@ export default class RaidEmulatorTimeline extends Timeline {
   emulatedStatus = 'pause';
   emulator?: RaidEmulator;
   constructor(
-    zoneId: number,
     text: string,
     replacements: TimelineReplacement[],
     triggers: LooseTimelineTrigger[],
     styles: TimelineStyle[],
-    options: RaidbossOptions
+    options: RaidbossOptions,
+    zoneId: number,
   ) {
-    super(zoneId, text, replacements, triggers, styles, options);
+    super(text, replacements, triggers, styles, options, zoneId);
   }
 
   bindTo(emulator: RaidEmulator): void {

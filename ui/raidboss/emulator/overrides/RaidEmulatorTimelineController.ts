@@ -19,9 +19,9 @@ export default class RaidEmulatorTimelineController extends TimelineController {
   }
 
   // Override
-  public override SetActiveTimeline(zoneId: number, timelineFiles: string[], timelines: string[],
+  public override SetActiveTimeline(timelineFiles: string[], timelines: string[],
     replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
-    styles: TimelineStyle[]): void {
+    styles: TimelineStyle[], zoneId: number): void {
     this.activeTimeline = null;
 
     let text = '';
@@ -40,7 +40,7 @@ export default class RaidEmulatorTimelineController extends TimelineController {
 
     if (text) {
       this.activeTimeline =
-        new RaidEmulatorTimeline(zoneId, text, replacements, triggers, styles, this.options);
+        new RaidEmulatorTimeline(text, replacements, triggers, styles, this.options, zoneId);
       if (this.emulator)
         this.activeTimeline.bindTo(this.emulator);
     }
