@@ -1864,7 +1864,8 @@ This log line is sent when there are system log messages.
 As game chat log lines are read from memory in the FFXIV ACT plugin,
 [Line 41](#line41) can be sent both before or after the corresponding [Line 00](#line00).
 That said, they are usually sequential in the network log,
-and so there is no timing advantage to using one over the other.
+and so there is no timing advantage to using one over the other,
+but the system log message will have a correct timestamp.
 
 ```log
 [10:38:40.066] SystemLogMessage 29:00:901:619A9200:00:3C
@@ -1921,7 +1922,7 @@ and the second two bytes are ids in the [InstanceContent table](https://github.c
 
 The `id` parameter is an id into the [LogMessage table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/LogMessage.csv).
 
-Hex ID | Link | Shortened Message
+id (hex) | Link | Shortened Message
 --- | --- | ---
 0x2EE | [link](https://xivapi.com/LogMessage/750?pretty=true) | You obtain (an item)
 0x7DC | [link](https://xivapi.com/LogMessage/2012?pretty=true) | will be sealed off in X seconds
@@ -1933,7 +1934,7 @@ It seems that `IntegerParameter(1)` in the log message corresponds to `param1`
 and `IntegerParameter(2)` corresponds to `param2`.
 It is not clear what `param0` does or how other `Parameter` functions work.
 
-Here are two network logs lines:
+Here are two network log lines:
 
 ```log
 41|2022-01-11T16:28:50.6340000-08:00|80030054|7DC|02|1008|0F|1a1b91bd4bf5d5e1^M
@@ -1949,9 +1950,10 @@ so this is The Dead Ends.
 `7DC` is the `id`, which [corresponds](https://xivapi.com/LogMessage/2012?pretty=true) to:
 `"<Clickable(<SheetEn(PlaceName,2,IntegerParameter(1),2,1)\/>)\/> will be sealed off in <Value>IntegerParameter(2)<\/Value> <If(Equal(IntegerParameter(2),1))>second<Else\/>seconds<\/If>!"`
 
-Use the log message itself to handle the other parameters.
+Use the log message itself to determine what `param1` and `param2` mean, if anything.
 
-`param1` is `1008`, which from the log message is used to look up into PlaceName.
+In this case,
+`param1` is `1008`, which from the log message you can determine is a PlaceName id.
 Looking this up in the [PlaceName](https://xivapi.com/PlaceName/4104?pretty=true) table gets "Shell Mound".
 
 `param2` is `0x0F`, which from the log message is used for the seconds in the message, i.e. 15 in decimal.
@@ -1973,7 +1975,7 @@ Future work:
 
 - What is `param0`? Is it just skipped?
 - How do `PlayerParameter` and `ObjectParameter` work in the `LogMessage` table?
-- Some log messages don't show as 41 lines, e.g. "You have arrived at a vista".
+- Some log messages don't show as 41 lines, e.g. "You have arrived at a vista" or "Engage!".
 
 <a name="line251"></a>
 
