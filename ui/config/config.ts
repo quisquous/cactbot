@@ -437,15 +437,11 @@ export class CactbotConfigurator {
       throw new UnreachableCode();
 
     const textDiv = document.createElement('div');
-    if (!textDiv)
-      throw new UnreachableCode();
     textDiv.classList.add('reload-text');
     textDiv.innerText = this.translate(kReloadText);
     container.appendChild(textDiv);
 
     const buttonInput = document.createElement('input');
-    if (!buttonInput)
-      throw new UnreachableCode();
     buttonInput.classList.add('reload-button');
     buttonInput.type = 'button';
     buttonInput.onclick = () => {
@@ -543,8 +539,6 @@ export class CactbotConfigurator {
     div.classList.add('option-input-container');
 
     const input = document.createElement('input');
-    if (!input)
-      throw new UnreachableCode();
     div.appendChild(input);
     input.type = 'checkbox';
 
