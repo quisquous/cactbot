@@ -688,6 +688,8 @@ export class CactbotConfigurator {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
+      triggerSet.filename = filename;
+
       let prefixKey = '00-misc';
       let prefix: LocaleText = kPrefixToCategory['00-misc'];
       for (const [key, value] of Object.entries(kPrefixToCategory)) {

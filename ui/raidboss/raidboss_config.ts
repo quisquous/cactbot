@@ -18,6 +18,7 @@ import {
   Output,
   OutputStrings,
   RaidbossFileData,
+  TimelineField,
   TriggerAutoConfig,
 } from '../../types/trigger';
 import {
@@ -30,6 +31,7 @@ import {
 import raidbossFileData from './data/raidboss_manifest.txt';
 import { RaidbossTriggerField, RaidbossTriggerOutput } from './popup-text';
 import raidbossOptions, { RaidbossOptions } from './raidboss_options';
+import { TimelineParser } from './timeline_parser';
 
 const kOptionKeys = {
   output: 'Output',
@@ -270,6 +272,19 @@ const kDetailKeys = {
   },
 } as const;
 
+// Ordered set of headers in the timeline edit table.
+const kTimelineTableHeaders = {
+  shouldDisplayText: {
+    en: 'Show',
+  },
+  text: {
+    en: 'Timeline Text',
+  },
+  overrideText: {
+    en: 'Rename',
+  },
+} as const;
+
 const detailKeys: { [key in keyof LooseTrigger]: DetailKey } = kDetailKeys;
 
 const kMiscTranslations = {
@@ -326,6 +341,10 @@ const kMiscTranslations = {
     ja: 'トリガーのコードを表示',
     cn: '显示触发器源码',
     ko: '트리거 출처 열기',
+  },
+  // The header for the editing timeline section inside a trigger file.
+  editTimeline: {
+    en: 'Edit Timeline',
   },
 };
 
@@ -494,6 +513,12 @@ class RaidbossConfigurator {
       }
 
       triggerContainer.appendChild(headerDiv);
+
+      // Timeline editing is tied to a single, specific zoneId per file for now.
+      // We could add more indirection (via fileKey?) and look up zoneId -> fileKey[]
+      // and fileKey -> timeline edits if needed.
+      if (info.triggerSet.timeline && typeof info.zoneId === 'number')
+        this.buildTimelineUIContainer(info.zoneId, info.triggerSet, triggerContainer, userOptions);
 
       const triggerOptions = document.createElement('div');
       triggerOptions.classList.add('trigger-file-options');
@@ -709,6 +734,129 @@ class RaidbossConfigurator {
           triggerDetails.appendChild(div);
         }
       }
+    }
+  }
+
+  // Build the top level timeline editing expandable container.
+  buildTimelineUIContainer(
+    zoneId: number,
+    set: ConfigLooseTriggerSet,
+    parent: HTMLElement,
+    options: RaidbossOptions,
+  ): void {
+    const container = document.createElement('div');
+    container.classList.add('timeline-edit-container', 'collapsed');
+    parent.appendChild(container);
+
+    let hasEverBeenExpanded = false;
+
+    const headerDiv = document.createElement('div');
+    headerDiv.classList.add('timeline-edit-header');
+    headerDiv.onclick = () => {
+      container.classList.toggle('collapsed');
+      // Build the rest of this UI on demand lazily.
+      if (!hasEverBeenExpanded) {
+        const timeline = this.timelineFromSet(set, options);
+        this.buildTimelineUI(zoneId, timeline, container);
+      }
+      hasEverBeenExpanded = true;
+    };
+    headerDiv.innerText = this.base.translate(kMiscTranslations.editTimeline);
+    container.appendChild(headerDiv);
+  }
+
+  // Returns a parsed timeline from a given trigger set.
+  timelineFromSet(set: ConfigLooseTriggerSet, options: RaidbossOptions): TimelineParser {
+    let text = '';
+
+    // Recursively turn the timeline array into a string.
+    const addTimeline = (obj?: TimelineField) => {
+      if (obj === undefined)
+        return;
+      if (Array.isArray(obj)) {
+        for (const objVal of obj)
+          addTimeline(objVal);
+      } else if (typeof obj === 'function') {
+        // Hack, pass blank data in, as we don't have a real data here.
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        const blankData: RaidbossData = {} as RaidbossData;
+        try {
+          addTimeline(obj(blankData));
+        } catch (e) {
+          // Do nothing if this fails.
+          // Functions are pretty uncommon in built-in timelines.
+          // If user functions do funky things, those extra lines will be skipped.
+        }
+      } else if (obj) {
+        text = `${text}\n${obj}`;
+      }
+    };
+    addTimeline(set.timeline);
+    // Using the timelineReplace and the current set of options lets the timeline
+    // entries look like they would in game.
+    return new TimelineParser(text, set.timelineReplace ?? [], [], [], options);
+  }
+
+  // The internal part of timeline editing ui.
+  buildTimelineUI(zoneId: number, timeline: TimelineParser, parent: HTMLElement): void {
+    const uniqEvents: { [key: string]: string } = {};
+
+    for (const event of timeline.events) {
+      if (event.name in uniqEvents)
+        continue;
+      if (event.name in timeline.ignores)
+        continue;
+      // name = original timeline text
+      // text = replaced text in current language
+      uniqEvents[event.name] = event.text;
+    }
+
+    const container = document.createElement('div');
+    container.classList.add('timeline-text-container');
+    parent.appendChild(container);
+
+    for (const header of Object.values(kTimelineTableHeaders)) {
+      const div = document.createElement('div');
+      div.innerText = this.base.translate(header);
+      container.appendChild(div);
+    }
+
+    const keys = Object.keys(uniqEvents).sort();
+    for (const key of keys) {
+      const event = uniqEvents[key];
+      if (!event)
+        continue;
+
+      const checkInput = document.createElement('input');
+      checkInput.classList.add('timeline-text-enable');
+      checkInput.type = 'checkbox';
+      container.appendChild(checkInput);
+
+      // Enable/disable here behaves identically to `hideall "key"`, where this text will
+      // not be shown, but timeline triggers related to it will still fire.
+      const enableId = ['timeline', zoneId.toString(), 'enable', key];
+      const defaultValue = true;
+      checkInput.checked = this.base.getBooleanOption('raidboss', enableId, defaultValue);
+      checkInput.onchange = () => this.base.setOption('raidboss', enableId, checkInput.checked);
+
+      const timelineText = document.createElement('div');
+      timelineText.classList.add('timeline-text-text');
+      timelineText.innerHTML = event;
+      container.appendChild(timelineText);
+
+      const textInput = document.createElement('input');
+      textInput.classList.add('timeline-text-edit');
+      textInput.placeholder = event;
+
+      // Any changes are tied to the original timeline text (key), but the config ui will
+      // display the current language's text with replacements (event) as the placeholder above.
+      const textId = ['timeline', zoneId.toString(), 'globalReplace', key];
+      textInput.value = this.base.getStringOption('raidboss', textId, '');
+      const setFunc = () => this.base.setOption('raidboss', textId, textInput.value);
+      textInput.onchange = setFunc;
+      textInput.oninput = setFunc;
+
+      container.appendChild(textInput);
     }
   }
 
@@ -936,10 +1084,12 @@ class RaidbossConfigurator {
     // `files` is map of filename => triggerSet (for trigger files)
     // `map` is a sorted map of shortened zone key => { various fields, triggerSet }
     const triggerFiles: { [filename: string]: ConfigLooseTriggerSet } = {};
+    const timelineFiles: { [filename: string]: string } = {};
     for (const [filename, triggerSetOrString] of Object.entries(files)) {
       if (typeof triggerSetOrString === 'string')
-        continue;
-      triggerFiles[filename] = triggerSetOrString;
+        timelineFiles[filename] = triggerSetOrString;
+      else
+        triggerFiles[filename] = triggerSetOrString;
     }
 
     const map = this.base.processFiles<ConfigLooseTriggerSet>(triggerFiles, userOptions.Triggers);
@@ -961,6 +1111,9 @@ class RaidbossConfigurator {
         rawTriggers.trigger.push(...triggerSet.triggers);
       if (triggerSet.timelineTriggers)
         rawTriggers.timeline.push(...triggerSet.timelineTriggers);
+
+      if (!triggerSet.isUserTriggerSet && triggerSet.filename)
+        flattenTimeline(triggerSet, triggerSet.filename, timelineFiles);
 
       item.triggers = {};
       for (const [key, triggerArr] of Object.entries(rawTriggers)) {
@@ -1043,6 +1196,31 @@ class RaidbossConfigurator {
   }
 }
 
+const flattenTimeline = (
+  set: ConfigLooseTriggerSet,
+  filename: string,
+  files: { [filename: string]: string },
+) => {
+  // Convert set.timelineFile to set.timeline.
+  if (!set.timelineFile)
+    return;
+  const lastIndex = Math.max(filename.lastIndexOf('/'), filename.lastIndexOf('\\'));
+  // If lastIndex === -1, truncate name to the empty string.
+  // if lastIndex > -1, truncate name after the final slash.
+  const dir = filename.substring(0, lastIndex + 1);
+
+  const timelineFile = `${dir}${set.timelineFile}`;
+  delete set.timelineFile;
+
+  if (!(timelineFile in files)) {
+    console.log(`ERROR: '${filename}' specifies non-existent timeline file '${timelineFile}'.`);
+    return;
+  }
+
+  // set.timeline is processed recursively.
+  set.timeline = [set.timeline, files[timelineFile]];
+};
+
 // Raidboss needs to do some extra processing of user files.
 const userFileHandler: UserFileCallback = (
   name: string,
@@ -1070,23 +1248,105 @@ const userFileHandler: UserFileCallback = (
     set.filename = `${basePath}${name}`;
     set.isUserTriggerSet = true;
 
-    // Convert set.timelineFile to set.timeline.
-    if (set.timelineFile) {
-      const lastIndex = Math.max(name.lastIndexOf('/'), name.lastIndexOf('\\'));
-      // If lastIndex === -1, truncate name to the empty string.
-      // if lastIndex > -1, truncate name after the final slash.
-      const dir = name.substring(0, lastIndex + 1);
+    flattenTimeline(set, name, files);
+  }
+};
 
-      const timelineFile = `${dir}${set.timelineFile}`;
-      delete set.timelineFile;
+const processPerTriggerAutoConfig = (options: RaidbossOptions, savedConfig: SavedConfigEntry) => {
+  // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
+  const optionName = 'PerTriggerAutoConfig';
 
-      if (!(timelineFile in files)) {
-        console.log(`ERROR: '${name}' specifies non-existent timeline file '${timelineFile}'.`);
-        continue;
+  const perTriggerAutoConfig = options[optionName] ??= {};
+  if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
+    return;
+  const triggers = savedConfig['triggers'];
+  if (!triggers || typeof triggers !== 'object' || Array.isArray(triggers))
+    return;
+
+  const outputObjs: { [key: string]: TriggerAutoConfig } = {};
+  const keys = Object.keys(kTriggerOptions);
+  for (const key of keys) {
+    const obj = outputObjs[key] = {};
+    setOptionsFromOutputValue(obj, key);
+  }
+
+  for (const [id, entry] of Object.entries(triggers)) {
+    if (typeof entry !== 'object' || Array.isArray(entry))
+      return;
+
+    const autoConfig: TriggerAutoConfig = {};
+
+    const output = entry[kOptionKeys.output]?.toString();
+    if (output)
+      Object.assign(autoConfig, outputObjs[output]);
+
+    const duration = validDurationOrUndefined(entry[kOptionKeys.duration]);
+    if (duration)
+      autoConfig[kOptionKeys.duration] = duration;
+
+    const beforeSeconds = validDurationOrUndefined(entry[kOptionKeys.beforeSeconds]);
+    if (beforeSeconds)
+      autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
+
+    const outputStrings = entry[kOptionKeys.outputStrings];
+    // Validate that the SavedConfigEntry is an an object with string values,
+    // which is a subset of the OutputStrings type.
+    if (
+      ((entry?: SavedConfigEntry): entry is { [key: string]: string } => {
+        if (typeof entry !== 'object' || Array.isArray(entry))
+          return false;
+        for (const value of Object.values(entry)) {
+          if (typeof value !== 'string')
+            return false;
+        }
+        return true;
+      })(outputStrings)
+    )
+      autoConfig[kOptionKeys.outputStrings] = outputStrings;
+
+    if (output || duration || outputStrings)
+      perTriggerAutoConfig[id] = autoConfig;
+  }
+};
+
+const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: SavedConfigEntry) => {
+  const optionName = 'PerZoneTimelineConfig';
+  // SavedConfig uses this key structure:
+  // * 'timeline', zoneId (as string), 'enable', text, boolean
+  // * 'timeline', zoneId (as string), 'globalReplace', text, string
+  // ...and this function transforms it into a `PerZoneTimelineConfig`.
+
+  const perZoneTimelineConfig = options[optionName] ??= {};
+  if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
+    return;
+  const timeline = savedConfig['timeline'];
+  if (!timeline || typeof timeline !== 'object' || Array.isArray(timeline))
+    return;
+
+  for (const [zoneKey, zoneEntry] of Object.entries(timeline)) {
+    const zoneId = parseInt(zoneKey);
+    if (!zoneId)
+      continue;
+    const timelineConfig = perZoneTimelineConfig[zoneId] ??= {};
+
+    if (!zoneEntry || typeof zoneEntry !== 'object' || Array.isArray(zoneEntry))
+      continue;
+
+    const enableEntry = zoneEntry['enable'];
+    const replaceEntry = zoneEntry['globalReplace'];
+
+    if (enableEntry && typeof enableEntry === 'object' && !Array.isArray(enableEntry)) {
+      for (const [key, value] of Object.entries(enableEntry)) {
+        if (typeof value === 'boolean' && !value)
+          (timelineConfig.Ignore ??= []).push(key);
       }
+    }
 
-      // set.timeline is processed recursively.
-      set.timeline = [set.timeline, files[timelineFile]];
+    if (replaceEntry && typeof replaceEntry === 'object' && !Array.isArray(replaceEntry)) {
+      for (const [key, value] of Object.entries(replaceEntry)) {
+        if (typeof value === 'string')
+          (timelineConfig.Rename ??= {})[key] = value;
+      }
     }
   }
 };
@@ -1100,64 +1360,12 @@ const templateOptions: OptionsTemplate = {
     });
   },
   processExtraOptions: (baseOptions, savedConfig) => {
-    // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
-    const optionName = 'PerTriggerAutoConfig';
-
     // TODO: Rewrite user_config to be templated on option type so that this function knows
     // what type of options it is using.  Without this, perTriggerAutoConfig is unknown.
     const options = baseOptions as RaidbossOptions;
 
-    const perTriggerAutoConfig = options[optionName] ??= {};
-    if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
-      return;
-    const triggers = savedConfig['triggers'];
-    if (!triggers || typeof triggers !== 'object' || Array.isArray(triggers))
-      return;
-
-    const outputObjs: { [key: string]: TriggerAutoConfig } = {};
-    const keys = Object.keys(kTriggerOptions);
-    for (const key of keys) {
-      const obj = outputObjs[key] = {};
-      setOptionsFromOutputValue(obj, key);
-    }
-
-    for (const [id, entry] of Object.entries(triggers)) {
-      if (typeof entry !== 'object' || Array.isArray(entry))
-        return;
-
-      const autoConfig: TriggerAutoConfig = {};
-
-      const output = entry[kOptionKeys.output]?.toString();
-      if (output)
-        Object.assign(autoConfig, outputObjs[output]);
-
-      const duration = validDurationOrUndefined(entry[kOptionKeys.duration]);
-      if (duration)
-        autoConfig[kOptionKeys.duration] = duration;
-
-      const beforeSeconds = validDurationOrUndefined(entry[kOptionKeys.beforeSeconds]);
-      if (beforeSeconds)
-        autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
-
-      const outputStrings = entry[kOptionKeys.outputStrings];
-      // Validate that the SavedConfigEntry is an an object with string values,
-      // which is a subset of the OutputStrings type.
-      if (
-        ((entry?: SavedConfigEntry): entry is { [key: string]: string } => {
-          if (typeof entry !== 'object' || Array.isArray(entry))
-            return false;
-          for (const value of Object.values(entry)) {
-            if (typeof value !== 'string')
-              return false;
-          }
-          return true;
-        })(outputStrings)
-      )
-        autoConfig[kOptionKeys.outputStrings] = outputStrings;
-
-      if (output || duration || outputStrings)
-        perTriggerAutoConfig[id] = autoConfig;
-    }
+    processPerTriggerAutoConfig(options, savedConfig);
+    processPerZoneTimelineConfig(options, savedConfig);
   },
   options: [
     {
