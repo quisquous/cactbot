@@ -189,8 +189,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
       condition: Conditions.targetIsYou(),
       // 23 second duration, safe to move ~16.7s for first time, ~15s for the second.
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 6,
-      alarmText: (_data, matches, output) => output.awayFromGroup!(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      alarmText: (_data, _matches, output) => output.awayFromGroup!(),
       outputStrings: {
         awayFromGroup: Outputs.awayFromGroup,
       },
@@ -200,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'AD1' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, matches, output) => output.stackOnYou!(),
+      alertText: (_data, _matches, output) => output.stackOnYou!(),
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,
       },

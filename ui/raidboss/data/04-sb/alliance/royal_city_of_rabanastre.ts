@@ -41,11 +41,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, matches, output) => {
+      alarmText: (_data, matches, output) => {
         if (parseInt(matches.count) === 6)
           return output.getInBubble!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (_data, matches, output) => {
         const count = parseInt(matches.count);
         if (count >= 7)
           return output.breathless!({ num: count });

@@ -395,7 +395,7 @@ export default class ResourceBar extends HTMLElement {
     this._connected = false;
   }
 
-  attributeChangedCallback(name: string, oldValue: string | number, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string | number, newValue: string): void {
     if (name === 'value') {
       this._value = Math.max(parseFloat(newValue), 0);
     } else if (name === 'maxvalue') {

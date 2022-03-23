@@ -429,7 +429,7 @@ export default class TimerBar extends HTMLElement {
     this._connected = false;
   }
 
-  attributeChangedCallback(name: string, oldValue: string | number, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string | number, newValue: string): void {
     if (name === 'duration') {
       this._duration = Math.max(parseFloat(newValue), 0);
       this.setvalue(this._duration);

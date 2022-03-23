@@ -222,7 +222,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     super._playAudioFile(triggerHelper, url, volume);
   }
 
-  override _makeTextElement(triggerHelper: TriggerHelper | undefined,
+  override _makeTextElement(_triggerHelper: TriggerHelper | undefined,
     text: string,
     className: string): HTMLElement {
     const $ret = this.$textElementTemplate.cloneNode(true);

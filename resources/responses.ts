@@ -453,7 +453,7 @@ export const Responses = {
       };
     },
   stunOrInterruptIfPossible: (sev?: Severity) => {
-    return (data: Data, _matches: TargetedMatches, output: Output) => {
+    return (_data: Data, _matches: TargetedMatches, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = {
         stun: Outputs.stunTarget,
