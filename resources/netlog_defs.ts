@@ -728,7 +728,7 @@ const logDefinitions = {
     fields: {
       type: 0,
       timestamp: 1,
-      // unknown: 2,
+      instance: 2,
       id: 3,
       param0: 4,
       param1: 5,
