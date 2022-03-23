@@ -88,6 +88,24 @@ export const cactbotHtmlChunksMap = {
       cactbotModules.raidboss,
     ],
   },
+  'ui/raidboss/raidboss_alerts_only.html': {
+    chunks: [
+      cactbotChunks.raidbossData,
+      cactbotModules.raidboss,
+    ],
+  },
+  'ui/raidboss/raidboss_silent.html': {
+    chunks: [
+      cactbotChunks.raidbossData,
+      cactbotModules.raidboss,
+    ],
+  },
+  'ui/raidboss/raidboss_timeline_only.html': {
+    chunks: [
+      cactbotChunks.raidbossData,
+      cactbotModules.raidboss,
+    ],
+  },
   'ui/raidboss/raidemulator.html': {
     chunks: [
       cactbotChunks.raidbossData,
