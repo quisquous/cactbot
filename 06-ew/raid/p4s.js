@@ -142,7 +142,7 @@ Options.Triggers.push({
             id: 'P4S Kothornos Quake',
             regex: /Kothornos Quake/,
             beforeSeconds: 5,
-            infoText: (data, _matches, output) => output.text(),
+            infoText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'Bait Earthshakers?',
@@ -671,7 +671,7 @@ Options.Triggers.push({
             netRegexFr: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hespéros' }),
             netRegexJa: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'ヘスペロス' }),
             condition: (data) => !data.wellShiftKnockback,
-            delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
+            delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
             response: Responses.knockback(),
             run: (data) => data.wellShiftKnockback = false,
         },

@@ -418,7 +418,7 @@ Options.Triggers.push({
             netRegexCn: NetRegexes.startsUsing({ id: '65AC', source: '海德林', capture: false }),
             netRegexKo: NetRegexes.startsUsing({ id: '65AC', source: '하이델린', capture: false }),
             durationSeconds: 9,
-            alertText: (data, _matches, output) => {
+            alertText: (_data, _matches, output) => {
                 // This is always crystallize === 'spread'.
                 return output.combo({ first: output.avoid(), second: output.spread() });
             },

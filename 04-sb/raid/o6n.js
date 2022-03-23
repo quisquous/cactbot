@@ -33,7 +33,7 @@ Options.Triggers.push({
             netRegex: NetRegexes.tether({ id: ['0001', '0039'] }),
             condition: (data, matches) => data.me === matches.target || data.me === matches.source,
             suppressSeconds: 10,
-            alertText: (data, matches, output) => output.text(),
+            alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'Away From Boss',

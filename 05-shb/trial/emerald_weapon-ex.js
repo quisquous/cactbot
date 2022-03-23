@@ -192,7 +192,7 @@ Options.Triggers.push({
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0057' }),
             condition: Conditions.targetIsYou(),
-            alertText: (data, matches, output) => output.text(),
+            alertText: (_data, _matches, output) => output.text(),
             outputStrings: {
                 text: {
                     en: 'Flare on YOU',

@@ -152,7 +152,7 @@ Options.Triggers.push({
             id: 'Ghimlyt Dark Heirsbane',
             type: 'HeadMarker',
             netRegex: NetRegexes.headMarker({ id: '0001' }),
-            condition: (data, matches) => matches.targetId[0] !== '4',
+            condition: (_data, matches) => matches.targetId[0] !== '4',
             response: Responses.tankBuster(),
         },
         {

@@ -128,7 +128,7 @@ Options.Triggers.push({
             // 7111 = Ultros
             // 7113 = Bibliotaph
             netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['7018', '7110', '7111', '7113'] }),
-            infoText: (data, matches, output) => {
+            infoText: (_data, matches, output) => {
                 return output.kill({ name: matches.name });
             },
             outputStrings: {
