@@ -7,80 +7,82 @@ using CactbotEventSource.loc;
 
 namespace Cactbot {
   public class FFXIVProcessCn : FFXIVProcess {
-    // Last updated for FFXIV 5.4
-    //
-    // Latest CN version can be found at:
-    // http://ff.sdo.com/web8/index.html#/patchnote
+        // Last updated for FFXIV 6.0
+        //
+        // Latest CN version can be found at:
+        // http://ff.sdo.com/web8/index.html#/patchnote
 
-    [StructLayout(LayoutKind.Explicit)]
-    public unsafe struct EntityMemory {
-      public static int Size => Marshal.SizeOf(typeof(EntityMemory));
+        [StructLayout(LayoutKind.Explicit)]
+        public unsafe struct EntityMemory
+        {
+            public static int Size => Marshal.SizeOf(typeof(EntityMemory));
 
-      // Unknown size, but this is the bytes up to the next field.
-      public const int nameBytes = 68;
+            // Unknown size, but this is the bytes up to the next field.
+            public const int nameBytes = 68;
 
-      [FieldOffset(0x30)]
-      public fixed byte Name[nameBytes];
+            [FieldOffset(0x30)]
+            public fixed byte Name[nameBytes];
 
-      [FieldOffset(0x74)]
-      public uint id;
+            [FieldOffset(0x74)]
+            public uint id;
 
-      [FieldOffset(0x8C)]
-      public EntityType type;
+            [FieldOffset(0x8C)]
+            public EntityType type;
 
-      [FieldOffset(0x92)]
-      public ushort distance;
+            [FieldOffset(0x92)]
+            public ushort distance;
 
-      [FieldOffset(0xA0)]
-      public Single pos_x;
+            [FieldOffset(0xA0)]
+            public Single pos_x;
 
-      [FieldOffset(0xA4)]
-      public Single pos_z;
+            [FieldOffset(0xA4)]
+            public Single pos_z;
 
-      [FieldOffset(0xA8)]
-      public Single pos_y;
+            [FieldOffset(0xA8)]
+            public Single pos_y;
 
-      [FieldOffset(0xB0)]
-      public Single rotation;
+            [FieldOffset(0xB0)]
+            public Single rotation;
 
-      [FieldOffset(0x1C4)]
-      public CharacterDetails charDetails;
+            [FieldOffset(0x1C4)]
+            public CharacterDetails charDetails;
 
-      [FieldOffset(0x1997)]
-      public byte shieldPercentage;
-    }
+            [FieldOffset(0x19D9)]
+            public byte shieldPercentage;
+        }
 
-    [StructLayout(LayoutKind.Explicit)]
-    public struct CharacterDetails {
+        [StructLayout(LayoutKind.Explicit)]
+        public struct CharacterDetails
+        {
 
-      [FieldOffset(0x00)]
-      public int hp;
+            [FieldOffset(0x00)]
+            public int hp;
 
-      [FieldOffset(0x04)]
-      public int max_hp;
+            [FieldOffset(0x04)]
+            public int max_hp;
 
-      [FieldOffset(0x08)]
-      public short mp;
+            [FieldOffset(0x08)]
+            public short mp;
 
-      [FieldOffset(0x10)]
-      public short gp;
+            [FieldOffset(0x10)]
+            public short gp;
 
-      [FieldOffset(0x12)]
-      public short max_gp;
+            [FieldOffset(0x12)]
+            public short max_gp;
 
-      [FieldOffset(0x14)]
-      public short cp;
+            [FieldOffset(0x14)]
+            public short cp;
 
-      [FieldOffset(0x16)]
-      public short max_cp;
+            [FieldOffset(0x16)]
+            public short max_cp;
 
-      [FieldOffset(0x1E)]
-      public EntityJob job;
+            [FieldOffset(0x1C)]
+            public EntityJob job;
 
-      [FieldOffset(0x1F)]
-      public byte level;
-    }
-    public FFXIVProcessCn(ILogger logger) : base(logger) { }
+            [FieldOffset(0x1D)]
+            public byte level;
+        }
+        public FFXIVProcessCn(ILogger logger) : base(logger) { }
 
     // TODO: all of this could be refactored into structures of some sort
     // instead of just being loose variables everywhere.
