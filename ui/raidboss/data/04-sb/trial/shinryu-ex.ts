@@ -735,7 +735,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Icicle': 'stalactite',
         'Left Wing': 'aile gauche',
@@ -747,6 +746,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '--Phase': '--Phase',
+        '--Reiryu Adds--': '--Adds Reiryu--',
         'Aerial Blast': 'Rafale aérienne',
         'Atomic Ray': 'Rayon atomique',
         'Cocoon Markers': 'Marqueurs Cocon',

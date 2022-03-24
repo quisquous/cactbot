@@ -153,6 +153,9 @@
   <data name="FoundDX9FFXIVErrorMessage" xml:space="preserve">
     <value>Found DirectX9 FFXIV process. Requires DirectX11.</value>
   </data>
+  <data name="GetCurrentProcessErrorMessage" xml:space="preserve">
+    <value>Error in GetCurrentProcess: {0}</value>
+  </data>
   <data name="IgnoreUpdateDueToDotGitDirectoryMessage" xml:space="preserve">
     <value>Ignoring auto-update due to cactbot directory being a .git repo.</value>
   </data>

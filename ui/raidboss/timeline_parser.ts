@@ -3,8 +3,8 @@ import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
-import { commonReplacement } from './common_replacement';
-import defaultOptions, { RaidbossOptions } from './raidboss_options';
+import { backCompatParsedSyncReplace, commonReplacement } from './common_replacement';
+import defaultOptions, { RaidbossOptions, TimelineConfig } from './raidboss_options';
 
 export type TimelineReplacement = {
   locale: Lang;
@@ -72,6 +72,7 @@ export class TimelineParser {
   protected options: RaidbossOptions;
   protected perTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
   protected replacements: TimelineReplacement[];
+  private timelineConfig: TimelineConfig;
 
   public ignores: { [ignoreId: string]: boolean };
   public events: Event[];
@@ -86,6 +87,7 @@ export class TimelineParser {
     triggers: LooseTimelineTrigger[],
     styles?: TimelineStyle[],
     options?: RaidbossOptions,
+    zoneId?: number,
   ) {
     this.options = options ?? defaultOptions;
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
@@ -103,6 +105,12 @@ export class TimelineParser {
     this.syncEnds = [];
     // Sorted by line.
     this.errors = [];
+
+    this.timelineConfig = typeof zoneId === 'number'
+      ? this.options.PerZoneTimelineConfig[zoneId] ?? {}
+      : {};
+    for (const text of this.timelineConfig.Ignore ?? [])
+      this.ignores[text] = true;
 
     this.parse(text, triggers, styles ?? []);
   }
@@ -388,19 +396,32 @@ export class TimelineParser {
     }
     // Common Replacements
     const replacement = commonReplacement[replaceKey];
-    if (!replacement)
-      return text;
-    for (const [key, value] of Object.entries(replacement)) {
+    for (const [key, value] of Object.entries(replacement ?? {})) {
       const repl = value[replaceLang];
       if (!repl)
         continue;
       const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
       text = text.replace(regex, repl);
     }
+
+    // Backwards compat replacements for Korean parsed log lines before 6.x changes.
+    if (replaceLang === 'ko' && replaceKey === 'replaceSync') {
+      for (const [key, repl] of Object.entries(backCompatParsedSyncReplace)) {
+        const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+        text = text.replace(regex, repl);
+      }
+    }
+
     return text;
   }
 
   private GetReplacedText(text: string): string {
+    // Anything in the timeline config takes precedence over timelineReplace sections in
+    // the trigger file.  It is also a full replacement, vs the regex-style GetReplacedHelper.
+    const rename = this.timelineConfig?.Rename?.[text];
+    if (rename !== undefined)
+      return rename;
+
     if (!this.replacements)
       return text;
 

@@ -137,7 +137,7 @@ const primalOutputStrings = {
     // Shiva spread.
     en: 'spread',
     de: 'verteilen',
-    fr: 'dispersion',
+    fr: 'dispersez-vous',
     ja: '散開',
     cn: '散开',
     ko: '산개',
@@ -146,7 +146,7 @@ const primalOutputStrings = {
     // Titan healer stacks.
     en: 'stacks',
     de: 'sammeln',
-    fr: 'packages',
+    fr: 'packez-vous',
     ja: 'ヒラ頭割り',
     cn: '治疗分摊',
     ko: '그룹 쉐어',
@@ -354,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
           titanOrangeStack: {
             en: 'Orange Stack',
             de: 'Orange - versammeln',
-            fr: 'Orange, package',
+            fr: 'Orange, packez-vous',
             ja: '橙、頭割り',
             cn: '橙色分摊',
             ko: '주황: 집합',
@@ -362,7 +362,7 @@ const triggerSet: TriggerSet<Data> = {
           titanYellowSpread: {
             en: 'Yellow Spread',
             de: 'Gelb - Verteilen',
-            fr: 'Jaune, dispersion',
+            fr: 'Jaune, dispersez-vous',
             ja: '黄、散開',
             cn: '黄色散开',
             ko: '노랑: 산개',
@@ -889,7 +889,7 @@ const triggerSet: TriggerSet<Data> = {
         junctionWithCast: {
           en: 'Healer Stacks',
           de: 'Heiler-Gruppen',
-          fr: 'Packages Heals',
+          fr: 'Packages sur les Heals',
           ja: 'ヒラ頭割り',
           cn: '治疗分摊',
           ko: '힐러 쉐어',

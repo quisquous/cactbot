@@ -8,8 +8,7 @@ export const syncKeys = {
   // FIXME: This seal regex includes an optional second colon, as "0839::?"".
   // Once we have completely converted things for 6.0,
   // we should come back here and make the doubled colon non-optional.
-  seal:
-    '(?<=00:0839::?|00\\|[^|]*\\|0839\\|\\|)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+  seal: '(?<=00:0839::|00\\|[^|]*\\|0839\\|\\|)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };
@@ -56,7 +55,7 @@ export const commonReplacement: CommonReplacement = {
       en: '$1 will be sealed off',
       de:
         'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
-      fr: 'Fermeture d(?:e|u|es) $1 dans',
+      fr: 'Fermeture d(?:e|u|es) (?:l\'|la |les? )?$1 dans',
       ja: '$1の封鎖まであと',
       cn: '距$1被封锁还有',
       ko: '15초 후에 $1(?:이|가) 봉쇄됩니다',
@@ -453,3 +452,13 @@ export const partialCommonReplacementKeys = [
   textKeys.Healer,
   textKeys.DPS,
 ];
+
+// Replacement when using Korean language in the parser, as the Korean version
+// does not have the 6.x changes from Ravahn yet.
+// These are applied after other translations and don't count for collisions.
+// TODO: this misses a few things like 1A lines in a7s/o7n/o7s.
+export const backCompatParsedSyncReplace: { [replaceKey: string]: string } = {
+  ' 00:\\[\\^:\\]\\*:': ' 00:',
+  ' 00:0839::': ' 00:0839:',
+  ' 14:\\[\\^:\\]\\*:([^:]*):([^:]*):': ':$2:$1',
+};

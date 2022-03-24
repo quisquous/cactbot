@@ -24,7 +24,6 @@ export interface Data extends RaidbossData {
 
 // TODO:
 //   Update Knave knockback directions to instead use cardinals
-//   Hansel and Gretel Bloody Sweep
 //   Hansel and Gretel Stronger Together Tethered
 //   Hansel & Gretel Passing Lance
 //   Hansel & Gretel Breakthrough
@@ -281,7 +280,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback -> Out of Middle',
           de: 'Rückstoß -> Raus aus der Mitte',
-          fr: 'Poussée -> Éloignez-vous du milieu',
+          fr: 'Poussée -> Sortez du milieu',
           ja: 'ノックバック -> 外へ',
           cn: '击退 -> 去外面',
           ko: '넉백 -> 가운데 피하기',
@@ -401,6 +400,66 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '5C7[34]', source: ['韩塞尔', '格雷特'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5C7[34]', source: ['헨젤', '그레텔'], capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'Paradigm Hansel/Gretel Bloody Sweep',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+      netRegexDe: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hänsel', 'Gretel'] }),
+      netRegexFr: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['ヘンゼル', 'グレーテル'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['韩塞尔', '格雷特'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['헨젤', '그레텔'] }),
+      durationSeconds: 5,
+      suppressSeconds: 1,
+      alertText: (_data, matches, output) => {
+        // Hansel and Gretel each have unique abilities which indicate which
+        // side of the Bloody Sweep they're starting in. Hanssel is left
+        // handed, and Gretel is right handed. 5C54 and 5C55 indicate that
+        // Hansel is on the right and Gretel is on the left, relative to the
+        // two bosses. Using this, we can identify if the safe area is
+        // between the two, or on the opposite side of the arena.
+        //
+        // A further complication is that the pair might use Transference
+        // first, which causes them to swap places. We can detect this based
+        // on the cast time of the Bloody Sweep ability, since the cast time
+        // will be extended to account for the Transference. If the swap
+        // will take place, then the cast time will go from 7.7 seconds up
+        // to 12.7 seconds. We use an average of 10 seconds to detect the
+        // swap.
+        if (matches.id === '5C54' || matches.id === '5C55') {
+          // Hansel is on the right and Gretel is on the left.
+          if (parseFloat(matches.castTime) > 10) {
+            // Hansel and Gretel will switch places
+            return output.between!();
+          }
+          // Hansel and Gretel stay in same position
+          return output.opposite!();
+        }
+        // Gretel is on the right and Hansel is on the left.
+        if (parseFloat(matches.castTime) > 10) {
+          // Hansel and Gretel will switch places
+          return output.opposite!();
+        }
+        // Hansel and Gretel stay in same position
+        return output.between!();
+      },
+      outputStrings: {
+        between: {
+          en: 'Move between',
+          de: 'Laufe zwischen beide Bosse',
+          fr: 'Allez entre les boss',
+          cn: '移动到BOSS之间',
+          ko: '보스 사이로',
+        },
+        opposite: {
+          en: 'Move opposite',
+          de: 'Laufe entgegengesetzt beider Bosse',
+          fr: 'Allez à l\'opposé des boss',
+          cn: '移动到BOSS对面',
+          ko: '보스 반대쪽으로',
+        },
+      },
     },
     {
       id: 'Paradigm Red Girl Cruelty',
@@ -580,7 +639,7 @@ const triggerSet: TriggerSet<Data> = {
         center: {
           en: 'Go to Center',
           de: 'Geh in die Mitte',
-          fr: 'Allez au milieu',
+          fr: 'Allez au centre',
           cn: '去中间',
           ko: '가운데로',
         },
@@ -622,7 +681,7 @@ const triggerSet: TriggerSet<Data> = {
         oops: {
           en: 'Avoid line AOEs',
           de: 'Weiche den Linien AoEs aus',
-          fr: 'Évitez l\'AOE en ligne',
+          fr: 'Évitez les AoEs en ligne',
           cn: '躲避直线AOE',
           ko: '레이저 피하기',
         },
@@ -963,7 +1022,6 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '--targetable\\?--': '--ciblable ?--',
-        'Black Dissonance': 'Noir : rongement',
         '(?<!Tandem Assault: )Bloody Sweep': 'Balayage tranchant',
         '(?<!Tandem Assault: )Breakthrough': 'Grande ruée',
         'Child\'s Play': 'Marionnettiste',
@@ -1036,7 +1094,7 @@ const triggerSet: TriggerSet<Data> = {
         'Wandering Trail': 'Disques magiques',
         'Wave: Black': 'Noir : onde',
         'Wave: White': 'Blanc : onde',
-        'White Dissonance': 'Blanc : rongement',
+        'White Dissonance / Black Dissonance': 'Blanc/Noir : rongement',
         'Wipe: Black': 'Noir : grosse Explosion',
         'Wipe: White': 'Blanc : grosse Explosion',
       },

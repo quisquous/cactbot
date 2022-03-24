@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
         sides: {
           en: 'Sides -> Front/Back',
           de: 'Seiten -> Vorne/Hinten',
-          fr: 'Côtés puis Devant/Derrière',
+          fr: 'Côtés -> Devant/Derrière',
           ja: '横 -> 縦',
           cn: '左右 -> 前后',
           ko: '양옆 -> 앞뒤',
@@ -61,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
         dieOnFrontBack: {
           en: 'Die on Front/Back -> Sides',
           de: 'Stirb Vorne/Hinten -> Seiten',
-          fr: 'Devant/Derrière puis Côtés',
+          fr: 'Mourrez devant/derrière -> Côtés',
           ja: '縦 -> 横で死ぬ',
           cn: '死：前后 -> 左右',
           ko: '앞뒤 -> 양옆 (디버프)',
@@ -89,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
         frontBack: {
           en: 'Front/Back -> Sides',
           de: 'Vorne/Hinten -> Seiten',
-          fr: 'Devant/Derrière puis Côtés',
+          fr: 'Devant/Derrière -> Côtés',
           ja: '縦 -> 横',
           cn: '前后 -> 左右',
           ko: '앞뒤 -> 양옆',
@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
         dieOnSides: {
           en: 'Die on Sides -> Front/Back',
           de: 'Stirb an Seiten -> Vorne/Hinten',
-          fr: 'Devant/Derrière puis Côtés',
+          fr: 'Mourrez sur les côtés -> Devant/Derrière',
           ja: '横 -> 縦で死ぬ',
           cn: '死：左右 -> 前后',
           ko: '양옆 -> 앞뒤 (디버프)',
@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
         orbTethers: {
           en: 'Orb Tethers',
           de: 'Kugel-Verbindungen',
-          fr: 'Récupérez l\'orbe',
+          fr: 'Liens orbes',
           ja: '線出たよ',
           cn: '坦克接线注意治疗',
           ko: '구슬 연결',
@@ -190,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
         spreadAndStay: {
           en: 'Spread and Stay',
           de: 'Verteilen und bleiben',
-          fr: 'Écartez-vous et restez',
+          fr: 'Dispersez-vous et restez',
           ja: '散開して待機',
           cn: '分散并停留',
           ko: '산개하고 가만히',
@@ -198,7 +198,7 @@ const triggerSet: TriggerSet<Data> = {
         stackAndStayOut: {
           en: 'Stack and Stay Out',
           de: 'Stack und Bleiben',
-          fr: 'Packez-vous et restez',
+          fr: 'Packez-vous et restez à l\'extérieur',
           ja: '中央に集合',
           cn: '中间集合',
           ko: '산개하고 바깥에 있기',
@@ -225,7 +225,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hide Middle',
           de: 'Zur Mitte',
-          fr: 'Allez au centre',
+          fr: 'Cachez-vous au milieu',
           ja: '中央へ',
           cn: '中间躲避',
           ko: '중앙으로 모이기',
@@ -249,7 +249,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hide Middle',
           de: 'Zur Mitte',
-          fr: 'Allez au centre',
+          fr: 'Cachez-vous au milieu',
           ja: '中央へ',
           cn: '中间躲避',
           ko: '중앙으로 모이기',
@@ -284,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack Donut',
           de: 'Sammeln Donut',
-          fr: 'Packez-vous',
+          fr: 'Packez-vous, donut',
           ja: 'スタック',
           cn: '集合放月环',
           ko: '도넛 쉐어',
@@ -304,7 +304,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack Donut',
           de: 'Sammeln Donut',
-          fr: 'Packez-vous',
+          fr: 'Packez-vous, donut',
           ja: 'スタック',
           cn: '集合放月环',
           ko: '도넛 쉐어',
@@ -324,7 +324,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack Donut',
           de: 'Sammeln Donut',
-          fr: 'Packez-vous',
+          fr: 'Packez-vous, donut',
           ja: 'スタック',
           cn: '集合放月环',
           ko: '도넛 쉐어',
@@ -346,7 +346,7 @@ const triggerSet: TriggerSet<Data> = {
         dropOutside: {
           en: 'Drop Outside',
           de: 'Gehe Nord / Süd',
-          fr: 'Allez au Nord/Sud',
+          fr: 'Déposez à l\'extérieur',
           ja: 'メテオ捨てて',
           cn: '远离放点名',
           ko: '바깥으로 빼기',
@@ -354,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
         dropOutsideKnockback: {
           en: 'Drop Outside + Knockback',
           de: 'Geh nächste Ecke nah am Tornado',
-          fr: 'Déposez dans les coins + Poussée',
+          fr: 'Déposez à l\'extérieur + Poussée',
           ja: 'メテオ捨てて + ノックバック',
           cn: '远离放点名 + 冲回人群',
           ko: '바깥으로 빼기 + 넉백',
@@ -411,7 +411,7 @@ const triggerSet: TriggerSet<Data> = {
         backToTornado: {
           en: 'Back to Tornado',
           de: 'Rücken zum Tornado',
-          fr: 'Regardez vers l\'extérieur',
+          fr: 'Derrière la tornade',
           ja: '竜巻を見ない',
           cn: '背对龙卷风',
           ko: '토네이도 뒤돌기',
@@ -457,7 +457,7 @@ const triggerSet: TriggerSet<Data> = {
         healAllToFull: {
           en: 'Heal All to Full',
           de: 'Alle vollheilen',
-          fr: 'Soignez tout le monde complètement',
+          fr: 'Soignez l\'équipe complètement',
           ja: 'HP戻して',
           cn: '奶满全队',
           ko: '전원 체력 풀피로',
@@ -483,7 +483,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Die on next mechanic',
           de: 'An nächster Mechanik tödlichen Schaden nehmen',
-          fr: 'Mourrez sur la prochaine mécanique',
+          fr: 'Mourrez sur la mécanique suivante',
           ja: '次のギミックで死んでね',
           cn: '想办法找死',
           ko: '다음 기믹에 맞기 (디버프)',
@@ -508,7 +508,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack with partner',
           de: 'Stacks verteilen',
-          fr: 'Packez-vous en binôme',
+          fr: 'Packez-vous avec votre partenaire',
           ja: '相手と頭割り',
           cn: '与伙伴重合',
           ko: '파트너랑 모이기',
@@ -544,7 +544,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Back to DPS',
           de: 'Rücken zum DPS',
-          fr: 'Dos au DPS',
+          fr: 'Derrière les DPS',
           ja: 'DPSの後ろへ',
           cn: '背对DPS',
           ko: '딜러한테서 뒤돌기',
@@ -562,7 +562,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Hit DPS with Water',
           de: 'töte deinen DPS',
-          fr: 'Tuez les DPS',
+          fr: 'Touchez les DPS avec l\'eau',
           ja: '水当てて',
           cn: '水环害死DPS',
           ko: '딜러 물 맞기',
@@ -620,6 +620,7 @@ const triggerSet: TriggerSet<Data> = {
         'Chaos': 'Chaos',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Big Bang': 'Saillie',
         'Blaze': 'Flammes',
         'Bowels of Agony': 'Entrailles de l\'agonie',
@@ -629,7 +630,7 @@ const triggerSet: TriggerSet<Data> = {
         'Earthquake': 'Grand séisme',
         'Fiendish Orbs': 'Ordre de poursuite',
         'Knock(?! )': 'Impact',
-        'Long/Lat Implosion': 'Implosion Hz/Vert',
+        'Long/Lat Implosion': 'Implosion horizontale/verticale',
         'Soul of Chaos': 'Âme du chaos',
         'Stray Earth': 'Terre du chaos',
         'Stray Flames': 'Flammes du chaos',

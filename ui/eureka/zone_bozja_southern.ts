@@ -21,6 +21,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Bajsaljen Ulgasch',
         de: 'Bajsaljen Ulgasch',
+        fr: 'Bajsaljen Ulgasch',
         ja: 'バイシャーエン・ウルガッシュ',
         cn: '白沙恩·乌尔嘉失',
         ko: '바이샤엔 울가쉬',
@@ -28,6 +29,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Bajsalen',
         de: 'Bajsaljen',
+        fr: 'Bajsaljen',
         ja: 'バイシャーエン',
         cn: '白沙恩',
         ko: '바이샤엔',
@@ -39,6 +41,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Marsak Apella',
         de: 'Marsak Apella',
+        fr: 'Marsak Apella',
         ja: 'マルシャーク・アペッラ',
         cn: '马尔夏克·亚佩拉',
         ko: '마르샤크 아펠라',
@@ -46,6 +49,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Marsak',
         de: 'Marsak',
+        fr: 'Marsak',
         ja: 'マルシャーク',
         cn: '马尔夏克',
         ko: '마르샤크',
@@ -57,6 +61,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Xeven Svanasch',
         de: 'Xeven Svanasch',
+        fr: 'Xeven Svanasch',
         ja: 'ゼヴェン・スヴァナシュ',
         cn: '泽文·斯瓦楠失',
         ko: '제벤 스바나쉬',
@@ -64,6 +69,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Xeven',
         de: 'Xeven',
+        fr: 'Xeven',
         ja: 'ゼヴェン',
         cn: '泽文',
         ko: '제벤',
@@ -75,6 +81,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Isolde Covey',
         de: 'Isolde Covey',
+        fr: 'Isolde Covey',
         ja: 'イソルデ・コヴィー',
         cn: '伊索尔德·科维',
         ko: '이솔데 코비',
@@ -82,6 +89,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Isolde',
         de: 'Isolde',
+        fr: 'Isolde',
         ja: 'イソルデ',
         cn: '伊索尔德',
         ko: '이솔데',
@@ -93,6 +101,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Stanik Alubov',
         de: 'Stanik Alubov',
+        fr: 'Stanik Alubov',
         ja: 'スタニック・アルボフ',
         cn: '斯塔尼克·亚柳波芙',
         ko: '스타니크 알루보프',
@@ -100,6 +109,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Stanik',
         de: 'Stanik',
+        fr: 'Stanik',
         ja: 'スタニック',
         cn: '斯塔尼克',
         ko: '스타니크',
@@ -111,6 +121,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Blaz Azetina',
         de: 'Blaz Azetina',
+        fr: 'Blaz Azetina',
         ja: 'ブラズ・アゼティナ',
         cn: '布拉兹·亚泽缇娜',
         ko: '블라즈 아제티나',
@@ -118,6 +129,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Blaz',
         de: 'Blaz',
+        fr: 'Blaz',
         ja: 'ブラズ',
         cn: '布拉兹',
         ko: '블라즈',
@@ -129,6 +141,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Velibor Azetina',
         de: 'Velibor Azetina',
+        fr: 'Velibor Azetina',
         ja: 'ヴェリボル・アゼティナ',
         cn: '韦利博尔·亚泽缇娜',
         ko: '벨리보르 아제티나',
@@ -136,6 +149,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Velibor',
         de: 'Velibor',
+        fr: 'Velibor',
         ja: 'ヴェリボル',
         cn: '韦利博尔',
         ko: '벨리보르',
@@ -147,6 +161,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Aggie Glover',
         de: 'Aggie Glover',
+        fr: 'Aggie Glover',
         ja: 'アギー・グローヴァー',
         cn: '阿姬·格洛弗',
         ko: '애지 글러버',
@@ -154,6 +169,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Aggie',
         de: 'Aggie',
+        fr: 'Aggie',
         ja: 'アギー',
         cn: '阿姬',
         ko: '애지',
@@ -165,6 +181,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Llofii pyr Potitus',
         de: 'Llofii pyr Potitus',
+        fr: 'Llofii pyr Potitus',
         ja: 'ロフィー・ピル・ポティトゥス',
         cn: '罗菲·皮尔·珀提图斯',
         ko: '로피 피르 포티투스',
@@ -172,6 +189,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Llofii',
         de: 'Llofii',
+        fr: 'Llofii',
         ja: 'ロフィー',
         cn: '罗菲',
         ko: '로피',
@@ -183,6 +201,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Hernais pyr Longus',
         de: 'Hernais pyr Longus',
+        fr: 'Hernais pyr Longus',
         ja: 'エルネイス・ピル・ロングス',
         cn: '艾尔内斯·皮尔·隆古斯',
         ko: '에르네이스 피르 롱구스',
@@ -190,6 +209,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Hernais',
         de: 'Hernais',
+        fr: 'Hernais',
         ja: 'エルネイス',
         cn: '艾尔内斯',
         ko: '에르네이스',
@@ -201,6 +221,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Dabog aan Inivisch',
         de: 'Dabog aan Inivisch',
+        fr: 'Dabog aan Inivisch',
         ja: 'ダボグ・アン・イニヴァシュ',
         cn: '达波格·安·因尼维失',
         ko: '다보그 안 이니비쉬',
@@ -208,6 +229,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Dabog',
         de: 'Dabog',
+        fr: 'Dabog',
         ja: 'ダボグ',
         cn: '达波格',
         ko: '다보그',
@@ -219,6 +241,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Dyunbu pyr Potitus',
         de: 'Dyunbu pyr Potitus',
+        fr: 'Dyunbu pyr Potitus',
         ja: 'ユンブ・ピル・ポティトゥス',
         cn: '尤恩布·皮尔·珀提图斯',
         ko: '윤부 피르 포티투스',
@@ -226,6 +249,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Dyunbu',
         de: 'Dyunbu',
+        fr: 'Dyunbu',
         ja: 'ユンブ',
         cn: '尤恩布',
         ko: '윤부',
@@ -237,6 +261,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Clarricie quo Priscus',
         de: 'Clarricie quo Priscus',
+        fr: 'Clarricie quo Priscus',
         ja: 'クラリシー・クォ・プリスクス',
         cn: '克拉莉西·库奥·普利斯克斯',
         ko: '클라리시 쿠오 프리스쿠스',
@@ -244,6 +269,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Clarricie',
         de: 'Clarricie',
+        fr: 'Clarricie',
         ja: 'クラリシー',
         cn: '克拉莉西',
         ko: '클라리시',
@@ -255,6 +281,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Sartauvoir quo Soranus',
         de: 'Sartauvoir quo Soranus',
+        fr: 'Sartauvoir quo Soranus',
         ja: 'サルトヴォアール・クォ・ソラノス',
         cn: '萨托瓦尔·库奥·索拉努斯',
         ko: '사르토부아르 쿠오 소라누스',
@@ -262,6 +289,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Sartauvoir',
         de: 'Sartauvoir',
+        fr: 'Sartauvoir',
         ja: 'サルトヴォアール',
         cn: '萨托瓦尔',
         ko: '사르토부아르',
@@ -273,6 +301,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Sicinius mal Vellutus',
         de: 'Sicinius mal Vellutus',
+        fr: 'Sicinius mal Vellutus',
         ja: 'シシニアス・マル・ヴェリュータス',
         cn: '西西尼乌斯·玛尔·维琉图斯',
         ko: '시시니우스 말 벨루투스',
@@ -280,6 +309,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Sicinius',
         de: 'Sicinius',
+        fr: 'Sicinius',
         ja: 'シシニアス',
         cn: '西西尼乌斯',
         ko: '시시니우스',
@@ -291,6 +321,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Sadr rem Albeleo',
         de: 'Sadr rem Albeleo',
+        fr: 'Sadr rem Albeleo',
         ja: 'サドル・レム・アルビレオ',
         cn: '萨德尔·雷姆·阿尔贝雷欧',
         ko: '사드르 렘 알비레오',
@@ -298,6 +329,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Albeleo',
         de: 'Albeleo',
+        fr: 'Albeleo',
         ja: 'アルビレオ',
         cn: '阿尔贝雷欧',
         ko: '알비레오',
@@ -309,6 +341,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Lyon rem Helsos',
         de: 'Lyon rem Helsos',
+        fr: 'Lyon rem Helsos',
         ja: 'ライアン・レム・ヘルソス',
         cn: '莱昂·雷姆·赫尔索斯',
         ko: '라이언 렘 헬소스',
@@ -316,6 +349,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Lyon',
         de: 'Lyon',
+        fr: 'Lyon',
         ja: 'ライアン',
         cn: '莱昂',
         ko: '라이언',
@@ -327,6 +361,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Menenius sas Lanatus',
         de: 'Menenius sas Lanatus',
+        fr: 'Menenius sas Lanatus',
         ja: 'メネニウス・サス・ラナトゥス',
         cn: '梅内纽斯·萨斯·拉那图斯',
         ko: '메네니우스 사스 라나투스',
@@ -334,6 +369,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Menenius', // FIX-ME
         de: 'Menenius',
+        fr: 'Menenius',
         ja: 'メネニウス',
         cn: '梅内纽斯',
         ko: '메네니우스',
@@ -345,6 +381,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Misija Votyasch',
         de: 'Misija Votyasch',
+        fr: 'Misija Votyasch',
         ja: 'ミーシィヤ・ヴォートヤシュ',
         cn: '米希亚·博特雅失',
         ko: '미시야 보트야쉬',
@@ -352,6 +389,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Misija', // FIX-ME
         de: 'Misija',
+        fr: 'Misija',
         ja: 'ミーシィヤ',
         cn: '米希亚',
         ko: '미시야',
@@ -363,6 +401,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Gunnhildr',
         de: 'Gunnhildr',
+        fr: 'Gunnhildr',
         ja: 'グンヒルド',
         cn: '贡希尔德',
         ko: '군힐드',
@@ -370,6 +409,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Gunnhildr',
         de: 'Gunnhildr',
+        fr: 'Gunnhildr',
         ja: 'グンヒルド',
         cn: '贡希尔德',
         ko: '군힐드',
@@ -381,6 +421,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Lilja Sjasaris',
         de: 'Lilja Sjasaris',
+        fr: 'Lilja Sjasaris',
         ja: 'リリヤ・シアサリス',
         cn: '莉莉娅·希雅萨里斯',
         ko: '리리야 샤사리스',
@@ -388,6 +429,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Lilja Sjasaris', // FIX-ME
         de: 'Lilja',
+        fr: 'Lilja',
         ja: 'リリヤ',
         cn: '莉莉娅',
         ko: '리리야',
@@ -399,6 +441,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Bwagi Ennze Panca',
         de: 'Bwagi Ennze Panca',
+        fr: 'Bwagi Ennze Panca',
         ja: 'ブワジ・エンゼ・パンチャ',
         cn: '布瓦基·恩泽·潘卡',
         ko: '브와기 엔제 판카',
@@ -406,6 +449,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Bwagi Ennze Panca', // FIX-ME
         de: 'Bwagi',
+        fr: 'Bwagi',
         ja: 'ブワジ',
         cn: '布瓦基',
         ko: '브와기',
@@ -417,6 +461,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Rostik Liubasch',
         de: 'Rostik Liubasch',
+        fr: 'Rostik Liubasch',
         ja: 'ロスティック・リュバシュ',
         cn: '罗斯提克·琉芭失',
         ko: '로스틱 리우바쉬',
@@ -424,6 +469,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Rostik Liubasch', // FIX-ME
         de: 'Rostik',
+        fr: 'Rostik',
         ja: 'ロスティック',
         cn: '罗斯提克',
         ko: '로스틱',
@@ -435,6 +481,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Mikoto Jinba',
         de: 'Mikoto',
+        fr: 'Mikoto Jinba',
         ja: 'ミコト・ジンバ',
         cn: '神庭水琴',
         ko: '미코토 진바',
@@ -442,6 +489,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Mikoto Jinba', // FIX-ME
         de: 'Mikoto',
+        fr: 'Mikoto',
         ja: 'ミコト',
         cn: '水琴',
         ko: '미코토',
@@ -453,6 +501,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Misija Votyasch',
         de: 'Misija Votyasch',
+        fr: 'Misija Votyasch',
         ja: 'ミーシィヤ・ヴォートヤシュ',
         cn: '米希亚·博特雅失',
         ko: '미시야 보트야쉬',
@@ -460,6 +509,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Misija Votyasch', // FIX-ME
         de: 'Misija',
+        fr: 'Misija',
         ja: 'ミーシィヤ',
         cn: '米希亚',
         ko: '미시야',
@@ -471,6 +521,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Gunnhildr',
         de: 'Gunnhildr',
+        fr: 'Gunnhildr',
         ja: 'グンヒルド',
         cn: '贡希尔德',
         ko: '군힐드',
@@ -478,6 +529,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Gunnhildr',
         de: 'Gunnhildr',
+        fr: 'Gunnhildr',
         ja: 'グンヒルド',
         cn: '贡希尔德',
         ko: '군힐드',
@@ -489,6 +541,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Trinity Seeker',
         de: 'Trinität der Sucher',
+        fr: 'Trinité soudée',
         ja: 'トリニティ・シーカー',
         cn: '求道之三位一体',
         ko: '탐구의 삼위일체',
@@ -496,6 +549,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Seeker', // FIX-ME
         de: 'Sucher',
+        fr: 'Soudée',
         ja: 'シーカー',
         cn: '求道之三位一体',
         ko: '탐구의 삼위일체',
@@ -507,6 +561,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Queen\'s Guard',
         de: 'Die Königinnenwache',
+        fr: 'Garde-la-Reine',
         ja: 'クイーンズ・ガード',
         cn: '女王护卫',
         ko: '여왕의 근위병',
@@ -514,6 +569,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Guard', // FIX-ME
         de: 'Königinnenwache',
+        fr: 'Garde',
         ja: 'ガード',
         cn: '女王护卫',
         ko: '여왕의 근위병',
@@ -525,6 +581,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Trinity Avowed',
         de: 'Trinität der Eingeschworenen',
+        fr: 'Trinités féale',
         ja: 'トリニティ・アヴァウド',
         cn: '誓约之三位一体',
         ko: '맹세의 삼위일체',
@@ -532,6 +589,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Trinity Avowed', // FIX-ME
         de: 'Eingeschworene',
+        fr: 'Féale',
         ja: 'アヴァウド',
         cn: '誓约之三位一体',
         ko: '맹세의 삼위일체',
@@ -543,6 +601,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       name: {
         en: 'Save the Queen',
         de: 'Die heilige Klinge',
+        fr: 'Sauver la Reine',
         ja: 'セイブ・ザ・クイーン',
         cn: '天佑女王',
         ko: '세이브 더 퀸',
@@ -550,6 +609,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       shortName: {
         en: 'Save the Queen', // FIX-ME
         de: 'Heilige Klinge',
+        fr: 'Sauver',
         ja: 'セイブ・ザ・クイーン',
         cn: '天佑女王',
         ko: '세이브 더 퀸',

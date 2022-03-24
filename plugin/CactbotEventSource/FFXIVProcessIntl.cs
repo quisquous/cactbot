@@ -179,10 +179,9 @@ namespace Cactbot {
 
         // dump '\0' string terminators
         var memoryName = System.Text.Encoding.UTF8.GetString(mem.Name, EntityMemory.nameBytes).Split(new[] { '\0' }, 2)[0];
-        var capitalizedName = System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(memoryName);
 
         EntityData entity = new EntityData() {
-          name = capitalizedName,
+          name = memoryName,
           id = mem.id,
           type = mem.type,
           distance = mem.distance,
@@ -503,6 +502,9 @@ namespace Cactbot {
             return 0;
         }
       }
+
+      [FieldOffset(0x04)]
+      public byte firstmindsFocus;
     };
 
     [Serializable]
@@ -661,8 +663,56 @@ namespace Cactbot {
 
     [StructLayout(LayoutKind.Explicit)]
     public struct MonkJobMemory {
+      public enum Beast : byte {
+        None = 0,
+        Coeurl = 1,
+        Opo = 2,
+        Raptor = 3,
+      }
+
       [FieldOffset(0x00)]
       public byte chakraStacks;
+
+      [NonSerialized]
+      [FieldOffset(0x01)]
+      private Beast beastChakra1;
+
+      [NonSerialized]
+      [FieldOffset(0x02)]
+      private Beast beastChakra2;
+
+      [NonSerialized]
+      [FieldOffset(0x03)]
+      private Beast beastChakra3;
+
+      [NonSerialized]
+      [FieldOffset(0x04)]
+      private byte Nadi;
+
+      public string[] beastChakra {
+        get {
+          Beast[] _beasts = { beastChakra1, beastChakra2, beastChakra3 };
+          return _beasts.Select(a => a.ToString()).Where(a => a != "None").ToArray();
+        }
+      }
+
+      public bool solarNadi {
+        get {
+          if ((Nadi & 0x4) == 0x4)
+            return true;
+          else
+            return false;
+        }
+      }
+
+      public bool lunarNadi {
+        get {
+          if ((Nadi & 0x2) == 0x2)
+            return true;
+          else
+            return false;
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]

@@ -57,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean',
           de: 'Himmelsrichtungen',
-          fr: 'Position',
+          fr: 'Positions',
           ja: '散開',
           cn: '散开',
           ko: '위치 산개',
@@ -169,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Safe Spot',
           de: 'Geh zur sicheren Stelle',
-          fr: 'Allez dans la zone sûre',
+          fr: 'Allez dans la zone safe',
           ja: '安全の場所へ移動',
           cn: '前往安全区域',
           ko: '안전 지대로 이동',
@@ -226,7 +226,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Point Tether Out',
           de: 'Verbindung nach draußen richten',
-          fr: 'Lien vers l\'extérieur',
+          fr: 'Pointez le lien vers l\'extérieur',
           ja: '線を外に引く',
           cn: '连线',
           ko: '선 연결 바깥으로 빼기',
@@ -437,7 +437,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heal T/H to Full',
           de: 'Heile T/H voll',
-          fr: 'Soignez T/H max vie',
+          fr: 'Soignez T/H complétement',
           ja: 'タンク／ヒーラーのHPを満タンに',
           cn: '奶满T奶',
           ko: '탱/힐 풀피로 만들기',
@@ -940,6 +940,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Aetherial Gaol': 'Geôle Éthérée',
         'Arcane Font': 'Solide Arcanique',
         'Arcane Globe': 'Globe Arcanique',
         'Ascian Prime\'s Shade': 'Spectre de Primo-Ascien',

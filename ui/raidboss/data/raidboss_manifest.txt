@@ -96,6 +96,7 @@
 03-hw/raid/a9s.txt
 03-hw/trial/ravana-ex.ts
 03-hw/trial/ravana-ex.txt
+03-hw/trial/sephirot.ts
 03-hw/trial/sephirot-ex.ts
 03-hw/trial/sephirot-ex.txt
 03-hw/trial/sophia-ex.ts
@@ -387,12 +388,16 @@
 06-ew/raid/p1n.ts
 06-ew/raid/p1n.txt
 06-ew/raid/p2n.ts
+06-ew/raid/p2s.ts
 06-ew/raid/p2n.txt
+06-ew/raid/p2s.txt
 06-ew/raid/p3n.ts
 06-ew/raid/p3n.txt
 06-ew/raid/p3s.ts
 06-ew/raid/p3s.txt
 06-ew/raid/p4n.ts
 06-ew/raid/p4n.txt
+06-ew/raid/p4s.ts
+06-ew/raid/p4s.txt
 06-ew/raid/p1s.ts
 06-ew/raid/p1s.txt

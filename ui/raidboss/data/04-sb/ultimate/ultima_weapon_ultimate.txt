@@ -11,10 +11,10 @@ hideall "--Reset--"
 0 "--sync--" sync / 00:0044:[^:]*:Heehee HAHA hahaha HEEHEE haha HEEEEEE/ window 0,20
 9 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/ window 10,5 # drift 0.293
 12 "Mistral Song" sync / 1[56]:[^:]*:Garuda:2B42:/ # drift -0.456
-18 "Grand Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
+18 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
 24 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/ # drift 0.494
 27 "Downburst" sync / 1[56]:[^:]*:Garuda:2B50:/ # drift 0.422
-29 "Grand Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/ # drift 0.247
+29 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/ # drift 0.247
 34 "--untargetable--"
 37 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
 39 "--targetable--"
@@ -30,7 +30,7 @@ hideall "--Reset--"
 100 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/ # drift 0.358
 100 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/
 104 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift 0.248
-105 "Grand Whirlwind" sync / 1[56]:[^:]*:Suparna:2B41:/ # drift 0.48
+105 "Great Whirlwind" sync / 1[56]:[^:]*:Suparna:2B41:/ # drift 0.48
 121 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
 122 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
 124 "Mesohigh" sync / 1[56]:[^:]*:Chirada:2B49:/
@@ -222,7 +222,7 @@ hideall "--Reset--"
 1210 "Mistral Song"
 1212 "Mistral Song"
 1215 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.221
-1216 "Grand Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
+1216 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
 1216 "Feather Rain" sync / 1[56]:[^:]*:Ifrit:2B4D:/ # drift 0.468
 1216 "Aetherochemical Laser" sync / 1[56]:[^:]*:The Ultima Weapon:2B85:/ window 5,2
 1220 "Aetherochemical Laser"

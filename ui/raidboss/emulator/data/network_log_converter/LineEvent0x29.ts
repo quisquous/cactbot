@@ -7,6 +7,7 @@ const fields = logDefinitions.SystemLogMessage.fields;
 
 // SystemLogMessage event
 export class LineEvent0x29 extends LineEvent {
+  public readonly instance: string;
   public readonly id: string;
   public readonly param0: string;
   public readonly param1: string;
@@ -15,6 +16,7 @@ export class LineEvent0x29 extends LineEvent {
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
+    this.instance = parts[fields.instance] ?? '';
     this.id = parts[fields.id] ?? '';
     this.param0 = parts[fields.param0] ?? '';
     this.param1 = parts[fields.param1] ?? '';

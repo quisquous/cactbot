@@ -58,14 +58,12 @@ export default (
     new MiniCssExtractPlugin(),
     ...htmlPluginRules,
     new CopyPlugin({
+      // All of these patterns should be served individually from the static
+      // directory below.
       patterns: [
         {
           // copy sounds and images
           from: 'resources/@(ffxiv|sounds)/**/*',
-        },
-        {
-          // copy more html in raidboss module
-          from: 'ui/raidboss/raidboss_*.html',
         },
         {
           // copy all the skins folder under modules,
@@ -104,9 +102,11 @@ export default (
       assetModuleFilename: '[file][query]',
     },
     devServer: {
-      static: {
-        directory: path.join(__dirname, '../dist'),
-      },
+      static: [
+        path.join(__dirname, '../dist/resources/ffxiv'),
+        path.join(__dirname, '../dist/resources/sounds'),
+        path.join(__dirname, '../dist/ui/raidboss/skins/'),
+      ],
       devMiddleware: {
         writeToDisk: true,
       },

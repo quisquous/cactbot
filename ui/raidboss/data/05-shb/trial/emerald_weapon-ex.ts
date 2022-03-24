@@ -30,7 +30,7 @@ const sharedOutputStrings = {
   sharedTankStack: {
     en: 'Tank stack',
     de: 'Tanks sammeln',
-    fr: 'Package Tanks',
+    fr: 'Package tanks',
     ja: 'タンク頭割り',
     cn: '坦克分摊',
     ko: '탱끼리 모이기',
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Red Circle',
           de: 'Weg vom roten Kreis',
-          fr: 'Éloignez vous du cercle rouge',
+          fr: 'Éloignez-vous du cercle rouge',
           cn: '远离红圈',
           ko: '빨간 장판에서 멀리 떨어지기',
         },
@@ -222,7 +222,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, matches, output) => output.text!(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Flare on YOU',
@@ -244,7 +244,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Lines Away From Safe Spot',
           de: 'Linien weg vom Safespot ködern',
-          fr: 'Orientez les lignes hors de la zone sûre',
+          fr: 'Orientez les lignes hors de la zone safe',
           ja: '線を安置に被らないように捨てる',
           cn: '诱导直线，不要覆盖安全点',
           ko: '안전지대 밖으로 장판 유도',
@@ -280,7 +280,7 @@ const triggerSet: TriggerSet<Data> = {
         protean: {
           en: 'Protean',
           de: 'Himmelsrichtungen',
-          fr: 'Position',
+          fr: 'Positions',
           ja: '8方向散開',
           cn: '分散站位',
           ko: '정해진 위치로 산개',
@@ -336,7 +336,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge Arrow Lines',
           de: 'Weiche den Pfeillinien aus',
-          fr: 'Évitez les flèches (lignes)',
+          fr: 'Esquivez les lignes fléchées',
           cn: '避开箭头路径',
           ko: '화살표 방향 피하기',
         },
@@ -351,12 +351,23 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55CC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55CC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55CC', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => delete data.tertius,
+      outputStrings: {
+        text: {
+          en: 'Watch for Swords',
+          de: 'Schau nach den Schwertern',
+          fr: 'Repérez les épées',
+          cn: '观察剑',
+          ko: '칼 떨어지는 위치 보기',
+        },
+      },
     },
     {
       id: 'EmeraldEx Tertius Terminus Est',
       // StartsUsing has positions but is inconsistent when entities are newly moved.
-      // This is still ~7s of warning, and if we wanted to be fancier, knowing 4 would be enough.
+      // We provide more time by using logic to predict where the last two
+      // swords will drop.
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'BitBlade', id: '55CD' }),
       netRegexDe: NetRegexes.abilityFull({ source: 'Revolverklingen-Arm', id: '55CD' }),
@@ -364,13 +375,13 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.abilityFull({ source: 'ガンブレードビット', id: '55CD' }),
       netRegexCn: NetRegexes.abilityFull({ source: '枪刃浮游炮', id: '55CD' }),
       netRegexKo: NetRegexes.abilityFull({ source: '건블레이드 비트', id: '55CD' }),
-      durationSeconds: 7,
+      durationSeconds: 9,
       alertText: (data, matches, output) => {
         (data.tertius ??= []).push(matches);
-        if (data.tertius.length !== 6)
+        if (data.tertius.length !== 4)
           return;
 
-        const [s0, s1, s2, s3, s4, s5] = data.tertius.map((sword) => {
+        const [s0, s1, s2, s3] = data.tertius.map((sword) => {
           const x = parseFloat(sword.x) - centerX;
           const y = parseFloat(sword.y) - centerY;
           if (Math.abs(x) < 10 && Math.abs(y) < 10)
@@ -379,6 +390,13 @@ const triggerSet: TriggerSet<Data> = {
             return y < 0 ? output.dirNW!() : output.dirSW!();
           return y < 0 ? output.dirNE!() : output.dirSE!();
         });
+
+        // We know that the swords will land in all 4 corners plus twice in
+        // the center areas. Predict the last two swords by removing the
+        // ones we've already gotten.
+        const spawns: string[] = [output.dirNE!(), output.dirNW!(), output.dirSE!(), output.dirSW!(), output.middle!(), output.middle!()];
+
+        const [s4, s5] = spawns.filter((x) => ![s0, s1, s2, s3].includes(x));
 
         if (!s0 || !s1 || !s2 || !s3 || !s4 || !s5)
           throw new UnreachableCode();
@@ -504,7 +522,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go North; Dodge Soldiers/Divebombs',
           de: 'Geh nach Norden; Achte auf die Lücken zwischen den Soldaten',
-          fr: 'Allez au Nord, Évitez les soldats et les bombes',
+          fr: 'Allez au Nord, esquivez les soldats et les bombes plongeantes',
           ja: '飛行部隊と射撃部隊を見覚える', // FIXME
           cn: '去北边；躲避士兵射击/飞机轰炸',
           ko: '북쪽으로 이동, 엑사플레어, 병사 사격 확인',
@@ -560,7 +578,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'bitblade': 'pistolame volante',
         'Black Wolf\'s Image': 'spectre de Gaius',
@@ -571,10 +588,12 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         '--cutscene--': '--cinématique--',
         'Aetheroplasm Production': 'Condensation d\'éthéroplasma',
-        'Aire Tam Storm': 'Aire Tam Storm',
+        'Aire Tam Storm(?! /)': 'Aire Tam Storm',
+        'Aire Tam Storm / Emerald Crusher': 'Aire Tam / Écraseur',
         'Bit Storm': 'Salve circulaire',
         'Divide Et Impera': 'Divide Et Impera',
         'Emerald Beam': 'Rayon émeraude',
+        'Emerald Crusher / Aire Tam Storm': 'Écraseur / Aire Tam',
         'Emerald Shot': 'Tir émeraude',
         'Expire': 'Jet de plasma',
         'Heirsbane': 'Fléau de l\'héritier',
@@ -591,7 +610,6 @@ const triggerSet: TriggerSet<Data> = {
         'Tertius Terminus Est': 'Terminus Est : Tres',
         'Mechanized Maneuver': 'Murmuration stratégique',
         'Bombs Away': 'Ordre de bombardement',
-        'Emerald Crusher': 'Écraseur émeraude',
         'Full Rank': 'Regroupement de toutes les unités',
         'Final Formation': 'Alignement de toutes les unités',
         'Fatal Fire': 'Attaque groupée',

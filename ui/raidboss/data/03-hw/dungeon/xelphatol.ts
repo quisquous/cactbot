@@ -152,6 +152,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Abalathian Hornbill': 'bucorve d\'Abalathia',
         'Dotoli Ciloc': 'Dotoli Ciloc',
+        'Floating Turret': 'tourelle volante',
         'Garuda': 'Garuda',
         'Nuzal Hueloc': 'Nuzal Hueloc',
         'The Cage': 'Le Nichoir',

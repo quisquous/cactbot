@@ -7,8 +7,6 @@ namespace Cactbot {
   public class FFXIVPlugin {
     private ILogger logger_;
     private IActPluginV1 ffxiv_plugin_;
-    private Process process_ = null;
-    public Process Process => process_;
 
     public FFXIVPlugin(ILogger logger) {
       logger_ = logger;
@@ -72,6 +70,21 @@ namespace Cactbot {
         plugin_derived.DataSubscription.ProcessChanged += del;
       } catch (Exception e) {
         logger_.LogError(Strings.RegisteringProcessErrorMessage, e.ToString());
+      }
+    }
+
+    public Process GetCurrentProcess() {
+      if (ffxiv_plugin_ == null) {
+        return null;
+      }
+
+      try {
+        dynamic plugin_derived = ffxiv_plugin_;
+        var process = plugin_derived.DataRepository.GetCurrentFFXIVProcess();
+        return process;
+      } catch (Exception e) {
+        logger_.LogError(Strings.GetCurrentProcessErrorMessage, e.ToString());
+        return null;
       }
     }
   }

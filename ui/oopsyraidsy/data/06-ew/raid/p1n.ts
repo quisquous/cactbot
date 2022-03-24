@@ -23,19 +23,19 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   triggers: [
     {
-      id: 'P1N Cold Spell Track',
+      id: 'P1N Hot Cold Spell Gain',
       type: 'GainsEffect',
-      // No need to track this falling off or deleting it.
-      // When the next round comes along, it will reassign and give it to somebody.
-      // TODO: not sure if somebody dies if this falls off and so maybe we should track losing it?
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AB3' }),
-      run: (data, matches) => (data.spell ??= {})[matches.target] = 'cold',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB[34]' }),
+      run: (data, matches) => {
+        const temp = matches.effectId === 'AB3' ? 'cold' : 'hot';
+        (data.spell ??= {})[matches.target] = temp;
+      },
     },
     {
-      id: 'P1N Hot Spell Track',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AB4' }),
-      run: (data, matches) => (data.spell ??= {})[matches.target] = 'hot',
+      id: 'P1N Hot Cold Spell Lose',
+      type: 'LosesEffect',
+      netRegex: NetRegexes.losesEffect({ effectId: 'AB[34]' }),
+      run: (data, matches) => delete (data.spell ??= {})[matches.target],
     },
     {
       id: 'P1N Cold Spell',
@@ -76,6 +76,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Pushed into wall',
             de: 'Rückstoß in die Wand',
+            fr: 'Poussé(e) dans le mur',
             ja: '壁へノックバック',
             cn: '击退至墙',
             ko: '벽으로 넉백',

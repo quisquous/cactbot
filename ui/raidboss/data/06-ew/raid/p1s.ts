@@ -6,7 +6,14 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type Data = RaidbossData;
+// TODO: Fixup Intemperance callouts
+// TODO: Add Aetherflail callouts to Powerful Light/Fire
+
+export interface Data extends RaidbossData {
+  companionship?: string;
+  loneliness?: string;
+  safeColor?: string;
+}
 
 const flailDirections = {
   l: Outputs.left,
@@ -18,6 +25,25 @@ const flailDirections = {
     ja: '${first} => ${second}',
     cn: '${first} => ${second}',
     ko: '${first} => ${second}',
+  },
+};
+
+const fireLightOutputStrings = {
+  fire: {
+    en: 'Stand on fire',
+    de: 'Auf der Feuerfläche stehen',
+    fr: 'Placez-vous sur le feu',
+    ja: '炎の床へ',
+    cn: '站在火',
+    ko: '빨간 바닥으로',
+  },
+  light: {
+    en: 'Stand on light',
+    de: 'Auf der Lichtfläche stehen',
+    fr: 'Placez-vous sur la lumière',
+    ja: '光の床へ',
+    cn: '站在光',
+    ko: '흰 바닥으로',
   },
 };
 
@@ -34,7 +60,10 @@ const triggerSet: TriggerSet<Data> = {
         positions: {
           en: 'Tile Positions',
           de: 'Flächen-Positionen',
-          fr: 'Position tuiles',
+          fr: 'Positions sur les cases',
+          ja: '自分の担当マスへ',
+          cn: '上自己的方块',
+          ko: '담당 타일로',
         },
       },
     },
@@ -47,7 +76,100 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '662A', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '662A', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '662A', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '662A', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'P1S Shackles of Companionship',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB6' }),
+      preRun: (data, matches) => data.companionship = matches.target,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.closeShacklesOnYou!();
+      },
+      outputStrings: {
+        closeShacklesOnYou: {
+          en: 'Close Shackles on YOU',
+          de: 'Nahe Fesseln auf DIR',
+          fr: 'Chaînes proches sur VOUS',
+          ja: '紫鎖（近い方）',
+          cn: '紫锁（近）点名',
+          ko: '안쪽 쇠사슬(자주색)',
+        },
+      },
+    },
+    {
+      id: 'P1S Shackles of Loneliness',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB7' }),
+      preRun: (data, matches) => data.loneliness = matches.target,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.farShacklesOnYou!();
+      },
+      outputStrings: {
+        farShacklesOnYou: {
+          en: 'Far Shackles on YOU',
+          de: 'Entfernte Fesseln auf DIR',
+          fr: 'Chaînes éloignées sur VOUS',
+          ja: '赤鎖（遠い方）',
+          cn: '红锁（远）点名',
+          ko: '바깥쪽 쇠사슬(빨간색)',
+        },
+      },
+    },
+    {
+      // Callout the other shackle(s) at info level
+      id: 'P1S Aetherial Shackles Callout',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB[67]' }),
+      condition: (data) => data.companionship !== undefined && data.loneliness !== undefined,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      infoText: (data, _matches, output) => {
+        if (data.companionship === data.me)
+          return output.farShacklesOn!({ far: data.ShortName(data.loneliness) });
+        if (data.loneliness === data.me)
+          return output.closeShacklesOn!({ close: data.ShortName(data.companionship) });
+        return output.shacklesOn!({ close: data.ShortName(data.companionship), far: data.ShortName(data.loneliness) });
+      },
+      tts: (data, _matches, output) => {
+        if (data.companionship === data.me || data.loneliness === data.me)
+          return null;
+        return output.shacklesOn!({ close: data.ShortName(data.companionship), far: data.ShortName(data.loneliness) });
+      },
+      run: (data) => {
+        delete data.companionship;
+        delete data.loneliness;
+      },
+      outputStrings: {
+        closeShacklesOn: {
+          en: 'Close Shackles on ${close}',
+          de: 'Nahe Fesseln auf ${close}',
+          fr: 'Chaînes proches sur ${close}',
+          ja: '紫鎖（近い方）：${close}',
+          cn: '紫锁（近）：${close}',
+          ko: '안쪽 쇠사슬: ${close}',
+        },
+        farShacklesOn: {
+          en: 'Far Shackles on ${far}',
+          de: 'Entfernte Fesseln auf ${far}',
+          fr: 'Chaînes éloignées sur ${far}',
+          ja: '赤鎖（遠い方）：${far}',
+          cn: '红锁（远）：${far}',
+          ko: '바깥쪽 쇠사슬: ${far}',
+        },
+        shacklesOn: {
+          en: 'Close: ${close}, Far: ${far}',
+          de: 'Nahe: ${close}, Entfernt: ${far}',
+          fr: 'Proches : ${close}, Éloignées : ${far}',
+          ja: '紫鎖（近い方）：${close}、赤鎖（遠い方）：${far}',
+          cn: '紫锁（近）：${close}、红锁（远）：${far}',
+          ko: '안쪽: ${close}, 바깥쪽: ${far}',
+        },
+      },
     },
     {
       id: 'P1S Shining Cells',
@@ -56,6 +178,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6616', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6616', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6616', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6616', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -65,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6617', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6617', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6617', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6617', source: '埃里克特翁尼亚斯', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -74,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F6', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F6', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F6', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '65F6', source: '埃里克特翁尼亚斯', capture: false }),
       alertText: (_data, _matches, output) => output.combo!({ first: output.l!(), second: output.r!() }),
       outputStrings: flailDirections,
     },
@@ -84,6 +209,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '65F7', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '65F7', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F7', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '65F7', source: '埃里克特翁尼亚斯', capture: false }),
       alertText: (_data, _matches, output) => output.combo!({ first: output.r!(), second: output.l!() }),
       outputStrings: flailDirections,
     },
@@ -94,6 +220,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: '埃里克特翁尼亚斯', capture: false }),
       alertText: (_data, _matches, output) => output.outThenIn!(),
       outputStrings: {
         outThenIn: Outputs.outThenIn,
@@ -106,6 +233,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: '埃里克特翁尼亚斯', capture: false }),
       alertText: (_data, _matches, output) => output.inThenOut!(),
       outputStrings: {
         inThenOut: Outputs.inThenOut,
@@ -118,6 +246,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6629', source: 'Erichthonios' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6629', source: 'Érichthonios' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6629', source: 'エリクトニオス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6629', source: '埃里克特翁尼亚斯' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -128,12 +257,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '660E', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '660E', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '660E', source: '埃里克特翁尼亚斯', capture: false }),
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
         directions: {
           en: 'Tankbuster+Knockback => Stack',
           de: 'Tankbuster+Rückstoß => Sammeln',
-          fr: 'Tank buster+Poussée => Packez-vous',
+          fr: 'Tank buster + Poussée => Packez-vous',
+          ja: 'タンクバスター+ノックバック => 頭割り',
+          cn: '坦克死刑+击退 => 分摊',
+          ko: '탱버 + 넉백 → 쉐어',
         },
       },
     },
@@ -144,12 +277,56 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '660F', source: 'Erichthonios', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '660F', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '660F', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '660F', source: '埃里克特翁尼亚斯', capture: false }),
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
         directions: {
           en: 'Tankbuster+Knockback => Flare',
           de: 'Tankbuster+Rückstoß => Flare',
-          fr: 'Tank buster+Poussée => Brasier',
+          fr: 'Tank buster + Poussée => Brasier',
+          ja: 'タンクバスター+ノックバック => フレア',
+          cn: '坦克死刑+击退 => 核爆',
+          ko: '탱버 + 넉백 → 플레어',
+        },
+      },
+    },
+    {
+      id: 'P1S Intemperate Torment Bottom',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '661F', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '661F', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '661F', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '661F', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '661F', source: '埃里克特翁尼亚斯', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bottom First',
+          de: 'Unten zuerst',
+          fr: 'Cube inférieur en premier',
+          ja: '下から',
+          cn: '底部开始',
+          ko: '아래부터',
+        },
+      },
+    },
+    {
+      id: 'P1S Intemperate Torment Top',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6620', source: 'Erichthonios', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6620', source: 'Erichthonios', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6620', source: 'Érichthonios', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6620', source: 'エリクトニオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6620', source: '埃里克特翁尼亚斯', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Top First',
+          de: 'Oben zuerst',
+          fr: 'Cube supérieur en premier',
+          ja: '上から',
+          cn: '顶部开始',
+          ko: '위부터',
         },
       },
     },
@@ -157,16 +334,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Hot/Cold Spell',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AB3', 'AB4'], capture: true }),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AB3', 'AB4'] }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, _output) => {
-        return _matches.effectId === 'AB3' ? _output.red!() : _output.blue!();
+      alertText: (_data, matches, output) => {
+        return matches.effectId === 'AB3' ? output.red!() : output.blue!();
       },
       outputStrings: {
         red: {
           en: 'Get hit by red',
           de: 'Von Rot treffen lassen',
           fr: 'Faites-vous toucher par le rouge',
+          ja: '炎に当たる',
           cn: '去吃火',
           ko: '빨간색 맞기',
         },
@@ -174,40 +352,205 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Get hit by blue',
           de: 'Von Blau treffen lassen',
           fr: 'Faites-vous toucher par le bleu',
+          ja: '氷に当たる',
           cn: '去吃冰',
           ko: '파란색 맞기',
         },
       },
     },
-    // Copy/paste from normal, seems to be the same
     {
       id: 'P1S Powerful Light/Fire',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '893', capture: true }),
-      alertText: (_data, matches, _output) => {
-        if (matches.count === '14C')
-          return _output.light!();
-        return _output.fire!();
+      netRegex: NetRegexes.gainsEffect({ effectId: '893' }),
+      preRun: (data, matches) => {
+        data.safeColor = matches.count === '14C' ? 'light' : 'fire';
+      },
+      alertText: (data, _matches, output) => data.safeColor && output[data.safeColor]!(),
+      outputStrings: fireLightOutputStrings,
+    },
+    {
+      id: 'P1S Shackles of Time',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.oppositeParty!();
+        return output.oppositePlayer!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        fire: {
-          en: 'Stand on fire',
-          de: 'Auf der Feuerfläche stehen',
-          fr: 'Placez-vous sur le feu',
-          cn: '站在火',
-          ko: '빨간색 바닥 위에 서기',
+        oppositePlayer: {
+          en: 'Opposite color of ${player}',
+          de: 'Gegenteilige Farbe von ${player}',
+          fr: 'Couleur opposée de ${player}',
+          ja: '${player}と反対の色へ',
+          cn: '${player}的相反颜色',
+          ko: '${player}의 반대 색으로',
         },
-        light: {
-          en: 'Stand on light',
-          de: 'Auf der Lichtfläche stehen',
-          fr: 'Placez-vous sur la lumière',
-          cn: '站在光',
-          ko: '흰색 바닥 위에 서기',
+        oppositeParty: {
+          en: 'Opposite color of Party',
+          de: 'Gegenteilige Farbe von der Party',
+          fr: 'Couleur opposée à l\'équipe',
+          ja: '他のメンバーと反対の色へ',
+          cn: '其他队友的相反颜色',
+          ko: '혼자 반대 색으로',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Companionship 1',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B45' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Close (3s)',
+          de: 'Nahe (3s)',
+          fr: 'Proches (3s)',
+          ja: '紫鎖（近い方） (3s)',
+          cn: '紫锁 (近) (3秒)',
+          ko: '안쪽#1 (3초)',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Companionship 2',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B46' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Close (8s)',
+          de: 'Nahe (8s)',
+          fr: 'Proches (8s)',
+          ja: '紫鎖（近い方） (8s)',
+          cn: '紫锁 (近) (8秒)',
+          ko: '안쪽#2 (8초)',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Companionship 3',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B47' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Close (13s)',
+          de: 'Nahe (13s)',
+          fr: 'Proches (13s)',
+          ja: '紫鎖（近い方） (13s)',
+          cn: '紫锁 (近) (13秒)',
+          ko: '안쪽#3 (13초)',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Companionship 4',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B6B' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Close (18s)',
+          de: 'Nahe (18s)',
+          fr: 'Proches (18s)',
+          ja: '紫鎖（近い方） (18s)',
+          cn: '紫锁 (近) (18秒)',
+          ko: '안쪽#4 (18초)',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Loneliness 1',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B48' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Far (3s)',
+          de: 'Entfernt (3s)',
+          fr: 'Éloignées (3s)',
+          ja: '赤鎖（遠い方） (3s)',
+          cn: '红锁 (远) (3秒)',
+          ko: '바깥쪽#1 (3초)',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Loneliness 2',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B49' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Far (8s)',
+          de: 'Entfernt (8s)',
+          fr: 'Éloignées (8s)',
+          ja: '赤鎖（遠い方） (8s)',
+          cn: '红锁 (远) (8秒)',
+          ko: '바깥쪽#2 (8초)',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Loneliness 3',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B4A' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Far (13s)',
+          de: 'Entfernt (13s)',
+          fr: 'Éloignées (13s)',
+          ja: '赤鎖（遠い方） (13s)',
+          cn: '红锁 (远) (13秒)',
+          ko: '바깥쪽#3 (13초)',
+        },
+      },
+    },
+    {
+      id: 'P1S Fourfold Shackles of Loneliness 4',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'B6C' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Far (18s)',
+          de: 'Entfernt (18s)',
+          fr: 'Éloignées (18s)',
+          ja: '赤鎖（遠い方） (18s)',
+          cn: '红锁 (远) (18秒)',
+          ko: '바깥쪽#4 (18초)',
         },
       },
     },
   ],
   timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Pitiless Flail of Grace/Pitiless Flail of Purgation': 'Flail of Grace/Purgation',
+        'True Flare/True Holy': 'True Flare/Holy',
+        'Powerful Fire/Powerful Light': 'Powerful Fire/Light',
+        'Inevitable Flame/Inevitable Light': 'Inevitable Flame/Light',
+      },
+    },
     {
       'locale': 'de',
       'replaceSync': {
@@ -220,12 +563,13 @@ const triggerSet: TriggerSet<Data> = {
         'First Element': 'Erstes Element',
         'Fourfold Shackles': 'Vierfache Fluchesketten',
         'Gaoler\'s Flail(?! [IO])': 'Eiserne Zucht',
-        'Gaoler\'s Flail In': 'Eiserne Zucht Rein',
-        'Gaoler\'s Flail Out': 'Eiserne Zucht Raus',
+        'Gaoler\'s Flail In/Out': 'Eiserne Zucht Rein/Raus',
+        'Gaoler\'s Flail Out/In': 'Eiserne Zucht Raus/Rein',
         'Heavy Hand': 'Marter',
         'Inevitable Flame': 'Aspektiertes Feuer',
         'Inevitable Light': 'Aspektiertes Licht',
         'Intemperance': 'Zehrende Elemente',
+        'Intemperate Torment': 'Zehrende Vollstreckung',
         'Lethe': 'Schloss und Riegel',
         'Pitiless Flail of Grace': 'Heilige Zucht und Ordnung',
         'Pitiless Flail of Purgation': 'Feurige Zucht und Ordnung',
@@ -243,30 +587,34 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Erichthonios': 'Érichthonios',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Aetherchain': 'Chaînes explosives',
-        'Aetherial Shackles': 'Chaîne de malédiction',
+        '(?<!/)Aetherial Shackles': 'Chaîne de malédiction',
         'Chain Pain': 'Exécution maudite',
+        'First Element': 'Premier élément',
         'Fourfold Shackles': 'Chaîne de malédiction quadruple',
-        'Gaoler\'s Flail': 'Chaîne punitive',
+        'Gaoler\'s Flail(?! [IO])': 'Chaîne punitive',
+        'Gaoler\'s Flail In/Out': 'Chaîne intérieur/extérieur',
+        'Gaoler\'s Flail Out/In': 'Chaîne extérieur/intérieur',
         'Heavy Hand': 'Chaîne de supplice',
-        'Inevitable Flame': 'Explosion infernale à retardement',
-        'Inevitable Light': 'Explosion sacrée à retardement',
+        'Inevitable Flame/Inevitable Light': 'Explosion à retardement',
         'Intemperance': 'Corrosion élémentaire',
+        'Intemperate Torment': 'Exécution corrosive',
         'Lethe': 'Descente aux limbes',
-        'Pitiless Flail of Grace': 'Chaîne transperçante sacrée',
-        'Pitiless Flail of Purgation': 'Chaîne transperçante infernale',
-        'Powerful Fire': 'Explosion infernale',
-        'Powerful Light': 'Explosion sacrée',
-        'Shackles of Time': 'Chaîne à retardement',
+        'Pitiless Flail of Grace(?!/)': 'Chaîne transperçante sacrée',
+        'Pitiless Flail of Grace/Pitiless Flail of Purgation': 'Chaîne sacrée/infernale',
+        'Powerful Fire/Powerful Light': 'Explosion infernale/sacrée',
+        'Second Element': 'Deuxième élément',
+        'Shackles of Time(?!/)': 'Chaîne à retardement',
+        'Shackles of Time/Aetherial Shackles': 'Chaîne à retardement/malédiction',
         'Shining Cells': 'Geôle limbique',
         'Slam Shut': 'Occlusion terminale',
-        'True Flare': 'Brasier véritable',
-        'True Holy': 'Miracle véritable',
+        'Third Element': 'Troisième élément',
+        'True Flare/True Holy': 'Brasier/Miracle véritable',
         'Warder\'s Wrath': 'Chaînes torrentielles',
       },
     },
@@ -286,6 +634,7 @@ const triggerSet: TriggerSet<Data> = {
         'Inevitable Flame': '時限炎爆',
         'Inevitable Light': '時限光爆',
         'Intemperance': '氷火の侵食',
+        'Intemperate Torment': '侵食執行',
         'Lethe': '辺獄送り',
         'Pitiless Flail of Grace': '懲罰連撃・聖',
         'Pitiless Flail of Purgation': '懲罰連撃・炎',

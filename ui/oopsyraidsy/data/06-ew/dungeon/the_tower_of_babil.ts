@@ -70,6 +70,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Suffocated',
             de: 'Erstickt',
+            fr: 'A suffoqué(e)',
+            cn: '窒息',
             ko: '질식',
           },
         };

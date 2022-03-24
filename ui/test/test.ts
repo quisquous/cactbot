@@ -71,7 +71,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText = `${detail.jobDetail.hutonMilliseconds} | ${detail.jobDetail.ninkiAmount}`;
     } else if (detail.job === 'DRG' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.bloodMilliseconds} | ${detail.jobDetail.lifeMilliseconds} | ${detail.jobDetail.eyesAmount}`;
+        `${detail.jobDetail.bloodMilliseconds} | ${detail.jobDetail.lifeMilliseconds} | ${detail.jobDetail.eyesAmount} | ${detail.jobDetail.firstmindsFocus}`;
     } else if (detail.job === 'BLM' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds}) | ${detail.jobDetail.umbralHearts} | ${detail.jobDetail.polyglot} ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds}) | ${detail.jobDetail.paradox.toString()}`;
@@ -103,7 +103,10 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
         detail.jobDetail.arcanums.join(', ')
       }]`;
     } else if (detail.job === 'MNK' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.chakraStacks}`;
+      jobInfo.innerText =
+        `${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lunarNadi.toString()} | ${detail.jobDetail.solarNadi.toString()} | [${
+          detail.jobDetail.beastChakra.join(', ')
+        }]`;
     } else if (detail.job === 'MCH' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.heat} (${detail.jobDetail.overheatMilliseconds}) | ${detail.jobDetail.battery} (${detail.jobDetail.batteryMilliseconds}) | last: ${detail.jobDetail.lastBatteryAmount} | ${detail.jobDetail.overheatActive.toString()} | ${detail.jobDetail.robotActive.toString()}`;

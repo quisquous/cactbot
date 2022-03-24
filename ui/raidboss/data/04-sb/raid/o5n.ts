@@ -157,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         'Acid Rain': 'Pluie acide',
-        'Add Wave': 'Vague d\'Adds',
+        'Add Wave': 'Vague d\'adds',
         'Crossing Whistle': 'Sifflet traversée',
         'Diabolic Chimney': 'Cheminée diabolique',
         'Diabolic Headlamp': 'Phare diabolique',
@@ -169,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
         'Ghosts': 'Fantômes',
         'Head On': 'Plein fouet',
         'Saintly Beam': 'Faisceaux sacrés',
-        'Tether Whistle': 'Sifflet liens',
+        'Tether Whistle': 'Liens sifflet',
       },
     },
     {

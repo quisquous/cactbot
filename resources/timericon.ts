@@ -321,7 +321,7 @@ export default class TimerIcon extends HTMLElement {
     this._connected = false;
   }
 
-  attributeChangedCallback(name: string, oldValue: string | number, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string | number, newValue: string): void {
     if (name === 'duration') {
       this._duration = Math.max(parseFloat(newValue), 0);
       this.reset();
@@ -426,7 +426,7 @@ export default class TimerIcon extends HTMLElement {
     if (!this._connected)
       return;
 
-    this.startTimeMs = +new Date();
+    this.startTimeMs = Date.now();
 
     this.rootElement.style.display = 'block';
     clearTimeout(this._hideTimer ?? 0);
@@ -439,7 +439,7 @@ export default class TimerIcon extends HTMLElement {
   }
 
   advance(): void {
-    this._value = this._duration + (this.startTimeMs - new Date().getTime()) / 1000;
+    this._value = this._duration + (this.startTimeMs - Date.now()) / 1000;
     if (this._value <= 0) {
       this._value = 0;
       if (this._hideAfter >= 0) {

@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -7,9 +8,11 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: 006[B-F] are probably fledgling headmarkers
-
 export interface Data extends RaidbossData {
+  deathsToll?: boolean;
+  deathsTollPending?: boolean;
+  sunbirdTethers: NetMatches['Tether'][];
+  sunbirds: NetMatches['AddedCombatant'][];
   decOffset?: number;
 }
 
@@ -32,6 +35,12 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AsphodelosTheThirdCircleSavage,
   timelineFile: 'p3s.txt',
+  initData: () => {
+    return {
+      sunbirds: [],
+      sunbirdTethers: [],
+    };
+  },
   triggers: [
     {
       id: 'P3S Headmarker Tracker',
@@ -62,7 +71,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Fire Positions',
           de: 'Feuer-Positionen',
-          fr: 'Positions feu',
+          fr: 'Positions pour les flammes',
+          ja: '黒い炎の位置に散開',
+          cn: '暗炎站位',
+          ko: '불꽃 산개',
         },
       },
     },
@@ -79,6 +91,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Tank Tethers',
           de: 'Tank-Verbindungen',
           fr: 'Liens Tank',
+          ja: 'タンク線取り',
+          cn: '坦克截线',
+          ko: '탱커 선 가로채기',
         },
       },
     },
@@ -94,7 +109,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Middle (then rotate)',
           de: 'Geh in die Mitte (und rotiere dann)',
-          fr: 'Soyez au centre (puis tourner)',
+          fr: 'Placez-vous au milieu (puis tournez)',
+          ja: '中央 → 小玉・ぐるぐる',
+          cn: '中间集合, 九连环',
+          ko: '가운데 → 작은 구슬, 바깥 회전 장판',
         },
       },
     },
@@ -110,7 +128,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Middle (then out)',
           de: 'Geh in die Mitte (und dann raus)',
-          fr: 'Soyez au centre (puis sortez)',
+          fr: 'Placez-vous au milieu (puis sortez)',
+          ja: '中央 → 大玉・離れる',
+          cn: '中间集合, 然后远离',
+          ko: '가운데 → 큰 구슬, 밖으로',
         },
       },
     },
@@ -155,6 +176,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Sides + Spread',
           de: 'Seiten + Verteilen',
           fr: 'Côtés + Dispersez-vous',
+          ja: '横側安置：散開',
+          cn: '两侧 + 分散',
+          ko: '바깥쪽에서 산개',
         },
       },
     },
@@ -170,12 +194,15 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Middle Pairs',
           de: 'Mittlere Paare',
-          fr: 'Paires au centre',
+          fr: 'Paires au milieu',
+          ja: '中央直線安置：二人組で頭割り',
+          cn: '中间 两人分摊',
+          ko: '가운데서 2명씩 산개',
         },
       },
     },
     {
-      id: 'P3S Bright Fire Marker',
+      id: 'P3S Bright Fire Marker and Fledgling Flights',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: Conditions.targetIsYou(),
@@ -190,6 +217,10 @@ const triggerSet: TriggerSet<Data> = {
           '0054': output.num6!(),
           '0055': output.num7!(),
           '0056': output.num8!(),
+          '006B': data.deathsToll ? output.west!() : output.east!(),
+          '006C': data.deathsToll ? output.east!() : output.west!(),
+          '006D': data.deathsToll ? output.north!() : output.south!(),
+          '006E': data.deathsToll ? output.south!() : output.north!(),
         }[id];
       },
       outputStrings: {
@@ -201,6 +232,109 @@ const triggerSet: TriggerSet<Data> = {
         num6: Outputs.num6,
         num7: Outputs.num7,
         num8: Outputs.num8,
+        east: Outputs.east,
+        west: Outputs.west,
+        south: Outputs.south,
+        north: Outputs.north,
+      },
+    },
+    {
+      id: 'P3S Sunbird Tether Collector',
+      type: 'Tether',
+      // 0039 when pink, 0001 when stretched purple.
+      // TODO: in general, it seems like the tethers are picked to start unstretched,
+      // but plausibly you could create a scenario where one starts stretched?
+      netRegex: NetRegexes.tether({ source: 'Sunbird', id: ['0039', '0001'] }),
+      netRegexDe: NetRegexes.tether({ source: 'Spross Des Phoinix', id: ['0039', '0001'] }),
+      netRegexFr: NetRegexes.tether({ source: 'Oiselet Étincelant', id: ['0039', '0001'] }),
+      netRegexJa: NetRegexes.tether({ source: '陽炎鳥', id: ['0039', '0001'] }),
+      run: (data, matches) => data.sunbirdTethers.push(matches),
+    },
+    {
+      id: 'P3S Sunbird Collector',
+      type: 'AddedCombatant',
+      // Small birds are 13633, and big birds are 13635.
+      netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '13635' }),
+      run: (data, matches) => data.sunbirds.push(matches),
+    },
+    {
+      id: 'P3S Sunbird Tether',
+      type: 'Tether',
+      // There is no need for a delay here, because all of the tethers are ordered:
+      //   SunbirdA => Player1
+      //   Player1 => Player2
+      //   SunbirdB => Player3
+      //   Player3 => Player4
+      // ...therefore if this tether has the current player as a target, then we
+      // will have seen the Sunbird => Player tether previously if it exists in the
+      // Sunbird Tether Collector line.
+      netRegex: NetRegexes.tether({ id: ['0039', '0001'] }),
+      condition: Conditions.targetIsYou(),
+      // There are additional tether lines when you stretch/unstretch the tether, and
+      // adds will re-tether somebody new if somebody dies right before dashing.  Only call once.
+      suppressSeconds: 9999,
+      alertText: (data, matches, output) => {
+        const myTether = matches;
+        const parentTether = data.sunbirdTethers.find((x) => x.targetId === myTether.sourceId);
+
+        const birdId = parentTether?.sourceId ?? myTether.sourceId;
+        const bird = data.sunbirds.find((x) => x.id === birdId);
+        if (!bird) {
+          // Note: 0001 tethers happen later with the Sunshadow birds during the Fountain of Fire
+          // section.  In most cases, a player will get a tether during add phase and then this
+          // will be suppressed in the fountain section.  In the rare case they don't, they
+          // may get this error, but nothing will be printed on screen.
+          console.error(`SunbirdTether: no bird ${birdId}`);
+          return;
+        }
+
+        const centerX = 100;
+        const centerY = 100;
+        const x = parseFloat(bird.x) - centerX;
+        const y = parseFloat(bird.y) - centerY;
+        const birdDir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+
+        const adjustedDir = (birdDir + (parentTether === undefined ? 4 : 0)) % 8;
+        const outputDir = {
+          0: output.north!(),
+          1: output.northeast!(),
+          2: output.east!(),
+          3: output.southeast!(),
+          4: output.south!(),
+          5: output.southwest!(),
+          6: output.west!(),
+          7: output.northwest!(),
+        }[adjustedDir];
+        if (!outputDir)
+          throw new UnreachableCode();
+
+        if (parentTether)
+          return output.playerTether!({ dir: outputDir, player: data.ShortName(myTether.source) });
+        return output.birdTether!({ dir: outputDir });
+      },
+      outputStrings: {
+        playerTether: {
+          en: '${dir} (away from ${player})',
+          de: '${dir} (weg von ${player})',
+          fr: '${dir} (éloignez-vous de ${player})',
+          ja: '${dir} (${player}と繋がる)',
+          ko: '${dir} (${player}에게서 멀리 떨어지기)',
+        },
+        birdTether: {
+          en: '${dir} (away from bird)',
+          de: '${dir} (weg vom Vogel)',
+          fr: '${dir} (éloignez-vous de l\'oiseau)',
+          ja: '${dir} (鳥と繋がる)',
+          ko: '${dir} (새와 멀리 떨어지기)',
+        },
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
       },
     },
     {
@@ -225,7 +359,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Middle (then rotate)',
           de: 'Geh in die Mitte (und rotiere dann)',
-          fr: 'Soyez au centre (puis tourner)',
+          fr: 'Placez-vous au milieu (puis tournez)',
+          ja: '中央 → 小玉・ぐるぐる',
+          cn: '中间集合, 九连环',
+          ko: '가운데 → 작은 구슬, 바깥 회전 장판',
         },
       },
     },
@@ -242,7 +379,10 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Middle (then out)',
           de: 'Geh in die Mitte (und dann raus)',
-          fr: 'Soyez au centre (puis sortez)',
+          fr: 'Placez-vous au milieu (puis sortez)',
+          ja: '中央 → 大玉・離れる',
+          cn: '中间集合, 然后远离',
+          ko: '가운데 → 큰 구슬, 밖으로',
         },
       },
     },
@@ -254,7 +394,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '66C6', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '66C6', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '66C6', source: 'フェネクス', capture: false }),
-      response: Responses.getOut(),
+      // If you hang around to wait for the spread/stack, you will get killed.
+      // It's easy to get complacement by the end of the fight, so make this loud.
+      response: Responses.getOut('alarm'),
     },
     {
       id: 'P3S Experimental Gloryplume Stack',
@@ -271,6 +413,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Stacks After',
           de: 'Danach sammeln',
           fr: 'Packez-vous après',
+          ja: 'あとは頭割り',
+          cn: '然后分摊',
+          ko: '그 다음 쉐어',
         },
       },
     },
@@ -289,6 +434,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Spread After',
           de: 'Danach verteilen',
           fr: 'Dispersez-vous après',
+          ja: 'あとは散開',
+          cn: '然后分散',
+          ko: '그 다음 산개',
         },
       },
     },
@@ -303,6 +451,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Spread => Bird Tether',
           de: 'Verteilen => Vogel-Verbindungen',
           fr: 'Dispersez-vous => Liens oiseaux',
+          ja: '散開 => 鳥の線',
+          cn: '散开 => 鸟连线',
+          ko: '산개 → 새 줄 연결',
         },
       },
     },
@@ -329,6 +480,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Stacks',
           de: 'Sammeln',
           fr: 'Packez-vous',
+          ja: '頭割り',
+          cn: '分摊',
+          ko: '쉐어',
         },
       },
     },
@@ -346,6 +500,46 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Spread',
           de: 'Verteilen',
           fr: 'Dispersez-vous',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
+      },
+    },
+    {
+      id: 'P3S Death\'s Toll Number',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['ACA'], capture: true }),
+      // Force this to only run once without Conditions.targetIsYou()
+      // in case user is dead but needs to place fledgling flight properly
+      preRun: (data) => data.deathsToll = true,
+      // Delay callout until Ashen Eye start's casting
+      delaySeconds: 15.5,
+      infoText: (data, matches, output) => {
+        if (matches.target === data.me && !data.deathsTollPending) {
+          data.deathsTollPending = true;
+          return {
+            '01': output.outCardinals!(),
+            '02': output.outIntercards!(),
+            '04': output.middle!(),
+          }[matches.count];
+        }
+      },
+      outputStrings: {
+        middle: Outputs.middle,
+        outIntercards: {
+          en: 'Intercards + Out',
+          de: 'Interkardinal + Raus',
+          fr: 'Intercadinal + Extérieur',
+          ja: '斜め + 外側',
+          ko: '대각선 + 바깥',
+        },
+        outCardinals: {
+          en: 'Out + Cardinals',
+          de: 'Raus + Kardinal',
+          fr: 'Extérieur + Cardinal',
+          ja: '外側 + 十字',
+          ko: '바깥 + 십자',
         },
       },
     },
@@ -365,58 +559,13 @@ const triggerSet: TriggerSet<Data> = {
         'Fountain of Fire': 'Quell des Feuers',
         'Phoinix': 'Phoinix',
         'Sparkfledged': 'Saat des Phoinix',
-      },
-      'replaceText': {
-        '--fire expands--': '--fire expands--',
-        'Ashen Eye': 'Aschener Blick',
-        '(?<!\\w )Ashplume': '暗闇の劫火天焦',
-        'Beacons of Asphodelos': 'Asphodeische Flamme',
-        'Blazing Rain': 'Flammender Regen',
-        'Brightened Fire': 'Brightened Fire x8',
-        'Burning Twister': 'Lohenwinde',
-        'Dark Twister': 'Schwarze Winde',
-        'Darkblaze Twister': 'Schwarzlohensturm',
-        'Darkened Fire': 'Schwarze Lohe',
-        'Dead Rebirth': 'Melaphoinix',
-        'Death\'s Toll': 'Eid des Abschieds',
-        'Devouring Brand': 'Kreuzbrand',
-        'Experimental Ashplume': 'Experimentelle Aschenfieder',
-        'Experimental Fireplume': 'Experimentelle Feuerfieder',
-        'Experimental Gloryplume': 'Experimentelle Prachtfieder',
-        'Final Exaltation': 'Ewige Asche',
-        'Firestorms of Asphodelos': 'Asphodeischer Feuersturm',
-        'Flames of Asphodelos': 'Asphodeisches Feuer',
-        'Flames of Undeath': 'Totenflamme',
-        'Flare of Condemnation': 'Limbische Flamme',
-        'Fledgling Flight': 'Flüggewerden',
-        'Fountain of Death': 'Quell des Todes',
-        'Fountain of Fire': 'Quell des Feuers',
-        '(?<!\\w )Gloryplume': 'Prachtfieder',
-        'Heat of Condemnation': 'Limbisches Lodern',
-        'Left Cinderwing': 'Linke Aschenschwinge',
-        'Life\'s Agonies': 'Lohen des Lebens',
-        'Right Cinderwing': 'Rechte Aschenschwinge',
-        'Scorched Exaltation': 'Aschenlohe',
-        'Searing Breeze': 'Sengender Hauch',
-        'Sparks of Condemnation': 'Limbische Glut',
-        '(?<!fire)Storms of Asphodelos': 'Asphodeischer Sturm',
-        'Sun\'s Pinion': 'Schwelende Schwinge',
-        'Trail of Condemnation': 'Limbischer Odem',
-        'Winds of Asphodelos': 'Asphodeische Winde',
-      },
-    },
-    {
-      'locale': 'de',
-      'replaceSync': {
-        'Darkblaze Twister': 'Schwarzlohensturm',
-        'Fountain of Fire': 'Quell des Feuers',
-        'Phoinix': 'Phoinix',
-        'Sparkfledged': 'Saat des Phoinix',
+        'Sunbird': 'Spross des Phoinix',
       },
       'replaceText': {
         '--fire expands--': '--Feuer breitet sich aus--',
+        '--giant fireplume\\?--': '--riesige Feuerfieder?--',
         'Ashen Eye': 'Aschener Blick',
-        '(?<!\\w )Ashplume': '暗闇の劫火天焦',
+        '(?<!\\w )Ashplume': 'Aschenfieder',
         'Beacons of Asphodelos': 'Asphodeische Flamme',
         'Blazing Rain': 'Flammender Regen',
         'Brightened Fire': 'Lichte Lohe',
@@ -431,6 +580,7 @@ const triggerSet: TriggerSet<Data> = {
         'Experimental Fireplume': 'Experimentelle Feuerfieder',
         'Experimental Gloryplume': 'Experimentelle Prachtfieder',
         'Final Exaltation': 'Ewige Asche',
+        'Fireglide Sweep': 'Gleitjagd',
         'Firestorms of Asphodelos': 'Asphodeischer Feuersturm',
         'Flames of Asphodelos': 'Asphodeisches Feuer',
         'Flames of Undeath': 'Totenflamme',
@@ -439,7 +589,9 @@ const triggerSet: TriggerSet<Data> = {
         'Fountain of Death': 'Quell des Todes',
         'Fountain of Fire': 'Quell des Feuers',
         '(?<!\\w )Gloryplume': 'Prachtfieder',
+        'Great Whirlwind': 'Windhose',
         'Heat of Condemnation': 'Limbisches Lodern',
+        'Joint Pyre': 'Gemeinschaft des Feuers',
         'Left Cinderwing': 'Linke Aschenschwinge',
         'Life\'s Agonies': 'Lohen des Lebens',
         'Right Cinderwing': 'Rechte Aschenschwinge',
@@ -454,16 +606,19 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Darkblaze Twister': 'Tourbillon enflammé des Limbes',
         'Fountain of Fire': 'Flamme de la vie',
         'Phoinix': 'protophénix',
         'Sparkfledged': 'oiselet de feu',
+        'Sunbird': 'oiselet étincelant',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '--fire expands--': '--élargissement du feu--',
+        '--giant fireplume': '--immolation de feu géant',
         'Ashen Eye': 'Œil sombre',
-        '(?<!\\w )Ashplume': '暗闇の劫火天焦',
+        '(?<!\\w )Ashplume': 'Immolation de feu ténébreux',
         'Beacons of Asphodelos': 'Feu des Limbes',
         'Blazing Rain': 'Pluie brûlante',
         'Brightened Fire': 'Flamme de lumière',
@@ -478,21 +633,22 @@ const triggerSet: TriggerSet<Data> = {
         'Experimental Fireplume': 'Synthèse de mana : immolation de feu',
         'Experimental Gloryplume': 'Synthèse de mana : feu des profondeurs',
         'Final Exaltation': 'Conflagration calcinante',
+        'Fireglide Sweep': 'Plongeons en chaîne',
         'Firestorms of Asphodelos': 'Volcan des Limbes',
         'Flames of Asphodelos': 'Flamme des Limbes',
         'Flames of Undeath': 'Feu réincarné',
-        'Flare of Condemnation': 'Souffle infernal',
+        'Flare of Condemnation/Sparks of Condemnation': 'Souffle/Artifice infernal',
         'Fledgling Flight': 'Nuée ailée',
         'Fountain of Death': 'Onde de la vie',
         'Fountain of Fire': 'Flamme de la vie',
         '(?<!\\w )Gloryplume': 'Feu des profondeurs',
+        'Great Whirlwind': 'Grand tourbillon',
         'Heat of Condemnation': 'Bourrasque infernale',
-        'Left Cinderwing': 'Incinération senestre',
+        'Joint Pyre': 'Combustion résonnante',
+        'Left Cinderwing/Right Cinderwing': 'Incinération senestre/dextre',
         'Life\'s Agonies': 'Flamme de souffrance',
-        'Right Cinderwing': 'Incinération dextre',
         'Scorched Exaltation': 'Flamme calcinante',
         'Searing Breeze': 'Jet incandescent',
-        'Sparks of Condemnation': 'Artifice infernal',
         '(?<!fire)Storms of Asphodelos': 'Tempête des Limbes',
         'Sun\'s Pinion': 'Ailes étincelantes',
         'Trail of Condemnation': 'Embrasement infernal',
@@ -507,6 +663,7 @@ const triggerSet: TriggerSet<Data> = {
         'Fountain of Fire': '霊泉の炎',
         'Phoinix': 'フェネクス',
         'Sparkfledged': '火霊鳥',
+        'Sunbird': '陽炎鳥',
       },
       'replaceText': {
         'Ashen Eye': '闇の瞳',
@@ -525,6 +682,7 @@ const triggerSet: TriggerSet<Data> = {
         'Experimental Fireplume': '魔力錬成：劫火天焦',
         'Experimental Gloryplume': '魔力錬成：炎闇劫火',
         'Final Exaltation': '灰燼の豪炎',
+        'Fireglide Sweep': '連続強襲滑空',
         'Firestorms of Asphodelos': '辺獄の炎嵐',
         'Flames of Asphodelos': '辺獄の炎',
         'Flames of Undeath': '反魂の炎',
@@ -533,7 +691,9 @@ const triggerSet: TriggerSet<Data> = {
         'Fountain of Death': '霊泉の波動',
         'Fountain of Fire': '霊泉の炎',
         '(?<!\\w )Gloryplume': '炎闇劫火',
+        'Great Whirlwind': '大旋風',
         'Heat of Condemnation': '獄炎の炎撃',
+        'Joint Pyre': '共燃',
         'Left Cinderwing': '左翼焼却',
         'Life\'s Agonies': '生苦の炎',
         'Right Cinderwing': '右翼焼却',

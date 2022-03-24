@@ -54,11 +54,15 @@ export interface JobDetail {
   };
   'MNK': {
     chakraStacks: number;
+    beastChakra: ('Coeurl' | 'Opo' | 'Raptor')[];
+    solarNadi: boolean;
+    lunarNadi: boolean;
   };
   'DRG': {
     eyesAmount: number;
     bloodMilliseconds: number;
     lifeMilliseconds: number;
+    firstmindsFocus: number;
   };
   'NIN': {
     hutonMilliseconds: number;

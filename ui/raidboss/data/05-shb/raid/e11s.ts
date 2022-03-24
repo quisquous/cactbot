@@ -104,7 +104,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean -> Partner Stacks',
           de: 'Himmelsrichtung -> Auf Partner sammeln',
-          fr: 'Position -> Packez-vous avec votre partenaire',
+          fr: 'Positions -> Packez-vous avec votre partenaire',
           ja: '8方向散開 -> ペア頭割り',
           cn: '八方 -> 分摊',
           ko: '8산개 -> 파트너 쉐어뎀',
@@ -125,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean -> Spread',
           de: 'Himmelsrichtung -> Verteilen',
-          fr: 'Position -> Dispersez-vous',
+          fr: 'Positions -> Dispersez-vous',
           ja: '8方向散開 -> 散開',
           cn: '八方 -> 分散',
           ko: '8산개 -> 산개',
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean -> Holy Groups',
           de: 'Himmelsrichtung -> Sanctus Gruppen',
-          fr: 'Position -> Groupes',
+          fr: 'Positions -> Groupes',
           ja: '8方向散開 -> 光3方向頭割り',
           cn: '八方 -> 光三向分摊',
           ko: '8산개 -> 홀리 그룹 쉐어',
@@ -643,7 +643,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean -> Partner Stacks -> Line Cleave -> Knockback -> Stack',
           de: 'Himmelsrichtung -> Auf Partner sammeln -> Linien AoE -> Rückstoß -> Sammeln',
-          fr: 'Position -> Packez-vous avec votre partenaire -> Aoe en ligne -> Poussée -> Package',
+          fr: 'Positions -> Packez-vous avec votre partenaire -> Aoe en ligne -> Poussée -> Package',
           ja: '8方向散開 -> 2人頭割り -> 直線範囲 -> ノックバック -> 頭割り',
           cn: '八方 -> 分摊 -> 直线 -> 击退 -> 集合',
           ko: '8산개 -> 파트너 쉐어뎀 -> 직선 장판 -> 넉백 -> 모이기',
@@ -686,7 +686,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean -> Spread -> Line Cleave -> Out -> Tank Cleaves',
           de: 'Himmelsrichtung -> Verteilen -> Linien AoE -> Raus -> Tank AoEs',
-          fr: 'Position -> Dispersez-vous -> AoE en ligne -> Extérieur -> Tank cleaves',
+          fr: 'Positions -> Dispersez-vous -> AoE en ligne -> Extérieur -> Tank cleaves',
           ja: '8方向散開 -> 散開 -> 直線範囲 -> 離れる -> タンクに雷範囲',
           cn: '八方 -> 分散 -> 直线 -> 远离直线 -> T接雷',
           ko: '8산개 -> 산개 -> 직선 장판 -> 밖으로 -> 광역 탱버',
@@ -729,7 +729,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
           de: 'Himmelsrichtung -> Sanctus Gruppen -> Linien AoE -> Ködern -> Weg',
-          fr: 'Position -> Groupes -> AoE en ligne -> Déposez au sol -> Éloignez-vous',
+          fr: 'Positions -> Groupes -> AoE en ligne -> Déposez au sol -> Éloignez-vous',
           ja: '8方向散開 -> 3方向頭割り -> 直線範囲 -> AoE誘導 -> 離れる',
           cn: '八方 -> 光三向分摊 -> 直线 -> 放光点名 -> 离开',
           ko: '8산개 -> 홀리 그룹 쉐어 -> 직선 장판 -> 장판 유도 -> 피하기',

@@ -21,7 +21,7 @@ describe('resource tests', () => {
   it('content list has valid zone ids', () => {
     // Print the previous value because that's easier to find than the index.
     let prevValue = '';
-    contentList.forEach((zoneId, idx) => {
+    contentList.forEach((_zoneId, idx) => {
       for (const zoneId of contentList) {
         if (zoneId === ZoneId.MatchAll)
           return;

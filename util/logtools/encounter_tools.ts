@@ -255,7 +255,7 @@ export class EncounterCollector extends EncounterFinder {
     super();
   }
 
-  override onEndZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
+  override onEndZone(line: string, _name: string, matches: NetMatches['ChangeZone']): void {
     this.currentZone.endLine = line;
     this.currentZone.endTime = this.dateFromMatches(matches);
     this.zones.push(this.currentZone);

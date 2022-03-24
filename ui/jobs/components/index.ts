@@ -13,16 +13,16 @@ import { AST5xComponent, ASTComponent } from './ast';
 import { BaseComponent, ComponentInterface, ShouldShow } from './base';
 import { BLMComponent } from './blm';
 import { BLUComponent } from './blu';
-import { BRDComponent } from './brd';
+import { BRD5xComponent, BRDComponent } from './brd';
 import { DNCComponent } from './dnc';
-import { DRGComponent } from './drg';
+import { DRG5xComponent, DRGComponent } from './drg';
 import { DRKComponent } from './drk';
 import { GNBComponent } from './gnb';
 import { MCHComponent } from './mch';
 import { MNKComponent } from './mnk';
 import { NINComponent } from './nin';
 import { PLDComponent } from './pld';
-import { RDMComponent } from './rdm';
+import { RDM5xComponent, RDMComponent } from './rdm';
 import { RPRComponent } from './rpr';
 import { SAMComponent } from './sam';
 import { SCHComponent } from './sch';
@@ -133,6 +133,12 @@ export class ComponentManager {
         return new SMN5xComponent(this.o);
       if (job === 'AST')
         return new AST5xComponent(this.o);
+      if (job === 'RDM')
+        return new RDM5xComponent(this.o);
+      if (job === 'DRG')
+        return new DRG5xComponent(this.o);
+      if (job === 'BRD')
+        return new BRD5xComponent(this.o);
     }
 
     const Component = ComponentMap[job];
@@ -202,7 +208,8 @@ export class ComponentManager {
       this.gpAlarmReady = false;
 
       this.bars._setupJobContainers(job, {
-        buffList: this.shouldShow.buffList ?? true,
+        buffList: this.shouldShow.buffList ??
+          (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
         pullBar: this.shouldShow.pullBar ?? true,
         hpBar: this.shouldShow.hpBar ?? (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
         mpBar: this.shouldShow.mpBar ??

@@ -289,7 +289,7 @@ export const Responses = {
       if (target === data.me)
         return output.sharedTankbusterOnYou?.();
       if (data.role === 'tank' || data.role === 'healer')
-        return output.sharedTankbusterOnTarget?.({ player: target });
+        return output.sharedTankbusterOnTarget?.({ player: data.ShortName(target) });
     };
 
     const otherFunc = (data: Data, matches: TargetedMatches, output: Output) => {
@@ -453,7 +453,7 @@ export const Responses = {
       };
     },
   stunOrInterruptIfPossible: (sev?: Severity) => {
-    return (data: Data, _matches: TargetedMatches, output: Output) => {
+    return (_data: Data, _matches: TargetedMatches, output: Output) => {
       // cactbot-builtin-response
       output.responseOutputStrings = {
         stun: Outputs.stunTarget,

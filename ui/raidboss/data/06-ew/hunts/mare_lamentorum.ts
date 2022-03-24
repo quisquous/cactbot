@@ -1,27 +1,10 @@
 import NetRegexes from '../../../../../resources/netregexes';
-import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Mousse Princess Banish tankbuster
-// TODO: Mousse Princess Amorphic Flail centered aoe
-
-export interface Data extends RaidbossData {
-  wickedWhim?: boolean;
-}
-
-const underThenOut = {
-  en: 'Under => Out',
-  de: 'Drunter => Raus',
-  fr: 'En dessous => À l\'extérieur',
-};
-const outStayOut = {
-  en: 'Out => Stay Out',
-  de: 'Raus => Drausen bleiben',
-  fr: 'À l\'extérieur => Restez-y',
-};
+export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MareLamentorum,
@@ -33,12 +16,18 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6AE5', source: 'Lunatender-Königin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6AE5', source: 'Pampa Sélénienne Reine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AE5', source: 'ルナテンダー・クイーン', capture: false }),
-      alertText: (data, _matches, output) => data.wickedWhim ? output.under!() : output.out!(),
-      run: (data) => delete data.wickedWhim,
-      outputStrings: {
-        under: underThenOut,
-        out: outStayOut,
-      },
+      netRegexCn: NetRegexes.startsUsing({ id: '6AE5', source: '月面仙人刺女王', capture: false }),
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Lunatender Queen Away With You Whim',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AEB', source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AEB', source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AEB', source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AEB', source: 'ルナテンダー・クイーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6AEB', source: '月面仙人刺女王', capture: false }),
+      response: Responses.getUnder(),
     },
     {
       id: 'Hunt Lunatender Queen You May Approach',
@@ -47,35 +36,38 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6AE4', source: 'Lunatender-Königin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6AE4', source: 'Pampa Sélénienne Reine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AE4', source: 'ルナテンダー・クイーン', capture: false }),
-      alertText: (data, _matches, output) => data.wickedWhim ? output.out!() : output.under!(),
-      run: (data) => delete data.wickedWhim,
-      outputStrings: {
-        under: underThenOut,
-        out: outStayOut,
-      },
+      netRegexCn: NetRegexes.startsUsing({ id: '6AE4', source: '月面仙人刺女王', capture: false }),
+      response: Responses.getUnder(),
+    },
+    {
+      id: 'Hunt Lunatender Queen You May Approach Whim',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AEA', source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AEA', source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AEA', source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AEA', source: 'ルナテンダー・クイーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6AEA', source: '月面仙人刺女王', capture: false }),
+      response: Responses.getOut(),
     },
     {
       id: 'Hunt Lunatender Queen Avert Your Eyes',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AE3', source: 'Lunatender Queen', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AE3', source: 'Lunatender-Königin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AE3', source: 'Pampa Sélénienne Reine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AE3', source: 'ルナテンダー・クイーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6AE3', source: '月面仙人刺女王', capture: false }),
+      response: Responses.lookAway(),
+    },
+    {
+      id: 'Hunt Lunatender Queen Avert Your Eyes Whim',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6AE9', source: 'Lunatender Queen', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '6AE9', source: 'Lunatender-Königin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6AE9', source: 'Pampa Sélénienne Reine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AE9', source: 'ルナテンダー・クイーン', capture: false }),
-      alertText: (data, _matches, output) => data.wickedWhim ? output.lookTowards!() : output.lookAway!(),
-      run: (data) => delete data.wickedWhim,
-      outputStrings: {
-        lookTowards: Outputs.lookTowardsBoss,
-        lookAway: Outputs.lookAway,
-      },
-    },
-    {
-      id: 'Hunt Lunatender Queen Wicked Whim',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE7', source: 'Lunatender Queen', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6AE7', source: 'Lunatender-Königin', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6AE7', source: 'Pampa Sélénienne Reine', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6AE7', source: 'ルナテンダー・クイーン', capture: false }),
-      run: (data) => data.wickedWhim = true,
+      netRegexCn: NetRegexes.startsUsing({ id: '6AE9', source: '月面仙人刺女王', capture: false }),
+      response: Responses.lookTowards(),
     },
     {
       id: 'Hunt Lunatender Queen 999,000 Needles',
@@ -84,6 +76,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6AE6', source: 'Lunatender-Königin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6AE6', source: 'Pampa Sélénienne Reine', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AE6', source: 'ルナテンダー・クイーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6AE6', source: '月面仙人刺女王', capture: false }),
       response: Responses.outOfMelee(),
     },
     {
@@ -93,6 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ effectId: 'B18', source: 'Mousse-Prinzessin', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: 'B18', source: 'Princesse Mousse', capture: false }),
       netRegexJa: NetRegexes.gainsEffect({ effectId: 'B18', source: 'ムースプリンセス', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: 'B18', source: '慕斯公主', capture: false }),
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -100,6 +94,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from Right Flank',
           de: 'Weg von der rechten Flanke',
           fr: 'Éloignez-vous du flanc droit',
+          cn: '远离右侧',
+          ko: '보스 오른쪽 피하기',
         },
       },
     },
@@ -110,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ effectId: 'B1A', source: 'Mousse-Prinzessin', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: 'B1A', source: 'Princesse Mousse', capture: false }),
       netRegexJa: NetRegexes.gainsEffect({ effectId: 'B1A', source: 'ムースプリンセス', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: 'B1A', source: '慕斯公主', capture: false }),
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -117,6 +114,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from Back',
           de: 'Weg von hinter ihr',
           fr: 'Éloignez-vous de l\'arrière',
+          cn: '远离后方',
+          ko: '보스 뒤 피하기',
         },
       },
     },
@@ -127,6 +126,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ effectId: 'B19', source: 'Mousse-Prinzessin', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: 'B19', source: 'Princesse Mousse', capture: false }),
       netRegexJa: NetRegexes.gainsEffect({ effectId: 'B19', source: 'ムースプリンセス', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: 'B19', source: '慕斯公主', capture: false }),
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -134,6 +134,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from Left Flank',
           de: 'Weg von der linker Flanke',
           fr: 'Éloignez-vous du flanc gauche',
+          cn: '远离左侧',
+          ko: '보스 왼쪽 피하기',
         },
       },
     },
@@ -144,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.gainsEffect({ effectId: 'B8E', source: 'Mousse-Prinzessin', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: 'B8E', source: 'Princesse Mousse', capture: false }),
       netRegexJa: NetRegexes.gainsEffect({ effectId: 'B8E', source: 'ムースプリンセス', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: 'B8E', source: '慕斯公主', capture: false }),
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -151,8 +154,31 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from Front',
           de: 'Weg von Vorne',
           fr: 'Éloignez-vous du devant',
+          cn: '远离前方',
+          ko: '보스 앞 피하기',
         },
       },
+    },
+    {
+      id: 'Hunt Mousse Princess Banish',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6ABB', source: 'Mousse Princess' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6ABB', source: 'Mousse-Prinzessin' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6ABB', source: 'Princesse Mousse' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6ABB', source: 'ムースプリンセス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6ABB', source: '慕斯公主' }),
+      // Doesn't cleave (I think?).
+      response: Responses.tankBuster('info'),
+    },
+    {
+      id: 'Hunt Mousse Princess Amorphic Flail',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AB9', source: 'Mousse Princess', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6AB9', source: 'Mousse-Prinzessin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6AB9', source: 'Princesse Mousse', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6AB9', source: 'ムースプリンセス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6AB9', source: '慕斯公主', capture: false }),
+      response: Responses.outOfMelee(),
     },
   ],
 };

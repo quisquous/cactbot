@@ -35,27 +35,19 @@ describe('regex tests', () => {
     ] as const;
 
     regexCaptureTest((params?: RegexUtilParams) => Regexes.ability(params), lines);
-    regexCaptureTest((params?: RegexUtilParams) => Regexes.abilityFull(params), lines);
 
     const testBadMatch = [
       '[20:29:39.392] ActionEffect 15:107B9AC8:Tako Yaki:07:Attack:40017D58:Daxio:710003:DC0000:1E:50000:1C:1B60000:550003:2CA000:0:0:0:0:0:0:0:0:8207:24837:7230:7230:0:1000:527.5806:-362.7833:-19.61513:2.898741:8998:8998:10000:10000:0:1000:528.6487:-365.8656:-22.08109:-0.3377206:000AD7BF:0',
     ] as const;
     // Bad match is an ability line too.
     regexCaptureTest((params?: RegexUtilParams) => Regexes.ability(params), testBadMatch);
-    regexCaptureTest((params?: RegexUtilParams) => Regexes.abilityFull(params), testBadMatch);
 
     // Tests a bug where a :1E: later in the line would be caught by overzealous
     // matchers on source names.
     const abilityHallowed = Regexes.ability({ id: '1E' });
     assert.isNull(testBadMatch[0].match(abilityHallowed));
 
-    let matches = lines[1].match(Regexes.ability())?.groups;
-    assert.equal(matches?.source, 'Graffias');
-    assert.equal(matches?.id, '366');
-    assert.equal(matches?.ability, 'Attack');
-    assert.equal(matches?.target, 'Tako Yaki');
-
-    matches = lines[1].match(Regexes.abilityFull())?.groups;
+    const matches = lines[1].match(Regexes.ability())?.groups;
     assert.equal(matches?.sourceId, '4007CA96');
     assert.equal(matches?.source, 'Graffias');
     assert.equal(matches?.id, '366');
@@ -68,7 +60,8 @@ describe('regex tests', () => {
     assert.equal(matches?.z, '-39.29175');
     assert.equal(matches?.heading, '-3.013695');
     assert.equal(matches?.sequence, '0000B2D4');
-    assert.equal(matches?.targetIndex, '0');
+
+    assert.equal(Regexes.ability().source, Regexes.abilityFull().source);
   });
   it('headMarker', () => {
     const lines = [
@@ -397,10 +390,11 @@ describe('regex tests', () => {
     ] as const;
     regexCaptureTest((params?: RegexUtilParams) => Regexes.systemLogMessage(params), lines);
 
-    const matches = lines[0].match(Regexes.systemLogMessage())?.groups;
-    assert.equal(matches?.id, '901');
-    assert.equal(matches?.param0, '619A9200');
-    assert.equal(matches?.param1, '00');
-    assert.equal(matches?.param2, '3C');
+    const matches = lines[1].match(Regexes.systemLogMessage())?.groups;
+    assert.equal(matches?.instance, '8004001E');
+    assert.equal(matches?.id, '7DD');
+    assert.equal(matches?.param0, 'FF5FDA02');
+    assert.equal(matches?.param1, 'E1B');
+    assert.equal(matches?.param2, '00');
   });
 });

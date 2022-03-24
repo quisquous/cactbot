@@ -130,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Backwards March',
           de: 'Marchiere Rückwärts',
-          fr: 'Marche arrière forcée',
+          fr: 'Marche forcée en arrière',
           cn: '强制移动: 后',
           ko: '정신 장악: 뒤',
         },
@@ -208,8 +208,7 @@ const triggerSet: TriggerSet<Data> = {
         'Enter Night': 'Appel de la nuit',
         'Shadow Split': 'Division d\'ombre',
         'Virgin Tears': 'Larmes de vierge',
-        'Morbid Advance': 'Avancée morbide',
-        'Morbid Retreat': 'Retraite morbide',
+        'Morbid Advance/Morbid Retreat': 'Avancée/Retraite morbide',
         'Head Butt': 'Coup de tête',
         'Somber Melody': 'Sombre mélodie',
         'Void Water III': 'Méga Eau du néant',

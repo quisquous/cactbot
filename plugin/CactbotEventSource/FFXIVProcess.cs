@@ -223,8 +223,9 @@ namespace Cactbot {
     }
 
     public void OnProcessChanged(Process process) {
-      if (process != null && process.HasExited)
+      if (process != null && process.HasExited) {
         process = null;
+      }
       bool changed_existance = (process_ == null) != (process == null);
       bool changed_pid = process_ != null && process != null && process_.Id != process.Id;
       if (changed_existance || changed_pid) {

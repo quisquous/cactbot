@@ -199,17 +199,19 @@ export class PlayerStateTracker {
     this.collector.OnChangeZone(timestamp, zoneName, zoneId);
   }
 
-  OnAddedCombatant(line: string, splitLine: string[]): void {
+  OnAddedCombatant(_line: string, splitLine: string[]): void {
     const petId = splitLine[logDefinitions.AddedCombatant.fields.id];
     const ownerId = splitLine[logDefinitions.AddedCombatant.fields.ownerId];
-    if (petId === undefined || ownerId === undefined || ownerId === '0')
+    if (petId === undefined || ownerId === undefined)
+      return;
+    if (ownerId === '0' || ownerId === '0000')
       return;
 
     // Fix any lowercase ids.
     this.petIdToOwnerId[petId.toUpperCase()] = ownerId.toUpperCase();
   }
 
-  OnChangedPlayer(line: string, splitLine: string[]): void {
+  OnChangedPlayer(_line: string, splitLine: string[]): void {
     const id = splitLine[logDefinitions.ChangedPlayer.fields.id];
     if (id)
       this.SetPlayerId(id);
@@ -234,7 +236,7 @@ export class PlayerStateTracker {
     return this.partyIds.has(id);
   }
 
-  OnAbility(line: string, splitLine: string[]): void {
+  OnAbility(_line: string, splitLine: string[]): void {
     // Abilities can not miss everybody (e.g. Battle Voice never hitting the source)
     // so check both target and source.
     const targetId = splitLine[logDefinitions.Ability.fields.targetId];
@@ -273,7 +275,7 @@ export class PlayerStateTracker {
       this.missedBuffCollector.OnAbilityBuff(splitLine, buff);
   }
 
-  OnGainsEffect(line: string, splitLine: string[]): void {
+  OnGainsEffect(_line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
     // Do not consider pets gaining effects here.
     // Summoner pets (e.g. Demi-Phoenix) gain party buffs (e.g. Embolden), with no sourceId/source.
@@ -318,7 +320,7 @@ export class PlayerStateTracker {
       this.missedBuffCollector.OnEffectBuff(splitLine, buff);
   }
 
-  OnLosesEffect(line: string, splitLine: string[]): void {
+  OnLosesEffect(_line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
     if (!targetId || !this.IsPlayerInParty(targetId))
       return;
@@ -369,7 +371,7 @@ export class PlayerStateTracker {
   }
 
   // Returns an event for why this person died.
-  OnDefeated(line: string, splitLine: string[]): void {
+  OnDefeated(_line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.WasDefeated.fields.targetId];
     if (!targetId || !IsPlayerId(targetId))
       return;
@@ -426,7 +428,7 @@ export class PlayerStateTracker {
     this.collector.OnMistakeObj(timestamp, mistake);
   }
 
-  OnHoTDoT(line: string, splitLine: string[]): void {
+  OnHoTDoT(_line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.NetworkDoT.fields.id];
     if (!targetId || !this.IsInParty(targetId))
       return;

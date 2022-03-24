@@ -47,7 +47,7 @@ const sharedOutputStrings = {
   stone: {
     en: 'Protean',
     de: 'Himmelsrichtungen',
-    fr: 'Position',
+    fr: 'Positions',
     ja: '散開',
     cn: '散开',
     ko: '위치 산개',
@@ -115,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
         limitBreak2: {
           en: 'healer stacks',
           de: 'Heiler stacks',
-          fr: 'Package healers',
+          fr: 'Packages sur les healers',
           ja: 'ヒーラーと集合',
           cn: '与治疗集合',
           ko: '좌우 산개',
@@ -892,7 +892,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Ninja': 'ninja spectral',
         'Warrior Of Light': 'Guerrier de la Lumière primordial',
@@ -930,7 +929,6 @@ const triggerSet: TriggerSet<Data> = {
         'Imbued Ice/Fire': 'Magilame Méga Glace/Feu',
         'Katon\\: San': 'Katon : San',
         'Limit Break': 'Transcendance',
-        'BLM/WHM': 'MNO/MBL',
         'Limit -> DRK/BRD': 'Transcendance -> CHN/BRD',
         'Meteor Impact': 'Impact de météore',
         'Perfect Decimation': 'Décimation parfaite',
@@ -940,6 +938,7 @@ const triggerSet: TriggerSet<Data> = {
         'Radiant Meteor': 'Météore flamboyant',
         'Shining Wave': 'Épée flamboyante',
         'Solemn Confiteor': 'Confiteor solennel',
+        'Specter -> BLM/WHM': 'Spectres -> MNO/MBL',
         'Specter Of Light': 'Sommation des braves',
         '(?<!\\w )Stone(?! Earth)': 'Méga Terre',
         'Suiton\\: San': 'Suiton : San',

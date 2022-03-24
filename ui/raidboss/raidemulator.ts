@@ -120,12 +120,12 @@ const raidEmulatorOnLoad = async () => {
   if (window.location.href.indexOf('OVERLAY_WS') > 0) {
     // Give the websocket 500ms to connect, then abort.
     websocketConnected = await Promise.race<Promise<boolean>>([
-      new Promise((res) => {
+      new Promise<boolean>((res) => {
         void callOverlayHandler({ call: 'cactbotRequestState' }).then(() => {
           res(true);
         });
       }),
-      new Promise((res) => {
+      new Promise<boolean>((res) => {
         window.setTimeout(() => {
           res(false);
         }, 500);

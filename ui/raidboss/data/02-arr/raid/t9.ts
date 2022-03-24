@@ -492,7 +492,7 @@ const triggerSet: TriggerSet<Data> = {
         safeZone: {
           en: 'Safe zone: ${dir}',
           de: 'Sichere Zone: ${dir}',
-          fr: 'Zone sûre : ${dir}',
+          fr: 'Zone safe : ${dir}',
           ja: '安置: ${dir}',
           cn: '安全点在：${dir}',
           ko: '안전 지대: ${dir}',
@@ -522,7 +522,7 @@ const triggerSet: TriggerSet<Data> = {
         goToMarkerInDir: {
           en: 'Go To ${marker} (in ${dir})',
           de: 'Gehe zu ${marker} (im ${dir})',
-          fr: 'Allez en ${marker} (au ${dir})',
+          fr: 'Allez en ${marker} (direction ${dir})',
           ja: '${marker}に行く' + ' (あと ${dir}秒)',
           cn: '去${marker} (在 ${dir}秒)',
           ko: '${marker}로 이동' + ' (${dir}쪽)',

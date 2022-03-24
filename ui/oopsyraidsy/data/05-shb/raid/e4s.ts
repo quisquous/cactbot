@@ -61,7 +61,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Run Over',
             de: 'Wurde überfahren',
-            fr: 'A été écrasé(e)',
+            fr: 'Écrasé(e)',
             ja: '突進に当たる',
             cn: '被碾了',
             ko: '돌진 맞음',

@@ -7,9 +7,15 @@ import RaidEmulator from '../data/RaidEmulator';
 export default class RaidEmulatorTimeline extends Timeline {
   emulatedStatus = 'pause';
   emulator?: RaidEmulator;
-  constructor(text: string, replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
-    styles: TimelineStyle[], options: RaidbossOptions) {
-    super(text, replacements, triggers, styles, options);
+  constructor(
+    text: string,
+    replacements: TimelineReplacement[],
+    triggers: LooseTimelineTrigger[],
+    styles: TimelineStyle[],
+    options: RaidbossOptions,
+    zoneId: number,
+  ) {
+    super(text, replacements, triggers, styles, options, zoneId);
   }
 
   bindTo(emulator: RaidEmulator): void {

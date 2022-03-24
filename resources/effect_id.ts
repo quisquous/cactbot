@@ -1085,6 +1085,7 @@ const data = {
   'QuickerNock': '84',
   'Quintuplecast': '948',
   'RadiantAegis': 'A8E',
+  'RadiantFinale': 'B94',
   'RadiantShield': '139',
   'RageOfHalone': '55A',
   'RagingStrikes': '7D',

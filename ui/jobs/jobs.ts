@@ -13,10 +13,10 @@ import './jobs.css';
 UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
 
-  // Because Chinese/Korean regions are still on older version of FF14,
+  // Because Korean regions are still on older version of FF14,
   // set this value to whether or not we should treat this as 5.x or 6.x.
   // This affects things like entire jobs (smn) or combo durations.
-  const is5x = ['cn', 'ko'].includes(options.ParserLanguage);
+  const is5x = ['ko'].includes(options.ParserLanguage);
 
   const emitter = new JobsEventEmitter();
   const partyTracker = new PartyTracker();
