@@ -11,6 +11,11 @@ import defaultRaidbossOptions from '../ui/raidboss/raidboss_options';
 import { walkDirAsync } from './file_utils';
 
 const root = '../dist/triggers/ui/raidboss/data/';
+
+const outputFileToOrigFile = (distFile: string): string => {
+  return distFile.replace(root, 'ui/raidboss/data/');
+};
+
 const tscCmd = `${['..', 'node_modules', '.bin', 'tsc'].join(path.sep)} --build ${
   ['..', 'tsconfig.triggers.json'].join(path.sep)
 }`;
@@ -67,24 +72,46 @@ const changeExportToPush = (lines: string[]) => {
   return lines;
 };
 
-const lint = async (lines: string[]) => {
-  const linter = new eslint.ESLint({ fix: true });
+const lint = async (filename: string, lines: string[]) => {
+  const dprintLinter = new eslint.ESLint({ fix: true });
+
+  const config = JSON.parse(
+    JSON.stringify(await dprintLinter.calculateConfigForFile(filename)),
+  ) as eslint.Linter.Config<eslint.Linter.RulesRecord>;
+  config.plugins = config.plugins?.filter((p) => p !== 'dprint');
+  delete config?.rules?.['dprint/dprint'];
+
+  // Run without dprint first, because dprint is slow on unformatted files.
+  const linter = new eslint.ESLint({ fix: true, useEslintrc: false, baseConfig: config });
   const contents = lines.join('\n');
-  // Deliberately don't pass filename here, as dist/ is ignored in eslint.
-  const results = await linter.lintText(contents);
+  const eslintResults = await linter.lintText(contents, { filePath: filename });
+  const eslintLintResult = eslintResults[0];
+  if (!eslintLintResult?.output || eslintLintResult.errorCount > 0) {
+    console.error('Lint (eslint) ran with errors, aborting.');
+    return eslintLintResult;
+  }
+
+  // Run again with dprint to get a finalized version.
+  const results = await dprintLinter.lintText(eslintLintResult.output, { filePath: filename });
+  const lintResult = results[0];
+  // If dprint didn't have anything to change, the output is undefined, so return the results
+  // of the previous lint.
+  if (!lintResult?.output)
+    return eslintLintResult;
 
   // There's only one result from lintText, as per documentation.
-  return results[0];
+  return lintResult;
 };
 
 const processFile = async (filename: string) => {
+  console.error(`Processing file: ${filename}`);
   const originalContents = fs.readFileSync(filename).toString();
   let lines = originalContents.split(/[\r\n]+/);
 
   lines = removeImports(lines);
   lines = changeExportToPush(lines);
   lines = removeExportOnDeclarations(lines);
-  const lintResult = await lint(lines);
+  const lintResult = await lint(outputFileToOrigFile(filename), lines);
   if (!lintResult) {
     console.error('${filename}: No result from linting?');
     process.exit(2);

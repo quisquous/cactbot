@@ -280,7 +280,7 @@ const overrides = [
     },
   },
   {
-    'files': ['**/oopsyraidsy/data/**/*', '**/raidboss/data/**/*'],
+    'files': ['**/oopsyraidsy/data/**/*.ts', '**/raidboss/data/**/*.ts'],
     'rules': {
       ...dprintRule(300),
       // Raidboss data files always export a trigger set, and explicit types are noisy.
@@ -300,9 +300,26 @@ const overrides = [
     },
   },
   {
-    'files': ['**/oopsyraidsy/data/**/*.js', '**/raidboss/data/**/*.js'],
+    // These are for the triggers branch only.
+    'files': [
+      '**/oopsyraidsy/data/**/*.js',
+      '**/raidboss/data/**/*.js',
+    ],
     'rules': {
-      'no-unused-vars': ['warn', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
+      // This is a bit awkward, but see process_trigger_folders.ts.
+      // It runs once without dprint using the indent rule, and then once with dprint.
+      // dprint is VERY slow on unformatted files, but quick when there is nothing to do.
+      // In general however, we don't want to specify both dprint and indent together,
+      // as these rules fight against each other.
+      ...dprintRule(300),
+      'indent': [
+        'warn',
+        2,
+        {
+          'ignoreComments': false,
+          'SwitchCase': 1,
+        },
+      ],
     },
   },
   {
