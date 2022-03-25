@@ -20,7 +20,7 @@ const storedMechanicsOutputStrings = {
     de: 'Mit der Party sammeln',
     fr: 'Package en groupe',
     ja: '全員集合',
-    cn: '8人分摊',
+    cn: '全体分摊',
     ko: '파티 전체 쉐어',
   },
 };
@@ -32,6 +32,7 @@ const crystallizeOutputStrings = {
     de: 'Kristalisieren: ${name}',
     fr: 'Cristallisation : ${name}',
     ja: 'クリスタライズ: ${name}',
+    cn: '水晶化: ${name}',
   },
 };
 
@@ -117,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data) => data.isEquinox = true,
       // Dawn Mantle is a 4.9s cast, plus the normal 2.5s delay.  (See Anthelion comment below.)
       delaySeconds: 2.5 + 4.9,
-      durationSeconds: (data) => data.crystallize ? 5.5 : 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         // If we've gotten some 8E1 effect, ignore this.
         if (!data.isEquinox)
@@ -156,19 +157,19 @@ const triggerSet: TriggerSet<Data> = {
       //     t=0 StartsCasting Crystallize
       //     t=4 ActionEffect Crystalize
       //     t=7 StatusAdd 81E (this regex)
-      //     t=9.5 marker appears (this seems faster than extreme?)
+      //     t=9.5 marker appears
       //     t=13 ActionEffect Anthelion
       //     t=17 ActionEffect Crystalline Blizzard
       //
       // We could call this out immediately, but then it's very close to the Crystallize call.
       // Additionally, if we call this out immediately then players have to remember something
-      // for 10 seconds.  A delay of 3 feels more natural in terms of time to react and
+      // for 10 seconds.  A delay of 2.5 feels more natural in terms of time to react and
       // handle this, rather than calling it out extremely early.  Also, add a duration so that
       // this stays on screen until closer to the Crystalline action.  This also puts this call
       // closer to when the marker appears on screen, and so feels a little bit more natural.
       preRun: (data) => data.isEquinox = false,
       delaySeconds: 2.5,
-      durationSeconds: (data) => data.crystallize ? 5.5 : 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.in!(), second: output[data.crystallize]!() });
@@ -191,7 +192,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.gainsEffect({ effectId: '8E1', source: '하이델린', count: '1B4', capture: false }),
       preRun: (data) => data.isEquinox = false,
       delaySeconds: 2.5,
-      durationSeconds: (data) => data.crystallize ? 5.5 : 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.out!(), second: output[data.crystallize]!() });
@@ -257,6 +258,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6C59', source: 'Echo Der Hydaelyn', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6C59', source: 'Écho D\'Hydaelyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C59', source: 'ハイデリン・エコー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6C59', source: '海德林的回声', capture: false }),
       alertText: (_data, _matches, output) => output.stack!(),
       outputStrings: {
         stack: crystallizeOutputStrings.stack,
@@ -270,6 +272,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6C5A', source: 'Echo Der Hydaelyn' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6C5A', source: 'Écho D\'Hydaelyn' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C5A', source: 'ハイデリン・エコー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6C5A', source: '海德林的回声' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.spread!(),
       outputStrings: {
@@ -420,6 +423,37 @@ const triggerSet: TriggerSet<Data> = {
         '(?<!Sub)Parhelion': 'パルヘリオン',
         'Radiant Halo': 'レディアントヘイロー',
         'Subparhelion': 'サブパルヘリオン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Echo of Hydaelyn': '海德林的回声',
+        '(?<!of )Hydaelyn': '海德林',
+        'Mystic Refulgence': '幻想光',
+      },
+      'replaceText': {
+        'Anthelion': '反假日',
+        'Beacon': '光芒',
+        'Crystalline Blizzard III': '水晶冰封',
+        'Crystalline Stone III': '水晶垒石',
+        'Crystallize': '结晶',
+        'Dawn Mantle': '职责更换',
+        'Echoes': '回声',
+        'Equinox': '昼夜二分',
+        'Exodus': '众生离绝',
+        'Heros\'s Radiance': '守护者的光辉',
+        'Heros\'s Sundering': '守护者的斩断',
+        'Highest Holy': '至高神圣',
+        'Hydaelyn\'s Ray': '海德林光线',
+        'Incandescence': '幻闪光',
+        'Lightwave': '光波',
+        'Magos\'s Radiance': '魔法师的光辉',
+        'Mousa\'s Scorn': '演艺家的蔑视',
+        'Parhelic Circle': '幻日环',
+        '(?<!Sub)Parhelion': '幻日',
+        'Radiant Halo': '明辉光环',
+        'Subparhelion': '映幻日',
       },
     },
   ],

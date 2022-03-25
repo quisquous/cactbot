@@ -27,6 +27,8 @@ export class PLDComponent extends BaseComponent {
     });
 
     this.setAtonement(this.atonementBox, 0);
+
+    this.reset();
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['PLD']):void {

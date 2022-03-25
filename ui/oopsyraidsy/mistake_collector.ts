@@ -29,7 +29,7 @@ export class MistakeCollector implements MistakeObserver {
   }
 
   private RequestSync(): void {
-    console.log(`RequestSync: ${this.creationTime}`);
+    this.DebugPrint(`RequestSync: ${this.creationTime}`);
     void callOverlayHandler({
       call: 'broadcast',
       source: broadcastSource,

@@ -82,7 +82,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '55AE' }),
       condition: (data, matches) => data.sphereNitro?.[matches.target],
-      mistake: (data, matches) => {
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,
@@ -103,7 +103,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '55AF' }),
       condition: (data, matches) => data.sphereCeruleum?.[matches.target],
-      mistake: (data, matches) => {
+      mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,

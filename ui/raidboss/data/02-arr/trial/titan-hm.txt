@@ -118,7 +118,7 @@ hideall "--sync--"
 873.7 "Earthen Fury" sync / 1[56]:[^:]*:Titan:556:/ window 1000,30
 878.4 "--targetable--"
 882.5 "Mountain Buster" sync / 1[56]:[^:]*:Titan:283:/
-886.6 "Tumult x4" duration 3.6 sync / 1[56]:[^:]*:Titan:551:/
+886.6 "Tumult x4" duration 3.6 #sync / 1[56]:[^:]*:Titan:551:/
 895.3 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:552:/
 
 900.4 "Bury (line)" duration 2 #sync / 1[56]:[^:]*:Bomb Boulder:41B:/

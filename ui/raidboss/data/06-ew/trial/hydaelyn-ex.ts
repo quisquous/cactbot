@@ -6,7 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: how to call out crystal LOS???
-// TODO: call out directions where party/tanks should go in add phase?
 // TODO: call Chakram stack locations / direction to run
 // TODO: call out intercard to run to in the final phase
 // TODO: Lightwave has different ids, do these mean anything?
@@ -22,17 +21,17 @@ const storedMechanicsOutputStrings = {
   groups: {
     en: 'Healer Groups',
     de: 'Heiler-Gruppen',
-    fr: 'Healers en groupes',
+    fr: 'Groupes sur les heals',
     ja: 'ヒラに頭割り',
-    cn: '治疗分摊组',
+    cn: '治疗分组分摊',
     ko: '힐러 그룹 쉐어',
   },
   stack: {
     en: 'Party Stack',
     de: 'Mit der Party sammeln',
-    fr: 'Package en groupe',
+    fr: 'Package en équipe',
     ja: '全員集合',
-    cn: '8人分摊',
+    cn: '全体分摊',
     ko: '파티 전체 쉐어',
   },
 };
@@ -44,6 +43,7 @@ const crystallizeOutputStrings = {
     de: 'Kristalisieren: ${name}',
     fr: 'Cristallisation : ${name}',
     ja: 'クリスタライズ: ${name}',
+    cn: '水晶化: ${name}',
   },
 };
 
@@ -52,6 +52,7 @@ const comboOutputStrings = {
   combo: {
     en: '${first} => ${second}',
     de: '${first} => ${second}',
+    fr: '${first} => ${second}',
     ja: '${first} => ${second}',
     cn: '${first} => ${second}',
     ko: '${first} => ${second}',
@@ -66,8 +67,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HydaelynEx Marker Equinox',
       // There is no 8E1 effect here (maybe because it is deterministic?) so use a timeline trigger.
       regex: /Equinox/,
-      beforeSeconds: 4,
-      durationSeconds: (data) => data.crystallize ? 6 : 3,
+      beforeSeconds: 3.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.intercards!(), second: output[data.crystallize]!() });
@@ -217,18 +218,18 @@ const triggerSet: TriggerSet<Data> = {
       //     t=0 StartsCasting Crystallize
       //     t=4 ActionEffect Crystalize
       //     t=7 StatusAdd 81E (this regex)
-      //     t=10 marker appears
+      //     t=9.5 marker appears
       //     t=13 ActionEffect Anthelion
       //     t=17 ActionEffect Crystalline Blizzard
       //
       // We could call this out immediately, but then it's very close to the Crystallize call.
       // Additionally, if we call this out immediately then players have to remember something
-      // for 10 seconds.  A delay of 3 feels more natural in terms of time to react and
+      // for 10 seconds.  A delay of 2.5 feels more natural in terms of time to react and
       // handle this, rather than calling it out extremely early.  Also, add a duration so that
       // this stays on screen until closer to the Crystalline action.  This also puts this call
       // closer to when the marker appears on screen, and so feels a little bit more natural.
-      delaySeconds: 3,
-      durationSeconds: (data) => data.crystallize ? 6 : 3,
+      delaySeconds: 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.in!(), second: output[data.crystallize]!() });
@@ -249,8 +250,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.gainsEffect({ effectId: '8E1', source: 'ハイデリン', count: '1B4', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ effectId: '8E1', source: '海德林', count: '1B4', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ effectId: '8E1', source: '하이델린', count: '1B4', capture: false }),
-      delaySeconds: 3,
-      durationSeconds: (data) => data.crystallize ? 6 : 3,
+      delaySeconds: 2.5,
+      durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.out!(), second: output[data.crystallize]!() });
@@ -313,6 +314,41 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '65C0', source: '海德林' }),
       netRegexKo: NetRegexes.startsUsing({ id: '65C0', source: '하이델린' }),
       response: Responses.sharedTankBuster(),
+    },
+    {
+      id: 'HydaelynEx Crystal of Light',
+      type: 'Ability',
+      netRegex: NetRegexes.abilityFull({ id: '65BE', source: 'Crystal of Light', capture: true }),
+      netRegexDe: NetRegexes.abilityFull({ id: '65BE', source: 'Lichtkristall', capture: true }),
+      netRegexFr: NetRegexes.abilityFull({ id: '65BE', source: 'Cristal De Lumière', capture: true }),
+      netRegexJa: NetRegexes.abilityFull({ id: '65BE', source: '光のクリスタル', capture: true }),
+      netRegexCn: NetRegexes.abilityFull({ id: '65BE', source: '光之水晶', capture: true }),
+      // Each of the three adds fires every 1.1s or so until about Exodus or their death
+      suppressSeconds: 60,
+      infoText: (data, matches, output) => {
+        // North Crystals: (87.87, 93.00),  (100.00, 86.00), (112.12, 93)
+        // South Crystals: (87.87, 107.00), (100.00, 114.00), (112.12, 107.00)
+        const isSouthFirst = parseFloat(matches.y) > 100;
+        if (data.role === 'tank')
+          return output.dirEchoes!({ dir: isSouthFirst ? output.north!() : output.south!() });
+        return output.dirCrystals!({ dir: isSouthFirst ? output.south!() : output.north!() });
+      },
+      outputStrings: {
+        dirCrystals: {
+          en: '${dir} Crystals first',
+          de: 'Kristall im ${dir} zuerst',
+          fr: 'Premiers cristaux au ${dir} ',
+          cn: '先攻击 ${dir} 水晶',
+        },
+        dirEchoes: {
+          en: 'Move Echoes ${dir} first',
+          de: 'Bewege Echoes zuerst nach ${dir}',
+          fr: 'Déplacez les échos au ${dir} en premier',
+          cn: '先拉回声到 ${dir} ',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+      },
     },
     {
       id: 'HydaelynEx Exodus',
@@ -403,7 +439,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '65AC', source: '海德林', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '65AC', source: '하이델린', capture: false }),
       durationSeconds: 9,
-      alertText: (data, _matches, output) => {
+      alertText: (_data, _matches, output) => {
         // This is always crystallize === 'spread'.
         return output.combo!({ first: output.avoid!(), second: output.spread!() });
       },
@@ -485,6 +521,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
+        'Crystal of Light': 'Lichtkristall',
         'Hydaelyn': 'Hydaelyn',
         'Mystic Refulgence': 'Truglicht',
         'Parhelion': 'Parhelion',
@@ -529,6 +566,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Crystal of Light': 'Cristal De Lumière',
         'Hydaelyn': 'Hydaelyn',
         'Mystic Refulgence': 'illusion de Lumière',
         'Parhelion': 'Parhélie',
@@ -538,7 +576,7 @@ const triggerSet: TriggerSet<Data> = {
         '--top-middle': '--En haut au milieu',
         '--middle': '--Milieu',
         'Anthelion': 'Anthélie',
-        'Aureole': 'Auréole',
+        'Aureole/Lateral Aureole': 'Auréole/Auréole latérale',
         'Beacon': 'Rayon de Lumière',
         'Bright Spectrum': 'Spectre lumineux',
         'Crystalline Blizzard III': 'Méga Glace cristallisée',
@@ -557,7 +595,6 @@ const triggerSet: TriggerSet<Data> = {
         'Highest Holy': 'Miracle suprême',
         'Incandescence': 'Incandescence',
         'Infralateral Arc': 'Arc infralatéral',
-        'Lateral Aureole': 'Auréole latérale',
         'Light of the Crystal': 'Lumière du cristal',
         'Lightwave': 'Vague de Lumière',
         'Magos\'s Radiance': 'Radiance du mage',
@@ -573,6 +610,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Crystal of Light': '光のクリスタル',
         'Hydaelyn': 'ハイデリン',
         'Mystic Refulgence': '幻想光',
         'Parhelion': 'パルヘリオン',
@@ -610,6 +648,50 @@ const triggerSet: TriggerSet<Data> = {
         'Radiant Halo': 'レディアントヘイロー',
         'Shining Saber': 'シャイニングセイバー',
         'Subparhelion': 'サブパルヘリオン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Crystal of Light': '光之水晶',
+        'Hydaelyn': '海德林',
+        'Mystic Refulgence': '幻想光',
+        'Parhelion': '幻日',
+      },
+      'replaceText': {
+        '--top-middle': '--前方中间',
+        '--middle': '--中间',
+        'Anthelion': '反假日',
+        'Aureole': '晕光',
+        'Beacon': '光芒',
+        'Bright Spectrum': '明亮光谱',
+        'Crystalline Blizzard III': '水晶冰封',
+        'Crystalline Stone III': '水晶垒石',
+        'Crystalline Water III': '水晶狂水',
+        'Crystalline Water/Stone III': '水晶狂水/垒石',
+        'Crystallize': '结晶',
+        'Dichroic Spectrum': '二色光谱',
+        'Echoes': '回声',
+        'Equinox': '昼夜二分',
+        'Exodus': '众生离绝',
+        '(?<!Radiant )Halo': '光环',
+        'Heros\'s Glory': '守护者的荣耀',
+        'Heros\'s Radiance': '守护者的光辉',
+        'Heros\'s Sundering': '守护者的斩断',
+        'Highest Holy': '至高神圣',
+        'Incandescence': '幻闪光',
+        'Infralateral Arc': '外侧晕弧',
+        'Lateral Aureole': '侧晕光',
+        'Light of the Crystal': '水晶之光',
+        'Lightwave': '光波',
+        'Magos\'s Radiance': '魔法师的光辉',
+        'Mousa\'s Scorn': '演艺家的蔑视',
+        'Parhelic Circle': '幻日环',
+        '(?<!Sub)Parhelion': '幻日',
+        'Pure Crystal': '纯净水晶',
+        'Radiant Halo': '明辉光环',
+        'Shining Saber': '光芒刃',
+        'Subparhelion': '映幻日',
       },
     },
   ],

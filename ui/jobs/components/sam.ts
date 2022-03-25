@@ -20,58 +20,61 @@ export class SAMComponent extends BaseComponent {
   fugetsu: TimerBox;
   tsubameGaeshi: TimerBox;
   higanbana: TimerBox;
+  lastTsubameGaeshiTimestamp?: string;
 
   constructor(o: ComponentInterface) {
     super(o);
-  this.comboTimer = this.bars.addTimerBar({
-    id: 'sam-timers-combo',
-    fgColor: 'combo-color',
-  });
+    this.comboTimer = this.bars.addTimerBar({
+      id: 'sam-timers-combo',
+      fgColor: 'combo-color',
+    });
 
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'sam-stacks';
-  stacksContainer.classList.add('stacks');
-  const senContainer = document.createElement('div');
-  senContainer.id = 'sam-stacks-sen';
-  stacksContainer.appendChild(senContainer);
-  this.bars.addJobBarContainer().appendChild(stacksContainer);
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'sam-stacks';
+    stacksContainer.classList.add('stacks');
+    const senContainer = document.createElement('div');
+    senContainer.id = 'sam-stacks-sen';
+    stacksContainer.appendChild(senContainer);
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
 
-  this.setsu = document.createElement('div');
-  this.getsu = document.createElement('div');
-  this.ka = document.createElement('div');
+    this.setsu = document.createElement('div');
+    this.getsu = document.createElement('div');
+    this.ka = document.createElement('div');
 
-  this.setsu.id = 'sam-stacks-setsu';
-  this.getsu.id = 'sam-stacks-getsu';
-  this.ka.id = 'sam-stacks-ka';
-  [this.setsu, this.getsu, this.ka].forEach((e) => senContainer.appendChild(e));
+    this.setsu.id = 'sam-stacks-setsu';
+    this.getsu.id = 'sam-stacks-getsu';
+    this.ka.id = 'sam-stacks-ka';
+    [this.setsu, this.getsu, this.ka].forEach((e) => senContainer.appendChild(e));
 
-  this.kenkiGauge = this.bars.addResourceBox({
-    classList: ['sam-color-kenki'],
-  });
-  this.meditationGauge = this.bars.addResourceBox({
-    classList: ['sam-color-meditation'],
-  });
-  this.fuka = this.bars.addProcBox({
-    id: 'sam-procs-fuka',
-    fgColor: 'sam-color-fuka',
-    notifyWhenExpired: true,
-  });
+    this.kenkiGauge = this.bars.addResourceBox({
+      classList: ['sam-color-kenki'],
+    });
+    this.meditationGauge = this.bars.addResourceBox({
+      classList: ['sam-color-meditation'],
+    });
 
-  this.fugetsu = this.bars.addProcBox({
-    id: 'sam-procs-fugetsu',
-    fgColor: 'sam-color-fugetsu',
-    notifyWhenExpired: true,
-  });
-  this.tsubameGaeshi = this.bars.addProcBox({
-    id: 'sam-procs-tsubamegaeshi',
-    fgColor: 'sam-color-tsubamegaeshi',
-  });
-  this.higanbana = this.bars.addProcBox({
-    id: 'sam-procs-higanbana',
-    fgColor: 'sam-color-higanbana',
-    notifyWhenExpired: true,
-  });
-}
+    this.fugetsu = this.bars.addProcBox({
+      id: 'sam-procs-fugetsu',
+      fgColor: 'sam-color-fugetsu',
+      notifyWhenExpired: true,
+    });
+    this.fuka = this.bars.addProcBox({
+      id: 'sam-procs-fuka',
+      fgColor: 'sam-color-fuka',
+      notifyWhenExpired: true,
+    });
+    this.tsubameGaeshi = this.bars.addProcBox({
+      id: 'sam-procs-tsubamegaeshi',
+      fgColor: 'sam-color-tsubamegaeshi',
+    });
+    this.higanbana = this.bars.addProcBox({
+      id: 'sam-procs-higanbana',
+      fgColor: 'sam-color-higanbana',
+      notifyWhenExpired: true,
+    });
+
+    this.reset();
+  }
 
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;
@@ -83,52 +86,46 @@ export class SAMComponent extends BaseComponent {
   override onJobDetailUpdate(jobDetail: JobDetail['SAM']): void {
     this.kenkiGauge.innerText = jobDetail.kenki.toString();
     this.meditationGauge.innerText = jobDetail.meditationStacks.toString();
-    if (jobDetail.kenki >= 70)
-      this.kenkiGauge.parentNode.classList.add('high');
-    else
-      this.kenkiGauge.parentNode.classList.remove('high');
-    if (jobDetail.meditationStacks >= 2)
-      this.meditationGauge.parentNode.classList.add('high');
-    else
-      this.meditationGauge.parentNode.classList.remove('high');
+    this.kenkiGauge.parentNode.classList.toggle('high', jobDetail.kenki >= 70);
+    this.meditationGauge.parentNode.classList.toggle('high', jobDetail.meditationStacks >= 2);
 
-    if (jobDetail.setsu)
-      this.setsu.classList.add('active');
-    else
-      this.setsu.classList.remove('active');
-    if (jobDetail.getsu)
-      this.getsu.classList.add('active');
-    else
-      this.getsu.classList.remove('active');
-    if (jobDetail.ka)
-      this.ka.classList.add('active');
-    else
-      this.ka.classList.remove('active');
+    this.setsu.classList.toggle('active', jobDetail.setsu);
+    this.getsu.classList.toggle('active', jobDetail.getsu);
+    this.ka.classList.toggle('active', jobDetail.ka);
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>):void {
-    if (id === EffectId.Fugetsu) {
+    if (id === EffectId.Fuka) {
       this.fuka.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
       this.player.speedBuffs.fuka = true;
     }
-    if (id === EffectId.Fuka)
+    if (id === EffectId.Fugetsu)
       this.fugetsu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   }
   override onYouLoseEffect(id: string):void {
-    if (id === EffectId.Fugetsu) {
+    if (id === EffectId.Fuka) {
       this.fuka.duration = 0;
       this.player.speedBuffs.fuka = false;
     }
-    if (id === EffectId.Fuka)
+    if (id === EffectId.Fugetsu)
       this.fugetsu.duration = 0;
   }
 
-  override onUseAbility(id: string) :void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>) :void {
     switch (id) {
       case kAbility.KaeshiHiganbana:
       case kAbility.KaeshiGoken:
       case kAbility.KaeshiSetsugekka:
-        this.tsubameGaeshi.duration = 60;
+        if (this.player.level >= 84) {
+          if (matches.timestamp !== this.lastTsubameGaeshiTimestamp) {
+            // TODO: use targetIndex instead.
+            // Avoid multiple call in AOE
+            this.tsubameGaeshi.duration = 60 + this.tsubameGaeshi.value;
+            this.lastTsubameGaeshiTimestamp = matches.timestamp;
+          }
+        } else {
+          this.tsubameGaeshi.duration = 60;
+        }
         break;
     }
   }

@@ -158,6 +158,9 @@ type TextMap = {
     upperText: TextUpperText;
     upperSound: SoundType;
     upperSoundVolume: SoundTypeVolume;
+    rumbleDuration: `${TextUpper}RumbleDuration`;
+    rumbleWeak: `${TextUpper}RumbleWeak`;
+    rumbleStrong: `${TextUpper}RumbleStrong`;
   }
 };
 
@@ -167,18 +170,27 @@ const textMap: TextMap = {
     upperText: 'InfoText',
     upperSound: 'InfoSound',
     upperSoundVolume: 'InfoSoundVolume',
+    rumbleDuration: 'InfoRumbleDuration',
+    rumbleWeak: 'InfoRumbleWeak',
+    rumbleStrong: 'InfoRumbleStrong',
   },
   alert: {
     text: 'alertText',
     upperText: 'AlertText',
     upperSound: 'AlertSound',
     upperSoundVolume: 'AlertSoundVolume',
+    rumbleDuration: 'AlertRumbleDuration',
+    rumbleWeak: 'AlertRumbleWeak',
+    rumbleStrong: 'AlertRumbleStrong',
   },
   alarm: {
     text: 'alarmText',
     upperText: 'AlarmText',
     upperSound: 'AlarmSound',
     upperSoundVolume: 'AlarmSoundVolume',
+    rumbleDuration: 'AlarmRumbleDuration',
+    rumbleWeak: 'AlarmRumbleWeak',
+    rumbleStrong: 'AlarmRumbleStrong',
   },
 };
 
@@ -196,8 +208,8 @@ class OrderedTriggerList {
   idToIndex: { [id: string]: number } = {};
 
   push(trigger: ProcessedTrigger) {
-    const idx = trigger.id ? this.idToIndex[trigger.id] : undefined;
-    if (idx && trigger.id) {
+    const idx = trigger.id !== undefined ? this.idToIndex[trigger.id] : undefined;
+    if (idx !== undefined && trigger.id !== undefined) {
       const oldTrigger = this.triggers[idx];
 
       if (oldTrigger === undefined)
@@ -215,7 +227,7 @@ class OrderedTriggerList {
     }
 
     // Normal case of a new trigger, with no overriding.
-    if (trigger.id)
+    if (trigger.id !== undefined)
       this.idToIndex[trigger.id] = this.triggers.length;
     this.triggers.push(trigger);
   }
@@ -402,7 +414,9 @@ export interface TriggerHelper {
     infoText: number;
   };
   ttsText?: string;
-
+  rumbleDurationMs?: number;
+  rumbleWeak?: number;
+  rumbleStrong?: number;
   output: Output;
 }
 
@@ -747,6 +761,7 @@ export class PopupText {
       replacements,
       timelineTriggers,
       timelineStyles,
+      this.zoneId,
     );
   }
 
@@ -922,6 +937,10 @@ export class PopupText {
         this._onTriggerInternalAlarmText(triggerHelper);
         this._onTriggerInternalAlertText(triggerHelper);
         this._onTriggerInternalInfoText(triggerHelper);
+
+        // Rumble isn't a trigger function, so only needs to be ordered
+        // after alarm/alert/info.
+        this._onTriggerInternalRumble(triggerHelper);
 
         // Priority audio order:
         // * user disabled (play nothing)
@@ -1194,6 +1213,32 @@ export class PopupText {
     this._addTextFor('info', triggerHelper);
   }
 
+  _onTriggerInternalRumble(triggerHelper: TriggerHelper): void {
+    if (!this.options.RumbleEnabled)
+      return;
+
+    // getGamepads returns a "GamePadList" which isn't iterable.
+    [...navigator.getGamepads()].forEach((gp) => {
+      // This list also contains nulls so that the gamepad index is preserved.
+      if (!gp)
+        return;
+
+      // `vibrationActuator` is supported in CEF but is not in the spec yet.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const gamepad: any = gp;
+
+      // Future calls to `playEffect` will cut off the previous effect.
+      // eslint-disable-next-line max-len
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+      void gamepad?.vibrationActuator?.playEffect(gamepad.vibrationActuator.type, {
+        startDelay: 0,
+        duration: triggerHelper.rumbleDurationMs,
+        weakMagnitude: triggerHelper.rumbleWeak,
+        strongMagnitude: triggerHelper.rumbleStrong,
+      });
+    });
+  }
+
   _onTriggerInternalTTS(triggerHelper: TriggerHelper): void {
     if (!triggerHelper.groupSpokenAlertsEnabled || typeof triggerHelper.ttsText === 'undefined') {
       let result = undefined;
@@ -1327,33 +1372,38 @@ export class PopupText {
       textObj = triggerHelper.trigger[lowerTextKey];
     if (!textObj && triggerHelper.response)
       textObj = triggerHelper.response[lowerTextKey];
-    if (textObj) {
-      let text = triggerHelper.valueOrFunction(textObj);
-      if (!text)
-        return;
-      if (typeof text === 'number')
-        text = text.toString();
-      if (typeof text !== 'string')
-        text = String(text);
-      // Ignore empty strings so that config ui "blank spaces" are ignored.
-      text = text.trim();
-      if (text === '')
-        return;
+    if (!textObj)
+      return;
+    let text = triggerHelper.valueOrFunction(textObj);
+    if (!text)
+      return;
+    if (typeof text === 'number')
+      text = text.toString();
+    if (typeof text !== 'string')
+      text = String(text);
+    // Ignore empty strings so that config ui "blank spaces" are ignored.
+    text = text.trim();
+    if (text === '')
+      return;
 
-      triggerHelper.defaultTTSText = triggerHelper.defaultTTSText ?? text;
-      if (text && typeof text === 'string' && triggerHelper.textAlertsEnabled) {
-        // per-trigger option > trigger field > option duration by text type
-        let duration = triggerHelper.duration?.fromConfig ?? triggerHelper.duration?.fromTrigger;
-        if (duration === undefined && triggerHelper.duration)
-          duration = triggerHelper.duration[lowerTextKey];
-        if (duration === undefined)
-          duration = 0;
+    triggerHelper.defaultTTSText = triggerHelper.defaultTTSText ?? text;
+    if (text && typeof text === 'string' && triggerHelper.textAlertsEnabled) {
+      // per-trigger option > trigger field > option duration by text type
+      let duration = triggerHelper.duration?.fromConfig ?? triggerHelper.duration?.fromTrigger;
+      if (duration === undefined && triggerHelper.duration)
+        duration = triggerHelper.duration[lowerTextKey];
+      if (duration === undefined)
+        duration = 0;
 
-        this._createTextFor(triggerHelper, text, textType, lowerTextKey, duration);
-        if (!triggerHelper.soundUrl) {
-          triggerHelper.soundUrl = this.options[upperSound];
-          triggerHelper.soundVol = this.options[upperSoundVolume];
-        }
+      this._createTextFor(triggerHelper, text, textType, lowerTextKey, duration);
+      if (!triggerHelper.soundUrl) {
+        triggerHelper.soundUrl = this.options[upperSound];
+        triggerHelper.soundVol = this.options[upperSoundVolume];
+      }
+      if (triggerHelper.rumbleDurationMs === undefined) {
+        triggerHelper.rumbleDurationMs = this.options[textMap[textType].rumbleDuration];
+        triggerHelper.rumbleWeak = this.options[textMap[textType].rumbleWeak];
+        triggerHelper.rumbleStrong = this.options[textMap[textType].rumbleStrong];
       }
     }
   }
@@ -1366,7 +1416,7 @@ export class PopupText {
     return div;
   }
 
-  _playAudioFile(triggerHelper: TriggerHelper, url: string, volume?: number): void {
+  _playAudioFile(_triggerHelper: TriggerHelper, url: string, volume?: number): void {
     const audio = new Audio(url);
     audio.volume = volume ?? 1;
     void audio.play();

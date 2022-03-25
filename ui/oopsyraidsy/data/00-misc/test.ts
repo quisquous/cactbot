@@ -27,7 +27,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Bow',
             de: 'Bogen',
-            fr: 'Saluer',
+            fr: 'Arc',
             ja: 'お辞儀',
             cn: '鞠躬',
             ko: '인사',

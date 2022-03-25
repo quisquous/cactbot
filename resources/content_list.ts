@@ -355,6 +355,12 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AsphodelosTheThirdCircle,
   ZoneId.AsphodelosTheFourthCircle,
 
+  // Savage Raids (Endwalker)
+  ZoneId.AsphodelosTheFirstCircleSavage,
+  ZoneId.AsphodelosTheSecondCircleSavage,
+  ZoneId.AsphodelosTheThirdCircleSavage,
+  ZoneId.AsphodelosTheFourthCircleSavage,
+
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
   ZoneId.TheWeaponsRefrainUltimate,

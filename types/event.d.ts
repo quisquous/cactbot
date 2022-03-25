@@ -43,6 +43,7 @@ export interface JobDetail {
   };
   'AST': {
     heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
+    crownCard: 'Lord' | 'Lady';
     arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
   'SGE': {
@@ -53,11 +54,15 @@ export interface JobDetail {
   };
   'MNK': {
     chakraStacks: number;
+    beastChakra: ('Coeurl' | 'Opo' | 'Raptor')[];
+    solarNadi: boolean;
+    lunarNadi: boolean;
   };
   'DRG': {
     eyesAmount: number;
     bloodMilliseconds: number;
     lifeMilliseconds: number;
+    firstmindsFocus: number;
   };
   'NIN': {
     hutonMilliseconds: number;
@@ -69,6 +74,13 @@ export interface JobDetail {
     setsu: boolean;
     getsu: boolean;
     ka: boolean;
+  };
+  'RPR': {
+    soul: number;
+    shroud: number;
+    enshroudMilliseconds: number;
+    lemureShroud: number;
+    voidShroud: number;
   };
   'BRD': {
     songName: BardSongType;
@@ -123,7 +135,7 @@ export interface JobDetail {
     attunementMilliseconds: number;
     attunement: number;
     usableArcanum: ('Ruby' | 'Topaz' | 'Emerald')[];
-    activePrimal: ('Ifrit' | 'Titan' | 'Garuda')[];
+    activePrimal: 'Ifrit' | 'Titan' | 'Garuda' | null;
     nextSummoned: 'Bahamut' | 'Phoenix';
   };
   'RDM': {

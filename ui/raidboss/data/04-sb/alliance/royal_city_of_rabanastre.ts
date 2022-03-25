@@ -41,11 +41,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, matches, output) => {
+      alarmText: (_data, matches, output) => {
         if (parseInt(matches.count) === 6)
           return output.getInBubble!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (_data, matches, output) => {
         const count = parseInt(matches.count);
         if (count >= 7)
           return output.breathless!({ num: count });
@@ -83,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move To Safe Spot',
           de: 'Zur sicheren Zone',
-          fr: 'Allez en zone sûre',
+          fr: 'Allez en zone safe',
           ja: '安置へ',
           cn: '去安全点',
           ko: '안전 지대로 이동',
@@ -213,7 +213,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Kill Golems',
           de: 'Golems töten',
-          fr: 'Détruisez les golems',
+          fr: 'Tuez les golems',
           ja: 'ゴーレムを倒す',
           cn: '击杀小怪',
           ko: '골렘 죽이기',
@@ -488,7 +488,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Aqua Sphere': 'sphère d\'eau',
         'Archaeodemon': 'archéodémon',
@@ -507,16 +506,26 @@ const triggerSet: TriggerSet<Data> = {
         'Sand Sphere': 'Sphère de Sable',
         'Submission Tower': 'Tour de soumission',
         'The Crumbling Bridge': 'Pont démoli',
+        'The heavens tremble in my wake': 'Mon char arpente le ciel aussi aisément que les plaines',
         'The Lesalia Garden Ruins': 'Jardins ravagés de Lesalia',
         'The Lesalia Temple Ruins': 'Ruines du temple de Lesalia',
         'The Palace Square': 'Place du palais',
       },
       'replaceText': {
-        'Aqua Sphere': 'sphère d\'eau',
-        'Archaeodemon': 'archéodémon',
-        'Azure Guard': 'gardien azur',
+        '\\?': ' ?',
+        '\\(Hole In One\\)': '(Un seul trou)',
+        '--Aqua Sphere Adds--': '--Adds Sphères d\'eau--',
+        '--Azure Guard Adds--': 'Adds Gardiens azur',
+        '--Blizzard Sphere Adds--': '--Adds Sphères de glace--',
+        '--Flume Toad Adds--': '--Adds Crapauds des torrents--',
+        '--Golem Adds--': 'Adds Golems',
+        '--invulnerable--': '--invulnérable--',
+        '--lock out--': '--verrouiller--',
+        '--Sand Sphere Adds--': 'Adds Sphères de Sable',
+        '--Shade Adds--': '--Adds Ombres--',
+        '--Shard Adds--': '--Adds Cristaux du néant--',
+        'Archaeodemon Adds': 'Adds Archéodémon',
         'Blizzard IV': 'Giga Glace',
-        'Blizzard Sphere': 'Sphère de glace',
         'Chariot': 'Charge centaure',
         'Coldblood': 'Sang-froid',
         'Command Tower': 'Tour de commandement',
@@ -539,7 +548,6 @@ const triggerSet: TriggerSet<Data> = {
         'Falling Rock': 'Chute de rocher',
         'Fire IV': 'Giga Feu',
         'Flash-Freeze': 'Glaciation instantanée',
-        'Flume Toad': 'crapaud des torrents',
         'Frostwave': 'Vague réfrigérante',
         'Gnawing Dread': 'Peur calamiteuse',
         'Hammerfall': 'Aplatissoir',
@@ -549,8 +557,9 @@ const triggerSet: TriggerSet<Data> = {
         'Jagged Edge': 'Pointes acérées',
         'Judgment Blade': 'Lame du jugement',
         'Landwaster': 'Dislocation terrestre',
-        'Mask Of Lies': 'Masque du mensonge',
-        'Mask Of Truth': 'Masque de la vérité',
+        '(?<!/)Mask Of Lies': 'Masque du mensonge',
+        'Mask Of Truth/Mask Of Lies': 'Masque du mensonge/vérité',
+        'Mask Of Truth(?!/)': 'Masque de la vérité',
         'Maverick': 'Franc-tireur',
         'Might': 'Bras de fer',
         'Pomp And Circumstance': 'La pompe et l\'attirail',
@@ -560,7 +569,6 @@ const triggerSet: TriggerSet<Data> = {
         'Rock Cutter': 'Trancheur rocheux',
         'Royal Blood': 'Sang royal',
         'Sanction': 'Sanction',
-        'Sand Sphere': 'Sphère de Sable',
         'Snowpierce': 'Perçage algide',
         'Soulfix': 'Fixage d\'âme',
         'Submission Tower': 'Tour de soumission',

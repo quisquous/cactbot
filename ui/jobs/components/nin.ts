@@ -47,6 +47,8 @@ export class NINComponent extends BaseComponent {
       id: 'nin-timers-combo',
       fgColor: 'combo-color',
     });
+
+    this.reset();
   }
 
   override onYouGainEffect(id: string): void {

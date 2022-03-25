@@ -71,7 +71,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText = `${detail.jobDetail.hutonMilliseconds} | ${detail.jobDetail.ninkiAmount}`;
     } else if (detail.job === 'DRG' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.bloodMilliseconds} | ${detail.jobDetail.lifeMilliseconds} | ${detail.jobDetail.eyesAmount}`;
+        `${detail.jobDetail.bloodMilliseconds} | ${detail.jobDetail.lifeMilliseconds} | ${detail.jobDetail.eyesAmount} | ${detail.jobDetail.firstmindsFocus}`;
     } else if (detail.job === 'BLM' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds}) | ${detail.jobDetail.umbralHearts} | ${detail.jobDetail.polyglot} ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds}) | ${detail.jobDetail.paradox.toString()}`;
@@ -82,15 +82,16 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText =
         `${detail.jobDetail.lilyStacks} (${detail.jobDetail.lilyMilliseconds}) | ${detail.jobDetail.bloodlilyStacks}`;
     } else if (detail.job === 'SMN' && detail.jobDetail) {
-      // TODO: remove if-check after CN/KR patch 6.0 released
+      // TODO: remove if-check after CN/KR patch 6.0 released.
       if ('bahamutStance' in detail.jobDetail) {
         jobInfo.innerText =
           `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.dreadwyrmStacks} | ${detail.jobDetail.bahamutStance} | ${detail.jobDetail.bahamutSummoned} (${detail.jobDetail.stanceMilliseconds}) | ${detail.jobDetail.phoenixReady}`;
       } else if ('tranceMilliseconds' in detail.jobDetail) {
         jobInfo.innerText =
-          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | [${
-            detail.jobDetail.activePrimal.join(', ')
-          }] | [${detail.jobDetail.usableArcanum.join(', ')}] | ${detail.jobDetail.nextSummoned}`;
+          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | ${detail
+            .jobDetail.activePrimal ?? '-'} | [${
+            detail.jobDetail.usableArcanum.join(', ')
+          }] | ${detail.jobDetail.nextSummoned}`;
       }
     } else if (detail.job === 'SCH' && detail.jobDetail) {
       jobInfo.innerText =
@@ -98,9 +99,14 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     } else if (detail.job === 'ACN' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.aetherflowStacks.toString();
     } else if (detail.job === 'AST' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.heldCard} [${detail.jobDetail.arcanums.join(', ')}]`;
+      jobInfo.innerText = `${detail.jobDetail.heldCard} | ${detail.jobDetail.crownCard} | [${
+        detail.jobDetail.arcanums.join(', ')
+      }]`;
     } else if (detail.job === 'MNK' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.chakraStacks}`;
+      jobInfo.innerText =
+        `${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lunarNadi.toString()} | ${detail.jobDetail.solarNadi.toString()} | [${
+          detail.jobDetail.beastChakra.join(', ')
+        }]`;
     } else if (detail.job === 'MCH' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.heat} (${detail.jobDetail.overheatMilliseconds}) | ${detail.jobDetail.battery} (${detail.jobDetail.batteryMilliseconds}) | last: ${detail.jobDetail.lastBatteryAmount} | ${detail.jobDetail.overheatActive.toString()} | ${detail.jobDetail.robotActive.toString()}`;
@@ -110,6 +116,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     } else if (detail.job === 'SGE' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.addersgall} (${detail.jobDetail.addersgallMilliseconds}) | ${detail.jobDetail.addersting} | ${detail.jobDetail.eukrasia.toString()}`;
+    } else if (detail.job === 'RPR' && detail.jobDetail) {
+      jobInfo.innerText =
+        `${detail.jobDetail.soul} | ${detail.jobDetail.shroud} | ${detail.jobDetail.enshroudMilliseconds} | ${detail.jobDetail.lemureShroud} | ${detail.jobDetail.voidShroud}`;
     } else {
       jobInfo.innerText = '';
     }

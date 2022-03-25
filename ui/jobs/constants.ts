@@ -134,9 +134,13 @@ export const kAbility = {
   AspectedBenefic: 'E0B',
   AspectedHelios: 'E11',
   Draw: 'E06',
+  MinorArcana: '1D13',
   Divination: '40A8',
   // SGE
   Rhizomata: '5EF5',
+  Phlegma: '5EE1',
+  Phlegma2: '5EF3',
+  Phlegma3: '5EF9',
   // MNK
   DragonKick: '4A',
   TwinSnakes: '3D',
@@ -194,12 +198,22 @@ export const kAbility = {
   HissatsuSenei: '4061',
   Fuko: '64B4',
   // RPR
+  Slice: '5F35',
+  WaxingSlice: '5F36',
+  InfernalSlice: '5F37',
+  SpinningScythe: '5F38',
+  NightmareScythe: '5F39',
+  Gluttony: '5F49',
+  SoulSlice: '5F3C',
+  SoulScythe: '5F3D',
   ArcaneCircle: '5F55',
   // BRD
   BattleVoice: '76',
   MagesBallad: '72',
   ArmysPaeon: '74',
   theWanderersMinuet: 'DE7',
+  EmpyrealArrow: 'DE6',
+  RadiantFinale: '64B9',
   // MCH
   SplitShot: 'B32',
   SlugShot: 'B34',
@@ -215,6 +229,7 @@ export const kAbility = {
   WildFire: 'B3E',
   HeatBlast: '1CF2',
   AutoCrossbow: '4071',
+  ChainSaw: '64BC',
   // DNC
   Cascade: '3E75',
   Fountain: '3E76',
@@ -234,6 +249,13 @@ export const kAbility = {
   Thunder3: '99',
   Thunder4: '1CFC',
   // SMN
+  EnergyDrain: '407C',
+  EnergySiphon: '407E',
+  SearingLight: '64F2',
+  Aethercharge: '64C8',
+  DreadwyrmTrance: 'DFD',
+  SummonBahamut: '1D03',
+  SummonPhoenix: '64E7',
   // 5.x
   Miasma: 'A8',
   Miasma3: '1D01',
@@ -241,12 +263,8 @@ export const kAbility = {
   BioSmn2: 'B2',
   Bio3: '1D00',
   Tridisaster: 'DFC',
-  EnergyDrain: '407C',
-  EnergySiphon: '407E',
-  DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
   Devotion: '1D1A',
-  SearingLight: '64F2',
   // RDM
   Verstone: '1D57',
   Verfire: '1D56',
@@ -274,6 +292,8 @@ export const kAbility = {
   EnchantedReprise: '4090',
   Embolden: '1D60',
   Manafication: '1D61',
+  Fleche: '1D5D',
+  ContreSixte: '1D5F',
   // BLU
   SongOfTorment: '2C7A',
   OffGuard: '2C93',
@@ -395,6 +415,16 @@ export const kComboActions: string[][] = [
     kAbility.Fuko,
     kAbility.Oka,
   ],
+  // RPR
+  [
+    kAbility.Slice,
+    kAbility.WaxingSlice,
+    kAbility.InfernalSlice,
+  ],
+  [
+    kAbility.SpinningScythe,
+    kAbility.NightmareScythe,
+  ],
   // MCH
   [
     kAbility.SplitShot,
@@ -490,6 +520,12 @@ export const kComboBreakers = [
   kAbility.Oka,
   kAbility.MeikyoShisui,
   kAbility.Fuko,
+  // RPR
+  kAbility.Slice,
+  kAbility.WaxingSlice,
+  kAbility.InfernalSlice,
+  kAbility.SpinningScythe,
+  kAbility.NightmareScythe,
   // MCH
   kAbility.SplitShot,
   kAbility.SlugShot,

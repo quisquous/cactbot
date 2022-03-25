@@ -173,6 +173,6 @@ export const GetShareMistakeText = (ability: string): LocaleText => {
     fr: `${ability} (partage)`,
     ja: `${ability} (頭割り)`,
     cn: `${ability} (重叠)`,
-    ko: `${ability} (쉐어)`,
+    ko: `${ability} (같이 맞음)`,
   };
 };

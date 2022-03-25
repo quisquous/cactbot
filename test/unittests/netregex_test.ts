@@ -36,18 +36,8 @@ describe('netregex tests', () => {
     ] as const;
 
     regexCaptureTest((params?: RegexUtilParams) => NetRegexes.ability(params), lines);
-    regexCaptureTest((params?: RegexUtilParams) => NetRegexes.abilityFull(params), lines);
 
-    let matches = lines[0].match(NetRegexes.ability())?.groups;
-    assert.equal(matches?.type, '21');
-    assert.equal(matches?.sourceId, '105D4D8B');
-    assert.equal(matches?.source, 'Potato Chippy');
-    assert.equal(matches?.id, '4095');
-    assert.equal(matches?.ability, 'Glare');
-    assert.equal(matches?.targetId, '4000DA74');
-    assert.equal(matches?.target, 'Shiva');
-
-    matches = lines[0].match(NetRegexes.abilityFull())?.groups;
+    const matches = lines[0].match(NetRegexes.ability())?.groups;
     assert.equal(matches?.type, '21');
     assert.equal(matches?.sourceId, '105D4D8B');
     assert.equal(matches?.source, 'Potato Chippy');
@@ -60,6 +50,8 @@ describe('netregex tests', () => {
     assert.equal(matches?.y, '104.4785');
     assert.equal(matches?.z, '0');
     assert.equal(matches?.heading, '-3.057414');
+
+    assert.equal(NetRegexes.ability().source, NetRegexes.abilityFull().source);
   });
   it('headMarker', () => {
     const lines = [
@@ -387,11 +379,12 @@ describe('netregex tests', () => {
     ] as const;
     regexCaptureTest((params?: RegexUtilParams) => NetRegexes.systemLogMessage(params), lines);
 
-    const matches = lines[0].match(NetRegexes.systemLogMessage())?.groups;
+    const matches = lines[1].match(NetRegexes.systemLogMessage())?.groups;
     assert.equal(matches?.type, '41');
-    assert.equal(matches?.id, '901');
-    assert.equal(matches?.param0, '619A9200');
-    assert.equal(matches?.param1, '00');
-    assert.equal(matches?.param2, '3C');
+    assert.equal(matches?.instance, '8004001E');
+    assert.equal(matches?.id, '7DD');
+    assert.equal(matches?.param0, 'FF5FDA02');
+    assert.equal(matches?.param1, 'E1B');
+    assert.equal(matches?.param2, '00');
   });
 });

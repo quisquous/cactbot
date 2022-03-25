@@ -1,7 +1,13 @@
 import { UnreachableCode } from '../../resources/not_reached';
-import UserConfig from '../../resources/user_config';
+import UserConfig, { OptionsTemplate, UserFileCallback } from '../../resources/user_config';
+import { BaseOptions } from '../../types/data';
 import { LooseOopsyTriggerSet, OopsyFileData } from '../../types/oopsy';
-import { CactbotConfigurator, ConfigProcessedFile, ConfigProcessedFileMap } from '../config/config';
+import {
+  CactbotConfigurator,
+  ConfigLooseOopsyTriggerSet,
+  ConfigProcessedFile,
+  ConfigProcessedFileMap,
+} from '../config/config';
 
 import { generateBuffTriggerIds } from './buff_map';
 import oopsyFileData from './data/oopsy_manifest.txt';
@@ -214,7 +220,7 @@ class OopsyConfigurator {
   }
 }
 
-UserConfig.registerOptions('oopsyraidsy', {
+const templateOptions: OptionsTemplate = {
   buildExtraUI: (base, container) => {
     const builder = new OopsyConfigurator(base);
     builder.buildUI(container, oopsyFileData);
@@ -354,4 +360,34 @@ UserConfig.registerOptions('oopsyraidsy', {
       default: 'left',
     },
   ],
-});
+};
+
+const userFileHandler: UserFileCallback = (
+  name: string,
+  _files: { [filename: string]: string },
+  baseOptions: BaseOptions,
+  basePath: string,
+) => {
+  // TODO: Rewrite user_config to be templated on option type so that this function knows
+  // what type of options it is using.
+  const options = baseOptions as OopsyOptions;
+
+  if (!options.Triggers)
+    return;
+
+  for (const baseTriggerSet of options.Triggers) {
+    const set: ConfigLooseOopsyTriggerSet = baseTriggerSet;
+
+    // Annotate triggers with where they came from.  Note, options is passed in repeatedly
+    // as multiple sets of user files add triggers, so only process each file once.
+    if (set.isUserTriggerSet)
+      continue;
+
+    // `filename` here is just cosmetic for better debug printing to make it more clear
+    // where a trigger or an override is coming from.
+    set.filename = `${basePath}${name}`;
+    set.isUserTriggerSet = true;
+  }
+};
+
+UserConfig.registerOptions('oopsyraidsy', templateOptions, userFileHandler);

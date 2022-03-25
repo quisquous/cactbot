@@ -38,7 +38,7 @@ const readManifest = (filename: string) => {
 };
 
 const processRaidbossFile = (
-  triggerFile: string,
+  _triggerFile: string,
   zoneId: number,
   triggerSet: LooseTriggerSet,
   timelineContents: string | undefined,
@@ -118,7 +118,7 @@ const processRaidbossCoverage = async (manifest: string, coverage: Coverage) => 
 };
 
 const processOopsyFile = (
-  triggerFile: string,
+  _triggerFile: string,
   zoneId: number,
   triggerSet: LooseOopsyTriggerSet,
   coverage: Coverage,

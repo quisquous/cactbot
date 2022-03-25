@@ -2,6 +2,7 @@ import EventEmitter from 'eventemitter3';
 import { isEqual } from 'lodash';
 
 import logDefinitions from '../../resources/netlog_defs';
+import PartyTracker from '../../resources/party';
 import ZoneInfo from '../../resources/zone_info';
 import { EventResponses as OverlayEventResponses, JobDetail } from '../../types/event';
 import { Job } from '../../types/job';
@@ -49,6 +50,7 @@ export interface EventMap {
   'player': (player: Player) => void;
 
   // triggered when casts actions
+  'action': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
   'action/you': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
   'action/party': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
   'action/other': (actionId: string, info: PartialFieldMatches<'Ability'>) => void;
@@ -147,12 +149,14 @@ export class PlayerBase {
 export class Player extends PlayerBase {
   ee: EventEmitter;
   jobsEmitter: JobsEventEmitter;
+  partyTracker: PartyTracker;
   combo: ComboTracker;
 
-  constructor(jobsEmitter: JobsEventEmitter, private is5x: boolean) {
+  constructor(jobsEmitter: JobsEventEmitter, partyTracker: PartyTracker, private is5x: boolean) {
     super();
     this.ee = new EventEmitter();
     this.jobsEmitter = jobsEmitter;
+    this.partyTracker = partyTracker;
 
     // setup combo tracker
     this.combo = ComboTracker.setup(this.is5x, this);
@@ -436,8 +440,14 @@ export class Player extends PlayerBase {
         if (!id)
           break;
 
+        this.emit('action', id, matches);
+
         if (sourceId && sourceId === this.idHex)
           this.emit('action/you', id, matches);
+        else if (sourceId && this.partyTracker.inParty(matches.source ?? ''))
+          this.emit('action/party', id, matches);
+        else if (sourceId && sourceId.startsWith('1')) // starts with '1' is a player
+          this.emit('action/other', id, matches);
         break;
       }
     }

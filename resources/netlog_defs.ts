@@ -331,7 +331,6 @@ const logDefinitions = {
       z: 42,
       heading: 43,
       sequence: 44,
-      targetIndex: 45,
     },
     playerIds: {
       2: 3,
@@ -729,7 +728,7 @@ const logDefinitions = {
     fields: {
       type: 0,
       timestamp: 1,
-      // unknown: 2,
+      instance: 2,
       id: 3,
       param0: 4,
       param1: 5,

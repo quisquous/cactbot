@@ -395,7 +395,7 @@ export default class ResourceBar extends HTMLElement {
     this._connected = false;
   }
 
-  attributeChangedCallback(name: string, oldValue: string | number, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string | number, newValue: string): void {
     if (name === 'value') {
       this._value = Math.max(parseFloat(newValue), 0);
     } else if (name === 'maxvalue') {
@@ -550,27 +550,27 @@ export default class ResourceBar extends HTMLElement {
     const totalPercent = totalValue / this._maxValue;
     if (this._leftText !== '') {
       if (this._leftText === 'value')
-        this.leftTextElement.innerHTML = totalValue.toString();
+        this.leftTextElement.innerText = totalValue.toString();
       else if (this._leftText === 'maxvalue')
-        this.leftTextElement.innerHTML = `${totalValue} / ${this._maxValue}`;
+        this.leftTextElement.innerText = `${totalValue} / ${this._maxValue}`;
       else if (this._leftText === 'percent')
-        this.leftTextElement.innerHTML = `${(totalPercent * 100).toFixed()} %`;
+        this.leftTextElement.innerText = `${(totalPercent * 100).toFixed()} %`;
     }
     if (this._centerText !== '') {
       if (this._centerText === 'value')
-        this.centerTextElement.innerHTML = totalValue.toString();
+        this.centerTextElement.innerText = totalValue.toString();
       else if (this._centerText === 'maxvalue')
-        this.centerTextElement.innerHTML = `${totalValue} / ${this._maxValue}`;
+        this.centerTextElement.innerText = `${totalValue} / ${this._maxValue}`;
       else if (this._centerText === 'percent')
-        this.centerTextElement.innerHTML = `${(totalPercent * 100).toFixed()} %`;
+        this.centerTextElement.innerText = `${(totalPercent * 100).toFixed()} %`;
     }
     if (this._rightText !== '') {
       if (this._rightText === 'value')
-        this.rightTextElement.innerHTML = totalValue.toString();
+        this.rightTextElement.innerText = totalValue.toString();
       else if (this._rightText === 'maxvalue')
-        this.rightTextElement.innerHTML = `${totalValue} / ${this._maxValue}`;
+        this.rightTextElement.innerText = `${totalValue} / ${this._maxValue}`;
       else if (this._rightText === 'percent')
-        this.rightTextElement.innerHTML = `${(totalPercent * 100).toFixed()} %`;
+        this.rightTextElement.innerText = `${(totalPercent * 100).toFixed()} %`;
     }
   }
 }

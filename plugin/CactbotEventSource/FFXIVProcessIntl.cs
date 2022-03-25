@@ -43,7 +43,7 @@ namespace Cactbot {
       [FieldOffset(0x1C4)]
       public CharacterDetails charDetails;
 
-      [FieldOffset(0x1997)]
+      [FieldOffset(0x19D9)]
       public byte shieldPercentage;
     }
 
@@ -179,10 +179,9 @@ namespace Cactbot {
 
         // dump '\0' string terminators
         var memoryName = System.Text.Encoding.UTF8.GetString(mem.Name, EntityMemory.nameBytes).Split(new[] { '\0' }, 2)[0];
-        var capitalizedName = System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(memoryName);
 
         EntityData entity = new EntityData() {
-          name = capitalizedName,
+          name = memoryName,
           id = mem.id,
           type = mem.type,
           distance = mem.distance,
@@ -301,6 +300,8 @@ namespace Cactbot {
                 return JObject.FromObject(*(SamuraiJobMemory*)&p[0]);
             case EntityJob.SGE:
                 return JObject.FromObject(*(SageJobMemory*)&p[0]);
+            case EntityJob.RPR:
+                return JObject.FromObject(*(ReaperJobMemory*)&p[0]);
           }
           return null;
         }
@@ -501,6 +502,9 @@ namespace Cactbot {
             return 0;
         }
       }
+
+      [FieldOffset(0x04)]
+      public byte firstmindsFocus;
     };
 
     [Serializable]
@@ -614,11 +618,11 @@ namespace Cactbot {
 
       public string activePrimal {
         get {
-          if ((stance & 0xF) == 0x4)
+          if ((stance & 0xC) == 0x4)
             return "Ifrit";
-          else if ((stance & 0xF) == 0x8)
+          else if ((stance & 0xC) == 0x8)
             return "Titan";
-          else if ((stance & 0xF) == 0xC)
+          else if ((stance & 0xC) == 0xC)
             return "Garuda";
           else
             return null;
@@ -627,7 +631,7 @@ namespace Cactbot {
 
       public String nextSummoned {
         get {
-          if ((stance & 0xEF) != 0)
+          if ((stance & 0x10) == 0)
             return "Bahamut";
           else
             return "Phoenix";
@@ -659,8 +663,56 @@ namespace Cactbot {
 
     [StructLayout(LayoutKind.Explicit)]
     public struct MonkJobMemory {
+      public enum Beast : byte {
+        None = 0,
+        Coeurl = 1,
+        Opo = 2,
+        Raptor = 3,
+      }
+
       [FieldOffset(0x00)]
       public byte chakraStacks;
+
+      [NonSerialized]
+      [FieldOffset(0x01)]
+      private Beast beastChakra1;
+
+      [NonSerialized]
+      [FieldOffset(0x02)]
+      private Beast beastChakra2;
+
+      [NonSerialized]
+      [FieldOffset(0x03)]
+      private Beast beastChakra3;
+
+      [NonSerialized]
+      [FieldOffset(0x04)]
+      private byte Nadi;
+
+      public string[] beastChakra {
+        get {
+          Beast[] _beasts = { beastChakra1, beastChakra2, beastChakra3 };
+          return _beasts.Select(a => a.ToString()).Where(a => a != "None").ToArray();
+        }
+      }
+
+      public bool solarNadi {
+        get {
+          if ((Nadi & 0x4) == 0x4)
+            return true;
+          else
+            return false;
+        }
+      }
+
+      public bool lunarNadi {
+        get {
+          if ((Nadi & 0x2) == 0x2)
+            return true;
+          else
+            return false;
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]
@@ -707,6 +759,8 @@ namespace Cactbot {
         Spear = 4,
         Ewer = 5,
         Spire = 6,
+        Lord = 0x70,
+        Lady = 0x80,
       }
 
       public enum Arcanum : byte {
@@ -716,8 +770,9 @@ namespace Cactbot {
         Celestial = 3,
       }
 
+      [NonSerialized]
       [FieldOffset(0x04)]
-      private Card _heldCard;
+      private byte _heldCard;
 
       [NonSerialized]
       [FieldOffset(0x05)]
@@ -733,7 +788,13 @@ namespace Cactbot {
 
       public string heldCard {
         get {
-          return _heldCard.ToString();
+          return ((Card)(_heldCard & 0xF)).ToString();
+        }
+      }
+
+      public string crownCard {
+        get {
+          return ((Card)(_heldCard & 0xF0)).ToString();
         }
       }
 
@@ -789,6 +850,24 @@ namespace Cactbot {
 
       [FieldOffset(0x04)]
       public byte eukrasia;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct ReaperJobMemory {
+      [FieldOffset(0x00)]
+      public byte soul;
+
+      [FieldOffset(0x01)]
+      public byte shroud;
+
+      [FieldOffset(0x02)]
+      public ushort enshroudMilliseconds;
+
+      [FieldOffset(0x04)]
+      public byte lemureShroud;
+
+      [FieldOffset(0x05)]
+      public byte voidShroud;
     }
   }
 }

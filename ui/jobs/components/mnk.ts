@@ -11,11 +11,14 @@ import { BaseComponent, ComponentInterface } from './base';
 
 export class MNKComponent extends BaseComponent {
   formTimer: TimerBar
-  textBox: ResourceBox
+  chakraBox: ResourceBox
   dragonKickBox: TimerBox
   twinSnakesBox: TimerBox
   demolishBox: TimerBox
   perfectBalanceActive = false;
+  lunarStacks: HTMLDivElement[];
+  beastChakraStacks: HTMLDivElement[] = [];
+  solarStacks: HTMLDivElement[];
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -25,40 +28,88 @@ export class MNKComponent extends BaseComponent {
     fgColor: 'mnk-color-form',
   });
 
-  this.textBox = this.bars.addResourceBox({
+  this.chakraBox = this.bars.addResourceBox({
     classList: ['mnk-color-chakra'],
   });
-    this. dragonKickBox = this.bars.addProcBox({
+
+  this.dragonKickBox = this.bars.addProcBox({
     id: 'mnk-procs-dragonkick',
     fgColor: 'mnk-color-dragonkick',
     threshold: 6,
   });
 
-  this. twinSnakesBox = this.bars.addProcBox({
+  this.twinSnakesBox = this.bars.addProcBox({
     id: 'mnk-procs-twinsnakes',
     fgColor: 'mnk-color-twinsnakes',
     threshold: 6,
   });
 
-  this. demolishBox = this.bars.addProcBox({
+  this.demolishBox = this.bars.addProcBox({
     id: 'mnk-procs-demolish',
     fgColor: 'mnk-color-demolish',
     // Slightly shorter time, to make the box not pop right as
     // you hit snap punch at t=6 (which is probably fine).
     threshold: 5,
   });
+
+  const stacksContainer = document.createElement('div');
+  stacksContainer.id = 'mnk-stacks';
+  stacksContainer.classList.add('stacks');
+  this.bars.addJobBarContainer().appendChild(stacksContainer);
+
+  if (this.is5x)
+    stacksContainer.classList.add('hide');
+
+  const lunarStacksContainer = document.createElement('div');
+  lunarStacksContainer.id = 'mnk-stacks-lunar';
+  stacksContainer.appendChild(lunarStacksContainer);
+
+  const beastChakraStacksContainer = document.createElement('div');
+  beastChakraStacksContainer.id = 'mnk-stacks-beastchakra';
+  stacksContainer.appendChild(beastChakraStacksContainer);
+
+  const solarStacksContainer = document.createElement('div');
+  solarStacksContainer.id = 'mnk-stacks-solar';
+  stacksContainer.appendChild(solarStacksContainer);
+
+  this.lunarStacks = [];
+  this.beastChakraStacks = [];
+  this.solarStacks = [];
+
+  const lunarStack = document.createElement('div');
+  lunarStacksContainer.appendChild(lunarStack);
+  this.lunarStacks.push(lunarStack);
+
+  for (let i = 0; i < 3; i++) {
+    const beastChakraStack = document.createElement('div');
+    beastChakraStacksContainer.appendChild(beastChakraStack);
+    this.beastChakraStacks.push(beastChakraStack);
+  }
+
+  const solarStack = document.createElement('div');
+  solarStacksContainer.appendChild(solarStack);
+  this.solarStacks.push(solarStack);
+
+  this.reset();
 }
 
   override onJobDetailUpdate(jobDetail: JobDetail['MNK']): void {
     const chakra = jobDetail.chakraStacks.toString();
-    if (this.textBox.innerText !== chakra) {
-      this.textBox.innerText = chakra;
-      const p = this.textBox.parentNode;
-      if (jobDetail.chakraStacks < 5)
-        p.classList.add('dim');
-      else
-        p.classList.remove('dim');
+    if (this.chakraBox.innerText !== chakra) {
+      this.chakraBox.innerText = chakra;
+      this.chakraBox.parentNode.classList.toggle('dim', jobDetail.chakraStacks < 5);
     }
+
+    if (this.is5x)
+      return;
+    this.beastChakraStacks.forEach((elem, i) => {
+      elem.classList.remove('Opo', 'Coeurl', 'Raptor');
+      const beastChakra = jobDetail.beastChakra[i];
+      if (beastChakra)
+        elem.classList.add(beastChakra);
+    });
+    this.lunarStacks[0]?.classList.toggle('active', jobDetail.lunarNadi);
+    this.solarStacks[0]?.classList.toggle('active', jobDetail.solarNadi);
   }
 
 
@@ -110,6 +161,7 @@ export class MNKComponent extends BaseComponent {
       case EffectId.OpoOpoForm:
       case EffectId.RaptorForm:
       case EffectId.CoeurlForm:
+      case EffectId.FormlessFist:
         this.formTimer.duration = 0;
         this.formTimer.duration = parseFloat(matches.duration ?? '0');
         this.formTimer.fg = computeBackgroundColorFrom(this.formTimer, 'mnk-color-form');

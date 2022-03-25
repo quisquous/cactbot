@@ -33,7 +33,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move!',
           de: 'Bewegen',
-          fr: 'Bougez',
+          fr: 'Bougez !',
           ja: 'フェザーレイン',
           cn: '躲羽毛',
           ko: '이동',
@@ -99,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mistral on YOU',
           de: 'Mistral-Song',
-          fr: 'Chant Du Mistral',
+          fr: 'Mistral sur VOUS',
           ja: 'ミストラルソング',
           cn: '寒风之歌点名',
           ko: '삭풍 징',
@@ -117,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mistral Song',
           de: 'Mistral-Song',
-          fr: 'Chant Du Mistral',
+          fr: 'Chant du mistral',
           ja: 'ミストラルソング',
           cn: '寒风之歌',
           ko: '삭풍 징',
@@ -139,7 +139,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spiny Plume Add',
           de: 'Dorniger Federsturm',
-          fr: 'Plume Perforante',
+          fr: 'Add Plume perforante',
           ja: 'スパイニープルーム',
           cn: '刺羽出现',
           ko: '가시돋힌 깃털 등장',
@@ -157,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Fetters on YOU',
           de: 'Fesseln auf DIR',
-          fr: 'Chaînes Infernales',
+          fr: 'Chaînes sur VOUS',
           ja: '自分に炎獄の鎖',
           cn: '火狱之锁点名',
           ko: '사슬 → 나',
@@ -179,7 +179,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Searing Wind on YOU',
           de: 'Versengen auf DIR',
-          fr: 'Rugissement Infernal',
+          fr: 'Carbonisation sur VOUS',
           ja: '自分に灼熱',
           cn: '灼热咆哮点名',
           ko: '작열 → 나',
@@ -195,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack',
           de: 'Stack',
-          fr: 'Stack',
+          fr: 'Packez-vous',
           ja: '頭割り',
           cn: '集合',
           ko: '집합',
@@ -365,6 +365,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${player} died',
           de: '${player} gestorben',
+          fr: '${player} est mort(e)',
           ja: '${player} 死にました',
           cn: '${player} 死亡',
           ko: '${player} 죽음',
@@ -398,7 +399,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Gaol on YOU',
           de: 'Granitgefängnis',
-          fr: 'Geôle',
+          fr: 'Geôle sur VOUS',
           ja: 'ジェイル',
           cn: '石牢点名',
           ko: '돌감옥 대상자',
@@ -571,7 +572,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': 'Schwerer Beschuss',
         'Friction': 'Windklinge',
         'Geocrush': 'Geo-Stoß',
-        'Grand Whirlwind': 'Großer Wirbelsturm',
+        'Great Whirlwind': 'Großer Wirbelsturm', // FIXME
         'Hellfire': 'Höllenfeuer',
         'Homing Lasers': 'Leitlaser',
         'Incinerate': 'Einäschern',
@@ -605,7 +606,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'bombo rocher',
         'Chirada': 'Chirada',
@@ -623,6 +623,7 @@ const triggerSet: TriggerSet<Data> = {
         'Aetheric Boom': 'Onde d\'éther',
         'Aetherochemical Laser': 'Laser magismologique',
         '(?<! )Aetheroplasm': 'Éthéroplasma',
+        'Apply Viscous': 'Debuff Éthéroplasma',
         'Blight': 'Supplice',
         'Bury': 'Impact',
         'Ceruleum Vent': 'Exutoire à Céruleum',
@@ -638,6 +639,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': 'Tir d\'artillerie lourde',
         'Friction': 'Lame de vent',
         'Geocrush': 'Broie-terre',
+        'Great Whirlwind': 'Grand tourbillon',
         'Hellfire': 'Flammes de l\'enfer',
         'Homing Lasers': 'Lasers autoguidés',
         'Incinerate': 'Incinération',
@@ -648,11 +650,13 @@ const triggerSet: TriggerSet<Data> = {
         'Mistral Shriek': 'Cri du mistral',
         'Mistral Song': 'Chant du mistral',
         'Mountain Buster': 'Casse-montagnes',
+        'Nail Adds': 'Adds Clou',
         'Radiant Plume': 'Panache radiant',
         'Rock Buster': 'Casse-roc',
         'Rock Throw': 'Jeté de rocs',
         'Searing Wind': 'Carbonisation',
         'Slipstream': 'Sillage',
+        'Summon Random Primal': 'Invocation de primordial aléatoire',
         'Tank Purge': 'Vidange de réservoir',
         'Tumult': 'Tumulte',
         'Ultima(?!\\w)': 'Ultima',
@@ -702,7 +706,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '誘爆',
         'Friction': 'ウィンドブレード',
         'Geocrush': 'ジオクラッシュ',
-        'Grand Whirlwind': '大旋風',
+        'Great Whirlwind': '大旋風', // FIXME
         'Hellfire': '地獄の火炎',
         'Homing Lasers': '誘導レーザー',
         'Incinerate': 'インシネレート',
@@ -769,7 +773,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '诱导爆炸',
         'Friction': '烈风刃',
         'Geocrush': '大地粉碎',
-        'Grand Whirlwind': '大龙卷风',
+        'Great Whirlwind': '大龙卷风',
         'Hellfire': '地狱之火炎',
         'Homing Lasers': '诱导射线',
         'Incinerate': '烈焰焚烧',
@@ -836,7 +840,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '유폭',
         'Friction': '바람의 칼날',
         'Geocrush': '대지 붕괴',
-        'Grand Whirlwind': '대선풍',
+        'Great Whirlwind': '대선풍', // FIXME
         'Hellfire': '지옥의 화염',
         'Homing Lasers': '유도 레이저',
         'Incinerate': '소각',

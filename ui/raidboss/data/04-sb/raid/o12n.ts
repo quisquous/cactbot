@@ -99,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move bosses apart',
           de: 'Bosse auseinander ziehen',
-          fr: 'Écartez les boss',
+          fr: 'Déplacez les boss séparément',
           ja: 'ボスを引き離す',
           cn: '拉开boss',
           ko: '보스 서로 떨어뜨리기',
@@ -142,6 +142,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback from F; Away from M',
           de: 'Rückstoß von F; Weg von M',
+          fr: 'Poussée depuis F; Éloignez-vous de M',
           cn: '被女性击退; 远离男性',
           ko: 'F 넉백, M 광역기',
         },
@@ -250,8 +251,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': 'Alerte... Alerte... Forte augmentation',
+        'Calculations indicate increased probability of defeat': 'Forte augmentation des probabilités de défaite',
         'Omega(?!-)': 'Oméga',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
@@ -327,13 +329,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
         'Omega-M': '欧米茄M',
         'Optical Unit': '视觉组',
         'Progress to party combat': '确认到单独战斗的极限',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '警告……警告……失败的危险性上升……',
       },
       'replaceText': {
         'Beyond Strength': '盾连击G',
@@ -373,6 +375,7 @@ const triggerSet: TriggerSet<Data> = {
         'Optical Unit': '광학 유닛',
         'Progress to party combat': '단독 전투 한계 확인',
         'Calculations indicate increased probability of defeat': '패배 위험성 상승',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '패배 위험성 상승',
       },
       'replaceText': {
         'Beyond Strength': '방패 연격 G',

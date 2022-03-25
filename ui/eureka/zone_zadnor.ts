@@ -21,6 +21,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Atori Moribe',
         de: 'Atori Moribe',
+        fr: 'Atori Moribe',
         ja: 'モリベのアトリ',
         cn: '守部花鸟',
         ko: '아토리 모리베',
@@ -28,6 +29,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Atori',
         de: 'Atori',
+        fr: 'Atori',
         ja: 'アトリ',
         cn: '花鸟',
         ko: '아토리',
@@ -39,6 +41,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Kosyu',
         de: 'Kosyu',
+        fr: 'Kosyu',
         ja: '虎髭',
         cn: '虎须',
         ko: '호랑수염',
@@ -46,6 +49,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Kosyu',
         de: 'Kosyu',
+        fr: 'Kosyu',
         ja: '虎髭',
         cn: '虎须',
         ko: '호랑수염',
@@ -57,6 +61,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Oboro Torioi',
         de: 'Oboro Torioi',
+        fr: 'Oboro Torioi',
         ja: 'オボロ・トリオイ',
         cn: '鸟追胧',
         ko: '토리오이 오보로',
@@ -64,6 +69,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Oboro',
         de: 'Oboro',
+        fr: 'Oboro',
         ja: 'オボロ',
         cn: '鸟追胧',
         ko: '오보로',
@@ -73,15 +79,17 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
     {
       id: 34,
       name: {
-        en: 'Tsubame',
-        de: 'Tsubame',
+        en: 'Tsubame Oshidari',
+        de: 'Tsubame Oshidari',
+        fr: 'Tsubame Oshidari',
         ja: 'ツバメ・オシダリ',
         cn: '忍足燕',
         ko: '츠바메 오시다리',
       },
       shortName: {
-        en: 'Tsubame Oshidari',
-        de: 'Tsubame Oshidari',
+        en: 'Tsubame',
+        de: 'Tsubame',
+        fr: 'Tsubame',
         ja: 'ツバメ',
         cn: '忍足燕',
         ko: '츠바메',
@@ -93,6 +101,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Meryall Miller',
         de: 'Meryall Miller',
+        fr: 'Meryall Miller',
         ja: 'メリオール・ミラー',
         cn: '梅丽奥尔·米勒',
         ko: '메리올 밀러',
@@ -100,6 +109,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Meryall',
         de: 'Meryall',
+        fr: 'Meryall',
         ja: 'メリオール',
         cn: '梅丽奥尔',
         ko: '메리올',
@@ -111,6 +121,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Lovro aan Slanasch',
         de: 'Lovro aan Slanasch',
+        fr: 'Lovro aan Slanasch',
         ja: 'ロヴロ・アン・スラナシュ',
         cn: '洛夫罗·安·斯拉娜失',
         ko: '로브로 안 슬라나쉬',
@@ -118,6 +129,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Lovro',
         de: 'Lovro',
+        fr: 'Lovro',
         ja: 'ロヴロ',
         cn: '洛夫罗',
         ko: '로브로',
@@ -129,6 +141,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Llofii pyr Potitus',
         de: 'Llofii pyr Potitus',
+        fr: 'Llofii pyr Potitus',
         ja: 'ロフィー・ピル・ポティトゥス',
         cn: '罗菲·皮尔·珀提图斯',
         ko: '로피 피르 포티투스',
@@ -136,6 +149,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Llofii',
         de: 'Llofii',
+        fr: 'Llofii',
         ja: 'ロフィー',
         cn: '罗菲',
         ko: '로피',
@@ -147,6 +161,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Fabineau quo Soranus',
         de: 'Fabineau quo Soranus',
+        fr: 'Fabineau quo Soranus',
         ja: 'ファビノー・クォ・ソラノス',
         cn: '法比诺·库奥·索拉努斯',
         ko: '파비노 쿠오 소라누스',
@@ -154,6 +169,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Fabineau',
         de: 'Fabineau',
+        fr: 'Fabineau',
         ja: 'ファビノー',
         cn: '法比诺',
         ko: '파비노',
@@ -165,6 +181,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Yamatsumi pyr Urabe',
         de: 'Yamatsumi pyr Urabe',
+        fr: 'Yamatsumi pyr Urabe',
         ja: 'ヤマツミ・ピル・ウラベ',
         cn: '山祇·皮尔·卜部',
         ko: '야마츠미 피르 우라베',
@@ -172,6 +189,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Yamatsumi',
         de: 'Yamatsumi',
+        fr: 'Yamatsumi',
         ja: 'ヤマツミ',
         cn: '山祇',
         ko: '야마츠미',
@@ -183,6 +201,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Pagaga quo Vochstein',
         de: 'Pagaga quo Vochstein',
+        fr: 'Pagaga quo Vochstein',
         ja: 'パガガ・クォ・バックスタイン',
         cn: '帕佳佳·库奥·弗克施泰因',
         ko: '파가가 쿠오 보크스타인',
@@ -190,6 +209,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Pagaga',
         de: 'Pagaga',
+        fr: 'Pagaga',
         ja: 'パガガ',
         cn: '帕佳佳',
         ko: '파가가',
@@ -201,6 +221,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Daguza oen Sus',
         de: 'Daguza oen Sus',
+        fr: 'Daguza oen Sus',
         ja: 'ダクザ・エン・スース',
         cn: '达古扎·恩·苏斯',
         ko: '다그자 왼 수스',
@@ -208,6 +229,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Daguza',
         de: 'Daguza',
+        fr: 'Daguza',
         ja: 'ダクザ',
         cn: '达古扎',
         ko: '다그자',
@@ -219,6 +241,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Gilbrisbert quo Buteo',
         de: 'Gilbrisbert quo Buteo',
+        fr: 'Gilbrisbert quo Buteo',
         ja: 'ジルブリスベル・クォ・ブテオ',
         cn: '吉尔布里斯贝尔·库奥·布特奥',
         ko: '질브리스베르 쿠오 부테오',
@@ -226,6 +249,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Gilbrisbert',
         de: 'Gilbrisbert',
+        fr: 'Gilbrisbert',
         ja: 'ジルブリスベル',
         cn: '吉尔布里斯贝尔',
         ko: '질브리스베르',
@@ -237,6 +261,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Dabog aan Inivisch',
         de: 'Dabog aan Inivisch',
+        fr: 'Dabog aan Inivisch',
         ja: 'ダボグ・アン・イニヴァシュ',
         cn: '达波格·安·因尼维失',
         ko: '다보그 안 이비니쉬',
@@ -244,6 +269,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Dabog',
         de: 'Dabog',
+        fr: 'Dabog',
         ja: 'ダボグ',
         cn: '达波格',
         ko: '다보그',
@@ -255,6 +281,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Lyon quo Helsos',
         de: 'Lyon quo Helsos',
+        fr: 'Lyon quo Helsos',
         ja: 'ライアン・クォ・ヘルソス',
         cn: '莱昂·库奥·赫尔索斯',
         ko: '라이언 쿠오 헬소스',
@@ -262,6 +289,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Lyon',
         de: 'Lyon',
+        fr: 'Lyon',
         ja: 'ライアン',
         cn: '莱昂',
         ko: '라이언',
@@ -273,6 +301,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       name: {
         en: 'Menenius sas Lanatus',
         de: 'Menenius sas Lanatus',
+        fr: 'Menenius sas Lanatus',
         ja: 'メネニウス・サス・ラナトゥス',
         cn: '梅内纽斯·萨斯·拉那图斯',
         ko: '메네니우스 사스 라나투스',
@@ -280,6 +309,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Menenius',
         de: 'Menenius',
+        fr: 'Menenius',
         ja: 'メネニウス',
         cn: '梅内纽斯',
         ko: '메네니우스',
@@ -289,8 +319,9 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
     {
       id: 46,
       name: {
-        en: 'Diablo',
+        en: 'The Diablo Armament',
         de: 'Diablo-Armament',
+        fr: 'Batterie d\'artillerie Diablo',
         ja: 'ディアブロ・アーマメント',
         cn: '迪亚布罗魔兵',
         ko: '디아블로 아머먼트',
@@ -298,6 +329,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       shortName: {
         en: 'Diablo',
         de: 'Diablo',
+        fr: 'Diablo',
         ja: 'ディアブロ',
         cn: '迪亚布罗',
         ko: '디아블로',

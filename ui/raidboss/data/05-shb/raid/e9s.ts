@@ -66,7 +66,7 @@ const artOfDarknessOutputStrings = {
   protean: {
     en: 'Protean',
     de: 'Himmelsrichtungen',
-    fr: 'Position',
+    fr: 'Positions',
     ja: '散開',
     cn: '散开',
     ko: '산개',
@@ -626,7 +626,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Tile Positions',
           de: 'Kachel Positionen',
-          fr: 'Allez sur votre case',
+          fr: 'Positions',
           ja: '定めたパネルに待機',
           cn: '上自己的方块',
           ko: '바닥 자리잡기',
@@ -928,7 +928,7 @@ const triggerSet: TriggerSet<Data> = {
         '\\(L/R\\)': '(G/D)',
         'The Third Art Of Darkness': 'Arts ténébreux triple',
         'The Second Art Of Darkness': 'Arts ténébreux double',
-        'The Art Of Darkness(?! \\\\())': 'Arts ténébreux (Pos/Packs)',
+        'The Art Of Darkness(?! \\\\())': 'Arts ténébreux (Positions/Packages)',
         'Summon': 'Invocation',
         'Rejuvenating Balm': 'Tir vivifiant',
         'Particle Concentration': 'Rayon sphérique',

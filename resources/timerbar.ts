@@ -22,7 +22,6 @@ export default class TimerBar extends HTMLElement {
   private _loop: boolean;
   private _connected: boolean;
   private _hideTimer: number | null;
-  private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
     return [
@@ -164,7 +163,7 @@ export default class TimerBar extends HTMLElement {
   get value(): number {
     if (!this._start)
       return this._duration;
-    const elapsedMs = new Date().getTime() - this._start;
+    const elapsedMs = Date.now() - this._start;
     return Math.max(0, this._duration - (elapsedMs / 1000));
   }
 
@@ -175,7 +174,7 @@ export default class TimerBar extends HTMLElement {
   get elapsed(): number {
     if (!this._start)
       return 0;
-    return (new Date().getTime() - this._start) / 1000;
+    return (Date.now() - this._start) / 1000;
   }
 
   // If "right" then animates left-to-right (the default). If "left"
@@ -289,7 +288,6 @@ export default class TimerBar extends HTMLElement {
     this._hideAfter = -1;
     this._loop = false;
     this._hideTimer = 0;
-    this._animationFrame = 0;
 
     this.rootElement = this.shadowRoot?.getElementById('root') as HTMLDivElement;
     this.foregroundElement = this.shadowRoot?.getElementById('fg') as HTMLDivElement;
@@ -431,7 +429,7 @@ export default class TimerBar extends HTMLElement {
     this._connected = false;
   }
 
-  attributeChangedCallback(name: string, oldValue: string | number, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string | number, newValue: string): void {
     if (name === 'duration') {
       this._duration = Math.max(parseFloat(newValue), 0);
       this.setvalue(this._duration);
@@ -525,7 +523,7 @@ export default class TimerBar extends HTMLElement {
   }
 
   draw(): void {
-    const elapsedSec = (new Date().getTime() - this._start) / 1000;
+    const elapsedSec = (Date.now() - this._start) / 1000;
     const remainSec = Math.max(0, this._duration - elapsedSec);
     let percent = this._duration <= 0 ? 0 : remainSec / this._duration;
     // Keep it between 0 and 1.
@@ -537,33 +535,33 @@ export default class TimerBar extends HTMLElement {
     this.foregroundElement.style.transform = `scaleX(${percent.toFixed(3)})`;
     if (this._leftText !== '') {
       if (this._leftText === 'remain')
-        this.leftTextElement.innerHTML = displayRemain;
+        this.leftTextElement.innerText = displayRemain;
       else if (this._leftText === 'duration')
-        this.leftTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
+        this.leftTextElement.innerText = `${displayRemain} / ${this._duration}`;
       else if (this._leftText === 'percent')
-        this.leftTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
+        this.leftTextElement.innerText = `${(percent * 100).toFixed(1)} %`;
       else if (this._leftText === 'elapsed')
-        this.leftTextElement.innerHTML = displayElapsed;
+        this.leftTextElement.innerText = displayElapsed;
     }
     if (this._centerText !== '') {
       if (this._centerText === 'remain')
-        this.centerTextElement.innerHTML = displayRemain;
+        this.centerTextElement.innerText = displayRemain;
       else if (this._centerText === 'duration')
-        this.centerTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
+        this.centerTextElement.innerText = `${displayRemain} / ${this._duration}`;
       else if (this._centerText === 'percent')
-        this.centerTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
+        this.centerTextElement.innerText = `${(percent * 100).toFixed(1)} %`;
       else if (this._centerText === 'elapsed')
-        this.centerTextElement.innerHTML = displayElapsed;
+        this.centerTextElement.innerText = displayElapsed;
     }
     if (this._rightText !== '') {
       if (this._rightText === 'remain')
-        this.rightTextElement.innerHTML = displayRemain;
+        this.rightTextElement.innerText = displayRemain;
       else if (this._rightText === 'duration')
-        this.rightTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
+        this.rightTextElement.innerText = `${displayRemain} / ${this._duration}`;
       else if (this._rightText === 'percent')
-        this.rightTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
+        this.rightTextElement.innerText = `${(percent * 100).toFixed(1)} %`;
       else if (this._rightText === 'elapsed')
-        this.rightTextElement.innerHTML = displayElapsed;
+        this.rightTextElement.innerText = displayElapsed;
     }
   }
 
@@ -585,7 +583,7 @@ export default class TimerBar extends HTMLElement {
 
   setvalue(remainSec: number): void {
     const elapsedSec = Math.max(0, this._duration - remainSec);
-    this._start = new Date().getTime() - (elapsedSec * 1000);
+    this._start = Date.now() - (elapsedSec * 1000);
 
     if (!this._connected)
       return;
@@ -598,7 +596,11 @@ export default class TimerBar extends HTMLElement {
   }
 
   advance(): void {
-    const elapsedSec = (new Date().getTime() - this._start) / 1000;
+    // If the element has been disconnected from the DOM, stop requesting animation frames
+    if (!this._connected)
+      return;
+
+    const elapsedSec = (Date.now() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // Timer completed
       if (this._loop && this._duration > 0) {
@@ -614,12 +616,9 @@ export default class TimerBar extends HTMLElement {
         this._hideTimer = window.setTimeout(this.hide.bind(this), this._hideAfter * 1000);
       else if (this._hideAfter === 0)
         this.hide();
-
-      window.cancelAnimationFrame(this._animationFrame ?? 0);
-      this._animationFrame = null;
     } else {
       // Timer not completed, request another animation frame
-      this._animationFrame = window.requestAnimationFrame(this.advance.bind(this));
+      window.requestAnimationFrame(this.advance.bind(this));
     }
 
     this.draw();

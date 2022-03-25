@@ -212,7 +212,9 @@ namespace Cactbot {
 
     internal abstract void ReadSignatures();
 
-    public FFXIVProcess(ILogger logger) { logger_ = logger; }
+    public FFXIVProcess(ILogger logger) {
+      logger_ = logger;
+    }
 
     public bool HasProcess() {
       // If FindProcess failed, return false. But also return false if
@@ -220,22 +222,16 @@ namespace Cactbot {
       return process_ != null && !process_.HasExited;
     }
 
-    public bool FindProcess() {
-      if (HasProcess())
-        return true;
-
-      // Only support the DirectX 11 binary. The DirectX 9 one has different addresses.
-      Process found_process = (from x in Process.GetProcessesByName("ffxiv_dx11")
-                               where !x.HasExited && x.MainModule != null && x.MainModule.ModuleName == "ffxiv_dx11.exe"
-                               select x).FirstOrDefault<Process>();
-      if (found_process != null && found_process.HasExited)
-        found_process = null;
-      bool changed_existance = (process_ == null) != (found_process == null);
-      bool changed_pid = process_ != null && found_process != null && process_.Id != found_process.Id;
+    public void OnProcessChanged(Process process) {
+      if (process != null && process.HasExited) {
+        process = null;
+      }
+      bool changed_existance = (process_ == null) != (process == null);
+      bool changed_pid = process_ != null && process != null && process_.Id != process.Id;
       if (changed_existance || changed_pid) {
         player_ptr_addr_ = IntPtr.Zero;
         job_data_outer_addr_ = IntPtr.Zero;
-        process_ = found_process != null ? new LimitedProcess(found_process) : null;
+        process_ = process != null ? new LimitedProcess(process) : null;
 
         if (process_ != null) {
           ReadSignatures();
@@ -251,8 +247,6 @@ namespace Cactbot {
           showed_dx9_error_ = true;
         }
       }
-
-      return process_ != null;
     }
 
     public bool IsActive() {

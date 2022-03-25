@@ -169,6 +169,15 @@ namespace CactbotEventSource.loc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error in GetCurrentProcess: {0}.
+        /// </summary>
+        internal static string GetCurrentProcessErrorMessage {
+            get {
+                return ResourceManager.GetString("GetCurrentProcessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignoring auto-update due to cactbot directory being a .git repo..
         /// </summary>
         internal static string IgnoreUpdateDueToDotGitDirectoryMessage {
@@ -381,6 +390,15 @@ namespace CactbotEventSource.loc {
         internal static string PresetZeffUI {
             get {
                 return ResourceManager.GetString("PresetZeffUI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while registering process changed handler: {0}.
+        /// </summary>
+        internal static string RegisteringProcessErrorMessage {
+            get {
+                return ResourceManager.GetString("RegisteringProcessErrorMessage", resourceCulture);
             }
         }
         

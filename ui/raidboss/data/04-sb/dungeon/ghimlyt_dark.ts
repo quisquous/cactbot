@@ -161,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ghimlyt Dark Heirsbane',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: (data, matches) => matches.targetId[0] !== '4',
+      condition: (_data, matches) => matches.targetId[0] !== '4',
       response: Responses.tankBuster(),
     },
     {
@@ -252,8 +252,8 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '\\?': ' ?',
-        '\\(windup\\)': '(Préparation)',
-        '\\(cast\\)': '(Lancement)',
+        '\\(windup\\)': '(préparation)',
+        '\\(cast\\)': '(lancement)',
         'Aglaia Bite': 'Morsure d\'Aglaia',
         'Angry Salamander': 'Colère de la salamandre',
         'Artificial Boost': 'Amplificateur magitek',
