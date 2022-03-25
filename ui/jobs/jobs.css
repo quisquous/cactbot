@@ -470,11 +470,10 @@ div.justbuffs div#procs-container {
   top: 146px;
   left: 100px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
   width: 210px;
-  height: 210px;
 }
 
 #procs-container.compact {
@@ -486,6 +485,9 @@ div.justbuffs div#procs-container {
 
   /* every box is 50px big */
   width: 50px;
+
+  /* although the box itself is only 50px, we want a gap of 5px */
+  height: 55px;
 }
 
 /* Colors */
@@ -1259,7 +1261,7 @@ div.justbuffs div#procs-container {
 /* Proc box animation */
 .proc-box.in-combat .notify-when-expired.expired {
   display: block;
-  animation: var(--proc-box-notfy-animation, proc-box-flash) var(--proc-box-notify-duration, 1s) var(--proc-box-notify-repeat, infinite);
+  animation: var(--proc-box-notify-animation, proc-box-flash) var(--proc-box-notify-duration, 1s) var(--proc-box-notify-repeat, infinite);
 }
 
 @keyframes proc-box-flash {
