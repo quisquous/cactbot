@@ -2663,18 +2663,13 @@ Options.Triggers.push({
     {
       id: 'TEA Trine Initial',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '488F' }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '488F' }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '488F' }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488F' }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '488F' }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '488F' }),
-      alertText: (data, matches, output) => {
-        // Looking for (100, 92), (100, 100), or (100, 108).
-        const x = Math.round(parseFloat(matches.x));
-        const y = Math.round(parseFloat(matches.y));
-        if (x !== 100)
-          return;
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      preRun: (data, matches) => {
         data.trine ?? (data.trine = []);
         // See: https://imgur.com/a/l1n9MhS
         const trineMap = {
@@ -2682,10 +2677,12 @@ Options.Triggers.push({
           100: 'g',
           108: 'y',
         };
-        const thisTrine = trineMap[y];
+        const thisTrine = trineMap[parseFloat(matches.y)];
         if (!thisTrine)
-          return;
+          throw new UnreachableCode();
         data.trine.push(thisTrine);
+      },
+      alertText: (data, _matches, output) => {
         // Call out after two, because that's when the mechanic is fully known.
         data.trine ?? (data.trine = []);
         if (data.trine.length !== 2)
