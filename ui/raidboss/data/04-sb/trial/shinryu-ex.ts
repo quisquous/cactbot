@@ -306,12 +306,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Icicle Left',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-15', capture: false }),
-      netRegexDe: NetRegexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-15', capture: false }),
-      netRegexFr: NetRegexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-15', capture: false }),
-      netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-15', capture: false }),
-      netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-15', capture: false }),
-      netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-15', capture: false }),
+      netRegex: NetRegexes.ability({ id: '25EF', source: 'Icicle' }),
+      netRegexDe: NetRegexes.ability({ id: '25EF', source: 'Eiszapfen' }),
+      netRegexFr: NetRegexes.ability({ id: '25EF', source: 'Stalactite' }),
+      netRegexJa: NetRegexes.ability({ id: '25EF', source: 'アイシクル' }),
+      netRegexCn: NetRegexes.ability({ id: '25EF', source: '冰柱' }),
+      netRegexKo: NetRegexes.ability({ id: '25EF', source: '고드름' }),
+      condition: (_data, matches) => {
+        return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -15;
+      },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -327,12 +330,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Icicle Right',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-25', capture: false }),
-      netRegexDe: NetRegexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-25', capture: false }),
-      netRegexFr: NetRegexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-25', capture: false }),
-      netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-25', capture: false }),
-      netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-25', capture: false }),
-      netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-25', capture: false }),
+      netRegex: NetRegexes.ability({ id: '25EF', source: 'Icicle' }),
+      netRegexDe: NetRegexes.ability({ id: '25EF', source: 'Eiszapfen' }),
+      netRegexFr: NetRegexes.ability({ id: '25EF', source: 'Stalactite' }),
+      netRegexJa: NetRegexes.ability({ id: '25EF', source: 'アイシクル' }),
+      netRegexCn: NetRegexes.ability({ id: '25EF', source: '冰柱' }),
+      netRegexKo: NetRegexes.ability({ id: '25EF', source: '고드름' }),
+      condition: (_data, matches) => {
+        return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -25;
+      },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
