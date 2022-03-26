@@ -27,8 +27,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P4S Elemental Belone Levinstrike Pinax': '69FC', // lightning square during Elemental Belone
     'P4S Shifting Strike': '6A06', // jump to cardinal + cleave
     'P4S Dark Design': '6A2A', // Act 2 baited puddles
-    'P4S Hemitheos\'s Fire IV': '6A0D', // Act 1, Act 2 boss tether fire explosion
-    'P4S Hemitheos\'s Fire IV Act 4': '6A16', // Act 4 player tether fire explosion
+    'P4S Hemitheos\'s Fire IV': '6A0D', // Act 1, Act 2, Act 4 boss tether fire explosion
     'P4S Hell\'s Sting 1': '6A20', // curtain call protean
     'P4S Hell\'s Sting 2': '6A21', // curtain call protean
   },
