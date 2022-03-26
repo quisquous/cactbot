@@ -7,13 +7,13 @@ using CactbotEventSource.loc;
 
 namespace Cactbot {
   public class FFXIVProcessCn : FFXIVProcess {
-    // Last updated for FFXIV 5.4
+    // Last updated for FFXIV 6.0
     //
     // Latest CN version can be found at:
     // http://ff.sdo.com/web8/index.html#/patchnote
-
     [StructLayout(LayoutKind.Explicit)]
-    public unsafe struct EntityMemory {
+    public unsafe struct EntityMemory
+    {
       public static int Size => Marshal.SizeOf(typeof(EntityMemory));
 
       // Unknown size, but this is the bytes up to the next field.
@@ -46,12 +46,13 @@ namespace Cactbot {
       [FieldOffset(0x1C4)]
       public CharacterDetails charDetails;
 
-      [FieldOffset(0x1997)]
+      [FieldOffset(0x19D9)]
       public byte shieldPercentage;
     }
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct CharacterDetails {
+    public struct CharacterDetails
+    {
 
       [FieldOffset(0x00)]
       public int hp;
@@ -74,10 +75,10 @@ namespace Cactbot {
       [FieldOffset(0x16)]
       public short max_cp;
 
-      [FieldOffset(0x1E)]
+      [FieldOffset(0x1C)]
       public EntityJob job;
 
-      [FieldOffset(0x1F)]
+      [FieldOffset(0x1D)]
       public byte level;
     }
     public FFXIVProcessCn(ILogger logger) : base(logger) { }
