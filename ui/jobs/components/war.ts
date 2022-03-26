@@ -79,7 +79,8 @@ export class WARComponent extends BaseComponent {
   }
 
   override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
-    this.eyeBox.valuescale = gcdSkill * 3 + 1;
+    this.eyeBox.valuescale = gcdSkill;
+    this.eyeBox.threshold = gcdSkill * 3 + 1;
   }
 
   override reset(): void {
