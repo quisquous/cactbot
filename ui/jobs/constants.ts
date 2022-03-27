@@ -88,7 +88,10 @@ export const kAbility = {
   Overpower: '29',
   MythrilTempest: '404E',
   Tomahawk: '2E',
+  Berserk: '26',
   InnerRelease: '1CDD',
+  Upheaval: '1CDB',
+  Orogeny: '6498',
   // DRK
   HardSlash: 'E21',
   SyphonStrike: 'E27',

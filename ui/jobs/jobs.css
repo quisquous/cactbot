@@ -585,8 +585,16 @@ div.justbuffs div#procs-container {
   background-color: rgb(255, 153, 0);
 }
 
-.war-color-eye {
-  background-color: rgb(60, 100, 210);
+.war-color-tempest {
+  background-color: rgb(255, 140, 140);
+}
+
+.war-color-upheaval {
+  background-color: rgb(130, 40, 0);
+}
+
+.war-color-innerrelease {
+  background-color: rgb(255, 0, 0);
 }
 
 /* DRK */
