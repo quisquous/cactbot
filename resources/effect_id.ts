@@ -1120,6 +1120,7 @@ const data = {
   'RemoteResonance': '67F',
   'RentMind': '35B',
   'RepellingShot': '7E1',
+  'Requiescat': '558',
   'RequisitionedMagitek': 'AB0',
   'Reraise': '933',
   'Resin': '2A2',

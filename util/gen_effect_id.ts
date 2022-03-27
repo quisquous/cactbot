@@ -52,6 +52,7 @@ const knownMapping = {
   'Vulnerability Up': '638',
   'Eukrasian Dosis III': '2616',
   'Radiant Finale': '2964',
+  'Requiescat': '1368',
 } as const;
 
 // These custom name of effect will not be checked, but you'd better make it clean.

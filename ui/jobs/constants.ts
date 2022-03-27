@@ -79,6 +79,8 @@ export const kAbility = {
   Confiteor: '404B',
   Clemency: 'DD5',
   FightOrFlight: '14',
+  SpiritsWithin: '1D',
+  Expiacion: '6493',
   BladeOfValor: '6496',
   // WAR
   HeavySwing: '1F',

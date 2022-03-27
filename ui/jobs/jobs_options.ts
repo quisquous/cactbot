@@ -88,8 +88,8 @@ const defaultJobsConfigOptions: JobsConfigOptions = {
   },
 
   FarThresholdOffence: 24,
-  PldMediumMPThreshold: 9400,
-  PldLowMPThreshold: 3600,
+  PldMediumMPThreshold: 6200,
+  PldLowMPThreshold: 4400,
   DrkMediumMPThreshold: 5999,
   DrkLowMPThreshold: 2999,
   // One more fire IV and then despair.
