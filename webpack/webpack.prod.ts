@@ -1,4 +1,5 @@
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+// import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import { ESBuildMinifyPlugin } from 'esbuild-loader';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { mergeWithRules } from 'webpack-merge';
 
@@ -11,11 +12,11 @@ const optimizationOverride = {
   optimization: {
     minimize: true,
     minimizer: [
-      // Apply option overrides to Webpack v5's native TerserPlugin
-      () => ({
-        extractComments: false,
+      new ESBuildMinifyPlugin({
+        target: 'chrome75',
+        css: true, // Apply minification to CSS assets
       }),
-      new CssMinimizerPlugin(),
+      // new CssMinimizerPlugin(),
     ],
   },
 };

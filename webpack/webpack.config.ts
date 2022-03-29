@@ -129,21 +129,10 @@ export default (
           test: /\.(m?j|t)s$/,
           exclude: /(node_modules|bower_components)/,
           use: {
-            loader: 'babel-loader',
+            loader: 'esbuild-loader',
             options: {
-              cacheDirectory: true,
-              cacheCompression: false,
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    targets: { chrome: '75' },
-                  },
-                ],
-                [
-                  '@babel/preset-typescript',
-                ],
-              ],
+              target: 'chrome75',
+              loader: 'ts',
             },
           },
           resolve: {
