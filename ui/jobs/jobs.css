@@ -315,6 +315,10 @@ div.justbuffs div#procs-container {
   margin-right: 0;
 }
 
+#pld-stacks-requiescat > div.active {
+  background-color: rgb(25, 156, 255);
+}
+
 #whm-stacks-lily > div.active {
   background-color: rgb(60, 80, 200);
 }
@@ -570,6 +574,18 @@ div.justbuffs div#procs-container {
 
 .pld-color-gore {
   background-color: rgb(255, 135, 35);
+}
+
+.pld-color-fightorflight {
+  background-color: rgb(140, 20, 50);
+}
+
+.pld-color-fightorflight.active {
+  background-color: rgb(240, 50, 20);
+}
+
+.pld-color-expiacion {
+  background-color: rgb(140, 60, 200);
 }
 
 /* WAR */
