@@ -50,7 +50,6 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5F9B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5F9B', capture: false }),
-      durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -72,7 +71,6 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5F9A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5F9A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5F9A', capture: false }),
-      durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -94,7 +92,6 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA5', capture: false }),
-      durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -116,7 +113,6 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA4', capture: false }),
-      durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -138,7 +134,6 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA3', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA3', capture: false }),
-      durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -160,7 +155,6 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダイヤウェポン', id: '5FA2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '钻石神兵', id: '5FA2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다이아몬드 웨폰', id: '5FA2', capture: false }),
-      durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
