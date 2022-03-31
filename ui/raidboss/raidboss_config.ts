@@ -1850,7 +1850,7 @@ const templateOptions: OptionsTemplate = {
       id: 'InfoRumbleWeak',
       name: {
         en: 'Magnitude (0-1) of weak rumble for info triggers',
-        fr: '',
+        fr: 'Intensité de la vibration faible pour les triggers d\'informations (0-1)',
       },
       type: 'float',
       default: 0.5,
@@ -1859,7 +1859,7 @@ const templateOptions: OptionsTemplate = {
       id: 'InfoRumbleStrong',
       name: {
         en: 'Magnitude (0-1) of strong rumble for info triggers',
-        fr: '',
+        fr: 'Intensité de la vibration forte pour les triggers d\'informations (0-1)',
       },
       type: 'float',
       default: 0,
@@ -1877,7 +1877,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlertRumbleWeak',
       name: {
         en: 'Magnitude (0-1) of weak rumble for alert triggers',
-        fr: '',
+        fr: 'Intensité de la vibration faible pour les triggers d\'alertes (0-1)',
       },
       type: 'float',
       default: 0,
@@ -1886,7 +1886,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlertRumbleStrong',
       name: {
         en: 'Magnitude (0-1) of strong rumble for alert triggers',
-        fr: '',
+        fr: 'Intensité de la vibration forte pour les triggers d\'alertes (0-1)',
       },
       type: 'float',
       default: 0.5,
@@ -1904,7 +1904,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlarmRumbleWeak',
       name: {
         en: 'Magnitude (0-1) of weak rumble for alarm triggers',
-        fr: '',
+        fr: 'Intensité de la vibration faible pour les triggers d\'alarmes (0-1)',
       },
       type: 'float',
       default: 0.75,
@@ -1913,7 +1913,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlarmRumbleStrong',
       name: {
         en: 'Magnitude (0-1) of strong rumble for alarm triggers',
-        fr: '',
+        fr: 'Intensité de la vibration forte pour les triggers d\'alarmes (0-1)',
       },
       type: 'float',
       default: 0.75,
