@@ -144,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         'Ame-No-Murakumo': '天之丛云',
-        'Assail': '攻击指示',
+        'Assail': '强击',
         'Brightstorm': '晴岚',
         'Dark Levin': '紫电',
         'Rasen Kaikyo': '螺旋海峡',
