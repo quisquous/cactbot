@@ -111,16 +111,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '6ADC', source: 'Storsie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6ADC', source: 'ストーシー', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6ADC', source: '斯图希', capture: false }),
-      alarmText: (_data, _matches, output) => output.getWayOut!(),
-      outputStrings: {
-        getWayOut: {
-          en: 'GTFO',
-          de: 'Geh raus',
-          fr: 'Partez',
-          cn: '快躲开',
-          ko: '밖으로',
-        },
-      },
+      response: Responses.getOut(),
     },
   ],
 };
