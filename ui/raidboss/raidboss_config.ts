@@ -287,7 +287,7 @@ const kTimelineTableHeaders = {
   overrideText: {
     en: 'Rename',
     fr: 'Renommer',
-    cn: '重命名',
+    cn: '修改文本',
   },
 } as const;
 
@@ -1847,7 +1847,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Duration (milliseconds) of rumble for info triggers',
         fr: 'Durée (millisecondes) de la vibration pour les triggers d\'informations',
-        cn: '信息触发器振动持续时间 (毫秒)',
+        cn: '信息 (级别的) 触发器振动持续时间 (毫秒)',
       },
       type: 'float',
       default: 400,
@@ -1857,7 +1857,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of weak rumble for info triggers',
         fr: 'Intensité de la vibration faible pour les triggers d\'informations (0-1)',
-        cn: '信息触发器轻振动强度 (0-1)',
+        cn: '信息 (级别的) 触发器弱电机振动强度 (0-1)',
       },
       type: 'float',
       default: 0.5,
@@ -1867,7 +1867,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of strong rumble for info triggers',
         fr: 'Intensité de la vibration forte pour les triggers d\'informations (0-1)',
-        cn: '信息触发器重振动强度 (0-1)',
+        cn: '信息 (级别的) 触发器强电机振动强度 (0-1)',
       },
       type: 'float',
       default: 0,
@@ -1877,7 +1877,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Duration (milliseconds) of rumble for alert triggers',
         fr: 'Durée (millisecondes) de la vibration pour les triggers d\'alertes',
-        cn: '警告触发器振动持续时间 (毫秒)',
+        cn: '警告 (级别的) 触发器振动持续时间 (毫秒)',
       },
       type: 'float',
       default: 500,
@@ -1887,7 +1887,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of weak rumble for alert triggers',
         fr: 'Intensité de la vibration faible pour les triggers d\'alertes (0-1)',
-        cn: '警告触发器轻振动强度 (0-1)',
+        cn: '警告 (级别的) 触发器弱电机振动强度 (0-1)',
       },
       type: 'float',
       default: 0,
@@ -1897,7 +1897,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of strong rumble for alert triggers',
         fr: 'Intensité de la vibration forte pour les triggers d\'alertes (0-1)',
-        cn: '警告触发器重振动强度 (0-1)',
+        cn: '警告 (级别的) 触发器强电机振动强度 (0-1)',
       },
       type: 'float',
       default: 0.5,
@@ -1907,7 +1907,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Duration (milliseconds) of rumble for alarm triggers',
         fr: 'Durée (millisecondes) de la vibration pour les triggers d\'alarmes',
-        cn: '警报触发器振动持续时间 (毫秒)',
+        cn: '警报 (级别的) 触发器振动持续时间 (毫秒)',
       },
       type: 'float',
       default: 750,
@@ -1917,7 +1917,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of weak rumble for alarm triggers',
         fr: 'Intensité de la vibration faible pour les triggers d\'alarmes (0-1)',
-        cn: '警报触发器轻振动强度 (0-1)',
+        cn: '警报 (级别的) 触发器弱电机振动强度 (0-1)',
       },
       type: 'float',
       default: 0.75,
@@ -1927,7 +1927,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of strong rumble for alarm triggers',
         fr: 'Intensité de la vibration forte pour les triggers d\'alarmes (0-1)',
-        cn: '警报触发器重振动强度 (0-1)',
+        cn: '警报 (级别的) 触发器强电机振动强度 (0-1)',
       },
       type: 'float',
       default: 0.75,
