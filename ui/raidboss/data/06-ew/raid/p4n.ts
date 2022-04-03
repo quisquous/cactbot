@@ -293,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Pop other role orbs',
           de: 'Nimm einen Orb einer anderen Rolle',
           fr: 'Éclatez l\'orbe d\'un autre rôle',
-          ja: '他のロールの玉を当たる',
+          ja: '他のロールの玉に当たる',
           cn: '撞其他职能的球',
           ko: '내 직업군과 다른 구슬 터뜨리기',
         },

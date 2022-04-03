@@ -22,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Run Marker Away',
           de: 'Mit Marker weglaufen',
           fr: 'Fuyez avec le marqueur',
-          ja: 'マークから離れ',
+          ja: 'マーカーから離れる',
           cn: '远离点名',
           ko: '징 멀리 떨어뜨리기',
         },
