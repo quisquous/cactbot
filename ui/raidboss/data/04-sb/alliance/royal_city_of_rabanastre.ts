@@ -137,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Find Hashmal; Dodge Right',
           de: 'Finde Hashmallim; Weiche nach Rechts aus',
           fr: 'Trouvez Hashmal, Esquivez à droite',
-          cn: 'ボスに向かって右に',
+          ja: 'ボスに向かって右に',
           cn: '找到BOSS; 向右躲避',
           ko: '하쉬말림 찾기, 오른쪽으로',
         },
