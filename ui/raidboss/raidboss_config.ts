@@ -276,12 +276,15 @@ const kDetailKeys = {
 const kTimelineTableHeaders = {
   shouldDisplayText: {
     en: 'Show',
+    de: 'Anzeigen',
   },
   text: {
     en: 'Timeline Text',
+    de: 'Timeline Text',
   },
   overrideText: {
     en: 'Rename',
+    de: 'Umbenennen',
   },
 } as const;
 
@@ -345,6 +348,7 @@ const kMiscTranslations = {
   // The header for the editing timeline section inside a trigger file.
   editTimeline: {
     en: 'Edit Timeline',
+    de: 'Timeline bearbeiten',
   },
 };
 
@@ -1828,6 +1832,7 @@ const templateOptions: OptionsTemplate = {
       id: 'RumbleEnabled',
       name: {
         en: 'Enable gamepad rumble for triggers',
+        de: 'Gamepad-Vibration für Trigger aktivieren',
       },
       type: 'checkbox',
       default: false,
@@ -1836,6 +1841,7 @@ const templateOptions: OptionsTemplate = {
       id: 'InfoRumbleDuration',
       name: {
         en: 'Duration (milliseconds) of rumble for info triggers',
+        de: 'Zeit (in Millisekunden) der Vibration bei info trigger',
       },
       type: 'float',
       default: 400,
@@ -1844,6 +1850,7 @@ const templateOptions: OptionsTemplate = {
       id: 'InfoRumbleWeak',
       name: {
         en: 'Magnitude (0-1) of weak rumble for info triggers',
+        de: 'Stärke (0-1) der leichten Vibration bei info trigger',
       },
       type: 'float',
       default: 0.5,
@@ -1852,6 +1859,7 @@ const templateOptions: OptionsTemplate = {
       id: 'InfoRumbleStrong',
       name: {
         en: 'Magnitude (0-1) of strong rumble for info triggers',
+        de: 'Stärke (0-1) der starken Vibration bei info trigger',
       },
       type: 'float',
       default: 0,
@@ -1860,6 +1868,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlertRumbleDuration',
       name: {
         en: 'Duration (milliseconds) of rumble for alert triggers',
+        de: 'Zeit (in Millisekunden) der Vibration bei alert trigger',
       },
       type: 'float',
       default: 500,
@@ -1868,6 +1877,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlertRumbleWeak',
       name: {
         en: 'Magnitude (0-1) of weak rumble for alert triggers',
+        de: 'Stärke (0-1) der leichten Vibration bei alert trigger',
       },
       type: 'float',
       default: 0,
@@ -1876,6 +1886,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlertRumbleStrong',
       name: {
         en: 'Magnitude (0-1) of strong rumble for alert triggers',
+        de: 'Stärke (0-1) der starken Vibration bei alert trigger',
       },
       type: 'float',
       default: 0.5,
@@ -1884,6 +1895,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlarmRumbleDuration',
       name: {
         en: 'Duration (milliseconds) of rumble for alarm triggers',
+        de: 'Zeit (in Millisekunden) der Vibration bei alarm trigger',
       },
       type: 'float',
       default: 750,
@@ -1892,6 +1904,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlarmRumbleWeak',
       name: {
         en: 'Magnitude (0-1) of weak rumble for alarm triggers',
+        de: 'Stärke (0-1) der leichten Vibration bei alarm trigger',
       },
       type: 'float',
       default: 0.75,
@@ -1900,6 +1913,7 @@ const templateOptions: OptionsTemplate = {
       id: 'AlarmRumbleStrong',
       name: {
         en: 'Magnitude (0-1) of strong rumble for alarm triggers',
+        de: 'Stärke (0-1) der starken Vibration bei alarm trigger',
       },
       type: 'float',
       default: 0.75,
