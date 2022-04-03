@@ -277,14 +277,17 @@ const kTimelineTableHeaders = {
   shouldDisplayText: {
     en: 'Show',
     fr: 'Afficher',
+    ko: '표시',
   },
   text: {
     en: 'Timeline Text',
     fr: 'Texte de la timeline',
+    ko: '타임라인 텍스트',
   },
   overrideText: {
     en: 'Rename',
     fr: 'Renommer',
+    ko: '텍스트 변경',
   },
 } as const;
 
@@ -343,12 +346,13 @@ const kMiscTranslations = {
     fr: 'Afficher la source du Trigger',
     ja: 'トリガーのコードを表示',
     cn: '显示触发器源码',
-    ko: '트리거 출처 열기',
+    ko: '트리거 소스코드 보기',
   },
   // The header for the editing timeline section inside a trigger file.
   editTimeline: {
     en: 'Edit Timeline',
     fr: 'Éditer la timeline',
+    ko: '타임라인 편집',
   },
 };
 
@@ -1833,6 +1837,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Enable gamepad rumble for triggers',
         fr: 'Activer la vibration de la manette de jeu pour les triggers',
+        ko: '트리거에 대해 게임패드 진동 활성화',
       },
       type: 'checkbox',
       default: false,
@@ -1842,6 +1847,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Duration (milliseconds) of rumble for info triggers',
         fr: 'Durée (millisecondes) de la vibration pour les triggers d\'informations',
+        ko: '안내 트리거의 진동 지속 시간 (밀리초)',
       },
       type: 'float',
       default: 400,
@@ -1851,6 +1857,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of weak rumble for info triggers',
         fr: 'Intensité de la vibration faible pour les triggers d\'informations (0-1)',
+        ko: '안내 트리거의 약한 진동 세기 (0-1)',
       },
       type: 'float',
       default: 0.5,
@@ -1860,6 +1867,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of strong rumble for info triggers',
         fr: 'Intensité de la vibration forte pour les triggers d\'informations (0-1)',
+        ko: '안내 트리거의 강한 진동 세기 (0-1)',
       },
       type: 'float',
       default: 0,
@@ -1869,6 +1877,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Duration (milliseconds) of rumble for alert triggers',
         fr: 'Durée (millisecondes) de la vibration pour les triggers d\'alertes',
+        ko: '주의 트리거의 진동 지속 시간 (밀리초)',
       },
       type: 'float',
       default: 500,
@@ -1878,6 +1887,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of weak rumble for alert triggers',
         fr: 'Intensité de la vibration faible pour les triggers d\'alertes (0-1)',
+        ko: '주의 트리거의 약한 진동 세기 (0-1)',
       },
       type: 'float',
       default: 0,
@@ -1887,6 +1897,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of strong rumble for alert triggers',
         fr: 'Intensité de la vibration forte pour les triggers d\'alertes (0-1)',
+        ko: '주의 트리거의 강한 진동 세기 (0-1)',
       },
       type: 'float',
       default: 0.5,
@@ -1896,6 +1907,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Duration (milliseconds) of rumble for alarm triggers',
         fr: 'Durée (millisecondes) de la vibration pour les triggers d\'alarmes',
+        ko: '경고 트리거의 진동 지속 시간 (밀리초)',
       },
       type: 'float',
       default: 750,
@@ -1905,6 +1917,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of weak rumble for alarm triggers',
         fr: 'Intensité de la vibration faible pour les triggers d\'alarmes (0-1)',
+        ko: '경고 트리거의 약한 진동 세기 (0-1)',
       },
       type: 'float',
       default: 0.75,
@@ -1914,6 +1927,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Magnitude (0-1) of strong rumble for alarm triggers',
         fr: 'Intensité de la vibration forte pour les triggers d\'alarmes (0-1)',
+        ko: '경고 트리거의 강한 진동 세기 (0-1)',
       },
       type: 'float',
       default: 0.75,
