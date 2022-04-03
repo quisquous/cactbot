@@ -37,6 +37,7 @@ Options.Triggers.push({
           en: 'Lady tether on YOU',
           de: 'Verbindung auf DIR',
           fr: 'Lien sur VOUS',
+          ja: '線ついた',
           cn: '连线点名',
           ko: '화염조 대상자',
         },

@@ -37,7 +37,7 @@ Options.Triggers.push({
           en: 'Avoid green nails',
           de: 'Weiche den grünen Nägeln aus',
           fr: 'Évitez les griffes',
-          ja: '緑の杭に避け',
+          ja: '緑の爪を避ける',
           cn: '躲避风牙',
           ko: '초록 발톱 피하기',
         },
