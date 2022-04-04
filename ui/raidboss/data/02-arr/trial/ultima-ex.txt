@@ -1,0 +1,78 @@
+### The Minstrel's Ballad: Ultima's Bane
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+
+# Phase 1: 100% - 85%
+3.2 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/ window 3.2,10
+15.1 "Vulcan Burst" sync / 1[56]:[^:]*:The Ultima Weapon:5EE:/
+16.6 "Mistral Song" sync / 1[56]:[^:]*:Ultima Garuda:5ED:/
+26.4 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+29.7 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+33.0 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/ window 10,10
+41.3 "Eye of the Storm" sync / 1[56]:[^:]*:The Ultima Weapon:5EF:/
+43.9 "Geocrush" sync / 1[56]:[^:]*:Ultima Titan:5F0:/
+48.4 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+51.7 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+
+55.0 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/ window 10,10 jump 3.2
+66.9 "Vulcan Burst"
+68.4 "Mistral Song"
+78.2 "Homing Lasers"
+81.5 "Ceruleum Vent"
+84.8 "Viscous Aetheroplasm"
+
+
+# Phase 2: 84.9% - 65%
+# The animation for Garuda dying precedes this,
+# but there are no log lines that show for her death.
+98.3 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F1:/ window 98.3,5
+100.0 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+103.0 "Weight of the Land" sync / 1[56]:[^:]*:The Ultima Weapon:5F2:/
+107.1 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+115.9 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/ window 30,30
+119.3 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+125.6 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+129.6 "Weight of the Land" sync / 1[56]:[^:]*:The Ultima Weapon:5F2:/
+130.7 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+134.0 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+141.3 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+148.6 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+151.6 "Weight of the Land" sync / 1[56]:[^:]*:The Ultima Weapon:5F2:/
+152.7 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+156.0 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+164.8 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/ window 30,30
+168.2 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+175.5 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+179.5 "Weight of the Land" sync / 1[56]:[^:]*:The Ultima Weapon:5F2:/
+179.6 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+182.9 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+190.3 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+195.7 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+198.6 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+201.6 "Weight of the Land" sync / 1[56]:[^:]*:The Ultima Weapon:5F2:/
+203.7 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+212.5 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/ window 30,30 jump 168.2
+215.9 "Homing Lasers"
+223.2 "Radiant Plume"
+227.2 "Weight of the Land"
+227.3 "Ceruleum Vent"
+230.6 "Viscous Aetheroplasm"
+
+
+# Phase 3: 64.9% -50%
+# As in phase 2, Titan's death animation comes first with no indicator.
+
+
+
+9989.3 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5EC:/ window 10000
+10000.0 "Ultima Enrage" sync / 1[56]:[^:]*:The Ultima Weapon:5EC:/
+
+
