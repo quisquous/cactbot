@@ -69,7 +69,129 @@ hideall "--sync--"
 
 # Phase 3: 64.9% -50%
 # As in phase 2, Titan's death animation comes first with no indicator.
+# The phase opens with what seems to be a *long* set of fixed blocks.
 
+271.3 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F4:/ window 271.3,0
+274.0 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+280.6 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+289.3 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+292.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+297.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+304.0 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+306.8 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+308.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+312.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+314.3 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+314.8 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+316.0 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+321.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+
+329.5 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+334.0 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+337.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+346.1 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+349.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+
+356.8 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+359.6 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+360.9 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+364.9 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+367.7 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+367.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+368.9 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+371.2 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+378.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+383.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+
+387.1 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+392.9 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+401.7 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+405.0 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+410.4 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+
+413.3 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+416.1 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+417.4 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+421.4 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+424.2 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+425.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+425.4 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+432.7 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+438.0 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+
+443.3 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+448.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+457.2 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+460.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+465.8 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+
+471.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+473.9 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+475.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+479.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+482.0 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+482.2 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+483.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+489.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+494.8 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+
+# An Aetheroplasm immediately following a Vent seems to indicate the start of rotations.
+498.1 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+506.8 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+510.1 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+515.4 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+518.8 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+521.7 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+524.5 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+525.8 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+529.8 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+532.6 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+533.8 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+537.8 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+543.1 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+546.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+551.7 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+562.3 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+565.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+570.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+574.2 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+579.5 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+582.3 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+583.6 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+587.6 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+590.4 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+591.6 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+594.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+599.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+603.2 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+610.1 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+619.2 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+622.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+627.8 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+631.1 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+638.4 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+643.7 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+647.0 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+654.3 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+662.9 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+666.2 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+671.5 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+674.8 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+682.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+684.9 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+686.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+690.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+693.0 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+694.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+695.2 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+700.5 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
 
 
 9989.3 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5EC:/ window 10000
