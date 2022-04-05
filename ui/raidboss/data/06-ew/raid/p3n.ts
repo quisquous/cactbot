@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6698', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6698', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6698', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6698', source: '菲尼克司', capture: false }),
       infoText: (_data, _matches, output) => output.startMiddle!(),
       outputStrings: {
         startMiddle: {
@@ -41,6 +42,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6696', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6696', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6696', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6696', source: '菲尼克司', capture: false }),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.outOfMiddle!(),
       outputStrings: {
@@ -61,6 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '66B8', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '66B8', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '66B8', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '66B8', source: '菲尼克司', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -70,6 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '66B2', source: 'Phoinix' }),
       netRegexFr: NetRegexes.startsUsing({ id: '66B2', source: 'Protophénix' }),
       netRegexJa: NetRegexes.startsUsing({ id: '66B2', source: 'フェネクス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '66B2', source: '菲尼克司' }),
       suppressSeconds: 1,
       response: Responses.tankCleave('alert'),
     },
@@ -99,6 +103,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '66B4', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '66B4', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '66B4', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '66B4', source: '菲尼克司', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -108,6 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '66B5', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '66B5', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '66B5', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '66B5', source: '菲尼克司', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -118,6 +124,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '66AD', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '66AD', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '66AD', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '66AD', source: '菲尼克司', capture: false }),
       alertText: (_data, _matches, output) => {
         return output.avoidCharge!();
       },
@@ -139,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.addedCombatant({ name: 'Spross Des Phoinix', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Oiselet Étincelant', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: '陽炎鳥', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '阳炎鸟', capture: false }),
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
@@ -151,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Zieh die Kreise der Adds auseinander',
           fr: 'Attaquez les adds séparément',
           ja: '雑魚を離れさせる',
-          cn: '把小怪拉开',
+          cn: '拉开小怪',
           ko: '원 끼리 겹치지 않게 하기',
         },
         text: Outputs.killAdds,
@@ -164,6 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '66A9', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '66A9', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '66A9', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '66A9', source: '菲尼克司', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -173,6 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '66AB', source: 'Saat Des Phoinix' }),
       netRegexFr: NetRegexes.startsUsing({ id: '66AB', source: 'Oiselet De Feu' }),
       netRegexJa: NetRegexes.startsUsing({ id: '66AB', source: '火霊鳥' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '66AB', source: '火灵鸟' }),
       alertText: (data, matches, output) => {
         if (!data.ashenEyeDirections)
           data.ashenEyeDirections = [];
@@ -239,6 +249,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '669E', source: 'Phoinix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '669E', source: 'Protophénix', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '669E', source: 'フェネクス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '669E', source: '菲尼克司', capture: false }),
       alertText: (_data, _matches, output) => {
         return output.text!();
       },
@@ -357,6 +368,37 @@ const triggerSet: TriggerSet<Data> = {
         'Scorched Exaltation': '灰燼の炎',
         'Searing Breeze': '熱噴射',
         'Trail of Condemnation': '獄炎の焔',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Phoinix': '菲尼克司',
+        'Sparkfledged': '火灵鸟',
+        'Sunbird': '阳炎鸟',
+      },
+      'replaceText': {
+        '--fire expands--': '--火焰扩大--',
+        '--giant fireplume\\?--': '--巨大火柱?--',
+        'Ashen Eye': '暗之瞳',
+        'Blazing Rain': '炎之雨',
+        'Brightened Fire': '光之炎',
+        '(?<!\\w )Charplume': '暗之劫火焚天',
+        'Darkened Fire': '暗之炎',
+        'Dead Rebirth': '黑暗不死鸟',
+        'Devouring Brand': '十字地火',
+        'Experimental Charplume': '魔力炼成：暗之劫火焚天',
+        'Experimental Fireplume': '魔力炼成：劫火焚天',
+        'Flames of Undeath': '返魂之炎',
+        'Flare of Condemnation': '狱炎火击',
+        'Fledgling Flight': '群鸟飞翔',
+        'Heat of Condemnation': '狱炎炎击',
+        'Joint Pyre': '共燃',
+        'Left Cinderwing': '左翼焚烧',
+        'Right Cinderwing': '右翼焚烧',
+        'Scorched Exaltation': '灰烬火焰',
+        'Searing Breeze': '热喷射',
+        'Trail of Condemnation': '狱炎之焰',
       },
     },
   ],
