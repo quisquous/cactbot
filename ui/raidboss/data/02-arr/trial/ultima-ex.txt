@@ -1,4 +1,5 @@
 ### The Minstrel's Ballad: Ultima's Bane
+# -ii 5E8 5E9 5F6 60A
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -227,7 +228,58 @@ hideall "--sync--"
 927.4 "Homing Lasers?"
 
 
+# Phase 4 -- 49.9% - 0%
+# Phase 4 seems to have a single rotation block.
+# Aetheric Boom and Freefire events happen at HP thresholds,
+# but they do not appear to change ability usage,
+# they just delay whatever ability was queued up next.
+# Because of this, we add many more sync windows than we normally would.
 
+# The opening block is short.
+1000.0 "Aetheric Boom" sync / 1[56]:[^:]*:The Ultima Weapon:5E7:/ window 1000,5
+1011.3 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1015.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+1019.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+1023.1 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1034.1 "Magitek Ray 1" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1037.1 "Magitek Ray 2" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1040.1 "Magitek Ray 3" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+
+1042.7 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5EA:/ window 45,45
+1045.9 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+1049.2 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1052.5 "Diffractive Laser" sync / 1[56]:[^:]*:The Ultima Weapon:5E2:/ window 20,20
+1054.8 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/ window 20,20
+1059.1 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+1062.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1070.5 "Magitek Ray 1" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/ window 15,1
+1073.5 "Magitek Ray 2" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1076.5 "Magitek Ray 3" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1080.8 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1084.1 "Diffractive Laser" sync / 1[56]:[^:]*:The Ultima Weapon:5E2:/ window 10,20
+1086.4 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/ window 10,20
+1090.7 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+1094.0 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1105.1 "Magitek Ray 1" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/ window 15,1
+1108.1 "Magitek Ray 2" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1111.0 "Magitek Ray 3" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+
+1113.6 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5EA:/ window 45,45 jump 1042.7
+1116.8 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/
+1120.2 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1123.5 "Diffractive Laser" sync / 1[56]:[^:]*:The Ultima Weapon:5E2:/
+1125.8 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+1130.1 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+1133.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+1141.5 "Magitek Ray 1" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1144.5 "Magitek Ray 2" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1147.5 "Magitek Ray 3" sync / 1[56]:[^:]*:The Ultima Weapon:(5E3|5E4|5E5):/
+1151.8 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+
+
+
+# Enrage appears to be at 10:30.
+# Ultima Weapon teleports to the center and casts Ultima.
 9989.3 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5EC:/ window 10000
 10000.0 "Ultima Enrage" sync / 1[56]:[^:]*:The Ultima Weapon:5EC:/
 
