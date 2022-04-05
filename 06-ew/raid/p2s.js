@@ -32,6 +32,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6833', source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6833', source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6833', source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6833', source: '鱼尾海马怪', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -41,6 +42,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6832', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6832', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6832', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6832', source: '鱼尾海马怪' }),
       response: Responses.sharedTankBuster(),
     },
     {
@@ -50,6 +52,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6810', source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6810', source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6810', source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6810', source: '鱼尾海马怪', capture: false }),
       response: Responses.bigAoe(),
     },
     {
@@ -59,6 +62,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: ['6817', '6811', '6812', '6813'], source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['6817', '6811', '6812', '6813'], source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6817', '6811', '6812', '6813'], source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['6817', '6811', '6812', '6813'], source: '鱼尾海马怪', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions(),
       outputStrings: {
@@ -79,6 +83,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: ['6814', '6815', '6818', '6816'], source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['6814', '6815', '6818', '6816'], source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6814', '6815', '6818', '6816'], source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['6814', '6815', '6818', '6816'], source: '鱼尾海马怪', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions(),
       outputStrings: {
@@ -99,6 +104,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '682B', source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '682B', source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '682B', source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '682B', source: '鱼尾海马怪', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.groups(),
       outputStrings: {
@@ -132,6 +138,7 @@ Options.Triggers.push({
             de: 'Marker: ${player1}, ${player2}',
             fr: 'Marques sur : ${player1}, ${player2}',
             ja: 'マーカー: ${player1}, ${player2}',
+            cn: '标记: ${player1}, ${player2}',
             ko: '징: ${player1}, ${player2}',
           },
           avariceOnYou: {
@@ -139,6 +146,7 @@ Options.Triggers.push({
             de: 'Marker auf DIR',
             fr: 'Marque sur VOUS',
             ja: 'マーカーついた',
+            cn: '标记点名',
             ko: '내가 징 대상자',
           },
           unknown: Outputs.unknown,
@@ -220,6 +228,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '682E', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '682E', source: '鱼尾海马怪' }),
       alertText: (_data, matches, output) => {
         const xCoord = parseFloat(matches.x);
         if (xCoord > 100)
@@ -240,6 +249,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6838', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6838', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6838', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6838', source: '鱼尾海马怪' }),
       condition: (data, matches) => matches.target === data.me,
       response: Responses.spread(),
     },
@@ -251,6 +261,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.tether({ id: '0054', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.tether({ id: '0054', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.tether({ id: '0054', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.tether({ id: '0054', source: '鱼尾海马怪' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       run: (data, matches) => data.flareTarget = matches.target,
@@ -272,6 +283,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '681B', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '681B', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '681B', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '681B', source: '鱼尾海马怪' }),
       condition: (data) => data.flareTarget !== data.me,
       // 12 second cast, delay for tether to settle
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
@@ -307,6 +319,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '682F', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '682F', source: '鱼尾海马怪' }),
       // 7.7 cast time, delay for proper arm's length
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),

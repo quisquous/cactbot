@@ -9,6 +9,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '680F', source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '680F', source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '680F', source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '680F', source: '鱼尾海马怪', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -18,6 +19,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '680E', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '680E', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '680E', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '680E', source: '鱼尾海马怪' }),
       response: Responses.sharedTankBuster(),
     },
     {
@@ -27,6 +29,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: '鱼尾海马怪' }),
       delaySeconds: 1,
       promise: async (data) => {
         const callData = await callOverlayHandler({
@@ -99,7 +102,7 @@ Options.Triggers.push({
           de: 'nördliche Ecken',
           fr: 'Au coin nord',
           ja: '北の角へ',
-          cn: '去北边的角',
+          cn: '去北边角落',
           ko: '북쪽 모서리',
         },
         ec: {
@@ -107,7 +110,7 @@ Options.Triggers.push({
           de: 'östliche Ecken',
           fr: 'Au coin est',
           ja: '東の角へ',
-          cn: '去东边的角',
+          cn: '去东边角落',
           ko: '동쪽 모서리',
         },
         sc: {
@@ -115,7 +118,7 @@ Options.Triggers.push({
           de: 'südliche Ecken',
           fr: 'Au coin sud',
           ja: '南の角へ',
-          cn: '去南边的角',
+          cn: '去南边角落',
           ko: '남쪽 모서리',
         },
         wc: {
@@ -123,7 +126,7 @@ Options.Triggers.push({
           de: 'westliche Ecken',
           fr: 'Au coin ouest',
           ja: '西の角へ',
-          cn: '去西边的角',
+          cn: '去西边角落',
           ko: '서쪽 모서리',
         },
       },
@@ -135,6 +138,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '67F6', source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '67F6', source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67F6', source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '67F6', source: '鱼尾海马怪', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -145,6 +149,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6809', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6809', source: '鱼尾海马怪' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -155,6 +160,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '680A', source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '680A', source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '680A', source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '680A', source: '鱼尾海马怪', capture: false }),
       delaySeconds: 3,
       response: Responses.doritoStack(),
     },
@@ -203,6 +209,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6807', source: 'Hippokampos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6807', source: 'Hippokampos', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6807', source: 'ヒッポカムポス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6807', source: '鱼尾海马怪', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -213,6 +220,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6806', source: 'ヒッポカムポス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6806', source: '鱼尾海马怪' }),
       alertText: (_data, matches, output) => {
         const xCoord = parseFloat(matches.x);
         if (xCoord > 100)
@@ -285,6 +293,27 @@ Options.Triggers.push({
         'Shockwave': 'ショックウェーブ',
         'Spoken Cataract': 'ブレス＆カタラクティス',
         'Tainted Flood': 'テインテッドフラッド',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Hippokampos': '鱼尾海马怪',
+      },
+      'replaceText': {
+        '\\(knockback\\)': '(击退)',
+        'Coherence Flare': '连贯攻击 (扩张)',
+        'Coherence Line': '连贯攻击 (直线)',
+        'Dissociation(?! Dive)': '分离',
+        'Dissociation Dive': '分离 (俯冲)',
+        'Doubled Impact': '双重冲击',
+        'Murky Depths': '深度污浊',
+        'Predatory Sight': '活饵的刻印',
+        'Sewage Deluge': '污水泛滥',
+        'Sewage Eruption': '污水喷发',
+        'Shockwave': '震荡波',
+        'Spoken Cataract': '吐息飞瀑',
+        'Tainted Flood': '污染洪水',
       },
     },
   ],
