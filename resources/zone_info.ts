@@ -34,6 +34,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 边境之狱1',
       'de': 'Asphodelos - Erster Kreis',
       'en': 'Asphodelos: The First Circle',
       'fr': 'Les Limbes du Pandæmonium - Parvis',
@@ -62,6 +63,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 边境之狱2',
       'de': 'Asphodelos - Zweiter Kreis',
       'en': 'Asphodelos: The Second Circle',
       'fr': 'Les Limbes du Pandæmonium - Cloaque',
@@ -90,6 +92,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 边境之狱3',
       'de': 'Asphodelos - Dritter Kreis',
       'en': 'Asphodelos: The Third Circle',
       'fr': 'Les Limbes du Pandæmonium - Fournaise',
@@ -118,6 +121,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 边境之狱4',
       'de': 'Asphodelos - Vierter Kreis',
       'en': 'Asphodelos: The Fourth Circle',
       'fr': 'Les Limbes du Pandæmonium - Abîme',
