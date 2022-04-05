@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       // At 5 stacks of Aetheroplasm, the target begins taking massive damage.
       id: 'Ultima EX Viscous Aetheroplasm',
-      netRegex: NetRegexes.gainsEffect({ effectId: '171', count: '4' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '171', count: '04' }),
       response: Responses.tankBusterSwap(),
     },
   ],
