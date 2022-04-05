@@ -17,6 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A50', source: 'Hesperos' }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A50', source: 'Hespéros' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A50', source: 'ヘスペロス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A50', source: '赫斯珀洛斯' }),
       response: Responses.tankCleave('alert'),
     },
     // Strong proximity Aoe
@@ -27,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A3F', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A3F', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A3F', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A3F', source: '赫斯珀洛斯', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -46,6 +48,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A3E', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A3E', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A3E', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A3E', source: '赫斯珀洛斯', capture: false }),
       delaySeconds: 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -66,6 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A3C', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A3C', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A3C', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A3C', source: '赫斯珀洛斯', capture: false }),
       response: Responses.spread(),
     },
     {
@@ -75,6 +79,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A3D', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A3D', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A3D', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A3D', source: '赫斯珀洛斯', capture: false }),
       response: Responses.stackMarker(),
     },
     {
@@ -84,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A51', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A51', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A51', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A51', source: '赫斯珀洛斯', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -93,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A40', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A40', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A40', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A40', source: '赫斯珀洛斯', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -102,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A4F', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A4F', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A4F', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A4F', source: '赫斯珀洛斯', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -111,6 +119,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69DD', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69DD', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69DD', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '69DD', source: '赫斯珀洛斯', capture: false }),
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -131,6 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A4A', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A4A', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A4A', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A4A', source: '赫斯珀洛斯', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -138,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geh zur nördlichen Kante',
           fr: 'Allez au bord nord',
           ja: '北側へ',
-          cn: '去上 /北边',
+          cn: '去上 / 北边',
           ko: '북쪽 구석으로',
         },
       },
@@ -150,6 +160,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A4C', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A4C', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A4C', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A4C', source: '赫斯珀洛斯', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -157,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geh zur östlichen Kante',
           fr: 'Allez au bord est',
           ja: '東側へ',
-          cn: '去右 /东边',
+          cn: '去右 / 东边',
           ko: '동쪽 구석으로',
         },
       },
@@ -169,6 +180,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A4B', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A4B', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A4B', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A4B', source: '赫斯珀洛斯', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -176,7 +188,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geh zur südlichen Kante',
           fr: 'Allez au bord sud',
           ja: '南側へ',
-          cn: '去下 /南边',
+          cn: '去下 / 南边',
           ko: '남쪽 구석으로',
         },
       },
@@ -188,6 +200,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6A4D', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6A4D', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A4D', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A4D', source: '赫斯珀洛斯', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -195,7 +208,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geh zur westlichen Kante',
           fr: 'Allez au bord ouest',
           ja: '西側へ',
-          cn: '去左 /西边',
+          cn: '去左 / 西边',
           ko: '서쪽 구석으로',
         },
       },
@@ -207,6 +220,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6DAE', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6DAE', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DAE', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6DAE', source: '赫斯珀洛斯', capture: false }),
       delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -227,6 +241,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6DB0', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6DB0', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DB0', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6DB0', source: '赫斯珀洛斯', capture: false }),
       delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -247,6 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6DAF', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6DAF', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DAF', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6DAF', source: '赫斯珀洛斯', capture: false }),
       delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -267,6 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '6DB1', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6DB1', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DB1', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6DB1', source: '赫斯珀洛斯', capture: false }),
       delaySeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -287,6 +304,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '69D9', source: 'Hespéros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69D9', source: 'ヘスペロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '69D9', source: '赫斯珀洛斯', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -381,6 +399,31 @@ const triggerSet: TriggerSet<Data> = {
         'Shifting Strike': 'シフティングストライク',
         'Well Pinax': 'ピナクススプラッシュ',
         'Westerly Shift': 'シフティングストライクW',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Hesperos': '赫斯珀洛斯',
+      },
+      'replaceText': {
+        '\\(cleave\\)': '(顺劈)',
+        '\\(knockback\\)': '(击退)',
+        'Acid Pinax': '剧毒板画',
+        'Belone Bursts': '附魔佩罗涅·爆炸',
+        'Belone Coils': '附魔佩罗涅·场地',
+        'Bloodrake': '聚血',
+        'Burst(?!s)': '大爆炸',
+        'Decollation': '断头',
+        'Directional Shift': '换位强袭·方位',
+        'Elegant Evisceration': '优雅除脏',
+        'Hell Skewer': '地狱穿刺',
+        'Levinstrike Pinax': '雷电板画',
+        '(?<!\\w )Pinax': '板画',
+        'Setting the Scene': '布置剧场',
+        'Shifting Strike': '换位强袭',
+        'Well Pinax': '喷水板画',
+        'Westerly Shift': '换位强袭·西',
       },
     },
   ],
