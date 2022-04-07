@@ -130,7 +130,6 @@ export default class PopupTextAnalysis extends StubbedPopupText {
           suppressed: false,
           executed: false,
         });
-        this.triggerResolvers.push(resolver);
 
         this.OnTrigger(trigger, r, logObj.timestamp);
 
@@ -140,9 +139,12 @@ export default class PopupTextAnalysis extends StubbedPopupText {
           if (this.callback)
             this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
         });
-      }
 
-      await this.checkResolved(logObj);
+        const isResolved = await resolver.isResolved(logObj);
+
+        if (!isResolved)
+          this.triggerResolvers.push(resolver);
+      }
 
       for (const trigger of this.netTriggers) {
         const r = trigger.localNetRegex?.exec(logObj.networkLine);
@@ -152,7 +154,6 @@ export default class PopupTextAnalysis extends StubbedPopupText {
             suppressed: false,
             executed: false,
           });
-          this.triggerResolvers.push(resolver);
 
           const matches = r.groups ?? {};
 
@@ -165,6 +166,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
             if (this.callback)
               this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
           });
+
+          const isResolved = await resolver.isResolved(logObj);
+
+          if (!isResolved)
+            this.triggerResolvers.push(resolver);
         }
       }
 
