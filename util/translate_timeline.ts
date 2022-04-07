@@ -4,7 +4,7 @@ import path from 'path';
 import { Lang } from '../resources/languages';
 import { LooseTriggerSet } from '../types/trigger';
 import Options from '../ui/raidboss/raidboss_options';
-import { Event, Sync, TimelineParser } from '../ui/raidboss/timeline_parser';
+import { TimelineParser } from '../ui/raidboss/timeline_parser';
 
 import { walkDirSync } from './file_utils';
 import { findMissing } from './find_missing_timeline_translations';
@@ -59,33 +59,8 @@ export default async (timelinePath: string, locale: Lang): Promise<void> => {
   // Use Timeline to figure out what the replacements will look like in game.
   const options = { ...Options, ParserLanguage: locale, TimelineLanguage: locale };
   const timeline = new TimelineParser(timelineText, replacements, [], [], options);
-  const lineToText: { [lineNumber: number]: Event } = {};
-  const lineToSync: { [lineNumber: number]: Sync } = {};
-  for (const event of timeline.events) {
-    if (!event.lineNumber)
-      continue;
-    lineToText[event.lineNumber] = event;
-  }
-  for (const event of timeline.syncStarts)
-    lineToSync[event.lineNumber] = event;
 
-  // Combine replaced lines with errors.
-  const timelineLines = timelineText.split(/\n/);
-  timelineLines.forEach((timelineLine, idx) => {
-    const lineNumber = idx + 1;
-    let line = timelineLine.trim();
-
-    const lineText = lineToText[lineNumber];
-    if (lineText)
-      line = line.replace(` "${lineText.name}"`, ` "${lineText.text}"`);
-    const lineSync = lineToSync[lineNumber];
-    if (lineSync)
-      line = line.replace(`sync /${lineSync.origRegexStr}/`, `sync /${lineSync.regex.source}/`);
-
-    if (syncErrors[lineNumber])
-      line += ' #MISSINGSYNC';
-    if (textErrors[lineNumber])
-      line += ' #MISSINGTEXT';
+  const translated = TimelineParser.Translate(timeline, timelineText, syncErrors, textErrors);
+  for (const line of translated)
     console.log(line);
-  });
 };
