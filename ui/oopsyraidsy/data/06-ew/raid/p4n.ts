@@ -39,6 +39,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'Tank Tower',
             de: 'Tank-Turm',
             fr: 'Tour Tank',
+            cn: '坦克塔',
             ko: '탱커 장판',
           },
         };
@@ -58,6 +59,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'Healer Tower',
             de: 'Heiler-Turm',
             fr: 'Tour Healer',
+            cn: '治疗塔',
             ko: '힐러 장판',
           },
         };
@@ -77,6 +79,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'DPS Tower',
             de: 'DD-Turm',
             fr: 'Tour DPS',
+            cn: 'DPS塔',
             ko: '딜러 장판',
           },
         };
@@ -96,6 +99,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'Tank Orb',
             de: 'Tank-Orb',
             fr: 'Orbe Tank',
+            cn: '坦克球',
             ko: '탱커 구슬',
           },
         };
@@ -115,6 +119,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'Healer Orb',
             de: 'Heiler-Orb',
             fr: 'Orbe Healer',
+            cn: '治疗球',
             ko: '힐러 구슬',
           },
         };
@@ -134,6 +139,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             en: 'DPS Orb',
             de: 'DD-Orb',
             fr: 'Orbe DPS',
+            cn: 'DPS球',
             ko: '딜러 구슬',
           },
         };
