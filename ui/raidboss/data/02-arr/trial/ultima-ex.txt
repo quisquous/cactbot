@@ -206,7 +206,7 @@ hideall "--sync--"
 
 825.1 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F1:/ window 15,15 jump 697.3 # Radiant  Plume
 827.8 "Radiant Plume?"
-829.8 "Homing Lasers?" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/window 10,10 jump 900
+829.8 "Homing Lasers?" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/ window 10,10 jump 900
 830.6 "Crimson Cyclone?"
 831.9 "Radiant Plume?"
 835.1 "Ceruleum Vent?"
