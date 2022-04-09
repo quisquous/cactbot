@@ -35,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ultima EX Vulcan Burst',
       regex: /Vulcan Burst/,
-      beforeSeconds: 4,
+      beforeSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
