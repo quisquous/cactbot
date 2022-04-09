@@ -43,6 +43,8 @@
 02-arr/trial/titan-hm.txt
 02-arr/trial/titan-nm.ts
 02-arr/trial/titan-nm.txt
+02-arr/trial/ultima-ex.ts
+02-arr/trial/ultima-ex.txt
 03-hw/alliance/dun_scaith.ts
 03-hw/alliance/dun_scaith.txt
 03-hw/alliance/weeping_city.ts
