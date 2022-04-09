@@ -17,6 +17,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Off-tank cleave',
+          fr: 'Off-tank cleave',
         },
       },
     },
@@ -28,6 +29,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Melee knockback',
+          fr: 'Poussée',
         },
       },
     },
@@ -75,9 +77,11 @@ Options.Triggers.push({
       outputStrings: {
         target: {
           en: 'Homing Aetheroplasm on YOU',
+          fr: 'Laser + Éthéroplasma sur VOUS',
         },
         avoid: {
           en: 'Avoid Homing Aetheroplasm',
+          fr: 'Évitez le laser + l\'Éthéroplasma',
         },
       },
     },
@@ -99,12 +103,15 @@ Options.Triggers.push({
       outputStrings: {
         boom1: {
           en: 'Orbs: Cardinals',
+          fr: 'Orbes : Cardinaux',
         },
         boom2: {
           en: 'Orbs: Cardinals (N/S first)',
+          fr: 'Orbes : Cardinaux (N/S en premier)',
         },
         boom3: {
           en: 'Orbs: Intercardinals',
+          fr: 'Orbes : Intercardinaux',
         },
       },
     },
