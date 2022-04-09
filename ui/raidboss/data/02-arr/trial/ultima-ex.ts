@@ -1,4 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes';
+import outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -15,7 +16,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       plasmTargets: [],
-      boomCounter: 0,
+      boomCounter: 1,
     };
   },
   timelineTriggers: [
@@ -58,9 +59,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        text: {
-          en: 'Tank Swap Now--4 Stacks',
-        },
+        text: outputs.tankSwap,
       },
     },
     {
@@ -107,16 +106,17 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ultima EX Aetheric Boom',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5E7', source: 'The Ultima Weapon', capture: false }),
-      alarmText: (data, _matches, output) => output[data.boomCounter]!(),
+      alarmText: (data, _matches, output) => output[`boom${data.boomCounter}`]!(),
+      run: (data) => data.boomCounter += 1,
       outputStrings: {
-        0: {
-          en: 'Boom Orbs: 1x at cardinals',
+        boom1: {
+          en: 'Orbs: Cardinals',
         },
-        1: {
-          en: 'Boom Orbs: 1x N/S, 2x E/W',
+        boom2: {
+          en: 'Orbs: Cardinals (N/S first)',
         },
-        2: {
-          en: 'Boom Orbs: 2x at intercardinals',
+        boom3: {
+          en: 'Orbs: Intercardinals',
         },
       },
     },
