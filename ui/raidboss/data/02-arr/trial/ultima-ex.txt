@@ -79,7 +79,7 @@ hideall "--sync--"
 315.3 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/ window 15,15
 318.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
 323.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
-327.2 "Viscous Aetheroplasm?"# sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+327.2 "Viscous Aetheroplasm?" #sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
 332.4 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F1:/window 10,2.5
 335.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
 337.9 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
