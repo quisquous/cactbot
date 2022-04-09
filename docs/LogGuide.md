@@ -1452,7 +1452,7 @@ Unused.
 
 ### Line 33 (0x21): Network6D (Actor Control)
 
-See also: [nari director update documentation](https://xivlogs.github.io/nari/types/event/directorupdate.html)
+See also: [nari director update documentation](https://xivlogs.github.io/nari/types/director.html)
 
 To control aspects of the user interface, the game sends packets called Actor Controls.
 These are broken into 3 types: ActorControl, ActorControlSelf, and ActorControlTarget.
