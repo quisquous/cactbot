@@ -421,6 +421,14 @@ Options.PlayerNicks = {
 };
 ```
 
+You can override text-to-speech callouts globally via
+
+```javascript
+Options.TransformTts = (text) => {
+  return text.replace('a', 'b');
+};
+```
+
 **Warning**: files inside of your user directory will silently overwrite settings
 that were set from the cactbot configuration UI.
 This can be confusing,
