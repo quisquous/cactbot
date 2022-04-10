@@ -71,6 +71,7 @@ hideall "--sync--"
 # Phase 3: 64.9% -50%
 # As in phase 2, Titan's death animation comes first with no indicator.
 # The phase opens with what seems to be a *long* set of fixed blocks.
+# A Viscous Aetheroplasm may or may not be skipped.
 
 297.3 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F4:/ window 297.3,0
 300.0 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
@@ -78,31 +79,33 @@ hideall "--sync--"
 315.3 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/ window 15,15
 318.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
 323.9 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
-330.0 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
-332.8 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
-334.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
-338.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
-340.3 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/ window 15,15
-340.8 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
-342.0 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
-347.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+327.2 "Viscous Aetheroplasm?" #sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+332.4 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F1:/ window 10,2.5
+335.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+337.9 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+339.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+343.2 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+345.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/ window 15,15
+345.9 "Crimson Cyclone" sync / 1[56]:[^:]*:Ultima Ifrit:5F5:/
+347.1 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:5F1:/
+352.7 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
 
-355.5 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
-360.0 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
-363.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
-372.1 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/ window 15,15
-375.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
+360.6 "Eruption x5" duration 8 #sync / 1[56]:[^:]*:The Ultima Weapon:5F4:/
+365.1 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/
+368.5 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:5DF:/
+377.2 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:5EA:/ window 15,15
+380.6 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:5E1:/
 
 # A possible extra block is here, but it doesn't seem to change the rotation.
 # Ceruleum Vent jumps to a small sidetrack before continuing.
-380.1 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F1:/ window 15,15 jump 547.3 # Radiant Plume
-380.8 "Ceruleum Vent?" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/ window 15,15 jump 450
-382.8 "Radiant Plume?"
-384.1 "Viscous Aetheroplasm?"
-385.6 "Crimson Cyclone?"
-386.9 "Radiant Plume?"
-390.9 "Radiant Plume?"
-391.4 "Homing Lasers?"
+385.2 "--sync--" sync / 14:[^:]*:The Ultima Weapon:5F1:/ window 15,15 jump 547.3 # Radiant Plume
+385.9 "Ceruleum Vent?" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/ window 15,15 jump 450
+387.9 "Radiant Plume?"
+389.2 "Viscous Aetheroplasm?"
+390.7 "Crimson Cyclone?"
+392.0 "Radiant Plume?"
+396.0 "Radiant Plume?"
+396.5 "Homing Lasers?"
 
 # Vent sidetrack into normal early Eruption block
 450.0 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:5E0:/

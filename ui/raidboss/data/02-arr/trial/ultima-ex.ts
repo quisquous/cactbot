@@ -21,17 +21,21 @@ const triggerSet: TriggerSet<Data> = {
   },
   timelineTriggers: [
     {
-      // Early Callout for Tank Cleave
       id: 'Ultima EX Homing Lasers',
       regex: /Homing Lasers/,
       beforeSeconds: 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Off-tank cleave',
-          fr: 'Off-tank cleave',
+          en: 'Spread--Homing Lasers',
         },
       },
+    },
+    {
+      id: 'Ultima EX Diffractive Laser',
+      regex: /Diffractive Laser/,
+      beforeSeconds: 4,
+      response: Responses.tankCleave(),
     },
     {
       id: 'Ultima EX Vulcan Burst',
@@ -101,13 +105,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ultima EX Homing Aetheroplasm Cleanup',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '672', capture: false }),
+      delaySeconds: 5,
       suppressSeconds: 5,
       run: (data) => delete data.plasmTargets,
     },
     {
       // We use a StartsUsing line here because we can't use timeline triggers for this,
       // and we want to warn players as early as possible.
-      id: 'Ultima EX Aetheric Boom',
+      id: 'Ultima EX Aetheric Boom Orbs',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5E7', source: 'The Ultima Weapon', capture: false }),
       alarmText: (data, _matches, output) => output[`boom${data.boomCounter}`]!(),
@@ -126,6 +131,12 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Orbes : Intercardinaux',
         },
       },
+    },
+    {
+      id: 'Ultima EX Aetheric Boom Knockback',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '5E7', source: 'The Ultima Weapon', capture: false }),
+      response: Responses.knockback(),
     },
   ],
 };
