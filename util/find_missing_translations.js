@@ -37,6 +37,9 @@ const findAllJavascriptFiles = (filter) => {
       return;
     if (!filepath.endsWith('.js') && !filepath.endsWith('.ts'))
       return;
+    // Skip definition files, e.g. `en: T` in trigger.d.ts.
+    if (filepath.endsWith('.d.ts'))
+      return;
     if (filter !== undefined && !filepath.includes(filter))
       return;
     // normalize file path, handles windows vs linux separators
