@@ -137,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5E7', source: 'The Ultima Weapon', capture: false }),
       response: Responses.knockback(),
-    }
+    },
   ],
 };
 
