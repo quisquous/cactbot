@@ -17,6 +17,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'UltimaEx Magitek Ray 1': '5E3', // trident laser
     'UltimaEx Magitek Ray 2': '5E4', // trident laser
     'UltimaEx Magitek Ray 3': '5E5', // trident laser
+    'UltimaEx Homing Aetheroplasm': '5E6', // chasing Aetheroplasm explosion
     'UltimaEx Magitek Bit Assault Cannon': '5F6', // line aoe from bits
   },
   damageFail: {
