@@ -7,6 +7,7 @@
 02-arr/trial/titan-ex.ts
 02-arr/trial/titan-hm.ts
 02-arr/trial/titan-nm.ts
+02-arr/trial/ultima-ex.ts
 03-hw/alliance/weeping_city.ts
 03-hw/dungeon/aetherochemical_research_facility.ts
 03-hw/dungeon/baelsars_wall.ts
