@@ -6,6 +6,9 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: The second middle/sides laser after Astral Eclipse should be
+// called only after the first goes off.
+
 export interface Data extends RaidbossData {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
@@ -18,20 +21,6 @@ const sigil = {
   redBox: '67E5',
   blueCone: '67E6',
 } as const;
-
-const directionOutputStrings = {
-  northeast: Outputs.dirNE,
-  north: Outputs.north,
-  northwest: Outputs.dirNW,
-  west: Outputs.west,
-  southeast: Outputs.dirSE,
-  south: Outputs.south,
-  southwest: Outputs.dirSW,
-  east: Outputs.east,
-  combo: {
-    en: '${first} / ${second}',
-  },
-};
 
 const fetchCombatantsById = async (id: string[]) => {
   const decIds = [];
@@ -179,7 +168,12 @@ const triggerSet: TriggerSet<Data> = {
           return output.south!();
         return output.north!();
       },
-      outputStrings: directionOutputStrings,
+      outputStrings: {
+        north: Outputs.north,
+        west: Outputs.west,
+        south: Outputs.south,
+        east: Outputs.east,
+      },
     },
     {
       id: 'ZodiarkEx Roiling Darkness Spawn',
@@ -203,7 +197,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ZodiarkEx Arcane Sigil Start Cleanup',
+      id: 'ZodiarkEx Arcane Sigil',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil', capture: false }),
       delaySeconds: 0.2,
@@ -245,8 +239,14 @@ const triggerSet: TriggerSet<Data> = {
         frontmiddle: {
           en: 'front middle',
         },
-        sides: Outputs.sides,
-        middle: Outputs.middle,
+        sides: {
+          // Specify "for laser" to disambiguate with the astral eclipse going on at the same time.
+          // Similarly, there's a algodon knockback call too.
+          en: 'sides (for laser)',
+        },
+        middle: {
+          en: 'middle (for laser)',
+        },
       },
     },
     {
@@ -254,7 +254,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
-      alertText: (data, matches, output) => {
+      alertText: (_data, matches, output) => {
         if (matches.id === '67EC') {
           // NE/SW
           return output.combo!({ first: output.northeast!(), second: output.southwest!() });
@@ -264,7 +264,15 @@ const triggerSet: TriggerSet<Data> = {
           return output.combo!({ first: output.northwest!(), second: output.southeast!() });
         }
       },
-      outputStrings: directionOutputStrings,
+      outputStrings: {
+        northeast: Outputs.dirNE,
+        northwest: Outputs.dirNW,
+        southeast: Outputs.dirSE,
+        southwest: Outputs.dirSW,
+        combo: {
+          en: 'Go ${first} / ${second} (knockback)',
+        },
+      },
     },
     {
       id: 'ZodiarkEx Adikia',
@@ -272,23 +280,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
       alertText: (data, _matches, output) => {
         ++data.adikiaCounter;
-        switch (data.adikiaCounter) {
-          case 1:
-            return output.text!();
-          case 2:
-            return output.lookforpython!();
-          case 3:
-            return output.text!();
-          default:
-            return output.lookforpython!();
-        }
+        if (data.adikiaCounter % 2 === 1)
+          return output.lookforpython!();
+        return output.text!();
       },
       outputStrings: {
         text: {
-          en: 'double fists',
+          en: 'Double fists',
         },
         lookforpython: {
-          en: 'double fists, look for python',
+          en: 'Double fists, look for python',
         },
       },
     },
