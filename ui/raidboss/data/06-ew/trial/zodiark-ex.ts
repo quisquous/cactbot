@@ -13,7 +13,7 @@ export interface Data extends RaidbossData {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
   paradeigmaCounter: number;
-  adikiaCounter: number;
+  seenAdikia: boolean;
 }
 
 const sigil = {
@@ -40,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
     activeSigils: [],
     activeFrontSigils: [],
     paradeigmaCounter: 0,
-    adikiaCounter: 0,
+    seenAdikia: false,
   }),
   triggers: [
     {
@@ -279,17 +279,15 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
       alertText: (data, _matches, output) => {
-        ++data.adikiaCounter;
-        if (data.adikiaCounter % 2 === 1)
-          return output.lookforpython!();
-        return output.text!();
+        return data.seenAdikia ? output.adikia2!() : output.adikia1!();
       },
+      run: (data) => data.seenAdikia = true,
       outputStrings: {
-        text: {
-          en: 'Double fists',
+        adikia1: {
+          en: 'Double fists (look for pythons)',
         },
-        lookforpython: {
-          en: 'Double fists, look for python',
+        adikia2: {
+          en: 'Double fists',
         },
       },
     },
