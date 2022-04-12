@@ -1897,6 +1897,14 @@ const data: WeatherRateType = {
       'Termination',
     ],
   },
+  147: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Transcendence',
+    ],
+  },
 };
 
 export default data;
