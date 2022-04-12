@@ -60,6 +60,7 @@ Options.Triggers.push({
         underQuetz: {
           en: 'Under NW Quetzalcoatl',
           de: 'Unter NW Quetzalcoatl',
+          cn: '站在左上 (西北) 鸟',
         },
       },
     },
@@ -76,6 +77,7 @@ Options.Triggers.push({
         text: {
           en: 'Stack x6',
           de: 'Sammeln x6',
+          cn: '6次分摊',
         },
       },
     },
@@ -124,18 +126,22 @@ Options.Triggers.push({
         northCone: {
           en: 'North Cone',
           de: 'Nördliche Kegel-AoE',
+          cn: '上 (北) 扇形',
         },
         eastCone: {
           en: 'East Cone',
           de: 'Östliche Kegel-AoE',
+          cn: '右 (东) 扇形',
         },
         westCone: {
           en: 'West Cone',
           de: 'Westliche Kegel-AoE',
+          cn: '左 (西) 扇形',
         },
         southCone: {
           en: 'South Cone',
           de: 'Südliche Kegel-AoE',
+          cn: '下 (南) 扇形',
         },
       },
     },
@@ -189,6 +195,7 @@ Options.Triggers.push({
         text: {
           en: Outputs.killAdds.en + '(back first)',
           de: Outputs.killAdds.de + '(hinten zuerst)',
+          cn: Outputs.killAdds.cn + ' (先打后方的) ',
         },
       },
     },
@@ -246,24 +253,29 @@ Options.Triggers.push({
         frontsides: {
           en: 'front sides',
           de: 'Vorne Seiten',
+          cn: '前方两边',
         },
         backmiddle: {
           en: 'back middle',
           de: 'Hinten Mitte',
+          cn: '后方中间',
         },
         frontmiddle: {
           en: 'front middle',
           de: 'Vorne Mitte',
+          cn: '前方中间',
         },
         sides: {
           // Specify "for laser" to disambiguate with the astral eclipse going on at the same time.
           // Similarly, there's a algodon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
+          cn: '两边 (躲避激光)',
         },
         middle: {
           en: 'middle (for laser)',
           de: 'Mitte (für die Laser)',
+          cn: '中间 (躲避激光)',
         },
       },
     },
@@ -294,6 +306,7 @@ Options.Triggers.push({
         combo: {
           en: 'Go ${first} / ${second} (knockback)',
           de: 'Geh ${first} / ${second} (Rückstoß)',
+          cn: '去 ${first} / ${second} (击退)',
         },
       },
     },
@@ -313,10 +326,12 @@ Options.Triggers.push({
         adikia1: {
           en: 'Double fists (look for pythons)',
           de: 'Doppel-Fäuste (halt Ausschau nach den Pythons)',
+          cn: '双拳 (找蛇)',
         },
         adikia2: {
           en: 'Double fists',
           de: 'Doppel-Fäuste',
+          cn: '双拳',
         },
       },
     },
@@ -333,6 +348,7 @@ Options.Triggers.push({
         text: {
           en: 'Heavy DoT',
           de: 'Starker DoT',
+          cn: '超痛流血AOE',
         },
       },
     },
