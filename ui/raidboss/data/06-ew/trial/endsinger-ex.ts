@@ -11,7 +11,7 @@ export interface Data extends RaidbossData {
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladEndsingersAria,
-  timelineFile: 'endsinger.txt',
+  timelineFile: 'endsinger-ex.txt',
   initData: () => {
     return {
       storedStars: {},
