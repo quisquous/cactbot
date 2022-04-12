@@ -74,9 +74,7 @@ hideall "Infernal Torrent"
 390.9 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
 406.1 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 406.2 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
-407.2 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-408.2 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-409.2 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+407.2 "Infernal Torrent" #sync / 1[56]:[^:]*:Zodiark:67E0:/ duration 2
 411.9 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
 412.4 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67E2:/
 
@@ -88,9 +86,7 @@ hideall "Infernal Torrent"
 460.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
 475.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 475.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
-476.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-477.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-478.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+476.9 "Infernal Torrent" #sync / 1[56]:[^:]*:Zodiark:67E0:/ duration 2
 481.6 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
 481.6 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
 
@@ -115,9 +111,7 @@ hideall "Infernal Torrent"
 594.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
 606.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 606.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
-607.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-608.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-609.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+607.9 "Infernal Torrent" #sync / 1[56]:[^:]*:Zodiark:67E0:/ duration 2
 612.4 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 613.0 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
 615.9 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67EB:/ duration 4
@@ -133,9 +127,7 @@ hideall "Infernal Torrent"
 666.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
 678.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 678.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
-679.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-680.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-681.9 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+679.9 "Infernal Torrent" #sync / 1[56]:[^:]*:Zodiark:67E0:/ duration 2
 684.4 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 685.0 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
 685.5 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67E2:/
@@ -152,9 +144,7 @@ hideall "Infernal Torrent"
 758.9 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
 771.0 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 771.1 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
-772.1 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-773.1 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
-774.1 "Infernal Torrent" sync / 1[56]:[^:]*:Zodiark:67E0:/
+772.1 "Infernal Torrent" # sync / 1[56]:[^:]*:Zodiark:67E0:/ duration 2
 776.6 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 777.2 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
 777.2 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
