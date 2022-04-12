@@ -1,7 +1,7 @@
 # Endsinger Extreme
 # -it 'The Endsinger'
 # -oc 'The Endsinger' 'Kakodaimon'
-# -ii 6FF5 6FF8 6FF9 6FFE 6FFF 7000 7001 7003 7005 7008 700C 700D 7009 700A 700E 700F 7010 7011 7013 7015 7017 7018 7019 7019 7021 7029 702B 702D 72C4
+# -ii 6FF5 6FF7 6FF8 6FF9 6FFE 6FFF 7000 7001 7003 7005 7008 700C 700D 7009 700A 700E 700F 7010 7011 7013 7015 7017 7018 7019 7019 7021 7029 702B 702D 72C4
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -10,11 +10,9 @@ hideall "--sync--"
 
 0.0 "--sync--" sync /Engage!/ window 0,1
 11.7 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-15.0 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:6FF7:/
 25.1 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 26.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 29.9 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-33.2 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:6FF7:/
 43.3 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 44.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 55.3 "Grip of Despair" sync / 1[56]:[^:]*:The Endsinger:701D:/
@@ -25,7 +23,6 @@ hideall "--sync--"
 74.5 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
 84.6 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
 96.8 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-100.1 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:6FF7:/
 110.2 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 111.8 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 114.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
@@ -70,7 +67,6 @@ hideall "--sync--"
 363.1 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
 373.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
 387.4 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-390.7 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:6FF7:/
 400.8 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 402.4 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 404.7 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
