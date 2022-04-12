@@ -80,6 +80,7 @@ const triggerSet: TriggerSet<Data> = {
         underQuetz: {
           en: 'Under NW Quetzalcoatl',
           de: 'Unter NW Quetzalcoatl',
+          cn: '站在左上 (西北) 鸟',
         },
       },
     },
@@ -96,6 +97,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack x6',
           de: 'Sammeln x6',
+          cn: '6次分摊',
         },
       },
     },
@@ -147,18 +149,22 @@ const triggerSet: TriggerSet<Data> = {
         northCone: {
           en: 'North Cone',
           de: 'Nördliche Kegel-AoE',
+          cn: '上 (北) 扇形',
         },
         eastCone: {
           en: 'East Cone',
           de: 'Östliche Kegel-AoE',
+          cn: '右 (东) 扇形',
         },
         westCone: {
           en: 'West Cone',
           de: 'Westliche Kegel-AoE',
+          cn: '左 (西) 扇形',
         },
         southCone: {
           en: 'South Cone',
           de: 'Südliche Kegel-AoE',
+          cn: '下 (南) 扇形',
         },
       },
     },
@@ -215,6 +221,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: Outputs.killAdds.en + '(back first)',
           de: Outputs.killAdds.de + '(hinten zuerst)',
+          cn: Outputs.killAdds.cn + ' (先打后方的) ',
         },
       },
     },
@@ -272,24 +279,29 @@ const triggerSet: TriggerSet<Data> = {
         frontsides: {
           en: 'front sides',
           de: 'Vorne Seiten',
+          cn: '前方两边',
         },
         backmiddle: {
           en: 'back middle',
           de: 'Hinten Mitte',
+          cn: '后方中间',
         },
         frontmiddle: {
           en: 'front middle',
           de: 'Vorne Mitte',
+          cn: '前方中间',
         },
         sides: {
           // Specify "for laser" to disambiguate with the astral eclipse going on at the same time.
           // Similarly, there's a algodon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
+          cn: '两边 (躲避激光)',
         },
         middle: {
           en: 'middle (for laser)',
           de: 'Mitte (für die Laser)',
+          cn: '中间 (躲避激光)',
         },
       },
     },
@@ -320,6 +332,7 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: 'Go ${first} / ${second} (knockback)',
           de: 'Geh ${first} / ${second} (Rückstoß)',
+          cn: '去 ${first} / ${second} (击退)',
         },
       },
     },
@@ -339,10 +352,12 @@ const triggerSet: TriggerSet<Data> = {
         adikia1: {
           en: 'Double fists (look for pythons)',
           de: 'Doppel-Fäuste (halt Ausschau nach den Pythons)',
+          cn: '双拳 (找蛇)',
         },
         adikia2: {
           en: 'Double fists',
           de: 'Doppel-Fäuste',
+          cn: '双拳',
         },
       },
     },
@@ -359,6 +374,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heavy DoT',
           de: 'Starker DoT',
+          cn: '超痛流血AOE',
         },
       },
     },
