@@ -325,7 +325,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Diagonal Knockback',
           de: 'Diagonaler Rückstoß',
-          fr: 'Poussée diagonale',
+          fr: 'Poussée en diagonale',
           ja: '斜めにノックバック',
           cn: '对角击退',
           ko: '대각으로 넉백',
