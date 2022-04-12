@@ -97,8 +97,8 @@ namespace Cactbot {
     private static int kCharmapStructOffsetPlayer = 0;
 
     // In combat boolean.
-    // Variable is set at 4889742420574883EC200FB60233F68905 (offset=0)
-    // * mov [rax+rcx],bl line (on its own, with a calling function that sets rax(offset) and rcx(base address).
+    // Variable seems to be set in two places:
+    // * mov [rax+rcx],bl line (on its own, with a calling function that sets rax(offset) and rcx(base address); the old way)
     // * mov [address],eax line (this signature here)
     private static String kInCombatSignature = "4889742420574883EC200FB60233F68905";
     private static int kInCombatSignatureOffset = 0;
