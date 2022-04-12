@@ -776,8 +776,9 @@ class RaidbossConfigurator {
       container.classList.toggle('collapsed');
       // Build the rest of this UI on demand lazily.
       if (!hasEverBeenExpanded) {
-        const timeline = this.timelineFromSet(set, options);
-        this.buildTimelineUI(zoneId, timeline, container);
+        const text = this.timelineTextFromSet(set);
+        const timeline = new TimelineParser(text, set.timelineReplace ?? [], [], [], options);
+        this.buildTimelineUI(zoneId, timeline, text, container);
       }
       hasEverBeenExpanded = true;
     };
@@ -785,8 +786,7 @@ class RaidbossConfigurator {
     container.appendChild(headerDiv);
   }
 
-  // Returns a parsed timeline from a given trigger set.
-  timelineFromSet(set: ConfigLooseTriggerSet, options: RaidbossOptions): TimelineParser {
+  timelineTextFromSet(set: ConfigLooseTriggerSet): string {
     let text = '';
 
     // Recursively turn the timeline array into a string.
@@ -807,18 +807,33 @@ class RaidbossConfigurator {
           // Functions are pretty uncommon in built-in timelines.
           // If user functions do funky things, those extra lines will be skipped.
         }
-      } else if (obj) {
+      } else if (typeof obj === 'string') {
         text = `${text}\n${obj}`;
       }
     };
     addTimeline(set.timeline);
-    // Using the timelineReplace and the current set of options lets the timeline
-    // entries look like they would in game.
-    return new TimelineParser(text, set.timelineReplace ?? [], [], [], options);
+    return text;
   }
 
   // The internal part of timeline editing ui.
-  buildTimelineUI(zoneId: number, timeline: TimelineParser, parent: HTMLElement): void {
+  buildTimelineUI(
+    zoneId: number,
+    timeline: TimelineParser,
+    timelineText: string,
+    parent: HTMLElement,
+  ): void {
+    // Add timeline text itself
+    const scroller = document.createElement('div');
+    scroller.classList.add('timeline-scroller');
+    parent.appendChild(scroller);
+
+    const timelineContents = document.createElement('pre');
+    scroller.classList.add('timeline-scroller-contents');
+    scroller.appendChild(timelineContents);
+
+    const translated = TimelineParser.Translate(timeline, timelineText);
+    timelineContents.innerText = translated.join('\n');
+
     const uniqEvents: { [key: string]: string } = {};
 
     for (const event of timeline.events) {

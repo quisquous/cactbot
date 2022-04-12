@@ -239,6 +239,15 @@ html {
   max-width: 300px;
 }
 
+.timeline-scroller {
+  overflow: auto;
+  resize: both;
+  height: 300px;
+  border: solid black 1px;
+  margin: 12px 0 24px 24px;
+  padding: 8px;
+}
+
 .trigger-file-options {
   display: grid;
   margin: 12px;

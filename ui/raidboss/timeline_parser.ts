@@ -451,4 +451,46 @@ export class TimelineParser {
       '^\\.\\*$',
     ].map((x) => Regexes.parse(x));
   }
+
+  // Utility function.  This could be a function on TimelineParser, but it seems weird to
+  // store all of the original timeline texts unnecessarily when only config/utilities need it.
+  public static Translate(
+    timeline: TimelineParser,
+    timelineText: string,
+    syncErrors?: { [lineNumber: number]: boolean },
+    textErrors?: { [lineNumber: number]: boolean },
+  ): string[] {
+    const lineToText: { [lineNumber: number]: Event } = {};
+    const lineToSync: { [lineNumber: number]: Sync } = {};
+    for (const event of timeline.events) {
+      if (!event.lineNumber)
+        continue;
+      lineToText[event.lineNumber] = event;
+    }
+    for (const event of timeline.syncStarts)
+      lineToSync[event.lineNumber] = event;
+
+    // Combine replaced lines with errors.
+    const timelineLines = timelineText.split(/\n/);
+    const translatedLines: string[] = [];
+    timelineLines.forEach((timelineLine, idx) => {
+      const lineNumber = idx + 1;
+      let line = timelineLine.trim();
+
+      const lineText = lineToText[lineNumber];
+      if (lineText)
+        line = line.replace(` "${lineText.name}"`, ` "${lineText.text}"`);
+      const lineSync = lineToSync[lineNumber];
+      if (lineSync)
+        line = line.replace(`sync /${lineSync.origRegexStr}/`, `sync /${lineSync.regex.source}/`);
+
+      if (syncErrors?.[lineNumber])
+        line += ' #MISSINGSYNC';
+      if (textErrors?.[lineNumber])
+        line += ' #MISSINGTEXT';
+      translatedLines.push(line);
+    });
+
+    return translatedLines;
+  }
 }
