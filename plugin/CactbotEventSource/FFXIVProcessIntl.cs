@@ -97,14 +97,12 @@ namespace Cactbot {
     private static int kCharmapStructOffsetPlayer = 0;
 
     // In combat boolean.
-    // Variable is set at 83FA587D70534883EC204863C2410FB6D8381C08744E (offset=0)
-    // via a mov [rax+rcx],bl line.
-    // This sig below finds the calling function that sets rax(offset) and rcx(base address).
-    private static String kInCombatSignature = "84C07425450FB6C7488D0D";
-    private static int kInCombatBaseOffset = 0;
-    private static bool kInCombatBaseRIP = true;
-    private static int kInCombatOffsetOffset = 5;
-    private static bool kInCombatOffsetRIP = false;
+    // Variable seems to be set in two places:
+    // * mov [rax+rcx],bl line (on its own, with a calling function that sets rax(offset) and rcx(base address); the old way)
+    // * mov [address],eax line (this signature here)
+    private static String kInCombatSignature = "4889742420574883EC200FB60233F68905";
+    private static int kInCombatSignatureOffset = 0;
+    private static bool kInCombatSignatureRIP = true;
 
     // Bait integer.
     // Variable is accessed via a cmp eax,[...] line at offset=0.
@@ -149,20 +147,11 @@ namespace Cactbot {
         job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
       }
 
-      p = SigScan(kInCombatSignature, kInCombatBaseOffset, kInCombatBaseRIP);
+      p = SigScan(kInCombatSignature, kInCombatSignatureOffset, kInCombatSignatureRIP);
       if (p.Count != 1) {
         logger_.LogError(Strings.InCombatSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
-        var baseAddress = p[0];
-        p = SigScan(kInCombatSignature, kInCombatOffsetOffset, kInCombatOffsetRIP);
-        if (p.Count != 1) {
-          logger_.LogError(Strings.InCombatOffsetSignatureFoundMultipleMatchesErrorMessage, p.Count);
-        } else {
-          // Abuse sigscan here to return 64-bit "pointer" which we will mask into the 32-bit immediate integer we need.
-          // TODO: maybe sigscan should be able to return different types?
-          int offset = (int)(((UInt64)p[0]) & 0xFFFFFFFF);
-          in_combat_addr_ = IntPtr.Add(baseAddress, offset);
-        }
+        in_combat_addr_ = p[0];
       }
 
       p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
