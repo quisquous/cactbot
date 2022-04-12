@@ -75,7 +75,7 @@ const roleOutputStrings = {
   roleEverything: {
     en: '${role} Everything',
     de: '${role} Alles',
-    fr: 'Tout ${role}',
+    fr: '${role} pour tout',
     ja: '${role} 全てもらう',
     cn: '${role} 处理全部',
     ko: '${role} 전부 받기',
@@ -674,7 +674,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'North Cape',
           de: 'Rückstoß -> Geh in den Norden',
-          fr: 'Cape au nord',
+          fr: 'Poussée au nord',
           ja: '北でノックバック',
           cn: '北 击退',
           ko: '북쪽 망토',
@@ -694,7 +694,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'East Cape',
           de: 'Rückstoß -> Geh in den Osten',
-          fr: 'Cape à l\'est',
+          fr: 'Poussée à l\'est',
           ja: '東でノックバック',
           cn: '东 击退',
           ko: '동쪽 망토',
@@ -714,7 +714,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'South Cape',
           de: 'Rückstoß -> Geh in den Süden',
-          fr: 'Cape au sud',
+          fr: 'Poussée au sud',
           ja: '南でノックバック',
           cn: '南 击退',
           ko: '남쪽 망토',
@@ -734,7 +734,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'West Cape',
           de: 'Rückstoß -> Geh in den Westen',
-          fr: 'Cape à l\'ouest',
+          fr: 'Poussée à l\'ouest',
           ja: '西でノックバック',
           cn: '西 击退',
           ko: '서쪽 망토',
