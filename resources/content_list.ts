@@ -106,6 +106,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheDeadEnds,
   ZoneId.Smileton,
   ZoneId.TheStigmaDreamscape,
+  ZoneId.AlzadaalsLegacy,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -128,6 +129,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheNavel,
   ZoneId.TheHowlingEye,
   ZoneId.CapeWestwind,
+  ZoneId.ThePortaDecumana,
   ZoneId.TheChrysalis,
   ZoneId.TheStepsOfFaith,
   ZoneId.ARelicRebornTheChimera,
@@ -223,6 +225,8 @@ const contentList: (ZoneIdType)[] = [
   // High-end Trials (Endwalker)
   ZoneId.TheMinstrelsBalladZodiarksFall,
   ZoneId.TheMinstrelsBalladHydaelynsCall,
+  ZoneId.TheMinstrelsBalladEndsingersAria,
+  ZoneId.UltimasBaneUnreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -348,6 +352,9 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.EdensPromiseLitanySavage,
   ZoneId.EdensPromiseAnamorphosisSavage,
   ZoneId.EdensPromiseEternitySavage,
+
+  // Alliance Raids (Endwalker)
+  ZoneId.Aglaia,
 
   // Normal Raids (Endwalker)
   ZoneId.AsphodelosTheFirstCircle,
