@@ -230,6 +230,13 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     abilityId: '40A7',
   },
   {
+    // Technically the mitigation is "Desperate Measures", but it comes from
+    // the Expedient ability on each player and "Expedience" is the haste buff.
+    id: 'Expedient',
+    type: 'mitigation',
+    abilityId: '650C',
+  },
+  {
     id: 'Kerachole',
     type: 'mitigation',
     abilityId: '5EEA',
