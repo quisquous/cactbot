@@ -9,6 +9,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 0.0 "--sync--" sync /Engage!/ window 0,1
+7.0 "--sync--" sync / 14:[^:]*:The Endsinger:6FF6:/
 11.7 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
 25.1 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 26.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
@@ -25,8 +26,7 @@ hideall "--sync--"
 96.8 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
 110.2 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 111.8 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-114.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
-115.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:7030:/
+114.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:(702F|7030):/
 122.3 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 132.6 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:700[24]:/
 139.1 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:700[24]:/
@@ -39,7 +39,7 @@ hideall "--sync--"
 183.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 192.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
 205.2 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-205.2 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:7030:/
+205.2 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:(702F|7030):/
 214.4 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
 
 # Stack/Flare/Donut/Spread
@@ -69,8 +69,7 @@ hideall "--sync--"
 387.4 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
 400.8 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 402.4 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-404.7 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
-405.7 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:7030:/
+404.7 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:(702F|7030):/
 410.8 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 420.9 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 
@@ -94,7 +93,7 @@ hideall "--sync--"
 509.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 518.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
 531.1 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-531.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:7030:/
+531.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:(702F|7030):/
 540.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
 
 # 6 Head Dodges 2
