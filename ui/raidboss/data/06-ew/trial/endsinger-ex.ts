@@ -13,12 +13,18 @@ import { LocaleText, Output, OutputStrings, TriggerSet } from '../../../../../ty
 
 const redStarLocale: LocaleText = {
   en: 'Fiery Star',
+  de: 'Roter Himmelskörper',
+  fr: 'Astre Incarnat',
+  ja: '赤色天体',
 };
 
 const redStarNames = Object.values(redStarLocale);
 
 const blueStarLocale: LocaleText = {
   en: 'Azure Star',
+  de: 'Blauer Himmelskörper',
+  fr: 'Astre Azuré',
+  ja: '青色天体',
 };
 
 const blueStarNames = Object.values(blueStarLocale);
@@ -304,7 +310,83 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-  timelineReplace: [],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Azure Star': 'blau(?:e|er|es|en) Himmelskörper',
+        'Fiery Star': 'rot(?:e|er|es|en) Himmelskörper',
+        'The Endsinger': 'Endsängerin',
+      },
+      'replaceText': {
+        'Befoulment': 'Brackwasserbombe',
+        'Benevolence': 'Philanthropie',
+        'Despair Unforgotten': 'Verzweiflung der Chronistin',
+        'Diairesis': 'Diairesis',
+        'Eironeia': 'Eironeia',
+        'Elegeia Unforgotten': 'Elegeia der Chronistin',
+        'Elenchos': 'Elenchos',
+        'Endsong\'s Aporrhoia': 'Aporia des Liedes vom Ende',
+        'Endsong(?!\')': 'Lied vom Ende',
+        '(?<! )Fatalism': 'Fatalismus',
+        'Grip of Despair': 'Griff der Verzweiflung',
+        'Hubris': 'Hybris',
+        'Telos': 'Telos',
+        'Theological Fatalism': 'Theologischer Fatalismus',
+        'Twinsong\'s Aporrhoia': 'Aporia der Verzweiflung',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Azure Star': 'astre azuré',
+        'Fiery Star': 'astre incarnat',
+        'The Endsinger': 'chantre de l\'anéantissement',
+      },
+      'replaceText': {
+        'Befoulment': 'Bombe de pus',
+        'Benevolence': 'Philanthropie',
+        'Despair Unforgotten': 'Chronique tourmentante',
+        'Diairesis': 'Diérèse',
+        'Eironeia': 'Ironie',
+        'Elegeia Unforgotten': 'Chronique élégiaque',
+        'Elenchos': 'Élenchos',
+        'Endsong\'s Aporrhoia': 'Antienne aporétique',
+        'Endsong(?!\')': 'Ultime antienne',
+        '(?<! )Fatalism': 'Fatalisme',
+        'Grip of Despair': 'Chaînes du désespoir',
+        'Hubris': 'Hubris',
+        'Telos': 'Télos',
+        'Theological Fatalism': 'Fatalisme théologique',
+        'Twinsong\'s Aporrhoia': 'Chœur aporétique',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Azure Star': '青色天体',
+        'Fiery Star': '赤色天体',
+        'The Endsinger': '終焉を謳うもの',
+      },
+      'replaceText': {
+        'Befoulment': '膿汁弾',
+        'Benevolence': '博愛',
+        'Despair Unforgotten': '絶望浸食：事象記録',
+        'Diairesis': 'ディアイレシス',
+        'Eironeia': 'エイロネイア',
+        'Elegeia Unforgotten': 'エレゲイア：事象記録',
+        'Elenchos': 'エレンコス',
+        'Endsong\'s Aporrhoia': 'アポロイア：絶望輪唱',
+        'Endsong(?!\')': '絶望輪唱',
+        '(?<! )Fatalism': 'フェイタリズム',
+        'Grip of Despair': '絶望の鎖',
+        'Hubris': 'ヒュブリス',
+        'Telos': 'テロス',
+        'Theological Fatalism': 'セオロジカル・フェイタリズム',
+        'Twinsong\'s Aporrhoia': 'アポロイア：絶望合唱',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
