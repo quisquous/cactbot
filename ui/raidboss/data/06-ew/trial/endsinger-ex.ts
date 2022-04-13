@@ -522,36 +522,39 @@ const triggerSet: TriggerSet<Data> = {
         if (heads.length === 5) {
           const safeDirHead = heads.find((h) => h.mechanic.includes('safe'));
           const donutHeads = heads.filter((h) => h.mechanic === 'donut');
-          const donutHead1 = donutHeads[0];
-          const donutHead2 = donutHeads[1];
 
           // Clean up here for next iteration
           data.storedHeads = {};
           data.rewindHeads = {};
 
-          if (!safeDirHead || !donutHead1 || !donutHead2) {
-            console.error(`5Head Mechanics Collector: null data`);
+          if (!safeDirHead || donutHeads.length < 1) {
+            console.error(`5Head Mechanics Rewind Collector: missing required head`);
             return;
           }
 
+          let safeDonut;
+
           switch (safeDirHead.mechanic) {
             case 'safeN':
-              if (donutHead1.state.PosY < 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+              safeDonut = donutHeads.find((head) => head.state.PosY < 100);
+              break;
             case 'safeE':
-              if (donutHead1.state.PosX > 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+              safeDonut = donutHeads.find((head) => head.state.PosX > 100);
+              break;
             case 'safeS':
-              if (donutHead1.state.PosY > 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+              safeDonut = donutHeads.find((head) => head.state.PosY > 100);
+              break;
             case 'safeW':
-              if (donutHead1.state.PosX < 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+              safeDonut = donutHeads.find((head) => head.state.PosX < 100);
+              break;
           }
+
+          if (!safeDonut) {
+            console.error(`5Head Mechanics Rewind Collector: no safe donut found`);
+            return;
+          }
+
+          return getKBOrbSafeDir(safeDonut.state.PosX, safeDonut.state.PosY, output);
         }
       },
       outputStrings: orbOutputStrings,
