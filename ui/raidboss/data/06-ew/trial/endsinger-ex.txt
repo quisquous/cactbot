@@ -93,7 +93,7 @@ hideall "--sync--"
 509.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 518.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
 531.1 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-531.1 "Eironeia" sync sync / 1[56]:[^:]*:The Endsinger:702F:/
+531.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
 540.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
 
 # 6 Head Dodges 2
