@@ -69,7 +69,7 @@ hideall "--sync--"
 387.4 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
 400.8 "Star Collision" sync / 1[56]:[^:]*:[^:]+ Star:6FF[AB]:/
 402.4 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-404.7 "Eironeia" sync sync / 1[56]:[^:]*:The Endsinger:702F:/
+404.7 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
 410.8 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 420.9 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 
