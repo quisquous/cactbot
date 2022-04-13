@@ -219,11 +219,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Eironeia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'The Endsinger' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'Endsängerin' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'Chantre De L\'Anéantissement' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['702F', '7030'], source: '終焉を謳うもの' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['702F', '7030'], source: '讴歌终结之物' }),
+      netRegex: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'The Endsinger', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'Endsängerin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'Chantre De L\'Anéantissement', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['702F', '7030'], source: '終焉を謳うもの', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['702F', '7030'], source: '讴歌终结之物', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
@@ -297,7 +297,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Star Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'] }),
+      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'], capture: false }),
       delaySeconds: 30,
       run: (data) => {
         data.starMechanicCounter = 0;
