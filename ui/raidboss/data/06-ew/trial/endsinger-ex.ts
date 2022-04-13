@@ -1,4 +1,4 @@
-import conditions from '../../../../../resources/conditions';
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -425,7 +425,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         const head = data.storedHeads[matches.sourceId];
         if (!head) {
-          console.error(`5Head Mechanics Collector: null data`);
+          console.error(`5Head Mechanics Collector: null data/missing head`);
           return;
         }
 
@@ -457,7 +457,7 @@ const triggerSet: TriggerSet<Data> = {
           const donutHead2 = donutHeads[1];
 
           if (!safeDirHead || !donutHead1 || !donutHead2) {
-            console.error(`5Head Mechanics Collector: null data`);
+            console.error(`5Head Mechanics Collector: Missing safe/donut head`);
             return;
           }
 
@@ -633,7 +633,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EndsingerEx Echoes of Benevolence',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'BB0' }),
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
         data.storedMechs[data.storedMechs.counter] = 'stack';
@@ -646,7 +646,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EndsingerEx Echoes of Nausea',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'BAD' }),
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
         data.storedMechs[data.storedMechs.counter] = 'donut';
@@ -659,7 +659,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EndsingerEx Echoes of the Future',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'BAF' }),
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
         data.storedMechs[data.storedMechs.counter] = 'flare';
@@ -672,7 +672,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EndsingerEx Echoes of Befoulment',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'BAE' }),
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
         data.storedMechs[data.storedMechs.counter] = 'spread';
@@ -685,7 +685,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EndsingerEx Echoes Rewind',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '95D' }),
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const mechanicIndex: 1 | 2 | 3 | undefined = ({
           '17C': 3,
