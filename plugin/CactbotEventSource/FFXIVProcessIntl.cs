@@ -97,12 +97,13 @@ namespace Cactbot {
     private static int kCharmapStructOffsetPlayer = 0;
 
     // In combat boolean.
-    // Variable seems to be set in two places:
-    // * mov [rax+rcx],bl line (on its own, with a calling function that sets rax(offset) and rcx(base address); the old way)
-    // * mov [address],eax line (this signature here)
-    private static String kInCombatSignature = "4889742420574883EC200FB60233F68905";
-    private static int kInCombatSignatureOffset = 0;
+    // This address is written to by "mov [rax+rcx],bl" and has three readers.
+    // This reader is "cmp byte ptr [ffxiv_dx11.exe+????????],00 { (0),0 }"
+    private static String kInCombatSignature = "803D????????000F95C04883C428";
+    private static int kInCombatSignatureOffset = -12;
     private static bool kInCombatSignatureRIP = true;
+    // Because this line is a cmp byte line, the signature is not at the end of the line.
+    private static int kInCombatRipOffset = 1;
 
     // Bait integer.
     // Variable is accessed via a cmp eax,[...] line at offset=0.
@@ -147,7 +148,7 @@ namespace Cactbot {
         job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
       }
 
-      p = SigScan(kInCombatSignature, kInCombatSignatureOffset, kInCombatSignatureRIP);
+      p = SigScan(kInCombatSignature, kInCombatSignatureOffset, kInCombatSignatureRIP, kInCombatRipOffset);
       if (p.Count != 1) {
         logger_.LogError(Strings.InCombatSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
