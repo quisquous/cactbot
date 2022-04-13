@@ -1697,7 +1697,7 @@ const templateOptions: OptionsTemplate = {
         de: 'Alerts aktiviert',
         fr: 'Alertes activées',
         ja: '警告情報を有効にする',
-        cn: '启用提示文本显示',
+        cn: '启用警报提示信息',
         ko: '알람 활성화',
       },
       type: 'checkbox',
