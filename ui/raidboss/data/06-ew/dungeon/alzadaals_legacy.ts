@@ -115,6 +115,16 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceSync': {
+        'Corrosive Venom/Toxic Shower': 'Venom/Shower',
+        'Corrosive Fountain/Toxic Fountain': 'Fountain',
+        'Magnitude Opus/Rotary Gale': 'Opus/Gale',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
