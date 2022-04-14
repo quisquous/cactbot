@@ -383,6 +383,8 @@
 06-ew/trial/hydaelyn.txt
 06-ew/trial/hydaelyn-ex.ts
 06-ew/trial/hydaelyn-ex.txt
+06-ew/trial/ultima-unreal.ts
+06-ew/trial/ultima-unreal.txt
 06-ew/trial/zodiark.ts
 06-ew/trial/zodiark.txt
 06-ew/trial/zodiark-ex.ts
