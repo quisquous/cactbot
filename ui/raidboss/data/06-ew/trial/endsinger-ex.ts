@@ -87,17 +87,13 @@ const getAoEOrbSafeDir = (posX: number, posY: number, output: Output): string | 
 };
 
 const getStarPositionFromHeading = (heading: string) => {
-  switch (parseFloat(heading)) {
-    case 0.79: // SE
-      return [114, 114];
-    case -2.36: // NW
-      return [86, 86];
-    case -0.79: // SW
-      return [86, 114];
-    case 2.36: // NE
-      return [114, 86];
-  }
-  return [];
+  const dir = ((2 - Math.round(parseFloat(heading) * 8 / Math.PI) / 2) + 2) % 8;
+  return {
+    1: [114, 86], //  NE
+    3: [114, 114], // SE
+    5: [86, 114], //  SW
+    7: [86, 86], //  NW
+  }[dir] ?? [];
 };
 
 const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], TriggerOutput<Data, NetMatches['Ability' | 'StartsUsing']>> = (_data, matches, output) => {
@@ -109,7 +105,7 @@ const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], Tri
   // 31 lines that are middle with a heading
   // 91 lines that are correct position, heading = 0
   // All other stars are center with a heading. This holds true for all 294 log lines I have for this event.
-  if (matches.heading !== '0.00') {
+  if (Math.round(parseFloat(matches.heading)) !== 0) {
     [posX, posY] = getStarPositionFromHeading(matches.heading);
   } else {
     posX = parseFloat(matches.x);
