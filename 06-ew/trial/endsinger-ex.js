@@ -12,12 +12,6 @@ const blueStarLocale = {
   ja: '青色天体',
 };
 const blueStarNames = Object.values(blueStarLocale);
-const orbOutputStrings = {
-  ne: Outputs.northeast,
-  nw: Outputs.northwest,
-  se: Outputs.southeast,
-  sw: Outputs.southwest,
-};
 const echoesOutputStrings = {
   stack: Outputs.stackOnYou,
   donut: {
@@ -37,6 +31,12 @@ const echoesOutputStrings = {
     cn: '核爆',
     ko: '플레어',
   },
+};
+const orbOutputStrings = {
+  ne: Outputs.northeast,
+  nw: Outputs.northwest,
+  se: Outputs.southeast,
+  sw: Outputs.southwest,
 };
 const getKBOrbSafeDir = (posX, posY, output) => {
   if (posX < 100) {
@@ -384,8 +384,8 @@ Options.Triggers.push({
             1: 'safeE',
             2: 'safeS',
             3: 'safeW',
-          }[cardinal] ?? '';
-          head.mechanics.push(safeDir);
+          };
+          head.mechanics.push(safeDir[cardinal] ?? 'unknown');
         }
         // If we have the same count of mechanics stored for all 5 heads, resolve safe spot
         const heads = Object.values(data.storedHeads);
@@ -565,7 +565,9 @@ Options.Triggers.push({
         data.storedMechs.counter++;
         return output.stack();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        stack: echoesOutputStrings.stack,
+      },
     },
     {
       id: 'EndsingerEx Echoes of Nausea',
@@ -578,7 +580,9 @@ Options.Triggers.push({
         data.storedMechs.counter++;
         return output.donut();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        donut: echoesOutputStrings.donut,
+      },
     },
     {
       id: 'EndsingerEx Echoes of the Future',
@@ -591,7 +595,9 @@ Options.Triggers.push({
         data.storedMechs.counter++;
         return output.flare();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        flare: echoesOutputStrings.flare,
+      },
     },
     {
       id: 'EndsingerEx Echoes of Befoulment',
@@ -604,7 +610,9 @@ Options.Triggers.push({
         data.storedMechs.counter++;
         return output.spread();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        spread: echoesOutputStrings.spread,
+      },
     },
     {
       id: 'EndsingerEx Echoes Rewind',
