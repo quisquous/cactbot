@@ -1,17 +1,3 @@
-const redStarLocale = {
-  en: 'Fiery Star',
-  de: 'Roter Himmelskörper',
-  fr: 'Astre Incarnat',
-  ja: '赤色天体',
-};
-const redStarNames = Object.values(redStarLocale);
-const blueStarLocale = {
-  en: 'Azure Star',
-  de: 'Blauer Himmelskörper',
-  fr: 'Astre Azuré',
-  ja: '青色天体',
-};
-const blueStarNames = Object.values(blueStarLocale);
 const echoesOutputStrings = {
   stack: Outputs.stackOnYou,
   donut: {
@@ -57,6 +43,40 @@ const getAoEOrbSafeDir = (posX, posY, output) => {
   if (posY < 100)
     return output.sw();
   return output.nw();
+};
+const getStarPositionFromHeading = (heading) => {
+  const dir = ((2 - Math.round(parseFloat(heading) * 8 / Math.PI) / 2) + 2) % 8;
+  return {
+    1: [114, 86],
+    3: [114, 114],
+    5: [86, 114],
+    7: [86, 86], //  NW
+  }[dir] ?? [];
+};
+const getStarText = (_data, matches, output) => {
+  let posX;
+  let posY;
+  // Some 6FFA/6FFB (single) stars are at the correct position with no heading, others are center with a heading.
+  // Of the 122 single star lines, I have:
+  // 31 lines that are middle with a heading
+  // 91 lines that are correct position, heading = 0
+  // All other stars are center with a heading. This holds true for all 294 log lines I have for this event.
+  if (Math.round(parseFloat(matches.heading)) !== 0) {
+    [posX, posY] = getStarPositionFromHeading(matches.heading);
+  } else {
+    posX = parseFloat(matches.x);
+    posY = parseFloat(matches.y);
+  }
+  if (posX === undefined || posY === undefined) {
+    console.error(`EndsingerEx getStarText: Could not resolve star position from heading ${parseFloat(matches.heading)}`);
+    return;
+  }
+  if (['6FF9', '6FFB', '7000', '7001'].includes(matches.id))
+    return getKBOrbSafeDir(posX, posY, output);
+  if (['6FF8', '6FFA', '6FFE', '6FFF'].includes(matches.id))
+    return getAoEOrbSafeDir(posX, posY, output);
+  console.error(`EndsingerEx getStarText: Could not match ability ID ${matches.id} to color`);
+  return;
 };
 Options.Triggers.push({
   zoneId: ZoneId.TheMinstrelsBalladEndsingersAria,
@@ -143,57 +163,10 @@ Options.Triggers.push({
       response: Responses.tankCleave(),
     },
     {
-      id: 'EndsingerEx Single KB Star',
+      id: 'EndsingerEx Single Star',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6FFB', source: blueStarNames, capture: true }),
-      delaySeconds: 0.5,
-      promise: async (data, matches) => {
-        const starData = await callOverlayHandler({
-          call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
-        });
-        const starCombatant = starData.combatants[0];
-        if (!starCombatant) {
-          console.error(`Single KB Star: null data`);
-          return;
-        }
-        data.storedStars[matches.sourceId] = starCombatant;
-      },
-      alertText: (data, matches, output) => {
-        const starCombatant = data.storedStars[matches.sourceId];
-        if (!starCombatant) {
-          console.error(`AoE Star: null data`);
-          return;
-        }
-        return getKBOrbSafeDir(starCombatant.PosX, starCombatant.PosY, output);
-      },
-      outputStrings: orbOutputStrings,
-    },
-    {
-      id: 'EndsingerEx Single AoE Star',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6FFA', source: redStarNames, capture: true }),
-      delaySeconds: 0.5,
-      promise: async (data, matches) => {
-        const starData = await callOverlayHandler({
-          call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
-        });
-        const starCombatant = starData.combatants[0];
-        if (!starCombatant) {
-          console.error(`Single AoE Star: null data`);
-          return;
-        }
-        data.storedStars[matches.sourceId] = starCombatant;
-      },
-      alertText: (data, matches, output) => {
-        const starCombatant = data.storedStars[matches.sourceId];
-        if (!starCombatant) {
-          console.error(`AoE Star: null data`);
-          return;
-        }
-        return getAoEOrbSafeDir(starCombatant.PosX, starCombatant.PosY, output);
-      },
+      netRegex: NetRegexes.startsUsing({ id: ['6FFA', '6FFB'], capture: true }),
+      alertText: getStarText,
       outputStrings: orbOutputStrings,
     },
     {
@@ -234,38 +207,7 @@ Options.Triggers.push({
         }
         return 0;
       },
-      alertText: (_data, matches, output) => {
-        let posX = undefined;
-        let posY = undefined;
-        switch (parseFloat(matches.heading)) {
-          case 0.79: // SE
-            posX = 114;
-            posY = 114;
-            break;
-          case -2.36: // NW
-            posX = 86;
-            posY = 86;
-            break;
-          case -0.79: // SW
-            posX = 86;
-            posY = 114;
-            break;
-          case 2.36: // NE
-            posX = 114;
-            posY = 86;
-            break;
-        }
-        if (posX === undefined || posY === undefined) {
-          console.error(`Star Order Resolver: Could not resolve star position from heading ${parseFloat(matches.heading)}`);
-          return;
-        }
-        if (blueStarNames.includes(matches.source))
-          return getKBOrbSafeDir(posX, posY, output);
-        if (redStarNames.includes(matches.source))
-          return getAoEOrbSafeDir(posX, posY, output);
-        console.error(`Star Order Resolver: Could not match combatant name ${matches.source} to color`);
-        return;
-      },
+      alertText: getStarText,
       outputStrings: orbOutputStrings,
     },
     {
