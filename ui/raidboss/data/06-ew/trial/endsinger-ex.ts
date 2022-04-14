@@ -26,40 +26,9 @@ const blueStarLocale: LocaleText = {
 
 const blueStarNames = Object.values(blueStarLocale);
 
-export interface Data extends RaidbossData {
-  headPhase?: 5 | 6;
-  starMechanicCounter: number;
-  storedStars: {
-    [id: string]: PluginCombatantState;
-  };
-  storedHeads: {
-    [id: string]: {
-      state: PluginCombatantState;
-      mechanics: string[];
-    };
-  };
-  rewindHeads: {
-    [id: string]: {
-      state: PluginCombatantState;
-      mechanic: string;
-    };
-  };
-  storedMechs: {
-    1?: 'donut' | 'spread' | 'stack' | 'flare';
-    2?: 'donut' | 'spread' | 'stack' | 'flare';
-    3?: 'donut' | 'spread' | 'stack' | 'flare';
-    counter: 1 | 2 | 3;
-  };
-}
+export type Mechanic = 'aoe' | 'donut' | 'safeN' | 'safeE' | 'safeS' | 'safeW' | 'unknown';
 
-const orbOutputStrings: OutputStrings = {
-  ne: Outputs.northeast,
-  nw: Outputs.northwest,
-  se: Outputs.southeast,
-  sw: Outputs.southwest,
-};
-
-const echoesOutputStrings: OutputStrings = {
+const echoesOutputStrings = {
   stack: Outputs.stackOnYou,
   donut: {
     en: 'Stack Donut',
@@ -78,6 +47,39 @@ const echoesOutputStrings: OutputStrings = {
     cn: '核爆',
     ko: '플레어',
   },
+} as const;
+
+export interface Data extends RaidbossData {
+  headPhase?: 5 | 6;
+  starMechanicCounter: number;
+  storedStars: {
+    [id: string]: PluginCombatantState;
+  };
+  storedHeads: {
+    [id: string]: {
+      state: PluginCombatantState;
+      mechanics: Mechanic[];
+    };
+  };
+  rewindHeads: {
+    [id: string]: {
+      state: PluginCombatantState;
+      mechanic: string;
+    };
+  };
+  storedMechs: {
+    1?: keyof typeof echoesOutputStrings;
+    2?: keyof typeof echoesOutputStrings;
+    3?: keyof typeof echoesOutputStrings;
+    counter: 1 | 2 | 3;
+  };
+}
+
+const orbOutputStrings: OutputStrings = {
+  ne: Outputs.northeast,
+  nw: Outputs.northwest,
+  se: Outputs.southeast,
+  sw: Outputs.southwest,
 };
 
 const getKBOrbSafeDir = (posX: number, posY: number, output: Output): string | undefined => {
@@ -443,13 +445,13 @@ const triggerSet: TriggerSet<Data> = {
           // Snap heading to closest card and add 2 for opposite direction
           // N = 0, E = 1, S = 2, W = 3
           const cardinal = ((2 - Math.round(parseFloat(matches.heading) * 4 / Math.PI) / 2) + 2) % 4;
-          const safeDir = {
+          const safeDir: { [dir: number]: Mechanic } = {
             0: 'safeN',
             1: 'safeE',
             2: 'safeS',
             3: 'safeW',
-          }[cardinal] ?? '';
-          head.mechanics.push(safeDir);
+          };
+          head.mechanics.push(safeDir[cardinal] ?? 'unknown');
         }
 
         // If we have the same count of mechanics stored for all 5 heads, resolve safe spot
@@ -649,7 +651,9 @@ const triggerSet: TriggerSet<Data> = {
         data.storedMechs.counter++;
         return output.stack!();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        stack: echoesOutputStrings.stack,
+      },
     },
     {
       id: 'EndsingerEx Echoes of Nausea',
@@ -662,7 +666,9 @@ const triggerSet: TriggerSet<Data> = {
         data.storedMechs.counter++;
         return output.donut!();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        donut: echoesOutputStrings.donut,
+      },
     },
     {
       id: 'EndsingerEx Echoes of the Future',
@@ -675,7 +681,9 @@ const triggerSet: TriggerSet<Data> = {
         data.storedMechs.counter++;
         return output.flare!();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        flare: echoesOutputStrings.flare,
+      },
     },
     {
       id: 'EndsingerEx Echoes of Befoulment',
@@ -688,7 +696,9 @@ const triggerSet: TriggerSet<Data> = {
         data.storedMechs.counter++;
         return output.spread!();
       },
-      outputStrings: echoesOutputStrings,
+      outputStrings: {
+        spread: echoesOutputStrings.spread,
+      },
     },
     {
       id: 'EndsingerEx Echoes Rewind',
