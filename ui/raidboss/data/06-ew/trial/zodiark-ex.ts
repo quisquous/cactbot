@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack x6',
           de: 'Sammeln x6',
-          cn: '6次分摊',
+          cn: '多重分摊',
         },
       },
     },
@@ -221,7 +221,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: Outputs.killAdds.en + '(back first)',
           de: Outputs.killAdds.de + '(hinten zuerst)',
-          cn: Outputs.killAdds.cn + ' (先打后方的) ',
+          cn: Outputs.killAdds.cn + ' (先打后方的)',
         },
       },
     },
