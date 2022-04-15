@@ -19,77 +19,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Azeyma Wildfire Ward triangle triggers
 // TODO: Nald'Thal Fired Up I/II/III
 
-// RHALGR NOTES:
-// 70B0 punching in blue on right (paired with 70A9)
-// 70AF punching in red on left (paired with 70A8)
-// 70B1 single red with broken world (paired with 70AC)
-// 71DC punching in red on right (broken world right) (paired with 70AC)
-// 70B0 punching in blue on left (broken world right) (paired with 70A9)
-// 71DC punching in red on right (broken world right) (paired with 70AC)
-// 70B0 punching in blue on right (broken world left) (paired with 70A9)
-
-// LIONS NOTES:
-// 71D0/6.7 Lion dot1 out (71D4 self)
-// 71D6/9.9 Lioness dot2 in (71D3 self)
-// 71D2/6.7 Lioness dot1 in (71D1 self)
-// 71D5/9.9 Lion dot2 out (71D4 self)
-// 71CE/6.7 Lionness dot1 blaze (facing north)
-// 71CF/8.7 Lion dot2 blaze (facing south)
-// 71CE/6.7 Lion dot1 blaze (facing east)
-// 71CF/8.7 Lionness dot2 blaze (facing west)
-
-// NALD'THAL NOTES
-// 73A5 Heat Above, blue background, get in (on red)
-//  73A8 Living Heat
-//  73A7 Flames of the Dead
-// 73A4 Heat Above, blue background late yellow switch, get out (on blue)
-//  73A9 Living Heat
-//  73A6 Flames of the Dead
-// 73AA Far Above, Deep Below (blue background)
-//  Deepest Pit blue markers real, stack marker fake
-// 73AB Far Above, Deep Below (yellow background)
-//  Deepest Pit fake, stack marker real
-// 741D Once Above, Ever Below, yellow background, go to blue corner
-//  73C4 Everfire
-//  73C5 Once Burned
-//  73C6 Once Burned
-// 73BF Once Above, Ever Below, late yellow switch, go to blue corner
-//  73C4 Everfire
-//  73C5 Once Burned
-//  73C6 Once Burned
-// 73C0 Once Above, Ever Below blue background, go to yellow corner
-//  73C2 Everfire 1
-//  73C3 Everfire 2
-//  73C1 Once Burned
-// 73CA Hearth Above, Flight Below blue background
-//  73A8 Living Heat
-//  73A7 Flames of the Dead
-//  followed by real 73C7/73C8 Deepest Pit
-// 73CB Hearth Above, Flight Below yellow but unknown if swap
-//  73A6 Flames of the Dead
-//  73A9 Living Heat
-//  followed by real 73AD Far-Flung Fire
-// 74FB Hearth Above, Flight Below yellow but unknown if swap
-//  73A6 Flames of the Dead
-//  73A9 Living Heat
-//  followed by real 73AD Far-Flung Fire
-// 72B7 Hell of Fire (frontal 180)
-//  72B8 damage
-// 72B9 Hell of Fire (reverse 180, but late switch)
-//  72BA damage
-// 7111 Fired Up 1 (knockback)
-//  73AF knockback (7117 self-targeted preceding?)
-// 738A Fired Up 2 (out)
-//  7118 damage
-// 7112 Fired Up 1 (out)
-//  7119 damage
-// 7389 Fired Up 2 (knockback)
-//  73AF knockback (7117 self-targeted preceding)
-// 7419 Fired Up 3 (knockback)
-//  73AF knockback (7116 self-targeted preceding)
-// 741A Fired Up 3 (out)
-//  7118 damage
-
 export interface Data extends RaidbossData {
   rhalgrSeenBeacon?: boolean;
   rhalgrBrokenWorldActive?: boolean;
@@ -119,7 +48,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Byregot Byregot\'s Strike',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '725A', source: 'Byregot', capture: false }),
-      response: Responses.knockback(),
+      response: Responses.knockback('info'),
     },
     {
       id: 'Aglaia Byregot Byregot\'s Strike Lightning',
@@ -128,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback (to intercards)',
+          en: 'Knockback (with lightning)',
         },
       },
     },
@@ -231,6 +160,13 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.rhalgrBrokenWorldActive = true,
     },
     {
+      id: 'Aglaia Rhalgr Broken World Cleanup',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
+      delaySeconds: 20,
+      run: (data) => data.rhalgrBrokenWorldActive = false,
+    },
+    {
       id: 'Aglaia Rhalgr Hand of the Destroyer Blue',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A9', source: 'Rhalgr', capture: false }),
@@ -239,7 +175,6 @@ const triggerSet: TriggerSet<Data> = {
           return output.redSideAway!();
         return output.redSide!();
       },
-      run: (data) => delete data.rhalgrBrokenWorldActive,
       outputStrings: {
         redSide: {
           en: 'Be on red half',
@@ -254,7 +189,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A8', source: 'Rhalgr', capture: false }),
       alertText: (_data, _matches, output) => output.blueSide!(),
-      run: (data) => delete data.rhalgrBrokenWorldActive,
       outputStrings: {
         blueSide: {
           en: 'Be on blue half',
@@ -266,7 +200,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70AC', source: 'Rhalgr', capture: false }),
       alertText: (_data, _matches, output) => output.nearRed!(),
-      run: (data) => delete data.rhalgrBrokenWorldActive,
       outputStrings: {
         nearRed: {
           en: 'Go near red portal',
@@ -367,12 +300,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Heat Above, Flames Below Orange Swap',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '73A4', source: 'Nald\'thal', capture: false }),
+      durationSeconds: 6,
       response: Responses.getOut(),
     },
     {
       id: 'Aglaia Nald\'thal Heat Above, Flames Below Blue',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '73A5', source: 'Nald\'thal', capture: false }),
+      durationSeconds: 6,
       response: Responses.getUnder(),
     },
     {
@@ -412,10 +347,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // The order of events is:
-      // Deepest Pit headmarker (always) -> Far Above cast -> 73AC cast (only if stack is real)
+      // Deepest Pit headmarker (always) -> Far Above cast -> 73AC ability (only if stack is real)
       id: 'Aglaia Nald\'thal Deepest Pit Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00154' }),
+      netRegex: NetRegexes.headMarker({ id: '0154' }),
       run: (data, matches) => data.naldArrowMarker.push(matches.target),
     },
     {
@@ -457,10 +392,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Aglaia Nald\'thal Far-flung Fire',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '73AC', source: 'Nald\'thal' }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
       alertText: (data, matches, output) => {
-        // If this starts casting, it is real.
+        // If this ability happens, the stack is real.
         return output.lineStackOn!({ player: data.ShortName(matches.target) });
       },
       run: (data) => data.naldArrowMarker = [],
@@ -476,11 +411,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Aglaia Nald\'thal Once Above Ever Below Orange',
+      id: 'Aglaia Nald\'thal Once Above, Ever Below Orange',
       type: 'StartsUsing',
       // 73BF = starts blue, swaps orange
       // 741D = starts orange, stays orange
       netRegex: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'Nald\'thal', capture: false }),
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -489,11 +425,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Aglaia Nald\'thal Once Above Ever Below Blue',
+      id: 'Aglaia Nald\'thal Once Above, Ever Below Blue',
       type: 'StartsUsing',
       // 73C0 = starts blue, stays blue
-      // ??? = is there a swap?
-      netRegex: NetRegexes.startsUsing({ id: '73C0', source: 'Nald\'thal', capture: false }),
+      // 741C = starts orange, swaps blue
+      netRegex: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'Nald\'thal', capture: false }),
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -511,7 +448,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Hell of Fire Back',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '72B9', source: 'Nald\'thal', capture: false }),
-      response: Responses.getBehind(),
+      alertText: (_data, _matches, output) => output.goFront!(),
+      outputStrings: {
+        goFront: Outputs.goFront,
+      },
     },
     {
       id: 'Aglaia Nald\'thal Soul Vessel Magmatic Spell',
@@ -556,8 +496,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Hearth Above, Flight Below Blue',
       type: 'StartsUsing',
       // 73CA = start blue, stay blue
-      // ??? = swap?
-      netRegex: NetRegexes.startsUsing({ id: '73CA', source: 'Nald\'thal', capture: false }),
+      // 73CC = start orange, swap blue
+      netRegex: NetRegexes.startsUsing({ id: ['73CA', '73CC'], source: 'Nald\'thal', capture: false }),
+      durationSeconds: 6,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -583,6 +524,7 @@ const triggerSet: TriggerSet<Data> = {
       // 73CB = orange, unknown if swap
       // 74FB = orange, unknown if swap
       netRegex: NetRegexes.startsUsing({ id: ['73CB', '74FB'], source: 'Nald\'thal', capture: false }),
+      durationSeconds: 6,
       // Use info here to not conflict with the 73AC line stack trigger.
       infoText: (data, _matches, output) => {
         if (data.naldArrowMarker.includes(data.me))
