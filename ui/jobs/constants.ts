@@ -257,7 +257,8 @@ export const kAbility = {
   // SMN
   EnergyDrain: '407C',
   EnergySiphon: '407E',
-  SearingLight: '64F2',
+  SearingLight60: '64F2',
+  SearingLight: '64C9',
   Aethercharge: '64C8',
   DreadwyrmTrance: 'DFD',
   SummonBahamut: '1D03',

@@ -22,6 +22,7 @@ import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png'
 import physicalImage from '../../resources/ffxiv/status/physical.png';
 import potionImage from '../../resources/ffxiv/status/potion.png';
 import finaleImage from '../../resources/ffxiv/status/radiant-finale.png';
+import searingLight60Image from '../../resources/ffxiv/status/searing-light-6.0.png';
 import searingLightImage from '../../resources/ffxiv/status/searing-light.png';
 import spearImage from '../../resources/ffxiv/status/spear.png';
 import spireImage from '../../resources/ffxiv/status/spire.png';
@@ -596,7 +597,6 @@ export class BuffTracker {
         cooldown: 120,
       },
       searingLight: {
-        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
         cooldownAbility: [kAbility.SearingLight],
         gainEffect: [EffectId.SearingLight],
         loseEffect: [EffectId.SearingLight],
@@ -624,6 +624,20 @@ export class BuffTracker {
         borderColor: '#FC4AE6',
         sortKey: 1,
         cooldown: 60,
+      },
+      searingLight: {
+        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
+        cooldownAbility: [kAbility.SearingLight60],
+        gainEffect: [EffectId.SearingLight],
+        loseEffect: [EffectId.SearingLight],
+        useEffectDuration: true,
+        durationSeconds: 30,
+        partyOnly: true,
+        icon: searingLight60Image,
+        // Pink.
+        borderColor: '#FF4A9D',
+        sortKey: 14,
+        cooldown: 120,
       },
     };
 
