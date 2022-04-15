@@ -1446,7 +1446,7 @@ const templateOptions: OptionsTemplate = {
         de: 'Standard Alert Ausgabe',
         fr: 'Alerte par défaut',
         ja: '警告情報出力既定値',
-        cn: '默认触发器提示输出方式',
+        cn: '默认触发器提示输出模式',
         ko: '기본 알람 출력 방식',
       },
       type: 'select',
