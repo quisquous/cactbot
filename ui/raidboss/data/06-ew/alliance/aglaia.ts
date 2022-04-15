@@ -22,11 +22,11 @@ import { TriggerSet } from '../../../../../types/trigger';
 // RHALGR NOTES:
 // 70B0 punching in blue on right (paired with 70A9)
 // 70AF punching in red on left (paired with 70A8)
-// 70B1 single red with broken world
-// 71DC punching in red on right (broken world right)
-// 70B0 punching in blue on left (broken world right)
-// 71DC punching in red on right (broken world right)
-// 70B0 punching in blue on right (broken world left)
+// 70B1 single red with broken world (paired with 70AC)
+// 71DC punching in red on right (broken world right) (paired with 70AC)
+// 70B0 punching in blue on left (broken world right) (paired with 70A9)
+// 71DC punching in red on right (broken world right) (paired with 70AC)
+// 70B0 punching in blue on right (broken world left) (paired with 70A9)
 
 // LIONS NOTES:
 // 71D0/6.7 Lion dot1 out (71D4 self)
@@ -184,6 +184,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr', capture: false }),
       delaySeconds: 0.3,
+      suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -232,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Rhalgr Hand of the Destroyer Blue',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70B0', source: 'Rhalgr', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '70A9', source: 'Rhalgr', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.rhalgrBrokenWorldActive)
           return output.redSideAway!();
@@ -251,7 +252,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Rhalgr Hand of the Destroyer Red Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70AF', source: 'Rhalgr', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '70A8', source: 'Rhalgr', capture: false }),
       alertText: (_data, _matches, output) => output.blueSide!(),
       run: (data) => delete data.rhalgrBrokenWorldActive,
       outputStrings: {
@@ -263,7 +264,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Rhalgr Hand of the Destroyer Red',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['70B1', '71DC'], source: 'Rhalgr', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '70AC', source: 'Rhalgr', capture: false }),
       alertText: (_data, _matches, output) => output.nearRed!(),
       run: (data) => delete data.rhalgrBrokenWorldActive,
       outputStrings: {
@@ -323,6 +324,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma', capture: false }),
       delaySeconds: 0.3,
+      suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -515,6 +517,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Soul Vessel Magmatic Spell',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '712D', source: 'Soul Vessel', capture: false }),
+      suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -533,6 +536,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'thal', capture: false }),
       delaySeconds: 0.3,
+      suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
