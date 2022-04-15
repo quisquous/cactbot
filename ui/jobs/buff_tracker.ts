@@ -16,6 +16,7 @@ import emboldenImage from '../../resources/ffxiv/status/embolden.png';
 import ewerImage from '../../resources/ffxiv/status/ewer.png';
 import ladyOfCrownsImage from '../../resources/ffxiv/status/lady-of-crowns.png';
 import lordOfCrownsImage from '../../resources/ffxiv/status/lord-of-crowns.png';
+import mugImage from '../../resources/ffxiv/status/mug.png';
 import offguardImage from '../../resources/ffxiv/status/offguard.png';
 import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png';
 import physicalImage from '../../resources/ffxiv/status/physical.png';
@@ -346,17 +347,17 @@ export class BuffTracker {
         cooldown: 60,
         sharesCooldownWith: ['offguard'],
       },
-      trick: {
-        cooldownAbility: [kAbility.TrickAttack],
+      mug: {
+        cooldownAbility: [kAbility.Mug],
         mobGainsEffect: EffectId.VulnerabilityUp,
         mobLosesEffect: EffectId.VulnerabilityUp,
         useEffectDuration: true,
-        durationSeconds: 15,
-        icon: trickAttackImage,
+        durationSeconds: 20,
+        icon: mugImage,
         // Magenta.
         borderColor: '#FC4AE6',
         sortKey: 1,
-        cooldown: 60,
+        cooldown: 120,
       },
       litany: {
         cooldownAbility: [kAbility.BattleLitany],
@@ -612,7 +613,7 @@ export class BuffTracker {
 
     // Abilities that are different in Cn region.
     const vCn = {
-      trick: {
+      mug: {
         cooldownAbility: [kAbility.TrickAttack],
         mobGainsEffect: EffectId.VulnerabilityUp,
         mobLosesEffect: EffectId.VulnerabilityUp,

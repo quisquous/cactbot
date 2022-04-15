@@ -184,6 +184,7 @@ export const kAbility = {
   RabbitMedium: '8E0',
   Bunshin: '406D',
   Hide: '8C5',
+  Mug: '8C8',
   // SAM
   Hakaze: '1D35',
   Jinpu: '1D36',
