@@ -761,20 +761,12 @@ namespace Cactbot {
       }
 
       [NonSerialized]
-      [FieldOffset(0x04)]
+      [FieldOffset(0x05)]
       private byte _heldCard;
 
       [NonSerialized]
-      [FieldOffset(0x05)]
-      private Arcanum arcanum_1;
-
-      [NonSerialized]
       [FieldOffset(0x06)]
-      private Arcanum arcanum_2;
-
-      [NonSerialized]
-      [FieldOffset(0x07)]
-      private Arcanum arcanum_3;
+      private byte _arcanumsmix;
 
       public string heldCard {
         get {
@@ -790,7 +782,11 @@ namespace Cactbot {
 
       public string[] arcanums {
         get {
-          Arcanum[] _arcanums = { arcanum_1, arcanum_2, arcanum_3 };
+          var _arcanums = new List<Arcanum>();
+          for (var i = 0; i < 3; i++) {
+            int arcanum = (_arcanumsmix >> 2 * i) & 0x3;
+            _arcanums.Add((Arcanum)arcanum);
+          }
           return _arcanums.Select(a => a.ToString()).Where(a => a != "None").ToArray();
         }
       }
