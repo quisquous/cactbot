@@ -1,7 +1,9 @@
 import EffectId from '../../../resources/effect_id';
+import TimerBar from '../../../resources/timerbar';
 import TimerBox from '../../../resources/timerbox';
 import { JobDetail } from '../../../types/event';
 import { ResourceBox } from '../bars';
+import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
 import { computeBackgroundColorFrom } from '../utils';
@@ -17,6 +19,7 @@ export class PLDComponent extends BaseComponent {
   tid1 = 0;
   stacksContainer: HTMLDivElement;
   requiescat: HTMLElement[] = [];
+  comboTimer: TimerBar;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -36,6 +39,11 @@ export class PLDComponent extends BaseComponent {
     });
     this.expiacionBox = this.bars.addProcBox({
       fgColor: 'pld-color-expiacion',
+    });
+
+    this.comboTimer = this.bars.addTimerBar({
+      id: 'war-timers-combo',
+      fgColor: 'combo-color',
     });
 
     this.setAtonement(this.atonementBox, 0);
@@ -88,9 +96,14 @@ export class PLDComponent extends BaseComponent {
       this.requiescat[i]?.classList.toggle('active', stacks > i);
   }
 
-  override onCombo(skill: string): void {
+  override onCombo(skill: string, combo: ComboTracker): void {
+    this.comboTimer.duration = 0;
     if (skill === kAbility.GoringBlade)
       this.goreBox.duration = 21;
+    if (combo.isFinalSkill)
+      return;
+    if (skill)
+      this.comboTimer.duration = this.comboDuration;
   }
 
   override onUseAbility(skill: string): void {

@@ -3,7 +3,8 @@ import { EventEmitter } from 'eventemitter3';
 import {
   kComboActions,
   kComboBreakers,
-  kComboBreakers5x,
+  kComboBreakersCn,
+  kComboBreakersKo,
   kComboDelay,
   kComboDelay5x,
 } from './constants';
@@ -113,7 +114,14 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
   }
 
   static setup(ffxivRegion: string, player: Player): ComboTracker {
-    const breakers = ffxivRegion === 'ko' ? kComboBreakers5x : kComboBreakers;
+    let breakers;
+    if (ffxivRegion === 'ko')
+      breakers = kComboBreakersKo;
+    else if (ffxivRegion === 'cn')
+      breakers = kComboBreakersCn;
+    else
+      breakers = kComboBreakers;
+
     const comboTracker = new ComboTracker({
       player: player,
       comboBreakers: breakers,
