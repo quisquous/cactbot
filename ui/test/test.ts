@@ -55,7 +55,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText =
         `${detail.jobDetail.blood} | ${detail.jobDetail.darksideMilliseconds} | ${detail.jobDetail.darkArts.toString()} | ${detail.jobDetail.livingShadowMilliseconds}`;
     } else if (detail.job === 'GNB' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.cartridges}${detail.jobDetail.continuationState}`;
+      jobInfo.innerText = `${detail.jobDetail.cartridges} | ${detail.jobDetail.continuationState}`;
     } else if (detail.job === 'PLD' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.oath.toString();
     } else if (detail.job === 'BRD' && detail.jobDetail) {
