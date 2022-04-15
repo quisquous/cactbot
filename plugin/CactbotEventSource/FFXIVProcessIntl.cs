@@ -784,7 +784,7 @@ namespace Cactbot {
         get {
           var _arcanums = new List<Arcanum>();
           for (var i = 0; i < 3; i++) {
-            int arcanum = (_arcanumsmix >> 2*i) & 0x3;
+            int arcanum = (_arcanumsmix >> 2 * i) & 0x3;
             _arcanums.Add((Arcanum)arcanum);
           }
           return _arcanums.Select(a => a.ToString()).Where(a => a != "None").ToArray();
