@@ -37,7 +37,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Aglaia Lions Slash and Burn Circle 2': '71D5', // Lion circle (2 dots)
     'Aglaia Lions Roaring Blaze 1': '71CE', // Lion half cleave (1 dot)
     'Aglaia Lions Roaring Blaze 2': '71CF', // Lion half cleave (2 dots)
-    'Aglaia Lions Trial by Fire': '72C0', // large centered circle after one lion dies
+    'Aglaia Lions Roaring Blaze 3': '72BF', // Lion half cleave (when Lioness is dead)
+    'Aglaia Lions Roaring Blaze 4': '71CE', // Lioness half cleave (when Lion is dead)
+    'Aglaia Lions Trial by Fire': '72C0', // large centered circle when Lioness is dead
+    'Aglaia Lions Spinning Slash': '72C1', // donut when Lion is dead
     'Aglaia Azeyma Solar Wings 1': '7082', // narrow front/back safe attack
     'Aglaia Azeyma Solar Wings 2': '7083', // narrow front/back safe attack
     'Aglaia Azeyma Solar Flair': '7084', // orb exploding after Solar Wings
