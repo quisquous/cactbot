@@ -1762,7 +1762,7 @@ const templateOptions: OptionsTemplate = {
         de: 'Alarm-Text Anzeigedauer (in Sekunden)',
         fr: 'Durée d\'affichage du texte d\'alarme (secondes)',
         ja: '警報テキスト表示時間の長さ (秒)',
-        cn: '致命级别文字显示持续时间 (秒)',
+        cn: '致命级文字显示持续时间 (秒)',
         ko: '경고 텍스트를 표시할 시간 (초)',
       },
       type: 'float',
