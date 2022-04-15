@@ -1801,7 +1801,7 @@ const templateOptions: OptionsTemplate = {
         de: 'Alarm Lautstärke (0-1)',
         fr: 'Volume de l\'alarme (0-1)',
         ja: '警報音声の音量 (0-1)',
-        cn: '致命级别提示音的音量 (0-1)',
+        cn: '致命级提示音量 (0-1)',
         ko: '경고 소리 크기 (0-1)',
       },
       type: 'float',
