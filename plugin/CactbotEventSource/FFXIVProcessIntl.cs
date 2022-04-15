@@ -754,11 +754,11 @@ namespace Cactbot {
       }
 
       [NonSerialized]
-      [FieldOffset(0x06)]
+      [FieldOffset(0x05)]
       private byte _heldCard;
 
       [NonSerialized]
-      [FieldOffset(0x07)]
+      [FieldOffset(0x06)]
       private byte _arcanumsmix;
 
       public string arcanum_1 {
