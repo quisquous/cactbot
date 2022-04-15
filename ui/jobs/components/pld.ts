@@ -42,7 +42,7 @@ export class PLDComponent extends BaseComponent {
     });
 
     this.comboTimer = this.bars.addTimerBar({
-      id: 'war-timers-combo',
+      id: 'pld-timers-combo',
       fgColor: 'combo-color',
     });
 
