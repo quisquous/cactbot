@@ -1,4 +1,4 @@
-# AGLAIA
+# Alzadaal's Legacy
 
 hideall "--Reset--"
 hideall "--sync--"

@@ -355,6 +355,8 @@
 05-shb/trial/wol-ex.txt
 05-shb/ultimate/the_epic_of_alexander.ts
 05-shb/ultimate/the_epic_of_alexander.txt
+06-ew/alliance/aglaia.ts
+06-ew/alliance/aglaia.txt
 06-ew/dungeon/alzadaals_legacy.ts
 06-ew/dungeon/alzadaals_legacy.txt
 06-ew/dungeon/ktisis_hyperboreia.ts
