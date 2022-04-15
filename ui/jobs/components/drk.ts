@@ -103,7 +103,7 @@ export class DRKComponent extends BaseComponent {
         break;
       }
       case kAbility.Delirium: {
-        if (this.is5x) {
+        if (this.ffxivRegion === 'ko') {
           this.delirium.duration = 10.5;
           this.delirium.threshold = 20;
           this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium.active');

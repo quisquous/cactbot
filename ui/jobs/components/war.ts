@@ -70,7 +70,7 @@ export class WARComponent extends BaseComponent {
         break;
       case kAbility.InnerRelease:
       case kAbility.Berserk:
-        if (this.is5x)
+        if (this.ffxivRegion === 'ko')
           this.innerReleaseBox.duration = 90;
         else
           this.innerReleaseBox.duration = 60;

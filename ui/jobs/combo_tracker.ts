@@ -112,12 +112,12 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     this.StateTransition(id);
   }
 
-  static setup(is5x: boolean, player: Player): ComboTracker {
-    const breakers = is5x ? kComboBreakers5x : kComboBreakers;
+  static setup(ffxivRegion: string, player: Player): ComboTracker {
+    const breakers = ffxivRegion === 'ko' ? kComboBreakers5x : kComboBreakers;
     const comboTracker = new ComboTracker({
       player: player,
       comboBreakers: breakers,
-      comboDelayMs: (is5x ? kComboDelay5x : kComboDelay) * 1000,
+      comboDelayMs: (ffxivRegion === 'ko' ? kComboDelay5x : kComboDelay) * 1000,
     });
     kComboActions.forEach((skillList) => comboTracker.AddCombo(skillList));
     return comboTracker;

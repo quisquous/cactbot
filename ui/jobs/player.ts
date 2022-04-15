@@ -152,14 +152,18 @@ export class Player extends PlayerBase {
   partyTracker: PartyTracker;
   combo: ComboTracker;
 
-  constructor(jobsEmitter: JobsEventEmitter, partyTracker: PartyTracker, private is5x: boolean) {
+  constructor(
+    jobsEmitter: JobsEventEmitter,
+    partyTracker: PartyTracker,
+    private ffxivRegion: string,
+  ) {
     super();
     this.ee = new EventEmitter();
     this.jobsEmitter = jobsEmitter;
     this.partyTracker = partyTracker;
 
     // setup combo tracker
-    this.combo = ComboTracker.setup(this.is5x, this);
+    this.combo = ComboTracker.setup(this.ffxivRegion, this);
 
     // setup event emitter
     this.jobsEmitter.on('player', (ev) => this.processPlayerChangedEvent(ev));

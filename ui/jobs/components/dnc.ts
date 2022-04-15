@@ -68,7 +68,7 @@ export class DNCComponent extends BaseComponent {
   }
 
   override onYouLoseEffect(effect: string): void {
-    if (!this.is5x) {
+    if (!(this.ffxivRegion === 'ko')) {
       switch (effect) {
         case EffectId.FlourishingSymmetry:
         case EffectId.FlourishingFlow:
@@ -139,7 +139,7 @@ export class DNCComponent extends BaseComponent {
         break;
       }
       case kAbility.Flourish: {
-        if (this.is5x)
+        if (this.ffxivRegion === 'ko')
           this.flourish.duration = 20;
         else
           this.flourish.duration = 30;
@@ -148,7 +148,7 @@ export class DNCComponent extends BaseComponent {
         this.flourish.threshold = 1000;
         this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish.active');
         this.tid2 = window.setTimeout(() => {
-          if (this.is5x)
+          if (this.ffxivRegion === 'ko')
             this.flourish.duration = 40;
           else
             this.flourish.duration = 30;

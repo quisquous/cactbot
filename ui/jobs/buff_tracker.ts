@@ -278,7 +278,7 @@ export class BuffTracker {
     private leftBuffDiv: WidgetList,
     private rightBuffDiv: WidgetList,
     private partyTracker: PartyTracker,
-    private is5x: boolean,
+    private ffxivRegion: string,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -610,8 +610,24 @@ export class BuffTracker {
       },
     };
 
-    // Abilities that are different in 5.x.
-    const v5x = {
+    // Abilities that are different in Cn region.
+    const vCn = {
+      trick: {
+        cooldownAbility: [kAbility.TrickAttack],
+        mobGainsEffect: EffectId.VulnerabilityUp,
+        mobLosesEffect: EffectId.VulnerabilityUp,
+        useEffectDuration: true,
+        durationSeconds: 15,
+        icon: trickAttackImage,
+        // Magenta.
+        borderColor: '#FC4AE6',
+        sortKey: 1,
+        cooldown: 60,
+      },
+    };
+
+    // Abilities that are different in Ko region.
+    const vKo = {
       litany: {
         cooldownAbility: [kAbility.BattleLitany],
         gainEffect: [EffectId.BattleLitany],
@@ -687,8 +703,13 @@ export class BuffTracker {
       },
     };
 
-    if (this.is5x) {
-      for (const [key, entry] of Object.entries(v5x))
+    if (this.ffxivRegion === 'ko') {
+      for (const [key, entry] of Object.entries(vKo))
+        this.buffInfo[key] = entry;
+    }
+
+    if (this.ffxivRegion === 'cn') {
+      for (const [key, entry] of Object.entries(vCn))
         this.buffInfo[key] = entry;
     }
 
