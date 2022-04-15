@@ -126,9 +126,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr Lightning Reign',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
-       netRegexDe: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
-       netRegexFr: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
-       netRegexJa: NetRegexes.startsUsing({ id: '70A5', source: 'ラールガー', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '70A5', source: 'ラールガー', capture: false }),
       response: Responses.aoe(),
     },
     {
