@@ -753,6 +753,13 @@ namespace Cactbot {
         Lady = 0x80,
       }
 
+      public enum Arcanum : byte {
+        None = 0,
+        Solar = 1,
+        Lunar = 2,
+        Celestial = 3,
+      }
+
       [NonSerialized]
       [FieldOffset(0x05)]
       private byte _heldCard;
@@ -760,45 +767,6 @@ namespace Cactbot {
       [NonSerialized]
       [FieldOffset(0x06)]
       private byte _arcanumsmix;
-
-      public string arcanum_1 {
-        get {
-          if ((_arcanumsmix & 0x3) == 0x1)
-            return "Solar";
-          if ((_arcanumsmix & 0x3) == 0x2)
-            return "Lunar";
-          if ((_arcanumsmix & 0x3) == 0x3)
-            return "Celestial";
-          else
-            return "None";
-        }
-      }
-
-      public string arcanum_2 {
-        get {
-          if (((_arcanumsmix & 0xc) >> 2) == 0x1)
-            return "Solar";
-          if (((_arcanumsmix & 0xc) >> 2) == 0x2)
-            return "Lunar";
-          if (((_arcanumsmix & 0xc) >> 2) == 0x3)
-            return "Celestial";
-          else
-            return "None";
-        }
-      }
-
-      public string arcanum_3 {
-        get {
-          if (((_arcanumsmix & 0x30) >> 4) == 0x1)
-            return "Solar";
-          if (((_arcanumsmix & 0x30) >> 4) == 0x2)
-            return "Lunar";
-          if (((_arcanumsmix & 0x30) >> 4) == 0x3)
-            return "Celestial";
-          else
-            return "None";
-        }
-      }
 
       public string heldCard {
         get {
@@ -814,7 +782,11 @@ namespace Cactbot {
 
       public string[] arcanums {
         get {
-          string[] _arcanums = { arcanum_1, arcanum_2, arcanum_3 };
+          var _arcanums = new List<Arcanum>();
+          for (var i = 0; i < 3; i++) {
+            int arcanum = (_arcanumsmix >> i) & 0x3;
+            _arcanums.Add((Arcanum)arcanum);
+          }
           return _arcanums.Select(a => a.ToString()).Where(a => a != "None").ToArray();
         }
       }
