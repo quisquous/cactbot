@@ -209,7 +209,7 @@ const kDetailKeys = {
       de: 'alarm',
       fr: 'alarme',
       ja: '警報',
-      cn: '致命级文本',
+      cn: '致命级',
       ko: '경고',
     },
     cls: 'alarm-text',
