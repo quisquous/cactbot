@@ -555,3 +555,30 @@ hideall "Fan Flames"
 #7176.1 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
 #7186.8 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B9:/
 # ???
+
+# branch 5?????
+#7058.7 "--targetable--"
+#7070.1 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7084.3 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73C0:/
+#7095.4 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
+#7105.6 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7119.8 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:73CA:/
+#7125.6 "Deepest Pit" sync / 1[56]:[^:]*:Thal:73C7:/
+#7130.9 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+#7147.2 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B9:/
+#7163.1 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7112:/
+#7169.2 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
+#7175.3 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:741A:/
+#7185.4 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
+#7186.5 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7114:/
+#7187.3 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7119:/
+#7187.9 "--sync--" sync / 1[56]:[^:]*:Thal:7432:/
+#7188.5 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7115:/
+#7189.6 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73B0:/
+#7189.9 "--sync--" sync / 1[56]:[^:]*:Thal:7433:/
+#7190.0 "Seventh Passage" sync / 1[56]:[^:]*:Thal:73AF:/
+#7190.7 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7118:/
+#7191.5 "--sync--" sync / 1[56]:[^:]*:Thal:7434:/
+#7196.9 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
+#7201.9 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
+#7202.8 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/

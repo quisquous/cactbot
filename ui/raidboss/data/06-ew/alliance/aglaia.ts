@@ -25,6 +25,7 @@ export interface Data extends RaidbossData {
   tankbusters: string[];
   naldSmeltingSpread: string[];
   naldArrowMarker: string[];
+  naldLastColor?: 'orange' | 'blue';
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -401,6 +402,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '73A4', source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       response: Responses.getOut(),
+      run: (data) => data.naldLastColor = 'orange',
     },
     {
       id: 'Aglaia Nald\'thal Heat Above, Flames Below Blue',
@@ -411,6 +413,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '73A5', source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       response: Responses.getUnder(),
+      run: (data) => data.naldLastColor = 'blue',
     },
     {
       id: 'Aglaia Nald\'thal Smelting',
@@ -456,7 +459,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // The order of events is:
-      // Deepest Pit headmarker (always) -> Far Above cast -> 73AC ability (only if stack is real)
+      // Deepest Pit headmarker (always) -> Far Above cast -> 73AC ability (always)
       id: 'Aglaia Nald\'thal Deepest Pit Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0154' }),
@@ -488,7 +491,10 @@ const triggerSet: TriggerSet<Data> = {
 
         return { infoText: output.ignoreLineStack!() };
       },
-      run: (data) => data.naldArrowMarker = [],
+      run: (data) => {
+        data.naldLastColor = 'blue';
+        data.naldArrowMarker = [];
+      },
     },
     {
       id: 'Aglaia Nald\'thal Far Above, Deep Below Orange',
@@ -501,6 +507,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.naldArrowMarker.includes(data.me))
           return output.ignoreArrow!();
       },
+      run: (data) => data.naldLastColor = 'orange',
       outputStrings: {
         ignoreArrow: {
           en: 'Ignore fake arrow',
@@ -515,8 +522,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexDe: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
       netRegexFr: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
       netRegexJa: NetRegexes.ability({ id: '73AC', source: 'ナル神' }),
+      condition: (data) => data.naldLastColor === 'orange',
       alertText: (data, matches, output) => {
-        // If this ability happens, the stack is real.
         return output.lineStackOn!({ player: data.ShortName(matches.target) });
       },
       run: (data) => data.naldArrowMarker = [],
@@ -542,6 +549,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.naldLastColor = 'orange',
       outputStrings: {
         text: {
           en: 'Go to Blue Quadrant',
@@ -560,6 +568,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.naldLastColor = 'blue',
       outputStrings: {
         text: {
           en: 'Go to Orange Quadrant',
@@ -667,7 +676,10 @@ const triggerSet: TriggerSet<Data> = {
 
         return { infoText: output.ignoreLineStack!() };
       },
-      run: (data) => data.naldArrowMarker = [],
+      run: (data) => {
+        data.naldLastColor = 'blue';
+        data.naldArrowMarker = [];
+      },
     },
     {
       id: 'Aglaia Nald\'thal Hearth Above, Flight Below Orange',
@@ -685,6 +697,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.ignoreArrow!();
         return output.out!();
       },
+      run: (data) => data.naldLastColor = 'orange',
       outputStrings: {
         ignoreArrow: {
           en: 'Out (ignore fake arrow)',
