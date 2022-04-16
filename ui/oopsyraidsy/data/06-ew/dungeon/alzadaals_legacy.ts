@@ -12,7 +12,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Alzadaal Alzadaal\'s Asvattha Bad Breath': '7041', // Conal AoE, before boss 1
 
     'Alzadaal Ambujam Toxin Shower': '65FC', // Large AoE circles, boss 1
-    'Alzadaal Corrosive Venom': '71E6', // Large AoE circles, boss 1
+    'Alzadaal Abujam Corrosive Venom': '71E6', // Large AoE circles, boss 1
     'Alzadaal Ambujam Toxic Fountain': '731B', // Red AoE circles, boss 1
     'Alzadaal Ambujam Corrosive Fountain': '7374', // Blue AoE  circles, boss 1
 
