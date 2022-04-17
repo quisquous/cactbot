@@ -35,6 +35,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareFail: {
     'EndsingerEx Hubris': '702D ', // tankbuster
   },
+  soloFail: {
+    'EndsingerEx Benevolence 1': '7016', // Despair Unforgotten stack
+    'EndsingerEx Benevolence 2': '701A', // Despair Unforgotten + Theological Fatalism stack
+  },
   triggers: [
     {
       id: 'Endsinger Galaxias',
