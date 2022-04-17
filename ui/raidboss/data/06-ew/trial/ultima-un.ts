@@ -12,7 +12,7 @@ export interface Data extends RaidbossData {
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.UltimasBaneUnreal,
-  timelineFile: 'ultima-unreal.txt',
+  timelineFile: 'ultima-un.txt',
   initData: () => {
     return {
       plasmTargets: [],
