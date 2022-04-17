@@ -23,7 +23,7 @@ export interface ComponentInterface {
   options: JobsOptions;
   partyTracker: PartyTracker;
   player: Player;
-  ffxivRegion: string;
+  ffxivRegion: 'intl' | 'cn' | 'ko';
 }
 
 export class BaseComponent implements ComponentInterface {
@@ -32,7 +32,7 @@ export class BaseComponent implements ComponentInterface {
   options: JobsOptions;
   partyTracker: PartyTracker;
   player: Player;
-  ffxivRegion: string;
+  ffxivRegion: 'intl' | 'cn' | 'ko';
 
   inCombat: boolean;
   comboDuration: number;

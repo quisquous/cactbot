@@ -280,7 +280,7 @@ export class BuffTracker {
     private leftBuffDiv: WidgetList,
     private rightBuffDiv: WidgetList,
     private partyTracker: PartyTracker,
-    private ffxivRegion: string,
+    private ffxivRegion: 'intl' | 'cn' | 'ko',
   ) {
     this.options = options;
     this.playerName = playerName;

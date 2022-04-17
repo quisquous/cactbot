@@ -155,7 +155,7 @@ export class Player extends PlayerBase {
   constructor(
     jobsEmitter: JobsEventEmitter,
     partyTracker: PartyTracker,
-    private ffxivRegion: string,
+    private ffxivRegion: 'intl' | 'cn' | 'ko',
   ) {
     super();
     this.ee = new EventEmitter();

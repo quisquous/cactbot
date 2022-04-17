@@ -87,7 +87,7 @@ export class ComponentManager {
   ee: JobsEventEmitter;
   options: JobsOptions;
   partyTracker: PartyTracker;
-  ffxivRegion: string;
+  ffxivRegion: 'intl' | 'cn' | 'ko';
   player: Player;
   regexes?: RegexesHolder;
   component?: BaseComponent;
@@ -111,7 +111,7 @@ export class ComponentManager {
     this.options = o.options;
     this.partyTracker = o.partyTracker;
     this.player = o.player;
-    this.ffxivRegion = o.ffxivRegion ?? 'intl';
+    this.ffxivRegion = o.ffxivRegion;
 
     this.shouldShow = {};
     this.contentType = undefined;

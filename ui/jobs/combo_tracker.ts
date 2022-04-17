@@ -113,7 +113,7 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     this.StateTransition(id);
   }
 
-  static setup(ffxivRegion: string, player: Player): ComboTracker {
+  static setup(ffxivRegion: 'intl' | 'cn' | 'ko', player: Player): ComboTracker {
     let breakers;
     if (ffxivRegion === 'ko')
       breakers = kComboBreakersKo;
