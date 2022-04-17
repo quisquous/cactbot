@@ -460,6 +460,15 @@ hideall "Fan Flames"
 7084.4 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
 # unknown branching from here
 
+# Something like:
+#
+# Stygian Tenet / Heavens' Trial + Smelting
+# 7119.9 hearth (consistently)
+# Hells' Trial / Golden Tenet
+# Hell of Fire
+# Wayward Soul / Fired Up
+# ???
+
 # branch 1?
 #7058.7 "--targetable--"
 #7070.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
@@ -476,31 +485,69 @@ hideall "Fan Flames"
 #???
 
 # branch 2??
-#7058.8 "--targetable--"
-#7070.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
-#7084.4 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73C0:/
-#7095.5 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
-#7105.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
-#7118.8 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CB):/
-#7120.0 "Far-flung Fire" sync / 1[56]:[^:]*:Nald:73AD:/
-#7131.0 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
-#7147.4 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B7:/
-#7155.9 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
-#7161.0 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/
-#7181.2 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
-#7192.1 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B7:/
-#7202.3 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
-#7217.4 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
-#7228.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
-#7241.1 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73BF:/
-#7248.3 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
-#7253.3 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
-#7254.2 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/
-#7263.5 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E8:/
-#7277.7 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:73CB:/
-#7278.6 "Far-flung Fire" sync / 1[56]:[^:]*:Nald:73AD:/
-#7288.8 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
-#7305.2 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B9:/
+#7058.7 "--targetable--"
+#7070.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7084.9 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73C0:/
+#7096.0 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
+#7106.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7119.3 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:741B:/
+#7120.5 "Far-flung Fire" sync / 1[56]:[^:]*:Nald:73AD:/
+#7131.5 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
+#7147.8 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B7:/
+#7156.5 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
+#7161.6 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/
+#7176.8 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
+#7187.5 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B9:/
+#7207.7 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
+#7222.9 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+#7233.4 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7246.6 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73BF:/
+#7253.8 "--sync--" sync / 1[56]:[^:]*:Thal:73CD:/
+#7258.8 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
+#7259.7 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/
+#7269.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E8:/
+#7283.2 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:73CC:/
+#7289.5 "Deepest Pit" sync / 1[56]:[^:]*:Thal:73C7:/
+#7295.4 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+#7308.7 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B9:/
+#7325.0 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7112:/
+#7331.1 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
+#7337.2 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:7419:/
+#7347.3 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
+#7348.4 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7114:/
+#7349.2 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7119:/
+#7349.8 "--sync--" sync / 1[56]:[^:]*:Thal:7432:/
+#7350.4 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7115:/
+#7351.5 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73B0:/
+#7351.8 "--sync--" sync / 1[56]:[^:]*:Thal:7433:/
+#7351.9 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:73AF:/
+#7353.2 "Seventh Passage" sync / 1[56]:[^:]*:Thal:73AF:/
+#7353.3 "--sync--" sync / 1[56]:[^:]*:Thal:7435:/
+#7358.7 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
+#7363.7 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
+#7364.6 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/
+#7373.9 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
+#7389.1 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+#7401.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7415.2 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73C0:/
+#7426.3 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
+#7436.5 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7450.6 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:73CA:/
+#7456.4 "Deepest Pit" sync / 1[56]:[^:]*:Thal:73C7:/
+#7461.8 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+#7478.1 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B7:/
+#7487.9 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
+#7493.0 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/
+#7513.2 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
+#7523.9 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B7:/
+#7534.1 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
+#7549.2 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+#7559.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E9:/
+#7572.8 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73BF:/
+#7580.0 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
+#7585.0 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
+#7585.9 "Smelting" sync / 1[56]:[^:]*:Nald:7120:/
+#7595.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E8:/
 # ???
 
 # branch 3???
