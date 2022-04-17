@@ -5,6 +5,7 @@ import { Job } from '../../../types/job';
 import { Bars } from '../bars';
 import { BuffTracker } from '../buff_tracker';
 import { JobsEventEmitter } from '../event_emitter';
+import { FfxivRegion } from '../jobs';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
@@ -87,7 +88,7 @@ export class ComponentManager {
   ee: JobsEventEmitter;
   options: JobsOptions;
   partyTracker: PartyTracker;
-  ffxivRegion: 'intl' | 'cn' | 'ko';
+  ffxivRegion: FfxivRegion;
   player: Player;
   regexes?: RegexesHolder;
   component?: BaseComponent;

@@ -8,6 +8,7 @@ import {
   kComboDelay,
   kComboDelay5x,
 } from './constants';
+import { FfxivRegion } from './jobs';
 import { Player } from './player';
 
 type StartMap = {
@@ -113,7 +114,7 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     this.StateTransition(id);
   }
 
-  static setup(ffxivRegion: 'intl' | 'cn' | 'ko', player: Player): ComboTracker {
+  static setup(ffxivRegion: FfxivRegion, player: Player): ComboTracker {
     let breakers;
     if (ffxivRegion === 'ko')
       breakers = kComboBreakersKo;

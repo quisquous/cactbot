@@ -35,6 +35,7 @@ import WidgetList from '../../resources/widget_list';
 import { NetMatches } from '../../types/net_matches';
 
 import { kAbility } from './constants';
+import { FfxivRegion } from './jobs';
 import { JobsOptions } from './jobs_options';
 import { makeAuraTimerIcon } from './utils';
 
@@ -280,7 +281,7 @@ export class BuffTracker {
     private leftBuffDiv: WidgetList,
     private rightBuffDiv: WidgetList,
     private partyTracker: PartyTracker,
-    private ffxivRegion: 'intl' | 'cn' | 'ko',
+    private ffxivRegion: FfxivRegion,
   ) {
     this.options = options;
     this.playerName = playerName;

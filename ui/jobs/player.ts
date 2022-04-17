@@ -10,6 +10,7 @@ import { NetFields } from '../../types/net_fields';
 
 import { ComboCallback, ComboTracker } from './combo_tracker';
 import { JobsEventEmitter, PartialFieldMatches } from './event_emitter';
+import { FfxivRegion } from './jobs';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
@@ -155,7 +156,7 @@ export class Player extends PlayerBase {
   constructor(
     jobsEmitter: JobsEventEmitter,
     partyTracker: PartyTracker,
-    private ffxivRegion: 'intl' | 'cn' | 'ko',
+    private ffxivRegion: FfxivRegion,
   ) {
     super();
     this.ee = new EventEmitter();

@@ -4,6 +4,7 @@ import { Bars } from '../bars';
 import { ComboTracker } from '../combo_tracker';
 import { kComboDelay, kComboDelay5x } from '../constants';
 import { JobsEventEmitter, PartialFieldMatches } from '../event_emitter';
+import { FfxivRegion } from '../jobs';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 
@@ -23,7 +24,7 @@ export interface ComponentInterface {
   options: JobsOptions;
   partyTracker: PartyTracker;
   player: Player;
-  ffxivRegion: 'intl' | 'cn' | 'ko';
+  ffxivRegion: FfxivRegion;
 }
 
 export class BaseComponent implements ComponentInterface {
@@ -32,7 +33,7 @@ export class BaseComponent implements ComponentInterface {
   options: JobsOptions;
   partyTracker: PartyTracker;
   player: Player;
-  ffxivRegion: 'intl' | 'cn' | 'ko';
+  ffxivRegion: FfxivRegion;
 
   inCombat: boolean;
   comboDuration: number;
