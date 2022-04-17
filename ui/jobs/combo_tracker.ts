@@ -3,10 +3,12 @@ import { EventEmitter } from 'eventemitter3';
 import {
   kComboActions,
   kComboBreakers,
-  kComboBreakers5x,
+  kComboBreakersCn,
+  kComboBreakersKo,
   kComboDelay,
   kComboDelay5x,
 } from './constants';
+import { FfxivRegion } from './jobs';
 import { Player } from './player';
 
 type StartMap = {
@@ -112,12 +114,19 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     this.StateTransition(id);
   }
 
-  static setup(is5x: boolean, player: Player): ComboTracker {
-    const breakers = is5x ? kComboBreakers5x : kComboBreakers;
+  static setup(ffxivRegion: FfxivRegion, player: Player): ComboTracker {
+    let breakers;
+    if (ffxivRegion === 'ko')
+      breakers = kComboBreakersKo;
+    else if (ffxivRegion === 'cn')
+      breakers = kComboBreakersCn;
+    else
+      breakers = kComboBreakers;
+
     const comboTracker = new ComboTracker({
       player: player,
       comboBreakers: breakers,
-      comboDelayMs: (is5x ? kComboDelay5x : kComboDelay) * 1000,
+      comboDelayMs: (ffxivRegion === 'ko' ? kComboDelay5x : kComboDelay) * 1000,
     });
     kComboActions.forEach((skillList) => comboTracker.AddCombo(skillList));
     return comboTracker;

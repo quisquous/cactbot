@@ -80,7 +80,7 @@ export class BLMComponent extends BaseComponent {
   }
 
   override onUseAbility(id: string): void {
-    if (this.is5x) {
+    if (this.ffxivRegion === 'ko') {
       switch (id) {
         case kAbility.Thunder1:
         case kAbility.Thunder4:

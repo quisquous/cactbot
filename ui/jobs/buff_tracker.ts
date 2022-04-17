@@ -16,11 +16,13 @@ import emboldenImage from '../../resources/ffxiv/status/embolden.png';
 import ewerImage from '../../resources/ffxiv/status/ewer.png';
 import ladyOfCrownsImage from '../../resources/ffxiv/status/lady-of-crowns.png';
 import lordOfCrownsImage from '../../resources/ffxiv/status/lord-of-crowns.png';
+import mugImage from '../../resources/ffxiv/status/mug.png';
 import offguardImage from '../../resources/ffxiv/status/offguard.png';
 import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png';
 import physicalImage from '../../resources/ffxiv/status/physical.png';
 import potionImage from '../../resources/ffxiv/status/potion.png';
 import finaleImage from '../../resources/ffxiv/status/radiant-finale.png';
+import searingLight60Image from '../../resources/ffxiv/status/searing-light-6.0.png';
 import searingLightImage from '../../resources/ffxiv/status/searing-light.png';
 import spearImage from '../../resources/ffxiv/status/spear.png';
 import spireImage from '../../resources/ffxiv/status/spire.png';
@@ -33,6 +35,7 @@ import WidgetList from '../../resources/widget_list';
 import { NetMatches } from '../../types/net_matches';
 
 import { kAbility } from './constants';
+import { FfxivRegion } from './jobs';
 import { JobsOptions } from './jobs_options';
 import { makeAuraTimerIcon } from './utils';
 
@@ -278,7 +281,7 @@ export class BuffTracker {
     private leftBuffDiv: WidgetList,
     private rightBuffDiv: WidgetList,
     private partyTracker: PartyTracker,
-    private is5x: boolean,
+    private ffxivRegion: FfxivRegion,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -346,17 +349,17 @@ export class BuffTracker {
         cooldown: 60,
         sharesCooldownWith: ['offguard'],
       },
-      trick: {
-        cooldownAbility: [kAbility.TrickAttack],
+      mug: {
+        cooldownAbility: [kAbility.Mug],
         mobGainsEffect: EffectId.VulnerabilityUp,
         mobLosesEffect: EffectId.VulnerabilityUp,
         useEffectDuration: true,
-        durationSeconds: 15,
-        icon: trickAttackImage,
+        durationSeconds: 20,
+        icon: mugImage,
         // Magenta.
         borderColor: '#FC4AE6',
         sortKey: 1,
-        cooldown: 60,
+        cooldown: 120,
       },
       litany: {
         cooldownAbility: [kAbility.BattleLitany],
@@ -595,7 +598,6 @@ export class BuffTracker {
         cooldown: 120,
       },
       searingLight: {
-        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
         cooldownAbility: [kAbility.SearingLight],
         gainEffect: [EffectId.SearingLight],
         loseEffect: [EffectId.SearingLight],
@@ -610,8 +612,38 @@ export class BuffTracker {
       },
     };
 
-    // Abilities that are different in 5.x.
-    const v5x = {
+    // Abilities that are different in Cn region.
+    const vCn = {
+      mug: {
+        cooldownAbility: [kAbility.TrickAttack],
+        mobGainsEffect: EffectId.VulnerabilityUp,
+        mobLosesEffect: EffectId.VulnerabilityUp,
+        useEffectDuration: true,
+        durationSeconds: 15,
+        icon: trickAttackImage,
+        // Magenta.
+        borderColor: '#FC4AE6',
+        sortKey: 1,
+        cooldown: 60,
+      },
+      searingLight: {
+        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
+        cooldownAbility: [kAbility.SearingLight60],
+        gainEffect: [EffectId.SearingLight],
+        loseEffect: [EffectId.SearingLight],
+        useEffectDuration: true,
+        durationSeconds: 30,
+        partyOnly: true,
+        icon: searingLight60Image,
+        // Pink.
+        borderColor: '#FF4A9D',
+        sortKey: 14,
+        cooldown: 120,
+      },
+    };
+
+    // Abilities that are different in Ko region.
+    const vKo = {
       litany: {
         cooldownAbility: [kAbility.BattleLitany],
         gainEffect: [EffectId.BattleLitany],
@@ -687,8 +719,13 @@ export class BuffTracker {
       },
     };
 
-    if (this.is5x) {
-      for (const [key, entry] of Object.entries(v5x))
+    if (this.ffxivRegion === 'ko') {
+      for (const [key, entry] of Object.entries(vKo))
+        this.buffInfo[key] = entry;
+    }
+
+    if (this.ffxivRegion === 'cn') {
+      for (const [key, entry] of Object.entries(vCn))
         this.buffInfo[key] = entry;
     }
 

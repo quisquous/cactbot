@@ -68,10 +68,28 @@ export class DNCComponent extends BaseComponent {
   }
 
   override onYouLoseEffect(effect: string): void {
-    if (!this.is5x) {
+    if (this.ffxivRegion === 'intl') {
       switch (effect) {
         case EffectId.FlourishingSymmetry:
         case EffectId.FlourishingFlow:
+        case EffectId.ThreefoldFanDance:
+        case EffectId.FourfoldFanDance: {
+          if (!(this.flourishEffect.includes(effect)))
+            this.flourishEffect.push(effect);
+          if ((this.flourishEffect.length === 4 && this.flourishIsActive) ||
+            (this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive)) {
+            this.flourish.duration = 60 - this.flourish.elapsed;
+            this.flourishIsActive = false;
+            this.flourish.threshold = this.player.gcdSkill + 1;
+            this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
+          }
+          break;
+        }
+      }
+    } else if (this.ffxivRegion === 'cn') {
+      switch (effect) {
+        case EffectId.SilkenSymmetry:
+        case EffectId.SilkenFlow: //  6.0 names FlourishingXXX, name changed but id not.
         case EffectId.ThreefoldFanDance:
         case EffectId.FourfoldFanDance: {
           if (!(this.flourishEffect.includes(effect)))
@@ -139,7 +157,7 @@ export class DNCComponent extends BaseComponent {
         break;
       }
       case kAbility.Flourish: {
-        if (this.is5x)
+        if (this.ffxivRegion === 'ko')
           this.flourish.duration = 20;
         else
           this.flourish.duration = 30;
@@ -148,7 +166,7 @@ export class DNCComponent extends BaseComponent {
         this.flourish.threshold = 1000;
         this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish.active');
         this.tid2 = window.setTimeout(() => {
-          if (this.is5x)
+          if (this.ffxivRegion === 'ko')
             this.flourish.duration = 40;
           else
             this.flourish.duration = 30;

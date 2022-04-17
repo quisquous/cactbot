@@ -5,6 +5,7 @@ import { Job } from '../../../types/job';
 import { Bars } from '../bars';
 import { BuffTracker } from '../buff_tracker';
 import { JobsEventEmitter } from '../event_emitter';
+import { FfxivRegion } from '../jobs';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
@@ -87,7 +88,7 @@ export class ComponentManager {
   ee: JobsEventEmitter;
   options: JobsOptions;
   partyTracker: PartyTracker;
-  is5x: boolean;
+  ffxivRegion: FfxivRegion;
   player: Player;
   regexes?: RegexesHolder;
   component?: BaseComponent;
@@ -111,7 +112,7 @@ export class ComponentManager {
     this.options = o.options;
     this.partyTracker = o.partyTracker;
     this.player = o.player;
-    this.is5x = o.is5x;
+    this.ffxivRegion = o.ffxivRegion;
 
     this.shouldShow = {};
     this.contentType = undefined;
@@ -127,8 +128,8 @@ export class ComponentManager {
   }
 
   getJobComponents(job: Job): BaseComponent {
-    // For CN/KR that is still in 5.x
-    if (this.o.is5x) {
+    // For KR that is still in 5.x
+    if (this.o.ffxivRegion === 'ko') {
       if (job === 'SMN')
         return new SMN5xComponent(this.o);
       if (job === 'AST')
@@ -252,7 +253,7 @@ export class ComponentManager {
           this.bars.o.leftBuffsList,
           this.bars.o.rightBuffsList,
           this.partyTracker,
-          this.is5x,
+          this.ffxivRegion,
         );
       }
     });

@@ -57,7 +57,7 @@ export class MNKComponent extends BaseComponent {
   stacksContainer.classList.add('stacks');
   this.bars.addJobBarContainer().appendChild(stacksContainer);
 
-  if (this.is5x)
+  if (this.ffxivRegion === 'ko')
     stacksContainer.classList.add('hide');
 
   const lunarStacksContainer = document.createElement('div');
@@ -100,7 +100,7 @@ export class MNKComponent extends BaseComponent {
       this.chakraBox.parentNode.classList.toggle('dim', jobDetail.chakraStacks < 5);
     }
 
-    if (this.is5x)
+    if (this.ffxivRegion === 'ko')
       return;
     this.beastChakraStacks.forEach((elem, i) => {
       elem.classList.remove('Opo', 'Coeurl', 'Raptor');
