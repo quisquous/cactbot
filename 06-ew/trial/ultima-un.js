@@ -1,6 +1,6 @@
 Options.Triggers.push({
   zoneId: ZoneId.UltimasBaneUnreal,
-  timelineFile: 'ultima-unreal.txt',
+  timelineFile: 'ultima-un.txt',
   initData: () => {
     return {
       plasmTargets: [],
