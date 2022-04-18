@@ -27,12 +27,12 @@ hideall "--sync--"
 80.6 "Corrosive Fountain/Toxic Fountain 3" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
 104.4 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/
 
-124.0 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/ window 30,30 jump 47.6
-136.6 "Corrosive Venom/Toxic Shower"
-152.7 "Corrosive Fountain/Toxic Fountain 1"
-155.7 "Corrosive Fountain/Toxic Fountain 2"
-157.0 "Corrosive Fountain/Toxic Fountain 3"
-180.8 "Big Wave"
+113.8 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/ window 30,30 jump 47.6
+126.4 "Corrosive Venom/Toxic Shower"
+142.5 "Corrosive Fountain/Toxic Fountain 1"
+145.5 "Corrosive Fountain/Toxic Fountain 2"
+146.8 "Corrosive Fountain/Toxic Fountain 3"
+170.6 "Big Wave"
 
 
 
