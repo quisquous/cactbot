@@ -66,6 +66,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '6F19', source: 'Gepanzert(?:e|er|es|en) Chariot', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '6F19', source: 'Char Cuirassé', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6F19', source: 'アーマード・チャリオット', capture: false }),
+      suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -81,6 +82,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '7373', source: 'Gepanzert(?:e|er|es|en) Chariot' }),
       netRegexFr: NetRegexes.startsUsing({ id: '7373', source: 'Char Cuirassé' }),
       netRegexJa: NetRegexes.startsUsing({ id: '7373', source: 'アーマード・チャリオット' }),
+      condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       response: Responses.spread(),
     },
@@ -132,7 +134,8 @@ Options.Triggers.push({
     {
       id: 'Alzadaal Rotary Gale',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
