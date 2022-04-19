@@ -39,6 +39,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback (with lightning)',
           de: 'Rückstoß (mit Blitzen)',
+          ko: '넉백 (번개 장판)',
         },
       },
     },
@@ -63,6 +64,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge normal -> glowing row',
           de: 'Normal ausweichen -> leuchtende Reihe',
+          ko: '안전 지대 -> 빛나는 열 피하기',
         },
       },
     },
@@ -127,6 +129,7 @@ Options.Triggers.push({
           tankCleaves: {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche Tank-Cleaves aus',
+            ko: '광역 탱버',
           },
         };
         if (data.tankbusters.includes(data.me))
@@ -153,6 +156,7 @@ Options.Triggers.push({
         knockbackOrbs: {
           en: 'Knockback (avoid orbs)',
           de: 'Rückstoßs (weiche den Orbs aus)',
+          ko: '넉백 (오브 피하기)',
         },
       },
     },
@@ -201,10 +205,12 @@ Options.Triggers.push({
         redSide: {
           en: 'Be on red half',
           de: 'Geh zur roten Seite',
+          ko: '빨간 포탈쪽으로',
         },
         redSideAway: {
           en: 'Be on red half (away from portal)',
           de: 'Geh zur roten Seite (weg vom Portal)',
+          ko: '빨간 포탈쪽, 포탈에서 멀리 떨어지기',
         },
       },
     },
@@ -220,6 +226,7 @@ Options.Triggers.push({
         blueSide: {
           en: 'Be on blue half',
           de: 'Geh zur blauen Seite',
+          ko: '파란 포탈쪽으로',
         },
       },
     },
@@ -235,6 +242,7 @@ Options.Triggers.push({
         nearRed: {
           en: 'Go near red portal',
           de: 'Geh zum roten Portal',
+          ko: '빨간 포탈 근처로',
         },
       },
     },
@@ -259,6 +267,7 @@ Options.Triggers.push({
         text: {
           en: 'Under Lioness => Out',
           de: 'Unter Löwin => Raus',
+          ko: '안 => 바깥으로',
         },
       },
     },
@@ -274,6 +283,7 @@ Options.Triggers.push({
         text: {
           en: 'Out => Under Lioness',
           de: 'Raus => Unter Löwin',
+          ko: '바깥 => 안으로',
         },
       },
     },
@@ -320,6 +330,7 @@ Options.Triggers.push({
           tankCleaves: {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche Tank-Cleaves aus',
+            ko: '광역 탱버',
           },
         };
         if (data.tankbusters.includes(data.me))
@@ -349,6 +360,7 @@ Options.Triggers.push({
         text: {
           en: 'Away from Orb',
           de: 'Weg vom Orb',
+          ko: '오브 피하기',
         },
       },
     },
@@ -396,6 +408,7 @@ Options.Triggers.push({
         text: {
           en: 'Protean Spread on YOU',
           de: 'Protean verteilen auf DIR',
+          ko: '산개징 대상자',
         },
       },
     },
@@ -446,10 +459,12 @@ Options.Triggers.push({
           dropMarkerOutside: {
             en: 'Drop marker outside',
             de: 'Marker draußen ablegen',
+            ko: '징 밖에서 처리',
           },
           ignoreLineStack: {
             en: 'Ignore fake stack',
             de: 'Falsches Sammeln ignorieren',
+            ko: '가짜 징 무시',
           },
         };
         // People with arrow markers should not get a stack callout.
@@ -478,6 +493,7 @@ Options.Triggers.push({
         ignoreArrow: {
           en: 'Ignore fake arrow',
           de: 'Falschen Pfeil ignorieren',
+          ko: '가짜 징 무시',
         },
       },
     },
@@ -520,6 +536,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to Blue Quadrant',
           de: 'Geh zum blauen Quadrant',
+          ko: '파랑 장판으로',
         },
       },
     },
@@ -539,6 +556,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to Orange Quadrant',
           de: 'Geh zum orangenen Quadrant',
+          ko: '주황 장판으로',
         },
       },
     },
@@ -576,6 +594,7 @@ Options.Triggers.push({
         text: {
           en: 'Stack groups',
           de: 'Sammel Gruppen',
+          ko: '그룹별 쉐어',
         },
       },
     },
@@ -604,6 +623,7 @@ Options.Triggers.push({
           tankCleaves: {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche den Tank-Cleaves aus',
+            ko: '광역 탱버',
           },
         };
         if (data.tankbusters.includes(data.me))
@@ -628,10 +648,12 @@ Options.Triggers.push({
           dropMarkerOutside: {
             en: 'Under => Drop marker outside',
             de: 'Unter ihn => Marker drausen ablegen',
+            ko: '보스 근처 => 징 밖에서 처리',
           },
           ignoreLineStack: {
             en: 'Under (ignore fake stack)',
             de: 'Unter ihn (falsches Sammeln ignorieren)',
+            ko: '보스 근처 (가짜 징 무시)',
           },
         };
         // People with arrow markers should not get a stack callout.
@@ -665,6 +687,7 @@ Options.Triggers.push({
         ignoreArrow: {
           en: 'Out (ignore fake arrow)',
           de: 'Raus (falschen Pfeil ignorieren)',
+          ko: '바깥으로 (가짜 징 무시)',
         },
         out: Outputs.out,
       },
