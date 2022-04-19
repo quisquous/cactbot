@@ -47,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge 3 to 1',
           de: 'Weiche von 3 auf 1 aus',
+          ko: '3번째에서 1번째로',
         },
       },
     },
@@ -81,6 +82,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid bit lasers',
           de: 'Weiche Drohnen-Laser aus',
+          ko: '비트 레이저 피하기',
         },
       },
     },
@@ -116,6 +118,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Steer away from spikes',
           de: 'Weg von den Stacheln lenken',
+          ko: '가시 피하기',
         },
       },
     },
@@ -131,6 +134,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid tethered color',
           de: 'Weiche der verbundenen Farbe aus',
+          ko: '연결된 색깔 피하기',
         },
       },
     },
