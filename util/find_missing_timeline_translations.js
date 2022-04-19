@@ -59,10 +59,10 @@ export async function findMissing(triggersFile, locale, errorFunc) {
 function findLineNumberByTriggerId(text, id) {
   // Apostrophes need to be double escaped here, once for the Regexes.parse
   // and the second time for the the backslash itself, to turn /'/ into /\\'/
-  let escapedId = id.replace(/'/, '\\\\\'');
+  let escapedId = id.replace(/'/g, '\\\\\'');
   // Other regex characters just need to be escaped once to get out of
-  // Regexes.parse unscathed.
-  escapedId = escapedId.replace(/([+^$*])/, '\\$1');
+  // Regexes.parse unscathed.g
+  escapedId = escapedId.replace(/([+^$*])/g, '\\$1');
   const regex = Regexes.parse('^\\s*id: \'' + escapedId + '\',');
 
   let lineNumber = 0;
