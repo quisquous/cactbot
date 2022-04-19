@@ -244,30 +244,24 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'EndsingerEx 5Head Collector',
+      id: 'EndsingerEx 5Head Initial Direction',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '891', capture: true }),
       condition: (data) => data.headPhase === 5,
       delaySeconds: 0.5,
       promise: async (data, matches) => {
-        // Middle head gets buff 891 (cleave head, shows arrow for facing)
-        // Next 4 heads are always the correct heads outside intercardinals
-        const firstId = parseInt(matches.targetId, 16);
-        const ids = [];
-        for (let id = firstId; id < firstId + 5; ++id)
-          ids.push(id);
         const headData = await callOverlayHandler({
           call: 'getCombatants',
-          ids: ids,
+          ids: [parseInt(matches.targetId, 16)],
         });
-        if (headData.combatants.length !== 5) {
-          console.error(`5Head Collector: null data`);
+        if (headData.combatants.length !== 1) {
+          console.error(`5Head Initial Direction: null data`);
           return;
         }
         for (const head of headData.combatants) {
           const headId = head.ID?.toString(16).toUpperCase();
           if (!headId) {
-            console.error(`5Head Collector: invalid head ID`);
+            console.error(`5Head Initial Direction: invalid head ID`);
             continue;
           }
           data.storedHeads[headId] = { state: head, mechanics: [] };
@@ -307,6 +301,28 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: '終焉を謳うもの', capture: true }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: '讴歌终结之物', capture: true }),
       condition: (data) => data.headPhase === 5,
+      // Do not need delaySeconds here, heads have been spawned for 5+ seconds
+      promise: async (data, matches) => {
+        // Early out if we already have this head
+        if (data.storedHeads[matches.targetId])
+          return;
+        const headData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.targetId, 16)],
+        });
+        if (headData.combatants.length !== 1) {
+          console.error(`5Head Mechanics Collector: null data`);
+          return;
+        }
+        for (const head of headData.combatants) {
+          const headId = head.ID?.toString(16).toUpperCase();
+          if (!headId) {
+            console.error(`5Head Mechanics Collector: invalid head ID`);
+            continue;
+          }
+          data.storedHeads[headId] = { state: head, mechanics: [] };
+        }
+      },
       infoText: (data, matches, output) => {
         const head = data.storedHeads[matches.sourceId];
         if (!head) {
@@ -331,7 +347,7 @@ Options.Triggers.push({
         }
         // If we have the same count of mechanics stored for all 5 heads, resolve safe spot
         const heads = Object.values(data.storedHeads);
-        if (heads.length === heads.filter((h) => h.mechanics.length === head.mechanics.length).length) {
+        if (heads.length === heads.filter((h) => h.mechanics.length === head.mechanics.length).length && heads.length === 5) {
           const lastMechanic = head.mechanics.length - 1;
           const safeDirHead = heads.find((h) => h.mechanics[0]?.includes('safe'));
           const donutHeads = heads.filter((h) => h.mechanics[lastMechanic] === 'donut');
