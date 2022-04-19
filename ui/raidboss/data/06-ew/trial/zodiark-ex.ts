@@ -14,6 +14,7 @@ export interface Data extends RaidbossData {
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
   paradeigmaCounter: number;
   seenAdikia: boolean;
+  styxCount: number;
 }
 
 const sigil = {
@@ -41,6 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     activeFrontSigils: [],
     paradeigmaCounter: 0,
     seenAdikia: false,
+    styxCount: 6,
   }),
   triggers: [
     {
@@ -92,12 +94,13 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '67F3', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67F3', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '67F3', source: '佐迪亚克', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => output.text!({ num: data.styxCount }),
+      run: (data) => data.styxCount = Math.min(data.styxCount + 1, 9),
       outputStrings: {
         text: {
-          en: 'Stack x6',
-          de: 'Sammeln x6',
-          cn: '6次分摊',
+          en: 'Stack x${num}',
+          de: 'Sammeln x${num}',
+          cn: '${num}次分摊',
         },
       },
     },
