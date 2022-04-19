@@ -413,12 +413,12 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'Aglaia Nald\'thal Heavens\' Trial',
+      id: 'Aglaia Nald\'thal Heaven\'s Trial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '711F', source: ['Thal', 'Nald\'thal'] }),
-      netRegexDe: NetRegexes.startsUsing({ id: '711F', source: ['Thal', 'Nald\'Thal'] }),
-      netRegexFr: NetRegexes.startsUsing({ id: '711F', source: ['Thal', 'Nald\'Thal'] }),
-      netRegexJa: NetRegexes.startsUsing({ id: '711F', source: ['ザル神', 'ナルザル'] }),
+      netRegex: NetRegexes.startsUsing({ id: '711F', source: 'Nald\'thal' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '711F', source: 'Nald\'Thal' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '711F', source: 'Nald\'Thal' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '711F', source: 'ナルザル' }),
       alertText: (data, matches, output) => {
         if (data.naldSmeltingSpread.includes(data.me))
           return;
