@@ -195,13 +195,16 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      // 0039 is the system message channel, when the current player commences a ready check,
+      // the message is sent to this channel; when a ready check is invoked by others, then it
+      // would be sent to the 0239 channel.
       id: 'General Ready Check',
-      netRegex: NetRegexes.gameLog({ line: '(?:\\y{Name} has initiated|You have commenced) a ready check\..*?', capture: false }),
-      netRegexDe: NetRegexes.gameLog({ line: '(?:\\y{Name} hat|Du hast) eine Bereitschaftsanfrage gestellt\..*?', capture: false }),
-      netRegexFr: NetRegexes.gameLog({ line: 'Un appel de préparation a été lancé par \y{Name}\..*?', capture: false }),
-      netRegexJa: NetRegexes.gameLog({ line: '(?:\\y{Name}が)?レディチェックを開始しました。.*?', capture: false }),
-      netRegexCn: NetRegexes.gameLog({ line: '\\y{Name}?发起了准备确认.*?', capture: false }),
-      netRegexKo: NetRegexes.gameLog({ line: '\\y{Name} 님이 준비 확인을 시작했습니다\.|준비 확인을 시작합니다\..*?', capture: false }),
+      netRegex: NetRegexes.gameLog({ line: '(?:\\y{Name} has initiated|You have commenced) a ready check\..*?', code: ['0039', '0239'], capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: '(?:\\y{Name} hat|Du hast) eine Bereitschaftsanfrage gestellt\..*?', code: ['0039', '0239'], capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Un appel de préparation a été lancé par \y{Name}\..*?', code: ['0039', '0239'], capture: false }),
+      netRegexJa: NetRegexes.gameLog({ line: '(?:\\y{Name}が)?レディチェックを開始しました。.*?', code: ['0039', '0239'], capture: false }),
+      netRegexCn: NetRegexes.gameLog({ line: '\\y{Name}?发起了准备确认.*?', code: ['0039', '0239'], capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '\\y{Name} 님이 준비 확인을 시작했습니다\.|준비 확인을 시작합니다\..*?', code: ['0039', '0239'], capture: false }),
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.webm',
       soundVolume: 0.6,
     },
