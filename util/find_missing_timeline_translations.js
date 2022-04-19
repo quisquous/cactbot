@@ -61,7 +61,7 @@ function findLineNumberByTriggerId(text, id) {
   // and the second time for the the backslash itself, to turn /'/ into /\\'/
   let escapedId = id.replace(/'/g, '\\\\\'');
   // Other regex characters just need to be escaped once to get out of
-  // Regexes.parse unscathed.g
+  // Regexes.parse unscathed.
   escapedId = escapedId.replace(/([+^$*])/g, '\\$1');
   const regex = Regexes.parse('^\\s*id: \'' + escapedId + '\',');
 
