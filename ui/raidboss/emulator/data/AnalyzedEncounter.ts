@@ -238,7 +238,7 @@ export default class AnalyzedEncounter extends EventBus {
       if (combatant && combatant.hasState(log.timestamp))
         this.updateState(combatant, log.timestamp, popupText);
 
-      this.watchCombatantsOverride.tick(this, this.encounter.combatantTracker, log.timestamp);
+      this.watchCombatantsOverride.tick(log.timestamp);
       await popupText.onEmulatorLog([log], getCurLogLine);
       timelineController.onEmulatorLogEvent([log]);
     }
