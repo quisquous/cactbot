@@ -25,6 +25,18 @@ ctx.addEventListener('message', (msg) => {
   localLogHandler.on(
     'fight',
     (day: string, zoneId: string, zoneName: string, lines: LineEvent[]) => {
+      // Index the lines for this encounter
+      for (let i = 0; i < lines.length; ++i) {
+        const line = lines[i];
+        if (!line)
+          throw new UnreachableCode();
+        line.index = i;
+      }
+
+      lines = lines.map((l, i) => {
+        l.index = i;
+        return l;
+      });
       const enc = new Encounter(day, zoneId, zoneName, lines);
       enc.initialize();
       if (enc.shouldPersistFight()) {

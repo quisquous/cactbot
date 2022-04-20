@@ -19,12 +19,7 @@ export default class NetworkLogConverter extends EventBus {
   }
 
   convertLines(lines: string[], repo: LogRepository): LineEvent[] {
-    const lineEvents = lines.map((l) => ParseLine.parse(repo, l)).filter(isLineEvent);
-    // Call `convert` to convert the network line to non-network format and update indexing values
-    return lineEvents.map((l, i) => {
-      l.index = i;
-      return l;
-    });
+    return lines.map((l) => ParseLine.parse(repo, l)).filter(isLineEvent);
   }
 
   static lineSplitRegex = /\r?\n/gm;
