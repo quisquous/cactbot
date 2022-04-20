@@ -345,18 +345,20 @@ export class CactbotConfigurator {
     return defaultValue;
   }
 
-  // Takes a variable length `path` and returns the defaultValue if any key is missing.
-  // e.g. (foo, [bar, baz], 5) with {foo: { bar: { baz: 3 } } } will return
-  // the value 3.
-  getOption(group: string, path: string | string[], defaultValue: ConfigValue): ConfigValue {
+  // Gets the leaf node for a given option group/path.
+  // Returns undefined on failure.
+  _getOptionLeafHelper(
+    group: string,
+    path: string | string[],
+  ): SavedConfigEntry | undefined {
     let objOrValue = this.savedConfig[group];
     if (objOrValue === undefined)
-      return defaultValue;
+      return;
 
     const args = Array.isArray(path) ? path : [path];
     if (args.length === 0) {
       console.error(`path must have at least one element`);
-      return defaultValue;
+      return;
     }
 
     for (const arg of args) {
@@ -365,14 +367,25 @@ export class CactbotConfigurator {
         // until leaf node ConfigValue.
         const info = JSON.stringify([group, ...args].join(', '));
         console.error(`Unexpected entry: ${info}}`);
-        return defaultValue;
+        return;
       }
       const item: SavedConfigEntry | undefined = objOrValue[arg];
       // If not found, then use default value.
       if (typeof item === 'undefined')
-        return defaultValue;
+        return;
       objOrValue = item;
     }
+
+    return objOrValue;
+  }
+
+  // Takes a variable length `path` and returns the defaultValue if any key is missing.
+  // e.g. (foo, [bar, baz], 5) with {foo: { bar: { baz: 3 } } } will return
+  // the value 3.
+  getOption(group: string, path: string | string[], defaultValue: ConfigValue): ConfigValue {
+    const objOrValue = this._getOptionLeafHelper(group, path);
+    if (!objOrValue)
+      return defaultValue;
 
     // At the leaf node.
     // Some number options pass in empty string as a default.
@@ -383,6 +396,7 @@ export class CactbotConfigurator {
       !emptyDefaultNumber && !isStringNumber && typeof defaultValue !== typeof objOrValue ||
       typeof objOrValue === 'object'
     ) {
+      const args = Array.isArray(path) ? path : [path];
       const info = JSON.stringify([group, ...args].join(', '));
       console.error(
         `Unexpected type: ${info}, ${objOrValue.toString()}, ${typeof objOrValue}, ${typeof defaultValue}`,
@@ -392,10 +406,28 @@ export class CactbotConfigurator {
     return objOrValue;
   }
 
+  // Similar to getOption, but gets an arbitrary SavedConfigEntry json subset instead of
+  // guaranteeing a leaf node ConfigValue.
+  getJsonOption(
+    group: string,
+    path: string | string[],
+    defaultValue: SavedConfigEntry,
+  ): SavedConfigEntry {
+    const objOrValue = this._getOptionLeafHelper(group, path);
+    return objOrValue ? objOrValue : defaultValue;
+  }
+
   // Sets an option in the config at a variable level of nesting.
   // e.g. (foo, [bar, baz], 3) will set {foo: { bar: { baz: 3 } } }.
   // e.g. (foo, bar, 4) will set { foo: { bar: 4 } }.
-  setOption(group: string, path: string | string[], defaultValue: ConfigValue): void {
+  setOption(group: string, path: string | string[], value: ConfigValue): void {
+    // Make callers explicitly use setJsonOption if they want a SavedConfigEntry,
+    // as the vast majority of callers only want a ConfigValue value.
+    this.setJsonOption(group, path, value);
+  }
+
+  // Same as setOption but with a more permissive value.
+  setJsonOption(group: string, path: string | string[], value: SavedConfigEntry): void {
     // Set keys and create default {} if it doesn't exist.
     let obj = this.savedConfig[group] ??= {};
 
@@ -426,8 +458,8 @@ export class CactbotConfigurator {
       console.error(`Unexpected entry: ${JSON.stringify([group, ...args].join(', '))}`);
       return;
     }
-    // Any type of ConfigValue is fine here and we'll validate on loading.
-    obj[finalArg] = defaultValue;
+    // Any type of SavedConfigEntry is fine here and we'll validate on loading.
+    obj[finalArg] = value;
     void this.saveConfigData();
   }
 

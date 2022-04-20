@@ -227,8 +227,13 @@ html {
   display: grid;
   grid-template-columns: auto auto 1fr;
   grid-gap: 5px;
-  margin: 12px 0 24px 24px;
+  margin: 24px 0 24px 24px;
   align-items: center;
+  font-weight: normal;
+}
+
+.timeline-text-container > div:nth-child(-n+3) {
+  font-weight: bold;
 }
 
 .timeline-text-enable {
@@ -237,6 +242,13 @@ html {
 
 .timeline-text-edit {
   max-width: 300px;
+  width: auto !important;
+  text-align: left !important;
+}
+
+.timeline-listing-header {
+  margin: 12px 0 0 24px;
+  font-weight: bold;
 }
 
 .timeline-scroller {
@@ -246,6 +258,42 @@ html {
   border: solid black 1px;
   margin: 12px 0 24px 24px;
   padding: 8px;
+  background-color: #ebebeb;
+}
+
+.timeline-add-header {
+  margin: 12px 0 0 24px;
+  font-weight: bold;
+}
+
+.timeline-add-container {
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+  grid-gap: 5px;
+  margin: 12px 0 0 24px;
+}
+
+.timeline-add-container > div:nth-child(-n+4) {
+  align-self: end;
+}
+
+.timeline-add-row-time {
+  width: 80px !important;
+  text-align: right !important;
+}
+
+.timeline-add-row-text {
+  width: 300px !important;
+  text-align: left !important;
+}
+
+.timeline-add-row-duration {
+  width: 40px !important;
+  text-align: right !important;
+}
+
+.timeline-add-button {
+  margin: 12px 0 0 24px;
 }
 
 .trigger-file-options {

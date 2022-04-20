@@ -366,6 +366,30 @@ const kMiscTranslations = {
     cn: '编辑时间轴',
     ko: '타임라인 편집',
   },
+  // The header inside the Edit Timeline section on top of the reference timeline text.
+  timelineListing: {
+    en: 'Reference Text (uneditable)',
+  },
+  // The header inside the Edit Timeline section on top of the add entries section.
+  addCustomTimelineEntries: {
+    en: 'Add Custom Timeline Entries',
+  },
+  // The button text for the Edit Timeline add entries section.
+  addMoreRows: {
+    en: 'Add more rows',
+  },
+  customEntryTime: {
+    en: 'Time',
+  },
+  customEntryText: {
+    en: 'Text',
+  },
+  customEntryDuration: {
+    en: 'Duration (seconds)',
+  },
+  customEntryRemove: {
+    en: 'Remove',
+  },
 };
 
 const validDurationOrUndefined = (valEntry?: SavedConfigEntry) => {
@@ -778,7 +802,9 @@ class RaidbossConfigurator {
       if (!hasEverBeenExpanded) {
         const text = this.timelineTextFromSet(set);
         const timeline = new TimelineParser(text, set.timelineReplace ?? [], [], [], options);
-        this.buildTimelineUI(zoneId, timeline, text, container);
+        this.buildTimelineListingUI(timeline, text, container);
+        this.buildTimelineAddUI(zoneId, container);
+        this.buildTimelineTextUI(zoneId, timeline, container);
       }
       hasEverBeenExpanded = true;
     };
@@ -815,13 +841,16 @@ class RaidbossConfigurator {
     return text;
   }
 
-  // The internal part of timeline editing ui.
-  buildTimelineUI(
-    zoneId: number,
+  buildTimelineListingUI(
     timeline: TimelineParser,
     timelineText: string,
     parent: HTMLElement,
   ): void {
+    const header = document.createElement('div');
+    header.classList.add('timeline-listing-header');
+    header.innerText = this.base.translate(kMiscTranslations.timelineListing);
+    parent.appendChild(header);
+
     // Add timeline text itself
     const scroller = document.createElement('div');
     scroller.classList.add('timeline-scroller');
@@ -833,6 +862,137 @@ class RaidbossConfigurator {
 
     const translated = TimelineParser.Translate(timeline, timelineText);
     timelineContents.innerText = translated.join('\n');
+  }
+
+  buildTimelineAddUI(
+    zoneId: number,
+    parent: HTMLElement,
+  ): void {
+    const addId = ['timeline', zoneId.toString(), 'add'];
+
+    const header = document.createElement('div');
+    header.classList.add('timeline-add-header');
+    header.innerText = this.base.translate(kMiscTranslations.addCustomTimelineEntries);
+    parent.appendChild(header);
+
+    const container = document.createElement('div');
+    container.classList.add('timeline-add-container');
+    parent.appendChild(container);
+
+    const headerTime = document.createElement('div');
+    headerTime.innerText = this.base.translate(kMiscTranslations.customEntryTime);
+    container.appendChild(headerTime);
+
+    const headerText = document.createElement('div');
+    headerText.innerText = this.base.translate(kMiscTranslations.customEntryText);
+    container.appendChild(headerText);
+
+    const headerDuration = document.createElement('div');
+    headerDuration.innerText = this.base.translate(kMiscTranslations.customEntryDuration);
+    container.appendChild(headerDuration);
+
+    // Spacer div in the grid for Remove, which needs no header.
+    container.appendChild(document.createElement('div'));
+
+    // Get the current SavedConfigEntry for these saved entries.
+    // We will modify `rows` in place and then store it back as needed.
+    const defaultRow = { time: '', text: '' };
+    const defaultValue: SavedConfigEntry = [defaultRow];
+    const rowsOrObj = this.base.getJsonOption('raidboss', addId, defaultValue);
+    const rows = Array.isArray(rowsOrObj) ? rowsOrObj : defaultValue;
+
+    const storeRows = () => this.base.setJsonOption('raidboss', addId, rows);
+
+    const addRow = (obj: { [name: string]: SavedConfigEntry }): void => {
+      const setFunc = () => {
+        obj.time = timeInput.value;
+        obj.text = textInput.value;
+        obj.duration = durationInput.value;
+        storeRows();
+      };
+
+      const timeInput = document.createElement('input');
+      timeInput.type = 'text';
+      if (typeof obj.time === 'string')
+        timeInput.value = obj.time;
+      timeInput.classList.add('timeline-add-row-time');
+      timeInput.onchange = setFunc;
+      timeInput.oninput = setFunc;
+      container.appendChild(timeInput);
+
+      const textInput = document.createElement('input');
+      textInput.type = 'text';
+      if (typeof obj.text === 'string')
+        textInput.value = obj.text;
+      textInput.classList.add('timeline-add-row-text');
+      textInput.onchange = setFunc;
+      textInput.oninput = setFunc;
+      container.appendChild(textInput);
+
+      const durationInput = document.createElement('input');
+      durationInput.type = 'text';
+      if (typeof obj.duration === 'string')
+        durationInput.value = obj.duration;
+      durationInput.classList.add('timeline-add-row-duration');
+      durationInput.onchange = setFunc;
+      durationInput.oninput = setFunc;
+      container.appendChild(durationInput);
+
+      const remove = document.createElement('button');
+      remove.classList.add('timeline-add-row-remove');
+      remove.innerText = this.base.translate(kMiscTranslations.customEntryRemove);
+      container.appendChild(remove);
+
+      remove.addEventListener('click', () => {
+        container.removeChild(timeInput);
+        container.removeChild(textInput);
+        container.removeChild(remove);
+
+        // Update rows in place, as it has been captured by a closure above.
+        const idx = rows.indexOf(obj);
+        if (idx === -1) {
+          console.error(`Failed to remove row`);
+          return;
+        }
+        rows.splice(idx, 1);
+
+        storeRows();
+      });
+    };
+
+    const addMoreRows = document.createElement('button');
+    addMoreRows.classList.add('timeline-add-button');
+    addMoreRows.innerText = this.base.translate(kMiscTranslations.addMoreRows);
+    addMoreRows.addEventListener('click', () => {
+      // No need to call storeRows here.  Blank rows will only get saved
+      // if somebody makes other changes.
+      const obj = { ...defaultRow };
+      rows.push(obj);
+      addRow(obj);
+    });
+    parent.appendChild(addMoreRows);
+
+    for (const row of rows) {
+      if (typeof row !== 'object' || Array.isArray(row))
+        continue;
+      addRow(row);
+    }
+  }
+
+  buildTimelineTextUI(
+    zoneId: number,
+    timeline: TimelineParser,
+    parent: HTMLElement,
+  ): void {
+    const container = document.createElement('div');
+    container.classList.add('timeline-text-container');
+    parent.appendChild(container);
+
+    for (const header of Object.values(kTimelineTableHeaders)) {
+      const div = document.createElement('div');
+      div.innerText = this.base.translate(header);
+      container.appendChild(div);
+    }
 
     const uniqEvents: { [key: string]: string } = {};
 
@@ -844,16 +1004,6 @@ class RaidbossConfigurator {
       // name = original timeline text
       // text = replaced text in current language
       uniqEvents[event.name] = event.text;
-    }
-
-    const container = document.createElement('div');
-    container.classList.add('timeline-text-container');
-    parent.appendChild(container);
-
-    for (const header of Object.values(kTimelineTableHeaders)) {
-      const div = document.createElement('div');
-      div.innerText = this.base.translate(header);
-      container.appendChild(div);
     }
 
     const keys = Object.keys(uniqEvents).sort();
@@ -880,6 +1030,7 @@ class RaidbossConfigurator {
       container.appendChild(timelineText);
 
       const textInput = document.createElement('input');
+      textInput.type = 'text';
       textInput.classList.add('timeline-text-edit');
       textInput.placeholder = event;
 
@@ -1369,6 +1520,7 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
 
     const enableEntry = zoneEntry['enable'];
     const replaceEntry = zoneEntry['globalReplace'];
+    const addEntry = zoneEntry['add'];
 
     if (enableEntry && typeof enableEntry === 'object' && !Array.isArray(enableEntry)) {
       for (const [key, value] of Object.entries(enableEntry)) {
@@ -1381,6 +1533,22 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
       for (const [key, value] of Object.entries(replaceEntry)) {
         if (typeof value === 'string')
           (timelineConfig.Rename ??= {})[key] = value;
+      }
+    }
+
+    if (addEntry && typeof addEntry === 'object' && Array.isArray(addEntry)) {
+      for (const row of addEntry) {
+        if (typeof row !== 'object' || Array.isArray(row))
+          continue;
+        const time = typeof row.time === 'string' ? parseFloat(row.time) : NaN;
+        const text = typeof row.text === 'string' ? row.text : '';
+        const durationOrNaN = typeof row.duration === 'string' ? parseFloat(row.duration) : NaN;
+        const duration = isNaN(durationOrNaN) ? undefined : durationOrNaN;
+
+        if (text.trim() === '' || isNaN(time))
+          continue;
+
+        (timelineConfig.Add ??= []).push({ time, text, duration });
       }
     }
   }
