@@ -1,7 +1,5 @@
-import Util, { WatchCombatantParams } from '../../../../resources/util';
+import Util, { WatchCombatantFunc, WatchCombatantParams } from '../../../../resources/util';
 import { OverlayHandlerRequests, OverlayHandlerResponseTypes } from '../../../../types/event';
-import AnalyzedEncounter from '../data/AnalyzedEncounter';
-import CombatantTracker from '../data/CombatantTracker';
 import RaidEmulator from '../data/RaidEmulator';
 
 import RaidEmulatorOverlayApiHook from './RaidEmulatorOverlayApiHook';
@@ -22,46 +20,50 @@ export default class RaidEmulatorWatchCombatantsOverride {
   private watches: Watch[] = [];
 
   constructor(private emulator: RaidEmulator, private overlayHook: RaidEmulatorOverlayApiHook) {
-    Util.setWatchCombatantOverride((params, func) => {
-      // To avoid having to undefined-check the params declare watch as partial here and just cast
-      // to non-partial when pushing to array since all props are set here properly but can't be
-      // set in the initializer
-      const watch: Partial<Watch> = {
+    const func: WatchCombatantFunc = (params, callback) => {
+      let watch: Watch;
+
+      // `watch` must be defined before the object creation, otherwise browser JS will throw the
+      // following error:
+      // Uncaught (in promise) ReferenceError: can't access lexical declaration 'watch'
+      // before initialization
+      // eslint-disable-next-line prefer-const
+      watch = {
         lastCheck: 0,
         params: params,
         cancel: false,
         start: 0,
-        func: func,
+        func: callback,
         msg: {
           call: 'getCombatants',
           ...params,
         },
+        res: () => {/* empty */},
+        rej: () => {/* empty */},
+        promise: new Promise<void>((res, rej) => {
+          watch.res = res;
+          watch.rej = rej;
+        }),
       };
 
-      watch.promise = new Promise<void>((res, rej) => {
-        watch.res = res;
-        watch.rej = rej;
-      });
-      this.watches.push(watch as Watch);
+      this.watches.push(watch);
       return watch.promise;
-    }, this.clear.bind(this));
+    };
+
+    Util.setWatchCombatantOverride(func, this.clear.bind(this));
 
     this.emulator.on('tick', () => {
-      const curEnc = this.emulator.currentEncounter;
-      const tracker = curEnc?.encounter.combatantTracker;
       const timestamp = this.emulator.currentLogTime;
 
-      if (!curEnc || !tracker || !timestamp)
+      if (timestamp === undefined)
         return;
 
-      this.tick(curEnc, tracker, timestamp);
+      this.tick(timestamp);
     });
   }
 
   public tick(
-      curEnc: AnalyzedEncounter,
-      tracker: CombatantTracker,
-      timestamp: number,
+    timestamp: number,
   ): void {
     for (const watch of this.watches) {
       if (watch.cancel)
@@ -69,12 +71,12 @@ export default class RaidEmulatorWatchCombatantsOverride {
       if (watch.lastCheck + 1000 > timestamp)
         continue;
       watch.lastCheck = timestamp;
-      this.overlayHook.getCombatantsFor((e) => {
+      void this.overlayHook._getCombatantsOverride(watch.msg).then((e) => {
         if (watch.func(e)) {
           watch.res();
           watch.cancel = true;
         }
-      }, watch.msg, curEnc, tracker, timestamp);
+      });
     }
     this.watches = this.watches.filter((w) => !w.cancel);
   }

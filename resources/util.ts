@@ -90,7 +90,7 @@ export type WatchCombatantParams = {
   maxDuration?: number;
 };
 
-type WatchCombatantFunc = (
+export type WatchCombatantFunc = (
   params: WatchCombatantParams,
   func: (ret: OverlayHandlerResponseTypes['getCombatants']) => boolean,
 ) => Promise<void>;

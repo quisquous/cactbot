@@ -29,8 +29,10 @@ export default class RaidEmulator extends EventBus {
     this.encounters.push(encounter);
   }
 
-  private setCurrent(enc: Encounter,
-      watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride): void {
+  private setCurrent(
+    enc: Encounter,
+    watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride,
+  ): void {
     // If language was autodetected from the encounter, set the current ParserLanguage
     // appropriately
     if (enc.language)
@@ -43,8 +45,10 @@ export default class RaidEmulator extends EventBus {
     });
   }
 
-  setCurrentByID(id: number,
-      watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride): boolean {
+  setCurrentByID(
+    id: number,
+    watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride,
+  ): boolean {
     const enc = this.encounters.find((v) => v.id === id);
     if (!enc)
       return false;

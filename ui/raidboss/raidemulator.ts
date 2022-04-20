@@ -197,8 +197,10 @@ const raidEmulatorOnLoad = async () => {
 
   emulator.setPopupText(popupText);
 
-  const emulatorWatchCombatantsOverride =
-    new RaidEmulatorWatchCombatantsOverride(emulator, emulatedWebSocket);
+  const emulatorWatchCombatantsOverride = new RaidEmulatorWatchCombatantsOverride(
+    emulator,
+    emulatedWebSocket,
+  );
 
   // Listen for the user to click a player in the party list on the right
   // and persist that over to the emulator
