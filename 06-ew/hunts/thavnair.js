@@ -45,11 +45,11 @@ Options.Triggers.push({
       type: 'StartsUsing',
       // This is followed up with Rip (6A58) which is also a tank cleave.
       // We could call out 2x tank cleave, but maybe that's overkill.
-      netRegex: NetRegexes.startsUsing({ id: '6A59', source: 'Sugriva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6A59', source: 'Sugriva' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6A59', source: 'Sugriva' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6A59', source: 'スグリーヴァ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '6A59', source: '须羯里婆' }),
+      netRegex: NetRegexes.startsUsing({ id: '6A57', source: 'Sugriva' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6A57', source: 'Sugriva' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6A57', source: 'Sugriva' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6A57', source: 'スグリーヴァ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6A57', source: '须羯里婆' }),
       response: Responses.tankCleave(),
     },
     {
