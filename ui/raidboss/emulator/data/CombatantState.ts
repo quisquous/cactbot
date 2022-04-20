@@ -11,6 +11,8 @@ export default class CombatantState {
   mp: number;
   maxMp: number;
 
+  json?: string;
+
   constructor(
     posX: number,
     posY: number,
@@ -31,6 +33,7 @@ export default class CombatantState {
     this.maxHp = maxHp;
     this.mp = mp;
     this.maxMp = maxMp;
+    this.json = JSON.stringify(this);
   }
 
   partialClone(props: Partial<CombatantState>): CombatantState {

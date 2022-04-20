@@ -94,11 +94,15 @@ export default class Combatant {
     const lastSignificantStateTimestamp = this.significantStates[this.significantStates.length - 1];
     if (!lastSignificantStateTimestamp)
       throw new UnreachableCode();
-    const oldStateJSON = JSON.stringify(this.states[lastSignificantStateTimestamp]);
-    const newStateJSON = JSON.stringify(this.states[timestamp]);
+    const oldState = this.states[lastSignificantStateTimestamp];
+    const newState = this.states[timestamp];
+    if (!oldState || !newState)
+      throw new UnreachableCode();
 
-    if (lastSignificantStateTimestamp !== timestamp && newStateJSON !== oldStateJSON)
+    if (lastSignificantStateTimestamp !== timestamp && oldState.json !== newState.json) {
+      delete oldState.json;
       this.significantStates.push(timestamp);
+    }
   }
 
   getState(timestamp: number): CombatantState {
@@ -122,6 +126,14 @@ export default class Combatant {
     }
 
     return this.getStateByIndex(i - 1);
+  }
+
+  finalize(): void {
+    for (const state of Object.values(this.states))
+      delete state.json;
+
+    if (!this.significantStates.includes(this.latestTimestamp))
+      this.significantStates.push(this.latestTimestamp);
   }
 
   // Should only be called when `index` is valid.
