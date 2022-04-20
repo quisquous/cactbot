@@ -82,7 +82,7 @@ const jobToRoleMap: Map<Job, Role> = (() => {
   return map;
 })();
 
-type WatchCombatantParams = {
+export type WatchCombatantParams = {
   ids?: number[];
   names?: string[];
   props?: string[];
@@ -90,7 +90,7 @@ type WatchCombatantParams = {
   maxDuration?: number;
 };
 
-type WatchCombatantFunc = (
+export type WatchCombatantFunc = (
   params: WatchCombatantParams,
   func: (ret: OverlayHandlerResponseTypes['getCombatants']) => boolean,
 ) => Promise<void>;
@@ -113,7 +113,7 @@ const shouldCancelWatch = (
   return false;
 };
 
-const watchCombatant: WatchCombatantFunc = (params, func) => {
+const defaultWatchCombatant: WatchCombatantFunc = (params, func) => {
   return new Promise<void>((res, rej) => {
     const delay = params.delay ?? 1000;
 
@@ -158,6 +158,24 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
   });
 };
 
+let watchCombatantOverride: WatchCombatantFunc | undefined;
+let clearCombatantsOverride: () => void | undefined;
+
+const defaultClearCombatants = () => {
+  while (watchCombatantMap.length > 0) {
+    const watch = watchCombatantMap.pop();
+    if (watch)
+      watch.cancel = true;
+  }
+};
+
+const watchCombatant: WatchCombatantFunc = (params, func) => {
+  if (watchCombatantOverride)
+    return watchCombatantOverride(params, func);
+
+  return defaultWatchCombatant(params, func);
+};
+
 const Util = {
   jobEnumToJob: (id: number) => {
     const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
@@ -188,11 +206,14 @@ const Util = {
   canAddle: (job: Job) => addleJobs.includes(job),
   watchCombatant: watchCombatant,
   clearWatchCombatants: () => {
-    while (watchCombatantMap.length > 0) {
-      const watch = watchCombatantMap.pop();
-      if (watch)
-        watch.cancel = true;
-    }
+    if (clearCombatantsOverride)
+      clearCombatantsOverride();
+    else
+      defaultClearCombatants();
+  },
+  setWatchCombatantOverride: (watchFunc: WatchCombatantFunc, clearFunc: () => void) => {
+    watchCombatantOverride = watchFunc;
+    clearCombatantsOverride = clearFunc;
   },
 } as const;
 

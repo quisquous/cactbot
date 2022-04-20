@@ -36,6 +36,7 @@ export class Resolver {
   private delayUntil?: number;
   private final?: ResolverFunc;
   private delayPromise?: Promise<void>;
+  private promiseResolved = false;
   private delayResolver?: ResolverFunc;
   public triggerHelper?: EmulatorTriggerHelper;
 
@@ -52,8 +53,8 @@ export class Resolver {
         return false;
       }
     }
-    if (this.promise)
-      await this.promise;
+    if (this.promise && !this.promiseResolved)
+      return false;
     if (this.run)
       this.run();
     if (this.final)
@@ -68,6 +69,9 @@ export class Resolver {
   }
   setPromise(promise: Promise<void>): void {
     this.promise = promise;
+    void this.promise.then(() => {
+      this.promiseResolved = true;
+    });
   }
   setRun(run: ResolverFunc): void {
     this.run = run;
@@ -115,7 +119,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     throw new UnreachableCode();
   }
 
-  async onEmulatorLog(logs: LineEvent[]): Promise<void> {
+  async onEmulatorLog(logs: LineEvent[], getCurrentLogLine: () => LineEvent): Promise<void> {
     for (const logObj of logs) {
       if (logObj.convertedLine.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
@@ -134,10 +138,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
         this.OnTrigger(trigger, r, logObj.timestamp);
 
         resolver.setFinal(() => {
+          const currentLine = getCurrentLogLine();
           resolver.status.finalData = EmulatorCommon.cloneData(this.data);
           delete resolver.triggerHelper?.resolver;
           if (this.callback)
-            this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
+            this.callback(currentLine, resolver.triggerHelper, resolver.status, this.data);
         });
 
         const isResolved = await resolver.isResolved(logObj);
@@ -161,10 +166,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
           this.OnTrigger(trigger, r, logObj.timestamp);
 
           resolver.setFinal(() => {
+            const currentLine = getCurrentLogLine();
             resolver.status.finalData = EmulatorCommon.cloneData(this.data);
             delete resolver.triggerHelper?.resolver;
             if (this.callback)
-              this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
+              this.callback(currentLine, resolver.triggerHelper, resolver.status, this.data);
           });
 
           const isResolved = await resolver.isResolved(logObj);

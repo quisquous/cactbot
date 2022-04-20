@@ -10,6 +10,7 @@ import EventBus from '../EventBus';
 import RaidEmulatorAnalysisTimelineUI from '../overrides/RaidEmulatorAnalysisTimelineUI';
 import RaidEmulatorPopupText from '../overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
+import RaidEmulatorWatchCombatantsOverride from '../overrides/RaidEmulatorWatchCombatantsOverride';
 
 import Combatant from './Combatant';
 import Encounter from './Encounter';
@@ -36,6 +37,7 @@ export default class AnalyzedEncounter extends EventBus {
     public options: RaidbossOptions,
     public encounter: Encounter,
     public emulator: RaidEmulator,
+    public watchCombatantsOverride: RaidEmulatorWatchCombatantsOverride,
   ) {
     super();
   }
@@ -122,6 +124,13 @@ export default class AnalyzedEncounter extends EventBus {
     let currentLogIndex = 0;
     const partyMember = this.encounter.combatantTracker.combatants[id];
 
+    const getCurLogLine = (): LineEvent => {
+      const line = this.encounter.logLines[currentLogIndex];
+      if (!line)
+        throw new UnreachableCode();
+      return line;
+    };
+
     if (!partyMember)
       return;
 
@@ -178,11 +187,14 @@ export default class AnalyzedEncounter extends EventBus {
         popupText.OnTrigger(trigger, matches, currentLine.timestamp);
 
         resolver.setFinal(() => {
+          // Get the current log line when the callback is executed instead of the line
+          // when the trigger initially fires
+          const resolvedLine = getCurLogLine();
           resolver.status.finalData = EmulatorCommon.cloneData(popupText.getData());
           delete resolver.triggerHelper?.resolver;
           if (popupText.callback) {
             popupText.callback(
-              currentLine,
+              resolvedLine,
               resolver.triggerHelper,
               resolver.status,
               popupText.getData(),
@@ -226,9 +238,12 @@ export default class AnalyzedEncounter extends EventBus {
       if (combatant && combatant.hasState(log.timestamp))
         this.updateState(combatant, log.timestamp, popupText);
 
-      await popupText.onEmulatorLog([log]);
+      this.watchCombatantsOverride.tick(log.timestamp);
+      await popupText.onEmulatorLog([log], getCurLogLine);
       timelineController.onEmulatorLogEvent([log]);
     }
+
+    this.watchCombatantsOverride.clear();
     timelineUI.stop();
   }
 }
