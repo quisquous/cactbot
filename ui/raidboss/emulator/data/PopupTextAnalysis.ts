@@ -171,7 +171,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       }
 
       for (const trigger of this.netTriggers) {
-        const regex = trigger.localRegex;
+        const regex = trigger.localNetRegex;
         if (!regex)
           continue;
 
