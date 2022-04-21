@@ -33,10 +33,6 @@ ctx.addEventListener('message', (msg) => {
         line.index = i;
       }
 
-      lines = lines.map((l, i) => {
-        l.index = i;
-        return l;
-      });
       const enc = new Encounter(day, zoneId, zoneName, lines);
       enc.initialize();
       if (enc.shouldPersistFight()) {
