@@ -1,5 +1,4 @@
 import { Lang } from '../../../../resources/languages';
-import { UnreachableCode } from '../../../../resources/not_reached';
 import PetNamesByLang from '../../../../resources/pet_names';
 
 import Combatant from './Combatant';
@@ -113,21 +112,9 @@ export default class CombatantTracker {
       return (eventTracker[r] ?? 0) - (eventTracker[l] ?? 0);
     })[0];
 
-    // Always treat the last line involving a combatant as a significant state
-    for (const id in this.combatants) {
-      const combatant = this.combatants[id];
-
-      if (!combatant)
-        throw new UnreachableCode();
-
-      // Get the last state timestamp
-      const state = combatant.latestTimestamp;
-
-      if (state === -1 || combatant.significantStates.includes(state))
-        continue;
-
-      combatant.significantStates.push(state);
-    }
+    // Finalize combatants, cleaning up state information
+    for (const combatant of Object.values(this.combatants))
+      combatant.finalize();
   }
 
   addCombatantFromLine(line: LineEventSource): void {
