@@ -289,7 +289,7 @@ html {
 
 .timeline-add-row-duration {
   width: 40px !important;
-  text-align: right !important;
+  text-align: left !important;
 }
 
 .timeline-add-button {
