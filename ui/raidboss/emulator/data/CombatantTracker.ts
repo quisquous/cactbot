@@ -1,5 +1,4 @@
 import { Lang } from '../../../../resources/languages';
-import { UnreachableCode } from '../../../../resources/not_reached';
 import PetNamesByLang from '../../../../resources/pet_names';
 
 import Combatant from './Combatant';
@@ -114,14 +113,8 @@ export default class CombatantTracker {
     })[0];
 
     // Finalize combatants, cleaning up state information
-    for (const id in this.combatants) {
-      const combatant = this.combatants[id];
-
-      if (!combatant)
-        throw new UnreachableCode();
-
+    for (const combatant of Object.values(this.combatants))
       combatant.finalize();
-    }
   }
 
   addCombatantFromLine(line: LineEventSource): void {

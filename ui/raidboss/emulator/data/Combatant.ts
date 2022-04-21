@@ -99,7 +99,11 @@ export default class Combatant {
     if (!oldState || !newState)
       throw new UnreachableCode();
 
-    if (lastSignificantStateTimestamp !== timestamp && oldState.json !== newState.json) {
+    if (
+      lastSignificantStateTimestamp !== timestamp &&
+      oldState.json &&
+      oldState.json !== newState.json
+    ) {
       delete oldState.json;
       this.significantStates.push(timestamp);
     }

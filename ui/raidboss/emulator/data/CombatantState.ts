@@ -11,6 +11,8 @@ export default class CombatantState {
   mp: number;
   maxMp: number;
 
+  // This is a temporary variable used during CombatantTracker initialization and is `delete`d
+  // after the combatant states have been determined to keep memory usage low.
   json?: string;
 
   constructor(
