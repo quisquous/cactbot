@@ -216,11 +216,12 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   async checkResolved(logObj: LineEvent): Promise<void> {
-    await Promise.all(
-      this.triggerResolvers.map(async (resolver) => await resolver.isResolved(logObj)))
-      .then((results) => {
-        this.triggerResolvers = this.triggerResolvers.filter((_, index) => !results[index]);
-      });
+    const unresolved: Resolver[] = [];
+    for (const res of this.triggerResolvers) {
+      if (!(await res.isResolved(logObj)))
+        unresolved.push(res);
+    }
+    this.triggerResolvers = unresolved;
   }
 
   override _onTriggerInternalCondition(triggerHelper: EmulatorTriggerHelper): boolean {
