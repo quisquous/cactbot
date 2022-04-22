@@ -15,7 +15,7 @@ import RaidEmulatorWatchCombatantsOverride from '../overrides/RaidEmulatorWatchC
 import Combatant from './Combatant';
 import Encounter from './Encounter';
 import LineEvent from './network_log_converter/LineEvent';
-import PopupTextAnalysis, { Resolver, ResolverStatus } from './PopupTextAnalysis';
+import PopupTextAnalysis, { LineRegExpCache, Resolver, ResolverStatus } from './PopupTextAnalysis';
 import RaidEmulator from './RaidEmulator';
 
 export type PerspectiveTrigger = {
@@ -33,6 +33,7 @@ type Perspectives = { [id: string]: Perspective };
 
 export default class AnalyzedEncounter extends EventBus {
   perspectives: Perspectives = {};
+  regexCache: LineRegExpCache | undefined;
   constructor(
     public options: RaidbossOptions,
     public encounter: Encounter,
@@ -115,6 +116,9 @@ export default class AnalyzedEncounter extends EventBus {
         await this.analyzeFor(id);
     }
 
+    // Free up this memory
+    delete this.regexCache;
+
     return this.dispatch('analyzed');
   }
 
@@ -155,6 +159,9 @@ export default class AnalyzedEncounter extends EventBus {
       new TimelineLoader(timelineController),
       raidbossFileData,
     );
+
+    if (this.regexCache)
+      popupText.regexCache = this.regexCache;
 
     const generator = new PopupTextGenerator(popupText);
     timelineUI.SetPopupTextInterface(generator);
@@ -245,5 +252,6 @@ export default class AnalyzedEncounter extends EventBus {
 
     this.watchCombatantsOverride.clear();
     timelineUI.stop();
+    this.regexCache = popupText.regexCache;
   }
 }
