@@ -8,6 +8,7 @@ import { BaseOptions } from '../../types/data';
 import { EventMap } from '../../types/event';
 import { NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
+import { LocaleText } from '../../types/trigger';
 
 import arrowImage from './arrow.png';
 
@@ -28,7 +29,9 @@ const defaultRadarConfigOptions = {
   DetectionRange: 0,
   TTS: false,
   PopSoundAlert: true,
-  PopVolume: 0,
+  PopVolume: 0.5,
+  PullSoundAlert: true,
+  PullVolume: 1,
   Puller: true,
   Position: true,
 } as const;
@@ -37,6 +40,7 @@ type RadarConfigOptions = typeof defaultRadarConfigOptions;
 // Additional options that can be configured via the user file.
 interface RadarOptions extends BaseOptions, RadarConfigOptions {
   PopSound: string;
+  PullSound: string;
   RankOptions: {
     [rank in Rank]?: {
       Type?: RadarType;
@@ -60,14 +64,15 @@ type Monster = {
   addTime: number;
   dom: HTMLElement;
   puller?: string;
-  // already pulled before being detected
-  skipPuller: boolean;
+  // already pulled, possibly before being detected
+  alreadyPulled: boolean;
 };
 
 const defaultOptions: RadarOptions = {
   ...UserConfig.getDefaultBaseOptions(),
   ...defaultRadarConfigOptions,
   PopSound: '../../resources/sounds/freesound/sonar.webm',
+  PullSound: '../../resources/sounds/BigWigs/Alarm.webm',
   RankOptions: {
     'S': {
       Type: 'mob',
@@ -149,7 +154,7 @@ const posToMap = (h: number) => {
   return h * pitch + offset;
 };
 
-const PlaySound = (monster: Monster, options: RadarOptions) => {
+const PlayPopSound = (monster: Monster, options: RadarOptions) => {
   if (options.TTS) {
     void callOverlayHandler({
       call: 'cactbotSay',
@@ -158,6 +163,26 @@ const PlaySound = (monster: Monster, options: RadarOptions) => {
   } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
     const audio = new Audio(options.PopSound);
     audio.volume = options.PopVolume;
+    void audio.play();
+  }
+};
+
+const PlayPullSound = (monster: Monster, options: RadarOptions) => {
+  // Only play sounds for S ranks and above.
+  if (monster.rank !== 'S' && monster.rank !== 'SS+' && monster.rank === 'SS-')
+    return;
+
+  if (options.TTS) {
+    const pullText: LocaleText = {
+      en: `${monster.name} pulled`,
+    };
+    void callOverlayHandler({
+      call: 'cactbotSay',
+      text: pullText[options.DisplayLanguage] ?? pullText['en'],
+    });
+  } else if (options.PullSoundAlert && options.PullSound && options.PullVolume) {
+    const audio = new Audio(options.PullSound);
+    audio.volume = options.PullVolume;
     void audio.play();
   }
 };
@@ -271,7 +296,7 @@ class Radar {
 
         // Play sound only if its far enough
         if (oldPos.distance(newPos) >= kMinDistanceBeforeSound)
-          PlaySound(targetMob, options);
+          PlayPopSound(targetMob, options);
       }
     } else {
       // Add DOM
@@ -305,7 +330,7 @@ class Radar {
         'addTime': Date.now().valueOf(),
         'dom': tr,
         'puller': undefined,
-        'skipPuller': matches.hp !== matches.currentHp, // already pulled before being detected
+        'alreadyPulled': matches.hp !== matches.currentHp, // already pulled before being detected
       };
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
@@ -314,15 +339,21 @@ class Radar {
       const mapY = posToMap(m.pos.y).toFixed(1);
       console.log(`Found: ${m.name} (${mapX}, ${mapY})`);
 
-      PlaySound(m, options);
+      PlayPopSound(m, options);
     }
   }
 
   UpdateMonsterPuller(monster: Monster, puller: string) {
+    if (monster.puller || monster.alreadyPulled)
+      return;
+
+    PlayPullSound(monster, this.options);
+
+    monster.alreadyPulled = true;
+
     if (!this.options.Puller)
       return;
-    if (monster.puller || monster.skipPuller)
-      return;
+
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
     console.log(`Pulled: ${puller} => ${monster.name}`);
