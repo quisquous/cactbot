@@ -513,6 +513,9 @@ export class PopupText {
     addOverlayListener('onInCombatChangedEvent', (e) => {
       this.OnInCombatChange(e.detail.inGameCombat);
     });
+    addOverlayListener('onPartyWipe', () => {
+      this.OnInCombatChange(false);
+    });
     addOverlayListener('onLogEvent', (e) => {
       this.OnLog(e);
     });

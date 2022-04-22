@@ -24,6 +24,9 @@ namespace Cactbot {
         if (log.IndexOf(" 00:0038:cactbot wipe", StringComparison.Ordinal) != -1) {
           WipeIt();
         }
+        if (log.IndexOf(" 00:0038:end", StringComparison.Ordinal) != -1) {
+          WipeIt();
+        }
         if (wipe_regex_.IsMatch(log)) {
           WipeIt();
         }
