@@ -68,6 +68,22 @@ UserConfig.registerOptions('radar', {
       default: 0.5,
     },
     {
+      id: 'PullSoundAlert',
+      name: {
+        en: 'Play sound when S rank is pulled',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
+      id: 'PullVolume',
+      name: {
+        en: 'Volume to play pull sound (0-1)',
+      },
+      type: 'float',
+      default: 1,
+    },
+    {
       id: 'Puller',
       name: {
         en: 'Show puller of mob',
