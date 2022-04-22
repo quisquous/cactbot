@@ -268,14 +268,31 @@ namespace Cactbot {
       // Log this for now as there will likely be a lot of questions, re: user directories.
       if (Config.UserConfigFile != null)
         LogInfo(Strings.CactbotUserDirectory, Config.UserConfigFile);
-
+      var gameRegion = Machina.FFXIV.Headers.Opcodes.OpcodeManager.Instance.GameRegion;
       // Temporarily target cn if plugin is old v2.0.4.0
       if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
-        ffxiv_ = new FFXIVProcessCn(this);
-        LogInfo(Strings.Version, "cn");
+        if (gameRegion==Machina.FFXIV.GameRegion.Chinese)
+        {
+          ffxiv_ = new FFXIVProcessCn(this);
+          LogInfo(Strings.Version, "cn");
+        }
+        else
+        {
+          ffxiv_ = new FFXIVProcessIntl(this);
+          LogInfo(Strings.Version, "intl");
+        }
+        
       } else if (language_ == "ko") {
-        ffxiv_ = new FFXIVProcessKo(this);
-        LogInfo(Strings.Version, "ko");
+        if (gameRegion == Machina.FFXIV.GameRegion.Korean)
+        {
+          ffxiv_ = new FFXIVProcessKo(this);
+          LogInfo(Strings.Version, "ko");
+        }
+        else
+        {
+          ffxiv_ = new FFXIVProcessIntl(this);
+          LogInfo(Strings.Version, "intl");
+        }
       } else {
         ffxiv_ = new FFXIVProcessIntl(this);
         LogInfo(Strings.Version, "intl");

@@ -50,17 +50,14 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Advanced Combat Tracker, Version=3.4.5.266, Culture=neutral, PublicKeyToken=a946b61e93d97868, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
+    <Reference Include="Advanced Combat Tracker">
+      <HintPath>E:\Advanced Combat Tracker\Advanced Combat Tracker.exe</HintPath>
     </Reference>
-    <Reference Include="OverlayPlugin.Common, Version=0.12.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ThirdParty\OverlayPlugin\libs\OverlayPlugin.Common.dll</HintPath>
+    <Reference Include="OverlayPlugin.Common">
+      <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\OverlayPlugin.Common.dll</HintPath>
     </Reference>
-    <Reference Include="OverlayPlugin.Core, Version=0.11.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ThirdParty\OverlayPlugin\libs\OverlayPlugin.Core.dll</HintPath>
+    <Reference Include="OverlayPlugin.Core">
+      <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\OverlayPlugin.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

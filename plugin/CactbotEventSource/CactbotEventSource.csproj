@@ -52,28 +52,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Advanced Combat Tracker">
-      <HintPath>..\ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
+      <HintPath>E:\Advanced Combat Tracker\Advanced Combat Tracker.exe</HintPath>
     </Reference>
-    <Reference Include="FFXIV_ACT_Plugin.Common">
-      <HintPath>..\ThirdParty\FFXIV_ACT\SDK\FFXIV_ACT_Plugin.Common.dll</HintPath>
+    <Reference Include="common">
+      <HintPath>E:\解析\FFXIV_ACT_Plugin\Costura\ffxiv_act_plugin\common\common.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlRenderer, Version=0.11.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ThirdParty\OverlayPlugin\libs\HtmlRenderer.dll</HintPath>
+    <Reference Include="HtmlRenderer">
+      <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="Machina.FFXIV">
+      <HintPath>D:\11\machina\Machina.FFXIV\bin\Release\netstandard2.0\Machina.FFXIV.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\ThirdParty\OverlayPlugin\libs\Newtonsoft.Json.dll</HintPath>
+      <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin.Common">
-      <HintPath>..\ThirdParty\OverlayPlugin\libs\OverlayPlugin.Common.dll</HintPath>
+      <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\OverlayPlugin.Common.dll</HintPath>
     </Reference>
-    <Reference Include="OverlayPlugin.Core, Version=0.11.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ThirdParty\OverlayPlugin\libs\OverlayPlugin.Core.dll</HintPath>
+    <Reference Include="OverlayPlugin.Core">
+      <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\OverlayPlugin.Core.dll</HintPath>
     </Reference>
-    <Reference Include="OverlayPlugin.Updater, Version=0.12.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ThirdParty\OverlayPlugin\libs\OverlayPlugin.Updater.dll</HintPath>
+    <Reference Include="OverlayPlugin.Updater">
+      <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\OverlayPlugin.Updater.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
