@@ -383,7 +383,7 @@ hideall "Fan Flames"
 
 # -p 70E9:6013.2 7125:7012.5
 # -it "Nald'thal"
-# -ii 738B 738C 711F 711B 73C4 73C5 73C6 72B8 7110 72BA 6FD5 712C 7379 737A 73C1 73C2 73C3 711D 73A6 73A7 73A8 73A9 73C8 742F 73AC 7116 7117
+# -ii 738B 738C 711F 711B 73C4 73C5 73C6 72B8 7110 72BA 6FD5 712C 7379 737A 73C1 73C2 73C3 711D 73A6 73A7 73A8 73A9 73C8 742F 73AC 7116 7117 7114 7432 7115 73B0 7433 7435
 
 # TODO: Is Fired Up I/II always knockback -> out and I/II/III is out -> knockback -> knockback or out?
 
@@ -421,25 +421,17 @@ hideall "Fan Flames"
 6224.1 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7111:/
 6230.2 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:738A:/
 6240.3 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
-6241.4 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7114:/
 6242.8 "--sync--" sync / 1[56]:[^:]*:Thal:7430:/
 6242.8 "Seventh Passage" sync / 1[56]:[^:]*:(Thal|Nald'thal):73AF:/
-6243.4 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73B0:/
 6244.5 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7118:/
 6244.8 "--sync--" sync / 1[56]:[^:]*:Thal:7431:/
 6250.9 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7112:/
 6257.0 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
 6263.1 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:741[9A]:/
 6273.2 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
-6274.3 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7114:/
-6275.1 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7119:/
-6275.7 "--sync--" sync / 1[56]:[^:]*:Thal:7432:/
-6276.3 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7115:/
-6277.4 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73B0:/
-6277.7 "--sync--" sync / 1[56]:[^:]*:Thal:7433:/
-6277.8 "Seventh Passage" #sync / 1[56]:[^:]*:Thal:73AF:/
-6279.2 "Seventh Passage" #sync / 1[56]:[^:]*:Thal:(73AF|7118):/
-6279.3 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7435:/
+6275.1 "Seventh Passage 1" sync / 1[56]:[^:]*:Nald'thal:7119:/
+6277.8 "Seventh Passage 2" #sync / 1[56]:[^:]*:Thal:73AF:/
+6279.2 "Seventh Passage 3" #sync / 1[56]:[^:]*:Thal:(73AF|7118):/
 6289.7 "Soul's Measure" sync / 1[56]:[^:]*:Nald'thal:7122:/
 6290.8 "--untargetable--"
 
@@ -523,15 +515,9 @@ hideall "Fan Flames"
 8169.6 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
 8175.7 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:7419:/
 8185.8 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
-8186.9 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7114:/
-8187.7 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7119:/
-8188.3 "--sync--" sync / 1[56]:[^:]*:Thal:7432:/
-8188.9 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7115:/
-8190.0 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73B0:/
-8190.3 "--sync--" sync / 1[56]:[^:]*:Nald:7433:/
-8190.4 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:73AF:/
-8191.7 "Seventh Passage" sync / 1[56]:[^:]*:Nald:73AF:/
-8191.8 "--sync--" sync / 1[56]:[^:]*:Thal:7435:/
+8187.7 "Seventh Passage 1" sync / 1[56]:[^:]*:Nald'thal:7119:/
+8190.4 "Seventh Passage 2" #sync / 1[56]:[^:]*:Thal:73AF:/
+8191.7 "Seventh Passage 3" #sync / 1[56]:[^:]*:Thal:(73AF|7118):/
 
 8197.1 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
 8202.1 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
