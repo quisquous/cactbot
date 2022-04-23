@@ -169,7 +169,7 @@ const PlayPopSound = (monster: Monster, options: RadarOptions) => {
 
 const PlayPullSound = (monster: Monster, options: RadarOptions) => {
   // Only play sounds for S ranks and above.
-  if (monster.rank !== 'S' && monster.rank !== 'SS+' && monster.rank === 'SS-')
+  if (monster.rank !== 'S' && monster.rank !== 'SS+' && monster.rank !== 'SS-')
     return;
 
   if (options.TTS) {
