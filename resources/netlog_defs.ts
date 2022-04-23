@@ -30,8 +30,9 @@ export type LogDefinition = {
   optionalFields?: readonly number[];
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
+type LogDefinitionVersionMap = { [version: string]: LogDefinitionMap };
 
-const logDefinitions = {
+const latestLogDefinitions = {
   GameLog: {
     type: '00',
     name: 'GameLog',
@@ -812,12 +813,17 @@ const logDefinitions = {
   },
 } as const;
 
+export const logDefinitionsVersions = {
+  'latest': latestLogDefinitions,
+} as const;
+
 // Verify that this has the right type, but export `as const`.
-const assertLogDefinitions: LogDefinitionMap = logDefinitions;
+const assertLogDefinitions: LogDefinitionVersionMap = logDefinitionsVersions;
 console.assert(assertLogDefinitions);
 
-export type LogDefinitions = typeof logDefinitions;
+export type LogDefinitions = typeof logDefinitionsVersions['latest'];
 export type LogDefinitionTypes = keyof LogDefinitions;
+export type LogDefinitionVersions = keyof typeof logDefinitionsVersions;
 
 export type ParseHelperField<
   Type extends LogDefinitionTypes,
@@ -832,4 +838,4 @@ export type ParseHelperFields<T extends LogDefinitionTypes> = {
   [field in keyof NetFieldsReverse[T]]: ParseHelperField<T, NetFieldsReverse[T], field>;
 };
 
-export default logDefinitions;
+export default logDefinitionsVersions['latest'];

@@ -1,7 +1,12 @@
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
 
-import logDefinitions, { LogDefinitionTypes, ParseHelperFields } from './netlog_defs';
+import logDefinitions, {
+  logDefinitionsVersions,
+  LogDefinitionTypes,
+  LogDefinitionVersions,
+  ParseHelperFields,
+} from './netlog_defs';
 
 const separator = ':';
 const matchDefault = '[^:]*';
@@ -9,19 +14,20 @@ const matchWithColonsDefault = '(?:[^:]|: )*?';
 const fieldsWithPotentialColons = ['effect', 'ability'];
 
 const defaultParams = <
-  T extends keyof typeof logDefinitions,
->(type: T, include?: string[]): Partial<ParseHelperFields<T>> => {
-  include ??= Object.keys(logDefinitions[type].fields);
+  T extends LogDefinitionTypes,
+  V extends LogDefinitionVersions,
+>(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
+  include ??= Object.keys(logDefinitionsVersions[version][type].fields);
   const params: { [index: number]: { field: string; value?: string } } = {};
 
-  for (const [prop, index] of Object.entries(logDefinitions[type].fields)) {
+  for (const [prop, index] of Object.entries(logDefinitionsVersions[version][type].fields)) {
     if (!include.includes(prop))
       continue;
     const param: { field: string; value?: string } = {
       field: prop,
     };
     if (prop === 'type')
-      param.value = logDefinitions[type].type;
+      param.value = logDefinitionsVersions[version][type].type;
 
     params[index] = param;
   }
@@ -133,11 +139,13 @@ const parseHelper = <T extends LogDefinitionTypes>(
 };
 
 export default class Regexes {
+  static logVersion: LogDefinitionVersions = 'latest';
+
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
    */
   static startsUsing(params?: NetParams['StartsUsing']): CactbotBaseRegExp<'StartsUsing'> {
-    return parseHelper(params, 'StartsUsing', defaultParams('StartsUsing'));
+    return parseHelper(params, 'StartsUsing', defaultParams('StartsUsing', Regexes.logVersion));
   }
 
   /**
@@ -145,7 +153,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
   static ability(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
-    return parseHelper(params, 'Ability', defaultParams('Ability'));
+    return parseHelper(params, 'Ability', defaultParams('Ability', Regexes.logVersion));
   }
 
   /**
@@ -162,7 +170,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
    */
   static headMarker(params?: NetParams['HeadMarker']): CactbotBaseRegExp<'HeadMarker'> {
-    return parseHelper(params, 'HeadMarker', defaultParams('HeadMarker'));
+    return parseHelper(params, 'HeadMarker', defaultParams('HeadMarker', Regexes.logVersion));
   }
 
   /**
@@ -172,7 +180,7 @@ export default class Regexes {
     return parseHelper(
       params,
       'AddedCombatant',
-      defaultParams('AddedCombatant', [
+      defaultParams('AddedCombatant', Regexes.logVersion, [
         'type',
         'timestamp',
         'id',
@@ -187,7 +195,11 @@ export default class Regexes {
   static addedCombatantFull(
     params?: NetParams['AddedCombatant'],
   ): CactbotBaseRegExp<'AddedCombatant'> {
-    return parseHelper(params, 'AddedCombatant', defaultParams('AddedCombatant'));
+    return parseHelper(
+      params,
+      'AddedCombatant',
+      defaultParams('AddedCombatant', Regexes.logVersion),
+    );
   }
 
   /**
@@ -196,14 +208,18 @@ export default class Regexes {
   static removingCombatant(
     params?: NetParams['RemovedCombatant'],
   ): CactbotBaseRegExp<'RemovedCombatant'> {
-    return parseHelper(params, 'RemovedCombatant', defaultParams('RemovedCombatant'));
+    return parseHelper(
+      params,
+      'RemovedCombatant',
+      defaultParams('RemovedCombatant', Regexes.logVersion),
+    );
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
    */
   static gainsEffect(params?: NetParams['GainsEffect']): CactbotBaseRegExp<'GainsEffect'> {
-    return parseHelper(params, 'GainsEffect', defaultParams('GainsEffect'));
+    return parseHelper(params, 'GainsEffect', defaultParams('GainsEffect', Regexes.logVersion));
   }
 
   /**
@@ -213,21 +229,21 @@ export default class Regexes {
   static statusEffectExplicit(
     params?: NetParams['StatusEffect'],
   ): CactbotBaseRegExp<'StatusEffect'> {
-    return parseHelper(params, 'StatusEffect', defaultParams('StatusEffect'));
+    return parseHelper(params, 'StatusEffect', defaultParams('StatusEffect', Regexes.logVersion));
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
    */
   static losesEffect(params?: NetParams['LosesEffect']): CactbotBaseRegExp<'LosesEffect'> {
-    return parseHelper(params, 'LosesEffect', defaultParams('LosesEffect'));
+    return parseHelper(params, 'LosesEffect', defaultParams('LosesEffect', Regexes.logVersion));
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
    */
   static tether(params?: NetParams['Tether']): CactbotBaseRegExp<'Tether'> {
-    return parseHelper(params, 'Tether', defaultParams('Tether'));
+    return parseHelper(params, 'Tether', defaultParams('Tether', Regexes.logVersion));
   }
 
   /**
@@ -235,7 +251,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
    */
   static wasDefeated(params?: NetParams['WasDefeated']): CactbotBaseRegExp<'WasDefeated'> {
-    return parseHelper(params, 'WasDefeated', defaultParams('WasDefeated'));
+    return parseHelper(params, 'WasDefeated', defaultParams('WasDefeated', Regexes.logVersion));
   }
 
   /**
@@ -288,7 +304,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
   static gameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
-    return parseHelper(params, 'GameLog', defaultParams('GameLog'));
+    return parseHelper(params, 'GameLog', defaultParams('GameLog', Regexes.logVersion));
   }
 
   /**
@@ -303,35 +319,35 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
    */
   static statChange(params?: NetParams['PlayerStats']): CactbotBaseRegExp<'PlayerStats'> {
-    return parseHelper(params, 'PlayerStats', defaultParams('PlayerStats'));
+    return parseHelper(params, 'PlayerStats', defaultParams('PlayerStats', Regexes.logVersion));
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
    */
   static changeZone(params?: NetParams['ChangeZone']): CactbotBaseRegExp<'ChangeZone'> {
-    return parseHelper(params, 'ChangeZone', defaultParams('ChangeZone'));
+    return parseHelper(params, 'ChangeZone', defaultParams('ChangeZone', Regexes.logVersion));
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
    */
   static network6d(params?: NetParams['ActorControl']): CactbotBaseRegExp<'ActorControl'> {
-    return parseHelper(params, 'ActorControl', defaultParams('ActorControl'));
+    return parseHelper(params, 'ActorControl', defaultParams('ActorControl', Regexes.logVersion));
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#22-networknametoggle
    */
   static nameToggle(params?: NetParams['NameToggle']): CactbotBaseRegExp<'NameToggle'> {
-    return parseHelper(params, 'NameToggle', defaultParams('NameToggle'));
+    return parseHelper(params, 'NameToggle', defaultParams('NameToggle', Regexes.logVersion));
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#28-map
    */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
-    return parseHelper(params, 'Map', defaultParams('Map'));
+    return parseHelper(params, 'Map', defaultParams('Map', Regexes.logVersion));
   }
 
   /**
@@ -340,7 +356,11 @@ export default class Regexes {
   static systemLogMessage(
     params?: NetParams['SystemLogMessage'],
   ): CactbotBaseRegExp<'SystemLogMessage'> {
-    return parseHelper(params, 'SystemLogMessage', defaultParams('SystemLogMessage'));
+    return parseHelper(
+      params,
+      'SystemLogMessage',
+      defaultParams('SystemLogMessage', Regexes.logVersion),
+    );
   }
 
   /**
