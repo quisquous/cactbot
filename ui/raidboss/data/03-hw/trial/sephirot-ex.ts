@@ -134,10 +134,10 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         noStack: {
-          en: 'Main tank--Do\'nt Stack!',
+          en: 'Do\'nt Stack!',
         },
         stack: {
-          en: 'Stack with your group',
+          en: 'Group Stacks',
         },
       },
     },
@@ -245,10 +245,10 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         might: {
-          en: 'Pass tether; avoid puddles + greens',
+          en: 'Get Away, Avoid Puddles + Tethers',
         },
         magic: {
-          en: 'Grab a tether; get front',
+          en: 'Go Front; Get Tether',
         },
       },
     },
@@ -278,7 +278,9 @@ const triggerSet: TriggerSet<Data> = {
         return output.shakerAvoid!();
       },
       outputStrings: {
-        shakerTarget: Outputs.earthshakerOnYou,
+        shakerTarget: {
+          en: 'Earth Shaker (Max Melee)',
+        },
         shakerAvoid: {
           en: 'Avoid Earth Shakers',
         },
