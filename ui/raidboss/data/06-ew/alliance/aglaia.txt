@@ -409,7 +409,7 @@ hideall "Fan Flames"
 6121.2 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
 
 # Possible ~5s delay here
-6132.6 "--sync--" sync / 20:[^:]*:Nald'thal:72B[79]:/ window 10,10
+6132.6 "--sync--" sync / 14:[^:]*:Nald'thal:72B[79]:/ window 10,10
 6140.6 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
 6147.2 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
 6152.3 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/ duration 20
