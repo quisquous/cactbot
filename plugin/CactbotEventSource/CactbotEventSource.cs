@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using CactbotEventSource.loc;
 using System.Globalization;
+using System.Reflection;
 
 namespace Cactbot {
 
@@ -268,10 +269,15 @@ namespace Cactbot {
       // Log this for now as there will likely be a lot of questions, re: user directories.
       if (Config.UserConfigFile != null)
         LogInfo(Strings.CactbotUserDirectory, Config.UserConfigFile);
-      var gameRegion = Machina.FFXIV.Headers.Opcodes.OpcodeManager.Instance.GameRegion;
+      var mach = Assembly.Load("Machina.FFXIV");
+      var opcodeManagerType = mach.GetType("Machina.FFXIV.Headers.Opcodes.OpcodeManager");
+      var opcodeMananger = opcodeManagerType.GetProperty("Instance")
+                                                         .GetValue(mach
+                                                                       .CreateInstance("Machina.FFXIV.Headers.Opcodes.OpcodeManager"));
+      var gameRegion = opcodeManagerType.GetProperty("GameRegion").GetValue(opcodeMananger).ToString();
       // Temporarily target cn if plugin is old v2.0.4.0
       if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
-        if (gameRegion==Machina.FFXIV.GameRegion.Chinese)
+        if (gameRegion== "Chinese")
         {
           ffxiv_ = new FFXIVProcessCn(this);
           LogInfo(Strings.Version, "cn");
@@ -283,7 +289,7 @@ namespace Cactbot {
         }
         
       } else if (language_ == "ko") {
-        if (gameRegion == Machina.FFXIV.GameRegion.Korean)
+        if (gameRegion == "Korean")
         {
           ffxiv_ = new FFXIVProcessKo(this);
           LogInfo(Strings.Version, "ko");

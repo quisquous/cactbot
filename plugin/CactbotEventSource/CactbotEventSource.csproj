@@ -60,9 +60,6 @@
     <Reference Include="HtmlRenderer">
       <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\HtmlRenderer.dll</HintPath>
     </Reference>
-    <Reference Include="Machina.FFXIV">
-      <HintPath>D:\11\machina\Machina.FFXIV\bin\Release\netstandard2.0\Machina.FFXIV.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>E:\Advanced Combat Tracker\Plugins\NGLD\libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
