@@ -30,6 +30,7 @@ export type PerTriggerOption = Partial<{
 export type TimelineConfig = Partial<{
   Ignore: string[];
   Rename: { [text: string]: string };
+  Add: { time: number; text: string; duration?: number }[];
 }>;
 
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };

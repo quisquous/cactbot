@@ -358,7 +358,12 @@ and also reading through existing triggers in [ui/raidboss/data](../ui/raidboss/
 
 ## Overriding Raidboss Timelines
 
-Overriding a raidboss timeline is similar to [overriding a trigger](#overriding-raidboss-triggers).
+Some customization of timelines can be done via the [cactbot config UI](#using-the-cactbot-ui).
+This UI allows you to hide/rename existing timeline entries
+or add custom entries at particular times.
+
+This section is for when you need to do more than that, and want to replace a timeline entirely.
+Completely overriding a raidboss timeline is similar to [overriding a trigger](#overriding-raidboss-triggers).
 
 The steps to override a timeline are:
 

@@ -112,15 +112,28 @@ export class TimelineParser {
     for (const text of this.timelineConfig.Ignore ?? [])
       this.ignores[text] = true;
 
-    this.parse(text, triggers, styles ?? []);
+    let uniqueId = 1;
+    for (const event of this.timelineConfig.Add ?? []) {
+      this.events.push({
+        id: uniqueId++,
+        time: event.time,
+        name: event.text,
+        text: event.text,
+        duration: event.duration,
+        activeTime: 0,
+      });
+    }
+
+    this.parse(text, triggers, styles ?? [], uniqueId);
   }
 
-  private parse(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
-    this.events = [];
-    this.syncStarts = [];
-    this.syncEnds = [];
-
-    let uniqueid = 1;
+  private parse(
+    text: string,
+    triggers: LooseTimelineTrigger[],
+    styles: TimelineStyle[],
+    initialId: number,
+  ): void {
+    let uniqueid = initialId;
     const texts: { [id: string]: ParsedText[] } = {};
     const regexes = {
       comment: /^\s*#/,
