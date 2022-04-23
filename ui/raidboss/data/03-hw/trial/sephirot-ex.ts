@@ -1,4 +1,4 @@
-import conditions from '../../../../../resources/conditions';
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -118,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SephirotEx Ratzon Spread',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0046', '0047'] }),
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -170,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SephirotEx Force Against Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['3ED', '3EE'] }),
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => output.text!({ force: matches.effect }),
       run: (data, matches) => data.force = matches.effectId,
       outputStrings: {
