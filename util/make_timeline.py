@@ -131,6 +131,9 @@ def parse_report(args):
             event["sourceID"] = event["source"]["id"]
             enemies[event["sourceID"]] = event["source"]["name"]
 
+        if event["ability"]["name"].startswith(("Unknown_", "unknown_")):
+            event["ability"]["name"] = "--sync--"
+
         entry = make_entry(
             {
                 "time": datetime.fromtimestamp((report_start_time + event["timestamp"]) / 1000),
