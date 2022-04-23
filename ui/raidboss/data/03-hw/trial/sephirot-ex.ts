@@ -1,13 +1,322 @@
+import conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  mainTank?: string;
+  phase: number;
+  force?: string;
+  shakerTargets?: string[];
+  pillarActive: boolean;
+}
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.ContainmentBayS1T7Extreme,
   timelineFile: 'sephirot-ex.txt',
-  triggers: [],
+  initData: () => {
+    return {
+      phase: 1,
+      pillarActive: false,
+    };
+  },
+  timelineTriggers: [
+    {
+      id: 'SephirotEx Tiferet',
+      regex: /Tiferet/,
+      beforeSeconds: 4,
+      suppressSeconds: 2, // Timeline syncs can otherwise make this extra-noisy
+      response: Responses.aoe(),
+    },
+    {
+      id: 'SephirotEx Triple Trial',
+      regex: /Triple Trial/,
+      beforeSeconds: 4,
+      response: Responses.tankCleave(),
+    },
+    {
+      id: 'SephirotEx Ein Sof Rage',
+      regex: /Ein Sof \(4 puddles\)/,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Move to safe quadrant',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Ein Sof Ratzon',
+      regex: /Ein Sof \(1 puddle\)/,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait toward puddle',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Yesod Bait',
+      regex: /Yesod/,
+      beforeSeconds: 6,
+      alertText: (data, _matches, output) => {
+        if (data.pillarActive)
+          return output.withPillar!();
+        return output.noPillar!();
+      },
+      outputStrings: {
+        noPillar: {
+          en: 'Bait Yesod',
+        },
+        withPillar: {
+          en: 'Bait Yesod inside puddle',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Pillar Activate',
+      regex: /Pillar of Mercy 1/,
+      beforeSeconds: 10,
+      run: (data) => data.pillarActive = true,
+    },
+    {
+      id: 'SephirotEx Pillar Deactivate',
+      regex: /Pillar of Mercy 3/,
+      run: (data) => data.pillarActive = false,
+    },
+  ],
+  triggers: [
+    {
+      id: 'SephirotEx Main Tank',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '368', source: 'Sephirot' }),
+      // We make this conditional to avoid constant noise in the raid emulator.
+      condition: (data, matches) => data.mainTank !== matches.target,
+      run: (data, matches) => data.mainTank = matches.target,
+    },
+    {
+      id: 'SephirotEx Chesed Buster',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '1567', source: 'Sephirot' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'SephirotEx Ain',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '1569', source: 'Sephirot', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1569', source: 'Sephirot', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1569', source: 'Sephirot', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1569', source: 'セフィロト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1569', source: '萨菲洛特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1569', source: '세피로트', capture: false }),
+
+      response: Responses.getBehind(),
+    },
+    {
+      id: 'SephirotEx Ratzon Spread',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: ['0046', '0047'] }),
+      condition: conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
+      id: 'SephirotEx Fiendish Rage',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0048', capture: false }),
+      condition: (data) => data.phase === 1,
+      suppressSeconds: 10,
+      alertText: (data, _matches, output) => {
+        if (data.me === data.mainTank)
+          return output.noStack!();
+        return output.stack!();
+      },
+      outputStrings: {
+        noStack: {
+          en: 'Main tank--Do\'nt Stack!',
+        },
+        stack: {
+          en: 'Stack with your group',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Da\'at Spread',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '1572', source: 'Sephirot', capture: false }),
+      response: Responses.spread(),
+    },
+    {
+      id: 'SephirotEx Malkuth',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '1582', source: 'Sephirot', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1582', source: 'Sephirot', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1582', source: 'Sephirot', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1582', source: 'セフィロト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1582', source: '萨菲洛特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1582', source: '세피로트', capture: false }),
+
+      response: Responses.knockback(),
+    },
+    {
+      id: 'SephirotEx Yesod Move',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '157E', source: 'Sephirot', capture: false }),
+      response: Responses.moveAway('alarm'), // This *will* kill if a non-tank takes 2+.
+    },
+    {
+      // 3ED is Force Against Might orange, 3EE is Force Against Magic, green.
+      id: 'SephirotEx Force Against Gain',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['3ED', '3EE'] }),
+      condition: conditions.targetIsYou(),
+      alertText: (_data, matches, output) => output.text!({ force: matches.effect }),
+      run: (data, matches) => data.force = matches.effectId,
+      outputStrings: {
+        text: {
+          en: '${force} on you',
+        },
+      },
+    },
+    {
+      // Orange left, Green right. Match color to Force debuff.
+      id: 'SephirotEx Gevurah Chesed',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '1578', capture: false }),
+      alertText: (data, _matches, output) => {
+        // Here and for Chesed Gevurah, if the player doesn't have a color debuff,
+        // they just take moderate AoE damage.
+        // Unlike Flood of Naught (colors) in O4s,
+        // standing center is safe if the user has no debuff.
+        if (data.force)
+          return data.force === '3ED' ? output.left!() : output.right!();
+        return output.aoe!();
+      },
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+        aoe: Outputs.aoe,
+      },
+    },
+    {
+      // Green left, Orange right. Match color to Force debuff.
+      id: 'SephirotEx Chesed Gevurah',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '1579', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.force)
+          return data.force === '3EE' ? output.left!() : output.right!();
+        return output.aoe!();
+      },
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+        aoe: Outputs.aoe,
+      },
+    },
+    {
+      id: 'SephirotEx Fiendish Wail',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '1575', source: 'Sephirot', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.force === '3ED' || (!data.force && data.role === 'tank'))
+          return output.getTower!();
+        return output.avoidTower!();
+      },
+      outputStrings: {
+        getTower: {
+          en: 'Get a tower',
+        },
+        avoidTower: {
+          en: 'Avoid towers',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Da\'at Tethers',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0030', capture: false }),
+      suppressSeconds: 30, // The tethers jump around a lot
+      alertText: (data, _matches, output) => {
+        if (data.force === '3EE')
+          return output.magic!();
+        return output.might!();
+      },
+      outputStrings: {
+        might: {
+          en: 'Pass tether; avoid puddles + greens',
+        },
+        magic: {
+          en: 'Grab a tether; get front',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Force Against Lose',
+      type: 'LosesEffect',
+      netRegex: NetRegexes.losesEffect({ effectId: ['3ED', '3EE'], capture: false }),
+      run: (data) => delete data.force,
+    },
+    {
+      id: 'SephirotEx Earth Shaker Collect',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      run: (data, matches) => {
+        data.shakerTargets = data.shakerTargets ??= [];
+        data.shakerTargets.push(matches.target);
+      },
+    },
+    {
+      id: 'SephirotEx Earth Shaker Call',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
+      delaySeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        if (data.shakerTargets?.includes(data.me))
+          return output.shakerTarget!();
+        return output.shakerAvoid!();
+      },
+      outputStrings: {
+        shakerTarget: Outputs.earthshakerOnYou,
+        shakerAvoid: {
+          en: 'Avoid Earth Shakers',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Earth Shaker Cleanup',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
+      delaySeconds: 5,
+      run: (data) => delete data.shakerTargets,
+    },
+    {
+      id: 'SephirotEx Storm of Words Revelation',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '1583', source: 'Storm of Words', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1583', source: 'Wörtersturm', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1583', source: 'Tempête De Mots', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1583', source: 'ストーム・オブ・ワード', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1583', source: '言语风暴', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1583', source: '신언의 폭풍', capture: false }),
+      alarmText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Kill Storm of Words or die',
+          de: 'Wörtersturm besiegen',
+          fr: 'Tuez Tempête de mots ou mourrez',
+          cn: '击杀言语风暴!',
+        },
+      },
+    },
+    {
+      id: 'SephirotEx Ascension',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      response: Responses.stackMarker(),
+    },
+  ],
   timelineReplace: [
     {
       'locale': 'de',
@@ -73,6 +382,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Coronal Wind': 'コロナルウィンド',
         'Sephirot': 'セフィロト',
