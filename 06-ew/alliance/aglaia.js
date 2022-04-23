@@ -670,11 +670,11 @@ Options.Triggers.push({
       id: 'Aglaia Nald\'thal Hearth Above, Flight Below Orange',
       type: 'StartsUsing',
       // 73CB = orange, unknown if swap
-      // 74FB = orange, unknown if swap
-      netRegex: NetRegexes.startsUsing({ id: ['73CB', '74FB'], source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['73CB', '74FB'], source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['73CB', '74FB'], source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['73CB', '74FB'], source: 'ナルザル', capture: false }),
+      // 741B = orange, unknown if swap
+      netRegex: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'thal', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'Thal', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'Thal', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       // Use info here to not conflict with the 73AC line stack trigger.
       infoText: (data, _matches, output) => {
