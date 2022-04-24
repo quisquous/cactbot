@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using CactbotEventSource.loc;
 using System.Globalization;
+using System.Reflection;
 
 namespace Cactbot {
 
@@ -268,17 +269,26 @@ namespace Cactbot {
       // Log this for now as there will likely be a lot of questions, re: user directories.
       if (Config.UserConfigFile != null)
         LogInfo(Strings.CactbotUserDirectory, Config.UserConfigFile);
-
-      // Temporarily target cn if plugin is old v2.0.4.0
-      if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
-        ffxiv_ = new FFXIVProcessCn(this);
-        LogInfo(Strings.Version, "cn");
-      } else if (language_ == "ko") {
-        ffxiv_ = new FFXIVProcessKo(this);
-        LogInfo(Strings.Version, "ko");
-      } else {
-        ffxiv_ = new FFXIVProcessIntl(this);
-        LogInfo(Strings.Version, "intl");
+      var mach = Assembly.Load("Machina.FFXIV");
+      var opcodeManagerType = mach.GetType("Machina.FFXIV.Headers.Opcodes.OpcodeManager");
+      var opcodeMananger = opcodeManagerType.GetProperty("Instance")
+                                                         .GetValue(mach
+                                                                       .CreateInstance("Machina.FFXIV.Headers.Opcodes.OpcodeManager"));
+      var gameRegion = opcodeManagerType.GetProperty("GameRegion").GetValue(opcodeMananger).ToString();
+      switch (gameRegion)
+      {
+        case "Chinese":
+          ffxiv_ = new FFXIVProcessCn(this);
+          LogInfo(Strings.Version, "cn");
+          break;
+        case "Korean":
+          ffxiv_ = new FFXIVProcessKo(this);
+          LogInfo(Strings.Version, "ko");
+          break;
+        default:
+          ffxiv_ = new FFXIVProcessIntl(this);
+          LogInfo(Strings.Version, "intl");
+          break;
       }
 
       // Avoid initialization races by always calling OnProcessChanged with the current process
