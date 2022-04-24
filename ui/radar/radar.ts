@@ -175,6 +175,7 @@ const PlayPullSound = (monster: Monster, options: RadarOptions) => {
   if (options.TTS) {
     const pullText: LocaleText = {
       en: `${monster.name} pulled`,
+      de: `${monster.name} gepullt`,
       cn: `${monster.name} 已开怪`,
     };
     void callOverlayHandler({
