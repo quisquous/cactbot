@@ -302,10 +302,10 @@ Options.Triggers.push({
       },
       'replaceText': {
         '\\(knockback\\)': '(击退)',
-        'Coherence Flare': '连贯攻击 (扩张)',
-        'Coherence Line': '连贯攻击 (直线)',
+        'Coherence Flare': '连贯攻击 (核爆)',
+        'Coherence Line': '连贯攻击 (分摊)',
         'Dissociation(?! Dive)': '分离',
-        'Dissociation Dive': '分离 (俯冲)',
+        'Dissociation Dive': '分离 (冲锋)',
         'Doubled Impact': '双重冲击',
         'Murky Depths': '深度污浊',
         'Predatory Sight': '活饵的刻印',
