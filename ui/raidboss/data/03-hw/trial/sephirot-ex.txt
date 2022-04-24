@@ -2,7 +2,7 @@
 # Sephirot Extreme
 
 # -ic Binah Cochma
-# -ii 368 15CB 156A 156C 1570 1572 1575 157C
+# -ii 368 15CB 156A 156C 1570 1572 1575 1577 157C 1581
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -17,7 +17,7 @@ hideall "--sync--"
 
 # Phase 1 rotation block, 76.3 seconds
 21.6 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-25.6 "Ein Sof" sync / 1[56]:[^:]*:Sephirot:156E:/
+25.6 "Ein Sof (4 puddles)" sync / 1[56]:[^:]*:Sephirot:156E:/
 29.7 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
 38.3 "Fiendish Rage 1" sync / 1[56]:[^:]*:Sephirot:156D:/
 42.0 "Fiendish Rage 2" sync / 1[56]:[^:]*:Sephirot:156D:/
@@ -25,7 +25,7 @@ hideall "--sync--"
 53.3 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
 59.4 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20
 61.6 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-67.7 "Ein Sof" sync / 1[56]:[^:]*:Sephirot:156E:/
+67.7 "Ein Sof (1 puddle)" sync / 1[56]:[^:]*:Sephirot:156E:/
 70.9 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
 81.3 "Ratzon" # sync / 1[56]:[^:]*:Sephirot:156B:/
 85.5 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
@@ -58,98 +58,89 @@ hideall "--sync--"
 
 
 # The intermission doesn't have anything worthwhile to sync.
-# Instead we just go straight for the ultimate cast.
+# Instead we just go straight for the ultimate cast. (It has no cast time.)
+# However, we don't want timeline triggers firing during the intermission.
 
+500.0 "--sync--" sync / 22:........:Sephirot:........:Sephirot:00/ window 500,0
 1000.0 "Ein Sof Ohr" sync / 1[56]:[^:]*:Sephirot:1571:/ window 1000,5
 
 # Phase 2 rotation block, 197.3 seconds
-1010.3 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
+1013.2 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 30,30
 1016.2 "Force Field" sync / 1[56]:[^:]*:Sephirot:1587:/
-1028.4 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1029.0 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1029.0 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
+1028.4 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1029.0 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1034.6 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1042.7 "Da'at Tethers" # sync / 1[56]:[^:]*:Sephirot:1574:/ duration 3.2
+1042.7 "Da'at Tethers" duration 5 #sync / 1[56]:[^:]*:Sephirot:1574:/
 1053.3 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1060.3 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1060.9 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1060.9 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
+1060.3 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1060.9 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1068.4 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1070.1 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1077.7 "Da'at spread" # sync / 1[56]:[^:]*:Sephirot:1573:/
+1070.1 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
+1077.7 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
 1085.1 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1092.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1092.9 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
-1101.0 "Pillar of Mercy" sync / 1[56]:[^:]*:Sephirot:1580:/
-1101.3 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1106.2 "Pillar of Mercy" sync / 1[56]:[^:]*:Sephirot:1580:/
-1110.1 "Pillar of Mercy" sync / 1[56]:[^:]*:Sephirot:1580:/
+1092.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1092.9 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
+1101.0 "Pillar of Mercy 1" sync / 1[56]:[^:]*:Sephirot:1580:/
+1101.3 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
+1106.2 "Pillar of Mercy 2" sync / 1[56]:[^:]*:Sephirot:1580:/
+1110.1 "Pillar of Mercy 3" sync / 1[56]:[^:]*:Sephirot:1580:/
 1119.3 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1128.8 "Da'at spread" # sync / 1[56]:[^:]*:Sephirot:1573:/
-1129.7 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
+1128.8 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
+1129.7 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
 1136.1 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1143.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1143.8 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1143.8 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
-1149.4 "Malkuth" sync / 1[56]:[^:]*:Sephirot:1582:/
-1150.5 "Adds Spawn" sync / 03:........:Storm Of Words:/ 
-1158.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1159.3 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
-1159.3 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
+1143.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1143.8 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
+1149.4 "Malkuth" sync / 1[56]:[^:]*:Sephirot:1582:/ window 30,30
+1150.5 "Adds Spawn" sync / 03:........:Storm Of Words:/
+1158.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1159.3 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1164.9 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
 1166.5 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1172.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1172.8 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1172.8 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
-1188.4 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1189.0 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1189.0 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
+1172.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1172.8 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
+1185.8 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
+1188.4 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1189.0 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1191.6 "Pillar of Severity" sync / 1[56]:[^:]*:Sephirot:1585:/
 1195.3 "Impact of Hod" sync / 1[56]:[^:]*:Sephirot:172C:/
 1199.7 "Ascension" sync / 1[56]:[^:]*:Coronal Wind:1584:/
 
-1207.6 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 30,30
+1210.4 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 30,30
 1213.5 "Force Field" sync / 1[56]:[^:]*:Sephirot:1587:/
-1225.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1226.3 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1226.3 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
+1225.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1226.3 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1231.9 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1240.0 "Da'at Tethers" # sync / 1[56]:[^:]*:Sephirot:1574:/ duration 3.2
+1240.0 "Da'at Tethers" duration 5 #sync / 1[56]:[^:]*:Sephirot:1574:/
 1250.6 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1257.6 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1258.2 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1258.2 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
+1257.6 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1258.2 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1265.7 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1267.4 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1275.0 "Da'at spread" # sync / 1[56]:[^:]*:Sephirot:1573:/
+1267.4 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
+1275.0 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
 1282.4 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1289.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1290.2 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
-1298.3 "Pillar of Mercy" sync / 1[56]:[^:]*:Sephirot:1580:/
-1298.6 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1303.5 "Pillar of Mercy" sync / 1[56]:[^:]*:Sephirot:1580:/
-1307.4 "Pillar of Mercy" sync / 1[56]:[^:]*:Sephirot:1580:/
+1289.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1290.2 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
+1298.3 "Pillar of Mercy 1" sync / 1[56]:[^:]*:Sephirot:1580:/
+1298.6 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
+1303.5 "Pillar of Mercy 2" sync / 1[56]:[^:]*:Sephirot:1580:/
+1307.4 "Pillar of Mercy 3" sync / 1[56]:[^:]*:Sephirot:1580:/
 1316.6 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1326.1 "Da'at spread" # sync / 1[56]:[^:]*:Sephirot:1573:/
-1327.0 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
+1326.1 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
+1327.0 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
 1333.4 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1340.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1341.1 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1341.1 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
+1340.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1341.1 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1346.7 "Malkuth" sync / 1[56]:[^:]*:Sephirot:1582:/
-1347.8 "Adds Spawn" sync / 03:........:Storm Of Words:/ 
-1356.0 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1356.6 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
-1356.6 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
+1347.8 "Adds Spawn" sync / 03:........:Storm Of Words:/
+1356.0 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1356.6 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1362.2 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
 1363.8 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1369.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1370.1 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1370.1 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
-1385.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:157[89]:/
-1386.3 "Life Force" sync / 1[56]:[^:]*:Sephirot:157A:/
-1386.3 "Spirit" sync / 1[56]:[^:]*:Sephirot:157B:/
+1369.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1370.1 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
+1382.9 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
+1385.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
+1386.3 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
 1388.9 "Pillar of Severity" sync / 1[56]:[^:]*:Sephirot:1585:/
 1392.6 "Impact of Hod" sync / 1[56]:[^:]*:Sephirot:172C:/
-1397.0 "Ascension" sync / 1[56]:[^:]*:Coronal Wind:1584:/
-1403.9 "Pillar of Severity Enrage" sync / 1[56]:[^:]*:Sephirot:1585:/
+1397.0 "Pillar of Severity Enrage" sync / 1[56]:[^:]*:Sephirot:1585:/
