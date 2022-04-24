@@ -71,6 +71,7 @@ UserConfig.registerOptions('radar', {
       id: 'PullSoundAlert',
       name: {
         en: 'Play sound when S rank is pulled',
+        cn: 'S级开怪时播放提示音',
       },
       type: 'checkbox',
       default: true,
@@ -79,6 +80,7 @@ UserConfig.registerOptions('radar', {
       id: 'PullVolume',
       name: {
         en: 'Volume to play pull sound (0-1)',
+        cn: '开怪提示音量 (0-1)',
       },
       type: 'float',
       default: 1,
