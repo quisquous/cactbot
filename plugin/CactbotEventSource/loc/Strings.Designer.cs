@@ -178,6 +178,15 @@ namespace CactbotEventSource.loc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception in GetGameRegion: {0}.
+        /// </summary>
+        internal static string GetGameRegionException {
+            get {
+                return ResourceManager.GetString("GetGameRegionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignoring auto-update due to cactbot directory being a .git repo..
         /// </summary>
         internal static string IgnoreUpdateDueToDotGitDirectoryMessage {

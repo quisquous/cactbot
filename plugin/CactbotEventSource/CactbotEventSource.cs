@@ -10,7 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using CactbotEventSource.loc;
 using System.Globalization;
-using System.Reflection;
+using static Cactbot.VersionChecker;
 
 namespace Cactbot {
 
@@ -248,6 +248,7 @@ namespace Cactbot {
       Version overlay = versions.GetOverlayPluginVersion();
       Version ffxiv = versions.GetFFXIVPluginVersion();
       Version act = versions.GetACTVersion();
+      GameRegion region = versions.GetGameRegion();
 
       // Print out version strings and locations to help users debug.
       LogInfo(Strings.CactbotBaseInfo, local.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
@@ -269,19 +270,14 @@ namespace Cactbot {
       // Log this for now as there will likely be a lot of questions, re: user directories.
       if (Config.UserConfigFile != null)
         LogInfo(Strings.CactbotUserDirectory, Config.UserConfigFile);
-      var mach = Assembly.Load("Machina.FFXIV");
-      var opcodeManagerType = mach.GetType("Machina.FFXIV.Headers.Opcodes.OpcodeManager");
-      var opcodeMananger = opcodeManagerType.GetProperty("Instance")
-                                                         .GetValue(mach
-                                                                       .CreateInstance("Machina.FFXIV.Headers.Opcodes.OpcodeManager"));
-      var gameRegion = opcodeManagerType.GetProperty("GameRegion").GetValue(opcodeMananger).ToString();
-      switch (gameRegion)
+
+      switch (region)
       {
-        case "Chinese":
+        case GameRegion.Chinese:
           ffxiv_ = new FFXIVProcessCn(this);
           LogInfo(Strings.Version, "cn");
           break;
-        case "Korean":
+        case GameRegion.Korean:
           ffxiv_ = new FFXIVProcessKo(this);
           LogInfo(Strings.Version, "ko");
           break;

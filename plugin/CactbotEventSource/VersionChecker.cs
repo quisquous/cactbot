@@ -3,6 +3,7 @@ using RainbowMage.OverlayPlugin.Updater;
 using System;
 using System.IO;
 using CactbotEventSource.loc;
+using System.Reflection;
 
 namespace Cactbot {
 
@@ -95,6 +96,34 @@ namespace Cactbot {
 
     public string GetACTLocation() {
       return System.Reflection.Assembly.GetAssembly(typeof(Advanced_Combat_Tracker.ActGlobals)).Location;
+    }
+
+    public enum GameRegion {
+      International,
+      Chinese,
+      Korean,
+    }
+
+    public GameRegion GetGameRegion() {
+      try {
+        var mach = Assembly.Load("Machina.FFXIV");
+        var opcode_manager_type = mach.GetType("Machina.FFXIV.Headers.Opcodes.OpcodeManager");
+        var opcode_manager = opcode_manager_type.GetProperty("Instance")
+                                                           .GetValue(mach
+                                                                         .CreateInstance("Machina.FFXIV.Headers.Opcodes.OpcodeManager"));
+        var machina_region = opcode_manager_type.GetProperty("GameRegion").GetValue(opcode_manager).ToString();
+        switch (machina_region) {
+          case "Chinese":
+            return GameRegion.Chinese;
+          case "Korean":
+            return GameRegion.Korean;
+          default:
+            return GameRegion.International;
+        }
+      } catch (Exception e) {
+        logger_.LogError(Strings.GetGameRegionException, e.Message);
+        return GameRegion.International;
+      }
     }
 
     public async void DoUpdateCheck(CactbotEventSourceConfig config) {
