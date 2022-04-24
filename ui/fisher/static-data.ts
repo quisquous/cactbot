@@ -6176,6 +6176,35 @@ const data: FisherData = {
         'Missratene Quellen',
       ],
       '36521': 'Phallaina',
+      '36679': 'Magitek-E-Gitarrenrochen',
+      '36680': [
+        'Jumbo-Snook',
+        'Jumbo-Snooks',
+      ],
+      '36681': 'Ohrenvoll',
+      '36682': [
+        'Hippofrosch',
+        'Hippofrösche',
+      ],
+      '36683': [
+        'Raureif',
+        'Raureife',
+      ],
+      '36684': 'Foun Ahlm',
+      '36685': [
+        'Forbiddingway',
+        'Forbiddingways',
+      ],
+      '36686': [
+        'thavnairische Tintenfisch',
+        'thavnairischen Tintenfisch',
+        'thavnairisches Tintenfisch',
+        'thavnairischer Tintenfisch',
+        'thavnairische Tintenfische',
+        'thavnairischen Tintenfische',
+        'thavnairisches Tintenfische',
+        'thavnairischer Tintenfische',
+      ],
     },
     'en': {
       '4776': [
@@ -9640,6 +9669,26 @@ const data: FisherData = {
         'phallaina',
         'phallainai',
       ],
+      '36679': 'aetherolectric guitarfish',
+      '36680': 'jumbo snook',
+      '36681': [
+        'earful',
+        'earfuls',
+      ],
+      '36682': [
+        'hippo frog',
+        'hippo frogs',
+      ],
+      '36683': 'rimepike',
+      '36684': [
+        'foun ahlm',
+        'foun ahlms',
+      ],
+      '36685': [
+        'forbiddingway',
+        'forbiddingways',
+      ],
+      '36686': 'Thavnairian calamari',
     },
     'fr': {
       '4776': [
@@ -14073,6 +14122,32 @@ const data: FisherData = {
         'matrices-des-agénésiaques',
       ],
       '36521': 'phallaina',
+      '36679': [
+        'poisson-guitare électrique',
+        'poissons-guitares électriques',
+      ],
+      '36680': [
+        'snook colossal',
+        'snooks colossaux',
+      ],
+      '36681': [
+        'crapet pleine-anse',
+        'crapets pleine-anse',
+      ],
+      '36682': [
+        'crapaud-hippo',
+        'crapauds-hippos',
+      ],
+      '36683': [
+        'orphie d\'Éblana',
+        'orphies d\'Éblana',
+      ],
+      '36684': 'Foun Ahlm ',
+      '36685': 'Forbiddingway',
+      '36686': [
+        'calmar thavnairois',
+        'calmars thavnairois',
+      ],
     },
     'ja': {
       '4776': 'マルムケルプ',
@@ -15281,6 +15356,14 @@ const data: FisherData = {
       '36519': 'E.B.E-9318',
       '36520': 'アンビゴッテン',
       '36521': 'パライナ',
+      '36679': 'エレキギターフィッシュ',
+      '36680': 'ジャンボスヌーク',
+      '36681': 'イアフルサンフィッシュ',
+      '36682': 'ヒッポフロッグ',
+      '36683': 'フリジッドガー',
+      '36684': 'フォン・アールム',
+      '36685': 'フォービディングウェイ',
+      '36686': 'サベネアンカラマリ',
     },
     'ko': {
       '4776': '말름미역',
@@ -19173,6 +19256,7 @@ const data: FisherData = {
       36387,
       36388,
       36389,
+      36679,
     ],
     '4051': [
       36390,
@@ -19191,6 +19275,7 @@ const data: FisherData = {
       36399,
       36400,
       36402,
+      36680,
     ],
     '4054': [
       36397,
@@ -19223,6 +19308,7 @@ const data: FisherData = {
       36417,
       36418,
       36419,
+      36681,
     ],
     '4059': [
       36420,
@@ -19248,6 +19334,7 @@ const data: FisherData = {
       36432,
       36434,
       36435,
+      36682,
     ],
     '4063': [
       36436,
@@ -19280,6 +19367,7 @@ const data: FisherData = {
       36452,
       36453,
       36454,
+      36686,
     ],
     '4068': [
       35606,
@@ -19287,6 +19375,7 @@ const data: FisherData = {
       36457,
       36458,
       36459,
+      36683,
     ],
     '4069': [
       35606,
@@ -19343,6 +19432,7 @@ const data: FisherData = {
       36488,
       36492,
       36494,
+      36684,
     ],
     '4078': [
       36487,
@@ -19370,6 +19460,7 @@ const data: FisherData = {
       36511,
       36512,
       36513,
+      36685,
     ],
     '4082': [
       36506,

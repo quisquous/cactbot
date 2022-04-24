@@ -38,12 +38,12 @@ export const langMap: { [lang in Lang]: { [lang in Lang]: string } } = {
     ko: '韓国語',
   },
   cn: {
-    en: '英语',
-    de: '德语',
-    fr: '法语',
-    ja: '日语',
+    en: '英文',
+    de: '德文',
+    fr: '法文',
+    ja: '日文',
     cn: '中文',
-    ko: '韩语',
+    ko: '韩文',
   },
   ko: {
     en: '영어',

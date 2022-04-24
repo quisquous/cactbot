@@ -369,26 +369,33 @@ const kMiscTranslations = {
   // The header inside the Edit Timeline section on top of the reference timeline text.
   timelineListing: {
     en: 'Reference Text (uneditable)',
+    cn: '参考文本 (不可编辑)',
   },
   // The header inside the Edit Timeline section on top of the add entries section.
   addCustomTimelineEntries: {
     en: 'Add Custom Timeline Entries',
+    cn: '添加自定义时间轴条目',
   },
   // The button text for the Edit Timeline add entries section.
   addMoreRows: {
     en: 'Add more rows',
+    cn: '添加更多行',
   },
   customEntryTime: {
     en: 'Time',
+    cn: '时间',
   },
   customEntryText: {
     en: 'Text',
+    cn: '文本',
   },
   customEntryDuration: {
     en: 'Duration (seconds)',
+    cn: '显示时长 (秒)',
   },
   customEntryRemove: {
     en: 'Remove',
+    cn: '移除',
   },
 };
 
