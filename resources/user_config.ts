@@ -9,7 +9,7 @@ import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
 import { UnreachableCode } from './not_reached';
 
 // TODO:
-// The convention of 'import X as _X; const X = _X;' is currently
+// The convention of "import X as _X; const X = _X;" is currently
 // being used as a method to workaround for downstream code
 // that is running via eval(). Because importing statements do not
 // create a variable of the same name, the eval()'d code does not know
@@ -190,7 +190,7 @@ class UserConfig {
   // Given a set of paths, an overlayName, and an extension, return all paths with
   // that extension that have `overlayName` either as their entire filename (no subdir)
   // or are inside a root-level subdirectory named `overlayName`/  The extension should
-  // include the period separator, e.g. '.js'.  All comparisons are case insensitive.
+  // include the period separator, e.g. ".js".  All comparisons are case insensitive.
   filterUserFiles(paths: string[], origOverlayName: string, origExtension: string) {
     const extension = origExtension.toLowerCase();
     const overlayName = origOverlayName.toLowerCase();
@@ -258,7 +258,7 @@ class UserConfig {
       // Parser Language
       if (e.detail.parserLanguage) {
         options.ParserLanguage = e.detail.parserLanguage;
-        // Backward compatibility, everything 'Language' should be changed to 'ParserLanguage'
+        // Backward compatibility, everything "Language" should be changed to "ParserLanguage"
         options.Language = e.detail.parserLanguage;
       }
       // System Language
@@ -295,7 +295,7 @@ class UserConfig {
         this.optionTemplates[overlayName],
       );
 
-      // If the overlay has a 'Debug' setting, set to true via the config tool,
+      // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
       const printUserFile = options.Debug ? (x: string) => console.log(x) : () => {/* noop */};
 
