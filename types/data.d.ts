@@ -1,6 +1,7 @@
 import { Lang } from '../resources/languages';
 import PartyTracker from '../resources/party';
 
+import { SystemInfo } from './event';
 import { Job, Role } from './job';
 import { NetMatches } from './net_matches';
 
@@ -13,8 +14,8 @@ export interface BaseOptions {
   SpokenAlertsEnabled: boolean;
   GroupSpokenAlertsEnabled: boolean;
   Skin?: string;
+  SystemInfo: SystemInfo;
   [key: string]: unknown;
-  // todo: complete this type
 }
 
 export interface RaidbossData {
