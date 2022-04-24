@@ -134,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         noStack: {
-          en: 'Do\'nt Stack!',
+          en: 'Don\'t Stack!',
         },
         stack: {
           en: 'Group Stacks',
