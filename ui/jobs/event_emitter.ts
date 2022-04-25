@@ -53,10 +53,6 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
       this.processEnmityTargetData(ev);
     });
 
-    addOverlayListener('onPartyWipe', () => {
-      this.emit('battle/wipe');
-    });
-
     addOverlayListener('onInCombatChangedEvent', (ev) => {
       this.emit('battle/in-combat', {
         game: ev.detail.inGameCombat,
@@ -110,6 +106,12 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
           this.emit('tick/dot', damage, matches);
         else if (matches.which === 'HoT')
           this.emit('tick/hot', damage, matches);
+        break;
+      }
+      case logDefinitions.ActorControl.type: {
+        const matches = normalizeLogLine(ev.line, logDefinitions.ActorControl.fields);
+        if (matches.command === '40000010')
+          this.emit('battle/wipe');
         break;
       }
 

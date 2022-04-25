@@ -70,9 +70,6 @@ namespace Cactbot {
       public string EventName() { return "onPlayerDied"; }
     }
 
-    public class PartyWipeEvent : JSEvent {
-      public string EventName() { return "onPartyWipe"; }
-    }
     public class FateEvent : JSEvent {
       public FateEvent(string eventType, int fateID, int progress) {
         this.eventType = eventType;

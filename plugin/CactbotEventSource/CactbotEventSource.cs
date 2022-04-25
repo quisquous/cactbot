@@ -46,7 +46,6 @@ namespace Cactbot {
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
     private FFXIVProcess ffxiv_;
-    private WipeDetector wipe_detector_;
     private FateWatcher fate_watcher_;
 
     private string language_ = null;
@@ -85,7 +84,6 @@ namespace Cactbot {
     public event PlayerDiedHandler OnPlayerDied;
 
     public delegate void PartyWipeHandler(JSEvents.PartyWipeEvent e);
-    public event PartyWipeHandler OnPartyWipe;
 
     public delegate void FateEventHandler(JSEvents.FateEvent e);
     public event FateEventHandler OnFateEvent;
@@ -95,7 +93,6 @@ namespace Cactbot {
 
     public void Wipe() {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
-      OnPartyWipe(new JSEvents.PartyWipeEvent());
     }
 
     public void DoFateEvent(JSEvents.FateEvent e) {
@@ -124,7 +121,6 @@ namespace Cactbot {
         "onFateEvent",
         "onCEEvent",
         "onPlayerDied",
-        "onPartyWipe",
         "onPlayerChangedEvent",
         "onUserFileChanged",
       });
@@ -296,7 +292,6 @@ namespace Cactbot {
       plugin_helper.RegisterProcessChangedHandler(ffxiv_.OnProcessChanged);
       ffxiv_.OnProcessChanged(plugin_helper.GetCurrentProcess());
 
-      wipe_detector_ = new WipeDetector(this);
       fate_watcher_ = new FateWatcher(this, language_);
 
       // Incoming events.
@@ -312,7 +307,6 @@ namespace Cactbot {
       OnPlayerChanged += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
-      OnPartyWipe += (e) => DispatchToJS(e);
       OnFateEvent += (e) => DispatchToJS(e);
       OnCEEvent += (e) => DispatchToJS(e);
 

@@ -222,6 +222,8 @@ class PullCounter {
   private party: Party[] = [];
   private bosses: Boss[] = [];
   private resetRegex = NetRegexes.echo({ line: '.*pullcounter reset.*?' });
+  private wipeEndRegex = NetRegexes.echo({ line: 'end' });
+  private wipeFadeInRegex = NetRegexes.network6d({ command: '40000010' });
   private countdownEngageRegex: RegExp;
   private pullCounts: { [bossId: string]: number } = {};
 
@@ -279,6 +281,8 @@ class PullCounter {
       return;
     if (this.resetRegex.test(log))
       this.ResetPullCounter();
+    if (this.wipeEndRegex.test(log) || this.wipeFadeInRegex.test(log))
+      this.Wipe();
     if (this.countdownEngageRegex.test(log)) {
       if (this.countdownBoss)
         this.OnFightStart(this.countdownBoss);
@@ -380,7 +384,7 @@ class PullCounter {
     });
   }
 
-  OnPartyWipe() {
+  Wipe() {
     this.element.classList.add('wipe');
   }
 
@@ -428,6 +432,5 @@ UserConfig.getUserConfigLocation('pullcounter', defaultOptions, () => {
   addOverlayListener('LogLine', (e) => pullcounter.OnNetLog(e));
   addOverlayListener('ChangeZone', (e) => pullcounter.OnChangeZone(e));
   addOverlayListener('onInCombatChangedEvent', (e) => pullcounter.OnInCombatChange(e));
-  addOverlayListener('onPartyWipe', () => pullcounter.OnPartyWipe());
   addOverlayListener('PartyChanged', (e) => pullcounter.OnPartyChange(e));
 });
