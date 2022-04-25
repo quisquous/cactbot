@@ -83,8 +83,6 @@ namespace Cactbot {
     public delegate void PlayerDiedHandler(JSEvents.PlayerDiedEvent e);
     public event PlayerDiedHandler OnPlayerDied;
 
-    public delegate void PartyWipeHandler(JSEvents.PartyWipeEvent e);
-
     public delegate void FateEventHandler(JSEvents.FateEvent e);
     public event FateEventHandler OnFateEvent;
 
