@@ -967,6 +967,7 @@ class RaidbossConfigurator {
       remove.addEventListener('click', () => {
         container.removeChild(timeInput);
         container.removeChild(textInput);
+        container.removeChild(durationInput);
         container.removeChild(remove);
 
         // Update rows in place, as it has been captured by a closure above.
