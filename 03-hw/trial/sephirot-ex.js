@@ -28,6 +28,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Move to safe quadrant',
+          de: 'Beweg dich in den sicheren Quadranten',
         },
       },
     },
@@ -38,6 +39,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait toward puddle',
+          de: 'In Richtung Fläche ködern',
         },
       },
     },
@@ -53,9 +55,11 @@ Options.Triggers.push({
       outputStrings: {
         noPillar: {
           en: 'Bait Yesod',
+          de: 'Yesod ködern',
         },
         withPillar: {
           en: 'Bait Yesod inside puddle',
+          de: 'Yesod in die Fläche ködern',
         },
       },
     },
@@ -76,6 +80,11 @@ Options.Triggers.push({
       id: 'SephirotEx Main Tank',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '368', source: 'Sephirot' }),
+      netRegexDe: NetRegexes.ability({ id: '368', source: 'Sephirot' }),
+      netRegexFr: NetRegexes.ability({ id: '368', source: 'Sephirot' }),
+      netRegexJa: NetRegexes.ability({ id: '368', source: 'セフィロト' }),
+      netRegexCn: NetRegexes.ability({ id: '368', source: '萨菲洛特' }),
+      netRegexKo: NetRegexes.ability({ id: '368', source: '세피로트' }),
       // We make this conditional to avoid constant noise in the raid emulator.
       condition: (data, matches) => data.mainTank !== matches.target,
       run: (data, matches) => data.mainTank = matches.target,
@@ -84,6 +93,11 @@ Options.Triggers.push({
       id: 'SephirotEx Chesed Buster',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1567', source: 'Sephirot' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1567', source: 'Sephirot' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1567', source: 'Sephirot' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1567', source: 'セフィロト' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1567', source: '萨菲洛特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1567', source: '세피로트' }),
       response: Responses.tankBuster(),
     },
     {
@@ -118,9 +132,11 @@ Options.Triggers.push({
       outputStrings: {
         noStack: {
           en: 'Don\'t Stack!',
+          de: 'Nicht sammeln!',
         },
         stack: {
           en: 'Group Stacks',
+          de: 'In der Gruppe sammeln',
         },
       },
     },
@@ -128,6 +144,11 @@ Options.Triggers.push({
       id: 'SephirotEx Da\'at Spread',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1572', source: 'Sephirot', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1572', source: 'Sephirot', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1572', source: 'Sephirot', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1572', source: 'セフィロト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1572', source: '萨菲洛特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1572', source: '세피로트', capture: false }),
       response: Responses.spread(),
     },
     {
@@ -145,6 +166,11 @@ Options.Triggers.push({
       id: 'SephirotEx Yesod Move',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '157E', source: 'Sephirot', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '157E', source: 'Sephirot', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '157E', source: 'Sephirot', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '157E', source: 'セフィロト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '157E', source: '萨菲洛特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '157E', source: '세피로트', capture: false }),
       response: Responses.moveAway('alarm'), // This *will* kill if a non-tank takes 2+.
     },
     {
@@ -158,6 +184,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${force} on you',
+          de: '${force} auf dir',
         },
       },
     },
@@ -201,6 +228,11 @@ Options.Triggers.push({
       id: 'SephirotEx Fiendish Wail',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1575', source: 'Sephirot', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '1575', source: 'Sephirot', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '1575', source: 'Sephirot', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '1575', source: 'セフィロト', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '1575', source: '萨菲洛特', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '1575', source: '세피로트', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.force === '3ED' || (!data.force && data.role === 'tank'))
           return output.getTower();
@@ -209,9 +241,11 @@ Options.Triggers.push({
       outputStrings: {
         getTower: {
           en: 'Get a tower',
+          de: 'Nimm einen Turm',
         },
         avoidTower: {
           en: 'Avoid towers',
+          de: 'Turm meiden',
         },
       },
     },
@@ -228,9 +262,11 @@ Options.Triggers.push({
       outputStrings: {
         might: {
           en: 'Get Away, Avoid Puddles + Tethers',
+          de: 'Geh weg, weiche Flächen und Verbindungen aus',
         },
         magic: {
           en: 'Go Front; Get Tether',
+          de: 'Geh nach Vorne; Nimm eine Verbindung',
         },
       },
     },
@@ -262,9 +298,11 @@ Options.Triggers.push({
       outputStrings: {
         shakerTarget: {
           en: 'Earth Shaker (Max Melee)',
+          de: 'Erdstoß (Max Nahkampf)',
         },
         shakerAvoid: {
           en: 'Avoid Earth Shakers',
+          de: 'Weiche Erdstoß aus',
         },
       },
     },
