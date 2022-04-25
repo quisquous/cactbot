@@ -177,6 +177,7 @@ const PlayPullSound = (monster: Monster, options: RadarOptions) => {
       en: `${monster.name} pulled`,
       de: `${monster.name} gepullt`,
       cn: `${monster.name} 已开怪`,
+      ko: `${monster.name} 풀링됨`,
     };
     void callOverlayHandler({
       call: 'cactbotSay',

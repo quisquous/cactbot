@@ -371,38 +371,45 @@ const kMiscTranslations = {
     en: 'Reference Text (uneditable)',
     de: 'Referenztext (nicht editierbar)',
     cn: '参考文本 (不可编辑)',
+    ko: '원본 타임라인 (수정 불가능)',
   },
   // The header inside the Edit Timeline section on top of the add entries section.
   addCustomTimelineEntries: {
     en: 'Add Custom Timeline Entries',
     de: 'Eigene Timeline Einträge hinzufügen',
     cn: '添加自定义时间轴条目',
+    ko: '사용자 지정 타임라인 항목 추가',
   },
   // The button text for the Edit Timeline add entries section.
   addMoreRows: {
     en: 'Add more rows',
     de: 'Mehr Reihen hinzufügen',
     cn: '添加更多行',
+    ko: '행 추가',
   },
   customEntryTime: {
     en: 'Time',
     de: 'Zeit',
     cn: '时间',
+    ko: '시간',
   },
   customEntryText: {
     en: 'Text',
     de: 'Text',
     cn: '文本',
+    ko: '텍스트',
   },
   customEntryDuration: {
     en: 'Duration (seconds)',
     de: 'Dauer (Sekunden)',
     cn: '显示时长 (秒)',
+    ko: '지속시간 (초)',
   },
   customEntryRemove: {
     en: 'Remove',
     de: 'Entfernen',
     cn: '移除',
+    ko: '삭제',
   },
 };
 
