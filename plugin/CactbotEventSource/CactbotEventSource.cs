@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using CactbotEventSource.loc;
 using System.Globalization;
+using static Cactbot.VersionChecker;
 
 namespace Cactbot {
 
@@ -50,6 +51,11 @@ namespace Cactbot {
 
     private string language_ = null;
     private string pc_locale_ = null;
+    private Version cactbot_version_;
+    private Version overlay_plugin_version_;
+    private Version ffxiv_plugin_version_;
+    private Version act_version_;
+    private GameRegion game_region_ = GameRegion.International;
 
     public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
     public event ForceReloadHandler OnForceReload;
@@ -242,17 +248,17 @@ namespace Cactbot {
       }
 
       var versions = new VersionChecker(this);
-      Version local = versions.GetCactbotVersion();
-
-      Version overlay = versions.GetOverlayPluginVersion();
-      Version ffxiv = versions.GetFFXIVPluginVersion();
-      Version act = versions.GetACTVersion();
+      cactbot_version_ = versions.GetCactbotVersion();
+      overlay_plugin_version_ = versions.GetOverlayPluginVersion();
+      ffxiv_plugin_version_ = versions.GetFFXIVPluginVersion();
+      act_version_ = versions.GetACTVersion();
+      game_region_ = versions.GetGameRegion();
 
       // Print out version strings and locations to help users debug.
-      LogInfo(Strings.CactbotBaseInfo, local.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
-      LogInfo(Strings.OverlayPluginBaseInfo, overlay.ToString(), versions.GetOverlayPluginLocation());
-      LogInfo(Strings.FFXIVPluginBaseInfo, ffxiv.ToString(), versions.GetFFXIVPluginLocation());
-      LogInfo(Strings.ACTBaseInfo, act.ToString(), versions.GetACTLocation());
+      LogInfo(Strings.CactbotBaseInfo, cactbot_version_.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
+      LogInfo(Strings.OverlayPluginBaseInfo, overlay_plugin_version_.ToString(), versions.GetOverlayPluginLocation());
+      LogInfo(Strings.FFXIVPluginBaseInfo, ffxiv_plugin_version_.ToString(), versions.GetFFXIVPluginLocation());
+      LogInfo(Strings.ACTBaseInfo, act_version_.ToString(), versions.GetACTLocation());
       if (language_ == null) {
         LogInfo(Strings.ParsingPluginLanguage, "(unknown)");
       } else {
@@ -269,16 +275,20 @@ namespace Cactbot {
       if (Config.UserConfigFile != null)
         LogInfo(Strings.CactbotUserDirectory, Config.UserConfigFile);
 
-      // Temporarily target cn if plugin is old v2.0.4.0
-      if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
-        ffxiv_ = new FFXIVProcessCn(this);
-        LogInfo(Strings.Version, "cn");
-      } else if (language_ == "ko") {
-        ffxiv_ = new FFXIVProcessKo(this);
-        LogInfo(Strings.Version, "ko");
-      } else {
-        ffxiv_ = new FFXIVProcessIntl(this);
-        LogInfo(Strings.Version, "intl");
+      switch (game_region_)
+      {
+        case GameRegion.Chinese:
+          ffxiv_ = new FFXIVProcessCn(this);
+          LogInfo(Strings.Version, "cn");
+          break;
+        case GameRegion.Korean:
+          ffxiv_ = new FFXIVProcessKo(this);
+          LogInfo(Strings.Version, "ko");
+          break;
+        default:
+          ffxiv_ = new FFXIVProcessIntl(this);
+          LogInfo(Strings.Version, "intl");
+          break;
       }
 
       // Avoid initialization races by always calling OnProcessChanged with the current process
@@ -637,6 +647,12 @@ namespace Cactbot {
       result["displayLanguage"] = Config.DisplayLanguage;
       // For backwards compatibility:
       result["language"] = language_;
+
+      result["cactbotVersion"] = cactbot_version_.ToString();
+      result["overlayPluginVersion"] = overlay_plugin_version_.ToString();
+      result["ffxivPluginVersion"] = ffxiv_plugin_version_.ToString();
+      result["actVersion"] = act_version_.ToString();
+      result["gameRegion"] = game_region_.ToString();
 
       var response = new JObject();
       response["detail"] = result;

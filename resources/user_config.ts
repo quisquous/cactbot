@@ -82,6 +82,13 @@ class UserConfig {
       SoundAlertsEnabled: true,
       SpokenAlertsEnabled: false,
       GroupSpokenAlertsEnabled: false,
+      SystemInfo: {
+        cactbotVersion: '0.0.0.0',
+        overlayPluginVersion: '0.0.0.0',
+        ffxivPluginVersion: '0.0.0.0',
+        actVersion: '0.0.0.0',
+        gameRegion: 'International',
+      },
     };
   }
 
@@ -230,6 +237,14 @@ class UserConfig {
       // Linux (?!?), support any style of slashes elsewhere.
       const basePath = e.detail.userLocation.replace(/[/\\]*$/, '') + '\\';
       const localFiles = e.detail.localUserFiles;
+
+      options.SystemInfo = {
+        cactbotVersion: e.detail.cactbotVersion,
+        overlayPluginVersion: e.detail.overlayPluginVersion,
+        ffxivPluginVersion: e.detail.ffxivPluginVersion,
+        actVersion: e.detail.actVersion,
+        gameRegion: e.detail.gameRegion,
+      };
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.

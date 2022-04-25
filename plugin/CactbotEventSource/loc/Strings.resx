@@ -156,6 +156,9 @@
   <data name="GetCurrentProcessErrorMessage" xml:space="preserve">
     <value>Error in GetCurrentProcess: {0}</value>
   </data>
+  <data name="GetGameRegionException" xml:space="preserve">
+    <value>Exception in GetGameRegion: {0}</value>
+  </data>
   <data name="IgnoreUpdateDueToDotGitDirectoryMessage" xml:space="preserve">
     <value>Ignoring auto-update due to cactbot directory being a .git repo.</value>
   </data>
