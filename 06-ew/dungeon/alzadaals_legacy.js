@@ -23,6 +23,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid tentacle explosions',
           de: 'Weiche Tentakel-Explosion aus',
+          ko: '문어다리가 멈춘 곳 멀리 피하기',
         },
       },
     },
@@ -125,7 +126,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid tethered color',
           de: 'Weiche der verbundenen Farbe aus',
-          ko: '연결된 색깔 피하기',
+          ko: '보스가 연결한 색의 기둥 피하기',
         },
       },
     },

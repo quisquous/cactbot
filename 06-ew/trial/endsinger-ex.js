@@ -6,7 +6,7 @@ const echoesOutputStrings = {
     fr: 'Packez-vous, donut',
     ja: 'スタック',
     cn: '集合放月环',
-    ko: '도넛 쉐어',
+    ko: '도넛 장판, 쉐어',
   },
   spread: Outputs.spread,
   flare: {

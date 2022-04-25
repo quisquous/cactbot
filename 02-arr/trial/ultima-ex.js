@@ -147,7 +147,7 @@ Options.Triggers.push({
           de: 'Orbs: Interkardinal',
           fr: 'Orbes : Intercardinaux',
           cn: '球: 方形',
-          ko: '오브: 사각형',
+          ko: '구슬: 사각형',
         },
       },
     },
