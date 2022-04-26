@@ -15,7 +15,7 @@ hideall "--sync--"
 0.0 "Start"
 6.0 "--sync--" sync / 14:[^:]*:Ser Adelphel:62D4:/ window 10,10
 10.0 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
-23.2 "Empty Dimension/Full Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:(62DA|62DB):/
+23.2 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
 23.2 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:62D1:/
 23.9 "--sync--" sync / 1[56]:[^:]*:Ser Adelphel:63EB:/
 25.3 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D2:/ duration 2.5
