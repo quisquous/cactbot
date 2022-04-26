@@ -199,6 +199,17 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'Brayflox Normal Aiatar Salivous Snap',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6FF3', source: 'Aiatar' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6FF3', source: 'Aiatar' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6FF3', source: 'Aiatar' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6FF3', source: 'アイアタル' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6FF3', source: '阿杰特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6FF3', source: '아이아타르' }),
+      response: Responses.tankBuster(),
+    },
   ],
   timelineReplace: [
     {
