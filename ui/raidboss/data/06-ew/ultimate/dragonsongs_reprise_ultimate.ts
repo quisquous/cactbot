@@ -30,6 +30,14 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DragonsongsRepriseUltimate,
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
   triggers: [],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Empty Dimension/Full Dimension': 'Empty/Full Dimension',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
