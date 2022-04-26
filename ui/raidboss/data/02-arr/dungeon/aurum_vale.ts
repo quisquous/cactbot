@@ -1,6 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-//import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -8,7 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
-  zoneId: ZoneId.TheSunkenTempleOfQarn,
+  zoneId: ZoneId.TheAurumVale,
   triggers: [
     {
       id: 'Aurum Vale GoldLungs/Burrs',
@@ -20,11 +19,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Eat Fruit',
-          de: '',
           fr: 'Mangez 1 fruit',
-          ja: '',
-          cn: '',
-          ko: '',
         },
       },
     },

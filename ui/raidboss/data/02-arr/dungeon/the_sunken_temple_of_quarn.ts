@@ -1,6 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-//import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -19,11 +18,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Step on Glowing Plate',
-          de: '',
           fr: 'Marchez sur la plaque qui brille',
-          ja: '',
-          cn: '',
-          ko: '',
         },
       },
     },
