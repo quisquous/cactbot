@@ -20,6 +20,7 @@ hideall "--sync--"
 28.2 "Heavensblaze" sync / 1[56]:[^:]*:Ser Charibert:62DD:/
 36.5 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:62E9:/
 43.6 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:62D6:/
+# These slashes come from Ser Grinnaux, but sometimes name updates are sloppy.
 44.8 "Hyperdimensional Slash 1" sync / 1[56]:[^:]*:(Ser Grinnaux|Ser Charibert):62D7:/
 50.7 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:6315:/
 51.9 "Hyperdimensional Slash 2" sync / 1[56]:[^:]*:(Ser Grinnaux|Ser Charibert):62D7:/
@@ -30,7 +31,13 @@ hideall "--sync--"
 88.2 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
 102.2 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
 104.2 "Empty Dimension/Full Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:(62DA|62DB):/
-# Enrage??
+122.2 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+# "soft" enrage
+127.4 "The Bull's Steel" sync / 1[56]:[^:]*:Ser Grinnaux:62CD:/
+127.4 "Brightblade's Steel" sync / 1[56]:[^:]*:Ser Adelphel:62CC:/
+133.6 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+133.6 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+# ???
 
 500.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
 500.0 "Pure of Heart" sync / 14:[^:]*:Ser Charibert:62E4:/ duration 36
