@@ -273,6 +273,7 @@ const data: HuntMap = {
   'Burfurlur the Canny': {
     'id': '10617',
     'name': {
+      'cn': '布弗鲁',
       'de': [
         'Burfurlur der Gerissene',
         'Burfurlur der Gerissener',
@@ -2054,6 +2055,7 @@ const data: HuntMap = {
   'sphatika': {
     'id': '10618',
     'name': {
+      'cn': '颇胝迦',
       'de': 'Sphatika',
       'en': 'sphatika',
       'fr': 'Sphatika',
