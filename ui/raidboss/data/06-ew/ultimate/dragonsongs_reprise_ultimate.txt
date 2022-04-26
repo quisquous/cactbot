@@ -7,3 +7,160 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
 0.0 "--sync--" sync /Engage!/ window 0,1
+9.9 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+23.1 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
+23.1 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:62D1:/
+23.8 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:63EB:/
+25.2 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D2:/
+26.1 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D3:/
+26.5 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D3:/
+26.9 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D3:/
+27.3 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D3:/
+27.7 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D3:/
+27.9 "Heavensblaze" sync / 1[56]:[^:]*:Ser Charibert:62DD:/
+28.2 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D3:/
+36.2 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:62E9:/
+43.3 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:62D6:/
+44.5 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:62D7:/
+44.5 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:63EE:/
+50.4 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:6315:/
+51.6 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:62D7:/
+51.6 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:63EE:/
+59.5 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+60.6 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+62.8 "Shining Blade" sync / 1[56]:[^:]*:Ser Adelphel:62CE:/
+63.9 "Shining Blade" sync / 1[56]:[^:]*:Ser Adelphel:62CE:/
+65.0 "Shining Blade" sync / 1[56]:[^:]*:Ser Adelphel:62CE:/
+65.2 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+65.5 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+65.9 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+66.1 "Shining Blade" sync / 1[56]:[^:]*:Ser Adelphel:62CE:/
+66.4 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+66.7 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+67.1 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+67.5 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+67.8 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+68.6 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+68.9 "Execution" sync / 1[56]:[^:]*:Ser Adelphel:62D5:/
+68.9 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+69.3 "Bright Flare" sync / 1[56]:[^:]*:Brightsphere:62CF:/
+86.1 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+88.1 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
+88.2 "Holy Chain" sync / 1[56]:[^:]*:Ser Charibert:62E0:/
+88.7 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DF:/
+88.7 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DF:/
+102.3 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+104.3 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
+121.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/
+121.9 "Brightwinged Flight" sync / 1[56]:[^:]*:Ser Adelphel:6316:/
+123.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+124.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+124.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+125.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+125.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+125.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+126.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+126.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+127.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+127.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+127.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+128.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+128.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+129.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+129.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+129.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+130.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+130.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+131.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+131.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+131.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+132.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+132.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+132.9 "Spear of the Fury" sync / 1[56]:[^:]*:Ser Zephirin:62E2:/
+133.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+133.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+133.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+134.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+134.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+134.9 "Shockwave" sync / 1[56]:[^:]*:Spear of the Fury:62E3:/
+135.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+135.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+135.8 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+136.0 "Shockwave" sync / 1[56]:[^:]*:Spear of the Fury:62E3:/
+136.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+136.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+136.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+137.1 "Shockwave" sync / 1[56]:[^:]*:Spear of the Fury:62E3:/
+137.2 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+137.6 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+138.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+138.2 "Shockwave" sync / 1[56]:[^:]*:Spear of the Fury:62E3:/
+138.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+138.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+139.1 "Brightwing" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+139.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+139.3 "Shockwave" sync / 1[56]:[^:]*:Spear of the Fury:62E3:/
+139.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+139.8 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+140.2 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+140.4 "Shockwave" sync / 1[56]:[^:]*:Spear of the Fury:62E3:/
+140.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+140.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+141.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+141.5 "Shockwave" sync / 1[56]:[^:]*:Spear of the Fury:62E3:/
+141.6 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+142.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+142.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+142.8 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+143.2 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+143.6 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+144.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+144.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+144.4 "Brightwing" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+144.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+145.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+145.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+145.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+146.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+146.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+147.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+147.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+147.6 "Skyblind" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+147.8 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+148.2 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+148.6 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+149.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+149.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+149.8 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+149.9 "Brightwing" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+150.2 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+150.6 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+151.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+151.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+151.8 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+152.2 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+152.6 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+153.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+153.2 "Skyblind" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+153.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+153.8 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+154.2 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+154.6 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+155.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+155.4 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+155.5 "Brightwing" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+155.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+156.1 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+156.5 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+156.9 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+157.3 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+157.7 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:63EC:/
+158.6 "Skyblind" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+160.7 "Pure of Heart" sync / 1[56]:[^:]*:Ser Charibert:62E4:/
+163.6 "Skyblind" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+# doorboss enrage somewhere after here
+
+# phase two start
+177.8 "Ascalon's Mercy Concealed" sync / 1[56]:[^:]*:King Thordan:63C8:/
+179.4 "Ascalon's Mercy Concealed" sync / 1[56]:[^:]*:King Thordan:63C9:/
+181.0 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:63C5:/
