@@ -12,6 +12,26 @@ const timelineParse = new LogUtilArgParse();
 
 const args = timelineParse.args;
 
+const printHelpAndExit = (errString) => {
+  console.error(errString);
+  timelineParse.parser.printHelp();
+  process.exit(-1);
+};
+
+if (args.file === null && args.timeline === null)
+  printHelpAndExit('Error: Must specify at least one of -f, -t\n');
+let numExclusiveArgs = 0;
+for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']) {
+  if (args[opt] !== null)
+    numExclusiveArgs++;
+}
+if (numExclusiveArgs !== 1)
+  printHelpAndExit('Error: Must specify exactly one of -lf, -lz, -fr\n');
+if (args['fight_regex'] === -1)
+  printHelpAndExit('Error: -fr must specify a regex\n');
+if (args['zone_regex'] === -1)
+  printHelpAndExit('Error: -zr must specify a regex\n');
+
 const logFileName = args.file;
 let exitCode = 0;
 const errorFunc = (str) => {
