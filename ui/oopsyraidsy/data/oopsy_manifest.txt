@@ -163,3 +163,4 @@
 06-ew/trial/ultima-un.ts
 06-ew/trial/zodiark.ts
 06-ew/trial/zodiark-ex.ts
+06-ew/ultimate/dragonsongs_reprise_ultimate.ts
