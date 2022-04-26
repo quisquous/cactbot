@@ -21,11 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Hide behind Ice',
-          de: '',
           fr: 'Cachez vous derrière un pilier de glace',
-          ja: '',
-          cn: '',
-          ko: '',
         },
       },
     },

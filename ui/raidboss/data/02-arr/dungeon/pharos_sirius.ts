@@ -14,18 +14,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Pharos Sirius Deathly Cadenza',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5CF', source: 'Siren'}),
-      netRegexDe: NetRegexes.startsUsing({ id: '5CF'}),
-      netRegexFr: NetRegexes.startsUsing({ id: '5CF'}),
-      netRegexJa: NetRegexes.startsUsing({ id: '5CF'}),
       response: Responses.getIn(),
     },
     {
       id: 'Pharos Sirius Feral Lunge',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '5CC', source: 'Siren'}),
-      netRegexDe: NetRegexes.startsUsing({ id: '5CC'}),
-      netRegexFr: NetRegexes.startsUsing({ id: '5CC'}),
-      netRegexJa: NetRegexes.startsUsing({ id: '5CC'}),
       response: Responses.getOut(),
     },
     {
@@ -37,11 +31,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go away from party : stacks explode soon',
-          de: '',
           fr: 'Allez loin de votre equipe, vos stacks explose bientot',
-          ja: '',
-          cn: '',
-          ko: '',
         },
       },
     },
@@ -53,11 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         en: 'Doom on ${player} : Heal',
-        de: '',
         fr: 'Doom sur ${player} : Soin complet',
-        ja: '',
-        cn: '',
-        ko: '',
       },
     },
   ],
