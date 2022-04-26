@@ -7899,6 +7899,20 @@ const data: ZoneInfoType = {
     'sizeFactor': 400,
     'weatherRate': 0,
   },
+  968: {
+    'contentType': 28,
+    'exVersion': 4,
+    'name': {
+      'de': 'Drachenkrieg (fatal)',
+      'en': 'Dragonsong\'s Reprise (Ultimate)',
+      'fr': 'La Guerre du chant des dragons (fatal)',
+      'ja': '絶竜詩戦争',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 0,
+  },
   969: {
     'contentType': 2,
     'exVersion': 4,

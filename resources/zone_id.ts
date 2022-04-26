@@ -128,6 +128,7 @@ const data = {
   'DohnMheg': 821,
   'DomaCastle': 660,
   'DragonSound': 714,
+  'DragonsongsRepriseUltimate': 968,
   'DunScaith': 627,
   'DzemaelDarkhold': 171,
   'EastShroud': 152,
