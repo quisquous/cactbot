@@ -7,7 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
-  zoneId: ZoneId.TheSunkenTempleOfQarn,
+  zoneId: ZoneId.TheAurumVale,
   triggers: [
     {
       id: 'Aurum Vale GoldLungs/Burrs',
