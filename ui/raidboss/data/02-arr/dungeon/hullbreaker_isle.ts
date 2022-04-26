@@ -13,7 +13,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hullbreaker Isle Stool Pelt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '89E', source: 'Sasquatch'}),
+      netRegex: NetRegexes.startsUsing({ id: '89E', source: 'Sasquatch', capture: false }),
       response: Responses.aoe(),
     },
     {

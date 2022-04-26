@@ -13,17 +13,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Pharos Sirius Deathly Cadenza',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5CF', source: 'Siren'}),
+      netRegex: NetRegexes.startsUsing({ id: '5CF', source: 'Siren', capture: false }),
       response: Responses.getIn(),
     },
     {
       id: 'Pharos Sirius Feral Lunge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5CC', source: 'Siren'}),
+      netRegex: NetRegexes.startsUsing({ id: '5CC', source: 'Siren', capture: false }),
       response: Responses.getOut(),
     },
     {
-      id: 'Corrupted Crystal',
+      id: 'Pharos Sirius Corrupted Crystal',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '176', count: '03'}),
       condition: Conditions.targetIsYou(),
@@ -37,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // Not 100% sure if there's a better way to handle the callout
-      id: 'Doom',
+      id: 'Pharos Sirius Doom',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '172' }),
       alertText: (_data, _matches, output) => output.text!(),
