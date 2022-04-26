@@ -105,7 +105,6 @@
     <Compile Include="JSEvents.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WipeDetector.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="loc\Strings.zh.resx" />

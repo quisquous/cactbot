@@ -100,6 +100,7 @@ export class DamageTracker {
   private countdownCancelRegex: RegExp;
   private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
   private wipeCactbotEcho: CactbotBaseRegExp<'GameLog'>;
+  private wipeEndEcho: CactbotBaseRegExp<'GameLog'>;
   private combatState = new CombatState(this);
   private engageTime?: number;
   private firstPuller?: string;
@@ -146,6 +147,7 @@ export class DamageTracker {
       LocaleNetRegex.countdownCancel['en'];
     this.abilityFullRegex = NetRegexes.abilityFull();
     this.wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
+    this.wipeEndEcho = NetRegexes.echo({ line: 'end' });
 
     this.data = this.GetDataObject();
     this.Reset();
@@ -247,8 +249,8 @@ export class DamageTracker {
         }
         if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
           this.combatState.Reset();
-        if (this.wipeCactbotEcho.test(line))
-          this.OnPartyWipeEvent(this.lastTimestamp);
+        if (this.wipeCactbotEcho.test(line) || this.wipeEndEcho.test(line))
+          this.Wipe(this.lastTimestamp);
         break;
       case logDefinitions.ChangeZone.type:
         {
@@ -283,7 +285,7 @@ export class DamageTracker {
         break;
       case logDefinitions.ActorControl.type:
         if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand) {
-          this.OnPartyWipeEvent(this.lastTimestamp);
+          this.Wipe(this.lastTimestamp);
           this.playerStateTracker.OnWipe(line, splitLine);
         }
         break;
@@ -452,7 +454,7 @@ export class DamageTracker {
       this.timers.push(window.setTimeout(f, delaySeconds * 1000));
   }
 
-  OnPartyWipeEvent(timestamp: number): void {
+  Wipe(timestamp: number): void {
     this.playerStateTracker.OnMistakeObj(timestamp, {
       type: 'wipe',
       text: partyWipeText,
