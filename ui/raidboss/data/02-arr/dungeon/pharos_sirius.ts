@@ -42,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: '172', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        Text: {
+        text: {
           en: 'Doom on ${player} : Heal',
           fr: 'Doom sur ${player} : Soin complet',
         },
