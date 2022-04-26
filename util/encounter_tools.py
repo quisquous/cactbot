@@ -270,7 +270,8 @@ def is_tl_line_buff(poss_match):
 
 def is_tl_line_cast(poss_match):
     return re.search(
-        r"\s1(?:[56]|\[56\]):(?:\[\^:\]\*|[^:]*):(?P<source>[^:]+):(?P<id>[^:]+)", poss_match,
+        r"\s1(?:[56]|\[56\]):(?:\[\^:\]\*|[^:]*):(?P<source>[^:]+):(?P<id>[^:]+)",
+        poss_match,
     )
 
 

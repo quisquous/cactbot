@@ -80,7 +80,10 @@ class CoinachReader:
         # This will throw an exception if stuff is VERY wrong
         # however, return code is still 0 even if all exports fail.
         # Also, it seems to need to be run from the SaintCoinach directory.
-        raw_output = subprocess.check_output(cmd, cwd=self.coinach_path,)
+        raw_output = subprocess.check_output(
+            cmd,
+            cwd=self.coinach_path,
+        )
         output = raw_output.decode("utf8")
 
         # Manually check output for errors.
