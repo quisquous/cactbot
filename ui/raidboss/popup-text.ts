@@ -1,4 +1,5 @@
 import { Lang } from '../../resources/languages';
+import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
@@ -419,6 +420,20 @@ export interface TriggerHelper {
   rumbleStrong?: number;
   output: Output;
 }
+
+const wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
+const wipeEndEcho = NetRegexes.echo({ line: 'end' });
+const wipeFadeIn = NetRegexes.network6d({ command: '40000010' });
+
+const isWipe = (line: string): boolean => {
+  if (
+    wipeCactbotEcho.test(line) ||
+    wipeEndEcho.test(line) ||
+    wipeFadeIn.test(line)
+    )
+    return true;
+  return false;
+};
 
 export class PopupText {
   protected triggers: ProcessedTrigger[] = [];
@@ -860,9 +875,6 @@ export class PopupText {
     // not sure if that's worth the effort
     const currentTime = +new Date();
     for (const log of e.detail.logs) {
-      if (log.includes('00:0038:cactbot wipe'))
-        this.SetInCombat(false);
-
       for (const trigger of this.triggers) {
         const r = trigger.localRegex?.exec(log);
         if (r)
@@ -876,6 +888,10 @@ export class PopupText {
     // This could conceivably be determined based on `new Date(e.line[1])` as well, but
     // not sure if that's worth the effort
     const currentTime = +new Date();
+
+    if (isWipe(log))
+      this.SetInCombat(false);
+
     for (const trigger of this.netTriggers) {
       const r = trigger.localNetRegex?.exec(log);
       if (r)

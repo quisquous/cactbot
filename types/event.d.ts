@@ -275,10 +275,6 @@ export interface EventMap {
     type: 'onPlayerDied';
   }) => void;
 
-  'onPartyWipe': (ev: {
-    type: 'onPartyWipe';
-  }) => void;
-
   'onPlayerChangedEvent': (ev: {
     type: 'onPlayerChangedEvent';
     detail: PlayerChangedRet;
