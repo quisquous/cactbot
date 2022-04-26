@@ -2,9 +2,12 @@
 00-misc/test.ts
 00-misc/test.txt
 02-arr/alliance/the_world_of_darkness.ts
+02-arr/dungeon/aurum_vale.ts
 02-arr/dungeon/brayfloxs_longstop.ts
 02-arr/dungeon/cutters_cry.ts
 02-arr/dungeon/haukke_manor.ts
+02-arr/dungeon/the_stone_vigil.ts
+02-arr/dungeon/the_sunken_temple_of_quarn.ts
 02-arr/raid/t1.ts
 02-arr/raid/t10.ts
 02-arr/raid/t10.txt
@@ -411,3 +414,5 @@
 06-ew/raid/p4s.txt
 06-ew/raid/p1s.ts
 06-ew/raid/p1s.txt
+06-ew/ultimate/dragonsongs_reprise_ultimate.ts
+06-ew/ultimate/dragonsongs_reprise_ultimate.txt

@@ -1,0 +1,57 @@
+### Dragonsong's Reprise Ultimate
+# -p 62D4:10 62E1:500
+# -lf 4 -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3
+
+# TODO: should we include something for 62CE/62CF Shining Blade/Bright Flare stuff?
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# No engage sync, due to checkpoint.
+0.0 "Start"
+6.0 "--sync--" sync / 14:[^:]*:Ser Adelphel:62D4:/ window 10,10
+10.0 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+23.2 "Empty Dimension/Full Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:(62DA|62DB):/
+23.2 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:62D1:/
+23.9 "--sync--" sync / 1[56]:[^:]*:Ser Adelphel:63EB:/
+25.3 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D2:/ duration 2.5
+28.2 "Heavensblaze" sync / 1[56]:[^:]*:Ser Charibert:62DD:/
+36.5 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:62E9:/
+43.6 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:62D6:/
+# These slashes come from Ser Grinnaux, but sometimes name updates are sloppy.
+44.8 "Hyperdimensional Slash 1" sync / 1[56]:[^:]*:(Ser Grinnaux|Ser Charibert):62D7:/
+50.7 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:6315:/
+51.9 "Hyperdimensional Slash 2" sync / 1[56]:[^:]*:(Ser Grinnaux|Ser Charibert):62D7:/
+59.8 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+60.9 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+69.1 "Execution" sync / 1[56]:[^:]*:Ser Adelphel:62D5:/
+86.2 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+88.2 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
+102.2 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+104.2 "Empty Dimension/Full Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:(62DA|62DB):/
+122.2 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+# "soft" enrage
+127.4 "The Bull's Steel" sync / 1[56]:[^:]*:Ser Grinnaux:62CD:/
+127.4 "Brightblade's Steel" sync / 1[56]:[^:]*:Ser Adelphel:62CC:/
+133.6 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+133.6 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+# ???
+
+500.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
+500.0 "Pure of Heart" sync / 14:[^:]*:Ser Charibert:62E4:/ duration 36
+500.0 "Brightwinged Flight" sync / 1[56]:[^:]*:Ser Adelphel:6316:/
+510.0 "Spear of the Fury" sync / 1[56]:[^:]*:Ser Zephirin:62E2:/
+515.9 "Brightwing 1" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+520.9 "Brightwing 2" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+523.8 "Skyblind 1" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+525.9 "Brightwing 3" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+528.8 "Skyblind 2" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+530.9 "Brightwing 4" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+533.8 "Skyblind 3" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+535.9 "Pure of Heart" sync / 1[56]:[^:]*:Ser Charibert:62E4:/
+538.8 "Skyblind 4" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+# Enrage?? (or just die to Pure of Heart?)
+
+# TODO: Thordan
