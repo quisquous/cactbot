@@ -1,4 +1,3 @@
-//import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -19,11 +18,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hullbreaker Isle Chest Thump',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '89F', source: 'Sasquatch'}),
+      netRegex: NetRegexes.ability({ id: '89F', source: 'Sasquatch', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Give banna to Harambee',
+          en: 'Give banana to Harambee',
           fr: 'Secouez le bananier',
         },
       },
