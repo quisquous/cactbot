@@ -39,11 +39,13 @@ const triggerSet: TriggerSet<Data> = {
       // Not 100% sure if there's a better way to handle the callout
       id: 'Pharos Sirius Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '172' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '172', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        en: 'Doom on ${player} : Heal',
-        fr: 'Doom sur ${player} : Soin complet',
+        Text: {
+          en: 'Doom on ${player} : Heal',
+          fr: 'Doom sur ${player} : Soin complet',
+        },
       },
     },
   ],
