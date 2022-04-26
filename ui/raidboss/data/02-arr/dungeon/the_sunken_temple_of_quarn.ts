@@ -18,11 +18,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Step on Glowing Plate',
-          de: '',
           fr: 'Marchez sur la plaque qui brille',
-          ja: '',
-          cn: '',
-          ko: '',
         },
       },
     },
