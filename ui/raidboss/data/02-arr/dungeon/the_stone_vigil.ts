@@ -12,7 +12,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Stone Vigil Swinge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '387', source: 'Chudo-Yudo' }),
+      netRegex: NetRegexes.startsUsing({ id: '387', source: 'Chudo-Yudo', capture: false }),
       response: Responses.awayFromFront(),
     },
   ],
