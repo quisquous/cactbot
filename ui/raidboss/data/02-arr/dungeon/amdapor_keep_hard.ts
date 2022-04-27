@@ -13,10 +13,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amdapor Keep Hard Entrance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C65', source: 'Boogyman'}),
-      netRegexDe: NetRegexes.startsUsing({ id: 'C65'}),
-      netRegexFr: NetRegexes.startsUsing({ id: 'C65'}),
-      netRegexJa: NetRegexes.startsUsing({ id: 'C65'}),
+      netRegex: NetRegexes.startsUsing({ id: 'C65', source: 'Boogyman' }),
       response: Responses.lookAway(),
     },
     {
@@ -28,30 +25,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Behind Statue',
-          de: '',
           fr: 'Cachez vous derriere une statue',
-          ja: '',
-          cn: '',
-          ko: '',
         },
       },
     },
     {
       id: 'Amdapor Keep Hard Invisible',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C63', source: 'Boogyman'}),
-      netRegexDe: NetRegexes.startsUsing({ id: 'C63'}),
-      netRegexFr: NetRegexes.startsUsing({ id: 'C63'}),
-      netRegexJa: NetRegexes.startsUsing({ id: 'C63'}),
+      netRegex: NetRegexes.startsUsing({ id: 'C63', source: 'Boogyman' }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Kill luminescence and stay close to boss',
-          de: '',
           fr: 'Tuez la Luminescence et restez près du boss',
-          ja: '',
-          cn: '',
-          ko: '',
         },
       },
     },

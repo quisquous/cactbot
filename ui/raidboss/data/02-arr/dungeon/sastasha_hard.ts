@@ -1,4 +1,3 @@
-//import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -30,10 +29,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sastasha Hard Tail Screw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BF4', source: 'Karlabos'}),
-      netRegexDe: NetRegexes.startsUsing({ id: 'BF4'}),
-      netRegexFr: NetRegexes.startsUsing({ id: 'BF4'}),
-      netRegexJa: NetRegexes.startsUsing({ id: 'BF4'}),
+      netRegex: NetRegexes.startsUsing({ id: 'BF4', source: 'Karlabos' }),
       response: Responses.tankBuster(),
     },
   ],
