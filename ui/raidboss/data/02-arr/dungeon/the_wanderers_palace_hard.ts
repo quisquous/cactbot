@@ -24,7 +24,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Heal ${player} to full : Doom',
-          fr: 'Soin Complet dur ${player} : Doom',
+          fr: 'Soin complet sur ${player} : Glas',
         },
       },
     },

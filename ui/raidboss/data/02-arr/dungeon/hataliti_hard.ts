@@ -16,7 +16,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Use the Orb',
-          fr: 'Utilisez l\'Orb',
+          fr: 'Utilisez l\'Orbe',
         },
       },
     },
@@ -28,7 +28,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Use the Nail',
-          fr: 'Utilisez L\'Epine',
+          fr: 'Utilisez L\'Épine',
         },
       },
     },
