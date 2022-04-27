@@ -1,6 +1,6 @@
 ### Dragonsong's Reprise Ultimate
-# -p 62D4:10 62E1:500
-# -lf 4 -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3
+# -p 62D4:10 62E1:500 63C8:553
+# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF
 
 # TODO: should we include something for 62CE/62CF Shining Blade/Bright Flare stuff?
 
@@ -9,11 +9,13 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
+### Phase 1
+
 # No engage sync, due to checkpoint.
 0.0 "Start"
 6.0 "--sync--" sync / 14:[^:]*:Ser Adelphel:62D4:/ window 10,10
 10.0 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
-23.2 "Empty Dimension/Full Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:(62DA|62DB):/
+23.2 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
 23.2 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:62D1:/
 23.9 "--sync--" sync / 1[56]:[^:]*:Ser Adelphel:63EB:/
 25.3 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D2:/ duration 2.5
@@ -51,7 +53,44 @@ hideall "--sync--"
 530.9 "Brightwing 4" sync / 1[56]:[^:]*:Ser Charibert:6319:/
 533.8 "Skyblind 3" sync / 1[56]:[^:]*:Ser Charibert:631A:/
 535.9 "Pure of Heart" sync / 1[56]:[^:]*:Ser Charibert:62E4:/
+537.8 "--untargetable--"
 538.8 "Skyblind 4" sync / 1[56]:[^:]*:Ser Charibert:631A:/
 # Enrage?? (or just die to Pure of Heart?)
 
-# TODO: Thordan
+
+### Phase 2
+541.5 "--targetable--"
+550.0 "--sync--" sync / 14:[^:]*:King Thordan:63C8:/ window 600,10
+553.0 "Ascalon's Mercy Concealed" sync / 1[56]:[^:]*:King Thordan:63C8:/
+554.6 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C9:/
+556.2 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+557.8 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+559.4 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+562.2 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+563.3 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
+570.4 "Strength of the Ward" sync / 1[56]:[^:]*:King Thordan:63D3:/
+581.3 "--sync--" sync / 1[56]:[^:]*:Ser Guerrique:63D5:/ # self-targeted Heavy Impact
+582.7 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:63CC:/
+583.0 "Heavy Impact 1" sync / 1[56]:[^:]*:Ser Guerrique:63D6:/
+583.0 "Spiral Thrust" sync / 1[56]:[^:]*:Ser Ignasse:63D4:/
+584.9 "Heavy Impact 2" sync / 1[56]:[^:]*:Ser Guerrique:63D7:/
+586.8 "Heavy Impact 3" sync / 1[56]:[^:]*:Ser Guerrique:63D8:/
+588.1 "Ascalon's Mercy Concealed" sync / 1[56]:[^:]*:King Thordan:63C8:/
+588.7 "Heavy Impact 4" sync / 1[56]:[^:]*:Ser Guerrique:63D9:/
+589.7 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C9:/
+590.3 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+590.6 "Heavy Impact 5" sync / 1[56]:[^:]*:Ser Guerrique:63DA:/
+598.1 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:63DB:/
+598.1 "The Dragon's Rage" sync / 1[56]:[^:]*:King Thordan:63CE:/
+599.0 "Skyward Leap" #sync / 1[56]:[^:]*:Ser Ignasse:63DD:/
+599.4 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:62D1:/
+599.9 "--sync--" sync / 1[56]:[^:]*:Ser Hermenost:63DE:/ # Conviction, self-casted
+600.1 "--sync--" sync / 1[56]:[^:]*:Ser Janlenoux:63EB:/ # Holy Shield Bash line aoe
+601.5 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D2:/
+602.5 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+602.8 "Conviction" sync / 1[56]:[^:]*:Ser Hermenost:63DF:/
+611.0 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
+621.2 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
+624.3 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+626.1 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+630.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
