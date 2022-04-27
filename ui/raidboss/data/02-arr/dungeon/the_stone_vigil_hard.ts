@@ -12,13 +12,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Stone Vigil Hard Swinge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '8F7', source: 'Gorynich' }),
+      netRegex: NetRegexes.startsUsing({ id: '8F7', source: 'Gorynich', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'Stone Vigil Hard Lion\'s Breath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '8F6', source: 'Gorynich' }),
+      netRegex: NetRegexes.startsUsing({ id: '8F6', source: 'Gorynich', capture: false }),
       response: Responses.awayFromFront(),
     },
     {

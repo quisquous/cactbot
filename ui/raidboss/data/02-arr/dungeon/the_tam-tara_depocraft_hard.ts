@@ -11,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tam-Tara Hard Inhumanity',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '956', source: 'Liavinne'}),
+      netRegex: NetRegexes.ability({ id: '956', source: 'Liavinne', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

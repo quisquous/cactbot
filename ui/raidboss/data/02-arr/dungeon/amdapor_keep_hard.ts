@@ -13,7 +13,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amdapor Keep Hard Entrance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C65', source: 'Boogyman' }),
+      netRegex: NetRegexes.startsUsing({ id: 'C65', source: 'Boogyman', capture: false }),
       response: Responses.lookAway(),
     },
     {
@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amdapor Keep Hard Invisible',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C63', source: 'Boogyman' }),
+      netRegex: NetRegexes.startsUsing({ id: 'C63', source: 'Boogyman', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -44,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amdapor Keep Hard Imobilize',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['29B', '260'] }),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['29B', '260'], capture: false }),
       response: Responses.killAdds(),
     },
   ],

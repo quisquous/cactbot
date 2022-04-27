@@ -20,16 +20,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Wanderer\'s Palace Hard Doom',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
-        en: 'Heal ${player} to full : Doom',
-        fr: 'Soin Complet dur ${player} : Doom',
+        text: {
+          en: 'Heal ${player} to full : Doom',
+          fr: 'Soin Complet dur ${player} : Doom',
+        },
       },
     },
     {
       id: 'Wanderer\'s Palace Hard Soul Douse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C9E', source: 'Slithy Zolool Ja' }),
+      netRegex: NetRegexes.startsUsing({ id: 'C9E', source: 'Slithy Zolool Ja', capture: false }),
       response: Responses.lookAway(),
     },
   ],
