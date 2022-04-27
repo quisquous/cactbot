@@ -39,6 +39,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ser Adelphel': 'Adelphel',
         'Ser Charibert': 'Charibert',
@@ -68,6 +69,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ser Adelphel': 'sire Adelphel',
         'Ser Charibert': 'sire Charibert',
@@ -97,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ser Adelphel': '聖騎士アデルフェル',
         'Ser Charibert': '聖騎士シャリベル',
