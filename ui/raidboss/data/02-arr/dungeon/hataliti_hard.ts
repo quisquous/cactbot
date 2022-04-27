@@ -11,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hataliti Hard Demon Eye',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '833', source: 'Catoblepas' }),
+      netRegex: NetRegexes.startsUsing({ id: '833', source: 'Catoblepas', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -23,7 +23,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hataliti Hard Standstill',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '84F', source: 'Mumuepo the Beholden' }),
+      netRegex: NetRegexes.startsUsing({ id: '84F', source: 'Mumuepo the Beholden', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
