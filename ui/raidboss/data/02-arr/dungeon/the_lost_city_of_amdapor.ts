@@ -21,10 +21,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '762', source: 'Diabolos' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go far to drop graviball',
+          en: 'Drop Puddle Outside',
         },
       },
     },
