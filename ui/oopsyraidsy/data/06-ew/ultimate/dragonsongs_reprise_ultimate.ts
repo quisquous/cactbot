@@ -1,9 +1,7 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
-
-// TODO: 62D7 Hyperdimensional Slash line share ???
-// TODO: 62E0 Holy Chain failures
 
 export type Data = OopsyData;
 
@@ -25,10 +23,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Ser Grinnaux Dimensional Collapse': '63DC', // red/black puddles
   },
   damageFail: {
+    'DSR Dimensional Torsion': '62D8', // player tethering a cloud
+    'DSR Dimensional Purgation': '62D9', // Ser Adelphel tethering a cloud during charges
+    'DSR Ser Charibert Holy Chain': '62E0', // failing to break chains, often kills people
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
   },
   shareWarn: {
-    'DSR Hyperdimensional Slash Explosion': '63EE', // the spread damage with the 62D7 slash
     'DSR Ser Adelphel Execution': '62D5', // dive on main tank after 62CE Shining Blade
     'DSR Ser Charibert Heavensflame': '62DF', // spread with 62E0 Holy Chain
     'DSR Ser Charibert Brightwing': '6319', // cleaves during Pure of Heart
@@ -37,6 +37,17 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareFail: {
     'DSR King Thordan Ascalon\'s Might': '63C5', // tank cleaves
   },
+  triggers: [
+    {
+      // Interrupt.
+      id: 'DSR Holiest Hallowing',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '62D0' }),
+      mistake: (_data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
+      },
+    },
+  ],
 };
 
 export default triggerSet;
