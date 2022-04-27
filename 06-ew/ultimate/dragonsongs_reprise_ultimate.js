@@ -28,6 +28,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ser Adelphel': 'Adelphel',
         'Ser Charibert': 'Charibert',
@@ -57,6 +58,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ser Adelphel': 'sire Adelphel',
         'Ser Charibert': 'sire Charibert',
@@ -86,6 +88,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ser Adelphel': '聖騎士アデルフェル',
         'Ser Charibert': '聖騎士シャリベル',
