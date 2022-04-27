@@ -25,7 +25,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Pharos Sirius Corrupted Crystal',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '176', count: '03'}),
+      netRegex: NetRegexes.gainsEffect({ effectId: '176', count: '03' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -39,8 +39,8 @@ const triggerSet: TriggerSet<Data> = {
       // Not 100% sure if there's a better way to handle the callout
       id: 'Pharos Sirius Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '172', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      netRegex: NetRegexes.gainsEffect({ effectId: '172' }),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Doom on ${player} : Heal',
