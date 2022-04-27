@@ -31,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Away : Stacks Explode Soon',
-          fr: 'Allez loin, vos stacks explose bientot',
+          fr: 'Éloignez-vous, vos stacks explosent bientôt',
         },
       },
     },
@@ -44,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Heal ${player} to full : Doom',
-          fr: 'Soin complet sur ${player} : Doom',
+          fr: 'Soin complet sur ${player} : Glas',
         },
       },
     },
