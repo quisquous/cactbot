@@ -108,9 +108,7 @@ namespace Cactbot {
       try {
         var mach = Assembly.Load("Machina.FFXIV");
         var opcode_manager_type = mach.GetType("Machina.FFXIV.Headers.Opcodes.OpcodeManager");
-        var opcode_manager = opcode_manager_type.GetProperty("Instance")
-                                                           .GetValue(mach
-                                                                         .CreateInstance("Machina.FFXIV.Headers.Opcodes.OpcodeManager"));
+        var opcode_manager = opcode_manager_type.GetProperty("Instance").GetValue(null);
         var machina_region = opcode_manager_type.GetProperty("GameRegion").GetValue(opcode_manager).ToString();
         switch (machina_region) {
           case "Chinese":
