@@ -176,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Ascalon\'s Mercy Concealed',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63C9', source: 'King Thordan', capture: false }),
+      netRegex: NetRegexes.ability({ id: '63C8', source: 'King Thordan', capture: false }),
       suppressSeconds: 5,
       response: Responses.moveAway(),
     },
