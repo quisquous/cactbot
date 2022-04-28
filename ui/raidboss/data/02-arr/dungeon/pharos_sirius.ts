@@ -30,8 +30,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Get Away from party: Stacks Explode Soon',
-          fr: 'Éloignez-vous de votre Équipe: vos stacks explosent bientôt',
+          en: 'Spread: Stacks Explode Soon',
         },
       },
     },
