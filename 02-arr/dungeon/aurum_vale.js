@@ -11,6 +11,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Eat Fruit',
+          de: 'Frucht essen',
           fr: 'Mangez 1 fruit',
         },
       },
