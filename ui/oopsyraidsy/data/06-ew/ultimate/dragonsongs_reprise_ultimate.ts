@@ -2,6 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { playerDamageFields } from '../../../oopsy_common';
 
 export type Data = OopsyData;
 
@@ -21,11 +22,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Ser Gerrique Heavy Impact 4': '63D9', // expanding earth ring
     'DSR Ser Gerrique Heavy Impact 5': '63DA', // expanding earth ring
     'DSR Ser Grinnaux Dimensional Collapse': '63DC', // red/black puddles
+    'DSR Ser Charibert Heaven\'s Stake 1': '6FAF', // initial Sanctity of the Ward 4x fire puddles
+    'DSR Ser Charibert Heaven\'s Stake 2': '6FB0', // Sanctity of the Ward donut ring before fire/ice
   },
   damageFail: {
     'DSR Dimensional Torsion': '62D8', // player tethering a cloud
     'DSR Dimensional Purgation': '62D9', // Ser Adelphel tethering a cloud during charges
     'DSR Ser Charibert Holy Chain': '62E0', // failing to break chains, often kills people
+    'DSR Ser Grinnaux Planar Prison': '63EC', // leaving the purple circle
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
   },
   shareWarn: {
@@ -37,14 +41,29 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareFail: {
     'DSR King Thordan Ascalon\'s Might': '63C5', // tank cleaves
   },
+  soloWarn: {
+    'DSR Ser Haumeric Hiemal Storm': '63E7', // Sanctity of the Ward ice pair stacks
+  },
   triggers: [
     {
       // Interrupt.
-      id: 'DSR Holiest Hallowing',
+      id: 'DSR Ser Adelphel Holiest Hallowing',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62D0' }),
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
+      },
+    },
+    {
+      id: 'DSR King Thordan Gaze',
+      // 63D1 = The Dragon's Gaze (Thordan lookaway)
+      // 63D2 = The Dragon's Glory (eye lookaway)
+      // Technically there is also a Hysteria status (127) but sometimes this doesn't apply (if somebody dies too soon??).
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['63D1', '63D2'], ...playerDamageFields }),
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],
