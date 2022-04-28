@@ -233,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Spiral Thrust Safe Spots',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63D4', source: '(Ser (?:Ignasse|Paulecrain|Vellguine)' }),
+      netRegex: NetRegexes.startsUsing({ id: '63D4', source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'] }),
       condition: (data) => data.phase === 'thordan',
       preRun: (data, matches) => {
         // Returns integer value of x, y in matches based on cardinal or intercardinal
