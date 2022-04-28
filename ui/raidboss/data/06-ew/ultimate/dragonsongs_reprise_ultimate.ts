@@ -7,6 +7,14 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Ser Adelphel knockback charge direction
+// TODO: Ser Adelphel left/right movement after initial charge
+// TODO: "move" call after you take your Brightwing cleave?
+// TODO: Strength of the Ward safe directions
+// TODO: Strength of the Ward Thordan direction
+// TODO: Sanctity of the Ward left/right direction, short+long/stutter movement
+// TODO: Meteor "run" call?
+
 type Phase = 'doorboss' | 'thordan';
 
 export interface Data extends RaidbossData {
@@ -28,6 +36,11 @@ const headmarkers = {
   'firechainX': '011C',
   // vfx/lockon/eff/r1fz_skywl_s9x.avfx
   'skywardLeap': '014A',
+  // vfx/lockon/eff/m0244trg_a1t.avfx and a2t
+  'sword1': '0032',
+  'sword2': '0033',
+  // vfx/lockon/eff/r1fz_holymeteo_s12x.avfx
+  'meteor': '011D',
 } as const;
 
 const firstMarker: { [phase in Phase]: string } = {
@@ -233,8 +246,88 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'DSR Ancient Quaga',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63C6', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '63C6', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '63C6', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '63C6', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '63C6', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63C6', source: '기사신 토르당', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DSR Sanctity of the Ward Swords',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
+      alarmText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.sword1)
+          return output.sword1!();
+        if (id === headmarkers.sword2)
+          return output.sword2!();
+      },
+      outputStrings: {
+        sword1: {
+          en: '1',
+        },
+        sword2: {
+          en: '2',
+        },
+      },
+    },
+    {
+      id: 'DSR Dragon\'s Gaze',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63D0', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '63D0', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '63D0', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '63D0', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '63D0', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63D0', source: '기사신 토르당', capture: false }),
+      durationSeconds: 5,
+      response: Responses.lookAway('alert'),
+    },
+    {
+      id: 'DSR Sanctity of the Ward Meteor Role',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data) => data.phase === 'thordan',
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id !== headmarkers.meteor)
+          return;
+        if (data.party.isTank(matches.target))
+          return output.tankHealerMeteors!();
+        return output.dpsMeteors!();
+      },
+      outputStrings: {
+        tankHealerMeteors: {
+          en: 'Tank/Healer Meteors',
+        },
+        dpsMeteors: {
+          en: 'DPS Meteors',
+        },
+      },
+    },
+    {
+      id: 'DSR Sanctity of the Ward Meteor You',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
+      alertText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.meteor)
+          return output.meteorOnYou!();
+      },
+      outputStrings: {
+        meteorOnYou: Outputs.meteorOnYou,
+      },
+    },
   ],
-
   timelineReplace: [
     {
       'locale': 'en',
