@@ -30,8 +30,8 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Get Away : Stacks Explode Soon',
-          fr: 'Éloignez-vous, vos stacks explosent bientôt',
+          en: 'Get Away from party: Stacks Explode Soon',
+          fr: 'Éloignez-vous de votre Équipe: vos stacks explosent bientôt',
         },
       },
     },
@@ -43,8 +43,8 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
-          en: 'Heal ${player} to full : Doom',
-          fr: 'Soin complet sur ${player} : Glas',
+          en: 'Heal ${player} to full',
+          fr: 'Soin complet sur ${player}',
         },
       },
     },
