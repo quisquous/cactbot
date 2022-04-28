@@ -272,9 +272,9 @@ Options.Triggers.push({
         const id = getHeadmarkerId(data, matches);
         if (id !== headmarkers.meteor)
           return;
-        if (data.party.isTank(matches.target))
-          return output.tankHealerMeteors();
-        return output.dpsMeteors();
+        if (data.party.isDPS(matches.target))
+          return output.dpsMeteors();
+        return output.tankHealerMeteors();
       },
       outputStrings: {
         tankHealerMeteors: {
