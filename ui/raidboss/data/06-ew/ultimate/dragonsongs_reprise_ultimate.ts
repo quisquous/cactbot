@@ -21,6 +21,7 @@ export interface Data extends RaidbossData {
   phase: Phase;
   decOffset?: number;
   seenEmptyDimension?: boolean;
+  spiralThrusts?: number[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -228,6 +229,95 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ id: '63C8', source: '기사신 토르당', capture: false }),
       suppressSeconds: 5,
       response: Responses.moveAway(),
+    },
+    {
+      id: 'DSR Spiral Thrust Safe Spots',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63D4', source: '(Ser (?:Ignasse|Paulecrain|Vellguine)' }),
+      condition: (data) => data.phase === 'thordan',
+      preRun: (data, matches) => {
+        // Returns integer value of x, y in matches based on cardinal or intercardinal
+        const matchedPositionToDir = (matches: NetMatches['StartsUsing']) => {
+          // Positions are moved up 100 and right 100
+          const y = parseFloat(matches.y) - 100;
+          const x = parseFloat(matches.x) - 100;
+
+          // During Thordan, knight dives start at the 8 cardinals + numerical
+          // slop on a radius=23 circle.
+          // N = (100, 77), E = (123, 100), S = (100, 123), W = (77, 100)
+          // NE = (116.26, 83.74), SE = (116.26, 116.26), SW = (83.74, 116.26), NW = (83.74, 83.74)
+          //
+          // Starting with northwest to favor sorting between north and south for
+          // Advanced Relativity party splits.
+          // Map NW = 0, N = 1, ..., W = 7
+
+          return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+        };
+        (data.spiralThrusts ??= []).push(matchedPositionToDir(matches));
+      },
+      delaySeconds: 0.5,
+      infoText: (data, _matches, output) => {
+        data.spiralThrusts ??= [];
+        if (data.spiralThrusts.length !== 3)
+          return;
+
+        // Map of directions
+        let dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+        };
+
+        // Remove where the knights are at
+        delete dirs[data.spiralThrusts[0] ?? 0];
+        delete dirs[data.spiralThrusts[1] ?? 0];
+        delete dirs[data.spiralThrusts[2] ?? 0];
+
+        // Remove where the knights will dive to
+        delete dirs[(data.spiralThrusts[0] ?? 0 + 4) % 8];
+        delete dirs[(data.spiralThrusts[1] ?? 0 + 4) % 8];
+        delete dirs[(data.spiralThrusts[2] ?? 0 + 4) % 8];
+
+        // Get the two elements remaining in the map
+        let dir1;
+        let dir2;
+        for (var i in dirs) {
+          dir1 ? dir2 = i : dir1 = i;
+        };
+
+        return output.safeSpots!({
+          dir1: dir1,
+          dir2: dir2,
+        });
+      },
+      run: (data) => {
+        data.spiralThrusts ??= [];
+        if (data.spiralThrusts.length === 3)
+          delete data.spiralThrusts;
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        safeSpots: {
+          en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
+        },
+      },
     },
     {
       id: 'DSR Skyward Leap',
