@@ -238,6 +238,7 @@ export const kAbility = {
   HeatBlast: '1CF2',
   AutoCrossbow: '4071',
   ChainSaw: '64BC',
+  Scattergun: '64BA',
   // DNC
   Cascade: '3E75',
   Fountain: '3E76',
@@ -559,6 +560,7 @@ export const kComboBreakers = [
   kAbility.HeatedSlugShot,
   kAbility.HeatedCleanShot,
   kAbility.SpreadShot,
+  kAbility.Scattergun,
   // DNC
   kAbility.Cascade,
   kAbility.Fountain,
