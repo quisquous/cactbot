@@ -12,7 +12,7 @@ Options.Triggers.push({
         text: {
           en: 'Eat Fruit',
           de: 'Frucht essen',
-          fr: 'Mangez 1 fruit',
+          fr: 'Mangez un fruit',
         },
       },
     },
