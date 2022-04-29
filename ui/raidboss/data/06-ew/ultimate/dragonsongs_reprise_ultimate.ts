@@ -390,12 +390,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Dragon\'s Rage',
       // 63C4 Is Thordan's --middle-- action, thordan jumps again and becomes untargetable, shortly after the 2nd 6C34 action
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63C4', source: 'King Thordan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '63C4', source: 'Thordan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '63C4', source: 'Roi Thordan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '63C4', source: '騎神トールダン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '63C4', source: '骑神托尔丹', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '63C4', source: '기사신 토르당', capture: false }),
+      netRegex: NetRegexes.ability({ id: '63C4', source: 'King Thordan' }),
+      netRegexDe: NetRegexes.ability({ id: '63C4', source: 'Thordan' }),
+      netRegexFr: NetRegexes.ability({ id: '63C4', source: 'Roi Thordan' }),
+      netRegexJa: NetRegexes.ability({ id: '63C4', source: '騎神トールダン' }),
+      netRegexCn: NetRegexes.ability({ id: '63C4', source: '骑神托尔丹' }),
+      netRegexKo: NetRegexes.ability({ id: '63C4', source: '기사신 토르당' }),
       condition: (data) => (data.phase === 'thordan' && (data.thordanJumpCounter = (data.thordanJumpCounter ?? 0) + 1) === 2),
       delaySeconds: 2,
       promise: async (data, matches) => {
@@ -413,7 +413,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         if (!thordanData.combatants) {
-          console.error(`ing Thordan: null combatants`);
+          console.error(`King Thordan: null combatants`);
           return;
         }
         const thordanDataLength = thordanData.combatants.length;
