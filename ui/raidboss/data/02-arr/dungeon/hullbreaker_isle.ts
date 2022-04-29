@@ -22,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Give banana to Harambee',
+          en: 'Shake Banana tree',
           fr: 'Secouez le bananier',
         },
       },
