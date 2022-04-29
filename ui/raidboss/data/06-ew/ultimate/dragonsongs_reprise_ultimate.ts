@@ -490,6 +490,84 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'DSR Sanctity of the Ward Direction',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63E1', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '63E1', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '63E1', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '63E1', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '63E1', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '63E1', source: '기사신 토르당', capture: false }),
+      condition: (data) => data.phase === 'thordan',
+      delaySeconds: 2,
+      promise: async (data) => {
+        // Only need to know one of the knights locations, Ser Janlennoux (3636)
+        const janlennouxLocaleNames: LocaleText = {
+          en: 'Ser Janlennoux',
+        };
+
+        // Select Ser Janlennoux
+        let combatantNameJanlennoux = null;
+        combatantNameJanlennoux = janlennouxLocaleNames[data.parserLang];
+
+        let combatantDataJanlennoux = null;
+        if (combatantNameJanlennoux) {
+          combatantDataJanlennoux = await callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantNameJanlennoux],
+          });
+        }
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantDataJanlennoux === null) {
+          console.error(`Ser Janlennoux: null data`);
+          return;
+        }
+        if (!combatantDataJanlennoux.combatants) {
+          console.error(`Ser Janlennoux: null combatants`);
+          return;
+        }
+        const combatantDataJanlennouxLength = combatantDataJanlennoux.combatants.length;
+        if (combatantDataJanlennouxLength !== 1) {
+          console.error(`Ser Janlennoux: expected 1 combatants got ${combatantDataJanlennouxLength}`);
+          return;
+        }
+
+        // Add the combatant's position
+        const combatantJanlennoux = combatantDataJanlennoux.combatants.pop();
+        if (!combatantJanlennoux)
+          throw new UnreachableCode();
+
+        data.sanctityWardDirection = matchedPositionToDir(combatantJanlennoux);
+      },
+      infoText: (data, _matches, output) => {
+        // Map of directions
+        const dirs: { [dir: number]: string } = {
+          0: output.counterclock!(),
+          1: output.unknown!(), // north position
+          2: output.clockwise!(),
+          3: output.clockwise!(),
+          4: output.clockwise!(),
+          5: output.unknown!(), // south position
+          6: output.counterclock!(),
+          7: output.counterclock!(),
+          8: output.unknown!(),
+        };
+        return dirs[data.sanctityWardDirection ?? 8];
+      },
+      run: (data) => delete data.sanctityWardDirection,
+      outputStrings: {
+        clockwise: {
+          en: 'Clockwise',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
       id: 'DSR Sanctity of the Ward Swords',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
