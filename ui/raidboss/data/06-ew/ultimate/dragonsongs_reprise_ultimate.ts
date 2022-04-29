@@ -279,9 +279,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         sword1: {
           en: '1',
+          de: '1',
         },
         sword2: {
           en: '2',
+          de: '2',
         },
       },
     },
@@ -314,10 +316,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankHealerMeteors: {
           en: 'Tank/Healer Meteors',
+          de: 'Tank/Heiler Meteore',
           fr: 'Météores Tank/Healer',
         },
         dpsMeteors: {
           en: 'DPS Meteors',
+          de: 'DDs Meteore',
           fr: 'Météores DPS',
         },
       },
