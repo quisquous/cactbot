@@ -232,7 +232,7 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       response: Responses.moveAway(),
     },
-     {
+    {
       id: 'DSR Spiral Thrust Safe Spots',
       // 63D3 Strength of the Ward
       type: 'Ability',
