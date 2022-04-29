@@ -139,6 +139,7 @@ const triggerSet: TriggerSet<Data> = {
         inAndTether: {
           en: 'In + Tank Tether',
           de: 'Rein + Tank-Verbindung',
+          fr: 'Intérieur + Liens tanks',
         },
         in: Outputs.in,
       },
@@ -179,6 +180,7 @@ const triggerSet: TriggerSet<Data> = {
         slashOnYou: {
           en: 'Slash on YOU',
           de: 'Schlag auf DIR',
+          fr: 'Slash sur VOUS',
         },
       },
     },
@@ -202,18 +204,22 @@ const triggerSet: TriggerSet<Data> = {
         circle: {
           en: 'Red Circle',
           de: 'Roter Kreis',
+          fr: 'Cercle rouge',
         },
         triangle: {
           en: 'Green Triangle',
           de: 'Grünes Dreieck',
+          fr: 'Triangle vert',
         },
         square: {
           en: 'Purple Square',
           de: 'Lilanes Viereck',
+          fr: 'Carré violet',
         },
         x: {
           en: 'Blue X',
           de: 'Blaues X',
+          fr: 'Croix bleue',
         },
       },
     },
@@ -243,6 +249,7 @@ const triggerSet: TriggerSet<Data> = {
         leapOnYou: {
           en: 'Leap on YOU',
           de: 'Sprung auf DIR',
+          fr: 'Saut sur VOUS',
         },
       },
     },
@@ -310,10 +317,12 @@ const triggerSet: TriggerSet<Data> = {
         tankHealerMeteors: {
           en: 'Tank/Healer Meteors',
           de: 'Tank/Heiler Meteore',
+          fr: 'Météores Tank/Healer',
         },
         dpsMeteors: {
           en: 'DPS Meteors',
           de: 'DDs Meteore',
+          fr: 'Météores DPS',
         },
       },
     },

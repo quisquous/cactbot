@@ -20,7 +20,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Eat Fruit',
           de: 'Frucht essen',
-          fr: 'Mangez 1 fruit',
+          fr: 'Mangez un fruit',
         },
       },
     },
