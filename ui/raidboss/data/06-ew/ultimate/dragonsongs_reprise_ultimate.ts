@@ -324,7 +324,6 @@ const triggerSet: TriggerSet<Data> = {
         const dirNums = [0, 1, 2, 3, 4, 5, 6, 7];
 
         // Remove where the knights are at and where they will go to
-        console.log(`Spiral Thrusts: ${spiralThrusts[0]}, ${spiralThrusts[1]}, ${spiralThrusts[2]}`);
         if (spiralThrusts[0]) {
           delete dirNums[spiralThrusts[0]];
           delete dirNums[(spiralThrusts[0] + 4) % 8];
