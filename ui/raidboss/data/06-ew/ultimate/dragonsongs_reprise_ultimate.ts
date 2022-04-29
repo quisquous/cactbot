@@ -255,7 +255,7 @@ const triggerSet: TriggerSet<Data> = {
         };
         (data.spiralThrusts ??= []).push(matchedPositionToDir(matches));
       },
-      delaySeconds: 0.5,
+      delaySeconds: 0.1,
       infoText: (data, _matches, output) => {
         data.spiralThrusts ??= [];
         if (data.spiralThrusts.length !== 3)
