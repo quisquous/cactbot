@@ -287,7 +287,7 @@ const triggerSet: TriggerSet<Data> = {
         let dir1;
         let dir2;
         for (const i in dirs)
-          dir1 ? dir2 = i : dir1 = i;
+          dir1 ? dir2 = dirs[i] : dir1 = dirs[i];
 
         return output.safeSpots!({
           dir1: dir1,
