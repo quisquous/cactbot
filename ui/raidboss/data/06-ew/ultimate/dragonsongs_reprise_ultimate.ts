@@ -232,7 +232,7 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       response: Responses.moveAway(),
     },
-    {
+     {
       id: 'DSR Spiral Thrust Safe Spots',
       // 63D3 Strength of the Ward
       type: 'Ability',
@@ -243,7 +243,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '63D3', source: '骑神托尔丹', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '63D3', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
-      promise: async (data, matches, output) => {
+      delaySeconds: 5,
+      promise: async (data) => {
         // Calculate combatant position
         const matchedPositionToDir = (combatant: PluginCombatantState) => {
           // Positions are moved up 100 and right 100
@@ -276,18 +277,20 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Select the knights
-        let combatantNameKnights = [];
+        const combatantNameKnights = [];
         combatantNameKnights.push(vellguineLocaleNames[data.parserLang]);
         combatantNameKnights.push(paulecrainLocaleNames[data.parserLang]);
         combatantNameKnights.push(ignasseLocaleNames[data.parserLang]);
 
-        let spiralThrusts = [];
-        for (const combatantName in combatantNameKnights) {
+        const spiralThrusts = [];
+        for (const combatantName of combatantNameKnights) {
           let combatantData = null;
-          combatantData = await callOverlayHandler({
-            call: 'getCombatants',
-            names: [combatantName],
-          });
+          if (combatantName) {
+            combatantData = await callOverlayHandler({
+              call: 'getCombatants',
+              names: [combatantName],
+            });
+          }
 
           // if we could not retrieve combatant data, the
           // trigger will not work, so just resume promise here
@@ -318,29 +321,32 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         // Array of dirNums
-        let dirNums = [0, 1, 2, 3, 4, 5, 6, 7];
+        const dirNums = [0, 1, 2, 3, 4, 5, 6, 7];
 
-        // Remove where the knights are at
+        // Remove where the knights are at and where they will go to
         console.log(`Spiral Thrusts: ${spiralThrusts[0]}, ${spiralThrusts[1]}, ${spiralThrusts[2]}`);
-        delete dirNums[spiralThrusts[0] ?? 0];
-        delete dirNums[spiralThrusts[1] ?? 0];
-        delete dirNums[spiralThrusts[2] ?? 0];
-
-        // Remove where the knights will dive to
-        delete dirNums[((spiralThrusts[0] ?? 0) + 4) % 8];
-        delete dirNums[((spiralThrusts[1] ?? 0) + 4) % 8];
-        delete dirNums[((spiralThrusts[2] ?? 0) + 4) % 8];
+        if (spiralThrusts[0]) {
+          delete dirNums[spiralThrusts[0]];
+          delete dirNums[(spiralThrusts[0] + 4) % 8];
+        }
+        if (spiralThrusts[1]) {
+          delete dirNums[spiralThrusts[1]];
+          delete dirNums[(spiralThrusts[1] + 4) % 8];
+        }
+        if (spiralThrusts[2]) {
+          delete dirNums[spiralThrusts[2]];
+          delete dirNums[(spiralThrusts[2] + 4) % 8];
+        }
 
         // Filter for the two elements remaining in the array
-        data.spiralThrustSafeZones = dirNums.filter((dirNum) => {
-          return dirNum !== null;
-        }) as number[];
+        data.spiralThrustSafeZones = dirNums.filter(Boolean);
       },
-      delaySeconds: 5,
       infoText: (data, _matches, output) => {
         data.spiralThrustSafeZones ??= [];
-        if (data.spiralThrustSafeZones.length !== 2)
+        if (data.spiralThrustSafeZones.length !== 2) {
+          console.error(`Spiral Thrusts: expected 2 safe zones got ${data.spiralThrustSafeZones.length}`);
           return;
+        }
         // Map of directions
         const dirs: { [dir: number]: string } = {
           0: output.northwest!(),
