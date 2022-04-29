@@ -279,9 +279,9 @@ const triggerSet: TriggerSet<Data> = {
         delete dirs[data.spiralThrusts[2] ?? 0];
 
         // Remove where the knights will dive to
-        delete dirs[(data.spiralThrusts[0] ?? 0 + 4) % 8];
-        delete dirs[(data.spiralThrusts[1] ?? 0 + 4) % 8];
-        delete dirs[(data.spiralThrusts[2] ?? 0 + 4) % 8];
+        delete dirs[((data.spiralThrusts[0] ?? 0) + 4) % 8];
+        delete dirs[((data.spiralThrusts[1] ?? 0) + 4) % 8];
+        delete dirs[((data.spiralThrusts[2] ?? 0) + 4) % 8];
 
         // Get the two elements remaining in the map
         let dir1;
