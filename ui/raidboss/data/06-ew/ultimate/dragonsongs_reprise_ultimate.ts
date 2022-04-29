@@ -286,7 +286,7 @@ const triggerSet: TriggerSet<Data> = {
         // Get the two elements remaining in the map
         let dir1;
         let dir2;
-        for (let i in dirs)
+        for (const i in dirs)
           dir1 ? dir2 = i : dir1 = i;
 
         return output.safeSpots!({
