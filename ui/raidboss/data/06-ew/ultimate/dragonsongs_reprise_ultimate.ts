@@ -24,6 +24,8 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   seenEmptyDimension?: boolean;
   spiralThrustSafeZones?: number[];
+  thordanJumpCounter?: number;
+  thordanDir?: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -64,6 +66,24 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker'], firstDec
   // Fortunately, we don't have to worry about whether or not this is robust,
   // since we know all the IDs that will be present in the encounter.
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
+
+// Calculate combatant position
+const matchedPositionToDir = (combatant: PluginCombatantState) => {
+  // Positions are moved up 100 and right 100
+  const y = combatant.PosY - 100;
+  const x = combatant.PosX - 100;
+
+  // During Thordan, knight dives start at the 8 cardinals + numerical
+  // slop on a radius=23 circle.
+  // N = (100, 77), E = (123, 100), S = (100, 123), W = (77, 100)
+  // NE = (116.26, 83.74), SE = (116.26, 116.26), SW = (83.74, 116.26), NW = (83.74, 83.74)
+  //
+  // Starting with northwest to favor sorting between north and south for
+  // Advanced Relativity party splits.
+  // Map NW = 0, N = 1, ..., W = 7
+
+  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -245,24 +265,6 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 5,
       promise: async (data) => {
-        // Calculate combatant position
-        const matchedPositionToDir = (combatant: PluginCombatantState) => {
-          // Positions are moved up 100 and right 100
-          const y = combatant.PosY - 100;
-          const x = combatant.PosX - 100;
-
-          // During Thordan, knight dives start at the 8 cardinals + numerical
-          // slop on a radius=23 circle.
-          // N = (100, 77), E = (123, 100), S = (100, 123), W = (77, 100)
-          // NE = (116.26, 83.74), SE = (116.26, 116.26), SW = (83.74, 116.26), NW = (83.74, 83.74)
-          //
-          // Starting with northwest to favor sorting between north and south for
-          // Advanced Relativity party splits.
-          // Map NW = 0, N = 1, ..., W = 7
-
-          return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
-        };
-
         // Collect Ser Vellguine (3636), Ser Paulecrain (3637), Ser Ignasse (3638) entities
         const vellguineLocaleNames: LocaleText = {
           en: 'Ser Vellguine',
@@ -381,6 +383,81 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
+        },
+      },
+    },
+    {
+      id: 'DSR Dragon\'s Rage',
+      // 63C4 Is Thordan's --middle-- action, thordan jumps again and becomes untargetable, shortly after the 2nd 6C34 action
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63C4', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '63C4', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '63C4', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '63C4', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '63C4', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '63C4', source: '기사신 토르당', capture: false }),
+      condition: (data) => (data.phase === 'thordan' && (data.thordanJumpCounter = (data.thordanJumpCounter ?? 0) + 1) === 2),
+      delaySeconds: 2,
+      promise: async (data, matches) => {
+        // Select King Thordan
+        let thordanData = null;
+        thordanData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (thordanData === null) {
+          console.error(`King Thordan: null data`);
+          return;
+        }
+        if (!thordanData.combatants) {
+          console.error(`ing Thordan: null combatants`);
+          return;
+        }
+        const thordanDataLength = thordanData.combatants.length;
+        if (thordanDataLength !== 1) {
+          console.error(`King Thordan: expected 1 combatants got ${thordanDataLength}`);
+          return;
+        }
+
+        // Add the combatant's position
+        const thordan = thordanData.combatants.pop();
+        if (!thordan)
+          throw new UnreachableCode();
+        data.thordanDir = matchedPositionToDir(thordan);
+      },
+      infoText: (data, _matches, output) => {
+        // Map of directions
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+          8: output.unknown!(),
+        };
+        return output.thordanLocation!({
+          dir: dirs[data.thordanDir ?? 8],
+        });
+      },
+      run: (data) => delete data.thordanDir,
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        thordanLocation: {
+          en: 'Boss: ${dir}',
         },
       },
     },
