@@ -262,7 +262,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // Map of directions
-        let dirs: { [dir: number]: string } = {
+        const dirs: { [dir: number]: string } = {
           0: output.northwest!(),
           1: output.north!(),
           2: output.northeast!(),
@@ -286,9 +286,8 @@ const triggerSet: TriggerSet<Data> = {
         // Get the two elements remaining in the map
         let dir1;
         let dir2;
-        for (var i in dirs) {
+        for (let i in dirs)
           dir1 ? dir2 = i : dir1 = i;
-        };
 
         return output.safeSpots!({
           dir1: dir1,
