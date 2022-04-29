@@ -1,11 +1,13 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Ser Adelphel knockback charge direction
 // TODO: Ser Adelphel left/right movement after initial charge
@@ -21,7 +23,7 @@ export interface Data extends RaidbossData {
   phase: Phase;
   decOffset?: number;
   seenEmptyDimension?: boolean;
-  spiralThrusts?: number[];
+  spiralThrustSafeZones?: number[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -232,15 +234,21 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DSR Spiral Thrust Safe Spots',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63D4', source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'] }),
+      // 63D3 Strength of the Ward
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63D3', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '63D3', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '63D3', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '63D3', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '63D3', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '63D3', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
-      preRun: (data, matches) => {
-        // Returns integer value of x, y in matches based on cardinal or intercardinal
-        const matchedPositionToDir = (matches: NetMatches['StartsUsing']) => {
+      promise: async (data, matches, output) => {
+        // Calculate combatant position
+        const matchedPositionToDir = (combatant: PluginCombatantState) => {
           // Positions are moved up 100 and right 100
-          const y = parseFloat(matches.y) - 100;
-          const x = parseFloat(matches.x) - 100;
+          const y = combatant.PosY - 100;
+          const x = combatant.PosX - 100;
 
           // During Thordan, knight dives start at the 8 cardinals + numerical
           // slop on a radius=23 circle.
@@ -253,14 +261,86 @@ const triggerSet: TriggerSet<Data> = {
 
           return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
         };
-        (data.spiralThrusts ??= []).push(matchedPositionToDir(matches));
-      },
-      delaySeconds: 0.1,
-      infoText: (data, _matches, output) => {
-        data.spiralThrusts ??= [];
-        if (data.spiralThrusts.length !== 3)
-          return;
 
+        // Collect Ser Vellguine (3636), Ser Paulecrain (3637), Ser Ignasse (3638) entities
+        const vellguineLocaleNames: LocaleText = {
+          en: 'Ser Vellguine',
+        };
+
+        const paulecrainLocaleNames: LocaleText = {
+          en: 'Ser Paulecrain',
+        };
+
+        const ignasseLocaleNames: LocaleText = {
+          en: 'Ser Ignasse',
+        };
+
+        // Select the knights
+        let combatantNameKnights = [];
+        combatantNameKnights.push(vellguineLocaleNames[data.parserLang]);
+        combatantNameKnights.push(paulecrainLocaleNames[data.parserLang]);
+        combatantNameKnights.push(ignasseLocaleNames[data.parserLang]);
+
+        let spiralThrusts = [];
+        for (const combatantName in combatantNameKnights) {
+          let combatantData = null;
+          combatantData = await callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantName],
+          });
+
+          // if we could not retrieve combatant data, the
+          // trigger will not work, so just resume promise here
+          if (combatantData === null) {
+            console.error(`Spiral Thrust: null data`);
+            return;
+          }
+          if (!combatantData.combatants) {
+            console.error(`Spiral Thrust: null combatants`);
+            return;
+          }
+          const combatantDataLength = combatantData.combatants.length;
+          if (combatantDataLength !== 1) {
+            console.error(`Spiral Thrust: expected 1 combatants got ${combatantDataLength}`);
+            return;
+          }
+
+          // Add the combatant's position
+          const combatant = combatantData.combatants.pop();
+          if (!combatant)
+            throw new UnreachableCode();
+          spiralThrusts.push(matchedPositionToDir(combatant));
+        }
+
+        if (spiralThrusts.length !== 3) {
+          console.error(`Spiral Thrusts: expected 3 combatants got ${spiralThrusts.length}`);
+          return;
+        }
+
+        // Array of dirNums
+        let dirNums = [0, 1, 2, 3, 4, 5, 6, 7];
+
+        // Remove where the knights are at
+        console.log(`Spiral Thrusts: ${spiralThrusts[0]}, ${spiralThrusts[1]}, ${spiralThrusts[2]}`);
+        delete dirNums[spiralThrusts[0] ?? 0];
+        delete dirNums[spiralThrusts[1] ?? 0];
+        delete dirNums[spiralThrusts[2] ?? 0];
+
+        // Remove where the knights will dive to
+        delete dirNums[((spiralThrusts[0] ?? 0) + 4) % 8];
+        delete dirNums[((spiralThrusts[1] ?? 0) + 4) % 8];
+        delete dirNums[((spiralThrusts[2] ?? 0) + 4) % 8];
+
+        // Filter for the two elements remaining in the array
+        data.spiralThrustSafeZones = dirNums.filter((dirNum) => {
+          return dirNum !== null;
+        }) as number[];
+      },
+      delaySeconds: 5,
+      infoText: (data, _matches, output) => {
+        data.spiralThrustSafeZones ??= [];
+        if (data.spiralThrustSafeZones.length !== 2)
+          return;
         // Map of directions
         const dirs: { [dir: number]: string } = {
           0: output.northwest!(),
@@ -271,34 +351,14 @@ const triggerSet: TriggerSet<Data> = {
           5: output.south!(),
           6: output.southwest!(),
           7: output.west!(),
+          8: output.unknown!(),
         };
-
-        // Remove where the knights are at
-        delete dirs[data.spiralThrusts[0] ?? 0];
-        delete dirs[data.spiralThrusts[1] ?? 0];
-        delete dirs[data.spiralThrusts[2] ?? 0];
-
-        // Remove where the knights will dive to
-        delete dirs[((data.spiralThrusts[0] ?? 0) + 4) % 8];
-        delete dirs[((data.spiralThrusts[1] ?? 0) + 4) % 8];
-        delete dirs[((data.spiralThrusts[2] ?? 0) + 4) % 8];
-
-        // Get the two elements remaining in the map
-        let dir1;
-        let dir2;
-        for (const i in dirs)
-          dir1 ? dir2 = dirs[i] : dir1 = dirs[i];
-
         return output.safeSpots!({
-          dir1: dir1,
-          dir2: dir2,
+          dir1: dirs[data.spiralThrustSafeZones[0] ?? 8],
+          dir2: dirs[data.spiralThrustSafeZones[1] ?? 8],
         });
       },
-      run: (data) => {
-        data.spiralThrusts ??= [];
-        if (data.spiralThrusts.length === 3)
-          delete data.spiralThrusts;
-      },
+      run: (data) => delete data.spiralThrustSafeZones,
       outputStrings: {
         north: Outputs.north,
         northeast: Outputs.northeast,
@@ -308,6 +368,7 @@ const triggerSet: TriggerSet<Data> = {
         southwest: Outputs.southwest,
         west: Outputs.west,
         northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
         safeSpots: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
