@@ -26,6 +26,7 @@ export interface Data extends RaidbossData {
   spiralThrustSafeZones?: number[];
   thordanJumpCounter?: number;
   thordanDir?: number;
+  sanctityWardDirection?: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
