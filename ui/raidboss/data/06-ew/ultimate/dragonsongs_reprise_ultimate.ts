@@ -26,7 +26,7 @@ export interface Data extends RaidbossData {
   spiralThrustSafeZones?: number[];
   thordanJumpCounter?: number;
   thordanDir?: number;
-  sanctityWardDirection?: number;
+  sanctityWardDir?: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -540,7 +540,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!combatantJanlennoux)
           throw new UnreachableCode();
 
-        data.sanctityWardDirection = matchedPositionToDir(combatantJanlennoux);
+        data.sanctityWardDir = matchedPositionToDir(combatantJanlennoux);
       },
       infoText: (data, _matches, output) => {
         // Map of directions
@@ -555,9 +555,9 @@ const triggerSet: TriggerSet<Data> = {
           7: output.counterclock!(),
           8: output.unknown!(),
         };
-        return dirs[data.sanctityWardDirection ?? 8];
+        return dirs[data.sanctityWardDir ?? 8];
       },
-      run: (data) => delete data.sanctityWardDirection,
+      run: (data) => delete data.sanctityWardDir,
       outputStrings: {
         clockwise: {
           en: 'Clockwise',
