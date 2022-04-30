@@ -264,7 +264,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '63D3', source: '骑神托尔丹', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '63D3', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
-      delaySeconds: 5,
+      delaySeconds: 4.7,
       promise: async (data) => {
         // Collect Ser Vellguine (3636), Ser Paulecrain (3637), Ser Ignasse (3638) entities
         const vellguineLocaleNames: LocaleText = {
@@ -341,12 +341,10 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         // Remove null elements from the array to get remaining two dirNums
-        dirNums.forEach(
-          (dirNum) => {
-            if (dirNum !== null)
-              (data.spiralThrustSafeZones ??= []).push(dirNum);
-          }
-        );
+        dirNums.forEach((dirNum) => {
+          if (dirNum !== null)
+            (data.spiralThrustSafeZones ??= []).push(dirNum);
+        });
       },
       infoText: (data, _matches, output) => {
         data.spiralThrustSafeZones ??= [];
@@ -540,9 +538,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-        // Add the combatant's position
-        combatantDataJanlenoux.combatants.pop();
-        const combatantJanlenoux = combatantDataJanlenoux.combatants.pop();
+        // Sort to retreive last combatant in list
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const combatantJanlenoux = combatantDataJanlenoux.combatants.sort(sortCombatants).shift();
         if (!combatantJanlenoux)
           throw new UnreachableCode();
 
