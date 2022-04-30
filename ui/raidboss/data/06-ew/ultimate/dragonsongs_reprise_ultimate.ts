@@ -12,8 +12,6 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: Ser Adelphel knockback charge direction
 // TODO: Ser Adelphel left/right movement after initial charge
 // TODO: "move" call after you take your Brightwing cleave?
-// TODO: Strength of the Ward safe directions
-// TODO: Strength of the Ward Thordan direction
 // TODO: Sanctity of the Ward left/right direction, short+long/stutter movement
 // TODO: Meteor "run" call?
 
