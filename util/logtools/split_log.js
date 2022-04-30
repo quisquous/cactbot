@@ -26,7 +26,7 @@ for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']
     numExclusiveArgs++;
 }
 if (numExclusiveArgs !== 1)
-  printHelpAndExit('Error: Must specify exactly one of -lf, -lz, -fr\n');
+  printHelpAndExit('Error: Must specify exactly one of -lf, -lz, or -fr\n');
 if (args['fight_regex'] === -1)
   printHelpAndExit('Error: -fr must specify a regex\n');
 if (args['zone_regex'] === -1)
