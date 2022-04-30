@@ -341,10 +341,12 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         // Remove null elements from the array to get remaining two dirNums
-        dirNums.forEach((dirNum) => { if (dirNum !== null) {
-          (data.spiralThrustSafeZones ??=[]).push(dirNum);
+        dirNums.forEach(
+          (dirNum) => {
+            if (dirNum !== null)
+              (data.spiralThrustSafeZones ??= []).push(dirNum);
           }
-        });
+        );
       },
       infoText: (data, _matches, output) => {
         data.spiralThrustSafeZones ??= [];
@@ -503,7 +505,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '63E1', source: '骑神托尔丹', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '63E1', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
-      delaySeconds: 2,
+      delaySeconds: 3,
       promise: async (data) => {
         // Only need to know one of the knights locations, Ser Janlenoux (3635)
         const janlenouxLocaleNames: LocaleText = {
@@ -533,12 +535,13 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         const combatantDataJanlenouxLength = combatantDataJanlenoux.combatants.length;
-        if (combatantDataJanlenouxLength !== 1) {
-          console.error(`Ser Janlenoux: expected 1 combatants got ${combatantDataJanlenouxLength}`);
+        if (combatantDataJanlenouxLength <= 1) {
+          console.error(`Ser Janlenoux: expected at least 1 combatants got ${combatantDataJanlenouxLength}`);
           return;
         }
 
         // Add the combatant's position
+        combatantDataJanlenoux.combatants.pop();
         const combatantJanlenoux = combatantDataJanlenoux.combatants.pop();
         if (!combatantJanlenoux)
           throw new UnreachableCode();
