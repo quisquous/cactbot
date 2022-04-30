@@ -328,16 +328,16 @@ const triggerSet: TriggerSet<Data> = {
 
         // Remove where the knights are at and where they will go to
         if (spiralThrusts[0]) {
-          delete dirNums[spiralThrusts[0]];
           delete dirNums[(spiralThrusts[0] + 4) % 8];
+          delete dirNums[spiralThrusts[0]];
         }
         if (spiralThrusts[1]) {
-          delete dirNums[spiralThrusts[1]];
           delete dirNums[(spiralThrusts[1] + 4) % 8];
+          delete dirNums[spiralThrusts[1]];
         }
         if (spiralThrusts[2]) {
-          delete dirNums[spiralThrusts[2]];
           delete dirNums[(spiralThrusts[2] + 4) % 8];
+          delete dirNums[spiralThrusts[2]];
         }
 
         // Filter for the two elements remaining in the array
