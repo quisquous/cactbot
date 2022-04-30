@@ -398,7 +398,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '63C4', source: '骑神托尔丹' }),
       netRegexKo: NetRegexes.ability({ id: '63C4', source: '기사신 토르당' }),
       condition: (data) => (data.phase === 'thordan' && (data.thordanJumpCounter = (data.thordanJumpCounter ?? 0) + 1) === 2),
-      delaySeconds: 2,
+      delaySeconds: 0.5,
       promise: async (data, matches) => {
         // Select King Thordan
         let thordanData = null;
@@ -502,45 +502,45 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 2,
       promise: async (data) => {
-        // Only need to know one of the knights locations, Ser Janlennoux (3636)
-        const janlennouxLocaleNames: LocaleText = {
-          en: 'Ser Janlennoux',
+        // Only need to know one of the knights locations, Ser Janlenoux (3635)
+        const janlenouxLocaleNames: LocaleText = {
+          en: 'Ser Janlenoux',
         };
 
-        // Select Ser Janlennoux
-        let combatantNameJanlennoux = null;
-        combatantNameJanlennoux = janlennouxLocaleNames[data.parserLang];
+        // Select Ser Janlenoux
+        let combatantNameJanlenoux = null;
+        combatantNameJanlenoux = janlenouxLocaleNames[data.parserLang];
 
-        let combatantDataJanlennoux = null;
-        if (combatantNameJanlennoux) {
-          combatantDataJanlennoux = await callOverlayHandler({
+        let combatantDataJanlenoux = null;
+        if (combatantNameJanlenoux) {
+          combatantDataJanlenoux = await callOverlayHandler({
             call: 'getCombatants',
-            names: [combatantNameJanlennoux],
+            names: [combatantNameJanlenoux],
           });
         }
 
         // if we could not retrieve combatant data, the
         // trigger will not work, so just resume promise here
-        if (combatantDataJanlennoux === null) {
-          console.error(`Ser Janlennoux: null data`);
+        if (combatantDataJanlenoux === null) {
+          console.error(`Ser Janlenoux: null data`);
           return;
         }
-        if (!combatantDataJanlennoux.combatants) {
-          console.error(`Ser Janlennoux: null combatants`);
+        if (!combatantDataJanlenoux.combatants) {
+          console.error(`Ser Janlenoux: null combatants`);
           return;
         }
-        const combatantDataJanlennouxLength = combatantDataJanlennoux.combatants.length;
-        if (combatantDataJanlennouxLength !== 1) {
-          console.error(`Ser Janlennoux: expected 1 combatants got ${combatantDataJanlennouxLength}`);
+        const combatantDataJanlenouxLength = combatantDataJanlenoux.combatants.length;
+        if (combatantDataJanlenouxLength !== 1) {
+          console.error(`Ser Janlenoux: expected 1 combatants got ${combatantDataJanlenouxLength}`);
           return;
         }
 
         // Add the combatant's position
-        const combatantJanlennoux = combatantDataJanlennoux.combatants.pop();
-        if (!combatantJanlennoux)
+        const combatantJanlenoux = combatantDataJanlenoux.combatants.pop();
+        if (!combatantJanlenoux)
           throw new UnreachableCode();
 
-        data.sanctityWardDir = matchedPositionToDir(combatantJanlennoux);
+        data.sanctityWardDir = matchedPositionToDir(combatantJanlenoux);
       },
       infoText: (data, _matches, output) => {
         // Map of directions
