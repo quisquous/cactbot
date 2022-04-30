@@ -316,27 +316,20 @@ const triggerSet: TriggerSet<Data> = {
           spiralThrusts.push(matchedPositionToDir(combatant));
         }
 
-        if (spiralThrusts.length !== 3) {
-          console.error(`Spiral Thrusts: expected 3 combatants got ${spiralThrusts.length}`);
+        const [thrust0, thrust1, thrust2] = spiralThrusts;
+        if (thrust0 === undefined || thrust1 === undefined || thrust2 === undefined)
           return;
-        }
 
         // Array of dirNums
         const dirNums = [0, 1, 2, 3, 4, 5, 6, 7];
 
         // Remove where the knights are at and where they will go to
-        if (spiralThrusts[0] || spiralThrusts[0] === 0) {
-          delete dirNums[(spiralThrusts[0] + 4) % 8];
-          delete dirNums[spiralThrusts[0]];
-        }
-        if (spiralThrusts[1] || spiralThrusts[1] === 0) {
-          delete dirNums[(spiralThrusts[1] + 4) % 8];
-          delete dirNums[spiralThrusts[1]];
-        }
-        if (spiralThrusts[2] || spiralThrusts[2] === 0) {
-          delete dirNums[(spiralThrusts[2] + 4) % 8];
-          delete dirNums[spiralThrusts[2]];
-        }
+        delete dirNums[(thrust0 + 4) % 8];
+        delete dirNums[thrust0];
+        delete dirNums[(thrust1 + 4) % 8];
+        delete dirNums[thrust1];
+        delete dirNums[(thrust2 + 4) % 8];
+        delete dirNums[thrust2];
 
         // Remove null elements from the array to get remaining two dirNums
         dirNums.forEach((dirNum) => {
