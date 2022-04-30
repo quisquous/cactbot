@@ -494,7 +494,8 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 4.3,
       promise: async (data) => {
-        // Only need to know one of the knights locations, Ser Janlenoux (3635)
+        // The side the white knight, Ser Janlennoux (3635), is onrelative to
+        // east/west can be used to determine where both knights will dash.
         const janlenouxLocaleNames: LocaleText = {
           en: 'Ser Janlenoux',
         };
