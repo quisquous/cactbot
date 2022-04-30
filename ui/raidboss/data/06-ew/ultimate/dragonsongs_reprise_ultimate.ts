@@ -547,14 +547,14 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         // Map of directions
         const dirs: { [dir: number]: string } = {
-          0: output.counterclock!(),
+          0: output.clockwise!(),
           1: output.unknown!(), // north position
-          2: output.clockwise!(),
-          3: output.clockwise!(),
-          4: output.clockwise!(),
+          2: output.counterclock!(),
+          3: output.counterclock!(),
+          4: output.counterclock!(),
           5: output.unknown!(), // south position
-          6: output.counterclock!(),
-          7: output.counterclock!(),
+          6: output.clockwise!(),
+          7: output.clockwise!(),
           8: output.unknown!(),
         };
         return dirs[data.sanctityWardDir ?? 8];
