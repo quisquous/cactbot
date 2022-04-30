@@ -327,15 +327,15 @@ const triggerSet: TriggerSet<Data> = {
         const dirNums = [0, 1, 2, 3, 4, 5, 6, 7];
 
         // Remove where the knights are at and where they will go to
-        if (spiralThrusts[0]) {
+        if (spiralThrusts[0] || spiralThrusts[0] === 0) {
           delete dirNums[(spiralThrusts[0] + 4) % 8];
           delete dirNums[spiralThrusts[0]];
         }
-        if (spiralThrusts[1]) {
+        if (spiralThrusts[1] || spiralThrusts[1] === 0) {
           delete dirNums[(spiralThrusts[1] + 4) % 8];
           delete dirNums[spiralThrusts[1]];
         }
-        if (spiralThrusts[2]) {
+        if (spiralThrusts[2] || spiralThrusts[2] === 0) {
           delete dirNums[(spiralThrusts[2] + 4) % 8];
           delete dirNums[spiralThrusts[2]];
         }
