@@ -340,8 +340,11 @@ const triggerSet: TriggerSet<Data> = {
           delete dirNums[spiralThrusts[2]];
         }
 
-        // Filter for the two elements remaining in the array
-        data.spiralThrustSafeZones = dirNums.filter(Boolean);
+        // Remove null elements from the array to get remaining two dirNums
+        dirNums.forEach((dirNum) => { if (dirNum !== null) {
+          (data.spiralThrustSafeZones ??=[]).push(dirNum);
+          }
+        });
       },
       infoText: (data, _matches, output) => {
         data.spiralThrustSafeZones ??= [];
