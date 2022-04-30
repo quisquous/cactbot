@@ -503,7 +503,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '63E1', source: '骑神托尔丹', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '63E1', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
-      delaySeconds: 3,
+      delaySeconds: 4.3,
       promise: async (data) => {
         // Only need to know one of the knights locations, Ser Janlenoux (3635)
         const janlenouxLocaleNames: LocaleText = {
