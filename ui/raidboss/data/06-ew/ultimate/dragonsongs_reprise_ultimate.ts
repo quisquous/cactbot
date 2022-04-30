@@ -78,8 +78,6 @@ const matchedPositionToDir = (combatant: PluginCombatantState) => {
   // N = (100, 77), E = (123, 100), S = (100, 123), W = (77, 100)
   // NE = (116.26, 83.74), SE = (116.26, 116.26), SW = (83.74, 116.26), NW = (83.74, 83.74)
   //
-  // Starting with northwest to favor sorting between north and south for
-  // Advanced Relativity party splits.
   // Map NW = 0, N = 1, ..., W = 7
 
   return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
