@@ -459,7 +459,7 @@ const triggerSet: TriggerSet<Data> = {
         northwest: Outputs.northwest,
         unknown: Outputs.unknown,
         thordanLocation: {
-          en: 'Boss: ${dir}',
+          en: '${dir} Thordan',
         },
       },
     },
