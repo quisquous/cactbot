@@ -202,7 +202,7 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-   {
+    {
       id: 'DSR Adelphel Charge Start Direction',
       // 63C4 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
       // Adelphel is in position about 29~30 seconds later
@@ -214,7 +214,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '62D2', source: '圣骑士阿代尔斐尔' }),
       netRegexKo: NetRegexes.ability({ id: '62D2', source: '성기사 아델펠' }),
       condition: (data) => data.phase === 'doorboss',
-      delaySeconds: 29.3,
+      delaySeconds: 29.4,
       promise: async (data, matches) => {
         // Select Ser Adelphel
         let adelphelData = null;
