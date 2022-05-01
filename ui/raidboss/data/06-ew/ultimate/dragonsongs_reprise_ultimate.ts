@@ -346,6 +346,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'en',
       'replaceText': {
         'Empty Dimension/Full Dimension': 'Empty/Full Dimension',
+        'Lash and Gnash/Gnash and Lash': 'Lash and Gnash',
       },
     },
     {
