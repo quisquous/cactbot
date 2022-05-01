@@ -10,7 +10,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Be On A Platform',
-          de: 'BSei auf einer Plattform',
+          de: 'Sei auf einer Plattform',
           fr: 'Restez sur une plateforme ',
           ja: '円形床の上へ',
           cn: '站台子上',
