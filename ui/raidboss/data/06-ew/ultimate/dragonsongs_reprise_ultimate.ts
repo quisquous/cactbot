@@ -566,8 +566,14 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 4.7,
       promise: async (data) => {
-        // The side the white knight, Ser Janlennoux (3635), is onrelative to
-        // east/west can be used to determine where both knights will dash.
+        // The two gladiators spawn in one of two positions: West (95, 100) or East (105, 100).
+        // This triggers uses east/west location of the white knight, Ser Janlennoux (3635) to
+        // determine where both knights will dash as they each only look in two directions.
+        // Ser Janlenoux only looks towards the north (northeast or northwest).
+        // Ser Adelphel only looks towards the south (southwest or southeast).
+        // Thus we can just use one knight and get whether it is east or west for location.
+        // Callout assumes starting from DRK position, but for east/west (two-movement strategy)
+        // you can reverse the cw/ccw callout.
         const janlenouxLocaleNames: LocaleText = {
           en: 'Ser Janlenoux',
         };
