@@ -790,9 +790,9 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '--hammer--': '--Hammer--',
-        '\(fake\)': '(falsch)',
-        '\(proximity\)': '(Distanz)',
-        '\(summon\)': '(Beschwörung)',
+        '\(fake\)': 'falsch',
+        '\(proximity\)': 'Distanz',
+        '\(summon\)': 'Beschwörung',
         'Advent of the Eighth': 'Lehre des Kometen',
         'As Above, So Below': 'Flamme von Leben und Tod',
         'Balance': 'Seelenabrechnung',
