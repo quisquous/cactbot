@@ -16,6 +16,10 @@ const headmarkers = {
   'sword2': '0033',
   // vfx/lockon/eff/r1fz_holymeteo_s12x.avfx
   'meteor': '011D',
+  // vfx/lockon/eff/r1fz_lockon_num01_s5x.avfx through num03
+  'dot1': '013F',
+  'dot2': '0140',
+  'dot3': '0141',
 };
 const firstMarker = {
   'doorboss': headmarkers.hyperdimensionalSlash,
