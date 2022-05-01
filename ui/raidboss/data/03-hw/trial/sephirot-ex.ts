@@ -327,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
         shakerTarget: {
           en: 'Earth Shaker (Max Melee)',
           de: 'Erdstoß (Max Nahkampf)',
-          cn: '大地摇动 (最大近战距离)',
+          cn: '大地摇动 (最远近战距离)',
         },
         shakerAvoid: {
           en: 'Avoid Earth Shakers',
