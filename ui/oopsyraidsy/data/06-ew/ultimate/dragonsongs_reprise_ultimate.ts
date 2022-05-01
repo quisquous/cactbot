@@ -4,6 +4,8 @@ import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
+// TODO: is 671B Darkdragon Dive tower failure?
+
 export type Data = OopsyData;
 
 const triggerSet: OopsyTriggerSet<Data> = {
@@ -24,12 +26,19 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Ser Grinnaux Dimensional Collapse': '63DC', // red/black puddles
     'DSR Ser Charibert Heaven\'s Stake 1': '6FAF', // initial Sanctity of the Ward 4x fire puddles
     'DSR Ser Charibert Heaven\'s Stake 2': '6FB0', // Sanctity of the Ward donut ring before fire/ice
+    'DSR King Thordan Broad Swing': '63C2', // 3x directional cleaves
+    'DSR Nidhogg Gnashing Wheel': '6715', // "get out" part of Gnash and Lash
+    'DSR Nidhogg Lashing Wheel': '6716', // "get in" part of Gnash and Lash
+    'DSR Nidhogg Geirskogul': '670A', // baited line aoes from tower clones
+    'DSR Nidhogg Drachenlance': '670C', // front conal
   },
   damageFail: {
     'DSR Dimensional Torsion': '62D8', // player tethering a cloud
     'DSR Dimensional Purgation': '62D9', // Ser Adelphel tethering a cloud during charges
     'DSR Ser Charibert Holy Chain': '62E0', // failing to break chains, often kills people
     'DSR Ser Grinnaux Planar Prison': '63EC', // leaving the purple circle
+    'DSR Ser Eternal Conviction': '63E0', // messing up towers
+    'DSR Holy Comet Holy Impact': '63EA', // meteor explosion from being too close
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
   },
   shareWarn: {
@@ -40,6 +49,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   shareFail: {
     'DSR King Thordan Ascalon\'s Might': '63C5', // tank cleaves
+    'DSR Nidhogg Soul Tether': '671C', // tank tether cleaves
   },
   soloWarn: {
     'DSR Ser Haumeric Hiemal Storm': '63E7', // Sanctity of the Ward ice pair stacks
