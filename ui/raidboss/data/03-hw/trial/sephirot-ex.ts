@@ -159,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Group Stacks',
           de: 'In der Gruppe sammeln',
-          cn: '集合',
+          cn: '分组集合',
         },
       },
     },
