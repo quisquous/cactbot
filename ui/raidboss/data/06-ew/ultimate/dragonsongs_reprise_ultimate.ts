@@ -214,7 +214,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '62D2', source: '圣骑士阿代尔斐尔' }),
       netRegexKo: NetRegexes.ability({ id: '62D2', source: '성기사 아델펠' }),
       condition: (data) => data.phase === 'doorboss',
-      delaySeconds: 29.4,
+      delaySeconds: 29.5,
       promise: async (data, matches) => {
         // Select Ser Adelphel
         let adelphelData = null;
