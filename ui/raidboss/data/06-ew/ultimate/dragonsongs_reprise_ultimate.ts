@@ -204,7 +204,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DSR Adelphel Charge Start Direction',
-      // 63C4 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
+      // 62D2 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
       // Adelphel is in position about 29~30 seconds later
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62D2', source: 'Ser Adelphel' }),
