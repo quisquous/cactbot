@@ -1,9 +1,11 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
@@ -21,6 +23,7 @@ export interface Data extends RaidbossData {
   phase: Phase;
   decOffset?: number;
   seenEmptyDimension?: boolean;
+  knights?: PluginCombatantState[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -251,6 +254,78 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sprung auf DIR',
           fr: 'Saut sur VOUS',
         },
+      },
+    },
+    {
+      id: 'DSR Thordan Finder',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63DB', source: 'Ser Grinnaux', capture: false }),
+      condition: (data) => data.phase === 'thordan',
+      durationSeconds: 10,
+      promise: async (data, _matches) => {
+        const result = await callOverlayHandler({
+          call: 'getCombatants',
+          names: ['Ser Hermenost'],
+        });
+        data.knights = result.combatants;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          unknown: {
+            en: 'Unknown Thordan Location',
+          },
+          northKnight: {
+            en: 'S Thordan, N Knight',
+          },
+          southKnight: {
+            en: 'N Thordan, S Knight',
+          },
+          eastKnight: {
+            en: 'W Thordan, E Knight',
+          },
+          westKnight: {
+            en: 'E Thordan, W Knight',
+          },
+          northWestKnight: {
+            en: 'SE Thordan, NW Knight',
+          },
+          northEastKnight: {
+            en: 'SW Thordan, NE Knight',
+          },
+          southEastKnight: {
+            en: 'NW Thordan, SE Knight',
+          },
+          southWestKnight: {
+            en: 'NE Thordan, SW Knight',
+          },
+        };
+        if (!data.knights) {
+          console.error('Unable to locate knight combatants.');
+          return { infoText: output.unknown!() };
+        }
+        let info = { infoText: output.unknown!() };
+        for (const knight of data.knights) {
+          const locX = Math.floor(knight.PosX);
+          const locY = Math.floor(knight.PosY);
+          if (locX === 123 && locY === 100)
+            info = { infoText: output.eastKnight!() };
+          else if (locX === 116 && locY === 116)
+            info = { infoText: output.southEastKnight!() };
+          else if (locX === 116 && locY === 83)
+            info = { infoText: output.northEastKnight!() };
+          else if (locX === 77 && locY === 100)
+            info = { infoText: output.westKnight!() };
+          else if (locX === 83 && locY === 83)
+            info = { infoText: output.northWestKnight!() };
+          else if (locX === 83 && locY === 116)
+            info = { infoText: output.southWestKnight!() };
+          else if (locX === 100 && locY === 77)
+            info = { infoText: output.northKnight!() };
+          else if (locX === 100 && locY === 123)
+            info = { infoText: output.southKnight!() };
+        }
+        return info;
       },
     },
     {
