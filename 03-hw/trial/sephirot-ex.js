@@ -29,6 +29,7 @@ Options.Triggers.push({
         text: {
           en: 'Move to safe quadrant',
           de: 'Beweg dich in den sicheren Quadranten',
+          cn: '移动到安全区域',
         },
       },
     },
@@ -40,6 +41,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait toward puddle',
           de: 'In Richtung Fläche ködern',
+          cn: '靠近圈圈集合诱导AOE',
         },
       },
     },
@@ -56,10 +58,12 @@ Options.Triggers.push({
         noPillar: {
           en: 'Bait Yesod',
           de: 'Yesod ködern',
+          cn: '集合诱导基盘碎击',
         },
         withPillar: {
           en: 'Bait Yesod inside puddle',
           de: 'Yesod in die Fläche ködern',
+          cn: '圈圈内集合诱导基盘碎击',
         },
       },
     },
@@ -133,10 +137,12 @@ Options.Triggers.push({
         noStack: {
           en: 'Don\'t Stack!',
           de: 'Nicht sammeln!',
+          cn: '不要重合！',
         },
         stack: {
           en: 'Group Stacks',
           de: 'In der Gruppe sammeln',
+          cn: '分组集合',
         },
       },
     },
@@ -185,6 +191,7 @@ Options.Triggers.push({
         text: {
           en: '${force} on you',
           de: '${force} auf dir',
+          cn: '${force}点名',
         },
       },
     },
@@ -242,10 +249,12 @@ Options.Triggers.push({
         getTower: {
           en: 'Get a tower',
           de: 'Nimm einen Turm',
+          cn: '踩塔',
         },
         avoidTower: {
           en: 'Avoid towers',
           de: 'Turm meiden',
+          cn: '躲塔',
         },
       },
     },
@@ -263,10 +272,12 @@ Options.Triggers.push({
         might: {
           en: 'Get Away, Avoid Puddles + Tethers',
           de: 'Geh weg, weiche Flächen und Verbindungen aus',
+          cn: '远离, 躲避圈圈 + 连线',
         },
         magic: {
           en: 'Go Front; Get Tether',
           de: 'Geh nach Vorne; Nimm eine Verbindung',
+          cn: '去前面; 接线',
         },
       },
     },
@@ -299,10 +310,12 @@ Options.Triggers.push({
         shakerTarget: {
           en: 'Earth Shaker (Max Melee)',
           de: 'Erdstoß (Max Nahkampf)',
+          cn: '大地摇动 (最远近战距离)',
         },
         shakerAvoid: {
           en: 'Avoid Earth Shakers',
           de: 'Weiche Erdstoß aus',
+          cn: '躲避大地摇动',
         },
       },
     },
@@ -444,9 +457,13 @@ Options.Triggers.push({
         'Storm Of Words': '言语风暴',
       },
       'replaceText': {
+        'puddle(?:s)?': '圈圈',
+        'spread': '散开',
+        'Tethers': '连线',
         'Adds Spawn': '小怪出现',
         'Ascension': '上升气流',
-        'Chesed': '仁慈',
+        'Chesed(?! Gevurah)': '仁慈',
+        'Chesed Gevurah': '仁慈之严酷',
         'Da\'at': '知识',
         'Earth Shaker': '大地摇动',
         'Ein Sof': '无限',
