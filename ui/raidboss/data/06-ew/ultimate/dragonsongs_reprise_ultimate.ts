@@ -611,11 +611,11 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         // Map of directions
         const dirs: { [dir: number]: string } = {
-          0: output.unknown!(), 
+          0: output.unknown!(),
           1: output.unknown!(), // north position
-          2: output.unknown!(), 
+          2: output.unknown!(),
           3: output.counterclock!(),
-          4: output.unknown!(), 
+          4: output.unknown!(),
           5: output.unknown!(), // south position
           6: output.unknown!(),
           7: output.clockwise!(),
