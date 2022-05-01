@@ -564,7 +564,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '63E1', source: '骑神托尔丹', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '63E1', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
-      delaySeconds: 4.3,
+      delaySeconds: 4.4,
       promise: async (data) => {
         // The side the white knight, Ser Janlennoux (3635), is onrelative to
         // east/west can be used to determine where both knights will dash.
