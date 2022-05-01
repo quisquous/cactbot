@@ -624,7 +624,7 @@ const triggerSet: TriggerSet<Data> = {
         if (combatantJanlenoux.PosX < 100)
           data.sanctityWardDir = output.clockwise!();
         if (combatantJanlenoux.PosX > 100)
-          data.sanctityWardDir = output.counterclock!() ;
+          data.sanctityWardDir = output.counterclock!();
       },
       infoText: (data, _matches, output) => {
         return data.sanctityWardDir ?? output.unknown!();
