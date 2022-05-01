@@ -318,10 +318,12 @@ Options.Triggers.push({
       'locale': 'en',
       'replaceText': {
         'Empty Dimension/Full Dimension': 'Empty/Full Dimension',
+        'Lash and Gnash/Gnash and Lash': 'Lash and Gnash',
       },
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': 'Thordan',
         'Ser Adelphel': 'Adelphel',
@@ -369,6 +371,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': 'roi Thordan',
         'Ser Adelphel': 'sire Adelphel',
@@ -416,6 +419,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': '騎神トールダン',
         'Ser Adelphel': '聖騎士アデルフェル',
