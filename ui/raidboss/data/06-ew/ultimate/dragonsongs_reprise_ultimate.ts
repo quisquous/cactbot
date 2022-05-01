@@ -258,8 +258,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DSR Thordan Finder',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63DB', source: 'Ser Grinnaux', capture: false }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63D6', source: 'Ser Guerrique', capture: false }),
       condition: (data) => data.phase === 'thordan',
       durationSeconds: 10,
       promise: async (data, _matches) => {
