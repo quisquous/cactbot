@@ -21,7 +21,8 @@ hideall "--sync--"
 23.9 "--sync--" sync / 1[56]:[^:]*:Ser Adelphel:63EB:/
 25.3 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D2:/ duration 2.5
 28.2 "Heavensblaze" sync / 1[56]:[^:]*:Ser Charibert:62DD:/
-36.5 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:62E9:/
+36.5 "--middle--" sync / 1[56]:[^:]*:Ser Grinnaux:62E9:/
+38.4 "--untargetable--"
 43.6 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:62D6:/
 # These slashes come from Ser Grinnaux, but sometimes name updates are sloppy.
 44.8 "Hyperdimensional Slash 1" sync / 1[56]:[^:]*:(Ser Grinnaux|Ser Charibert):62D7:/
@@ -30,6 +31,7 @@ hideall "--sync--"
 59.8 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 60.9 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
 69.1 "Execution" sync / 1[56]:[^:]*:Ser Adelphel:62D5:/
+70.8 "--targetable--"
 86.2 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 88.2 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
 102.2 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
