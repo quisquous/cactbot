@@ -573,7 +573,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ id: '63E1', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 4.7,
-      promise: async (data) => {
+      promise: async (data, _matches, output) => {
         // The two gladiators spawn in one of two positions: West (95, 100) or East (105, 100).
         // This triggers uses east/west location of the white knight, Ser Janlennoux (3635) to
         // determine where both knights will dash as they each only look in two directions.
