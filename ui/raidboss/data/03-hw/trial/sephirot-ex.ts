@@ -154,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
         noStack: {
           en: 'Don\'t Stack!',
           de: 'Nicht sammeln!',
-          cn: '不要集合！',
+          cn: '不要重合！',
         },
         stack: {
           en: 'Group Stacks',
