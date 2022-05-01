@@ -350,6 +350,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': 'Thordan',
         'Ser Adelphel': 'Adelphel',
@@ -397,6 +398,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': 'roi Thordan',
         'Ser Adelphel': 'sire Adelphel',
@@ -444,6 +446,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': '騎神トールダン',
         'Ser Adelphel': '聖騎士アデルフェル',

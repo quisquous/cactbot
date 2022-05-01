@@ -1,15 +1,16 @@
 ### Dragonsong's Reprise Ultimate
-# -p 62D4:10 62E1:500 63C8:553
-# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF
+# phase 1 logs: -p 62D4:10 62E1:500
+# -p 63C8:553 6708:1000 717A:1500 62E1:2000 6B86:3000
+# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2
 
-# TODO: should we include something for 62CE/62CF Shining Blade/Bright Flare stuff?
+# TODO: should we include something for P1 62CE/62CF Shining Blade/Bright Flare stuff?
 
 hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
-### Phase 1
+### Phase 1: Adelphel, Grinnaux and Charibert
 
 # No engage sync, due to checkpoint.
 0.0 "Start"
@@ -41,6 +42,7 @@ hideall "--sync--"
 133.6 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
 # ???
 
+### Phase 1.5: Haurchefant v1, a time loop better suits a hero
 500.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
 500.0 "Pure of Heart" sync / 14:[^:]*:Ser Charibert:62E4:/ duration 36
 500.0 "Brightwinged Flight" sync / 1[56]:[^:]*:Ser Adelphel:6316:/
@@ -58,7 +60,7 @@ hideall "--sync--"
 # Enrage?? (or just die to Pure of Heart?)
 
 
-### Phase 2
+### Phase 2: King Thordan
 541.5 "--targetable--"
 550.0 "--sync--" sync / 14:[^:]*:King Thordan:63C8:/ window 600,10
 553.0 "Ascalon's Mercy Concealed" sync / 1[56]:[^:]*:King Thordan:63C8:/
@@ -89,8 +91,98 @@ hideall "--sync--"
 601.5 "Holy Bladedance" sync / 1[56]:[^:]*:Ser Adelphel:62D2:/
 602.5 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
 602.8 "Conviction" sync / 1[56]:[^:]*:Ser Hermenost:63DF:/
+
 611.0 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 621.2 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
-624.3 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-626.1 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-630.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+624.4 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+626.0 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+627.7 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+
+630.5 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+631.6 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
+638.7 "Sanctity of the Ward" sync / 1[56]:[^:]*:King Thordan:63E1:/
+651.3 "The Dragon's Gaze" sync / 1[56]:[^:]*:King Thordan:63D0:/
+652.3 "Sacred Sever x4" duration 5.3 #sync / 1[56]:[^:]*:Ser Zephirin:63E3:/
+652.5 "The Dragon's Gaze" sync / 1[56]:[^:]*:King Thordan:63D1:/
+652.5 "The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:63D2:/
+658.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+670.4 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Grinnaux:63E7:/
+674.6 "Conviction 1" sync / 1[56]:[^:]*:Ser Hermenost:737C:/
+676.0 "Holy Comet x7" duration 12.4 #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+684.8 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+687.7 "Conviction 2" sync / 1[56]:[^:]*:Ser Hermenost:6FEB:/
+
+692.2 "--sync--" sync / 1[56]:[^:]*:King Thordan:63BC:/
+697.3 "Ultimate End" sync / 1[56]:[^:]*:King Thordan:63BD:/
+705.7 "Ultimate End" sync / 1[56]:[^:]*:Ser Hermenost:63BE:/
+
+711.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:63BF:/
+
+717.9 "Broad Swing" sync / 1[56]:[^:]*:King Thordan:63C[01]:/
+718.7 "Broad Swing 1" #sync / 1[56]:[^:]*:King Thordan:63C2:/
+719.6 "Broad Swing 2" #sync / 1[56]:[^:]*:King Thordan:63C2:/
+720.6 "Broad Swing 3" #sync / 1[56]:[^:]*:King Thordan:63C2:/
+
+726.3 "Broad Swing" sync / 1[56]:[^:]*:King Thordan:63C[01]:/
+727.1 "Broad Swing 1" #sync / 1[56]:[^:]*:King Thordan:63C2:/
+728.0 "Broad Swing 2" #sync / 1[56]:[^:]*:King Thordan:63C2:/
+729.0 "Broad Swing 3" #sync / 1[56]:[^:]*:King Thordan:63C2:/
+
+731.6 "--sync--" # aetheric burst starts casting, unknown duration
+
+
+### Phase 3: Nidhogg
+1000.0 "Final Chorus" sync / 1[56]:[^:]*:Nidhogg:6708:/ window 1000,0
+1002.3 "Final Chorus" sync / 1[56]:[^:]*:Nidhogg:6709:/
+1020.5 "Dive from Grace" sync / 1[56]:[^:]*:Nidhogg:670D:/
+1030.2 "Lash and Gnash/Gnash and Lash" sync / 1[56]:[^:]*:Nidhogg:671[23]:/
+1030.3 "Dark High Jump" sync / 1[56]:[^:]*:Nidhogg:670E:/
+1030.4 "Eye of the Tyrant" sync / 1[56]:[^:]*:Nidhogg:6714:/
+1033.8 "Lashing Wheel" sync / 1[56]:[^:]*:Nidhogg:6716:/
+1036.8 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:6711:/
+1036.9 "Gnashing Wheel" sync / 1[56]:[^:]*:Nidhogg:6715:/
+1040.2 "Dark Spineshatter Dive" sync / 1[56]:[^:]*:Nidhogg:670F:/
+1040.2 "Dark Elusive Jump" sync / 1[56]:[^:]*:Nidhogg:6710:/
+1043.9 "Geirskogul" sync / 1[56]:[^:]*:Nidhogg:670A:/
+1046.8 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:6711:/
+1048.4 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:671B:/
+1051.2 "Dark High Jump" sync / 1[56]:[^:]*:Nidhogg:670E:/
+1051.6 "Lash and Gnash/Gnash and Lash" sync / 1[56]:[^:]*:Nidhogg:671[23]:/
+1051.9 "Eye of the Tyrant" sync / 1[56]:[^:]*:Nidhogg:6714:/
+1053.9 "Geirskogul" sync / 1[56]:[^:]*:Nidhogg:670A:/
+1055.3 "Gnashing Wheel" sync / 1[56]:[^:]*:Nidhogg:6715:/
+1057.8 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:6711:/
+1058.4 "Lashing Wheel" sync / 1[56]:[^:]*:Nidhogg:6716:/
+1064.9 "Geirskogul" sync / 1[56]:[^:]*:Nidhogg:670A:/
+1069.8 "Drachenlance" sync / 1[56]:[^:]*:Nidhogg:670B:/
+1076.9 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:6717:/
+1076.9 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:6718:/
+1076.9 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:6719:/
+1076.9 "Darkdragon Dive" sync / 1[56]:[^:]*:Nidhogg:6718:/
+1084.0 "Soul Tether" sync / 1[56]:[^:]*:Nidhogg:671C:/
+1084.0 "Geirskogul" sync / 1[56]:[^:]*:Nidhogg:670A:/
+1108.0 "Drachenlance" sync / 1[56]:[^:]*:Nidhogg:670B:/
+# Revenge of the horde enrage
+# ???
+
+
+### Phase 4: The Eyes
+1500.0 "--sync--" sync / 1[56]:[^:]*:Right Eye:717A:/ window 500,0
+1518.6 "Hatebound" sync / 1[56]:[^:]*:Right Eye:68BE:/
+1526.4 "Flare Nova" sync / 1[56]:[^:]*:The Gilded Price:68C1:/
+1532.9 "Flare Star" sync / 1[56]:[^:]*:The Azure Price:68BF:/
+1544.7 "Mirage Dive" sync / 1[56]:[^:]*:Right Eye:68C3:/
+1545.5 "Mirage Dive 1" sync / 1[56]:[^:]*:Nidhogg:68C4:/
+1550.6 "Mirage Dive 2" sync / 1[56]:[^:]*:Nidhogg:68C4:/
+1555.7 "Mirage Dive 3" sync / 1[56]:[^:]*:Nidhogg:68C4:/
+1560.8 "Mirage Dive 4" sync / 1[56]:[^:]*:Nidhogg:68C4:/
+1570.6 "Steep in Rage" sync / 1[56]:[^:]*:Right Eye:68BD:/
+### ???
+
+
+### Phase 4.5: Haurchefant v2
+2000.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
+
+
+### Phase 5: King Thordan II
+3000.0 "Incarnation" sync / 1[56]:[^:]*:King Thordan:6B86:/ window 1000,0
