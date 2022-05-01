@@ -96,6 +96,7 @@ export class ComponentManager {
   // misc variables
   shouldShow: ShouldShow;
   contentType?: number;
+  lastCalledMs: number;
   inPvPZone?: boolean;
   // food buffs
   foodBuffExpiresTimeMs: number;
@@ -116,6 +117,7 @@ export class ComponentManager {
 
     this.shouldShow = {};
     this.contentType = undefined;
+    this.lastCalledMs = 0;
 
     this.foodBuffExpiresTimeMs = 0;
     this.foodBuffTimer = 0;
@@ -162,7 +164,9 @@ export class ComponentManager {
           foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
           foodBuffTimer: this.foodBuffTimer,
           contentType: this.contentType,
+          lastCalledMs: this.lastCalledMs,
         });
+        this.lastCalledMs = Date.now();
       }
     });
 
@@ -237,7 +241,9 @@ export class ComponentManager {
             foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
             foodBuffTimer: this.foodBuffTimer,
             contentType: this.contentType,
+            lastCalledMs: this.lastCalledMs,
           });
+          this.lastCalledMs = Date.now();
         }
       });
       // As you cannot change jobs in combat, we can assume that
@@ -271,7 +277,9 @@ export class ComponentManager {
           foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
           foodBuffTimer: this.foodBuffTimer,
           contentType: this.contentType,
+          lastCalledMs: this.lastCalledMs,
         });
+        this.lastCalledMs = Date.now();
       }
 
       // make bars transparent when out of combat if requested
@@ -328,7 +336,9 @@ export class ComponentManager {
         foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
         foodBuffTimer: this.foodBuffTimer,
         contentType: this.contentType,
+        lastCalledMs: this.lastCalledMs,
       });
+      this.lastCalledMs = Date.now();
 
       this.buffTracker?.clear();
 

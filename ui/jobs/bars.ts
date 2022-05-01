@@ -698,9 +698,12 @@ export class Bars {
     contentType?: number;
     foodBuffExpiresTimeMs: number;
     foodBuffTimer: number;
+    lastCalledMs: number;
   }): number | undefined {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.o.leftBuffsList)
+      return;
+    if (Date.now() - o.lastCalledMs < 1000)
       return;
 
     const CanShowWellFedWarning = () => {
@@ -729,7 +732,7 @@ export class Bars {
     if (!canShow || showAfterMs > 0) {
       this.o.leftBuffsList.removeElement('foodbuff');
       if (canShow)
-        return window.setTimeout(this._updateFoodBuff.bind(this), showAfterMs);
+        return window.setTimeout(this._updateFoodBuff.bind(this, o), showAfterMs);
     } else {
       const div = makeAuraTimerIcon(
         'foodbuff',
