@@ -9,7 +9,6 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Ser Adelphel knockback charge direction
 // TODO: Ser Adelphel left/right movement after initial charge
 // TODO: "move" call after you take your Brightwing cleave?
 // TODO: Sanctity of the Ward left/right direction, short+long/stutter movement
@@ -21,6 +20,7 @@ export interface Data extends RaidbossData {
   phase: Phase;
   decOffset?: number;
   seenEmptyDimension?: boolean;
+  adelphelDir?: number;
   spiralThrustSafeZones?: number[];
   thordanJumpCounter?: number;
   thordanDir?: number;
@@ -199,6 +199,78 @@ const triggerSet: TriggerSet<Data> = {
         slashOnYou: {
           en: 'Slash on YOU',
           de: 'Schlag auf DIR',
+        },
+      },
+    },
+   {
+      id: 'DSR Adelphel Charge Start Direction',
+      // 63C4 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
+      // Adelphel is in position about 29~30 seconds later
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '62D2', source: 'Ser Adelphel' }),
+      netRegexDe: NetRegexes.ability({ id: '62D2', source: 'Adelphel' }),
+      netRegexFr: NetRegexes.ability({ id: '62D2', source: 'Sire Adelphel' }),
+      netRegexJa: NetRegexes.ability({ id: '62D2', source: '聖騎士アデルフェル' }),
+      netRegexCn: NetRegexes.ability({ id: '62D2', source: '圣骑士阿代尔斐尔' }),
+      netRegexKo: NetRegexes.ability({ id: '62D2', source: '성기사 아델펠' }),
+      condition: (data) => data.phase === 'doorboss',
+      delaySeconds: 29.3,
+      promise: async (data, matches) => {
+        // Select Ser Adelphel
+        let adelphelData = null;
+        adelphelData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (adelphelData === null) {
+          console.error(`Ser Adelphel: null data`);
+          return;
+        }
+        if (!adelphelData.combatants) {
+          console.error(`Ser Adelphel: null combatants`);
+          return;
+        }
+        const adelphelDataLength = adelphelData.combatants.length;
+        if (adelphelDataLength !== 1) {
+          console.error(`Ser Adelphel: expected 1 combatants got ${adelphelDataLength}`);
+          return;
+        }
+
+        // Add the combatant's position
+        const adelphel = adelphelData.combatants.pop();
+        if (!adelphel)
+          throw new UnreachableCode();
+        data.adelphelDir = matchedPositionToDir(adelphel);
+      },
+      infoText: (data, _matches, output) => {
+        // Map of directions
+        const dirs: { [dir: number]: string } = {
+          0: output.unknown!(),
+          1: output.north!(),
+          2: output.unknown!(),
+          3: output.east!(),
+          4: output.unknown!(),
+          5: output.south!(),
+          6: output.unknown!(),
+          7: output.west!(),
+          8: output.unknown!(),
+        };
+        return output.adelphelLocation!({
+          dir: dirs[data.adelphelDir ?? 8],
+        });
+      },
+      run: (data) => delete data.adelphelDir,
+      outputStrings: {
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+        unknown: Outputs.unknown,
+        adelphelLocation: {
+          en: '${dir} Adelphel',
         },
       },
     },
