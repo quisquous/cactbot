@@ -23,7 +23,7 @@ export interface Data extends RaidbossData {
   spiralThrustSafeZones?: number[];
   thordanJumpCounter?: number;
   thordanDir?: number;
-  sanctityWardDir?: number;
+  sanctityWardDir?: string;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -66,8 +66,8 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker'], firstDec
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
-// Calculate combatant position
-const matchedPositionToDir = (combatant: PluginCombatantState) => {
+// Calculate combatant position in an all 8 cards/intercards
+const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
   // Positions are moved up 100 and right 100
   const y = combatant.PosY - 100;
   const x = combatant.PosX - 100;
@@ -80,6 +80,20 @@ const matchedPositionToDir = (combatant: PluginCombatantState) => {
   // Map NW = 0, N = 1, ..., W = 7
 
   return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+};
+
+// Calculate combatant position in 4 cardinals
+const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
+  // Positions are moved up 100 and right 100
+  const y = combatant.PosY - 100;
+  const x = combatant.PosX - 100;
+
+  // During the vault knights, Adelphel will jump to one of the 4 cardinals
+  // N = (100, 78), E = (122, 100), S = (100, 122), W = (78, 100)
+  //
+  // N = 0, E = 1, S = 2, W = 3
+
+  return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -242,20 +256,15 @@ const triggerSet: TriggerSet<Data> = {
         const adelphel = adelphelData.combatants.pop();
         if (!adelphel)
           throw new UnreachableCode();
-        data.adelphelDir = matchedPositionToDir(adelphel);
+        data.adelphelDir = matchedPositionTo4Dir(adelphel);
       },
       infoText: (data, _matches, output) => {
         // Map of directions
         const dirs: { [dir: number]: string } = {
-          0: output.unknown!(),
-          1: output.north!(),
-          2: output.unknown!(),
-          3: output.east!(),
-          4: output.unknown!(),
-          5: output.south!(),
-          6: output.unknown!(),
-          7: output.west!(),
-          8: output.unknown!(),
+          0: output.north!(),
+          1: output.east!(),
+          2: output.south!(),
+          3: output.west!(),
         };
         return output.adelphelLocation!({
           dir: dirs[data.adelphelDir ?? 8],
@@ -382,7 +391,7 @@ const triggerSet: TriggerSet<Data> = {
           const combatant = combatantData.combatants.pop();
           if (!combatant)
             throw new UnreachableCode();
-          spiralThrusts.push(matchedPositionToDir(combatant));
+          spiralThrusts.push(matchedPositionTo8Dir(combatant));
         }
 
         const [thrust0, thrust1, thrust2] = spiralThrusts;
@@ -490,7 +499,7 @@ const triggerSet: TriggerSet<Data> = {
         const thordan = thordanData.combatants.pop();
         if (!thordan)
           throw new UnreachableCode();
-        data.thordanDir = matchedPositionToDir(thordan);
+        data.thordanDir = matchedPositionTo8Dir(thordan);
       },
       infoText: (data, _matches, output) => {
         // Map of directions
@@ -611,22 +620,14 @@ const triggerSet: TriggerSet<Data> = {
         if (!combatantJanlenoux)
           throw new UnreachableCode();
 
-        data.sanctityWardDir = matchedPositionToDir(combatantJanlenoux);
+        // West (95, 100) or East (105, 100).
+        if (combatantJanlenoux.PosX < 100)
+          data.sanctityWardDir = output.clockwise!();
+        if (combatantJanlenoux.PosX > 100)
+          data.sanctityWardDir = output.counterclock!() ;
       },
       infoText: (data, _matches, output) => {
-        // Map of directions
-        const dirs: { [dir: number]: string } = {
-          0: output.unknown!(),
-          1: output.unknown!(), // north position
-          2: output.unknown!(),
-          3: output.counterclock!(),
-          4: output.unknown!(),
-          5: output.unknown!(), // south position
-          6: output.unknown!(),
-          7: output.clockwise!(),
-          8: output.unknown!(),
-        };
-        return dirs[data.sanctityWardDir ?? 8];
+        return data.sanctityWardDir ?? output.unknown!();
       },
       run: (data) => delete data.sanctityWardDir,
       outputStrings: {
