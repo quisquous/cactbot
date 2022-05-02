@@ -271,9 +271,10 @@ const triggerSet: TriggerSet<Data> = {
           1: output.east!(),
           2: output.south!(),
           3: output.west!(),
+          4: output.unknown!(),
         };
         return output.adelphelLocation!({
-          dir: dirs[data.adelphelDir ?? 8],
+          dir: dirs[data.adelphelDir ?? 4],
         });
       },
       run: (data) => delete data.adelphelDir,
