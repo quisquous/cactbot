@@ -1,18 +1,16 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Ser Adelphel knockback charge direction
 // TODO: Ser Adelphel left/right movement after initial charge
 // TODO: "move" call after you take your Brightwing cleave?
-// TODO: Strength of the Ward safe directions
-// TODO: Strength of the Ward Thordan direction
-// TODO: Sanctity of the Ward left/right direction, short+long/stutter movement
 // TODO: Meteor "run" call?
 
 type Phase = 'doorboss' | 'thordan';
@@ -21,6 +19,11 @@ export interface Data extends RaidbossData {
   phase: Phase;
   decOffset?: number;
   seenEmptyDimension?: boolean;
+  adelphelDir?: number;
+  spiralThrustSafeZones?: number[];
+  thordanJumpCounter?: number;
+  thordanDir?: number;
+  sanctityWardDir?: string;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -65,6 +68,36 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker'], firstDec
   // Fortunately, we don't have to worry about whether or not this is robust,
   // since we know all the IDs that will be present in the encounter.
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
+
+// Calculate combatant position in an all 8 cards/intercards
+const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
+  // Positions are moved up 100 and right 100
+  const y = combatant.PosY - 100;
+  const x = combatant.PosX - 100;
+
+  // During Thordan, knight dives start at the 8 cardinals + numerical
+  // slop on a radius=23 circle.
+  // N = (100, 77), E = (123, 100), S = (100, 123), W = (77, 100)
+  // NE = (116.26, 83.74), SE = (116.26, 116.26), SW = (83.74, 116.26), NW = (83.74, 83.74)
+  //
+  // Map NW = 0, N = 1, ..., W = 7
+
+  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+};
+
+// Calculate combatant position in 4 cardinals
+const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
+  // Positions are moved up 100 and right 100
+  const y = combatant.PosY - 100;
+  const x = combatant.PosX - 100;
+
+  // During the vault knights, Adelphel will jump to one of the 4 cardinals
+  // N = (100, 78), E = (122, 100), S = (100, 122), W = (78, 100)
+  //
+  // N = 0, E = 1, S = 2, W = 3
+
+  return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -189,6 +222,73 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Adelphel Charge Start Direction',
+      // 62D2 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
+      // Adelphel is in position about 29~30 seconds later
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '62D2', source: 'Ser Adelphel' }),
+      netRegexDe: NetRegexes.ability({ id: '62D2', source: 'Adelphel' }),
+      netRegexFr: NetRegexes.ability({ id: '62D2', source: 'Sire Adelphel' }),
+      netRegexJa: NetRegexes.ability({ id: '62D2', source: '聖騎士アデルフェル' }),
+      netRegexCn: NetRegexes.ability({ id: '62D2', source: '圣骑士阿代尔斐尔' }),
+      netRegexKo: NetRegexes.ability({ id: '62D2', source: '성기사 아델펠' }),
+      condition: (data) => data.phase === 'doorboss',
+      delaySeconds: 29.5,
+      promise: async (data, matches) => {
+        // Select Ser Adelphel
+        let adelphelData = null;
+        adelphelData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (adelphelData === null) {
+          console.error(`Ser Adelphel: null data`);
+          return;
+        }
+        if (!adelphelData.combatants) {
+          console.error(`Ser Adelphel: null combatants`);
+          return;
+        }
+        const adelphelDataLength = adelphelData.combatants.length;
+        if (adelphelDataLength !== 1) {
+          console.error(`Ser Adelphel: expected 1 combatants got ${adelphelDataLength}`);
+          return;
+        }
+
+        // Add the combatant's position
+        const adelphel = adelphelData.combatants.pop();
+        if (!adelphel)
+          throw new UnreachableCode();
+        data.adelphelDir = matchedPositionTo4Dir(adelphel);
+      },
+      infoText: (data, _matches, output) => {
+        // Map of directions
+        const dirs: { [dir: number]: string } = {
+          0: output.north!(),
+          1: output.east!(),
+          2: output.south!(),
+          3: output.west!(),
+        };
+        return output.adelphelLocation!({
+          dir: dirs[data.adelphelDir ?? 8],
+        });
+      },
+      run: (data) => delete data.adelphelDir,
+      outputStrings: {
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+        unknown: Outputs.unknown,
+        adelphelLocation: {
+          en: '${dir} Adelphel',
+        },
+      },
+    },
+    {
       id: 'DSR Playstation Fire Chains',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
@@ -240,6 +340,211 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.moveAway(),
     },
     {
+      id: 'DSR Spiral Thrust Safe Spots',
+      // 63D3 Strength of the Ward
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63D3', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '63D3', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '63D3', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '63D3', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '63D3', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '63D3', source: '기사신 토르당', capture: false }),
+      condition: (data) => data.phase === 'thordan',
+      delaySeconds: 4.5,
+      promise: async (data) => {
+        // Collect Ser Vellguine (3636), Ser Paulecrain (3637), Ser Ignasse (3638) entities
+        const vellguineLocaleNames: LocaleText = {
+          en: 'Ser Vellguine',
+        };
+
+        const paulecrainLocaleNames: LocaleText = {
+          en: 'Ser Paulecrain',
+        };
+
+        const ignasseLocaleNames: LocaleText = {
+          en: 'Ser Ignasse',
+        };
+
+        // Select the knights
+        const combatantNameKnights = [];
+        combatantNameKnights.push(vellguineLocaleNames[data.parserLang]);
+        combatantNameKnights.push(paulecrainLocaleNames[data.parserLang]);
+        combatantNameKnights.push(ignasseLocaleNames[data.parserLang]);
+
+        const spiralThrusts = [];
+        for (const combatantName of combatantNameKnights) {
+          let combatantData = null;
+          if (combatantName) {
+            combatantData = await callOverlayHandler({
+              call: 'getCombatants',
+              names: [combatantName],
+            });
+          }
+
+          // if we could not retrieve combatant data, the
+          // trigger will not work, so just resume promise here
+          if (combatantData === null) {
+            console.error(`Spiral Thrust: null data`);
+            return;
+          }
+          if (!combatantData.combatants) {
+            console.error(`Spiral Thrust: null combatants`);
+            return;
+          }
+          const combatantDataLength = combatantData.combatants.length;
+          if (combatantDataLength !== 1) {
+            console.error(`Spiral Thrust: expected 1 combatants got ${combatantDataLength}`);
+            return;
+          }
+
+          // Add the combatant's position
+          const combatant = combatantData.combatants.pop();
+          if (!combatant)
+            throw new UnreachableCode();
+          spiralThrusts.push(matchedPositionTo8Dir(combatant));
+        }
+
+        const [thrust0, thrust1, thrust2] = spiralThrusts;
+        if (thrust0 === undefined || thrust1 === undefined || thrust2 === undefined)
+          return;
+
+        // Array of dirNums
+        const dirNums = [0, 1, 2, 3, 4, 5, 6, 7];
+
+        // Remove where the knights are at and where they will go to
+        delete dirNums[(thrust0 + 4) % 8];
+        delete dirNums[thrust0];
+        delete dirNums[(thrust1 + 4) % 8];
+        delete dirNums[thrust1];
+        delete dirNums[(thrust2 + 4) % 8];
+        delete dirNums[thrust2];
+
+        // Remove null elements from the array to get remaining two dirNums
+        dirNums.forEach((dirNum) => {
+          if (dirNum !== null)
+            (data.spiralThrustSafeZones ??= []).push(dirNum);
+        });
+      },
+      infoText: (data, _matches, output) => {
+        data.spiralThrustSafeZones ??= [];
+        if (data.spiralThrustSafeZones.length !== 2) {
+          console.error(`Spiral Thrusts: expected 2 safe zones got ${data.spiralThrustSafeZones.length}`);
+          return;
+        }
+        // Map of directions
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+          8: output.unknown!(),
+        };
+        return output.safeSpots!({
+          dir1: dirs[data.spiralThrustSafeZones[0] ?? 8],
+          dir2: dirs[data.spiralThrustSafeZones[1] ?? 8],
+        });
+      },
+      run: (data) => delete data.spiralThrustSafeZones,
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        safeSpots: {
+          en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
+        },
+      },
+    },
+    {
+      id: 'DSR Dragon\'s Rage',
+      // 63C4 Is Thordan's --middle-- action, thordan jumps again and becomes untargetable, shortly after the 2nd 6C34 action
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63C4', source: 'King Thordan' }),
+      netRegexDe: NetRegexes.ability({ id: '63C4', source: 'Thordan' }),
+      netRegexFr: NetRegexes.ability({ id: '63C4', source: 'Roi Thordan' }),
+      netRegexJa: NetRegexes.ability({ id: '63C4', source: '騎神トールダン' }),
+      netRegexCn: NetRegexes.ability({ id: '63C4', source: '骑神托尔丹' }),
+      netRegexKo: NetRegexes.ability({ id: '63C4', source: '기사신 토르당' }),
+      condition: (data) => (data.phase === 'thordan' && (data.thordanJumpCounter = (data.thordanJumpCounter ?? 0) + 1) === 2),
+      delaySeconds: 0.5,
+      promise: async (data, matches) => {
+        // Select King Thordan
+        let thordanData = null;
+        thordanData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (thordanData === null) {
+          console.error(`King Thordan: null data`);
+          return;
+        }
+        if (!thordanData.combatants) {
+          console.error(`King Thordan: null combatants`);
+          return;
+        }
+        const thordanDataLength = thordanData.combatants.length;
+        if (thordanDataLength !== 1) {
+          console.error(`King Thordan: expected 1 combatants got ${thordanDataLength}`);
+          return;
+        }
+
+        // Add the combatant's position
+        const thordan = thordanData.combatants.pop();
+        if (!thordan)
+          throw new UnreachableCode();
+        data.thordanDir = matchedPositionTo8Dir(thordan);
+      },
+      infoText: (data, _matches, output) => {
+        // Map of directions
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+          8: output.unknown!(),
+        };
+        return output.thordanLocation!({
+          dir: dirs[data.thordanDir ?? 8],
+        });
+      },
+      run: (data) => delete data.thordanDir,
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        thordanLocation: {
+          en: '${dir} Thordan',
+        },
+      },
+    },
+    {
       id: 'DSR Skyward Leap',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
@@ -267,6 +572,84 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '63C6', source: '骑神托尔丹', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '63C6', source: '기사신 토르당', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'DSR Sanctity of the Ward Direction',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63E1', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '63E1', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '63E1', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '63E1', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '63E1', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '63E1', source: '기사신 토르당', capture: false }),
+      condition: (data) => data.phase === 'thordan',
+      delaySeconds: 4.7,
+      promise: async (data, _matches, output) => {
+        // The two gladiators spawn in one of two positions: West (95, 100) or East (105, 100).
+        // This triggers uses east/west location of the white knight, Ser Janlennoux (3635) to
+        // determine where both knights will dash as they each only look in two directions.
+        // Ser Janlenoux only looks towards the north (northeast or northwest).
+        // Ser Adelphel only looks towards the south (southwest or southeast).
+        // Thus we can just use one knight and get whether it is east or west for location.
+        // Callout assumes starting from DRK position, but for east/west (two-movement strategy)
+        // you can reverse the cw/ccw callout.
+        const janlenouxLocaleNames: LocaleText = {
+          en: 'Ser Janlenoux',
+        };
+
+        // Select Ser Janlenoux
+        let combatantNameJanlenoux = null;
+        combatantNameJanlenoux = janlenouxLocaleNames[data.parserLang];
+
+        let combatantDataJanlenoux = null;
+        if (combatantNameJanlenoux) {
+          combatantDataJanlenoux = await callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantNameJanlenoux],
+          });
+        }
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantDataJanlenoux === null) {
+          console.error(`Ser Janlenoux: null data`);
+          return;
+        }
+        if (!combatantDataJanlenoux.combatants) {
+          console.error(`Ser Janlenoux: null combatants`);
+          return;
+        }
+        const combatantDataJanlenouxLength = combatantDataJanlenoux.combatants.length;
+        if (combatantDataJanlenouxLength <= 1) {
+          console.error(`Ser Janlenoux: expected at least 1 combatants got ${combatantDataJanlenouxLength}`);
+          return;
+        }
+
+        // Sort to retreive last combatant in list
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const combatantJanlenoux = combatantDataJanlenoux.combatants.sort(sortCombatants).shift();
+        if (!combatantJanlenoux)
+          throw new UnreachableCode();
+
+        // West (95, 100) or East (105, 100).
+        if (combatantJanlenoux.PosX < 100)
+          data.sanctityWardDir = output.clockwise!();
+        if (combatantJanlenoux.PosX > 100)
+          data.sanctityWardDir = output.counterclock!();
+      },
+      infoText: (data, _matches, output) => {
+        return data.sanctityWardDir ?? output.unknown!();
+      },
+      run: (data) => delete data.sanctityWardDir,
+      outputStrings: {
+        clockwise: {
+          en: 'Clockwise',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+        },
+        unknown: Outputs.unknown,
+      },
     },
     {
       id: 'DSR Sanctity of the Ward Swords',
