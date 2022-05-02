@@ -5,8 +5,7 @@ import {
   PluginCombatantState,
 } from '../../../../types/event';
 import AnalyzedEncounter from '../data/AnalyzedEncounter';
-import LineEvent, { isLineEventSource } from '../data/network_log_converter/LineEvent';
-import { LineEvent0x03 } from '../data/network_log_converter/LineEvent0x03';
+import LineEvent from '../data/network_log_converter/LineEvent';
 import RaidEmulator from '../data/RaidEmulator';
 
 export default class RaidEmulatorOverlayApiHook {
@@ -59,13 +58,7 @@ export default class RaidEmulatorOverlayApiHook {
         const idNum = parseInt(id, 16);
         // nextSignificantState is a bit inefficient but given that this isn't run every tick
         // we can afford to be a bit inefficient for readability's sake
-        const combatantState = {
-          ID: idNum,
-          Name: combatant.name,
-          Level: combatant.level,
-          Job: combatant.jobId,
-          ...combatant.nextSignificantState(timestamp).toPluginState(),
-        };
+        const combatantState = combatant.nextSignificantState(timestamp).toPluginState(combatant);
         if (!hasIds && !hasNames)
           combatants.push(combatantState);
         else if (hasIds && ids.includes(idNum))
@@ -73,18 +66,6 @@ export default class RaidEmulatorOverlayApiHook {
         else if (hasNames && names.includes(combatant.name))
           combatants.push(combatantState);
       }
-      // @TODO: Move this to track properly on the Combatant object
-      combatants.forEach((c) => {
-        const lines = curEnc.encounter.logLines
-          .filter((l) => l.decEvent === 3 && isLineEventSource(l) && parseInt(l.id, 16) === c.ID);
-        const baseLine = lines[0];
-        if (baseLine) {
-          const line = baseLine as LineEvent0x03;
-          c.OwnerID = parseInt(line.ownerId);
-          c.BNpcNameID = parseInt(line.npcNameId);
-          c.BNpcID = parseInt(line.npcBaseId);
-        }
-      });
       res({
         combatants: combatants,
       });
