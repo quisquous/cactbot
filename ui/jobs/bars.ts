@@ -731,8 +731,15 @@ export class Bars {
 
     if (!canShow || showAfterMs > 0) {
       this.o.leftBuffsList.removeElement('foodbuff');
-      if (canShow)
-        return window.setTimeout(this._updateFoodBuff.bind(this, o), showAfterMs);
+      if (canShow) {
+        return window.setTimeout(
+          this._updateFoodBuff.bind(this, {
+            ...o,
+            lastCalledMs: Date.now(),
+          }),
+          showAfterMs,
+        );
+      }
     } else {
       const div = makeAuraTimerIcon(
         'foodbuff',
