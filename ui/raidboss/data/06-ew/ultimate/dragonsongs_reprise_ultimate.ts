@@ -285,6 +285,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         adelphelLocation: {
           en: '${dir} Adelphel',
+          de: '${dir} Adelphel',
         },
       },
     },
@@ -355,14 +356,29 @@ const triggerSet: TriggerSet<Data> = {
         // Collect Ser Vellguine (3636), Ser Paulecrain (3637), Ser Ignasse (3638) entities
         const vellguineLocaleNames: LocaleText = {
           en: 'Ser Vellguine',
+          de: 'Vellguine',
+          fr: 'sire Vellguine',
+          ja: '聖騎士ヴェルギーン',
+          cn: '圣骑士韦尔吉纳',
+          ko: '성기사 벨긴',
         };
 
         const paulecrainLocaleNames: LocaleText = {
           en: 'Ser Paulecrain',
+          de: 'Paulecrain',
+          fr: 'sire Paulecrain',
+          ja: '聖騎士ポールクラン',
+          cn: '圣骑士波勒克兰',
+          ko: '성기사 폴르크랭',
         };
 
         const ignasseLocaleNames: LocaleText = {
           en: 'Ser Ignasse',
+          de: 'Ignasse',
+          fr: 'sire Ignassel',
+          ja: '聖騎士イニアセル',
+          cn: '圣骑士伊尼亚斯',
+          ko: '성기사 이냐스',
         };
 
         // Select the knights
@@ -541,6 +557,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         thordanLocation: {
           en: '${dir} Thordan',
+          de: '${dir} Thordan',
         },
       },
     },
@@ -595,6 +612,11 @@ const triggerSet: TriggerSet<Data> = {
         // you can reverse the cw/ccw callout.
         const janlenouxLocaleNames: LocaleText = {
           en: 'Ser Janlenoux',
+          de: 'Janlenoux',
+          fr: 'sire Janlenoux',
+          ja: '聖騎士ジャンルヌ',
+          cn: '圣骑士让勒努',
+          ko: '성기사 장르누',
         };
 
         // Select Ser Janlenoux
@@ -644,9 +666,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         clockwise: {
           en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
         },
         counterclock: {
           en: 'Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn',
         },
         unknown: Outputs.unknown,
       },
