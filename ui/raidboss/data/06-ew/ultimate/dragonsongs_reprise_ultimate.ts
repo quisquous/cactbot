@@ -177,6 +177,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'In + Tank Tether',
           de: 'Rein + Tank-Verbindung',
           fr: 'Intérieur + Liens tanks',
+          ko: '안으로 + 탱커 선 가로채기',
         },
         in: Outputs.in,
       },
@@ -218,6 +219,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Slash on YOU',
           de: 'Schlag auf DIR',
           fr: 'Slash sur VOUS',
+          ko: '고차원 대상자',
         },
       },
     },
@@ -285,6 +287,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         adelphelLocation: {
           en: '${dir} Adelphel',
+          ko: '아델펠 ${dir}',
         },
       },
     },
@@ -309,21 +312,25 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Red Circle',
           de: 'Roter Kreis',
           fr: 'Cercle rouge',
+          ko: '빨강 원형징',
         },
         triangle: {
           en: 'Green Triangle',
           de: 'Grünes Dreieck',
           fr: 'Triangle vert',
+          ko: '초록 세모징',
         },
         square: {
           en: 'Purple Square',
           de: 'Lilanes Viereck',
           fr: 'Carré violet',
+          ko: '보라 네모징',
         },
         x: {
           en: 'Blue X',
           de: 'Blaues X',
           fr: 'Croix bleue',
+          ko: '블루 X징',
         },
       },
     },
@@ -355,14 +362,17 @@ const triggerSet: TriggerSet<Data> = {
         // Collect Ser Vellguine (3636), Ser Paulecrain (3637), Ser Ignasse (3638) entities
         const vellguineLocaleNames: LocaleText = {
           en: 'Ser Vellguine',
+          ko: '성기사 벨긴',
         };
 
         const paulecrainLocaleNames: LocaleText = {
           en: 'Ser Paulecrain',
+          ko: '성기사 폴르크랭',
         };
 
         const ignasseLocaleNames: LocaleText = {
           en: 'Ser Ignasse',
+          ko: '성기사 이냐스',
         };
 
         // Select the knights
@@ -541,6 +551,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         thordanLocation: {
           en: '${dir} Thordan',
+          ko: '토르당 ${dir}',
         },
       },
     },
@@ -559,6 +570,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Leap on YOU',
           de: 'Sprung auf DIR',
           fr: 'Saut sur VOUS',
+          ko: '광역 대상자',
         },
       },
     },
@@ -595,6 +607,7 @@ const triggerSet: TriggerSet<Data> = {
         // you can reverse the cw/ccw callout.
         const janlenouxLocaleNames: LocaleText = {
           en: 'Ser Janlenoux',
+          ko: '성기사 장르누',
         };
 
         // Select Ser Janlenoux
@@ -644,9 +657,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         clockwise: {
           en: 'Clockwise',
+          ko: '시계방향',
         },
         counterclock: {
           en: 'Counterclockwise',
+          ko: '반시계방향',
         },
         unknown: Outputs.unknown,
       },
@@ -667,10 +682,12 @@ const triggerSet: TriggerSet<Data> = {
         sword1: {
           en: '1',
           de: '1',
+          ko: '1',
         },
         sword2: {
           en: '2',
           de: '2',
+          ko: '1',
         },
       },
     },
@@ -705,11 +722,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Tank/Healer Meteors',
           de: 'Tank/Heiler Meteore',
           fr: 'Météores Tank/Healer',
+          ko: '탱/힐 메테오',
         },
         dpsMeteors: {
           en: 'DPS Meteors',
           de: 'DDs Meteore',
           fr: 'Météores DPS',
+          ko: '딜러 메테오',
         },
       },
     },
