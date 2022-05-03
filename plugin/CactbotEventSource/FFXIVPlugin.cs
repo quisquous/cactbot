@@ -2,6 +2,7 @@
 using System;
 using CactbotEventSource.loc;
 using System.Diagnostics;
+using RainbowMage.OverlayPlugin;
 
 namespace Cactbot {
   public class FFXIVPlugin {
@@ -18,7 +19,7 @@ namespace Cactbot {
         var file = plugin.pluginFile.Name;
         if (file == "FFXIV_ACT_Plugin.dll") {
           if (ffxiv_plugin_ != null) {
-            logger_.LogWarning(Strings.MultiplePluginsLoadedErrorMessage);
+            logger_.Log(LogLevel.Warning, Strings.MultiplePluginsLoadedErrorMessage);
           }
           ffxiv_plugin_ = plugin.pluginObj;
         }
@@ -46,7 +47,7 @@ namespace Cactbot {
 
     public int GetLanguageId() {
       if (ffxiv_plugin_ == null) {
-        logger_.LogError(Strings.NoFFXIVACTPluginFoundErrorMessage);
+        logger_.Log(LogLevel.Error, Strings.NoFFXIVACTPluginFoundErrorMessage);
         return 0;
       }
 
@@ -57,7 +58,7 @@ namespace Cactbot {
         dynamic plugin_derived = ffxiv_plugin_;
         return (int)plugin_derived.DataRepository.GetSelectedLanguageID();
       } catch (Exception e) {
-        logger_.LogError(Strings.DeterminingLanguageErrorMessage, e.ToString());
+        logger_.Log(LogLevel.Error, Strings.DeterminingLanguageErrorMessage, e.ToString());
         return 0;
       }
     }
@@ -69,7 +70,7 @@ namespace Cactbot {
         dynamic plugin_derived = ffxiv_plugin_;
         plugin_derived.DataSubscription.ProcessChanged += del;
       } catch (Exception e) {
-        logger_.LogError(Strings.RegisteringProcessErrorMessage, e.ToString());
+        logger_.Log(LogLevel.Error, Strings.RegisteringProcessErrorMessage, e.ToString());
       }
     }
 
@@ -83,7 +84,7 @@ namespace Cactbot {
         var process = plugin_derived.DataRepository.GetCurrentFFXIVProcess();
         return process;
       } catch (Exception e) {
-        logger_.LogError(Strings.GetCurrentProcessErrorMessage, e.ToString());
+        logger_.Log(LogLevel.Error, Strings.GetCurrentProcessErrorMessage, e.ToString());
         return null;
       }
     }
