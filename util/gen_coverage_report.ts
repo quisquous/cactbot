@@ -92,7 +92,6 @@ const processRaidbossCoverage = async (manifest: string, coverage: Coverage) => 
           continue;
       } catch (e) {
         console.error(e);
-        continue;
       }
     }
 

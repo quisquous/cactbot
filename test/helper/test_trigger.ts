@@ -671,6 +671,13 @@ const testTriggerFile = (file: string) => {
       }
     }
   });
+
+  it('has valid timeline file', () => {
+    if (triggerSet.timelineFile) {
+      const timelineFile = path.join(path.dirname(file), triggerSet.timelineFile);
+      assert.isTrue(fs.existsSync(timelineFile), `${triggerSet.timelineFile} does not exist`);
+    }
+  });
 };
 
 const testTriggerFiles = (triggerFiles: string[]): void => {
