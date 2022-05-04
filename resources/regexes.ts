@@ -137,25 +137,17 @@ const parseHelper = <T extends LogDefinitionTypes>(
       : matchDefault;
     const fieldValue = fields[keyStr]?.value?.toString() ?? fieldDefault;
 
-    const fieldOptional = value?.optional;
-
     if (fieldName) {
-      const regexField = Regexes.maybeCapture(
+      str += Regexes.maybeCapture(
         // more accurate type instead of `as` cast
         // maybe this function needs a refactoring
         capture,
         fieldName,
         params[fieldName],
         fieldValue,
-      ) +
-        separator;
-
-      if (fieldOptional)
-        str += Regexes.optional(regexField);
-      else
-        str += regexField;
+      );
     } else {
-      str += fieldValue + separator;
+      str += fieldValue;
     }
 
     // Stop if we're not capturing and don't care about future fields.
