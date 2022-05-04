@@ -5,69 +5,32 @@ import Splitter from './splitter';
 import { EncounterCollector } from './encounter_tools';
 import ZoneId from '../../resources/zone_id';
 import argparse from 'argparse';
+import { LogUtilArgParse } from './arg_parser';
 
 // TODO: add options for not splitting / not anonymizing.
-const parser = new argparse.ArgumentParser({
-  addHelp: true,
-});
-parser.addArgument(['-f', '--file'], {
-  required: true,
-  help: 'File to analyze',
-});
-parser.addArgument(['--force'], {
-  nargs: 0,
-  help: 'Overwrite files when exporting',
-});
-parser.addArgument(['-lf', '--search-fights'], {
-  nargs: '?',
-  defaultValue: -1,
-  type: 'int',
-  help: 'Fight in log to use, e.g. \'1\'. ' +
-    'If no number is specified, returns a list of fights.',
-});
-parser.addArgument(['-lz', '--search-zones'], {
-  nargs: '?',
-  defaultValue: -1,
-  type: 'int',
-  help: 'Zone in log to use, e.g. \'1\'. ' +
-    'If no number is specified, returns a list of zones.',
-});
-parser.addArgument(['-fr', '--fight-regex'], {
-  nargs: '?',
-  defaultValue: -1,
-  type: 'string',
-  help: 'Export all fights that match this regex',
-});
-parser.addArgument(['-zr', '--zone-regex'], {
-  nargs: '?',
-  defaultValue: -1,
-  type: 'string',
-  help: 'Export all zones that match this regex',
-});
+const timelineParse = new LogUtilArgParse();
 
-const args = parser.parseArgs();
+const args = timelineParse.args;
 
+const printHelpAndExit = (errString) => {
+  console.error(errString);
+  timelineParse.parser.printHelp();
+  process.exit(-1);
+};
+
+if (args.file === null && args.timeline === null)
+  printHelpAndExit('Error: Must specify at least one of -f, -t\n');
 let numExclusiveArgs = 0;
 for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']) {
-  if (args[opt] !== -1)
+  if (args[opt] !== null)
     numExclusiveArgs++;
 }
-if (numExclusiveArgs !== 1) {
-  console.error('Error: Must specify exactly one of -lf, -lz, -fr\n');
-  parser.printHelp();
-  process.exit(-1);
-}
-
-if (args['fight_regex'] === null) {
-  console.error('Error: -fr must specify a regex\n');
-  parser.printHelp();
-  process.exit(-1);
-}
-if (args['zone_regex'] === null) {
-  console.error('Error: -zr must specify a regex\n');
-  parser.printHelp();
-  process.exit(-1);
-}
+if (numExclusiveArgs !== 1)
+  printHelpAndExit('Error: Must specify exactly one of -lf, -lz, or -fr\n');
+if (args['fight_regex'] === -1)
+  printHelpAndExit('Error: -fr must specify a regex\n');
+if (args['zone_regex'] === -1)
+  printHelpAndExit('Error: -zr must specify a regex\n');
 
 const logFileName = args.file;
 let exitCode = 0;
@@ -113,10 +76,15 @@ const generateFileName = (fightOrZone) => {
   else
     seal = '';
 
-  const idToZoneName = {};
-  for (const zoneName in ZoneId)
-    idToZoneName[ZoneId[zoneName]] = zoneName;
-  const zoneName = idToZoneName[zoneId];
+  let zoneName;
+  if (fightOrZone.zoneName || fightOrZone.name) {
+    zoneName = fightOrZone.zoneName ?? fightOrZone.name;
+  } else {
+    const idToZoneName = {};
+    for (const zoneName in ZoneId)
+      idToZoneName[ZoneId[zoneName]] = zoneName;
+    zoneName = idToZoneName[zoneId];
+  }
 
   const wipeStr = fightOrZone.endType === 'Wipe' ? '_wipe' : '';
   return `${zoneName}${seal}_${dateStr}_${timeStr}_${duration}${wipeStr}.log`;
@@ -314,25 +282,25 @@ const writeFile = (outputFile, startLine, endLine) => {
 
   const collector = await makeCollectorFromPrepass(logFileName);
 
-  if (args['search_fights'] === null) {
+  if (args['search_fights'] === -1) {
     printCollectedFights(collector);
     process.exit(0);
   }
-  if (args['search_zones'] === null) {
+  if (args['search_zones'] === -1) {
     printCollectedZones(collector);
     process.exit(0);
   }
 
   // This utility prints 1-indexed fights and zones, so adjust - 1.
-  if (args['search_fights'] !== -1) {
+  if (args['search_fights']) {
     const fight = collector.fights[args['search_fights'] - 1];
     await writeFile(generateFileName(fight), fight.startLine, fight.endLine);
     process.exit(exitCode);
-  } else if (args['search_zones'] !== -1) {
+  } else if (args['search_zones']) {
     const zone = collector.zones[args['search_zones'] - 1];
     await writeFile(generateFileName(zone), zone.startLine, zone.endLine);
     process.exit(exitCode);
-  } else if (args['fight_regex'] !== -1) {
+  } else if (args['fight_regex']) {
     const regex = new RegExp(args['fight_regex'], 'i');
     for (const fight of collector.fights) {
       if (fight.sealName) {
@@ -344,7 +312,7 @@ const writeFile = (outputFile, startLine, endLine) => {
       await writeFile(generateFileName(fight), fight.startLine, fight.endLine);
     }
     process.exit(exitCode);
-  } else if (args['zone_regex'] !== -1) {
+  } else if (args['zone_regex']) {
     const regex = new RegExp(args['zone_regex'], 'i');
     for (const zone of collector.zones) {
       if (!zone.name.match(regex))
