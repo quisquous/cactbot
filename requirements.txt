@@ -1,6 +1,6 @@
 # Linting, formatting
-black==19.10b0
-pylint==2.5.3
+black==22.3.0
+pylint==2.13.7
 
 # dependencies for utils/*.py
 PyYAML
