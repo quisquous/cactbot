@@ -34,14 +34,14 @@ const defaultParams = <
 >(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
   include ??= Object.keys(logDefinitionsVersions[version][type].fields);
   const params: { [index: number]: { field: string; value?: string; optional: boolean } } = {};
-  const optionalFields: number[] = [...logDefinitionsVersions[version][type].optionalFields];
+  const firstOptionalField = logDefinitionsVersions[version][type].firstOptionalField;
 
   for (const [prop, index] of Object.entries(logDefinitionsVersions[version][type].fields)) {
     if (!include.includes(prop))
       continue;
     const param: { field: string; value?: string; optional: boolean } = {
       field: prop,
-      optional: optionalFields.includes(index),
+      optional: firstOptionalField !== undefined && index >= firstOptionalField,
     };
     if (prop === 'type')
       param.value = logDefinitionsVersions[version][type].type;
