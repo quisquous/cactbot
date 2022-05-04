@@ -5,6 +5,7 @@ import Combatant from './Combatant';
 import CombatantJobSearch from './CombatantJobSearch';
 import CombatantState from './CombatantState';
 import LineEvent, {
+  isLineEvent0x03,
   isLineEventAbility,
   isLineEventJobLevel,
   isLineEventSource,
@@ -112,6 +113,15 @@ export default class CombatantTracker {
     if (isLineEventAbility(line)) {
       if (!combatant.job && !line.id.startsWith('4') && line.abilityId !== undefined)
         combatant.job = CombatantJobSearch.getJob(line.abilityId);
+    }
+
+    if (isLineEvent0x03(line)) {
+      if (line.npcBaseId !== undefined)
+        combatant.npcBaseId = parseInt(line.npcBaseId);
+      if (line.npcNameId !== undefined)
+        combatant.npcNameId = parseInt(line.npcNameId);
+      if (line.ownerId !== undefined)
+        combatant.ownerId = parseInt(line.ownerId);
     }
 
     combatant.pushState(
