@@ -711,7 +711,7 @@ const latestLogDefinitions = {
     },
     firstUnknownField: 20,
     canAnonymize: true,
-    optionalFields: [15, 16, 17, 18, 19, 20],
+    optionalFields: [18, 19, 20],
   },
   NetworkUpdateHP: {
     type: '39',
