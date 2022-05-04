@@ -1,5 +1,7 @@
 import { PluginCombatantState } from '../../../../types/event';
 
+import Combatant from './Combatant';
+
 export default class CombatantState {
   posX: number;
   posY: number;
@@ -52,8 +54,12 @@ export default class CombatantState {
     );
   }
 
-  toPluginState(): PluginCombatantState {
+  toPluginState(combatant: Combatant): PluginCombatantState {
     return {
+      ID: parseInt(combatant.id, 16),
+      Name: combatant.name,
+      Level: combatant.level,
+      Job: combatant.jobId,
       PosX: this.posX,
       PosY: this.posY,
       PosZ: this.posZ,
@@ -62,6 +68,9 @@ export default class CombatantState {
       MaxHP: this.maxHp,
       CurrentMP: this.mp,
       MaxMP: this.maxMp,
+      OwnerID: combatant.ownerId,
+      BNpcNameID: combatant.npcNameId,
+      BNpcID: combatant.npcBaseId,
     };
   }
 }
