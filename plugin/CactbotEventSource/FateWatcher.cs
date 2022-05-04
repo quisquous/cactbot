@@ -7,10 +7,12 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using RainbowMage.OverlayPlugin;
 
 namespace Cactbot {
   public class FateWatcher {
     private CactbotEventSource client_;
+    private ILogger logger_;
     private string region_;
     private IDataSubscription subscription;
     bool ready;
@@ -164,8 +166,9 @@ namespace Cactbot {
     private static Dictionary<int, int> fates;
     private static Dictionary<int, CEDirectorData> ces;
 
-    public FateWatcher(CactbotEventSource client, string language) {
+    public FateWatcher(CactbotEventSource client, string language, ILogger logger) {
       client_ = client;
+      logger_ = logger;
       if (language == "ko")
         region_ = "ko";
       else if (language == "cn")
@@ -195,7 +198,7 @@ namespace Cactbot {
           try {
             subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
           } catch (Exception ex) {
-            client_.LogError(ex.ToString());
+            logger.Log(LogLevel.Error, ex.ToString());
           }
         }
 
@@ -208,8 +211,8 @@ namespace Cactbot {
         messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
         ready = true;
       } catch (Exception e) {
-        client_.LogError("Error loading OPCodes, FATE info will be unavailable.");
-        client_.LogError("{0}\r\n{1}", e.Message, e.StackTrace);
+        logger.Log(LogLevel.Error, "Error loading OPCodes, FATE info will be unavailable.");
+        logger.Log(LogLevel.Error, "{0}\r\n{1}", e.Message, e.StackTrace);
       }
     }
 
