@@ -205,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '62DC', source: '聖騎士グリノー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '62DC', source: '圣骑士格里诺', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '62DC', source: '성기사 그리노', capture: false }),
-      condition: (data) => data.phase === 'doorboss' && data.adelphelDir === undefined,
+      condition: (data) => data.phase !== 'doorboss' || data.adelphelDir === undefined,
       response: Responses.knockback(),
     },
     {
