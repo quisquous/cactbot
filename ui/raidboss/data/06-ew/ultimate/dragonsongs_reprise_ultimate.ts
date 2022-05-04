@@ -818,6 +818,20 @@ const triggerSet: TriggerSet<Data> = {
         meteorOnYou: Outputs.meteorOnYou,
       },
     },
+    {
+      id: 'DSR Gnash and Lash',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
+      durationSeconds: 8,
+      response: Responses.getOutThenIn(),
+    },
+    {
+      id: 'DSR Lash and Gnash',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
+      durationSeconds: 8,
+      response: Responses.getInThenOut(),
+    },
   ],
   timelineReplace: [
     {
