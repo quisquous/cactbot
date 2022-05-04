@@ -19,6 +19,8 @@ export interface Data extends RaidbossData {
   phase: Phase;
   decOffset?: number;
   seenEmptyDimension?: boolean;
+  adelphelId?: string;
+  firstAdelphelJump: boolean;
   adelphelDir?: number;
   spiralThrustSafeZones?: number[];
   thordanJumpCounter?: number;
@@ -106,6 +108,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       phase: 'doorboss',
+      firstAdelphelJump: true,
     };
   },
   triggers: [
@@ -202,6 +205,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '62DC', source: '聖騎士グリノー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '62DC', source: '圣骑士格里诺', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '62DC', source: '성기사 그리노', capture: false }),
+      condition: (data) => data.phase === 'doorboss' && data.adelphelDir === undefined,
       response: Responses.knockback(),
     },
     {
@@ -224,9 +228,8 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Adelphel Charge Start Direction',
+      id: 'DSR Adelphel ID Tracker',
       // 62D2 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
-      // Adelphel is in position about 29~30 seconds later
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62D2', source: 'Ser Adelphel' }),
       netRegexDe: NetRegexes.ability({ id: '62D2', source: 'Adelphel' }),
@@ -234,14 +237,22 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ id: '62D2', source: '聖騎士アデルフェル' }),
       netRegexCn: NetRegexes.ability({ id: '62D2', source: '圣骑士阿代尔斐尔' }),
       netRegexKo: NetRegexes.ability({ id: '62D2', source: '성기사 아델펠' }),
-      condition: (data) => data.phase === 'doorboss',
-      delaySeconds: 29.5,
+      run: (data, matches) => data.adelphelId = matches.sourceId,
+    },
+    {
+      id: 'DSR Adelphel KB Direction',
+      type: 'NameToggle',
+      netRegex: NetRegexes.nameToggle({ toggle: '01' }),
+      condition: (data, matches) => data.phase === 'doorboss' && matches.id === data.adelphelId && data.firstAdelphelJump,
+      // Delay 0.1s here to prevent any race condition issues with getCombatants
+      delaySeconds: 0.1,
       promise: async (data, matches) => {
+        data.firstAdelphelJump = false;
         // Select Ser Adelphel
         let adelphelData = null;
         adelphelData = await callOverlayHandler({
           call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
+          ids: [parseInt(matches.id, 16)],
         });
 
         // if we could not retrieve combatant data, the
@@ -267,19 +278,18 @@ const triggerSet: TriggerSet<Data> = {
         data.adelphelDir = matchedPositionTo4Dir(adelphel);
       },
       infoText: (data, _matches, output) => {
-        // Map of directions
+        // Map of directions, reversed to call out KB direction
         const dirs: { [dir: number]: string } = {
-          0: output.north!(),
-          1: output.east!(),
-          2: output.south!(),
-          3: output.west!(),
+          0: output.south!(),
+          1: output.west!(),
+          2: output.north!(),
+          3: output.east!(),
           4: output.unknown!(),
         };
         return output.adelphelLocation!({
           dir: dirs[data.adelphelDir ?? 4],
         });
       },
-      run: (data) => delete data.adelphelDir,
       outputStrings: {
         north: Outputs.north,
         east: Outputs.east,
@@ -287,10 +297,51 @@ const triggerSet: TriggerSet<Data> = {
         west: Outputs.west,
         unknown: Outputs.unknown,
         adelphelLocation: {
-          en: '${dir} Adelphel',
-          de: '${dir} Adelphel',
-          ko: '아델펠 ${dir}',
+          en: 'Go ${dir} (knockback)',
+          de: 'Geh ${dir} (Rückstoß)',
+          cn: '去 ${dir} (击退)',
+          ko: '${dir} (넉백)',
         },
+      },
+    },
+    {
+      id: 'DSR Adelphel Move Direction',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '62CE', source: 'Ser Adelphel' }),
+      netRegexDe: NetRegexes.ability({ id: '62CE', source: 'Adelphel' }),
+      netRegexFr: NetRegexes.ability({ id: '62CE', source: 'Sire Adelphel' }),
+      netRegexJa: NetRegexes.ability({ id: '62CE', source: '聖騎士アデルフェル' }),
+      netRegexCn: NetRegexes.ability({ id: '62CE', source: '圣骑士阿代尔斐尔' }),
+      netRegexKo: NetRegexes.ability({ id: '62CE', source: '성기사 아델펠' }),
+      suppressSeconds: 10,
+      infoText: (data, matches, output) => {
+        const heading = parseFloat(matches.heading);
+        // There's probably a better way to handle this...
+        switch (data.adelphelDir) {
+          case 0: // North
+            if (heading < 0)
+              return output.left!();
+            return output.right!();
+          case 1: // East
+            if (heading < -1.57)
+              return output.left!();
+            return output.right!();
+          case 2: // South
+            if (heading > 0)
+              return output.left!();
+            return output.right!();
+          case 3: // West
+            if (heading > 1.57)
+              return output.left!();
+            return output.right!();
+        }
+        return output.unknown!();
+      },
+      run: (data) => delete data.adelphelDir,
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+        unknown: Outputs.unknown,
       },
     },
     {
