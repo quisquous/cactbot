@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Auf der leuchtende Platte stehen',
           fr: 'Marchez sur la plaque qui brille',
           cn: '踩发光地板',
+          ko: '빛나는 발판 밟기',
         },
       },
     },
