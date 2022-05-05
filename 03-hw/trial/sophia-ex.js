@@ -85,7 +85,7 @@ Options.Triggers.push({
           fr: 'Évitez l\'attaque Charge',
           ja: '突進に避け',
           cn: '躲避击飞',
-          ko: '돌진 공격 피하기',
+          ko: '대쉬 공격 피하기',
         },
       },
     },

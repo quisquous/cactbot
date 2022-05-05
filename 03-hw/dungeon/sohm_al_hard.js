@@ -174,7 +174,7 @@ Options.Triggers.push({
           fr: 'Déposez la zone au sol à l\'extérieur',
           ja: '外周に置く',
           cn: '人群外放圈圈',
-          ko: '바깥쪽으로 장판 유도하기',
+          ko: '용암지대 생성 대상자',
         },
       },
     },
