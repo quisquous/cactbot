@@ -39,5 +39,16 @@
     "tsconfig.json": "tsconfig.*.json,tsconfig-for-webpack.json",
     ".gitignore": ".gitattributes",
     "README.md": "CONTRIBUTING.md,CODE_OF_CONDUCT.md,LICENSE"
+  },
+  "explorer.experimental.fileNesting.enabled": true,
+  "explorer.experimental.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "package.json": ".npmrc,package-lock.json, yarn.lock,.editorconfig,.eslintrc.cjs,.markdownlint.yml,.mocharc.cjs",
+    "tsconfig.json": "tsconfig.*.json,tsconfig-for-webpack.json",
+    ".gitignore": ".gitattributes",
+    "README.md": "CONTRIBUTING.md,CODE_OF_CONDUCT.md,LICENSE"
   }
 }
