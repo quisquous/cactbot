@@ -28,8 +28,10 @@ hideall "--sync--"
 44.8 "Hyperdimensional Slash 1" sync / 1[56]:[^:]*:(Ser Grinnaux|Ser Charibert):62D7:/
 50.7 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:6315:/
 51.9 "Hyperdimensional Slash 2" sync / 1[56]:[^:]*:(Ser Grinnaux|Ser Charibert):62D7:/
+54.8 "--targetable--"
 59.8 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 60.9 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
+67.5 "--untargetable--"
 69.1 "Execution" sync / 1[56]:[^:]*:Ser Adelphel:62D5:/
 70.8 "--targetable--"
 86.2 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
