@@ -5,7 +5,7 @@
   color: #fff;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(0 0 0 / 10%);
   text-shadow:
     1px -1px 0 #000,
     -1px 1px 0 #000,
@@ -23,7 +23,7 @@
 }
 
 #cast-duration::before {
-  content: 'Cast time';
+  content: "Cast time";
   display: block;
   font-size: 0.5em;
 }
@@ -34,7 +34,7 @@
 }
 
 #place-name::before {
-  content: '@ ';
+  content: "@ ";
 }
 
 #fisher-depth {
@@ -65,7 +65,7 @@
 }
 
 #fisher-arrow::before {
-  content: ' ';
+  content: " ";
   display: block;
   position: absolute;
   width: 360%;

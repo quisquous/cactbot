@@ -206,7 +206,7 @@ export class ASTComponent extends BaseComponent {
       elem.classList.remove('Solar', 'Lunar', 'Celestial');
       const asign = sign[i];
       if (asign)
-        elem.classList.add(asign);
+        elem.classList.add(asign.toLowerCase());
     });
   }
 
