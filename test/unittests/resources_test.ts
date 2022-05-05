@@ -25,7 +25,7 @@ describe('resource tests', () => {
       for (const zoneId of contentList) {
         if (zoneId === ZoneId.MatchAll)
           return;
-        assert(
+        assert.isTrue(
           zoneId in zoneIdToName,
           `Bad ZoneId in content_list.ts, idx: ${idx}, prev: ${prevValue}`,
         );
@@ -38,7 +38,7 @@ describe('resource tests', () => {
       // MatchAll is the one synthetic zone id, so does not count here.
       if (zoneId === ZoneId.MatchAll)
         return;
-      assert(
+      assert.isTrue(
         zoneId in ZoneInfo,
         `Missing ZoneInfo for content_list.ts, idx: ${idx}, id: ${zoneIdToName[zoneId] ?? ''}`,
       );
@@ -49,7 +49,7 @@ describe('resource tests', () => {
     contentList.forEach((zoneId, idx) => {
       if (zoneId === ZoneId.MatchAll)
         return;
-      assert(
+      assert.isTrue(
         !seenZoneIds.has(zoneId),
         `Duplicate ZoneId in content_list.ts, idx: ${idx}, id: ${zoneIdToName[zoneId] ?? ''}`,
       );
