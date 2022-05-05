@@ -14,6 +14,7 @@ Options.Triggers.push({
           de: 'Frucht essen',
           fr: 'Mangez un fruit',
           cn: '吃果实',
+          ko: '열매 먹기',
         },
       },
     },
