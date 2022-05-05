@@ -76,7 +76,7 @@ html {
 }
 
 .overlay-header::before {
-  content: '';
+  content: "";
   box-sizing: border-box;
   margin-right: 5px;
   width: 10px;
@@ -131,7 +131,7 @@ html {
 }
 
 .trigger-expansion-header::before {
-  content: '';
+  content: "";
   box-sizing: border-box;
   margin-right: 5px;
   width: 6px;
@@ -165,7 +165,7 @@ html {
 }
 
 .trigger-file-header::before {
-  content: '';
+  content: "";
   box-sizing: border-box;
   margin-right: 5px;
   width: 6px;
@@ -206,7 +206,7 @@ html {
 }
 
 .timeline-edit-header::before {
-  content: '';
+  content: "";
   box-sizing: border-box;
   margin-right: 5px;
   width: 6px;
@@ -315,8 +315,7 @@ html {
 .trigger-details {
   display: grid;
   grid-template-columns: repeat(1, auto 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 3px;
+  grid-gap: 3px 10px;
 }
 
 .trigger-label {
@@ -332,7 +331,7 @@ html {
 }
 
 .trigger-outputstring-label::before {
-  content: '\1F514';
+  content: "\1F514";
   color: dimgrey;
 }
 
@@ -376,28 +375,28 @@ html {
   align-items: center;
 }
 
-input[type=text] {
+input[type="text"] {
   padding: 3px;
   width: 40px;
   text-align: right;
 }
 
-.trigger-duration > input[type=text] {
+.trigger-duration > input[type="text"] {
   width: 75px;
   text-align: left;
 }
 
-.trigger-before-seconds > input[type=text] {
+.trigger-before-seconds > input[type="text"] {
   width: 60px;
   text-align: left;
 }
 
-.trigger-outputstring > input[type=text] {
+.trigger-outputstring > input[type="text"] {
   width: 200px;
   text-align: left;
 }
 
-input[type=submit] {
+input[type="submit"] {
   padding: 3px;
 }
 

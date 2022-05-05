@@ -15,7 +15,7 @@
   </head>
   <body class="bg-secondary">
     <div class="modal-backdrop hide"></div>
-    <div class="modal translate importProgressModal text-dark" tabindex="-1" role="dialog">
+    <div class="modal translate import-progress-modal text-dark" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="container-fluid d-flex flex-column flex-fill h-100">
-      <div class="row my-3 progressBarRow">
+      <div class="row my-3 progress-bar-row">
         <div class="col-auto">
           <button
             class="btn btn-primary h-auto play"
@@ -109,16 +109,16 @@
               aria-valuemax="0"
             ></div>
           </div>
-          <div class="playerTriggers">
-            <div class="triggerBar player0"></div>
-            <div class="triggerBar player1"></div>
-            <div class="triggerBar player2"></div>
-            <div class="triggerBar player3"></div>
-            <div class="triggerBar player4"></div>
-            <div class="triggerBar player5"></div>
-            <div class="triggerBar player6"></div>
-            <div class="triggerBar player7"></div>
-            <div class="engageIndicator d-none"></div>
+          <div class="player-triggers">
+            <div class="trigger-bar player0"></div>
+            <div class="trigger-bar player1"></div>
+            <div class="trigger-bar player2"></div>
+            <div class="trigger-bar player3"></div>
+            <div class="trigger-bar player4"></div>
+            <div class="trigger-bar player5"></div>
+            <div class="trigger-bar player6"></div>
+            <div class="trigger-bar player7"></div>
+            <div class="engage-indicator d-none"></div>
           </div>
         </div>
         <div class="col-auto">
@@ -137,27 +137,27 @@
           </span>
         </div>
       </div>
-      <div class="row mainContentRow flex-fill">
+      <div class="row main-content-row flex-fill">
         <div class="col-5 raidbossTimelineColumn">
           <div class="d-flex flex-column flex-fill">
             <div class="timer-bar-container"></div>
             <div class="popup-text-container-outer"></div>
           </div>
         </div>
-        <div class="col-5 triggerInfoColumn border-dark border-left border-right">
+        <div class="col-5 trigger-info-column border-dark border-left border-right">
           <div class="triggerCheckboxes">
-            <div class="triggerHideSkippedContainer translate" data-toggle="tooltip" title="">
+            <div class="trigger-hide-skipped-container translate" data-toggle="tooltip" title="">
               <input type="checkbox" name="hideSkipped" class="triggerHideSkipped translate" checked="checked" id="hideSkipped">
               <label for="hideSkipped"></label>
             </div>
-            <div class="triggerHideCollectorContainer translate" data-toggle="tooltip" title="">
+            <div class="trigger-hide-collector-container translate" data-toggle="tooltip" title="">
               <input type="checkbox" name="hideCollector" class="triggerHideCollector translate" checked="checked" id="hideCollector">
               <label for="hideCollector"></label>
             </div>
             <div style="clear: both"></div>
           </div>
         </div>
-        <div class="col-2 partyInfoColumn">
+        <div class="col-2 party-info-column">
           <div class="d-flex flex-column flex-fill">
             <div style="height: calc(16.666667vw - 30px)" class="p-1 map">
             </div>
@@ -165,27 +165,27 @@
           </div>
         </div>
       </div>
-      <div class="row encountersRow bg-secondary">
+      <div class="row encounters-row bg-secondary">
         <div class="col">
           <button
-            class="btn btn-primary w-auto h-auto float-right showEncountersButton"
+            class="btn btn-primary w-auto h-auto float-right show-encounters-button"
             type="button"
             data-toggle="collapse"
-            data-target="#encountersTab"
+            data-target="#encounters-tab"
             aria-expanded="true"
-            aria-controls="encountersTab"
+            aria-controls="encounters-tab"
           >
             <i class="fa fa-chevron-up" aria-hidden="true"></i>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
-          <div class="collapse show" id="encountersTab">
+          <div class="collapse show" id="encounters-tab">
             <div class="row flex-fill border-top border-dark">
               <button class="btn btn-primary btn-sm translate loadNetworkLogButton mx-2" type="button"></button>
               <button class="btn btn-primary btn-sm translate exportDBButton mx-2" type="button"></button>
               <button class="btn btn-primary btn-sm translate importDBButton mx-2" type="button"></button>
               <button class="btn btn-primary btn-sm translate clearDBButton mx-2" type="button"></button>
             </div>
-            <div class="row flex-fill border-top border-dark encountersContainer">
+            <div class="row flex-fill border-top border-dark encounters-container">
               <div
                 class="col col-3 border-right border-dark h-100 mh-100 zoneList"
               ></div>
@@ -195,7 +195,7 @@
               <div
                 class="col col-3 border-right border-dark h-100 mh-100 encounterList"
               ></div>
-              <div class="col col-3 h-100 mh-100 encounterInfo"></div>
+              <div class="col col-3 h-100 mh-100 encounter-info"></div>
             </div>
           </div>
         </div>
@@ -215,11 +215,11 @@
           <div class="timer-bar-right-label"></div>
         </div>
       </template>
-      <template class="triggerItem">
-        <div class="triggerItem"></div>
+      <template class="trigger-item">
+        <div class="trigger-item"></div>
       </template>
-      <template class="playerInfoRow">
-        <div class="playerInfoRow">
+      <template class="player-info-row">
+        <div class="player-info-row">
           <div>
             <div class="jobicon"></div>
             <div class="hp">
@@ -235,7 +235,7 @@
               </div>
             </div>
           </div>
-          <div class="playerName"></div>
+          <div class="player-name"></div>
         </div>
       </template>
       <template class="playerTriggerInfo">
@@ -266,17 +266,17 @@
         </div>
       </template>
       <template class="encounterTabRow">
-        <div class="selectorRow border-bottom border-dark"></div>
+        <div class="selector-row border-bottom border-dark"></div>
       </template>
       <template class="encounterTabEncounterRow">
-        <div class="selectorRow border-bottom border-dark">
+        <div class="selector-row border-bottom border-dark">
           <div class="encounterStart d-inline"></div>
           <div class="encounterName d-inline mx-2"></div>
           <div class="encounterDuration d-inline"></div>
         </div>
       </template>
-      <template class="encounterInfo">
-        <div class="encounterInfo">
+      <template class="encounter-info">
+        <div class="encounter-info">
           <div class="translate encounterLoad btn btn-primary pull-right mb-1"></div>
           <div class="translate encounterParse btn btn-primary pull-right mb-1"></div>
           <div class="translate encounterPrune btn btn-primary pull-right mb-1"></div>

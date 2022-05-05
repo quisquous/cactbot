@@ -38,17 +38,17 @@ export default class EncounterTab extends EventBus {
   constructor(private persistor: Persistor) {
     super();
 
-    this.$zoneColumn = querySelectorSafe(document, '#encountersTab .zoneList');
-    this.$dateColumn = querySelectorSafe(document, '#encountersTab .dateList');
-    this.$encounterColumn = querySelectorSafe(document, '#encountersTab .encounterList');
-    this.$infoColumn = querySelectorSafe(document, '#encountersTab .encounterInfo');
+    this.$zoneColumn = querySelectorSafe(document, '#encounters-tab .zoneList');
+    this.$dateColumn = querySelectorSafe(document, '#encounters-tab .dateList');
+    this.$encounterColumn = querySelectorSafe(document, '#encounters-tab .encounterList');
+    this.$infoColumn = querySelectorSafe(document, '#encounters-tab .encounter-info');
 
     this.$encounterTabRowTemplate = getTemplateChild(document, 'template.encounterTabRow');
     this.$encounterTabEncounterRowTemplate = getTemplateChild(
       document,
       'template.encounterTabEncounterRow',
     );
-    this.$encounterInfoTemplate = getTemplateChild(document, 'template.encounterInfo');
+    this.$encounterInfoTemplate = getTemplateChild(document, 'template.encounter-info');
   }
 
   refresh(): void {
@@ -104,7 +104,7 @@ export default class EncounterTab extends EventBus {
         const parent = t.parentElement;
         if (!parent)
           throw new UnreachableCode();
-        querySelectorAllSafe(parent, '.selectorRow.selected').forEach((n) => {
+        querySelectorAllSafe(parent, '.selector-row.selected').forEach((n) => {
           n.classList.remove('selected');
         });
         t.classList.add('selected');
@@ -144,7 +144,7 @@ export default class EncounterTab extends EventBus {
           const parent = t.parentElement;
           if (!parent)
             throw new UnreachableCode();
-          querySelectorAllSafe(parent, '.selectorRow.selected').forEach((n) => {
+          querySelectorAllSafe(parent, '.selector-row.selected').forEach((n) => {
             n.classList.remove('selected');
           });
           t.classList.add('selected');
@@ -197,7 +197,7 @@ export default class EncounterTab extends EventBus {
         const parent = t.parentElement;
         if (!parent)
           throw new UnreachableCode();
-        querySelectorAllSafe(parent, '.selectorRow.selected').forEach((n) => {
+        querySelectorAllSafe(parent, '.selector-row.selected').forEach((n) => {
           n.classList.remove('selected');
         });
         t.classList.add('selected');

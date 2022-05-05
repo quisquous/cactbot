@@ -106,7 +106,7 @@ export class MNKComponent extends BaseComponent {
       elem.classList.remove('Opo', 'Coeurl', 'Raptor');
       const beastChakra = jobDetail.beastChakra[i];
       if (beastChakra)
-        elem.classList.add(beastChakra);
+        elem.classList.add(beastChakra.toLowerCase());
     });
     this.lunarStacks[0]?.classList.toggle('active', jobDetail.lunarNadi);
     this.solarStacks[0]?.classList.toggle('active', jobDetail.solarNadi);

@@ -5,7 +5,7 @@ html {
   background-color: transparent;
 
   /* FFXIV font look */
-  font-family: "Meiryo", sans-serif;
+  font-family: Meiryo, sans-serif;
   font-size: 12px;
   text-shadow: -1px 0 3px #217aa2, 0 1px 3px #217aa2, 1px 0 3px #217aa2, 0 -1px 3px #217aa2;
   font-weight: 300;
@@ -50,7 +50,7 @@ td {
   display: none;
 }
 
-.resizeHandle .resize-helper {
+.resize-handle .resize-helper {
   margin: auto;
   display: inline-block;
 }

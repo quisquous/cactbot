@@ -113,7 +113,7 @@
   display: none;
 }
 
-.resizeHandle .resize-helper {
+.resize-handle .resize-helper {
   display: inline-block;
 }
 
@@ -124,7 +124,7 @@
 
 #timeline-resize-helper .resize-helper-bar {
   border: 1px solid black;
-  padding: 0 0.2em 0 0.2em;
+  padding: 0 0.2em;
   vertical-align: middle;
   height: 18px;
   margin-bottom: 2;
