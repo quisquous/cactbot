@@ -42,6 +42,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
     'DSR Nidhogg Darkdragon Dive Miss': '671B', // tower failure
   },
+  gainsEffectFail: {
+    'DSR Burns': 'B81', // fire puddles during Sanctity of the Ward
+    'DSR Frostbite': 'B82', // ice puddles during Sanctity of the Ward
+  },
   shareWarn: {
     'DSR Ser Adelphel Execution': '62D5', // dive on main tank after 62CE Shining Blade
     'DSR Ser Charibert Heavensflame': '62DF', // spread with 62E0 Holy Chain
