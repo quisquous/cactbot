@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -819,6 +820,38 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Broad Swing Right',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63C0', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '63C0', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '63C0', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '63C0', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '63C0', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63C0', source: '기사신 토르당', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Behind => Right',
+        },
+      },
+    },
+    {
+      id: 'DSR Broad Swing Left',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63C1', source: 'King Thordan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '63C1', source: 'Thordan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '63C1', source: 'Roi Thordan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '63C1', source: '騎神トールダン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '63C1', source: '骑神托尔丹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63C1', source: '기사신 토르당', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Behind => Left',
+        },
+      },
+    },
+    {
       id: 'DSR Gnash and Lash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
@@ -831,6 +864,33 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
       durationSeconds: 8,
       response: Responses.getInThenOut(),
+    },
+    {
+      id: 'DSR Lash Gnash Followup',
+      type: 'Ability',
+      // 6715 = Gnashing Wheel
+      // 6716 = Lashing Wheel
+      netRegex: NetRegexes.ability({ id: ['6715', '6716'], source: 'Nidhogg' }),
+      // These are ~3s apart.  Only call after the first (and ignore multiple people getting hit).
+      suppressSeconds: 6,
+      infoText: (_data, matches, output) => matches.id === '6715' ? output.in!() : output.out!(),
+      outputStrings: {
+        out: Outputs.out,
+        in: Outputs.in,
+      },
+    },
+    {
+      id: 'DSR Darkdragon Dive Single Tower',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
+      condition: Conditions.targetIsYou(),
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait',
+        },
+      },
     },
   ],
   timelineReplace: [
