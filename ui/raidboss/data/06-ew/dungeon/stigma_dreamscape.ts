@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Missile guidé sur VOUS',
           ja: '誘導ミサイル',
           cn: '导弹点名',
-          ko: '유도 미사일',
+          ko: '나에게 유도 미사일',
         },
       },
     },
