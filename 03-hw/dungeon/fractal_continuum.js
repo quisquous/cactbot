@@ -80,7 +80,7 @@ Options.Triggers.push({
           fr: 'Utilisez un incubateur',
           ja: 'キメラ培養器を使う',
           cn: '打开笼子',
-          ko: '감옥 해제',
+          ko: '키메라 배양기 사용하기',
         },
       },
     },

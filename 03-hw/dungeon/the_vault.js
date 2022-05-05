@@ -124,7 +124,7 @@ Options.Triggers.push({
           fr: 'Éloignez-vous des déchirures',
           ja: '裂け目から離れる',
           cn: '远离黑圈',
-          ko: '장판 피하기',
+          ko: '균열에서 멀리 떨어지기',
         },
       },
     },
