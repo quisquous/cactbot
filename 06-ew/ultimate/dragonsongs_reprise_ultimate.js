@@ -773,6 +773,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Behind => Right',
+          de: 'Hinter ihn => Rechts',
         },
       },
     },
@@ -789,6 +790,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Behind => Left',
+          de: 'Hinter ihn => Links',
         },
       },
     },
@@ -796,6 +798,11 @@ Options.Triggers.push({
       id: 'DSR Gnash and Lash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6712', source: 'ニーズヘッグ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6712', source: '尼德霍格', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6712', source: '니드호그', capture: false }),
       durationSeconds: 8,
       response: Responses.getOutThenIn(),
     },
@@ -803,6 +810,11 @@ Options.Triggers.push({
       id: 'DSR Lash and Gnash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '6713', source: 'ニーズヘッグ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '6713', source: '尼德霍格', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6713', source: '니드호그', capture: false }),
       durationSeconds: 8,
       response: Responses.getInThenOut(),
     },
@@ -812,6 +824,11 @@ Options.Triggers.push({
       // 6715 = Gnashing Wheel
       // 6716 = Lashing Wheel
       netRegex: NetRegexes.ability({ id: ['6715', '6716'], source: 'Nidhogg' }),
+      netRegexDe: NetRegexes.ability({ id: ['6715', '6716'], source: 'Nidhogg' }),
+      netRegexFr: NetRegexes.ability({ id: ['6715', '6716'], source: 'Nidhogg' }),
+      netRegexJa: NetRegexes.ability({ id: ['6715', '6716'], source: 'ニーズヘッグ' }),
+      netRegexCn: NetRegexes.ability({ id: ['6715', '6716'], source: '尼德霍格' }),
+      netRegexKo: NetRegexes.ability({ id: ['6715', '6716'], source: '니드호그' }),
       // These are ~3s apart.  Only call after the first (and ignore multiple people getting hit).
       suppressSeconds: 6,
       infoText: (_data, matches, output) => matches.id === '6715' ? output.in() : output.out(),
@@ -824,12 +841,18 @@ Options.Triggers.push({
       id: 'DSR Darkdragon Dive Single Tower',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
+      netRegexDe: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
+      netRegexFr: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
+      netRegexJa: NetRegexes.ability({ id: '6711', source: 'ニーズヘッグ' }),
+      netRegexCn: NetRegexes.ability({ id: '6711', source: '尼德霍格' }),
+      netRegexKo: NetRegexes.ability({ id: '6711', source: '니드호그' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait',
+          de: 'Ködern',
         },
       },
     },
