@@ -77,8 +77,8 @@ const generateFileName = (fightOrZone) => {
     seal = '';
 
   let zoneName;
-  if (fightOrZone.zoneName || fightOrZone.name) {
-    zoneName = fightOrZone.zoneName ?? fightOrZone.name;
+  if (fightOrZone.zoneName || fightOrZone.fightName) {
+    zoneName = fightOrZone.zoneName ?? fightOrZone.fightName;
   } else {
     const idToZoneName = {};
     for (const zoneName in ZoneId)
@@ -122,7 +122,7 @@ const printCollectedZones = (collector) => {
       dayFromDate(zone.startTime),
       timeFromDate(zone.startTime),
       durationFromDates(zone.startTime, zone.endTime),
-      zone.name,
+      zone.zoneName,
     ]);
     idx++;
   }
@@ -170,7 +170,7 @@ const printCollectedFights = (collector) => {
       dayFromDate(fight.startTime),
       timeFromDate(fight.startTime),
       durationFromDates(fight.startTime, fight.endTime),
-      fight.sealName ? fight.sealName : fight.name,
+      fight.sealName ? fight.sealName : fight.fightName,
       fight.endType,
     ]);
     idx++;

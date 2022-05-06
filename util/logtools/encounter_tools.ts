@@ -10,7 +10,7 @@ import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacemen
 // This can happen on partial logs.
 
 type ZoneEncInfo = {
-  name?: string;
+  zoneName?: string;
   zoneId?: number;
   startLine?: string;
   endLine?: string;
@@ -18,14 +18,8 @@ type ZoneEncInfo = {
   endTime?: Date;
 };
 
-type FightEncInfo = {
-  name?: string;
-  zoneId?: number;
-  zoneName?: string;
-  startLine?: string;
-  endLine?: string;
-  startTime?: Date;
-  endTime?: Date;
+type FightEncInfo = ZoneEncInfo & {
+  fightName?: string;
   endType?: string;
   sealName?: string;
 };
@@ -115,7 +109,7 @@ export class EncounterFinder {
   process(line: string): void {
     const cZ = this.regex.changeZone.exec(line)?.groups;
     if (cZ) {
-      if (this.currentZone.name === cZ.name) {
+      if (this.currentZone.zoneName === cZ.name) {
         // Zoning into the same zone, possibly a d/c situation.
         // Don't stop anything?
         return;
@@ -125,21 +119,21 @@ export class EncounterFinder {
       // Therefore we can safely initialize everything.
       if (this.currentFight.startTime)
         this.onEndFight(line, cZ, 'Zone Change');
-      if (this.currentZone.name)
-        this.onEndZone(line, this.currentZone.name, cZ);
+      if (this.currentZone.zoneName)
+        this.onEndZone(line, this.currentZone.zoneName, cZ);
 
       this.zoneInfo = ZoneInfo[parseInt(cZ.id, 16)];
-      this.currentZone.name = cZ.name;
+      this.currentZone.zoneName = cZ.name;
       if (this.skipZone()) {
         this.initializeZone();
         return;
       }
-      this.onStartZone(line, this.currentZone.name, cZ);
+      this.onStartZone(line, this.currentZone.zoneName, cZ);
       return;
     }
 
     // If no zone change is found, we next verify that we are inside a combat zone.
-    if (this.skipZone() || !this.currentZone.name)
+    if (this.skipZone() || !this.currentZone.zoneName)
       return;
 
     // We are in a combat zone, so we next check for victory/defeat.
@@ -192,7 +186,7 @@ export class EncounterFinder {
       // TODO: This regex catches faerie healing and could potentially give false positives!
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
-        this.onStartFight(line, this.currentZone.name, a.groups);
+        this.onStartFight(line, this.currentZone.zoneName, a.groups);
         return;
       }
     }
@@ -202,24 +196,24 @@ export class EncounterFinder {
   // All starts and ends of the same type are ordered and do not nest.
   // Fights and seal start/end may interleave with each other.
   // TODO: probably this should follow an "event bus" model instead of requiring derived classes.
-  onStartZone(line: string, name: string, matches: NetMatches['ChangeZone']): void {
+  onStartZone(line: string, zoneName: string, matches: NetMatches['ChangeZone']): void {
     this.currentZone = {
-      name: name,
+      zoneName: zoneName,
       startLine: line,
       zoneId: parseInt(matches.id),
       startTime: this.dateFromMatches(matches),
     };
   }
-  onStartFight(line: string, name: string, matches: NetMatches['Ability' | 'GameLog']): void {
+  onStartFight(line: string, fightName: string, matches: NetMatches['Ability' | 'GameLog']): void {
     this.currentFight = {
-      name: name,
-      zoneName: this.currentZone.name, // Sometimes the same as the fight name, but that's fine.
+      fightName: fightName,
+      zoneName: this.currentZone.zoneName, // Sometimes the same as the fight name, but that's fine.
       startLine: line,
       startTime: this.dateFromMatches(matches),
     };
   }
 
-  onEndZone(_line: string, _name: string, _matches: NetMatches['ChangeZone']): void {
+  onEndZone(_line: string, _zoneName: string, _matches: NetMatches['ChangeZone']): void {
     this.initializeZone();
   }
 
@@ -227,9 +221,9 @@ export class EncounterFinder {
     this.initializeFight();
   }
 
-  onSeal(line: string, name: string, matches: NetMatches['GameLog']): void {
-    this.onStartFight(line, name, matches);
-    this.currentSeal = name;
+  onSeal(line: string, sealName: string, matches: NetMatches['GameLog']): void {
+    this.onStartFight(line, sealName, matches);
+    this.currentSeal = sealName;
     this.haveSeenSeals = true;
   }
 
@@ -255,17 +249,17 @@ export class EncounterCollector extends EncounterFinder {
     super();
   }
 
-  override onEndZone(line: string, _name: string, matches: NetMatches['ChangeZone']): void {
+  override onEndZone(line: string, _zoneName: string, matches: NetMatches['ChangeZone']): void {
     this.currentZone.endLine = line;
     this.currentZone.endTime = this.dateFromMatches(matches);
     this.zones.push(this.currentZone);
     this.initializeZone();
   }
 
-  override onStartFight(line: string, name: string, matches: NetMatches['Ability' | 'GameLog']): void {
+  override onStartFight(line: string, fightName: string, matches: NetMatches['Ability' | 'GameLog']): void {
     this.currentFight = {
-      name: name,
-      zoneName: this.currentZone.name,
+      fightName: fightName,
+      zoneName: this.currentZone.zoneName,
       startLine: line,
       startTime: this.dateFromMatches(matches),
       zoneId: this.currentZone.zoneId,
@@ -280,10 +274,10 @@ export class EncounterCollector extends EncounterFinder {
     this.initializeFight();
   }
 
-  override onSeal(line: string, name: string, matches: NetMatches['GameLog']): void {
-    this.onStartFight(line, name, matches);
+  override onSeal(line: string, sealName: string, matches: NetMatches['GameLog']): void {
+    this.onStartFight(line, sealName, matches);
     this.haveSeenSeals = true;
-    this.lastSeal = name;
+    this.lastSeal = sealName;
     this.currentFight.sealName = this.lastSeal;
   }
 
