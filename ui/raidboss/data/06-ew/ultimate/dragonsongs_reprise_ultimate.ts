@@ -297,6 +297,7 @@ const triggerSet: TriggerSet<Data> = {
           dir: dirs[data.adelphelDir ?? 4],
         });
       },
+      run: (data) => delete data.adelphelDir,
       outputStrings: {
         north: Outputs.north,
         east: Outputs.east,
@@ -309,46 +310,6 @@ const triggerSet: TriggerSet<Data> = {
           cn: '去 ${dir} (击退)',
           ko: '${dir} (넉백)',
         },
-      },
-    },
-    {
-      id: 'DSR Adelphel Move Direction',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '62CE', source: 'Ser Adelphel' }),
-      netRegexDe: NetRegexes.ability({ id: '62CE', source: 'Adelphel' }),
-      netRegexFr: NetRegexes.ability({ id: '62CE', source: 'Sire Adelphel' }),
-      netRegexJa: NetRegexes.ability({ id: '62CE', source: '聖騎士アデルフェル' }),
-      netRegexCn: NetRegexes.ability({ id: '62CE', source: '圣骑士阿代尔斐尔' }),
-      netRegexKo: NetRegexes.ability({ id: '62CE', source: '성기사 아델펠' }),
-      suppressSeconds: 10,
-      infoText: (data, matches, output) => {
-        const heading = parseFloat(matches.heading);
-        // There's probably a better way to handle this...
-        switch (data.adelphelDir) {
-          case 0: // North
-            if (heading < 0)
-              return output.left!();
-            return output.right!();
-          case 1: // East
-            if (heading < -1.57)
-              return output.left!();
-            return output.right!();
-          case 2: // South
-            if (heading > 0)
-              return output.left!();
-            return output.right!();
-          case 3: // West
-            if (heading > 1.57)
-              return output.left!();
-            return output.right!();
-        }
-        return output.unknown!();
-      },
-      run: (data) => delete data.adelphelDir,
-      outputStrings: {
-        left: Outputs.left,
-        right: Outputs.right,
-        unknown: Outputs.unknown,
       },
     },
     {
