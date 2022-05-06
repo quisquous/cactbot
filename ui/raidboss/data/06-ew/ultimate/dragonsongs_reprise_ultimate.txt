@@ -75,6 +75,7 @@ hideall "--sync--"
 562.2 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
 563.3 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
 570.4 "Strength of the Ward" sync / 1[56]:[^:]*:King Thordan:63D3:/
+573.5 "--untargetable--"
 581.3 "--sync--" sync / 1[56]:[^:]*:Ser Guerrique:63D5:/ # self-targeted Heavy Impact
 582.7 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:63CC:/
 583.0 "Heavy Impact 1" sync / 1[56]:[^:]*:Ser Guerrique:63D6:/
