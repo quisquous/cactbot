@@ -139,7 +139,7 @@ export class TimelineParser {
       comment: /^\s*#/,
       commentLine: /#.*$/,
       durationCommand: /(?:[^#]*?\s)?(?<text>duration\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
-      ignore: /^hideall\s+\"(?<id>[^"]+)\"$/,
+      ignore: /^hideall\s+\"(?<id>[^"]+)\"(?:\s*#.*)?$/,
       jumpCommand: /(?:[^#]*?\s)?(?<text>jump\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
       line: /^(?<text>(?<time>[0-9]+(?:\.[0-9]+)?)\s+"(?<name>.*?)")(\s+(.*))?/,
       popupText:
