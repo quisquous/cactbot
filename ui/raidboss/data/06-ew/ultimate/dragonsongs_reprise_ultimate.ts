@@ -27,6 +27,10 @@ export interface Data extends RaidbossData {
   thordanJumpCounter?: number;
   thordanDir?: number;
   sanctityWardDir?: string;
+  // mapping of player name to 1, 2, 3 dot.
+  diveFromGraceNum: { [name: string]: number };
+  // mapping of 1, 2, 3 to whether that group has seen an arrow.
+  diveFromGraceHasArrow: { [num: number]: boolean };
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -110,6 +114,8 @@ const triggerSet: TriggerSet<Data> = {
     return {
       phase: 'doorboss',
       firstAdelphelJump: true,
+      diveFromGraceNum: {},
+      diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
     };
   },
   triggers: [
@@ -912,6 +918,92 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait',
           de: 'Ködern',
+        },
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Number',
+      // This comes out ~5s before symbols.
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      infoText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.dot1) {
+          data.diveFromGraceNum[matches.target] = 1;
+          if (matches.target === data.me)
+            return output.num1!();
+        } else if (id === headmarkers.dot2) {
+          data.diveFromGraceNum[matches.target] = 2;
+          if (matches.target === data.me)
+            return output.num2!();
+        } else if (id === headmarkers.dot3) {
+          data.diveFromGraceNum[matches.target] = 3;
+          if (matches.target === data.me)
+            return output.num3!();
+        }
+      },
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Dir Collect',
+      type: 'GainsEffect',
+      // AC3 = High Jump Target
+      // AC4 = Spineshatter Dive Target
+      // AC5 = Elusive Jump Target
+      // This only matches on non-circles.
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC4', 'AC5'] }),
+      run: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        // These come out in 9, 19, 30 seconds.
+        if (duration < 15)
+          data.diveFromGraceHasArrow[1] = true;
+        else if (duration < 25)
+          data.diveFromGraceHasArrow[2] = true;
+        else
+          data.diveFromGraceHasArrow[3] = true;
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Dir You',
+      type: 'GainsEffect',
+      // AC3 = High Jump Target
+      // AC4 = Spineshatter Dive Target
+      // AC5 = Elusive Jump Target
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 0.5,
+      alertText: (data, matches, output) => {
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+
+        if (matches.effectId === 'AC4')
+          return output.upArrow!({ num: num });
+        else if (matches.effectId === 'AC5')
+          return output.downArrow!({ num: num });
+
+        if (data.diveFromGraceHasArrow[num])
+          return output.circleWithArrows!({ num: num });
+        return output.circleAllCircles!({ num: num });
+      },
+      outputStrings: {
+        circleAllCircles: {
+          en: '#${num} All Circles',
+        },
+        circleWithArrows: {
+          en: '#${num} Circle (with arrows)',
+        },
+        upArrow: {
+          en: '#${num} Up Arrow',
+        },
+        downArrow: {
+          en: '#${num} Down Arrow',
         },
       },
     },
