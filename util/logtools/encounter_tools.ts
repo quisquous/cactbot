@@ -323,21 +323,17 @@ class TLUtilFunctions {
   leftExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
-    if (length === undefined)
+    if (length === undefined || length <= str.length)
       return str;
-    while (str.length < length)
-      str = ' ' + str;
-    return str;
+    return str.padStart(length - str.length, ' ');
   }
 
   rightExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
-    if (length === undefined)
+    if (length === undefined || length <= str.length)
       return str;
-    while (str.length < length)
-      str += ' ';
-    return str;
+    return str.padEnd(length - str.length, ' ');
   }
 
   generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
