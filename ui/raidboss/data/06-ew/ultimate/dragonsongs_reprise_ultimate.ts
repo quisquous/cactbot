@@ -584,7 +584,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         thordanLocation: {
           en: '${dir} Thordan',
-          jp: 'トールダンが${dir}で'
+          jp: 'トールダンが${dir}で',
           de: '${dir} Thordan',
           ko: '토르당 ${dir}',
         },
