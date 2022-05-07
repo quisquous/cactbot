@@ -42,6 +42,7 @@ type JobDomObjects = {
   healthBar?: ResourceBar;
   manaBar?: ResourceBar;
   mpTicker?: TimerBar;
+  foodBuff?: HTMLElement;
 };
 
 export interface ResourceBox extends HTMLDivElement {
@@ -174,6 +175,27 @@ export class Bars {
           toward: 'left down',
         });
       }
+
+      // add food buff timer
+      this.o.foodBuff = makeAuraTimerIcon(
+        'foodbuff',
+        -1,
+        1,
+        this.options.BigBuffIconWidth,
+        this.options.BigBuffIconHeight,
+        '',
+        this.options.BigBuffBarHeight,
+        this.options.BigBuffTextHeight,
+        'white',
+        this.options.BigBuffBorderSize,
+        'yellow',
+        'yellow',
+        foodImage,
+      );
+      // hide it initially
+      this.o.foodBuff.style.display = 'none';
+
+      this.o.leftBuffsList.addElement('foodbuff', this.o.foodBuff, -1);
     }
 
     if (shouldShow.cpBar) {
@@ -698,12 +720,9 @@ export class Bars {
     contentType?: number;
     foodBuffExpiresTimeMs: number;
     foodBuffTimer: number;
-    lastCalledMs: number;
   }): number | undefined {
     // Non-combat jobs don't set up the left buffs list.
-    if (!this.o.leftBuffsList)
-      return;
-    if (Date.now() - o.lastCalledMs < 1000)
+    if (!this.o.leftBuffsList || !this.o.foodBuff)
       return;
 
     const CanShowWellFedWarning = () => {
@@ -730,7 +749,7 @@ export class Bars {
     const showAfterMs = TimeToShowWellFedWarning();
 
     if (!canShow || showAfterMs > 0) {
-      this.o.leftBuffsList.removeElement('foodbuff');
+      this.o.foodBuff.style.display = 'none';
       if (canShow) {
         return window.setTimeout(
           this._updateFoodBuff.bind(this, {
@@ -741,22 +760,7 @@ export class Bars {
         );
       }
     } else {
-      const div = makeAuraTimerIcon(
-        'foodbuff',
-        -1,
-        1,
-        this.options.BigBuffIconWidth,
-        this.options.BigBuffIconHeight,
-        '',
-        this.options.BigBuffBarHeight,
-        this.options.BigBuffTextHeight,
-        'white',
-        this.options.BigBuffBorderSize,
-        'yellow',
-        'yellow',
-        foodImage,
-      );
-      this.o.leftBuffsList.addElement('foodbuff', div, -1);
+      this.o.foodBuff.style.display = '';
     }
   }
 
