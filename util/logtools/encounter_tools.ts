@@ -288,20 +288,20 @@ class EncounterCollector extends EncounterFinder {
 }
 
 class TLUtilFunctions {
-  timeFromDate(date: Date | undefined): string {
+  timeFromDate(date?: Date): string {
     if (date)
       return date.toISOString().slice(11, 19);
     return 'Unknown_Time';
   }
 
-  dayFromDate(date: Date | undefined): string {
+  dayFromDate(date?: Date): string {
     if (date)
       return date.toISOString().slice(0, 10);
     return 'Unknown_Date';
   }
 
-  durationFromDates(start: Date | undefined, end: Date | undefined): string {
-    if (!(start && end))
+  durationFromDates(start?: Date, end?: Date): string {
+    if (start === undefined || end === undefined)
       return 'Unknown_Duration';
     const ms = end.valueOf() - start.valueOf();
     const totalSeconds = Math.round(ms / 1000);
@@ -320,20 +320,20 @@ class TLUtilFunctions {
     }).join(' ');
   }
 
-  leftExtendStr(str: string | undefined, length: number | undefined): string {
-    if (!str)
+  leftExtendStr(str?: string, length?: number): string {
+    if (str === undefined)
       return '';
-    if (!length)
+    if (length === undefined)
       return str;
     while (str.length < length)
       str = ' ' + str;
     return str;
   }
 
-  rightExtendStr(str: string | undefined, length: number | undefined): string {
-    if (!str)
+  rightExtendStr(str?: string, length?: number): string {
+    if (str === undefined)
       return '';
-    if (!length)
+    if (length === undefined)
       return str;
     while (str.length < length)
       str += ' ';
@@ -341,7 +341,7 @@ class TLUtilFunctions {
   }
 
   generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
-    const zoneName = fightOrZone.zoneName || 'Unknown_Zone';
+    const zoneName = fightOrZone.zoneName ?? 'Unknown_Zone';
     const dateStr = this.dayFromDate(fightOrZone.startTime).replace(/-/g, '');
     const timeStr = this.timeFromDate(fightOrZone.startTime).replace(/:/g, '');
     const duration = this.durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
