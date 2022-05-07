@@ -2442,7 +2442,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hrodvitnir': 'フローズヴィトニル',
         'Kampe': 'カンペ',
         'Ayida': 'アイダ',
-        'Alkonost': 'アルコノスト',
+        '(?<!Tamed )Alkonost': 'アルコノスト',
       },
       'replaceText': {
         '74 Degrees': 'ウォーターショット',
