@@ -2,15 +2,13 @@ import fs from 'fs';
 import readline from 'readline';
 import Anonymizer from './anonymizer';
 import Splitter from './splitter';
-import { EncounterCollector, TLUtilFunctions } from './encounter_tools';
+import { EncounterCollector, TLFuncs } from './encounter_tools';
 import ZoneId from '../../resources/zone_id';
 import argparse from 'argparse';
 import { LogUtilArgParse } from './arg_parser';
 
 // TODO: add options for not splitting / not anonymizing.
 const timelineParse = new LogUtilArgParse();
-const TFuncs = new TLUtilFunctions();
-
 const args = timelineParse.args;
 
 const printHelpAndExit = (errString) => {
@@ -122,22 +120,22 @@ const writeFile = (outputFile, startLine, endLine) => {
   const collector = await makeCollectorFromPrepass(logFileName);
 
   if (args['search_fights'] === -1) {
-    TFuncs.printCollectedFights(collector);
+    TLFuncs.printCollectedFights(collector);
     process.exit(0);
   }
   if (args['search_zones'] === -1) {
-    TFuncs.printCollectedZones(collector);
+    TLFuncs.printCollectedZones(collector);
     process.exit(0);
   }
 
   // This utility prints 1-indexed fights and zones, so adjust - 1.
   if (args['search_fights']) {
     const fight = collector.fights[args['search_fights'] - 1];
-    await writeFile(TFuncs.generateFileName(fight), fight.startLine, fight.endLine);
+    await writeFile(TLFuncs.generateFileName(fight), fight.startLine, fight.endLine);
     process.exit(exitCode);
   } else if (args['search_zones']) {
     const zone = collector.zones[args['search_zones'] - 1];
-    await writeFile(TFuncs.generateFileName(zone), zone.startLine, zone.endLine);
+    await writeFile(TLFuncs.generateFileName(zone), zone.startLine, zone.endLine);
     process.exit(exitCode);
   } else if (args['fight_regex']) {
     const regex = new RegExp(args['fight_regex'], 'i');
@@ -148,7 +146,7 @@ const writeFile = (outputFile, startLine, endLine) => {
       } else if (!fight.name.match(regex)) {
         continue;
       }
-      await writeFile(TFuncs.generateFileName(fight), fight.startLine, fight.endLine);
+      await writeFile(TLFuncs.generateFileName(fight), fight.startLine, fight.endLine);
     }
     process.exit(exitCode);
   } else if (args['zone_regex']) {
@@ -156,7 +154,7 @@ const writeFile = (outputFile, startLine, endLine) => {
     for (const zone of collector.zones) {
       if (!zone.name.match(regex))
         continue;
-      await writeFile(TFuncs.generateFileName(zone), zone.startLine, zone.endLine);
+      await writeFile(TLFuncs.generateFileName(zone), zone.startLine, zone.endLine);
     }
     process.exit(exitCode);
   } else {

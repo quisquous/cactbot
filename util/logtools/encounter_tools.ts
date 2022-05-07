@@ -287,20 +287,20 @@ class EncounterCollector extends EncounterFinder {
   }
 }
 
-class TLUtilFunctions {
-  timeFromDate(date?: Date): string {
+class TLFuncs {
+  static timeFromDate(date?: Date): string {
     if (date)
       return date.toISOString().slice(11, 19);
     return 'Unknown_Time';
   }
 
-  dayFromDate(date?: Date): string {
+  static dayFromDate(date?: Date): string {
     if (date)
       return date.toISOString().slice(0, 10);
     return 'Unknown_Date';
   }
 
-  durationFromDates(start?: Date, end?: Date): string {
+  static durationFromDates(start?: Date, end?: Date): string {
     if (start === undefined || end === undefined)
       return 'Unknown_Duration';
     const ms = end.valueOf() - start.valueOf();
@@ -311,7 +311,7 @@ class TLUtilFunctions {
     return (totalSeconds % 60).toString() + 's';
   }
 
-  toProperCase(str: string): string {
+  static toProperCase(str: string): string {
     return str.split(' ').map((str) => {
       const cap = str[0]?.toUpperCase();
       const lower = str.slice(1);
@@ -320,7 +320,7 @@ class TLUtilFunctions {
     }).join(' ');
   }
 
-  leftExtendStr(str?: string, length?: number): string {
+  static leftExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
     if (length === undefined || length <= str.length)
@@ -328,7 +328,7 @@ class TLUtilFunctions {
     return str.padStart(length - str.length, ' ');
   }
 
-  rightExtendStr(str?: string, length?: number): string {
+  static rightExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
     if (length === undefined || length <= str.length)
@@ -336,16 +336,16 @@ class TLUtilFunctions {
     return str.padEnd(length - str.length, ' ');
   }
 
-  generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
+  static generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
     const zoneName = fightOrZone.zoneName ?? 'Unknown_Zone';
-    const dateStr = this.dayFromDate(fightOrZone.startTime).replace(/-/g, '');
-    const timeStr = this.timeFromDate(fightOrZone.startTime).replace(/:/g, '');
-    const duration = this.durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
+    const dateStr = TLFuncs.dayFromDate(fightOrZone.startTime).replace(/-/g, '');
+    const timeStr = TLFuncs.timeFromDate(fightOrZone.startTime).replace(/:/g, '');
+    const duration = TLFuncs.durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
     let seal;
     if ('sealName' in fightOrZone)
       seal = fightOrZone['sealName'];
     if (seal)
-      seal = '_' + this.toProperCase(seal).replace(/[^A-z0-9]/g, '');
+      seal = '_' + TLFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
     else
       seal = '';
     let wipeStr = '';
@@ -356,7 +356,7 @@ class TLUtilFunctions {
 
 // For an array of arrays, return an array where each value is the max length at that index
 // among all of the inner arrays, e.g. find the max length per field of an array of rows.
-  maxLengthPerIndex(outputRows: Array<Array<string>>): Array<number> {
+  static maxLengthPerIndex(outputRows: Array<Array<string>>): Array<number> {
     const outputSizes = outputRows.map((row) => row.map((field) => field.length));
     return outputSizes.reduce((max, row) => {
       return max.map((val, idx) => {
@@ -368,19 +368,19 @@ class TLUtilFunctions {
     });
   }
 
-  printCollectedZones(collector: EncounterCollector): void {
+  static printCollectedZones(collector: EncounterCollector): void {
     let idx = 1;
     const outputRows = [];
     for (const zone of collector.zones) {
       const zoneName = zone.zoneName ?? 'Unknown_Zone';
-      const startDate = zone.startTime ? this.dayFromDate(zone.startTime) : 'Unknown_Date';
-      const startTime = zone.startTime ? this.timeFromDate(zone.startTime) : 'Unknown_Start';
+      const startDate = zone.startTime ? TLFuncs.dayFromDate(zone.startTime) : 'Unknown_Date';
+      const startTime = zone.startTime ? TLFuncs.timeFromDate(zone.startTime) : 'Unknown_Start';
 
       outputRows.push([
         idx.toString(),
         startDate,
         startTime,
-        this.durationFromDates(zone.startTime, zone.endTime),
+        TLFuncs.durationFromDates(zone.startTime, zone.endTime),
         zoneName,
       ]);
       idx++;
@@ -389,7 +389,7 @@ class TLUtilFunctions {
     if (outputRows.length === 0)
       return;
 
-    const lengths = this.maxLengthPerIndex(outputRows);
+    const lengths = TLFuncs.maxLengthPerIndex(outputRows);
 
     const dateIdx = 1;
     let lastDate = null;
@@ -398,16 +398,16 @@ class TLUtilFunctions {
         lastDate = row[dateIdx];
         console.log(lastDate);
       }
-      const row0 = this.leftExtendStr(row[0], lengths[0]);
-      const row2 = this.leftExtendStr(row[2], lengths[2]);
-      const row3 = this.leftExtendStr(row[3], lengths[3]);
-      const row4 = this.rightExtendStr(row[4], lengths[4]);
+      const row0 = TLFuncs.leftExtendStr(row[0], lengths[0]);
+      const row2 = TLFuncs.leftExtendStr(row[2], lengths[2]);
+      const row3 = TLFuncs.leftExtendStr(row[3], lengths[3]);
+      const row4 = TLFuncs.rightExtendStr(row[4], lengths[4]);
 
       console.log(`  ${row0})   ${row2}   ${row3}  ${row4}`);
     }
   }
 
-  printCollectedFights = (collector: EncounterCollector): void => {
+  static printCollectedFights = (collector: EncounterCollector): void => {
     let idx = 1;
     const outputRows = [];
     let seenSeal = false;
@@ -415,9 +415,9 @@ class TLUtilFunctions {
     for (const fight of collector.fights) {
       // Add a zone name row when there's seal messages for clarity.
       const zoneName = fight.zoneName ?? 'Unknown_Zone';
-      const startDate = fight.startTime ? this.dayFromDate(fight.startTime) : 'Unknown_Date';
-      const startTime = fight.startTime ? this.timeFromDate(fight.startTime) : 'Unknown_Start';
-      const fightDuration = this.durationFromDates(fight.startTime, fight.endTime) ?? 'Unknown Duration';
+      const startDate = fight.startTime ? TLFuncs.dayFromDate(fight.startTime) : 'Unknown_Date';
+      const startTime = fight.startTime ? TLFuncs.timeFromDate(fight.startTime) : 'Unknown_Start';
+      const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ?? 'Unknown Duration';
       let fightName = 'Unknown_Encounter';
       if (fight.sealName)
         fightName = fight.sealName;
@@ -431,7 +431,7 @@ class TLUtilFunctions {
         seenSeal = false;
       }
       if (fight.startTime)
-        lastDate = this.dayFromDate(fight.startTime);
+        lastDate = TLFuncs.dayFromDate(fight.startTime);
       const row = [
         idx.toString(),
         startDate,
@@ -447,7 +447,7 @@ class TLUtilFunctions {
     if (outputRows.length === 0)
       return;
 
-    const lengths = this.maxLengthPerIndex(outputRows);
+    const lengths = TLFuncs.maxLengthPerIndex(outputRows);
 
     const dateIdx = 1;
     console.log(lastDate);
@@ -458,15 +458,15 @@ class TLUtilFunctions {
         console.log(lastDate);
       }
 
-      const col0 = this.leftExtendStr(row[0], lengths[0]);
+      const col0 = TLFuncs.leftExtendStr(row[0], lengths[0]);
       const col1 = row[0] ? ') ' : '  ';
-      const col2 = this.leftExtendStr(row[2], lengths[2]);
-      const col3 = this.leftExtendStr(row[3], lengths[3]);
-      const col4 = this.rightExtendStr(row[4], lengths[4]);
+      const col2 = TLFuncs.leftExtendStr(row[2], lengths[2]);
+      const col3 = TLFuncs.leftExtendStr(row[3], lengths[3]);
+      const col4 = TLFuncs.rightExtendStr(row[4], lengths[4]);
       const col5 = row[5] ? (' ' + '[' + row[5] + ']') : '';
       console.log(`  ${col0}${col1} ${col2} ${col3} ${col4} ${col5}`);
     }
   };
 }
 
-export { EncounterCollector, TLUtilFunctions };
+export { EncounterCollector, TLFuncs };
