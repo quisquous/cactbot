@@ -787,6 +787,8 @@ export class CactbotConfigurator {
         const zoneInfo = ZoneInfo[zoneId];
         if (zoneInfo)
           title = this.translate(zoneInfo.name);
+      } else if (triggerSet.zoneId === null) {
+        title = this.translate(kPrefixToCategory['00-misc']);
       } else if (triggerSet.zoneRegex) {
         // zoneRegex can be a localized object.
         let zoneRegex = triggerSet.zoneRegex instanceof RegExp
