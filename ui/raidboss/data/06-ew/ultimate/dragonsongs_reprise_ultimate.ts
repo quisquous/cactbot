@@ -378,7 +378,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '63D3', source: '骑神托尔丹', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '63D3', source: '기사신 토르당', capture: false }),
       condition: (data) => data.phase === 'thordan',
-      delaySeconds: 4.5,
+      // It appears that these adds can be in place at ~4.5s, but with latency this may fail for some.
+      delaySeconds: 5,
       promise: async (data) => {
         // Collect Ser Vellguine (3636), Ser Paulecrain (3637), Ser Ignasse (3638) entities
         const vellguineLocaleNames: LocaleText = {
